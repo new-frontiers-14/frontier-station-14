@@ -49,9 +49,6 @@
     vital: true
   - type: Input
     context: "ghost"
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
   - type: InputMover
   - type: GhostOnMove
   - type: Tag
@@ -137,9 +134,9 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2.7
-    baseSprintSpeed : 4.5
+  - type: MovementBodyPart
+    walkSpeed : 3
+    sprintSpeed : 5
 
 - type: entity
   id: RightLegHumanoidFox
@@ -156,9 +153,9 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2.7
-    baseSprintSpeed : 4.5
+  - type: MovementBodyPart
+    walkSpeed : 3
+    sprintSpeed : 5
 
 - type: entity
   id: LeftFootHumanoidFox
