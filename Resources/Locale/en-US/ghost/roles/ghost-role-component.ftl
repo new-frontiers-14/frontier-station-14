@@ -151,3 +151,9 @@ ghost-role-information-behonker-description = You are an antagonist, bring death
 
 ghost-role-information-taxibot-name = TaxiBot
 ghost-role-information-taxibot-description = Drive the station crew to their destination.
+
+ghost-role-information-cleanbot-name = CleanBot
+ghost-role-information-cleanbot-description = Click puddles to mop them up.
+
+ghost-role-information-mothroach-name = Mothroach
+ghost-role-information-mothroach-description = A cute but mischievous mothroach.
