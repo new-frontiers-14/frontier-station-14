@@ -162,6 +162,7 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public void TrySetMainDiscipline(TechnologyPrototype prototype, EntityUid uid, TechnologyDatabaseComponent? component = null)
     {
+        return;
         if (!Resolve(uid, ref component))
             return;
 
