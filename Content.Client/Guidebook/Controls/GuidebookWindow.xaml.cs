@@ -86,6 +86,11 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler
             var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
             Tree.SetSelectedIndex(item?.Index);
         }
+        else
+        {
+            var item = Tree.Items.First();
+            Tree.SetSelectedIndex(item?.Index);
+        }
     }
 
     private IEnumerable<GuideEntry> GetSortedRootEntries(List<string>? rootEntries)
