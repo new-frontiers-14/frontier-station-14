@@ -43,11 +43,10 @@ public static class PoolManager
 {
     private static readonly (string cvar, string value)[] ServerTestCvars =
     {
-        // @formatter:off
-        (CCVars.DatabaseSynchronous.Name,     "true"),
-        (CCVars.DatabaseSqliteDelay.Name,     "0"),
-        (CCVars.HolidaysEnabled.Name,         "false"),
-        (CCVars.GameMap.Name,                 "Empty"),
+        (CCVars.DatabaseSynchronous.Name, "true"),
+        (CCVars.DatabaseSqliteDelay.Name, "0"),
+        (CCVars.HolidaysEnabled.Name, "false"),
+        (CCVars.GameMap.Name, "Empty"),
         (CCVars.AdminLogsQueueSendDelay.Name, "0"),
         (CVars.NetPVS.Name,                   "false"),
         (CCVars.NPCMaxUpdates.Name,           "999999"),

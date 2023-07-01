@@ -1,0 +1,253 @@
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputer
+  name: shipyard console
+  description: Used to purchase and sell shuttles
+  components:
+  - type: ShipyardConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Shipyard
+      type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: telesci
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ItemSlots  
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      ShipyardConsole-targetId: !type:ContainerSlot {}
+
+- type: entity
+  id: ComputerShipyardSecurity
+  parent: ComputerShipyard
+  name: security shipyard console
+  description: Used to enlist into Nanotrasen Security Forces
+  components:  
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Security
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: telesci_red      
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+
+- type: entity
+  id: ComputerBankATM
+  parent: BaseComputer
+  name: bank atm
+  description: Used to deposit and withdraw funds from a personal bank account
+  components:
+  - type: BankATM
+    bank-ATM-cashSlot:
+      name: bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - Currency
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+    - key: enum.BankATMMenuUiKey.ATM
+      type: BankATMMenuBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ItemSlots  
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      bank-ATM-cashSlot: !type:ContainerSlot {}
+      
+- type: entity
+  id: MachineCryoSleepPod
+  parent: BaseMachine
+  name: cryo sleep chamber
+  description: cold pillow guaranteed
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _NF/Structures/cryopod.rsi
+    layers:
+    - state: closed
+  - type: Anchorable
+    delay: 999999
+  - type: Physics
+    bodyType: Static
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: MaterialStorage
+  - type: Appearance
+  - type: Climbable
+  - type: CryoSleep
+  - type: ContainerContainer
+    containers:
+      body_container: !type:ContainerSlot  
+  
+- type: entity
+  id: ComputerPalletConsoleNFHighMarket
+  parent: ComputerPalletConsole
+  suffix: High
+  name: cargo sale computer
+  description: Used to sell goods loaded onto cargo pallets
+  components:
+  - type: MarketModifier
+    mod: 1.707
+  
+- type: entity
+  id: ComputerPalletConsoleNFLowMarket
+  parent: ComputerPalletConsole
+  suffix: Low
+  name: cargo sale computer
+  description: Used to sell goods loaded onto cargo pallets
+  components:
+  - type: MarketModifier
+    mod: 0.892
+    
+- type: entity
+  id: StationAdminBankATM
+  parent: BaseComputer
+  name: station administration console
+  description: Used to pay out from the station's bank account
+  components:
+  - type: StationBankATM
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+    - key: enum.BankATMMenuUiKey.ATM
+      type: StationBankATMMenuBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineAstroVend
+  name: AstroVend
+  description: Essential gear for the space-men on the go
+  components:
+  - type: VendingMachine
+    pack: AstroVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: AstroVendAds
+  - type: Sprite
+    sprite: _NF/Structures/astrovend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+    
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineCircuitVend
+  name: CircuitVend
+  description: Essential tech for the space-men on the go
+  components:
+  - type: VendingMachine
+    pack: CircuitVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: AstroVendAds
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/robotics.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"

@@ -20,13 +20,21 @@
         Plating:
           - prob: 3 # Intentional blank.
           - id: SalvageMaterialCrateSpawner
-            prob: 1
+            prob: .6
+          - id: RandomArtifactSpawner20
+            prob: .4
           - id: SalvageCanisterSpawner
-            prob: 0.2
+            prob: 0.3
           - id: SalvageMobSpawner
-            prob: 0.7
+            prob: 0.8
+          - id: TableFrame
+            prob: 0.1
+          - id: RandomBox
+            prob: 0.1
+          - id: Girder
+            prob: 1.5
           - id: WallSolid
-            prob: 1
+            prob: 1.5
           - id: Grille
             prob: 0.5
         Lattice:
@@ -39,12 +47,30 @@
             prob: 0.2
         FloorSteel:
           - prob: 3 # Intentional blank.
-          - id: SalvageMaterialCrateSpawner
-            prob: 1
+          - id: CrateFilledSpawner
+            prob: 0.2
+          - id: HatSpawner
+            prob: 0.1
+          - id: SalvagePartsSpawnerLow
+            prob: 0.4
+          - id: RandomAmmoBox
+            prob: 0.2
+          - id: ChairFolding
+            prob: 0.2
+          - id: RandomBook
+            prob: 0.2
+          - id: RandomBox
+            prob: 0.2
+          - id: RandomItem
+            prob: 0.6
+          - id: SchoolgirlUniformSpawner
+            prob: 0.1
+          - id: SalvageSeedSpawnerLow
+            prob: 0.2
           - id: SalvageCanisterSpawner
             prob: 0.2
           - id: SalvageMobSpawner
-            prob: 0.7
+            prob: 0.8
     - type: GCAbleObject
       queue: SpaceDebris
     - type: IFF

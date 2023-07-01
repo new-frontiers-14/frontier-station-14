@@ -1,0 +1,69 @@
+- type: entity
+  parent: IDCardStandard
+  id: MailCarrierIDCard
+  name: mail carrier ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmailcarrier
+  - type: PresetIdCard
+    job: MailCarrier
+
+- type: entity
+  parent: IDCardStandard
+  id: PrisonerIDCard
+  name: prisoner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+  - type: PresetIdCard
+    job: Prisoner
+
+- type: entity
+  parent: IDCardStandard
+  id: GladiatorIDCard
+  name: gladiator ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange #Placeholder?
+  - type: PresetIdCard
+    job: Gladiator
+
+- type: entity
+  parent: IDCardStandard
+  id: ValetIDCard
+  name: valet ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-service
+  - type: PresetIdCard
+    job: Valet
+
+- type: entity
+  parent: IDCardStandard
+  id: GuardIDCard
+  name: guard ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsecurityofficer
+  - type: PresetIdCard
+    job: PrisonGuard
+
+- type: entity
+  parent: IDCardStandard
+  id: MartialArtistIDCard
+  name: martial artist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idboxer
+  - type: PresetIdCard
+    job: MartialArtist

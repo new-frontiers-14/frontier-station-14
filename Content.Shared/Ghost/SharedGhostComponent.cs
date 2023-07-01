@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Ghost
 {
@@ -49,6 +50,47 @@ namespace Content.Shared.Ghost
 
         [DataField("canReturnToBody"), AutoNetworkedField]
         private bool _canReturnToBody;
+
+        [DataField("TimeOfDeath", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+        public TimeSpan TimeOfDeath = TimeSpan.Zero;
+
+        public override ComponentState GetComponentState()
+        {
+            return new GhostComponentState(CanReturnToBody, CanGhostInteract, TimeOfDeath);
+        }
+
+        public override void HandleComponentState(ComponentState? curState, ComponentState? nextState)
+        {
+            base.HandleComponentState(curState, nextState);
+
+            if (curState is not GhostComponentState state)
+            {
+                return;
+            }
+
+            CanReturnToBody = state.CanReturnToBody;
+            CanGhostInteract = state.CanGhostInteract;
+            TimeOfDeath = state.TimeOfDeath;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class GhostComponentState : ComponentState
+    {
+        public bool CanReturnToBody { get; }
+        public bool CanGhostInteract { get; }
+
+        public TimeSpan TimeOfDeath { get; }
+
+        public GhostComponentState(
+            bool canReturnToBody,
+            bool canGhostInteract,
+            TimeSpan timeOfDeath)
+        {
+            CanReturnToBody = canReturnToBody;
+            CanGhostInteract = canGhostInteract;
+            TimeOfDeath = timeOfDeath;
+        }
     }
 }
 

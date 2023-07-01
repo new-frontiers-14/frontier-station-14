@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseLightbulb
+  name: red light tube
+  description: A colorful light tube. These emit a red hue.
+  id: ColoredLightTubeRed
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#FF6666"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 0.5
+    PowerUse: 25
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal 
+
+- type: entity
+  parent: BaseLightbulb
+  name: blue light tube
+  description: A colorful light tube. These emit a frosty blue hue.
+  id: ColoredLightTubeFrostyBlue
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#00FFFF"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 1
+    PowerUse: 25
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal 
+    
+- type: entity
+  parent: BaseLightbulb
+  name: black light tube
+  description: A colorful light tube. These emit "black light".
+  id: ColoredLightTubeBlackLight
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#5D0CED"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 1
+    PowerUse: 25
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal 

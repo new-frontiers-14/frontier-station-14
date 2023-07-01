@@ -5,6 +5,7 @@ using Content.Server.Cargo.Systems;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Stacks;
+using Content.Shared.Cargo.Components;
 using NUnit.Framework;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
@@ -143,7 +144,6 @@ public sealed class CargoTest
             }
             mapManager.DeleteMap(mapId);
         });
-
         await pairTracker.CleanReturnAsync();
     }
 

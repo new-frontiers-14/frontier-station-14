@@ -1,0 +1,37 @@
+- type: entity
+  save: false
+  name: Player oni
+  parent: MobOniBase
+  id: MobOni
+  components:
+  - type: CombatMode
+    canDisarm: true
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Input
+    context: "human"
+  - type: MobMover
+  - type: InputMover
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.5
+    damageRecovery:
+      types:
+        Asphyxiation: -1.5
+  - type: Alerts
+  - type: Actions
+  - type: Eye
+    zoom: "1.125, 1.125"
+  - type: CameraRecoil
+  - type: Examiner
+  - type: CanHostGuardian
+  - type: Faction
+    factions:
+    - NanoTrasen
+  - type: MailReceiver
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Content.Shared.CCVar;
@@ -28,6 +28,8 @@ public sealed class JobRequirementsManager
 
     public event Action? Updated;
 
+    private bool _whitelisted = false;
+
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("job_requirements");
@@ -35,7 +37,7 @@ public sealed class JobRequirementsManager
         // Yeah the client manager handles role bans and playtime but the server ones are separate DEAL.
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
-
+        _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
 
@@ -77,6 +79,10 @@ public sealed class JobRequirementsManager
         }*/
         Updated?.Invoke();
     }
+    private void RxWhitelist(MsgWhitelist message)
+    {
+        _whitelisted = message.Whitelisted;
+    }
 
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out string? reason)
     {
@@ -112,6 +118,14 @@ public sealed class JobRequirementsManager
             first = false;
 
             reasonBuilder.AppendLine(reason);
+        }
+
+        if (!_whitelisted)
+        {
+            if (reasonBuilder.Length > 0)
+                reasonBuilder.Append('\n');
+
+            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
         }
 
         reason = reasonBuilder.Length == 0 ? null : reasonBuilder.ToString();

@@ -586,6 +586,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("backpack");
 
+                    b.Property<int>("BankBalance")
+                        .HasColumnType("integer")
+                        .HasColumnName("bank_balance");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("text")

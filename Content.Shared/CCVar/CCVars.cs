@@ -16,7 +16,7 @@ namespace Content.Shared.CCVar
         ///     Change this to have the changelog and rules "last seen" date stored separately.
         /// </summary>
         public static readonly CVarDef<string> ServerId =
-            CVarDef.Create("server.id", "unknown_server_id", CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("server.id", "new_frontier", CVar.REPLICATED | CVar.SERVER);
 
         /// <summary>
         ///     Name of the rules txt file in the "Resources/Server Info" dir. Include the extension.
@@ -114,14 +114,14 @@ namespace Content.Shared.CCVar
         ///     Close to how long you expect a round to last, so you'll probably have to tweak this on downstreams.
         /// </summary>
         public static readonly CVarDef<float>
-            EventsRampingAverageEndTime = CVarDef.Create("events.ramping_average_end_time", 40f, CVar.ARCHIVE | CVar.SERVERONLY);
+            EventsRampingAverageEndTime = CVarDef.Create("events.ramping_average_end_time", 80f, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /// <summary>
         ///     Average ending chaos modifier for the ramping event scheduler.
         ///     Max chaos chosen for a round will deviate from this
         /// </summary>
         public static readonly CVarDef<float>
-            EventsRampingAverageChaos = CVarDef.Create("events.ramping_average_chaos", 6f, CVar.ARCHIVE | CVar.SERVERONLY);
+            EventsRampingAverageChaos = CVarDef.Create("events.ramping_average_chaos", 4f, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /*
          * Game
@@ -143,7 +143,7 @@ namespace Content.Shared.CCVar
         ///     Controls the duration of the lobby timer in seconds. Defaults to 2 minutes and 30 seconds.
         /// </summary>
         public static readonly CVarDef<int>
-            GameLobbyDuration = CVarDef.Create("game.lobbyduration", 150, CVar.ARCHIVE);
+            GameLobbyDuration = CVarDef.Create("game.lobbyduration", 180, CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if players can latejoin at all.
@@ -155,7 +155,7 @@ namespace Content.Shared.CCVar
         ///     Controls the default game preset.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "secret", CVar.ARCHIVE);
+            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "adventure", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -204,13 +204,13 @@ namespace Content.Shared.CCVar
         /// Is map rotation enabled?
         /// </summary>
         public static readonly CVarDef<bool>
-            GameMapRotation = CVarDef.Create("game.map_rotation", true, CVar.SERVERONLY);
+            GameMapRotation = CVarDef.Create("game.map_rotation", false, CVar.SERVERONLY);
 
         /// <summary>
         /// If roles should be restricted based on time.
         /// </summary>
         public static readonly CVarDef<bool>
-            GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
+            GameRoleTimers = CVarDef.Create("game.role_timers", false, CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         ///     Whether a random position offset will be applied to the station on roundstart.
@@ -223,7 +223,7 @@ namespace Content.Shared.CCVar
         /// Does nothing without <see cref="StationOffset"/> as true.
         /// </summary>
         public static readonly CVarDef<float> MaxStationOffset =
-            CVarDef.Create("game.maxstationoffset", 1000.0f);
+            CVarDef.Create("game.maxstationoffset", 900.0f);
 
         /// <summary>
         ///     Whether a random rotation will be applied to the station on roundstart.
@@ -839,7 +839,7 @@ namespace Content.Shared.CCVar
         ///     A "throwing" atmospheric pressure difference ignores this limit, but not the max. velocity limit.
         /// </summary>
         public static readonly CVarDef<float> SpaceWindMaxPushForce =
-            CVarDef.Create("atmos.space_wind_max_push_force", 20f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.space_wind_max_push_force", 25f, CVar.SERVERONLY);
 
         /// <summary>
         ///     Whether monstermos tile equalization is enabled.
@@ -990,7 +990,7 @@ namespace Content.Shared.CCVar
         ///     If the playercount is below this number, the whitelist will not apply.
         /// </summary>
         public static readonly CVarDef<int> WhitelistMinPlayers =
-            CVarDef.Create("whitelist.min_players", 0, CVar.SERVERONLY);
+            CVarDef.Create("whitelist.min_players", 28, CVar.SERVERONLY);
 
         /// <summary>
         ///     If the playercount is above this number, the whitelist will not apply.
@@ -1018,7 +1018,7 @@ namespace Content.Shared.CCVar
         ///     See vote.enabled, but specific to preset votes
         /// </summary>
         public static readonly CVarDef<bool> VotePresetEnabled =
-            CVarDef.Create("vote.preset_enabled", true, CVar.SERVERONLY);
+            CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     See vote.enabled, but specific to map votes
@@ -1042,7 +1042,7 @@ namespace Content.Shared.CCVar
         ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
         /// </summary>
         public static readonly CVarDef<float> VoteSameTypeTimeout =
-            CVarDef.Create("vote.same_type_timeout", 240f, CVar.SERVERONLY);
+            CVarDef.Create("vote.same_type_timeout", 360f, CVar.SERVERONLY);
 
 
         /// <summary>
@@ -1105,7 +1105,7 @@ namespace Content.Shared.CCVar
         /// Whether the arrivals shuttle is enabled.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsShuttles =
-            CVarDef.Create("shuttle.arrivals", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY);
 
         /// <summary>
         /// The map to use for the arrivals station.
@@ -1129,7 +1129,16 @@ namespace Content.Shared.CCVar
         /// Whether to automatically spawn escape shuttles.
         /// </summary>
         public static readonly CVarDef<bool> GridFill =
-            CVarDef.Create("shuttle.grid_fill", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.grid_fill", false, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> CargoShuttles =
+            CVarDef.Create("shuttle.cargo", false, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Whether the Shipyard is enabled.
+        /// </summary>
+        public static readonly CVarDef<bool> Shipyard =
+            CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
         /*
          * Emergency
@@ -1145,7 +1154,7 @@ namespace Content.Shared.CCVar
         /// How long the emergency shuttle remains docked with the station, in seconds.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleDockTime =
-            CVarDef.Create("shuttle.emergency_dock_time", 180f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_dock_time", 300f, CVar.SERVERONLY);
 
         /// <summary>
         /// How long after the console is authorized for the shuttle to early launch.
@@ -1157,39 +1166,39 @@ namespace Content.Shared.CCVar
         /// The minimum time for the emergency shuttle to arrive at centcomm.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMinTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_min", 60f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_min", 300f, CVar.SERVERONLY);
 
         /// <summary>
         /// The maximum time for the emergency shuttle to arrive at centcomm.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMaxTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_max", 180f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_max", 600f, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the emergency shuttle is enabled or should the round just end.
         /// </summary>
         public static readonly CVarDef<bool> EmergencyShuttleEnabled =
-            CVarDef.Create("shuttle.emergency", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     The percentage of time passed from the initial call to when the shuttle can no longer be recalled.
         ///     ex. a call time of 10min and turning point of 0.5 means the shuttle cannot be recalled after 5 minutes.
         /// </summary>
         public static readonly CVarDef<float> EmergencyRecallTurningPoint =
-            CVarDef.Create("shuttle.recall_turning_point", 0.5f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.recall_turning_point", 0.1f, CVar.SERVERONLY);
 
         /// <summary>
         ///     Time in minutes after round start to auto-call the shuttle. Set to zero to disable.
         /// </summary>
         public static readonly CVarDef<int> EmergencyShuttleAutoCallTime =
-            CVarDef.Create("shuttle.auto_call_time", 90, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.auto_call_time", 240, CVar.SERVERONLY);
 
         /// <summary>
         ///     Time in minutes after the round was extended (by recalling the shuttle) to call
         ///     the shuttle again.
         /// </summary>
         public static readonly CVarDef<int> EmergencyShuttleAutoCallExtensionTime =
-            CVarDef.Create("shuttle.auto_call_extension_time", 45, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.auto_call_extension_time", 55, CVar.SERVERONLY);
 
         /*
          * Crew Manifests
@@ -1332,13 +1341,13 @@ namespace Content.Shared.CCVar
         /// Allows flavor text (character descriptions)
         /// </summary>
         public static readonly CVarDef<bool> FlavorText =
-            CVarDef.Create("ic.flavor_text", false, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("ic.flavor_text", true, CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Adds a period at the end of a sentence if the sentence ends in a letter.
         /// </summary>
         public static readonly CVarDef<bool> ChatPunctuation =
-            CVarDef.Create("ic.punctuation", false, CVar.SERVER);
+            CVarDef.Create("ic.punctuation", true, CVar.SERVER);
 
         /// <summary>
         /// Enables automatically forcing IC name rules. Uppercases the first letter of the first and last words of the name
@@ -1419,7 +1428,7 @@ namespace Content.Shared.CCVar
         /// Time that players have to wait before rules can be accepted.
         /// </summary>
         public static readonly CVarDef<float> RulesWaitTime =
-            CVarDef.Create("rules.time", 45f, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("rules.time", 60f, CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Don't show rules to localhost/loopback interface.
@@ -1597,7 +1606,7 @@ namespace Content.Shared.CCVar
         ///     Whether or not world generation is enabled.
         /// </summary>
         public static readonly CVarDef<bool> WorldgenEnabled =
-            CVarDef.Create("worldgen.enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("worldgen.enabled", true, CVar.SERVERONLY);
 
         /// <summary>
         ///     The worldgen config to use.

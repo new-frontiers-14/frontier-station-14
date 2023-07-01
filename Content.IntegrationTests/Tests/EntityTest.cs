@@ -61,7 +61,6 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-
             await pairTracker.CleanReturnAsync();
         }
 
@@ -101,7 +100,6 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-
             await pairTracker.CleanReturnAsync();
         }
 

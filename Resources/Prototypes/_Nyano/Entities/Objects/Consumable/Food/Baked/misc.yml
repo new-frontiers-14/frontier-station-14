@@ -1,0 +1,76 @@
+- type: entity
+  name: special brownies
+  parent: FoodBakedBase
+  id: FoodBakedCannabisBrownieBatch
+  description: A pan of "special" brownies.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - magical
+      - chocolate
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/snacks.rsi
+    state: brownie-batch
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 148
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Theobromine
+          Quantity: 18
+        - ReagentId: THCOil
+          Quantity: 90
+  - type: SliceableFood
+    count: 6
+    slice: FoodBakedCannabisBrownie
+
+- type: entity
+  name: special brownie
+  parent: FoodBakedBase
+  id: FoodBakedCannabisBrownie
+  description: A "special" brownie.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - magical
+      - chocolate
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: mre-brownie-open
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 28
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Theobromine
+          Quantity: 3
+        - ReagentId: THCOil
+          Quantity: 15
+
+- type: entity
+  name: moldy loaf
+  parent: FoodBreadBase
+  id: FoodBreadMoldy
+  description: It's still good enough to eat, just eat around the moldy bits.
+  components:
+  - type: Food
+  - type: Sprite
+    layers:
+    - state: moldy
+  - type: SliceableFood
+    slice: FoodBreadMoldySlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 60
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Mold
+          Quantity: 28

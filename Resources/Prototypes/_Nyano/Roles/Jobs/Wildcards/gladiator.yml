@@ -1,0 +1,22 @@
+- type: job
+  id: Gladiator
+  name: job-name-gladiator
+  description: job-description-gladiator
+  playTimeTracker: JobPrisoner
+  startingGear: GladiatorGear
+  canBeAntag: false
+  icon: "Boxer"
+  supervisors: job-supervisors-security
+  access:
+  - Service
+  - Maintenance
+
+- type: startingGear
+  id: GladiatorGear
+  equipment:
+    jumpsuit: UniformShortsRed
+    outerClothing: ClothingOuterArmorGladiator
+    id: GladiatorPDA
+    ears: ClothingHeadsetGrey
+  innerclothingskirt: UniformShortsRedWithTop
+  #any other possessions, spawn in cell

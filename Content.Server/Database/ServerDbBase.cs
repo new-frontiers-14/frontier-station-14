@@ -68,26 +68,23 @@ namespace Content.Server.Database
                 throw new NotImplementedException();
             }
 
-            var oldProfile = db.DbContext.Profile
-                .Include(p => p.Preference)
-                .Where(p => p.Preference.UserId == userId.UserId)
-                .Include(p => p.Jobs)
-                .Include(p => p.Antags)
-                .Include(p => p.Traits)
-                .AsSplitQuery()
-                .SingleOrDefault(h => h.Slot == slot);
+            var entity = ConvertProfiles(humanoid, slot);
 
-            var newProfile = ConvertProfiles(humanoid, slot, oldProfile);
-            if (oldProfile == null)
+            var prefs = await db.DbContext
+                .Preference
+                .Include(p => p.Profiles)
+                .SingleAsync(p => p.UserId == userId.UserId);
+
+            var oldProfile = prefs
+                .Profiles
+                .SingleOrDefault(h => h.Slot == entity.Slot);
+
+            if (oldProfile is not null)
             {
-                var prefs = await db.DbContext
-                    .Preference
-                    .Include(p => p.Profiles)
-                    .SingleAsync(p => p.UserId == userId.UserId);
-
-                prefs.Profiles.Add(newProfile);
+                prefs.Profiles.Remove(oldProfile);
             }
 
+            prefs.Profiles.Add(entity);
             await db.DbContext.SaveChangesAsync();
         }
 
@@ -177,6 +174,8 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+            var balance = profile.BankBalance;
+
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             var markingsRaw = profile.Markings?.Deserialize<List<string>>();
 
@@ -200,6 +199,7 @@ namespace Content.Server.Database
                 profile.Age,
                 sex,
                 gender,
+                balance,
                 new HumanoidCharacterAppearance
                 (
                     profile.HairName,
@@ -219,9 +219,8 @@ namespace Content.Server.Database
             );
         }
 
-        private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
+        private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot)
         {
-            profile ??= new Profile();
             var appearance = (HumanoidCharacterAppearance) humanoid.CharacterAppearance;
             List<string> markingStrings = new();
             foreach (var marking in appearance.Markings)
@@ -230,44 +229,42 @@ namespace Content.Server.Database
             }
             var markings = JsonSerializer.SerializeToDocument(markingStrings);
 
-            profile.CharacterName = humanoid.Name;
-            profile.FlavorText = humanoid.FlavorText;
-            profile.Species = humanoid.Species;
-            profile.Age = humanoid.Age;
-            profile.Sex = humanoid.Sex.ToString();
-            profile.Gender = humanoid.Gender.ToString();
-            profile.HairName = appearance.HairStyleId;
-            profile.HairColor = appearance.HairColor.ToHex();
-            profile.FacialHairName = appearance.FacialHairStyleId;
-            profile.FacialHairColor = appearance.FacialHairColor.ToHex();
-            profile.EyeColor = appearance.EyeColor.ToHex();
-            profile.SkinColor = appearance.SkinColor.ToHex();
-            profile.Clothing = humanoid.Clothing.ToString();
-            profile.Backpack = humanoid.Backpack.ToString();
-            profile.Markings = markings;
-            profile.Slot = slot;
-            profile.PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable;
-
-            profile.Jobs.Clear();
-            profile.Jobs.AddRange(
+            var entity = new Profile
+            {
+                CharacterName = humanoid.Name,
+                FlavorText = humanoid.FlavorText,
+                Species = humanoid.Species,
+                Age = humanoid.Age,
+                Sex = humanoid.Sex.ToString(),
+                Gender = humanoid.Gender.ToString(),
+                BankBalance = humanoid.BankBalance,
+                HairName = appearance.HairStyleId,
+                HairColor = appearance.HairColor.ToHex(),
+                FacialHairName = appearance.FacialHairStyleId,
+                FacialHairColor = appearance.FacialHairColor.ToHex(),
+                EyeColor = appearance.EyeColor.ToHex(),
+                SkinColor = appearance.SkinColor.ToHex(),
+                Clothing = humanoid.Clothing.ToString(),
+                Backpack = humanoid.Backpack.ToString(),
+                Markings = markings,
+                Slot = slot,
+                PreferenceUnavailable = (DbPreferenceUnavailableMode) humanoid.PreferenceUnavailable
+            };
+            entity.Jobs.AddRange(
                 humanoid.JobPriorities
                     .Where(j => j.Value != JobPriority.Never)
                     .Select(j => new Job {JobName = j.Key, Priority = (DbJobPriority) j.Value})
             );
-
-            profile.Antags.Clear();
-            profile.Antags.AddRange(
+            entity.Antags.AddRange(
                 humanoid.AntagPreferences
                     .Select(a => new Antag {AntagName = a})
             );
-
-            profile.Traits.Clear();
-            profile.Traits.AddRange(
+            entity.Traits.AddRange(
                 humanoid.TraitPreferences
                         .Select(t => new Trait {TraitName = t})
             );
 
-            return profile;
+            return entity;
         }
         #endregion
 

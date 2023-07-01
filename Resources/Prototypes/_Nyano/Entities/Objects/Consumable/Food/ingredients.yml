@@ -1,0 +1,87 @@
+- type: entity
+  name: stick of cannabis butter
+  parent: FoodBakingBase
+  id: FoodCannabisButter
+  description: Add this to your favorite baked goods for an irie time.
+  components:
+  - type: Sprite
+    state: butter
+    color: "#82C36E"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 60
+        reagents:
+        - ReagentId: THCOil
+          Quantity: 60
+  - type: Extractable
+    grindableSolutionName: food
+
+# The following things will probably be made by someone upstream so it's a bit placeholdery
+
+# Curd cheese, substitute for a lot of things
+- type: entity
+  name: curd cheese
+  parent: FoodBakingBase
+  id: FoodCurdCheese
+  description: Known by many names throughout cuisine, curd cheese is useful for a wide variety of dishes.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/cheese.rsi
+    state: curdcheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Cream
+          Quantity: 1
+
+- type: entity
+  name: cheese curds
+  parent: FoodBakingBase
+  id: FoodCheeseCurds
+  description: Not to be mistaken for curd cheese. Tasty deep fried.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/cheese.rsi
+    state: cheesecurds
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+
+# Mozzarella
+- type: entity
+  name: mozzarella cheese
+  parent: FoodBakingBase
+  id: FoodMozzarella
+  description: Delicious, creamy, and cheesy, all in one simple package.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/cheese.rsi
+    state: mozzarella
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 4
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Cream
+          Quantity: 1

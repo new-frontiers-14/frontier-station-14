@@ -11,6 +11,8 @@
         Manipulator: 1
       materialRequirements:
         Glass: 1
+    - type: StaticPrice
+      price: 200
 
 - type: entity
   id: ProtolatheMachineCircuitboard
@@ -28,6 +30,8 @@
           Amount: 2
           DefaultPrototype: Beaker
           ExamineName: Glass Beaker
+    - type: StaticPrice
+      price: 500
 
 - type: entity
   id: SecurityTechFabCircuitboard
@@ -66,6 +70,8 @@
           Amount: 2
           DefaultPrototype: Beaker
           ExamineName: Glass Beaker
+    - type: StaticPrice
+      price: 500
 
 - type: entity
   id: CircuitImprinterMachineCircuitboard
@@ -84,6 +90,8 @@
         Amount: 2
         DefaultPrototype: Beaker
         ExamineName: Glass Beaker
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   id: ExosuitFabricatorMachineCircuitboard
@@ -102,6 +110,8 @@
   - type: GuideHelp
     guides:
     - Robotics
+  - type: StaticPrice
+    price: 400
 
 # yes i know this prototype name is long i'm just following conventions
 - type: entity
@@ -116,6 +126,8 @@
     prototype: ResearchAndDevelopmentServer
     materialRequirements:
       Plasma: 5
+  - type: StaticPrice
+    price: 250
 
 - type: entity
   id: UniformPrinterMachineCircuitboard
@@ -127,6 +139,8 @@
     requirements:
       MatterBin: 1
       Manipulator: 2
+  - type: StaticPrice
+    price: 100
 
 - type: entity
   id: VaccinatorMachineCircuitboard
@@ -431,6 +445,8 @@
           Amount: 2
           DefaultPrototype: Beaker
           ExamineName: Glass Beaker
+    - type: StaticPrice
+      price: 150
 
 - type: entity
   id: SeedExtractorMachineCircuitboard
@@ -561,6 +577,9 @@
           Amount: 1
           DefaultPrototype: SaxophoneInstrument
           ExamineName: Woodwind Instrument
+    - type: StaticPrice
+      price: 400
+
 
 - type: entity
   id: GeneratorPlasmaMachineCircuitboard
@@ -692,6 +711,8 @@
       materialRequirements:
         Steel: 5
         Plastic: 5
+    - type: StaticPrice
+      price: 200
 
 - type: entity
   id: OreProcessorMachineCircuitboard
@@ -707,7 +728,9 @@
         Manipulator: 3
       materialRequirements:
         Glass: 1
-
+    - type: StaticPrice
+      price: 200
+      
 - type: entity
   id: SheetifierMachineCircuitboard
   parent: BaseMachineCircuitboard

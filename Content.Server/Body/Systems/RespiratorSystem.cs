@@ -2,16 +2,28 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Shared.DoAfter;
 using Content.Server.Popups;
+using Content.Server.Abilities;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared.Inventory;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Examine;
+using Content.Shared.Tag;
+using Content.Shared.Respirator;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Audio;
+using Robust.Shared.Random;
+using Robust.Shared.Physics.Components;
+using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Body.Systems
 {
@@ -26,6 +38,12 @@ namespace Content.Server.Body.Systems
         [Dependency] private readonly DamageableSystem _damageableSys = default!;
         [Dependency] private readonly LungSystem _lungSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly TagSystem _tag = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
 
         public override void Initialize()
@@ -35,6 +53,7 @@ namespace Content.Server.Body.Systems
             // We want to process lung reagents before we inhale new reagents.
             UpdatesAfter.Add(typeof(MetabolizerSystem));
             SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+            SubscribeLocalEvent<RespiratorComponent, DoAfterEvent>(OnDoAfter);
         }
 
         public override void Update(float frameTime)
@@ -57,7 +76,7 @@ namespace Content.Server.Body.Systems
                 respirator.AccumulatedFrametime -= respirator.CycleDelay;
                 UpdateSaturation(respirator.Owner, -respirator.CycleDelay, respirator);
 
-                if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+                if (!_mobState.IsIncapacitated(uid) || respirator.BreatheInCritCounter > 0) // cannot breathe in crit.
                 {
                     switch (respirator.Status)
                     {
@@ -70,6 +89,8 @@ namespace Content.Server.Body.Systems
                             respirator.Status = RespiratorStatus.Inhaling;
                             break;
                     }
+
+                    respirator.BreatheInCritCounter = Math.Clamp(respirator.BreatheInCritCounter - 1, 0, 6);
                 }
 
                 if (respirator.Saturation < respirator.SuffocationThreshold)
@@ -77,7 +98,10 @@ namespace Content.Server.Body.Systems
                     if (_gameTiming.CurTime >= respirator.LastGaspPopupTime + respirator.GaspPopupCooldown)
                     {
                         respirator.LastGaspPopupTime = _gameTiming.CurTime;
-                        _popupSystem.PopupEntity(Loc.GetString("lung-behavior-gasp"), uid);
+                        // TODO: remove proper occlusion
+                        _popupSystem.PopupEntity(Loc.GetString("lung-behavior-gasp"), uid,
+                        Filter.Pvs(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(respirator.Owner, entity, ExamineRange, null)),
+                        true);
                     }
 
                     TakeSuffocationDamage(uid, respirator);
@@ -206,6 +230,87 @@ namespace Content.Server.Body.Systems
             // Reset the accumulator properly
             if (component.AccumulatedFrametime >= component.CycleDelay)
                 component.AccumulatedFrametime = component.CycleDelay;
+        }
+
+        private void OnDoAfter(EntityUid uid, RespiratorComponent component, DoAfterEvent args)
+        {
+            component.CPRPlayingStream?.Stop();
+            component.IsReceivingCPR = false;
+
+            if (args.Handled || args.Cancelled)
+                return;
+
+            component.BreatheInCritCounter = component.BreatheInCritCounter + 3;
+
+            if (!HasComp<MedicalTrainingComponent>(args.Args.User) && TryComp<PhysicsComponent>(args.Args.Target, out var patientPhysics) && TryComp<PhysicsComponent>(args.Args.User, out var perfPhysics))
+            {
+                if (perfPhysics.FixturesMass >= patientPhysics.FixturesMass && _random.Prob(0.15f * perfPhysics.FixturesMass / patientPhysics.FixturesMass))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("cpr-end-pvs-crack", ("user", args.Args.User), ("target", uid)), uid, Shared.Popups.PopupType.MediumCaution);
+
+                    var damage = 3f * (perfPhysics.FixturesMass / patientPhysics.FixturesMass);
+                    DamageSpecifier dict = new();
+                    dict.DamageDict.Add("Blunt", damage);
+
+                    _damageableSys.TryChangeDamage(uid, dict);
+                    return;
+                }
+            }
+            _popupSystem.PopupEntity(Loc.GetString("cpr-end-pvs", ("user", args.Args.User), ("target", uid)), uid, Shared.Popups.PopupType.Medium);
+            args.Handled = true;
+        }
+
+        /// <summary>
+        /// Attempt CPR, which will keep the user breathing even in crit.
+        /// As cardiac arrest is currently unsimulated, the damage taken in crit is a function of
+        /// respiration alone. This may change in the future.
+        /// </summary>
+        public void AttemptCPR(EntityUid uid, RespiratorComponent component, EntityUid user)
+        {
+            if (!_blocker.CanInteract(user, uid))
+                return;
+
+            if (component.IsReceivingCPR)
+                return;
+
+            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outer))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("cpr-must-remove", ("clothing", outer)), uid, user, Shared.Popups.PopupType.MediumCaution);
+                return;
+            }
+
+            if (_inventory.TryGetSlotEntity(uid, "belt", out var belt) && _tag.HasTag(belt.Value, "BeltSlotNotBelt"))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("cpr-must-remove", ("clothing", belt)), uid, user, Shared.Popups.PopupType.MediumCaution);
+                return;
+            }
+
+            _popupSystem.PopupEntity(Loc.GetString("cpr-start-second-person", ("target", Identity.Entity(uid, EntityManager))), uid, user, Shared.Popups.PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString("cpr-start-second-person-patient", ("user", Identity.Entity(user, EntityManager))), uid, uid, Shared.Popups.PopupType.Medium);
+
+            component.IsReceivingCPR = true;
+            component.CPRPlayingStream = _audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
+
+            var args = new DoAfterArgs(user, Math.Min(component.CycleDelay * 2, 6f), new CPRDoAfterEvent(), uid, target: uid)
+            {
+                BreakOnTargetMove = true,
+                BreakOnUserMove = true,
+                BreakOnDamage = true,
+                NeedHand = true
+            };
+
+            _doAfter.TryStartDoAfter(args);
+        }
+
+        /// <summary>
+        /// Used mostly to prevent doafter conflicts on entities with a metric fuckton of doafters.
+        /// </summary>
+        public bool IsReceivingCPR(EntityUid uid, RespiratorComponent? component = null)
+        {
+            if (!Resolve(uid, ref component, false))
+                return false;
+
+            return component.IsReceivingCPR;
         }
     }
 }

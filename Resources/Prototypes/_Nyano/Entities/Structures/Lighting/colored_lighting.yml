@@ -1,0 +1,54 @@
+#Colored lights
+
+- type: entity
+  id: PoweredlightColoredRed
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Red
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeRed
+    damage:
+      types:
+        Heat: 0.2
+
+- type: entity
+  id: PoweredlightColoredFrostyBlue
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Frosty
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeFrostyBlue
+    damage:
+      types:
+        Heat: 0.2
+
+- type: entity
+  id: PoweredlightColoredBlack
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Black
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeBlackLight
+    damage:
+      types:
+        Heat: 0.2
+
+- type: entity
+  id: PoweredLightPostSmallRed
+  name: post light
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Red
+  parent: PoweredLightPostSmallEmpty
+  components:
+  - type: Sprite
+    layers:
+    - state: off
+      map: [ "enum.PoweredLightLayers.Base" ]
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeRed
+    damage:
+      types:
+        Heat: 2

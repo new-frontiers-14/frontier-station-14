@@ -1,3 +1,4 @@
+using Content.Client.NewFrontier.Latejoin;
 using Content.Client.Chat.Managers;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
@@ -118,7 +119,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            new LateJoinGui().OpenCentered();
+            new NFLateJoinGui().OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)

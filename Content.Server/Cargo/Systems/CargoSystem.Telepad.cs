@@ -7,6 +7,9 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
+using Robust.Shared.Collections;
+using Robust.Shared.Player;
+using System.Xml.Schema;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -55,17 +58,24 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            var station = _station.GetOwningStation(console);
+            var xform = Transform(comp.Owner);
+            var station = xform.GridUid;
+
+            if (station == null) return;
 
             if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase) ||
                 orderDatabase.Orders.Count == 0)
             {
-                comp.Accumulator += comp.Delay;
-                continue;
+                if (!TryComp<StationCargoOrderDatabaseComponent>(_station.GetOwningStation((EntityUid) station), out var gridDatabase) ||
+                    gridDatabase.Orders.Count == 0)
+                {
+                    comp.Accumulator += comp.Delay;
+                    continue;
+                }
+                orderDatabase = gridDatabase;
             }
 
-            var xform = Transform(uid);
-            if (FulfillOrder(orderDatabase, xform.Coordinates,comp.PrinterOutput))
+            if(FulfillOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
                 UpdateOrders(orderDatabase);

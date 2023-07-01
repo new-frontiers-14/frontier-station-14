@@ -16,19 +16,19 @@ namespace Content.Shared.Stunnable
         public SoundSpecifier StunAttemptSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
 
         [ViewVariables]
-        public float HelpTimer { get; set; } = 0f;
+        public TimeSpan? NextHelp;
     }
 
     [Serializable, NetSerializable]
     public sealed class KnockedDownComponentState : ComponentState
     {
         public float HelpInterval { get; set; }
-        public float HelpTimer { get; set; }
+        public TimeSpan? NextHelp { get; set; }
 
-        public KnockedDownComponentState(float helpInterval, float helpTimer)
+        public KnockedDownComponentState(float helpInterval, TimeSpan? nextHelp)
         {
             HelpInterval = helpInterval;
-            HelpTimer = helpTimer;
+            NextHelp = nextHelp;
         }
     }
 }

@@ -1,0 +1,64 @@
+- type: entity
+  parent: BasePDA
+  id: MailCarrierPDA
+  name: mail carrier PDA
+  description: Hope this doesn't have any... JUNK MAIL.
+  components:
+  - type: Pda
+    id: MailCarrierIDCard
+    state: pda-mailcarrier
+  - type: Icon
+    state: pda-mailcarrier
+
+- type: entity
+  parent: BasePDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Clear, so you can make sure there's nothing being smuggled inside.
+  components:
+  - type: Pda
+    id: PrisonerIDCard
+    state: pda-clear
+  - type: Icon
+    state: pda-clear
+
+- type: entity
+  parent: PrisonerPDA
+  id: GladiatorPDA
+  name: gladiator PDA
+  components:
+  - type: Pda
+    id: GladiatorIDCard
+
+- type: entity
+  parent: BasePDA
+  id: ValetPDA
+  name: valet PDA
+  description: Why isn't it gray?
+  components:
+  - type: Pda
+    id: ValetIDCard
+    state: pda-internservice
+  - type: Icon
+    state: pda-internservice
+
+- type: entity
+  parent: BasePDA
+  id: GuardPDA
+  name: guard PDA
+  description: Red to hide the stains of prisoner blood.
+  components:
+  - type: Pda
+    id: GuardIDCard
+    state: pda-security
+  - type: Icon
+    state: pda-guard
+
+- type: entity
+  parent: BoxerPDA
+  id: MartialArtistPDA
+  name: martial artist PDA
+  components:
+  - type: Pda
+    id: MartialArtistIDCard
+    state: pda-boxer

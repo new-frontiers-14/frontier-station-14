@@ -540,6 +540,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("backpack");
 
+                    b.Property<int>("BankBalance")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("bank_balance");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("TEXT")

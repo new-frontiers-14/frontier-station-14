@@ -1,13 +1,18 @@
 using System.Linq;
+using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
+using Content.Server.Cargo.Components;
+using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Bank.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -28,9 +33,15 @@ namespace Content.Server.VendingMachines
     public sealed class VendingMachineSystem : SharedVendingMachineSystem
     {
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+        [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly BankSystem _bankSystem = default!;
+        [Dependency] private readonly CargoSystem _cargo = default!;
+        [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedActionsSystem _action = default!;
+        [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
@@ -103,12 +114,22 @@ namespace Content.Server.VendingMachines
 
         private void OnBoundUIOpened(EntityUid uid, VendingMachineComponent component, BoundUIOpenedEvent args)
         {
-            UpdateVendingMachineInterfaceState(uid, component);
+            if (args.Session.AttachedEntity is not { Valid: true } player)
+                return;
+
+            var balance = 0;
+
+            if (TryComp<BankAccountComponent>(player, out var bank))
+            {
+                balance = bank.Balance;
+            }
+
+            UpdateVendingMachineInterfaceState(uid, component, balance);
         }
 
-        private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component)
+        private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
         {
-            var state = new VendingMachineInterfaceState(GetAllInventory(uid, component));
+            var state = new VendingMachineInterfaceState(GetAllInventory(uid, component), balance);
 
             _userInterfaceSystem.TrySetUiState(uid, VendingMachineUiKey.Key, state);
         }
@@ -242,14 +263,14 @@ namespace Content.Server.VendingMachines
         /// <param name="itemId">The prototype ID of the item</param>
         /// <param name="throwItem">Whether the item should be thrown in a random direction after ejection</param>
         /// <param name="vendComponent"></param>
-        public void TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, VendingMachineComponent? vendComponent = null)
+        public bool TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, int balance, VendingMachineComponent? vendComponent = null)
         {
             if (!Resolve(uid, ref vendComponent))
-                return;
+                return false;
 
             if (vendComponent.Ejecting || vendComponent.Broken || !this.IsPowered(uid, EntityManager))
             {
-                return;
+                return false;
             }
 
             var entry = GetEntry(uid, itemId, type, vendComponent);
@@ -258,28 +279,31 @@ namespace Content.Server.VendingMachines
             {
                 Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-invalid-item"), uid);
                 Deny(uid, vendComponent);
-                return;
+                return false;
             }
 
             if (entry.Amount <= 0)
             {
                 Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
                 Deny(uid, vendComponent);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(entry.ID))
-                return;
+                return false;
 
+            if (!TryComp<TransformComponent>(vendComponent.Owner, out var transformComp))
+                return false;
 
             // Start Ejecting, and prevent users from ordering while anim playing
             vendComponent.Ejecting = true;
             vendComponent.NextItemToEject = entry.ID;
             vendComponent.ThrowNextItem = throwItem;
             entry.Amount--;
-            UpdateVendingMachineInterfaceState(uid, vendComponent);
+            UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);
+            return true;
         }
 
         /// <summary>
@@ -292,9 +316,52 @@ namespace Content.Server.VendingMachines
         /// <param name="component"></param>
         public void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
         {
+            if (!TryComp<BankAccountComponent>(sender, out var bank))
+            {
+                return;
+            }
+
+            if (!_prototypeManager.TryIndex<EntityPrototype>(itemId, out var proto))
+            {
+                return;
+            }
+
+            var price = _pricing.GetEstimatedPrice(proto);
+            // Somewhere deep in the code of pricing, a hardcoded 20 dollar value exists for anything without
+            // a staticprice component for some god forsaken reason, and I cant find it or think of another way to
+            // get an accurate price from a prototype with no staticprice comp.
+            // this will undoubtably lead to vending machine exploits if I cant find wtf pricing system is doing.
+            // also stacks, food, solutions, are handled poorly too f
+            if (price == 0)
+            {
+                price = 20;
+            }
+
+            if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
+            {
+                price *= modifier.Mod;
+            }
+
+            var totalPrice = ((int) price);
+
+            if (totalPrice > bank.Balance)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
+                Deny(uid, component);
+            }
+
             if (IsAuthorized(uid, sender, component))
             {
-                TryEjectVendorItem(uid, type, itemId, component.CanShoot, component);
+                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
+                {
+                    if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                    {
+                        _cargo.DeductFunds(stationBank, -(totalPrice / 2));
+                    }
+
+                    _bankSystem.TryBankWithdraw(sender, totalPrice);
+                    UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
+                }
             }
         }
 
@@ -355,9 +422,7 @@ namespace Content.Server.VendingMachines
                 EjectItem(uid, vendComponent, forceEject);
             }
             else
-            {
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, vendComponent);
-            }
+                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
@@ -460,7 +525,7 @@ namespace Content.Server.VendingMachines
 
             RestockInventoryFromPrototype(uid, vendComponent);
 
-            UpdateVendingMachineInterfaceState(uid, vendComponent);
+            UpdateVendingMachineInterfaceState(uid, vendComponent, 0);
             TryUpdateVisualState(uid, vendComponent);
         }
 

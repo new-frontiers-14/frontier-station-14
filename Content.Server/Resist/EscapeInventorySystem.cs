@@ -10,6 +10,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Resist;
 using Content.Server.Storage.Components;
+using Content.Server.Carrying;
 
 namespace Content.Server.Resist;
 
@@ -21,6 +22,7 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
+    [Dependency] private readonly CarryingSystem _carryingSystem = default!;
 
     /// <summary>
     /// You can't escape the hands of an entity this many times more massive than you.
@@ -64,7 +66,7 @@ public sealed class EscapeInventorySystem : EntitySystem
             AttemptEscape(uid, container.Owner, component);
     }
 
-    private void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f)
+    public void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f)
     {
         if (component.IsEscaping)
             return;
@@ -92,6 +94,12 @@ public sealed class EscapeInventorySystem : EntitySystem
 
         if (args.Handled || args.Cancelled)
             return;
+
+        if (TryComp<BeingCarriedComponent>(uid, out var carried))
+        {
+            _carryingSystem.DropCarried(carried.Carrier, uid);
+            return;
+        }
 
         Transform(uid).AttachParentToContainerOrGrid(EntityManager);
         args.Handled = true;

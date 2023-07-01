@@ -178,6 +178,8 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerResearchAndDevelopment
+    - type: StaticPrice
+      price: 250 
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -345,6 +347,8 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerIFF
+    - type: StaticPrice
+      price: 750
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -354,3 +358,16 @@
   components:
     - type: ComputerBoard
       prototype: ComputerIFFSyndicate
+      
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ShipyardComputerCircuitboard
+  name: shipyard computer board
+  description: A computer printed circuit board for a shipyard computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShipyard
+    - type: StaticPrice
+      price: 750

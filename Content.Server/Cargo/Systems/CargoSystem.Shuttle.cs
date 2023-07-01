@@ -5,6 +5,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Stack;
 using Content.Shared.Stacks;
+using Content.Shared.Bank.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -101,6 +102,10 @@ public sealed partial class CargoSystem
             return;
         }
         GetPalletGoods(gridUid, out var toSell, out var amount);
+        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+        {
+            amount *= priceMod.Mod;
+        }
         _uiSystem.SetUiState(bui,
             new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
     }
@@ -334,6 +339,10 @@ public sealed partial class CargoSystem
         }
 
         SellPallets(gridUid, null, out var price);
+        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+        {
+            price *= priceMod.Mod;
+        }
         var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
         _stack.Spawn((int)price, stackPrototype, uid.ToCoordinates());
         UpdatePalletConsoleInterface(uid);

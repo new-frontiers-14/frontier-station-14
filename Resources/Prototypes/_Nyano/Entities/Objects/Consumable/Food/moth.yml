@@ -1,0 +1,1246 @@
+# Moth Foods, the three C's: cheese, coleslaw, and cotton
+# Base ingredients
+- type: entity
+  name: herby cheese
+  parent: FoodBakingBase
+  id: FoodMothHerbyCheese
+  description: As a staple of mothic cuisine, cheese is often augmented with various flavours to keep variety in their diet.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - leafy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: herbycheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 1
+#Tastes like cheese, herbs
+
+- type: entity
+  name: mothic salad
+  parent: FoodBowlBase
+  id: FoodMothSaladBase
+  description: A basic salad of cabbage, red onion and tomato.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cabbage
+      - onion
+      - tomato
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: mothsaladbase
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+
+# base for our special sauces
+- type: entity
+  parent: BaseItem
+  id: BaseFoodMothSauce
+  name: sauce bowl
+  abstract: true
+  description: A small bowl for condiment. Not reusable.
+  components:
+  - type: Drink
+    solution: food
+    refillable: false
+    isOpen: true
+  - type: DrawableSolution
+    solution: food
+  - type: InjectableSolution
+    solution: food
+  - type: DrainableSolution
+    solution: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+  - type: SolutionTransfer
+    maxTransferAmount: 15
+  - type: Sprite
+    netsync: false
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: condimentbowl
+  - type: Icon
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: condimentbowl
+  - type: TrashOnEmpty
+    solution: food
+
+# Tomato Sauce
+- type: entity
+  name: tomato sauce
+  parent: BaseFoodMothSauce
+  id: FoodMothTomatoSauce
+  description: Tomato with salt and herbs.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tomato
+  - type: Sprite
+    layers:
+      - state: condimentbowl
+      - state: tomatosauce-3
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: TomatoSauce
+          Quantity: 15
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: tomatosauce-
+
+# Pesto
+- type: entity
+  name: pesto sauce
+  parent: BaseFoodMothSauce
+  id: FoodMothPesto
+  description: A combination of salt, herbs, garlic, oil, and pine nuts. Frequently used as a sauce for pasta or pizza, or eaten on bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - garlic
+      - nutty
+  - type: Sprite
+    layers:
+      - state: condimentbowl
+      - state: pesto-3
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Pesto
+          Quantity: 15
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: pesto-
+
+# Bechamel
+- type: entity
+  name: bechamel sauce
+  parent: BaseFoodMothSauce
+  id: FoodMothBechamel
+  description: A classic white sauce common to several European cultures.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - creamy
+  - type: Sprite
+    layers:
+      - state: condimentbowl
+      - state: bechamel-3
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bechamel
+          Quantity: 15
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: bechamel-
+
+# Entrees
+- type: entity
+  name: squeaking stir fry
+  parent: FoodMealBase
+  id: FoodMothSqueakingFry
+  description: A mothic classic made with cheese curds and tofu (amongst other things).
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - tofu
+      - leafy
+  - type: Food
+    trash: FoodPlateSmall
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: squeakingstirfry
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 8
+#Tastes like cheese, tofu and veggies
+
+- type: entity
+  name: toasted seeds
+  parent: FoodBakingBase
+  id: FoodMothToastedSeeds
+  description: While they're far from filling, toasted seeds are a popular snack amongst the moths. Some more exotic flavours may be added for some extra pep.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - seeds
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: toastedseeds
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+
+- type: entity
+  name: sweet chili cabbage wrap
+  parent: FoodMealBase
+  id: FoodMothChiliCabbageWrap
+  description: Grilled cheese and salad in a cabbage wrap, topped with delicious sweet chili sauce.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - cabbage
+      - sweet
+      - spicy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: sweetchilicabbagewrap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 1
+#Tastes like cheese, salad, sweet chili
+
+- type: entity
+  name: baked cheese wheel
+  parent: FoodBakingBase
+  id: FoodMothBakedCheese
+  description: A baked cheese wheel, melty and delicious..
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 1
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: bakedcheese
+
+- type: entity
+  name: baked cheese platter
+  parent: FoodBakingBase
+  id: FoodMothBakedCheesePlatter
+  description: A favourite for sharing. Usually served with crispy bread slices for dipping, because the only thing better than good cheese is good cheese on bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - bread
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: bakedcheeseplatter
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 2
+
+- type: entity
+  name: big baked rice
+  parent: FoodBakingBase
+  id: FoodMothBakedRice
+  description: A mothic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - potato
+      - cabbage
+      - rice
+  - type: SliceableFood
+    count: 6
+    slice: FoodMothBakedRicePortion
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: bakedrice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 8
+
+- type: entity
+  name: lil baked rice
+  parent: FoodBakingBase
+  id: FoodMothBakedRicePortion
+  description: A single portion of baked rice, perfect as a side dish, or even as a full meal.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - potato
+      - cabbage
+      - rice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: bakedrice-portion
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2.5
+        - ReagentId: Protein
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1.25
+
+# Meals
+
+- type: entity
+  name: green lasagne
+  parent: FoodMealBase
+  id: FoodMothGreenLasagne
+  description: A fine lasagne made with pesto and a herby white sauce. Good for multiple servings.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - pasta
+  - type: SliceableFood
+    count: 6
+    slice: FoodMothGreenLasagneSlice
+  - type: Food
+    trash: FoodPlate
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: greenlasagne
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+#Tastes like cheese, pesto and pasta
+
+- type: entity
+  name: green lasagne slice
+  parent: FoodMealBase
+  id: FoodMothGreenLasagneSlice
+  description: A slice of herby, pesto-y lasagne.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      #- pesto
+      - pasta
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: greenlasagne-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+#Tastes like cheese, pesto and pasta
+
+- type: entity
+  name: oven-baked corn
+  parent: FoodBakingBase
+  id: FoodMothBakedCorn
+  description: A cob of corn, baked in the roasting heat of an oven until it blisters and blackens.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: bakedcorn
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+#Tastes like corn and char
+
+- type: entity
+  name: buttered baked corn
+  parent: FoodBakingBase
+  id: FoodMothButteredBakedCorn
+  description: A cob of corn, baked in the roasting heat of an oven until it blisters and blackens.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - butter
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: butteredbakedcorn
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+#Tastes like corn, butter and char
+
+- type: entity
+  name: mozzarella sticks
+  parent: FoodBakingBase
+  id: FoodMothMozzarellaSticks
+  description: Little sticks of mozzarella, breaded and fried.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - bread
+      - oil
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: mozzarellasticks
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 5
+#Tastes like creamy cheese, breading and oil
+
+# Mac Balls should use macncheese donks
+- type: entity
+  name: mac balls
+  parent: FoodBakingBase
+  id: FoodMothMacBalls
+  description: Fried balls of donk-pocket dipped in corn batter, served with tomato sauce.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - bread
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: macballs
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Omnizine
+          Quantity: 1
+#Tastes like pasta, cornbread and cheese
+
+#Soups and Stews
+
+- type: entity
+  name: cotton soup
+  parent: FoodBowlBase
+  id: FoodMothCottonSoup
+  description: A soup made from raw cotton in a flavourful vegetable broth. Enjoyed only by moths and the criminally tasteless.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cotton
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cottonsoup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Water
+          Quantity: 4
+#Tastes like cotton and broth
+
+- type: entity
+  name: cheese soup
+  parent: FoodBowlBase
+  id: FoodMothCheeseSoup
+  description: A simple and filling soup made from homemade cheese and sweet potato.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
+      - potatoes
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cheesesoup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 1
+        - ReagentId: Milk
+          Quantity: 3
+
+- type: entity
+  name: seed soup
+  parent: FoodBowlBase
+  id: FoodMothSeedSoup
+  description: A seed based soup, made by germinating seeds and then boiling them.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bitter
+      - sour
+      - seeds
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: seedsoup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Water
+          Quantity: 5
+
+- type: entity
+  name: moth eyeball soup
+  parent: FoodBowlBase
+  id: FoodMothEyeballSoup
+  description: It's looking back at you...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tomato
+      - metallic
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: eyesoup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 3
+# Tastes like tomato, squirming.
+
+- type: entity
+  name: bean stew
+  parent: FoodBowlBase
+  id: FoodMothBeanStew
+  description: A spicy bean stew with lots of veggies, commonly served as a filling and satisfying meal with rice or bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - salty
+      - savory #cabbage
+      - spicy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: beanstew
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Water
+          Quantity: 2
+#Tastes like beans, cabbage and spicy sauce
+
+- type: entity
+  name: oat stew
+  parent: FoodBowlBase
+  id: FoodMothOatStew
+  description: A hearty oat stew, prepared with oats, sweet potatoes, and various winter vegetables.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oats
+      - potatoes
+      - carrot
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: oatstew
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 5
+#Tastes like oats, sweet potato, carrot and parsnip
+
+- type: entity
+  name: heartburn soup
+  parent: FoodBowlBase
+  id: FoodMothHeartburnSoup
+  description: The heartburn soup is named after two things; it's rosy pink colour and it's scorchingly hot chili heat.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+      - pink
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: heartburnsoup
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: CapsaicinOil
+          Quantity: 1
+#Tastes like oats, sweet potato, carrot and parsnip
+
+- type: entity
+  name: mulan congee
+  parent: FoodBowlBase
+  id: FoodMothHuaMulanCongee
+  description: A smiley bowl of rice porridge with eggs and bacon.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - eggs
+      - bacon
+      - rice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: huamulancongee
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 22
+        - ReagentId: Protein
+          Quantity: 8
+
+- type: entity
+  name: cornmeal porridge
+  parent: FoodBowlBase
+  id: FoodMothCornmealPorridge
+  description: A plate of cornmeal porridge. It's more flavourful than most porridges, and makes a good base for other flavours, too.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cornmealporridge
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 2
+#Tastes like cornmeal.
+
+- type: entity
+  name: cheesy porridge
+  parent: FoodBowlBase
+  id: FoodMothCheesyPorridge
+  description: A rich and creamy bowl of cheesy cornmeal porridge.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - corn
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cheesyporridge
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 4
+#Tastes like cornmeal, cheese, more cheese, lots of cheese.
+
+- type: entity
+  name: fried eggplant and polenta
+  parent: FoodBowlBase
+  id: FoodMothEggplantPolenta
+  description: Polenta loaded with cheese, served with a few discs of fried eggplant and some tomato sauce.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - corn
+      - cheesy
+      - eggplant
+      - tomato
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: eggplantpolenta
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 12
+#Tastes like cornmeal, cheese, eggplant and tomato sauce
+
+- type: entity
+  name: vegetarian chili
+  parent: FoodBowlBase
+  id: FoodMothVegetarianChili
+  description: For the hombres who don't want carne.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bitter
+      - sour
+      - tomato
+  - type: Sprite
+    sprite: Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: chili-hot
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: JuiceTomato
+          Quantity: 3
+
+#Salads
+
+- type: entity
+  name: caprese salad
+  parent: FoodBakingBase
+  id: FoodMothCapreseSalad
+  description: A very tasty yet simple to prepare salad.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - tomato
+      - leafy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: capresesalad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+#Tastes like mozzarella, tomato and balsamic
+
+- type: entity
+  name: fleet salad
+  parent: FoodBowlBase
+  id: FoodMothFleetSalad
+  description: The grilled cheese makes it particularly filling, while the croutons provide a crunchy kick.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - leafy
+      - bread
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: fleetsalad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 3
+#Tastes like cheese, salad and bread
+
+- type: entity
+  name: cotton salad
+  parent: FoodBowlBase
+  id: FoodMothCottonSalad
+  description: A salad with added cotton and a basic dressing. Presumably moths are around.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - leafy
+      - bread
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cottonsalad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+#Tastes like cheese, salad and bread
+
+- type: entity
+  name: kachumbari salad
+  parent: FoodBowlBase
+  id: FoodMothKachumbariSalad
+  description: 
+  components:
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - tomato
+      - chili
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: kachumbarisalad
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+#Tastes like onion, tomato, corn, chili and cilantro
+
+# Pizzas
+
+- type: entity
+  name: firecracker pizza
+  parent: FoodPizzaBase
+  id: FoodMothPizzaFirecracker
+  description: They're not kidding when they call this a hot pizza pie.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - spicy
+      - corn
+      - cheesy
+  - type: SliceableFood
+    slice: FoodMothPizzaFirecrackerSlice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-firecracker
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: CapsaicinOil
+          Quantity: 1
+        - ReagentId: BbqSauce
+          Quantity: 4
+
+- type: entity
+  name: slice of firecracker pizza
+  parent: FoodPizzaSliceBase
+  id: FoodMothPizzaFirecrackerSlice
+  description: A spicy slice of something quite nice.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - spicy
+      - corn
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-firecracker-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 0.8
+        - ReagentId: CapsaicinOil
+          Quantity: 0.1
+        - ReagentId: BbqSauce
+          Quantity: 0.5
+# Tastes like crust, chili, corn, cheese
+
+- type: entity
+  name: quattro formaggi pizza
+  parent: FoodPizzaBase
+  id: FoodMothPizzaFiveCheese
+  description: For centuries, scholars have asked; how much cheese is too much cheese?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - oily
+      - cheesy
+  - type: SliceableFood
+    slice: FoodMothPizzaFiveCheeseSlice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-fivecheese
+
+- type: entity
+  name: slice of quattro formaggi pizza
+  parent: FoodPizzaSliceBase
+  id: FoodMothPizzaFiveCheeseSlice
+  description: It's the cheesiest slice in the galaxy!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - oily
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-fivecheese-slice
+# Tastes like crust, cheese, more cheese, excessive amount of cheese
+
+- type: entity
+  name: pesto pizza
+  parent: FoodPizzaBase
+  id: FoodMothPizzaPesto
+  description: Pesto is a popular pizza topping for moths, quite possibly because it exemplifies their favourite flavours; cheese, herbs, and veggies.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - garlic
+      - nutty
+      - cheesy
+  - type: SliceableFood
+    slice: FoodMothPizzaPestoSlice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-pesto
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Allicin
+          Quantity: 2
+
+- type: entity
+  name: slice of pesto pizza
+  parent: FoodPizzaSliceBase
+  id: FoodMothPizzaPestoSlice
+  description: Green as the grass in the garden.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - garlic
+      - nutty
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-pesto-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 0.8
+        - ReagentId: Allicin
+          Quantity: 0.25
+# Tastes like crust, pesto, cheese
+
+- type: entity
+  name: cotton pizza
+  parent: FoodPizzaBase
+  id: FoodMothPizzaCotton
+  description: A crime to some, a delicious pizza to others. Cotton and cheese.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - cotton
+      - cheesy
+  - type: SliceableFood
+    slice: FoodMothPizzaCottonSlice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-cotton
+
+- type: entity
+  name: slice of cotton pizza
+  parent: FoodPizzaSliceBase
+  id: FoodMothPizzaCottonSlice
+  description: White as a sheet of paper.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - cotton
+      - cheesy
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: pizza-cotton-slice
+# Tastes like crust, cotton, cheese
+
+# Sweets
+
+- type: entity
+  name: cheesecake balls
+  parent: FoodBakedBase
+  id: FoodMothCheesecakeBalls
+  description: Made of soft cheese, powdered sugar and flour, rolled into balls, battered and then deep fried. They're often served with honey.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - cheesy
+      - honey
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: cheesecakes
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 12
+#Tastes like cheesecake and honey
+
+- type: entity
+  name: mothmallow tray
+  parent: FoodBakedBase
+  id: FoodMothMothmallow
+  description: A light and fluffy vegan marshmallow flavoured with vanilla and rum. These are known to the moths as cloud squares.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - vanilla
+      - sweet
+      - sublime
+  - type: SliceableFood
+    count: 5
+    slice: FoodMothMothmallowSlice
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: mothmallow
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Sugar
+          Quantity: 10
+#Tastes like vanilla and clouds.
+
+- type: entity
+  name: mothmallow slice
+  parent: FoodBakedBase
+  id: FoodMothMothmallowSlice
+  description: Fluffy little clouds of joy- in a strangely moth-like form and colour.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - vanilla
+      - sweet
+      - sublime
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    state: mothmallow-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 2
+#Tastes like vanilla and clouds.
+
+- type: entity
+  name: moffin
+  parent: FoodBakedBase
+  id: FoodMothMoffin
+  description: A delicious, spongy and dusty little cake.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
+    layers:
+      - state: moffin
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+    netsync: false
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          moffin: ""
+      - enum.DamageStateVisualLayers.Base:
+          moffin2: ""
+      - enum.DamageStateVisualLayers.Base:
+          moffin3: ""
+  - type: FlavorProfile
+    flavors:
+      - muffin
+      - cotton
+      - fiber
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+#Tastes like muffin, dust and lint

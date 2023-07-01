@@ -629,6 +629,7 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
   - type: RadarConsole
+    maxRange: 512
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
@@ -703,8 +704,8 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  - type: AccessReader
-    access: [["Cargo"]]
+  #- type: AccessReader
+    #access: [["Cargo"]]
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -836,8 +837,8 @@
       radius: 1.5
       energy: 1.6
       color: "#b89f25"
-    - type: AccessReader
-      access: [["Salvage"]]
+#    - type: AccessReader
+#      access: [["Salvage"]]
 
 - type: entity
   parent: BaseComputer
@@ -910,7 +911,7 @@
     interfaces:
       - key: enum.SurveillanceCameraMonitorUiKey.Key
         type: SurveillanceCameraMonitorBoundUserInterface
-
+   
 - type: entity
   id: ComputerPalletConsole
   parent: BaseComputer

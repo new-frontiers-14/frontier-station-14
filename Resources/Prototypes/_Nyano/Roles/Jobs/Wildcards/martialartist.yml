@@ -1,0 +1,24 @@
+- type: job
+  id: MartialArtist
+  name: job-name-martialartist
+  description: job-description-martialartist
+  playTimeTracker: JobBoxer
+  startingGear: MartialGear
+  icon: "Boxer"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+
+- type: startingGear
+  id: MartialGear
+  equipment:
+    jumpsuit: ClothingUniformMartialGi
+    belt: ClothingBeltMartialBlack
+    back: ClothingBackpackFilled
+    id: MartialArtistPDA
+    ears: ClothingHeadsetGrey
+    shoes: ClothingShoesWizard
+    gloves: ClothingHandsGlovesBoxingRed
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

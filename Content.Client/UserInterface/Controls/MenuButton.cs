@@ -14,9 +14,9 @@ public sealed class MenuButton : ContainerButton
     public const string StyleClassRedTopButton = "topButtonLabel";
     private const float CustomTooltipDelay = 0.4f;
 
-    private static readonly Color ColorNormal = Color.FromHex("#7b7e9e");
+    private static readonly Color ColorNormal = Color.FromHex("#7b7e7b");
     private static readonly Color ColorRedNormal = Color.FromHex("#FEFEFE");
-    private static readonly Color ColorHovered = Color.FromHex("#9699bb");
+    private static readonly Color ColorHovered = Color.FromHex("#969A96");
     private static readonly Color ColorRedHovered = Color.FromHex("#FFFFFF");
     private static readonly Color ColorPressed = Color.FromHex("#789B8C");
 

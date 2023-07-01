@@ -1,0 +1,22 @@
+- type: gameMap
+  id: Frontier
+  mapName: 'Frontier Outpost'
+  mapPath: /Maps/frontier.yml
+  minPlayers: 0
+  maxPlayers: 100
+  stations:
+    Frontier:
+      stationProto: StandardFrontierStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Frontier Outpost {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs:
+            - Passenger
+          availableJobs:
+            Passenger: [ -1, -1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Valet: [ 4, 4 ]

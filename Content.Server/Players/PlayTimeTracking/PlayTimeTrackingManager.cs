@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -85,6 +85,7 @@ public sealed class PlayTimeTrackingManager
         _sawmill = Logger.GetSawmill("play_time");
 
         _net.RegisterNetMessage<MsgPlayTime>();
+        _net.RegisterNetMessage<MsgWhitelist>();
 
         _cfg.OnValueChanged(CCVars.PlayTimeSaveInterval, f => _saveInterval = TimeSpan.FromSeconds(f), true);
     }
@@ -130,6 +131,7 @@ public sealed class PlayTimeTrackingManager
             if (data.NeedSendTimers)
             {
                 SendPlayTimes(player);
+                SendWhitelist(player);
                 data.NeedSendTimers = false;
             }
 
@@ -211,6 +213,17 @@ public sealed class PlayTimeTrackingManager
         };
 
         _net.ServerSendMessage(msg, pSession.ConnectedClient);
+    }
+    public async void SendWhitelist(IPlayerSession playerSession)
+    {
+        var whitelist = await _db.GetWhitelistStatusAsync(playerSession.UserId);
+
+        var msg = new MsgWhitelist
+        {
+            Whitelisted = whitelist
+        };
+
+        _net.ServerSendMessage(msg, playerSession.ConnectedClient);
     }
 
     /// <summary>

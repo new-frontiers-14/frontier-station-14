@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -13,10 +13,10 @@ namespace Content.Client.Stylesheets
     {
         public static readonly Color SpaceRed = Color.FromHex("#9b2236");
 
-        public static readonly Color ButtonColorDefault = Color.FromHex("#464966");
-        public static readonly Color ButtonColorHovered = Color.FromHex("#575b7f");
+        public static readonly Color ButtonColorDefault = Color.FromHex("#465146");
+        public static readonly Color ButtonColorHovered = Color.FromHex("#575A57");
         public static readonly Color ButtonColorPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorDisabled = Color.FromHex("#30313c");
+        public static readonly Color ButtonColorDisabled = Color.FromHex("#303331");
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
         public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
