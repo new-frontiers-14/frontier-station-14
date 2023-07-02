@@ -114,14 +114,14 @@ namespace Content.Shared.CCVar
         ///     Close to how long you expect a round to last, so you'll probably have to tweak this on downstreams.
         /// </summary>
         public static readonly CVarDef<float>
-            EventsRampingAverageEndTime = CVarDef.Create("events.ramping_average_end_time", 80f, CVar.ARCHIVE | CVar.SERVERONLY);
+            EventsRampingAverageEndTime = CVarDef.Create("events.ramping_average_end_time", 300f, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /// <summary>
         ///     Average ending chaos modifier for the ramping event scheduler.
         ///     Max chaos chosen for a round will deviate from this
         /// </summary>
         public static readonly CVarDef<float>
-            EventsRampingAverageChaos = CVarDef.Create("events.ramping_average_chaos", 4f, CVar.ARCHIVE | CVar.SERVERONLY);
+            EventsRampingAverageChaos = CVarDef.Create("events.ramping_average_chaos", 3f, CVar.ARCHIVE | CVar.SERVERONLY);
 
         /*
          * Game
@@ -185,7 +185,7 @@ namespace Content.Shared.CCVar
         ///     Controls the game map prototype to load. SS14 stores these prototypes in Prototypes/Maps.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMap = CVarDef.Create("game.map", string.Empty, CVar.SERVERONLY);
+            GameMap = CVarDef.Create("game.map", "Frontier", CVar.SERVERONLY);
 
         /// <summary>
         ///     Prototype to use for map pool.
@@ -1381,10 +1381,10 @@ namespace Content.Shared.CCVar
         /// Cooldown for successful missions.
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED);
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 160f, CVar.REPLICATED);
 
         public static readonly CVarDef<float>
-            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 900f, CVar.REPLICATED);
+            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 600f, CVar.REPLICATED);
 
         /*
          * Flavor
@@ -1428,7 +1428,7 @@ namespace Content.Shared.CCVar
         /// Time that players have to wait before rules can be accepted.
         /// </summary>
         public static readonly CVarDef<float> RulesWaitTime =
-            CVarDef.Create("rules.time", 60f, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("rules.time", 45f, CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Don't show rules to localhost/loopback interface.
@@ -1460,7 +1460,7 @@ namespace Content.Shared.CCVar
         /// This is useful to free some space automatically. Auto-deletion runs only on server boot.
         /// </summary>
         public static readonly CVarDef<int> ResourceUploadingStoreDeletionDays =
-            CVarDef.Create("netres.store_deletion_days", 30, CVar.SERVER | CVar.SERVERONLY);
+            CVarDef.Create("netres.store_deletion_days", 0, CVar.SERVER | CVar.SERVERONLY);
 
         /*
          * Controls
@@ -1490,7 +1490,7 @@ namespace Content.Shared.CCVar
         /// The time you must spend reading the rules, before the "Request" button is enabled
         /// </summary>
         public static readonly CVarDef<float> GhostRoleTime =
-            CVarDef.Create("ghost.role_time", 3f, CVar.REPLICATED);
+            CVarDef.Create("ghost.role_time", 5f, CVar.REPLICATED);
 
         /*
          * Fire alarm
