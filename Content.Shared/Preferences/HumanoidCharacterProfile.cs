@@ -112,7 +112,7 @@ namespace Content.Shared.Preferences
                 18,
                 Sex.Male,
                 Gender.Male,
-                30000,
+                25000,
                 new HumanoidCharacterAppearance(),
                 ClothingPreference.Jumpsuit,
                 BackpackPreference.Backpack,
@@ -140,7 +140,7 @@ namespace Content.Shared.Preferences
                 18,
                 Sex.Male,
                 Gender.Male,
-                30000,
+                25000,
                 HumanoidCharacterAppearance.DefaultWithSpecies(species),
                 ClothingPreference.Jumpsuit,
                 BackpackPreference.Backpack,
@@ -175,7 +175,7 @@ namespace Content.Shared.Preferences
 
             var sex = Sex.Unsexed;
             var age = 18;
-            var balance = 30000;
+            var balance = 25000;
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
