@@ -41,6 +41,7 @@ using System.Runtime.InteropServices;
 using Content.Server.MachineLinking.Events;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
+using Content.Shared.Bank.Components;
 
 namespace Content.Server.Cloning
 {
@@ -244,6 +245,13 @@ namespace Content.Server.Cloning
 
             var mob = Spawn(speciesPrototype.Prototype, Transform(clonePod.Owner).MapPosition);
             _humanoidSystem.CloneAppearance(bodyToClone, mob);
+
+            // bank account transfer
+            if (TryComp<BankAccountComponent>(bodyToClone, out var bank))
+            {
+                var bankComp = EnsureComp<BankAccountComponent>(mob);
+                bankComp.Balance = bank.Balance;
+            }
 
             var ev = new CloningEvent(bodyToClone, mob);
             RaiseLocalEvent(bodyToClone, ref ev);
