@@ -53,12 +53,72 @@
           overflowJobs: []
           availableJobs:
             Passenger: [ 0, 0 ]
+
+- type: vessel
+  id: Courser
+  name: NT Courser-X 
+  description: A medium sized multi-role long haul conversion of the long time popular Courser model.
+  price: 68650
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/courserx.yml
+  
+- type: gameMap
+  id: Courser
+  mapName: 'NT Courser-X'
+  mapPath: /Maps/Shuttles/courserx.yml
+  minPlayers: 0
+  stations: 
+    Courser:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Courser-X {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 2, 2 ]
+            Bartender: [ 1, 1 ]
+            StationEngineer: [ 1, 1 ]
+            SecurityOfficer: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+
+- type: vessel
+  id: Construct
+  name: NT Construct
+  description: A technically spacefaring vessel.  No livery.
+  price: 10975
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/construct.yml
+  
+- type: gameMap
+  id: Construct
+  mapName: 'NT Construct'
+  mapPath: /Maps/Shuttles/construct.yml
+  minPlayers: 0
+  stations: 
+    Construct:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Construct {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
             
 - type: vessel
   id: MailTruck
   name: NC Mail Truck
   description: A cramped yet reliable shuttle for delivering packages.
-  price: 11550
+  price: 12150
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/mail.yml
