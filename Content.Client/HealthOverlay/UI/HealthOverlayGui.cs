@@ -89,7 +89,8 @@ namespace Content.Client.HealthOverlay.UI
             var mobThresholdSystem = _entities.EntitySysManager.GetEntitySystem<MobThresholdSystem>();
             if (mobStateSystem.IsAlive(mobState.Owner, mobState))
             {
-                if (!mobThresholdSystem.TryGetThresholdForState(Entity,MobState.Critical, out var threshold))
+                if (!(mobThresholdSystem.TryGetThresholdForState(Entity, MobState.Critical, out var threshold) ||
+                      mobThresholdSystem.TryGetThresholdForState(Entity, MobState.Dead, out threshold)))
                 {
                     CritBar.Visible = false;
                     HealthBar.Visible = false;
