@@ -447,7 +447,15 @@ public abstract class SharedDoorSystem : EntitySystem
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables
-            if (!otherPhysics.CanCollide || otherPhysics.CollisionLayer == (int) CollisionGroup.GlassLayer || otherPhysics.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer || otherPhysics.CollisionLayer == (int) CollisionGroup.TableLayer)
+            if (!otherPhysics.CanCollide ||
+                    otherPhysics.CollisionLayer == (int) CollisionGroup.GlassLayer ||
+                    otherPhysics.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer ||
+                    otherPhysics.CollisionLayer == (int) CollisionGroup.TableLayer ||
+                    // Objects without any of these 3 collisiongroups won't obstruct shutters
+                    (otherPhysics.CollisionLayer & ((int) CollisionGroup.Impassable |
+                                                   (int) CollisionGroup.MidImpassable |
+                                                   (int) CollisionGroup.HighImpassable))
+                        == 0)
                 continue;
 
             //If the colliding entity is a slippable item ignore it by the airlock
