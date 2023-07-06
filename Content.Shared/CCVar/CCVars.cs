@@ -314,7 +314,7 @@ namespace Content.Shared.CCVar
         /// URL of the Discord webhook which will relay all round end messages.
         /// </summary>
         public static readonly CVarDef<string> DiscordEndRoundWebhook =
-            CVarDef.Create("discord.end_round_webhook", "https://discord.com/api/webhooks/1126322860567306280/Q3uUwPJfbKHYz_61CfBnQjp31awiXJ0dhrpw0rneE-y0vBj0HmToRf65FF6RgNXHyvqt", CVar.SERVERONLY);
+            CVarDef.Create("discord.end_round_webhook", string.Empty, CVar.SERVERONLY);
 
         /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
