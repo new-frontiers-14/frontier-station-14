@@ -311,6 +311,12 @@ namespace Content.Shared.CCVar
             CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY);
 
         /// <summary>
+        /// URL of the Discord webhook which will relay all round end messages.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordEndRoundWebhook =
+            CVarDef.Create("discord.end_round_webhook", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
         /// Valid values are specified at https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure.
         /// </summary>

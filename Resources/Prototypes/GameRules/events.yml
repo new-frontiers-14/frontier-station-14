@@ -65,7 +65,7 @@
     weight: 1
     duration: 1
     earliestStart: 45
-    minimumPlayers: 20
+    minimumPlayers: 60
   - type: DragonRule
 
 - type: entity
@@ -77,7 +77,7 @@
     weight: 5
     duration: 1
     earliestStart: 45
-    minimumPlayers: 20
+    minimumPlayers: 60
   - type: RevenantSpawnRule
 
 - type: entity
@@ -145,7 +145,7 @@
   components:
   - type: StationEvent
     earliestStart: 30
-    minimumPlayers: 35
+    minimumPlayers: 15
     weight: 5
     duration: 50
   - type: MouseMigrationRule
@@ -187,6 +187,7 @@
   components:
   - type: StationEvent
     weight: 10
+    minimumPlayers: 25
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
@@ -247,7 +248,7 @@
   components:
   - type: StationEvent
     earliestStart: 20
-    minimumPlayers: 15
+    minimumPlayers: 25
     weight: 5
     duration: 60
   - type: VentCrittersRule
@@ -294,29 +295,29 @@
         amount: 4
         maxAmount: 8
 
-- type: entity
-  id: ZombieOutbreak
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 50
-    weight: 2.5
-    duration: 1
-  - type: ZombieRule
+#- type: entity
+#  id: ZombieOutbreak
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    earliestStart: 50
+#    weight: 2.5
+#    duration: 1
+#  - type: ZombieRule
 
-- type: entity
-  id: LoneOpsSpawn
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 55
-    weight: 5
-    minimumPlayers: 10
-    reoccurrenceDelay: 25
-    duration: 1
-  - type: LoneOpsSpawnRule
+#- type: entity
+#  id: LoneOpsSpawn
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    earliestStart: 55
+#    weight: 5
+#    minimumPlayers: 10
+#    reoccurrenceDelay: 25
+#    duration: 1
+#  - type: LoneOpsSpawnRule
 
 - type: entity
   id: MassHallucinations
