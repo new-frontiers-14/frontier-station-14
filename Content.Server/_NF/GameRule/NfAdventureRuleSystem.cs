@@ -1,3 +1,8 @@
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
 using Content.Server.GameTicking.Events;
@@ -13,6 +18,8 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -24,10 +31,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly DungeonSystem _dunGen = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+
+    private readonly HttpClient _httpClient = new();
 
     [ViewVariables]
     private List<(EntityUid, int)> _players = new();
@@ -54,6 +64,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var profit = bank.Balance - player.Item2;
             ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
         }
+
+        ReportRound(ev.Text);
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -72,23 +84,27 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotOffset = _random.NextVector2(1500f, 3000f);
         var depotColor = new Color(55, 200, 55);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
-        {
-            Offset = depotOffset
-        }))
+            {
+                Offset = depotOffset
+            }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
             meta.EntityName = "NT Cargo Depot A NF14";
             _shuttle.SetIFFColor(depotUids[0], depotColor);
-        };
+        }
+
+        ;
         if (_map.TryLoad(mapId, depotMap, out var depotUid2s, new MapLoadOptions
-        {
-            Offset = -depotOffset
-        }))
+            {
+                Offset = -depotOffset
+            }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
             meta.EntityName = "NT Cargo Depot B NF14";
             _shuttle.SetIFFColor(depotUid2s[0], depotColor);
-        };
+        }
+
+        ;
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
@@ -98,9 +114,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var seed = _random.Next();
             var offset = _random.NextVector2(1500f, 3500f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
-            {
-                Offset = offset
-            }))
+                {
+                    Offset = offset
+                }))
             {
                 continue;
             }
@@ -108,12 +124,36 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2 (0, 0);
+            offset = new Vector2(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
             //because they are all offset
             _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
         }
+    }
+
+    private async Task ReportRound(String message)
+    {
+        Logger.InfoS("discord", message);
+        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordEndRoundWebhook);
+        if (_webhookUrl == string.Empty)
+            return;
+
+        var payload = new WebhookPayload{ Content = message };
+        var ser_payload = JsonSerializer.Serialize(payload);
+        var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
+        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
+        var reply = await request.Content.ReadAsStringAsync();
+        if (!request.IsSuccessStatusCode)
+        {
+            Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+        }
+    }
+
+    private struct WebhookPayload
+    {
+        [JsonPropertyName("content")]
+        public String Content { get; set; }
     }
 }

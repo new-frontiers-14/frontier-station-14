@@ -57,7 +57,7 @@ public sealed class ArtifactComponent : Component
     /// to determine the monetary value of the artifact
     /// </summary>
     [DataField("priceMultiplier"), ViewVariables(VVAccess.ReadWrite)]
-    public float PriceMultiplier = 0.05f;
+    public float PriceMultiplier = 0.175f;
 
     /// <summary>
     /// The base amount of research points for each artifact node.
