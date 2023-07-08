@@ -44,7 +44,6 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
     public const float TileMassMultiplier = 0.5f;
 
-    public const float ShuttleLinearDamping = 0.05f;
     public const float ShuttleAngularDamping = 0.05f;
 
     public override void Initialize()
@@ -125,7 +124,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
         if (component.Enabled)
         {
-            Enable(uid, physicsComponent);
+            Enable(uid, physicsComponent, component);
         }
     }
 
@@ -138,7 +137,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
         if (component.Enabled)
         {
-            Enable(uid, physicsComponent);
+            Enable(uid, physicsComponent, component);
         }
         else
         {
@@ -146,14 +145,14 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         }
     }
 
-    private void Enable(EntityUid uid, PhysicsComponent component)
+    private void Enable(EntityUid uid, PhysicsComponent component, ShuttleComponent shuttle)
     {
         FixturesComponent? manager = null;
 
         _physics.SetBodyType(uid, BodyType.Dynamic, manager: manager, body: component);
         _physics.SetBodyStatus(component, BodyStatus.InAir);
         _physics.SetFixedRotation(uid, false, manager: manager, body: component);
-        _physics.SetLinearDamping(component, ShuttleLinearDamping);
+        _physics.SetLinearDamping(component, shuttle.LinearDamping);
         _physics.SetAngularDamping(component, ShuttleAngularDamping);
     }
 

@@ -42,5 +42,11 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables]
         public DirectionFlag ThrustDirections = DirectionFlag.None;
+
+        /// <summary>
+        /// Damping applied to the shuttle's physics component when not in FTL.
+        /// </summary>
+        [DataField("linearDamping"), ViewVariables(VVAccess.ReadWrite)]
+        public float LinearDamping = 0.05f;
     }
 }
