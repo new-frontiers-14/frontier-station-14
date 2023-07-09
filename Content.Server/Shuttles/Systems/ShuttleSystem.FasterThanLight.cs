@@ -338,7 +338,8 @@ public sealed partial class ShuttleSystem
                         }
                         else
                         {
-                            Enable(uid, body, shuttle);
+                            if (shuttle != null)
+                                Enable(uid, body, shuttle);
                         }
                     }
 
