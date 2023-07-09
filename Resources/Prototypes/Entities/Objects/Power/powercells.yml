@@ -206,27 +206,6 @@
       autoRechargeRate: 0.16667 #takes about 5 minutes to charge itself back to full
 
 - type: entity
-  name: silicon integrated power cell
-  description: A rechargeable modified microreactor cell. Intended for cyborg devices, it slowly recharges by itself.
-  id: PowerCellSiliconTool
-  suffix: Full
-  parent: BasePowerCell
-  components:
-    - type: Sprite
-      layers:
-      - map: [ "enum.PowerCellVisualLayers.Base" ]
-        state: microreactor
-      - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-        state: o2
-        shader: unshaded
-    - type: Battery
-      maxCharge: 200
-      startingCharge: 200
-    - type: BatterySelfRecharger
-      autoRecharge: true
-      autoRechargeRate: 0.66667 #takes about 5 minutes to charge itself back to full
-
-- type: entity
   name: antique power cell prototype
   description: A small cell that self recharges. Used in old laser arms research.
   id: PowerCellAntiqueProto
