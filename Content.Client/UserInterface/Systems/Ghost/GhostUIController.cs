@@ -87,12 +87,12 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void OnPlayerRemoved(GhostComponent component)
     {
         Gui?.Hide();
-        UpdateRespawn(component.TimeOfDeath);
+//        UpdateRespawn(component.TimeOfDeath);
     }
 
     private void OnPlayerUpdated(GhostComponent component)
     {
-        UpdateRespawn(component.TimeOfDeath);
+//        UpdateRespawn(component.TimeOfDeath);
         UpdateGui();
     }
 
