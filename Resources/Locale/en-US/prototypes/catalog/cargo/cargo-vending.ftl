@@ -31,8 +31,14 @@ ent-CrateVendingMachineRestockRobustSoftdrinks = { ent-CrateVendingMachineRestoc
 ent-CrateVendingMachineRestockSalvageEquipment = { ent-CrateVendingMachineRestockSalvageEquipmentFilled }
     .desc = { ent-CrateVendingMachineRestockSalvageEquipmentFilled.desc }
 
+ent-CrateVendingMachineRestockAstroVend = { ent-CrateVendingMachineRestockAstroVendFilled }
+    .desc = { ent-CrateVendingMachineRestockAstroVendFilled.desc }
+
 ent-CrateVendingMachineRestockSecTech = { ent-CrateVendingMachineRestockSecTechFilled }
     .desc = { ent-CrateVendingMachineRestockSecTechFilled.desc }
+
+ent-CrateVendingMachineRestockAmmo = { ent-CrateVendingMachineRestockAmmoFilled }
+    .desc = { ent-CrateVendingMachineRestockAmmoFilled.desc }
 
 ent-CrateVendingMachineRestockSeeds = { ent-CrateVendingMachineRestockSeedsFilled }
     .desc = { ent-CrateVendingMachineRestockSeedsFilled.desc }
@@ -42,6 +48,9 @@ ent-CrateVendingMachineRestockSmokes = { ent-CrateVendingMachineRestockSmokesFil
 
 ent-CrateVendingMachineRestockVendomat = { ent-CrateVendingMachineRestockVendomatFilled }
     .desc = { ent-CrateVendingMachineRestockVendomatFilled.desc }
+
+ent-CrateVendingMachineRestockCircuitVend = { ent-CrateVendingMachineRestockCircuitVendFilled }
+    .desc = { ent-CrateVendingMachineRestockCircuitVendFilled.desc }
 
 ent-CrateVendingMachineRestockRobotics = { ent-CrateVendingMachineRestockRoboticsFilled }
     .desc = { ent-CrateVendingMachineRestockRoboticsFilled.desc }
