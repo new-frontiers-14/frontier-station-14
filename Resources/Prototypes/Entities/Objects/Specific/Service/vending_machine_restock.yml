@@ -405,6 +405,22 @@
     - state: refill_salvage
 
 - type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockAstroVend
+  name: Astro Vendor restock box
+  description: ROCK AND STONE!
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - AstroVendInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_salvage
+
+- type: entity
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockSeeds
   name: MegaSeed restock box
@@ -462,6 +478,22 @@
   - type: VendingMachineRestock
     canRestock:
     - VendomatInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_parts
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockCircuitVend
+  name: CircuitVend restock box
+  description: A box full of boards for various computers. Load it into a CircuitVend to begin.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - CircuitVendInventory
   - type: Sprite
     layers:
     - state: base
