@@ -112,7 +112,30 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(1500f, 3500f);
+            var offset = _random.NextVector2(2100f, 4500f);
+            if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
+                {
+                    Offset = offset
+                }))
+            {
+                continue;
+            }
+
+            var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
+            _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
+            _console.WriteLine(null, $"dungeon spawned at {offset}");
+            offset = new Vector2(0, 0);
+
+            //pls fit the grid I beg, this is so hacky
+            //its better now but i think i need to do a normalization pass on the dungeon configs
+            //because they are all offset
+            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
+        }
+        foreach (var dunGen in dungenTypes)
+        {
+
+            var seed = _random.Next();
+            var offset = _random.NextVector2(2300f, 6500f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
