@@ -46,6 +46,52 @@
         acts: [ "Destruction" ]
 
 - type: entity
+  parent: BaseItem
+  id: BaseSecuredVendingMachineRestock
+  abstract: true
+  name: secured vending machine restock box
+  description: A secured box for restocking vending machines with corporate goodies, the contents of the box gets destructed if it's hit by force.
+  components:
+  - type: VendingMachineRestock
+  - type: Sprite
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+  - type: ItemCooldown
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Weapons/genhit2.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: Item
+    size: 50
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockBooze
   name: Booze-O-Mat restock box
