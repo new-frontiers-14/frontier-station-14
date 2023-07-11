@@ -89,43 +89,43 @@ namespace Content.IntegrationTests.Tests
     canRestock:
     - BigTestInventory
 
-- type: entity
-  parent: SecuredVendingMachineRestock
-  id: TestRestockWrong
-  name: TestRestockWrong
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - OtherTestInventory
+#- type: entity
+#  parent: SecuredVendingMachineRestock
+#  id: TestRestockWrong
+#  name: TestRestockWrong
+#  components:
+#  - type: VendingMachineRestock
+#    canRestock:
+#    - OtherTestInventory
 
-- type: entity
-  parent: SecuredVendingMachineRestock
-  id: TestRestockCorrect
-  name: TestRestockCorrect
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - TestInventory
+#- type: entity
+#  parent: SecuredVendingMachineRestock
+#  id: TestRestockCorrect
+#  name: TestRestockCorrect
+#  components:
+#  - type: VendingMachineRestock
+#    canRestock:
+#    - TestInventory
 
-- type: entity
-  parent: SecuredVendingMachineRestock
-  id: TestRestockExplode
-  name: TestRestockExplode
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ 'Destruction' ]
-  - type: VendingMachineRestock
-    canRestock:
-    - BigTestInventory
+#- type: entity
+#  parent: SecuredVendingMachineRestock
+#  id: TestRestockExplode
+#  name: TestRestockExplode
+#  components:
+#  - type: Damageable
+#    damageContainer: Inorganic
+#    damageModifierSet: Metallic
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 20
+#      behaviors:
+#      - !type:DoActsBehavior
+#        acts: [ 'Destruction' ]
+#  - type: VendingMachineRestock
+#    canRestock:
+#    - BigTestInventory
 
 - type: entity
   parent: VendingMachine
