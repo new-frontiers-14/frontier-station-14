@@ -373,6 +373,22 @@
     - state: refill_sec
 
 - type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockAmmo
+  name: Ammo restock box
+  description: A box full of ammo and guns, usefull when there's too many pirates, A label reads 4TH AMENDMENT
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - AmmoVendInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_sec # Update this later with a new sprite
+
+- type: entity
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockSalvageEquipment
   name: Salvage Vendor restock box
