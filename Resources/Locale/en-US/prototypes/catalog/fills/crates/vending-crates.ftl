@@ -31,8 +31,14 @@ ent-CrateVendingMachineRestockRobustSoftdrinksFilled = Robust Softdrinks restock
 ent-CrateVendingMachineRestockSalvageEquipmentFilled = Salvage restock crate
     .desc = Contains a restock box for the salvage vendor.
 
+ent-CrateVendingMachineRestockAstroVendEquipmentFilled = AstroVend restock crate
+    .desc = Contains a restock box for the AstroVend vendor.
+
 ent-CrateVendingMachineRestockSecTechFilled = SecTech restock crate
     .desc = Contains a restock box for the SecTech vending machine.
+
+ent-CrateVendingMachineRestockAmmoFilled = Ammo restock crate
+    .desc = Contains a restock box for the Ammo vending machine.
 
 ent-CrateVendingMachineRestockSeedsFilled = MegaSeed restock crate
     .desc = Contains a restock box for the MegaSeed vending machine.
@@ -42,6 +48,9 @@ ent-CrateVendingMachineRestockSmokesFilled = ShadyCigs restock crate
 
 ent-CrateVendingMachineRestockVendomatFilled = Vendomat restock crate
     .desc = Contains a restock box for a Vendomat vending machine.
+
+ent-CrateVendingMachineRestockCircuitVendFilled = CircuitVend restock crate
+    .desc = Contains a restock box for a CircuitVend vending machine.
 
 ent-CrateVendingMachineRestockRoboticsFilled = Robotech Deluxe restock crate
     .desc = Contains a restock box for a Robotech Deluxe vending machine.
