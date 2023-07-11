@@ -95,7 +95,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 {
                     Vessel = prototype,
                     VesselName = { Text = prototype.Name },
-                    Purchase = { ToolTip = prototype.Description },
+                    Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f },
                     Price = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Price.ToString())) },
                 };
                 vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };

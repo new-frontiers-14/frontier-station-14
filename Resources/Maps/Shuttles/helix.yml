@@ -44,8 +44,7 @@ entities:
       type: Fixtures
     - type: OccluderTree
     - type: Shuttle
-    - nextUpdate: 983.2713088
-      type: GridPathfinding
+    - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
       type: Gravity
@@ -359,8 +358,7 @@ entities:
     - type: RadiationGridResistance
     - id: Helix
       type: BecomesStation
-    - nextUpdate: 0
-      type: SpreaderGrid
+    - type: SpreaderGrid
 - proto: AirlockChemistry
   entities:
   - uid: 273
@@ -500,6 +498,13 @@ entities:
     - pos: 8.5,-1.5
       parent: 377
       type: Transform
+- proto: Beaker
+  entities:
+  - uid: 500
+    components:
+    - pos: 2.9870691,5.506429
+      parent: 377
+      type: Transform
 - proto: BedsheetMedical
   entities:
   - uid: 166
@@ -536,6 +541,13 @@ entities:
     - pos: 12.344845,4.713321
       parent: 377
       type: Transform
+- proto: BoxBeaker
+  entities:
+  - uid: 501
+    components:
+    - pos: 4.5120697,4.656429
+      parent: 377
+      type: Transform
 - proto: BoxMouthSwab
   entities:
   - uid: 221
@@ -557,22 +569,16 @@ entities:
     - pos: 9.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 189
     components:
     - pos: 10.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 196
     components:
     - pos: 11.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 247
     components:
     - pos: 3.5,12.5
@@ -580,15 +586,11 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 248
     components:
     - pos: 3.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 249
     components:
     - pos: 2.5,11.5
@@ -596,8 +598,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 250
     components:
     - pos: 1.5,11.5
@@ -605,8 +605,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 251
     components:
     - pos: 0.5,11.5
@@ -614,141 +612,101 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 252
     components:
     - pos: 0.5,10.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 253
     components:
     - pos: 4.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 254
     components:
     - pos: 5.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 255
     components:
     - pos: 6.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 256
     components:
     - pos: 6.5,10.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 257
     components:
     - pos: 4.5,10.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 258
     components:
     - pos: 4.5,9.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 259
     components:
     - pos: 4.5,8.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 260
     components:
     - pos: 4.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 261
     components:
     - pos: 3.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 262
     components:
     - pos: 2.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 263
     components:
     - pos: 1.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 264
     components:
     - pos: 0.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 265
     components:
     - pos: -0.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 266
     components:
     - pos: -1.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 267
     components:
     - pos: 5.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 268
     components:
     - pos: 6.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 269
     components:
     - pos: 7.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 270
     components:
     - pos: 8.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 276
     components:
     - pos: 5.5,4.5
@@ -756,64 +714,46 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 277
     components:
     - pos: 6.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 278
     components:
     - pos: 7.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 279
     components:
     - pos: 8.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 280
     components:
     - pos: 9.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 281
     components:
     - pos: 10.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 282
     components:
     - pos: 11.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 283
     components:
     - pos: 12.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 284
     components:
     - pos: 13.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 285
     components:
     - pos: 14.5,4.5
@@ -821,8 +761,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 286
     components:
     - pos: 5.5,4.5
@@ -830,57 +768,41 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 287
     components:
     - pos: 4.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 288
     components:
     - pos: 3.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 289
     components:
     - pos: 2.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 290
     components:
     - pos: 1.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 291
     components:
     - pos: 0.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 292
     components:
     - pos: -0.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 293
     components:
     - pos: -1.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 294
     components:
     - pos: -2.5,4.5
@@ -888,50 +810,36 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 295
     components:
     - pos: -3.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 296
     components:
     - pos: -4.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 297
     components:
     - pos: -5.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 298
     components:
     - pos: -6.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 299
     components:
     - pos: -6.5,5.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 300
     components:
     - pos: -6.5,6.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 301
     components:
     - pos: 14.5,5.5
@@ -939,8 +847,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 302
     components:
     - pos: 14.5,6.5
@@ -948,43 +854,31 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 303
     components:
     - pos: 6.5,3.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 304
     components:
     - pos: 6.5,2.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 305
     components:
     - pos: 6.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 306
     components:
     - pos: 6.5,0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 307
     components:
     - pos: 6.5,-0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 308
     components:
     - pos: 6.5,-1.5
@@ -992,36 +886,26 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 309
     components:
     - pos: 7.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 310
     components:
     - pos: 8.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 311
     components:
     - pos: 8.5,0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 312
     components:
     - pos: 8.5,-0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 313
     components:
     - pos: 8.5,-1.5
@@ -1029,43 +913,31 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 314
     components:
     - pos: 0.5,3.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 315
     components:
     - pos: 0.5,2.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 316
     components:
     - pos: 0.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 317
     components:
     - pos: 0.5,0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 318
     components:
     - pos: 0.5,-0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 319
     components:
     - pos: 0.5,-1.5
@@ -1073,43 +945,31 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 320
     components:
     - pos: -1.5,3.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 321
     components:
     - pos: -1.5,2.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 322
     components:
     - pos: -1.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 323
     components:
     - pos: -1.5,0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 324
     components:
     - pos: -1.5,-0.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 325
     components:
     - pos: -1.5,-1.5
@@ -1117,43 +977,31 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 326
     components:
     - pos: -0.5,1.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 327
     components:
     - pos: 8.5,2.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 328
     components:
     - pos: 8.5,3.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 379
     components:
     - pos: -1.5,8.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 380
     components:
     - pos: -2.5,8.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
 - proto: CableHV
   entities:
   - uid: 229
@@ -1161,29 +1009,21 @@ entities:
     - pos: 0.5,12.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 231
     components:
     - pos: 1.5,12.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 232
     components:
     - pos: 2.5,12.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 441
     components:
     - pos: 0.5,10.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 446
     components:
     - pos: 0.5,11.5
@@ -1191,15 +1031,11 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 447
     components:
     - pos: 0.5,12.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
 - proto: CableMV
   entities:
   - uid: 234
@@ -1207,8 +1043,6 @@ entities:
     - pos: 2.5,12.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 235
     components:
     - pos: 3.5,12.5
@@ -1216,57 +1050,41 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 236
     components:
     - pos: 3.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 237
     components:
     - pos: 4.5,11.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 238
     components:
     - pos: 4.5,10.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 239
     components:
     - pos: 4.5,9.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 240
     components:
     - pos: 4.5,8.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 241
     components:
     - pos: 4.5,7.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 242
     components:
     - pos: 4.5,6.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 243
     components:
     - pos: 4.5,5.5
@@ -1274,22 +1092,16 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 244
     components:
     - pos: 4.5,4.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 245
     components:
     - pos: 4.5,3.5
       parent: 377
       type: Transform
-    - fixtures: {}
-      type: Fixtures
   - uid: 246
     components:
     - pos: 5.5,3.5
@@ -1297,8 +1109,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
   - uid: 275
     components:
     - pos: 5.5,4.5
@@ -1306,8 +1116,6 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-    - fixtures: {}
-      type: Fixtures
 - proto: CableTerminal
   entities:
   - uid: 230
@@ -1401,13 +1209,6 @@ entities:
   - uid: 177
     components:
     - pos: 4.5,3.5
-      parent: 377
-      type: Transform
-- proto: ChemDispenser
-  entities:
-  - uid: 178
-    components:
-    - pos: 4.5,2.5
       parent: 377
       type: Transform
 - proto: ChemistryHotplate
@@ -1593,8 +1394,6 @@ entities:
     - pos: -0.5072708,8.496279
       parent: 377
       type: Transform
-    - nextSound: 168.6987588
-      type: EmitSoundOnCollide
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 93
@@ -2305,6 +2104,23 @@ entities:
     - pos: 4.5,1.5
       parent: 377
       type: Transform
+- proto: LargeBeaker
+  entities:
+  - uid: 220
+    components:
+    - pos: 4.6370697,4.781429
+      parent: 377
+      type: Transform
+  - uid: 498
+    components:
+    - pos: 4.2120695,4.706429
+      parent: 377
+      type: Transform
+  - uid: 499
+    components:
+    - pos: 2.68707,5.581429
+      parent: 377
+      type: Transform
 - proto: LockerCaptain
   entities:
   - uid: 482
@@ -2355,6 +2171,8 @@ entities:
     - pos: 2.5,2.5
       parent: 377
       type: Transform
+    - locked: False
+      type: Lock
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 164
@@ -3134,6 +2952,15 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: 2.5,1.5
+      parent: 377
+      type: Transform
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 178
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 4.5,2.5
       parent: 377
       type: Transform
 - proto: VendingMachineGeneDrobe
