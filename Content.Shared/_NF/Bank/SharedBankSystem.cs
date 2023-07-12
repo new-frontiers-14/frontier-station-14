@@ -9,7 +9,8 @@ namespace Content.Shared.Bank;
 public enum BankATMMenuUiKey : byte
 {
     ATM,
-    StationATM
+    StationATM,
+    WithdrawATM
 }
 
 public sealed partial class SharedBankSystem : EntitySystem
