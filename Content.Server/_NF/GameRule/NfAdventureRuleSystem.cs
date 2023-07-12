@@ -80,9 +80,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private void OnStartup(RoundStartingEvent ev)
     {
         var depotMap = "/Maps/cargodepot.yml";
-        var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(1500f, 3000f);
         var depotColor = new Color(55, 200, 55);
+        var mapId = GameTicker.DefaultMap;
+        var depotOffset = _random.NextVector2(1500f, 2400f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -105,7 +105,29 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
+        depotOffset = _random.NextVector2(2300f, 3400f);
+        if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
+            {
+                Offset = depotOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
+            meta.EntityName = "NT Cargo Depot C NF14";
+            _shuttle.SetIFFColor(depotUid3s[0], depotColor);
+        }
 
+        ;
+        if (_map.TryLoad(mapId, depotMap, out var depotUid4s, new MapLoadOptions
+            {
+                Offset = -depotOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
+            meta.EntityName = "NT Cargo Depot D NF14";
+            _shuttle.SetIFFColor(depotUid4s[0], depotColor);
+        }
+
+        ;
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
@@ -151,7 +173,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
-            //because they are all offset
+            //because they are all offset. confirmed good size grid, just need to fix all the offsets.
             _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
         }
     }

@@ -10,6 +10,10 @@ using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Dataset;
 using Content.Shared.Gravity;
@@ -43,7 +47,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly BiomeSystem _biome;
     private readonly DungeonSystem _dungeon;
     private readonly SalvageSystem _salvage;
-
+    private readonly ShuttleSystem _shuttle;
+    private readonly StationSystem _stationSystem;
     public readonly EntityUid Station;
     private readonly SalvageMissionParams _missionParams;
 
@@ -56,6 +61,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         ITileDefinitionManager tileDefManager,
         BiomeSystem biome,
         DungeonSystem dungeon,
+        ShuttleSystem shuttle,
+        StationSystem stationSystem,
         SalvageSystem salvage,
         EntityUid station,
         SalvageMissionParams missionParams,
@@ -68,6 +75,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         _tileDefManager = tileDefManager;
         _biome = biome;
         _dungeon = dungeon;
+        _shuttle = shuttle;
+        _stationSystem = stationSystem;
         _salvage = salvage;
         Station = station;
         _missionParams = missionParams;
@@ -138,12 +147,21 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         expedition.Difficulty = _missionParams.Difficulty;
         expedition.Rewards = mission.Rewards;
 
-        // Don't want consoles to have the incorrect name until refreshed.
-        var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, Vector2.Zero));
+        // On Frontier, we cant share our locations it breaks ftl in a bad bad way
+        /*var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, Vector2.Zero));
         _entManager.GetComponent<MetaDataComponent>(ftlUid).EntityName = SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed);
-        _entManager.InitializeAndStartEntity(ftlUid);
+        _entManager.InitializeAndStartEntity(ftlUid);*/
 
-        var landingPadRadius = 24;
+        // so we just gunna yeet them there instead why not. they chose this life.
+        var stationData = _entManager.GetComponent<StationDataComponent>(Station);
+        var shuttleUid = _stationSystem.GetLargestGrid(stationData);
+        if (shuttleUid is { Valid : true } vesselUid)
+        {
+            var shuttle = _entManager.GetComponent<ShuttleComponent>(vesselUid);
+            _shuttle.FTLTravel(vesselUid, shuttle, new EntityCoordinates(mapUid, Vector2.Zero), 8f, 50f);
+        }
+
+        var landingPadRadius = 38; //we go a liiitle bigger for the shipses
         var minDungeonOffset = landingPadRadius + 4;
 
         // We'll use the dungeon rotation as the spawn angle
