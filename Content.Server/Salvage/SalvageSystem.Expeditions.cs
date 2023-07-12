@@ -9,6 +9,8 @@ using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using System.Linq;
 using System.Threading;
+using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 
@@ -21,6 +23,7 @@ public sealed partial class SalvageSystem
      */
 
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private const int MissionLimit = 5;
 
@@ -272,6 +275,8 @@ public sealed partial class SalvageSystem
             _tileDefManager,
             _biome,
             _dungeon,
+            _shuttle,
+            _stationSystem,
             this,
             station,
             missionParams,
