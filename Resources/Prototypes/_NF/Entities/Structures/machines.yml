@@ -107,6 +107,19 @@
     containers:
       board: !type:Container
       bank-ATM-cashSlot: !type:ContainerSlot {}
+
+- type: entity
+  id: ComputerWithdrawBankATM
+  parent: ComputerBankATM
+  name: withdraw-only bank atm
+  description: Used to withdraw funds from a personal bank account. Unable to deposit. 
+  components:
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+    - key: enum.BankATMMenuUiKey.ATM
+      type: WithdrawBankATMMenuBoundUserInterface
       
 - type: entity
   id: MachineCryoSleepPod
