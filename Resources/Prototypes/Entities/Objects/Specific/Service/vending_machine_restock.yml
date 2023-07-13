@@ -77,13 +77,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 40
+        damage: 120
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 20
+        damage: 60
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -92,10 +92,10 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockBooze
   name: Booze-O-Mat restock box
-  description: Slot into your Booze-O-Mat to start the party! Not for sale to passengers below the legal age.
+  description: Slot into your Booze-O-Mat to start the party! Not for sale to passengers below the legal age. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -124,10 +124,10 @@
     - state: refill_chinese
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockClothes
   name: wardrobe restock box
-  description: It's time to step up your fashion! Place inside any clothes vendor restock slot to begin.
+  description: It's time to step up your fashion! Place inside any clothes vendor restock slot to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -221,10 +221,10 @@
     - state: refill_donuts
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockEngineering
   name: EngiVend restock box
-  description: Only to be used by certified professionals.
+  description: Only to be used by certified professionals. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -286,10 +286,10 @@
     - state: refill_joe
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockMedical
   name: NanoMed restock box
-  description: Slot into your department's NanoMed or NanoMedPlus to dispense. Handle with care.
+  description: Slot into your department's NanoMed or NanoMedPlus to dispense. Handle with care. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -319,10 +319,10 @@
     - state: refill_plant
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockPTech
   name: PTech restock box
-  description: All the bureaucracy you can handle, and more! Load into the PTech vending machine to get started.
+  description: All the bureaucracy you can handle, and more! Load into the PTech vending machine to get started. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -357,10 +357,10 @@
     - state: refill_cola
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockSecTech
   name: SecTech restock box
-  description: "Communists beware: the reinforcements have arrived! A label reads SECURITY PERSONNEL ONLY."
+  description: "Communists beware: the reinforcements have arrived! A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -376,7 +376,7 @@
   parent: SecuredVendingMachineRestock
   id: VendingMachineRestockAmmo
   name: Ammo restock box
-  description: A box full of ammo and guns, usefull when there's too many pirates, A label reads 2TH AMENDMENT
+  description: A box full of ammo and guns, usefull when there's too many pirates, 2TH AMENDMENT, A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -389,10 +389,10 @@
     - state: refill_sec # Update this later with a new sprite
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockSalvageEquipment
   name: Salvage Vendor restock box
-  description: Strike the earth ere the space carp nip your behind! Slam into a salvage vendor to begin.
+  description: Strike the earth ere the space carp nip your behind! Slam into a salvage vendor to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -408,7 +408,7 @@
   parent: SecuredVendingMachineRestock
   id: VendingMachineRestockAstroVend
   name: Astro Vendor restock box
-  description: ROCK AND STONE!
+  description: Rock and stone! A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -424,7 +424,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockSeeds
   name: MegaSeed restock box
-  description: A label says they're heirloom seeds, passed down from our ancestors. Pack it into the MegaSeed Servitor!
+  description: "A label says they're heirloom seeds, passed down from our ancestors. Pack it into the MegaSeed Servitor!"
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -470,10 +470,10 @@
     - state: refill_tanks
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockVendomat
   name: Vendomat restock box
-  description: A box full of parts for various machinery. Load it into a Vendomat to begin.
+  description: A box full of parts for various machinery. Load it into a Vendomat to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -489,7 +489,7 @@
   parent: SecuredVendingMachineRestock
   id: VendingMachineRestockCircuitVend
   name: CircuitVend restock box
-  description: A box full of boards for various computers. Load it into a CircuitVend to begin.
+  description: A box full of boards for various computers. Load it into a CircuitVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -502,10 +502,10 @@
     - state: refill_parts
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockRobotics
   name: Robotech Deluxe restock box
-  description: A box full of tools for creating borgs. Load it into a Robotech Deluxe to begin.
+  description: A box full of tools for creating borgs. Load it into a Robotech Deluxe to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -534,10 +534,10 @@
     - state: refill_honk
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockChemVend
   name: ChemVend restock box
-  description: A box filled with chemicals and covered in dangerous-looking NFPA diamonds. Load it into a ChemVend to begin.
+  description: A box filled with chemicals and covered in dangerous-looking NFPA diamonds. Load it into a ChemVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
