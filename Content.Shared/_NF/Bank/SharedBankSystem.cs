@@ -8,8 +8,7 @@ namespace Content.Shared.Bank;
 [NetSerializable, Serializable]
 public enum BankATMMenuUiKey : byte
 {
-    ATM,
-    StationATM
+    ATM
 }
 
 public sealed partial class SharedBankSystem : EntitySystem
