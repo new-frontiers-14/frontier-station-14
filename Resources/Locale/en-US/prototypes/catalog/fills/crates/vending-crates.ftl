@@ -1,13 +1,13 @@
-ent-CrateVendingMachineRestockBoozeFilled = Booze-O-Mat restock crate
+ent-CrateVendingMachineRestockBoozeFilled = Booze-O-Mat restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the Booze-O-Mat.
 
-ent-CrateVendingMachineRestockClothesFilled = Clothing restock crate
+ent-CrateVendingMachineRestockClothesFilled = Clothing restock crate (TAMPER PROOF)
     .desc = Contains a pair of restock boxes, one for the ClothesMate and one for the AutoDrobe.
 
 ent-CrateVendingMachineRestockDinnerwareFilled = Plasteel Chef restock crate
     .desc = Contains a restock box for the Plasteel Chef vending machine.
 
-ent-CrateVendingMachineRestockEngineeringFilled = EngiVend restock crate
+ent-CrateVendingMachineRestockEngineeringFilled = EngiVend restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the EngiVend. Also supports the YouTool.
 
 ent-CrateVendingMachineRestockGamesFilled = Good Clean Fun restock crate
@@ -16,28 +16,28 @@ ent-CrateVendingMachineRestockGamesFilled = Good Clean Fun restock crate
 ent-CrateVendingMachineRestockHotDrinksFilled = Solar's Best restock crate
     .desc = Contains two restock boxes for Solar's Best Hot Drinks vending machine.
 
-ent-CrateVendingMachineRestockMedicalFilled = NanoMed restock crate
+ent-CrateVendingMachineRestockMedicalFilled = NanoMed restock crate (TAMPER PROOF)
     .desc = Contains a restock box, compatible with the NanoMed and NanoMedPlus.
 
 ent-CrateVendingMachineRestockNutriMaxFilled = NutriMax restock crate
     .desc = Contains a restock box for the NutriMax vending machine.
 
-ent-CrateVendingMachineRestockPTechFilled = PTech restock crate
+ent-CrateVendingMachineRestockPTechFilled = PTech restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the PTech bureaucracy dispenser.
 
 ent-CrateVendingMachineRestockRobustSoftdrinksFilled = Robust Softdrinks restock crate
     .desc = Contains two restock boxes for the Robust Softdrinks LLC vending machine.
 
-ent-CrateVendingMachineRestockSalvageEquipmentFilled = Salvage restock crate
+ent-CrateVendingMachineRestockSalvageEquipmentFilled = Salvage restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the salvage vendor.
 
-ent-CrateVendingMachineRestockAstroVendFilled = AstroVend restock crate
+ent-CrateVendingMachineRestockAstroVendFilled = AstroVend restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the AstroVend vendor.
 
-ent-CrateVendingMachineRestockSecTechFilled = SecTech restock crate
+ent-CrateVendingMachineRestockSecTechFilled = SecTech restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the SecTech vending machine.
 
-ent-CrateVendingMachineRestockAmmoFilled = Liberation restock crate
+ent-CrateVendingMachineRestockAmmoFilled = Liberation restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the Liberation vending machine.
 
 ent-CrateVendingMachineRestockSeedsFilled = MegaSeed restock crate
@@ -46,13 +46,13 @@ ent-CrateVendingMachineRestockSeedsFilled = MegaSeed restock crate
 ent-CrateVendingMachineRestockSmokesFilled = ShadyCigs restock crate
     .desc = Contains two restock boxes for the ShadyCigs vending machine.
 
-ent-CrateVendingMachineRestockVendomatFilled = Vendomat restock crate
+ent-CrateVendingMachineRestockVendomatFilled = Vendomat restock crate (TAMPER PROOF)
     .desc = Contains a restock box for a Vendomat vending machine.
 
-ent-CrateVendingMachineRestockCircuitVendFilled = CircuitVend restock crate
+ent-CrateVendingMachineRestockCircuitVendFilled = CircuitVend restock crate (TAMPER PROOF)
     .desc = Contains a restock box for a CircuitVend vending machine.
 
-ent-CrateVendingMachineRestockRoboticsFilled = Robotech Deluxe restock crate
+ent-CrateVendingMachineRestockRoboticsFilled = Robotech Deluxe restock crate (TAMPER PROOF)
     .desc = Contains a restock box for a Robotech Deluxe vending machine.
 
 ent-CrateVendingMachineRestockTankDispenserFilled = Tank dispenser restock crate
@@ -73,5 +73,5 @@ ent-CrateVendingMachineRestockDiscountDansFilled = Discount Dans restock crate
 ent-CrateVendingMachineRestockDonutFilled = Donut restock crate
     .desc = Contains a restock box for a Monkin' Donuts dispenser.
 
-ent-CrateVendingMachineRestockChemVendFilled = ChemVend restock crate
+ent-CrateVendingMachineRestockChemVendFilled = ChemVend restock crate (TAMPER PROOF)
     .desc = Contains a restock box for the ChemVend.
