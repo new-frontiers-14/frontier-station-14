@@ -547,7 +547,9 @@ namespace Content.Server.VendingMachines
                     }
                 }
 
-                priceSets.Add(total);
+                // This area of the code make it so the cargoblacklist gets ignored, this change was to resolve it.
+                //priceSets.Add(total);
+                args.Price = 0;
             }
 
             args.Price += priceSets.Max();
