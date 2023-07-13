@@ -44,6 +44,8 @@
       - !type:DumpRestockInventory
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+    - type: StaticPrice
+      price: 0
 
 - type: entity
   parent: BaseItem
@@ -90,6 +92,8 @@
           path: /Audio/Effects/metalbreak.ogg
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+    - type: StaticPrice
+      price: 0
 
 - type: entity
   parent: SecuredVendingMachineRestock
