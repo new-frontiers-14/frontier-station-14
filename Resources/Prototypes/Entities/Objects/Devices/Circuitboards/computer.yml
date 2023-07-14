@@ -371,3 +371,16 @@
       prototype: ComputerShipyard
     - type: StaticPrice
       price: 750
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationBountyComputerCircuitboard
+  name: station bounty computer board
+  description: A computer printed circuit board for a station bounty computer.
+  components:
+    - type: Sprite
+      state: generic
+    - type: ComputerBoard
+      prototype: StationBountyComputer
+    - type: StaticPrice
+      price: 750
