@@ -63,4 +63,4 @@ research-technology-advanced-cleaning = Advanced Cleaning
 research-technology-meat-manipulation = Meat Manipulation
 research-technology-honk-mech = H.O.N.K. Mech
 research-technology-advanced-spray = Advanced Spray
-research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
+research-techology-advanced-personal-propulsion = Advanced Personal Propulsion
