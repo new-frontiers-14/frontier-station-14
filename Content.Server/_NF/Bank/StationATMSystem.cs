@@ -8,6 +8,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Cargo.Components;
 using Content.Shared.Bank.BUI;
 using Content.Shared.Access.Systems;
+using Content.Shared.Database;
 
 namespace Content.Server.Bank;
 
@@ -78,6 +79,8 @@ public sealed partial class BankSystem
         ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-withdraw-successful"));
         PlayConfirmSound(uid, component);
         _log.Info($"{args.Session.UserId} {args.Session.Name} withdrew {args.Amount}, '{args.Reason}': {args.Description}");
+
+        _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} withdrew {args.Amount} from station bank account. '{args.Reason}': {args.Description}");
         //spawn the cash stack of whatever cash type the ATM is configured to.
         var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
         _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
