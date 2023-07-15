@@ -721,3 +721,34 @@
             - Impassable
             - HighImpassable
     - type: GrapplingProjectile
+
+- type: entity
+  id: BaseBulletEMP
+  name: base bullet emp
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+    layers:
+      - state: grenade
+  - type: EmpOnTrigger
+    range: 0.3
+    energyConsumption: 50000
+    disableDuration: 20
+
+- type: entity
+  id: BulletGrenadeEMP
+  name: emp grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000

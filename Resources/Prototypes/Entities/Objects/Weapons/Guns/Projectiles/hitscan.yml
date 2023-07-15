@@ -104,3 +104,25 @@
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_blue
+
+- type: hitscan
+  id: EMPLaser
+  damage:
+    types:
+      Heat: 1
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+  - type: TriggerOnCollide
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_xray
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: xray
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_xray
