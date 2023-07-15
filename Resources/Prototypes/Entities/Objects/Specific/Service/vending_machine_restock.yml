@@ -428,25 +428,6 @@
 
 - type: entity
   parent: SecuredVendingMachineRestock
-  id: VendingMachineRestockAmmo
-  name: Ammo restock box
-  description: A box full of ammo and guns, usefull when there's too many pirates, 2TH AMENDMENT, A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - AmmoVendInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_sec # Update this later with a new sprite
-  - type: StaticPrice
-    price: 100
-  - type: CargoSellBlacklist
-
-- type: entity
-  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockSalvageEquipment
   name: Salvage Vendor restock box
   description: Strike the earth ere the space carp nip your behind! Slam into a salvage vendor to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
@@ -454,25 +435,6 @@
   - type: VendingMachineRestock
     canRestock:
     - SalvageEquipmentInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_salvage
-  - type: StaticPrice
-    price: 100
-  - type: CargoSellBlacklist
-
-- type: entity
-  parent: SecuredVendingMachineRestock
-  id: VendingMachineRestockAstroVend
-  name: Astro Vendor restock box
-  description: Rock and stone! A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - AstroVendInventory
   - type: Sprite
     layers:
     - state: base
@@ -550,25 +512,6 @@
   - type: VendingMachineRestock
     canRestock:
     - VendomatInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_parts
-  - type: StaticPrice
-    price: 100
-  - type: CargoSellBlacklist
-
-- type: entity
-  parent: SecuredVendingMachineRestock
-  id: VendingMachineRestockCircuitVend
-  name: CircuitVend restock box
-  description: A box full of boards for various computers. Load it into a CircuitVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - CircuitVendInventory
   - type: Sprite
     layers:
     - state: base
