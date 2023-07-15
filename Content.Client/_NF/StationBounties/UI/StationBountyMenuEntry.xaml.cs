@@ -21,6 +21,7 @@ public sealed partial class StationBountyMenuEntry : Control
                 ("amount", price.ToString()));
         }
 
-        BountyAuthor.Text = "Posted by: " + bountyAuthor;
+        BountyAuthor.Text = Loc.GetString("station-bounties-ui-author",
+            ("author", bountyAuthor));
     }
 }
