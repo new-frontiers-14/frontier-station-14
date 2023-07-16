@@ -1,7 +1,5 @@
-# UI
-station-bounties-ui-window-title = Station Bounties
-station-bounties-ui-author = Posted by: {$author}
-station-bounties-ui-button-create = Create New
+# Cartridge
+bounty-contracts-program-name = Bounty Contracts
 
 ## UI - Create contract
 bounty-contracts-ui-create-name = Name:{" "}
@@ -21,3 +19,5 @@ bounty-contracts-ui-create-button-create = Create
 bounty-contracts-ui-create-error-too-cheap = Error: Invalid price! Minimal contract reward is {$reward}$.
 bounty-contracts-ui-create-error-no-name = Error: Invalid bounty target name!
 bounty-contracts-ui-create-ready = Your contract is ready to be published!
+
+

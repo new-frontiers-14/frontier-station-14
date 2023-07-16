@@ -264,32 +264,3 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-
-- type: entity
-  id: StationBountyComputer
-  parent: BaseComputer
-  name: station bounty computer
-  description: Used to administer station bounties
-  components:
-    - type: ActivatableUI
-      key: enum.StationBountyUiKey.Key
-    - type: UserInterface
-      interfaces:
-        - key: enum.StationBountyUiKey.Key
-          type: StationBountyBoundUserInterface
-    - type: Computer
-      board: StationBountyComputerCircuitboard
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-    - type: Sprite
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: generic
-        - map: ["computerLayerKeys"]
-          state: generic_keys
