@@ -737,7 +737,7 @@
   - type: EmpOnTrigger
     range: 0.3
     energyConsumption: 50000
-    disableDuration: 20
+    disableDuration: 10
 
 - type: entity
   id: BulletGrenadeEMP
@@ -745,6 +745,7 @@
   parent: BaseBulletTrigger
   noSpawn: true
   components:
+  - type: Projectile
     damage:
       types:
         Shock: 0
@@ -755,6 +756,7 @@
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 50000
+    disableDuration: 60
 
 - type: entity
   id: BulletRocketEMP
@@ -769,8 +771,43 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag
+      - state: frag-emp
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 50000
     disableDuration: 60
+
+#- type: entity
+#  parent: BaseBullet
+#  id: AnomalousParticleDelta
+#  name: delta particles
+#  noSpawn: true
+#  components:
+#  - type: Sprite
+#    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+#    layers:
+#      - state: magicm
+#        shader: unshaded
+#  - type: Ammo
+#    muzzleFlash: null
+#  - type: Physics
+#  - type: Fixtures
+#    fixtures:
+#      projectile:
+#        shape:
+#          !type:PhysShapeAabb
+#          bounds: "-0.2,-0.2,0.2,0.2"
+#        hard: false
+#        mask:
+#        - Opaque
+#      fly-by: *flybyfixture
+#  - type: Projectile
+#    damage:
+#      types:
+#        Shock: 0
+#  - type: TimedDespawn
+#    lifetime: 3
+#  - type: EmpOnTrigger
+#    range: 4
+#    energyConsumption: 50000
+#    disableDuration: 60

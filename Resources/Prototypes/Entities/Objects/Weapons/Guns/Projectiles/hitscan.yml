@@ -109,14 +109,12 @@
   id: EMPLaser
   damage:
     types:
-      Heat: 1
+      Shock: 0
   components:
-  - type: ExplodeOnTrigger
-  - type: Explosive
-  - type: TriggerOnCollide
   - type: EmpOnTrigger
-    range: 4
+    range: 1
     energyConsumption: 50000
+    disableDuration: 60
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_xray
