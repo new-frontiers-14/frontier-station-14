@@ -88,4 +88,8 @@ public enum LogType
     Vote = 83,
     ItemConfigure = 84,
     DeviceLinking = 85,
+
+    // Frontier Station Spesific
+    ATMUsage = 200,
+    ShipYardUsage = 201,
 }
