@@ -8,6 +8,7 @@ namespace Content.Client._NF.BountyContracts.UI;
 public sealed class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
+    private BoundUserInterface? _userInterface;
 
     public override Control GetUIFragmentRoot()
     {
@@ -17,6 +18,13 @@ public sealed class BountyContractUi : UIFragment
     public override void Setup(BoundUserInterface userInterface, EntityUid? fragmentOwner)
     {
         _fragment = new BountyContractUiFragment();
+        _userInterface = userInterface;
+        _fragment.ListMenu.OnCreateButtonPressed += OnListCreateButton;
+    }
+
+    private void OnListCreateButton()
+    {
+        _userInterface?.SendMessage(new BountyContractListCreateMsg());
     }
 
     public override void UpdateState(BoundUserInterfaceState state)

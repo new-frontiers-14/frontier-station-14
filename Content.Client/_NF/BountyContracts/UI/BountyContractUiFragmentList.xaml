@@ -2,16 +2,12 @@
     <PanelContainer VerticalExpand="True"
                     HorizontalExpand="True">
 
-        <Label Text="{Loc 'bounty-contracts-ui-list-no-contracts'}"
+        <Label Name="NoContractsLabel" Text="{Loc 'bounty-contracts-ui-list-no-contracts'}"
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Scroll with all bounties list -->
-        <BoxContainer VerticalExpand="True"
-                      HorizontalExpand="True">
-            <ScrollContainer Name="BountiesScroll"
-                             HScrollEnabled="False"
-                             HorizontalExpand="True"
-                             VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
                 <BoxContainer
                     Name="BountiesContainer"
                     Orientation="Vertical"
@@ -25,6 +21,7 @@
                 <BoxContainer Orientation="Horizontal"
                               Margin="8,8,8,8"
                               HorizontalExpand="True">
+                    <Button Name="CreateButton" Text="Create New"></Button>
                 </BoxContainer>
             </PanelContainer>
         </BoxContainer>

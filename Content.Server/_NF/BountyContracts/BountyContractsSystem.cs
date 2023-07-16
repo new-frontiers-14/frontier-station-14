@@ -21,6 +21,13 @@ public sealed class BountyContractsSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<BountyContractsComponent, CartridgeUiReadyEvent>(OnUiReady);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractListCreateMsg>(OnListCreate);
+    }
+
+    private void OnListCreate(EntityUid uid, CartridgeLoaderComponent component, BountyContractListCreateMsg args)
+    {
+        var state = GetCreateState();
+        _cartridgeLoaderSystem.UpdateCartridgeUiState(args.Entity, state);
     }
 
     private void OnUiReady(EntityUid uid, BountyContractsComponent component, CartridgeUiReadyEvent args)

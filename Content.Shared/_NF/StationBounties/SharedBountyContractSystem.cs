@@ -82,7 +82,10 @@ public sealed class BountyContractListUiState : BoundUserInterfaceState
     }
 }
 
-
+[NetSerializable, Serializable]
+public sealed class BountyContractListCreateMsg : BoundUserInterfaceMessage
+{
+}
 
 [NetSerializable, Serializable]
 public enum StationBountyUiKey : byte
