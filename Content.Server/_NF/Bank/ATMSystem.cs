@@ -11,7 +11,9 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Players;
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Shared.Cargo;
+using Content.Shared.Database;
 
 namespace Content.Server.Bank;
 
@@ -23,6 +25,7 @@ public sealed partial class BankSystem
     [Dependency] private readonly StackSystem _stackSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     private void InitializeATM()
     {
@@ -76,6 +79,7 @@ public sealed partial class BankSystem
 
         ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-withdraw-successful"));
         PlayConfirmSound(uid, component);
+        _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} withdrew {args.Amount} from {ToPrettyString(component.Owner)}");
 
         //spawn the cash stack of whatever cash type the ATM is configured to.
         var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
@@ -152,6 +156,7 @@ public sealed partial class BankSystem
 
         ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-deposit-successful"));
         PlayConfirmSound(uid, component);
+        _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} deposited {deposit} into {ToPrettyString(component.Owner)}");
 
         // yeet and delete the stack in the cash slot after success
         _containerSystem.CleanContainer(cashSlot);

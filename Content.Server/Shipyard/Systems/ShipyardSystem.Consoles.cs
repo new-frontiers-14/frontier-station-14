@@ -16,6 +16,7 @@ using Robust.Shared.Players;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
@@ -23,6 +24,7 @@ using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Shared.Database;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -40,6 +42,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     public void InitializeConsole()
     {
@@ -157,7 +160,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 newAccess.Add($"Brig");
             }
 
-            _accessSystem.TrySetTags(targetId, newAccess, newCap);            
+            _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
 
         var newDeed = EnsureComp<ShuttleDeedComponent>(targetId);
@@ -180,6 +183,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         PlayConfirmSound(uid, component);
+        _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, name, true, (ShipyardConsoleUiKey) args.UiKey);
     }
 
@@ -237,6 +241,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize(stationUid);
         }
 
+        var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
+
         if (!TrySellShuttle(stationUid, shuttleUid, out var bill))
         {
             ConsolePopup(args.Session, Loc.GetString("shipyard-console-sale-reqs"));
@@ -247,6 +253,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         RemComp<ShuttleDeedComponent>(targetId);
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
+        _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, null, true, (ShipyardConsoleUiKey) args.UiKey);
     }
 
@@ -281,7 +288,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
     }
-    
+
     private void PlayConfirmSound(EntityUid uid, ShipyardConsoleComponent component)
     {
         _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
@@ -296,7 +303,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
         var shipyardUi = _ui.GetUi(uid, uiComp.Key);
         var uiUser = shipyardUi.SubscribedSessions.FirstOrDefault();
-        
+
         if (uiUser?.AttachedEntity is not { Valid: true } player)
         {
             return;
