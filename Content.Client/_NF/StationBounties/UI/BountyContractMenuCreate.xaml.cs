@@ -9,14 +9,15 @@ using Robust.Shared.Utility;
 namespace Content.Client._NF.StationBounties.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class HeadBountyMenuCreate : Control
+public sealed partial class BountyContractMenuCreate : Control
 {
-    private List<PossibleTargetInfo> _targets = new();
+    public event Action<BountyContractCreateRequest>? OnCreatePressed;
+    public event Action? OnCancelPressed;
+
+    private List<BountyContractTargetInfo> _targets = new();
     private List<string> _vessels = new();
 
-    public const int MinimalReward = 10000;
-
-    public HeadBountyMenuCreate()
+    public BountyContractMenuCreate()
     {
         RobustXamlLoader.Load(this);
         NameSelector.OnItemSelected += (opt) => OnNameSelected(opt.Id);
@@ -29,7 +30,10 @@ public sealed partial class HeadBountyMenuCreate : Control
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
         DescriptionEdit.Placeholder = new Rope.Leaf(descPlaceholder);
-        RewardEdit.Text = MinimalReward.ToString();
+        RewardEdit.Text = SharedBountyContractSystem.MinimalReward.ToString();
+
+        CreateButton.OnPressed += _ => OnCreatePressed?.Invoke(GetBountyContract());
+        CancelButton.OnPressed += _ => OnCancelPressed?.Invoke();
 
         UpdateDisclaimer();
     }
@@ -44,7 +48,7 @@ public sealed partial class HeadBountyMenuCreate : Control
         UpdateDisclaimer();
     }
 
-    public void SetPossibleTargets(List<PossibleTargetInfo> targets)
+    public void SetPossibleTargets(List<BountyContractTargetInfo> targets)
     {
         // make sure that all targets sorted by names alphabetically
         _targets = targets.OrderBy(target => target.Name).ToList();
@@ -129,10 +133,10 @@ public sealed partial class HeadBountyMenuCreate : Control
     {
         // check if reward is valid
         var reward = GetReward();
-        if (reward < MinimalReward)
+        if (reward < SharedBountyContractSystem.MinimalReward)
         {
             var err = Loc.GetString("bounty-contracts-ui-create-error-too-cheap",
-                ("reward", MinimalReward));
+                ("reward", SharedBountyContractSystem.MinimalReward));
             DisclaimerLabel.SetMessage(err);
             CreateButton.Disabled = true;
             return;
@@ -159,9 +163,9 @@ public sealed partial class HeadBountyMenuCreate : Control
         return int.TryParse(priceStr, out var price) ? price : 0;
     }
 
-    public PossibleTargetInfo? GetTargetInfo()
+    public BountyContractTargetInfo? GetTargetInfo()
     {
-        PossibleTargetInfo? info = null;
+        BountyContractTargetInfo? info = null;
         if (!CustomNameButton.Pressed)
         {
             var id = NameSelector.SelectedId;
@@ -170,7 +174,7 @@ public sealed partial class HeadBountyMenuCreate : Control
         }
         else
         {
-            info = new PossibleTargetInfo
+            info = new BountyContractTargetInfo
             {
                 Name = NameEdit.Text,
                 DNA = null
@@ -210,9 +214,9 @@ public sealed partial class HeadBountyMenuCreate : Control
         return vesel;
     }
 
-    public BountyContractInfo GetBountyContract()
+    public BountyContractCreateRequest GetBountyContract()
     {
-        var info = new BountyContractInfo
+        var info = new BountyContractCreateRequest
         {
             Name = GetTargetName(),
             DNA = GetTargetDna(),

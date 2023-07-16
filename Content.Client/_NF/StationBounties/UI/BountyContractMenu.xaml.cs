@@ -6,9 +6,9 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._NF.StationBounties.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class StationBountyMenu : FancyWindow
+public sealed partial class BountyContractMenu : FancyWindow
 {
-    public StationBountyMenu()
+    public BountyContractMenu()
     {
         RobustXamlLoader.Load(this);
 
@@ -25,7 +25,7 @@ public sealed partial class StationBountyMenu : FancyWindow
             5000, "Joe Doe II (Scientist)")
         );
 
-        CreateMenu.SetPossibleTargets(new List<PossibleTargetInfo>
+        CreateMenu.SetPossibleTargets(new List<BountyContractTargetInfo>
         {
             new() {Name = "Bill", DNA = "ACGTGCA"},
             new() {Name = "Joe Doe", DNA = "GTTCCAA"},

@@ -3,14 +3,14 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.StationBounties;
 
 [NetSerializable, Serializable]
-public struct PossibleTargetInfo
+public struct BountyContractTargetInfo
 {
     public string Name;
     public string? DNA;
 }
 
 [NetSerializable, Serializable]
-public struct BountyContractInfo
+public struct BountyContractCreateRequest
 {
     public string Name;
     public string? DNA;
@@ -23,4 +23,10 @@ public struct BountyContractInfo
 public enum StationBountyUiKey : byte
 {
     Key
+}
+
+public sealed class SharedBountyContractSystem : EntitySystem
+{
+    // TODO: Cvar?
+    public const int MinimalReward = 10000;
 }

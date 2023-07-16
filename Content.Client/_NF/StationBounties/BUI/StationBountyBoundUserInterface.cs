@@ -6,13 +6,13 @@ namespace Content.Client._NF.StationBounties.BUI;
 public sealed class StationBountyBoundUserInterface : BoundUserInterface
 {
     public StationBountyBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey) { }
-    private StationBountyMenu? _menu;
+    private BountyContractMenu? _menu;
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = new StationBountyMenu();
+        _menu = new BountyContractMenu();
         _menu.OnClose += Close;
         _menu.OpenCentered();
     }
