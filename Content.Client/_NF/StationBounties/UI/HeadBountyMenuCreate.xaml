@@ -8,7 +8,8 @@
                     <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                         <Label Text="{Loc 'bounty-contracts-ui-create-name'}" MinWidth="80"/>
                         <OptionButton Name="NameSelector" HorizontalExpand="True"/>
-                        <LineEdit Name="NameEdit" HorizontalExpand="True" Visible="False"/>
+                        <LineEdit Name="NameEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-name-placeholder'}"
+                                  HorizontalExpand="True" Visible="False"/>
                         <Control MinSize="8 0" />
                         <Button Name="CustomNameButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
                                 ToggleMode="True"/>
@@ -21,14 +22,17 @@
                     <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                         <Label Text="{Loc 'bounty-contracts-ui-create-vesel'}" MinWidth="80"/>
                         <OptionButton Name="VeselSelector" HorizontalExpand="True"/>
-                        <LineEdit Name="VeselEdit" HorizontalExpand="True" Visible="False"/>
+                        <LineEdit Name="VeselEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-vesel-placeholder'}"
+                                  HorizontalExpand="True" Visible="False"/>
                         <Control MinSize="8 0" />
                         <Button Name="CustomVeselButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
                                 ToggleMode="True"/>
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                         <Label Text="{Loc 'bounty-contracts-ui-create-reward'}" MinWidth="80"/>
-                        <LineEdit Name="RewardEdit" HorizontalExpand="True"/>
+                        <LineEdit Name="RewardEdit" MinWidth="80"/>
+                        <Control MinSize="8 0" />
+                        <Label Text="{Loc 'bounty-contracts-ui-create-reward-currency'}"/>
                     </BoxContainer>
                     <BoxContainer Orientation="Vertical" Margin="4,4,4,4"
                                   VerticalExpand="True" >

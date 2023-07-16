@@ -24,18 +24,24 @@ public sealed partial class HeadBountyMenuCreate : Control
 
         CustomNameButton.OnToggled += OnCustomNameToggle;
         CustomVeselButton.OnToggled += OnCustomVeselToggle;
+        NameEdit.OnTextChanged += NameEditOnOnTextChanged;
         RewardEdit.OnTextChanged += OnPriceChanged;
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
         DescriptionEdit.Placeholder = new Rope.Leaf(descPlaceholder);
         RewardEdit.Text = MinimalReward.ToString();
 
-        UpdateContract();
+        UpdateDisclaimer();
     }
 
     private void OnPriceChanged(LineEdit.LineEditEventArgs obj)
     {
-        UpdateContract();
+        UpdateDisclaimer();
+    }
+
+    private void NameEditOnOnTextChanged(LineEdit.LineEditEventArgs obj)
+    {
+        UpdateDisclaimer();
     }
 
     public void SetPossibleTargets(List<PossibleTargetInfo> targets)
@@ -81,7 +87,7 @@ public sealed partial class HeadBountyMenuCreate : Control
 
     private void OnNameSelected(int itemIndex)
     {
-        if (itemIndex >= NameSelector.ItemCount)
+        if (itemIndex >= _targets.Count)
             return;
 
         NameSelector.SelectId(itemIndex);
@@ -91,12 +97,12 @@ public sealed partial class HeadBountyMenuCreate : Control
         var dnaStr = selectedTarget.DNA;
         UpdateDna(dnaStr);
 
-        UpdateContract();
+        UpdateDisclaimer();
     }
 
     private void OnVesselSelected(int itemIndex)
     {
-        if (itemIndex >= VeselSelector.ItemCount)
+        if (itemIndex >= _vessels.Count)
             return;
 
         VeselSelector.SelectId(itemIndex);
@@ -106,7 +112,9 @@ public sealed partial class HeadBountyMenuCreate : Control
     {
         NameSelector.Visible = !customToggle.Pressed;
         NameEdit.Visible = customToggle.Pressed;
+
         UpdateDna(null);
+        UpdateDisclaimer();
     }
 
     private void OnCustomVeselToggle(BaseButton.ButtonToggledEventArgs customToggle)
@@ -117,11 +125,11 @@ public sealed partial class HeadBountyMenuCreate : Control
         OnVesselSelected(0);
     }
 
-    private void UpdateContract()
+    private void UpdateDisclaimer()
     {
-        // check if price is valid
-        var priceStr = RewardEdit.Text;
-        if (!int.TryParse(priceStr, out var price) || price < MinimalReward)
+        // check if reward is valid
+        var reward = GetReward();
+        if (reward < MinimalReward)
         {
             var err = Loc.GetString("bounty-contracts-ui-create-error-too-cheap",
                 ("reward", MinimalReward));
@@ -130,8 +138,88 @@ public sealed partial class HeadBountyMenuCreate : Control
             return;
         }
 
+        // check if name is valid
+        var name = GetTargetName();
+        if (name == "")
+        {
+            var err = Loc.GetString("bounty-contracts-ui-create-error-no-name");
+            DisclaimerLabel.SetMessage(err);
+            CreateButton.Disabled = true;
+            return;
+        }
+
         // all looks good
         DisclaimerLabel.SetMessage(Loc.GetString("bounty-contracts-ui-create-ready"));
         CreateButton.Disabled = false;
+    }
+
+    public int GetReward()
+    {
+        var priceStr = RewardEdit.Text;
+        return int.TryParse(priceStr, out var price) ? price : 0;
+    }
+
+    public PossibleTargetInfo? GetTargetInfo()
+    {
+        PossibleTargetInfo? info = null;
+        if (!CustomNameButton.Pressed)
+        {
+            var id = NameSelector.SelectedId;
+            if (id < _targets.Count)
+                info = _targets[id];
+        }
+        else
+        {
+            info = new PossibleTargetInfo
+            {
+                Name = NameEdit.Text,
+                DNA = null
+            };
+        }
+
+        return info;
+    }
+
+    public string GetTargetName()
+    {
+        var info = GetTargetInfo();
+        return info != null ? info.Value.Name : "";
+    }
+
+    public string? GetTargetDna()
+    {
+        var info = GetTargetInfo();
+        return info?.DNA;
+    }
+
+    public string GetVessel()
+    {
+        var vesel = "";
+
+        if (!CustomVeselButton.Pressed)
+        {
+            var id = VeselSelector.SelectedId;
+            if (id < _vessels.Count)
+                vesel = _vessels[id];
+        }
+        else
+        {
+            vesel = VeselEdit.Text;
+        }
+
+        return vesel;
+    }
+
+    public BountyContractInfo GetBountyContract()
+    {
+        var info = new BountyContractInfo
+        {
+            Name = GetTargetName(),
+            DNA = GetTargetDna(),
+            Vesel = GetVessel(),
+            Description = Rope.Collapse(DescriptionEdit.TextRope),
+            Reward = GetReward()
+        };
+        return info;
     }
 }
