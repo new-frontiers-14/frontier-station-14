@@ -1,0 +1,66 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: EmpGenerator
+  name: emp generator
+  description: Generate EMP blast.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/emp_generator.rsi
+    layers:
+    - state: emp-generator
+    - state: emp-generator-ready
+      visible: false
+      map: [ "ready" ]
+    - state: emp-generator-ready-blinking
+      visible: false
+      map: [ "readyBlinking" ]
+    - state: emp-generator-unready
+      visible: false
+      map: [ "unready" ]
+    - state: emp-generator-unready-blinking
+      visible: false
+      map: [ "unreadyBlinking" ]
+    - state: emp-generator-o4
+      map: ["chargeState"]
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SalvageMagnetVisuals.ChargeState:
+        chargeState:
+          0: { state: emp-generator-o0, shader: "unshaded", visible: false }
+          1: { state: emp-generator-o0, shader: "unshaded", visible: true }
+          2: { state: emp-generator-o1, shader: "unshaded", visible: true }
+          3: { state: emp-generator-o2, shader: "unshaded", visible: true }
+          4: { state: emp-generator-o3, shader: "unshaded", visible: true }
+          5: { state: emp-generator-o4, shader: "unshaded", visible: true }
+      enum.SalvageMagnetVisuals.Ready:
+        ready:
+          False: { state: emp-generator-ready, visible: false, shader: "unshaded" }
+          True: { state: emp-generator-ready, visible: true, shader: "unshaded" }
+      enum.SalvageMagnetVisuals.ReadyBlinking:
+        readyBlinking:
+          False: { state: emp-generator-ready-blinking, visible: false, shader: "unshaded" }
+          True: { state: emp-generator-ready-blinking, visible: true, shader: "unshaded" }
+      enum.SalvageMagnetVisuals.Unready:
+        unready:
+          False: { state: emp-generator-unready, visible: false, shader: "unshaded" }
+          True: { state: emp-generator-unready, visible: true, shader: "unshaded" }
+      enum.SalvageMagnetVisuals.UnreadyBlinking:
+        unreadyBlinking:
+          False: { state: emp-generator-unready-blinking, visible: false, shader: "unshaded" }
+          True: { state: emp-generator-unready-blinking, visible: true, shader: "unshaded" }
+  - type: Rotatable
+  - type: Transform
+    noRot: false
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Security
+#  - type: SalvageMagnet
+#  - type: EmpGenerator
+  - type: ApcPowerReceiver
+    powerLoad: 100 # TODO change this to a HV power draw that really hits the grid hard WHEN active
+#    powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
+  - type: Machine
+    board: EMPGeneratorMachineCircuitboard

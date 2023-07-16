@@ -740,15 +740,20 @@
     disableDuration: 20
 
 - type: entity
-  id: BulletGrenadeEMP
-  name: emp grenade
+  id: BulletRocketEMP
+  name: rocket
   parent: BaseBulletTrigger
   noSpawn: true
   components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: grenade
+      - state: frag
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 50000
+    disableDuration: 60

@@ -928,3 +928,18 @@
       Steel: 5
       CableHV: 5
       Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: EMPGeneratorMachineCircuitboard
+  name: emp generator machine board
+  description: A machine printed circuit board for a emp generator.
+  components:
+  - type: MachineBoard
+    prototype: EMPGenerator
+    requirements:
+      Capacitor: 4
+    materialRequirements:
+      Steel: 5
+      CableHV: 5
+      Cable: 2

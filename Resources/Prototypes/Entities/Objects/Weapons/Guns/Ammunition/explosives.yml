@@ -152,3 +152,23 @@
   - type: SpentAmmoVisuals
     state: emp
     suffix: false
+
+- type: entity
+  id: CartridgeRocketEMP
+  name: PG-7VL emp
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRocket
+  - type: Item
+    size: 5
+  - type: CartridgeAmmo
+    proto: BulletRocketEMP
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20

@@ -304,6 +304,17 @@
       - id: MagazinePistolSubMachineGunRubber
         amount: 3
 
+- type: entity
+  name: box of SMG .35 auto (emp) magazines
+  parent: BoxMagazine
+  id: BoxMagazinePistolSubMachineGunEMP
+  description: A box full of SMG .35 auto (emp) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunEMP
+        amount: 3
+
 # Shotgun
 - type: entity
   name: box of (.50 pellet) ammo drums
@@ -459,7 +470,6 @@
       layers:
         - state: boxwide
         - state: shellslug
-
 
 # Rifle
 - type: entity
