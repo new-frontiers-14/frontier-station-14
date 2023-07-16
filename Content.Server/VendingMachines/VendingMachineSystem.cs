@@ -550,7 +550,9 @@ namespace Content.Server.VendingMachines
                 priceSets.Add(total);
             }
 
-            args.Price += priceSets.Max();
+            // This area of the code make it so the cargoblacklist gets ignored, this change was to resolve it.
+            //args.Price += priceSets.Max();
+            args.Price = 0;
         }
 
         private void OnEmpPulse(EntityUid uid, VendingMachineComponent component, ref EmpPulseEvent args)

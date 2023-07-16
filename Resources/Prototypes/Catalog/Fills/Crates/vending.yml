@@ -98,12 +98,28 @@
       - id: VendingMachineRestockSalvageEquipment
 
 - type: entity
+  id: CrateVendingMachineRestockAstroVendFilled
+  parent: CrateEngineeringSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockAstroVend
+
+- type: entity
   id: CrateVendingMachineRestockSecTechFilled
   parent: CrateSecgear
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockSecTech
+
+- type: entity
+  id: CrateVendingMachineRestockAmmoFilled
+  parent: CrateWeaponSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockAmmo
 
 - type: entity
   id: CrateVendingMachineRestockSeedsFilled
@@ -129,6 +145,14 @@
   - type: StorageFill
     contents:
     - id: VendingMachineRestockVendomat
+
+- type: entity
+  id: CrateVendingMachineRestockCircuitVendFilled
+  parent: CrateScienceSecure
+  components:
+  - type: StorageFill
+    contents:
+    - id: VendingMachineRestockCircuitVend
 
 - type: entity
   id: CrateVendingMachineRestockRoboticsFilled
