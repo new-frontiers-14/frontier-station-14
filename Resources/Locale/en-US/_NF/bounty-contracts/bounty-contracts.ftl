@@ -1,6 +1,9 @@
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
+## UI
+bounty-contracts-ui-loading = Loading...
+
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
 

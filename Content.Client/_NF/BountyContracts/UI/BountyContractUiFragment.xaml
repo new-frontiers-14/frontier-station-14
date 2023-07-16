@@ -2,13 +2,17 @@
 <ui:BountyContractUiFragment xmlns:ui="clr-namespace:Content.Client._NF.BountyContracts.UI"
                              xmlns="https://spacestation14.io"
                              VerticalExpand="True" HorizontalExpand="True">
-    
+
     <!-- List Bounties -->
-    <ui:BountyContractUiFragmentList Name="ListMenu" Access="Public" Visible="True"
+    <ui:BountyContractUiFragmentList Name="ListMenu" Access="Public" Visible="False"
                                      HorizontalExpand="True" VerticalExpand="True"/>
 
     <!-- Create Bounty -->
     <ui:BountyContractUiFragmentCreate Name="CreateMenu" Access="Public" Visible="False"
                                        HorizontalExpand="True" VerticalExpand="True"/>
+
+    <!-- Loading -->
+    <Label Name="LoadingLabel" Text="{Loc 'bounty-contracts-ui-loading'}"
+           HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 </ui:BountyContractUiFragment>

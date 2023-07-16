@@ -1,12 +1,21 @@
+using System.Linq;
 using Content.Server.CartridgeLoader;
+using Content.Server.CrewManifest;
+using Content.Server.Station.Systems;
+using Content.Server.StationRecords;
+using Content.Server.StationRecords.Systems;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.PDA;
 using Content.Shared.StationBounties;
+using Content.Shared.StationRecords;
 
 namespace Content.Server._NF.BountyContracts;
 
 public sealed class BountyContractsSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private readonly StationSystem _stations = default!;
+    [Dependency] private readonly StationRecordsSystem _records = default!;
 
     public override void Initialize()
     {
@@ -16,25 +25,46 @@ public sealed class BountyContractsSystem : EntitySystem
 
     private void OnUiReady(EntityUid uid, BountyContractsComponent component, CartridgeUiReadyEvent args)
     {
-        var targets = new List<BountyContractTargetInfo>
-        {
-            new() { Name = "Bill", DNA = "ACGTGCA" },
-            new() { Name = "Joe Doe", DNA = "GTTCCAA" },
-            new() { Name = "Alan Poe", DNA = "ACGGGTAACC" },
-            new() { Name = "George Clinton", DNA = "CCCGGGTTAA" },
-            new() { Name = "Cuban Pete", DNA = "AAACGGGTTTAA" }
-        };
+        var state = GetListState();
+        _cartridgeLoaderSystem.UpdateCartridgeUiState(args.Loader, state);
+    }
 
-        var vessels = new List<string>()
-        {
-            "NT-16 324",
-            "NT-32 123",
-            "NT-324 3212",
-            "NT-23 324",
-            "NT-16 12"
-        };
+    private BountyContractListUiState GetListState()
+    {
+        var contracts = new List<BountyContract>();
+        return new BountyContractListUiState(contracts);
+    }
 
-        var state = new BountyContractCreateBoundUserInterfaceState(targets, vessels);
-        _cartridgeLoaderSystem?.UpdateCartridgeUiState(args.Loader, state);
+    private BountyContractCreateUiState GetCreateState()
+    {
+        var bountyTargets = new HashSet<BountyContractTargetInfo>();
+        var vessels = new HashSet<string>();
+
+        // TODO: This will show all Stations, not only NT stations
+        // TODO: Register all NT characters in some cache component on main station?
+        var allStations = EntityQuery<StationRecordsComponent, MetaDataComponent>();
+        foreach (var (records, meta) in allStations)
+        {
+            // get station IC name - it's vessel name
+            var name = meta.EntityName;
+            vessels.Add(name);
+
+            // get all characters registered on this station
+            var icRecords = _records.GetRecordsOfType<GeneralStationRecord>(records.Owner);
+            foreach (var (_, icRecord) in icRecords)
+            {
+                var target = new BountyContractTargetInfo
+                {
+                    Name = icRecord.Name,
+                    DNA = icRecord.DNA
+                };
+
+                // hashset will check if record is unique based on DNA field
+                bountyTargets.Add(target);
+            }
+        }
+
+        return new BountyContractCreateUiState(
+            bountyTargets.ToList(), vessels.ToList());
     }
 }

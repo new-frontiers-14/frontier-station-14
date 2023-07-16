@@ -15,10 +15,12 @@ public sealed partial class BountyContractUiFragment : BoxContainer
             case BountyContractFragmentState.List:
                 ListMenu.Visible = true;
                 CreateMenu.Visible = false;
+                LoadingLabel.Visible = false;
                 break;
             case BountyContractFragmentState.Create:
                 ListMenu.Visible = false;
                 CreateMenu.Visible = true;
+                LoadingLabel.Visible = false;
                 break;
         }
     }

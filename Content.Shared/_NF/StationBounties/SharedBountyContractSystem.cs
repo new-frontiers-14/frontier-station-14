@@ -7,10 +7,35 @@ public struct BountyContractTargetInfo
 {
     public string Name;
     public string? DNA;
+
+    public bool Equals(BountyContractTargetInfo other)
+    {
+        return DNA == other.DNA;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is BountyContractTargetInfo other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return DNA != null ? DNA.GetHashCode() : 0;
+    }
 }
 
 [NetSerializable, Serializable]
 public struct BountyContractCreateRequest
+{
+    public string Name;
+    public string? DNA;
+    public string Vesel;
+    public int Reward;
+    public string Description;
+}
+
+[NetSerializable, Serializable]
+public struct BountyContract
 {
     public string Name;
     public string? DNA;
@@ -33,12 +58,12 @@ public sealed class BountyContractBoundUserInterfaceState : BoundUserInterfaceSt
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractCreateBoundUserInterfaceState : BoundUserInterfaceState
+public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 {
     public List<BountyContractTargetInfo> Targets;
     public List<string> Vessels;
 
-    public BountyContractCreateBoundUserInterfaceState(
+    public BountyContractCreateUiState(
         List<BountyContractTargetInfo> targets,
         List<string> vessels)
     {
@@ -46,6 +71,18 @@ public sealed class BountyContractCreateBoundUserInterfaceState : BoundUserInter
         Vessels = vessels;
     }
 }
+
+[NetSerializable, Serializable]
+public sealed class BountyContractListUiState : BoundUserInterfaceState
+{
+    public List<BountyContract> Contracts;
+    public BountyContractListUiState(List<BountyContract> contracts)
+    {
+        Contracts = contracts;
+    }
+}
+
+
 
 [NetSerializable, Serializable]
 public enum StationBountyUiKey : byte

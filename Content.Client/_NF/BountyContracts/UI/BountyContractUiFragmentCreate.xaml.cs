@@ -25,7 +25,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
         CustomNameButton.OnToggled += OnCustomNameToggle;
         CustomVeselButton.OnToggled += OnCustomVeselToggle;
-        NameEdit.OnTextChanged += NameEditOnOnTextChanged;
+        NameEdit.OnTextChanged += NameEditOnTextChanged;
         RewardEdit.OnTextChanged += OnPriceChanged;
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
@@ -43,7 +43,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         UpdateDisclaimer();
     }
 
-    private void NameEditOnOnTextChanged(LineEdit.LineEditEventArgs obj)
+    private void NameEditOnTextChanged(LineEdit.LineEditEventArgs obj)
     {
         UpdateDisclaimer();
     }
@@ -117,7 +117,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         NameSelector.Visible = !customToggle.Pressed;
         NameEdit.Visible = customToggle.Pressed;
 
-        UpdateDna(null);
+        UpdateDna(GetTargetDna());
         UpdateDisclaimer();
     }
 

@@ -24,7 +24,12 @@ public sealed class BountyContractUi : UIFragment
         if (_fragment == null)
             return;
 
-        if (state is BountyContractCreateBoundUserInterfaceState createState)
+        if (state is BountyContractListUiState listState)
+        {
+            _fragment.ListMenu.SetContracts(listState.Contracts);
+            _fragment.ShowSubmenu(BountyContractFragmentState.List);
+        }
+        else if (state is BountyContractCreateUiState createState)
         {
             _fragment.CreateMenu.SetPossibleTargets(createState.Targets);
             _fragment.CreateMenu.SetVessels(createState.Vessels);
