@@ -1,0 +1,30 @@
+- type: job
+  id: Mercenary
+  name: job-name-mercenary
+  description: job-description-mercenary
+  playTimeTracker: JobMercenary
+  startingGear: MercenaryGear
+  canBeAntag: true
+  icon: "SecurityOfficer" 
+  supervisors: job-supervisors-captain
+  setPreference: true
+  access:
+  - Maintenance
+
+- type: startingGear
+  id: MercenaryGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingBackpackMercFilled
+    shoes: ClothingShoesBootsMercFilled
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesMercenary
+    gloves: ClothingHandsMercGlovesCombat
+    head: ClothingHeadHatBeretMerc
+    outerClothing: ClothingOuterVestWebMerc
+    id: MercenaryPDA
+    ears: ClothingHeadsetGrey
+    belt: ClothingBeltMercWebbing
+  innerclothingskirt: ClothingUniformJumpsuitMercenary
+  satchel: ClothingBackpackMercFilled
+  duffelbag: ClothingBackpackMercFilled
