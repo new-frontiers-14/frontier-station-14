@@ -1,0 +1,60 @@
+<Control xmlns="https://spacestation14.io"
+         MinSize="200 200">
+
+    <BoxContainer Orientation="Vertical">
+        <!-- New Contract -->
+        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical">
+                    <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                        <Label Text="{Loc 'Name: '}" MinWidth="64"/>
+                        <OptionButton Name="NameSelector" HorizontalExpand="True"/>
+                        <LineEdit Name="NameEdit" HorizontalExpand="True" Visible="False"/>
+                        <Control MinSize="8 0" />
+                        <Button Name="CustomNameButton" Text="{Loc 'Custom'}"
+                                ToggleMode="True"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                        <Label Text="{Loc 'DNA: '}" MinWidth="64"/>
+                        <Label Name="DnaLabel" Text="{Loc 'N/A'}"
+                                  HorizontalExpand="True"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                        <Label Text="{Loc 'Vesel: '}" MinWidth="64"/>
+                        <OptionButton Name="VeselSelector" HorizontalExpand="True"/>
+                        <LineEdit Name="VeselEdit" HorizontalExpand="True" Visible="False"/>
+                        <Control MinSize="8 0" />
+                        <Button Name="CustomVeselButton" Text="{Loc 'Custom'}"
+                                ToggleMode="True"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                        <Label Text="{Loc 'Price: '}" MinWidth="64"/>
+                        <LineEdit Name="PriceEdit" HorizontalExpand="True"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" Margin="4,4,4,4"
+                                  VerticalExpand="True" >
+                        <Label Text="{Loc 'Description:'}"/>
+                        <PanelContainer StyleClasses="LowDivider" />
+                        <PanelContainer HorizontalExpand="True" MinHeight="64">
+                            <TextEdit Name="DescriptionEdit" />
+                        </PanelContainer>
+                        <PanelContainer StyleClasses="LowDivider" />
+                    </BoxContainer>
+                    <RichTextLabel Name="DisclaimerLabel" Margin="4,4,4,4"
+                                   HorizontalExpand="True"/>
+                </BoxContainer>
+            </ScrollContainer>
+
+        <!-- Footer -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+                      VerticalAlignment="Bottom"
+                      Margin="8,8,8,8">
+            <Button Name="CancelButton" Text="{Loc 'Cancel'}"
+                    HorizontalAlignment="Left"/>
+            <Control HorizontalExpand="True"/>
+            <Button Name="CreateButton" Text="{Loc 'Create'}"
+                    Disabled="True"
+                    HorizontalAlignment="Right"/>
+        </BoxContainer>
+    </BoxContainer>
+
+</Control>
