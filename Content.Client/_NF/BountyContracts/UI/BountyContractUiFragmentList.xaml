@@ -1,4 +1,33 @@
 <Control xmlns="https://spacestation14.io">
-    <BoxContainer Orientation="Vertical">
-    </BoxContainer>
+    <PanelContainer VerticalExpand="True"
+                    HorizontalExpand="True">
+
+        <Label Text="{Loc 'bounty-contracts-ui-list-no-contracts'}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <!-- Scroll with all bounties list -->
+        <BoxContainer VerticalExpand="True"
+                      HorizontalExpand="True">
+            <ScrollContainer Name="BountiesScroll"
+                             HScrollEnabled="False"
+                             HorizontalExpand="True"
+                             VerticalExpand="True">
+                <BoxContainer
+                    Name="BountiesContainer"
+                    Orientation="Vertical"
+                    VerticalExpand="True">
+                    <!--  Bounties are added here by code  -->
+                </BoxContainer>
+            </ScrollContainer>
+
+            <!-- Footer -->
+            <PanelContainer HorizontalExpand="True" MinHeight="32">
+                <BoxContainer Orientation="Horizontal"
+                              Margin="8,8,8,8"
+                              HorizontalExpand="True">
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+    </PanelContainer>
 </Control>

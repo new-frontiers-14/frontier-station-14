@@ -1,13 +1,14 @@
 <!--  Bounty Contracts Cartridge UI -->
 <ui:BountyContractUiFragment xmlns:ui="clr-namespace:Content.Client._NF.BountyContracts.UI"
                              xmlns="https://spacestation14.io"
-                             Orientation="Vertical"
                              VerticalExpand="True" HorizontalExpand="True">
-    <!-- Create Bounty -->
-    <ui:BountyContractUiFragmentCreate Name="CreateMenu" Access="Public" Visible="True"
-                                       HorizontalExpand="True" VerticalExpand="True"/>
-
+    
     <!-- List Bounties -->
-    <ui:BountyContractUiFragmentList Name="ListMenu" Access="Public" Visible="False"/>
+    <ui:BountyContractUiFragmentList Name="ListMenu" Access="Public" Visible="True"
+                                     HorizontalExpand="True" VerticalExpand="True"/>
+
+    <!-- Create Bounty -->
+    <ui:BountyContractUiFragmentCreate Name="CreateMenu" Access="Public" Visible="False"
+                                       HorizontalExpand="True" VerticalExpand="True"/>
 
 </ui:BountyContractUiFragment>

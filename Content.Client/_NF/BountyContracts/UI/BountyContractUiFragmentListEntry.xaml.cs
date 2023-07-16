@@ -5,9 +5,9 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._NF.BountyContracts.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class StationBountyMenuEntry : Control
+public sealed partial class BountyContractUiFragmentListEntry : Control
 {
-    public StationBountyMenuEntry(string bountyName, string bountyDesc,
+    public BountyContractUiFragmentListEntry(string bountyName, string bountyDesc,
         int price, string bountyAuthor)
     {
         RobustXamlLoader.Load(this);
@@ -23,8 +23,5 @@ public sealed partial class StationBountyMenuEntry : Control
 
         BountyAuthor.Text = Loc.GetString("station-bounties-ui-author",
             ("author", bountyAuthor));
-
-
-
     }
 }

@@ -1,6 +1,9 @@
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
+## UI - List contracts
+bounty-contracts-ui-list-no-contracts = No bounties posted yet...
+
 ## UI - Create contract
 bounty-contracts-ui-create-name = Name:{" "}
 bounty-contracts-ui-create-custom = Custom
