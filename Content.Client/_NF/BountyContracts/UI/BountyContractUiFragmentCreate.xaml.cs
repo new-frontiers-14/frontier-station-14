@@ -6,10 +6,10 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client._NF.StationBounties.UI;
+namespace Content.Client._NF.BountyContracts.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class BountyContractMenuCreate : Control
+public sealed partial class BountyContractUiFragmentCreate : Control
 {
     public event Action<BountyContractCreateRequest>? OnCreatePressed;
     public event Action? OnCancelPressed;
@@ -17,7 +17,7 @@ public sealed partial class BountyContractMenuCreate : Control
     private List<BountyContractTargetInfo> _targets = new();
     private List<string> _vessels = new();
 
-    public BountyContractMenuCreate()
+    public BountyContractUiFragmentCreate()
     {
         RobustXamlLoader.Load(this);
         NameSelector.OnItemSelected += (opt) => OnNameSelected(opt.Id);

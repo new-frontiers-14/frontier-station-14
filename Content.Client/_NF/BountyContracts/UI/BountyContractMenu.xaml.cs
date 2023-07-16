@@ -12,7 +12,7 @@ public sealed partial class BountyContractMenu : FancyWindow
     {
         RobustXamlLoader.Load(this);
 
-        BountiesContainer.AddChild(new StationBountyMenuEntry("Cuban Pete - Dead or Alive",
+        /*BountiesContainer.AddChild(new StationBountyMenuEntry("Cuban Pete - Dead or Alive",
             "They call me Cuban Pete. I'm the king of the rumba beat. When I play the maracas I go chick-chicky-boom, chick-chicky boom",
             10000, "Alan Poe (Head of Security)")
         );
@@ -42,6 +42,6 @@ public sealed partial class BountyContractMenu : FancyWindow
             "NT-324 3212",
             "NT-23 324",
             "NT-16 12"
-        });
+        });*/
     }
 }
