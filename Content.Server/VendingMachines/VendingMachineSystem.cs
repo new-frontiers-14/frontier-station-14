@@ -348,19 +348,21 @@ namespace Content.Server.VendingMachines
             {
                 _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
                 Deny(uid, component);
+                return;
             }
 
             if (IsAuthorized(uid, sender, component))
             {
-                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
+                if (_bankSystem.TryBankWithdraw(sender, totalPrice))
                 {
-                    if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                    if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
                     {
-                        _cargo.DeductFunds(stationBank, -(totalPrice / 2));
+                        if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                        {
+                            _cargo.DeductFunds(stationBank, -(totalPrice / 2));
+                        }
+                        UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
-
-                    _bankSystem.TryBankWithdraw(sender, totalPrice);
-                    UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                 }
             }
         }
