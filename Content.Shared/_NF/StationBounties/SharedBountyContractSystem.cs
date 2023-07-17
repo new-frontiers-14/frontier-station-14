@@ -25,7 +25,7 @@ public struct BountyContractTargetInfo
 }
 
 [NetSerializable, Serializable]
-public struct BountyContractCreateRequest
+public struct BountyContractRequest
 {
     public string Name;
     public string? DNA;
@@ -37,6 +37,7 @@ public struct BountyContractCreateRequest
 [NetSerializable, Serializable]
 public struct BountyContract
 {
+    public uint ContractId;
     public string Name;
     public string? DNA;
     public string Vesel;
@@ -83,9 +84,27 @@ public sealed class BountyContractListUiState : BoundUserInterfaceState
 }
 
 [NetSerializable, Serializable]
-public sealed class BountyContractListCreateMsg : BoundUserInterfaceMessage
+public sealed class BountyContractOpenCreateUiMsg : BoundUserInterfaceMessage
 {
 }
+
+[NetSerializable, Serializable]
+public sealed class BountyContractCloseCreateUiMsg : BoundUserInterfaceMessage
+{
+}
+
+[NetSerializable, Serializable]
+public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
+{
+    public readonly BountyContractRequest Contract;
+
+    public BountyContractTryCreateMsg(BountyContractRequest contract)
+    {
+        Contract = contract;
+    }
+}
+
+
 
 [NetSerializable, Serializable]
 public enum StationBountyUiKey : byte

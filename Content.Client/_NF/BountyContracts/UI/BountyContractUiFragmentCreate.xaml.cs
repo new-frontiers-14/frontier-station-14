@@ -11,7 +11,7 @@ namespace Content.Client._NF.BountyContracts.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BountyContractUiFragmentCreate : Control
 {
-    public event Action<BountyContractCreateRequest>? OnCreatePressed;
+    public event Action<BountyContractRequest>? OnCreatePressed;
     public event Action? OnCancelPressed;
 
     private List<BountyContractTargetInfo> _targets = new();
@@ -214,9 +214,9 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         return vesel;
     }
 
-    public BountyContractCreateRequest GetBountyContract()
+    public BountyContractRequest GetBountyContract()
     {
-        var info = new BountyContractCreateRequest
+        var info = new BountyContractRequest
         {
             Name = GetTargetName(),
             DNA = GetTargetDna(),

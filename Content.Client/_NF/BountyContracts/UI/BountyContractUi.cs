@@ -19,12 +19,25 @@ public sealed class BountyContractUi : UIFragment
     {
         _fragment = new BountyContractUiFragment();
         _userInterface = userInterface;
-        _fragment.ListMenu.OnCreateButtonPressed += OnListCreateButton;
+
+        _fragment.ListMenu.OnCreateButtonPressed += OnOpenCreateUiPressed;
+        _fragment.CreateMenu.OnCancelPressed += OnCancelCreatePressed;
+        _fragment.CreateMenu.OnCreatePressed += OnTryCreatePressed;
     }
 
-    private void OnListCreateButton()
+    private void OnOpenCreateUiPressed()
     {
-        _userInterface?.SendMessage(new BountyContractListCreateMsg());
+        _userInterface?.SendMessage(new BountyContractOpenCreateUiMsg());
+    }
+
+    private void OnCancelCreatePressed()
+    {
+        _userInterface?.SendMessage(new BountyContractCloseCreateUiMsg());
+    }
+
+    private void OnTryCreatePressed(BountyContractRequest contract)
+    {
+        _userInterface?.SendMessage(new BountyContractTryCreateMsg(contract));
     }
 
     public override void UpdateState(BoundUserInterfaceState state)
