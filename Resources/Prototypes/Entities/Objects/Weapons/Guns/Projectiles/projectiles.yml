@@ -723,7 +723,7 @@
     - type: GrapplingProjectile
 
 - type: entity
-  id: BaseBulletEMP
+  id: BaseBulletEmp
   name: base bullet emp
   parent: BaseBulletTrigger
   noSpawn: true
@@ -740,7 +740,7 @@
     disableDuration: 10
 
 - type: entity
-  id: BulletGrenadeEMP
+  id: BulletGrenadeEmp
   name: emp grenade
   parent: BaseBulletTrigger
   noSpawn: true
@@ -749,6 +749,8 @@
     damage:
       types:
         Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
@@ -759,7 +761,7 @@
     disableDuration: 60
 
 - type: entity
-  id: BulletRocketEMP
+  id: BulletRocketEmp
   name: rocket
   parent: BaseBulletTrigger
   noSpawn: true
@@ -768,6 +770,8 @@
     damage:
       types:
         Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
@@ -777,37 +781,37 @@
     energyConsumption: 50000
     disableDuration: 60
 
-#- type: entity
-#  parent: BaseBullet
-#  id: AnomalousParticleDelta
-#  name: delta particles
-#  noSpawn: true
-#  components:
-#  - type: Sprite
-#    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-#    layers:
-#      - state: magicm
-#        shader: unshaded
-#  - type: Ammo
-#    muzzleFlash: null
-#  - type: Physics
-#  - type: Fixtures
-#    fixtures:
-#      projectile:
-#        shape:
-#          !type:PhysShapeAabb
-#          bounds: "-0.2,-0.2,0.2,0.2"
-#        hard: false
-#        mask:
-#        - Opaque
-#      fly-by: *flybyfixture
-#  - type: Projectile
-#    damage:
-#      types:
-#        Shock: 0
-#  - type: TimedDespawn
-#    lifetime: 3
-#  - type: EmpOnTrigger
-#    range: 4
-#    energyConsumption: 50000
-#    disableDuration: 60
+- type: entity
+  parent: BaseBulletTrigger
+  id: ProjectileEmp
+  name: emp projectile
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: emp_projectile
+        shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 50000
+    disableDuration: 30
