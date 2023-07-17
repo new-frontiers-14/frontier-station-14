@@ -39,7 +39,8 @@ public sealed partial class BountyContractsSystem : EntitySystem
         return EntityQuery<BountyContractsDataComponent>().FirstOrDefault();
     }
 
-    public BountyContract? CreateBountyContract(BountyContractRequest request)
+    public BountyContract? CreateBountyContract(string name, string vessel, int reward,
+        string description, string? dna = null, string? author = null)
     {
         var data = GetContracts();
         if (data == null)
@@ -50,11 +51,12 @@ public sealed partial class BountyContractsSystem : EntitySystem
         var contract = new BountyContract
         {
             ContractId = contractId,
-            Name = request.Name,
-            DNA = request.DNA,
-            Vessel = request.Vesel,
-            Reward = request.Reward,
-            Description = request.Description
+            Name = name,
+            DNA = dna,
+            Vessel = vessel,
+            Reward = reward,
+            Description = description,
+            Author = author
         };
 
         // try to save it

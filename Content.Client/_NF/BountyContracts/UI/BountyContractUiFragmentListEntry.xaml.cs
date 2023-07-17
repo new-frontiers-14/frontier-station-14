@@ -24,6 +24,13 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
             desc = Loc.GetString("bounty-contracts-ui-list-no-description");
         BountyDescription.SetMessage(desc);
 
+        // author
+        if (!string.IsNullOrEmpty(contract.Author))
+        {
+            var author = Loc.GetString("bounty-contracts-ui-list-author", ("author", contract.Author));
+            BountyAuthor.Text = author;
+        }
+
         // bounty reward
         BountyReward.Text = Loc.GetString("cargo-console-menu-points-amount",
             ("amount", contract.Reward.ToString()));

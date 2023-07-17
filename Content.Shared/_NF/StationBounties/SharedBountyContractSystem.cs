@@ -43,6 +43,7 @@ public struct BountyContract
     public string Vessel;
     public int Reward;
     public string Description;
+    public string? Author;
 }
 
 [NetSerializable, Serializable]

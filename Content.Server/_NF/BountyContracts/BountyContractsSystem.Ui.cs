@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.StationRecords;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.PDA;
 using Content.Shared.StationBounties;
 using Content.Shared.StationRecords;
 
@@ -83,6 +84,17 @@ public sealed partial class BountyContractsSystem
         return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
     }
 
+    private string? GetContractAuthor(EntityUid loaderUid, PdaComponent? component = null)
+    {
+        if (!Resolve(loaderUid, ref component))
+            return null;
+
+        var id = component.ContainedId;
+        var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
+        var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
+        return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
+    }
+
 
     private void OnUiReady(EntityUid uid, BountyContractsComponent component, CartridgeUiReadyEvent args)
     {
@@ -101,7 +113,13 @@ public sealed partial class BountyContractsSystem
 
     private void OnTryCreateContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryCreateMsg args)
     {
-        CreateBountyContract(args.Contract);
+        if (!IsAllowedCreateBounties(args.Entity))
+            return;
+
+        var c = args.Contract;
+        var author = GetContractAuthor(args.Entity);
+        CreateBountyContract(c.Name, c.Vesel, c.Reward, c.Description, c.DNA, author);
+
         CartridgeOpenListUi(args.Entity);
     }
 }

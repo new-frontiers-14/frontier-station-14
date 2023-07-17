@@ -1,3 +1,8 @@
+# General stuff
+bounty-contracts-author = {$name} ({$job})
+bounty-contracts-unknown-author-name = Unknown
+bounty-contracts-unknown-author-job = Unknown
+
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
@@ -7,6 +12,7 @@ bounty-contracts-ui-list-no-description = No additional description provided...
 bounty-contracts-ui-list-create = New Contract
 bounty-contracts-ui-list-refresh = Refresh
 bounty-contracts-ui-list-vesel = Last Known Vessel: {$vessel}
+bounty-contracts-ui-list-author = Posted by: {$author}
 
 ## UI - Create contract
 bounty-contracts-ui-create-name = Name:{" "}
