@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.CartridgeLoader;
 using Content.Server.GameTicking.Events;
 using Content.Server.StationRecords.Systems;
+using Content.Shared.Access.Systems;
 using Content.Shared.StationBounties;
 using Robust.Shared.Map;
 
@@ -13,28 +14,29 @@ public sealed partial class BountyContractsSystem : EntitySystem
 
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         _sawmill = Logger.GetSawmill("bounty.contracts");
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
 
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
         InitializeUi();
     }
 
     private void OnRoundStarting(RoundStartingEvent ev)
     {
         var uid = Spawn(null, MapCoordinates.Nullspace);
-        AddComp<BountyContractsDatabaseComponent>(uid);
+        AddComp<BountyContractsDataComponent>(uid);
     }
 
-    private BountyContractsDatabaseComponent? GetContracts()
+    private BountyContractsDataComponent? GetContracts()
     {
         // we assume that there is only one bounty database
         // if it doesn't exist - game should work fine
         // but players wouldn't able to create/get contracts
-        return EntityQuery<BountyContractsDatabaseComponent>().FirstOrDefault();
+        return EntityQuery<BountyContractsDataComponent>().FirstOrDefault();
     }
 
     public BountyContract? CreateBountyContract(BountyContractRequest request)
@@ -50,7 +52,7 @@ public sealed partial class BountyContractsSystem : EntitySystem
             ContractId = contractId,
             Name = request.Name,
             DNA = request.DNA,
-            Vesel = request.Vesel,
+            Vessel = request.Vesel,
             Reward = request.Reward,
             Description = request.Description
         };

@@ -21,8 +21,14 @@ public sealed class BountyContractUi : UIFragment
         _userInterface = userInterface;
 
         _fragment.ListMenu.OnCreateButtonPressed += OnOpenCreateUiPressed;
+        _fragment.ListMenu.OnRefreshButtonPressed += OnRefreshListPressed;
         _fragment.CreateMenu.OnCancelPressed += OnCancelCreatePressed;
         _fragment.CreateMenu.OnCreatePressed += OnTryCreatePressed;
+    }
+
+    private void OnRefreshListPressed()
+    {
+        _userInterface?.SendMessage(new BountyContractRefreshListUiMsg());
     }
 
     private void OnOpenCreateUiPressed()
@@ -48,6 +54,7 @@ public sealed class BountyContractUi : UIFragment
         if (state is BountyContractListUiState listState)
         {
             _fragment.ListMenu.SetContracts(listState.Contracts);
+            _fragment.ListMenu.SetCanCreate(listState.IsAllowedCreateBounties);
             _fragment.ShowSubmenu(BountyContractFragmentState.List);
         }
         else if (state is BountyContractCreateUiState createState)

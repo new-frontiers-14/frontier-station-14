@@ -30,14 +30,16 @@ public sealed partial class BountyContractsSystem
     /// </summary>
     private void CartridgeOpenListUi(EntityUid loaderUid)
     {
-        var state = GetListState();
+        var state = GetListState(loaderUid);
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
 
-    private BountyContractListUiState GetListState()
+    private BountyContractListUiState GetListState(EntityUid loaderUid)
     {
         var contracts = GetAllContracts().ToList();
-        return new BountyContractListUiState(contracts);
+        var isAllowedCreate = IsAllowedCreateBounties(loaderUid);
+
+        return new BountyContractListUiState(contracts, isAllowedCreate);
     }
 
     private BountyContractCreateUiState GetCreateState()
@@ -71,6 +73,14 @@ public sealed partial class BountyContractsSystem
 
         return new BountyContractCreateUiState(
             bountyTargets.ToList(), vessels.ToList());
+    }
+
+    private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    {
+        if (!Resolve(loaderUid, ref component) || component.ActiveProgram == null)
+            return false;
+
+        return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
     }
 
 

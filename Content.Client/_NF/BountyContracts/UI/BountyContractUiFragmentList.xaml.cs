@@ -9,11 +9,13 @@ namespace Content.Client._NF.BountyContracts.UI;
 public sealed partial class BountyContractUiFragmentList : Control
 {
     public event Action? OnCreateButtonPressed;
+    public event Action? OnRefreshButtonPressed;
 
     public BountyContractUiFragmentList()
     {
         RobustXamlLoader.Load(this);
         CreateButton.OnPressed += _ => OnCreateButtonPressed?.Invoke();
+        RefreshButton.OnPressed += _ => OnRefreshButtonPressed?.Invoke();
     }
 
     public void SetContracts(List<BountyContract> listStateContracts)
@@ -31,6 +33,10 @@ public sealed partial class BountyContractUiFragmentList : Control
         {
             BountiesContainer.AddChild(new BountyContractUiFragmentListEntry(contract));
         }
+    }
 
+    public void SetCanCreate(bool canCreate)
+    {
+        CreateButton.Disabled = !canCreate;
     }
 }

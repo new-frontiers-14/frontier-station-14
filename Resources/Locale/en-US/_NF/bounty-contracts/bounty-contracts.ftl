@@ -1,11 +1,12 @@
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
-## UI
-bounty-contracts-ui-loading = Loading...
-
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
+bounty-contracts-ui-list-no-description = No additional description provided...
+bounty-contracts-ui-list-create = New Contract
+bounty-contracts-ui-list-refresh = Refresh
+bounty-contracts-ui-list-vesel = Last Known Vessel: {$vessel}
 
 ## UI - Create contract
 bounty-contracts-ui-create-name = Name:{" "}

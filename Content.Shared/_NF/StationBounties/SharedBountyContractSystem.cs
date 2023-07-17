@@ -40,7 +40,7 @@ public struct BountyContract
     public uint ContractId;
     public string Name;
     public string? DNA;
-    public string Vesel;
+    public string Vessel;
     public int Reward;
     public string Description;
 }
@@ -77,14 +77,22 @@ public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 public sealed class BountyContractListUiState : BoundUserInterfaceState
 {
     public List<BountyContract> Contracts;
-    public BountyContractListUiState(List<BountyContract> contracts)
+    public bool IsAllowedCreateBounties;
+
+    public BountyContractListUiState(List<BountyContract> contracts, bool isAllowedCreateBounties)
     {
         Contracts = contracts;
+        IsAllowedCreateBounties = isAllowedCreateBounties;
     }
 }
 
 [NetSerializable, Serializable]
 public sealed class BountyContractOpenCreateUiMsg : BoundUserInterfaceMessage
+{
+}
+
+[NetSerializable, Serializable]
+public sealed class BountyContractRefreshListUiMsg : BoundUserInterfaceMessage
 {
 }
 
@@ -102,14 +110,6 @@ public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
     {
         Contract = contract;
     }
-}
-
-
-
-[NetSerializable, Serializable]
-public enum StationBountyUiKey : byte
-{
-    Key
 }
 
 public sealed class SharedBountyContractSystem : EntitySystem

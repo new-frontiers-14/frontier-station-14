@@ -13,12 +13,19 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         RobustXamlLoader.Load(this);
 
         BountyName.Text = contract.Name;
-        BountyDescription.SetMessage(contract.Description);
 
-        if (contract.Reward > 0)
-        {
-            BountyReward.Text = Loc.GetString("cargo-console-menu-points-amount",
-                ("amount", contract.Reward.ToString()));
-        }
+        // vessel
+        var vessel = Loc.GetString("bounty-contracts-ui-list-vesel", ("vessel", contract.Vessel));
+        BountyVessel.Text = vessel;
+
+        // bounty description
+        var desc = contract.Description;
+        if (string.IsNullOrEmpty(contract.Description))
+            desc = Loc.GetString("bounty-contracts-ui-list-no-description");
+        BountyDescription.SetMessage(desc);
+
+        // bounty reward
+        BountyReward.Text = Loc.GetString("cargo-console-menu-points-amount",
+            ("amount", contract.Reward.ToString()));
     }
 }
