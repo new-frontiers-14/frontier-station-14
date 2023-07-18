@@ -12,10 +12,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 10
   - type: Item
     size: 5
 
@@ -114,6 +116,8 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 5
 
 - type: entity
   name: double rat kebab
@@ -134,7 +138,9 @@
           Quantity: 12
         - ReagentId: Vitamin
           Quantity: 6
-
+        - ReagentId: Flavorol
+          Quantity: 10
+          
 - type: entity
   name: fiesta kebab
   parent: FoodSkewerBase
