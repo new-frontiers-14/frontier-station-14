@@ -45,6 +45,7 @@ public sealed class DockingInterfaceState
     public EntityUid Entity;
     public bool Connected;
     public Color Color;
+    public string? Name;
     public Color HighlightedColor;
 }
 

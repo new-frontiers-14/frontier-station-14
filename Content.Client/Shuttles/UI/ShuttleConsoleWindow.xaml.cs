@@ -198,20 +198,20 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             {
                 var pressed = state.Entity == DockingScreen.ViewedDock;
 
-                string suffix;
+                string name;
+                if (state.Name != null)
+                    name = state.Name;
+                else
+                    name = Loc.GetString("shuttle-console-dock-button", ("suffix", index));
 
                 if (state.Connected)
                 {
-                    suffix = Loc.GetString("shuttle-console-docked", ("index", index));
-                }
-                else
-                {
-                    suffix = $"{index}";
+                    name += " " + Loc.GetString("shuttle-console-docked");
                 }
 
                 var button = new Button()
                 {
-                    Text = Loc.GetString("shuttle-console-dock-button", ("suffix", suffix)),
+                    Text = name,
                     ToggleMode = true,
                     Pressed = pressed,
                     Margin = new Thickness(0f, 1f),
