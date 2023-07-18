@@ -48,5 +48,8 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField("linearDamping"), ViewVariables(VVAccess.ReadWrite)]
         public float LinearDamping = 0.05f;
+
+        [DataField("angularDamping"), ViewVariables(VVAccess.ReadWrite)]
+        public float AngularDamping = 0.05f;
     }
 }

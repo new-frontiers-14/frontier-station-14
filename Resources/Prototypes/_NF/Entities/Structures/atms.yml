@@ -1,0 +1,116 @@
+- type: entity
+  id: ComputerBankATM
+  parent: BaseComputer
+  name: bank atm
+  description: Used to deposit and withdraw funds from a personal bank account
+  components:
+    - type: BankATM
+      bank-ATM-cashSlot:
+        name: bank-ATM-cashSlot
+        insertSound: /Audio/Machines/scanning.ogg
+        ejectSound: /Audio/Machines/tray_eject.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+            - Currency
+    - type: ActivatableUI
+      key: enum.BankATMMenuUiKey.ATM
+    - type: UserInterface
+      interfaces:
+        - key: enum.BankATMMenuUiKey.ATM
+          type: BankATMMenuBoundUserInterface
+    - type: Computer
+      board: ShipyardComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#b89f25"
+    - type: Sprite
+      netsync: false
+      noRot: true
+      sprite: _NF/Structures/atm.rsi
+      layers:
+        - map: ["computerLayerBody"]
+          state: icon
+        - map: ["computerLayerScreen"]
+          state: unshaded
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+        bank-ATM-cashSlot: !type:ContainerSlot {}
+
+- type: entity
+  id: ComputerWithdrawBankATM
+  parent: ComputerBankATM
+  name: withdraw-only bank atm
+  description: Used to withdraw funds from a personal bank account. Unable to deposit.
+  components:
+    - type: ActivatableUI
+      key: enum.BankATMMenuUiKey.ATM
+    - type: UserInterface
+      interfaces:
+        - key: enum.BankATMMenuUiKey.ATM
+          type: WithdrawBankATMMenuBoundUserInterface
+
+- type: entity
+  id: ComputerWallmountBankATM
+  parent: BaseComputer
+  name: wallmount bank atm
+  description: Used to deposit and withdraw funds from a personal bank account, it now comes in a more compact design!
+  components:
+    - type: BankATM
+      bank-ATM-cashSlot:
+        name: bank-ATM-cashSlot
+        insertSound: /Audio/Machines/scanning.ogg
+        ejectSound: /Audio/Machines/tray_eject.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+            - Currency
+    - type: ActivatableUI
+      key: enum.BankATMMenuUiKey.ATM
+    - type: UserInterface
+      interfaces:
+        - key: enum.BankATMMenuUiKey.ATM
+          type: BankATMMenuBoundUserInterface
+    - type: Computer
+      board: ShipyardComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#b89f25"
+    - type: Transform
+      anchored: true
+    - type: InteractionOutline
+    - type: Sprite
+      netsync: false
+      noRot: true
+      sprite: _NF/Structures/wall_atm.rsi
+      layers:
+        - map: ["computerLayerBody"]
+          state: icon
+        - map: ["computerLayerScreen"]
+          state: unshaded
+    - type: ItemSlots
+    - type: WallMount
+      arc: 360
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+        bank-ATM-cashSlot: !type:ContainerSlot {}
+
+- type: entity
+  id: ComputerWallmountWithdrawBankATM
+  parent: ComputerWallmountBankATM
+  name: wallmount withdraw-only bank atm
+  description: Used to withdraw funds from a personal bank account. Unable to deposit. It now comes in a more compact design!
+  components:
+    - type: ActivatableUI
+      key: enum.BankATMMenuUiKey.ATM
+    - type: UserInterface
+      interfaces:
+        - key: enum.BankATMMenuUiKey.ATM
+          type: WithdrawBankATMMenuBoundUserInterface

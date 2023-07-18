@@ -15,12 +15,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 31
         reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
         - ReagentId: Nutriment
           Quantity: 11
         - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 11
   - type: SliceableFood
     count: 4
   - type: Tag
@@ -50,6 +52,8 @@
           Quantity: 1.2
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Flavorol
+          Quantity: 1.5
   - type: Tag
     tags:
     - NoSpinOnThrow
@@ -342,7 +346,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 17
+        maxVol: 23
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -350,6 +354,8 @@
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 6
 # Tastes like pie, mushrooms.
 
 - type: entity
@@ -438,10 +444,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 26
+        maxVol: 41
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
         - ReagentId: Theobromine
           Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 15
 # Tastes like tart, dark chocolate.
