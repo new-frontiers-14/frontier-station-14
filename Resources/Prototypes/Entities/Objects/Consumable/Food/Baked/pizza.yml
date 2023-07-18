@@ -18,9 +18,11 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 15
         - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 15
   - type: SliceableFood
     count: 6
   - type: Item
@@ -48,9 +50,11 @@
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3
         - ReagentId: Vitamin
           Quantity: 0.8
+        - ReagentId: Flavorol
+          Quantity: 3
   - type: Item
     size: 1
   - type: Tag
@@ -189,6 +193,8 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 15
 
 - type: entity
   name: slice of vegetable pizza
@@ -219,7 +225,9 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
-
+        - ReagentId: Flavorol
+          Quantity: 3
+          
 # Tastes like crust, tomato, cheese, carrot.
 
 - type: entity
@@ -239,7 +247,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 60
         reagents:
         - ReagentId: Nutriment
           Quantity: 27
@@ -247,7 +255,8 @@
           Quantity: 6
         - ReagentId: Omnizine
           Quantity: 9
-
+        - ReagentId: Flavorol
+          Quantity: 15
 
 - type: entity
   name: slice of donk-pocket pizza
@@ -272,6 +281,8 @@
           Quantity: 1
         - ReagentId: Omnizine
           Quantity: 1.5
+        - ReagentId: Flavorol
+          Quantity: 3
 # Tastes like crust, tomato, cheese, meat, laziness.
 
 - type: entity
@@ -294,7 +305,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 65
         reagents:
         - ReagentId: Nutriment
           Quantity: 25
@@ -302,6 +313,8 @@
           Quantity: 5
         - ReagentId: DoctorsDelight
           Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 15
 
 - type: entity
   name: slice of dank pizza
@@ -329,6 +342,8 @@
           Quantity: 0.8
         - ReagentId: DoctorsDelight
           Quantity: 1
+        - ReagentId: Flavorol
+          Quantity: 3
 # Tastes like crust, tomato, cheese, meat, satisfaction.
 
 - type: entity
@@ -435,7 +450,9 @@
           Quantity: 10
         - ReagentId: Omnizine
           Quantity: 30
-
+        - ReagentId: Flavorol
+          Quantity: 15
+          
 - type: entity
   name: slice of Arnold's pizza
   parent: FoodPizzaSliceBase
@@ -465,6 +482,8 @@
           Quantity: 1.6
         - ReagentId: Omnizine
           Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 4
 # Tastes like crust, tomato, cheese, pepperoni, 9 millimeter bullets.
 
 #TODO: Make this do poison damage and make cut pizza slices eventually rot into this.
