@@ -247,6 +247,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 Entity = uid,
                 Connected = comp.Docked,
                 Color = comp.RadarColor,
+                Name = comp.Name,
                 HighlightedColor = comp.HighlightedRadarColor,
             };
             result.Add(state);
