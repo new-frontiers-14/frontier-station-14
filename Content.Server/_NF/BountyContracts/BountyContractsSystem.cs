@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.CartridgeLoader;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Systems;
@@ -19,6 +20,7 @@ public sealed partial class BountyContractsSystem : EntitySystem
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -57,7 +59,8 @@ public sealed partial class BountyContractsSystem : EntitySystem
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
     public BountyContract? CreateBountyContract(string name, int reward,
         string? description = null, string? vessel = null,
-        string? dna = null, string? author = null)
+        string? dna = null, string? author = null,
+        bool postToRadio = true)
     {
         var data = GetContracts();
         if (data == null)
@@ -73,6 +76,19 @@ public sealed partial class BountyContractsSystem : EntitySystem
         {
             _sawmill.Error($"Failed to create bounty contract with {contractId}! LastId: {data.LastId}.");
             return null;
+        }
+
+        if (postToRadio)
+        {
+            // TODO: move this to radio in future?
+            var sender = Loc.GetString("bounty-contracts-radio-name");
+            var target = !string.IsNullOrEmpty(contract.Vessel)
+                ? $"{contract.Name} ({contract.Vessel})"
+                : contract.Name;
+            var msg = Loc.GetString("bounty-contracts-radio-create",
+                ("target", target), ("reward", contract.Reward));
+            var color = Color.FromHex("#D7D7BE");
+            _chat.DispatchGlobalAnnouncement(sender, msg, false, colorOverride: color);
         }
 
         return contract;

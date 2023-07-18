@@ -6,6 +6,10 @@ bounty-contracts-unknown-author-job = Unknown
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
+## Radio Announcements
+bounty-contracts-radio-name = Bounty Contracts Service
+bounty-contracts-radio-create = New bounty placed for {$target}. Reward: {$reward}$.
+
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
 bounty-contracts-ui-list-no-description = No additional description provided...

@@ -37,13 +37,13 @@ public struct BountyContractRequest
 [NetSerializable, Serializable]
 public sealed class BountyContract
 {
-    public uint ContractId;
-    public string Name;
-    public int Reward;
-    public string? DNA;
-    public string? Vessel;
-    public string? Description;
-    public string? Author;
+    public readonly uint ContractId;
+    public readonly string Name;
+    public readonly int Reward;
+    public readonly string? DNA;
+    public readonly string? Vessel;
+    public readonly string? Description;
+    public readonly string? Author;
 
     public BountyContract(uint contractId, string name, int reward,
         string? dna, string? vessel, string? description, string? author)
