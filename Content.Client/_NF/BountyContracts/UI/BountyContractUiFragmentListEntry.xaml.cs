@@ -8,7 +8,9 @@ namespace Content.Client._NF.BountyContracts.UI;
 [GenerateTypedNameReferences]
 public sealed partial class BountyContractUiFragmentListEntry : Control
 {
-    public BountyContractUiFragmentListEntry(BountyContract contract)
+    public event Action<BountyContract>? OnRemoveButtonPressed;
+
+    public BountyContractUiFragmentListEntry(BountyContract contract, bool canRemoveContracts)
     {
         RobustXamlLoader.Load(this);
 
@@ -34,5 +36,9 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         // bounty reward
         BountyReward.Text = Loc.GetString("cargo-console-menu-points-amount",
             ("amount", contract.Reward.ToString()));
+
+        // remove button
+        RemoveButton.OnPressed += _ => OnRemoveButtonPressed?.Invoke(contract);
+        RemoveButton.Disabled = !canRemoveContracts;
     }
 }

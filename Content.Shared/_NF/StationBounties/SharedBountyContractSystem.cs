@@ -79,12 +79,16 @@ public sealed class BountyContractListUiState : BoundUserInterfaceState
 {
     public List<BountyContract> Contracts;
     public bool IsAllowedCreateBounties;
+    public bool IsAllowedRemoveBounties;
 
-    public BountyContractListUiState(List<BountyContract> contracts, bool isAllowedCreateBounties)
+    public BountyContractListUiState(List<BountyContract> contracts,
+        bool isAllowedCreateBounties, bool isAllowedRemoveBounties)
     {
         Contracts = contracts;
         IsAllowedCreateBounties = isAllowedCreateBounties;
+        IsAllowedRemoveBounties = isAllowedRemoveBounties;
     }
+
 }
 
 [NetSerializable, Serializable]
@@ -100,6 +104,18 @@ public sealed class BountyContractRefreshListUiMsg : BoundUserInterfaceMessage
 [NetSerializable, Serializable]
 public sealed class BountyContractCloseCreateUiMsg : BoundUserInterfaceMessage
 {
+}
+
+
+[NetSerializable, Serializable]
+public sealed class BountyContractTryRemoveUiMsg : BoundUserInterfaceMessage
+{
+    public uint ContractId;
+
+    public BountyContractTryRemoveUiMsg(uint contractId)
+    {
+        ContractId = contractId;
+    }
 }
 
 [NetSerializable, Serializable]

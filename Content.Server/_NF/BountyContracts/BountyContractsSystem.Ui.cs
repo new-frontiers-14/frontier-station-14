@@ -15,6 +15,8 @@ public sealed partial class BountyContractsSystem
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractOpenCreateUiMsg>(OnOpenCreateUi);
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractCloseCreateUiMsg>(OnCloseCreateUi);
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryCreateMsg>(OnTryCreateContract);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractRefreshListUiMsg>(OnRefreshContracts);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryRemoveUiMsg>(OnRemoveContract);
     }
 
     /// <summary>
@@ -35,12 +37,20 @@ public sealed partial class BountyContractsSystem
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
 
+    private void CartridgeRefreshListUi(EntityUid loaderUid)
+    {
+        // this will technically refresh it
+        // by sending list state again
+        CartridgeOpenListUi(loaderUid);
+    }
+
     private BountyContractListUiState GetListState(EntityUid loaderUid)
     {
         var contracts = GetAllContracts().ToList();
         var isAllowedCreate = IsAllowedCreateBounties(loaderUid);
+        var isAllowedRemove = isAllowedCreate;
 
-        return new BountyContractListUiState(contracts, isAllowedCreate);
+        return new BountyContractListUiState(contracts, isAllowedCreate, isAllowedRemove);
     }
 
     private BountyContractCreateUiState GetCreateState()
@@ -121,5 +131,16 @@ public sealed partial class BountyContractsSystem
         CreateBountyContract(c.Name, c.Vesel, c.Reward, c.Description, c.DNA, author);
 
         CartridgeOpenListUi(args.Entity);
+    }
+
+    private void OnRefreshContracts(EntityUid uid, CartridgeLoaderComponent component, BountyContractRefreshListUiMsg args)
+    {
+        CartridgeRefreshListUi(args.Entity);
+    }
+
+    private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
+    {
+        RemoveBountyContract(args.ContractId);
+        CartridgeRefreshListUi(args.Entity);
     }
 }

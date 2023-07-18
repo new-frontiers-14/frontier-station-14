@@ -13,6 +13,7 @@ bounty-contracts-ui-list-create = New Contract
 bounty-contracts-ui-list-refresh = Refresh
 bounty-contracts-ui-list-vesel = Last Known Vessel: {$vessel}
 bounty-contracts-ui-list-author = Posted by: {$author}
+bounty-contracts-ui-list-remove = Remove
 
 ## UI - Create contract
 bounty-contracts-ui-create-name = Name:{" "}
