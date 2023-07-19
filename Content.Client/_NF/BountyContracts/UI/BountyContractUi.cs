@@ -10,7 +10,6 @@ namespace Content.Client._NF.BountyContracts.UI;
 public sealed class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
-    private Control? _currentMenu;
     private BoundUserInterface? _userInterface;
 
     public override Control GetUIFragmentRoot()
@@ -42,10 +41,7 @@ public sealed class BountyContractUi : UIFragment
 
     private void UnloadPreviousState()
     {
-        if (_currentMenu == null)
-            return;
-
-        _fragment?.RemoveChild(_currentMenu);
+        _fragment?.RemoveAllChildren();
     }
 
     private void ShowCreateState(BountyContractCreateUiState state)
@@ -60,7 +56,6 @@ public sealed class BountyContractUi : UIFragment
         create.SetVessels(state.Vessels);
 
         _fragment?.AddChild(create);
-        _currentMenu = create;
     }
 
     private void ShowListState(BountyContractListUiState state)
@@ -76,7 +71,6 @@ public sealed class BountyContractUi : UIFragment
         list.SetCanCreate(state.IsAllowedCreateBounties);
 
         _fragment?.AddChild(list);
-        _currentMenu = list;
     }
 
     private void OnRemovePressed(BountyContract obj)
