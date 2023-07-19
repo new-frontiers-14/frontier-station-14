@@ -10,9 +10,12 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using System.Linq;
 using System.Threading;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Coordinates;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
+using Robust.Shared.Random;
 
 namespace Content.Server.Salvage;
 
@@ -293,18 +296,22 @@ public sealed partial class SalvageSystem
 
     private void GiveRewards(SalvageExpeditionComponent comp)
     {
-        // send it to cargo, no rewards otherwise.
-        if (!TryComp<StationCargoOrderDatabaseComponent>(comp.Station, out var cargoDb))
+        var palletList = new List<EntityUid>();
+        var pallets = EntityQueryEnumerator<CargoPalletComponent>();
+        while (pallets.MoveNext(out var pallet, out var palletComp))
         {
-            return;
+            if (_stationSystem.GetOwningStation(pallet) == comp.Station)
+            {
+                palletList.Add(pallet);
+            }
         }
+
+        if (!(palletList.Count > 0))
+            return;
 
         foreach (var reward in comp.Rewards)
         {
-            var sender = Loc.GetString("cargo-gift-default-sender");
-            var desc = Loc.GetString("salvage-expedition-reward-description");
-            var dest = Loc.GetString("cargo-gift-default-dest");
-            _cargo.AddAndApproveOrder(cargoDb, reward, 0, 1, sender, desc, dest);
+            Spawn(reward, (_random.Pick(palletList)).ToCoordinates());
         }
     }
 }

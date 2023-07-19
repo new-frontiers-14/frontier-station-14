@@ -34,13 +34,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/pts.yml
-  
+
 - type: gameMap
   id: PTS
   mapName: 'NC Personal Transport'
   mapPath: /Maps/Shuttles/pts.yml
   minPlayers: 0
-  stations: 
+  stations:
     PTS:
       stationProto: StandardFrontierVessel
       components:
@@ -56,19 +56,19 @@
 
 - type: vessel
   id: Courser
-  name: NT Courser-X 
+  name: NT Courser-X
   description: A medium sized multi-role long haul conversion of the long time popular Courser model.
   price: 68650
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/courserx.yml
-  
+
 - type: gameMap
   id: Courser
   mapName: 'NT Courser-X'
   mapPath: /Maps/Shuttles/courserx.yml
   minPlayers: 0
-  stations: 
+  stations:
     Courser:
       stationProto: StandardFrontierVessel
       components:
@@ -80,10 +80,10 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Passenger: [ 2, 2 ]
+            Passenger: [ 0, 0 ]
             Bartender: [ 1, 1 ]
             StationEngineer: [ 1, 1 ]
-            SecurityOfficer: [ 1, 1 ]
+            Mercenary: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
 
 - type: vessel
@@ -94,13 +94,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/construct.yml
-  
+
 - type: gameMap
   id: Construct
   mapName: 'NT Construct'
   mapPath: /Maps/Shuttles/construct.yml
   minPlayers: 0
-  stations: 
+  stations:
     Construct:
       stationProto: StandardFrontierVessel
       components:
@@ -113,7 +113,7 @@
           overflowJobs: []
           availableJobs:
             Passenger: [ 0, 0 ]
-            
+
 - type: vessel
   id: MailTruck
   name: NC Mail Truck
@@ -122,13 +122,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/mail.yml
-  
+
 - type: gameMap
   id: MailTruck
   mapName: 'NC Mail Truck'
   mapPath: /Maps/Shuttles/mail.yml
   minPlayers: 0
-  stations: 
+  stations:
     MailTruck:
       stationProto: StandardFrontierVessel
       components:
@@ -140,7 +140,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            MailCarrier: [ 1, 1 ]
+            MailCarrier: [ 0, 0 ]
 
 - type: vessel
   id: Barge
@@ -150,13 +150,13 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/barge.yml
-  
+
 - type: gameMap
   id: Barge
   mapName: 'NC Barge'
   mapPath: /Maps/Shuttles/barge.yml
   minPlayers: 0
-  stations: 
+  stations:
     Barge:
       stationProto: StandardFrontierVessel
       components:
@@ -170,7 +170,7 @@
           availableJobs:
             CargoTechnician: [ 1, 1 ]
             Bartender: [ 1, 1 ]
-            SalvageSpecialist: [ 2, 2 ]
+            SalvageSpecialist: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
 
 - type: vessel
@@ -181,13 +181,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/prospector.yml
-  
+
 - type: gameMap
   id: Prospector
   mapName: 'NC Prospector'
   mapPath: /Maps/Shuttles/prospector.yml
   minPlayers: 0
-  stations: 
+  stations:
     Prospector:
       stationProto: StandardFrontierVessel
       components:
@@ -209,13 +209,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/sparrow.yml
-  
+
 - type: gameMap
   id: Sparrow
   mapName: 'NR Sparrow'
   mapPath: /Maps/Shuttles/sparrow.yml
   minPlayers: 0
-  stations: 
+  stations:
     Sparrow:
       stationProto: StandardFrontierVessel
       components:
@@ -239,13 +239,13 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/condor.yml
-  
+
 - type: gameMap
   id: Condor
   mapName: 'NR Condor'
   mapPath: /Maps/Shuttles/condor.yml
   minPlayers: 0
-  stations: 
+  stations:
     Condor:
       stationProto: StandardFrontierVessel
       components:
@@ -257,8 +257,8 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            StationEngineer: [ 1, 1 ]
-            Scientist: [ 2, 2 ]
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 1, 1 ]
             ResearchDirector: [ 1, 1 ]
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]
@@ -272,13 +272,13 @@
   category: Small
   group: Security
   shuttlePath: /Maps/Shuttles/interceptor.yml
-  
+
 - type: gameMap
   id: Interceptor
   mapName: 'NSF Interceptor'
   mapPath: /Maps/Shuttles/interceptor.yml
   minPlayers: 0
-  stations: 
+  stations:
     Interceptor:
       stationProto: StandardFrontierVessel
       components:
@@ -300,13 +300,13 @@
   category: Small
   group: Security
   shuttlePath: /Maps/Shuttles/enforcer.yml
-  
+
 - type: gameMap
   id: Enforcer
   mapName: 'NSF Enforcer'
   mapPath: /Maps/Shuttles/enforcer.yml
   minPlayers: 0
-  stations: 
+  stations:
     Enforcer:
       stationProto: StandardFrontierVessel
       components:
@@ -318,7 +318,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            PrisonGuard: [ 1, 1 ]
+            PrisonGuard: [ 0, 0 ]
             SecurityOfficer: [ 1, 1 ]
 
 - type: vessel
@@ -329,13 +329,13 @@
   category: Medium
   group: Security
   shuttlePath: /Maps/Shuttles/trident.yml
-  
+
 - type: gameMap
   id: Trident
   mapName: 'NSF Trident'
   mapPath: /Maps/Shuttles/trident.yml
   minPlayers: 0
-  stations: 
+  stations:
     Trident:
       stationProto: StandardFrontierVessel
       components:
@@ -348,7 +348,7 @@
           overflowJobs: []
           availableJobs:
             PrisonGuard: [ 1, 1 ]
-            SecurityOfficer: [ 3, 3 ]
+            SecurityOfficer: [ 1, 1 ]
             Warden: [ 1, 1 ]
 
 - type: vessel
@@ -359,13 +359,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/pulse.yml
-  
+
 - type: gameMap
   id: Pulse
   mapName: 'NM Pulse'
   mapPath: /Maps/Shuttles/pulse.yml
   minPlayers: 0
-  stations: 
+  stations:
     Pulse:
       stationProto: StandardFrontierVessel
       components:
@@ -378,7 +378,7 @@
           overflowJobs: []
           availableJobs:
             Paramedic: [ 1, 1 ]
-            MedicalCyborg: [ 1, 1 ]
+            MedicalCyborg: [ 0, 0 ]
 
 - type: vessel
   id: Helix
@@ -388,13 +388,13 @@
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/helix.yml
-  
+
 - type: gameMap
   id: Helix
   mapName: 'NM Helix'
   mapPath: /Maps/Shuttles/helix.yml
   minPlayers: 0
-  stations: 
+  stations:
     Helix:
       stationProto: StandardFrontierVessel
       components:
@@ -406,7 +406,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Paramedic: [ 1, 1 ]
+            Paramedic: [ 0, 0 ]
             ChiefMedicalOfficer: [ 1, 1 ]
             MedicalDoctor: [ 1, 1 ]
             Chemist: [ 1, 1 ]
@@ -420,13 +420,13 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Shuttles/skipper.yml
-  
+
 - type: gameMap
   id: Skipper
   mapName: 'NC Skipper'
   mapPath: /Maps/Shuttles/skipper.yml
   minPlayers: 0
-  stations: 
+  stations:
     Skipper:
       stationProto: StandardFrontierVessel
       components:

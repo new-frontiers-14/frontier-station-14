@@ -304,8 +304,8 @@ public sealed partial class ShuttleSystem
                         if (shuttle != null)
                         {
                             _physics.SetLinearDamping(body, shuttle.LinearDamping);
+                            _physics.SetAngularDamping(body, shuttle.AngularDamping);
                         }
-                        _physics.SetAngularDamping(body, ShuttleAngularDamping);
                     }
 
                     MapId mapId;

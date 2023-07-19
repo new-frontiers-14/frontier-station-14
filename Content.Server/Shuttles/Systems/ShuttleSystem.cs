@@ -44,8 +44,6 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
     public const float TileMassMultiplier = 0.5f;
 
-    public const float ShuttleAngularDamping = 0.05f;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -153,7 +151,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         _physics.SetBodyStatus(component, BodyStatus.InAir);
         _physics.SetFixedRotation(uid, false, manager: manager, body: component);
         _physics.SetLinearDamping(component, shuttle.LinearDamping);
-        _physics.SetAngularDamping(component, ShuttleAngularDamping);
+        _physics.SetAngularDamping(component, shuttle.AngularDamping);
     }
 
     private void Disable(EntityUid uid, PhysicsComponent component)

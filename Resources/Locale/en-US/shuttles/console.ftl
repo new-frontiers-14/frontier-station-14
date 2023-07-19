@@ -25,7 +25,7 @@ shuttle-console-linear-velocity = Linear velocity:
 shuttle-console-angular-velocity = Angular velocity:
 
 shuttle-console-dock-label = Docking ports
-shuttle-console-docked = {$index} (Docked)
+shuttle-console-docked = (Docked)
 shuttle-console-dock-button = Dock {$suffix}
 
 shuttle-console-hyperspace-label = FTL destinations

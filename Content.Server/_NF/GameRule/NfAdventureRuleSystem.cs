@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -55,7 +56,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private void OnRoundEndTextEvent(RoundEndTextAppendEvent ev)
     {
         var profitText = Loc.GetString($"adventure-mode-profit-text");
+        var lossText = Loc.GetString($"adventure-mode-loss-text");
         ev.AddLine(Loc.GetString("adventure-list-start"));
+        var allScore = new List<Tuple<string, int>>();
+
         foreach (var player in _players)
         {
             if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
@@ -63,9 +67,32 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             var profit = bank.Balance - player.Item2;
             ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
+            allScore.Add(new Tuple<string, int>(meta.EntityName, profit));
         }
 
-        ReportRound(ev.Text);
+        if (!(allScore.Count >= 1))
+            return;
+
+        var relayText = Loc.GetString("adventure-list-high");
+        relayText += '\n';
+        var highScore = allScore.OrderByDescending(h => h.Item2).ToList();
+
+        for (var i = 0; i < 10 && i < highScore.Count; i++)
+        {
+            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += '\n';
+            highScore.Remove(highScore.First());
+        }
+        relayText += Loc.GetString("adventure-list-low");
+        relayText += '\n';
+        highScore.Reverse();
+        for (var i = 0; i < 10 && i < highScore.Count; i++)
+        {
+            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += '\n';
+            highScore.Remove(highScore.First());
+        }
+        ReportRound(relayText);
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -80,7 +107,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private void OnStartup(RoundStartingEvent ev)
     {
         var depotMap = "/Maps/cargodepot.yml";
+        var tinnia = "/Maps/tinnia.yml";
         var depotColor = new Color(55, 200, 55);
+        var tinniaColor = new Color(55, 55, 200);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(1500f, 2400f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
@@ -89,19 +118,19 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
-            meta.EntityName = "NT Cargo Depot A NF14";
+            meta.EntityName = "Cargo Depot A";
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
         ;
-        if (_map.TryLoad(mapId, depotMap, out var depotUid2s, new MapLoadOptions
+        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = -depotOffset
+                Offset = _random.NextVector2(975f, 1375f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            meta.EntityName = "NT Cargo Depot B NF14";
-            _shuttle.SetIFFColor(depotUid2s[0], depotColor);
+            meta.EntityName = "Tinnia's Rest";
+            _shuttle.SetIFFColor(depotUid2s[0], tinniaColor);
         }
 
         ;
@@ -112,7 +141,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            meta.EntityName = "NT Cargo Depot C NF14";
+            meta.EntityName = "Cargo Depot B";
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
         }
 
@@ -123,7 +152,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            meta.EntityName = "NT Cargo Depot D NF14";
+            meta.EntityName = "Cargo Depot C";
             _shuttle.SetIFFColor(depotUid4s[0], depotColor);
         }
 
