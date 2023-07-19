@@ -1,5 +1,5 @@
 using Content.Client.UserInterface.Fragments;
-using Content.Shared.StationBounties;
+using Content.Shared._NF.BountyContracts;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;

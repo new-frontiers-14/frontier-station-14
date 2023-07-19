@@ -4,8 +4,8 @@ using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._NF.BountyContracts;
 using Content.Shared.Access.Systems;
-using Content.Shared.StationBounties;
 using Robust.Shared.Map;
 
 namespace Content.Server._NF.BountyContracts;
@@ -13,7 +13,7 @@ namespace Content.Server._NF.BountyContracts;
 /// <summary>
 ///     Used to control all bounty contracts placed by players.
 /// </summary>
-public sealed partial class BountyContractSystem : EntitySystem
+public sealed partial class BountyContractSystem : SharedBountyContractSystem
 {
     private ISawmill _sawmill = default!;
 

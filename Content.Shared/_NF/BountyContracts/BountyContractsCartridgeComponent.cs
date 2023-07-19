@@ -1,4 +1,4 @@
-namespace Content.Shared.StationBounties;
+namespace Content.Shared._NF.BountyContracts;
 
 [RegisterComponent]
 public sealed class BountyContractsCartridgeComponent : Component

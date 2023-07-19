@@ -1,8 +1,8 @@
 using System.Linq;
 using Content.Server.StationRecords;
+using Content.Shared._NF.BountyContracts;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.PDA;
-using Content.Shared.StationBounties;
 using Content.Shared.StationRecords;
 
 namespace Content.Server._NF.BountyContracts;

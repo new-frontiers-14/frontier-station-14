@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.StationBounties;
+namespace Content.Shared._NF.BountyContracts;
 
 [NetSerializable, Serializable]
 public struct BountyContractTargetInfo
@@ -127,7 +127,7 @@ public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
     }
 }
 
-public sealed class SharedBountyContractSystem : EntitySystem
+public abstract class SharedBountyContractSystem : EntitySystem
 {
     // TODO: Cvar?
     public const int MinimalReward = 10000;

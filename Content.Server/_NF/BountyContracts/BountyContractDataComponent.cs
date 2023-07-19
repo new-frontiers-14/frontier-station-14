@@ -1,7 +1,4 @@
-using Content.Shared.Chat;
-using Content.Shared.Radio;
-using Content.Shared.StationBounties;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared._NF.BountyContracts;
 
 namespace Content.Server._NF.BountyContracts;
 
