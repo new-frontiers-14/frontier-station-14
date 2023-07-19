@@ -59,23 +59,10 @@ public sealed class BountyContract
 }
 
 [NetSerializable, Serializable]
-public enum BountyContractFragmentState : byte
-{
-    List,
-    Create
-}
-
-[NetSerializable, Serializable]
-public sealed class BountyContractBoundUserInterfaceState : BoundUserInterfaceState
-{
-    public BountyContractFragmentState State;
-}
-
-[NetSerializable, Serializable]
 public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 {
-    public List<BountyContractTargetInfo> Targets;
-    public List<string> Vessels;
+    public readonly List<BountyContractTargetInfo> Targets;
+    public readonly List<string> Vessels;
 
     public BountyContractCreateUiState(
         List<BountyContractTargetInfo> targets,
@@ -89,9 +76,9 @@ public sealed class BountyContractCreateUiState : BoundUserInterfaceState
 [NetSerializable, Serializable]
 public sealed class BountyContractListUiState : BoundUserInterfaceState
 {
-    public List<BountyContract> Contracts;
-    public bool IsAllowedCreateBounties;
-    public bool IsAllowedRemoveBounties;
+    public readonly List<BountyContract> Contracts;
+    public readonly bool IsAllowedCreateBounties;
+    public readonly bool IsAllowedRemoveBounties;
 
     public BountyContractListUiState(List<BountyContract> contracts,
         bool isAllowedCreateBounties, bool isAllowedRemoveBounties)
@@ -118,11 +105,10 @@ public sealed class BountyContractCloseCreateUiMsg : BoundUserInterfaceMessage
 {
 }
 
-
 [NetSerializable, Serializable]
 public sealed class BountyContractTryRemoveUiMsg : BoundUserInterfaceMessage
 {
-    public uint ContractId;
+    public readonly uint ContractId;
 
     public BountyContractTryRemoveUiMsg(uint contractId)
     {

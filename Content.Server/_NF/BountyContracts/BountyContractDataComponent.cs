@@ -9,8 +9,8 @@ namespace Content.Server._NF.BountyContracts;
 ///     Store all bounty contracts information.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(BountyContractsSystem))]
-public sealed class BountyContractsDataComponent : Component
+[Access(typeof(BountyContractSystem))]
+public sealed class BountyContractDataComponent : Component
 {
     /// <summary>
     ///     Last registered contract id. Used to track contracts.

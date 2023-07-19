@@ -13,7 +13,7 @@ namespace Content.Server._NF.BountyContracts;
 /// <summary>
 ///     Used to control all bounty contracts placed by players.
 /// </summary>
-public sealed partial class BountyContractsSystem : EntitySystem
+public sealed partial class BountyContractSystem : EntitySystem
 {
     private ISawmill _sawmill = default!;
 
@@ -35,15 +35,15 @@ public sealed partial class BountyContractsSystem : EntitySystem
     {
         // use nullspace entity to store all information about contracts
         var uid = Spawn(null, MapCoordinates.Nullspace);
-        AddComp<BountyContractsDataComponent>(uid);
+        AddComp<BountyContractDataComponent>(uid);
     }
 
-    private BountyContractsDataComponent? GetContracts()
+    private BountyContractDataComponent? GetContracts()
     {
         // we assume that there is only one bounty database for round
         // if it doesn't exist - game should work fine
         // but players wouldn't able to create/get contracts
-        return EntityQuery<BountyContractsDataComponent>().FirstOrDefault();
+        return EntityQuery<BountyContractDataComponent>().FirstOrDefault();
     }
 
     /// <summary>

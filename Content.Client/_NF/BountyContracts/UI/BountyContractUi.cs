@@ -1,13 +1,16 @@
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.StationBounties;
+using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._NF.BountyContracts.UI;
 
+[UsedImplicitly]
 public sealed class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
+    private Control? _currentMenu;
     private BoundUserInterface? _userInterface;
 
     public override Control GetUIFragmentRoot()
@@ -19,12 +22,61 @@ public sealed class BountyContractUi : UIFragment
     {
         _fragment = new BountyContractUiFragment();
         _userInterface = userInterface;
+    }
 
-        _fragment.ListMenu.OnCreateButtonPressed += OnOpenCreateUiPressed;
-        _fragment.ListMenu.OnRefreshButtonPressed += OnRefreshListPressed;
-        _fragment.ListMenu.OnRemoveButtonPressed += OnRemovePressed;
-        _fragment.CreateMenu.OnCancelPressed += OnCancelCreatePressed;
-        _fragment.CreateMenu.OnCreatePressed += OnTryCreatePressed;
+
+    public override void UpdateState(BoundUserInterfaceState state)
+    {
+        if (_fragment == null)
+            return;
+
+        if (state is BountyContractListUiState listState)
+        {
+            ShowListState(listState);
+        }
+        else if (state is BountyContractCreateUiState createState)
+        {
+            ShowCreateState(createState);
+        }
+    }
+
+    private void UnloadPreviousState()
+    {
+        if (_currentMenu == null)
+            return;
+
+        _fragment?.RemoveChild(_currentMenu);
+    }
+
+    private void ShowCreateState(BountyContractCreateUiState state)
+    {
+        UnloadPreviousState();
+
+        var create = new BountyContractUiFragmentCreate();
+        create.OnCancelPressed += OnCancelCreatePressed;
+        create.OnCreatePressed += OnTryCreatePressed;
+
+        create.SetPossibleTargets(state.Targets);
+        create.SetVessels(state.Vessels);
+
+        _fragment?.AddChild(create);
+        _currentMenu = create;
+    }
+
+    private void ShowListState(BountyContractListUiState state)
+    {
+        UnloadPreviousState();
+
+        var list = new BountyContractUiFragmentList();
+        list.OnCreateButtonPressed += OnOpenCreateUiPressed;
+        list.OnRefreshButtonPressed += OnRefreshListPressed;
+        list.OnRemoveButtonPressed += OnRemovePressed;
+
+        list.SetContracts(state.Contracts, state.IsAllowedRemoveBounties);
+        list.SetCanCreate(state.IsAllowedCreateBounties);
+
+        _fragment?.AddChild(list);
+        _currentMenu = list;
     }
 
     private void OnRemovePressed(BountyContract obj)
@@ -50,25 +102,5 @@ public sealed class BountyContractUi : UIFragment
     private void OnTryCreatePressed(BountyContractRequest contract)
     {
         _userInterface?.SendMessage(new BountyContractTryCreateMsg(contract));
-    }
-
-    public override void UpdateState(BoundUserInterfaceState state)
-    {
-        if (_fragment == null)
-            return;
-
-        if (state is BountyContractListUiState listState)
-        {
-            _fragment.ListMenu.SetContracts(listState.Contracts, listState.IsAllowedRemoveBounties);
-            _fragment.ListMenu.SetCanCreate(listState.IsAllowedCreateBounties);
-            _fragment.ShowSubmenu(BountyContractFragmentState.List);
-        }
-        else if (state is BountyContractCreateUiState createState)
-        {
-            _fragment.CreateMenu.SetPossibleTargets(createState.Targets);
-            _fragment.CreateMenu.SetVessels(createState.Vessels);
-            _fragment.ShowSubmenu(BountyContractFragmentState.Create);
-        }
-
     }
 }

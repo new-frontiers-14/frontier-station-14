@@ -7,11 +7,11 @@ using Content.Shared.StationRecords;
 
 namespace Content.Server._NF.BountyContracts;
 
-public sealed partial class BountyContractsSystem
+public sealed partial class BountyContractSystem
 {
     private void InitializeUi()
     {
-        SubscribeLocalEvent<BountyContractsComponent, CartridgeUiReadyEvent>(OnUiReady);
+        SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractOpenCreateUiMsg>(OnOpenCreateUi);
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractCloseCreateUiMsg>(OnCloseCreateUi);
         SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryCreateMsg>(OnTryCreateContract);
@@ -48,7 +48,7 @@ public sealed partial class BountyContractsSystem
     {
         var contracts = GetAllContracts().ToList();
         var isAllowedCreate = IsAllowedCreateBounties(loaderUid);
-        var isAllowedRemove = isAllowedCreate;
+        var isAllowedRemove = IsAllowedDeleteBounties(loaderUid);
 
         return new BountyContractListUiState(contracts, isAllowedCreate, isAllowedRemove);
     }
@@ -82,8 +82,7 @@ public sealed partial class BountyContractsSystem
             }
         }
 
-        return new BountyContractCreateUiState(
-            bountyTargets.ToList(), vessels.ToList());
+        return new BountyContractCreateUiState(bountyTargets.ToList(), vessels.ToList());
     }
 
     private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
@@ -92,6 +91,11 @@ public sealed partial class BountyContractsSystem
             return false;
 
         return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
+    }
+
+    private bool IsAllowedDeleteBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    {
+        return IsAllowedCreateBounties(loaderUid, component);
     }
 
     private string? GetContractAuthor(EntityUid loaderUid, PdaComponent? component = null)
@@ -105,8 +109,7 @@ public sealed partial class BountyContractsSystem
         return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
     }
 
-
-    private void OnUiReady(EntityUid uid, BountyContractsComponent component, CartridgeUiReadyEvent args)
+    private void OnUiReady(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeUiReadyEvent args)
     {
         CartridgeOpenListUi(args.Loader);
     }
@@ -140,6 +143,9 @@ public sealed partial class BountyContractsSystem
 
     private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
     {
+        if (!IsAllowedDeleteBounties(args.Entity))
+            return;
+
         RemoveBountyContract(args.ContractId);
         CartridgeRefreshListUi(args.Entity);
     }
