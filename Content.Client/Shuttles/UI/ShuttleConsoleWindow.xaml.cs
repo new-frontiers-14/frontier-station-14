@@ -330,7 +330,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         var displayRot = -worldRot.Reduced();
 
         GridPosition.Text = $"{worldPos.X:0.0}, {worldPos.Y:0.0}";
-        GridOrientation.Text = $"{displayRot.Degrees:0.0}";
+
+        // displayRot is between -180 and 180 deg, but aviation people like 0 to 360.
+        GridOrientation.Text = $"{((displayRot.Degrees+360) % 360):0.0}°";
 
         var gridVelocity = gridBody.LinearVelocity;
         gridVelocity = displayRot.RotateVec(gridVelocity);
