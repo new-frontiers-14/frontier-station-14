@@ -5,7 +5,7 @@ examine-headset-default-channel = Use {$prefix} for the default channel ([color=
 
 chat-radio-common = Common
 chat-radio-centcom = CentCom
-chat-radio-command = Command
+chat-radio-command = Traffic Control
 chat-radio-engineering = Engineering
 chat-radio-medical = Medical
 chat-radio-science = Science

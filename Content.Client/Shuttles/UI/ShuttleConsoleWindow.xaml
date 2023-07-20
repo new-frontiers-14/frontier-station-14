@@ -18,8 +18,15 @@
                 <controls:StripeBack>
                     <Label Name="DockingPortsLabel" Text="{Loc 'shuttle-console-dock-label'}" HorizontalAlignment="Center"/>
                 </controls:StripeBack>
+                <ScrollContainer
+                    HScrollEnabled="False"
+                    HorizontalExpand="True"
+                    MinSize="100 400"
+                    SizeFlagsStretchRatio="2"
+                    VerticalExpand="True">
                 <BoxContainer Name="DockPorts"
                               Orientation="Vertical"/>
+                </ScrollContainer>
             </BoxContainer>
             <BoxContainer Orientation="Vertical">
                 <controls:StripeBack>

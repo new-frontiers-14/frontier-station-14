@@ -198,20 +198,20 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             {
                 var pressed = state.Entity == DockingScreen.ViewedDock;
 
-                string suffix;
+                string name;
+                if (state.Name != null)
+                    name = state.Name;
+                else
+                    name = Loc.GetString("shuttle-console-dock-button", ("suffix", index));
 
                 if (state.Connected)
                 {
-                    suffix = Loc.GetString("shuttle-console-docked", ("index", index));
-                }
-                else
-                {
-                    suffix = $"{index}";
+                    name += " " + Loc.GetString("shuttle-console-docked");
                 }
 
                 var button = new Button()
                 {
-                    Text = Loc.GetString("shuttle-console-dock-button", ("suffix", suffix)),
+                    Text = name,
                     ToggleMode = true,
                     Pressed = pressed,
                     Margin = new Thickness(0f, 1f),
@@ -330,7 +330,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         var displayRot = -worldRot.Reduced();
 
         GridPosition.Text = $"{worldPos.X:0.0}, {worldPos.Y:0.0}";
-        GridOrientation.Text = $"{displayRot.Degrees:0.0}";
+
+        // displayRot is between -180 and 180 deg, but aviation people like 0 to 360.
+        GridOrientation.Text = $"{((displayRot.Degrees+360) % 360):0.0}°";
 
         var gridVelocity = gridBody.LinearVelocity;
         gridVelocity = displayRot.RotateVec(gridVelocity);
