@@ -49,6 +49,23 @@ public sealed class DockingInterfaceState
     public Color HighlightedColor;
 }
 
+public class DockComparer: IComparer<DockingInterfaceState>
+{
+    public int Compare(DockingInterfaceState? a, DockingInterfaceState? b)
+    {
+        if (a == null)
+            return -1;
+        else if (b == null)
+            return 1;
+        else if (a.Name != null && b.Name != null)
+            return a.Name.CompareTo(b.Name);
+        else if (a.Name != null) // a has a name but b doesn't
+            return 1;
+        else // neither are named, compare by Uid
+            return a.Entity.CompareTo(b.Entity);
+    }
+}
+
 [Serializable, NetSerializable]
 public enum RadarConsoleUiKey : byte
 {
