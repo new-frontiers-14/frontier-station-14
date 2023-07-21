@@ -48,6 +48,8 @@
   name: security shipyard console
   description: Used to enlist into Nanotrasen Security Forces
   components:  
+  - type: Anchorable
+    delay: 999999
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Security
   - type: UserInterface
@@ -105,8 +107,10 @@
   name: cargo sale computer
   description: Used to sell goods loaded onto cargo pallets
   components:
+  - type: Anchorable
+    delay: 999999
   - type: MarketModifier
-    mod: 1.707
+    mod: 1.64
   
 - type: entity
   id: ComputerPalletConsoleNFLowMarket
@@ -115,8 +119,10 @@
   name: cargo sale computer
   description: Used to sell goods loaded onto cargo pallets
   components:
+  - type: Anchorable
+    delay: 999999
   - type: MarketModifier
-    mod: 0.892
+    mod: 0.832
     
 - type: entity
   id: StationAdminBankATM
@@ -124,6 +130,8 @@
   name: station administration console
   description: Used to pay out from the station's bank account
   components:
+  - type: Anchorable
+    delay: 999999
   - type: StationBankATM
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
@@ -156,6 +164,8 @@
   name: AstroVend
   description: Essential gear for the space-men on the go
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: AstroVendInventory
     offState: off
@@ -185,6 +195,8 @@
   name: CircuitVend
   description: Essential tech for the space-men on the go
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: CircuitVendInventory
     offState: off
@@ -208,3 +220,43 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSyndieContraband
+  name: ContraVend
+  description: Wanted across multiple sectors!
+  components:
+  - type: VendingMachine
+    pack: ContraVendInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    screenState: screen
+    ejectDelay: 3
+  - type: Advertise
+    pack: SyndieDrobeAds
+  - type: Speech
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/syndicateArmor.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: "screen"
+      map: ["enum.VendingMachineVisualLayers.Screen"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.3
+    color: "#ad2c2b"
+  - type: MarketModifier
+    mod: 50
