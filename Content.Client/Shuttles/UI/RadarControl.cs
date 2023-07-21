@@ -178,6 +178,8 @@ public sealed class RadarControl : MapGridControl
             mapPosition.Position,
             xform.WorldRotation + _rotation.Value);
 
+        var shown = new HashSet<EntityUid>();
+
         // Draw our grid in detail
         var ourGridId = _coordinates.Value.GetGridUid(_entManager);
         if (_entManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
@@ -188,7 +190,7 @@ public sealed class RadarControl : MapGridControl
             Matrix3.Multiply(in ourGridMatrix, in offsetMatrix, out var matrix);
 
             DrawGrid(handle, matrix, ourGrid, Color.MediumSpringGreen, true);
-            DrawDocks(handle, ourGridId.Value, matrix);
+            DrawDocks(handle, ourGridId.Value, matrix, shown);
         }
 
         var invertedPosition = _coordinates.Value.Position - offset;
@@ -197,8 +199,6 @@ public sealed class RadarControl : MapGridControl
 
         // Draw radar position on the station
         handle.DrawCircle(ScalePosition(invertedPosition), 5f, Color.Lime);
-
-        var shown = new HashSet<EntityUid>();
 
         // Draw other grids... differently
         foreach (var grid in _mapManager.FindGridsIntersecting(mapPosition.MapId,
@@ -288,7 +288,7 @@ public sealed class RadarControl : MapGridControl
             // Detailed view
             DrawGrid(handle, matty, grid, color, true);
 
-            DrawDocks(handle, grid.Owner, matty);
+            DrawDocks(handle, grid.Owner, matty, shown);
         }
 
         foreach (var (ent, _) in _iffControls)
@@ -315,7 +315,7 @@ public sealed class RadarControl : MapGridControl
         _iffControls.Remove(uid);
     }
 
-    private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3 matrix)
+    private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3 matrix, HashSet<EntityUid> shown)
     {
         if (!ShowDocks)
             return;
@@ -324,6 +324,9 @@ public sealed class RadarControl : MapGridControl
 
         if (_docks.TryGetValue(uid, out var docks))
         {
+            // Keep track of which logical docks we've already drawn labels on, to prevent
+            // duplicating labels for each group of docks.
+            var labeled = new HashSet<string>();
             foreach (var state in docks)
             {
                 var ent = state.Entity;
@@ -353,6 +356,27 @@ public sealed class RadarControl : MapGridControl
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
                 handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, verts, color);
+
+                // draw dock label
+                if (state.Name != null && !labeled.Contains(state.Name))
+                {
+                    labeled.Add(state.Name);
+                    Label label;
+                    if (!_iffControls.TryGetValue(ent, out var control))
+                    {
+                        label = new Label();
+                        _iffControls[ent] = label;
+                        AddChild(label);
+                    }
+                    else
+                    {
+                        label = (Label) control;
+                    }
+                    shown.Add(ent);
+                    label.Visible = true;
+                    label.Text = state.Name;
+                    LayoutContainer.SetPosition(label, ScalePosition(uiPosition));
+                }
             }
         }
     }
