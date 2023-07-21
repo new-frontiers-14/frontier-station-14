@@ -181,6 +181,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         // We also need to make up some pseudonumber as well for these.
         _docks.Clear();
 
+        docks.Sort(new DockComparer());
         foreach (var dock in docks)
         {
             var grid = _docks.GetOrNew(dock.Coordinates.EntityId);
