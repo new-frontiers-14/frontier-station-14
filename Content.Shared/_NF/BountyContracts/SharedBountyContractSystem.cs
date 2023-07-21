@@ -29,7 +29,7 @@ public struct BountyContractRequest
 {
     public string Name;
     public string? DNA;
-    public string Vesel;
+    public string Vessel;
     public int Reward;
     public string Description;
 }

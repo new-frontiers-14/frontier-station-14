@@ -70,7 +70,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         vessels.Sort();
 
         // add unknown option as a first option
-        vessels.Insert(0, Loc.GetString("bounty-contracts-ui-create-vesel-unknown"));
+        vessels.Insert(0, Loc.GetString("bounty-contracts-ui-create-vessel-unknown"));
         _vessels = vessels;
 
         // update ships dropdown
@@ -198,20 +198,20 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
     public string GetVessel()
     {
-        var vesel = "";
+        var vessel = "";
 
         if (!CustomVeselButton.Pressed)
         {
             var id = VeselSelector.SelectedId;
             if (id < _vessels.Count)
-                vesel = _vessels[id];
+                vessel = _vessels[id];
         }
         else
         {
-            vesel = VeselEdit.Text;
+            vessel = VeselEdit.Text;
         }
 
-        return vesel;
+        return vessel;
     }
 
     public BountyContractRequest GetBountyContract()
@@ -220,7 +220,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         {
             Name = GetTargetName(),
             DNA = GetTargetDna(),
-            Vesel = GetVessel(),
+            Vessel = GetVessel(),
             Description = Rope.Collapse(DescriptionEdit.TextRope),
             Reward = GetReward()
         };
