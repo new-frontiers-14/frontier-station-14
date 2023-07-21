@@ -33,9 +33,19 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
     private void OnRoundStarting(RoundStartingEvent ev)
     {
+        // TODO: move to in-game server like RD?
+
+        // delete all existing data component
+        // just in case someone added it on map or previous round ended weird
+        var query = EntityQuery<BountyContractDataComponent>();
+        foreach (var bnt in query)
+        {
+            RemCompDeferred(bnt.Owner, bnt);
+        }
+
         // use nullspace entity to store all information about contracts
         var uid = Spawn(null, MapCoordinates.Nullspace);
-        AddComp<BountyContractDataComponent>(uid);
+        EnsureComp<BountyContractDataComponent>(uid);
     }
 
     private BountyContractDataComponent? GetContracts()
