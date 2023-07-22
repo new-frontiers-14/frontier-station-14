@@ -421,10 +421,10 @@ namespace Content.Server.VendingMachines
                 var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
                 if (entry != null)
                     entry.Amount--;
-                EjectItem(uid, vendComponent, forceEject);
+                //EjectItem(uid, vendComponent, forceEject); // Stop vending machine from giving free items
             }
-            else
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+            //else
+            //TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent); // Stop vending machine from giving free items
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
