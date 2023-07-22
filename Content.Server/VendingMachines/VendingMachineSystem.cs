@@ -84,10 +84,10 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                price += entry.Amount; //* _pricing.GetEstimatedPrice(proto); Removed this to make machine price without the items worth.
             }
 
-            args.Price += price;
+            //args.Price += price; Removed this to also make the machine price without the amount of items worth.
         }
 
         protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
