@@ -2,6 +2,23 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.BountyContracts;
 
+[Serializable, NetSerializable]
+public enum BountyContractCategory : byte
+{
+    Criminal,
+    Vacancy,
+    Construction,
+    Service,
+    Other
+}
+
+[Serializable, NetSerializable]
+public struct BountyContractCategoryMeta
+{
+    public string Name;
+    public Color UiColor;
+}
+
 [NetSerializable, Serializable]
 public struct BountyContractTargetInfo
 {
@@ -130,4 +147,33 @@ public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
 public abstract class SharedBountyContractSystem : EntitySystem
 {
     public const int DefaultReward = 5000;
+
+    public static readonly Dictionary<BountyContractCategory, BountyContractCategoryMeta> CategoriesMeta = new()
+    {
+        [BountyContractCategory.Criminal] = new BountyContractCategoryMeta
+        {
+            Name = "bounty-contracts-category-criminal",
+            UiColor = Color.DarkRed
+        },
+        [BountyContractCategory.Vacancy] = new BountyContractCategoryMeta
+        {
+            Name = "bounty-contracts-category-vacancy",
+            UiColor = Color.DarkBlue
+        },
+        [BountyContractCategory.Construction] = new BountyContractCategoryMeta
+        {
+            Name = "bounty-contracts-category-construction",
+            UiColor = Color.DarkGoldenrod
+        },
+        [BountyContractCategory.Service] = new BountyContractCategoryMeta
+        {
+            Name = "bounty-contracts-category-service",
+            UiColor = Color.DarkGoldenrod
+        },
+        [BountyContractCategory.Other] = new BountyContractCategoryMeta
+        {
+            Name = "bounty-contracts-category-other",
+            UiColor = Color.DarkGoldenrod
+        },
+    };
 }

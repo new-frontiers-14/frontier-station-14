@@ -20,6 +20,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     public BountyContractUiFragmentCreate()
     {
         RobustXamlLoader.Load(this);
+        CategorySelector.OnItemSelected += (opt) => OnCategorySelected(opt.Id);
         NameSelector.OnItemSelected += (opt) => OnNameSelected(opt.Id);
         VeselSelector.OnItemSelected += (opt) => OnVesselSelected(opt.Id);
 
@@ -35,6 +36,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         CreateButton.OnPressed += _ => OnCreatePressed?.Invoke(GetBountyContract());
         CancelButton.OnPressed += _ => OnCancelPressed?.Invoke();
 
+        FillCategories();
         UpdateDisclaimer();
     }
 
@@ -84,6 +86,15 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         OnVesselSelected(0);
     }
 
+    private void FillCategories()
+    {
+        foreach (var (id, meta) in SharedBountyContractSystem.CategoriesMeta)
+        {
+            var name = Loc.GetString(meta.Name);
+            CategorySelector.AddItem(name, (byte) id);
+        }
+    }
+
     private void UpdateDna(string? dnaStr)
     {
         DnaLabel.Text = dnaStr ?? Loc.GetString("bounty-contracts-ui-create-dna-unknown");
@@ -110,6 +121,11 @@ public sealed partial class BountyContractUiFragmentCreate : Control
             return;
 
         VeselSelector.SelectId(itemIndex);
+    }
+
+    private void OnCategorySelected(int objId)
+    {
+        CategorySelector.SelectId(objId);
     }
 
     private void OnCustomNameToggle(BaseButton.ButtonToggledEventArgs customToggle)

@@ -5,6 +5,10 @@
         <!-- New Contract Details -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
             <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-category'}" MinWidth="80"/>
+                <OptionButton Name="CategorySelector" HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                 <Label Text="{Loc 'bounty-contracts-ui-create-name'}" MinWidth="80"/>
                 <OptionButton Name="NameSelector" HorizontalExpand="True"/>
                 <LineEdit Name="NameEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-name-placeholder'}"

@@ -3,6 +3,13 @@ bounty-contracts-author = {$name} ({$job})
 bounty-contracts-unknown-author-name = Unknown
 bounty-contracts-unknown-author-job = Unknown
 
+# Caregories
+bounty-contracts-category-criminal = Wanted Criminal
+bounty-contracts-category-vacancy = Job Vacancy
+bounty-contracts-category-construction = Construction
+bounty-contracts-category-service = Service
+bounty-contracts-category-other = Other
+
 # Cartridge
 bounty-contracts-program-name = Bounty Contracts
 
@@ -20,6 +27,7 @@ bounty-contracts-ui-list-author = Posted by: {$author}
 bounty-contracts-ui-list-remove = Remove
 
 ## UI - Create contract
+bounty-contracts-ui-create-category = Category:{" "}
 bounty-contracts-ui-create-name = Name:{" "}
 bounty-contracts-ui-create-custom = Custom
 bounty-contracts-ui-create-name-placeholder = Bounty name...
