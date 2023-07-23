@@ -34,7 +34,7 @@ bounty-contracts-ui-create-description = Description:
 bounty-contracts-ui-create-description-placeholder = Crimes, additional details...
 bounty-contracts-ui-create-button-cancel = Cancel
 bounty-contracts-ui-create-button-create = Create
-bounty-contracts-ui-create-error-too-cheap = Error: Invalid price! Minimal contract reward is {$reward}$.
+bounty-contracts-ui-create-error-invalid-price = Error: Invalid price!
 bounty-contracts-ui-create-error-no-name = Error: Invalid bounty target name!
 bounty-contracts-ui-create-ready = Your contract is ready to be published!
 

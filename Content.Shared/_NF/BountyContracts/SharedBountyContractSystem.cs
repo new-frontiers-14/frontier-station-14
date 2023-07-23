@@ -129,6 +129,5 @@ public sealed class BountyContractTryCreateMsg : BoundUserInterfaceMessage
 
 public abstract class SharedBountyContractSystem : EntitySystem
 {
-    // TODO: Cvar?
-    public const int MinimalReward = 10000;
+    public const int DefaultReward = 5000;
 }

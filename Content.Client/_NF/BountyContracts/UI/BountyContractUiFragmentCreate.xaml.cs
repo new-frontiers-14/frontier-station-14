@@ -30,7 +30,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
         DescriptionEdit.Placeholder = new Rope.Leaf(descPlaceholder);
-        RewardEdit.Text = SharedBountyContractSystem.MinimalReward.ToString();
+        RewardEdit.Text = SharedBountyContractSystem.DefaultReward.ToString();
 
         CreateButton.OnPressed += _ => OnCreatePressed?.Invoke(GetBountyContract());
         CancelButton.OnPressed += _ => OnCancelPressed?.Invoke();
@@ -133,10 +133,9 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     {
         // check if reward is valid
         var reward = GetReward();
-        if (reward < SharedBountyContractSystem.MinimalReward)
+        if (reward == null || reward < 0)
         {
-            var err = Loc.GetString("bounty-contracts-ui-create-error-too-cheap",
-                ("reward", SharedBountyContractSystem.MinimalReward));
+            var err = Loc.GetString("bounty-contracts-ui-create-error-invalid-price");
             DisclaimerLabel.SetMessage(err);
             CreateButton.Disabled = true;
             return;
@@ -157,10 +156,10 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         CreateButton.Disabled = false;
     }
 
-    public int GetReward()
+    public int? GetReward()
     {
         var priceStr = RewardEdit.Text;
-        return int.TryParse(priceStr, out var price) ? price : 0;
+        return int.TryParse(priceStr, out var price) ? price : null;
     }
 
     public BountyContractTargetInfo? GetTargetInfo()
@@ -222,7 +221,7 @@ public sealed partial class BountyContractUiFragmentCreate : Control
             DNA = GetTargetDna(),
             Vessel = GetVessel(),
             Description = Rope.Collapse(DescriptionEdit.TextRope),
-            Reward = GetReward()
+            Reward = GetReward() ?? 0
         };
         return info;
     }
