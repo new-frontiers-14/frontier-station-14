@@ -1,0 +1,32 @@
+<Control xmlns="https://spacestation14.io" HorizontalExpand="True" VerticalExpand="True">
+    <PanelContainer VerticalExpand="True"
+                    HorizontalExpand="True">
+
+        <Label Name="NoContractsLabel" Text="{Loc 'bounty-contracts-ui-list-no-contracts'}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <!-- Scroll with all bounties list -->
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer
+                    Name="BountiesContainer"
+                    Orientation="Vertical"
+                    VerticalExpand="True">
+                    <!--  Bounties are added here by code  -->
+                </BoxContainer>
+            </ScrollContainer>
+
+            <!-- Footer -->
+            <PanelContainer HorizontalExpand="True" MinHeight="32">
+                <BoxContainer Orientation="Horizontal"
+                              Margin="8,8,8,8"
+                              HorizontalExpand="True">
+                    <Button Name="RefreshButton" Text="{Loc 'bounty-contracts-ui-list-refresh'}"/>
+                    <Control HorizontalExpand="True"/>
+                    <Button Name="CreateButton" Text="{Loc 'bounty-contracts-ui-list-create'}"/>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+    </PanelContainer>
+</Control>
