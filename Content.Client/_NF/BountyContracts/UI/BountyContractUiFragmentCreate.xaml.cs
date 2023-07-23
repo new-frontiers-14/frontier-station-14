@@ -20,12 +20,12 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     public BountyContractUiFragmentCreate()
     {
         RobustXamlLoader.Load(this);
-        CategorySelector.OnItemSelected += (opt) => OnCategorySelected(opt.Id);
-        NameSelector.OnItemSelected += (opt) => OnNameSelected(opt.Id);
-        VeselSelector.OnItemSelected += (opt) => OnVesselSelected(opt.Id);
+        CategorySelector.OnItemSelected += opt => OnCategorySelected(opt.Id);
+        NameSelector.OnItemSelected += opt => OnNameSelected(opt.Id);
+        VeselSelector.OnItemSelected += opt => OnVesselSelected(opt.Id);
 
-        CustomNameButton.OnToggled += OnCustomNameToggle;
-        CustomVeselButton.OnToggled += OnCustomVeselToggle;
+        CustomNameButton.OnToggled += args => OnCustomNameToggle(args.Pressed);
+        CustomVeselButton.OnToggled += args =>  OnCustomVeselToggle(args.Pressed);
         NameEdit.OnTextChanged += NameEditOnTextChanged;
         RewardEdit.OnTextChanged += OnPriceChanged;
 
@@ -97,7 +97,14 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
     private void UpdateDna(string? dnaStr)
     {
-        DnaLabel.Text = dnaStr ?? Loc.GetString("bounty-contracts-ui-create-dna-unknown");
+        if (string.IsNullOrEmpty(dnaStr))
+        {
+            DnaBox.Visible = false;
+            return;
+        }
+
+        DnaBox.Visible = true;
+        DnaLabel.Text = dnaStr;
     }
 
     private void OnNameSelected(int itemIndex)
@@ -125,22 +132,26 @@ public sealed partial class BountyContractUiFragmentCreate : Control
 
     private void OnCategorySelected(int objId)
     {
+        var cat = (BountyContractCategory) objId;
+        CustomNameButton.Pressed = cat != BountyContractCategory.Criminal;
+        OnCustomNameToggle(CustomNameButton.Pressed);
+
         CategorySelector.SelectId(objId);
     }
 
-    private void OnCustomNameToggle(BaseButton.ButtonToggledEventArgs customToggle)
+    private void OnCustomNameToggle(bool isPressed)
     {
-        NameSelector.Visible = !customToggle.Pressed;
-        NameEdit.Visible = customToggle.Pressed;
+        NameSelector.Visible = !isPressed;
+        NameEdit.Visible = isPressed;
 
         UpdateDna(GetTargetDna());
         UpdateDisclaimer();
     }
 
-    private void OnCustomVeselToggle(BaseButton.ButtonToggledEventArgs customToggle)
+    private void OnCustomVeselToggle(bool isPressed)
     {
-        VeselSelector.Visible = !customToggle.Pressed;
-        VeselEdit.Visible = customToggle.Pressed;
+        VeselSelector.Visible = !isPressed;
+        VeselEdit.Visible = isPressed;
 
         OnVesselSelected(0);
     }

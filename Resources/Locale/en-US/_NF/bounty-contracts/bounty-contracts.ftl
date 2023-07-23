@@ -32,7 +32,6 @@ bounty-contracts-ui-create-name = Name:{" "}
 bounty-contracts-ui-create-custom = Custom
 bounty-contracts-ui-create-name-placeholder = Bounty name...
 bounty-contracts-ui-create-dna = DNA:{" "}
-bounty-contracts-ui-create-dna-unknown = N/A
 bounty-contracts-ui-create-vessel = Vessel:{" "}
 bounty-contracts-ui-create-vessel-unknown  = Unknown
 bounty-contracts-ui-create-vessel-placeholder = Vessel name...
