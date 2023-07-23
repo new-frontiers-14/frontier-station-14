@@ -87,7 +87,7 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
   - type: StaticPrice
-    price: 100
+    price: 1000
   - type: Appearance
   - type: WiresVisuals
   - type: MarketModifier
@@ -1696,6 +1696,32 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSyndieDrobe
+  name: SyndieDrobe
+  description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
+  components:
+  - type: VendingMachine
+    pack: SyndieDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: SyndieDrobeAds
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/syndiedrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  # - type: AccessReader
+    # access: [["NuclearOperative"]]
 
 - type: entity
   parent: VendingMachine

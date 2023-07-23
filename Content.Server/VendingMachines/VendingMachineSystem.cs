@@ -84,10 +84,10 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                price += entry.Amount; //* _pricing.GetEstimatedPrice(proto); Removed this to make machine price without the items worth.
             }
 
-            args.Price += price;
+            //args.Price += price; Removed this to also make the machine price without the amount of items worth.
         }
 
         protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
@@ -421,10 +421,10 @@ namespace Content.Server.VendingMachines
                 var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
                 if (entry != null)
                     entry.Amount--;
-                EjectItem(uid, vendComponent, forceEject);
+                //EjectItem(uid, vendComponent, forceEject); // Stop vending machine from giving free items
             }
-            else
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+            //else
+            //TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent); // Stop vending machine from giving free items
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)

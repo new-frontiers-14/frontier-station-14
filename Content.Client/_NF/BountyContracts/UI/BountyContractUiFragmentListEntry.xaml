@@ -1,0 +1,19 @@
+<Control xmlns="https://spacestation14.io">
+    <PanelContainer Margin="8,8,8,8" StyleClasses="AngleRect" >
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="BountyName" HorizontalExpand="True" />
+                <Label Name="BountyReward" HorizontalExpand="True"
+                       HorizontalAlignment="Right"/>
+            </BoxContainer>
+            <PanelContainer StyleClasses="HighDivider" />
+            <BoxContainer HorizontalExpand="True">
+                <RichTextLabel Name="BountyDescription" StyleClasses="LabelSubText"/>
+            </BoxContainer>
+            <Label Name="BountyVessel" StyleClasses="WindowFooterText"/>
+            <Label Name="BountyAuthor" StyleClasses="WindowFooterText"/>
+            <Button Name="RemoveButton" Text="{Loc 'bounty-contracts-ui-list-remove'}"
+                    HorizontalAlignment="Right"/>
+        </BoxContainer>
+    </PanelContainer>
+</Control>
