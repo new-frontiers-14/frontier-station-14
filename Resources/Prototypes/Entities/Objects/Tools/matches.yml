@@ -7,6 +7,8 @@
     capacity: 10
   - type: Item
     size: 10
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   name: match stick
@@ -40,6 +42,8 @@
     unlitIcon: match_unlit
     litIcon: match_lit
     burntIcon: match_burnt
+  - type: StaticPrice
+    price: 2
 
 - type: entity
   parent: Matchstick
@@ -51,6 +55,8 @@
       - state: match_burnt
   - type: Matchstick
     state: Burnt
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: match box
