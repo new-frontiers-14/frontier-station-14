@@ -23,14 +23,14 @@ public abstract class SharedDoorSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] protected readonly SharedPhysicsSystem PhysicsSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private   readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private   readonly SharedStunSystem _stunSystem = default!;
     [Dependency] protected readonly TagSystem Tags = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    [Dependency] private   readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] protected readonly SharedAppearanceSystem AppearanceSystem = default!;
-    [Dependency] private readonly OccluderSystem _occluder = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private   readonly OccluderSystem _occluder = default!;
+    [Dependency] private   readonly AccessReaderSystem _accessReaderSystem = default!;
 
     /// <summary>
     ///     A body must have an intersection percentage larger than this in order to be considered as colliding with a
@@ -447,15 +447,7 @@ public abstract class SharedDoorSystem : EntitySystem
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables
-            if (!otherPhysics.CanCollide ||
-                    otherPhysics.CollisionLayer == (int) CollisionGroup.GlassLayer ||
-                    otherPhysics.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer ||
-                    otherPhysics.CollisionLayer == (int) CollisionGroup.TableLayer ||
-                    // Objects without any of these 3 collisiongroups won't obstruct shutters
-                    (otherPhysics.CollisionLayer & ((int) CollisionGroup.Impassable |
-                                                   (int) CollisionGroup.MidImpassable |
-                                                   (int) CollisionGroup.HighImpassable))
-                        == 0)
+            if (!otherPhysics.CanCollide || otherPhysics.CollisionLayer == (int) CollisionGroup.GlassLayer || otherPhysics.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer || otherPhysics.CollisionLayer == (int) CollisionGroup.TableLayer)
                 continue;
 
             //If the colliding entity is a slippable item ignore it by the airlock
