@@ -250,11 +250,6 @@ namespace Content.Server._NF.M_Emp
         {
             EntityUid? salvageEnt;
 
-            var opts = new MapLoadOptions
-            {
-                Offset = new Vector2(0, 0)
-            };
-
             Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.HoldTime.TotalSeconds));
 
             var empRange = 100;
