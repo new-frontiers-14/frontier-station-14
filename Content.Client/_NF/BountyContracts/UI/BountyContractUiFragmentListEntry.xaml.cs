@@ -39,5 +39,14 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         // remove button
         RemoveButton.OnPressed += _ => OnRemoveButtonPressed?.Invoke(contract);
         RemoveButton.Disabled = !canRemoveContracts;
+
+        // color
+        var meta = SharedBountyContractSystem.CategoriesMeta[contract.Category];
+        BountyPanel.ModulateSelfOverride = meta.UiColor;
+
+        // category
+        var category = Loc.GetString(meta.Name);
+        BountyCategory.Text = Loc.GetString("bounty-contracts-ui-list-category",
+            ("category", category));
     }
 }

@@ -20,8 +20,9 @@ bounty-contracts-radio-create = New bounty placed for "{$target}". Reward: {$rew
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
 bounty-contracts-ui-list-no-description = No additional description provided...
-bounty-contracts-ui-list-create = New Contract
+bounty-contracts-ui-list-create = New Bounty
 bounty-contracts-ui-list-refresh = Refresh
+bounty-contracts-ui-list-category = Category: {$category}
 bounty-contracts-ui-list-vessel = Vessel: {$vessel}
 bounty-contracts-ui-list-author = Posted by: {$author}
 bounty-contracts-ui-list-remove = Remove

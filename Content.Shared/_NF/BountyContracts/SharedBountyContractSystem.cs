@@ -44,6 +44,7 @@ public struct BountyContractTargetInfo
 [NetSerializable, Serializable]
 public struct BountyContractRequest
 {
+    public BountyContractCategory Category;
     public string Name;
     public string? DNA;
     public string Vessel;
@@ -55,6 +56,7 @@ public struct BountyContractRequest
 public sealed class BountyContract
 {
     public readonly uint ContractId;
+    public readonly BountyContractCategory Category;
     public readonly string Name;
     public readonly int Reward;
     public readonly string? DNA;
@@ -62,10 +64,11 @@ public sealed class BountyContract
     public readonly string? Description;
     public readonly string? Author;
 
-    public BountyContract(uint contractId, string name, int reward,
-        string? dna, string? vessel, string? description, string? author)
+    public BountyContract(uint contractId, BountyContractCategory category, string name,
+        int reward, string? dna, string? vessel, string? description, string? author)
     {
         ContractId = contractId;
+        Category = category;
         Name = name;
         Reward = reward;
         DNA = dna;
@@ -153,27 +156,27 @@ public abstract class SharedBountyContractSystem : EntitySystem
         [BountyContractCategory.Criminal] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-criminal",
-            UiColor = Color.DarkRed
+            UiColor = Color.FromHex("#520c0c")
         },
         [BountyContractCategory.Vacancy] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-vacancy",
-            UiColor = Color.DarkBlue
+            UiColor = Color.FromHex("#003866")
         },
         [BountyContractCategory.Construction] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-construction",
-            UiColor = Color.DarkGoldenrod
+            UiColor = Color.FromHex("#664a06")
         },
         [BountyContractCategory.Service] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-service",
-            UiColor = Color.DarkGoldenrod
+            UiColor = Color.FromHex("#01551e")
         },
         [BountyContractCategory.Other] = new BountyContractCategoryMeta
         {
             Name = "bounty-contracts-category-other",
-            UiColor = Color.DarkGoldenrod
+            UiColor = Color.FromHex("#474747")
         },
     };
 }

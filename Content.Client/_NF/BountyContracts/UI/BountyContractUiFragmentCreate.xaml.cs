@@ -240,10 +240,16 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         return vessel;
     }
 
+    public BountyContractCategory GetCategory()
+    {
+        return (BountyContractCategory) CategorySelector.SelectedId;
+    }
+
     public BountyContractRequest GetBountyContract()
     {
         var info = new BountyContractRequest
         {
+            Category = GetCategory(),
             Name = GetTargetName(),
             DNA = GetTargetDna(),
             Vessel = GetVessel(),
