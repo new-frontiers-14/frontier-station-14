@@ -12,9 +12,10 @@ namespace Content.Client.VendingMachines
         [ViewVariables]
         private VendingMachineMenu? _menu;
 
+        [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
-        public VendingMachineBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey)
+        public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
 
@@ -33,7 +34,7 @@ namespace Content.Client.VendingMachines
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner.Owner);
 
-            _menu = new VendingMachineMenu {Title = entMan.GetComponent<MetaDataComponent>(Owner.Owner).EntityName};
+            _menu = new VendingMachineMenu { Title = entMan.GetComponent<MetaDataComponent>(Owner.Owner).EntityName };
 
             _menu.OnClose += Close;
             _menu.OnItemSelected += OnItemSelected;
