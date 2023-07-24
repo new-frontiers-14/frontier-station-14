@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.VendingMachines;
 using Content.Shared.Cargo.Components;
@@ -21,7 +22,7 @@ namespace Content.Client.VendingMachines.UI
 
         public VendingMachineMenu()
         {
-            MinSize = SetSize = (250, 150);
+            MinSize = SetSize = new Vector2(250, 150);
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
@@ -124,7 +125,7 @@ namespace Content.Client.VendingMachines.UI
 
         private void SetSizeAfterUpdate(int longestEntryLength)
         {
-            SetSize = (Math.Clamp((longestEntryLength + 2) * 12, 250, 300),
+            SetSize = new Vector2(Math.Clamp((longestEntryLength + 2) * 12, 250, 300),
                 Math.Clamp(VendingContents.Count * 50, 150, 350));
         }
     }

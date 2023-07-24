@@ -51,27 +51,8 @@ namespace Content.Shared.Ghost
         [DataField("canReturnToBody"), AutoNetworkedField]
         private bool _canReturnToBody;
 
-        [DataField("TimeOfDeath", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("TimeOfDeath", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
         public TimeSpan TimeOfDeath = TimeSpan.Zero;
-
-        public override ComponentState GetComponentState()
-        {
-            return new GhostComponentState(CanReturnToBody, CanGhostInteract, TimeOfDeath);
-        }
-
-        public override void HandleComponentState(ComponentState? curState, ComponentState? nextState)
-        {
-            base.HandleComponentState(curState, nextState);
-
-            if (curState is not GhostComponentState state)
-            {
-                return;
-            }
-
-            CanReturnToBody = state.CanReturnToBody;
-            CanGhostInteract = state.CanGhostInteract;
-            TimeOfDeath = state.TimeOfDeath;
-        }
     }
 
     [Serializable, NetSerializable]
