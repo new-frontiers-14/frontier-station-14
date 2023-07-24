@@ -102,7 +102,7 @@ public sealed partial class CargoSystem
         {
             amount *= priceMod.Mod;
         }
-        _uiSystem.SetUiState(bui,
+        UserInterfaceSystem.SetUiState(bui,
             new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
     }
 

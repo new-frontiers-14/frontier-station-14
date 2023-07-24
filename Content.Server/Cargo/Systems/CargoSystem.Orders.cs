@@ -263,7 +263,7 @@ namespace Content.Server.Cargo.Systems
                 balance,
                 orderDatabase.Orders);
 
-            _uiSystem.SetUiState(bui, state);
+            UserInterfaceSystem.SetUiState(bui, state);
         }
 
         private void ConsolePopup(ICommonSession session, string text)

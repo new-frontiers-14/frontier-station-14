@@ -9,7 +9,7 @@ public sealed class WithdrawBankATMMenuBoundUserInterface : BoundUserInterface
 {
     private WithdrawBankATMMenu? _menu;
 
-    public WithdrawBankATMMenuBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey) {}
+    public WithdrawBankATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
 
     protected override void Open()
     {

@@ -26,7 +26,6 @@ public sealed partial class SalvageSystem
      */
 
     private const int MissionLimit = 4;
-    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private readonly JobQueue _salvageQueue = new();

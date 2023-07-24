@@ -94,7 +94,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
             if (station != uid)
                 continue;
 
-            UpdateOrderState(oUid, station);
         }
     }
 }

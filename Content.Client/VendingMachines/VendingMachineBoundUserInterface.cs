@@ -27,14 +27,14 @@ namespace Content.Client.VendingMachines
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
             var priceMod = 1f;
 
-            if (entMan.TryGetComponent<MarketModifierComponent>(Owner.Owner, out var market))
+            if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
             {
                 priceMod = market.Mod;
             }
 
-            _cachedInventory = vendingMachineSys.GetAllInventory(Owner.Owner);
+            _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
-            _menu = new VendingMachineMenu { Title = entMan.GetComponent<MetaDataComponent>(Owner.Owner).EntityName };
+            _menu = new VendingMachineMenu { Title = entMan.GetComponent<MetaDataComponent>(Owner).EntityName };
 
             _menu.OnClose += Close;
             _menu.OnItemSelected += OnItemSelected;
@@ -54,7 +54,7 @@ namespace Content.Client.VendingMachines
             var entMan = IoCManager.Resolve<IEntityManager>();
             var priceMod = 1f;
 
-            if (entMan.TryGetComponent<MarketModifierComponent>(Owner.Owner, out var market))
+            if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
             {
                 priceMod = market.Mod;
             }
