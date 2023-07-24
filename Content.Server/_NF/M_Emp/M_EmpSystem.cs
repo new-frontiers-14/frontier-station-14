@@ -6,7 +6,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
-using Content.Shared.M_Emp;
+using Content.Shared._NF.M_Emp;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -17,16 +17,13 @@ using Robust.Shared.Utility;
 using Content.Server.Chat.Managers;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
-using Content.Shared.Random;
-using Content.Shared.Random.Helpers;
 using Robust.Server.Maps;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
+using Content.Server.Emp;
 
-namespace Content.Server.M_Emp
+namespace Content.Server._NF.M_Emp
 {
     public sealed partial class M_EmpSystem : EntitySystem
     {
@@ -45,10 +42,9 @@ namespace Content.Server.M_Emp
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly ShuttleSystem _shuttle = default!;
-        [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
+        [Dependency] private readonly EmpSystem _emp = default!;
 
         // TODO: This is probably not compatible with multi-station
         private readonly Dictionary<EntityUid, M_EmpGridState> _M_EmpGridStates = new();
@@ -61,8 +57,8 @@ namespace Content.Server.M_Emp
             SubscribeLocalEvent<M_EmpGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<M_EmpGeneratorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
             SubscribeLocalEvent<M_EmpGeneratorComponent, ExaminedEvent>(OnExamined);
-//            SubscribeLocalEvent<M_EmpGeneratorComponent, ComponentShutdown>(OnGeneratorRemoval);
-//            SubscribeLocalEvent<GridRemovalEvent>(OnGridRemoval);
+            SubscribeLocalEvent<M_EmpGeneratorComponent, ComponentShutdown>(OnGeneratorRemoval);
+            SubscribeLocalEvent<GridRemovalEvent>(OnGridRemoval);
 
             // Can't use RoundRestartCleanupEvent, I need to clean up before the grid, and components are gone to prevent the announcements
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRoundEnd);
@@ -74,14 +70,13 @@ namespace Content.Server.M_Emp
         public override void Shutdown()
         {
             base.Shutdown();
-//            ShutdownExpeditions();
         }
 
         private void OnRoundEnd(GameRunLevelChangedEvent ev)
         {
             if(ev.New != GameRunLevel.InRound)
             {
- //               _M_EmpGridStates.Clear();
+                _M_EmpGridStates.Clear();
             }
         }
 
@@ -90,7 +85,7 @@ namespace Content.Server.M_Emp
             if (!Resolve(uid, ref component, false))
                 return;
 
-            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.ReadyBlinking, component.GeneratorState.StateType == GeneratorStateType.Attaching);
+            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.ReadyBlinking, component.GeneratorState.StateType == GeneratorStateType.Activating);
             _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Ready, component.GeneratorState.StateType == GeneratorStateType.Holding);
             _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Unready, component.GeneratorState.StateType == GeneratorStateType.CoolingDown);
             _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.UnreadyBlinking, component.GeneratorState.StateType == GeneratorStateType.Detaching);
@@ -118,62 +113,43 @@ namespace Content.Server.M_Emp
             component.PreviousCharge = component.ChargeRemaining;
         }
 
-//        private void OnGridRemoval(GridRemovalEvent ev)
-//        {
-//            // If we ever want to give generators names, and announce them individually, we would need to loop this, before removing it.
-//            if (_M_EmpGridStates.Remove(ev.EntityUid))
-//            {
-//                if (TryComp<M_EmpGridComponent>(ev.EntityUid, out var salvComp) &&
-//                    TryComp<M_EmpGeneratorComponent>(salvComp.SpawnerGenerator, out var generator))
-//                    Report(salvComp.SpawnerGenerator.Value, generator.M_EmpChannel, "M_Emp-system-announcement-spawn-generator-lost");
-//                // For the very unlikely possibility that the M_Emp generator was on a M_Emp, we will not return here
-//            }
-//            foreach(var gridState in _M_EmpGridStates)
-//            {
-//                foreach(var generator in gridState.Value.ActiveGenerators)
-//                {
-//                    if (!TryComp<M_EmpGeneratorComponent>(generator, out var generatorComponent))
-//                        continue;
+        private void OnGridRemoval(GridRemovalEvent ev)
+        {
+            // If we ever want to give generators names, and announce them individually, we would need to loop this, before removing it.
+            if (_M_EmpGridStates.Remove(ev.EntityUid))
+            {
+                // For the very unlikely possibility that the M_Emp generator was on a M_Emp, we will not return here
+            }
+            foreach(var gridState in _M_EmpGridStates)
+            {
+                foreach(var generator in gridState.Value.ActiveGenerators)
+                {
+                    if (!TryComp<M_EmpGeneratorComponent>(generator, out var generatorComponent))
+                        continue;
 
-//                    if (generatorComponent.AttachedEntity != ev.EntityUid)
-//                        continue;
-//                    generatorComponent.AttachedEntity = null;
-//                    generatorComponent.GeneratorState = GeneratorState.Inactive;
-//                    return;
-//                }
-//            }
-//        }
+                    generatorComponent.GeneratorState = GeneratorState.Inactive;
+                    return;
+                }
+            }
+        }
 
-//        private void OnGeneratorRemoval(EntityUid uid, M_EmpGeneratorComponent component, ComponentShutdown args)
-//        {
-//            if (component.GeneratorState.StateType == GeneratorStateType.Inactive)
-//                return;
-//
-//            var generatorTranform = Transform(uid);
-//            if (generatorTranform.GridUid is not { } gridId || !_M_EmpGridStates.TryGetValue(gridId, out var M_EmpGridState))
-//                return;
-//
-//            M_EmpGridState.ActiveGenerators.Remove(uid);
-//            Report(uid, component.M_EmpChannel, "M_Emp-system-announcement-spawn-generator-lost");
-//            if (component.AttachedEntity.HasValue)
-//            {
-//                SafeDeleteM_Emp(component.AttachedEntity.Value);
-//                component.AttachedEntity = null;
-//                Report(uid, component.M_EmpChannel, "M_Emp-system-announcement-lost");
-//            }
-//            else if (component.GeneratorState is { StateType: GeneratorStateType.Attaching })
-//            {
-//                Report(uid, component.M_EmpChannel, "M_Emp-system-announcement-spawn-no-debris-available");
-//            }
-//
-//            component.GeneratorState = GeneratorState.Inactive;
-//        }
+        private void OnGeneratorRemoval(EntityUid uid, M_EmpGeneratorComponent component, ComponentShutdown args)
+        {
+            if (component.GeneratorState.StateType == GeneratorStateType.Inactive)
+                return;
+
+            var generatorTranform = Transform(uid);
+            if (generatorTranform.GridUid is not { } gridId || !_M_EmpGridStates.TryGetValue(gridId, out var M_EmpGridState))
+                return;
+
+            component.GeneratorState = GeneratorState.Inactive;
+        }
 
         private void OnRefreshParts(EntityUid uid, M_EmpGeneratorComponent component, RefreshPartsEvent args)
         {
             var rating = args.PartRatings[component.MachinePartDelay] - 1;
             var factor = MathF.Pow(component.PartRatingDelay, rating);
-            component.AttachingTime = component.BaseAttachingTime * factor;
+            component.ActivatingTime = component.BaseActivatingTime * factor;
             component.CooldownTime = component.BaseCooldownTime * factor;
         }
 
@@ -190,24 +166,24 @@ namespace Content.Server.M_Emp
             var gotGrid = false;
             var remainingTime = TimeSpan.Zero;
 
-//            if (Transform(uid).GridUid is { } gridId &&
-//                _M_EmpGridStates.TryGetValue(gridId, out var M_EmpGridState))
-//            {
-//                remainingTime = component.GeneratorState.Until - M_EmpGridState.CurrentTime;
-//                gotGrid = true;
-//            }
-//            else
-//            {
-//                Log.Warning("Failed to load M_Emp grid state, can't display remaining time");
-//            }
+            if (Transform(uid).GridUid is { } gridId &&
+                _M_EmpGridStates.TryGetValue(gridId, out var M_EmpGridState))
+            {
+                remainingTime = component.GeneratorState.Until - M_EmpGridState.CurrentTime;
+                gotGrid = true;
+            }
+            else
+            {
+                Log.Warning("Failed to load M_Emp grid state, can't display remaining time");
+            }
 
             switch (component.GeneratorState.StateType)
             {
                 case GeneratorStateType.Inactive:
                     args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-inactive"));
                     break;
-                case GeneratorStateType.Attaching:
-                    args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-pulling-in"));
+                case GeneratorStateType.Activating:
+                    args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-starting"));
                     break;
                 case GeneratorStateType.Detaching:
                     args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-releasing"));
@@ -248,11 +224,12 @@ namespace Content.Server.M_Emp
                         _M_EmpGridStates[gridId] = gridState;
                     }
                     gridState.ActiveGenerators.Add(uid);
-                    component.GeneratorState = new GeneratorState(GeneratorStateType.Attaching, gridState.CurrentTime + component.AttachingTime);
+
+                    component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
                     RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
                     Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success");
                     break;
-                case GeneratorStateType.Attaching:
+                case GeneratorStateType.Activating:
                 case GeneratorStateType.Holding:
                     ShowPopup(uid, "m_emp-system-report-already-active", user);
                     break;
@@ -269,6 +246,25 @@ namespace Content.Server.M_Emp
             _popupSystem.PopupEntity(Loc.GetString(messageKey), uid, user);
         }
 
+        private bool SpawnM_Emp(EntityUid uid, M_EmpGeneratorComponent component)
+        {
+            EntityUid? salvageEnt;
+
+            var opts = new MapLoadOptions
+            {
+                Offset = new Vector2(0, 0)
+            };
+
+            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.HoldTime.TotalSeconds));
+
+            var empRange = 100;
+            var EmpEnergyConsumption = 50000;
+            var EmpDisabledDuration = 60;
+            _emp.EmpPulse(Transform(uid).MapPosition, empRange, EmpEnergyConsumption, EmpDisabledDuration);
+
+            return true;
+        }
+
         private void Report(EntityUid source, string channelName, string messageKey, params (string, object)[] args)
         {
             var message = args.Length == 0 ? Loc.GetString(messageKey) : Loc.GetString(messageKey, args);
@@ -280,29 +276,21 @@ namespace Content.Server.M_Emp
         {
             switch (generator.GeneratorState.StateType)
             {
-                case GeneratorStateType.Attaching:
-//                    if (SpawnM_Emp(uid, generator))
-//                    {
-//                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Holding, currentTime + generator.HoldTime);
-//                    }
-//                    else
-//                    {
-//                        generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CooldownTime);
-//                    }
+                case GeneratorStateType.Activating:
+                    if (SpawnM_Emp(uid, generator))
+                    {
+                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Holding, currentTime + generator.HoldTime);
+                    }
+                    else
+                    {
+                        generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CooldownTime);
+                    }
                     break;
                 case GeneratorStateType.Holding:
-                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-losing", ("timeLeft", generator.DetachingTime.TotalSeconds));
+                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-cooling-down", ("timeLeft", generator.DetachingTime.TotalSeconds));
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.Detaching, currentTime + generator.DetachingTime);
                     break;
                 case GeneratorStateType.Detaching:
- //                   if (generator.AttachedEntity.HasValue)
- //                   {
- //                       SafeDeleteM_Emp(generator.AttachedEntity.Value);
- //                   }
- //                   else
- //                   {
- //                       Log.Error("M_Emp detaching was expecting attached entity but it was null");
- //                   }
                     Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-lost");
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CooldownTime);
                     break;

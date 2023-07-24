@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.M_Emp;
+namespace Content.Shared._NF.M_Emp;
 
 public abstract class SharedM_EmpSystem : EntitySystem
 {

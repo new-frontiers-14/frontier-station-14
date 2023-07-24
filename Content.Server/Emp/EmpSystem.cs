@@ -1,3 +1,4 @@
+using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
@@ -20,6 +21,7 @@ public sealed class EmpSystem : SharedEmpSystem
         SubscribeLocalEvent<EmpDisabledComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
+        SubscribeLocalEvent<EmpIgnoreComponent, TriggerEvent>(IgnoreEMP);
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
@@ -77,6 +79,11 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         EmpPulse(Transform(uid).MapPosition, comp.Range, comp.EnergyConsumption, comp.DisableDuration);
         args.Handled = true;
+    }
+
+    private void HandleEmpTrigger(EntityUid uid, EmpIgnoreComponent comp, IgnoreEMP args)
+    {
+        args.Ignored = true;
     }
 
     private void OnRadioSendAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioSendAttemptEvent args)

@@ -1,4 +1,4 @@
-using Content.Shared.M_Emp;
+using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
 
 [NetworkedComponent, RegisterComponent]

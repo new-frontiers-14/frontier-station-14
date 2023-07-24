@@ -13,6 +13,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Content.Server.EmpIgnore.Component;
 
 namespace Content.Server.Power.EntitySystems
 {
@@ -25,6 +26,7 @@ namespace Content.Server.Power.EntitySystems
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly EmpIgnoreComponent _EmpIgnore = default!;
 
         public override void Initialize()
         {
@@ -201,13 +203,16 @@ namespace Content.Server.Power.EntitySystems
             return ApcExternalPowerState.Good;
         }
 
-        private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
+        private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args, ref EmpIgnore args)
         {
-            if (component.MainBreakerEnabled)
+            if (component.EmpIgnore)
             {
-                args.Affected = true;
-                args.Disabled = true;
-                ApcToggleBreaker(uid, component);
+                if (component.MainBreakerEnabled)
+                {
+                    args.Affected = true;
+                    args.Disabled = true;
+                    ApcToggleBreaker(uid, component);
+                }
             }
         }
     }

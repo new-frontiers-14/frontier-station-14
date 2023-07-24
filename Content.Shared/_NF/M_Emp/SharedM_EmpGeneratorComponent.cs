@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.M_Emp;
+namespace Content.Shared._NF.M_Emp;
 
 public abstract class SharedM_EmpGeneratorComponent : Component
 {

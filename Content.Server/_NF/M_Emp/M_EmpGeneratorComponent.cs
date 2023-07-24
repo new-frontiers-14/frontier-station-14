@@ -1,10 +1,10 @@
 using Content.Shared.Radio;
 using Content.Shared.Random;
-using Content.Shared.M_Emp;
+using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.M_Emp
+namespace Content.Server._NF.M_Emp
 {
     /// <summary>
     /// A M_Emp generator.
@@ -13,13 +13,6 @@ namespace Content.Server.M_Emp
     [Access(typeof(M_EmpSystem))]
     public sealed class M_EmpGeneratorComponent : SharedM_EmpGeneratorComponent
     {
-        /// <summary>
-        /// The entity attached to the generator
-        /// </summary>
- //       [ViewVariables(VVAccess.ReadOnly)]
- //       [DataField("attachedEntity")]
- //       public EntityUid? AttachedEntity;
-
         /// <summary>
         /// Current state of this generator
         /// </summary>
@@ -31,36 +24,36 @@ namespace Content.Server.M_Emp
         /// How long it takes for the generator to pull in the debris
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("baseAttachingTime")]
-        public TimeSpan BaseAttachingTime = TimeSpan.FromSeconds(30);
+        [DataField("baseActivatingTime")]
+        public TimeSpan BaseActivatingTime = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// How long it actually takes for the generator to pull in the debris
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("attachingTime")]
-        public TimeSpan AttachingTime = TimeSpan.FromSeconds(30);
+        [DataField("activatingTime")]
+        public TimeSpan ActivatingTime = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// How long the generator can hold the debris until it starts losing the lock
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("holdTime")]
-        public TimeSpan HoldTime = TimeSpan.FromSeconds(240);
+        public TimeSpan HoldTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
         /// How long the generator can hold the debris while losing the lock
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("detachingTime")]
-        public TimeSpan DetachingTime = TimeSpan.FromSeconds(30);
+        public TimeSpan DetachingTime = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// How long the generator has to cool down for after use
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("baseCooldownTime")]
-        public TimeSpan BaseCooldownTime = TimeSpan.FromSeconds(60);
+        public TimeSpan BaseCooldownTime = TimeSpan.FromSeconds(10);
 
         /// <summary>
         /// How long the generator actually has to cool down for after use
@@ -89,20 +82,6 @@ namespace Content.Server.M_Emp
         /// </summary>
         [DataField("previousCharge")]
         public int PreviousCharge = 5;
-
-        /// <summary>
-        /// The chance that a random procgen asteroid will be
-        /// generated rather than a static M_Emp prototype.
-        /// </summary>
- //       [DataField("asteroidChance"), ViewVariables(VVAccess.ReadWrite)]
- //       public float AsteroidChance = 0.6f;
-
-        /// <summary>
-        /// A weighted random prototype corresponding to
-        /// what asteroid entities will be generated.
-        /// </summary>
-//        [DataField("asteroidPool", customTypeSerializer: typeof(PrototypeIdSerializer<WeightedRandomPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-//        public string AsteroidPool = "RandomAsteroidPool";
     }
 
     [CopyByRef, DataRecord]
@@ -123,7 +102,7 @@ namespace Content.Server.M_Emp
     public enum GeneratorStateType
     {
         Inactive,
-        Attaching,
+        Activating,
         Holding,
         Detaching,
         CoolingDown,

@@ -1,4 +1,4 @@
-namespace Content.Server.M_Emp
+namespace Content.Server._NF.M_Emp
 {
     /// <summary>
     /// A grid spawned by a salvage magnet.
