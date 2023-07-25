@@ -151,6 +151,7 @@ public abstract class SharedBountyContractSystem : EntitySystem
 {
     public const int DefaultReward = 5000;
 
+    // TODO: move this to prototypes?
     public static readonly Dictionary<BountyContractCategory, BountyContractCategoryMeta> CategoriesMeta = new()
     {
         [BountyContractCategory.Criminal] = new BountyContractCategoryMeta
