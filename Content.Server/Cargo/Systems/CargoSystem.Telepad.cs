@@ -75,7 +75,7 @@ public sealed partial class CargoSystem
                 orderDatabase = gridDatabase;
             }
 
-            if(FulfillOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
+            if (FulfillOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
                 UpdateOrders(orderDatabase);

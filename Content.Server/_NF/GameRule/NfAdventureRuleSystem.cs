@@ -178,7 +178,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2(0, 0);
+            offset = new Vector2i(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
@@ -201,7 +201,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2(0, 0);
+            offset = new Vector2i(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs

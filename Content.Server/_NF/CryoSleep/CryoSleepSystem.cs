@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Climbing;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
