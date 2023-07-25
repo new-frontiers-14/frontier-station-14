@@ -25,7 +25,7 @@ namespace Content.Server._NF.M_Emp
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("baseActivatingTime")]
-        public TimeSpan BaseActivatingTime = TimeSpan.FromSeconds(10);
+        public TimeSpan BaseActivatingTime = TimeSpan.FromSeconds(5);
 
         /// <summary>
         /// How long it actually takes for the generator to pull in the debris
@@ -38,22 +38,22 @@ namespace Content.Server._NF.M_Emp
         /// How long the generator can hold the debris until it starts losing the lock
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("holdTime")]
-        public TimeSpan HoldTime = TimeSpan.FromSeconds(60);
+        [DataField("engagedTime")]
+        public TimeSpan EngagedTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
         /// How long the generator can hold the debris while losing the lock
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("detachingTime")]
-        public TimeSpan DetachingTime = TimeSpan.FromSeconds(10);
+        [DataField("coolingDownTime")]
+        public TimeSpan CoolingDownTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
         /// How long the generator has to cool down for after use
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("baseCooldownTime")]
-        public TimeSpan BaseCooldownTime = TimeSpan.FromSeconds(10);
+        public TimeSpan BaseCooldownTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
         /// How long the generator actually has to cool down for after use
@@ -103,8 +103,8 @@ namespace Content.Server._NF.M_Emp
     {
         Inactive,
         Activating,
-        Holding,
-        Detaching,
+        Engaged,
         CoolingDown,
+        Recharging,
     }
 }

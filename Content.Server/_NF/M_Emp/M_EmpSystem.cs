@@ -10,16 +10,11 @@ using Content.Shared._NF.M_Emp;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Managers;
-using Content.Server.Parallax;
-using Content.Server.Procedural;
 using Content.Server.Station.Systems;
-using Content.Shared.CCVar;
-using Robust.Server.Maps;
 using Robust.Shared.Timing;
 using Content.Server.Emp;
 
@@ -30,13 +25,7 @@ namespace Content.Server._NF.M_Emp
         [Dependency] private readonly IChatManager _chat = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
-        [Dependency] private readonly BiomeSystem _biome = default!;
-        [Dependency] private readonly DungeonSystem _dungeon = default!;
-        [Dependency] private readonly MapLoaderSystem _map = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly RadioSystem _radioSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
@@ -62,9 +51,6 @@ namespace Content.Server._NF.M_Emp
 
             // Can't use RoundRestartCleanupEvent, I need to clean up before the grid, and components are gone to prevent the announcements
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRoundEnd);
-
-//            InitializeExpeditions();
-//            InitializeRunner();
         }
 
         public override void Shutdown()
@@ -86,9 +72,9 @@ namespace Content.Server._NF.M_Emp
                 return;
 
             _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.ReadyBlinking, component.GeneratorState.StateType == GeneratorStateType.Activating);
-            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Ready, component.GeneratorState.StateType == GeneratorStateType.Holding);
-            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Unready, component.GeneratorState.StateType == GeneratorStateType.CoolingDown);
-            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.UnreadyBlinking, component.GeneratorState.StateType == GeneratorStateType.Detaching);
+            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Ready, component.GeneratorState.StateType == GeneratorStateType.Engaged);
+            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.Unready, component.GeneratorState.StateType == GeneratorStateType.Recharging);
+            _appearanceSystem.SetData(uid, M_EmpGeneratorVisuals.UnreadyBlinking, component.GeneratorState.StateType == GeneratorStateType.CoolingDown);
         }
 
         private void UpdateChargeStateAppearance(EntityUid uid, TimeSpan currentTime, M_EmpGeneratorComponent? component = null)
@@ -101,9 +87,9 @@ namespace Content.Server._NF.M_Emp
             component.ChargeRemaining = component.GeneratorState.StateType switch
             {
                 GeneratorStateType.Inactive => 5,
-                GeneratorStateType.Holding => timeLeft / (Convert.ToInt32(component.HoldTime.TotalSeconds) / component.ChargeCapacity) + 1,
-                GeneratorStateType.Detaching => 0,
-                GeneratorStateType.CoolingDown => component.ChargeCapacity - timeLeft / (Convert.ToInt32(component.CooldownTime.TotalSeconds) / component.ChargeCapacity) - 1,
+                GeneratorStateType.Engaged => timeLeft / (Convert.ToInt32(component.EngagedTime.TotalSeconds) / component.ChargeCapacity) + 1,
+                GeneratorStateType.CoolingDown => 0,
+                GeneratorStateType.Recharging => component.ChargeCapacity - timeLeft / (Convert.ToInt32(component.CooldownTime.TotalSeconds) / component.ChargeCapacity) - 1,
                 _ => component.ChargeRemaining
             };
 
@@ -185,14 +171,14 @@ namespace Content.Server._NF.M_Emp
                 case GeneratorStateType.Activating:
                     args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-starting"));
                     break;
-                case GeneratorStateType.Detaching:
-                    args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-releasing"));
-                    break;
                 case GeneratorStateType.CoolingDown:
-                    if (gotGrid)
-                        args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-cooling-down", ("timeLeft", Math.Ceiling(remainingTime.TotalSeconds))));
+                    args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-cooling-down"));
                     break;
-                case GeneratorStateType.Holding:
+                case GeneratorStateType.Recharging:
+                    if (gotGrid)
+                        args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-recharging", ("timeLeft", Math.Ceiling(remainingTime.TotalSeconds))));
+                    break;
+                case GeneratorStateType.Engaged:
                     if (gotGrid)
                         args.PushMarkup(Loc.GetString("m_emp-system-generator-examined-active", ("timeLeft", Math.Ceiling(remainingTime.TotalSeconds))));
                     break;
@@ -230,12 +216,12 @@ namespace Content.Server._NF.M_Emp
                     Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success");
                     break;
                 case GeneratorStateType.Activating:
-                case GeneratorStateType.Holding:
+                case GeneratorStateType.Engaged:
                     ShowPopup(uid, "m_emp-system-report-already-active", user);
                     break;
-                case GeneratorStateType.Detaching:
                 case GeneratorStateType.CoolingDown:
-                    ShowPopup(uid, "m_emp-system-report-cooling-down", user);
+                case GeneratorStateType.Recharging:
+                    ShowPopup(uid, "m_emp-system-report-recharging", user);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -248,14 +234,13 @@ namespace Content.Server._NF.M_Emp
 
         private bool SpawnM_Emp(EntityUid uid, M_EmpGeneratorComponent component)
         {
-            EntityUid? salvageEnt;
-
-            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.HoldTime.TotalSeconds));
+            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds));
 
             var empRange = 100;
-            var EmpEnergyConsumption = 50000;
-            var EmpDisabledDuration = 60;
-            _emp.EmpPulse(Transform(uid).MapPosition, empRange, EmpEnergyConsumption, EmpDisabledDuration);
+            var empEnergyConsumption = 50000;
+            var empDisabledDuration = 60;
+
+            _emp.EmpPulse(Transform(uid).MapPosition, empRange, empEnergyConsumption, empDisabledDuration);
 
             return true;
         }
@@ -274,22 +259,22 @@ namespace Content.Server._NF.M_Emp
                 case GeneratorStateType.Activating:
                     if (SpawnM_Emp(uid, generator))
                     {
-                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Holding, currentTime + generator.HoldTime);
+                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Engaged, currentTime + generator.EngagedTime);
                     }
                     else
                     {
-                        generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CooldownTime);
+                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.CooldownTime);
                     }
                     break;
-                case GeneratorStateType.Holding:
-                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-cooling-down", ("timeLeft", generator.DetachingTime.TotalSeconds));
-                    generator.GeneratorState = new GeneratorState(GeneratorStateType.Detaching, currentTime + generator.DetachingTime);
-                    break;
-                case GeneratorStateType.Detaching:
-                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-lost");
-                    generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CooldownTime);
+                case GeneratorStateType.Engaged:
+                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-cooling-down", ("timeLeft", generator.CoolingDownTime.TotalSeconds));
+                    generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CoolingDownTime);
                     break;
                 case GeneratorStateType.CoolingDown:
+                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-recharging");
+                    generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.CooldownTime);
+                    break;
+                case GeneratorStateType.Recharging:
                     generator.GeneratorState = GeneratorState.Inactive;
                     break;
             }
@@ -330,9 +315,6 @@ namespace Content.Server._NF.M_Emp
                     state.ActiveGenerators.Remove(generator);
                 }
             }
-
-//            UpdateExpeditions();
-//            UpdateRunner();
         }
     }
 
