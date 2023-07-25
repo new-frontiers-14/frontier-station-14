@@ -42,7 +42,7 @@ public sealed class AcceptCryoWindow : DefaultWindow
 
                                 (new Control()
                                 {
-                                    MinSize = (20, 0)
+                                    MinSize = new Vector2i(20, 0)
                                 }),
 
                                 (DenyButton = new Button

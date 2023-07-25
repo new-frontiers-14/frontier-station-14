@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.StationRecords;
 using Content.Shared._NF.BountyContracts;
+using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.PDA;
 using Content.Shared.StationRecords;
@@ -103,7 +104,7 @@ public sealed partial class BountyContractSystem
         if (!Resolve(loaderUid, ref component))
             return null;
 
-        var id = component.ContainedId;
+        TryComp<IdCardComponent>(component.ContainedId, out var id);
         var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
         var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
         return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));

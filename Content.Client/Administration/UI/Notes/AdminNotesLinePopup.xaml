@@ -2,15 +2,20 @@
        xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
     <PanelContainer>
         <PanelContainer.PanelOverride>
-            <gfx:StyleBoxFlat BackgroundColor="#252725"/>
+            <gfx:StyleBoxFlat BackgroundColor="#252725" BorderThickness="1" BorderColor="#181B18"/>
         </PanelContainer.PanelOverride>
         <BoxContainer Orientation="Vertical">
+            <Label Name="PlayerNameLabel"/>
             <Label Name="IdLabel"/>
+            <Label Name="TypeLabel"/>
+            <Label Name="SeverityLabel"/>
             <Label Name="RoundIdLabel"/>
             <Label Name="CreatedByLabel"/>
             <Label Name="CreatedAtLabel"/>
             <Label Name="EditedByLabel"/>
             <Label Name="EditedAtLabel"/>
+            <Label Name="ExpiryTimeLabel"/>
+            <TextEdit Name="NoteTextEdit" Editable="False" MinHeight="24" />
             <BoxContainer Orientation="Horizontal">
                 <Button Name="EditButton" Text="{Loc admin-notes-edit}"/>
                 <Control HorizontalExpand="True"/>
