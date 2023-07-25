@@ -211,6 +211,8 @@ namespace Content.Server._NF.M_Emp
                     }
                     gridState.ActiveGenerators.Add(uid);
 
+                    PlayActivatedSound(uid, component);
+
                     component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
                     RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
                     Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success");
@@ -271,7 +273,7 @@ namespace Content.Server._NF.M_Emp
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CoolingDownTime);
                     break;
                 case GeneratorStateType.CoolingDown:
-                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-recharging");
+                    //Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-recharging"); //Less chat spam
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.CooldownTime);
                     break;
                 case GeneratorStateType.Recharging:
@@ -315,6 +317,10 @@ namespace Content.Server._NF.M_Emp
                     state.ActiveGenerators.Remove(generator);
                 }
             }
+        }
+        private void PlayActivatedSound(EntityUid uid, SharedM_EmpGeneratorComponent component)
+        {
+            _audio.PlayPvs(_audio.GetSound(component.ActivatedSound), uid);
         }
     }
 

@@ -21,28 +21,28 @@ namespace Content.Server._NF.M_Emp
         public GeneratorState GeneratorState = GeneratorState.Inactive;
 
         /// <summary>
-        /// How long it takes for the generator to pull in the debris
+        /// How long it takes for the generator to EMP
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("baseActivatingTime")]
-        public TimeSpan BaseActivatingTime = TimeSpan.FromSeconds(5);
+        public TimeSpan BaseActivatingTime = TimeSpan.FromSeconds(3.5);
 
         /// <summary>
-        /// How long it actually takes for the generator to pull in the debris
+        /// How long it actually takes for the generator to EMP
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("activatingTime")]
-        public TimeSpan ActivatingTime = TimeSpan.FromSeconds(10);
+        public TimeSpan ActivatingTime = TimeSpan.FromSeconds(3.5);
 
         /// <summary>
-        /// How long the generator can hold the debris until it starts losing the lock
+        /// How long the generator EMP is working
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("engagedTime")]
         public TimeSpan EngagedTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
-        /// How long the generator can hold the debris while losing the lock
+        /// How long the generator Cooling Down
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("coolingDownTime")]
