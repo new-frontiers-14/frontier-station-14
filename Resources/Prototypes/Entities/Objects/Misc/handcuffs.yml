@@ -21,6 +21,8 @@
     damage:
       types:
         Blunt: 0
+  - type: StaticPrice
+    price: 19
 
 - type: entity
   name: makeshift handcuffs
@@ -54,6 +56,8 @@
     sprite: Objects/Misc/cablecuffs.rsi
     state: cuff
     color: forestgreen
+  - type: StaticPrice
+    price: 6
 
 - type: entity
   name: zipties
@@ -82,6 +86,8 @@
   - type: Sprite
     sprite: Objects/Misc/zipties.rsi
     state: cuff
+  - type: StaticPrice
+    price: 9
 
 - type: entity
   id: BaseHandcuffsBroken
@@ -96,6 +102,8 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: broken zipties
@@ -117,3 +125,24 @@
     sprite: Objects/Misc/cablecuffs.rsi
     state: cuff-broken
     color: forestgreen
+
+- type: entity
+  parent: Handcuffs
+  id: ClothingOuterStraightjacket
+  name: straitjacket
+  description: Used to restrain those who may cause harm to themselves or others.
+  components:
+  - type: Item
+    size: 20
+  - type: Handcuff
+    cuffedRSI: Clothing/OuterClothing/Misc/straight_jacket.rsi
+    breakoutTime: 100
+    damageOnResist:
+      types:
+        Blunt: 0
+    cuffTime: 10
+    uncuffTime: 10
+    stunBonus: 4
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Misc/straight_jacket.rsi
+    state: icon
