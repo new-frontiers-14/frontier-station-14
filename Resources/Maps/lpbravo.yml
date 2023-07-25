@@ -39,8 +39,8 @@ entities:
           tiles: XgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
       type: MapGrid
     - type: Broadphase
-    - angularDamping: 99999
-      linearDamping: 99999
+    - angularDamping: 999999
+      linearDamping: 999999
       fixedRotation: False
       bodyType: Dynamic
       type: Physics
@@ -500,11 +500,6 @@ entities:
       type: Transform
 - proto: BannerSyndicate
   entities:
-  - uid: 501
-    components:
-    - pos: -5.5,2.5
-      parent: 1
-      type: Transform
   - uid: 502
     components:
     - pos: 4.5,2.5
@@ -1588,6 +1583,34 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
+  - uid: 521
+    components:
+    - pos: -1.5,7.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 522
+    components:
+    - pos: -1.5,6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 523
+    components:
+    - pos: 0.5,7.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 524
+    components:
+    - pos: 0.5,6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
 - proto: CableMV
   entities:
   - uid: 275
@@ -2004,6 +2027,14 @@ entities:
       pos: -1.5,-3.5
       parent: 1
       type: Transform
+- proto: ComputerBroken
+  entities:
+  - uid: 501
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -0.5,2.5
+      parent: 1
+      type: Transform
 - proto: ComputerSolarControl
   entities:
   - uid: 204
@@ -2109,6 +2140,35 @@ entities:
   - uid: 500
     components:
     - pos: -0.60568905,0.70943654
+      parent: 1
+      type: Transform
+- proto: GeneratorWallmountAPU
+  entities:
+  - uid: 517
+    components:
+    - pos: -1.5,6.5
+      parent: 1
+      type: Transform
+  - uid: 518
+    components:
+    - pos: 0.5,6.5
+      parent: 1
+      type: Transform
+  - uid: 519
+    components:
+    - pos: -1.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 520
+    components:
+    - pos: 0.5,7.5
+      parent: 1
+      type: Transform
+- proto: GravityGeneratorMini
+  entities:
+  - uid: 166
+    components:
+    - pos: -5.5,2.5
       parent: 1
       type: Transform
 - proto: Grille
@@ -3015,14 +3075,6 @@ entities:
   - uid: 170
     components:
     - pos: -2.5,4.5
-      parent: 1
-      type: Transform
-- proto: SyndicateComputerComms
-  entities:
-  - uid: 166
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -0.5,2.5
       parent: 1
       type: Transform
 - proto: SyndiPDA
