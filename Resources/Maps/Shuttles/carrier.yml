@@ -464,9 +464,11 @@ entities:
           1,-4:
             0: 13107
           1,-3:
-            0: 13107
+            1: 1
+            0: 13106
           1,-2:
-            0: 13107
+            0: 9011
+            1: 4096
           1,-1:
             0: 13107
           0,-9:
@@ -485,6 +487,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -3094,6 +3111,13 @@ entities:
     - pos: 4.5,-15.5
       parent: 1
       type: Transform
+- proto: ClothingBackpackDuffelSurgeryFilled
+  entities:
+  - uid: 867
+    components:
+    - pos: 10.537712,-23.356623
+      parent: 1
+      type: Transform
 - proto: ClothingBeltSheathFilled
   entities:
   - uid: 620
@@ -3250,6 +3274,17 @@ entities:
     - pos: -1.353327,9.403219
       parent: 1
       type: Transform
+- proto: ClothingOuterHardsuitBrigmedic
+  entities:
+  - uid: 307
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 158
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitSecurity
   entities:
   - uid: 887
@@ -3272,18 +3307,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitSecurityRed
   entities:
-  - uid: 529
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 215
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSyndieReverseEngineered
-  entities:
-  - uid: 718
+  - uid: 527
     components:
     - flags: InContainer
       type: MetaData
@@ -3294,11 +3318,11 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitWarden
   entities:
-  - uid: 527
+  - uid: 347
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 158
+    - parent: 215
       type: Transform
     - canCollide: False
       type: Physics
@@ -3505,14 +3529,6 @@ entities:
   - uid: 863
     components:
     - pos: 5.5,12.5
-      parent: 1
-      type: Transform
-- proto: ComputerMedicalRecords
-  entities:
-  - uid: 347
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 2.5,10.5
       parent: 1
       type: Transform
 - proto: ComputerRadar
@@ -3841,6 +3857,13 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: CrewMonitoringServer
+  entities:
+  - uid: 636
+    components:
+    - pos: 7.5,-25.5
+      parent: 1
+      type: Transform
 - proto: CryoPod
   entities:
   - uid: 750
@@ -6201,6 +6224,18 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: HandheldHealthAnalyzer
+  entities:
+  - uid: 868
+    components:
+    - pos: 11.085636,-23.523254
+      parent: 1
+      type: Transform
+  - uid: 870
+    components:
+    - pos: 11.096052,-23.325338
+      parent: 1
+      type: Transform
 - proto: HarmonicaInstrument
   entities:
   - uid: 680
@@ -6222,7 +6257,7 @@ entities:
     - pos: 2.5,4.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -3616.298
+    - SecondsUntilStateChange: -5720.7393
       state: Closing
       type: Door
   - uid: 582
@@ -6315,6 +6350,13 @@ entities:
   - uid: 665
     components:
     - pos: -0.5,-20.5
+      parent: 1
+      type: Transform
+- proto: InflatableWallStack
+  entities:
+  - uid: 866
+    components:
+    - pos: 4.4581137,-22.497967
       parent: 1
       type: Transform
 - proto: IngotGold1
@@ -7637,6 +7679,20 @@ entities:
     - pos: -0.5,6.5
       parent: 1
       type: Transform
+- proto: SheetGlass
+  entities:
+  - uid: 865
+    components:
+    - pos: 4.4893637,-22.466717
+      parent: 1
+      type: Transform
+- proto: SheetSteel
+  entities:
+  - uid: 869
+    components:
+    - pos: 4.5310307,-22.445885
+      parent: 1
+      type: Transform
 - proto: SignArmory
   entities:
   - uid: 1227
@@ -7665,6 +7721,14 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -1.5,-7.5
+      parent: 1
+      type: Transform
+- proto: SinkWide
+  entities:
+  - uid: 718
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 0.5,2.5
       parent: 1
       type: Transform
 - proto: SMESBasic
@@ -7713,9 +7777,9 @@ entities:
     - pos: 8.793568,3.9148858
       parent: 1
       type: Transform
-- proto: SpawnMobFoxRenault
+- proto: SpawnMobShiva
   entities:
-  - uid: 636
+  - uid: 616
     components:
     - pos: 9.5,5.5
       parent: 1
@@ -7783,6 +7847,14 @@ entities:
   - uid: 561
     components:
     - pos: 11.5,-21.5
+      parent: 1
+      type: Transform
+- proto: StationMap
+  entities:
+  - uid: 529
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 1.5,10.5
       parent: 1
       type: Transform
 - proto: StimkitFilled
@@ -7878,73 +7950,7 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 522
-          - 523
-          - 525
-          - 527
-      type: ContainerContainer
-  - uid: 215
-    components:
-    - pos: 4.5,1.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 528
-          - 529
-          - 530
-          - 531
-      type: ContainerContainer
-  - uid: 715
-    components:
-    - pos: 2.5,9.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
+        temperature: 293.1497
         moles:
         - 1.7459903
         - 6.568249
@@ -7964,10 +7970,76 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 716
-          - 718
-          - 719
+          - 307
+          - 525
+          - 523
+          - 522
+      type: ContainerContainer
+  - uid: 215
+    components:
+    - pos: 4.5,1.5
+      parent: 1
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1497
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 347
+          - 530
+          - 531
+          - 528
+      type: ContainerContainer
+  - uid: 715
+    components:
+    - pos: 2.5,9.5
+      parent: 1
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.8856695
+        - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
           - 720
+          - 719
+          - 527
+          - 716
       type: ContainerContainer
   - uid: 883
     components:
@@ -8010,10 +8082,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 75.31249
+        temperature: 293.1497
         moles:
-        - 0
-        - 0
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -8030,10 +8102,10 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 889
-          - 890
-          - 891
           - 892
+          - 891
+          - 890
+          - 889
       type: ContainerContainer
 - proto: SuitStorageEVA
   entities:
@@ -8042,6 +8114,24 @@ entities:
     - pos: 4.5,-11.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
   - uid: 823
     components:
     - pos: 9.5,-21.5
@@ -9565,12 +9655,6 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: 1.5,-18.5
-      parent: 1
-      type: Transform
-  - uid: 307
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 7.5,-25.5
       parent: 1
       type: Transform
   - uid: 365
