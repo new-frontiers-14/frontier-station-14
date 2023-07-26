@@ -1,0 +1,30 @@
+- type: vessel
+  id: Carrier
+  name: NT Carrier
+  description: A large patrol vessel capable of carrying up to 3 smaller faster attack ships. the flagship vessel of security.
+  price: 117300
+  category: Large
+  group: Security
+  shuttlePath: /Maps/Shuttles/carrier.yml
+
+- type: gameMap
+  id: Carrier
+  mapName: 'NT Carrier'
+  mapPath: /Maps/Shuttles/carrier.yml
+  minPlayers: 0
+  stations:
+    Carrier:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Carrier {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            PrisonGuard: [ 1, 1 ]
+            SecurityOfficer: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            BrigMedic: [ 1, 1 ]
