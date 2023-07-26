@@ -172,7 +172,7 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
             if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
             {
-                DeductFunds(stationBank, -(cost / 2));
+                DeductFunds(stationBank, (int) -(Math.Floor(cost * 0.65f)));
             }
             _bankSystem.TryBankWithdraw(player, cost);
 
