@@ -836,6 +836,13 @@ entities:
     - pos: -2.5,-10.5
       parent: 1
       type: Transform
+- proto: BedsheetBrigmedic
+  entities:
+  - uid: 613
+    components:
+    - pos: 11.5,3.5
+      parent: 1
+      type: Transform
 - proto: BedsheetMedical
   entities:
   - uid: 1009
@@ -865,11 +872,6 @@ entities:
   - uid: 565
     components:
     - pos: 11.5,6.5
-      parent: 1
-      type: Transform
-  - uid: 566
-    components:
-    - pos: 11.5,3.5
       parent: 1
       type: Transform
   - uid: 572
@@ -3126,6 +3128,13 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: ClothingHeadHatBeretBrigmedic
+  entities:
+  - uid: 614
+    components:
+    - pos: 11.443029,3.5367043
+      parent: 1
+      type: Transform
 - proto: ClothingHeadHatCaptain
   entities:
   - uid: 630
@@ -6183,15 +6192,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 616
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 613
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 626
     components:
     - flags: InContainer
@@ -6222,7 +6222,7 @@ entities:
     - pos: 2.5,4.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -3518.8318
+    - SecondsUntilStateChange: -3616.298
       state: Closing
       type: Door
   - uid: 582
@@ -6377,15 +6377,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 615
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 613
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: KitchenKnife
   entities:
   - uid: 740
@@ -6432,6 +6423,13 @@ entities:
   - uid: 729
     components:
     - pos: 0.5,3.5
+      parent: 1
+      type: Transform
+- proto: LockerBrigmedicFilled
+  entities:
+  - uid: 566
+    components:
+    - pos: 11.5,4.5
       parent: 1
       type: Transform
 - proto: LockerCaptain
@@ -6669,42 +6667,6 @@ entities:
           - 602
           - 603
           - 604
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-  - uid: 613
-    components:
-    - pos: 11.5,4.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 614
-          - 615
-          - 616
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -6995,15 +6957,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 605
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 614
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 613
       type: Transform
     - canCollide: False
       type: Physics
@@ -7765,6 +7718,13 @@ entities:
   - uid: 636
     components:
     - pos: 9.5,5.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 615
+    components:
+    - pos: -1.5,-1.5
       parent: 1
       type: Transform
 - proto: SpawnPointPrisonGuard
