@@ -5,7 +5,7 @@ m_emp-system-announcement-recharging = Recharging.
 
 m_emp-system-report-already-active = The M_EMP Generator is already active.
 m_emp-system-report-cooling-down = The M_EMP Generator is cooling down.
-m_emp-system-report-activate-success = The M_EMP Generator engaging on GRID at CORDS!
+m_emp-system-report-activate-success = The M_EMP Generator engaging on {$grid}!
 
 m_emp-system-generator-examined-inactive = The M_EMP Generator is inactive.
 m_emp-system-generator-examined-starting = The M_EMP Generator is starting up.

@@ -215,7 +215,12 @@ namespace Content.Server._NF.M_Emp
 
                     component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
                     RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
-                    Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success");
+
+                    var station = _station.GetOwningStation(uid);
+                    var stationName = station is null ? null : Name(station.Value);
+
+                    Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success", ("grid", stationName));
+
                     break;
                 case GeneratorStateType.Activating:
                 case GeneratorStateType.Engaged:
