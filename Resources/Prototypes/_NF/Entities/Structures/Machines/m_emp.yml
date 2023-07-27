@@ -59,6 +59,14 @@
     - Security
   - type: M_EmpGenerator
   - type: ApcPowerReceiver
-    powerLoad: 100 # TODO change this to a HV power draw that really hits the grid hard WHEN active
+    powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine
     board: M_EmpMachineCircuitboard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - M_Emp

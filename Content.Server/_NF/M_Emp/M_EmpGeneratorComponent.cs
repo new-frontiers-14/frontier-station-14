@@ -1,5 +1,4 @@
 using Content.Shared.Radio;
-using Content.Shared.Random;
 using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -45,22 +44,29 @@ namespace Content.Server._NF.M_Emp
         /// How long the generator Cooling Down
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("baseCoolingDownTime")]
+        public TimeSpan BaseCoolingDownTime = TimeSpan.FromSeconds(60);
+
+        /// <summary>
+        /// How long the generator actually has to cooldown after use
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
         [DataField("coolingDownTime")]
         public TimeSpan CoolingDownTime = TimeSpan.FromSeconds(60);
 
         /// <summary>
-        /// How long the generator has to cool down for after use
+        /// How long the generator has to recharge after use
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("baseCooldownTime")]
-        public TimeSpan BaseCooldownTime = TimeSpan.FromSeconds(60);
+        [DataField("baseRecharging")]
+        public TimeSpan BaseRecharging = TimeSpan.FromSeconds(60);
 
         /// <summary>
-        /// How long the generator actually has to cool down for after use
+        /// How long the generator actually has to recharge after use
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("cooldownTime")]
-        public TimeSpan CooldownTime = TimeSpan.FromSeconds(60);
+        [DataField("Recharging")]
+        public TimeSpan Recharging = TimeSpan.FromSeconds(60);
 
         [DataField("M_EmpChannel", customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
         public string M_EmpChannel = "Security";

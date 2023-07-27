@@ -11,12 +11,18 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Robust.Shared.Timing;
 using Content.Server.Emp;
+using Content.Shared.DeviceLinking;
+using Content.Server.DeviceLinking.Systems;
+
+// TO ANYONE LOOKING AT THIS CODE, IM SORRY
+// This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with it as for now but its not cleaned as it sould be.
+// If you know what you are doing, fix this please to look "usable"
+// - Dvir01
 
 namespace Content.Server._NF.M_Emp
 {
@@ -34,6 +40,7 @@ namespace Content.Server._NF.M_Emp
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly EmpSystem _emp = default!;
+        [Dependency] private readonly DeviceLinkSystem _linker = default!;
 
         // TODO: This is probably not compatible with multi-station
         private readonly Dictionary<EntityUid, M_EmpGridState> _M_EmpGridStates = new();
@@ -42,6 +49,7 @@ namespace Content.Server._NF.M_Emp
         {
             base.Initialize();
 
+            SubscribeLocalEvent<SharedM_EmpComponent, ComponentInit>(OnInit); // TODO make this function later
             SubscribeLocalEvent<M_EmpGeneratorComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<M_EmpGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<M_EmpGeneratorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
@@ -89,7 +97,7 @@ namespace Content.Server._NF.M_Emp
                 GeneratorStateType.Inactive => 5,
                 GeneratorStateType.Engaged => timeLeft / (Convert.ToInt32(component.EngagedTime.TotalSeconds) / component.ChargeCapacity) + 1,
                 GeneratorStateType.CoolingDown => 0,
-                GeneratorStateType.Recharging => component.ChargeCapacity - timeLeft / (Convert.ToInt32(component.CooldownTime.TotalSeconds) / component.ChargeCapacity) - 1,
+                GeneratorStateType.Recharging => component.ChargeCapacity - timeLeft / (Convert.ToInt32(component.Recharging.TotalSeconds) / component.ChargeCapacity) - 1,
                 _ => component.ChargeRemaining
             };
 
@@ -135,13 +143,13 @@ namespace Content.Server._NF.M_Emp
         {
             var rating = args.PartRatings[component.MachinePartDelay] - 1;
             var factor = MathF.Pow(component.PartRatingDelay, rating);
-            component.ActivatingTime = component.BaseActivatingTime * factor;
-            component.CooldownTime = component.BaseCooldownTime * factor;
+            component.CoolingDownTime = component.BaseCoolingDownTime * factor;
+            component.Recharging = component.BaseRecharging * factor;
         }
 
         private void OnUpgradeExamine(EntityUid uid, M_EmpGeneratorComponent component, UpgradeExamineEvent args)
         {
-            args.AddPercentageUpgrade("m_emp-system-generator-delay-upgrade", (float) (component.CooldownTime / component.BaseCooldownTime));
+            args.AddPercentageUpgrade("m_emp-system-generator-delay-upgrade", (float) (component.Recharging / component.BaseRecharging));
         }
 
         private void OnExamined(EntityUid uid, M_EmpGeneratorComponent component, ExaminedEvent args)
@@ -196,6 +204,11 @@ namespace Content.Server._NF.M_Emp
             UpdateAppearance(uid, component);
         }
 
+        private void OnInit(EntityUid uid, SharedM_EmpComponent component, ComponentInit args)
+        {
+            _linker.EnsureSinkPorts(uid, component.ReceiverPort);
+        }
+
         private void StartGenerator(EntityUid uid, M_EmpGeneratorComponent component, EntityUid user)
         {
             switch (component.GeneratorState.StateType)
@@ -216,10 +229,7 @@ namespace Content.Server._NF.M_Emp
                     component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
                     RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
 
-                    var station = _station.GetOwningStation(uid);
-                    var stationName = station is null ? null : Name(station.Value);
-
-                    Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success", ("grid", stationName));
+                    //Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success"); Removed to lower spam
 
                     break;
                 case GeneratorStateType.Activating:
@@ -241,7 +251,12 @@ namespace Content.Server._NF.M_Emp
 
         private bool SpawnM_Emp(EntityUid uid, M_EmpGeneratorComponent component)
         {
-            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds));
+            var station = _station.GetOwningStation(uid);
+            var stationName = station is null ? null : Name(station.Value);
+
+#pragma warning disable CS8620 // TODO need to fix it later, this is not creating an actual error
+            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName));
+#pragma warning restore CS8620 // TODO need to fix it later, this is not creating an actual error
 
             var empRange = 100;
             var empEnergyConsumption = 50000;
@@ -270,7 +285,7 @@ namespace Content.Server._NF.M_Emp
                     }
                     else
                     {
-                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.CooldownTime);
+                        generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.Recharging);
                     }
                     break;
                 case GeneratorStateType.Engaged:
@@ -278,8 +293,8 @@ namespace Content.Server._NF.M_Emp
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CoolingDownTime);
                     break;
                 case GeneratorStateType.CoolingDown:
-                    //Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-recharging"); //Less chat spam
-                    generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.CooldownTime);
+                    //Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-recharging"); // Less chat spam
+                    generator.GeneratorState = new GeneratorState(GeneratorStateType.Recharging, currentTime + generator.Recharging);
                     break;
                 case GeneratorStateType.Recharging:
                     generator.GeneratorState = GeneratorState.Inactive;
