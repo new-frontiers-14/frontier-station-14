@@ -131,11 +131,8 @@ public sealed partial class BountyContractSystem
             return;
 
         var c = args.Contract;
-        if (c.Reward < MinimalReward)
-            return;
-
         var author = GetContractAuthor(args.Entity);
-        CreateBountyContract(c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
+        CreateBountyContract(c.Category, c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
 
         CartridgeOpenListUi(args.Entity);
     }

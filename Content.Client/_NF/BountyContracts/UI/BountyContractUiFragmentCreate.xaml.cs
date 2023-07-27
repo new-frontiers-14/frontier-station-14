@@ -20,21 +20,23 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     public BountyContractUiFragmentCreate()
     {
         RobustXamlLoader.Load(this);
-        NameSelector.OnItemSelected += (opt) => OnNameSelected(opt.Id);
-        VeselSelector.OnItemSelected += (opt) => OnVesselSelected(opt.Id);
+        CategorySelector.OnItemSelected += opt => OnCategorySelected(opt.Id);
+        NameSelector.OnItemSelected += opt => OnNameSelected(opt.Id);
+        VeselSelector.OnItemSelected += opt => OnVesselSelected(opt.Id);
 
-        CustomNameButton.OnToggled += OnCustomNameToggle;
-        CustomVeselButton.OnToggled += OnCustomVeselToggle;
+        CustomNameButton.OnToggled += args => OnCustomNameToggle(args.Pressed);
+        CustomVeselButton.OnToggled += args =>  OnCustomVeselToggle(args.Pressed);
         NameEdit.OnTextChanged += NameEditOnTextChanged;
         RewardEdit.OnTextChanged += OnPriceChanged;
 
         var descPlaceholder = Loc.GetString("bounty-contracts-ui-create-description-placeholder");
         DescriptionEdit.Placeholder = new Rope.Leaf(descPlaceholder);
-        RewardEdit.Text = SharedBountyContractSystem.MinimalReward.ToString();
+        RewardEdit.Text = SharedBountyContractSystem.DefaultReward.ToString();
 
         CreateButton.OnPressed += _ => OnCreatePressed?.Invoke(GetBountyContract());
         CancelButton.OnPressed += _ => OnCancelPressed?.Invoke();
 
+        FillCategories();
         UpdateDisclaimer();
     }
 
@@ -84,9 +86,25 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         OnVesselSelected(0);
     }
 
+    private void FillCategories()
+    {
+        foreach (var (id, meta) in SharedBountyContractSystem.CategoriesMeta)
+        {
+            var name = Loc.GetString(meta.Name);
+            CategorySelector.AddItem(name, (byte) id);
+        }
+    }
+
     private void UpdateDna(string? dnaStr)
     {
-        DnaLabel.Text = dnaStr ?? Loc.GetString("bounty-contracts-ui-create-dna-unknown");
+        if (string.IsNullOrEmpty(dnaStr))
+        {
+            DnaBox.Visible = false;
+            return;
+        }
+
+        DnaBox.Visible = true;
+        DnaLabel.Text = dnaStr;
     }
 
     private void OnNameSelected(int itemIndex)
@@ -112,19 +130,28 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         VeselSelector.SelectId(itemIndex);
     }
 
-    private void OnCustomNameToggle(BaseButton.ButtonToggledEventArgs customToggle)
+    private void OnCategorySelected(int objId)
     {
-        NameSelector.Visible = !customToggle.Pressed;
-        NameEdit.Visible = customToggle.Pressed;
+        var cat = (BountyContractCategory) objId;
+        CustomNameButton.Pressed = cat != BountyContractCategory.Criminal;
+        OnCustomNameToggle(CustomNameButton.Pressed);
+
+        CategorySelector.SelectId(objId);
+    }
+
+    private void OnCustomNameToggle(bool isPressed)
+    {
+        NameSelector.Visible = !isPressed;
+        NameEdit.Visible = isPressed;
 
         UpdateDna(GetTargetDna());
         UpdateDisclaimer();
     }
 
-    private void OnCustomVeselToggle(BaseButton.ButtonToggledEventArgs customToggle)
+    private void OnCustomVeselToggle(bool isPressed)
     {
-        VeselSelector.Visible = !customToggle.Pressed;
-        VeselEdit.Visible = customToggle.Pressed;
+        VeselSelector.Visible = !isPressed;
+        VeselEdit.Visible = isPressed;
 
         OnVesselSelected(0);
     }
@@ -133,10 +160,9 @@ public sealed partial class BountyContractUiFragmentCreate : Control
     {
         // check if reward is valid
         var reward = GetReward();
-        if (reward < SharedBountyContractSystem.MinimalReward)
+        if (reward == null || reward < 0)
         {
-            var err = Loc.GetString("bounty-contracts-ui-create-error-too-cheap",
-                ("reward", SharedBountyContractSystem.MinimalReward));
+            var err = Loc.GetString("bounty-contracts-ui-create-error-invalid-price");
             DisclaimerLabel.SetMessage(err);
             CreateButton.Disabled = true;
             return;
@@ -157,10 +183,10 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         CreateButton.Disabled = false;
     }
 
-    public int GetReward()
+    public int? GetReward()
     {
         var priceStr = RewardEdit.Text;
-        return int.TryParse(priceStr, out var price) ? price : 0;
+        return int.TryParse(priceStr, out var price) ? price : null;
     }
 
     public BountyContractTargetInfo? GetTargetInfo()
@@ -214,15 +240,21 @@ public sealed partial class BountyContractUiFragmentCreate : Control
         return vessel;
     }
 
+    public BountyContractCategory GetCategory()
+    {
+        return (BountyContractCategory) CategorySelector.SelectedId;
+    }
+
     public BountyContractRequest GetBountyContract()
     {
         var info = new BountyContractRequest
         {
+            Category = GetCategory(),
             Name = GetTargetName(),
             DNA = GetTargetDna(),
             Vessel = GetVessel(),
             Description = Rope.Collapse(DescriptionEdit.TextRope),
-            Reward = GetReward()
+            Reward = GetReward() ?? 0
         };
         return info;
     }

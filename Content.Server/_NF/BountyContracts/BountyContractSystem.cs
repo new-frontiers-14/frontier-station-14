@@ -59,6 +59,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <summary>
     ///     Try to create a new bounty contract and put it in bounties list.
     /// </summary>
+    /// <param name="category">Bounty contract category (bounty head, construction, etc.)</param>
     /// <param name="name">IC name for the contract bounty head. Can be players IC name or custom string.</param>
     /// <param name="reward">Cash reward for completing bounty. Can be zero.</param>
     /// <param name="description">IC description of players crimes, details, etc.</param>
@@ -67,7 +68,8 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
     /// <param name="author">Optional bounty poster IC name.</param>
     /// <param name="postToRadio">Should radio message about contract be posted in general radio channel?</param>
     /// <returns>New bounty contract. Null if contract creation failed.</returns>
-    public BountyContract? CreateBountyContract(string name, int reward,
+    public BountyContract? CreateBountyContract(BountyContractCategory category,
+        string name, int reward,
         string? description = null, string? vessel = null,
         string? dna = null, string? author = null,
         bool postToRadio = true)
@@ -78,7 +80,7 @@ public sealed partial class BountyContractSystem : SharedBountyContractSystem
 
         // create a new contract
         var contractId = data.LastId++;
-        var contract = new BountyContract(contractId, name, reward,
+        var contract = new BountyContract(contractId, category, name, reward,
             dna, vessel, description, author);
 
         // try to save it

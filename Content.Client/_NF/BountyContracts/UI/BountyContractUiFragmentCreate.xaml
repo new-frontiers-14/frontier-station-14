@@ -5,6 +5,10 @@
         <!-- New Contract Details -->
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
             <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-category'}" MinWidth="80"/>
+                <OptionButton Name="CategorySelector" HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
                 <Label Text="{Loc 'bounty-contracts-ui-create-name'}" MinWidth="80"/>
                 <OptionButton Name="NameSelector" HorizontalExpand="True"/>
                 <LineEdit Name="NameEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-name-placeholder'}"
@@ -13,7 +17,7 @@
                 <Button Name="CustomNameButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
                         ToggleMode="True"/>
             </BoxContainer>
-            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+            <BoxContainer Name="DnaBox" Orientation="Horizontal" Margin="4,4,4,4">
                 <Label Text="{Loc 'bounty-contracts-ui-create-dna'}" MinWidth="80"/>
                 <Label Name="DnaLabel" Text="{Loc 'bounty-contracts-ui-create-dna-unknown'}"
                           HorizontalExpand="True"/>
@@ -41,7 +45,7 @@
                 <PanelContainer StyleClasses="LowDivider" />
             </BoxContainer>
             <RichTextLabel Name="DisclaimerLabel" Margin="4,4,4,4"
-                           HorizontalExpand="True"/>
+                           HorizontalExpand="True" Visible="False"/>
         </BoxContainer>
 
         <!-- Footer -->
