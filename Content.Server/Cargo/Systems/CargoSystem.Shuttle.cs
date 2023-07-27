@@ -287,8 +287,15 @@ public sealed partial class CargoSystem
     {
         if (_mobQuery.HasComponent(uid))
         {
-            return false;
+            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Alive)
+            {
+                return false;
+            }
+
+            return true;
         }
+
+
 
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
