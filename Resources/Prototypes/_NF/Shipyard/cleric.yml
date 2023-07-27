@@ -1,0 +1,27 @@
+- type: vessel
+  id: Cleric
+  name: NT Cleric
+  description: Small support vessel used for emergency rescues and first aid.
+  price: 10500 #Appraisal is 10200
+  category: Small
+  group: Security #Should be only available at a cruiser custom shipyard TODO
+  shuttlePath: /Maps/Shuttles/cleric.yml
+
+- type: gameMap
+  id: Cleric
+  mapName: 'NT Cleric'
+  mapPath: /Maps/Shuttles/cleric.yml
+  minPlayers: 0
+  stations:
+    Cleric:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Cleric {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
