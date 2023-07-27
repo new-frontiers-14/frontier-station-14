@@ -1,12 +1,13 @@
 <Control xmlns="https://spacestation14.io">
-    <PanelContainer Margin="8,8,8,8" StyleClasses="AngleRect" >
-        <BoxContainer Orientation="Vertical">
+    <PanelContainer Name="BountyPanel" Margin="8" StyleClasses="AngleRect" >
+        <BoxContainer Orientation="Vertical" Margin="4" >
             <BoxContainer Orientation="Horizontal">
                 <Label Name="BountyName" HorizontalExpand="True" />
                 <Label Name="BountyReward" HorizontalExpand="True"
                        HorizontalAlignment="Right"/>
             </BoxContainer>
             <PanelContainer StyleClasses="HighDivider" />
+            <Label Name="BountyCategory" StyleClasses="WindowFooterText"/>
             <BoxContainer HorizontalExpand="True">
                 <RichTextLabel Name="BountyDescription" StyleClasses="LabelSubText"/>
             </BoxContainer>

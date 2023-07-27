@@ -1,0 +1,27 @@
+- type: vessel
+  id: Fighter
+  name: NT Fighter
+  description: Small attack vessel used for boarding and transport of prisoners.
+  price: 9000 #not sure how much mark up % to add but the appraisal is 8491$
+  category: Small
+  group: Security #Should be only available at a cruiser custom shipyard TODO
+  shuttlePath: /Maps/Shuttles/fighter.yml
+
+- type: gameMap
+  id: Fighter
+  mapName: 'NT Fighter'
+  mapPath: /Maps/Shuttles/fighter.yml
+  minPlayers: 0
+  stations:
+    Fighter:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Fighter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
