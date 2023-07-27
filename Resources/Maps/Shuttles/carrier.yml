@@ -406,7 +406,8 @@ entities:
           0,-8:
             0: 65516
           0,-7:
-            0: 65535
+            1: 17
+            0: 65518
           0,-6:
             0: 65535
           0,-5:
@@ -438,7 +439,8 @@ entities:
           -1,-5:
             0: 65535
           -1,-7:
-            0: 65516
+            0: 48108
+            2: 17408
           -1,-8:
             0: 32768
           -1,-4:
@@ -464,11 +466,9 @@ entities:
           1,-4:
             0: 13107
           1,-3:
-            1: 1
-            0: 13106
+            0: 13107
           1,-2:
-            0: 9011
-            1: 4096
+            0: 13107
           1,-1:
             0: 13107
           0,-9:
@@ -498,10 +498,25 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.14996
+          temperature: 293.15
           moles:
-          - 20.078888
-          - 75.53487
+          - 0
+          - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 6666.982
+          - 0
           - 0
           - 0
           - 0
@@ -801,6 +816,30 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 5.5,-8.5
+      parent: 1
+      type: Transform
+- proto: AtmosFixNitrogenMarker
+  entities:
+  - uid: 873
+    components:
+    - pos: 0.5,-27.5
+      parent: 1
+      type: Transform
+  - uid: 874
+    components:
+    - pos: 0.5,-26.5
+      parent: 1
+      type: Transform
+- proto: AtmosFixOxygenMarker
+  entities:
+  - uid: 871
+    components:
+    - pos: -1.5,-25.5
+      parent: 1
+      type: Transform
+  - uid: 872
+    components:
+    - pos: -1.5,-24.5
       parent: 1
       type: Transform
 - proto: BarSign
@@ -6257,7 +6296,7 @@ entities:
     - pos: 2.5,4.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -5720.7393
+    - SecondsUntilStateChange: -5837.7275
       state: Closing
       type: Door
   - uid: 582
@@ -7952,8 +7991,8 @@ entities:
         immutable: False
         temperature: 293.1497
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -7970,10 +8009,10 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 307
-          - 525
-          - 523
           - 522
+          - 523
+          - 525
+          - 307
       type: ContainerContainer
   - uid: 215
     components:
