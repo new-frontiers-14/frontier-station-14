@@ -64,6 +64,16 @@
           False: { visible: false }
   - type: PlantHolder
     drawWarnings: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: AmbientSound
     volume: -9
     range: 5
