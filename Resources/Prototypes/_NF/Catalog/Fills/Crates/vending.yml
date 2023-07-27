@@ -1,0 +1,26 @@
+- type: entity
+  id: CrateVendingMachineRestockAstroVendFilled
+  parent: CratePlastic
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockAstroVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockAmmoFilled
+  parent: CrateWeaponSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockAmmo
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockCircuitVendFilled
+  parent: CratePlastic
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCircuitVend
+        amount: 2
