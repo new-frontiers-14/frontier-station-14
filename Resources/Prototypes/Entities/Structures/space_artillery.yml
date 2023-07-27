@@ -1,0 +1,61 @@
+- type: entity
+  id: Space_Artillery
+  name: space artillery
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+  - type: Appearance
+  - type: Storage
+    capacity: 120
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: PneumaticCannon
+    gasUsage: 0
+    baseProjectileSpeed: 25
+    toolModifyPower: Screwing
+    throwItems: false
+  - type: Gun
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
