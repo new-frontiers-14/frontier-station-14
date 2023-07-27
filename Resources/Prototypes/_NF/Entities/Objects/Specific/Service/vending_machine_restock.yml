@@ -12,9 +12,9 @@
     - state: base
     - state: green_bit
       shader: unshaded
-  - type: StaticPrice
-    price: 100
   - type: CargoSellBlacklist
+  - type: StaticPrice
+    price: 0
   - type: ItemCooldown
   - type: MeleeWeapon
     damage:
@@ -33,13 +33,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 1200
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 600
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -62,8 +62,6 @@
     - state: green_bit
       shader: unshaded
     - state: refill_salvage # Update this later with a new sprite
-  - type: StaticPrice
-    price: 100
   - type: CargoSellBlacklist
 
 - type: entity
@@ -81,8 +79,6 @@
     - state: green_bit
       shader: unshaded
     - state: refill_sec # Update this later with a new sprite
-  - type: StaticPrice
-    price: 100
   - type: CargoSellBlacklist
 
 - type: entity
@@ -100,6 +96,4 @@
     - state: green_bit
       shader: unshaded
     - state: refill_parts # Update this later with a new sprite
-  - type: StaticPrice
-    price: 100
   - type: CargoSellBlacklist
