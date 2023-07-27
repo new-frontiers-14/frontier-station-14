@@ -3558,6 +3558,12 @@ entities:
     - type: InsideEntityStorage
 - proto: ComputerCrewMonitoring
   entities:
+  - uid: 876
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 2.5,10.5
+      parent: 1
+      type: Transform
   - uid: 1263
     components:
     - pos: 5.5,-18.5
@@ -3937,6 +3943,13 @@ entities:
   - uid: 913
     components:
     - pos: 8.387318,4.1961355
+      parent: 1
+      type: Transform
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 875
+    components:
+    - pos: 4.5,-17.5
       parent: 1
       type: Transform
 - proto: DiceBag
@@ -6296,7 +6309,7 @@ entities:
     - pos: 2.5,4.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -5837.7275
+    - SecondsUntilStateChange: -6060.2
       state: Closing
       type: Door
   - uid: 582
