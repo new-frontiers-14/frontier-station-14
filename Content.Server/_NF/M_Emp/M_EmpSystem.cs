@@ -20,7 +20,7 @@ using Content.Shared.DeviceLinking;
 using Content.Server.DeviceLinking.Systems;
 
 // TO ANYONE LOOKING AT THIS CODE, IM SORRY
-// This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with it as for now but its not cleaned as it sould be.
+// This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with, I hope, but its not cleaned as it sould be.
 // If you know what you are doing, fix this please to look "usable"
 // - Dvir01
 
