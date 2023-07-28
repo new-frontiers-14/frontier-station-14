@@ -1,0 +1,27 @@
+- type: vessel
+  id: Rogue
+  name: NT Rogue
+  description: Small assault vessel with a toggle for going dark in deep space.
+  price: 8200 #the appraisal is 7941$
+  category: Small
+  group: Security #Should be only available at a cruiser custom shipyard TODO
+  shuttlePath: /Maps/Shuttles/rogue.yml
+
+- type: gameMap
+  id: Rogue
+  mapName: 'NT Rogue'
+  mapPath: /Maps/Shuttles/rogue.yml
+  minPlayers: 0
+  stations:
+    Rogue:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Rogue {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
