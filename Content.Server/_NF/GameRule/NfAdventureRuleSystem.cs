@@ -108,8 +108,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         var depotMap = "/Maps/cargodepot.yml";
         var tinnia = "/Maps/tinnia.yml";
+        var lpbravo = "/Maps/lpbravo.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
+        var lpbravoColor = new Color(200, 55, 55);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(1500f, 2400f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
@@ -146,14 +148,15 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
-        if (_map.TryLoad(mapId, depotMap, out var depotUid4s, new MapLoadOptions
+        if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = -depotOffset
+                Offset = _random.NextVector2(1400f, 3000f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            meta.EntityName = "Cargo Depot C";
-            _shuttle.SetIFFColor(depotUid4s[0], depotColor);
+            meta.EntityName = "Listening Point Bravo";
+            _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
+            _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
         ;
@@ -175,7 +178,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2(0, 0);
+            offset = new Vector2i(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
@@ -198,7 +201,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2(0, 0);
+            offset = new Vector2i(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs

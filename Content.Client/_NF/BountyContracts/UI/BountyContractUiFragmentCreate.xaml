@@ -1,0 +1,64 @@
+<!-- Create new bounty -->
+<Control xmlns="https://spacestation14.io" HorizontalExpand="True" VerticalExpand="True">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- New Contract Details -->
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-category'}" MinWidth="80"/>
+                <OptionButton Name="CategorySelector" HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-name'}" MinWidth="80"/>
+                <OptionButton Name="NameSelector" HorizontalExpand="True"/>
+                <LineEdit Name="NameEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-name-placeholder'}"
+                          HorizontalExpand="True" Visible="False"/>
+                <Control MinSize="8 0" />
+                <Button Name="CustomNameButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
+                        ToggleMode="True"/>
+            </BoxContainer>
+            <BoxContainer Name="DnaBox" Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-dna'}" MinWidth="80"/>
+                <Label Name="DnaLabel" Text="{Loc 'bounty-contracts-ui-create-dna-unknown'}"
+                          HorizontalExpand="True"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-vessel'}" MinWidth="80"/>
+                <OptionButton Name="VeselSelector" HorizontalExpand="True"/>
+                <LineEdit Name="VeselEdit" PlaceHolder="{Loc 'bounty-contracts-ui-create-vessel-placeholder'}"
+                          HorizontalExpand="True" Visible="False"/>
+                <Control MinSize="8 0" />
+                <Button Name="CustomVeselButton" Text="{Loc 'bounty-contracts-ui-create-custom'}"
+                        ToggleMode="True"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" Margin="4,4,4,4">
+                <Label Text="{Loc 'bounty-contracts-ui-create-reward'}" MinWidth="80"/>
+                <LineEdit Name="RewardEdit" MinWidth="80"/>
+                <Control MinSize="8 0" />
+                <Label Text="{Loc 'bounty-contracts-ui-create-reward-currency'}"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" Margin="4,4,4,4"
+                          VerticalExpand="True" >
+                <Label Text="{Loc 'bounty-contracts-ui-create-description'}"/>
+                <PanelContainer StyleClasses="LowDivider" />
+                <TextEdit Name="DescriptionEdit" MinHeight="64"/>
+                <PanelContainer StyleClasses="LowDivider" />
+            </BoxContainer>
+            <RichTextLabel Name="DisclaimerLabel" Margin="4,4,4,4"
+                           HorizontalExpand="True" Visible="False"/>
+        </BoxContainer>
+
+        <!-- Footer -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+                      VerticalAlignment="Bottom"
+                      Margin="8,8,8,8">
+            <Button Name="CancelButton" Text="{Loc 'bounty-contracts-ui-create-button-cancel'}"
+                    HorizontalAlignment="Left"/>
+            <Control HorizontalExpand="True"/>
+            <Button Name="CreateButton" Text="{Loc 'bounty-contracts-ui-create-button-create'}"
+                    Disabled="True"
+                    HorizontalAlignment="Right"/>
+        </BoxContainer>
+    </BoxContainer>
+
+</Control>

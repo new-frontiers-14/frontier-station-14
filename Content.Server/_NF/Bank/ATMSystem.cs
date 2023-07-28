@@ -44,15 +44,18 @@ public sealed partial class BankSystem
 
         // to keep the window stateful
         GetInsertedCashAmount(component, out var deposit);
-        var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
+        if (!_uiSystem.TryGetUi(uid, BankATMMenuUiKey.ATM, out var bui))
+        {
+            return;
+        }
 
-        // check for a bank account
+            // check for a bank account
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
             _log.Info($"{player} has no bank account");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-no-bank"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
@@ -62,7 +65,7 @@ public sealed partial class BankSystem
         {
             ConsolePopup(args.Session, Loc.GetString("bank-insufficient-funds"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(bank.Balance, true, deposit));
             return;
         }
@@ -72,7 +75,7 @@ public sealed partial class BankSystem
         {
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(bank.Balance, true, deposit));
             return;
         }
@@ -85,7 +88,7 @@ public sealed partial class BankSystem
         var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
         _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
 
-        _uiSystem.SetUiState(bui,
+        UserInterfaceSystem.SetUiState(bui,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
     }
 
@@ -105,7 +108,7 @@ public sealed partial class BankSystem
             _log.Info($"{player} has no bank account");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-no-bank"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
@@ -116,7 +119,7 @@ public sealed partial class BankSystem
             _log.Info($"ATM has no cash slot");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-no-bank"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
@@ -128,7 +131,7 @@ public sealed partial class BankSystem
             _log.Info($"ATM cash slot contains bad stack prototype");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-wrong-cash"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
@@ -139,7 +142,7 @@ public sealed partial class BankSystem
             _log.Info($"{stackComponent.StackTypeId} is not {component.CashType}");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-wrong-cash"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
@@ -149,7 +152,7 @@ public sealed partial class BankSystem
         {
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(bank.Balance, true, deposit));
             return;
         }
@@ -160,19 +163,16 @@ public sealed partial class BankSystem
 
         // yeet and delete the stack in the cash slot after success
         _containerSystem.CleanContainer(cashSlot);
-        _uiSystem.SetUiState(bui,
+        UserInterfaceSystem.SetUiState(bui,
             new BankATMMenuInterfaceState(bank.Balance, true, 0));
         return;
     }
     private void OnCashSlotChanged(EntityUid uid, BankATMComponent component, ContainerModifiedMessage args)
     {
 
-        if (!_uiSystem.TryGetUi(component.Owner, CargoConsoleUiKey.Orders, out var bankUi))
-        {
-            return;
-        }
+        var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM);
 
-        var uiUser = bankUi.SubscribedSessions.FirstOrDefault();
+        var uiUser = bankUi!.SubscribedSessions.FirstOrDefault();
         GetInsertedCashAmount(component, out var deposit);
 
         if (uiUser?.AttachedEntity is not { Valid: true } player)
@@ -187,11 +187,11 @@ public sealed partial class BankSystem
 
         if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid : true } cash)
         {
-            _uiSystem.SetUiState(bankUi,
+            UserInterfaceSystem.SetUiState(bankUi,
                 new BankATMMenuInterfaceState(bank.Balance, true, 0));
         }
 
-        _uiSystem.SetUiState(bankUi,
+        UserInterfaceSystem.SetUiState(bankUi,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
     }
 
@@ -208,12 +208,12 @@ public sealed partial class BankSystem
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
             _log.Info($"{player} has no bank account");
-            _uiSystem.SetUiState(bui,
+            UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
         }
 
-        _uiSystem.SetUiState(bui,
+        UserInterfaceSystem.SetUiState(bui,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
     }
 
