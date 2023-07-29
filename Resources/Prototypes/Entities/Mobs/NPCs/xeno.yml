@@ -1,4 +1,5 @@
 # Hacky for the stress test so don't even consider adding to this
+# I added to it anyways because heck you
 - type: entity
   name: Burrower
   id: MobXeno
@@ -110,6 +111,8 @@
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Praetorian
@@ -143,7 +146,8 @@
         - MobMask
         layer:
         - MobLayer
-
+  - type: ReplacementAccent
+    accent: genericAggressive
 - type: entity
   name: Drone
   parent: MobXeno
@@ -182,6 +186,8 @@
         - MobMask
         layer:
         - MobLayer
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Queen
@@ -227,6 +233,8 @@
   - type: Tag
     tags:
     - CannotSuicide
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Ravager
@@ -269,6 +277,8 @@
         - MobMask
         layer:
         - MobLayer
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Runner
@@ -303,6 +313,8 @@
         - MobMask
         layer:
         - MobLayer
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Rouny
@@ -313,6 +325,8 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
+  - type: ReplacementAccent
+    accent: genericAggressive
 
 - type: entity
   name: Spitter
@@ -346,6 +360,8 @@
         - MobMask
         layer:
         - MobLayer
+  - type: ReplacementAccent
+    accent: genericAggressive        
 
 - type: entity
   name: space adder
@@ -404,6 +420,8 @@
         - MobMask
         layer:
         - MobLayer
+  - type: ReplacementAccent
+    accent: genericAggressive        
 
 - type: entity
   name: space adder
@@ -428,3 +446,5 @@
         Base: dead_small_purple_snake
   - type: SolutionTransfer
     maxTransferAmount: 1
+  - type: ReplacementAccent
+    accent: genericAggressive
