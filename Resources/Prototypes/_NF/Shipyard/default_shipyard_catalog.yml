@@ -263,6 +263,123 @@
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]
             ##Cyborg [ 1, 1 ]
+            
+            
+- type: vessel
+  id: Honker
+  name: NT Honker
+  description: HONK HONK HONK HONK HONK HONK
+  price: 22500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/honker.yml
+
+- type: gameMap
+  id: Honker
+  mapName: 'NT Honker'
+  mapPath: /Maps/Shuttles/honker.yml
+  minPlayers: 0
+  stations:
+    Honker:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Honker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Clown: [ 1, 1 ]
+
+- type: vessel
+  id: Silence
+  name: NT Silence
+  description: A dingy ship for 1 or 2 quiet individuals.
+  price: 14000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/silence.yml
+
+- type: gameMap
+  id: Silence
+  mapName: 'NT Silence'
+  mapPath: /Maps/Shuttles/silence.yml
+  minPlayers: 0
+  stations:
+    Silence:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Silence {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Mime: [ 1, 1 ]
+            
+            
+- type: vessel
+  id: Forge
+  name: NT Forge
+  description: A repair/construction vessel with lots of DIY potential and a paramedic.
+  price: 35500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/forge.yml
+
+- type: gameMap
+  id: Forge
+  mapName: 'NT Forge'
+  mapPath: /Maps/Shuttles/forge.yml
+  minPlayers: 0
+  stations:
+    Forge:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Forge {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            AtmosphericTechnician: [ 1, 1 ]
+            StationEngineer: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+            
+            
+- type: vessel
+  id: Bocadillo
+  name: NT Bocadillo
+  description: A tiny food truck perfect for a solo chef.
+  price: 17500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/bocadillo.yml
+
+- type: gameMap
+  id: Bocadillo
+  mapName: 'NT Bocadillo'
+  mapPath: /Maps/Shuttles/bocadillo.yml
+  minPlayers: 0
+  stations:
+    Bocadillo:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Bocadillo {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
 
 - type: vessel
   id: Interceptor
