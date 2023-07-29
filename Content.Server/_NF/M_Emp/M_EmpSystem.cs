@@ -254,9 +254,7 @@ namespace Content.Server._NF.M_Emp
             var station = _station.GetOwningStation(uid);
             var stationName = station is null ? null : Name(station.Value);
 
-#pragma warning disable CS8620 // TODO need to fix it later, this is not creating an actual error
-            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName));
-#pragma warning restore CS8620 // TODO need to fix it later, this is not creating an actual error
+            Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName!));
 
             var empRange = 100;
             var empEnergyConsumption = 50000;
