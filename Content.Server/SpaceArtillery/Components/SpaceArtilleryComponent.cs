@@ -8,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
-namespace Content.Shared.SpaceArtillery.Components;
+namespace Content.Server.SpaceArtillery;
 
 [RegisterComponent, NetworkedComponent]
 public sealed class SpaceArtilleryComponent : Component

@@ -1,6 +1,7 @@
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Server.PneumaticCannon;
 using Content.Shared.PneumaticCannon;
 using Content.Shared.Weapons.Ranged.Components;
@@ -25,9 +26,9 @@ namespace Content.Server.SpaceArtillery
 		{
 			if (args.Handled)
                 return;
-			
-        var attemptEv = new AttemptShootEvent(user, null);
-        RaiseLocalEvent(gunUid, ref attemptEv);
+				
+        var attemptEv = new AttemptShootEvent(uid, null);
+        RaiseLocalEvent(uid, attemptEv);
 		}
 			
 		
