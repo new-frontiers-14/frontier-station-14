@@ -1,20 +1,20 @@
 - type: vessel
   id: DartX
-  name: NT Dart-X 
+  name: NT Dart-X
   description: A light emergency response cruiser outfitted for extended rescue missions.
-  price: 89650
+  price: 80500
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/dartx.yml
-  
+
 - type: gameMap
   id: DartX
   mapName: 'NT Dart-X'
   mapPath: /Maps/Shuttles/dartx.yml
   minPlayers: 0
-  stations: 
+  stations:
     DartX:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Dart-X {1}'

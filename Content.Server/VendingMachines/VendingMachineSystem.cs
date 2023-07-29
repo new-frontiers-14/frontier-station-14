@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Bank;
+using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
 using Content.Server.Cargo.Components;
@@ -84,10 +85,10 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount * _pricing.GetEstimatedPrice(proto);
+                price += entry.Amount; //* _pricing.GetEstimatedPrice(proto); Removed this to make machine price without the items worth.
             }
 
-            args.Price += price;
+            //args.Price += price; Removed this to also make the machine price without the amount of items worth.
         }
 
         protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
@@ -359,7 +360,7 @@ namespace Content.Server.VendingMachines
                     {
                         if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
                         {
-                            _cargo.DeductFunds(stationBank, -(totalPrice / 2));
+                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
                         }
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
@@ -421,10 +422,10 @@ namespace Content.Server.VendingMachines
                 var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
                 if (entry != null)
                     entry.Amount--;
-                EjectItem(uid, vendComponent, forceEject);
+                //EjectItem(uid, vendComponent, forceEject); // Stop vending machine from giving free items
             }
-            else
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+            //else
+            //TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent); // Stop vending machine from giving free items
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)

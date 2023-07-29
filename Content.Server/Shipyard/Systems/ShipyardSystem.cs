@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using Content.Shared.Coordinates;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
@@ -129,7 +130,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var loadOptions = new MapLoadOptions()
         {
-            Offset = (500f + _shuttleIndex, 1f)
+            Offset = new Vector2(500f + _shuttleIndex, 1f)
         };
 
         if (!_map.TryLoad(ShipyardMap.Value, shuttlePath, out var gridList, loadOptions))

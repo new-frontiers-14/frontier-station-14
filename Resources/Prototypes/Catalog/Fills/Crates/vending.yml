@@ -5,6 +5,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockBooze
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockClothesFilled
@@ -13,7 +14,9 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockClothes
+        amount: 2
       - id: VendingMachineRestockCostumes
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockDinnerwareFilled
@@ -22,14 +25,16 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockDinnerware
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockEngineeringFilled
-  parent: CrateEngineeringSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockEngineering
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockGamesFilled
@@ -38,6 +43,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockGames
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockHotDrinksFilled
@@ -46,31 +52,34 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockHotDrinks
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockMedicalFilled
-  parent: CrateMedicalSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockMedical
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockChemVendFilled
-  parent: CrateMedicalSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockChemVend
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockNutriMaxFilled
-  parent: CrateHydroSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockNutriMax
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockPTechFilled
@@ -79,6 +88,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockPTech
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockRobustSoftdrinksFilled
@@ -87,23 +97,16 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockRobustSoftdrinks
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockSalvageEquipmentFilled
-  parent: CrateGenericSteel
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockSalvageEquipment
-
-- type: entity
-  id: CrateVendingMachineRestockAstroVendFilled
-  parent: CrateEngineeringSecure
-  components:
-  - type: StorageFill
-    contents:
-      - id: VendingMachineRestockAstroVend
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockSecTechFilled
@@ -112,22 +115,16 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockSecTech
-
-- type: entity
-  id: CrateVendingMachineRestockAmmoFilled
-  parent: CrateWeaponSecure
-  components:
-  - type: StorageFill
-    contents:
-      - id: VendingMachineRestockAmmo
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockSeedsFilled
-  parent: CrateHydroSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockSeeds
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockSmokesFilled
@@ -136,7 +133,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockSmokes
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockVendomatFilled
@@ -144,23 +141,17 @@
   components:
   - type: StorageFill
     contents:
-    - id: VendingMachineRestockVendomat
-
-- type: entity
-  id: CrateVendingMachineRestockCircuitVendFilled
-  parent: CrateScienceSecure
-  components:
-  - type: StorageFill
-    contents:
-    - id: VendingMachineRestockCircuitVend
+      - id: VendingMachineRestockVendomat
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockRoboticsFilled
-  parent: CrateScienceSecure
+  parent: CratePlastic
   components:
   - type: StorageFill
     contents:
-    - id: VendingMachineRestockRobotics
+      - id: VendingMachineRestockRobotics
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockTankDispenserFilled
@@ -169,6 +160,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockTankDispenser
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockHappyHonkFilled
@@ -177,7 +169,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockHappyHonk
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockGetmoreChocolateCorpFilled
@@ -186,7 +178,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockGetmoreChocolateCorp
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockChangFilled
@@ -195,7 +187,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockChang
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockDiscountDansFilled
@@ -204,7 +196,7 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockDiscountDans
-        amount: 2
+        amount: 8
 
 - type: entity
   id: CrateVendingMachineRestockDonutFilled
@@ -213,4 +205,4 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockDonut
-        amount: 2
+        amount: 8

@@ -15,7 +15,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     private ShipyardRulesPopup? _rulesWindow;
     public int Balance { get; private set; }
 
-    public ShipyardConsoleBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey)
+    public ShipyardConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
@@ -33,7 +33,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             rules.AddText(Loc.GetString($"shipyard-rules-default2"));
             _rulesWindow.ShipRules.SetMessage(rules);
             _rulesWindow.OpenCentered();
-        }    
+        }
         _menu.OnClose += Close;
         _menu.OnOrderApproved += ApproveOrder;
         _menu.OnSellShip += SellShip;
@@ -77,7 +77,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         {
             return;
         }
-        
+
         var vesselId = row.Vessel.ID;
         SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
     }

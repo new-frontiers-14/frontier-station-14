@@ -19,6 +19,8 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  - type: StaticPrice
+    price: 150
 
 #IDs with layers
 
@@ -428,10 +430,10 @@
   components:
   - type: Sprite
     layers:
-    - state: gold
+    - state: centcom
     - state: idcentcom
   - type: Item
-    heldPrefix: gold
+    heldPrefix: blue
   - type: IdCard
     jobTitle: Central Commander
   - type: Access
@@ -453,11 +455,13 @@
 - type: entity
   parent: IDCardStandard
   id: CentcomIDCardSyndie
-  name: Centcom ID card
+  name: command officer ID card
+  suffix: Fake
   components:
   - type: Sprite
     layers:
     - state: centcom
+    - state: idcentcom
   - type: Item
     heldPrefix: blue
   - type: IdCard
@@ -481,7 +485,7 @@
 - type: entity
   parent: CentcomIDCard
   id: CentcomIDCardDeathsquad
-  name: Deathsquad ID card
+  name: deathsquad ID card
   components:
   - type: Sprite
     layers:
@@ -504,6 +508,8 @@
     interfaces:
       - key: enum.AgentIDCardUiKey.Key
         type: AgentIDCardBoundUserInterface
+  - type: StaticPrice
+    price: 200
 
 - type: entity
   parent: IDCardStandard
@@ -520,7 +526,7 @@
 - type: entity
   parent: IDCardStandard
   id: SyndicateIDCard
-  name: Syndicate ID card
+  name: syndicate ID card
   components:
   - type: Sprite
     layers:
