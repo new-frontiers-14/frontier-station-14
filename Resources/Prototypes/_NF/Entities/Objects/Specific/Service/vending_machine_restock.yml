@@ -61,8 +61,7 @@
     - state: base
     - state: green_bit
       shader: unshaded
-    - state: refill_salvage # Update this later with a new sprite
-  - type: CargoSellBlacklist
+    - state: refill_salvage # TODO Update this later with a new sprite
 
 - type: entity
   parent: SecuredVendingMachineRestock
@@ -78,8 +77,7 @@
     - state: base
     - state: green_bit
       shader: unshaded
-    - state: refill_sec # Update this later with a new sprite
-  - type: CargoSellBlacklist
+    - state: refill_sec # TODO Update this later with a new sprite
 
 - type: entity
   parent: SecuredVendingMachineRestock
@@ -95,5 +93,20 @@
     - state: base
     - state: green_bit
       shader: unshaded
-    - state: refill_parts # Update this later with a new sprite
-  - type: CargoSellBlacklist
+    - state: refill_parts # TODO Update this later with a new sprite
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockCuddlyCritterVend
+  name: CuddlyCritterVend restock box
+  description: A box containing toys and plushies for the Cuddly Critter vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - CuddlyCritterVendInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_parts # TODO Update this later with a new sprite
