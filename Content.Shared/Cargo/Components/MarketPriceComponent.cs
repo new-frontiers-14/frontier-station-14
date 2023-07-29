@@ -1,7 +1,7 @@
 namespace Content.Shared.Cargo.Components;
 
 /// <summary>
-/// This is used for setting a static, unchanging price for selling an object.
+/// This is used for setting a static, unchanging price for buying an object.
 /// </summary>
 [RegisterComponent]
 public sealed class MarketPriceComponent : Component
