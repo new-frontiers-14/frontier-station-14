@@ -20,7 +20,9 @@
     heldPrefix: packet
     size: 3
   - type: StaticPrice
-    price: 7.5
+    price: 5
+  - type: MarketPrice
+    price: 20
 # Snacks
 
 # "Snacks" means food in a packet. Down the line this stuff can have multiple
@@ -92,8 +94,6 @@
       - id: FoodSnackChocolateBar
     sound:
       path: /Audio/Effects/unwrap.ogg
-  - type: StaticPrice
-    price: 7.5
 
 - type: entity
   name: chocolate bar
@@ -290,6 +290,10 @@
     size: 1
   - type: Food
     trash: FoodCookieFortune
+  - type: StaticPrice
+    price: 1
+  - type: MarketPrice
+    price: 5
 
 - type: entity
   id: FoodSnackNutribrick
@@ -309,7 +313,9 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
+    price: 5
+  - type: MarketPrice
+    price: 20
 
 - type: entity
   id: FoodSnackNutribrickOpen
@@ -332,6 +338,10 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 25
+  - type: StaticPrice
+    price: 5
+  - type: MarketPrice
+    price: 20
 
 - type: entity
   id: FoodSnackMREBrownie
@@ -349,8 +359,9 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
-
+    price: 5
+  - type: MarketPrice
+    price: 20
 
 - type: entity
   id: FoodSnackMREBrownieOpen
@@ -373,6 +384,10 @@
           Quantity: 10
         - ReagentId: Theobromine
           Quantity: 3
+  - type: StaticPrice
+    price: 5
+  - type: MarketPrice
+    price: 20
 
 # Trash
 
