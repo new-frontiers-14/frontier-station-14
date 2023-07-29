@@ -9,9 +9,6 @@ adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos
 
-advertisement-astrovend-1 = Spessman's Choice!
-advertisement-astrovend-2 = Don't leave home without a suit!
-
 guide-entry-adventure = New Frontiers Program
 guide-entry-bank = NT Galactic Bank
 guide-entry-shipyard = Frontier Shipyards
