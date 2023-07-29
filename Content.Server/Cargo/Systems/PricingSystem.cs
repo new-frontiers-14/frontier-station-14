@@ -164,6 +164,26 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
+    public double GetEstimatedMarketPrice(EntityPrototype prototype)
+    {
+        var ev = new EstimatedPriceCalculationEvent()
+        {
+            Prototype = prototype,
+        };
+
+        RaiseLocalEvent(ref ev);
+
+        if (ev.Handled)
+            return ev.Price;
+
+        var price = ev.Price;
+        price += GetMarketPrice(prototype);
+
+        // TODO: Proper container support.
+
+        return price;
+    }
+
     /// <summary>
     /// Appraises an entity, returning it's price.
     /// </summary>
@@ -323,6 +343,31 @@ public sealed class PricingSystem : EntitySystem
         {
             var staticPrice = (StaticPriceComponent) staticProto.Component;
             price += staticPrice.Price;
+        }
+
+        return price;
+    }
+
+    private double GetMarketPrice(EntityUid uid)
+    {
+        var price = 0.0;
+
+        if (TryComp<MarketPriceComponent>(uid, out var marketPrice))
+        {
+            price += marketPrice.Price;
+        }
+
+        return price;
+    }
+
+    private double GetMarketPrice(EntityPrototype prototype)
+    {
+        var price = 0.0;
+
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(MarketPriceComponent)), out var marketProto))
+        {
+            var marketPrice = (MarketPriceComponent) marketProto.Component;
+            price += marketPrice.Price;
         }
 
         return price;

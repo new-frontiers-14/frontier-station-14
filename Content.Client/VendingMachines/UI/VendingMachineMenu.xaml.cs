@@ -112,6 +112,17 @@ namespace Content.Client.VendingMachines.UI
                     cost = (int) (cost * priceModifier);
                 }
 
+                // This block exists to allow the MatketPrice flag to set a price
+                if (prototype != null && prototype.TryGetComponent<MarketPriceComponent>(out var marketPriceComponent))
+                {
+                    if (marketPriceComponent.Price != 0)
+                    {
+                        var price = (float) marketPriceComponent.Price;
+                        cost = (int) (price);
+                    }
+                }
+                // This block exists to allow the MatketPrice flag to set a price
+
                 vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
                 vendingItem.Icon = icon;
             }
