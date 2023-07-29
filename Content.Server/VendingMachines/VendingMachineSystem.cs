@@ -360,7 +360,7 @@ namespace Content.Server.VendingMachines
                     {
                         if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
                         {
-                            _cargo.DeductFunds(stationBank, -(totalPrice / 2));
+                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
                         }
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
