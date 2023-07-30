@@ -275,40 +275,6 @@
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]
             ##Cyborg [ 1, 1 ]
-            
-            
-- type: vessel
-  id: Spacegate
-  name: NT Spacegate
-  description: The ultimate luxury space vehicle for the discerning customer with taste and class.
-  price: 51500
-  category: Medium
-  group: Civilian
-  shuttlePath: /Maps/Shuttles/spacegate.yml
-
-- type: gameMap
-  id: Spacegate
-  mapName: 'NT Spacegate'
-  mapPath: /Maps/Shuttles/spacegate.yml
-  minPlayers: 0
-  stations:
-    Spacegate:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: '{0} Spacegate {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          overflowJobs: []
-          availableJobs:
-            Valet: [ 1, 1 ]
-            Bartender: [ 1, 1 ]
-            Librarian: [ 1, 1 ]
-            Janitor: [ 1, 1 ]
-            Zookeeper: [ 1, 1 ]
-           
 
 - type: vessel
   id: Interceptor
