@@ -14,13 +14,25 @@
     - type: Transform
 
 - type: entity
-  id: StandardFrontierVessel
+  id: StandardFrontierExpeditionVessel
   parent:
     - BaseStation
     - BaseStationJobsSpawning
     - BaseStationRecords
     - BaseStationAlertLevels
     - BaseStationExpeditions
+    - BaseStationAllEventsEligible
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
+  id: StandardFrontierVessel
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationAlertLevels
     - BaseStationAllEventsEligible
   noSpawn: true
   components:
@@ -70,7 +82,7 @@
   minPlayers: 0
   stations:
     Courser:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Courser-X {1}'
