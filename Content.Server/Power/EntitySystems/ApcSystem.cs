@@ -189,11 +189,19 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
         {
-            if (component.MainBreakerEnabled)
+            if (component.ApcIgnoreEmp)
             {
-                args.Affected = true;
-                args.Disabled = true;
-                ApcToggleBreaker(uid, component);
+                args.Affected = false;
+                args.Disabled = false;
+            }
+            else
+            {
+                if (component.MainBreakerEnabled)
+                {
+                    args.Affected = true;
+                    args.Disabled = true;
+                    ApcToggleBreaker(uid, component);
+                }
             }
         }
     }
