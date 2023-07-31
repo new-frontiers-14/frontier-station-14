@@ -1,0 +1,27 @@
+- type: vessel
+  id: Quimicita
+  name: NM Quimicita
+  description: A tiny food truck repurposed for a different kind of cooking. Perfect for a sole chemist.
+  price: 20500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/quimicita.yml
+
+- type: gameMap
+  id: Quimicita
+  mapName: 'NM Quimicita'
+  mapPath: /Maps/Shuttles/quimicita.yml
+  minPlayers: 0
+  stations:
+    Quimicita:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Quimicita {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
