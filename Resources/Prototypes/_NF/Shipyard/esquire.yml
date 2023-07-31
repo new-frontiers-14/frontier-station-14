@@ -1,0 +1,27 @@
+- type: vessel
+  id: Esquire
+  name: NT Esquire
+  description: A classy mid-sized vessel equipped with a lawyers office and prisoner handling area.
+  price: 10
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/esquire.yml
+
+- type: gameMap
+  id: Esquire
+  mapName: 'NT Esquire'
+  mapPath: /Maps/Shuttles/esquire.yml
+  minPlayers: 0
+  stations:
+    Esquire:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Esquire {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Lawyer: [ 1, 1 ]
