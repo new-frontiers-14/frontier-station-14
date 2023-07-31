@@ -3362,11 +3362,32 @@ entities:
     - pos: 1.5,7.5
       parent: 1
       type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 617
+    components:
+    - pos: 0.5,-2.5
+      parent: 1
+      type: Transform
 - proto: SpawnPointLawyer
   entities:
   - uid: 65
     components:
     - pos: 1.5,1.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointPrisonGuard
+  entities:
+  - uid: 619
+    components:
+    - pos: 9.5,-3.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointStationEngineer
+  entities:
+  - uid: 618
+    components:
+    - pos: -3.5,2.5
       parent: 1
       type: Transform
 - proto: SubstationBasic
@@ -4245,7 +4266,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -111.67654
+    - SecondsUntilStateChange: -278.2033
       state: Opening
       type: Door
 ...
