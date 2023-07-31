@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.StationRecords;
@@ -37,16 +38,18 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     public Dictionary<StationRecordKey, string>? RecordListing { get; }
     public GeneralStationRecordsFilter? Filter { get; }
     public GeneralStationRecordConsoleState(StationRecordKey? key, GeneralStationRecord? record,
-        Dictionary<StationRecordKey, string>? recordListing, GeneralStationRecordsFilter? newFilter)
+        Dictionary<StationRecordKey, string>? recordListing, GeneralStationRecordsFilter? newFilter, IReadOnlyDictionary<string, uint?>? jobList)
     {
         SelectedKey = key;
         Record = record;
         RecordListing = recordListing;
         Filter = newFilter;
+        JobList = jobList;
     }
+    public IReadOnlyDictionary<string, uint?>? JobList { get;  }
 
     public bool IsEmpty() => SelectedKey == null
-        && Record == null && RecordListing == null;
+                             && Record == null && RecordListing == null;
 }
 
 [Serializable, NetSerializable]
