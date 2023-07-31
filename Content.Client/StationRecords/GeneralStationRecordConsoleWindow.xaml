@@ -2,7 +2,7 @@
                Title="{Loc 'general-station-record-console-window-title'}"
                MinSize="750 500">
     <BoxContainer Orientation="Vertical">
-        <BoxContainer Margin="5 5 5 10" HorizontalExpand="true" VerticalAlignment="Center">
+        <BoxContainer Margin="5 5 5 10" HorizontalExpand="True">
             <OptionButton Name="StationRecordsFilterType" MinWidth="200" Margin="0 0 10 0"/>
             <LineEdit Name="StationRecordsFiltersValue"
                 PlaceHolder="{Loc 'general-station-record-for-filter-line-placeholder'}" HorizontalExpand="True"/>
@@ -11,10 +11,17 @@
         </BoxContainer>
         <BoxContainer VerticalExpand="True">
             <!-- Record listing -->
-            <BoxContainer Orientation="Vertical" Margin="5" MinWidth="250" MaxWidth="250">
+            <BoxContainer Orientation="Vertical" Margin="5" MinWidth="328" MaxWidth="360">
                 <Label Name="RecordListingStatus" Visible="False" />
                 <ScrollContainer VerticalExpand="True">
                     <ItemList Name="RecordListing" />
+                </ScrollContainer>
+                <ScrollContainer VerticalExpand="True">
+                    <BoxContainer Name="JobListing"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True">
+                    </BoxContainer>
                 </ScrollContainer>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" Margin="5">
