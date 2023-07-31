@@ -1,0 +1,28 @@
+- type: vessel
+  id: Mission
+  name: NC Mission
+  description: A mobile religous chapel with crematorium and full janitorial services.
+  price: 17500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/mission.yml
+
+- type: gameMap
+  id: Mission
+  mapName: 'NC Mission'
+  mapPath: /Maps/Shuttles/mission.yml
+  minPlayers: 0
+  stations: 
+    Mission:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Mission {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chaplain: [ 0, 0 ]
+            Janitor: [ 0, 0 ]
