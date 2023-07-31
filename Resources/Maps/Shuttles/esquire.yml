@@ -93,7 +93,8 @@ entities:
           -2,0:
             0: 65535
           -2,1:
-            0: 52463
+            0: 50415
+            1: 2048
           -2,2:
             0: 8
           -1,1:
@@ -118,6 +119,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -1542,6 +1558,17 @@ entities:
     - pos: -5.524888,2.5634406
       parent: 1
       type: Transform
+- proto: ClothingNeckCloakCapFormal
+  entities:
+  - uid: 613
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 191
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingNeckLawyerbadge
   entities:
   - uid: 6
@@ -1556,6 +1583,28 @@ entities:
     - pos: 2.4480429,6.262601
       parent: 1
       type: Transform
+- proto: ClothingUniformJumpskirtCaptain
+  entities:
+  - uid: 616
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 191
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: ClothingUniformJumpsuitCaptain
+  entities:
+  - uid: 615
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 191
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingUniformJumpsuitLawyerBlack
   entities:
   - uid: 171
@@ -2817,13 +2866,45 @@ entities:
     - pos: 0.2878991,4.0818477
       parent: 1
       type: Transform
-- proto: LockerCaptainFilled
+- proto: LockerCaptain
   entities:
   - uid: 191
     components:
     - pos: -4.5,6.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 613
+          - 614
+          - 615
+          - 616
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: LockerEvidence
   entities:
   - uid: 332
@@ -2875,6 +2956,17 @@ entities:
     - pos: -0.5,-1.5
       parent: 1
       type: Transform
+- proto: PenCap
+  entities:
+  - uid: 614
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 191
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: PosterContrabandDonutCorp
   entities:
   - uid: 263
@@ -4153,7 +4245,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -17.818058
+    - SecondsUntilStateChange: -111.67654
       state: Opening
       type: Door
 ...
