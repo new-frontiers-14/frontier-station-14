@@ -1183,11 +1183,6 @@ entities:
       type: Transform
 - proto: TableGlass
   entities:
-  - uid: 83
-    components:
-    - pos: -0.5,6.5
-      parent: 2
-      type: Transform
   - uid: 84
     components:
     - pos: -1.5,6.5
@@ -1254,9 +1249,18 @@ entities:
       pos: -2.5,0.5
       parent: 2
       type: Transform
-- proto: VendingMachineBooze
+- proto: VendingMachineChefvend
   entities:
   - uid: 82
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -0.5,6.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineDinnerware
+  entities:
+  - uid: 83
     components:
     - flags: SessionSpecific
       type: MetaData
