@@ -36,3 +36,6 @@ signal-port-description-logic-output-high = This port is invoked whenever the in
 
 signal-port-name-logic-output-low = Low Output
 signal-port-description-logic-output-low = This port is invoked whenever the input has a falling edge.
+
+signal-port-name-space-artillery-fire = Fire
+signal-port-description-space-artillery-fire = Controls Space Artillery's firing mechanism.
