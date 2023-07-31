@@ -210,14 +210,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-    private async Task ReportRound(String message)
+    private async Task ReportRound(String message,  int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordEndRoundWebhook);
-        if (_webhookUrl == string.Empty)
-            return;
+        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
 
-        var payload = new WebhookPayload{ Content = message };
+        var payload = new WebhookPayload
+        {
+            Embeds = new List<Embed>
+            {
+                new()
+                {
+                    Title = Loc.GetString("adventure-list-start"),
+                    Description = message,
+                    Color = color,
+                },
+            },
+        };
+
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
         var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
@@ -228,9 +238,54 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
+// https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
-        [JsonPropertyName("content")]
-        public String Content { get; set; }
+        [JsonPropertyName("username")] public string? Username { get; set; } = null;
+
+        [JsonPropertyName("avatar_url")] public string? AvatarUrl { get; set; } = null;
+
+        [JsonPropertyName("content")] public string Message { get; set; } = "";
+
+        [JsonPropertyName("embeds")] public List<Embed>? Embeds { get; set; } = null;
+
+        [JsonPropertyName("allowed_mentions")]
+        public Dictionary<string, string[]> AllowedMentions { get; set; } =
+            new()
+            {
+                { "parse", Array.Empty<string>() },
+            };
+
+        public WebhookPayload()
+        {
+        }
+    }
+
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
+    private struct Embed
+    {
+        [JsonPropertyName("title")] public string Title { get; set; } = "";
+
+        [JsonPropertyName("description")] public string Description { get; set; } = "";
+
+        [JsonPropertyName("color")] public int Color { get; set; } = 0;
+
+        [JsonPropertyName("footer")] public EmbedFooter? Footer { get; set; } = null;
+
+        public Embed()
+        {
+        }
+    }
+
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
+    private struct EmbedFooter
+    {
+        [JsonPropertyName("text")] public string Text { get; set; } = "";
+
+        [JsonPropertyName("icon_url")] public string? IconUrl { get; set; }
+
+        public EmbedFooter()
+        {
+        }
     }
 }
