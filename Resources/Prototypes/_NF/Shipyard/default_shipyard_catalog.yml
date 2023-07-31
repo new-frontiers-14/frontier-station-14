@@ -275,34 +275,6 @@
             ChiefEngineer: [ 0, 0 ]
             AtmosphericTechnician: [ 0, 0 ]
             ##Cyborg [ 1, 1 ]
-            
-- type: vessel
-  id: Bocadillo
-  name: NT Bocadillo
-  description: A tiny food truck perfect for a solo chef.
-  price: 19000
-  category: Small
-  group: Civilian
-  shuttlePath: /Maps/Shuttles/bocadillo.yml
-
-- type: gameMap
-  id: Bocadillo
-  mapName: 'NT Bocadillo'
-  mapPath: /Maps/Shuttles/bocadillo.yml
-  minPlayers: 0
-  stations:
-    Bocadillo:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: '{0} Bocadillo {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          overflowJobs: []
-          availableJobs:
-            Passenger: [ 0, 0 ]
 
 - type: vessel
   id: Interceptor
