@@ -214,6 +214,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         Logger.InfoS("discord", message);
         String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
+        if (_webhookUrl == string.Empty)
+            return;
 
         var payload = new WebhookPayload
         {
