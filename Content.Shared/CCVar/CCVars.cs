@@ -351,7 +351,7 @@ namespace Content.Shared.CCVar
         ///     Send notifications only about a new round begins.
         /// </summary>
         public static readonly CVarDef<bool> DiscordRoundStartOnly =
-            CVarDef.Create("discord.round_start_only", true, CVar.SERVERONLY);
+            CVarDef.Create("discord.round_start_only", false, CVar.SERVERONLY);
 
         /// <summary>
         /// URL of the Discord webhook which will relay all round end messages.
