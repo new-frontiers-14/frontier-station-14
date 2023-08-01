@@ -345,11 +345,11 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = ((int) price);
 
-            // This block exists to allow the MatketPrice flag to set a price
+            // This block exists to allow the MarketPrice flag to set a price
             var priceMarket = _pricing.GetEstimatedMarketPrice(proto);
             if (priceMarket == null || priceMarket == 0) { }
             else { totalPrice = ((int) priceMarket); }
-            // This block exists to allow the MatketPrice flag to set a price
+            // This block exists to allow the MarketPrice flag to set a price
 
             if (totalPrice > bank.Balance)
             {
