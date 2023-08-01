@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Construction;
 using Content.Server.GameTicking;
 using Content.Server.Radio.EntitySystems;
@@ -9,15 +8,15 @@ using Content.Shared.Radio;
 using Content.Shared._NF.M_Emp;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Robust.Shared.Timing;
 using Content.Server.Emp;
-using Content.Shared.DeviceLinking;
+using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
+using Content.Server.DeviceNetwork.Systems;
 
 // TO ANYONE LOOKING AT THIS CODE, IM SORRY
 // This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with, I hope, but its not cleaned as it sould be.
@@ -40,7 +39,8 @@ namespace Content.Server._NF.M_Emp
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly EmpSystem _emp = default!;
-        [Dependency] private readonly DeviceLinkSystem _linker = default!;
+        [Dependency] private readonly DeviceNetworkSystem _deviceNetSystem = default!;
+        [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
 
         // TODO: This is probably not compatible with multi-station
         private readonly Dictionary<EntityUid, M_EmpGridState> _M_EmpGridStates = new();
@@ -49,7 +49,8 @@ namespace Content.Server._NF.M_Emp
         {
             base.Initialize();
 
-            SubscribeLocalEvent<SharedM_EmpComponent, ComponentInit>(OnInit); // TODO make this function later
+            SubscribeLocalEvent<M_EmpGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
+
             SubscribeLocalEvent<M_EmpGeneratorComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<M_EmpGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<M_EmpGeneratorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
@@ -195,6 +196,46 @@ namespace Content.Server._NF.M_Emp
             }
         }
 
+        private void OnSignalReceived(EntityUid uid, M_EmpGeneratorComponent component, ref SignalReceivedEvent args)
+        {
+           // _signalSystem.EnsureSinkPorts(uid, component.ReceiverPort);
+
+            if (args.Port == component.ReceiverPort)
+            {
+                switch (component.GeneratorState.StateType)
+                {
+                    case GeneratorStateType.Inactive:
+                        var generatorTransform = Transform(uid);
+                        var gridId = generatorTransform.GridUid ?? throw new InvalidOperationException("Generator had no grid associated");
+                        if (!_M_EmpGridStates.TryGetValue(gridId, out var gridState))
+                        {
+                            gridState = new M_EmpGridState();
+                            _M_EmpGridStates[gridId] = gridState;
+                        }
+                        gridState.ActiveGenerators.Add(uid);
+
+                        PlayActivatedSound(uid, component);
+
+                        component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
+                        RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
+
+                        //Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success"); Removed to lower spam
+
+                        break;
+                    case GeneratorStateType.Activating:
+                    case GeneratorStateType.Engaged:
+                        break;
+                    case GeneratorStateType.CoolingDown:
+                    case GeneratorStateType.Recharging:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                UpdateAppearance(uid, component);
+            }
+        }
+
         private void OnInteractHand(EntityUid uid, M_EmpGeneratorComponent component, InteractHandEvent args)
         {
             if (args.Handled)
@@ -202,11 +243,6 @@ namespace Content.Server._NF.M_Emp
             args.Handled = true;
             StartGenerator(uid, component, args.User);
             UpdateAppearance(uid, component);
-        }
-
-        private void OnInit(EntityUid uid, SharedM_EmpComponent component, ComponentInit args)
-        {
-            _linker.EnsureSinkPorts(uid, component.ReceiverPort);
         }
 
         private void StartGenerator(EntityUid uid, M_EmpGeneratorComponent component, EntityUid user)
@@ -287,7 +323,7 @@ namespace Content.Server._NF.M_Emp
                     }
                     break;
                 case GeneratorStateType.Engaged:
-                    Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-cooling-down", ("timeLeft", generator.CoolingDownTime.TotalSeconds));
+                    //Report(uid, generator.M_EmpChannel, "m_emp-system-announcement-cooling-down", ("timeLeft", generator.CoolingDownTime.TotalSeconds)); // Less chat spam
                     generator.GeneratorState = new GeneratorState(GeneratorStateType.CoolingDown, currentTime + generator.CoolingDownTime);
                     break;
                 case GeneratorStateType.CoolingDown:
