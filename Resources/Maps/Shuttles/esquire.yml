@@ -53,7 +53,87 @@ entities:
       type: Gravity
     - chunkCollection:
         version: 2
-        nodes: []
+        nodes:
+        - node:
+            color: '#FFFFFFFF'
+            id: Dirt
+          decals:
+            0: 6.00832,-5.02999
+            1: 6.00832,-5.9862404
+        - node:
+            angle: 3.141592653589793 rad
+            color: '#FFFFFFFF'
+            id: LoadingArea
+          decals:
+            20: 6,-4
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelCornerNe
+          decals:
+            2: 8.995821,-1.9987404
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelCornerNw
+          decals:
+            14: 6,-2
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelCornerSw
+          decals:
+            13: 6,-3
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelEndS
+          decals:
+            9: 8,-6
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelInnerSe
+          decals:
+            8: 8,-5
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelInnerSw
+          decals:
+            17: 8,-3
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelLineE
+          decals:
+            3: 9.008321,-2.9924905
+            4: 9.00207,-3.9737406
+            5: 9,-4
+            6: 9,-5
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelLineN
+          decals:
+            15: 7,-2
+            16: 8,-2
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelLineS
+          decals:
+            7: 9,-5
+            12: 7,-3
+        - node:
+            color: '#FFFFFFFF'
+            id: MiniTileSteelLineW
+          decals:
+            10: 8,-5
+            11: 8,-4
+        - node:
+            angle: 0.4537856055185257 rad
+            color: '#FFFFFF4D'
+            id: Remains
+          decals:
+            18: 5.8291545,-4.8137007
+        - node:
+            cleanable: True
+            color: '#FF00FF4C'
+            id: clown
+          decals:
+            19: 0.4885736,2.7782607
       type: DecalGrid
     - version: 2
       data:
@@ -2832,6 +2912,13 @@ entities:
       pos: 7.5,-5.5
       parent: 1
       type: Transform
+- proto: Gyroscope
+  entities:
+  - uid: 620
+    components:
+    - pos: -7.5,-4.5
+      parent: 1
+      type: Transform
 - proto: Handcuffs
   entities:
   - uid: 299
@@ -3215,6 +3302,11 @@ entities:
       type: Transform
 - proto: RandomPainting
   entities:
+  - uid: 235
+    components:
+    - pos: 4.5,-1.5
+      parent: 1
+      type: Transform
   - uid: 285
     components:
     - pos: 2.5,-1.5
@@ -3228,9 +3320,9 @@ entities:
       pos: 5.5,3.5
       parent: 1
       type: Transform
-  - uid: 235
+  - uid: 621
     components:
-    - pos: 5.5,0.5
+    - pos: 6.5,1.5
       parent: 1
       type: Transform
 - proto: RandomVendingDrinks
@@ -3440,11 +3532,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 8.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 282
-    components:
-    - pos: 4.5,-0.5
       parent: 1
       type: Transform
 - proto: TableGlass
@@ -4266,7 +4353,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -278.2033
+    - SecondsUntilStateChange: -1461.8231
       state: Opening
       type: Door
 ...
