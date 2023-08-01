@@ -159,3 +159,48 @@
           - 0           # CO2
           - 6.154137219 # plasma
         temperature: 293.15
+
+- type: entity
+  id: EmergencyNitrogenTankFilled
+  parent: EmergencyNitrogenTank
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 21.3
+      air:
+        # ? minutes
+        volume: 2
+        moles::
+          - 0           # oxygen
+          - 0.820551629 #nitrogen
+        temperature: 293.15
+        
+- type: entity
+  id: ExtendedEmergencyNitrogenTankFilled
+  parent: ExtendedEmergencyNitrogenTank
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 21.3
+      air:
+        # ? minutes
+        volume: 6
+        moles:
+          - 0           # oxygen
+          - 2.461654887 #nitrogen
+        temperature: 293.15
+        
+- type: entity
+  id: DoubleEmergencyNitrogenFilled
+  parent: DoubleEmergencyNitrogenTank
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 21.3
+      air:
+        # 63 minutes
+        volume: 10
+        moles:
+          - 0           # oxygen
+          - 4.102758145 #nitrogen
+        temperature: 293.15
