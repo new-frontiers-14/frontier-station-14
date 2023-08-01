@@ -58,6 +58,12 @@
     channels:
     - Security
   - type: M_EmpGenerator
+  - type: ActivatableUI
+    key: enum.M_EmpUiKey.M_Emp
+  - type: UserInterface
+    interfaces:
+    - key: enum.M_EmpUiKey.M_Emp
+      type: M_EmpBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine

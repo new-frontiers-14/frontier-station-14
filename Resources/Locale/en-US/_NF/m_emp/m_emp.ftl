@@ -2,6 +2,7 @@ m_emp-system-announcement-source = M_EMP Generator System
 m_emp-system-announcement-active = Engaging on {$grid}. EMP: {$timeLeft} seconds.
 m_emp-system-announcement-cooling-down = EMP effect is no longer active. Estimated Recharging: {$timeLeft} seconds.
 m_emp-system-announcement-recharging = Recharging.
+m_emp-system-announcement-request = {$grid} requesting approval to activate M_EMP.
 
 m_emp-system-report-already-active = The M_EMP Generator is already active.
 m_emp-system-report-cooling-down = The M_EMP Generator is cooling down.
@@ -17,3 +18,9 @@ m_emp-system-generator-examined-cooling-down = Cooling down.
 m_emp-system-generator-examined-recharging = Recharging. Ready in: {$timeLeft} seconds.
 m_emp-system-generator-delay-upgrade = Cooling down / Recharging speed
 
+# M_EMP Console
+m_emp-console-menu-title = M_EMP
+m_emp-menu-grid-name = M_EMP
+m_emp-menu-note = Dont do it
+m_emp-request-button = Request Approval
+m_emp-activate-button = Activate
