@@ -145,8 +145,7 @@ entities:
           -1,0:
             0: 65535
           -1,-1:
-            0: 61439
-            1: 4096
+            0: 65535
           0,1:
             0: 65535
           0,2:
@@ -174,8 +173,7 @@ entities:
           -2,0:
             0: 65535
           -2,1:
-            0: 50415
-            1: 2048
+            0: 52463
           -2,2:
             0: 8
           -1,1:
@@ -200,21 +198,6 @@ entities:
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -315,12 +298,12 @@ entities:
       type: Transform
 - proto: AirlockGlassShuttle
   entities:
-  - uid: 65
+  - uid: 39
     components:
     - pos: 1.5,-7.5
       parent: 1
       type: Transform
-  - uid: 167
+  - uid: 65
     components:
     - pos: -0.5,-7.5
       parent: 1
@@ -499,6 +482,53 @@ entities:
   - uid: 13
     components:
     - pos: 1.5,5.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 132
+    components:
+    - pos: 5.5,-6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 133
+    components:
+    - pos: 4.5,-6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 150
+    components:
+    - pos: 0.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 216
+    components:
+    - pos: 2.5,-6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 281
+    components:
+    - pos: -1.5,-6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 282
+    components:
+    - pos: -4.5,-6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 320
+    components:
+    - pos: 3.5,-6.5
       parent: 1
       type: Transform
     - enabled: True
@@ -955,16 +985,9 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-  - uid: 601
-    components:
-    - pos: -4.5,-6.5
-      parent: 1
-      type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 602
     components:
-    - pos: -3.5,-6.5
+    - pos: -2.5,-6.5
       parent: 1
       type: Transform
     - enabled: True
@@ -984,20 +1007,6 @@ entities:
     - enabled: True
       type: AmbientSound
   - uid: 605
-    components:
-    - pos: -4.5,-5.5
-      parent: 1
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 606
-    components:
-    - pos: -4.5,-6.5
-      parent: 1
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 607
     components:
     - pos: -3.5,-6.5
       parent: 1
@@ -1032,6 +1041,36 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
+  - uid: 622
+    components:
+    - pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+  - uid: 623
+    components:
+    - pos: 0.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 624
+    components:
+    - pos: -0.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 625
+    components:
+    - pos: 1.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 626
+    components:
+    - pos: -6.5,-5.5
+      parent: 1
+      type: Transform
+  - uid: 628
+    components:
+    - pos: -5.5,-5.5
+      parent: 1
+      type: Transform
 - proto: CableHV
   entities:
   - uid: 124
@@ -1419,9 +1458,15 @@ entities:
       type: AmbientSound
 - proto: CableTerminal
   entities:
-  - uid: 175
+  - uid: 138
     components:
-    - pos: -8.5,-3.5
+    - rot: -1.5707963267948966 rad
+      pos: -7.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 627
+    components:
+    - pos: 1.5,-1.5
       parent: 1
       type: Transform
 - proto: CarpetGreen
@@ -1824,7 +1869,7 @@ entities:
     - pos: 1.5,6.5
       parent: 1
       type: Transform
-  - uid: 282
+  - uid: 215
     components:
     - pos: 1.5,1.5
       parent: 1
@@ -3133,7 +3178,7 @@ entities:
       type: Transform
 - proto: PottedPlantRandom
   entities:
-  - uid: 271
+  - uid: 175
     components:
     - pos: 1.5,-1.5
       parent: 1
@@ -3353,7 +3398,7 @@ entities:
       type: Transform
 - proto: RandomVending
   entities:
-  - uid: 216
+  - uid: 167
     components:
     - pos: 8.5,0.5
       parent: 1
@@ -3472,7 +3517,7 @@ entities:
       type: Transform
 - proto: SpawnPointLawyer
   entities:
-  - uid: 291
+  - uid: 607
     components:
     - pos: 1.5,4.5
       parent: 1
@@ -3675,7 +3720,7 @@ entities:
       type: Transform
 - proto: VendingMachineCigs
   entities:
-  - uid: 281
+  - uid: 185
     components:
     - flags: SessionSpecific
       type: MetaData
@@ -3824,24 +3869,16 @@ entities:
     - pos: -7.5,-6.5
       parent: 1
       type: Transform
-  - uid: 127
-    components:
-    - pos: -6.5,-6.5
-      parent: 1
-      type: Transform
   - uid: 136
     components:
-    - pos: -3.5,-6.5
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,-6.5
       parent: 1
       type: Transform
   - uid: 137
     components:
-    - pos: -2.5,-6.5
-      parent: 1
-      type: Transform
-  - uid: 138
-    components:
-    - pos: -1.5,-6.5
+    - rot: -1.5707963267948966 rad
+      pos: -1.5,-6.5
       parent: 1
       type: Transform
   - uid: 139
@@ -3877,16 +3914,6 @@ entities:
   - uid: 149
     components:
     - pos: 5.5,-6.5
-      parent: 1
-      type: Transform
-  - uid: 150
-    components:
-    - pos: -4.5,-6.5
-      parent: 1
-      type: Transform
-  - uid: 151
-    components:
-    - pos: -5.5,-6.5
       parent: 1
       type: Transform
   - uid: 152
@@ -4007,6 +4034,30 @@ entities:
   - uid: 217
     components:
     - pos: 0.5,-7.5
+      parent: 1
+      type: Transform
+  - uid: 271
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 291
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -3.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 630
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -6.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 631
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-6.5
       parent: 1
       type: Transform
 - proto: WallShuttleDiagonal
@@ -4164,11 +4215,6 @@ entities:
     - pos: 2.5,-0.5
       parent: 1
       type: Transform
-  - uid: 39
-    components:
-    - pos: -4.5,-4.5
-      parent: 1
-      type: Transform
   - uid: 40
     components:
     - pos: -1.5,-0.5
@@ -4210,14 +4256,10 @@ entities:
       pos: 8.5,-0.5
       parent: 1
       type: Transform
-  - uid: 132
+  - uid: 127
     components:
-    - pos: -3.5,-5.5
-      parent: 1
-      type: Transform
-  - uid: 133
-    components:
-    - pos: -2.5,-5.5
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-5.5
       parent: 1
       type: Transform
   - uid: 134
@@ -4227,7 +4269,8 @@ entities:
       type: Transform
   - uid: 135
     components:
-    - pos: -1.5,-5.5
+    - rot: -1.5707963267948966 rad
+      pos: -3.5,-5.5
       parent: 1
       type: Transform
   - uid: 144
@@ -4263,11 +4306,6 @@ entities:
   - uid: 170
     components:
     - pos: -2.5,4.5
-      parent: 1
-      type: Transform
-  - uid: 185
-    components:
-    - pos: -4.5,-5.5
       parent: 1
       type: Transform
   - uid: 186
@@ -4354,6 +4392,24 @@ entities:
       pos: 5.5,4.5
       parent: 1
       type: Transform
+  - uid: 601
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 606
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -1.5,-5.5
+      parent: 1
+      type: Transform
+  - uid: 629
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,-5.5
+      parent: 1
+      type: Transform
 - proto: WarpPoint
   entities:
   - uid: 438
@@ -4366,7 +4422,7 @@ entities:
       type: Transform
 - proto: WaterCooler
   entities:
-  - uid: 215
+  - uid: 151
     components:
     - pos: 2.5,-4.5
       parent: 1
@@ -4378,7 +4434,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -1699.0481
+    - SecondsUntilStateChange: -2077.4045
       state: Opening
       type: Door
 ...
