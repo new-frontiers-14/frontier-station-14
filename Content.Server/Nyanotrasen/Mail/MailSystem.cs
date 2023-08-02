@@ -21,9 +21,12 @@ using Content.Server.Mind.Components;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Emag.Components;
 using Content.Shared.Destructible;
@@ -60,6 +63,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -214,7 +218,7 @@ namespace Content.Server.Mail
                 return;
             }
 
-            args.PushMarkup(Loc.GetString("mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob)));
+            args.PushMarkup(Loc.GetString("mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation)));
 
             if (component.IsFragile)
                 args.PushMarkup(Loc.GetString("mail-desc-fragile"));
@@ -444,7 +448,7 @@ namespace Content.Server.Mail
 
             mailComp.RecipientJob = recipient.Job;
             mailComp.Recipient = recipient.Name;
-
+            mailComp.RecipientStation = recipient.Ship;
             if (mailComp.IsFragile)
             {
                 mailComp.Bounty += component.FragileBonus;
@@ -536,6 +540,20 @@ namespace Content.Server.Mail
                 HashSet<String> accessTags = access.Tags;
 
                 var mayReceivePriorityMail = true;
+                var stationUid = _stationSystem.GetOwningStation(receiver.Owner);
+                var stationName = string.Empty;
+                if (stationUid is EntityUid station
+                    && TryComp<StationDataComponent>(station, out var stationData)
+                    && _stationSystem.GetLargestGrid(stationData) is EntityUid stationGrid
+                    && TryName(stationGrid, out var gridName)
+                    && gridName != null)
+                {
+                    stationName = gridName;
+                }
+                else
+                {
+                    stationName = "Unknown";
+                }
 
                 if (TryComp<MindContainerComponent>(receiver.Owner, out MindContainerComponent? mind)
                     && mind.Mind?.Session == null)
@@ -546,7 +564,8 @@ namespace Content.Server.Mail
                 recipient = new MailRecipient(idCard.FullName,
                     idCard.JobTitle,
                     accessTags,
-                    mayReceivePriorityMail);
+                    mayReceivePriorityMail,
+                    stationName);
 
                 return true;
             }
@@ -561,12 +580,16 @@ namespace Content.Server.Mail
         public List<MailRecipient> GetMailRecipientCandidates(EntityUid uid)
         {
             List<MailRecipient> candidateList = new();
-
+            var mailLocation = Transform(uid);
             foreach (var receiver in EntityQuery<MailReceiverComponent>())
             {
                 // mail is mapwide now, dont need to check if they are on the same station
                 //if (_stationSystem.GetOwningStation(receiver.Owner) != _stationSystem.GetOwningStation(uid))
                 //    continue;
+                var location = Transform(receiver.Owner);
+
+                if (location.MapID != mailLocation.MapID)
+                    continue;
 
                 if (TryGetMailRecipientForReceiver(receiver, out MailRecipient? recipient))
                     candidateList.Add(recipient.Value);
@@ -700,13 +723,15 @@ namespace Content.Server.Mail
         public string Job;
         public HashSet<String> AccessTags;
         public bool MayReceivePriorityMail;
+        public string Ship;
 
-        public MailRecipient(string name, string job, HashSet<String> accessTags, bool mayReceivePriorityMail)
+        public MailRecipient(string name, string job, HashSet<String> accessTags, bool mayReceivePriorityMail, string ship)
         {
             Name = name;
             Job = job;
             AccessTags = accessTags;
             MayReceivePriorityMail = mayReceivePriorityMail;
+            Ship = ship;
         }
     }
 }
