@@ -20,7 +20,11 @@ m_emp-system-generator-delay-upgrade = Cooling down / Recharging speed
 
 # M_EMP Console
 m_emp-console-menu-title = M_EMP
-m_emp-menu-grid-name = M_EMP
-m_emp-menu-note = Dont do it
+m_emp-menu-note0 = Send a request to discharge.
+m_emp-menu-note1 = ATTENTION: Firing this weapon will produce
+m_emp-menu-note2 = an electro-magnetic pulse capable of disabling
+m_emp-menu-note3 = all ships within a large radius.
+m_emp-menu-note4 = By discharging this weapon,
+m_emp-menu-note5 = you agree to be held accountable.
 m_emp-request-button = Request Approval
-m_emp-activate-button = Activate
+m_emp-activate-button = Activate M_EMP

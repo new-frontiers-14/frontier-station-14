@@ -17,6 +17,8 @@ using Content.Server.Emp;
 using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork.Systems;
+using Content.Server.Ame.Components;
+using Robust.Shared.Audio;
 
 // TO ANYONE LOOKING AT THIS CODE, IM SORRY
 // This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with, I hope, but its not cleaned as it sould be.
@@ -51,7 +53,9 @@ namespace Content.Server._NF.M_Emp
 
             SubscribeLocalEvent<M_EmpGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
 
-            SubscribeLocalEvent<M_EmpGeneratorComponent, InteractHandEvent>(OnInteractHand);
+            SubscribeLocalEvent<M_EmpGeneratorComponent, UiButtonPressedMessage >(OnUiButtonPressed);
+
+//            SubscribeLocalEvent<M_EmpGeneratorComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<M_EmpGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<M_EmpGeneratorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
             SubscribeLocalEvent<M_EmpGeneratorComponent, ExaminedEvent>(OnExamined);
@@ -202,55 +206,36 @@ namespace Content.Server._NF.M_Emp
 
             if (args.Port == component.ReceiverPort)
             {
-                switch (component.GeneratorState.StateType)
-                {
-                    case GeneratorStateType.Inactive:
-                        var generatorTransform = Transform(uid);
-                        var gridId = generatorTransform.GridUid ?? throw new InvalidOperationException("Generator had no grid associated");
-                        if (!_M_EmpGridStates.TryGetValue(gridId, out var gridState))
-                        {
-                            gridState = new M_EmpGridState();
-                            _M_EmpGridStates[gridId] = gridState;
-                        }
-                        gridState.ActiveGenerators.Add(uid);
-
-                        PlayActivatedSound(uid, component);
-
-                        component.GeneratorState = new GeneratorState(GeneratorStateType.Activating, gridState.CurrentTime + component.ActivatingTime);
-                        RaiseLocalEvent(new M_EmpGeneratorActivatedEvent(uid));
-
-                        //Report(uid, component.M_EmpChannel, "m_emp-system-report-activate-success"); Removed to lower spam
-
-                        break;
-                    case GeneratorStateType.Activating:
-                    case GeneratorStateType.Engaged:
-                        break;
-                    case GeneratorStateType.CoolingDown:
-                    case GeneratorStateType.Recharging:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
+                StartGenerator(uid, component);
                 UpdateAppearance(uid, component);
             }
         }
 
-        private void OnInteractHand(EntityUid uid, M_EmpGeneratorComponent component, InteractHandEvent args)
+        private void OnUiButtonPressed(EntityUid uid, M_EmpGeneratorComponent component, UiButtonPressedMessage msg)
         {
-            if (args.Handled)
+            var station = _station.GetOwningStation(uid);
+            var stationName = station is null ? null : Name(station.Value);
+            var user = msg.Session.AttachedEntity;
+            if (!Exists(user))
                 return;
-            args.Handled = true;
-            StartGenerator(uid, component, args.User);
-            UpdateAppearance(uid, component);
+
+            switch (msg.Button)
+            {
+                case UiButton.Request:
+                    Report(uid, component.M_EmpChannel, "m_emp-system-announcement-request", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName!));
+                    break;
+                case UiButton.Activate:
+                    StartGenerator(uid, component);
+                    UpdateAppearance(uid, component);
+                    break;
+            }
         }
 
-        private void StartGenerator(EntityUid uid, M_EmpGeneratorComponent component, EntityUid user)
+        private void StartGenerator(EntityUid uid, M_EmpGeneratorComponent component)
         {
             switch (component.GeneratorState.StateType)
             {
                 case GeneratorStateType.Inactive:
-                    ShowPopup(uid, "m_emp-system-report-activate-success", user);
                     var generatorTransform = Transform(uid);
                     var gridId = generatorTransform.GridUid ?? throw new InvalidOperationException("Generator had no grid associated");
                     if (!_M_EmpGridStates.TryGetValue(gridId, out var gridState))
@@ -270,20 +255,29 @@ namespace Content.Server._NF.M_Emp
                     break;
                 case GeneratorStateType.Activating:
                 case GeneratorStateType.Engaged:
-                    ShowPopup(uid, "m_emp-system-report-already-active", user);
                     break;
                 case GeneratorStateType.CoolingDown:
                 case GeneratorStateType.Recharging:
-                    ShowPopup(uid, "m_emp-system-report-recharging", user);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-        private void ShowPopup(EntityUid uid, string messageKey, EntityUid user)
-        {
-            _popupSystem.PopupEntity(Loc.GetString(messageKey), uid, user);
-        }
+
+        //        private void OnInteractHand(EntityUid uid, M_EmpGeneratorComponent component, InteractHandEvent args)
+        //        {
+        //            if (args.Handled)
+        //                return;
+        //            args.Handled = true;
+        //            StartGenerator(uid, component, args.User);
+        //            UpdateAppearance(uid, component);
+        //        }
+
+
+        //private void ShowPopup(EntityUid uid, string messageKey, EntityUid user)
+        //{
+        //    _popupSystem.PopupEntity(Loc.GetString(messageKey), uid, user);
+        //}
 
         private bool SpawnM_Emp(EntityUid uid, M_EmpGeneratorComponent component)
         {
