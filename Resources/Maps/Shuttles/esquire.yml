@@ -252,7 +252,7 @@ entities:
       pos: 6.5,-3.5
       parent: 1
       type: Transform
-- proto: AirlockCaptainLocked
+- proto: AirlockCommand
   entities:
   - uid: 46
     components:
@@ -260,8 +260,6 @@ entities:
       pos: -1.5,6.5
       parent: 1
       type: Transform
-- proto: AirlockCommand
-  entities:
   - uid: 97
     components:
     - pos: 0.5,5.5
@@ -303,16 +301,29 @@ entities:
     - pos: 1.5,-7.5
       parent: 1
       type: Transform
+  - uid: 55
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 10.5,-4.5
+      parent: 1
+      type: Transform
   - uid: 65
     components:
     - pos: -0.5,-7.5
       parent: 1
       type: Transform
-- proto: AirlockMaintCaptainLocked
+  - uid: 301
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 10.5,-2.5
+      parent: 1
+      type: Transform
+- proto: AirlockMaint
   entities:
   - uid: 2
     components:
-    - pos: -4.5,4.5
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,4.5
       parent: 1
       type: Transform
 - proto: AirlockSecurity
@@ -321,20 +332,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 5.5,-2.5
-      parent: 1
-      type: Transform
-- proto: AirlockShuttleAssembly
-  entities:
-  - uid: 55
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 10.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 245
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 10.5,-4.5
       parent: 1
       type: Transform
 - proto: APCBasic
@@ -367,14 +364,14 @@ entities:
     - pos: 1.5,-7.5
       parent: 1
       type: Transform
+  - uid: 245
+    components:
+    - pos: 10.5,-4.5
+      parent: 1
+      type: Transform
   - uid: 297
     components:
     - pos: 10.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 301
-    components:
-    - pos: 10.5,-4.5
       parent: 1
       type: Transform
 - proto: Bed
@@ -1071,6 +1068,14 @@ entities:
     - pos: -5.5,-5.5
       parent: 1
       type: Transform
+- proto: CableApcStack10
+  entities:
+  - uid: 568
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -5.516655,3.5164235
+      parent: 1
+      type: Transform
 - proto: CableHV
   entities:
   - uid: 124
@@ -1462,11 +1467,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -7.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 627
-    components:
-    - pos: 1.5,-1.5
       parent: 1
       type: Transform
 - proto: CarpetGreen
@@ -2992,6 +2992,17 @@ entities:
     - pos: 9.615258,-1.5100076
       parent: 1
       type: Transform
+- proto: HandLabeler
+  entities:
+  - uid: 627
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 191
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: HyperlinkBookSpaceLaw
   entities:
   - uid: 121
@@ -3031,8 +3042,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -3049,10 +3060,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 616
-          - 615
-          - 614
           - 613
+          - 614
+          - 615
+          - 616
+          - 627
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -3107,6 +3119,13 @@ entities:
   - uid: 42
     components:
     - pos: -0.5,-1.5
+      parent: 1
+      type: Transform
+- proto: Pen
+  entities:
+  - uid: 633
+    components:
+    - pos: 2.660637,6.433258
       parent: 1
       type: Transform
 - proto: PenCap
@@ -3312,13 +3331,6 @@ entities:
       type: Transform
     - enabled: False
       type: AmbientSound
-  - uid: 568
-    components:
-    - pos: 3.5,-2.5
-      parent: 1
-      type: Transform
-    - enabled: False
-      type: AmbientSound
   - uid: 569
     components:
     - pos: 1.5,-6.5
@@ -3415,6 +3427,14 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 7.5,-5.5
+      parent: 1
+      type: Transform
+- proto: SheetSteel
+  entities:
+  - uid: 632
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -8.503753,-3.4806101
       parent: 1
       type: Transform
 - proto: ShuttleWindow
@@ -4420,6 +4440,8 @@ entities:
       pos: 0.5,1.5
       parent: 1
       type: Transform
+    - location: Esquire
+      type: WarpPoint
 - proto: WaterCooler
   entities:
   - uid: 151
@@ -4434,7 +4456,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -2077.4045
+    - SecondsUntilStateChange: -2796.1968
       state: Opening
       type: Door
 ...
