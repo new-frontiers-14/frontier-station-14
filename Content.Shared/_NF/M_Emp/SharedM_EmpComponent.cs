@@ -1,11 +1,40 @@
-using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.MachineLinking;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.M_Emp;
 
-[NetworkedComponent, RegisterComponent]
+[NetworkedComponent, RegisterComponent, Virtual]
 public sealed class SharedM_EmpComponent : Component
 {
+}
+
+[Serializable, NetSerializable]
+public sealed class M_EmpBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public M_EmpBoundUserInterfaceState()
+    {
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class UiButtonPressedMessage : BoundUserInterfaceMessage
+{
+    public readonly UiButton Button;
+
+    public UiButtonPressedMessage(UiButton button)
+    {
+        Button = button;
+    }
+}
+
+[Serializable, NetSerializable]
+public enum M_EmpUiKey
+{
+    Key
+}
+
+public enum UiButton
+{
+    Request,
+    Activate,
 }

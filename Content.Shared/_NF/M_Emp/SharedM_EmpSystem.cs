@@ -3,12 +3,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.M_Emp;
 
-[NetSerializable, Serializable]
-public enum M_EmpUiKey : byte
-{
-    M_Emp
-}
-
 public abstract class SharedM_EmpSystem : EntitySystem
 {
     [Dependency] private readonly ILocalizationManager _loc = default!;
