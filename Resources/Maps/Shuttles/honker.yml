@@ -80,7 +80,8 @@ entities:
           -1,1:
             0: 32904
           0,3:
-            0: 255
+            0: 253
+            1: 2
           1,3:
             0: 119
           -1,3:
@@ -348,17 +349,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 134
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: BikeHornInstrument
-  entities:
-  - uid: 94
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 92
       type: Transform
     - canCollide: False
       type: Physics
@@ -659,15 +649,6 @@ entities:
       type: AmbientSound
 - proto: ClothingBackpackDuffelClown
   entities:
-  - uid: 100
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 92
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 112
     components:
     - flags: InContainer
@@ -700,6 +681,15 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 134
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 261
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 92
       type: Transform
     - canCollide: False
       type: Physics
@@ -789,7 +779,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingMaskSexyClown
   entities:
-  - uid: 97
+  - uid: 94
     components:
     - flags: InContainer
       type: MetaData
@@ -800,7 +790,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingNeckClownmedal
   entities:
-  - uid: 98
+  - uid: 100
     components:
     - flags: InContainer
       type: MetaData
@@ -811,7 +801,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingOuterClownPriest
   entities:
-  - uid: 206
+  - uid: 101
     components:
     - flags: InContainer
       type: MetaData
@@ -822,7 +812,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitClown
   entities:
-  - uid: 96
+  - uid: 95
     components:
     - flags: InContainer
       type: MetaData
@@ -831,7 +821,7 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 101
+  - uid: 97
     components:
     - flags: InContainer
       type: MetaData
@@ -842,7 +832,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingShoesClown
   entities:
-  - uid: 102
+  - uid: 98
     components:
     - flags: InContainer
       type: MetaData
@@ -963,7 +953,7 @@ entities:
     - type: InsideEntityStorage
 - proto: ClothingUniformJumpsuitClown
   entities:
-  - uid: 95
+  - uid: 102
     components:
     - flags: InContainer
       type: MetaData
@@ -1040,6 +1030,28 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 134
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: ClownPDA
+  entities:
+  - uid: 99
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 92
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: ClownRecorder
+  entities:
+  - uid: 206
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 92
       type: Transform
     - canCollide: False
       type: Physics
@@ -1433,10 +1445,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 293.15
+        temperature: 293.1496
         moles:
-        - 48000
-        - 48000
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -1453,17 +1465,18 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 102
-          - 101
-          - 100
-          - 99
-          - 98
-          - 97
-          - 96
-          - 95
-          - 94
-          - 206
           - 93
+          - 94
+          - 95
+          - 96
+          - 97
+          - 98
+          - 99
+          - 100
+          - 101
+          - 102
+          - 206
+          - 261
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1600,7 +1613,7 @@ entities:
     - type: InsideEntityStorage
 - proto: RubberStampClown
   entities:
-  - uid: 99
+  - uid: 96
     components:
     - flags: InContainer
       type: MetaData
