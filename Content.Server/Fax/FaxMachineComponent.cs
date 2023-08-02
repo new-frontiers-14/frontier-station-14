@@ -16,6 +16,13 @@ public sealed class FaxMachineComponent : Component
     public string FaxName { get; set; } = "Unknown";
 
     /// <summary>
+    /// If true, will sync fax name with a station name.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("useStationName")]
+    public bool UseStationName { get; set; }
+
+    /// <summary>
     /// Device address of fax in network to which data will be send
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
