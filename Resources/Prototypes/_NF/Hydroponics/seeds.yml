@@ -1,0 +1,61 @@
+- type: seed
+  id: moneytree
+  name: money tree
+  noun: seeds-noun-seeds
+  displayName: money
+  plantRsi: _NF/Objects/Specific/Hydroponics/moneytree.rsi
+  packetPrototype: MoneytreeSeeds
+  productPrototypes:
+    - SpaceCash
+  harvestRepeat: Repeat
+  lifespan: 45
+  maturation: 15
+  production: 8
+  yield: 3
+  potency: 10
+  growthStages: 2
+  idealLight: 6
+
+# - type: seed
+#   id: moneytree1000
+#   name: money tree
+#   noun: seeds-noun-seeds
+#   displayName: money
+#   plantRsi: _NF/Objects/Specific/Hydroponics/moneytree.rsi
+#   packetPrototype: MoneytreeSeeds1000
+#   productPrototypes:
+#     - SpaceCash1000
+#   harvestRepeat: Repeat
+#   lifespan: 45
+#   maturation: 15
+#   production: 8
+#   yield: 3
+#   potency: 10
+#   growthStages: 2
+#   idealLight: 6
+
+- type: seed
+  id: pear
+  name: pear
+  noun: seeds-noun-seeds
+  displayName: pear tree
+  plantRsi: _NF/Objects/Specific/Hydroponics/pear.rsi
+  packetPrototype: PearSeeds
+  productPrototypes:
+    - FoodPear
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 6
+  chemicals:
+    Nutriment:
+      Min: 2
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 25
