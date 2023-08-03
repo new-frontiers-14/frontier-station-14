@@ -262,3 +262,34 @@
     color: "#ad2c2b"
   - type: MarketModifier
     mod: 50
+    
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineBountyVend
+  name: BountyVend
+  description: Essential gear for the space-men on the go
+  components:
+  - type: Anchorable
+    delay: 999999
+  - type: VendingMachine
+    pack: BountyVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: AstroVendAds
+  - type: Sprite
+    sprite: _NF/Structures/bountyvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
