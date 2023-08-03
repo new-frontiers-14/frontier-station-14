@@ -16,6 +16,10 @@ namespace Content.Server.Mail.Components
         [DataField("recipientJob")]
         public string RecipientJob = "None";
 
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("recipientStation")]
+        public string RecipientStation = "None";
+
         // Why do we not use LockComponent?
         // Because this can't be locked again,
         // and we have special conditions for unlocking,
