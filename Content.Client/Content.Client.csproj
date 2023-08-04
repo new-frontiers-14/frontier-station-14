@@ -37,12 +37,4 @@
 
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
-  <ItemGroup>
-    <EmbeddedResource Remove="_nf\m_emp\M_EmpMenu.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Update="_NF\M_Emp\M_EmpMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </AdditionalFiles>
-  </ItemGroup>
 </Project>
