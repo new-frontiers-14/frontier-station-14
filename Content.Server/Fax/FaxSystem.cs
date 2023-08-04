@@ -223,6 +223,10 @@ public sealed class FaxSystem : EntitySystem
             component.FaxName = newName;
             _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-set"), uid);
             UpdateUserInterface(uid, component);
+
+            // if we changed our fax name manually
+            // it will loose sync with station name
+            component.UseStationName = false;
         });
 
         args.Handled = true;

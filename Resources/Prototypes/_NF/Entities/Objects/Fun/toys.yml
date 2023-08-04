@@ -1,0 +1,25 @@
+## Plushies
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieJester #Weh!
+  name: jester plushie
+  description: A dubious little creature getting up to mischief.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_jester
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+#  - type: MarketPrice # TODO fix price
+#    price: 1000 # TODO fix price
