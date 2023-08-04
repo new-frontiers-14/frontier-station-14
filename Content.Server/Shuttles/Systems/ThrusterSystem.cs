@@ -1,4 +1,4 @@
-using System.Linq;
+using Content.Server.Emp;
 using System.Numerics;
 using Content.Server.Audio;
 using Content.Server.Construction;
@@ -21,6 +21,9 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Access.Components;
+using Content.Shared.APC;
+using Content.Shared.Popups;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -59,6 +62,8 @@ public sealed class ThrusterSystem : EntitySystem
         SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+
+        SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -133,6 +138,7 @@ public sealed class ThrusterSystem : EntitySystem
     {
         component.Enabled ^= true;
     }
+
 
     /// <summary>
     /// If the thruster rotates change the direction where the linear thrust is applied
@@ -231,6 +237,33 @@ public sealed class ThrusterSystem : EntitySystem
         {
             DisableThruster(uid, component);
         }
+    }
+
+    //private void OnToggleThruster(EntityUid uid, ThrusterComponent component, ApcToggleMainBreakerMessage args)
+    private void OnToggleThruster(EntityUid uid, ThrusterComponent component)
+    {
+        var attemptEv = new ThrusterToggleAttemptEvent();
+        RaiseLocalEvent(uid, ref attemptEv);
+        if (attemptEv.Cancelled)
+        {
+            //_popup.PopupCursor(Loc.GetString("apc-component-on-toggle-cancel"),
+            //    args.Session, PopupType.Medium);
+            return;
+        }
+
+        //TryComp<AccessReaderComponent>(uid, out var access);
+        //if (args.Session.AttachedEntity == null)
+        //    return;
+
+        //if (access == null || _accessReader.IsAllowed(args.Session.AttachedEntity.Value, access))
+        //{
+        //    ApcToggleBreaker(uid, component);
+        //}
+        //else
+        //{
+        //    _popup.PopupCursor(Loc.GetString("apc-component-insufficient-access"),
+        //        args.Session, PopupType.Medium);
+        //}
     }
 
     /// <summary>
@@ -568,4 +601,26 @@ public sealed class ThrusterSystem : EntitySystem
     {
         return (int) Math.Log2((int) flag);
     }
+
+    private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
+    {
+        if (component.ThrusterIgnoreEmp)
+        {
+            args.Affected = false;
+            args.Disabled = false;
+        }
+        else
+        {
+            if (component.Enabled)
+            {
+                args.Affected = true;
+                args.Disabled = true;
+                //OnToggleThruster(uid, component, args);
+                OnToggleThruster(uid, component);
+            }
+        }
+    }
+
+    [ByRefEvent]
+    public record struct ThrusterToggleAttemptEvent(bool Cancelled);
 }

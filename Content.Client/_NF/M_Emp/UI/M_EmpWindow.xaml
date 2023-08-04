@@ -1,28 +1,33 @@
 <DefaultWindow
 	xmlns="https://spacestation14.io"
             Title="{Loc 'm_emp-console-menu-title'}"
-            MinSize="250 250">
-	<BoxContainer Orientation="Vertical">
-		<BoxContainer Orientation="Horizontal">
+			SetSize="300 250"
+			MinSize="250 250"
+			HorizontalExpand="False"
+			>
+	<BoxContainer Orientation="Vertical" HorizontalExpand="False">
+		<BoxContainer HorizontalExpand="False">
 			<Label Text="{Loc 'm_emp-menu-note1'}" />
 		</BoxContainer>
-		<BoxContainer Orientation="Horizontal">
+		<BoxContainer HorizontalExpand="False">
 			<Button Name="RequestButton"
                     Text="{Loc 'm_emp-request-button'}"
                     StyleClasses="OpenBoth"
                     Disabled="False" />
 		</BoxContainer>
-		<BoxContainer Orientation="Horizontal">
+		<BoxContainer HorizontalExpand="False">
 			<Label Text=" " />
 		</BoxContainer>
-		<BoxContainer Orientation="Horizontal">
+		<BoxContainer HorizontalExpand="False">
 			<Label Text="{Loc 'm_emp-menu-note2'}" />
 		</BoxContainer>
-		<BoxContainer Orientation="Horizontal">
+		<BoxContainer HorizontalExpand="False">
 			<Label Text="{Loc 'm_emp-menu-note3'}" />
 		</BoxContainer>
-		<!-- Pain -->
-		<BoxContainer Orientation="Horizontal">
+		<BoxContainer HorizontalExpand="False">
+			<Label Text="{Loc 'm_emp-menu-note4'}" />
+		</BoxContainer>
+		<BoxContainer HorizontalExpand="False">
 			<Button Name="ActivateButton"
                     Text="{Loc 'm_emp-activate-button'}"
                     StyleClasses="OpenBoth"

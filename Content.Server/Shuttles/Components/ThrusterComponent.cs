@@ -89,6 +89,9 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("partRatingThrustMultiplier")]
         public float PartRatingThrustMultiplier = 1.5f;
+
+        [DataField("thrusterIgnoreEmp")]
+        public bool ThrusterIgnoreEmp = false;
     }
 
     public enum ThrusterType
