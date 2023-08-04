@@ -11,8 +11,10 @@ public sealed class SharedM_EmpComponent : Component
 [Serializable, NetSerializable]
 public sealed class M_EmpBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public M_EmpBoundUserInterfaceState()
+    public readonly bool HasPower;
+    public M_EmpBoundUserInterfaceState(bool hasPower)
     {
+        HasPower = hasPower;
     }
 }
 

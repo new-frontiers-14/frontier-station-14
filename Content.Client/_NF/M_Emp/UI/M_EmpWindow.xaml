@@ -1,48 +1,32 @@
-<DefaultWindow xmlns="https://spacestation14.io"
+<DefaultWindow
+	xmlns="https://spacestation14.io"
             Title="{Loc 'm_emp-console-menu-title'}"
             MinSize="250 250">
-    <BoxContainer Orientation="Vertical">
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note0'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text=" " />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Button Name="RequestButton"
+	<BoxContainer Orientation="Vertical">
+		<BoxContainer Orientation="Horizontal">
+			<Label Text="{Loc 'm_emp-menu-note1'}" />
+		</BoxContainer>
+		<BoxContainer Orientation="Horizontal">
+			<Button Name="RequestButton"
                     Text="{Loc 'm_emp-request-button'}"
                     StyleClasses="OpenBoth"
                     Disabled="False" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text=" " />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text=" " />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note1'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note2'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note3'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note4'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text="{Loc 'm_emp-menu-note5'}" />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Label Text=" " />
-        </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
-            <Button Name="ActivateButton"
+		</BoxContainer>
+		<BoxContainer Orientation="Horizontal">
+			<Label Text=" " />
+		</BoxContainer>
+		<BoxContainer Orientation="Horizontal">
+			<Label Text="{Loc 'm_emp-menu-note2'}" />
+		</BoxContainer>
+		<BoxContainer Orientation="Horizontal">
+			<Label Text="{Loc 'm_emp-menu-note3'}" />
+		</BoxContainer>
+		<!-- Pain -->
+		<BoxContainer Orientation="Horizontal">
+			<Button Name="ActivateButton"
                     Text="{Loc 'm_emp-activate-button'}"
                     StyleClasses="OpenBoth"
                     Disabled="False" />
-        </BoxContainer>
-    </BoxContainer>
+		</BoxContainer>
+	</BoxContainer>
 </DefaultWindow>
