@@ -7,6 +7,12 @@
     - type: StationRenameFaxes
 
 - type: entity
+  id: BaseStationRenameWarpPoints
+  abstract: true
+  components:
+    - type: StationRenameWarps
+
+- type: entity
   id: StandardFrontierStation
   parent:
     - BaseStation
@@ -29,6 +35,7 @@
     - BaseStationExpeditions
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
+    - BaseStationRenameWarpPoints
   noSpawn: true
   components:
     - type: Transform
@@ -42,6 +49,7 @@
     - BaseStationAlertLevels
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
+    - BaseStationRenameWarpPoints
   noSpawn: true
   components:
     - type: Transform

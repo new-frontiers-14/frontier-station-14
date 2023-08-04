@@ -13,5 +13,12 @@ namespace Content.Server.Warps
         /// </summary>
         [DataField("follow")]
         public readonly bool Follow = false;
+
+        /// <summary>
+        /// If true, will sync warp point name with a station name.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("useStationName")]
+        public bool UseStationName;
     }
 }
