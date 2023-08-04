@@ -1,23 +1,23 @@
 - type: vessel
-  id: Carrier
-  name: NT Carrier
+  id: Empress
+  name: NT Empress
   description: A large patrol vessel capable of carrying up to 3 smaller faster attack ships. the flagship vessel of security.
   price: 110200
   category: Large
   group: Security
-  shuttlePath: /Maps/Shuttles/carrier.yml
+  shuttlePath: /Maps/Shuttles/empress.yml
 
 - type: gameMap
-  id: Carrier
-  mapName: 'NT Carrier'
-  mapPath: /Maps/Shuttles/carrier.yml
+  id: Empress
+  mapName: 'NT Empress'
+  mapPath: /Maps/Shuttles/empress.yml
   minPlayers: 0
   stations:
-    Carrier:
+    Empress:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Carrier {1}'
+          mapNameTemplate: '{0} Empress {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -54,3 +54,15 @@
   - type: Pinpointer
     updateTargetName: true
     canRetarget: true
+  - type: Sprite
+    noRot: True
+    sprite: Objects/Devices/pinpointer.rsi
+    layers:
+    - state: pinpointer_crew
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: StaticPrice
+    price: 150

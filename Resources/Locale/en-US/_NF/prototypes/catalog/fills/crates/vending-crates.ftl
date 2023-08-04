@@ -6,3 +6,6 @@ ent-CrateVendingMachineRestockAmmoFilled = Liberation restock crate
 
 ent-CrateVendingMachineRestockCircuitVendFilled = CircuitVend restock crate
     .desc = Contains two restock boxes for a CircuitVend vending machine.
+
+ent-CrateVendingMachineRestockCuddlyCritterVendFilled = CuddlyCritterVend restock crate
+    .desc = Contains two restock boxes for a CuddlyCritterVend vending machine.

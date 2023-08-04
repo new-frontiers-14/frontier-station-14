@@ -11,7 +11,6 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
   - type: Advertise
     pack: AstroVendAds
   - type: Sprite
@@ -28,7 +27,9 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-    
+  - type: MarketModifier
+    mod: 10
+
 - type: entity
   parent: VendingMachine
   id: VendingMachineCircuitVend
@@ -102,3 +103,35 @@
     color: "#ad2c2b"
   - type: MarketModifier
     mod: 50
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineCuddlyCritterVend
+  name: CuddlyCritterVend
+  description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
+  components:
+  - type: Anchorable
+    delay: 999999
+  - type: VendingMachine
+    pack: CuddlyCritterVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: CuddlyCritterAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/cuddlycritter.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: MarketModifier
+    mod: 10
