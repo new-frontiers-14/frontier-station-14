@@ -1,0 +1,27 @@
+- type: vessel
+  id: Oscar
+  name: NC Oscar
+  description: A little shuttle for 
+  price: 17500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/oscar.yml
+
+- type: gameMap
+  id: Oscar
+  mapName: 'NC Oscar'
+  mapPath: /Maps/Shuttles/oscar.yml
+  minPlayers: 0
+  stations:
+    Oscar:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Oscar {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Janitor: [ 0, 0 ]
