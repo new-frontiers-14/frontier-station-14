@@ -1,0 +1,22 @@
+- type: entity
+  name: pear
+  parent: FoodProduceBase
+  id: FoodPear
+  description: it's peary good.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - pear
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
+  - type: Produce
+    seedId: pear
