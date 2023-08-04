@@ -303,7 +303,7 @@ entities:
       type: Transform
   - uid: 55
     components:
-    - rot: -1.5707963267948966 rad
+    - rot: 1.5707963267948966 rad
       pos: 10.5,-4.5
       parent: 1
       type: Transform
@@ -312,9 +312,9 @@ entities:
     - pos: -0.5,-7.5
       parent: 1
       type: Transform
-  - uid: 301
+  - uid: 96
     components:
-    - rot: -1.5707963267948966 rad
+    - rot: 1.5707963267948966 rad
       pos: 10.5,-2.5
       parent: 1
       type: Transform
@@ -1068,6 +1068,32 @@ entities:
     - pos: -5.5,-5.5
       parent: 1
       type: Transform
+  - uid: 635
+    components:
+    - pos: -2.5,8.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 636
+    components:
+    - pos: -2.5,9.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 637
+    components:
+    - pos: 3.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 638
+    components:
+    - pos: 3.5,9.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
 - proto: CableApcStack10
   entities:
   - uid: 568
@@ -2978,6 +3004,11 @@ entities:
       pos: 7.5,-5.5
       parent: 1
       type: Transform
+  - uid: 634
+    components:
+    - pos: 2.5,9.5
+      parent: 1
+      type: Transform
 - proto: Gyroscope
   entities:
   - uid: 620
@@ -3486,6 +3517,11 @@ entities:
       pos: -6.5,3.5
       parent: 1
       type: Transform
+  - uid: 102
+    components:
+    - pos: 2.5,9.5
+      parent: 1
+      type: Transform
   - uid: 109
     components:
     - rot: -1.5707963267948966 rad
@@ -3683,6 +3719,11 @@ entities:
     - pos: 5.5,8.5
       parent: 1
       type: Transform
+  - uid: 230
+    components:
+    - pos: 3.5,9.5
+      parent: 1
+      type: Transform
   - uid: 239
     components:
     - rot: 1.5707963267948966 rad
@@ -3717,6 +3758,11 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: 5.5,-7.5
+      parent: 1
+      type: Transform
+  - uid: 301
+    components:
+    - pos: -2.5,9.5
       parent: 1
       type: Transform
 - proto: ToyFigurineSecurity
@@ -3824,11 +3870,6 @@ entities:
       pos: -5.5,4.5
       parent: 1
       type: Transform
-  - uid: 96
-    components:
-    - pos: 2.5,9.5
-      parent: 1
-      type: Transform
   - uid: 98
     components:
     - pos: -4.5,7.5
@@ -3850,15 +3891,9 @@ entities:
       pos: -2.5,8.5
       parent: 1
       type: Transform
-  - uid: 102
-    components:
-    - pos: -2.5,9.5
-      parent: 1
-      type: Transform
   - uid: 103
     components:
-    - rot: 3.141592653589793 rad
-      pos: 3.5,9.5
+    - pos: 3.5,8.5
       parent: 1
       type: Transform
   - uid: 105
@@ -4167,12 +4202,6 @@ entities:
       pos: 4.5,7.5
       parent: 1
       type: Transform
-  - uid: 230
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 3.5,8.5
-      parent: 1
-      type: Transform
 - proto: WallWood
   entities:
   - uid: 5
@@ -4456,7 +4485,7 @@ entities:
     - pos: 0.5,-0.5
       parent: 1
       type: Transform
-    - SecondsUntilStateChange: -2796.1968
+    - SecondsUntilStateChange: -3212.3186
       state: Opening
       type: Door
 ...

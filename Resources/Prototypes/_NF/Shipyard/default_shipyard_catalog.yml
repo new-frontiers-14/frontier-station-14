@@ -1,6 +1,12 @@
 ## This file is getting bloated and needs to be renamed/properly split next update or addition
 
 - type: entity
+  id: BaseStationRenameFaxes
+  abstract: true
+  components:
+    - type: StationRenameFaxes
+
+- type: entity
   id: StandardFrontierStation
   parent:
     - BaseStation
@@ -22,6 +28,7 @@
     - BaseStationAlertLevels
     - BaseStationExpeditions
     - BaseStationAllEventsEligible
+    - BaseStationRenameFaxes
   noSpawn: true
   components:
     - type: Transform
@@ -34,6 +41,7 @@
     - BaseStationRecords
     - BaseStationAlertLevels
     - BaseStationAllEventsEligible
+    - BaseStationRenameFaxes
   noSpawn: true
   components:
     - type: Transform

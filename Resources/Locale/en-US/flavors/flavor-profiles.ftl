@@ -96,6 +96,7 @@ flavor-complex-tomato = like tomatoes
 flavor-complex-corn = like corn
 flavor-complex-banana = like bananas
 flavor-complex-apple = like apples
+flavor-complex-pear = like pears
 flavor-complex-bungo = like bungo
 flavor-complex-raisins = like dried grapes
 flavor-complex-orange = like oranges
