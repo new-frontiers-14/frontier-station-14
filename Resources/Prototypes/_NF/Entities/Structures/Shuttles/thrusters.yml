@@ -19,7 +19,8 @@
       damage:
         types:
           Heat: 40
-      baseThrust: 200
+          Structural: 100
+#      baseThrust: 200
       thrusterIgnoreEmp: true
     - type: InteractionOutline
     - type: Sprite
@@ -52,6 +53,32 @@
   - type: Thruster
   - type: Machine
     board: ThrusterMachineCircuitboard
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+
+- type: entity
+  id: DebugThrusterSecurity
+  name: security thruster
+  parent: BaseThrusterSecurity
+  suffix: DEBUG
+  components:
+  - type: Thruster
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:

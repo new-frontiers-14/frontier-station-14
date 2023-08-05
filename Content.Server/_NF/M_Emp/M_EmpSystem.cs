@@ -222,7 +222,7 @@ namespace Content.Server._NF.M_Emp
             switch (msg.Button)
             {
                 case UiButton.Request:
-                    Report(uid, component.M_EmpChannel, "m_emp-system-announcement-request", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName!));
+                    Report(uid, component.M_EmpChannel, "m_emp-system-announcement-request", ("grid", stationName!));
                     break;
                 case UiButton.Activate:
                     StartGenerator(uid, component);

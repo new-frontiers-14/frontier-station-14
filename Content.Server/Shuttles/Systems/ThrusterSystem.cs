@@ -21,14 +21,17 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Access.Components;
-using Content.Shared.APC;
+using Content.Server.Popups;
 using Content.Shared.Popups;
+using Content.Shared.Access.Systems;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed class ThrusterSystem : EntitySystem
 {
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
@@ -64,6 +67,7 @@ public sealed class ThrusterSystem : EntitySystem
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
 
         SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<ThrusterComponent, ThrusterToggleMessage>(OnToggleThruster);
     }
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -239,31 +243,16 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
-    //private void OnToggleThruster(EntityUid uid, ThrusterComponent component, ApcToggleMainBreakerMessage args)
-    private void OnToggleThruster(EntityUid uid, ThrusterComponent component)
+    private void OnToggleThruster(EntityUid uid, ThrusterComponent component, ThrusterToggleMessage args)
     {
         var attemptEv = new ThrusterToggleAttemptEvent();
         RaiseLocalEvent(uid, ref attemptEv);
         if (attemptEv.Cancelled)
         {
-            //_popup.PopupCursor(Loc.GetString("apc-component-on-toggle-cancel"),
-            //    args.Session, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("apc-component-on-toggle-cancel"),
+                args.Session, PopupType.Medium);
             return;
         }
-
-        //TryComp<AccessReaderComponent>(uid, out var access);
-        //if (args.Session.AttachedEntity == null)
-        //    return;
-
-        //if (access == null || _accessReader.IsAllowed(args.Session.AttachedEntity.Value, access))
-        //{
-        //    ApcToggleBreaker(uid, component);
-        //}
-        //else
-        //{
-        //    _popup.PopupCursor(Loc.GetString("apc-component-insufficient-access"),
-        //        args.Session, PopupType.Medium);
-        //}
     }
 
     /// <summary>
@@ -474,6 +463,20 @@ public sealed class ThrusterSystem : EntitySystem
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
         }
+
+        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ThrusterComponent>();
+        while (disabled.MoveNext(out var uid, out _, out var comp))
+        {
+            comp.TimeoutEmp += TimeSpan.FromSeconds(2);
+            if (comp.TimeoutEmp < _timing.CurTime)
+            {
+                DisableThruster(uid, comp);
+            }
+            else
+            {
+                EnableThruster(uid, comp);
+            }
+        }
     }
 
     private void OnStartCollide(EntityUid uid, ThrusterComponent component, ref StartCollideEvent args)
@@ -611,13 +614,9 @@ public sealed class ThrusterSystem : EntitySystem
         }
         else
         {
-            if (component.Enabled)
-            {
-                args.Affected = true;
-                args.Disabled = true;
-                //OnToggleThruster(uid, component, args);
-                OnToggleThruster(uid, component);
-            }
+            args.Affected = true;
+            args.Disabled = true;
+            component.TimeoutEmp = _timing.CurTime;
         }
     }
 

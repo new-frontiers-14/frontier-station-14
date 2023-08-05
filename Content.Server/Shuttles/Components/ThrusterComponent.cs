@@ -92,6 +92,12 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("thrusterIgnoreEmp")]
         public bool ThrusterIgnoreEmp = false;
+
+        /// <summary>
+        ///     While disabled by EMP
+        /// </summary>
+        [DataField("timeoutEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan TimeoutEmp = TimeSpan.Zero;
     }
 
     public enum ThrusterType
