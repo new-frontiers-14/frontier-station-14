@@ -14,7 +14,6 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -464,18 +463,19 @@ public sealed class ThrusterSystem : EntitySystem
             }
         }
 
+        /// <summary>
+        /// This makes the thruster pulse like its trying to come back online
+        /// After the EMP is over it will try to toggle it back on
+        /// </summary>
         var disabled = EntityQueryEnumerator<EmpDisabledComponent, ThrusterComponent>();
         while (disabled.MoveNext(out var uid, out _, out var comp))
         {
-            comp.TimeoutEmp += TimeSpan.FromSeconds(2);
-            if (comp.TimeoutEmp < _timing.CurTime)
-            {
-                DisableThruster(uid, comp);
-            }
-            else
+            if (comp.TimeoutFromEmp <= _timing.CurTime)
             {
                 EnableThruster(uid, comp);
+                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.5);
             }
+            else { DisableThruster(uid, comp); }
         }
     }
 
@@ -616,7 +616,7 @@ public sealed class ThrusterSystem : EntitySystem
         {
             args.Affected = true;
             args.Disabled = true;
-            component.TimeoutEmp = _timing.CurTime;
+            component.TimeoutFromEmp = _timing.CurTime;
         }
     }
 
