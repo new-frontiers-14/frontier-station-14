@@ -109,6 +109,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotMap = "/Maps/cargodepot.yml";
         var tinnia = "/Maps/tinnia.yml";
         var lpbravo = "/Maps/lpbravo.yml";
+        var arena = "/Maps/arena.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -127,7 +128,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         ;
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(975f, 1375f)
+                Offset = _random.NextVector2(1275f, 1975f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
@@ -136,7 +137,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
-        depotOffset = _random.NextVector2(2300f, 3400f);
+        depotOffset = _random.NextVector2(2600f, 3750f);
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -150,7 +151,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         ;
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1400f, 3000f)
+                Offset = _random.NextVector2(1950f, 3500f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
@@ -160,13 +161,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
+        if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(1500f, 3000f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
+            meta.EntityName = "The Pit";
+            _shuttle.SetIFFColor(depotUid5s[0], tinniaColor);
+        }
+
+        ;
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(2100f, 4500f);
+            var offset = _random.NextVector2(2750f, 4400f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
@@ -189,7 +201,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(2300f, 6500f);
+            var offset = _random.NextVector2(3800f, 8500f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
