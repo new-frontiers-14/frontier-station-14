@@ -3650,16 +3650,6 @@ entities:
       type: Transform
 - proto: CableHV
   entities:
-  - uid: 510
-    components:
-    - pos: -6.5,-16.5
-      parent: 1
-      type: Transform
-  - uid: 511
-    components:
-    - pos: -5.5,-16.5
-      parent: 1
-      type: Transform
   - uid: 512
     components:
     - pos: -5.5,-18.5
@@ -3799,13 +3789,6 @@ entities:
     - pos: 6.5,-18.5
       parent: 1
       type: Transform
-  - uid: 537
-    components:
-    - pos: 7.5,-18.5
-      parent: 1
-      type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 538
     components:
     - pos: 5.5,-18.5
@@ -4454,35 +4437,61 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
-  - uid: 654
+  - uid: 1965
     components:
-    - pos: -5.5,-15.5
+    - pos: 7.5,-18.5
       parent: 1
       type: Transform
-  - uid: 655
+    - enabled: True
+      type: AmbientSound
+  - uid: 2324
     components:
-    - pos: -5.5,-14.5
-      parent: 1
-      type: Transform
-  - uid: 656
-    components:
-    - pos: -5.5,-13.5
-      parent: 1
-      type: Transform
-  - uid: 657
-    components:
-    - pos: -5.5,-12.5
-      parent: 1
-      type: Transform
-  - uid: 658
-    components:
-    - pos: -4.5,-12.5
+    - pos: 7.5,-17.5
       parent: 1
       type: Transform
     - enabled: True
       type: AmbientSound
 - proto: CableMV
   entities:
+  - uid: 510
+    components:
+    - pos: -6.5,-17.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 511
+    components:
+    - pos: -5.5,-17.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 654
+    components:
+    - pos: -5.5,-18.5
+      parent: 1
+      type: Transform
+  - uid: 655
+    components:
+    - pos: -5.5,-18.5
+      parent: 1
+      type: Transform
+  - uid: 656
+    components:
+    - pos: -5.5,-18.5
+      parent: 1
+      type: Transform
+  - uid: 657
+    components:
+    - pos: -5.5,-18.5
+      parent: 1
+      type: Transform
+  - uid: 658
+    components:
+    - pos: -5.5,-18.5
+      parent: 1
+      type: Transform
   - uid: 659
     components:
     - pos: 10.5,-29.5
@@ -4667,13 +4676,6 @@ entities:
     - pos: 6.5,-18.5
       parent: 1
       type: Transform
-  - uid: 691
-    components:
-    - pos: 7.5,-18.5
-      parent: 1
-      type: Transform
-    - enabled: True
-      type: AmbientSound
   - uid: 692
     components:
     - pos: 5.5,-18.5
@@ -5647,8 +5649,28 @@ entities:
     - pos: 2.5,1.5
       parent: 1
       type: Transform
+  - uid: 2325
+    components:
+    - pos: 7.5,-17.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 2326
+    components:
+    - pos: 6.5,-17.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
 - proto: CableTerminal
   entities:
+  - uid: 691
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 6.5,-18.5
+      parent: 1
+      type: Transform
   - uid: 865
     components:
     - rot: 1.5707963267948966 rad
@@ -14850,6 +14872,11 @@ entities:
     - pos: 8.5,-33.5
       parent: 1
       type: Transform
+  - uid: 2327
+    components:
+    - pos: 7.5,-18.5
+      parent: 1
+      type: Transform
 - proto: SmokingPipe
   entities:
   - uid: 1942
@@ -15093,11 +15120,6 @@ entities:
     - pos: 8.5,-31.5
       parent: 1
       type: Transform
-  - uid: 1965
-    components:
-    - pos: 7.5,-18.5
-      parent: 1
-      type: Transform
   - uid: 1966
     components:
     - pos: -3.5,6.5
@@ -15106,6 +15128,18 @@ entities:
   - uid: 1967
     components:
     - pos: 4.5,6.5
+      parent: 1
+      type: Transform
+- proto: SubstationWallBasic
+  entities:
+  - uid: 537
+    components:
+    - pos: 7.5,-17.5
+      parent: 1
+      type: Transform
+  - uid: 2323
+    components:
+    - pos: -6.5,-17.5
       parent: 1
       type: Transform
 - proto: SuitStorageCaptain
