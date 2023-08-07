@@ -119,6 +119,17 @@
   suffix: "Salvage Ruleset"
   components:
   - type: GhostRole
+    prob: 0
+    name: ghost-role-information-salvage-bear-name
+    description: ghost-role-information-salvage-bear-description
+  - type: SalvageMobRestrictions
+
+- type: entity
+  id: MobBearSpaceSalvageGhost
+  parent: MobBearSpace
+  suffix: "Salvage Ruleset Ghost"
+  components:
+  - type: GhostRole
     prob: 0.25
     name: ghost-role-information-salvage-bear-name
     description: ghost-role-information-salvage-bear-description
@@ -192,6 +203,17 @@
   id: MobKangarooSpaceSalvage
   parent: MobKangarooSpace
   suffix: "Salvage Ruleset"
+  components:
+  - type: GhostRole
+    prob: 0
+    name: ghost-role-information-salvage-kangaroo-name
+    description: ghost-role-information-salvage-kangaroo-description
+  - type: SalvageMobRestrictions
+
+- type: entity
+  id: MobKangarooSpaceSalvageGhost
+  parent: MobKangarooSpace
+  suffix: "Salvage Ruleset Ghost"
   components:
   - type: GhostRole
     prob: 0.25
@@ -288,6 +310,17 @@
   id: MobSpiderSpaceSalvage
   parent: MobSpiderSpace
   suffix: "Salvage Ruleset"
+  components:
+  - type: GhostRole
+    prob: 0
+    name: ghost-role-information-salvage-spider-name
+    description: ghost-role-information-salvage-spider-description
+  - type: SalvageMobRestrictions
+
+- type: entity
+  id: MobSpiderSpaceSalvageGhost
+  parent: MobSpiderSpace
+  suffix: "Salvage Ruleset Ghost"
   components:
   - type: GhostRole
     prob: 0.30
