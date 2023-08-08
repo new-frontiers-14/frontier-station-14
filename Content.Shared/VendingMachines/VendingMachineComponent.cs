@@ -32,6 +32,18 @@ namespace Content.Shared.VendingMachines
         [DataField("ejectDelay")]
         public float EjectDelay = 1.2f;
 
+        /// <summary>
+        /// Used by the server to determine how many items the machine allowed to eject from random triggers.
+        /// </summary>
+        [DataField("ejectRandomMax")]
+        public float EjectRandomMax = 3f;
+
+        /// <summary>
+        /// Used by the server to determine how many items the machine ejected from random triggers.
+        /// </summary>
+        [DataField("ejectRandomCounter")]
+        public float EjectRandomCounter = 0f;
+
         [ViewVariables]
         public Dictionary<string, VendingMachineInventoryEntry> Inventory = new();
 
