@@ -58,6 +58,12 @@
     channels:
     - Security
   - type: M_EmpGenerator
+  - type: ActivatableUI
+    key: enum.M_EmpUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.M_EmpUiKey.Key
+      type: M_EmpBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine
@@ -69,4 +75,4 @@
     range: 200
   - type: DeviceLinkSink
     ports:
-      - M_Emp
+      - On

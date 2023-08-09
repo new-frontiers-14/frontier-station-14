@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseThruster
+  id: BaseThrusterSecurity
   parent: BaseStructureDynamic
   abstract: true
   components:
@@ -20,6 +20,7 @@
         types:
           Heat: 40
           Structural: 1
+      thrusterIgnoreEmp: true
     - type: InteractionOutline
     - type: Sprite
     - type: Appearance
@@ -34,24 +35,25 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 300  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
+          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
         behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
     - type: StaticPrice
-      price: 300
+      price: 600
   placement:
     mode: SnapgridCenter
 
 - type: entity
-  id: Thruster
-  parent: [ BaseThruster, ConstructibleMachine ]
+  id: ThrusterSecurity
+  name: security thruster
+  parent: [ BaseThrusterSecurity, ConstructibleMachine ]
   components:
   - type: Thruster
   - type: Machine
     board: ThrusterMachineCircuitboard
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+    sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -66,8 +68,9 @@
       offset: 0, 1
 
 - type: entity
-  id: DebugThruster
-  parent: BaseThruster
+  id: DebugThrusterSecurity
+  name: security thruster
+  parent: BaseThrusterSecurity
   suffix: DEBUG
   components:
   - type: Thruster
@@ -76,7 +79,7 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+    sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -91,8 +94,9 @@
       offset: 0, 1
 
 - type: entity
-  id: Gyroscope
-  parent: [ BaseThruster, ConstructibleMachine ]
+  id: GyroscopeSecurity
+  name: security gyroscope
+  parent: [ BaseThrusterSecurity, ConstructibleMachine ]
   components:
   - type: Thruster
     thrusterType: Angular
@@ -102,7 +106,7 @@
     machinePartThrust: Manipulator
   - type: Sprite
     # Listen I'm not the biggest fan of the sprite but it was the most appropriate thing I could find.
-    sprite: Structures/Shuttles/gyroscope.rsi
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
     layers:
     - state: base
@@ -132,11 +136,12 @@
     powerDrawMultiplier: 0.75
     scaling: Exponential
   - type: StaticPrice
-    price: 2000
+    price: 4000
 
 - type: entity
-  id: DebugGyroscope
-  parent: BaseThruster
+  id: DebugGyroscopeSecurity
+  name: security gyroscope
+  parent: BaseThrusterSecurity
   suffix: DEBUG
   components:
   - type: Thruster
@@ -148,7 +153,7 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: Structures/Shuttles/gyroscope.rsi
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
     layers:
     - state: base
