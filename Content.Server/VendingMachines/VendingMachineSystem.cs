@@ -143,6 +143,9 @@ namespace Content.Server.VendingMachines
             if (args.Session.AttachedEntity is not { Valid: true } entity || Deleted(entity))
                 return;
 
+            if (component.Ejecting)
+                return;
+
             AuthorizedVend(uid, entity, args.Type, args.ID, component);
         }
 
