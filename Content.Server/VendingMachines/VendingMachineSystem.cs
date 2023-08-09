@@ -143,6 +143,9 @@ namespace Content.Server.VendingMachines
             if (args.Session.AttachedEntity is not { Valid: true } entity || Deleted(entity))
                 return;
 
+            if (component.Ejecting)
+                return;
+
             AuthorizedVend(uid, entity, args.Type, args.ID, component);
         }
 
@@ -415,20 +418,23 @@ namespace Content.Server.VendingMachines
 
             var item = _random.Pick(availableItems);
 
-            if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
+            if (!vendComponent.Ejecting)
             {
-                if (forceEject)
+                if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
                 {
-                    vendComponent.NextItemToEject = item.ID;
-                    vendComponent.ThrowNextItem = throwItem;
-                    var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
-                    if (entry != null)
-                        entry.Amount--;
-                    EjectItem(uid, vendComponent, forceEject);
+                    if (forceEject)
+                    {
+                        vendComponent.NextItemToEject = item.ID;
+                        vendComponent.ThrowNextItem = throwItem;
+                        var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
+                        if (entry != null)
+                            entry.Amount--;
+                        EjectItem(uid, vendComponent, forceEject);
+                    }
+                    else
+                        TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+                    vendComponent.EjectRandomCounter += 1;
                 }
-                else
-                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
-                vendComponent.EjectRandomCounter += 1;
             }
         }
 
