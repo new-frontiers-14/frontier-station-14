@@ -1,6 +1,7 @@
 - type: entity
-  id: FireAxeCabinet
+  id: FireAxeCabinetCommand
   name: fire axe cabinet
+  suffix: With Lock
   description: There is a small label that reads "For Emergency use only" along with details for safe use of the axe. As if.
   components:
   - type: MeleeSound
@@ -31,9 +32,9 @@
     openState: glass-up
     closedState: glass
   - type: Appearance
-#  - type: Lock
-#  - type: AccessReader
-#    access: [["Atmospherics"], ["Command"]]
+  - type: Lock
+  - type: AccessReader
+    access: [["Atmospherics"], ["Command"]]
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -42,9 +43,9 @@
     mode: SnapgridCenter
 
 - type: entity
-  id: FireAxeCabinetOpen
-  parent: FireAxeCabinet
-  suffix: Open
+  id: FireAxeCabinetOpenCommand
+  parent: FireAxeCabinetCommand
+  suffix: Open, With Lock
   components:
   - type: ItemCabinet
     opened: true
@@ -54,9 +55,9 @@
     closedState: glass
 
 - type: entity
-  id: FireAxeCabinetFilled
-  parent: FireAxeCabinet
-  suffix: Filled
+  id: FireAxeCabinetFilledCommand
+  parent: FireAxeCabinetCommand
+  suffix: Filled, With Lock
   components:
   - type: ItemCabinet
     cabinetSlot:
@@ -71,9 +72,9 @@
     closedState: glass
 
 - type: entity
-  id: FireAxeCabinetFilledOpen
-  parent: FireAxeCabinetFilled
-  suffix: Filled, Open
+  id: FireAxeCabinetFilledOpenCommand
+  parent: FireAxeCabinetFilledCommand
+  suffix: Filled, Open, With Lock
   components:
   - type: ItemCabinet
     opened: true
