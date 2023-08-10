@@ -1,0 +1,27 @@
+- type: vessel
+  id: Kestrel
+  name: NT Kestrel
+  description: Once a local shipping lane freighter, this model has been converted for use in debris field mining and salvage operations.
+  price: 44000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/Kestrel.yml
+
+- type: gameMap
+  id: Kestrel
+  mapName: 'NT Kestrel'
+  mapPath: /Maps/Shuttles/Kestrel.yml
+  minPlayers: 0
+  stations:
+    Kestrel:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Kestrel {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]        

@@ -18,29 +18,39 @@
     - type: SimpleFloorPlanPopulator
       entries:
         Plating:
-          - prob: 3 # Intentional blank.
+          - prob: 3.5 # Intentional blank.
           - id: SalvageMaterialCrateSpawner
-            prob: .6
+            prob: 0.6
           - id: RandomArtifactSpawner20
-            prob: .4
+            prob: 0.3
           - id: SalvageCanisterSpawner
             prob: 0.3
           - id: SalvageMobSpawner
-            prob: 0.8
+            prob: 0.3
+          - id: SpawnMobBearSalvage
+            prob: 0.02
+          - id: SpawnMobSpiderSalvage
+            prob: 0.02
+          - id: SpawnMobKangarooSalvage
+            prob: 0.02
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.03
+          - id: SpawnMobPurpleSnake
+            prob: 0.02
           - id: TableFrame
-            prob: 0.1
+            prob: 0.2
           - id: RandomBox
-            prob: 0.1
+            prob: 0.2
           - id: Girder
-            prob: 1.5
+            prob: 1.7
           - id: WallSolid
             prob: 1.5
           - id: Grille
-            prob: 0.5
+            prob: 0.4
         Lattice:
           - prob: 2
           - id: Grille
-            prob: 0.2
+            prob: 0.3
           - id: SalvageMaterialCrateSpawner
             prob: 0.3
           - id: SalvageCanisterSpawner
@@ -70,7 +80,17 @@
           - id: SalvageCanisterSpawner
             prob: 0.2
           - id: SalvageMobSpawner
-            prob: 0.8
+            prob: 0.3
+          - id: SpawnMobBearSalvage
+            prob: 0.02
+          - id: SpawnMobSpiderSalvage
+            prob: 0.02
+          - id: SpawnMobKangarooSalvage
+            prob: 0.02
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.03
+          - id: SpawnMobPurpleSnake
+            prob: 0.02
     - type: GCAbleObject
       queue: SpaceDebris
     - type: IFF
