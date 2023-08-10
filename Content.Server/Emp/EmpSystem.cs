@@ -6,6 +6,7 @@ using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Robust.Shared.Map;
+using static Content.Server.Shuttles.Systems.ThrusterSystem;
 
 namespace Content.Server.Emp;
 
@@ -26,6 +27,7 @@ public sealed class EmpSystem : SharedEmpSystem
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
         SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
+        SubscribeLocalEvent<EmpDisabledComponent, ThrusterToggleAttemptEvent>(OnThrusterToggle);
     }
 
     public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration)
@@ -96,6 +98,11 @@ public sealed class EmpSystem : SharedEmpSystem
     }
 
     private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnThrusterToggle(EntityUid uid, EmpDisabledComponent component, ref ThrusterToggleAttemptEvent args)
     {
         args.Cancelled = true;
     }
