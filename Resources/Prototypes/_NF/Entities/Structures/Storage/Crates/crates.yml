@@ -1,0 +1,16 @@
+- type: entity
+  parent: CrateBaseWeldable
+  id: CratePlasticBiodegradable
+  name: biodegradable plastic crate
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/plastic.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/plastic.rsi
+  - type: Construction
+    graph: CratePlasticBiodegradable
+    node: crateplasticbiodegradable
+    containers:
+    - entity_storage
+  - type: StaticPrice
+    price: 0

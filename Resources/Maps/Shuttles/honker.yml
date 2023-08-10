@@ -1322,7 +1322,7 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: FaxMachineBase
+- proto: FaxMachineShip
   entities:
   - uid: 260
     components:
@@ -1337,7 +1337,7 @@ entities:
       pos: 2.5,7.5
       parent: 2
       type: Transform
-- proto: GeneratorPlasma
+- proto: GeneratorUranium
   entities:
   - uid: 72
     components:
@@ -2292,10 +2292,12 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
-- proto: WarpPoint
+- proto: WarpPointShip
   entities:
   - uid: 209
     components:
+    - name: Honker
+      type: MetaData
     - pos: 2.5,9.5
       parent: 2
       type: Transform

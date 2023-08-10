@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._NF.M_Emp;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
@@ -89,6 +90,18 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("partRatingThrustMultiplier")]
         public float PartRatingThrustMultiplier = 1.5f;
+
+        [DataField("thrusterIgnoreEmp")]
+        public bool ThrusterIgnoreEmp = false;
+
+        /// <summary>
+        ///     While disabled by EMP
+        /// </summary>
+        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
+
+        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+        public float DisableDuration = 60f;
     }
 
     public enum ThrusterType

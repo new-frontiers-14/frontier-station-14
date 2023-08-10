@@ -109,6 +109,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotMap = "/Maps/cargodepot.yml";
         var tinnia = "/Maps/tinnia.yml";
         var lpbravo = "/Maps/lpbravo.yml";
+        var arena = "/Maps/arena.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -127,7 +128,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         ;
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(975f, 1375f)
+                Offset = _random.NextVector2(1275f, 1975f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
@@ -136,7 +137,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
-        depotOffset = _random.NextVector2(2300f, 3400f);
+        depotOffset = _random.NextVector2(2600f, 3750f);
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -150,7 +151,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         ;
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1400f, 3000f)
+                Offset = _random.NextVector2(1950f, 3500f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
@@ -160,13 +161,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         ;
+        if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(1500f, 3000f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
+            meta.EntityName = "The Pit";
+            _shuttle.SetIFFColor(depotUid5s[0], tinniaColor);
+        }
+
+        ;
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(2100f, 4500f);
+            var offset = _random.NextVector2(2750f, 4400f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
@@ -189,7 +201,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(2300f, 6500f);
+            var offset = _random.NextVector2(3800f, 8500f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
@@ -210,14 +222,26 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-    private async Task ReportRound(String message)
+    private async Task ReportRound(String message,  int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordEndRoundWebhook);
+        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
         if (_webhookUrl == string.Empty)
             return;
 
-        var payload = new WebhookPayload{ Content = message };
+        var payload = new WebhookPayload
+        {
+            Embeds = new List<Embed>
+            {
+                new()
+                {
+                    Title = Loc.GetString("adventure-list-start"),
+                    Description = message,
+                    Color = color,
+                },
+            },
+        };
+
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
         var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
@@ -228,9 +252,54 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
+// https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
-        [JsonPropertyName("content")]
-        public String Content { get; set; }
+        [JsonPropertyName("username")] public string? Username { get; set; } = null;
+
+        [JsonPropertyName("avatar_url")] public string? AvatarUrl { get; set; } = null;
+
+        [JsonPropertyName("content")] public string Message { get; set; } = "";
+
+        [JsonPropertyName("embeds")] public List<Embed>? Embeds { get; set; } = null;
+
+        [JsonPropertyName("allowed_mentions")]
+        public Dictionary<string, string[]> AllowedMentions { get; set; } =
+            new()
+            {
+                { "parse", Array.Empty<string>() },
+            };
+
+        public WebhookPayload()
+        {
+        }
+    }
+
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
+    private struct Embed
+    {
+        [JsonPropertyName("title")] public string Title { get; set; } = "";
+
+        [JsonPropertyName("description")] public string Description { get; set; } = "";
+
+        [JsonPropertyName("color")] public int Color { get; set; } = 0;
+
+        [JsonPropertyName("footer")] public EmbedFooter? Footer { get; set; } = null;
+
+        public Embed()
+        {
+        }
+    }
+
+// https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
+    private struct EmbedFooter
+    {
+        [JsonPropertyName("text")] public string Text { get; set; } = "";
+
+        [JsonPropertyName("icon_url")] public string? IconUrl { get; set; }
+
+        public EmbedFooter()
+        {
+        }
     }
 }

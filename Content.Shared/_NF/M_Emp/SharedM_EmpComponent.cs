@@ -1,13 +1,42 @@
-using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.MachineLinking;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.M_Emp;
 
-[NetworkedComponent, RegisterComponent]
+[NetworkedComponent, RegisterComponent, Virtual]
 public sealed class SharedM_EmpComponent : Component
 {
-    [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<ReceiverPortPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string ReceiverPort = "M_Emp";
+}
+
+[Serializable, NetSerializable]
+public sealed class M_EmpBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public readonly bool HasPower;
+    public M_EmpBoundUserInterfaceState(bool hasPower)
+    {
+        HasPower = hasPower;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class UiButtonPressedMessage : BoundUserInterfaceMessage
+{
+    public readonly UiButton Button;
+
+    public UiButtonPressedMessage(UiButton button)
+    {
+        Button = button;
+    }
+}
+
+[Serializable, NetSerializable]
+public enum M_EmpUiKey
+{
+    Key
+}
+
+public enum UiButton
+{
+    Request,
+    Activate,
 }
