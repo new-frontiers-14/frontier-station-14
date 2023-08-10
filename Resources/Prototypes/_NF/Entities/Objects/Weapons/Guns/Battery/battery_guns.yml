@@ -2,7 +2,7 @@
   name: emp emitter
   parent: BaseWeaponBattery
   id: WeaponEmpEmitter
-  description: Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells.
+  description: Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
@@ -27,6 +27,9 @@
   - type: ProjectileBatteryAmmoProvider
     proto: ProjectileEmp
     fireCost: 500
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
   - type: MagazineVisuals
     magState: mag
     steps: 5

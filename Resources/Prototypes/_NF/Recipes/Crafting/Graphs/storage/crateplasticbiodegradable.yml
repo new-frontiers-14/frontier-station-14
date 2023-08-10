@@ -1,0 +1,28 @@
+- type: constructionGraph
+  id: CratePlasticBiodegradable
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: crateplasticbiodegradable
+          steps:
+            - material: Plastic
+              amount: 5
+              doAfter: 5
+
+    - node: crateplasticbiodegradable
+      entity: CratePlasticBiodegradable
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 5
+          conditions:
+            - !type:StorageWelded
+              welded: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 1
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity
