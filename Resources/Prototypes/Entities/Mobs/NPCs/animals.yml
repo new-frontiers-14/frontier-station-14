@@ -2020,6 +2020,21 @@
     interactFailureString: petting-failure-generic
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.0 #per second, scales with pressure and other constants.
+  - type: Temperature
+    heatDamageThreshold: 360
+    coldDamageThreshold: 0
+    currentTemperature: 310.15
+    coldDamage:
+      types:
+        Cold : 0.1 #per second, scales with temperature & other constants
+    specificHeat: 42
+    heatDamage:
+      types:
+        Heat : 0.1 #per second, scales with temperature & other constants
 
 - type: entity
   name: caracal cat
