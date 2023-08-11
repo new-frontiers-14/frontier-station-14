@@ -2,7 +2,9 @@ using Content.Shared.SpaceArtillery;
 using Content.Server.DeviceLinking.Events;
 using Content.Server.Projectiles;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -24,7 +26,7 @@ public sealed class SpaceArtillerySystem : EntitySystem
 		if (args.Port == component.SpaceArtilleryFirePort)
 		{
 			//var attemptEv = new AttemptShootEvent(uid, null);
-			//RaiseLocalEvent(uid, ref attemptEv);
+			RaiseLocalEvent(uid, RequestShootEvent);
 		}
 	}
 }
