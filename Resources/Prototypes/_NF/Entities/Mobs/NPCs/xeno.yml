@@ -1,0 +1,47 @@
+- type: entity
+  parent: MobXenoQueen
+  id: MobXenoQueenDungeon
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Xenos/queen.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Stamina
+    critThreshold: 1500
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.8
+  - type: MeleeWeapon
+    hidden: true
+    damage:
+     groups:
+       Brute: 20
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      250: 0.4
+      200: 0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 15500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Tag
+    tags:
+    - CannotSuicide
+  - type: SalvageMobRestrictions
+  - type: ReplacementAccent
+    accent: Xeno
