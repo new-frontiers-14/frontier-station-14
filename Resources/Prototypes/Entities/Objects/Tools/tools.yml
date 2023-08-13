@@ -41,7 +41,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 19.5
+    price: 30
 
 - type: entity
   name: screwdriver
@@ -84,7 +84,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15
+    price: 30
 
 - type: entity
   name: wrench
@@ -154,7 +154,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15.5
+    price: 22
 
 - type: entity
   parent: Crowbar
@@ -216,7 +216,7 @@
       Steel: 100
       Plastic: 100
   - type: StaticPrice
-    price: 40
+    price: 56
 
 - type: entity
   name: network configurator
@@ -264,7 +264,7 @@
       tags:
         - DroneUsable
     - type: StaticPrice
-      price: 25
+      price: 56
     - type: GuideHelp
       guides:
         - NetworkConfigurator
@@ -361,6 +361,19 @@
   - type: LimitedCharges
     maxCharges: 5
     charges: 0
+
+- type: entity
+  id: RCDRecharging
+  parent: RCD
+  name: experimental rcd
+  description: A bluespace-enhanced RCD that regenerates charges passively.
+  suffix: AutoRecharge
+  components:
+  - type: LimitedCharges
+    maxCharges: 3
+    charges: 3
+  - type: AutoRecharge
+    rechargeDuration: 30
 
 - type: entity
   id: RCDExperimental
@@ -475,6 +488,7 @@
       types:
         Blunt: 14
   - type: Item
+    size: 90
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
