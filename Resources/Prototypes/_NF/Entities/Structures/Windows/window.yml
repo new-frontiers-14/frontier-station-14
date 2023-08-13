@@ -1,10 +1,14 @@
-# Mime
-
 - type: entity
-  id: WallInvisibleShip
   name: Invisible Wall
   suffix: Ship
+  id: WallInvisibleShip
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     drawdepth: WallTops
   - type: Fixtures
@@ -22,7 +26,9 @@
     damageModifierSet: RGlass
   - type: Physics
     bodyType: Static
+#  - type: Occluder
   - type: Airtight
+    noAirWhenFullyAirBlocked: false
   - type: Destructible
     thresholds:
     - trigger:
@@ -40,3 +46,6 @@
     messagePerceivedByOthers: comp-window-knock
     interactSuccessSound:
       path: /Audio/Effects/glass_knock.ogg
+  - type: Tag
+    tags:
+    - Wall
