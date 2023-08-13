@@ -1,22 +1,11 @@
 - type: constructionGraph
-  id: MimeBot
+  id: TaxiBot
   start: start
   graph:
   - node: start
     edges:
     - to: bot
       steps:
-      - tag: MimeHappyHonk
-        icon:
-          sprite: Objects/Storage/Happyhonk/mime.rsi
-          state: box
-        name: mime edition happy honk meal
-      - tag: MimeBelt
-        icon:
-            sprite: Clothing/Belt/suspenders.rsi
-            state: icon
-        name: suspenders
-        doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
@@ -27,18 +16,14 @@
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: borg_head
         name: borg head
-        doAfter: 2
+        doAfter: 1
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
         name: borg arm
         doAfter: 2
-      - tag: BorgArm
-        icon:
-          sprite: Mobs/Silicon/drone.rsi
-          state: l_hand
-        name: borg arm
-        doAfter: 2
+      - material: Steel
+        amount: 5
   - node: bot
-    entity: MobMimeBot
+    entity: MobTaxiBot
