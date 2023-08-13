@@ -1,0 +1,20 @@
+- type: entity
+  id: BluespaceVaultError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 180
+    minimumPlayers: 30
+    weight: 2
+    startDelay: 10
+    duration: 1020
+    maxDuration: 1350
+  - type: BluespaceErrorRule
+    gridPath: /Maps/Bluespace/vault.yml
+    rewardFactor: 0.7
+  

@@ -1,0 +1,25 @@
+- type: entity
+  name: Random Animal Spawner
+  suffix: Emotional Support
+  parent: MarkerBase
+  id: RandomAnimalSpawnerEmotionalSupport
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Animals/chicken.rsi
+        state: icon-1
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MobCatGhost
+      - MobCatCalicoGhost
+      - MobCatCaracalGhost
+      - MobCorgiGhost
+    chance: 1
+    rarePrototypes:
+      - MobBingusGhost
+      - MobCatSpaceGhost
+      - MobCorgiPuppyGhost
+      - MobChickenGhost
+    rareChance: 0.15

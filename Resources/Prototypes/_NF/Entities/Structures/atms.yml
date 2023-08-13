@@ -1,116 +1,353 @@
 - type: entity
-  id: ComputerBankATM
-  parent: BaseComputer
   name: bank atm
+  parent: BaseStructureComputer
+  id: ComputerBankATM
   description: Used to deposit and withdraw funds from a personal bank account
+  placement:
+    mode: SnapgridCenter
   components:
-    - type: BankATM
-      bank-ATM-cashSlot:
-        name: bank-ATM-cashSlot
-        insertSound: /Audio/Machines/scanning.ogg
-        ejectSound: /Audio/Machines/tray_eject.ogg
-        ejectOnBreak: true
-        swap: false
-        whitelist:
-          components:
-            - Currency
-    - type: ActivatableUI
-      key: enum.BankATMMenuUiKey.ATM
-    - type: UserInterface
-      interfaces:
-        - key: enum.BankATMMenuUiKey.ATM
-          type: BankATMMenuBoundUserInterface
-    - type: Computer
-      board: ShipyardComputerCircuitboard
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-    - type: Sprite
-      netsync: false
-      noRot: true
-      sprite: _NF/Structures/atm.rsi
-      layers:
-        - map: ["computerLayerBody"]
-          state: icon
-        - map: ["computerLayerScreen"]
-          state: unshaded
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: BankATM
+    bank-ATM-cashSlot:
+      name: bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+          - Currency
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+      - key: enum.BankATMMenuUiKey.ATM
+        type: BankATMMenuBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      bank-ATM-cashSlot: !type:ContainerSlot {}
+  - type: Anchorable
+    delay: 999999
 
 - type: entity
-  id: ComputerWithdrawBankATM
-  parent: ComputerBankATM
   name: withdraw-only bank atm
+  parent: BaseStructureComputer
+  id: ComputerWithdrawBankATM
   description: Used to withdraw funds from a personal bank account. Unable to deposit.
+  placement:
+    mode: SnapgridCenter
   components:
-    - type: ActivatableUI
-      key: enum.BankATMMenuUiKey.ATM
-    - type: UserInterface
-      interfaces:
-        - key: enum.BankATMMenuUiKey.ATM
-          type: WithdrawBankATMMenuBoundUserInterface
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: BankATM
+    bank-ATM-cashSlot:
+      name: bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      locked: true
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+      - key: enum.BankATMMenuUiKey.ATM
+        type: WithdrawBankATMMenuBoundUserInterface
+  - type: Anchorable
+    delay: 999999
 
 - type: entity
-  id: ComputerWallmountBankATM
-  parent: BaseComputer
   name: wallmount bank atm
+  parent: BaseStructureComputer
+  id: ComputerWallmountBankATM
   description: Used to deposit and withdraw funds from a personal bank account, it now comes in a more compact design!
+  placement:
+    mode: SnapgridCenter
   components:
-    - type: BankATM
-      bank-ATM-cashSlot:
-        name: bank-ATM-cashSlot
-        insertSound: /Audio/Machines/scanning.ogg
-        ejectSound: /Audio/Machines/tray_eject.ogg
-        ejectOnBreak: true
-        swap: false
-        whitelist:
-          components:
-            - Currency
-    - type: ActivatableUI
-      key: enum.BankATMMenuUiKey.ATM
-    - type: UserInterface
-      interfaces:
-        - key: enum.BankATMMenuUiKey.ATM
-          type: BankATMMenuBoundUserInterface
-    - type: Computer
-      board: ShipyardComputerCircuitboard
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-    - type: Transform
-      anchored: true
-    - type: InteractionOutline
-    - type: Sprite
-      netsync: false
-      noRot: true
-      sprite: _NF/Structures/wall_atm.rsi
-      layers:
-        - map: ["computerLayerBody"]
-          state: icon
-        - map: ["computerLayerScreen"]
-          state: unshaded
-    - type: ItemSlots
-    - type: WallMount
-      arc: 360
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/wall_atm.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: icon
+      - map: ["computerLayerScreen"]
+        state: unshaded
+  - type: WallMount
+    arc: 360
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: BankATM
+    bank-ATM-cashSlot:
+      name: bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+          - Currency
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+      - key: enum.BankATMMenuUiKey.ATM
+        type: BankATMMenuBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      bank-ATM-cashSlot: !type:ContainerSlot {}
+  - type: Anchorable
+    delay: 999999
 
 - type: entity
-  id: ComputerWallmountWithdrawBankATM
-  parent: ComputerWallmountBankATM
   name: wallmount withdraw-only bank atm
+  parent: BaseStructureComputer
+  id: ComputerWallmountWithdrawBankATM
   description: Used to withdraw funds from a personal bank account. Unable to deposit. It now comes in a more compact design!
+  placement:
+    mode: SnapgridCenter
   components:
-    - type: ActivatableUI
-      key: enum.BankATMMenuUiKey.ATM
-    - type: UserInterface
-      interfaces:
-        - key: enum.BankATMMenuUiKey.ATM
-          type: WithdrawBankATMMenuBoundUserInterface
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/wall_atm.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: icon
+      - map: ["computerLayerScreen"]
+        state: unshaded
+  - type: WallMount
+    arc: 360
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: BankATM
+    bank-ATM-cashSlot:
+      name: bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      locked: true
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+      - key: enum.BankATMMenuUiKey.ATM
+        type: WithdrawBankATMMenuBoundUserInterface
+  - type: Anchorable
+    delay: 999999
+
+- type: entity
+  name: station administration console
+  parent: BaseStructureComputer
+  id: StationAdminBankATM
+  description: Used to pay out from the station's bank account
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: StationBankATM
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.ATM
+  - type: UserInterface
+    interfaces:
+    - key: enum.BankATMMenuUiKey.ATM
+      type: StationBankATMMenuBoundUserInterface
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]

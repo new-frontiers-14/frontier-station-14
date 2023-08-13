@@ -1,0 +1,41 @@
+- type: vessel
+  id: Crescent
+  name: NT Crescent
+  description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
+  price: 208020
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/crescent.yml
+
+- type: gameMap
+  id: Crescent
+  mapName: 'NT Crescent'
+  mapPath: /Maps/Shuttles/crescent.yml
+  minPlayers: 0
+  stations:
+    Crescent:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Crescent {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Quartermaster: [ 0, 0 ]
+            Lawyer: [ 0, 0 ]
+            Janitor: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
+            ChiefMedicalOfficer: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            Chef: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            Musician: [ 0, 0 ]
