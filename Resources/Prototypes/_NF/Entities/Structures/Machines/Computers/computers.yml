@@ -1,0 +1,194 @@
+- type: entity
+  name: shipyard console
+  parent: BaseStructureComputer
+  id: ComputerShipyard
+  description: Used to purchase and sell shuttles
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: ShipyardConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Shipyard
+      type: ShipyardConsoleBoundUserInterface
+  - type: ItemSlots  
+  - type: ContainerContainer
+    containers:
+      ShipyardConsole-targetId: !type:ContainerSlot {}
+  - type: Anchorable
+    delay: 999999
+
+- type: entity
+  id: ComputerShipyardSecurity
+  parent: ComputerShipyard
+  name: security shipyard console
+  description: Used to enlist into Nanotrasen Security Forces
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Security
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_security      
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+
+- type: entity
+  name: cargo sale computer
+  suffix: Normal
+  parent: BaseStructureComputer
+  id: ComputerPalletConsoleNFNormalMarket
+  description: Used to sell goods loaded onto cargo pallets
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: CargoPalletConsole
+  - type: ActivatableUI
+    key: enum.CargoPalletConsoleUiKey.Sale
+  - type: UserInterface
+    interfaces:
+    - key: enum.CargoPalletConsoleUiKey.Sale
+      type: CargoPalletConsoleBoundUserInterface
+  - type: Anchorable
+    delay: 999999
+  - type: MarketModifier
+    mod: 1.00
+
+- type: entity
+  parent: ComputerPalletConsoleNFNormalMarket
+  id: ComputerPalletConsoleNFHighMarket
+  suffix: High
+  description: Used to sell goods loaded onto cargo pallets
+  components:
+  - type: MarketModifier
+    mod: 1.59
+
+- type: entity
+  parent: ComputerPalletConsoleNFNormalMarket
+  id: ComputerPalletConsoleNFLowMarket
+  suffix: Low
+  description: Used to sell goods loaded onto cargo pallets
+  components:
+  - type: MarketModifier
+    mod: 0.698
+
+- type: entity
+  parent: ComputerPalletConsoleNFNormalMarket
+  id: ComputerPalletConsoleNFVeryLowMarket
+  suffix: VeryLow
+  description: Used to sell goods loaded onto cargo pallets
+  components:
+  - type: MarketModifier
+    mod: 0.40
