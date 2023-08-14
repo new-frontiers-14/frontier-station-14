@@ -23,8 +23,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
+          git config --global user.name "${{ vars.CHANGELOG_USER }}"
+          git config --global user.email "${{ vars.CHANGELOG_EMAIL }}"
         shell: bash
 
       - name: Setup Node
@@ -47,7 +47,7 @@ jobs:
       - name: Commit Changelog
         run: |
           git add *.yml
-          git commit -m "Automatic Changelog Update (#${{ env.PR_NUMBER }})"
+          git commit -m "${{ vars.CHANGELOG_MESSAGE }} (#${{ env.PR_NUMBER }})"
           git push
         shell: bash
         continue-on-error: true
