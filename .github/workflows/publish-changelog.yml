@@ -9,6 +9,13 @@ jobs:
  publish_changelog:
     runs-on: ubuntu-latest
     steps:
+
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+        ref: master
+
     - name: Publish changelog
       run: Tools/actions_changelogs_since_last_run.py
       env:
