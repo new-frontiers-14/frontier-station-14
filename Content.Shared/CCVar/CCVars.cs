@@ -310,7 +310,7 @@ namespace Content.Shared.CCVar
         /// How many times per second artifacts when the round is over.
         /// If set to 0, they won't activate (on a timer) when the round ends.
         /// </summary>
-        public static readonly CVarDef<float> ArtifactRoundEndTimer = CVarDef.Create("game.artifact_round_end_timer", 0.5f, CVar.NOTIFY | CVar.REPLICATED);
+        public static readonly CVarDef<float> ArtifactRoundEndTimer = CVarDef.Create("game.artifact_round_end_timer", 0f, CVar.NOTIFY | CVar.REPLICATED);
 
         /*
          * Discord
