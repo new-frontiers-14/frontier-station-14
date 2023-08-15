@@ -8,7 +8,7 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-bluespace-vault-end-announcement
-    earliestStart: 180
+    earliestStart: 100
     minimumPlayers: 30
     weight: 2
     startDelay: 10
@@ -16,5 +16,25 @@
     maxDuration: 1350
   - type: BluespaceErrorRule
     gridPath: /Maps/Bluespace/vault.yml
+    rewardFactor: 0.7
+  
+- type: entity
+  id: BluespaceVaultSmallError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 4
+    startDelay: 10
+    duration: 590
+    maxDuration: 780
+  - type: BluespaceErrorRule
+    gridPath: /Maps/Bluespace/vaultsmall.yml
     rewardFactor: 0.7
   
