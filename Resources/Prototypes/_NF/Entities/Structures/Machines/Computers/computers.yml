@@ -74,6 +74,11 @@
       ShipyardConsole-targetId: !type:ContainerSlot {}
   - type: Anchorable
     delay: 999999
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
 
 - type: entity
   id: ComputerShipyardSecurity
@@ -165,6 +170,11 @@
     delay: 999999
   - type: MarketModifier
     mod: 1.00
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
 
 - type: entity
   parent: ComputerPalletConsoleNFNormalMarket
