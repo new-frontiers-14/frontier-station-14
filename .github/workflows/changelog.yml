@@ -47,6 +47,7 @@ jobs:
 
       - name: Commit Changelog
         run: |
+          git pull origin master
           git add *.yml
           git commit -m "${{ vars.CHANGELOG_MESSAGE }} (#${{ env.PR_NUMBER }})"
           git push
