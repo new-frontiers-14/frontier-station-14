@@ -1,166 +1,340 @@
-using Content.Server.Actions;
+using Content.Server.Access.Systems;
+using Content.Server.DeviceNetwork;
+using Content.Server.DeviceNetwork.Components;
+using Content.Server.DeviceNetwork.Systems;
+using Content.Server.GameTicking;
+using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Popups;
-using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
+using Content.Server.Station.Systems;
+using Content.Shared.Damage;
 using Content.Shared.Examine;
-using Content.Shared.Interaction;
+using Content.Shared.Inventory.Events;
 using Content.Shared._NF.Bodycam;
-using Content.Shared.Rounding;
-using Content.Shared.Toggleable;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
-using JetBrains.Annotations;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using Robust.Shared.Map;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Content.Server.SurveillanceCamera;
+using Content.Server.Database;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Content.Server._NF.Bodycam.EntitySystems
+namespace Content.Server._NF.Bodycam
 {
-    [UsedImplicitly]
-    public sealed class BodycamSystem : SharedBodycamSystem
+    public sealed class BodycamSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
-        // TODO: Ideally you'd be able to subscribe to power stuff to get events at certain percentages.. or something?
-        // But for now this will be better anyway.
-        private readonly HashSet<BodycamComponent> _activeLights = new();
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly CrewMonitoringServerSystem _monitoringServerSystem = default!;
+        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
+        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
+        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly SurveillanceCameraSystem _surveillanceCameras = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            SubscribeLocalEvent<BodycamComponent, ComponentRemove>(OnRemove);
-            SubscribeLocalEvent<BodycamComponent, ComponentGetState>(OnGetState);
-
+            SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
+            SubscribeLocalEvent<BodycamComponent, MapInitEvent>(OnMapInit);
+            SubscribeLocalEvent<BodycamComponent, EntityUnpausedEvent>(OnUnpaused);
+            SubscribeLocalEvent<BodycamComponent, GotEquippedEvent>(OnEquipped);
+            SubscribeLocalEvent<BodycamComponent, GotUnequippedEvent>(OnUnequipped);
             SubscribeLocalEvent<BodycamComponent, ExaminedEvent>(OnExamine);
-
-            SubscribeLocalEvent<BodycamComponent, ActivateInWorldEvent>(OnActivate);
-
-            SubscribeLocalEvent<BodycamComponent, GetItemActionsEvent>(OnGetActions);
-            SubscribeLocalEvent<BodycamComponent, ToggleActionEvent>(OnToggleAction);
+            SubscribeLocalEvent<BodycamComponent, GetVerbsEvent<Verb>>(OnVerb);
+            SubscribeLocalEvent<BodycamComponent, EntGotInsertedIntoContainerMessage>(OnInsert);
+            SubscribeLocalEvent<BodycamComponent, EntGotRemovedFromContainerMessage>(OnRemove);
         }
 
-        private void OnGetActions(EntityUid uid, BodycamComponent component, GetItemActionsEvent args)
+        private void OnUnpaused(EntityUid uid, BodycamComponent component, ref EntityUnpausedEvent args)
         {
-            if (component.ToggleAction == null
-                && _proto.TryIndex(component.ToggleActionId, out InstantActionPrototype? act))
-            {
-                component.ToggleAction = new(act);
-            }
-
-            if (component.ToggleAction != null)
-                args.Actions.Add(component.ToggleAction);
-        }
-
-        private void OnToggleAction(EntityUid uid, BodycamComponent component, ToggleActionEvent args)
-        {
-            if (args.Handled)
-                return;
-
-            if (component.Activated)
-                TurnOff(uid, component);
-            else
-                TurnOn(args.Performer, uid, component);
-
-            args.Handled = true;
-        }
-
-        private void OnGetState(EntityUid uid, BodycamComponent component, ref ComponentGetState args)
-        {
-            //args.State = new BodycamComponent.BodycamComponentState(component.Activated, GetLevel(uid, component));
-        }
-
-        private void OnRemove(EntityUid uid, BodycamComponent component, ComponentRemove args)
-        {
-            _activeLights.Remove(component);
-        }
-
-        private void OnActivate(EntityUid uid, BodycamComponent component, ActivateInWorldEvent args)
-        {
-            if (args.Handled)
-                return;
-
-            if (ToggleStatus(args.User, uid, component))
-                args.Handled = true;
-        }
-
-        /// <summary>
-        ///     Illuminates the light if it is not active, extinguishes it if it is active.
-        /// </summary>
-        /// <returns>True if the light's status was toggled, false otherwise.</returns>
-        public bool ToggleStatus(EntityUid user, EntityUid uid, BodycamComponent component)
-        {
-            return component.Activated ? TurnOff(uid, component) : TurnOn(user, uid, component);
-        }
-
-        private void OnExamine(EntityUid uid, BodycamComponent component, ExaminedEvent args)
-        {
-            args.PushMarkup(component.Activated
-                ? Loc.GetString("handheld-light-component-on-examine-is-on-message")
-                : Loc.GetString("handheld-light-component-on-examine-is-off-message"));
-        }
-
-        public override void Shutdown()
-        {
-            base.Shutdown();
-            _activeLights.Clear();
+            component.NextUpdate += args.PausedTime;
         }
 
         public override void Update(float frameTime)
         {
-            var toRemove = new RemQueue<BodycamComponent>();
+            base.Update(frameTime);
 
-            foreach (var handheld in _activeLights)
+            var curTime = _gameTiming.CurTime;
+            var cameras = EntityManager.EntityQueryEnumerator<BodycamComponent, DeviceNetworkComponent>();
+            bool power = false;
+
+            while (cameras.MoveNext(out var uid, out var camera, out var device))
             {
-                var uid = handheld.Owner;
-
-                if (handheld.Deleted)
-                {
-                    toRemove.Add(handheld);
+                if (device.TransmitFrequency is null)
                     continue;
+
+                // check if camera is ready to update
+                if (curTime < camera.NextUpdate)
+                    continue;
+
+                // TODO: This would cause imprecision at different tick rates.
+                camera.NextUpdate = curTime + camera.UpdateRate;
+
+                // get camera status
+                var status = GetCameraState(uid, camera);
+                if (status == null);
+                else { power = true; }
+                _surveillanceCameras.SetActive(uid, power);
+                continue;
+            }
+        }
+
+        private void OnPlayerSpawn(PlayerSpawnCompleteEvent ev)
+        {
+            // If the player spawns in arrivals then the grid underneath them may not be appropriate.
+            // in which case we'll just use the station spawn code told us they are attached to and set all of their
+            // cameras.
+            var cameraQuery = GetEntityQuery<BodycamComponent>();
+            var xformQuery = GetEntityQuery<TransformComponent>();
+            RecursiveCamera(ev.Mob, cameraQuery, xformQuery);
+        }
+
+        private void RecursiveCamera(EntityUid uid, EntityQuery<BodycamComponent> cameraQuery, EntityQuery<TransformComponent> xformQuery)
+        {
+            var xform = xformQuery.GetComponent(uid);
+            var enumerator = xform.ChildEnumerator;
+
+            while (enumerator.MoveNext(out var child))
+            {
+                if (cameraQuery.TryGetComponent(child, out var camera))
+                {
+                   //ensor.StationId = stationUid;
                 }
 
-                if (Paused(uid)) continue;
-                TryUpdate(uid, handheld, frameTime);
-            }
-
-            foreach (var light in toRemove)
-            {
-                _activeLights.Remove(light);
+                RecursiveCamera(child.Value, cameraQuery, xformQuery);
             }
         }
 
-        public bool TurnOff(EntityUid uid, BodycamComponent component, bool makeNoise = true)
+        private void OnMapInit(EntityUid uid, BodycamComponent component, MapInitEvent args)
         {
-            if (!component.Activated)
+            // generate random mode
+            if (component.RandomMode)
             {
-                return false;
+                //make the camera mode favor on
+                var modesDist = new[]
+                {
+                    BodycamMode.CameraOff,
+                    BodycamMode.CameraOn, BodycamMode.CameraOn
+                };
+                component.Mode = _random.Pick(modesDist);
             }
-            return true;
         }
 
-        public bool TurnOn(EntityUid user, EntityUid uid, BodycamComponent component)
+        private void OnEquipped(EntityUid uid, BodycamComponent component, GotEquippedEvent args)
         {
-            if (component.Activated || !TryComp<PointLightComponent>(uid, out var pointLightComponent))
-            {
-                return false;
-            }
+            if (args.Slot != component.ActivationSlot)
+                return;
 
-            SetActivated(uid, true, component, true);
-            _activeLights.Add(component);
-
-            return true;
+            component.User = args.Equipee;
         }
 
-        public void TryUpdate(EntityUid uid, BodycamComponent component, float frameTime)
+        private void OnUnequipped(EntityUid uid, BodycamComponent component, GotUnequippedEvent args)
         {
-        //    var appearanceComponent = EntityManager.GetComponentOrNull<AppearanceComponent>(uid);
+            if (args.Slot != component.ActivationSlot)
+                return;
+
+            component.User = null;
+        }
+
+        private void OnExamine(EntityUid uid, BodycamComponent component, ExaminedEvent args)
+        {
+            if (!args.IsInDetailsRange)
+                return;
+
+            string msg;
+            switch (component.Mode)
+            {
+                case BodycamMode.CameraOff:
+                    msg = "bodycam-examine-off";
+                    break;
+                case BodycamMode.CameraOn:
+                    msg = "bodycam-examine-on";
+                    break;
+                default:
+                    return;
+            }
+
+            args.PushMarkup(Loc.GetString(msg));
+        }
+
+        private void OnVerb(EntityUid uid, BodycamComponent component, GetVerbsEvent<Verb> args)
+        {
+            // check if user can change camera
+            if (component.ControlsLocked)
+                return;
+
+            // standard interaction checks
+            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+                return;
+
+            args.Verbs.UnionWith(new[]
+            {
+                CreateVerb(uid, component, args.User, BodycamMode.CameraOff),
+                CreateVerb(uid, component, args.User, BodycamMode.CameraOn)
+            });
+        }
+
+        private void OnInsert(EntityUid uid, BodycamComponent component, EntGotInsertedIntoContainerMessage args)
+        {
+            if (args.Container.ID != component.ActivationContainer)
+                return;
+
+            component.User = args.Container.Owner;
+        }
+
+        private void OnRemove(EntityUid uid, BodycamComponent component, EntGotRemovedFromContainerMessage args)
+        {
+            if (args.Container.ID != component.ActivationContainer)
+                return;
+
+            component.User = null;
+        }
+
+        private Verb CreateVerb(EntityUid uid, BodycamComponent component, EntityUid userUid, BodycamMode mode)
+        {
+            return new Verb()
+            {
+                Text = GetModeName(mode),
+                Disabled = component.Mode == mode,
+                Priority = -(int) mode, // sort them in descending order
+                Category = VerbCategory.PowerBodycam,
+                Act = () => SetCamera(uid, mode, userUid, component)
+            };
+        }
+
+        private string GetModeName(BodycamMode mode)
+        {
+            string name;
+            switch (mode)
+            {
+                case BodycamMode.CameraOff:
+                    name = "bodycam-power-off";
+                    break;
+                case BodycamMode.CameraOn:
+                    name = "bodycam-power-on";
+                    break;
+                default:
+                    return "";
+            }
+
+            return Loc.GetString(name);
+        }
+
+        public void SetCamera(EntityUid uid, BodycamMode mode, EntityUid? userUid = null,
+            BodycamComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            component.Mode = mode;
+
+            if (userUid != null)
+            {
+                var msg = Loc.GetString("bodycam-power-state", ("mode", GetModeName(mode)));
+                _popupSystem.PopupEntity(msg, uid, userUid.Value);
+            }
+        }
+
+        public BodycamStatus? GetCameraState(EntityUid uid, BodycamComponent? camera = null, TransformComponent? transform = null)
+        {
+            if (!Resolve(uid, ref camera, ref transform))
+                return null;
+
+            // check if camera is enabled and worn by user
+            if (camera.Mode == BodycamMode.CameraOff || camera.User == null || transform.GridUid == null)
+                return null;
+
+            // try to get mobs id from ID slot
+            var userName = Loc.GetString("bodycam-component-unknown-name");
+            var userJob = Loc.GetString("bodycam-component-unknown-job");
+            if (_idCardSystem.TryFindIdCard(camera.User.Value, out var card))
+            {
+                if (card.FullName != null)
+                    userName = card.FullName;
+                if (card.JobTitle != null)
+                    userJob = card.JobTitle;
+            }
+
+            // finally, form camera status
+            var status = new BodycamStatus(uid, userName, userJob);
+            switch (camera.Mode)
+            {
+                case BodycamMode.CameraOn:
+                    EntityCoordinates coordinates;
+                    var xformQuery = GetEntityQuery<TransformComponent>();
+
+                    if (transform.GridUid != null)
+                    {
+                        coordinates = new EntityCoordinates(transform.GridUid.Value,
+                            _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
+                            .Transform(_transform.GetWorldPosition(transform, xformQuery)));
+                    }
+                    else if (transform.MapUid != null)
+                    {
+                        coordinates = new EntityCoordinates(transform.MapUid.Value,
+                            _transform.GetWorldPosition(transform, xformQuery));
+                    }
+                    else
+                    {
+                        coordinates = EntityCoordinates.Invalid;
+                    }
+
+                    status.Coordinates = coordinates;
+                    break;
+            }
+
+            return status;
+        }
+
+        /// <summary>
+        ///     Serialize create a device network package from the suit cameras status.
+        /// </summary>
+        public NetworkPayload BodycamToPacket(BodycamStatus status)
+        {
+            var payload = new NetworkPayload()
+            {
+                [DeviceNetworkConstants.Command] = DeviceNetworkConstants.CmdUpdatedState,
+                [BodycamConstants.NET_NAME] = status.Name,
+                [BodycamConstants.NET_JOB] = status.Job,
+                [BodycamConstants.NET_BODYCAM_UID] = status.BodycamUid,
+            };
+
+            if (status.Coordinates != null)
+                payload.Add(BodycamConstants.NET_COORDINATES, status.Coordinates);
+
+
+            return payload;
+        }
+
+        /// <summary>
+        ///     Try to create the camera status from the device network message
+        /// </summary>
+        public BodycamStatus? PacketToBodycam(NetworkPayload payload)
+        {
+            // check command
+            if (!payload.TryGetValue(DeviceNetworkConstants.Command, out string? command))
+                return null;
+            if (command != DeviceNetworkConstants.CmdUpdatedState)
+                return null;
+
+            // check name and job
+            if (!payload.TryGetValue(BodycamConstants.NET_NAME, out string? name)) return null;
+            if (!payload.TryGetValue(BodycamConstants.NET_JOB, out string? job)) return null;
+            if (!payload.TryGetValue(BodycamConstants.NET_BODYCAM_UID, out EntityUid suitCameraUid)) return null;
+
+            // try get cords
+            payload.TryGetValue(BodycamConstants.NET_COORDINATES, out EntityCoordinates? cords);
+
+            var status = new BodycamStatus(suitCameraUid, name, job)
+            {
+                Coordinates = cords,
+            };
+            return status;
         }
     }
 }
