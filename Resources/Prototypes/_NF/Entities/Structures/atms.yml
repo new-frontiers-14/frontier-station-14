@@ -70,6 +70,20 @@
       bank-ATM-cashSlot: !type:ContainerSlot {}
   - type: Anchorable
     delay: 999999
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   name: withdraw-only bank atm
@@ -137,6 +151,17 @@
         type: WithdrawBankATMMenuBoundUserInterface
   - type: Anchorable
     delay: 999999
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   name: wallmount bank atm
@@ -215,6 +240,17 @@
       bank-ATM-cashSlot: !type:ContainerSlot {}
   - type: Anchorable
     delay: 999999
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   name: wallmount withdraw-only bank atm
@@ -287,6 +323,17 @@
         type: WithdrawBankATMMenuBoundUserInterface
   - type: Anchorable
     delay: 999999
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   name: station administration console
@@ -351,3 +398,8 @@
       type: StationBankATMMenuBoundUserInterface
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
