@@ -170,15 +170,17 @@
 - type: entity
   parent: BaseGenerator
   id: GeneratorBasic15kW
-  suffix: Basic, 15kW
+  suffix: Basic, 15kW, Anchored
   components:
     - type: PowerSupplier
       supplyRate: 15000
+    - type: Anchorable
+      delay: 999999
 
 - type: entity
   parent: [ BaseGenerator, ConstructibleMachine ]
   id: GeneratorPlasma
-  suffix: Plasma, 20kW
+  suffix: Plasma, 15kW
   components:
   - type: PowerSupplier
   - type: Sprite
@@ -194,8 +196,10 @@
     powerSupplyMultiplier: 1.25
     scaling: Exponential
   - type: FuelGenerator
-    targetPower: 20000
-    optimalPower: 20000
+    maxTargetPower: 20000
+    targetPower: 15000
+    optimalPower: 15000
+    optimalBurnRate: 0.008333 #about .5 units per minute - 1 stack per hour peak efficiency
   - type: SolidFuelGeneratorAdapter
     fuelMaterial: Plasma
   - type: ActivatableUI
@@ -224,9 +228,10 @@
     powerSupplyMultiplier: 1.25
     scaling: Exponential
   - type: FuelGenerator
+    maxTargetPower: 40000
     targetPower: 30000
     optimalPower: 30000
-    optimalBurnRate: 0.00416666666
+    optimalBurnRate: 0.008333 # about .5 per minute, 1 stack gets 1 hours peak efficiency
   - type: SolidFuelGeneratorAdapter
     fuelMaterial: Uranium
   - type: ActivatableUI
