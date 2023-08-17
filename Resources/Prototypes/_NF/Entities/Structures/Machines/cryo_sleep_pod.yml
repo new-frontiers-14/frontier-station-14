@@ -13,16 +13,6 @@
     delay: 999999
   - type: Physics
     bodyType: Static
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: MaterialStorage
   - type: Appearance
   - type: Climbable
@@ -30,3 +20,8 @@
   - type: ContainerContainer
     containers:
       body_container: !type:ContainerSlot  
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
