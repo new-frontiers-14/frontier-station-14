@@ -56,7 +56,8 @@
     hostileOnFail: true
   - type: DogVision
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
     blackboard:
       NavSmash: !type:Bool
         true
