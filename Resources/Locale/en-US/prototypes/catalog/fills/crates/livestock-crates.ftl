@@ -8,7 +8,7 @@ ent-CrateNPCCat = Cat crate
     .desc = A crate containing a single cat.
 
 ent-CrateNPCChicken = Chicken crate
-    .desc = A crate containing four fully grown chickens.
+    .desc = A crate containing two fully grown chickens.
 
 ent-CrateNPCCrab = Crab crate
     .desc = A crate containing three huge crabs.
