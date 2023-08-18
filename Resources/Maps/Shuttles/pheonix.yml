@@ -3935,25 +3935,22 @@ entities:
       type: Transform
     - enabled: False
       type: AmbientSound
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 225
     components:
     - pos: 4.5,2.5
       parent: 1
       type: Transform
+    - remainingFuel: 15
+      type: FuelGenerator
   - uid: 226
     components:
     - pos: 5.5,2.5
       parent: 1
       type: Transform
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 708
-    components:
-    - pos: 5.5,3.5
-      parent: 1
-      type: Transform
+    - remainingFuel: 15
+      type: FuelGenerator
 - proto: GravityGeneratorMini
   entities:
   - uid: 228

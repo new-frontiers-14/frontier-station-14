@@ -614,13 +614,15 @@ entities:
     - pos: 0.5,-2.5
       parent: 8756
       type: Transform
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 8804
     components:
     - pos: 0.5,-5.5
       parent: 8756
       type: Transform
+    - remainingFuel: 23
+      type: FuelGenerator
 - proto: GravityGeneratorMini
   entities:
   - uid: 8815

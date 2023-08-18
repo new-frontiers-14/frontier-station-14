@@ -1337,13 +1337,15 @@ entities:
       pos: 2.5,7.5
       parent: 2
       type: Transform
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 72
     components:
     - pos: 5.5,11.5
       parent: 2
       type: Transform
+    - remainingFuel: 15
+      type: FuelGenerator
 - proto: GravityGeneratorMini
   entities:
   - uid: 73
