@@ -3,11 +3,14 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Content.Server._NF.Bodycam;
+using Content.Server.DeviceNetwork.Systems;
+using Content.Server.DeviceNetwork;
+using Content.Server.SurveillanceCamera;
 
 namespace Content.Shared._NF.Bodycam
 {
     [RegisterComponent]
-    [Access(typeof(BodycamSystem))]
+    [Access(typeof(BodycamSystem), typeof(SurveillanceCameraSystem))]
     public sealed class BodycamComponent : Component
     {
         [DataField("turnOnSound")]

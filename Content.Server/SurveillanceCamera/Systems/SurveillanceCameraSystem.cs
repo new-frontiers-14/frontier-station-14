@@ -156,7 +156,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         Deactivate(camera, component);
     }
 
-    public void OnSetName(EntityUid uid, SurveillanceCameraComponent component, SurveillanceCameraSetupSetName args)
+    private void OnSetName(EntityUid uid, SurveillanceCameraComponent component, SurveillanceCameraSetupSetName args)
     {
         if (args.UiKey is not SurveillanceCameraSetupUiKey key
             || key != SurveillanceCameraSetupUiKey.Camera
@@ -167,14 +167,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         }
 
         component.CameraId = args.Name;
-        component.NameSet = true;
-        UpdateSetupInterface(uid, component);
-    }
-
-    public void OnSetNameUser(EntityUid uid, SurveillanceCameraComponent component)
-    {
-
-        component.CameraId = "Test";
         component.NameSet = true;
         UpdateSetupInterface(uid, component);
     }
