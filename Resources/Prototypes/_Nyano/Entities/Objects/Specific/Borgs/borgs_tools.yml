@@ -144,44 +144,6 @@
     unlimited: true
 
 - type: entity
-  parent: BaseItem
-  id: BorgToolStandard
-  name: borg tool
-  description: Alternates between prying and anchoring.
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/omnitool.rsi
-    state: omnitool-screwing
-  - type: Item
-    sprite: Objects/Tools/omnitool.rsi
-    size: 20
-  - type: TilePrying
-  - type: Tool
-    useSound: !type:SoundPathSpecifier
-      path: /Audio/Items/jaws_pry.ogg
-    qualities:
-      - Prying
-  - type: MultipleTool
-    statusShowBehavior: true
-    entries:
-      - behavior: Prying
-        sprite:
-          sprite: Objects/Tools/omnitool.rsi
-          state: omnitool-prying
-        useSound:
-          path: /Audio/Items/jaws_pry.ogg
-        changeSound:
-          path: /Audio/Items/change_drill.ogg
-      - behavior: Anchoring
-        sprite:
-          sprite: Objects/Tools/omnitool.rsi
-          state: omnitool-wrenching
-        useSound:
-          path: /Audio/Items/ratchet.ogg
-        changeSound:
-          path: /Audio/Items/change_drill.ogg
-
-- type: entity
   parent: ClothingHeadsetCommand
   id: ClothingHeadsetBorg
   components:
