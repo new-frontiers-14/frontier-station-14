@@ -3,7 +3,6 @@ department-Silicon-description = Follow your laws in service to the humans.
 job-description-guard = Keep track of prisoners and make sure they have their basic needs. 
 job-name-mail-carrier = mail carrier
 job-name-cyborg = cyborg
-job-name-medical-cyborg = medical cyborg
 job-name-gladiator = gladiator
 job-name-fugitive = fugitive
 job-name-prisoner = prisoner
