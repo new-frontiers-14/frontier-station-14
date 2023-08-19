@@ -1,5 +1,8 @@
 using Robust.Client.GameObjects;
 using Content.Shared.Mail;
+using Content.Shared.StatusIcon;
+using Robust.Client.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Mail
 {
@@ -27,13 +30,17 @@ namespace Content.Client.Mail
     /// </remarks>
     public sealed class MailJobVisualizerSystem : VisualizerSystem<MailComponent>
     {
+        [Dependency] private readonly IPrototypeManager _prototype = default!;
         protected override void OnAppearanceChange(EntityUid uid, MailComponent component, ref AppearanceChangeEvent args)
         {
             if (args.Sprite == null)
                 return;
 
             if (args.Component.TryGetData(MailVisuals.JobIcon, out string job))
-                args.Sprite.LayerSetState(MailVisualLayers.JobStamp, job);
+            {
+                var jobIcon = _prototype.Index<StatusIconPrototype>(job);
+                args.Sprite.LayerSetTexture(MailVisualLayers.JobStamp, jobIcon.Icon.Frame0());
+            }
         }
     }
 
