@@ -47,7 +47,6 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
-            SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
             Reset();
         }
 
@@ -55,11 +54,6 @@ namespace Content.Server.Cargo.Systems
         {
             var station = _station.GetOwningStation(uid);
             UpdateOrderState(orderConsole, station);
-        }
-
-        private void Reset(RoundRestartCleanupEvent ev)
-        {
-            Reset();
         }
 
         private void Reset()

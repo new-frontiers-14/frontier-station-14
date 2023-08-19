@@ -88,6 +88,7 @@ public enum LogType
     Vote = 83,
     ItemConfigure = 84,
     DeviceLinking = 85,
+    Tile = 86,
 
     // Frontier Station Spesific
     ATMUsage = 200,

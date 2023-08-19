@@ -13,6 +13,28 @@
     - type: StationRenameWarps
 
 - type: entity
+  id: BaseStationSiliconLawFrontierStation
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - NTDefault1
+    - NTDefault2
+    - NTDefault3
+    - NTDefault4
+
+- type: entity
+  id: BaseStationSiliconLawFrontierShips
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - Corporate1
+    - Corporate2
+    - Corporate3
+    - Corporate4
+
+- type: entity
   id: StandardFrontierStation
   parent:
     - BaseStation
@@ -21,6 +43,7 @@
     - BaseStationRecords
     - BaseStationShuttles
     - BaseStationAlertLevels
+    - BaseStationSiliconLawFrontierStation
   noSpawn: true
   components:
     - type: Transform
@@ -36,6 +59,7 @@
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
     - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
@@ -50,6 +74,7 @@
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
     - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
@@ -232,7 +257,7 @@
 - type: vessel
   id: Sparrow
   name: NR Sparrow
-  description: A combined research and engineering vessel suited for xeno-archeological expeditions.
+  description: A small research and engineering vessel.
   price: 45875
   category: Small
   group: Civilian
@@ -257,13 +282,13 @@
           availableJobs:
             StationEngineer: [ 0, 0 ]
             Scientist: [ 0, 0 ]
-            ##Cyborg:[ 1, 1 ]
+            Borg: [ 0, 0 ]
 
 - type: vessel
   id: Condor
   name: NR Condor
-  description: A combined research and engineering vessel suited for xeno-archeological expeditions.
-  price: 72000
+  description: A combined research and engineering vessel #suited for xeno-archeological expeditions. -soon
+  price: 72890
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/condor.yml
@@ -275,7 +300,7 @@
   minPlayers: 0
   stations:
     Condor:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Condor {1}'
@@ -290,7 +315,7 @@
             ResearchDirector: [ 0, 0 ]
             ChiefEngineer: [ 0, 0 ]
             AtmosphericTechnician: [ 0, 0 ]
-            ##Cyborg [ 1, 1 ]
+            Borg: [ 0, 0 ]
 
 - type: vessel
   id: Interceptor
@@ -405,7 +430,6 @@
           overflowJobs: []
           availableJobs:
             Paramedic: [ 0, 0 ]
-            MedicalCyborg: [ 0, 0 ]
 
 - type: vessel
   id: Helix
@@ -437,7 +461,6 @@
             ChiefMedicalOfficer: [ 0, 0 ]
             MedicalDoctor: [ 0, 0 ]
             Chemist: [ 0, 0 ]
-            MedicalCyborg: [ 0, 0 ]
 
 - type: vessel
   id: Skipper

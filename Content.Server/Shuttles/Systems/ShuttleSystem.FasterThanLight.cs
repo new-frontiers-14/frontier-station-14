@@ -73,7 +73,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Minimum mass for an FTL destination
     /// </summary>
-    public const float FTLDestinationMass = 1000f;
+    public const float FTLDestinationMass = 800f;
 
     private void InitializeFTL()
     {
@@ -351,10 +351,9 @@ public sealed partial class ShuttleSystem
                         {
                             Disable(uid, body);
                         }
-                        else
+                        else if (shuttle != null)
                         {
-                            if (shuttle != null)
-                                Enable(uid, body, shuttle);
+                            Enable(uid, body, shuttle);
                         }
                     }
 

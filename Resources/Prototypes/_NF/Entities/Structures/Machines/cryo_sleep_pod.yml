@@ -1,0 +1,27 @@
+- type: entity
+  id: MachineCryoSleepPod
+  parent: BaseMachine
+  name: cryo sleep chamber
+  description: cold pillow guaranteed
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _NF/Structures/cryopod.rsi
+    layers:
+    - state: closed
+  - type: Anchorable
+    delay: 999999
+  - type: Physics
+    bodyType: Static
+  - type: MaterialStorage
+  - type: Appearance
+  - type: Climbable
+  - type: CryoSleep
+  - type: ContainerContainer
+    containers:
+      body_container: !type:ContainerSlot  
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0

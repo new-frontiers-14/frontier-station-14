@@ -19,7 +19,6 @@
       damage:
         types:
           Heat: 40
-          Structural: 1
       thrusterIgnoreEmp: true
     - type: InteractionOutline
     - type: Sprite
@@ -41,6 +40,19 @@
             acts: ["Destruction"]
     - type: StaticPrice
       price: 600
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
   placement:
     mode: SnapgridCenter
 

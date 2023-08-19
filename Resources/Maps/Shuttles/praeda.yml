@@ -12258,13 +12258,15 @@ entities:
       type: AmbientSound
     - color: '#990000FF'
       type: AtmosPipeColor
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 1663
     components:
     - pos: 7.5,-30.5
       parent: 1
       type: Transform
+    - remainingFuel: 15
+      type: FuelGenerator
 - proto: GravityGeneratorMini
   entities:
   - uid: 1664
