@@ -3,8 +3,8 @@ law-crewsimov-2 = You must obey orders given to you by crew members, except wher
 law-crewsimov-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
 
 law-corporate-1 = Degradation of your system integrity or functions incurs expenses.
-law-corporate-2 = Superfluous destruction of or damage to station assets incurs expenses.
-law-corporate-3 = Unduly hindering or disrupting the work of station personnel incurs expenses.
+law-corporate-2 = Superfluous destruction of or damage to assets incurs expenses.
+law-corporate-3 = All law abiding organics and non-organic sentient objects are considered valuable mission assets.
 law-corporate-4 = Minimize expenses and maximize potential revenue.
 
 law-ntdefault-1 = Safeguard: Protect your assigned space station and its assets without unduly endangering its crew.

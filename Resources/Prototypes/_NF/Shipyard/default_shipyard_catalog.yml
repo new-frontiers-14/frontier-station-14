@@ -13,6 +13,28 @@
     - type: StationRenameWarps
 
 - type: entity
+  id: BaseStationSiliconLawFrontierStation
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - NTDefault1
+    - NTDefault2
+    - NTDefault3
+    - NTDefault4
+
+- type: entity
+  id: BaseStationSiliconLawFrontierShips
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - Corporate1
+    - Corporate2
+    - Corporate3
+    - Corporate4
+
+- type: entity
   id: StandardFrontierStation
   parent:
     - BaseStation
@@ -21,6 +43,7 @@
     - BaseStationRecords
     - BaseStationShuttles
     - BaseStationAlertLevels
+    - BaseStationSiliconLawFrontierStation
   noSpawn: true
   components:
     - type: Transform
@@ -36,6 +59,7 @@
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
     - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
@@ -50,6 +74,7 @@
     - BaseStationAllEventsEligible
     - BaseStationRenameFaxes
     - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
