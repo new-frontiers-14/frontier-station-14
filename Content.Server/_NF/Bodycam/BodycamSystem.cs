@@ -6,11 +6,9 @@ using Content.Server.GameTicking;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Inventory.Events;
 using Content.Shared._NF.Bodycam;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -18,9 +16,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.SurveillanceCamera;
-using Content.Server.Database;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Content.Shared.SurveillanceCamera;
 
 namespace Content.Server._NF.Bodycam
 {
@@ -79,9 +74,11 @@ namespace Content.Server._NF.Bodycam
                 // get camera status
                 var status = GetCameraState(uid, camera);
                 if (status == null);
-                else { power = true; }
+                else
+                {
+                    power = true;
+                }
                 _surveillanceCameras.SetActive(uid, power);
-
                 continue;
             }
         }
