@@ -5,13 +5,11 @@ using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Inventory.Events;
 using Content.Shared.SurveillanceCamera;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Server.Access.Systems;
-
 
 namespace Content.Server.SurveillanceCamera;
 
@@ -66,8 +64,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         
         SubscribeLocalEvent<SurveillanceCameraComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<SurveillanceCameraComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved);
-
-        SubscribeLocalEvent<SurveillanceCameraComponent, GotEquippedEvent>(OnEquipped);
     }
 
     private void OnPacketReceived(EntityUid uid, SurveillanceCameraComponent component, DeviceNetworkPacketEvent args)
@@ -211,11 +207,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
         _userInterface.OpenUi(bui, actor.PlayerSession);
         UpdateSetupInterface(uid, camera);
-    }
-
-    private void OnEquipped(EntityUid uid, SurveillanceCameraComponent component, GotEquippedEvent args)
-    {
-        component.CameraIdUser = args.Equipee;
     }
 
     private void UpdateSetupInterface(EntityUid uid, SurveillanceCameraComponent? camera = null, DeviceNetworkComponent? deviceNet = null)
