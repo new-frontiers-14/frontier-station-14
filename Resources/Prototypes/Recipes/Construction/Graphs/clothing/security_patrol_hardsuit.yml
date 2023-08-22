@@ -1,0 +1,26 @@
+﻿- type: constructionGraph
+  id: SecPatrolHardsuit
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: securitypatrolhardsuit
+          steps:
+            - tag: SecHardsuit
+              name: A Security Hardsuit
+              icon: 
+                sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+                state: icon
+              doAfter: 10
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialDurathread1
+              amount: 5
+            - !type:PopupUser
+              cursor: true
+              text: You've removed the outer composite armor
+    - node: securitypatrolhardsuit
+      entity: ClothingOuterHardsuitSecuritypatrol

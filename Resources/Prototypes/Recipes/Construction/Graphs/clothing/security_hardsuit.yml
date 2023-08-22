@@ -1,0 +1,25 @@
+﻿- type: constructionGraph
+  id: SecHardsuit
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: securityhardsuit
+          steps:
+            - tag: SecPatrolHardsuit
+              name: A Security Patrol Hardsuit
+              icon: 
+                sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+                state: icon
+            - material: Plasteel
+              amount: 2
+              doAfter: 2
+            - material: Durathread
+              amount: 5
+              doAfter: 8
+          completed:
+            - !type:PopupUser
+              cursor: true
+              text: You've refasten the outer composite armor
+    - node: securityhardsuit
+      entity: ClothingOuterHardsuitSecurity
