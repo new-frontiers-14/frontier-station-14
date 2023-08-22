@@ -6,6 +6,7 @@ using Content.Server.Chemistry.Components.SolutionManager;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
+using Content.Shared._NF.Cargo.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
 using Content.Shared.Mobs.Components;
@@ -158,6 +159,29 @@ public sealed class PricingSystem : EntitySystem
         {
             price += GetStaticPrice(prototype);
         }
+
+        // TODO: Proper container support.
+
+        return price;
+    }
+
+    /// <summary>
+    /// Add a hardcoded price for an item to set how much it will cost to buy it from a vending machine, while allowing staticPrice to set its sell price.
+    /// </summary>
+    public double GetEstimatedVendPrice(EntityPrototype prototype)
+    {
+        var ev = new EstimatedPriceCalculationEvent()
+        {
+            Prototype = prototype,
+        };
+
+        RaiseLocalEvent(ref ev);
+
+        if (ev.Handled)
+            return ev.Price;
+
+        var price = ev.Price;
+        price += GetVendPrice(prototype);
 
         // TODO: Proper container support.
 
@@ -323,6 +347,31 @@ public sealed class PricingSystem : EntitySystem
         {
             var staticPrice = (StaticPriceComponent) staticProto.Component;
             price += staticPrice.Price;
+        }
+
+        return price;
+    }
+
+    private double GetVendPrice(EntityUid uid)
+    {
+        var price = 0.0;
+
+        if (TryComp<VendPriceComponent>(uid, out var vendPrice))
+        {
+            price += vendPrice.Price;
+        }
+
+        return price;
+    }
+
+    private double GetVendPrice(EntityPrototype prototype)
+    {
+        var price = 0.0;
+
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(VendPriceComponent)), out var vendProto))
+        {
+            var vendPrice = (VendPriceComponent) vendProto.Component;
+            price += vendPrice.Price;
         }
 
         return price;
