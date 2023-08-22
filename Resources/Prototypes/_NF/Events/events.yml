@@ -1,4 +1,24 @@
 - type: entity
+  id: BluespaceCacheError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: StationEvent
+      startAnnouncement: station-event-bluespace-cache-start-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      endAnnouncement: station-event-bluespace-cache-end-announcement
+      earliestStart: 100
+      minimumPlayers: 20
+      weight: 2
+      startDelay: 10
+      duration: 1350
+      maxDuration: 1560
+    - type: BluespaceErrorRule
+      gridPath: /Maps/Bluespace/cache.yml
+      rewardFactor: 3.3
+
+- type: entity
   id: BluespaceVaultError
   parent: BaseGameRule
   noSpawn: true
@@ -17,7 +37,7 @@
   - type: BluespaceErrorRule
     gridPath: /Maps/Bluespace/vault.yml
     rewardFactor: 0.7
-  
+
 - type: entity
   id: BluespaceVaultSmallError
   parent: BaseGameRule
@@ -36,5 +56,4 @@
     maxDuration: 780
   - type: BluespaceErrorRule
     gridPath: /Maps/Bluespace/vaultsmall.yml
-    rewardFactor: 0.7
-  
+    rewardFactor: 1
