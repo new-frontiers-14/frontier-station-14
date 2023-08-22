@@ -13,12 +13,6 @@ namespace Content.Shared._NF.Bodycam
     [Access(typeof(BodycamSystem), typeof(SurveillanceCameraSystem))]
     public sealed class BodycamComponent : Component
     {
-        [DataField("turnOnSound")]
-        public SoundSpecifier TurnOnSound = new SoundPathSpecifier("/Audio/Items/flashlight_on.ogg");
-
-        [DataField("turnOffSound")]
-        public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/Items/flashlight_off.ogg");
-
         /// <summary>
         ///     Choose a random camera mode when item is spawned.
         /// </summary>

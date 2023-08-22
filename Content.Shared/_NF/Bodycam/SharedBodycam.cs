@@ -13,11 +13,9 @@ namespace Content.Shared._NF.Bodycam
             Job = job;
         }
 
-        public TimeSpan Timestamp;
         public EntityUid BodycamUid;
         public string Name;
         public string Job;
-        public EntityCoordinates? Coordinates;
     }
 
     [Serializable, NetSerializable]
@@ -32,13 +30,5 @@ namespace Content.Shared._NF.Bodycam
         /// Sensor sends only binary status (alive/dead)
         /// </summary>
         CameraOn = 1,
-    }
-
-    public static class BodycamConstants
-    {
-        public const string NET_NAME = "name";
-        public const string NET_JOB = "job";
-        public const string NET_COORDINATES = "coords";
-        public const string NET_BODYCAM_UID = "uid";
     }
 }

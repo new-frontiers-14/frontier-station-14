@@ -12,7 +12,6 @@ using Content.Shared._NF.Bodycam;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.SurveillanceCamera;
@@ -23,19 +22,13 @@ namespace Content.Server._NF.Bodycam
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly CrewMonitoringServerSystem _monitoringServerSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly SurveillanceCameraSystem _surveillanceCameras = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
             SubscribeLocalEvent<BodycamComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<BodycamComponent, EntityUnpausedEvent>(OnUnpaused);
             SubscribeLocalEvent<BodycamComponent, GotEquippedEvent>(OnEquipped);
@@ -80,32 +73,6 @@ namespace Content.Server._NF.Bodycam
                 }
                 _surveillanceCameras.SetActive(uid, power);
                 continue;
-            }
-        }
-
-        private void OnPlayerSpawn(PlayerSpawnCompleteEvent ev)
-        {
-            // If the player spawns in arrivals then the grid underneath them may not be appropriate.
-            // in which case we'll just use the station spawn code told us they are attached to and set all of their
-            // cameras.
-            var cameraQuery = GetEntityQuery<BodycamComponent>();
-            var xformQuery = GetEntityQuery<TransformComponent>();
-            RecursiveCamera(ev.Mob, cameraQuery, xformQuery);
-        }
-
-        private void RecursiveCamera(EntityUid uid, EntityQuery<BodycamComponent> cameraQuery, EntityQuery<TransformComponent> xformQuery)
-        {
-            var xform = xformQuery.GetComponent(uid);
-            var enumerator = xform.ChildEnumerator;
-
-            while (enumerator.MoveNext(out var child))
-            {
-                if (cameraQuery.TryGetComponent(child, out var camera))
-                {
-                   //ensor.StationId = stationUid;
-                }
-
-                RecursiveCamera(child.Value, cameraQuery, xformQuery);
             }
         }
 
@@ -245,7 +212,7 @@ namespace Content.Server._NF.Bodycam
                 return null;
 
             // check if camera is enabled and worn by user
-            if (camera.Mode == BodycamMode.CameraOff || camera.User == null || transform.GridUid == null)
+            if (camera.Mode == BodycamMode.CameraOff || camera.User == null)
                 return null;
 
             // try to get mobs id from ID slot
@@ -261,78 +228,6 @@ namespace Content.Server._NF.Bodycam
 
             // finally, form camera status
             var status = new BodycamStatus(uid, userName, userJob);
-            switch (camera.Mode)
-            {
-                case BodycamMode.CameraOn:
-                    EntityCoordinates coordinates;
-                    var xformQuery = GetEntityQuery<TransformComponent>();
-
-                    if (transform.GridUid != null)
-                    {
-                        coordinates = new EntityCoordinates(transform.GridUid.Value,
-                            _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
-                            .Transform(_transform.GetWorldPosition(transform, xformQuery)));
-                    }
-                    else if (transform.MapUid != null)
-                    {
-                        coordinates = new EntityCoordinates(transform.MapUid.Value,
-                            _transform.GetWorldPosition(transform, xformQuery));
-                    }
-                    else
-                    {
-                        coordinates = EntityCoordinates.Invalid;
-                    }
-
-                    status.Coordinates = coordinates;
-                    break;
-            }
-
-            return status;
-        }
-
-        /// <summary>
-        ///     Serialize create a device network package from the suit cameras status.
-        /// </summary>
-        public NetworkPayload BodycamToPacket(BodycamStatus status)
-        {
-            var payload = new NetworkPayload()
-            {
-                [DeviceNetworkConstants.Command] = DeviceNetworkConstants.CmdUpdatedState,
-                [BodycamConstants.NET_NAME] = status.Name,
-                [BodycamConstants.NET_JOB] = status.Job,
-                [BodycamConstants.NET_BODYCAM_UID] = status.BodycamUid,
-            };
-
-            if (status.Coordinates != null)
-                payload.Add(BodycamConstants.NET_COORDINATES, status.Coordinates);
-
-
-            return payload;
-        }
-
-        /// <summary>
-        ///     Try to create the camera status from the device network message
-        /// </summary>
-        public BodycamStatus? PacketToBodycam(NetworkPayload payload)
-        {
-            // check command
-            if (!payload.TryGetValue(DeviceNetworkConstants.Command, out string? command))
-                return null;
-            if (command != DeviceNetworkConstants.CmdUpdatedState)
-                return null;
-
-            // check name and job
-            if (!payload.TryGetValue(BodycamConstants.NET_NAME, out string? name)) return null;
-            if (!payload.TryGetValue(BodycamConstants.NET_JOB, out string? job)) return null;
-            if (!payload.TryGetValue(BodycamConstants.NET_BODYCAM_UID, out EntityUid suitCameraUid)) return null;
-
-            // try get cords
-            payload.TryGetValue(BodycamConstants.NET_COORDINATES, out EntityCoordinates? cords);
-
-            var status = new BodycamStatus(suitCameraUid, name, job)
-            {
-                Coordinates = cords,
-            };
             return status;
         }
     }
