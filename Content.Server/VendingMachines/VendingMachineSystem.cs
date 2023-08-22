@@ -348,6 +348,12 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = ((int) price);
 
+            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            var priceVend = _pricing.GetEstimatedVendPrice(proto);
+            if (priceVend == null || priceVend == 0) { }
+            else { totalPrice = ((int) priceVend); }
+            // This block exists to allow the VendPrice flag to set a vending machine item price.
+
             if (totalPrice > bank.Balance)
             {
                 _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
