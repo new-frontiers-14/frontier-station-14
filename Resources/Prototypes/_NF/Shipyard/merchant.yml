@@ -1,0 +1,28 @@
+- type: vessel
+  id: Merchant
+  name: AI Merchant
+  description: A shuttle produced by Arcadia Industries, styled to work as a shop for any neat trinkets found in the Frontier. Expedition capable.
+  price: 62350
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/Merchant.yml
+
+- type: gameMap
+  id: Merchant
+  mapName: 'AI Merchant'
+  mapPath: /Maps/Shuttles/Merchant.yml
+  minPlayers: 0
+  stations:
+    Merchant:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Merchant {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            CargoTechnician: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
