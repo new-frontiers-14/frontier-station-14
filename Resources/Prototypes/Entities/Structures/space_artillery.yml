@@ -74,3 +74,147 @@
   - type: SpaceArtillery
   - type: Actions
   - type: CombatMode
+  
+  
+- type: entity
+  id: Space_Machine_Gun
+  name: space machine gun
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+  - type: Appearance
+  - type: AmmoCounter
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 60
+    proto: CartridgeLightRifle
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryFire
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+  - type: Actions
+  - type: CombatMode
+  
+
+- type: entity
+  id: Space_Ray
+  name: space ray
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryFire
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+  - type: Actions
+  - type: CombatMode
