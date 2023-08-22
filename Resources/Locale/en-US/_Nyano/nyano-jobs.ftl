@@ -1,6 +1,4 @@
-department-Silicon = Silicon
-department-Silicon-description = Follow your laws in service to the humans.
-job-description-guard = Keep track of prisoners and make sure they have their basic needs. 
+job-description-guard = Keep track of prisoners and make sure they have their basic needs.
 job-name-mail-carrier = Mail Carrier
 job-name-cyborg = Cyborg
 job-name-gladiator = Gladiator
