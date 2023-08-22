@@ -1,8 +1,5 @@
-department-Silicon = silicon
-department-Silicon-description = Follow your laws in service to the humans.
 job-description-guard = Keep track of prisoners and make sure they have their basic needs. 
 job-name-mail-carrier = mail carrier
-job-name-cyborg = cyborg
 job-name-gladiator = gladiator
 job-name-fugitive = fugitive
 job-name-prisoner = prisoner
@@ -11,7 +8,6 @@ job-name-paramedic = paramedic
 job-name-guard = prison guard
 job-name-martialartist =  martial artist
 job-description-mail-carrier = Deliver mail. Avoid dogs.
-job-description-cyborg = Read your laws. Read your laws. Read your laws.
 job-description-valet = Take care of the station and its many guests.
 job-description-fugitive = Escape the station alive.
 job-description-prisoner = Sit in prison. Gamble with your cellmates. Talk to the warden. Write your memoirs.
