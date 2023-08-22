@@ -50,6 +50,12 @@ namespace Content.Shared._NF.Bodycam
         [ViewVariables]
         public EntityUid? User = null;
 
+        [DataField("userName")]
+        public string? UserName;
+
+        [DataField("userJob")]
+        public string? UserJob;
+
         /// <summary>
         ///     Next time when camera updated owners status
         /// </summary>

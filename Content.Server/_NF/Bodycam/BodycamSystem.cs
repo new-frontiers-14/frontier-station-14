@@ -219,7 +219,6 @@ namespace Content.Server._NF.Bodycam
                 if (card.JobTitle != null)
                     userJob = card.JobTitle;
             }
-
             // finally, form camera status
             var status = new BodycamStatus(uid, userName, userJob);
             return status;
