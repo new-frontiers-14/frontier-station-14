@@ -3,7 +3,7 @@
   parent: [ hydroponicsSoil ]
   id: hydroponicsTrayAnchored
   suffix: anchored
-  description: An anchored interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Just... keep in mind the space weeds.
+  description: An anchored interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Stronger than your average hydroponics tray but can still be broken with force.
   components:
   - type: Fixtures
     fixtures:
@@ -70,7 +70,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 200
       behaviors:
       - !type:ChangeConstructionNodeBehavior
         node: machineFrame

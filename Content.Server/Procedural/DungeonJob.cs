@@ -130,7 +130,7 @@ public sealed partial class DungeonJob : Job<Dungeon>
                     await PostGen(dordor, dungeon, _gridUid, _grid, random);
                     break;
                 case DungeonEntrancePostGen entrance:
-                    await PostGen(entrance, dungeon, _gridUid, _grid, random);
+                //    await PostGen(entrance, dungeon, _gridUid, _grid, random);
                     break;
                 case ExternalWindowPostGen externalWindow:
                     await PostGen(externalWindow, dungeon, _gridUid, _grid, random);
