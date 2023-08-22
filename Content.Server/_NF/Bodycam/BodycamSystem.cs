@@ -20,7 +20,6 @@ using Robust.Shared.Timing;
 using Content.Server.SurveillanceCamera;
 using Content.Server.Database;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Content.Shared.SurveillanceCamera;
 
 namespace Content.Server._NF.Bodycam
 {
@@ -81,7 +80,6 @@ namespace Content.Server._NF.Bodycam
                 if (status == null);
                 else { power = true; }
                 _surveillanceCameras.SetActive(uid, power);
-
                 continue;
             }
         }
