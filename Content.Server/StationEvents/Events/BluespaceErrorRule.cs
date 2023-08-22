@@ -23,9 +23,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
 
-    private EntityUid _objective = new();
-
-    protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule,
+        GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
@@ -37,15 +36,18 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         if (!_map.TryLoad(shuttleMap, component.GridPath, out var gridUids, options))
             return;
-        _objective = gridUids[0];
-        _shuttle.SetIFFColor(_objective, component.Color);
+        component.GridUid = gridUids[0];
+        if (component.GridUid is not EntityUid gridUid)
+            return;
+        component.startingValue = _pricing.AppraiseGrid(gridUid);
+        _shuttle.SetIFFColor(gridUid, component.Color);
         var offset = _random.NextVector2(1350f, 2200f);
         var mapId = GameTicker.DefaultMap;
         var coords = new MapCoordinates(offset, mapId);
         var location = Spawn(null, coords);
-        if (TryComp<ShuttleComponent>(_objective, out var shuttle))
+        if (TryComp<ShuttleComponent>(component.GridUid, out var shuttle))
         {
-            _shuttle.FTLTravel(_objective, shuttle, location, 5.5f, 55f);
+            _shuttle.FTLTravel(gridUid, shuttle, location, 5.5f, 55f);
         }
 
     }
@@ -54,18 +56,19 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     {
         base.Ended(uid, component, gameRule, args);
 
-        if(!EntityManager.TryGetComponent<TransformComponent>(_objective, out var gridTransform))
+        if(!EntityManager.TryGetComponent<TransformComponent>(component.GridUid, out var gridTransform))
         {
             Log.Error("bluespace error objective was missing transform component");
             return;
         }
 
-        if (gridTransform.GridUid == null)
+        if (gridTransform.GridUid is not EntityUid gridUid)
         {
             Log.Error( "bluespace error has no associated grid?");
             return;
         }
-        var gridValue = _pricing.AppraiseGrid(_objective, null);
+
+        var gridValue = _pricing.AppraiseGrid(gridUid, null);
         foreach (var player in Filter.Empty().AddInGrid(gridTransform.GridUid.Value, EntityManager).Recipients)
         {
             if (player.AttachedEntity.HasValue)
@@ -80,7 +83,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             }
         }
         // Deletion has to happen before grid traversal re-parents players.
-        Del(_objective);
+        Del(gridUid);
         var query = EntityQuery<StationBankAccountComponent>();
         foreach (var account in query)
         {
