@@ -1,4 +1,3 @@
-using Content.Server._NF.Bodycam;
 using Content.Shared.DeviceNetwork;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
@@ -35,16 +34,9 @@ public sealed class SurveillanceCameraComponent : Component
     [DataField("id")]
     public string CameraId { get; set;  } = "camera";
 
-    [ViewVariables]
-    public EntityUid? CameraIdUser = null;
-
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("nameSet")]
     public bool NameSet { get; set; }
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("nameSetUser")]
-    public bool NameSetUser { get; set; }
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("networkSet")]
