@@ -5,16 +5,12 @@ namespace Content.Shared._NF.Bodycam
     [Serializable, NetSerializable]
     public sealed class BodycamStatus
     {
-        public BodycamStatus(EntityUid bodycamUid, string name, string job)
+        public BodycamStatus(EntityUid bodycamUid)
         {
             BodycamUid = bodycamUid;
-            Name = name;
-            Job = job;
         }
 
         public EntityUid BodycamUid;
-        public string Name;
-        public string Job;
     }
 
     [Serializable, NetSerializable]

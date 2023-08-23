@@ -220,7 +220,7 @@ namespace Content.Server._NF.Bodycam
                     userJob = card.JobTitle;
             }
             // finally, form camera status
-            var status = new BodycamStatus(uid, userName, userJob);
+            var status = new BodycamStatus(uid);
             return status;
         }
     }
