@@ -149,16 +149,10 @@ public sealed partial class AnomalySystem
     {
         var xform = Transform(uid);
 
-        if (_station.GetStationInMap(xform.MapID) is not { } station ||
-            !TryComp<StationDataComponent>(station, out var data) ||
-            _station.GetLargestGrid(data) is not { } grid)
-        {
-            if (xform.GridUid == null)
-                return;
-            grid = xform.GridUid.Value;
-        }
+        if (xform.GridUid == null)
+            return;
 
-        SpawnOnRandomGridLocation(grid, component.SpawnerPrototype);
+        SpawnOnRandomGridLocation(xform.GridUid.Value, component.SpawnerPrototype);
         RemComp<GeneratingAnomalyGeneratorComponent>(uid);
         Appearance.SetData(uid, AnomalyGeneratorVisuals.Generating, false);
         Audio.PlayPvs(component.GeneratingFinishedSound, uid);
