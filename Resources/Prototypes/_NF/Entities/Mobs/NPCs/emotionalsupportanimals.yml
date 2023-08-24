@@ -73,26 +73,10 @@
 - type: entity
   name: space cat
   suffix: Ghost
-  parent: MobCat
+  parent: MobCatSpace
   id: MobCatSpaceGhost
   description: Feline pet, prepared for the worst.
   components:
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: spacecat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: spacecat
-      Dead:
-        Base: spacecat_dead
-  - type: InteractionPopup
-    successChance: 0.7
-    interactSuccessString: petting-success-space-cat
-    interactFailureString: petting-failure-generic
-    interactSuccessSound:
-      path: /Audio/Animals/cat_meow.ogg
   - type: GhostRole
     name: ghost-role-information-emotional-support-name
     description: ghost-role-information-emotional-support-description
