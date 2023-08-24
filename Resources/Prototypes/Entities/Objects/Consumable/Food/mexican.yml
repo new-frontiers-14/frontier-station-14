@@ -1,0 +1,299 @@
+# Base
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodMexicanBase
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesey
+      - meaty
+  - type: Food
+    transferAmount: 5
+  - type: Sprite
+    sprite: Objects/Consumable/Food/mexican.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: Item
+    sprite: Objects/Consumable/Food/mexican.rsi
+
+# Taco
+- type: entity
+  name: tortilla
+  parent: FoodMexicanBase
+  id: FoodMexicanTortilla
+  description: Porque no los dos?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - starchy
+  - type: Sprite
+    state: tortilla
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: SliceableFood
+    count: 5
+    slice: FoodMexicanChip
+
+- type: entity
+  name: tortilla chip
+  parent: FoodMexicanBase
+  id: FoodMexicanChip
+  description: A crispy tortilla chip.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chalky
+      - salty
+  - type: Sprite
+    state: tortillachip
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+
+- type: entity
+  name: boring taco
+  parent: FoodMexicanBase
+  id: FoodMexicanBoringTaco
+  description: Dad's tired guys.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - starchy
+      - sadness
+  - type: Sprite
+    state: boringtaco
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 10
+
+# Tastes like sorrow.
+
+- type: entity
+  name: taco supreme
+  parent: FoodMexicanBase
+  id: FoodMexicanTacoSupreme
+  description: Taco Tuesday is back!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+      - tomato 
+  - type: Sprite
+    state: tacosupreme
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: bean burrito
+  parent: FoodMexicanBase
+  id: FoodMexicanBeanBurrito
+  description: Using Wide Tom's finest beans.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - starchy
+      - gassy
+  - type: Sprite
+    state: beanburrito
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: beefurrito
+  parent: FoodMexicanBase
+  id: FoodMexicanBeefurrito
+  description: Ole!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - cheesy
+  - type: Sprite
+    state: beefburrito
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: cheesurrito
+  parent: FoodMexicanBase
+  id: FoodMexicancheesurrito
+  description: Totally not a Quesadilla
+  components:
+  - type: FlavorProfile
+    flavors:
+      - starchy
+      - cheesy
+  - type: Sprite
+    state: CheesyBurrito
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: nachos
+  parent: FoodMexicanBase
+  id: FoodMexicanNachos
+  description: Dangerously Cheesy!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - starchy
+      - cheesy
+  - type: Sprite
+    state: Nachos
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: chips and salsa
+  parent: FoodMexicanBase
+  id: FoodMexicansalsa
+  description: Deliciosa!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - tomato
+      - onion   
+      - meaty
+  - type: Sprite
+    state: salsa
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: el diablo burrito
+  parent: FoodMexicanBase
+  id: FoodMexicaneldiablo
+  description: So spicy you'll hear color.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+      - meaty
+  - type: Sprite
+    state: eldiablo
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 60
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: CapsaicinOil
+          Quantity: 10
+        - ReagentId: SpaceDrugs # So spicy the walls start melting
+          Quantity: 20
+        - ReagentId: Flavorol
+          Quantity: 10
+
+- type: entity
+  name: cuban nachos
+  parent: FoodMexicanBase
+  id: FoodMexicancubannachos
+  description: That's some dangerously spicy nachos.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+      - meaty
+  - type: Sprite
+    state: cubannachos
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: CapsaicinOil
+          Quantity: 10
+        - ReagentId: Flavorol
+          Quantity: 10
