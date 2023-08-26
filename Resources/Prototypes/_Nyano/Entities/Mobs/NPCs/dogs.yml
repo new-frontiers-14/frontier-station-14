@@ -24,10 +24,22 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: pibble
   - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 65
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Appearance
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: InventorySlots
   - type: Strippable
   - type: UserInterface
     interfaces:
@@ -53,8 +65,12 @@
     interactFailureString: petting-failure-pibble
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
-    hostileOnFail: true
+#    hostileOnFail: true
   - type: DogVision
+  - type: NpcFactionMember
+    factions:
+    - Passive
+#    - Pibble
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
