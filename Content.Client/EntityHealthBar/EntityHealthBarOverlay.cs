@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
