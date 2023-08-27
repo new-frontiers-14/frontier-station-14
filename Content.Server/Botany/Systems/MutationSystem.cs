@@ -54,12 +54,12 @@ public sealed class MutationSystem : EntitySystem
         // Fun (90)
         MutateBool(ref seed.Seedless       , true  , 10 , totalbits , severity);
         MutateBool(ref seed.Slip           , true  , 10 , totalbits , severity);
-        MutateBool(ref seed.Sentient       , true  , 10 , totalbits , severity);
+        //MutateBool(ref seed.Sentient       , true  , 10 , totalbits , severity);
         MutateBool(ref seed.Ligneous       , true  , 10 , totalbits , severity);
-        MutateBool(ref seed.Bioluminescent , true  , 10 , totalbits , severity);
+        //MutateBool(ref seed.Bioluminescent , true  , 10 , totalbits , severity);
         MutateBool(ref seed.TurnIntoKudzu  , true  , 10 , totalbits , severity);
         MutateBool(ref seed.CanScream      , true  , 10 , totalbits , severity);
-        seed.BioluminescentColor = RandomColor(seed.BioluminescentColor, 10, totalbits, severity);
+        //seed.BioluminescentColor = RandomColor(seed.BioluminescentColor, 10, totalbits, severity);
         // ConstantUpgade (10)
         MutateHarvestType(ref seed.HarvestRepeat   , 10 , totalbits , severity);
     }
@@ -92,12 +92,12 @@ public sealed class MutationSystem : EntitySystem
         CrossBool(ref result.Seedless, a.Seedless);
         CrossBool(ref result.Viable, a.Viable);
         CrossBool(ref result.Slip, a.Slip);
-        CrossBool(ref result.Sentient, a.Sentient);
+        //CrossBool(ref result.Sentient, a.Sentient);
         CrossBool(ref result.Ligneous, a.Ligneous);
-        CrossBool(ref result.Bioluminescent, a.Bioluminescent);
+        //CrossBool(ref result.Bioluminescent, a.Bioluminescent);
         CrossBool(ref result.TurnIntoKudzu, a.TurnIntoKudzu);
         CrossBool(ref result.CanScream, a.CanScream);
-        result.BioluminescentColor = Random(0.5f) ? a.BioluminescentColor : result.BioluminescentColor;
+        //result.BioluminescentColor = Random(0.5f) ? a.BioluminescentColor : result.BioluminescentColor;
 
         // Hybrids have a high chance of being seedless. Balances very
         // effective hybrid crossings.
