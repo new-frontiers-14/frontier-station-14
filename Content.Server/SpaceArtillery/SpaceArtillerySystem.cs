@@ -48,32 +48,28 @@ public sealed class SpaceArtillerySystem : EntitySystem
 		//Sawmill.Info($"Space Artillery has been pinged. Entity: {ToPrettyString(uid)}");
 		if (args.Port == component.SpaceArtilleryFirePort)
 		{
-			var bodyQuery = GetEntityQuery<PhysicsComponent>();
-			var xformQuery = GetEntityQuery<TransformComponent>();
-			var combatQuery = GetEntityQuery<CombatModeComponent>();
-			var query = EntityQueryEnumerator<SpaceArtilleryComponent, TransformComponent>();
-			while (query.MoveNext(out uid, out var comp, out var xform))
+			var xform = Transform(uid);
+			
+			if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
 			{
-				if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
-				{
-					continue;
-				}
+				return;
+			}
+			
+			if(TryComp<TransformComponent>(uid, out var transformComponent)){
 				
-				if(TryComp<TransformComponent>(uid, out var transformComponent)){
-					var worldPosX = transformComponent.WorldPosition.X;
-					var worldPosY = transformComponent.WorldPosition.Y;
-					var worldRot = transformComponent.WorldRotation+rotOffset;
-					var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-					
-					EntityCoordinates targetCordinates;
-					targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-						
-					_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-				}
+				var worldPosX = transformComponent.WorldPosition.X;
+				var worldPosY = transformComponent.WorldPosition.Y;
+				var worldRot = transformComponent.WorldRotation+rotOffset;
+				var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
+				
+				EntityCoordinates targetCordinates;
+				targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+				
+				_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
 			}
             
 		}
-		if (args.Port == component.SpaceArtilleryFirePort)
+		if (args.Port == component.SpaceArtillerySafetyPort)
 		{
 			if (TryComp<CombatModeComponent>(uid, out var combat))
 			{
@@ -113,36 +109,32 @@ public sealed class SpaceArtillerySystem : EntitySystem
     /// <summary>
     /// This fires when the gunner presses the fire action
     /// </summary>
+	
     private void OnFireAction(EntityUid uid, SpaceArtilleryComponent component, FireActionEvent args)
     {
         if (args.Handled)
             return;
 
-		Sawmill.Info($"Space Artillery has received FIRE signal. Entity: {ToPrettyString(uid)}");
-		var bodyQuery = GetEntityQuery<PhysicsComponent>();
-		var xformQuery = GetEntityQuery<TransformComponent>();
-		var combatQuery = GetEntityQuery<CombatModeComponent>();
-		var query = EntityQueryEnumerator<SpaceArtilleryComponent, TransformComponent>();
-		while (query.MoveNext(out uid, out var comp, out var xform))
+		var xform = Transform(uid);
+		
+		if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
 		{
-			if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
-			{
-				continue;
-			}
-			
-			if(TryComp<TransformComponent>(uid, out var transformComponent)){
-				Sawmill.Info($"Space Artillery has calculated a TARGET. Entity: {ToPrettyString(uid)}");
-				var worldPosX = transformComponent.WorldPosition.X;
-				var worldPosY = transformComponent.WorldPosition.Y;
-				var worldRot = transformComponent.WorldRotation+rotOffset;
-				var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-				
-				EntityCoordinates targetCordinates;
-				targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-					
-				_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-			}
+			return;
 		}
+		
+		if(TryComp<TransformComponent>(uid, out var transformComponent)){
+			
+			var worldPosX = transformComponent.WorldPosition.X;
+			var worldPosY = transformComponent.WorldPosition.Y;
+			var worldRot = transformComponent.WorldRotation+rotOffset;
+			var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
+			
+			EntityCoordinates targetCordinates;
+			targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+			
+			_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+		}
+
         
         args.Handled = true;
     }
