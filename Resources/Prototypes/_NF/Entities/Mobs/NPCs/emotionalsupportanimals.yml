@@ -233,3 +233,33 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+
+- type: entity
+  name: pitbull
+  suffix: Ghost
+  parent: MobPibble
+  id: MobPibbleGhost
+  description: Nanny dog. Or a lab mix depending on who is asking.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: ReplacementAccent
+    accent: Dog
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+    wilhelmProbability: 0.001
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener

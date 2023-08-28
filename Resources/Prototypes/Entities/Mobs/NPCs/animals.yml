@@ -216,6 +216,7 @@
   - type: NpcFactionMember
     factions:
     - Passive
+    - Chicken
 
 - type: entity
   id: FoodEggChickenFertilized
@@ -2002,6 +2003,9 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -2079,6 +2083,9 @@
   parent: SimpleSpaceSuitMobBase
   description: Feline pet, prepared for the worst.
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi

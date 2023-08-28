@@ -90,6 +90,7 @@
   - type: NpcFactionMember
     factions:
       - PetsNT
+      - Cat
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -110,6 +111,7 @@
   - type: NpcFactionMember
     factions:
       - PetsNT
+      - Cat
   - type: Grammar
     attributes:
       gender: male
@@ -124,6 +126,9 @@
   parent: MobCatCaracal
   description: He out here.
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Fixtures
     fixtures:
       fix1:
@@ -163,6 +168,9 @@
   id: MobBingus
   description: Bingus my beloved...
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/bingus.rsi
