@@ -16,6 +16,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
 using Content.Shared.Interaction;
+using Content.Shared.Paper;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -223,6 +224,10 @@ public sealed class FaxSystem : EntitySystem
             component.FaxName = newName;
             _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-set"), uid);
             UpdateUserInterface(uid, component);
+
+            // if we changed our fax name manually
+            // it will loose sync with station name
+            component.UseStationName = false;
         });
 
         args.Handled = true;
@@ -272,7 +277,7 @@ public sealed class FaxSystem : EntitySystem
                         return;
 
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampStateData, out string? stampState);
-                    args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<string>? stampedBy);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
 
                     var printout = new FaxPrintout(content, name, prototypeId, stampState, stampedBy);
@@ -461,9 +466,9 @@ public sealed class FaxSystem : EntitySystem
             // Apply stamps
             if (printout.StampState != null)
             {
-                foreach (var stampedBy in printout.StampedBy)
+                foreach (var stamp in printout.StampedBy)
                 {
-                    _paperSystem.TryStamp(printed, stampedBy, printout.StampState);
+                    _paperSystem.TryStamp(printed, stamp, printout.StampState);
                 }
             }
         }

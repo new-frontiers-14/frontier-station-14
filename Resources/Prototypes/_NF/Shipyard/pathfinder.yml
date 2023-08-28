@@ -1,0 +1,27 @@
+- type: vessel
+  id: Pathfinder
+  name: NT Pathfinder
+  description: Once a scout ship serving with the Nanotrasen Marine Expeditionary Forces, this now decommissioned expedition capable ship can be yours!
+  price: 52920
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/pathfinder.yml
+  
+- type: gameMap
+  id: Pathfinder
+  mapName: 'NT Pathfinder'
+  mapPath: /Maps/Shuttles/pathfinder.yml
+  minPlayers: 0
+  stations: 
+    Pathfinder:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Pathfinder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]

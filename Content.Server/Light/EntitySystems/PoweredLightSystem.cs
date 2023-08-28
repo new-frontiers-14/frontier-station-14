@@ -429,8 +429,8 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnEmpPulse(EntityUid uid, PoweredLightComponent component, ref EmpPulseEvent args)
         {
-            //    if (TryDestroyBulb(uid, component)) // Make it so EMP isnt exploding lights
-            //        args.Affected = true; // Make it so EMP isnt exploding lights
+            //   if (TryDestroyBulb(uid, component)) // Make it so EMP isnt exploding lights
+            //       args.Affected = true; // Make it so EMP isnt exploding lights
         }
     }
 }

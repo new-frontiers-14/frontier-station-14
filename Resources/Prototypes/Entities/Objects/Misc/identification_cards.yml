@@ -21,6 +21,7 @@
     - DoorBumpOpener
   - type: StaticPrice
     price: 150
+  - type: CargoSellBlacklist # Liltenhead moment
 
 #IDs with layers
 
@@ -75,7 +76,7 @@
 - type: entity
   parent: PassengerIDCard
   id: SecurityCadetIDCard
-  name: security cadet ID card
+  name: cadet ID card
   components:
   - type: PresetIdCard
     job: SecurityCadet
@@ -118,7 +119,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityIDCard
-  name: security ID card
+  name: deputy ID card
   components:
   - type: Sprite
     layers:
@@ -130,7 +131,7 @@
 - type: entity
   parent: IDCardStandard
   id: WardenIDCard
-  name: warden ID card
+  name: bailiff ID card
   components:
     - type: Sprite
       layers:
@@ -346,7 +347,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoPIDCard
-  name: head of personnel ID card
+  name: station representative ID card
   components:
   - type: Sprite
     layers:
@@ -402,7 +403,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoSIDCard
-  name: head of security ID card
+  name: sheriff ID card
   components:
   - type: Sprite
     layers:
@@ -501,6 +502,58 @@
   suffix: Agent
   components:
   - type: AgentIDCard
+    icons:
+    # TODO figure out a better way of doing this.
+    # Probably by adding a bool or icon-category data-field to the icon prototype?
+    - JobIconDetective
+    - JobIconQuarterMaster
+    - JobIconBotanist
+    - JobIconBoxer
+    - JobIconAtmosphericTechnician
+    - JobIconNanotrasen
+    - JobIconPrisoner
+    - JobIconJanitor
+    - JobIconChemist
+    - JobIconStationEngineer
+    - JobIconSecurityOfficer
+    - JobIconChiefMedicalOfficer
+    - JobIconRoboticist
+    - JobIconChaplain
+    - JobIconLawyer
+    - JobIconUnknown
+    - JobIconLibrarian
+    - JobIconCargoTechnician
+    - JobIconScientist
+    - JobIconResearchAssistant
+    - JobIconGeneticist
+    - JobIconClown
+    - JobIconCaptain
+    - JobIconHeadOfPersonnel
+    - JobIconVirologist
+    - JobIconShaftMiner
+    - JobIconPassenger
+    - JobIconChiefEngineer
+    - JobIconBartender
+    - JobIconHeadOfSecurity
+    - JobIconBrigmedic
+    - JobIconMedicalDoctor
+    - JobIconParamedic
+    - JobIconChef
+    - JobIconWarden
+    - JobIconResearchDirector
+    - JobIconMime
+    - JobIconMusician
+    - JobIconReporter
+    - JobIconPsychologist
+    - JobIconMedicalIntern
+    - JobIconTechnicalAssistant
+    - JobIconServiceWorker
+    - JobIconSecurityCadet
+    - JobIconZookeeper
+    - JobIconSeniorPhysician
+    - JobIconSeniorOfficer
+    - JobIconSeniorEngineer
+    - JobIconSeniorResearcher
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -621,3 +674,51 @@
   - type: IdCard
     jobTitle: Cluwne
   - type: Unremoveable
+
+- type: entity
+  parent: IDCardStandard
+  id: SeniorEngineerIDCard
+  name: senior engineer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorengineer
+  - type: PresetIdCard
+    job: SeniorEngineer
+
+- type: entity
+  parent: IDCardStandard
+  id: SeniorResearcherIDCard
+  name: senior researcher ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorresearcher
+  - type: PresetIdCard
+    job: SeniorResearcher
+
+- type: entity
+  parent: IDCardStandard
+  id: SeniorPhysicianIDCard
+  name: senior physician ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorphysician
+  - type: PresetIdCard
+    job: SeniorPhysician
+
+- type: entity
+  parent: IDCardStandard
+  id: SeniorOfficerIDCard
+  name: senior officer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorofficer
+  - type: PresetIdCard
+    job: SeniorOfficer

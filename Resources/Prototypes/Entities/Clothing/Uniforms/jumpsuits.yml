@@ -271,7 +271,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoP
-  name: head of personnel's jumpsuit
+  name: station representative's jumpsuit
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite
@@ -282,8 +282,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoS
-  name: head of security's jumpsuit
-  description: It's bright red and rather crisp, much like security's victims tend to be.
+  name: sheriff's jumpsuit
+  description: It's bright red and rather crisp, much like the department's victims tend to be.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/hos.rsi
@@ -293,8 +293,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSAlt
-  name: head of security's turtleneck
-  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
+  name: sheriff's turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Sheriff.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/hos_alt.rsi
@@ -304,8 +304,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSBlue
-  name: head of security's blue jumpsuit
-  description: A blue jumpsuit of Head of Security.
+  name: sheriff's blue jumpsuit
+  description: A blue jumpsuit worn by the Sheriff.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/hos_blue.rsi
@@ -315,8 +315,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSGrey
-  name: head of security's grey jumpsuit
-  description: A grey jumpsuit of Head of Security, which make him look somewhat like a passenger.
+  name: sheriff's grey jumpsuit
+  description: A grey jumpsuit of a Sheriff, which make them look somewhat like a passenger.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/hos_grey.rsi
@@ -326,8 +326,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSParadeMale
-  name: head of security's parade uniform
-  description: A male head of security's luxury-wear, for special occasions.
+  name: sheriff's parade uniform
+  description: A male sheriff's luxury-wear, for special occasions.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/hos_parade.rsi
@@ -427,8 +427,9 @@
     mode: SensorCords
   - type: Tag
     tags:
-    - WhitelistChameleon
+    - ClothMade
     - PrisonUniform
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingUniformBase
@@ -440,6 +441,17 @@
     sprite: Clothing/Uniforms/Jumpsuit/qm.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/qm.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitQMTurtleneck
+  name: quartermasters's turtleneck
+  description: A sharp turtleneck made for the hardy work environment of supply.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpsuit/qmturtle.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpsuit/qmturtle.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -488,7 +500,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSec
-  name: security jumpsuit
+  name: deputy jumpsuit
   description: A jumpsuit made of strong material, providing robust protection.
   components:
   - type: Sprite
@@ -499,8 +511,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSecBlue
-  name: blue shirt and tie
-  description: I'm a little busy right now, Calhoun.
+  name: blue deputy jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
@@ -510,7 +522,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSecGrey
-  name: grey security jumpsuit
+  name: grey deputy jumpsuit
   description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
   components:
   - type: Sprite
@@ -521,7 +533,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitWarden
-  name: warden's uniform
+  name: bailiff's jumpsuit
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
@@ -1192,3 +1204,47 @@
       sprite: Clothing/Uniforms/Jumpsuit/flannel.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpsuit/flannel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorEngineer
+  name: senior engineer jumpsuit
+  description: A sign of skill and prestige within the engineering department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/senior_engineer.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/senior_engineer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorResearcher
+  name: senior researcher jumpsuit
+  description: A sign of skill and prestige within the science department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/senior_researcher.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/senior_researcher.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorPhysician
+  name: senior physician jumpsuit
+  description: A sign of skill and prestige within the medical department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/senior_physician.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/senior_physician.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorOfficer
+  name: senior officer jumpsuit
+  description: A sign of skill and prestige within the security department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi

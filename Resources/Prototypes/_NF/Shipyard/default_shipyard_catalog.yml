@@ -1,6 +1,40 @@
 ## This file is getting bloated and needs to be renamed/properly split next update or addition
 
 - type: entity
+  id: BaseStationRenameFaxes
+  abstract: true
+  components:
+    - type: StationRenameFaxes
+
+- type: entity
+  id: BaseStationRenameWarpPoints
+  abstract: true
+  components:
+    - type: StationRenameWarps
+
+- type: entity
+  id: BaseStationSiliconLawFrontierStation
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - NTDefault1
+    - NTDefault2
+    - NTDefault3
+    - NTDefault4
+
+- type: entity
+  id: BaseStationSiliconLawFrontierShips
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws:
+    - Corporate1
+    - Corporate2
+    - Corporate3
+    - Corporate4
+
+- type: entity
   id: StandardFrontierStation
   parent:
     - BaseStation
@@ -9,6 +43,7 @@
     - BaseStationRecords
     - BaseStationShuttles
     - BaseStationAlertLevels
+    - BaseStationSiliconLawFrontierStation
   noSpawn: true
   components:
     - type: Transform
@@ -22,6 +57,9 @@
     - BaseStationAlertLevels
     - BaseStationExpeditions
     - BaseStationAllEventsEligible
+    - BaseStationRenameFaxes
+    - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
@@ -34,6 +72,9 @@
     - BaseStationRecords
     - BaseStationAlertLevels
     - BaseStationAllEventsEligible
+    - BaseStationRenameFaxes
+    - BaseStationRenameWarpPoints
+    - BaseStationSiliconLawFrontierShips
   noSpawn: true
   components:
     - type: Transform
@@ -93,10 +134,10 @@
           overflowJobs: []
           availableJobs:
             Passenger: [ 0, 0 ]
-            Bartender: [ 1, 1 ]
-            StationEngineer: [ 1, 1 ]
-            Mercenary: [ 1, 1 ]
-            Paramedic: [ 1, 1 ]
+            Bartender: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            Paramedic: [ 0, 0 ]
 
 - type: vessel
   id: Construct
@@ -180,10 +221,10 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            CargoTechnician: [ 1, 1 ]
-            Bartender: [ 1, 1 ]
-            SalvageSpecialist: [ 1, 1 ]
-            Quartermaster: [ 1, 1 ]
+            CargoTechnician: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            Quartermaster: [ 0, 0 ]
 
 - type: vessel
   id: Prospector
@@ -211,12 +252,12 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            SalvageSpecialist: [ 1, 1 ]
+            SalvageSpecialist: [ 0, 0 ]
 
 - type: vessel
   id: Sparrow
   name: NR Sparrow
-  description: A combined research and engineering vessel suited for xeno-archeological expeditions.
+  description: A small research and engineering vessel.
   price: 45875
   category: Small
   group: Civilian
@@ -239,15 +280,15 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            StationEngineer: [ 1, 1 ]
-            Scientist: [ 1, 1 ]
-            ##Cyborg:[ 1, 1 ]
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            Borg: [ 0, 0 ]
 
 - type: vessel
   id: Condor
   name: NR Condor
-  description: A combined research and engineering vessel suited for xeno-archeological expeditions.
-  price: 72000
+  description: A combined research and engineering vessel #suited for xeno-archeological expeditions. -soon
+  price: 72890
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/condor.yml
@@ -259,7 +300,7 @@
   minPlayers: 0
   stations:
     Condor:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Condor {1}'
@@ -270,11 +311,11 @@
           overflowJobs: []
           availableJobs:
             StationEngineer: [ 0, 0 ]
-            Scientist: [ 1, 1 ]
-            ResearchDirector: [ 1, 1 ]
-            ChiefEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 1, 1 ]
-            ##Cyborg [ 1, 1 ]
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            Borg: [ 0, 0 ]
 
 - type: vessel
   id: Interceptor
@@ -302,7 +343,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Detective: [ 1, 1 ]
+            Detective: [ 0, 0 ]
 
 # - type: vessel
   # id: Enforcer
@@ -333,34 +374,34 @@
             # PrisonGuard: [ 0, 0 ]
             # SecurityOfficer: [ 1, 1 ]
 
-- type: vessel
-  id: Trident
-  name: NSF Trident
-  description: A medium sized security vessel equipped with deadly force
-  price: 49300
-  category: Medium
-  group: Security
-  shuttlePath: /Maps/Shuttles/trident.yml
+#- type: vessel
+#  id: Trident
+#  name: NSF Trident
+#  description: A medium sized security vessel equipped with deadly force
+#  price: 49300
+#  category: Medium
+#  group: Security
+#  shuttlePath: /Maps/Shuttles/trident.yml
 
-- type: gameMap
-  id: Trident
-  mapName: 'NSF Trident'
-  mapPath: /Maps/Shuttles/trident.yml
-  minPlayers: 0
-  stations:
-    Trident:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: '{0} Trident {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          overflowJobs: []
-          availableJobs:
-            PrisonGuard: [ 1, 1 ]
-            SecurityOfficer: [ 1, 1 ]
+#- type: gameMap
+#  id: Trident
+#  mapName: 'NSF Trident'
+#  mapPath: /Maps/Shuttles/trident.yml
+#  minPlayers: 0
+#  stations:
+#    Trident:
+#      stationProto: StandardFrontierVessel
+#      components:
+#        - type: StationNameSetup
+#          mapNameTemplate: '{0} Trident {1}'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'
+#        - type: StationJobs
+#          overflowJobs: []
+#          availableJobs:
+#            PrisonGuard: [ 0, 0 ]
+#            SecurityOfficer: [ 0, 0 ]
 
 - type: vessel
   id: Pulse
@@ -388,8 +429,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Paramedic: [ 1, 1 ]
-            MedicalCyborg: [ 0, 0 ]
+            Paramedic: [ 0, 0 ]
 
 - type: vessel
   id: Helix
@@ -418,10 +458,9 @@
           overflowJobs: []
           availableJobs:
             Paramedic: [ 0, 0 ]
-            ChiefMedicalOfficer: [ 1, 1 ]
-            MedicalDoctor: [ 1, 1 ]
-            Chemist: [ 1, 1 ]
-            MedicalCyborg: [ 1, 1 ]
+            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
 
 - type: vessel
   id: Skipper
@@ -449,5 +488,5 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Botanist: [ 1, 1 ]
-            Chef: [ 1, 1 ]
+            Botanist: [ 0, 0 ]
+            Chef: [ 0, 0 ]

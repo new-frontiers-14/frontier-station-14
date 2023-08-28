@@ -9,9 +9,8 @@
     stateBaseClosed: cabinet
     stateDoorOpen: cabinet_open
     stateDoorClosed: cabinet_door
-
-  - type: AccessReader
-    access: [["Bar"]]
+#  - type: AccessReader
+#    access: [["Bar"]]
   - type: EntityStorage
     closeSound:
       path: /Audio/Effects/woodenclosetclose.ogg
@@ -29,8 +28,8 @@
     stateBaseClosed: qm
     stateDoorOpen: qm_open
     stateDoorClosed: qm_door
-  - type: AccessReader
-    access: [["Quartermaster"]]
+#  - type: AccessReader
+#    access: [["Quartermaster"]]
 
 - type: entity
   id: LockerSalvageSpecialist
@@ -43,8 +42,8 @@
     stateBaseClosed: mining
     stateDoorOpen: mining_open
     stateDoorClosed: mining_door
-  - type: AccessReader
-    access: [["Salvage"]]
+#  - type: AccessReader
+#    access: [["Salvage"]]
 
 # Command
 - type: entity
@@ -63,7 +62,7 @@
 - type: entity
   id: LockerHeadOfPersonnel
   parent: LockerBaseSecure
-  name: head of personnel's locker
+  name: station representative's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -84,8 +83,8 @@
     stateBaseClosed: ce
     stateDoorOpen: ce_open
     stateDoorClosed: ce_door
-  - type: AccessReader
-    access: [ [ "ChiefEngineer" ] ]
+#  - type: AccessReader
+#    access: [ [ "ChiefEngineer" ] ]
 
 # Electrical supplies
 - type: entity
@@ -98,8 +97,8 @@
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_elec_door
-  - type: AccessReader
-    access: [ [ "Engineering" ] ]
+#  - type: AccessReader
+#    access: [ [ "Engineering" ] ]
 
 # Welding supplies
 - type: entity
@@ -112,8 +111,8 @@
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_weld_door
-  - type: AccessReader
-    access: [ [ "Engineering" ] ]
+#  - type: AccessReader
+#    access: [ [ "Engineering" ] ]
 
 # Atmos tech
 - type: entity
@@ -126,8 +125,8 @@
     stateBaseClosed: atmos
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
-  - type: AccessReader
-    access: [ [ "Atmospherics" ] ]
+#  - type: AccessReader
+#    access: [ [ "Atmospherics" ] ]
 
 # Engineer
 - type: entity
@@ -140,8 +139,8 @@
     stateBaseClosed: eng_secure
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
-  - type: AccessReader
-    access: [ [ "Engineering" ] ]
+#  - type: AccessReader
+#    access: [ [ "Engineering" ] ]
 
 # Freezer
 - type: entity
@@ -164,9 +163,9 @@
   parent: LockerFreezerBase
   name: freezer
   suffix: Kitchen, Locked
-  components:
-  - type: AccessReader
-    access: [ [ "Kitchen" ] ]
+#  components:
+#  - type: AccessReader
+#    access: [ [ "Kitchen" ] ]
 
 # Botanist
 - type: entity
@@ -179,8 +178,8 @@
     stateBaseClosed: hydro
     stateDoorOpen: hydro_open
     stateDoorClosed: hydro_door
-  - type: AccessReader
-    access: [ [ "Hydroponics" ] ]
+#  - type: AccessReader
+#    access: [ [ "Hydroponics" ] ]
 
 # Medicine
 - type: entity
@@ -194,8 +193,8 @@
     stateBaseClosed: med
     stateDoorOpen: med_open
     stateDoorClosed: med_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+#  - type: AccessReader
+#    access: [ [ "Medical" ] ]
 
 # Medical doctor
 - type: entity
@@ -208,8 +207,8 @@
     stateBaseClosed: med_secure
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+#  - type: AccessReader
+#    access: [ [ "Medical" ] ]
 
 # Paramedic
 - type: entity
@@ -222,8 +221,8 @@
     stateBaseClosed: paramed
     stateDoorOpen: paramed_open
     stateDoorClosed: paramed_door
-  - type: AccessReader
-    access: [ [ "Medical" ] ]
+#  - type: AccessReader
+#    access: [ [ "Medical" ] ]
 
 
 # Chemical
@@ -237,8 +236,8 @@
     stateBaseClosed: med
     stateDoorOpen: med_open
     stateDoorClosed: chemical_door
-  - type: AccessReader
-    access: [ [ "Chemistry" ] ]
+#  - type: AccessReader
+#    access: [ [ "Chemistry" ] ]
 
 # CMO
 - type: entity
@@ -251,8 +250,8 @@
     stateBaseClosed: cmo
     stateDoorOpen: cmo_open
     stateDoorClosed: cmo_door
-  - type: AccessReader
-    access: [ [ "ChiefMedicalOfficer" ] ]
+#  - type: AccessReader
+#    access: [ [ "ChiefMedicalOfficer" ] ]
 
 # Science
 - type: entity
@@ -265,8 +264,8 @@
     stateBaseClosed: rd
     stateDoorOpen: rd_open
     stateDoorClosed: rd_door
-  - type: AccessReader
-    access: [ [ "ResearchDirector" ] ]
+#  - type: AccessReader
+#    access: [ [ "ResearchDirector" ] ]
 
 - type: entity
   id: LockerScientist
@@ -278,14 +277,14 @@
     stateBaseClosed: science
     stateDoorOpen: science_open
     stateDoorClosed: science_door
-  - type: AccessReader
-    access: [ [ "Research" ] ]
+#  - type: AccessReader
+#    access: [ [ "Research" ] ]
 
 # HoS
 - type: entity
   id: LockerHeadOfSecurity
   parent: LockerBaseSecure
-  name: head of security's locker
+  name: sheriff's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -299,7 +298,7 @@
 - type: entity
   id: LockerWarden
   parent: LockerBaseSecure
-  name: warden's locker
+  name: bailiff's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -313,7 +312,7 @@
 - type: entity
   id: LockerBrigmedic
   parent: LockerBaseSecure
-  name: brigmedic locker
+  name: brigmedic's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -327,7 +326,7 @@
 - type: entity
   id: LockerSecurity
   parent: LockerBaseSecure
-  name: security officer's locker
+  name: deputy's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals

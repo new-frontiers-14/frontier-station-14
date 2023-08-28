@@ -812,7 +812,7 @@ entities:
       pos: -0.5,-3.5
       parent: 117
       type: Transform
-- proto: FaxMachineBase
+- proto: FaxMachineShip
   entities:
   - uid: 105
     components:
@@ -833,13 +833,15 @@ entities:
     - pos: -3.0549874,-1.2281519
       parent: 117
       type: Transform
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 96
     components:
     - pos: -10.5,-1.5
       parent: 117
       type: Transform
+    - remainingFuel: 25
+      type: FuelGenerator
 - proto: GravityGeneratorMini
   entities:
   - uid: 97
@@ -1364,13 +1366,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 217
     components:
     - pos: -3.5,-3.5
@@ -1379,13 +1374,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 218
     components:
     - pos: -4.5,0.5
@@ -1394,13 +1382,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 219
     components:
     - pos: -1.5,0.5
@@ -1409,13 +1390,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 220
     components:
     - pos: 1.5,-0.5
@@ -1424,13 +1398,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 221
     components:
     - pos: 1.5,-1.5
@@ -1439,13 +1406,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 222
     components:
     - pos: 1.5,-2.5
@@ -1454,13 +1414,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
   - uid: 224
     components:
     - pos: -5.5,-1.5
@@ -1469,13 +1422,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
 - proto: ShuttersWindowOpen
   entities:
   - uid: 223
@@ -1486,13 +1432,6 @@ entities:
     - SecondsUntilStateChange: -2352.7666
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 225
-      type: SignalReceiver
 - proto: SignalButton
   entities:
   - uid: 225
@@ -1502,27 +1441,6 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 218
-        - port: Toggle
-          uid: 223
-        - port: Toggle
-          uid: 219
-        - port: Toggle
-          uid: 220
-        - port: Toggle
-          uid: 221
-        - port: Toggle
-          uid: 222
-        - port: Toggle
-          uid: 217
-        - port: Toggle
-          uid: 216
-        - port: Toggle
-          uid: 224
-      type: SignalTransmitter
     - type: ItemCooldown
 - proto: SignSec
   entities:
@@ -1846,7 +1764,7 @@ entities:
     - pos: -1.5,1.5
       parent: 117
       type: Transform
-- proto: WarpPoint
+- proto: WarpPointShip
   entities:
   - uid: 226
     components:

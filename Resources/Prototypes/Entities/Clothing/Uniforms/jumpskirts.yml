@@ -41,10 +41,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/ce.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/ce.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Radiation: 0.8
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -148,7 +144,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoP
-  name: head of personnel's jumpskirt
+  name: station representative's jumpskirt
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite
@@ -159,40 +155,30 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoS
-  name: head of security's jumpskirt
-  description: It's bright red and rather crisp, much like security's victims tend to be. Its sturdy fabric provides minor protection from slash and pierce damage.
+  name: sheriff's jumpskirt
+  description: It's bright red and rather crisp, much like the department's victims tend to be. Its sturdy fabric provides minor protection from slash and pierce damage.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/hos.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.9
-        Piercing: 0.9
 
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoSAlt
-  name: head of security's turtleneck
-  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security. Its sturdy fabric provides minor protection from slash and pierce damage.
+  name: sheriff's turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Sheriff. Its sturdy fabric provides minor protection from slash and pierce damage.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos_alt.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/hos_alt.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.9
-        Piercing: 0.9
 
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoSParadeMale
-  name: head of security's parade uniform
-  description: A head of security's luxury-wear, for special occasions.
+  name: sheriff's parade uniform
+  description: A sheriff's luxury-wear, for special occasions.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
@@ -297,6 +283,17 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtQMTurtleneck
+  name: quartermasters's turtleneck
+  description: A sharp turtleneck made for the hardy work environment of supply.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpskirt/qmturtleskirt.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpskirt/qmturtleskirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtResearchDirector
   name: research director's turtleneck
   description: It's a turtleneck worn by those with the know-how to achieve the position of Research Director. Its fabric provides minor protection from biological contaminants.
@@ -331,7 +328,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSec
-  name: security jumpskirt
+  name: deputy jumpskirt
   description: A jumpskirt made of strong material, providing robust protection.
   components:
   - type: Sprite
@@ -342,7 +339,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtWarden
-  name: warden's uniform
+  name: bailiff's jumpskirt
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
@@ -718,3 +715,58 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorEngineer
+  name: senior engineer jumpskirt
+  description: A sign of skill and prestige within the engineering department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/senior_engineer.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/senior_engineer.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorResearcher
+  name: senior researcher jumpskirt
+  description: A sign of skill and prestige within the science department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/senior_researcher.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/senior_researcher.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorPhysician
+  name: senior physician jumpskirt
+  description: A sign of skill and prestige within the medical department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorOfficer
+  name: sergeant jumpskirt
+  description: A sign of skill and prestige within the sheriff's department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSecGrey
+  name: grey deputy jumpskirt
+  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/security_grey.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/security_grey.rsi

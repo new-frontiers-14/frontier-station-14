@@ -56,7 +56,8 @@ namespace Content.Server.Mobs
             // 3. Are we knocked down?
             if (TryComp<KnockedDownComponent>(uid, out var knocked))
             {
-                _stunSystem.TryHelpUp(uid, knocked, args.User);
+                //_stunSystem.TryHelpUp(uid, knocked, args.User);
+                //Nope I guess we just ignore you now rofl
                 args.Handled = true;
                 return;
             }

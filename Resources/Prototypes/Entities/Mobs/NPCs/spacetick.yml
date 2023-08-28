@@ -7,7 +7,8 @@
   - type: InputMover
   - type: MobMover
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask:
+      task: SimpleHostileCompound
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -42,7 +43,7 @@
       0: Alive
       15: Dead
   - type: Stamina
-    excess: 15
+    critThreshold: 15
   - type: MovementAlwaysTouching
   - type: DamageStateVisuals
     states:
@@ -89,8 +90,17 @@
   suffix: "Salvage Ruleset"
   components:
   - type: GhostRole
+    prob: 0
     name: ghost-role-information-salvage-tick-name
     description: ghost-role-information-salvage-tick-description
-  - type: GhostTakeoverAvailable
   - type: SalvageMobRestrictions
 
+- type: entity
+  id: MobTickSalvageGhost
+  parent: MobTick
+  suffix: "Salvage Ruleset Ghost"
+  components:
+  - type: GhostRole
+    name: ghost-role-information-salvage-tick-name
+    description: ghost-role-information-salvage-tick-description
+  - type: SalvageMobRestrictions

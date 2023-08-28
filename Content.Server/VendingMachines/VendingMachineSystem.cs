@@ -143,6 +143,9 @@ namespace Content.Server.VendingMachines
             if (args.Session.AttachedEntity is not { Valid: true } entity || Deleted(entity))
                 return;
 
+            if (component.Ejecting)
+                return;
+
             AuthorizedVend(uid, entity, args.Type, args.ID, component);
         }
 
@@ -345,6 +348,12 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = ((int) price);
 
+            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            var priceVend = _pricing.GetEstimatedVendPrice(proto);
+            if (priceVend == null || priceVend == 0) { }
+            else { totalPrice = ((int) priceVend); }
+            // This block exists to allow the VendPrice flag to set a vending machine item price.
+
             if (totalPrice > bank.Balance)
             {
                 _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
@@ -415,17 +424,24 @@ namespace Content.Server.VendingMachines
 
             var item = _random.Pick(availableItems);
 
-            if (forceEject)
+            if (!vendComponent.Ejecting)
             {
-                vendComponent.NextItemToEject = item.ID;
-                vendComponent.ThrowNextItem = throwItem;
-                var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
-                if (entry != null)
-                    entry.Amount--;
-                //EjectItem(uid, vendComponent, forceEject); // Stop vending machine from giving free items
+                if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
+                {
+                    if (forceEject)
+                    {
+                        vendComponent.NextItemToEject = item.ID;
+                        vendComponent.ThrowNextItem = throwItem;
+                        var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
+                        if (entry != null)
+                            entry.Amount--;
+                        EjectItem(uid, vendComponent, forceEject);
+                    }
+                    else
+                        TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+                    vendComponent.EjectRandomCounter += 1;
+                }
             }
-            //else
-            //TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent); // Stop vending machine from giving free items
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)

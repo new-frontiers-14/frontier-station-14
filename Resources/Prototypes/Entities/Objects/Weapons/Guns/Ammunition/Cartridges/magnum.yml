@@ -18,7 +18,7 @@
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice
-    price: 10
+    price: 1
 
 - type: entity
   id: CartridgeMagnum
@@ -27,14 +27,6 @@
   components:
   - type: CartridgeAmmo
     proto: BulletMagnum
-
-- type: entity
-  id: CartridgeMagnumHighVelocity
-  name: cartridge (.45 magnum high-velocity)
-  parent: BaseCartridgeMagnum
-  components:
-  - type: CartridgeAmmo
-    proto: BulletMagnumHighVelocity
 
 - type: entity
   id: CartridgeMagnumPractice
@@ -59,6 +51,14 @@
   components:
   - type: CartridgeAmmo
     proto: BulletMagnumIncendiary
+
+- type: entity
+  id: CartridgeMagnumAP
+  name: cartridge (.45 magnum armor-piercing)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMagnumAP
 
 - type: entity
   id: BaseAnomalousCartridge

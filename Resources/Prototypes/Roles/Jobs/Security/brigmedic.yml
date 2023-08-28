@@ -2,16 +2,12 @@
   id: Brigmedic
   name: job-name-brigmedic
   description: job-description-brigmedic
-  playTimeTracker: JobBrigmedic
+  playTimeTracker: JobSeniorOfficer
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 7200
+    - !type:OverallPlaytimeRequirement
+      time: 1400
   startingGear: BrigmedicGear
-  icon: "Brigmedic"
+  icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:

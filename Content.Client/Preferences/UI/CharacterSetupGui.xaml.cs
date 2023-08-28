@@ -15,16 +15,10 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
-using Robust.Shared.Localization;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
-using TerraFX.Interop.Windows;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.Preferences.UI

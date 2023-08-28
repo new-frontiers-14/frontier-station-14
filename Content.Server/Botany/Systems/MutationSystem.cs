@@ -54,12 +54,12 @@ public sealed class MutationSystem : EntitySystem
         // Fun (90)
         MutateBool(ref seed.Seedless       , true  , 10 , totalbits , severity);
         MutateBool(ref seed.Slip           , true  , 10 , totalbits , severity);
-        MutateBool(ref seed.Sentient       , true  , 10 , totalbits , severity);
+        //MutateBool(ref seed.Sentient       , true  , 10 , totalbits , severity);
         MutateBool(ref seed.Ligneous       , true  , 10 , totalbits , severity);
-        MutateBool(ref seed.Bioluminescent , true  , 10 , totalbits , severity);
+        //MutateBool(ref seed.Bioluminescent , true  , 10 , totalbits , severity);
         MutateBool(ref seed.TurnIntoKudzu  , true  , 10 , totalbits , severity);
         MutateBool(ref seed.CanScream      , true  , 10 , totalbits , severity);
-        seed.BioluminescentColor = RandomColor(seed.BioluminescentColor, 10, totalbits, severity);
+        //seed.BioluminescentColor = RandomColor(seed.BioluminescentColor, 10, totalbits, severity);
         // ConstantUpgade (10)
         MutateHarvestType(ref seed.HarvestRepeat   , 10 , totalbits , severity);
     }
@@ -92,12 +92,12 @@ public sealed class MutationSystem : EntitySystem
         CrossBool(ref result.Seedless, a.Seedless);
         CrossBool(ref result.Viable, a.Viable);
         CrossBool(ref result.Slip, a.Slip);
-        CrossBool(ref result.Sentient, a.Sentient);
+        //CrossBool(ref result.Sentient, a.Sentient);
         CrossBool(ref result.Ligneous, a.Ligneous);
-        CrossBool(ref result.Bioluminescent, a.Bioluminescent);
+        //CrossBool(ref result.Bioluminescent, a.Bioluminescent);
         CrossBool(ref result.TurnIntoKudzu, a.TurnIntoKudzu);
         CrossBool(ref result.CanScream, a.CanScream);
-        result.BioluminescentColor = Random(0.5f) ? a.BioluminescentColor : result.BioluminescentColor;
+        //result.BioluminescentColor = Random(0.5f) ? a.BioluminescentColor : result.BioluminescentColor;
 
         // Hybrids have a high chance of being seedless. Balances very
         // effective hybrid crossings.
@@ -119,6 +119,7 @@ public sealed class MutationSystem : EntitySystem
     {
         // Probability that a bit flip happens for this value.
         float p = mult*bits/totalbits;
+        p = Math.Clamp(p, 0, 1);
         if (!Random(p))
         {
             return;
@@ -150,6 +151,7 @@ public sealed class MutationSystem : EntitySystem
     {
         // Probability that a bit flip happens for this value.
         float p = mult*bits/totalbits;
+        p = Math.Clamp(p, 0, 1);
         if (!Random(p))
         {
             return;
@@ -174,7 +176,8 @@ public sealed class MutationSystem : EntitySystem
     private void MutateBool(ref bool val, bool polarity, int bits, int totalbits, float mult)
     {
         // Probability that a bit flip happens for this value.
-        float p = mult*bits/totalbits;
+        float p = mult * bits / totalbits;
+        p = Math.Clamp(p, 0, 1);
         if (!Random(p))
         {
             return;
@@ -186,6 +189,7 @@ public sealed class MutationSystem : EntitySystem
     private void MutateHarvestType(ref HarvestType val, int bits, int totalbits, float mult)
     {
         float p = mult * bits/totalbits;
+        p = Math.Clamp(p, 0, 1);
         if (!Random(p))
             return;
 

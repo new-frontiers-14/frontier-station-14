@@ -1,8 +1,8 @@
 - type: vessel
   id: Marauder
   name: NT Marauder
-  description: A heavy corvette, the marauder class is a dedicated deep space patrol vessel outfitted with stealth armor and heavily fortified against pirate assault.
-  price: 100200
+  description: A heavy corvette, the marauder class is a dedicated deep space patrol vessel outfitted with a reduced radar cross-section and heavily fortified against hostile assault.
+  price: 100220
   category: Large
   group: Security
   shuttlePath: /Maps/Shuttles/marauder.yml
@@ -24,7 +24,8 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Detective: [ 1, 1 ]
-            SecurityOfficer: [ 2, 2 ]
+            Detective: [ 0, 0 ]
+            SecurityOfficer: [ 0, 0 ]
             Warden: [ 1, 1 ]
-            Brigmedic: [ 1, 1 ]
+            Brigmedic: [ 0, 0 ]
+            Chef: [ 0, 0 ]

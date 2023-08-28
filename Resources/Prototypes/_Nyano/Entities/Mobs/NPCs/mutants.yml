@@ -7,7 +7,8 @@
   - type: InputMover
   - type: MobMover
   - type: HTN
-    rootTask: SimpleHostileCompound
+    rootTask: 
+      task: SimpleHostileCompound
   - type: NpcFactionMember
     factions:
       - SimpleHostile
@@ -79,7 +80,6 @@
       0: Alive
       300: Dead
   - type: Stamina
-    excess: 300
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.7
@@ -105,7 +105,6 @@
       0: Alive
       200: Dead
   - type: Stamina
-    excess: 200
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.0
     baseSprintSpeed : 5.5
@@ -134,7 +133,6 @@
       0: Alive
       1500: Dead
   - type: Stamina
-    excess: 1500
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.8
     baseSprintSpeed : 3.8
@@ -167,7 +165,6 @@
       0: Alive
       550: Dead
   - type: Stamina
-    excess: 550
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.3
     baseSprintSpeed : 4.2
@@ -201,7 +198,6 @@
       0: Alive
       250: Dead
   - type: Stamina
-    excess: 250
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.7
     baseSprintSpeed : 6.0
@@ -245,7 +241,6 @@
       0: Alive
       300: Dead
   - type: Stamina
-    excess: 300
   - type: SlowOnDamage
     speedModifierThresholds:
       250: 0.4

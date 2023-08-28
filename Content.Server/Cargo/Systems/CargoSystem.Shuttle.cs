@@ -295,14 +295,18 @@ public sealed partial class CargoSystem
             return true;
         }
 
-
-
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
         while (children.MoveNext(out var child))
         {
             if (!CanSell(child.Value, _xformQuery.GetComponent(child.Value)))
                 return false;
+        }
+
+        // Look for blacklisted items and stop the selling of the container.
+        if (_blacklistQuery.HasComponent(uid))
+        {
+            return false;
         }
 
         return true;
@@ -385,6 +389,7 @@ public sealed partial class CargoSystem
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
+        Reset();
         CleanupCargoShuttle();
 
         if (_cfgManager.GetCVar(CCVars.GridFill))

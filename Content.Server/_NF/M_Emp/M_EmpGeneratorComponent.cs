@@ -2,6 +2,7 @@ using Content.Shared.Radio;
 using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.DeviceLinking;
 
 namespace Content.Server._NF.M_Emp
 {
@@ -88,6 +89,9 @@ namespace Content.Server._NF.M_Emp
         /// </summary>
         [DataField("previousCharge")]
         public int PreviousCharge = 5;
+
+        [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string ReceiverPort = "On";
     }
 
     [CopyByRef, DataRecord]
