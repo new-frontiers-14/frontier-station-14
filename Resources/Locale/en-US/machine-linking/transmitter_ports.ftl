@@ -39,3 +39,6 @@ signal-port-description-logic-output-low = This port is invoked whenever the inp
 
 signal-port-name-space-artillery-fire = Fire
 signal-port-description-space-artillery-fire = Controls Space Artillery's firing mechanism.
+
+signal-port-name-space-artillery-safety = Safety
+signal-port-description-space-artillery-safety = Toggles Space Artillery's safety mechanism.

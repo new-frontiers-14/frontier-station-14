@@ -58,9 +58,11 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: DeviceLinkSource
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
     selectedMode: FullAuto
@@ -74,6 +76,11 @@
   - type: SpaceArtillery
   - type: Actions
   - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.5"
+    maxBuckleDistance: 1
   
   
 - type: entity
@@ -131,9 +138,11 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: DeviceLinkSource
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
     selectedMode: FullAuto
@@ -147,6 +156,11 @@
   - type: SpaceArtillery
   - type: Actions
   - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.5"
+    maxBuckleDistance: 1
   
 
 - type: entity
@@ -202,9 +216,11 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: DeviceLinkSource
     ports:
       - SpaceArtilleryFire
+      - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
     selectedMode: FullAuto
@@ -218,3 +234,11 @@
   - type: SpaceArtillery
   - type: Actions
   - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.5"
+    maxBuckleDistance: 1
+  
+  
+# Space Artillery projectiles
