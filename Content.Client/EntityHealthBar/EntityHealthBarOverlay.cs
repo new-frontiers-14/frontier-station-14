@@ -24,6 +24,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     private readonly MobThresholdSystem _mobThresholdSystem;
     private readonly Texture _barTexture;
     private readonly ShaderInstance _shader;
+    private readonly ContainerSystem _container;
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public List<string> DamageContainers = new();
 
@@ -33,6 +34,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         _transform = _entManager.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
         _mobStateSystem = _entManager.EntitySysManager.GetEntitySystem<MobStateSystem>();
         _mobThresholdSystem = _entManager.EntitySysManager.GetEntitySystem<MobThresholdSystem>();
+        _container = _entManager.EntitySysManager.GetEntitySystem<ContainerSystem>();
 
         var sprite = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/health_bar.rsi"), "icon");
         _barTexture = _entManager.EntitySysManager.GetEntitySystem<SpriteSystem>().Frame0(sprite);
@@ -57,6 +59,12 @@ public sealed class EntityHealthBarOverlay : Overlay
             if (!xformQuery.TryGetComponent(mob.Owner, out var xform) ||
                 xform.MapID != args.MapId)
             {
+                continue;
+            }
+
+            if (_container.TryGetContainingContainer(mob.Owner, out var _))
+            {
+                // Ignores entities inside containers, so lockers, crates, whatever
                 continue;
             }
 
