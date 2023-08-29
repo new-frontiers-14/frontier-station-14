@@ -32,6 +32,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: calico cat
@@ -104,6 +115,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: bingus
@@ -139,6 +161,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: corgi
@@ -174,6 +207,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: corgi puppy
@@ -190,7 +234,7 @@
       state: puppy
   - type: Inventory
     speciesId: puppy
-    templateId: pet
+    templateId: emotionalsupportpet
   - type: InventorySlots
   - type: DamageStateVisuals
     states:
@@ -198,6 +242,14 @@
         Base: puppy
       Dead:
         Base: puppy_dead
+  - type: IdExaminable
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: chicken
@@ -233,6 +285,19 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: chicken
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: pitbull
@@ -263,3 +328,14 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
