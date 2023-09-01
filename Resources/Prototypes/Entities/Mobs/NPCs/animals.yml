@@ -216,6 +216,7 @@
   - type: NpcFactionMember
     factions:
     - Passive
+    - Chicken
 
 - type: entity
   id: FoodEggChickenFertilized
@@ -868,6 +869,7 @@
   - type: NpcFactionMember
     factions:
     - Passive
+    - Monkey
   - type: GhostRole
     prob: 0.05
     makeSentient: true
@@ -2002,6 +2004,9 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -2076,10 +2081,15 @@
 - type: entity
   name: space cat
   id: MobCatSpace
-  parent: MobCat
+  parent: SimpleSpaceSuitMobBase
   description: Feline pet, prepared for the worst.
   components:
+  - type: NpcFactionMember
+    factions:
+      - Cat
   - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: spacecat
@@ -2096,21 +2106,41 @@
     interactFailureString: petting-failure-generic
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.0 #per second, scales with pressure and other constants.
-  - type: Temperature
-    heatDamageThreshold: 360
-    coldDamageThreshold: 0
-    currentTemperature: 310.15
-    coldDamage:
-      types:
-        Cold : 0.1 #per second, scales with temperature & other constants
-    specificHeat: 42
-    heatDamage:
-      types:
-        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Inventory
+    speciesId: cat
+    templateId: pet
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 200
+  - type: Tag
+    tags:
+    - VimPilot
 
 - type: entity
   name: caracal cat

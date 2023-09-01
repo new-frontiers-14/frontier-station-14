@@ -1,0 +1,62 @@
+- type: entity
+  save: false
+  abstract: true
+  id: SimpleSpaceSuitMobBase # for air breathers
+  parent: SimpleSpaceMobBase
+  suffix: AI
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: Hunger
+    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926 # it is okay for animals to eat and drink less than humans, but more frequently
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - StaminaModifier
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Temperature
+    heatDamageThreshold: 360
+    coldDamageThreshold: 0
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold : 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: Bloodstream
+    bloodMaxVolume: 150
+  - type: MobPrice
+    price: 150
+  - type: FloatingVisuals
+  - type: Puller
+    needsHands: false
+

@@ -32,6 +32,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: calico cat
@@ -73,41 +84,48 @@
 - type: entity
   name: space cat
   suffix: Ghost
-  parent: MobCatGhost
+  parent: MobCatSpace
   id: MobCatSpaceGhost
   description: Feline pet, prepared for the worst.
   components:
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: spacecat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: spacecat
-      Dead:
-        Base: spacecat_dead
-  - type: InteractionPopup
-    successChance: 0.7
-    interactSuccessString: petting-success-space-cat
-    interactFailureString: petting-failure-generic
-    interactSuccessSound:
-      path: /Audio/Animals/cat_meow.ogg
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.0 #per second, scales with pressure and other constants.
-  - type: Temperature
-    heatDamageThreshold: 360
-    coldDamageThreshold: 0
-    currentTemperature: 310.15
-    coldDamage:
-      types:
-        Cold : 0.1 #per second, scales with temperature & other constants
-    specificHeat: 42
-    heatDamage:
-      types:
-        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction:
+      enabled: false
+      autoPopulate: false
+      name: action-name-combat
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+    wilhelmProbability: 0.001
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: bingus
@@ -143,6 +161,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: corgi
@@ -178,6 +207,17 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: corgi puppy
@@ -194,7 +234,7 @@
       state: puppy
   - type: Inventory
     speciesId: puppy
-    templateId: pet
+    templateId: emotionalsupportpet
   - type: InventorySlots
   - type: DamageStateVisuals
     states:
@@ -202,6 +242,14 @@
         Base: puppy
       Dead:
         Base: puppy_dead
+  - type: IdExaminable
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
 - type: entity
   name: chicken
@@ -237,3 +285,57 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: chicken
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
+  - type: Puller
+    needsHands: false
+
+- type: entity
+  name: pitbull
+  suffix: Ghost
+  parent: MobPibble
+  id: MobPibbleGhost
+  description: Nanny dog. Or a lab mix depending on who is asking.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: ReplacementAccent
+    accent: dog
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+    wilhelmProbability: 0.001
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
