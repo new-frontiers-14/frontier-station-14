@@ -17,7 +17,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Coordinates;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
+using Content.Server.Mind.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -274,6 +275,9 @@ public sealed partial class CargoSystem
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
+                if (_tradeCrateQuery.HasComponent(ent))
+                    continue;
+
                 var price = _pricing.GetPrice(ent);
                 if (price == 0)
                     continue;
@@ -297,6 +301,7 @@ public sealed partial class CargoSystem
 
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
+        bool trade = GetEntityQuery<TradeCrateComponent>();
         while (children.MoveNext(out var child))
         {
             if (!CanSell(child.Value, _xformQuery.GetComponent(child.Value)))
@@ -308,6 +313,16 @@ public sealed partial class CargoSystem
         {
             return false;
         }
+
+        if (_tradeCrateQuery.HasComponent(uid))
+        {
+            if (trade.Item == true) ;
+            return false;
+        }
+        //if (_tradeCrateQuery.Crate == false || _tradeCrateQuery.Item == true)
+        //{
+        //    return false;
+        //}
 
         return true;
     }

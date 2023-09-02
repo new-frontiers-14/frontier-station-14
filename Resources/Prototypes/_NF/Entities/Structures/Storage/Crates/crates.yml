@@ -14,3 +14,48 @@
     - entity_storage
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeSecureNormal
+  name: trade steel crate
+  suffix: Normal
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/trade.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/trade.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+    capacity: 4
+    whitelist:
+      components:
+      - TradeCrate
+      
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeSecureHigh
+  name: trade steel crate
+  suffix: High
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/trade.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/trade.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+    capacity: 8
+    whitelist:
+      components:
+      - TradeCrate
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 500 # Heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer

@@ -45,9 +45,11 @@ public sealed partial class CargoSystem : SharedCargoSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
+    //[Dependency] private readonly TradeCrateComponent _tradeCrateQuery = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
+    private EntityQuery<TradeCrateComponent> _tradeCrateQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
 
     public override void Initialize()

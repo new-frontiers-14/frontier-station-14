@@ -1,0 +1,95 @@
+- type: entity
+  parent: BaseItem
+  id: GeneralGoodsBox
+  name: General goods box
+  description: General goods box, containing all sort of stuff.
+  components:
+  - type: TradeCrate
+    item: true
+  - type: Sprite
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+  - type: StaticPrice
+    price: 200
+  - type: ItemCooldown
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Weapons/genhit2.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+  - type: Item
+    size: 50
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior 
+        spawn:
+          MaterialCloth1:
+            min: 0
+            max: 1
+          SheetSteel1:
+            min: 0
+            max: 1
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+          SheetPlasma1:
+            min: 0
+            max: 1
+          SheetPlastic1:
+            min: 0
+            max: 1
+          SheetGlass1:
+            min: 0
+            max: 1
+          SheetPlasteel1:
+            min: 0
+            max: 1
+          MaterialDurathread1:
+            min: 0
+            max: 1
+          DrinkPwrGameCan:
+            min: 0
+            max: 1
+          DrinkEnergyDrinkCan:
+            min: 0
+            max: 1
+          DrinkFourteenLokoCan:
+            min: 0
+            max: 1
+          Gauze:
+            min: 0
+            max: 1
+          Bloodpack:
+            min: 0
+            max: 1
+          Brutepack:
+            min: 0
+            max: 1
+          Ointment:
+            min: 0
+            max: 1
+
