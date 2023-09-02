@@ -249,8 +249,8 @@ namespace Content.Server.Mail
             if (!component.IsProfitable)
                 return;
 
-            _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false);
-            _audioSystem.PlayPvs(component.PenaltySound, uid);
+            //_chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false); # Dont show message.
+            //_audioSystem.PlayPvs(component.PenaltySound, uid); # Dont play sound.
 
             component.IsProfitable = false;
 
@@ -262,7 +262,7 @@ namespace Content.Server.Mail
             {
                 // only our main station will have an account anyway so I guess we are just going to add it this way shrug.
 
-                _cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty);
+                //_cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty); # Dont remove money.
                 return;
             }
         }
@@ -272,8 +272,8 @@ namespace Content.Server.Mail
             if (component.IsLocked)
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
-            if (component.IsEnabled)
-                OpenMail(uid, component);
+           // if (component.IsEnabled)
+           //     OpenMail(uid, component); # Dont open the mail on destruction.
 
             UpdateAntiTamperVisuals(uid, false);
         }
