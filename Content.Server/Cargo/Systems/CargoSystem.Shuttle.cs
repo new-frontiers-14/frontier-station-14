@@ -264,6 +264,7 @@ public sealed partial class CargoSystem
                 // - anything anchored (e.g. light fixtures)
                 // - anything blacklisted (e.g. players).
 
+                // Dont look for the trading crate content, since it can only have trade items in.
                 if (!_tradeCrateQuery.HasComponent(ent))
                 {
                     if (toSell.Contains(ent) ||
@@ -277,6 +278,7 @@ public sealed partial class CargoSystem
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
+                // Look for trade items and stop the sell unless they are in a trade crate.
                 if (_tradeItemQuery.HasComponent(ent))
                     continue;
 
@@ -315,6 +317,7 @@ public sealed partial class CargoSystem
             return false;
         }
 
+        // Look for trade items and stop the selling of the container, this is needed to make sure the trade items wont be sold in normal crates.
         if (_tradeItemQuery.HasComponent(uid))
         {
             return false;
