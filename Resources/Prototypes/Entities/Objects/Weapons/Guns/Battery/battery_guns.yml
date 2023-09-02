@@ -59,8 +59,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
-    fireCost: 62.5
+    proto: RedLaser
+    fireCost: 83.3
+  - type: Item
+    size: 15
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -86,7 +88,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: RedLightLaser
     fireCost: 62.5
   - type: Battery
     maxCharge: 500
@@ -108,13 +110,15 @@
       shader: unshaded
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Item
+    size: 30
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 62.5
+    proto: RedMediumLaser
+    fireCost: 55.5
 
 - type: entity
   name: practice laser rifle
@@ -235,7 +239,11 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 250
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
+
 
 - type: entity
   name: x-ray cannon
@@ -258,12 +266,15 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 100
+    fireCost: 200
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
 
 - type: entity
   name: disabler
@@ -420,7 +431,7 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
     steps: 5
