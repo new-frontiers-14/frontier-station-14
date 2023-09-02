@@ -2,6 +2,7 @@
   parent: CrateBaseWeldable
   id: CratePlasticBiodegradable
   name: biodegradable plastic crate
+  noSpawn: true
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/plastic.rsi
@@ -17,8 +18,9 @@
 
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeSecureNormal
+  id: CrateTradeBaseSecureNormal
   name: cargo steel crate
+  noSpawn: true
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
@@ -33,8 +35,9 @@
       
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeSecureHigh
+  id: CrateTradeBaseSecureHigh
   name: high value cargo steel crate
+  noSpawn: true
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
@@ -52,7 +55,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 500 # Heavy
+        density: 700 # Heavy
         mask:
         - SmallMobMask
         layer:

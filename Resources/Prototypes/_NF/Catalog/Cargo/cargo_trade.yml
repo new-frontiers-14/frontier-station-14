@@ -1,9 +1,19 @@
 - type: cargoProduct
-  id: Materials
+  id: CrateTradeSecureNormal
   icon:
-    sprite: Objects/Materials/Sheets/metal.rsi
-    state: steel_3
-  product: CrateMaterials
-  cost: 1000 # TODO: Lower the cost back when possible
-  category: Materials
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateTradeSecureNormalFilled
+  cost: 1000
+  category: Cargo
+  group: market
+
+- type: cargoProduct
+  id: CrateTradeSecureHigh
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateTradeSecureHighFilled
+  cost: 2000
+  category: Cargo
   group: market
