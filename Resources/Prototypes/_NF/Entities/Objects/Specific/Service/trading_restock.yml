@@ -1,11 +1,10 @@
 - type: entity
   parent: BaseItem
-  id: GeneralGoodsBox
-  name: General goods box
-  description: General goods box, containing all sort of stuff.
+  id: GeneralCargoBox
+  name: General crago box
+  description: General crago box, containing all sort of stuff.
   components:
-  - type: TradeCrate
-    item: true
+  - type: TradeItem
   - type: Sprite
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     layers:
@@ -24,7 +23,7 @@
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
   - type: Item
-    size: 50
+    size: 9999
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic

@@ -17,8 +17,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Coordinates;
 using Content.Shared.Mobs;
-using Content.Server.Mind.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -265,17 +263,21 @@ public sealed partial class CargoSystem
                 // - anything already being sold
                 // - anything anchored (e.g. light fixtures)
                 // - anything blacklisted (e.g. players).
-                if (toSell.Contains(ent) ||
-                    _xformQuery.TryGetComponent(ent, out var xform) &&
-                    (xform.Anchored || !CanSell(ent, xform)))
+
+                if (!_tradeCrateQuery.HasComponent(ent))
                 {
-                    continue;
+                    if (toSell.Contains(ent) ||
+                       _xformQuery.TryGetComponent(ent, out var xform) &&
+                        (xform.Anchored || !CanSell(ent, xform)))
+                    {
+                        continue;
+                    }
                 }
 
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
-                if (_tradeCrateQuery.HasComponent(ent))
+                if (_tradeItemQuery.HasComponent(ent))
                     continue;
 
                 var price = _pricing.GetPrice(ent);
@@ -301,7 +303,6 @@ public sealed partial class CargoSystem
 
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
-        bool trade = GetEntityQuery<TradeCrateComponent>();
         while (children.MoveNext(out var child))
         {
             if (!CanSell(child.Value, _xformQuery.GetComponent(child.Value)))
@@ -314,15 +315,10 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        if (_tradeCrateQuery.HasComponent(uid))
+        if (_tradeItemQuery.HasComponent(uid))
         {
-            if (trade.Item == true) ;
             return false;
         }
-        //if (_tradeCrateQuery.Crate == false || _tradeCrateQuery.Item == true)
-        //{
-        //    return false;
-        //}
 
         return true;
     }
@@ -400,7 +396,7 @@ public sealed partial class CargoSystem
         }
     }
 
-    #endregion
+#endregion
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {

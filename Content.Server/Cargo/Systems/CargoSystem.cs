@@ -18,6 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
+using Content.Server._NF.Trade.Components;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -45,10 +46,10 @@ public sealed partial class CargoSystem : SharedCargoSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    //[Dependency] private readonly TradeCrateComponent _tradeCrateQuery = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
+    private EntityQuery<TradeItemComponent> _tradeItemQuery;
     private EntityQuery<TradeCrateComponent> _tradeCrateQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
 
@@ -58,6 +59,8 @@ public sealed partial class CargoSystem : SharedCargoSystem
 
         _xformQuery = GetEntityQuery<TransformComponent>();
         _blacklistQuery = GetEntityQuery<CargoSellBlacklistComponent>();
+        _tradeItemQuery = GetEntityQuery<TradeItemComponent>();
+        _tradeCrateQuery = GetEntityQuery<TradeCrateComponent>();
         _mobQuery = GetEntityQuery<MobStateComponent>();
 
         InitializeConsole();
