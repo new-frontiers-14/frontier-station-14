@@ -265,10 +265,19 @@ public sealed partial class CargoSystem
                 // - anything blacklisted (e.g. players).
 
                 // Dont look for the trading crate content, since it can only have trade items in.
-                if (!_tradeCrateQuery.HasComponent(ent))
+                if (_tradeCrateQuery.HasComponent(ent))
                 {
                     if (toSell.Contains(ent) ||
                        _xformQuery.TryGetComponent(ent, out var xform) &&
+                        (xform.Anchored))
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (toSell.Contains(ent) ||
+                        _xformQuery.TryGetComponent(ent, out var xform) &&
                         (xform.Anchored || !CanSell(ent, xform)))
                     {
                         continue;
