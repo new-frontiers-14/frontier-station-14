@@ -32,7 +32,18 @@
     whitelist:
       components:
       - TradeItem
-      
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 150 # Heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+
 - type: entity
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureHigh
@@ -55,7 +66,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Heavy
+        density: 400 # Very heavy
         mask:
         - SmallMobMask
         layer:
