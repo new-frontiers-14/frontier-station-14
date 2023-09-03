@@ -1,0 +1,20 @@
+- type: entity
+  name: Clippy
+  parent: MobCatGhost
+  id: MobCatClippy
+  description: Professional mouse hunter. Escape artist.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mailcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mailcat
+      Critical:
+        Base: mailcat_dead
+      Dead:
+        Base: mailcat_dead
