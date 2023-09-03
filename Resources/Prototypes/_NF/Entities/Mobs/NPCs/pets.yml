@@ -2,11 +2,11 @@
   name: Clippy
   parent: MobCatGhost
   id: MobCatClippy
-  description: Professional mouse hunter. Escape artist.
+  description: It looks like you’re writing a letter, would you like help? Clippy is here to help!
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Pets/cat.rsi
+    sprite: _NF/Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: mailcat
@@ -18,3 +18,14 @@
         Base: mailcat_dead
       Dead:
         Base: mailcat_dead
+  - type: GhostRole
+    name: ghost-role-information-clippy-name
+    description: ghost-role-information-clippy-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: Inventory
+    speciesId: cat
+    templateId: clippy
+  - type: Loadout
+    prototypes: [ MobClippyGear ]
