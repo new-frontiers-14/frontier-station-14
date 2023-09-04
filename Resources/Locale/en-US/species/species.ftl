@@ -7,4 +7,3 @@ species-name-slime = Slime Person
 species-name-diona = Diona
 species-name-arachnid = Arachnid
 species-name-moth = Moth Person
-species-name-vulpkanin = Vulpkanin
