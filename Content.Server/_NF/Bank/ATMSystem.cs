@@ -218,7 +218,7 @@ public sealed partial class BankSystem
             return;
 
         GetInsertedCashAmount(component, out var deposit);
-        var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
+        var bui = _uiSystem.GetUi(component.Owner, args.UiKey);
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
