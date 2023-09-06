@@ -12,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Players;
 using System.Linq;
 using Content.Server.Administration.Logs;
+using Content.Server.Cargo.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Database;
 
@@ -44,7 +45,7 @@ public sealed partial class BankSystem
 
         // to keep the window stateful
         GetInsertedCashAmount(component, out var deposit);
-        if (!_uiSystem.TryGetUi(uid, BankATMMenuUiKey.ATM, out var bui))
+        if (!_uiSystem.TryGetUi(uid, args.UiKey, out var bui))
         {
             return;
         }
@@ -100,7 +101,8 @@ public sealed partial class BankSystem
         // gets the money inside a cashslot of an ATM.
         // Dynamically knows what kind of cash to look for according to BankATMComponent
         GetInsertedCashAmount(component, out var deposit);
-        var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
+
+        var bui = _uiSystem.GetUi(component.Owner, args.UiKey);
 
         // make sure the user actually has a bank
         if (!TryComp<BankAccountComponent>(player, out var bank))
@@ -145,6 +147,19 @@ public sealed partial class BankSystem
             UserInterfaceSystem.SetUiState(bui,
                 new BankATMMenuInterfaceState(0, false, deposit));
             return;
+        }
+
+        if (BankATMMenuUiKey.BlackMarket == (BankATMMenuUiKey) args.UiKey)
+        {
+            var tax = (int) (deposit * 0.30f);
+            var query = EntityQueryEnumerator<StationBankAccountComponent>();
+
+            while (query.MoveNext(out _, out var comp))
+            {
+                _cargo.DeductFunds(comp, -tax);
+            }
+
+            deposit -= tax;
         }
 
         // try to deposit the inserted cash into a player's bank acount. Validation happens on the banking system but we still indicate error.
@@ -203,7 +218,7 @@ public sealed partial class BankSystem
             return;
 
         GetInsertedCashAmount(component, out var deposit);
-        var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
+        var bui = _uiSystem.GetUi(component.Owner, args.UiKey);
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
