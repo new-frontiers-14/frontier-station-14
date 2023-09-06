@@ -68,12 +68,12 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
-    private const int FTLProximityIterations = 3;
+    private const int FTLProximityIterations = 5;
 
     /// <summary>
     /// Minimum mass for an FTL destination
     /// </summary>
-    public const float FTLDestinationMass = 800f;
+    public const float FTLDestinationMass = 1000f;
 
     private void InitializeFTL()
     {
