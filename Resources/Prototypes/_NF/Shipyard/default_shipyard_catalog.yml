@@ -49,6 +49,16 @@
     - type: Transform
 
 - type: entity
+  id: StandardFrontierOutpost
+  parent:
+    - BaseStation
+    - BaseStationCargo
+    - BaseStationSiliconLawFrontierShips
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierExpeditionVessel
   parent:
     - BaseStation
@@ -88,6 +98,15 @@
   group: Civilian
   shuttlePath: /Maps/Shuttles/pts.yml
 
+- type: vessel
+  id: PTSBM
+  name: NC Personal Transport
+  description: A small transport shuttle with space for 5 passengers.
+  price: 15000
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/Shuttles/pts.yml
+
 - type: gameMap
   id: PTS
   mapName: 'NC Personal Transport'
@@ -107,6 +126,24 @@
           availableJobs:
             Passenger: [ 0, 0 ]
 
+- type: gameMap
+  id: PTSBM
+  mapName: 'NC Personal Transport'
+  mapPath: /Maps/Shuttles/pts.yml
+  minPlayers: 0
+  stations:
+    PTS:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} PTS {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
 - type: vessel
   id: Courser
   name: NT Courser-X
