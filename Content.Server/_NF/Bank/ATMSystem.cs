@@ -185,7 +185,7 @@ public sealed partial class BankSystem
     private void OnCashSlotChanged(EntityUid uid, BankATMComponent component, ContainerModifiedMessage args)
     {
 
-        var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM);
+        var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM) ?? _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.BlackMarket);
 
         var uiUser = bankUi!.SubscribedSessions.FirstOrDefault();
         GetInsertedCashAmount(component, out var deposit);
