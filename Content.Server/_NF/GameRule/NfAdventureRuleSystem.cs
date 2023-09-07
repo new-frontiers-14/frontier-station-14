@@ -19,6 +19,8 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
+using Content.Server.Maps;
+using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
@@ -36,6 +38,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly DungeonSystem _dunGen = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
 
     private readonly HttpClient _httpClient = new();
@@ -110,11 +113,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var tinnia = "/Maps/tinnia.yml";
         var lpbravo = "/Maps/lpbravo.yml";
         var arena = "/Maps/arena.yml";
+        var cove = "/Maps/cove.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(1500f, 2400f);
+
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -125,7 +130,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
-        ;
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1275f, 1975f)
@@ -136,7 +140,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid2s[0], tinniaColor);
         }
 
-        ;
         depotOffset = _random.NextVector2(2600f, 3750f);
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
@@ -148,7 +151,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
         }
 
-        ;
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1950f, 3500f)
@@ -160,7 +162,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
-        ;
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1500f, 3000f)
@@ -171,12 +172,25 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid5s[0], tinniaColor);
         }
 
-        ;
+        if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2250f, 4600f)
+            }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Cove", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["Cove"], depotUid6s);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
+            meta.EntityName = "Pirate's Cove";
+            _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
+            _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
+        }
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
         {
-
             var seed = _random.Next();
             var offset = _random.NextVector2(2750f, 4400f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
