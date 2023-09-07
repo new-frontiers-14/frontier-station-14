@@ -57,3 +57,14 @@
   - type: BluespaceErrorRule
     gridPath: /Maps/Bluespace/vaultsmall.yml
     rewardFactor: 1
+
+- type: entity
+  id: BluespaceCargo
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    startDelay: 30
+    duration: 35
+  - type: BluespaceCargoRule
