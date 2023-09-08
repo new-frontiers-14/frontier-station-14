@@ -16,16 +16,4 @@ public sealed class BluespaceCargoRuleComponent : Component
 
     [DataField("cargoFlashPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string CargoFlashPrototype = "EffectFlashBluespace";
-
-    [DataField("possibleSightings")]
-    public List<string> PossibleSighting = new()
-    {
-        "bluespace-cargo-sighting-1",
-        "bluespace-cargo-sighting-2",
-        "bluespace-cargo-sighting-3",
-        "bluespace-cargo-sighting-4",
-        "bluespace-cargo-sighting-5",
-        "bluespace-cargo-sighting-6",
-        "bluespace-cargo-sighting-7"
-    };
 }
