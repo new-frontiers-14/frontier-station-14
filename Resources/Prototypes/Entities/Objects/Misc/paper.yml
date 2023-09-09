@@ -104,9 +104,11 @@
 
 - type: entity
   name: captain's thoughts
+  #name: station representative thoughts
   parent: Paper
   id: PaperCaptainsThoughts
   description: "A page of the captain's journal. In luxurious lavender."
+  #description: "A page of the station representative journal. In luxurious lavender."
   components:
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
@@ -251,6 +253,8 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: Cybersun pen
@@ -279,6 +283,8 @@
     sprite: Objects/Misc/bureaucracy.rsi
     heldPrefix: overpriced_pen
     size: 2
+  - type: StaticPrice
+    price: 20
 
 - type: entity
   name: captain's fountain pen
@@ -289,6 +295,8 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_cap
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   name: Centcom pen
@@ -312,6 +320,8 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_hop
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   id: BoxFolderBase
@@ -475,6 +485,8 @@
       params:
         volume: -2
         maxdistance: 5
+  - type: StaticPrice
+    price: 3
 
 - type: entity
   name: captain's rubber stamp
