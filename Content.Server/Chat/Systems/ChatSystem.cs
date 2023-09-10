@@ -408,11 +408,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range, Canilunzt, CanilunztMessage, CanilunztwrappedMessage);
 
-        if (!Canilunzt)
-        {
-            var ev = new EntitySpokeEvent(source, message, null, null);
-            RaiseLocalEvent(source, ev, true);
-        }
+        var ev = new EntitySpokeEvent(source, message, null, null, Canilunzt);
+        RaiseLocalEvent(source, ev, true);
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
 		// Also doesn't log if hideLog is true.
@@ -537,11 +534,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, source, MessageRangeHideChatForReplay(range)));
 
-        if (!canilunzt)
-        {
-            var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage);
-            RaiseLocalEvent(source, ev, true);
-        }
+        var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage, canilunzt);
+        RaiseLocalEvent(source, ev, true);
 
         if (!hideLog)
             if (originalMessage == message)
@@ -988,6 +982,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public readonly EntityUid Source;
     public readonly string Message;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly bool Canilunzt; // If is a Canilunzt Message
 
     /// <summary>
     ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
@@ -995,12 +990,13 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
-    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage)
+    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage, bool canilunzt)
     {
         Source = source;
         Message = message;
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        Canilunzt = canilunzt;
     }
 }
 
