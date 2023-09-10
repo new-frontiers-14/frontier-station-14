@@ -1,11 +1,18 @@
+using Content.Server.Station.Components;
+using Content.Shared.Popups;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
+    private const float ShuttleFTLMassThreshold = 50f;
+    private const float ShuttleFTLRange = 150f;
+
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
         var station = _station.GetOwningStation(uid);
@@ -15,6 +22,33 @@ public sealed partial class SalvageSystem
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
+
+        // On Frontier, FTL travel is currently restricted to expeditions and such, and so we need to put this here
+        // until FTL changes for us in some way.
+        if (!TryComp<StationDataComponent>(station, out var stationData))
+            return;
+        if (_station.GetLargestGrid(stationData) is not {Valid : true} grid)
+            return;
+        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        var xform = Transform(grid);
+        var bounds = xform.WorldMatrix.TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
+        var bodyQuery = GetEntityQuery<PhysicsComponent>();
+        foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
+        {
+            if (grid == other.Owner ||
+                !bodyQuery.TryGetComponent(other.Owner, out var body) ||
+                body.Mass < ShuttleFTLMassThreshold)
+            {
+                continue;
+            }
+
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
+            UpdateConsoles(data);
+            return;
+        }
+        // end of Frontier proximity check
 
         SpawnMission(missionparams, station.Value);
 
