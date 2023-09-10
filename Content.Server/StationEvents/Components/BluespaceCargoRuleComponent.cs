@@ -12,7 +12,10 @@ namespace Content.Server.StationEvents.Components;
 public sealed class BluespaceCargoRuleComponent : Component
 {
     [DataField("cargoSpawnerPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string CargoSpawnerPrototype = "RandomArtifactSpawner";
+    public string CargoSpawnerPrototype = "RandomCargoSpawner";
+
+    [DataField("cargoGenericSpawnerPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string CargoGenericSpawnerPrototype = "RandomCargoGenericSpawner";
 
     [DataField("cargoFlashPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string CargoFlashPrototype = "EffectFlashBluespace";

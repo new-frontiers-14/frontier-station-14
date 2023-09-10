@@ -1,1 +1,1 @@
-bluespace-cargo-event-announcement = Our readings have detected an incoming object of alien origin.
+bluespace-cargo-event-announcement = A cargo telepad error has possibly sent a crate into a an unkonwn location.
