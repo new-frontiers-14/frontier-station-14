@@ -17,7 +17,7 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Fluids.Components;
 using Content.Server.Mail.Components;
-using Content.Server.Mind.Components;
+using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -64,6 +64,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
+        [Dependency] private readonly MindSystem _mind = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -555,10 +556,10 @@ namespace Content.Server.Mail
                     stationName = "Unknown";
                 }
 
-                if (TryComp<MindContainerComponent>(receiver.Owner, out MindContainerComponent? mind)
-                    && mind.Mind?.Session == null)
+                if (!_mind.TryGetMind(receiver.Owner, out var mindId, out var mindComp))
                 {
-                    mayReceivePriorityMail = false;
+                    recipient = null;
+                    return false;
                 }
 
                 recipient = new MailRecipient(idCard.FullName,

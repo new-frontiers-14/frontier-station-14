@@ -143,7 +143,7 @@ namespace Content.Server.Item.PseudoItem
             if (!Resolve(toInsert, ref pseudoItem))
                 return;
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

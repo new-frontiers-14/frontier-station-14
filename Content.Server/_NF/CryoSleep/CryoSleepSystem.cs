@@ -7,6 +7,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Destructible;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -24,6 +25,7 @@ public sealed class CryoSleepSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly EuiManager _euiManager = null!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     private EntityUid? _storageMap;
     // TODO: add a proper doafter system once that all gets sorted out
@@ -116,9 +118,9 @@ public sealed class CryoSleepSystem : EntitySystem
         if (IsOccupied(component) && !force)
             return false;
 
-        if (TryComp<MindContainerComponent>(toInsert, out var mind))
+        if (_mind.TryGetMind(toInsert.Value, out var mind, out var mindComp))
         {
-            var session = mind.Mind?.Session;
+            var session = mindComp.Session;
             if (session is not null && session.Status == SessionStatus.Disconnected)
             {
                 CryoStoreBody(toInsert.Value);
@@ -128,9 +130,9 @@ public sealed class CryoSleepSystem : EntitySystem
 
         var success = component.BodyContainer.Insert(toInsert.Value, EntityManager);
 
-        if (success && mind?.Mind?.Session != null)
+        if (success && mindComp?.Session != null)
         {
-            _euiManager.OpenEui(new CryoSleepEui(mind.Mind, this), mind.Mind.Session);
+            _euiManager.OpenEui(new CryoSleepEui(mind, this), mindComp.Session);
         }
 
         return success;
@@ -138,13 +140,13 @@ public sealed class CryoSleepSystem : EntitySystem
 
     public void CryoStoreBody(EntityUid body)
     {
-        if (!TryComp(body, out MindContainerComponent? mind) || mind.Mind is null)
+        if (!TryComp(body, out MindContainerComponent? mind) || mind.Mind is not {Valid : true} mindId)
         {
             QueueDel(body);
             return;
         }
 
-        _gameTicker.OnGhostAttempt(mind.Mind, false);
+        _gameTicker.OnGhostAttempt(mindId, false);
         var storage = GetStorageMap();
         var xform = Transform(body);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
