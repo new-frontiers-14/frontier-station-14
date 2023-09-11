@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.Components;
 namespace Content.Server.Chemistry.AutoRegenReagent
 {
     [RegisterComponent]
-    public sealed class AutoRegenReagentComponent : Component
+    public sealed partial class AutoRegenReagentComponent : Component
     {
         [DataField("solution", required: true)]
         public string? SolutionName = null; // we'll fail during tests otherwise

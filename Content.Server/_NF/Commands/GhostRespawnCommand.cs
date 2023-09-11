@@ -2,6 +2,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Ghost;
 using Content.Shared.NF14.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;

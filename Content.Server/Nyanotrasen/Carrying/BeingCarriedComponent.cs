@@ -4,7 +4,7 @@ namespace Content.Server.Carrying
     /// Stores the carrier of an entity being carried.
     /// </summary>
     [RegisterComponent]
-    public sealed class BeingCarriedComponent : Component
+    public sealed partial class BeingCarriedComponent : Component
     {
         public EntityUid Carrier = default!;
     }
