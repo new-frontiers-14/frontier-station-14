@@ -8,6 +8,9 @@
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Hunger
+    baseDecayRate: 0.2
+  - type: Thirst
+    baseDecayRate: 0.0125
   - type: Thirst
   - type: Icon
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
@@ -72,16 +75,6 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-      path: /Audio/Weapons/pierce.ogg
-    angle: 30
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 1
-        Slash: 5
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulps
