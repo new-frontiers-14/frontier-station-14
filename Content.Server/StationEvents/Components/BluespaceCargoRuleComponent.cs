@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.StationEvents.Components;
 
 /// <summary>
-/// This is used for an event that spawns an cargo
+/// This is used for an event that spawns cargo
 /// somewhere random on the station.
 /// </summary>
 [RegisterComponent, Access(typeof(BluespaceCargoRule))]
