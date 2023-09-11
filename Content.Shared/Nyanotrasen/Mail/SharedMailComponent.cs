@@ -1,4 +1,4 @@
 namespace Content.Shared.Mail
 {
-    public abstract class SharedMailComponent : Component {}
+    public abstract partial class SharedMailComponent : Component {}
 }
