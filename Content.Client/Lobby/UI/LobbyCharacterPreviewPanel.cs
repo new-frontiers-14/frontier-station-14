@@ -79,8 +79,6 @@ namespace Content.Client.Lobby.UI
             AddChild(vBox);
 
             UpdateUI();
-
-            _preferencesManager.OnServerDataLoaded += UpdateUI;
         }
 
         public Button CharacterSetupButton { get; }
@@ -88,7 +86,6 @@ namespace Content.Client.Lobby.UI
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            _preferencesManager.OnServerDataLoaded -= UpdateUI;
 
             if (!disposing) return;
             if (_previewDummy != null) _entityManager.DeleteEntity(_previewDummy.Value);
@@ -97,12 +94,14 @@ namespace Content.Client.Lobby.UI
 
         private SpriteView MakeSpriteView(EntityUid entity, Direction direction)
         {
-            return new()
+            var spriteView = new SpriteView
             {
-                Sprite = _entityManager.GetComponent<SpriteComponent>(entity),
                 OverrideDirection = direction,
-                Scale = new Vector2(2, 2)
+                Scale = new Vector2(2, 2),
             };
+
+            spriteView.SetEntity(entity);
+            return spriteView;
         }
 
         public void UpdateUI()
