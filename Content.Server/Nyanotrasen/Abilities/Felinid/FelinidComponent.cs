@@ -14,9 +14,10 @@ namespace Content.Server.Abilities.Felinid
         [DataField("hairballPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string HairballPrototype = "Hairball";
 
-        [DataField("hairballAction")]
-        public InstantAction? HairballAction;
+        [DataField("hairballActionPrototype")]
+        public string HairballActionPrototype = "ActionHairBall";
 
+        public EntityUid? HairballAction = null;
         public EntityUid? PotentialTarget = null;
     }
 }
