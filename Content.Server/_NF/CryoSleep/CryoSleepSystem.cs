@@ -2,7 +2,7 @@ using System.Numerics;
 using Content.Server.Climbing;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
-using Content.Server.Mind.Components;
+using Content.Server.Mind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Destructible;
 using Content.Shared.Examine;

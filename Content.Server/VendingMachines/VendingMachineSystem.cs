@@ -12,7 +12,6 @@ using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Bank.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;

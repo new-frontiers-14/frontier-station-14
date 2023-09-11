@@ -5,7 +5,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Item;
 using Content.Shared.Inventory;
 using Content.Shared.Hands;
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 using Content.Shared.IdentityManagement;
 using Content.Server.Body.Components;
 using Content.Server.Medical;
@@ -188,6 +188,6 @@ namespace Content.Server.Abilities.Felinid
         }
     }
 
-    public sealed class HairballActionEvent : InstantActionEvent {}
-    public sealed class EatMouseActionEvent : InstantActionEvent {}
+    public sealed partial class HairballActionEvent : InstantActionEvent {}
+    public sealed partial class EatMouseActionEvent : InstantActionEvent {}
 }
