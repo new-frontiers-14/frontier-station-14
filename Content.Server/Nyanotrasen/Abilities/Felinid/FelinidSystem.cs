@@ -18,6 +18,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nyanotrasen.Abilities;
 
 namespace Content.Server.Abilities.Felinid
 {
@@ -191,6 +192,4 @@ namespace Content.Server.Abilities.Felinid
         }
     }
 
-    public sealed partial class HairballActionEvent : InstantActionEvent {}
-    public sealed partial class EatMouseActionEvent : InstantActionEvent {}
 }
