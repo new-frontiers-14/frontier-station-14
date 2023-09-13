@@ -19,7 +19,8 @@ entities:
   entities:
   - uid: 1
     components:
-    - type: MetaData
+    - name: RosebudMKII
+      type: MetaData
     - pos: -0.66406155,-0.5000076
       parent: invalid
       type: Transform
@@ -608,6 +609,7 @@ entities:
             0: 65535
           -1,-1:
             0: 65279
+            1: 256
           0,-1:
             0: 65535
           0,1:
@@ -654,20 +656,24 @@ entities:
             0: 65535
           1,-1:
             0: 65279
+            1: 256
           -4,0:
             0: 61422
           -2,-1:
             0: 65535
           -2,-2:
             0: 65528
+            1: 4
           -1,-2:
             0: 65535
           0,-2:
             0: 65535
           1,-2:
             0: 65523
+            1: 4
           2,-1:
             0: 48127
+            1: 16384
           4,0:
             0: 256
           4,1:
@@ -680,6 +686,7 @@ entities:
             0: 49136
           -3,-1:
             0: 48127
+            1: 16384
           2,-2:
             0: 49136
           3,-2:
@@ -690,6 +697,7 @@ entities:
             0: 39048
           -2,-3:
             0: 36863
+            1: 28672
           -1,-4:
             0: 65535
           -1,-3:
@@ -702,6 +710,7 @@ entities:
             0: 13107
           1,-3:
             0: 16383
+            1: 49152
           0,-5:
             0: 65280
           1,-5:
@@ -710,16 +719,20 @@ entities:
             0: 65024
           -4,-4:
             0: 2184
+            1: 32768
           -3,-4:
             0: 65399
           -3,-3:
             0: 2254
+            1: 33825
           2,-4:
             0: 65228
           2,-3:
             0: 895
+            1: 13440
           3,-4:
             0: 4915
+            1: 8192
           2,-5:
             0: 49152
           3,-5:
@@ -728,6 +741,8 @@ entities:
             0: 32768
           -3,-5:
             0: 28672
+          3,-3:
+            1: 1
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -744,11 +759,26 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - id: Rosebud
+    - id: RosebudMKII
       type: BecomesStation
 - proto: AirlockAtmosphericsGlass
   entities:
@@ -977,6 +1007,17 @@ entities:
   - uid: 659
     components:
     - pos: 9.5,6.5
+      parent: 1
+      type: Transform
+  - uid: 1055
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -2.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 1105
+    components:
+    - pos: -8.5,6.5
       parent: 1
       type: Transform
 - proto: AppraisalTool
@@ -1353,31 +1394,6 @@ entities:
     - pos: -2.5,3.5
       parent: 1
       type: Transform
-  - uid: 251
-    components:
-    - pos: -1.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 252
-    components:
-    - pos: -1.5,4.5
-      parent: 1
-      type: Transform
-  - uid: 253
-    components:
-    - pos: -1.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 254
-    components:
-    - pos: -1.5,2.5
-      parent: 1
-      type: Transform
-  - uid: 255
-    components:
-    - pos: -1.5,1.5
-      parent: 1
-      type: Transform
   - uid: 257
     components:
     - pos: -1.5,-0.5
@@ -1386,16 +1402,6 @@ entities:
   - uid: 258
     components:
     - pos: -1.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 259
-    components:
-    - pos: -0.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 260
-    components:
-    - pos: -0.5,-0.5
       parent: 1
       type: Transform
   - uid: 261
@@ -1597,11 +1603,6 @@ entities:
     - pos: -2.5,7.5
       parent: 1
       type: Transform
-  - uid: 348
-    components:
-    - pos: -1.5,7.5
-      parent: 1
-      type: Transform
   - uid: 349
     components:
     - pos: -0.5,7.5
@@ -1694,11 +1695,6 @@ entities:
     - pos: -2.5,8.5
       parent: 1
       type: Transform
-  - uid: 548
-    components:
-    - pos: -1.5,8.5
-      parent: 1
-      type: Transform
   - uid: 549
     components:
     - pos: -0.5,8.5
@@ -1767,6 +1763,13 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
+  - uid: 669
+    components:
+    - pos: -8.5,6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
   - uid: 711
     components:
     - pos: 9.5,6.5
@@ -1809,19 +1812,9 @@ entities:
     - pos: 2.5,-2.5
       parent: 1
       type: Transform
-  - uid: 722
-    components:
-    - pos: 2.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 723
     components:
     - pos: 1.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 724
-    components:
-    - pos: 1.5,-3.5
       parent: 1
       type: Transform
   - uid: 725
@@ -1829,29 +1822,9 @@ entities:
     - pos: 0.5,-2.5
       parent: 1
       type: Transform
-  - uid: 726
-    components:
-    - pos: 0.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 727
-    components:
-    - pos: -0.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 728
-    components:
-    - pos: -0.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 729
     components:
     - pos: -1.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 730
-    components:
-    - pos: -1.5,-3.5
       parent: 1
       type: Transform
   - uid: 737
@@ -2428,11 +2401,6 @@ entities:
     - pos: 0.5,0.5
       parent: 1
       type: Transform
-  - uid: 1055
-    components:
-    - pos: -0.5,0.5
-      parent: 1
-      type: Transform
   - uid: 1056
     components:
     - pos: 2.5,0.5
@@ -2656,11 +2624,6 @@ entities:
   - uid: 1104
     components:
     - pos: -2.5,6.5
-      parent: 1
-      type: Transform
-  - uid: 1105
-    components:
-    - pos: -1.5,6.5
       parent: 1
       type: Transform
   - uid: 1106
@@ -3456,8 +3419,25 @@ entities:
     - pos: 13.5,8.5
       parent: 1
       type: Transform
+  - uid: 1726
+    components:
+    - pos: -2.5,-4.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 1727
+    components:
+    - pos: -1.5,-3.5
+      parent: 1
+      type: Transform
 - proto: CableHV
   entities:
+  - uid: 76
+    components:
+    - pos: -5.5,5.5
+      parent: 1
+      type: Transform
   - uid: 80
     components:
     - pos: -14.5,9.5
@@ -3476,6 +3456,41 @@ entities:
   - uid: 134
     components:
     - pos: 2.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 251
+    components:
+    - pos: -6.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 252
+    components:
+    - pos: -7.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 253
+    components:
+    - pos: -8.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 254
+    components:
+    - pos: -9.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 255
+    components:
+    - pos: -11.5,6.5
+      parent: 1
+      type: Transform
+  - uid: 259
+    components:
+    - pos: -11.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 260
+    components:
+    - pos: -3.5,5.5
       parent: 1
       type: Transform
   - uid: 335
@@ -3504,6 +3519,11 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
+  - uid: 348
+    components:
+    - pos: -12.5,7.5
+      parent: 1
+      type: Transform
   - uid: 398
     components:
     - pos: 3.5,8.5
@@ -3512,6 +3532,11 @@ entities:
   - uid: 412
     components:
     - pos: 0.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 423
+    components:
+    - pos: -2.5,5.5
       parent: 1
       type: Transform
   - uid: 478
@@ -3527,6 +3552,11 @@ entities:
   - uid: 519
     components:
     - pos: 4.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 548
+    components:
+    - pos: -2.5,5.5
       parent: 1
       type: Transform
   - uid: 615
@@ -3617,6 +3647,71 @@ entities:
       type: Transform
     - enabled: True
       type: AmbientSound
+  - uid: 662
+    components:
+    - pos: -1.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 664
+    components:
+    - pos: -11.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 668
+    components:
+    - pos: -0.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 673
+    components:
+    - pos: -10.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 674
+    components:
+    - pos: -4.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 675
+    components:
+    - pos: 8.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 676
+    components:
+    - pos: 8.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 677
+    components:
+    - pos: 8.5,4.5
+      parent: 1
+      type: Transform
+  - uid: 679
+    components:
+    - pos: 8.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 680
+    components:
+    - pos: 7.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 681
+    components:
+    - pos: 6.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 682
+    components:
+    - pos: 5.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 683
+    components:
+    - pos: 4.5,5.5
+      parent: 1
+      type: Transform
   - uid: 695
     components:
     - pos: 0.5,-8.5
@@ -3630,6 +3725,26 @@ entities:
   - uid: 697
     components:
     - pos: -0.5,-8.5
+      parent: 1
+      type: Transform
+  - uid: 722
+    components:
+    - pos: 0.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 724
+    components:
+    - pos: 1.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 726
+    components:
+    - pos: 2.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 727
+    components:
+    - pos: 3.5,5.5
       parent: 1
       type: Transform
   - uid: 791
@@ -4439,6 +4554,56 @@ entities:
     - pos: 13.5,-12.5
       parent: 1
       type: Transform
+  - uid: 1716
+    components:
+    - pos: 8.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1717
+    components:
+    - pos: 8.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 1718
+    components:
+    - pos: 0.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 1719
+    components:
+    - pos: 0.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1720
+    components:
+    - pos: 0.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1721
+    components:
+    - pos: 0.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 1722
+    components:
+    - pos: 0.5,-0.5
+      parent: 1
+      type: Transform
+  - uid: 1723
+    components:
+    - pos: 0.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 1724
+    components:
+    - pos: 0.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 1725
+    components:
+    - pos: 0.5,-3.5
+      parent: 1
+      type: Transform
 - proto: CableMV
   entities:
   - uid: 660
@@ -4453,96 +4618,28 @@ entities:
     - pos: 9.5,5.5
       parent: 1
       type: Transform
-  - uid: 662
-    components:
-    - pos: 8.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 664
-    components:
-    - pos: 7.5,5.5
-      parent: 1
-      type: Transform
   - uid: 667
     components:
     - pos: 6.5,5.5
       parent: 1
       type: Transform
-  - uid: 668
-    components:
-    - pos: 5.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 669
-    components:
-    - pos: 4.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 673
-    components:
-    - pos: 3.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 674
-    components:
-    - pos: 2.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 675
-    components:
-    - pos: 1.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 676
-    components:
-    - pos: 0.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 677
-    components:
-    - pos: 0.5,4.5
-      parent: 1
-      type: Transform
-  - uid: 679
-    components:
-    - pos: 0.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 680
-    components:
-    - pos: 0.5,2.5
-      parent: 1
-      type: Transform
-  - uid: 681
-    components:
-    - pos: 0.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 682
-    components:
-    - pos: 0.5,0.5
-      parent: 1
-      type: Transform
-  - uid: 683
-    components:
-    - pos: 0.5,-0.5
-      parent: 1
-      type: Transform
   - uid: 684
     components:
-    - pos: 0.5,-1.5
+    - pos: -0.5,-4.5
       parent: 1
       type: Transform
   - uid: 685
     components:
-    - pos: 0.5,-2.5
+    - pos: -1.5,-4.5
       parent: 1
       type: Transform
   - uid: 686
     components:
-    - pos: 0.5,-3.5
+    - pos: -2.5,-4.5
       parent: 1
       type: Transform
+    - enabled: True
+      type: AmbientSound
   - uid: 688
     components:
     - pos: 0.5,-4.5
@@ -4573,6 +4670,76 @@ entities:
     - pos: -0.5,-8.5
       parent: 1
       type: Transform
+  - uid: 1704
+    components:
+    - pos: -12.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 1705
+    components:
+    - pos: -11.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 1706
+    components:
+    - pos: -10.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 1707
+    components:
+    - pos: -9.5,7.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 1708
+    components:
+    - pos: -9.5,6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 1709
+    components:
+    - pos: -8.5,6.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 1710
+    components:
+    - pos: 8.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 1711
+    components:
+    - pos: 9.5,0.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 1712
+    components:
+    - pos: 9.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1713
+    components:
+    - pos: 9.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1714
+    components:
+    - pos: 9.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 1715
+    components:
+    - pos: 9.5,4.5
+      parent: 1
+      type: Transform
+    - enabled: True
+      type: AmbientSound
 - proto: CableTerminal
   entities:
   - uid: 694
@@ -8983,11 +9150,6 @@ entities:
     - pos: -2.5,-2.5
       parent: 1
       type: Transform
-  - uid: 76
-    components:
-    - pos: -2.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 144
     components:
     - rot: 3.141592653589793 rad
@@ -9116,6 +9278,11 @@ entities:
   - uid: 672
     components:
     - pos: 14.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 728
+    components:
+    - pos: -2.5,-3.5
       parent: 1
       type: Transform
   - uid: 833
@@ -9824,10 +9991,31 @@ entities:
       type: Transform
 - proto: SpawnPointLatejoin
   entities:
+  - uid: 1728
+    components:
+    - pos: 1.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1729
+    components:
+    - pos: -0.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1730
+    components:
+    - pos: -1.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 1731
+    components:
+    - pos: 2.5,3.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointSalvageSpecialist
+  entities:
   - uid: 645
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 12.5,6.5
+    - pos: 12.5,6.5
       parent: 1
       type: Transform
 - proto: SubstationBasic
@@ -9835,6 +10023,16 @@ entities:
   - uid: 315
     components:
     - pos: -0.5,-8.5
+      parent: 1
+      type: Transform
+  - uid: 730
+    components:
+    - pos: 8.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 1703
+    components:
+    - pos: -12.5,7.5
       parent: 1
       type: Transform
 - proto: SuitStorageSalv
@@ -11064,11 +11262,6 @@ entities:
       pos: -8.5,1.5
       parent: 1
       type: Transform
-  - uid: 423
-    components:
-    - pos: 8.5,0.5
-      parent: 1
-      type: Transform
   - uid: 426
     components:
     - pos: 9.5,1.5
@@ -11297,7 +11490,7 @@ entities:
   entities:
   - uid: 1087
     components:
-    - name: Rosebud
+    - name: RosebudMKII
       type: MetaData
     - pos: 0.5,2.5
       parent: 1
