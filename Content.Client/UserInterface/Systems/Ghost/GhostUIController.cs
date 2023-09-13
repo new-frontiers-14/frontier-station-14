@@ -19,7 +19,6 @@ namespace Content.Client.UserInterface.Systems.Ghost;
 public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
@@ -102,7 +101,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             return;
 
         Gui.Visible = true;
-        UpdateRespawn(_gameTiming.CurTime);
+        UpdateRespawn(component.TimeOfDeath);
         UpdateGui();
     }
 

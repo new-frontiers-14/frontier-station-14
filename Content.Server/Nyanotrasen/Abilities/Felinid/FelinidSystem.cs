@@ -73,9 +73,8 @@ namespace Content.Server.Abilities.Felinid
         {
             if (!_prototypeManager.TryIndex<EntityPrototype>("ActionHairball", out var hairball))
                 return;
-            var actionId = Spawn(hairball.ID);
-            component.HairballAction = actionId;
-            _actionsSystem.AddAction(uid, actionId, uid);
+            component.HairballAction = Spawn(hairball.ID);
+            _actionsSystem.AddAction(uid, component.HairballAction.Value, null);
         }
 
         private void OnEquipped(EntityUid uid, FelinidComponent component, DidEquipHandEvent args)

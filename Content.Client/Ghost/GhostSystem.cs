@@ -2,6 +2,7 @@ using Content.Client.Movement.Systems;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
+using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
@@ -27,11 +28,11 @@ namespace Content.Client.Ghost
 
         public override void Update(float frameTime)
         {
-            foreach (var ghost in EntityManager.EntityQuery<GhostComponent>(true))
+            foreach (var ghost in EntityManager.EntityQuery<GhostComponent, MindComponent>(true))
             {
                 var ui = _uiManager.GetActiveUIWidgetOrNull<GhostGui>();
                 if (ui != null && Player != null)
-                    ui.UpdateRespawn(ghost.TimeOfDeath);
+                    ui.UpdateRespawn(ghost.Item2.TimeOfDeath);
             }
         }
 

@@ -1,9 +1,11 @@
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
+using Content.Server.Mind;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
+using Content.Shared.Mind;
 using Content.Shared.NF14.CCVar;
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
@@ -48,8 +50,13 @@ public sealed class GhostRespawnCommand : IConsoleCommand
             return;
         }
 
-
-        var time = (_gameTiming.CurTime - ghost.TimeOfDeath);
+        var mindSystem = _entityManager.EntitySysManager.GetEntitySystem<MindSystem>();
+        if (!mindSystem.TryGetMind(shell.Player, out _, out var mind))
+        {
+            shell.WriteLine("You have no mind.");
+            return;
+        }
+        var time = (_gameTiming.CurTime - mind.TimeOfDeath!.Value);
         var respawnTime = _configurationManager.GetCVar(NF14CVars.RespawnTime);
 
         if (respawnTime > time.TotalSeconds)

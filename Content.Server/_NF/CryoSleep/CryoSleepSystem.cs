@@ -7,7 +7,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Destructible;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind.Components;
+using Content.Shared.Mind;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -138,15 +138,15 @@ public sealed class CryoSleepSystem : EntitySystem
         return success;
     }
 
-    public void CryoStoreBody(EntityUid body)
+    public void CryoStoreBody(EntityUid mindId)
     {
-        if (!TryComp(body, out MindContainerComponent? mind) || mind.Mind is not {Valid : true} mindId)
+        if (!TryComp<MindComponent>(mindId, out var mind) || mind.CurrentEntity is not { Valid : true } body)
         {
-            QueueDel(body);
+            QueueDel(mindId);
             return;
         }
 
-        _gameTicker.OnGhostAttempt(mindId, false);
+        _gameTicker.OnGhostAttempt(mindId, false, true, mind: mind);
         var storage = GetStorageMap();
         var xform = Transform(body);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
