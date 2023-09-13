@@ -114,10 +114,10 @@
   name: P.A.C.M.A.N.-type portable generator
   description: |-
     A flexible backup generator for powering a variety of equipment.
-    Runs off solid plasma sheets and is rated for up to 30 kW.
+    Runs off solid plasma sheets and is rated for up to 25 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorPacman
-  suffix: Plasma, 30 kW
+  suffix: Plasma, 15 kW
   components:
     - type: Sprite
       layers:
@@ -140,14 +140,14 @@
     - type: Machine
       board: PortableGeneratorPacmanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 5000
-      maxTargetPower: 30000
-      targetPower: 30000
-      optimalPower: 30000
-      # 15 minutes at max output
-      optimalBurnRate: 0.0333333
-      # a decent curve that goes up to about an hour at 5 kW.
-      fuelEfficiencyConstant: 0.75
+      minTargetPower: 1000
+      maxTargetPower: 25000
+      targetPower: 15000
+      optimalPower: 15000
+      # 45 minutes at max output
+      optimalBurnRate: 0.011111
+      # a decent curve
+      fuelEfficiencyConstant: 0.95
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Plasma
       multiplier: 0.01
@@ -161,8 +161,8 @@
       scaling: Exponential
     - type: GeneratorExhaustGas
       gasType: CarbonDioxide
-      # 2 moles of gas for every sheet of plasma.
-      moleRatio: 2
+      # 0.5 moles of gas for every sheet of plasma.
+      moleRatio: 0.5
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -171,7 +171,7 @@
     Runs off uranium sheets and is rated for up to 50 kW.
   parent: PortableGeneratorSwitchableBase
   id: PortableGeneratorSuperPacman
-  suffix: Uranium, 50 kW
+  suffix: Uranium, 30 kW
   components:
     - type: Sprite
       layers:
@@ -194,14 +194,14 @@
     - type: Machine
       board: PortableGeneratorSuperPacmanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 10000
+      minTargetPower: 5000
       maxTargetPower: 50000
-      targetPower: 50000
-      optimalPower: 50000
-      # 30 minutes at full power
-      optimalBurnRate: 0.016666666
-      # Barely save any fuel from reducing power output
-      fuelEfficiencyConstant: 0.1
+      targetPower: 30000
+      optimalPower: 30000
+      # 45 minutes at full power
+      optimalBurnRate: 0.0111111
+      # still decent power curve
+      fuelEfficiencyConstant: 0.75
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Uranium
       multiplier: 0.01
@@ -217,7 +217,7 @@
   name: J.R.P.A.C.M.A.N.-type portable generator
   description: |-
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel and is rated for up to 5 kW.
+    Runs off welding fuel and is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
@@ -264,11 +264,11 @@
       targetPower: 2000
       minTargetPower: 1000
       optimalPower: 5000
-      maxTargetPower: 5000
+      maxTargetPower: 15000
       # 7.5 minutes at full tank.
       optimalBurnRate: 0.11111111
-      # Shallow curve that allows you to just barely eek out 12 minutes at lowest.
-      fuelEfficiencyConstant: 0.3
+      # Shallow curve
+      fuelEfficiencyConstant: 0.5
     - type: ChemicalFuelGeneratorAdapter
       solution: tank
       reagent: WeldingFuel
@@ -280,7 +280,7 @@
       solution: tank
     - type: PortableGenerator
       # Unreliable bugger
-      startChance: 0.5
+      startChance: 0.4
     - type: NodeContainer
       examinable: true
       nodes:
