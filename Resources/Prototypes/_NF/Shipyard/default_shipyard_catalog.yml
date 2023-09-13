@@ -264,6 +264,36 @@
           availableJobs:
             SalvageSpecialist: [ 0, 0 ]
 
+
+- type: vessel
+  id: Rosebud
+  name: NC Rosebud
+  description: A luxury salvaging and mining vessel perfectly suited for a small crew. Expedition capable.
+  price: 122000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/rosebud.yml
+
+- type: gameMap
+  id: Rosebud
+  mapName: 'NC Rosebud'
+  mapPath: /Maps/Shuttles/rosebud.yml
+  minPlayers: 0
+  stations:
+    Rosebud:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Rosebud {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+
+
 - type: vessel
   id: Sparrow
   name: NR Sparrow
