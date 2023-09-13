@@ -266,18 +266,46 @@
 
 
 - type: vessel
-  id: Rosebud
-  name: NT Rosebud
-  description: A medium-sized luxury salvaging and mining vessel perfectly suited for a small crew. Expedition capable.
-  price: 75600
+  id: RosebudMKI
+  name: NT Rosebud MKI
+  description: A medium-sized luxury salvaging and mining vessel perfectly suited for a small crew.
+  price: 51500
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/Shuttles/rosebud.yml
+  shuttlePath: /Maps/Shuttles/rosebudmkI.yml
 
 - type: gameMap
   id: Rosebud
-  mapName: 'NT Rosebud'
-  mapPath: /Maps/Shuttles/rosebud.yml
+  mapName: 'NT Rosebud MKII'
+  mapPath: /Maps/Shuttles/rosebudmkI.yml
+  minPlayers: 0
+  stations:
+    Rosebud:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Rosebud {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+
+- type: vessel
+  id: RosebudMKII
+  name: NT Rosebud MKII
+  description: The MKII trades her younger sister's solar-only charm for an AME, making her expedition-capable! Rejoice!
+  price: 80600
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/rosebudmkII.yml
+
+- type: gameMap
+  id: Rosebud
+  mapName: 'NT Rosebud MKII'
+  mapPath: /Maps/Shuttles/rosebudmkII.yml
   minPlayers: 0
   stations:
     Rosebud:
