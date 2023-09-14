@@ -54,7 +54,11 @@ namespace Content.Client.Lobby.UI
                 Margin = new Thickness(3, 3),
             };
 
-            _bankAccountLabel = new Label();
+            _bankAccountLabel = new Label
+            {
+                HorizontalAlignment = HAlignment.Center,
+                Margin = new Thickness(3,3),
+            };
 
             var vBox = new BoxContainer
             {
@@ -128,6 +132,7 @@ namespace Content.Client.Lobby.UI
                     };
                     spriteView.SetEntity(_previewDummy.Value);
                     _viewBox.AddChild(spriteView);
+                    _bankAccountLabel.Text = "$" + selectedCharacter.BankBalance;
                     _summaryLabel.Text = selectedCharacter.Summary;
                     _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, selectedCharacter);
                     GiveDummyJobClothes(_previewDummy.Value, selectedCharacter);

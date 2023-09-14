@@ -126,7 +126,7 @@ namespace Content.Server.Item.PseudoItem
             var item = EnsureComp<ItemComponent>(toInsert);
             _itemSystem.SetSize(toInsert, component.Size, item);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, null, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, storageComp: storage))
             {
                 component.Active = false;
                 RemComp<ItemComponent>(toInsert);
