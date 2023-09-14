@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Server.Abilities.Gachi.Components
 {
     [RegisterComponent]
-    public sealed class GachiComponent : Component
+    public sealed partial class GachiComponent : Component
     {
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("painSound")]

@@ -34,6 +34,11 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
+            var attemptEv = new EmpAttemptEvent();
+            RaiseLocalEvent(uid, attemptEv);
+            if (attemptEv.Cancelled)
+                continue;
+
             var ev = new EmpPulseEvent(energyConsumption, false, false);
             RaiseLocalEvent(uid, ref ev);
             if (ev.Affected)
@@ -106,6 +111,13 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         args.Cancelled = true;
     }
+}
+
+/// <summary>
+/// Raised on an entity before <see cref="EmpPulseEvent"/>. Cancel this to prevent the emp event being raised.
+/// </summary>
+public sealed partial class EmpAttemptEvent : CancellableEntityEventArgs
+{
 }
 
 [ByRefEvent]

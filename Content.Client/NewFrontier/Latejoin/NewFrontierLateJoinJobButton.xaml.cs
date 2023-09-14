@@ -15,10 +15,10 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
 {
     private readonly IPrototypeManager _prototypeManager;
     private readonly ClientGameTicker _gameTicker;
-    private readonly EntityUid _station;
+    private readonly NetEntity _station;
     private readonly string _jobId;
 
-    public NewFrontierLateJoinJobButton(EntityUid station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager)
+    public NewFrontierLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
@@ -36,7 +36,7 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
         _gameTicker.LobbyJobsAvailableUpdated -= UpdateButton;
     }
 
-    private void UpdateButton(IReadOnlyDictionary<EntityUid, Dictionary<string, uint?>> obj)
+    private void UpdateButton(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
     {
         if (!obj.ContainsKey(_station) || !obj[_station].ContainsKey(_jobId))
         {

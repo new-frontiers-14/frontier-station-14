@@ -6,7 +6,7 @@ namespace Content.Shared.Bank.Components;
 /// The float is applied to the StaticPrice component in the various systems that utilize it.
 /// </summary>
 [RegisterComponent]
-public sealed class MarketModifierComponent : Component
+public sealed partial class MarketModifierComponent : Component
 {
     /// <summary>
     /// The amount to multiply a Static Price by

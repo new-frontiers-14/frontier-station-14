@@ -5,7 +5,7 @@ namespace Content.Server.Station.Components;
 /// Only warps with "UseStationName" will be affected.
 /// </summary>
 [RegisterComponent]
-public sealed class StationRenameWarpsComponent : Component
+public sealed partial class StationRenameWarpsComponent : Component
 {
 
 }

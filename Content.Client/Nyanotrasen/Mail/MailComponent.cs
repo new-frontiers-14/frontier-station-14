@@ -3,6 +3,6 @@ using Content.Shared.Mail;
 namespace Content.Client.Mail
 {
     [RegisterComponent]
-    public sealed class MailComponent : SharedMailComponent
+    public sealed partial class MailComponent : SharedMailComponent
     {}
 }

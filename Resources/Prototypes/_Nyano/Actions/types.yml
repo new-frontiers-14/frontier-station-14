@@ -1,0 +1,23 @@
+- type: entity
+  id: ActionEatMouse
+  name: action-name-eat-mouse
+  description: action-description-eat-mouse
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon: Nyanotrasen/Icons/verbiconfangs.png
+    event: !type:EatMouseActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: ActionHairball
+  name: hairball-action
+  description: hairball-action-desc
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon: Nyanotrasen/Icons/verbiconfangs.png
+    event: !type:HairballActionEvent
+    useDelay: 30
