@@ -1,7 +1,7 @@
 namespace Content.Shared.VulpLangauge
 {
     [RegisterComponent]
-    public class VulpGiveTranslatorComponent : Component
+    public partial class VulpGiveTranslatorComponent : Component
     {
     }
 }
