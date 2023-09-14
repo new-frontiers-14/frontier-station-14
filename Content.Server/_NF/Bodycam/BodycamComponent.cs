@@ -7,7 +7,7 @@ namespace Content.Shared._NF.Bodycam
 {
     [RegisterComponent]
     [Access(typeof(BodycamSystem))]
-    public sealed class BodycamComponent : Component
+    public sealed partial class BodycamComponent : Component
     {
         /// <summary>
         ///     Choose a random camera mode when item is spawned.
