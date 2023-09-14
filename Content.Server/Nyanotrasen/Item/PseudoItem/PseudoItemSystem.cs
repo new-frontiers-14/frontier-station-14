@@ -8,6 +8,7 @@ using Content.Shared.Pseudo;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.DoAfter;
+using Content.Shared.Storage;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Item.PseudoItem
@@ -36,7 +37,7 @@ namespace Content.Server.Item.PseudoItem
             if (component.Active)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Target, out var targetStorage))
+            if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
                 return;
 
             if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
@@ -68,7 +69,7 @@ namespace Content.Server.Item.PseudoItem
             if (args.Hands == null)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Hands.ActiveHandEntity, out var targetStorage))
+            if (!TryComp<StorageComponent>(args.Hands.ActiveHandEntity, out var targetStorage))
                 return;
 
             AlternativeVerb verb = new()
@@ -114,7 +115,7 @@ namespace Content.Server.Item.PseudoItem
             args.Handled = TryInsert(args.Args.Used.Value, uid, component);
         }
 
-        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, ServerStorageComponent? storage = null)
+        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, StorageComponent? storage = null)
         {
             if (!Resolve(storageUid, ref storage))
                 return false;
@@ -125,7 +126,7 @@ namespace Content.Server.Item.PseudoItem
             var item = EnsureComp<ItemComponent>(toInsert);
             _itemSystem.SetSize(toInsert, component.Size, item);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, storageComp: storage))
             {
                 component.Active = false;
                 RemComp<ItemComponent>(toInsert);
@@ -142,7 +143,7 @@ namespace Content.Server.Item.PseudoItem
             if (!Resolve(toInsert, ref pseudoItem))
                 return;
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
