@@ -9,7 +9,7 @@ namespace Content.Server.StationEvents.Components;
 /// somewhere random on the station.
 /// </summary>
 [RegisterComponent, Access(typeof(BluespaceSyndicateCrateRuleComponent))]
-public sealed class BluespaceSyndicateCrateRuleComponent : Component
+public sealed partial class BluespaceSyndicateCrateRuleComponent : Component
 {
     [DataField("syndicateCrateSpawnerPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SyndicateCrateSpawnerPrototype = "CrateSyndicateLightSurplusBundle";
