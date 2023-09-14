@@ -11,7 +11,7 @@ namespace Content.Server._NF.M_Emp
     /// </summary>
     [NetworkedComponent, RegisterComponent]
     [Access(typeof(M_EmpSystem))]
-    public sealed class M_EmpGeneratorComponent : SharedM_EmpGeneratorComponent
+    public sealed partial class M_EmpGeneratorComponent : SharedM_EmpGeneratorComponent
     {
         /// <summary>
         /// Current state of this generator

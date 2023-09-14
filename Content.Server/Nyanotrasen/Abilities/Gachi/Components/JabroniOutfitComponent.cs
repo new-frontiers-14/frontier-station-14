@@ -1,7 +1,7 @@
 namespace Content.Server.Abilities.Gachi.Components
 {
     [RegisterComponent]
-    public sealed class JabroniOutfitComponent : Component
+    public sealed partial class JabroniOutfitComponent : Component
     {
         /// <summary>
         /// Is the component currently being worn and affecting someone?

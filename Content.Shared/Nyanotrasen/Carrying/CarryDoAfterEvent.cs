@@ -4,6 +4,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Carrying;
 
 [Serializable, NetSerializable]
-public sealed class CarryDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class CarryDoAfterEvent : SimpleDoAfterEvent
 {
 }

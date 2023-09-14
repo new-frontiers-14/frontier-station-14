@@ -17,7 +17,7 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Fluids.Components;
 using Content.Server.Mail.Components;
-using Content.Server.Mind.Components;
+using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -64,6 +64,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
+        [Dependency] private readonly MindSystem _mind = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -249,8 +250,8 @@ namespace Content.Server.Mail
             if (!component.IsProfitable)
                 return;
 
-            _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false);
-            _audioSystem.PlayPvs(component.PenaltySound, uid);
+            //_chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false); # Dont show message.
+            //_audioSystem.PlayPvs(component.PenaltySound, uid); # Dont play sound.
 
             component.IsProfitable = false;
 
@@ -262,7 +263,7 @@ namespace Content.Server.Mail
             {
                 // only our main station will have an account anyway so I guess we are just going to add it this way shrug.
 
-                _cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty);
+                //_cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty); # Dont remove money.
                 return;
             }
         }
@@ -272,8 +273,8 @@ namespace Content.Server.Mail
             if (component.IsLocked)
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
-            if (component.IsEnabled)
-                OpenMail(uid, component);
+           // if (component.IsEnabled)
+           //     OpenMail(uid, component); # Dont open the mail on destruction.
 
             UpdateAntiTamperVisuals(uid, false);
         }
@@ -555,10 +556,10 @@ namespace Content.Server.Mail
                     stationName = "Unknown";
                 }
 
-                if (TryComp<MindContainerComponent>(receiver.Owner, out MindContainerComponent? mind)
-                    && mind.Mind?.Session == null)
+                if (!_mind.TryGetMind(receiver.Owner, out var mindId, out var mindComp))
                 {
-                    mayReceivePriorityMail = false;
+                    recipient = null;
+                    return false;
                 }
 
                 recipient = new MailRecipient(idCard.FullName,

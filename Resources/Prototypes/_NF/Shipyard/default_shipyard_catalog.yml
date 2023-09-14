@@ -49,6 +49,16 @@
     - type: Transform
 
 - type: entity
+  id: StandardFrontierOutpost
+  parent:
+    - BaseStation
+    - BaseStationCargo
+    - BaseStationSiliconLawFrontierShips
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierExpeditionVessel
   parent:
     - BaseStation
@@ -300,7 +310,7 @@
   minPlayers: 0
   stations:
     Condor:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Condor {1}'
