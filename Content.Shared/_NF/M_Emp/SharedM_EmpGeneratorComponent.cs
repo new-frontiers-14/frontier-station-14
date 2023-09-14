@@ -6,7 +6,7 @@ using Robust.Shared.Audio;
 
 namespace Content.Shared._NF.M_Emp;
 
-public abstract class SharedM_EmpGeneratorComponent : Component
+public abstract partial class SharedM_EmpGeneratorComponent : Component
 {
     /// <summary>
     /// The machine part that affects the attaching and cooldown times

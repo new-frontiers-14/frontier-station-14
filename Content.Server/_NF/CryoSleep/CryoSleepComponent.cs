@@ -3,7 +3,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.CryoSleep;
 [RegisterComponent]
-public sealed class CryoSleepComponent : Component
+public sealed partial class CryoSleepComponent : Component
 {
     public ContainerSlot BodyContainer = default!;
 

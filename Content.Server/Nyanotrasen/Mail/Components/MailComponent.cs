@@ -6,7 +6,7 @@ using Content.Shared.Mail;
 namespace Content.Server.Mail.Components
 {
     [RegisterComponent]
-    public sealed class MailComponent : SharedMailComponent
+    public sealed partial class MailComponent : SharedMailComponent
     {
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("recipient")]

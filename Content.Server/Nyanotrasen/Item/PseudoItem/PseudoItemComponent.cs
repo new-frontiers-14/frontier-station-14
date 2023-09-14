@@ -6,7 +6,7 @@ namespace Content.Server.Item.PseudoItem
     /// but not under most conditions.
     /// </summary>
     [RegisterComponent]
-    public sealed class PseudoItemComponent : Component
+    public sealed partial class PseudoItemComponent : Component
     {
         [DataField("size")]
         public int Size = 120;
