@@ -1,6 +1,6 @@
 namespace Content.Server.Stack
 {
     [RegisterComponent]
-    public sealed class StackHolderComponent : Component
+    public sealed partial class StackHolderComponent : Component
     {}
 }

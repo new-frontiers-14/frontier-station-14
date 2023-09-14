@@ -4,7 +4,7 @@ namespace Content.Server.Carrying
     /// Added to an entity when they are carrying somebody.
     /// </summary>
     [RegisterComponent]
-    public sealed class CarryingComponent : Component
+    public sealed partial class CarryingComponent : Component
     {
         public EntityUid Carried = default!;
     }

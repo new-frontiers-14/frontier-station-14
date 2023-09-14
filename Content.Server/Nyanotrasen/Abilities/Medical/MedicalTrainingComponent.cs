@@ -1,7 +1,7 @@
 namespace Content.Server.Abilities
 {
     [RegisterComponent]
-    public sealed class MedicalTrainingComponent : Component
+    public sealed partial class MedicalTrainingComponent : Component
     {
 
     }

@@ -1,7 +1,7 @@
 namespace Content.Server.Books
 {
     [RegisterComponent]
-    public sealed class HyperlinkBookComponent : Component
+    public sealed partial class HyperlinkBookComponent : Component
     {
         [DataField("url")]
         [ViewVariables(VVAccess.ReadWrite)]

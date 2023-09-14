@@ -3,7 +3,7 @@ using System.Threading;
 namespace Content.Server.Carrying
 {
     [RegisterComponent]
-    public sealed class CarriableComponent : Component
+    public sealed partial class CarriableComponent : Component
     {
         /// <summary>
         ///     Number of free hands required

@@ -4,7 +4,7 @@ using Content.Shared.Storage;
 namespace Content.Server.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(BluespaceErrorRule))]
-public sealed class BluespaceErrorRuleComponent : Component
+public sealed partial class BluespaceErrorRuleComponent : Component
 {
     /// <summary>
     /// Path to the grid that gets bluspaced in

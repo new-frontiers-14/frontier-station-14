@@ -1,7 +1,7 @@
 namespace Content.Server.Abilities.Felinid
 {
     [RegisterComponent]
-    public sealed class CoughingUpHairballComponent : Component
+    public sealed partial class CoughingUpHairballComponent : Component
     {
         [DataField("accumulator")]
         public float Accumulator = 0f;
