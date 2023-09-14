@@ -72,7 +72,7 @@ public sealed partial class SalvageSystem
     {
         var state = GetState(component);
 
-        foreach (var (console, xform, uiComp) in EntityQuery<SalvageExpeditionConsoleComponent, TransformComponent, ServerUserInterfaceComponent>(true))
+        foreach (var (console, xform, uiComp) in EntityQuery<SalvageExpeditionConsoleComponent, TransformComponent, UserInterfaceComponent>(true))
         {
             var station = _station.GetOwningStation(console.Owner, xform);
 

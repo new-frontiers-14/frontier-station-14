@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Server.GameTicking.Events;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Stacks;
@@ -42,6 +43,8 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<CargoPalletConsoleComponent, BoundUIOpenedEvent>(OnPalletUIOpen);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
+
         _cfgManager.OnValueChanged(CCVars.GridFill, SetGridFill);
     }
 
@@ -93,7 +96,7 @@ public sealed partial class CargoSystem
         var bui = _uiSystem.GetUi(uid, CargoPalletConsoleUiKey.Sale);
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
             new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
@@ -102,7 +105,7 @@ public sealed partial class CargoSystem
         {
             amount *= priceMod.Mod;
         }
-        UserInterfaceSystem.SetUiState(bui,
+        _uiSystem.SetUiState(bui,
             new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
     }
 
@@ -149,7 +152,7 @@ public sealed partial class CargoSystem
         var shuttleName = orderDatabase?.Shuttle != null ? MetaData(orderDatabase.Shuttle.Value).EntityName : string.Empty;
 
         if (_uiSystem.TryGetUi(uid, CargoConsoleUiKey.Shuttle, out var bui))
-            UserInterfaceSystem.SetUiState(bui, new CargoShuttleConsoleBoundUserInterfaceState(
+            _uiSystem.SetUiState(bui, new CargoShuttleConsoleBoundUserInterfaceState(
                 station != null ? MetaData(station.Value).EntityName : Loc.GetString("cargo-shuttle-console-station-unknown"),
                 string.IsNullOrEmpty(shuttleName) ? Loc.GetString("cargo-shuttle-console-shuttle-not-found") : shuttleName,
                 orders
@@ -337,7 +340,7 @@ public sealed partial class CargoSystem
         var bui = _uiSystem.GetUi(uid, CargoPalletConsoleUiKey.Sale);
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
             new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
@@ -391,7 +394,10 @@ public sealed partial class CargoSystem
     {
         Reset();
         CleanupCargoShuttle();
+    }
 
+    private void OnRoundStart(RoundStartingEvent ev)
+    {
         if (_cfgManager.GetCVar(CCVars.GridFill))
             SetupCargoShuttle();
     }

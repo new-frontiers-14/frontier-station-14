@@ -221,7 +221,7 @@ namespace Content.Server.Carrying
             if (!HasComp<KnockedDownComponent>(carried))
                 length *= 2f;
 
-            var args = new DoAfterArgs(carrier, length, new CarryDoAfterEvent(), carried, target: carried)
+            var args = new DoAfterArgs(EntityManager, carrier, length, new CarryDoAfterEvent(), carried, target: carried)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

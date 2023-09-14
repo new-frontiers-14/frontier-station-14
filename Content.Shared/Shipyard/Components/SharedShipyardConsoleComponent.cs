@@ -6,7 +6,7 @@ using Content.Shared.Containers.ItemSlots;
 namespace Content.Shared.Shipyard.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedShipyardSystem))]
-public sealed class ShipyardConsoleComponent : Component
+public sealed partial class ShipyardConsoleComponent : Component
 {
     public static string TargetIdCardSlotId = "ShipyardConsole-targetId";
 
