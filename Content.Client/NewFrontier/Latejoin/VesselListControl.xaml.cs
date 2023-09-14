@@ -11,9 +11,9 @@ public sealed partial class VesselListControl : BoxContainer
 {
     private ClientGameTicker _gameTicker;
 
-    public Comparison<EntityUid>? Comparison;
+    public Comparison<NetEntity>? Comparison;
 
-    public EntityUid? Selected
+    public NetEntity? Selected
     {
         get
         {
@@ -21,7 +21,7 @@ public sealed partial class VesselListControl : BoxContainer
             if (i is null)
                 return null;
 
-            return (EntityUid) i.Metadata!;
+            return (NetEntity) i.Metadata!;
         }
     }
 
@@ -42,7 +42,7 @@ public sealed partial class VesselListControl : BoxContainer
         _gameTicker.LobbyJobsAvailableUpdated -= UpdateUi;
     }
 
-    private int DefaultComparison(EntityUid x, EntityUid y)
+    private int DefaultComparison(NetEntity x, NetEntity y)
     {
         return (int)(_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) - _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
     }
@@ -50,13 +50,13 @@ public sealed partial class VesselListControl : BoxContainer
     public void Sort()
     {
         if(Comparison != null)
-            VesselItemList.Sort((a, b) => Comparison((EntityUid) a.Metadata!, (EntityUid) b.Metadata!));
+            VesselItemList.Sort((a, b) => Comparison((NetEntity) a.Metadata!, (NetEntity) b.Metadata!));
     }
 
-    private void UpdateUi(IReadOnlyDictionary<EntityUid, Dictionary<string, uint?>> obj)
+    private void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
     {
         var itemsToRemove = new List<ItemList.Item>();
-        foreach (var (key, item) in VesselItemList.Select(x => ((EntityUid)x.Metadata!, x)))
+        foreach (var (key, item) in VesselItemList.Select(x => ((NetEntity)x.Metadata!, x)))
         {
             if (!_gameTicker.StationNames.ContainsKey(key))
                 itemsToRemove.Add(item);
@@ -69,7 +69,7 @@ public sealed partial class VesselListControl : BoxContainer
 
         foreach (var (key, name) in _gameTicker.StationNames)
         {
-            if (VesselItemList.Any(x => ((EntityUid)x.Metadata!) == key))
+            if (VesselItemList.Any(x => ((NetEntity)x.Metadata!) == key))
                 continue;
 
             var item = new ItemList.Item(VesselItemList)

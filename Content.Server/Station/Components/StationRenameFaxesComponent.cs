@@ -5,6 +5,6 @@ namespace Content.Server.Station.Components;
 /// Only faxes with "UseStationName" will be affected.
 /// </summary>
 [RegisterComponent]
-public sealed class StationRenameFaxesComponent : Component
+public sealed partial class StationRenameFaxesComponent : Component
 {
 }

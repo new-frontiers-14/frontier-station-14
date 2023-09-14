@@ -10,7 +10,7 @@ namespace Content.Server.Worldgen.Components.GC;
 /// </summary>
 [RegisterComponent]
 [Access(typeof(GCQueueSystem))]
-public sealed class GCAbleObjectComponent : Component
+public sealed partial class GCAbleObjectComponent : Component
 {
     /// <summary>
     ///     Which queue to insert this object into when GCing

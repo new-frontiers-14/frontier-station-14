@@ -1,6 +1,6 @@
 namespace Content.Server.Abilities.Felinid
 {
     [RegisterComponent]
-    public sealed class FelinidFoodComponent : Component
+    public sealed partial class FelinidFoodComponent : Component
     {}
 }
