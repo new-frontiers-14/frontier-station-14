@@ -171,7 +171,7 @@ namespace Content.Server._NF.Bodycam
                 return null;
 
             // finally, form camera status
-            var status = new BodycamStatus(uid);
+            var status = new BodycamStatus(GetNetEntity(uid));
             return status;
         }
     }
