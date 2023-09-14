@@ -42,7 +42,7 @@ public sealed partial class BankSystem
             _log.Info($"station {station} has no bank account");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-no-bank"));
             PlayDenySound(uid, component);
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(0, false));
             return;
         }
@@ -52,7 +52,7 @@ public sealed partial class BankSystem
             _log.Info($"{player} tried to access stationo bank account");
             ConsolePopup(args.Session, Loc.GetString("station-bank-unauthorized"));
             PlayDenySound(uid, component);
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(stationBank.Balance, false));
             return;
         }
@@ -61,7 +61,7 @@ public sealed partial class BankSystem
         {
             ConsolePopup(args.Session, Loc.GetString("station-bank-requires-reason"));
             PlayDenySound(uid, component);
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid)));
             return;
         }
@@ -71,7 +71,7 @@ public sealed partial class BankSystem
         {
             ConsolePopup(args.Session, Loc.GetString("bank-insufficient-funds"));
             PlayDenySound(uid, component);
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid)));
             return;
         }
@@ -86,7 +86,7 @@ public sealed partial class BankSystem
         var stackPrototype = _prototypeManager.Index<StackPrototype>(component.CashType);
         _stackSystem.Spawn(args.Amount, stackPrototype, uid.ToCoordinates());
 
-        UserInterfaceSystem.SetUiState(bui,
+        _uiSystem.SetUiState(bui,
             new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid)));
     }
 
@@ -101,12 +101,12 @@ public sealed partial class BankSystem
         if (!TryComp<StationBankAccountComponent>(station, out var stationBank))
         {
             _log.Info($"{station} has no bank account");
-            UserInterfaceSystem.SetUiState(bui,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(0, false));
             return;
         }
 
-        UserInterfaceSystem.SetUiState(bui,
+        _uiSystem.SetUiState(bui,
             new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid)));
     }
 

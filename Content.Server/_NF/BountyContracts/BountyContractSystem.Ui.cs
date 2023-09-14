@@ -10,6 +10,7 @@ namespace Content.Server._NF.BountyContracts;
 
 public sealed partial class BountyContractSystem
 {
+    [Dependency] private readonly EntityManager _entManager = default!;
     private void InitializeUi()
     {
         SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
@@ -117,37 +118,37 @@ public sealed partial class BountyContractSystem
 
     private void OnOpenCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractOpenCreateUiMsg args)
     {
-        CartridgeOpenCreateUi(args.Entity);
+        CartridgeOpenCreateUi(_entManager.GetEntity(args.Entity));
     }
 
     private void OnCloseCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractCloseCreateUiMsg args)
     {
-        CartridgeOpenListUi(args.Entity);
+        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
     }
 
     private void OnTryCreateContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryCreateMsg args)
     {
-        if (!IsAllowedCreateBounties(args.Entity))
+        if (!IsAllowedCreateBounties(_entManager.GetEntity(args.Entity)))
             return;
 
         var c = args.Contract;
-        var author = GetContractAuthor(args.Entity);
+        var author = GetContractAuthor(_entManager.GetEntity(args.Entity));
         CreateBountyContract(c.Category, c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
 
-        CartridgeOpenListUi(args.Entity);
+        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
     }
 
     private void OnRefreshContracts(EntityUid uid, CartridgeLoaderComponent component, BountyContractRefreshListUiMsg args)
     {
-        CartridgeRefreshListUi(args.Entity);
+        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
     }
 
     private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
     {
-        if (!IsAllowedDeleteBounties(args.Entity))
+        if (!IsAllowedDeleteBounties(_entManager.GetEntity(args.Entity)))
             return;
 
         RemoveBountyContract(args.ContractId);
-        CartridgeRefreshListUi(args.Entity);
+        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
     }
 }
