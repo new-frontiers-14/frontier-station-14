@@ -7,9 +7,9 @@ namespace Content.Server.CryoSleep;
 public sealed class CryoSleepEui : BaseEui
 {
     private readonly CryoSleepSystem _cryoSystem;
-    private readonly Mind.Mind _mind;
+    private readonly EntityUid _mind;
 
-    public CryoSleepEui(Mind.Mind mind, CryoSleepSystem cryoSys)
+    public CryoSleepEui(EntityUid mind, CryoSleepSystem cryoSys)
     {
         _mind = mind;
         _cryoSystem = cryoSys;
@@ -26,7 +26,7 @@ public sealed class CryoSleepEui : BaseEui
             return;
         }
 
-        if (_mind.CurrentEntity is { Valid: true } body)
+        if (_mind is { Valid: true } body)
         {
         _cryoSystem.CryoStoreBody(body);
         }

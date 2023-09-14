@@ -8,7 +8,7 @@ namespace Content.Shared.Bank.Components;
 
 [RegisterComponent, NetworkedComponent]
 
-public sealed class BankATMComponent : Component
+public sealed partial class BankATMComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
     public string CashType = "Credit";

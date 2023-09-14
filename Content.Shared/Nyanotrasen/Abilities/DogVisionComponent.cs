@@ -5,6 +5,6 @@ namespace Content.Shared.Abilities
     [RegisterComponent]
     [NetworkedComponent]
 
-    public sealed class DogVisionComponent : Component
+    public sealed partial class DogVisionComponent : Component
     {}
 }

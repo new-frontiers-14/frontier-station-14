@@ -285,6 +285,7 @@ public sealed partial class SalvageSystem
             _dungeon,
             _shuttle,
             _stationSystem,
+            _metaData,
             this,
             station,
             missionParams,

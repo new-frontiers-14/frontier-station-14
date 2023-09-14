@@ -22,7 +22,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 
     private ClientGameTicker _gameTicker;
 
-    private EntityUid _lastSelection = EntityUid.Invalid;
+    private NetEntity _lastSelection = NetEntity.Invalid;
 
     private readonly Dictionary<string, NewFrontierLateJoinJobButton> _buttons = new();
 
@@ -55,7 +55,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
         UpdateUi(_gameTicker.JobsAvailable);
     }
 
-    public void UpdateUi(IReadOnlyDictionary<EntityUid, Dictionary<string, uint?>> obj)
+    public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
     {
         if (VesselSelection.Selected is null)
         {
@@ -100,7 +100,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
             if (!_playManager.IsAllowed(job, out var denyReason))
             {
                 newButton.Disabled = true;
-                newButton.ToolTip = denyReason;
+                newButton.ToolTip = denyReason.ToString();
             }
 
             JobList.AddChild(newButton);
