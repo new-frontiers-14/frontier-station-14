@@ -1,31 +1,31 @@
-- type: entity
-  name: Clippy
-  parent: MobCatGhost
-  id: MobCatClippy
-  description: It looks like you’re writing a letter, would you like help? Clippy is here to help!
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Pets/cat.rsi
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: mailcat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mailcat
-      Critical:
-        Base: mailcat_dead
-      Dead:
-        Base: mailcat_dead
-  - type: GhostRole
-    name: ghost-role-information-clippy-name
-    description: ghost-role-information-clippy-description
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-  - type: Inventory
-    speciesId: cat
-    templateId: clippy
-  - type: Loadout
-    prototypes: [ MobClippyGear ]
+# - type: entity
+  # name: Clippy
+  # parent: MobCatGhost
+  # id: MobCatClippy
+  # description: It looks like you’re writing a letter, would you like help? Clippy is here to help!
+  # components:
+  # - type: Sprite
+    # drawdepth: Mobs
+    # sprite: _NF/Mobs/Pets/cat.rsi
+    # layers:
+    # - map: ["enum.DamageStateVisualLayers.Base"]
+      # state: mailcat
+  # - type: DamageStateVisuals
+    # states:
+      # Alive:
+        # Base: mailcat
+      # Critical:
+        # Base: mailcat_dead
+      # Dead:
+        # Base: mailcat_dead
+  # - type: GhostRole
+    # name: ghost-role-information-clippy-name
+    # description: ghost-role-information-clippy-description
+    # makeSentient: true
+    # allowSpeech: true
+    # allowMovement: true
+  # - type: Inventory
+    # speciesId: cat
+    # templateId: clippy
+  # - type: Loadout
+    # prototypes: [ MobClippyGear ]

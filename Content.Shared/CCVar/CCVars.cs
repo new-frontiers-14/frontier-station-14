@@ -326,7 +326,7 @@ namespace Content.Shared.CCVar
         /// URL of the Discord webhook which will relay all ahelp messages.
         /// </summary>
         public static readonly CVarDef<string> DiscordAHelpWebhook =
-            CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY);
+            CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
@@ -364,6 +364,18 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<string> DiscordLeaderboardWebhook =
             CVarDef.Create("discord.leaderboard_webhook", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// URL of the Discord webhook which will relay round restart messages.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordRoundUpdateWebhook =
+            CVarDef.Create("discord.round_update_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        /// <summary>
+        /// Role id for the Discord webhook to ping when the round ends.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordRoundEndRoleWebhook =
+            CVarDef.Create("discord.round_end_role", string.Empty, CVar.SERVERONLY);
 
         /*
          * Suspicion
@@ -1367,6 +1379,18 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<float> AnomalyGenerationGridBoundsScale =
             CVarDef.Create("anomaly.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
 
+        /// <summary>
+        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate cargo crate.
+        /// </summary>
+        public static readonly CVarDef<float> CargoGenerationGridBoundsScale =
+            CVarDef.Create("cargo.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate syndicate crate.
+        /// </summary>
+        public static readonly CVarDef<float> SyndicateCrateGenerationGridBoundsScale =
+            CVarDef.Create("syndicatecrate.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
         /*
          * VIEWPORT
          */
@@ -1482,6 +1506,12 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> ICRandomSpeciesWeights =
             CVarDef.Create("ic.random_species_weights", "SpeciesWeights", CVar.SERVER);
 
+        /// <summary>
+        /// Control displaying SSD indicators near players
+        /// </summary>
+        public static readonly CVarDef<bool> ICShowSSDIndicator =
+            CVarDef.Create("ic.show_ssd_indicator", true, CVar.CLIENTONLY);
+
         /*
          * Salvage
          */
@@ -1496,10 +1526,10 @@ namespace Content.Shared.CCVar
         /// Cooldown for successful missions.
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 160f, CVar.REPLICATED);
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 220f, CVar.REPLICATED);
 
         public static readonly CVarDef<float>
-            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 600f, CVar.REPLICATED);
+            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 720f, CVar.REPLICATED);
 
         /*
          * Flavor
