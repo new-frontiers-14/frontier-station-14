@@ -14,32 +14,53 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: WallRock
-            prob: 0.5
+            prob: 0.3
             orGroup: rock
           - id: WallRockTin
-            prob: 0.15
+            prob: 0.2
             orGroup: rock
           - id: WallRockQuartz
-            prob: 0.15
+            prob: 0.1
             orGroup: rock
           - id: WallRockGold
-            prob: 0.05
+            prob: 0.06
             orGroup: rock
           - id: WallRockSilver
-            prob: 0.05
+            prob: 0.04
             orGroup: rock
           - id: WallRockPlasma
-            prob: 0.05
+            prob: 0.07
             orGroup: rock
           - id: WallRockUranium
-            prob: 0.02
+            prob: 0.04
             orGroup: rock
           - id: WallRockBananium
-            prob: 0.02
+            prob: 0.03
             orGroup: rock
           - id: WallRockArtifactFragment
-            prob: 0.01
+            prob: 0.03
+            orGroup: rock
+          - id: SalvageMobSpawner
+            prob: 0.001
+            orGroup: rock
+          - id: SpawnMobBearSalvage
+            prob: 0.001
+            orGroup: rock
+          - id: SpawnMobSpiderSalvage
+            prob: 0.001
+            orGroup: rock
+          - id: SpawnMobKangarooSalvage
+            prob: 0.001
+            orGroup: rock
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.001
+            orGroup: rock
+          - id: SpawnMobPurpleSnake
+            prob: 0.001
             orGroup: rock
     - type: GCAbleObject
       queue: SpaceDebris
@@ -65,7 +86,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 16
+      floorPlacements: 24
 
 - type: entity
   id: AsteroidDebrisLarge
@@ -75,7 +96,7 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 24
+      floorPlacements: 36
 
 - type: entity
   id: AsteroidDebrisLarger
@@ -86,7 +107,18 @@
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       radius: 12
-      floorPlacements: 36
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisHuge
+  parent: BaseAsteroidDebris
+  name: Asteroid Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 32
+      floorPlacements: 128
 
 - type: entity
   id: AsteroidSalvageSmall
