@@ -51,12 +51,12 @@ public sealed class GhostRespawnCommand : IConsoleCommand
         }
 
         var mindSystem = _entityManager.EntitySysManager.GetEntitySystem<MindSystem>();
-        if (!mindSystem.TryGetMind(shell.Player, out _, out var mind))
+        if (!mindSystem.TryGetMind(shell.Player, out _, out _))
         {
             shell.WriteLine("You have no mind.");
             return;
         }
-        var time = (_gameTiming.CurTime - mind.TimeOfDeath!.Value);
+        var time = (_gameTiming.CurTime - ghost.TimeOfDeath);
         var respawnTime = _configurationManager.GetCVar(NF14CVars.RespawnTime);
 
         if (respawnTime > time.TotalSeconds)
