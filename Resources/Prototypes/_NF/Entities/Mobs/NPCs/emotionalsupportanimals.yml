@@ -1,347 +1,395 @@
-# - type: entity
-  # name: cat
-  # suffix: Ghost
-  # parent: MobCat
-  # id: MobCatGhost
-  # description: Feline pet, very funny.
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: CombatMode
-    # combatToggleAction:
-      # enabled: false
-      # autoPopulate: false
-      # name: action-name-combat
-  # - type: ReplacementAccent
-    # accent: cat
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Cat
-      # Female: Cat
-      # Unsexed: Cat
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: cat
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: cat
+  suffix: Ghost
+  parent: MobCat
+  id: MobCatGhost
+  description: Feline pet, very funny.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: calico cat
-  # suffix: Ghost
-  # id: MobCatCalicoGhost
-  # parent: MobCatGhost
-  # description: Feline pet, very funny.
-  # components:
-  # - type: Sprite
-    # layers:
-    # - map: ["enum.DamageStateVisualLayers.Base"]
-      # state: cat2
-  # - type: DamageStateVisuals
-    # states:
-      # Alive:
-        # Base: cat2
-      # Dead:
-        # Base: cat2_dead
+- type: entity
+  name: calico cat
+  suffix: Ghost
+  id: MobCatCalicoGhost
+  parent: MobCatCalico
+  description: Feline pet, very funny.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: caracal cat
-  # suffix: Ghost
-  # id: MobCatCaracalGhost
-  # parent: MobCatGhost
-  # description: Hilarious.
-  # components:
-  # - type: Sprite
-    # sprite: Mobs/Pets/caracal.rsi
-    # layers:
-    # - map: ["enum.DamageStateVisualLayers.Base"]
-      # state: caracal_flop
-  # - type: DamageStateVisuals
-    # states:
-      # Alive:
-        # Base: caracal_flop
-      # Dead:
-        # Base: caracal_dead
+- type: entity
+  name: caracal cat
+  suffix: Ghost
+  id: MobCatCaracalGhost
+  parent: MobCatCaracal
+  description: Hilarious.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: space cat
-  # suffix: Ghost
-  # parent: MobCatSpace
-  # id: MobCatSpaceGhost
-  # description: Feline pet, prepared for the worst.
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: CombatMode
-    # combatToggleAction:
-      # enabled: false
-      # autoPopulate: false
-      # name: action-name-combat
-  # - type: ReplacementAccent
-    # accent: cat
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Cat
-      # Female: Cat
-      # Unsexed: Cat
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: cat
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: space cat
+  suffix: Ghost
+  parent: MobCatSpace
+  id: MobCatSpaceGhost
+  description: Feline pet, prepared for the worst.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: bingus
-  # suffix: Ghost
-  # parent: MobBingus
-  # id: MobBingusGhost
-  # description: Bingus my beloved...
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: CombatMode
-    # combatToggleAction:
-      # enabled: false
-      # autoPopulate: false
-      # name: action-name-combat
-  # - type: ReplacementAccent
-    # accent: cat
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Cat
-      # Female: Cat
-      # Unsexed: Cat
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: cat
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: bingus
+  suffix: Ghost
+  parent: MobBingus
+  id: MobBingusGhost
+  description: Bingus my beloved...
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Cat
+      Female: Cat
+      Unsexed: Cat
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: cat
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: corgi
-  # suffix: Ghost
-  # parent: MobCorgi
-  # id: MobCorgiGhost
-  # description: Finally, a space corgi!
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: CombatMode
-    # combatToggleAction:
-      # enabled: false
-      # autoPopulate: false
-      # name: action-name-combat
-  # - type: ReplacementAccent
-    # accent: dog
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Dog
-      # Female: Dog
-      # Unsexed: Dog
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: dog
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: corgi
+  suffix: Ghost
+  parent: MobCorgi
+  id: MobCorgiGhost
+  description: Finally, a space corgi!
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: dog
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: corgi puppy
-  # suffix: Ghost
-  # parent: MobCorgiGhost
-  # id: MobCorgiPuppyGhost
-  # description: A little corgi! Aww...
-  # components:
-  # - type: Sprite
-    # drawdepth: Mobs
-    # sprite: Mobs/Pets/corgi.rsi
-    # layers:
-    # - map: ["enum.DamageStateVisualLayers.Base"]
-      # state: puppy
-  # - type: Inventory
-    # speciesId: puppy
-    # templateId: emotionalsupportpet
-  # - type: InventorySlots
-  # - type: DamageStateVisuals
-    # states:
-      # Alive:
-        # Base: puppy
-      # Dead:
-        # Base: puppy_dead
-  # - type: IdExaminable
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: corgi puppy
+  suffix: Ghost
+  parent: MobCorgiPuppy
+  id: MobCorgiPuppyGhost
+  description: A little corgi! Aww...
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: dog
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
 
-# - type: entity
-  # name: chicken
-  # suffix: Ghost
-  # parent: MobChicken
-  # id: MobChickenGhost
-  # description: Comes before an egg, and IS a dinosaur!
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: CombatMode
-    # combatToggleAction:
-      # enabled: false
-      # autoPopulate: false
-      # name: action-name-combat
-  # - type: ReplacementAccent
-    # accent: chicken
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Chicken
-      # Female: Chicken
-      # Unsexed: Chicken
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: chicken
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
-  # - type: Puller
-    # needsHands: false
+- type: entity
+  name: chicken
+  suffix: Ghost
+  parent: MobChicken
+  id: MobChickenGhost
+  description: Comes before an egg, and IS a dinosaur!
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggleOff
+  - type: ReplacementAccent
+    accent: chicken
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Chicken
+      Female: Chicken
+      Unsexed: Chicken
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: chicken
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
+  - type: Puller
+    needsHands: false
 
-# - type: entity
-  # name: pitbull
-  # suffix: Ghost
-  # parent: MobPibble
-  # id: MobPibbleGhost
-  # description: Nanny dog. Or a lab mix depending on who is asking.
-  # components:
-  # - type: GhostRole
-    # name: ghost-role-information-emotional-support-name
-    # description: ghost-role-information-emotional-support-description
-    # rules: ghost-role-information-emotional-support-rules
-    # makeSentient: true
-    # allowSpeech: true
-    # allowMovement: true
-  # - type: GhostTakeoverAvailable
-  # - type: ReplacementAccent
-    # accent: dog
-  # - type: Grammar
-    # attributes:
-      # gender: epicene
-  # - type: Vocal
-    # sounds:
-      # Male: Dog
-      # Female: Dog
-      # Unsexed: Dog
-  # - type: Tag
-    # tags:
-    # - CannotSuicide
-    # - DoorBumpOpener
-    # - VimPilot
-  # - type: IdExaminable
-  # - type: Inventory
-    # speciesId: dog
-    # templateId: emotionalsupportpet
-  # - type: Strippable
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.StrippingUiKey.Key
-      # type: StrippableBoundUserInterface
-  # - type: Loadout
-    # prototypes: [ MobEmotionalSupportGear ]
+- type: entity
+  name: pitbull
+  suffix: Ghost
+  parent: MobPibble
+  id: MobPibbleGhost
+  description: Nanny dog. Or a lab mix depending on who is asking.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: GhostTakeoverAvailable
+  - type: ReplacementAccent
+    accent: dog
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: IdExaminable
+  - type: Inventory
+    speciesId: dog
+    templateId: emotionalsupportpet
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Loadout
+    prototypes: [ MobEmotionalSupportGear ]
