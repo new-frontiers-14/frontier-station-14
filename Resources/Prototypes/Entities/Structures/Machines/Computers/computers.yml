@@ -687,11 +687,26 @@
 
 - type: entity
   id: ComputerCargoOrders
-  parent: BaseComputer
+  parent: BaseStructureComputer
   name: cargo request computer
   description: Used to order supplies and approve requests.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
   - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -708,8 +723,6 @@
     interfaces:
     - key: enum.CargoConsoleUiKey.Orders
       type: CargoOrderConsoleBoundUserInterface
-  - type: Computer
-    board: CargoRequestComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -728,6 +741,12 @@
   - type: GuideHelp
     guides:
     - Cargo
+  - type: Anchorable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
 
 - type: entity
   id: ComputerCargoBounty

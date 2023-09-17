@@ -77,13 +77,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+        damage: 0
         
 - type: entity
   name: black market atm
@@ -331,13 +325,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+        damage: 0
 
 - type: entity
   name: wallmount withdraw-only bank atm
