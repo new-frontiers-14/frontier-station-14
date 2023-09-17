@@ -4,5 +4,5 @@ namespace Content.Shared.IgnoreHumanoids;
 /// Adds an overlay that doesn't let drones see what different humanoids are.
 /// </summary>
 [RegisterComponent]
-public sealed class IgnoreHumanoidsOverlayComponent : Component
+public sealed partial class IgnoreHumanoidsOverlayComponent : Component
 {}

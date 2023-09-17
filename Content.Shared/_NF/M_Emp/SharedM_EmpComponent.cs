@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.M_Emp;
 
 [NetworkedComponent, RegisterComponent, Virtual]
-public sealed class SharedM_EmpComponent : Component
+public sealed partial class SharedM_EmpComponent : Component
 {
 }
 

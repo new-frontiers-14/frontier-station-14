@@ -1,7 +1,7 @@
 namespace Content.Server.OfHolding
 {
     [RegisterComponent]
-    public sealed class OfHoldingComponent : Component
+    public sealed partial class OfHoldingComponent : Component
     {
         /// <summary>
         /// The last entity this bag warned,

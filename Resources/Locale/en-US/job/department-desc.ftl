@@ -3,6 +3,6 @@ department-Civilian-description = Perform small helpful tasks to keep the statio
 department-Command-description = Manage the crew and keep them working efficiently.
 department-Engineering-description = Keep the station operational.
 department-Medical-description = Keep the crew healthy.
-department-Security-description = Keep the peace around the station.
+department-Security-description = Keep the peace around the sector.
 department-Science-description = Research new technologies and dangerous artifacts.
 department-Specific-description = Jobs that not all stations have.

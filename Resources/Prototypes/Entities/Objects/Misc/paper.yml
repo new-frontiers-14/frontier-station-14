@@ -104,9 +104,11 @@
 
 - type: entity
   name: captain's thoughts
+  #name: station representative thoughts
   parent: Paper
   id: PaperCaptainsThoughts
   description: "A page of the captain's journal. In luxurious lavender."
+  #description: "A page of the station representative journal. In luxurious lavender."
   components:
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
@@ -251,6 +253,8 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: Cybersun pen
@@ -279,6 +283,8 @@
     sprite: Objects/Misc/bureaucracy.rsi
     heldPrefix: overpriced_pen
     size: 2
+  - type: StaticPrice
+    price: 20
 
 - type: entity
   name: captain's fountain pen
@@ -289,6 +295,8 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_cap
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   name: Centcom pen
@@ -312,6 +320,8 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_hop
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   id: BoxFolderBase
@@ -340,7 +350,6 @@
     size: 5
   - type: Storage
     capacity: 10
-    size: 10
     whitelist:
       tags:
         - Document
@@ -475,16 +484,20 @@
       params:
         volume: -2
         maxdistance: 5
+  - type: StaticPrice
+    price: 3
 
 - type: entity
   name: captain's rubber stamp
   parent: RubberStampBase
   id: RubberStampCaptain
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-captain
     stampedColor: "#3681bb"
     stampState: "paper_stamp-cap"
+    stampedPersonal: true
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: stamp-cap
@@ -493,6 +506,7 @@
   name: CentCom rubber stamp
   parent: RubberStampBase
   id: RubberStampCentcom
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-centcom
@@ -506,6 +520,7 @@
   name: chaplain's rubber stamp
   parent: RubberStampBase
   id: RubberStampChaplain
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-chaplain
@@ -519,6 +534,7 @@
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-clown
@@ -535,6 +551,7 @@
   name: chief engineer's rubber stamp
   parent: RubberStampBase
   id: RubberStampCE
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-ce
@@ -548,6 +565,7 @@
   name: chief medical officer's rubber stamp
   parent: RubberStampBase
   id: RubberStampCMO
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-cmo
@@ -558,9 +576,10 @@
     state: stamp-cmo
 
 - type: entity
-  name: head of personnel's rubber stamp
+  name: station representative's rubber stamp
   parent: RubberStampBase
   id: RubberStampHop
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-hop
@@ -571,9 +590,10 @@
     state: stamp-hop
 
 - type: entity
-  name: head of security's rubber stamp
+  name: sheriff's rubber stamp
   parent: RubberStampBase
   id: RubberStampHos
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-hos
@@ -587,6 +607,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-mime
@@ -601,6 +622,7 @@
   name: quartermaster's rubber stamp
   parent: RubberStampBase
   id: RubberStampQm
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-qm
@@ -614,6 +636,7 @@
   name: research director's rubber stamp
   parent: RubberStampBase
   id: RubberStampRd
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-rd
@@ -640,6 +663,7 @@
   name: syndicate rubber stamp
   parent: RubberStampBase
   id: RubberStampSyndicate
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-syndicate
@@ -650,9 +674,10 @@
     state: stamp-syndicate
 
 - type: entity
-  name: warden's rubber stamp
+  name: bailiff's rubber stamp
   parent: RubberStampBase
   id: RubberStampWarden
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-warden
