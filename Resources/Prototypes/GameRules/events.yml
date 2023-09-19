@@ -1,14 +1,14 @@
-# - type: entity
-  # id: AnomalySpawn
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # weight: 10
-    # minimumPlayers: 110
-    # startDelay: 30
-    # duration: 35
-  # - type: AnomalySpawnRule
+- type: entity
+  id: AnomalySpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 10
+    startDelay: 30
+    duration: 35
+    minimumPlayers: 45
+  - type: AnomalySpawnRule
 
 # - type: entity
   # id: BluespaceArtifact
