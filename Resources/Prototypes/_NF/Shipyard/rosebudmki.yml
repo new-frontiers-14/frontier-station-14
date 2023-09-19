@@ -2,7 +2,7 @@
   id: RosebudMKI
   name: NT Rosebud MKI
   description: A medium-sized luxury salvaging and mining vessel perfectly suited for a small crew.
-  price: 52500
+  price: 58500
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/rosebudmki.yml
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} RosebudMKI {1}'
+          mapNameTemplate: '{0} Rosebud MKI {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
@@ -25,3 +25,7 @@
           overflowJobs: []
           availableJobs:
             SalvageSpecialist: [ 0, 0 ]
+            Paramedic: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
