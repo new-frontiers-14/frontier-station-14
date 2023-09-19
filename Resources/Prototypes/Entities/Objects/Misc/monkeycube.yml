@@ -16,6 +16,10 @@
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box
+  - type: StaticPrice
+    price: 20
+  - type: VendPrice
+    price: 4500 # Yep, same price as the crate
 
 - type: entity
   parent: BaseItem
@@ -35,6 +39,8 @@
   - type: Tag
     tags:
     - MonkeyCube
+  - type: StaticPrice
+    price: 460 # The same price as dead (-20)
 
 - type: entity
   parent: BoxCardboard
@@ -55,6 +61,8 @@
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box
+  - type: StaticPrice
+    price: 0 # Syndicate
 
 - type: entity
   parent: BaseItem
@@ -74,3 +82,5 @@
   - type: Tag
     tags:
     - MonkeyCube
+  - type: StaticPrice
+    price: 0 # Syndicate
