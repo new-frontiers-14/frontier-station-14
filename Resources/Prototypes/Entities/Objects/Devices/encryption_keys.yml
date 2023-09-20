@@ -10,6 +10,8 @@
     sprite: Objects/Devices/encryption_keys.rsi
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
+  - type: StaticPrice
+    price: 2
 
 - type: entity
   parent: EncryptionKey
@@ -92,8 +94,6 @@
     layers:
     - state: crypt_silver
     - state: com_label
-  - type: StaticPrice
-    price: 7.5
 
 - type: entity
   parent: EncryptionKey
@@ -174,8 +174,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeySecurity
-  name: security encryption key
-  description: An encryption key used by security.
+  name: nfsd encryption key
+  description: An encryption key used by the New Frontier Sheriff's Department.
   components:
   - type: EncryptionKey
     channels:

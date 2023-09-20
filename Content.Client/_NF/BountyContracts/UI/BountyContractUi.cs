@@ -7,7 +7,7 @@ using Robust.Client.UserInterface;
 namespace Content.Client._NF.BountyContracts.UI;
 
 [UsedImplicitly]
-public sealed class BountyContractUi : UIFragment
+public sealed partial class BountyContractUi : UIFragment
 {
     private BountyContractUiFragment? _fragment;
     private BoundUserInterface? _userInterface;

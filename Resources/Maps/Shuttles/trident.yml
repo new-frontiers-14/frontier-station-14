@@ -398,13 +398,6 @@ entities:
     - SecondsUntilStateChange: -1554.1161
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 406
-      type: SignalReceiver
   - uid: 83
     components:
     - pos: -4.5,7.5
@@ -413,13 +406,6 @@ entities:
     - SecondsUntilStateChange: -1554.1161
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 406
-      type: SignalReceiver
   - uid: 192
     components:
     - pos: -4.5,5.5
@@ -428,13 +414,6 @@ entities:
     - SecondsUntilStateChange: -1554.1161
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 406
-      type: SignalReceiver
   - uid: 232
     components:
     - pos: -5.5,5.5
@@ -443,20 +422,6 @@ entities:
     - SecondsUntilStateChange: -1554.1161
       state: Closing
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 406
-      type: SignalReceiver
-- proto: BoxMagazineRifleHighVelocity
-  entities:
-  - uid: 310
-    components:
-    - pos: 2.7377377,2.4941058
-      parent: 391
-      type: Transform
 - proto: BoxMagazineRifleRubber
   entities:
   - uid: 309
@@ -1714,7 +1679,7 @@ entities:
       type: Transform
     - enabled: False
       type: AmbientSound
-- proto: GeneratorUranium
+- proto: GeneratorPlasma
   entities:
   - uid: 96
     components:
@@ -2655,13 +2620,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 350
     components:
     - pos: -8.5,4.5
@@ -2670,13 +2628,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 351
     components:
     - pos: -9.5,4.5
@@ -2685,13 +2636,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 352
     components:
     - pos: -10.5,4.5
@@ -2700,13 +2644,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 353
     components:
     - pos: -11.5,5.5
@@ -2715,13 +2652,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 354
     components:
     - pos: -11.5,6.5
@@ -2730,13 +2660,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 355
     components:
     - pos: -10.5,7.5
@@ -2745,13 +2668,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
   - uid: 356
     components:
     - pos: -7.5,7.5
@@ -2760,13 +2676,6 @@ entities:
     - SecondsUntilStateChange: -2651.9617
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 357
-      type: SignalReceiver
 - proto: SignalButton
   entities:
   - uid: 357
@@ -2776,25 +2685,6 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 355
-        - port: Toggle
-          uid: 354
-        - port: Toggle
-          uid: 353
-        - port: Toggle
-          uid: 352
-        - port: Toggle
-          uid: 351
-        - port: Toggle
-          uid: 350
-        - port: Toggle
-          uid: 349
-        - port: Toggle
-          uid: 356
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 406
     components:
@@ -2804,17 +2694,6 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 83
-        - port: Toggle
-          uid: 71
-        - port: Toggle
-          uid: 232
-        - port: Toggle
-          uid: 192
-      type: SignalTransmitter
     - type: ItemCooldown
 - proto: SignPrison
   entities:

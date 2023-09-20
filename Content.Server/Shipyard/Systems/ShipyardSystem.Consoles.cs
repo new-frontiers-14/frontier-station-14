@@ -17,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
 using Content.Server.Administration.Logs;
+using Content.Server.Cargo.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
@@ -77,7 +78,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (TryComp<AccessReaderComponent>(uid, out var accessReaderComponent) && !_access.IsAllowed(player, accessReaderComponent))
+        if (TryComp<AccessReaderComponent>(uid, out var accessReaderComponent) && !_access.IsAllowed(player, uid, accessReaderComponent))
         {
             ConsolePopup(args.Session, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);
@@ -248,9 +249,23 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             ConsolePopup(args.Session, Loc.GetString("shipyard-console-sale-reqs"));
             PlayDenySound(uid, component);
             return;
-        };
+        }
 
         RemComp<ShuttleDeedComponent>(targetId);
+
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        {
+            var tax = (int) (bill * 0.30f);
+            var query = EntityQueryEnumerator<StationBankAccountComponent>();
+
+            while (query.MoveNext(out _, out var comp))
+            {
+                _cargo.DeductFunds(comp, -tax);
+            }
+
+            bill -= tax;
+        }
+
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");

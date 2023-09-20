@@ -8,6 +8,9 @@
     sprite: Objects/Specific/Research/researchdisk.rsi
     state: icon
   - type: ResearchDisk
+  - type: GuideHelp
+    guides:
+    - Science
 
 - type: entity
   parent: ResearchDisk
@@ -17,6 +20,8 @@
   components:
   - type: ResearchDisk
     points: 5000
+  - type: StaticPrice
+    price: 200 # Why was this worth nothing, NT want to buy this!
 
 - type: entity
   parent: ResearchDisk
@@ -26,6 +31,8 @@
   components:
   - type: ResearchDisk
     points: 10000
+  - type: StaticPrice
+    price: 400 # Why was this worth nothing, NT want to buy this!
 
 - type: entity
   parent: ResearchDisk
@@ -55,7 +62,7 @@
         datadisk_base: Sixteen
   - type: TechnologyDisk
   - type: StaticPrice
-    price: 50
+    price: 550 # It's still need to be worth it, but as it was stranding (1000) it was too much
 
 - type: entity
   parent: TechnologyDisk
@@ -64,3 +71,4 @@
   components:
   - type: TechnologyDisk
     tierWeightPrototype: RareTechDiskTierWeights
+    price: 750 # It's still need to be worth it, but as it was stranding (1000) it was too much

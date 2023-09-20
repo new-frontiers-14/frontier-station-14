@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Popups;
 using Content.Server.UserInterface;
@@ -12,6 +13,8 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
+using Content.Server.Access.Systems;
+using Content.Shared.Hands;
 using static Content.Shared.Paper.SharedPaperComponent;
 
 namespace Content.Server.Paper
@@ -26,6 +29,7 @@ namespace Content.Server.Paper
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
 
         public override void Initialize()
         {
@@ -40,6 +44,8 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<ActivateOnPaperOpenedComponent, PaperWriteEvent>(OnPaperWrite);
 
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
+
+            SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -90,7 +96,7 @@ namespace Content.Server.Paper
 
             if (paperComp.StampedBy.Count > 0)
             {
-                var commaSeparated = string.Join(", ", paperComp.StampedBy);
+                var commaSeparated = string.Join(", ", paperComp.StampedBy.Select(s => Loc.GetString(s.StampedName)));
                 args.PushMarkup(
                     Loc.GetString(
                         "paper-component-examine-detail-stamped-by", ("paper", uid), ("stamps", commaSeparated))
@@ -114,13 +120,33 @@ namespace Content.Server.Paper
             }
 
             // If a stamp, attempt to stamp paper
-            if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, stampComp.StampedName, stampComp.StampState, paperComp))
+            if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
-                // successfully stamped, play popup
-                var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target, EntityManager)), ("stamp", args.Used));
-                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                if (stampComp.StampedPersonal)
+                {
+                    stampComp.StampedIdUser = args.User;
 
-                var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self", ("target", Identity.Entity(args.Target, EntityManager)), ("stamp", args.Used));
+                    var userName = Loc.GetString("stamp-component-unknown-name");
+                    var userJob = Loc.GetString("stamp-component-unknown-job");
+                    if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
+                    {
+                        if (card.FullName != null)
+                            userName = card.FullName;
+                        if (card.JobTitle != null)
+                            userJob = card.JobTitle;
+                    }
+                    //string stampedName = userJob + " - " + userName;
+                    string stampedName = userName;
+                    stampComp.StampedName = stampedName;
+                }
+
+                // successfully stamped, play popup
+                var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
+                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+
+                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
+                        ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
@@ -129,15 +155,23 @@ namespace Content.Server.Paper
             }
         }
 
+        private StampDisplayInfo GetStampInfo(StampComponent stamp)
+        {
+            return new StampDisplayInfo
+            {
+                StampedName = stamp.StampedName,
+                StampedColor = stamp.StampedColor,
+                StampedPersonal = stamp.StampedPersonal
+            };
+        }
+
         private void OnInputTextMessage(EntityUid uid, PaperComponent paperComp, PaperInputTextMessage args)
         {
             if (string.IsNullOrEmpty(args.Text))
                 return;
 
-            var text = FormattedMessage.EscapeText(args.Text);
-
-            if (text.Length + paperComp.Content.Length <= paperComp.ContentSize)
-                paperComp.Content = text;
+            if (args.Text.Length + paperComp.Content.Length <= paperComp.ContentSize)
+                paperComp.Content = args.Text;
 
             if (TryComp<AppearanceComponent>(uid, out var appearance))
                 _appearance.SetData(uid, PaperVisuals.Status, PaperStatus.Written, appearance);
@@ -161,17 +195,19 @@ namespace Content.Server.Paper
         /// <summary>
         ///     Accepts the name and state to be stamped onto the paper, returns true if successful.
         /// </summary>
-        public bool TryStamp(EntityUid uid, string stampName, string stampState, PaperComponent? paperComp = null)
+        public bool TryStamp(EntityUid uid, StampDisplayInfo stampInfo, string spriteStampState, PaperComponent? paperComp = null)
         {
             if (!Resolve(uid, ref paperComp))
                 return false;
 
-            if (!paperComp.StampedBy.Contains(Loc.GetString(stampName)))
+            if (!paperComp.StampedBy.Contains(stampInfo))
             {
-                paperComp.StampedBy.Add(Loc.GetString(stampName));
+                paperComp.StampedBy.Add(stampInfo);
                 if (paperComp.StampState == null && TryComp<AppearanceComponent>(uid, out var appearance))
                 {
-                    paperComp.StampState = stampState;
+                    paperComp.StampState = spriteStampState;
+                    // Would be nice to be able to display multiple sprites on the paper
+                    // but most of the existing images overlap
                     _appearance.SetData(uid, PaperVisuals.Stamp, paperComp.StampState, appearance);
                 }
             }
@@ -202,7 +238,28 @@ namespace Content.Server.Paper
                 return;
 
             if (_uiSystem.TryGetUi(uid, PaperUiKey.Key, out var bui))
-                UserInterfaceSystem.SetUiState(bui, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode), session);
+                _uiSystem.SetUiState(bui, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode), session);
+        }
+
+        private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
+        {
+            if (stampComp.StampedPersonal)
+            {
+                stampComp.StampedIdUser = args.User;
+
+                var userName = Loc.GetString("stamp-component-unknown-name");
+                var userJob = Loc.GetString("stamp-component-unknown-job");
+                if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
+                {
+                    if (card.FullName != null)
+                        userName = card.FullName;
+                    if (card.JobTitle != null)
+                        userJob = card.JobTitle;
+                }
+                //string stampedName = userJob + " - " + userName;
+                string stampedName = userName;
+                stampComp.StampedName = stampedName;
+            }
         }
     }
 

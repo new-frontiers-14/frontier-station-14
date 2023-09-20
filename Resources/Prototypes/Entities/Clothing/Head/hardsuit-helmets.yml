@@ -52,7 +52,7 @@
     color: "#adffe6"
   - type: PressureProtection
     highPressureMultiplier: 0.08
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.005
 
@@ -107,7 +107,7 @@
         shader: unshaded
   - type: PressureProtection
     highPressureMultiplier: 0.72
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
 
 #Salvage Hardsuit
 - type: entity
@@ -123,7 +123,7 @@
     sprite: Clothing/Head/Hardsuits/salvage.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
   - type: PointLight
     radius: 7
     energy: 3
@@ -144,7 +144,7 @@
     color: "#ffeead"
   - type: PressureProtection
     highPressureMultiplier: 0.525
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
@@ -203,14 +203,14 @@
         Caustic: 0.90
   - type: PressureProtection
     highPressureMultiplier: 0.6
-    lowPressureMultiplier: 5500
+    lowPressureMultiplier: 1000
 
 #Warden's Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitWarden
   noSpawn: true
-  name: warden's hardsuit helmet
+  name: bailiff's hardsuit helmet
   description: A modified riot helmet. Oddly comfortable.
   components:
   - type: Sprite
@@ -221,7 +221,7 @@
     color: "#ffeead"
   - type: PressureProtection
     highPressureMultiplier: 0.525
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
@@ -280,7 +280,7 @@
     color: "#adf1ff"
   - type: PressureProtection
     highPressureMultiplier: 0.6
-    lowPressureMultiplier: 5500
+    lowPressureMultiplier: 1000
 
 #Research Director's Hardsuit
 - type: entity
@@ -298,15 +298,15 @@
     color: "#d6adff"
   - type: PressureProtection
     highPressureMultiplier: 0.60
-    lowPressureMultiplier: 5500
+    lowPressureMultiplier: 1000
 
 #Head of Security's hardsuit
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitSecurityRed
   noSpawn: true
-  name: head of security's hardsuit helmet
-  description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the HoS.
+  name: sheriff's hardsuit helmet
+  description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the Sheriff.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/security-red.rsi
@@ -316,7 +316,7 @@
     color: "#ffeead"
   - type: PressureProtection
     highPressureMultiplier: 0.45
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
@@ -324,6 +324,25 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#Luxury Mining Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
+  noSpawn: true
+  name: luxury mining hardsuit helmet
+  description: A refurbished mining hardsuit helmet, fitted with satin cushioning and an extra (non-functioning) antenna, because you're that extra.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/luxury.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/luxury.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    radius: 7
+    energy: 3
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -465,7 +484,7 @@
     sprite: Clothing/Head/Hardsuits/lingspacehelmet.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.225
-    lowPressureMultiplier: 10000
+    lowPressureMultiplier: 1000
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 - type: entity

@@ -39,7 +39,7 @@
           - !type:DoActsBehavior
             acts: ["Destruction"]
     - type: StaticPrice
-      price: 600
+      price: 300
     - type: Fixtures
       fixtures:
         fix1:
@@ -148,7 +148,7 @@
     powerDrawMultiplier: 0.75
     scaling: Exponential
   - type: StaticPrice
-    price: 4000
+    price: 2000
 
 - type: entity
   id: DebugGyroscopeSecurity
@@ -165,6 +165,33 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
+    sprite: _NF/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: SmallGyroscopeSecurity
+  name: security gyroscope
+  parent: BaseThrusterSecurity
+  suffix: small
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 250
+    thrust: 250
+  - type: Sprite
+    scale: 0.8, 0.8
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
     layers:

@@ -2,7 +2,7 @@ using Content.Shared.Radio;
 using Content.Shared._NF.M_Emp;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.MachineLinking;
+using Content.Shared.DeviceLinking;
 
 namespace Content.Server._NF.M_Emp
 {
@@ -11,7 +11,7 @@ namespace Content.Server._NF.M_Emp
     /// </summary>
     [NetworkedComponent, RegisterComponent]
     [Access(typeof(M_EmpSystem))]
-    public sealed class M_EmpGeneratorComponent : SharedM_EmpGeneratorComponent
+    public sealed partial class M_EmpGeneratorComponent : SharedM_EmpGeneratorComponent
     {
         /// <summary>
         /// Current state of this generator
@@ -90,7 +90,7 @@ namespace Content.Server._NF.M_Emp
         [DataField("previousCharge")]
         public int PreviousCharge = 5;
 
-        [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<ReceiverPortPrototype>))]
+        [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
         public string ReceiverPort = "On";
     }
 

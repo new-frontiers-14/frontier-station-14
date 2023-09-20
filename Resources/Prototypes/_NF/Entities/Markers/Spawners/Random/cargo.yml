@@ -1,0 +1,150 @@
+﻿- type: entity
+  id: RandomCargoSpawner
+  name: random cargo spawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/Crates/generic.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - RandomCargoGenericSpawner
+      chance: 1
+      rarePrototypes:
+        - RandomCargoAnimalSpawner
+      rareChance: 0.1
+
+- type: entity
+  id: RandomCargoGenericSpawner
+  name: random cargo spawner
+  suffix: Generic
+  parent: MarkerBase
+  noSpawn: true
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/Crates/generic.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - CrateMaterials
+        - CrateMaterialGlass
+        - CrateMaterialPlastic
+        - CrateMaterialPlasteel
+        - CrateMaterialTextiles
+        - CrateMaterialPlasma
+        - CrateMaterialCardboard
+#        - WeldingFuelTankFull
+        - WaterTankFull
+#        - CrateTrackingImplants
+        - CrateHydroponicsSeedsExotic
+        - CrateHydroponicsSeedsMedicinal
+        - CrateHydroponicsTools
+        - CrateHydroponicsSeeds
+        - CrateCrewMonitoringBoards
+        - CrateEmergencyExplosive
+        - CrateEmergencyFire
+        - CrateEmergencyInternals
+        - CrateEmergencyInternalsLarge
+        - CrateEmergencyRadiation
+        - CrateEmergencyInflatablewall
+        - CrateSlimepersonLifeSupport
+#        - CrateGenericBiosuit
+#        - CrateEngineeringCableLV
+#        - CrateEngineeringCableMV
+#        - CrateEngineeringCableHV
+        - CrateEngineeringCableBulk
+        - CrateEngineeringElectricalSupplies
+        - CrateEngineeringJetpack
+        - CrateEngineeringMiniJetpack
+        - CrateAirlockKit
+        - CrateEvaKit
+        - CrateEngineeringAMEShielding
+        - CrateEngineeringAMEJar
+        - CrateEngineeringAMEControl
+#        - CrateEngineeringSingularityGenerator
+#        - CrateEngineeringSingularityContainment
+#        - CrateEngineeringSingularityCollector
+#        - CrateEngineeringParticleAccelerator
+#        - CrateEngineeringSolar
+        - CrateFoodMRE
+        - CrateFunInstrumentsVariety
+        - CrateFunInstrumentsBrass
+        - CrateFunInstrumentsString
+        - CrateFunInstrumentsWoodwind
+        - CrateFunInstrumentsKeyedPercussion
+        - CrateFunInstrumentsSpecial
+        - CrateFunArtSupplies
+        - CrateFunParty
+        - CrateFunWaterGuns
+        - CrateFunPlushie
+        - CrateFunBoardGames
+        - CrateFunATV
+        - CrateFunSadTromboneImplants
+        - CrateFunLightImplants
+        - CrateFunBoxing
+        - CrateFunPirate
+        - CrateFunToyBox
+        - CrateFunBikeHornImplants
+        - CrateFunMysteryFigurines
+        - CrateNPCMonkeyCube
+        - CrateMedicalSupplies
+#        - EmergencyBurnKit
+        - CrateEmergencyToxinKit
+        - CrateEmergencyO2Kit
+        - CrateEmergencyBruteKit
+        - CrateEmergencyAdvancedKit
+        - CrateEmergencyRadiationKit
+        - CrateBodyBags
+#        - CrateVirologyBiosuit
+#        - ArtifactContainer
+#        - ScienceBiosuit
+        - CrateServiceJanitorialSupplies
+        - CrateServiceReplacementLights
+        - CrateMousetrapBoxes
+        - CrateServiceTheatre
+        - CrateServiceSmokeables
+        - CrateServiceCustomSmokable
+        - CrateServiceBureaucracy
+        - CrateServiceBooks
+#        - CrateJanitorBiosuit
+      chance: 1
+
+- type: entity
+  id: RandomCargoAnimalSpawner
+  name: random cargo spawner
+  suffix: Animal
+  parent: MarkerBase
+  noSpawn: true
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/Crates/generic.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - CrateNPCBee
+        - CrateNPCButterflies
+        - CrateNPCCat
+        - CrateNPCChicken
+        - CrateNPCCrab
+        - CrateNPCDuck
+        - CrateNPCCorgi
+        - CrateNPCCow
+        - CrateNPCGoat
+        - CrateNPCGoose
+        - CrateNPCGorilla
+        - CrateNPCMouse
+        - CrateNPCParrot
+        - CrateNPCPenguin
+        - CrateNPCPig
+        - CrateNPCSnake
+        - CrateNPCHamster
+        - CrateNPCLizard
+        - CrateNPCKangaroo
+        - CrateNPCEmotionalSupportSafe
+      chance: 1

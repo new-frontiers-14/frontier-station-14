@@ -2,13 +2,13 @@
   id: PrisonGuard
   name: job-name-guard
   description: job-description-guard
-  playTimeTracker: JobSecurityOfficer
+  playTimeTracker: JobPrisonGuard
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000
   startingGear: PrisonGuardGear
   canBeAntag: false
-  icon: "Warden" 
+  icon: "JobIconWarden" 
   supervisors: job-supervisors-warden
   setPreference: true
   access:
@@ -27,6 +27,7 @@
     id: GuardPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
+    # neck: ClothingNeckBodycam
   innerclothingskirt: ClothingUniformJumpsuitPrisonGuard
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
