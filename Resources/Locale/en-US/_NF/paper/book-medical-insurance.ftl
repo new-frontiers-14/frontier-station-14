@@ -5,6 +5,7 @@ book-medical-insurance = This form is a contract made with the medical frovider:
       Full Name  :
       Race       :
       Blood Type :
+      Ship       :
       
       --------------------------------------------------------------------------------------
       SECTION 2:  Services
