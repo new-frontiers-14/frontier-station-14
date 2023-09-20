@@ -2,15 +2,13 @@ book-medical-insurance = This form is a contract made with the medical frovider:
       --------------------------------------------------------------------------------------
       SECTION 1:  Info
       --------------------------------------------------------------------------------------
-      
       Full Name  :
       Race       :
       Blood Type :
       
       --------------------------------------------------------------------------------------
-      SECTION 3:  Services
+      SECTION 2:  Services
       --------------------------------------------------------------------------------------
-      
       As part of our service we will attemp to come and aid you in the case of your medical implant going off.
       
       (X) Revive = Up to 8k
