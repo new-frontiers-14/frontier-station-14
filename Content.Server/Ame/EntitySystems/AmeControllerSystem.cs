@@ -73,7 +73,7 @@ public sealed class AmeControllerSystem : EntitySystem
             if (TryComp<PowerSupplierComponent>(uid, out var powerOutlet))
                 powerOutlet.MaxSupply = powerOutput;
             fuelJar.FuelAmount -= availableInject;
-            _audioSystem.PlayPvs(controller.InjectSound, uid, AudioParams.Default.WithVolume(overloading ? 10f : 0f));
+            _audioSystem.PlayPvs(controller.InjectSound, uid, AudioParams.Default.WithVolume(overloading ? 5f : -5f));
             UpdateUi(uid, controller);
         }
 

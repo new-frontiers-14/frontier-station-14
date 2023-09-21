@@ -13,6 +13,8 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
+using Content.Server.Access.Systems;
+using Content.Shared.Hands;
 using static Content.Shared.Paper.SharedPaperComponent;
 
 namespace Content.Server.Paper
@@ -27,6 +29,7 @@ namespace Content.Server.Paper
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
 
         public override void Initialize()
         {
@@ -41,6 +44,8 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<ActivateOnPaperOpenedComponent, PaperWriteEvent>(OnPaperWrite);
 
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
+
+            SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -117,6 +122,24 @@ namespace Content.Server.Paper
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
+                if (stampComp.StampedPersonal)
+                {
+                    stampComp.StampedIdUser = args.User;
+
+                    var userName = Loc.GetString("stamp-component-unknown-name");
+                    var userJob = Loc.GetString("stamp-component-unknown-job");
+                    if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
+                    {
+                        if (card.FullName != null)
+                            userName = card.FullName;
+                        if (card.JobTitle != null)
+                            userJob = card.JobTitle;
+                    }
+                    //string stampedName = userJob + " - " + userName;
+                    string stampedName = userName;
+                    stampComp.StampedName = stampedName;
+                }
+
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
                         ("user", args.User), ("target", args.Target), ("stamp", args.Used));
@@ -134,9 +157,11 @@ namespace Content.Server.Paper
 
         private StampDisplayInfo GetStampInfo(StampComponent stamp)
         {
-            return new StampDisplayInfo {
+            return new StampDisplayInfo
+            {
                 StampedName = stamp.StampedName,
-                StampedColor = stamp.StampedColor
+                StampedColor = stamp.StampedColor,
+                StampedPersonal = stamp.StampedPersonal
             };
         }
 
@@ -214,6 +239,27 @@ namespace Content.Server.Paper
 
             if (_uiSystem.TryGetUi(uid, PaperUiKey.Key, out var bui))
                 _uiSystem.SetUiState(bui, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode), session);
+        }
+
+        private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
+        {
+            if (stampComp.StampedPersonal)
+            {
+                stampComp.StampedIdUser = args.User;
+
+                var userName = Loc.GetString("stamp-component-unknown-name");
+                var userJob = Loc.GetString("stamp-component-unknown-job");
+                if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
+                {
+                    if (card.FullName != null)
+                        userName = card.FullName;
+                    if (card.JobTitle != null)
+                        userJob = card.JobTitle;
+                }
+                //string stampedName = userJob + " - " + userName;
+                string stampedName = userName;
+                stampComp.StampedName = stampedName;
+            }
         }
     }
 
