@@ -1,0 +1,108 @@
+- type: entity
+  name: slugcat
+  id: MobSlugcat
+  parent: SimpleMobBase
+  description: He's just a little guy, a jumpy, poor little scug.
+  components:
+  - type: CombatMode
+  - type: Inventory
+    templateId: slugcat
+    speciesId: slugcat
+  - type: InventorySlots
+  - type: Cuffable
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: slugcat
+      sprite: Mobs/Pets/slugcat.rsi
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "id" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Hands
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
+          True: {visible: true}
+          False: {visible: false}
+  - type: ReplacementAccent
+    accent: cat
+  - type: Body
+    prototype: Primate
+    requiredLegs: 1 # TODO: More than 1 leg
+  - type: CreamPied
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: MonkeyAccent
+  - type: Puller
+  - type: CanHostGuardian
+  - type: NpcFactionMember
+    factions:
+    - Cat
+    - Slugcat
+    - NanoTrasen
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-slugcat-name
+    description: ghost-role-information-slugcat-description
+  - type: GhostTakeoverAvailable
+  - type: IdExaminable
+  - type: InteractionPopup
+    successChance: 0.7
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Tag
+    tags:
+    - VimPilot
+    - DoorBumpOpener
+
+- type: entity
+  name: NPC Slugcat Spawner
+  id: SlugcatAISpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+    - type: RandomSpawner
+      prototypes:
+        - MobSlugcat

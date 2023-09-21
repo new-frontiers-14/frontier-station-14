@@ -3,3 +3,6 @@ ghost-role-information-emotional-support-description = You're an emotional suppo
 
 ghost-role-information-clippy-name = Clippy
 ghost-role-information-clippy-description = The Station Representative loyal worker, smells like cardboard and papers.
+
+ghost-role-information-slugcat-name = Slugcat
+ghost-role-information-slugcat-description = You're a slugcat! a very smart creature capable of many things!
