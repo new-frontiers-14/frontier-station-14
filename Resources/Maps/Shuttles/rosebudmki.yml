@@ -6298,16 +6298,16 @@ entities:
           occludes: True
           ents:
           - 117
-          - 118
-          - 119
-          - 120
-          - 122
-          - 127
-          - 123
-          - 124
-          - 121
-          - 115
           - 382
+          - 118
+          - 115
+          - 121
+          - 124
+          - 123
+          - 127
+          - 122
+          - 120
+          - 119
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -8679,17 +8679,6 @@ entities:
       type: Transform
     - location: RosebudMKII
       type: WarpPoint
-- proto: WeaponAntiqueLaser
-  entities:
-  - uid: 382
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 114
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 90
@@ -8705,6 +8694,11 @@ entities:
   - uid: 94
     components:
     - pos: -11.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1128
+    components:
+    - pos: 0.5,7.5
       parent: 1
       type: Transform
 - proto: WeaponGrapplingGun
@@ -8724,6 +8718,22 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: WeaponLaserCannon
+  entities:
+  - uid: 382
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 114
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 1129
+    components:
+    - pos: -12.502871,4.957157
+      parent: 1
+      type: Transform
 - proto: WeaponLaserGun
   entities:
   - uid: 799

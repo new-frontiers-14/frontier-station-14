@@ -721,7 +721,8 @@ entities:
           1,-1:
             0: 65535
           -4,0:
-            0: 61423
+            0: 28655
+            1: 32768
           -2,-1:
             0: 65535
           -2,-2:
@@ -818,6 +819,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.823984
+          - 82.09976
           - 0
           - 0
           - 0
@@ -7918,8 +7934,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8968438
-        - 7.1357465
+        - 1.8977377
+        - 7.139109
         - 0
         - 0
         - 0
@@ -7938,15 +7954,15 @@ entities:
           ents:
           - 382
           - 115
-          - 121
-          - 124
-          - 123
-          - 127
-          - 122
-          - 120
-          - 119
-          - 118
           - 117
+          - 118
+          - 119
+          - 120
+          - 122
+          - 127
+          - 123
+          - 124
+          - 121
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -11181,17 +11197,6 @@ entities:
       type: Transform
     - location: RosebudMKII
       type: WarpPoint
-- proto: WeaponAntiqueLaser
-  entities:
-  - uid: 382
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 114
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 1366
@@ -11207,6 +11212,11 @@ entities:
   - uid: 1368
     components:
     - pos: -11.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1647
+    components:
+    - pos: 0.5,7.5
       parent: 1
       type: Transform
 - proto: WeaponGrapplingGun
@@ -11226,6 +11236,22 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: WeaponLaserCannon
+  entities:
+  - uid: 382
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 114
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 1648
+    components:
+    - pos: -12.4929285,4.9757543
+      parent: 1
+      type: Transform
 - proto: WeaponLaserGun
   entities:
   - uid: 799
