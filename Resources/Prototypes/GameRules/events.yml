@@ -1,14 +1,14 @@
-# - type: entity
-  # id: AnomalySpawn
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # weight: 10
-    # minimumPlayers: 110
-    # startDelay: 30
-    # duration: 35
-  # - type: AnomalySpawnRule
+- type: entity
+  id: AnomalySpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 10
+    startDelay: 30
+    duration: 35
+    minimumPlayers: 45
+  - type: AnomalySpawnRule
 
 # - type: entity
   # id: BluespaceArtifact
@@ -157,6 +157,8 @@
     - id: MobMouse1
       prob: 0.015
     - id: MobMouse2
+      prob: 0.015
+    - id: MobMothroach
       prob: 0.015
     - id: MobRatServant
       prob: 0.015
