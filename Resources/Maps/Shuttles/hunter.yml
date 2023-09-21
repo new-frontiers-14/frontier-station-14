@@ -57,93 +57,93 @@ entities:
             color: '#951710FF'
             id: BrickTileDarkCornerNe
           decals:
-            60: 2,-4
-            61: 3,-5
-            82: 1,0
+            1: 2,-4
+            2: 3,-5
+            20: 1,0
         - node:
             color: '#951710FF'
             id: BrickTileDarkCornerNw
           decals:
-            59: -2,-4
-            62: -3,-5
-            83: -1,0
+            0: -2,-4
+            3: -3,-5
+            21: -1,0
         - node:
             color: '#951710FF'
             id: BrickTileDarkCornerSe
           decals:
-            74: 3,-8
-            97: 1,-2
+            13: 3,-8
+            31: 1,-2
         - node:
             color: '#951710FF'
             id: BrickTileDarkCornerSw
           decals:
-            73: -3,-8
-            96: -1,-2
+            12: -3,-8
+            30: -1,-2
         - node:
             color: '#951710FF'
             id: BrickTileDarkEndS
           decals:
-            100: 0,-9
+            34: 0,-9
         - node:
             color: '#951710FF'
             id: BrickTileDarkInnerNe
           decals:
-            64: 2,-5
-            91: 0,-4
+            5: 2,-5
+            25: 0,-4
         - node:
             color: '#951710FF'
             id: BrickTileDarkInnerNw
           decals:
-            63: -2,-5
-            90: 0,-4
+            4: -2,-5
+            24: 0,-4
         - node:
             color: '#951710FF'
             id: BrickTileDarkInnerSe
           decals:
-            93: 0,-2
-            99: 0,-8
+            27: 0,-2
+            33: 0,-8
         - node:
             color: '#951710FF'
             id: BrickTileDarkInnerSw
           decals:
-            92: 0,-2
-            98: 0,-8
+            26: 0,-2
+            32: 0,-8
         - node:
             color: '#951710FF'
             id: BrickTileDarkLineE
           decals:
-            77: 3,-7
-            78: 3,-6
-            88: 0,-3
-            95: 1,-1
+            16: 3,-7
+            17: 3,-6
+            22: 0,-3
+            29: 1,-1
         - node:
             color: '#951710FF'
             id: BrickTileDarkLineN
           decals:
-            65: -1,-4
-            67: 1,-4
-            81: 0,0
+            6: -1,-4
+            7: 1,-4
+            19: 0,0
         - node:
             color: '#951710FF'
             id: BrickTileDarkLineS
           decals:
-            68: -2,-8
-            69: -1,-8
-            71: 1,-8
-            72: 2,-8
+            8: -2,-8
+            9: -1,-8
+            10: 1,-8
+            11: 2,-8
         - node:
             color: '#951710FF'
             id: BrickTileDarkLineW
           decals:
-            75: -3,-7
-            76: -3,-6
-            89: 0,-3
-            94: -1,-1
+            14: -3,-7
+            15: -3,-6
+            23: 0,-3
+            28: -1,-1
         - node:
             color: '#951710FF'
             id: WarnBoxGreyscale
           decals:
-            79: 0,-6
+            18: 0,-6
       type: DecalGrid
     - version: 2
       data:
@@ -1784,6 +1784,25 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
+- proto: PaperCaptainsThoughts
+  entities:
+  - uid: 341
+    components:
+    - pos: 2.2730522,-7.3321037
+      parent: 1
+      type: Transform
+  - uid: 342
+    components:
+    - pos: 2.3885956,-7.4766135
+      parent: 1
+      type: Transform
+- proto: PaperCNCSheet
+  entities:
+  - uid: 343
+    components:
+    - pos: 2.5474675,-7.462162
+      parent: 1
+      type: Transform
 - proto: PortableGeneratorPacman
   entities:
   - uid: 218
@@ -2044,6 +2063,13 @@ entities:
   - uid: 248
     components:
     - pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 339
+    components:
+    - pos: 0.5,-6.5
       parent: 1
       type: Transform
 - proto: SubstationWallBasic
@@ -2546,6 +2572,24 @@ entities:
   - uid: 330
     components:
     - pos: -4.5,-7.5
+      parent: 1
+      type: Transform
+  - uid: 337
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 4.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 338
+    components:
+    - pos: -3.5,-2.5
+      parent: 1
+      type: Transform
+- proto: WarpPointShip
+  entities:
+  - uid: 340
+    components:
+    - pos: 0.5,-7.5
       parent: 1
       type: Transform
 - proto: WeaponMakeshiftLaser
