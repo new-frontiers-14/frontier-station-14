@@ -637,7 +637,8 @@ entities:
           1,-1:
             0: 65535
           -4,0:
-            0: 61423
+            0: 28655
+            1: 32768
           -2,-1:
             0: 65535
           -2,-2:
@@ -734,6 +735,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.823984
+          - 82.09976
           - 0
           - 0
           - 0
@@ -5055,12 +5071,6 @@ entities:
     - pos: 8.5,4.5
       parent: 1
       type: Transform
-  - uid: 969
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -1.5,-0.5
-      parent: 1
-      type: Transform
   - uid: 970
     components:
     - rot: -1.5707963267948966 rad
@@ -5071,12 +5081,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 974
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 2.5,-0.5
       parent: 1
       type: Transform
 - proto: FirelockGlass
@@ -6110,6 +6114,21 @@ entities:
     - pos: -13.5,5.5
       parent: 1
       type: Transform
+  - uid: 430
+    components:
+    - pos: 5.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 432
+    components:
+    - pos: -4.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 434
+    components:
+    - pos: 5.5,2.5
+      parent: 1
+      type: Transform
   - uid: 504
     components:
     - pos: 14.5,4.5
@@ -6128,6 +6147,21 @@ entities:
   - uid: 824
     components:
     - pos: -13.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 969
+    components:
+    - pos: -4.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 971
+    components:
+    - pos: -4.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 974
+    components:
+    - pos: 0.5,-0.5
       parent: 1
       type: Transform
   - uid: 1355
@@ -6245,8 +6279,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8968438
-        - 7.1357465
+        - 1.8977377
+        - 7.139109
         - 0
         - 0
         - 0
@@ -6263,17 +6297,17 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 382
-          - 115
-          - 121
-          - 124
-          - 123
-          - 127
-          - 122
-          - 120
-          - 119
-          - 118
           - 117
+          - 118
+          - 119
+          - 120
+          - 122
+          - 127
+          - 123
+          - 124
+          - 121
+          - 115
+          - 382
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -6446,6 +6480,16 @@ entities:
   - uid: 47
     components:
     - pos: -1.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 428
+    components:
+    - pos: -1.5,-0.5
+      parent: 1
+      type: Transform
+  - uid: 429
+    components:
+    - pos: 2.5,-0.5
       parent: 1
       type: Transform
 - proto: PlushieLizard
@@ -8705,35 +8749,34 @@ entities:
       type: Transform
 - proto: Window
   entities:
-  - uid: 428
-    components:
-    - pos: -4.5,0.5
-      parent: 1
-      type: Transform
-  - uid: 429
-    components:
-    - pos: 5.5,2.5
-      parent: 1
-      type: Transform
-  - uid: 430
-    components:
-    - pos: -4.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 432
-    components:
-    - pos: 5.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 434
+  - uid: 1122
     components:
     - pos: -4.5,2.5
       parent: 1
       type: Transform
-  - uid: 971
+  - uid: 1123
     components:
-    - rot: 3.141592653589793 rad
-      pos: 0.5,-0.5
+    - pos: -4.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1124
+    components:
+    - pos: -4.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 1125
+    components:
+    - pos: 5.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 1126
+    components:
+    - pos: 5.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1127
+    components:
+    - pos: 0.5,-0.5
       parent: 1
       type: Transform
 - proto: Wrench
