@@ -18,6 +18,10 @@ public sealed class ListeningSystem : EntitySystem
 
     private void OnSpeak(EntitySpokeEvent ev)
     {
+        if (ev.Canilunzt)
+        {
+            return;
+        }
         PingListeners(ev.Source, ev.Message, ev.ObfuscatedMessage);
     }
 
