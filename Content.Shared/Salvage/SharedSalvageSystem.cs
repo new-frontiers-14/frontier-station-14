@@ -34,6 +34,8 @@ public abstract class SharedSalvageSystem : EntitySystem
                     ("structure", _loc.GetEntityData(proto).Name));
             case SalvageMissionType.Elimination:
                 return Loc.GetString("salvage-expedition-desc-elimination");
+            case SalvageMissionType.Annihilation:
+                return Loc.GetString("salvage-expedition-desc-annihilation");
             default:
                 throw new NotImplementedException();
         }
@@ -229,6 +231,11 @@ public enum SalvageMissionType : byte
     /// Kill a large creature in a dungeon.
     /// </summary>
     Elimination,
+
+    /// <summary>
+    /// Annihilate a station using its nuclear self-destruct capabilities.
+    /// </summary>
+    Annihilation,
 }
 
 [Serializable, NetSerializable]
