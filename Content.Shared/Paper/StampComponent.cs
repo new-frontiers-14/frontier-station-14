@@ -59,6 +59,9 @@ public sealed partial class StampComponent : Component
     [DataField("stampedPersonal")]
     public bool StampedPersonal = false;
 
+    [DataField("stampedBorderless")]
+    public bool StampedBorderless = false;
+
     [ViewVariables]
     public EntityUid? StampedIdUser = null;
 
