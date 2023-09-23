@@ -133,6 +133,9 @@ namespace Content.Server.Paper
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
+                var actionOther = "stamps";
+                var actionSelf = "stamp";
+
                 if (stampComp.StampedPersonal)
                 {
                     stampComp.StampedIdUser = args.User;
@@ -149,15 +152,18 @@ namespace Content.Server.Paper
                     //string stampedName = userJob + " - " + userName;
                     string stampedName = userName;
                     stampComp.StampedName = stampedName;
+
+                    actionOther = "signs";
+                    actionSelf = "sign";
                 }
 
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                        ("action", actionOther), ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
                 _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
                 var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                        ("target", args.Target), ("stamp", args.Used));
+                        ("action", actionSelf), ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
