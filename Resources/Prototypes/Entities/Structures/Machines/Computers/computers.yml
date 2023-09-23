@@ -317,6 +317,9 @@
     color: "#1f8c28"
   - type: Computer
     board: StationRecordsComputerCircuitboard
+  - type: GuideHelp
+    guides:
+    - DNA
 
 - type: entity
   parent: BaseComputer
@@ -391,6 +394,9 @@
     radius: 1.5
     energy: 1.6
     color: "#b53ca1"
+  - type: GuideHelp
+    guides:
+    - Science
 
 - type: entity
   parent: BaseComputer
@@ -529,9 +535,10 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
   - type: AccessReader
-    access: [[ "Command" ]]
+    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
+    global: true #SR WILL NOT BE IGNORED
   - type: ActivatableUI
     key: enum.CommunicationsConsoleUiKey.Key
   - type: UserInterface
@@ -674,14 +681,32 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Cargo"]]
+  - type: GuideHelp
+    guides:
+    - Cargo
 
 - type: entity
   id: ComputerCargoOrders
-  parent: BaseComputer
+  parent: BaseStructureComputer
   name: cargo request computer
   description: Used to order supplies and approve requests.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
   - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -698,12 +723,16 @@
     interfaces:
     - key: enum.CargoConsoleUiKey.Orders
       type: CargoOrderConsoleBoundUserInterface
-  - type: Computer
-    board: CargoRequestComputerCircuitboard
+  - type: LitOnPowered
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
   #- type: AccessReader
     #access: [["Cargo"]]
   - type: DeviceNetwork
@@ -715,6 +744,15 @@
     range: 200
     ports:
       - OrderSender
+  - type: GuideHelp
+    guides:
+    - Cargo
+  - type: Anchorable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
 
 - type: entity
   id: ComputerCargoBounty
@@ -945,6 +983,9 @@
     color: "#b89f25"
   - type: MarketModifier # In the case someone got a computer board from QM locker, they can use it to sell on a ship if they have the grids, just to make sure its useless.
     mod: 0
+  - type: GuideHelp
+    guides:
+    - Cargo
 
 - type: entity
   parent: BaseComputer

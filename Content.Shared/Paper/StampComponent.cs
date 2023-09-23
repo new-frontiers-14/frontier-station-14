@@ -10,7 +10,7 @@ namespace Content.Shared.Paper;
 ///     equivalent in the component.
 /// </summary>
 [DataDefinition, Serializable, NetSerializable]
-public struct StampDisplayInfo
+public partial struct StampDisplayInfo
 {
     StampDisplayInfo(string s)
     {
@@ -22,10 +22,13 @@ public struct StampDisplayInfo
 
     [DataField("stampedColor")]
     public Color StampedColor;
+
+    [DataField("stampedPersonal")]
+    public bool StampedPersonal = false;
 };
 
 [RegisterComponent]
-public sealed class StampComponent : Component
+public sealed partial class StampComponent : Component
 {
     /// <summary>
     ///     The loc string name that will be stamped to the piece of paper on examine.
@@ -49,4 +52,17 @@ public sealed class StampComponent : Component
     {
         Params = AudioParams.Default.WithVolume(-2f).WithMaxDistance(5f)
     };
+
+    /// <summary>
+    /// The stamp using the person name on it
+    /// </summary>
+    [DataField("stampedPersonal")]
+    public bool StampedPersonal = false;
+
+    [ViewVariables]
+    public EntityUid? StampedIdUser = null;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("nameSetUser")]
+    public bool NameSetUser { get; set; }
 }

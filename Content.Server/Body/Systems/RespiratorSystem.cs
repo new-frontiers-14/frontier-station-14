@@ -291,7 +291,7 @@ namespace Content.Server.Body.Systems
             component.IsReceivingCPR = true;
             component.CPRPlayingStream = _audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
 
-            var args = new DoAfterArgs(user, Math.Min(component.CycleDelay * 2, 6f), new CPRDoAfterEvent(), uid, target: uid)
+            var args = new DoAfterArgs(EntityManager, user, Math.Min(component.CycleDelay * 2, 6f), new CPRDoAfterEvent(), uid, target: uid)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

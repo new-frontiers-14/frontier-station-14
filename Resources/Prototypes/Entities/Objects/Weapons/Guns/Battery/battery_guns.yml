@@ -59,8 +59,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
-    fireCost: 62.5
+    proto: RedLaser
+    fireCost: 83.3
+  - type: Item
+    size: 15
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -86,7 +88,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: RedLightLaser
     fireCost: 62.5
   - type: Battery
     maxCharge: 500
@@ -108,13 +110,15 @@
       shader: unshaded
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Item
+    size: 30
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 62.5
+    proto: RedMediumLaser
+    fireCost: 55.5
 
 - type: entity
   name: practice laser rifle
@@ -235,7 +239,11 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 250
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
+
 
 - type: entity
   name: x-ray cannon
@@ -258,12 +266,15 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 100
+    fireCost: 200
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
   - type: Appearance
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
 
 - type: entity
   name: disabler
@@ -299,6 +310,9 @@
       steps: 5
       zeroVisible: true
     - type: Appearance
+    - type: GuideHelp
+      guides:
+      - Security
 
 - type: entity
   name: practice disabler
@@ -420,7 +434,7 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -429,6 +443,63 @@
   - type: StaticPrice
     price: 63
 
+- type: entity
+  name: C.H.I.M.P. handcannon
+  parent: BaseWeaponBatterySmall
+  id: WeaponPistolCHIMP
+  description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      visible: false
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: AnomalousParticleDeltaStrong
+    fireCost: 100 
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+  - type: Construction
+    graph: UpgradeWeaponPistolCHIMP
+    node: start
+      
+- type: entity
+  name: experimental C.H.I.M.P. handcannon
+  parent: WeaponPistolCHIMP
+  id: WeaponPistolCHIMPUpgraded
+  description: This C.H.I.M.P. seems to have a greater punch than is usual...
+  components: 
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleOmegaStrong
+      fireCost: 100     
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
 
 - type: entity
   name: Eye of a behonker

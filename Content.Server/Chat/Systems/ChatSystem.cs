@@ -1,10 +1,10 @@
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
 using Content.Server.Players;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -12,6 +12,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -29,6 +30,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Shared.Inventory;
+using Content.Shared.Hands.EntitySystems;
+using Content.Server.PowerCell;
+using Content.Server.VulpLangauge;
 
 namespace Content.Server.Chat.Systems;
 
@@ -52,6 +57,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly PowerCellSystem _cell = default!;
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -199,8 +207,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
         bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
+        // Capitalizing the word I only happens in English, so we check language here
+        bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
+            || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
 
-        message = SanitizeInGameICMessage(source, message, out var emoteStr, shouldCapitalize, shouldPunctuate);
+        message = SanitizeInGameICMessage(source, message, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI);
 
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message && emoteStr != null)
@@ -384,9 +395,24 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("fontSize", speech.FontSize),
             ("message", FormattedMessage.EscapeText(message)));
 
-        SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range);
+        var Canilunzt = false;
+        var CanilunztMessage = "";
+        var CanilunztwrappedMessage = "";
+        if (IsCanilunztSpeaker(source) && !HasCanilunztTranslator(source))
+        {
+            Canilunzt = true;
+            CanilunztMessage = MessagetoCanilunzt(message);
+            CanilunztwrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+            ("entityName", name),
+            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+            ("fontType", speech.FontId),
+            ("fontSize", speech.FontSize),
+            ("message", FormattedMessage.EscapeText(CanilunztMessage)));
+        }
 
-        var ev = new EntitySpokeEvent(source, message, null, null);
+        SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range, Canilunzt, CanilunztMessage, CanilunztwrappedMessage);
+
+        var ev = new EntitySpokeEvent(source, message, null, null, Canilunzt);
         RaiseLocalEvent(source, ev, true);
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
@@ -457,6 +483,27 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
             ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
 
+        var canilunzt = false;
+        var canilunztmessage = "";
+        var canilunztobfuscatedMessage = "";
+        var canilunztwrappedMessage = "";
+        var canilunztwrappedobfuscatedMessage = "";
+        var canilunztwrappedUnknownMessage = "";
+        if (IsCanilunztSpeaker(source) && !HasCanilunztTranslator(source))
+        {
+            canilunzt = true;
+            canilunztmessage = MessagetoCanilunzt(message);
+            canilunztobfuscatedMessage = ObfuscateMessageReadability(canilunztmessage, 0.2f);
+            canilunztwrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
+                ("entityName", name), ("message", FormattedMessage.EscapeText(canilunztmessage)));
+
+            canilunztwrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
+                ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(canilunztobfuscatedMessage)));
+
+            canilunztwrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
+                ("message", FormattedMessage.EscapeText(canilunztobfuscatedMessage)));
+        }
+
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
         {
@@ -469,6 +516,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
+            if (canilunzt && !IsCanilunztListener(listener))
+            {
+                message = canilunztmessage;
+                obfuscatedMessage = canilunztobfuscatedMessage;
+                wrappedMessage = canilunztwrappedMessage;
+                wrappedobfuscatedMessage = canilunztwrappedobfuscatedMessage;
+                wrappedUnknownMessage = canilunztwrappedUnknownMessage;
+            }
+
             if (data.Range <= WhisperClearRange)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, source, false, session.ConnectedClient);
             //If listener is too far, they only hear fragments of the message
@@ -480,10 +536,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedUnknownMessage, source, false, session.ConnectedClient);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, source, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), MessageRangeHideChatForReplay(range)));
 
-        var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage);
+        var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage, canilunzt);
         RaiseLocalEvent(source, ev, true);
+
         if (!hideLog)
             if (originalMessage == message)
             {
@@ -528,7 +585,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range);
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, false, "", "");
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -555,7 +612,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
 
-        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal);
+        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, false, "", "");
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -581,7 +638,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Dead chat from {player:Player}: {message}");
         }
 
-        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, false, clients.ToList());
+        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList());
 
     }
     #endregion
@@ -636,7 +693,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range)
+    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, bool Canilunzt, string CanilunztMessage, string CanilunztwrappedMessage)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -644,10 +701,23 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
+
+            EntityUid listener;
+
+            if (session.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+            listener = session.AttachedEntity.Value;
+
+            if (Canilunzt && !IsCanilunztListener(listener))
+            {
+                message = CanilunztMessage;
+                wrappedMessage = CanilunztwrappedMessage;
+            }
+
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.ConnectedClient);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, source, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), MessageRangeHideChatForReplay(range)));
     }
 
     /// <summary>
@@ -677,11 +747,13 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // ReSharper disable once InconsistentNaming
-    private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false)
+    private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
         var newMessage = message.Trim();
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
+        if (capitalizeTheWordI)
+            newMessage = SanitizeMessageCapitalizeTheWordI(newMessage, "i");
         if (punctuate)
             newMessage = SanitizeMessagePeriod(newMessage);
 
@@ -791,6 +863,85 @@ public sealed partial class ChatSystem : SharedChatSystem
         return modifiedMessage.ToString();
     }
 
+    private static readonly IReadOnlyList<string> CanilunztSyllables = new List<string>{
+        "rur","ya","cen","rawr","bar","kuk","tek","qat","uk","wu","vuh","tah","tch","schz","auch","ist","ein","entch","zwichs","tut","mir","wo","bis","es","vor","nic","gro","lll","enem","zandt","tzch","noch","hel","ischt","far","wa","baram","iereng","tech","lach","sam","mak","lich","gen","or","ag","eck","gec","stag","onn","bin","ket","jarl","vulf","einech","cresthz","azunein","ghzth"
+    }.AsReadOnly();
+
+    public string MessagetoCanilunzt(string message)
+    {
+        var msg = message;
+        var words = message.Split();
+        var accentedMessage = new StringBuilder(message.Length + 2);
+        for (var i = 0; i < words.Length; i++)
+        {
+            accentedMessage.Append(_random.Pick(CanilunztSyllables));
+            if (i < words.Length - 1)
+                accentedMessage.Append(' ');
+        }
+        accentedMessage.Append('.');
+        msg = accentedMessage.ToString();
+
+        return msg;
+    }
+
+    public bool IsCanilunztSpeaker(EntityUid source)
+    {
+        if (HasComp<VulpLanguageSpeakerComponent>(source))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsCanilunztListener(EntityUid source)
+    {
+        if (HasComp<VulpLangaugeListenerComponent>(source) || HasComp<GhostComponent>(source))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckItemForCanilunztTranslator(EntityUid source)
+    {
+        if (HasComp<VulpTranslatorComponent>(source))
+        {
+            if (_cell.TryUseActivatableCharge(source))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool HasCanilunztTranslator(EntityUid source)
+    {
+        foreach (var item in _handsSystem.EnumerateHeld(source))
+        {
+            if (CheckItemForCanilunztTranslator(item))
+            {
+                return true;
+            }
+        }
+
+        if (_inventorySystem.TryGetSlotEntity(source, "pocket1", out var item2))
+            {
+                if (item2 is { Valid : true } stationUid && CheckItemForCanilunztTranslator(stationUid))
+                {
+                    return true;
+                }
+            }
+        else if (_inventorySystem.TryGetSlotEntity(source, "pocket2", out var item3))
+            {
+                if (item3 is { Valid : true } stationUid && CheckItemForCanilunztTranslator(stationUid))
+                {
+                    return true;
+                }
+            }
+
+        return false;
+    }
+
     #endregion
 }
 
@@ -837,6 +988,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public readonly EntityUid Source;
     public readonly string Message;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly bool Canilunzt; // If is a Canilunzt Message
 
     /// <summary>
     ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
@@ -844,12 +996,13 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
-    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage)
+    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage, bool canilunzt)
     {
         Source = source;
         Message = message;
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        Canilunzt = canilunzt;
     }
 }
 

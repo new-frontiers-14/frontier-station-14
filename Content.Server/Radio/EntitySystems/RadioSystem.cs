@@ -27,7 +27,6 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
 
     // set used to prevent radio feedback loops.
@@ -42,6 +41,10 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
     {
+        if (args.Canilunzt)
+        {
+            return;
+        }
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
             SendRadioMessage(uid, args.Message, args.Channel, uid);
@@ -88,7 +91,7 @@ public sealed class RadioSystem : EntitySystem
             ChatChannel.Radio,
             message,
             wrappedMessage,
-            EntityUid.Invalid);
+            NetEntity.Invalid);
         var chatMsg = new MsgChatMessage { Message = chat };
         var ev = new RadioReceiveEvent(message, messageSource, channel, chatMsg);
 

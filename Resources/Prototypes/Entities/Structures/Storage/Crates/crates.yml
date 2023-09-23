@@ -122,6 +122,47 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/surgery.rsi
 
+- type: entity
+  parent: CrateGeneric
+  id: CrateWeb
+  name: web crate
+  components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/web.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/web.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Construction
+    graph: WebStructures
+    node: crate
+  - type: Damageable
+    damageModifierSet: Web
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWebSilk:
+            min: 3
+            max: 5
+  - type: EntityStorage
+    closeSound:
+      path: /Audio/Effects/rustle1.ogg
+    openSound:
+      path: /Audio/Effects/rustle2.ogg
+
 # Secure Crates
 
 - type: entity
@@ -145,8 +186,8 @@
     sprite: Structures/Storage/Crates/engicrate_secure.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/engicrate_secure.rsi
-  - type: AccessReader
-    access: [["Engineering"]]
+#  - type: AccessReader
+#    access: [["Engineering"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -157,8 +198,8 @@
     sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
-  - type: AccessReader
-    access: [["Medical"]]
+#  - type: AccessReader
+#    access: [["Medical"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -169,8 +210,8 @@
       sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     - type: Sprite
       sprite: Structures/Storage/Crates/chemcrate_secure.rsi
-    - type: AccessReader
-      access: [["Chemistry"]]
+#    - type: AccessReader
+#      access: [["Chemistry"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -191,8 +232,8 @@
     sprite: Structures/Storage/Crates/scicrate_secure.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/scicrate_secure.rsi
-  - type: AccessReader
-    access: [["Research"]]
+#  - type: AccessReader
+#    access: [["Research"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -203,8 +244,8 @@
     sprite: Structures/Storage/Crates/plasma.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/plasma.rsi
-  - type: AccessReader
-    access: [["Engineering"]]
+#  - type: AccessReader
+#    access: [["Engineering"], ["Research"], ["Chemistry"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -225,8 +266,8 @@
     sprite: Structures/Storage/Crates/hydro_secure.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/hydro_secure.rsi
-  - type: AccessReader
-    access: [["Hydroponics"]]
+#  - type: AccessReader
+#    access: [["Hydroponics"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -250,7 +291,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/command.rsi
   - type: AccessReader
-    access: [["Command"]]
+    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
 
 - type: entity
   parent: CrateGeneric
@@ -516,6 +557,5 @@
     sprite: Structures/Storage/Crates/trashcart_jani.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/trashcart_jani.rsi
-  - type: AccessReader
-    access: [["Janitor"]]
-
+#  - type: AccessReader
+#    access: [["Janitor"]]
