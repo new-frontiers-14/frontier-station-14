@@ -76,11 +76,11 @@ signal-port-description-logic-input-a = First input of a logic gate.
 signal-port-name-logic-input-b = Input B
 signal-port-description-logic-input-b = Second input of a logic gate.
 
+signal-port-name-logic-input = Input
+signal-port-description-logic-input = Input to the edge detector, cannot be a pulse signal.
+
 signal-port-name-space-artillery-fire = Fire
 signal-port-description-space-artillery-fire = Controls Space Artillery's firing mechanism.
 
 signal-port-name-space-artillery-safety = Safety
 signal-port-description-space-artillery-safety = Toggles Space Artillery's safety mechanism.
-
-signal-port-name-logic-input = Input
-signal-port-description-logic-input = Input to the edge detector, cannot be a pulse signal.
