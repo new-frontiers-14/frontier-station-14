@@ -16,6 +16,7 @@ using Robust.Shared.Audio;
 using Content.Server.Access.Systems;
 using Content.Shared.Hands;
 using static Content.Shared.Paper.SharedPaperComponent;
+using Content.Shared.Verbs;
 
 namespace Content.Server.Paper
 {
@@ -46,6 +47,7 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
             SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
+            SubscribeLocalEvent<StampComponent, GetVerbsEvent<Verb>>(OnVerb);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -260,6 +262,74 @@ namespace Content.Server.Paper
                 string stampedName = userName;
                 stampComp.StampedName = stampedName;
             }
+        }
+
+        private void OnVerb(EntityUid uid, StampComponent component, GetVerbsEvent<Verb> args)
+        {
+            // standard interaction checks
+            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+                return;
+
+            args.Verbs.UnionWith(new[]
+            {
+                CreateVerb(uid, component, args.User, PenMode.PenWrite),
+                CreateVerb(uid, component, args.User, PenMode.PenSign)
+            });
+        }
+
+        private Verb CreateVerb(EntityUid uid, StampComponent component, EntityUid userUid, PenMode mode)
+        {
+            return new Verb()
+            {
+                Text = GetModeName(mode),
+                Disabled = component.Mode == mode,
+                Priority = -(int) mode, // sort them in descending order
+                Category = VerbCategory.PenUse,
+                Act = () => SetCamera(uid, mode, userUid, component)
+            };
+        }
+
+        private string GetModeName(PenMode mode)
+        {
+            string name;
+            switch (mode)
+            {
+                case PenMode.PenWrite:
+                    name = "bodycam-power-off";
+                    break;
+                case PenMode.PenSign:
+                    name = "bodycam-power-on";
+                    break;
+                default:
+                    return "";
+            }
+
+            return Loc.GetString(name);
+        }
+
+        public void SetCamera(EntityUid uid, PenMode mode, EntityUid? userUid = null,
+          StampComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            component.Mode = mode;
+
+            if (userUid != null)
+            {
+                var msg = Loc.GetString("bodycam-power-state", ("mode", GetModeName(mode)));
+                _popupSystem.PopupEntity(msg, uid, userUid.Value);
+            }
+        }
+
+        public PenStatus? GetPenState(EntityUid uid, StampComponent? pen = null, TransformComponent? transform = null)
+        {
+            if (!Resolve(uid, ref pen, ref transform))
+                return null;
+
+            // finally, form pen status
+            var status = new PenStatus(GetNetEntity(uid));
+            return status;
         }
     }
 
