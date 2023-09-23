@@ -83,7 +83,7 @@ namespace Content.Shared.Verbs
         public static readonly VerbCategory PowerBodycam =
              new("verb-categories-power-bodycam", "/Textures/Interface/VerbIcons/smite.svg.192dpi.png");
 
-        public static readonly VerbCategory PenUse = new("verb-categories-pen", null);
+        public static readonly VerbCategory Pen = new("verb-categories-pen", null);
 
         public static readonly VerbCategory Lever = new("verb-categories-lever", null);
 

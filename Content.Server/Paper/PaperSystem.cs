@@ -47,7 +47,8 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
             SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
-            SubscribeLocalEvent<StampComponent, GetVerbsEvent<Verb>>(OnVerb);
+
+            //SubscribeLocalEvent<PenComponent, GetVerbsEvent<Verb>>(OnVerb);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -264,73 +265,73 @@ namespace Content.Server.Paper
             }
         }
 
-        private void OnVerb(EntityUid uid, StampComponent component, GetVerbsEvent<Verb> args)
-        {
-            // standard interaction checks
-            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-                return;
+        //private void OnVerb(EntityUid uid, PenComponent component, GetVerbsEvent<Verb> args)
+        //{
+        //    // standard interaction checks
+        //    if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+        //        return;
 
-            args.Verbs.UnionWith(new[]
-            {
-                CreateVerb(uid, component, args.User, PenMode.PenWrite),
-                CreateVerb(uid, component, args.User, PenMode.PenSign)
-            });
-        }
+        //    args.Verbs.UnionWith(new[]
+        //    {
+        //        CreateVerb(uid, component, args.User, PenMode.PenWrite),
+        //        CreateVerb(uid, component, args.User, PenMode.PenSign)
+        //    });
+        //}
 
-        private Verb CreateVerb(EntityUid uid, StampComponent component, EntityUid userUid, PenMode mode)
-        {
-            return new Verb()
-            {
-                Text = GetModeName(mode),
-                Disabled = component.Mode == mode,
-                Priority = -(int) mode, // sort them in descending order
-                Category = VerbCategory.PenUse,
-                Act = () => SetCamera(uid, mode, userUid, component)
-            };
-        }
+        //private Verb CreateVerb(EntityUid uid, PenComponent component, EntityUid userUid, PenMode mode)
+        //{
+        //    return new Verb()
+        //    {
+        //        Text = GetModeName(mode),
+        //        Disabled = component.PenMode == mode,
+        //        Priority = -(int) mode, // sort them in descending order
+        //        Category = VerbCategory.Pen,
+        //        Act = () => SetPen(uid, mode, userUid, component)
+        //    };
+        //}
 
-        private string GetModeName(PenMode mode)
-        {
-            string name;
-            switch (mode)
-            {
-                case PenMode.PenWrite:
-                    name = "bodycam-power-off";
-                    break;
-                case PenMode.PenSign:
-                    name = "bodycam-power-on";
-                    break;
-                default:
-                    return "";
-            }
+        //private string GetModeName(PenMode mode)
+        //{
+        //    string name;
+        //    switch (mode)
+        //    {
+        //        case PenMode.PenWrite:
+        //            name = "pen-mode-write";
+        //            break;
+        //        case PenMode.PenSign:
+        //            name = "pen-mode-sign";
+        //            break;
+        //        default:
+        //            return "";
+        //    }
 
-            return Loc.GetString(name);
-        }
+        //    return Loc.GetString(name);
+        //}
 
-        public void SetCamera(EntityUid uid, PenMode mode, EntityUid? userUid = null,
-          StampComponent? component = null)
-        {
-            if (!Resolve(uid, ref component))
-                return;
+        //public void SetPen(EntityUid uid, PenMode mode, EntityUid? userUid = null,
+        //  PenComponent? component = null)
+        //{
+        //    if (!Resolve(uid, ref component))
+        //        return;
 
-            component.Mode = mode;
+        //    component.PenMode = mode;
 
-            if (userUid != null)
-            {
-                var msg = Loc.GetString("bodycam-power-state", ("mode", GetModeName(mode)));
-                _popupSystem.PopupEntity(msg, uid, userUid.Value);
-            }
-        }
+        //    if (userUid != null)
+        //    {
+        //        var msg = Loc.GetString("pen-mode-state", ("mode", GetModeName(mode)));
+        //        _popupSystem.PopupEntity(msg, uid, userUid.Value);
+        //    }
+        //}
 
-        public PenStatus? GetPenState(EntityUid uid, StampComponent? pen = null, TransformComponent? transform = null)
-        {
-            if (!Resolve(uid, ref pen, ref transform))
-                return null;
+        //public PenStatus? GetPenState(EntityUid uid, PenComponent? pen = null, TransformComponent? transform = null)
+        //{
+        //    if (!Resolve(uid, ref pen, ref transform))
+        //        return null;
 
-            // finally, form pen status
-            var status = new PenStatus(GetNetEntity(uid));
-            return status;
-        }
+        //    // finally, form pen status
+        //    var status = new PenStatus(GetNetEntity(uid));
+        //    return status;
+        //}
     }
 
     /// <summary>
