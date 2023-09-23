@@ -172,7 +172,7 @@ namespace Content.Server.Paper
             {
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor,
-                StampedPersonal = stamp.StampedPersonal
+                StampedBorderless = stamp.StampedBorderless
             };
         }
 
