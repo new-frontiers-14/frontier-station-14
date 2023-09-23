@@ -1,7 +1,5 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Server._NF.Bodycam;
-using Content.Server.SurveillanceCamera;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Bodycam
 {
