@@ -48,7 +48,7 @@ namespace Content.Server.Paper
 
             SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
 
-            //SubscribeLocalEvent<PenComponent, GetVerbsEvent<Verb>>(OnVerb);
+            SubscribeLocalEvent<PenComponent, GetVerbsEvent<Verb>>(OnVerb);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -109,17 +109,25 @@ namespace Content.Server.Paper
 
         private void OnInteractUsing(EntityUid uid, PaperComponent paperComp, InteractUsingEvent args)
         {
-            if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
+            // If a pen, attempt to use on paper
+            if (TryComp<PenComponent>(args.Used, out var penComp))
             {
-                var writeEvent = new PaperWriteEvent(uid, args.User);
-                RaiseLocalEvent(args.Used, ref writeEvent);
-                if (!TryComp<ActorComponent>(args.User, out var actor))
-                    return;
+                // If a pen in write mod, write
+                if (penComp.Pen == PenMode.PenWrite)
+                {
+                    if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
+                    {
+                        var writeEvent = new PaperWriteEvent(uid, args.User);
+                        RaiseLocalEvent(args.Used, ref writeEvent);
+                        if (!TryComp<ActorComponent>(args.User, out var actor))
+                            return;
 
-                paperComp.Mode = PaperAction.Write;
-                _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
-                UpdateUserInterface(uid, paperComp, actor.PlayerSession);
-                return;
+                        paperComp.Mode = PaperAction.Write;
+                        _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
+                        UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+                        return;
+                    }
+                }
             }
 
             // If a stamp, attempt to stamp paper
@@ -265,73 +273,73 @@ namespace Content.Server.Paper
             }
         }
 
-        //private void OnVerb(EntityUid uid, PenComponent component, GetVerbsEvent<Verb> args)
-        //{
-        //    // standard interaction checks
-        //    if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-        //        return;
+        private void OnVerb(EntityUid uid, PenComponent component, GetVerbsEvent<Verb> args)
+        {
+            // standard interaction checks
+            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+                return;
 
-        //    args.Verbs.UnionWith(new[]
-        //    {
-        //        CreateVerb(uid, component, args.User, PenMode.PenWrite),
-        //        CreateVerb(uid, component, args.User, PenMode.PenSign)
-        //    });
-        //}
+            args.Verbs.UnionWith(new[]
+            {
+                CreateVerb(uid, component, args.User, PenMode.PenWrite),
+                CreateVerb(uid, component, args.User, PenMode.PenSign)
+            });
+        }
 
-        //private Verb CreateVerb(EntityUid uid, PenComponent component, EntityUid userUid, PenMode mode)
-        //{
-        //    return new Verb()
-        //    {
-        //        Text = GetModeName(mode),
-        //        Disabled = component.PenMode == mode,
-        //        Priority = -(int) mode, // sort them in descending order
-        //        Category = VerbCategory.Pen,
-        //        Act = () => SetPen(uid, mode, userUid, component)
-        //    };
-        //}
+        private Verb CreateVerb(EntityUid uid, PenComponent component, EntityUid userUid, PenMode mode)
+        {
+            return new Verb()
+            {
+                Text = GetModeName(mode),
+                Disabled = component.Pen == mode,
+                Priority = -(int) mode, // sort them in descending order
+                Category = VerbCategory.Pen,
+                Act = () => SetPen(uid, mode, userUid, component)
+            };
+        }
 
-        //private string GetModeName(PenMode mode)
-        //{
-        //    string name;
-        //    switch (mode)
-        //    {
-        //        case PenMode.PenWrite:
-        //            name = "pen-mode-write";
-        //            break;
-        //        case PenMode.PenSign:
-        //            name = "pen-mode-sign";
-        //            break;
-        //        default:
-        //            return "";
-        //    }
+        private string GetModeName(PenMode mode)
+        {
+            string name;
+            switch (mode)
+            {
+                case PenMode.PenWrite:
+                    name = "pen-mode-write";
+                    break;
+                case PenMode.PenSign:
+                    name = "pen-mode-sign";
+                    break;
+                default:
+                    return "";
+            }
 
-        //    return Loc.GetString(name);
-        //}
+            return Loc.GetString(name);
+        }
 
-        //public void SetPen(EntityUid uid, PenMode mode, EntityUid? userUid = null,
-        //  PenComponent? component = null)
-        //{
-        //    if (!Resolve(uid, ref component))
-        //        return;
+        public void SetPen(EntityUid uid, PenMode mode, EntityUid? userUid = null,
+          PenComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
 
-        //    component.PenMode = mode;
+            component.Pen = mode;
 
-        //    if (userUid != null)
-        //    {
-        //        var msg = Loc.GetString("pen-mode-state", ("mode", GetModeName(mode)));
-        //        _popupSystem.PopupEntity(msg, uid, userUid.Value);
-        //    }
-        //}
+            if (userUid != null)
+            {
+                var msg = Loc.GetString("pen-mode-state", ("mode", GetModeName(mode)));
+                _popupSystem.PopupEntity(msg, uid, userUid.Value);
+            }
+        }
 
-        //public PenStatus? GetPenState(EntityUid uid, PenComponent? pen = null, TransformComponent? transform = null)
-        //{
-        //    if (!Resolve(uid, ref pen, ref transform))
-        //        return null;
+        public PenStatus? GetPenState(EntityUid uid, PenComponent? pen = null, TransformComponent? transform = null)
+        {
+            if (!Resolve(uid, ref pen, ref transform))
+                return null;
 
-        //    // finally, form pen status
-        //    var status = new PenStatus(GetNetEntity(uid));
-        //    return status;
-        //}
+            // finally, form pen status
+            var status = new PenStatus(GetNetEntity(uid));
+            return status;
+        }
     }
 
     /// <summary>
