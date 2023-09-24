@@ -258,7 +258,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-captain
     stampedColor: "#3681bb"
-    stampState: "paper_stamp-cap"
+    stampState: "paper_stamp-generic"
     stampedPersonal: true
     stampedBorderless: true
     sound:
@@ -341,6 +341,19 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_hop
+  - type: Pen
+    mode: PenWrite
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-captain
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-generic"
+    stampedPersonal: true
+    stampedBorderless: true
+    sound:
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg
+      params:
+        volume: -2
+        maxdistance: 5
   - type: StaticPrice
     price: 10
 
