@@ -1,0 +1,20 @@
+- type: gameMap
+  id: CaseysCasino
+  mapName: 'Casey's Casino'
+  mapPath: /Maps/caseyscasinoyest.yml
+  minPlayers: 0
+  maxPlayers: 100
+  stations:
+    CaseysCasino:
+      stationProto: StandardFrontierStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Frontier Outpost {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs:
+            - Passenger
+          availableJobs:
+            Passenger: [ -1, -1 ]
