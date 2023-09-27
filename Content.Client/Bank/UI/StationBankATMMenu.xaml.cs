@@ -39,6 +39,12 @@ public sealed partial class StationBankATMMenu : FancyWindow
         BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
+    public void SetDeposit(int amount)
+    {
+        DepositButton.Disabled = amount <= 0;
+        DepositLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
+    }
+
     public void SetEnabled(bool enabled)
     {
         WithdrawButton.Disabled = !enabled;

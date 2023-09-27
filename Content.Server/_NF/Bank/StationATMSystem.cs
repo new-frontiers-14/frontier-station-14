@@ -175,17 +175,17 @@ public sealed partial class BankSystem
         // try to deposit the inserted cash into a player's bank acount.
         if (args.Amount <= 0)
         {
+            _log.Info($"{args.Amount} is invalid");
             ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
-            _log.Info($"{args.Amount} is invalid");
             return;
         }
 
-        if (deposit <= args.Amount)
+        if (deposit < args.Amount)
         {
+            _log.Info($"{args.Amount} is more then {deposit}");
             ConsolePopup(args.Session, Loc.GetString("bank-insufficient-funds"));
             PlayDenySound(uid, component);
-            _log.Info($"{args.Amount} is more then {deposit}");
             return;
         }
 
@@ -196,37 +196,34 @@ public sealed partial class BankSystem
 
         _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} deposited {args.Amount} to station bank account. '{args.Reason}': {args.Description}");
 
-        // yeet and delete the stack in the cash slot after success
-        _containerSystem.CleanContainer(cashSlot); // TODO: Fix this to remove parts
+        SetInsertedCashAmount(component, args.Amount, out int leftAmount, out bool empty);
+
+        // yeet and delete the stack in the cash slot after success if its worth 0
+        if (empty)
+            _containerSystem.CleanContainer(cashSlot);
+
         _uiSystem.SetUiState(bui,
-            new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid), 0));
+            new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid), leftAmount));
     }
 
     private void OnCashSlotChanged(EntityUid uid, StationBankATMComponent component, ContainerModifiedMessage args)
     {
-
-        var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM) ?? _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.BlackMarket);
-
-        var uiUser = bankUi!.SubscribedSessions.FirstOrDefault();
         GetInsertedCashAmount(component, out var deposit);
+        var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
+        var station = _station.GetOwningStation(uid);
 
-        if (uiUser?.AttachedEntity is not { Valid: true } player)
-        {
-            return;
-        }
-
-        if (!TryComp<StationBankAccountComponent>(player, out var bank))
+        if (!TryComp<StationBankAccountComponent>(station, out var bank))
         {
             return;
         }
 
         if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid: true } cash)
         {
-            _uiSystem.SetUiState(bankUi,
+            _uiSystem.SetUiState(bui,
                 new StationBankATMMenuInterfaceState(bank.Balance, true, 0));
         }
 
-        _uiSystem.SetUiState(bankUi,
+        _uiSystem.SetUiState(bui,
             new StationBankATMMenuInterfaceState(bank.Balance, true, deposit));
     }
 
@@ -238,6 +235,7 @@ public sealed partial class BankSystem
         GetInsertedCashAmount(component, out var deposit);
         var bui = _uiSystem.GetUi(component.Owner, BankATMMenuUiKey.ATM);
         var station = _station.GetOwningStation(uid);
+
         if (!TryComp<StationBankAccountComponent>(station, out var stationBank))
         {
             _log.Info($"{station} has no bank account");
@@ -249,6 +247,7 @@ public sealed partial class BankSystem
         _uiSystem.SetUiState(bui,
             new StationBankATMMenuInterfaceState(stationBank.Balance, _access.IsAllowed(player, uid), deposit));
     }
+
     private void GetInsertedCashAmount(StationBankATMComponent component, out int amount)
     {
         amount = 0;
@@ -261,6 +260,28 @@ public sealed partial class BankSystem
         }
 
         amount = cashStack.Count;
+        return;
+    }
+
+    private void SetInsertedCashAmount(StationBankATMComponent component, int amount, out int leftAmount, out bool empty)
+    {
+        leftAmount = 0;
+        empty = false;
+        var cashEntity = component.CashSlot.ContainerSlot?.ContainedEntity;
+
+        if (!TryComp<StackComponent>(cashEntity, out var cashStack) ||
+            cashStack.StackTypeId != component.CashType)
+        {
+            return;
+        }
+
+        int newAmount = cashStack.Count;
+        cashStack.Count = newAmount - amount;
+        leftAmount = cashStack.Count;
+
+        if (cashStack.Count <= 0)
+            empty = true;
+
         return;
     }
 

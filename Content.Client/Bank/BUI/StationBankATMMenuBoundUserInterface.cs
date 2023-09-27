@@ -58,5 +58,6 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
 
         _menu?.SetEnabled(bankState.Enabled);
         _menu?.SetBalance(bankState.Balance);
+        _menu?.SetDeposit(bankState.Deposit);
     }
 }
