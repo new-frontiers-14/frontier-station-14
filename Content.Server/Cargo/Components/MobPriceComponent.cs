@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Cargo.Components;
+namespace Content.Server.Cargo.Components;
 
 /// <summary>
 /// This is used for calculating the price of mobs.
@@ -23,4 +23,10 @@ public sealed partial class MobPriceComponent : Component
     /// </summary>
     [DataField("deathPenalty")]
     public double DeathPenalty = 0.2f;
+
+    /// <summary>
+    /// The percentage of the actual price that should be granted should the appraised mob be lab grown calc added after DeathPenalty, will use tag "LabGrown".
+    /// </summary>
+    [DataField("labGrownPenalty")]
+    public double LabGrownPenalty = 0.2f;
 }
