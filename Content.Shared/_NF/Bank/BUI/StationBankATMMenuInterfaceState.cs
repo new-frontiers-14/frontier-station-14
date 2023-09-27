@@ -15,9 +15,15 @@ public sealed class StationBankATMMenuInterfaceState : BoundUserInterfaceState
     /// </summary>
     public bool Enabled;
 
-    public StationBankATMMenuInterfaceState(int balance, bool enabled)
+    /// <summary>
+    /// how much cash is inserted
+    /// </summary>
+    public int Deposit;
+
+    public StationBankATMMenuInterfaceState(int balance, bool enabled, int deposit)
     {
         Balance = balance;
         Enabled = enabled;
+        Deposit = deposit;
     }
 }

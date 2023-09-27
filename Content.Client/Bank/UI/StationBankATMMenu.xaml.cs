@@ -9,6 +9,7 @@ namespace Content.Client.Bank.UI;
 public sealed partial class StationBankATMMenu : FancyWindow
 {
     public Action? WithdrawRequest;
+    public Action? DepositRequest;
     public int Amount;
     private readonly List<string> _reasonStrings = new();
     public string? Reason;
@@ -17,10 +18,11 @@ public sealed partial class StationBankATMMenu : FancyWindow
     {
         RobustXamlLoader.Load(this);
         WithdrawButton.OnPressed += OnWithdrawPressed;
+        DepositButton.OnPressed += OnDepositPressed;
         Title = Loc.GetString("station-bank-atm-menu-title");
         WithdrawEdit.OnTextChanged += OnAmountChanged;
         Reasons.OnItemSelected += OnReasonSelected;
-        WithdrawDescription.OnTextChanged += OnDescChanged;
+        AmountDescription.OnTextChanged += OnDescChanged;
     }
 
     private void SetReasonText(int id)
@@ -40,11 +42,17 @@ public sealed partial class StationBankATMMenu : FancyWindow
     public void SetEnabled(bool enabled)
     {
         WithdrawButton.Disabled = !enabled;
+        DepositButton.Disabled = !enabled;
     }
 
     private void OnWithdrawPressed(BaseButton.ButtonEventArgs obj)
     {
         WithdrawRequest?.Invoke();
+    }
+
+    private void OnDepositPressed(BaseButton.ButtonEventArgs obj)
+    {
+        DepositRequest?.Invoke();
     }
 
     private void OnAmountChanged(LineEdit.LineEditEventArgs args)
