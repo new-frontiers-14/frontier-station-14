@@ -112,8 +112,8 @@ namespace Content.Server.Paper
             // If a pen, attempt to use on paper
             if (TryComp<PenComponent>(args.Used, out var penComp))
             {
-                // If a pen in write mod, write
-                if (penComp.Pen == PenMode.PenWrite)
+                // If a pen in sign mod, dont try to write.
+                if (penComp.Pen != PenMode.PenSign)
                 {
                     if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
                     {
