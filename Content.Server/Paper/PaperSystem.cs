@@ -110,23 +110,30 @@ namespace Content.Server.Paper
         private void OnInteractUsing(EntityUid uid, PaperComponent paperComp, InteractUsingEvent args)
         {
             // If a pen, attempt to use on paper
-            if (TryComp<PenComponent>(args.Used, out var penComp))
+            if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
             {
-                // If a pen in sign mod, dont try to write.
-                if (penComp.Pen != PenMode.PenSign)
-                {
-                    if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
-                    {
-                        var writeEvent = new PaperWriteEvent(uid, args.User);
-                        RaiseLocalEvent(args.Used, ref writeEvent);
-                        if (!TryComp<ActorComponent>(args.User, out var actor))
-                            return;
+                bool write = true;
 
-                        paperComp.Mode = PaperAction.Write;
-                        _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
-                        UpdateUserInterface(uid, paperComp, actor.PlayerSession);
-                        return;
+                if (TryComp<PenComponent>(args.Used, out var penComp))
+                {
+                    // If a pen in sign mod, dont try to write.
+                    if (penComp.Pen == PenMode.PenSign)
+                    {
+                        write = false;
                     }
+                }
+
+                if (write)
+                {
+                    var writeEvent = new PaperWriteEvent(uid, args.User);
+                    RaiseLocalEvent(args.Used, ref writeEvent);
+                    if (!TryComp<ActorComponent>(args.User, out var actor))
+                        return;
+
+                    paperComp.Mode = PaperAction.Write;
+                    _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
+                    UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+                    return;
                 }
             }
 
