@@ -4,8 +4,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
-//using Content.Shared.Paper;
-//using static Content.Shared.Paper.StampComponent;
 using static Content.Shared.Paper.SharedPaperComponent;
 
 namespace Content.Client.Paper.UI;
