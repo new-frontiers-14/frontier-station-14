@@ -1290,7 +1290,8 @@ entities:
           2,-3:
             0: 65535
           2,-2:
-            0: 65535
+            0: 65279
+            1: 256
           2,-1:
             0: 30583
           3,-4:
@@ -1932,6 +1933,48 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -0.5,-18.5
+      parent: 1
+      type: Transform
+- proto: AtmosDeviceFanTiny
+  entities:
+  - uid: 792
+    components:
+    - pos: 7.5,-0.5
+      parent: 1
+      type: Transform
+  - uid: 842
+    components:
+    - pos: -0.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 3036
+    components:
+    - pos: 0.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 3037
+    components:
+    - pos: 1.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 3038
+    components:
+    - pos: -14.5,-30.5
+      parent: 1
+      type: Transform
+  - uid: 3039
+    components:
+    - pos: -14.5,-32.5
+      parent: 1
+      type: Transform
+  - uid: 3040
+    components:
+    - pos: -0.5,-39.5
+      parent: 1
+      type: Transform
+  - uid: 3041
+    components:
+    - pos: 1.5,-39.5
       parent: 1
       type: Transform
 - proto: Autolathe
@@ -6583,11 +6626,6 @@ entities:
     - pos: -2.5,-6.5
       parent: 1
       type: Transform
-  - uid: 842
-    components:
-    - pos: -5.5,-1.5
-      parent: 1
-      type: Transform
   - uid: 844
     components:
     - pos: -4.5,-0.5
@@ -10148,12 +10186,6 @@ entities:
       pos: 4.5,-1.5
       parent: 1
       type: Transform
-  - uid: 792
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
-      parent: 1
-      type: Transform
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 512
@@ -10183,6 +10215,14 @@ entities:
   - uid: 793
     components:
     - pos: -4.5,-0.5
+      parent: 1
+      type: Transform
+- proto: ComputerStationRecords
+  entities:
+  - uid: 378
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -5.5,-1.5
       parent: 1
       type: Transform
 - proto: ComputerTelevision
@@ -10236,8 +10276,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 2498
           - 2501
+          - 2498
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -10354,8 +10394,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 2752
           - 2751
+          - 2752
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -10389,16 +10429,16 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 3028
-          - 2925
-          - 3025
-          - 2930
-          - 3026
-          - 3027
-          - 2926
-          - 2927
-          - 2928
           - 2929
+          - 2928
+          - 2927
+          - 2926
+          - 3027
+          - 3026
+          - 2930
+          - 3025
+          - 2925
+          - 3028
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -10432,11 +10472,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 2984
-          - 2983
-          - 2982
-          - 2981
           - 2980
+          - 2981
+          - 2982
+          - 2983
+          - 2984
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -10449,6 +10489,33 @@ entities:
     - pos: 8.5,-5.5
       parent: 1
       type: Transform
+    - open: True
+      removedMasks: 28
+      type: EntityStorage
+    - fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.4,-0.4
+            - 0.4,-0.4
+            - 0.4,0.29
+            - -0.4,0.29
+          mask:
+          - Impassable
+          - MidImpassable
+          - HighImpassable
+          - LowImpassable
+          layer:
+          - BulletImpassable
+          - Opaque
+          density: 135
+          hard: True
+          restitution: 0
+          friction: 0.4
+      type: Fixtures
+    - isPlaceable: True
+      type: PlaceableSurface
 - proto: CrateNPCMouse
   entities:
   - uid: 1998
@@ -17352,24 +17419,24 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 2851
-          - 2850
-          - 2849
-          - 2848
-          - 2847
-          - 2846
-          - 2845
-          - 2844
-          - 2843
-          - 2842
-          - 2841
-          - 2840
-          - 2839
-          - 2838
-          - 2837
-          - 2836
-          - 2835
           - 2834
+          - 2835
+          - 2836
+          - 2837
+          - 2838
+          - 2839
+          - 2840
+          - 2841
+          - 2842
+          - 2843
+          - 2844
+          - 2845
+          - 2846
+          - 2847
+          - 2848
+          - 2849
+          - 2850
+          - 2851
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -18100,8 +18167,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
   - uid: 2816
     components:
     - anchored: True
@@ -18113,8 +18179,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
   - uid: 2817
     components:
     - anchored: True
@@ -18126,8 +18191,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
   - uid: 2818
     components:
     - anchored: True
@@ -18139,8 +18203,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
   - uid: 2819
     components:
     - anchored: True
@@ -18152,8 +18215,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
 - proto: PosterContrabandEAT
   entities:
   - uid: 2199
@@ -19632,12 +19694,6 @@ entities:
       type: Transform
 - proto: Table
   entities:
-  - uid: 378
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -4.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 511
     components:
     - pos: -5.5,-3.5
