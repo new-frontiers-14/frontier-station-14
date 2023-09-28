@@ -17,6 +17,7 @@
         - MachineMask
         layer:
           - MachineLayer
+#         - FullTileLayer
   - type: Lathe
   - type: MaterialStorage
   - type: Destructible
@@ -841,6 +842,11 @@
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
+    - type: LatheMagnetPickup
+      range: 0.5
+      whitelist:
+        tags:
+          - Ore
 
 - type: entity
   parent: BaseLathe
