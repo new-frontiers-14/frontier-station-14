@@ -1,0 +1,28 @@
+- type: vessel
+  id: Eden
+  name: NT Eden
+  description: Large hydroponics segment and small chemist station lets botanist work on their plants as much as they like.
+  price: 40929
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/Eden.yml
+  
+- type: gameMap
+  id: Eden
+  mapName: 'NT Eden'
+  mapPath: /Maps/Shuttles/eden.yml
+  minPlayers: 0
+  stations: 
+    Eden:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Eden {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Botanist: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
