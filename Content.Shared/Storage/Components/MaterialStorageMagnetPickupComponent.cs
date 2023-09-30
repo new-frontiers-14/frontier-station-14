@@ -15,15 +15,9 @@ public sealed partial class MaterialStorageMagnetPickupComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]
     public float Range = 1f;
 
-    [ValidatePrototypeId<TagPrototype>]
-    private const string DefaultTag = "Ore";
-
     [ViewVariables(VVAccess.ReadWrite), DataField("whitelist")]
-    public EntityWhitelist? Whitelist = new()
-    {
-        Tags = new List<string>()
-        {
-            DefaultTag,
-        }
-    };
+    public EntityWhitelist? Whitelist;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("blacklist")]
+    public EntityWhitelist? Blacklist;
 }

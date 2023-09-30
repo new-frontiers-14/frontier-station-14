@@ -51,11 +51,13 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
 
             var parentUid = xform.ParentUid;
-            var moverCoords = _transform.GetMoverCoordinates(uid, xform);
 
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
-                if (comp.Whitelist?.IsValid(near, EntityManager) == false)
+                if (comp.Blacklist is { } blacklist && blacklist.IsValid(near, EntityManager) == true)
+                    continue;
+
+                if (comp.Whitelist is { } whitelist && whitelist.IsValid(near, EntityManager) == false)
                     continue;
 
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
@@ -69,7 +71,6 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
                 // the problem is that stack pickups delete the original entity, which is fine, but due to
                 // game state handling we can't show a lerp animation for it.
                 var nearXform = Transform(near);
-                var nearMap = nearXform.MapPosition;
 
                 if (!_storage.TryInsertMaterialEntity(uid, near, uid, storage))
                     continue;
