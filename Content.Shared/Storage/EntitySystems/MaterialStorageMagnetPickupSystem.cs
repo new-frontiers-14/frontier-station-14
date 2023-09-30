@@ -66,12 +66,6 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
                 if (near == parentUid)
                     continue;
 
-                // TODO: Probably move this to storage somewhere when it gets cleaned up
-                // TODO: This sucks but you need to fix a lot of stuff to make it better
-                // the problem is that stack pickups delete the original entity, which is fine, but due to
-                // game state handling we can't show a lerp animation for it.
-                var nearXform = Transform(near);
-
                 if (!_storage.TryInsertMaterialEntity(uid, near, uid, storage))
                     continue;
             }
