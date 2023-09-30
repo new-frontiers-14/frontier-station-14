@@ -1,17 +1,14 @@
 using Content.Server.Storage.Components;
-using Content.Shared.Inventory;
 using Content.Shared.Materials;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Storage.EntitySystems;
 
 /// <summary>
-/// <see cref="MagnetPickupComponent"/>
+/// <see cref="MaterialStorageMagnetPickupComponent"/>
 /// </summary>
-public sealed class LatheMagnetPickupSystem : EntitySystem
+public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -26,16 +23,16 @@ public sealed class LatheMagnetPickupSystem : EntitySystem
     {
         base.Initialize();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        SubscribeLocalEvent<LatheMagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
-        SubscribeLocalEvent<LatheMagnetPickupComponent, EntityUnpausedEvent>(OnMagnetUnpaused);
+        SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
+        SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, EntityUnpausedEvent>(OnMagnetUnpaused);
     }
 
-    private void OnMagnetUnpaused(EntityUid uid, LatheMagnetPickupComponent component, ref EntityUnpausedEvent args)
+    private void OnMagnetUnpaused(EntityUid uid, MaterialStorageMagnetPickupComponent component, ref EntityUnpausedEvent args)
     {
         component.NextScan += args.PausedTime;
     }
 
-    private void OnMagnetMapInit(EntityUid uid, LatheMagnetPickupComponent component, MapInitEvent args)
+    private void OnMagnetMapInit(EntityUid uid, MaterialStorageMagnetPickupComponent component, MapInitEvent args)
     {
         component.NextScan = _timing.CurTime;
     }
@@ -44,7 +41,7 @@ public sealed class LatheMagnetPickupSystem : EntitySystem
     {
         base.Update(frameTime);
         var currentTime = _timing.CurTime;
-        var query = EntityQueryEnumerator<LatheMagnetPickupComponent, MaterialStorageComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<MaterialStorageMagnetPickupComponent, MaterialStorageComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {

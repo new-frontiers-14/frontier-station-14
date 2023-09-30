@@ -8,7 +8,7 @@ namespace Content.Server.Storage.Components;
 /// Applies an ongoing pickup area around the attached entity.
 /// </summary>
 [RegisterComponent]
-public sealed partial class LatheMagnetPickupComponent : Component
+public sealed partial class MaterialStorageMagnetPickupComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("nextScan")]
     public TimeSpan NextScan = TimeSpan.Zero;
