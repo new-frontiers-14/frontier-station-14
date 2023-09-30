@@ -74,13 +74,13 @@ public sealed class GCQueueSystem : EntitySystem
     {
         if (!EntityManager.TryGetComponent<TransformComponent>(e, out var transform))
         {
-            Log.Error("Salvage entity was missing transform component");
+            Log.Error("Entity was missing transform component");
             return;
         }
 
         if (transform.GridUid == null)
         {
-            Log.Error("Salvage entity has no associated grid?");
+            Log.Error("Entity has no associated grid?");
             return;
         }
 
@@ -91,7 +91,7 @@ public sealed class GCQueueSystem : EntitySystem
                 var playerEntityUid = player.AttachedEntity.Value;
                 if (HasComp<GCAbleObjectComponent>(playerEntityUid))
                 {
-                    // Salvage mobs are NEVER immune (even if they're from a different salvage, they shouldn't be here)
+                    // Mobs are NEVER immune (even if they're from a different grid, they shouldn't be here)
                     continue;
                 }
                 _transform.SetParent(playerEntityUid, transform.ParentUid);
