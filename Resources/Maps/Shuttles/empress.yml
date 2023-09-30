@@ -15168,6 +15168,23 @@ entities:
       pos: 8.5,7.5
       parent: 1
       type: Transform
+  - uid: 2661
+    components:
+    - pos: 33.5,-0.5
+      parent: 1
+      type: Transform
+    - links:
+      - 2443
+      type: DeviceLinkSink
+  - uid: 2662
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 33.5,-4.5
+      parent: 1
+      type: Transform
+    - links:
+      - 2443
+      type: DeviceLinkSink
 - proto: Rack
   entities:
   - uid: 501
@@ -16125,6 +16142,12 @@ entities:
       pos: 32.5,-2.5
       parent: 1
       type: Transform
+    - linkedPorts:
+        2662:
+        - Pressed: Toggle
+        2661:
+        - Pressed: Toggle
+      type: DeviceLinkSource
   - uid: 2474
     components:
     - rot: 3.141592653589793 rad
