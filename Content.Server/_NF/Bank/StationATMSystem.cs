@@ -189,7 +189,7 @@ public sealed partial class BankSystem
             return;
         }
 
-        _cargo.IncreaseFunds(stationBank, args.Amount);
+        _cargo.DeductFunds(stationBank, -args.Amount);
         ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-deposit-successful"));
         PlayConfirmSound(uid, component);
         _log.Info($"{args.Session.UserId} {args.Session.Name} deposited {args.Amount}, '{args.Reason}': {args.Description}");

@@ -453,12 +453,6 @@ namespace Content.Server.Cargo.Systems
             Dirty(component);
         }
 
-        public void IncreaseFunds(StationBankAccountComponent component, int amount)
-        {
-            component.Balance = Math.Max(0, component.Balance + amount);
-            Dirty(component);
-        }
-
         #region Station
 
         private StationBankAccountComponent? GetBankAccount(EntityUid uid, CargoOrderConsoleComponent _)
