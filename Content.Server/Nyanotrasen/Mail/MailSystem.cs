@@ -473,6 +473,8 @@ namespace Content.Server.Mail
             if (TryMatchJobTitleToIcon(recipient.Job, out string? icon))
                 _appearanceSystem.SetData(uid, MailVisuals.JobIcon, icon);
 
+                ("recipient", recipient.Name));
+
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
             accessReader.AccessLists.Add(recipient.AccessTags);
         }
