@@ -12,6 +12,8 @@ mail-unlocked-reward = Anti-tamper system unlocked. {$bounty} zorkmids have been
 mail-penalty-lock = ANTI-TAMPER LOCK BROKEN. CARGO BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
 mail-penalty-fragile = INTEGRITY COMPROMISED. CARGO BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
 mail-penalty-expired = DELIVERY PAST DUE. CARGO BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
+mail-item-name-unaddressed = mail
+mail-item-name-addressed = mail ({$recipient})
 
 command-mailto-description = Queue a parcel to be delivered to an entity. Example usage: `mailto 1234 5678 false false`. The target container's contents will be transferred to an actual mail parcel.
 command-mailto-help = Usage: {$command} <recipient entityUid> <container entityUid> [is-fragile: true or false] [is-priority: true or false]
