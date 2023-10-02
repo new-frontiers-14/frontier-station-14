@@ -1,0 +1,135 @@
+[game]
+hostname = "[NA East][MRP] Parkstation"
+desc = "A server focused on RP expectations and calmer rounds, looking to build player base at the moment."
+maxplayers = 64
+soft_max_players = 48
+type = 1
+lobbyenabled = false
+lobbyduration = 180
+role_timers = false
+fallbackpreset = "extended"
+map_pool = "ParkMapPool"
+
+[server]
+rules_file = "Park_Rules.txt"
+id = "parkstation"
+
+[whitelist]
+min_players = 32
+
+[rules]
+rules.time = 60
+rules.exempt_local = false
+
+[events]
+ramping_average_end_time = 120.0
+ramping_average_chaos = 7.0
+
+[traitor]
+min_players = 2
+players_per_traitor = 8
+starting_balance = 16
+
+[zombie]
+min_players = 10
+players_per_infected = 5
+
+
+[mapping]
+autosave_interval = 180.0
+
+[atmos]
+space_wind = true
+space_wind_max_velocity = 22.0
+
+[shuttle]
+emergency_early_launch_allowed = true
+emergency_dock_time = 260.0
+emergency_transit_time = 180.0
+recall_turning_point = 0.75
+auto_call_time = 0
+
+[biomass]
+easy_mode = false
+
+[ambience]
+restart_sounds_enabled = false
+
+[explosion]
+tiles_per_tick = 75
+incremental_tile = true
+
+[ic]
+restricted_names = false
+flavor_text = true
+
+[ooc]
+enable_during_round = true
+
+[vote]
+map_enabled = true
+restart_enabled = true
+restart_required_ratio = 0.75
+restart_not_allowed_when_admin_online = true
+timermap = 45
+
+
+[console]
+loginlocal = true
+
+[hub]
+advertise = false
+
+[auth]
+# 0 = Optional, 1 = Required, 2 = Disabled
+mode = 1
+allowlocal = true
+
+[log]
+path = "logs"
+format = "log_%(date)s-%(time)s.txt"
+level = 1
+enabled = true
+
+[net]
+tickrate = 30
+port = 1212
+bindto = "::,0.0.0.0"
+pvs = true
+
+[status]
+enabled = true
+
+
+[infolinks]
+discord = "https://discord.gg/49KeKwXc8g"
+github = "https://github.com/Park-Station/Parkstation"
+website = "https://nyanotrasen.moe"
+wiki = "https://wiki.nyanotrasen.moe"
+
+[discord]
+#DO NOT PUT WEBHOOK URL IN THIS FILE, unless you don't intend to push it. This file can be viewed by anyone on GitHub, only put the URL on the actual server.
+ahelp_webhook = ""
+ahelp_avatar = "https://imgur.com/a/xyjaogg.png"
+
+[netres]
+limit = 0.0
+
+
+[build]
+fork_id = "ParkStation14"
+
+[database]
+# Database type to use. Can be "sqlite" or "postgres" currently.
+engine = "sqlite"
+
+# Path to store the database at when using SQLite. Note that is NOT a disk path.
+# This is relative to the server data directory, which is specified by --data-dir when starting the server from the command (or automatically set by SS14.Watchdog)
+sqlite_dbpath = "preferences.db"
+
+# PostgreSQL database configuration, should be self explanatory.
+# pg_host = "localhost"
+# pg_port = 5432
+# pg_database = "ss14"
+# pg_username = "ss14"
+# pg_password = "ss14"
