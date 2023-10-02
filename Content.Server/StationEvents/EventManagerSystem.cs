@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.StationEvents.Components;
 using Content.Shared.CCVar;
@@ -188,6 +188,11 @@ public sealed class EventManagerSystem : EntitySystem
         }
 
         if (playerCount < stationEvent.MinimumPlayers)
+        {
+            return false;
+        }
+
+        if (playerCount > stationEvent.MaximumPlayers)
         {
             return false;
         }
