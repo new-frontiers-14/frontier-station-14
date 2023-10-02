@@ -1,3 +1,6 @@
+Цей репозиторій розповсюджується з ліцензіями Creative Commons CC-BY-NC-SA 3.0. Ви можете вільно копіювати та розповсюджувати, модифікувати код репозиторію лише у некомерційних цілях з зазначенням авторів даного коду. Всі зміни внесені у даний репозиторій в порівнянні з оригіналом Frontier Station вважаються інтелектуальною власністю спільноти "Пірати Троєщини", у випадку використання цього коду ви зобовʼязані вказувати авторство нашої спільноти у доступному та видимому для користувачів місці. Забороняється монетизувати даний продукт!
+
+
 <p align="center"> <img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg" /></p>
 
 Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
