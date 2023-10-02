@@ -1,11 +1,15 @@
 - type: entity
   save: false
-  name: Player oni
+  name: Urist McOni
   parent: MobOniBase
   id: MobOni
   components:
   - type: CombatMode
-    canDisarm: true
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
   - type: MindContainer
     showExamineInfo: true
   - type: Input
@@ -15,23 +19,14 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.5
+        Asphyxiation: 1.0
     damageRecovery:
       types:
-        Asphyxiation: -1.5
+        Asphyxiation: -1.0
   - type: Alerts
   - type: Actions
   - type: Eye
-    zoom: "1.125, 1.125"
   - type: CameraRecoil
   - type: Examiner
   - type: CanHostGuardian
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: MailReceiver
-  - type: InteractionPopup
-    successChance: 1
-    interactSuccessString: hugging-success-generic
-    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    messagePerceivedByOthers: hugging-success-generic-others
