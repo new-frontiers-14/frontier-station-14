@@ -1,0 +1,15 @@
+- type: entity
+  name: Zombie
+  description: You might want to run.
+  parent: MobHuman
+  id: ExpedZombie
+  components:
+  - type: SalvageMobRestrictions
+  - type: PendingZombie
+    critDamageMultiplier: 0.0
+    damage:
+      types:
+        Blunt: 200
+        Poison: 0
+  - type: IncurableZombie
+  - type: ZombifyOnDeath

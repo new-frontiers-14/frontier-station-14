@@ -27,10 +27,12 @@ salvage-expedition-desc-structure = {$count ->
     *[other] Destroy {$count} {$structure}s inside the area.
 }
 salvage-expedition-desc-elimination = Kill a large and dangerous creature inside the area.
+salvage-expedition-desc-annihilation = Annihilate a station using its nuclear self-destruct capabilities.
 
 salvage-expedition-type-Mining = Mining
 salvage-expedition-type-Destruction = Destruction
 salvage-expedition-type-Elimination = Elimination
+salvage-expedition-type-Annihilation = Annihilation
 
 salvage-expedition-difficulty-Minimal = Minimal
 salvage-expedition-difficulty-Minor = Minor

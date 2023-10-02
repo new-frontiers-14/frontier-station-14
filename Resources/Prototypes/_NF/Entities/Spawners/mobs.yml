@@ -10,3 +10,16 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCatClippy
+
+- type: entity
+  name: Expedition Zombie Spawner
+  id: SpawnExpedZombie
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - ExpedZombie

@@ -215,6 +215,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             case SalvageMissionType.Elimination:
                 await SetupElimination(mission, dungeon, mapUid, grid, random);
                 break;
+            case SalvageMissionType.Annihilation:
+                await SetupAnnihilation(mission, dungeon, mapUid, grid, random);
+                break;
             default:
                 throw new NotImplementedException();
         }
@@ -345,6 +348,87 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         // spawn less mobs than usual since there's megafauna to deal with too
         await SpawnMobsRandomRooms(mission, dungeon, faction, grid, random, 0.5f);
+    }
+
+    private async Task SetupAnnihilation(
+        SalvageMission mission,
+        Dungeon dungeon,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Random random)
+    {
+        // spawn zombies in a random place
+        var roomIndex = random.Next(dungeon.Rooms.Count);
+        var room = dungeon.Rooms[roomIndex];
+        var tile = room.Tiles.ElementAt(random.Next(room.Tiles.Count));
+        var position = grid.GridTileToLocal(tile);
+
+        var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
+        var prototype = faction.Configs["ExpedZombies"];
+        var uid = _entManager.SpawnEntity(prototype, position);
+        // TODO: spawn nuke & disk somewhere, set up comp function
+
+        // spawn a shit ton of these Bad Boy's
+        await SpawnZombles(mission, dungeon, faction, grid, random, 10.0f);
+    }
+
+        // just made my own so it wont remove ghost roles
+        private async Task SpawnZombles(SalvageMission mission, Dungeon dungeon, SalvageFactionPrototype faction, MapGridComponent grid, Random random, float scale = 1f)
+    {
+        // scale affects how many groups are spawned, not the size of the groups themselves
+        var groupSpawns = _salvage.GetSpawnCount(mission.Difficulty) * scale;
+        var groupSum = faction.MobGroups.Sum(o => o.Prob);
+        var validSpawns = new List<Vector2i>();
+
+        for (var i = 0; i < groupSpawns; i++)
+        {
+            var roll = random.NextFloat() * groupSum;
+            var value = 0f;
+
+            foreach (var group in faction.MobGroups)
+            {
+                value += group.Prob;
+
+                if (value < roll)
+                    continue;
+
+                var mobGroupIndex = random.Next(faction.MobGroups.Count);
+                var mobGroup = faction.MobGroups[mobGroupIndex];
+
+                var spawnRoomIndex = random.Next(dungeon.Rooms.Count);
+                var spawnRoom = dungeon.Rooms[spawnRoomIndex];
+                validSpawns.Clear();
+                validSpawns.AddRange(spawnRoom.Tiles);
+                random.Shuffle(validSpawns);
+
+                foreach (var entry in EntitySpawnCollection.GetSpawns(mobGroup.Entries, random))
+                {
+                    while (validSpawns.Count > 0)
+                    {
+                        var spawnTile = validSpawns[^1];
+                        validSpawns.RemoveAt(validSpawns.Count - 1);
+
+                        if (!_anchorable.TileFree(grid, spawnTile, (int) CollisionGroup.MachineLayer,
+                                (int) CollisionGroup.MachineLayer))
+                        {
+                            continue;
+                        }
+
+                        var spawnPosition = grid.GridTileToLocal(spawnTile);
+
+                        var uid = _entManager.CreateEntityUninitialized(entry, spawnPosition);
+                        //_entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
+                        //_entManager.RemoveComponent<GhostRoleComponent>(uid);
+                        _entManager.InitializeAndStartEntity(uid);
+
+                        break;
+                    }
+                }
+
+                await SuspendIfOutOfTime();
+                break;
+            }
+        }
     }
 
     private async Task SpawnMobsRandomRooms(SalvageMission mission, Dungeon dungeon, SalvageFactionPrototype faction, MapGridComponent grid, Random random, float scale = 1f)
