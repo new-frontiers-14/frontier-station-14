@@ -76,7 +76,7 @@ public sealed partial class StationEventComponent : Component
     ///     To avoid running safe events with high-pop
     /// </remarks>
     [DataField("maximumPlayers")]
-    public int MaximumPlayers = 0;
+    public int MaximumPlayers = 999;
 
     /// <summary>
     ///     How many times this even can occur in a single round
