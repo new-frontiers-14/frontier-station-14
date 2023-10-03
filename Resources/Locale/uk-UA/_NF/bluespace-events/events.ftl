@@ -1,8 +1,8 @@
-station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will arrive nearby. Your sector will be rewarded for it's safe return.
-station-event-bluespace-vault-end-announcement = We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
+station-event-bluespace-vault-start-announcement = Автономний броньований транспортний засіб NanoTrasen зробив помилку FTL і прибуде поблизу. Ваш сектор буде винагороджений за його безпечне повернення.
+station-event-bluespace-vault-end-announcement = Ми успішно забрали сховище з вашого сектору та відповідно відшкодували вашій прикордонній станції, що знаходиться поблизу.
 
-station-event-bluespace-cache-start-announcement = A Syndicate transport has been intercepted from FTL and will be arriving nearby. Guard the armored weapons cache until NanoTrasen can retrieve it.
-station-event-bluespace-cache-end-announcement = We have successfully retrieved the Syndicate weapons cache from your sector and have reimbursed your nearby Frontier Outpost accordingly.
+station-event-bluespace-cache-start-announcement = Транспорт синдикату був перехоплений з FTL і прибуде неподалік. Охороняйте схованку зброї, доки NanoTrasen не зможе її вилучити.
+station-event-bluespace-cache-end-announcement = Ми успішно вилучили схованку зброї Синдикату у вашому секторі та відшкодували вашій сусідній прикордонній станції відповідну суму.
 
-station-event-bluespace-asteroid-start-announcement = We have detected an unusual FTL signature, which long range scans have detected as an unusually large asteroid. Nanotrasen requests prospectors and other individuals to seek out the asteroid.
-station-event-bluespace-asteroid-end-announcement = We've detected an unexpected FTL jump in your sector, as the asteroid appears to be gone for good.
+station-event-bluespace-asteroid-start-announcement = Ми виявили незвичайну сигнатуру FTL, яку дальні сканування виявили як надзвичайно великий астероїд. Nanotrasen просить дослідників та інших людей шукати астероїд.
+station-event-bluespace-asteroid-end-announcement = Ми виявили несподіваний стрибок FTL у вашому секторі, оскільки астероїд, здається, зник назавжди.

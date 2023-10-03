@@ -1,1 +1,1 @@
-construction-step-condition-crafter-whitelist = You need to meet certain requirements.
+construction-step-condition-crafter-whitelist = Ви повинні відповідати певним вимогам.

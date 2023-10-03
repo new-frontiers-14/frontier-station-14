@@ -1,5 +1,5 @@
-ghost-role-information-emotional-support-name = Emotional support pet
-ghost-role-information-emotional-support-description = You're an emotional support pet! Loyal to your owner, make sure to cheer them up!
+ghost-role-information-emotional-support-name = Емоційна підтримка улюбленця
+ghost-role-information-emotional-support-description = Ви улюбленець емоційної підтримки! Відданий своєму господареві, не забудьте підняти йому настрій!
 
-ghost-role-information-clippy-name = Clippy
-ghost-role-information-clippy-description = The Station Representative loyal worker, smells like cardboard and papers.
+ghost-role-information-clippy-name = Кліппі
+ghost-role-information-clippy-description = Представник станції лояльний працівник, пахне картоном і паперами.

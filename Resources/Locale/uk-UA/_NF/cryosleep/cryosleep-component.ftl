@@ -1,7 +1,7 @@
 ## UI
-cryopod-examine-empty = Empty
-cryopod-examine-occupied = Occupied
-accept-cryo-window-accept-button = Accept
-accept-cryo-window-deny-button = Cancel
-accept-cryo-window-prompt-text-part = Enter cryo sleep and finish your shift?
-accept-cryo-window-title = Cryo Sleep Chamber
+cryopod-examine-empty = Пусто
+cryopod-examine-occupied = Зайнято
+accept-cryo-window-accept-button = Прийняти
+accept-cryo-window-deny-button = Відмінити
+accept-cryo-window-prompt-text-part = Увійти у кріосон і закінчити зміну?
+accept-cryo-window-title = Кріокамера сну

@@ -1,3 +1,3 @@
-metabolism-component-is-comfortable = You feel comfortable
-metabolism-component-is-sweating = You are sweating
-metabolism-component-is-shivering = You are shivering
+metabolism-component-is-comfortable = Вам комфортно
+metabolism-component-is-sweating = Ви пітнієте
+metabolism-component-is-shivering = Ви тремтите

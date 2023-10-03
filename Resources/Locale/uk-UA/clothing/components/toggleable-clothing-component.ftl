@@ -1,2 +1,2 @@
 
-toggleable-clothing-remove-first = You have to unequip {$entity} first.
+toggleable-clothing-remove-first = Спочатку зніміть {$entity}.

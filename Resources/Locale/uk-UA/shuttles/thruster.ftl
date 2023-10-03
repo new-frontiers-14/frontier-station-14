@@ -1,7 +1,7 @@
-thruster-comp-enabled = The thruster is turned [color=green]on[/color].
-thruster-comp-disabled = The thruster is turned [color=red]off[/color].
-thruster-comp-nozzle-direction = The nozzle is facing [color=yellow]{$direction}[/color].
-thruster-comp-nozzle-exposed = The nozzle [color=green]exposed[/color] to space.
-thruster-comp-nozzle-not-exposed = The nozzle [color=red]is not exposed[/color] to space.
+thruster-comp-enabled = Сопло [color=green]увімкнено[/color].
+thruster-comp-disabled = Сопло [color=red]вимкнено[/color].
+thruster-comp-nozzle-direction = Вихід сопла у [color=yellow]{$direction}[/color] сторону.
+thruster-comp-nozzle-exposed = Вихід сопла [color=green]у сторону[/color] космоса.
+thruster-comp-nozzle-not-exposed = Вихід сопла [color=red]не у сторону[/color] космоса.
 
-thruster-comp-upgrade-thrust = Thrust strength
+thruster-comp-upgrade-thrust = Сила тяги

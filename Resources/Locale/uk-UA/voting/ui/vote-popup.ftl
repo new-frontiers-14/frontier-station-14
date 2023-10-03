@@ -1,2 +1,2 @@
-ui-vote-created = { $initiator } has called a vote:
+ui-vote-created = { $initiator } почав голосування:
 ui-vote-button  = { $text } ({ $votes })

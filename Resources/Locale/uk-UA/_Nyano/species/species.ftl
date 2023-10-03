@@ -1,11 +1,11 @@
 ﻿## Species Names
 
-species-name-human = Unmutated Human
-species-name-dwarf = Dwarf
-species-name-felinid = Felinid
-species-name-reptilian = Reptilian
-species-name-slime = Slime Person
-species-name-oni = Oni
-species-name-arachne = Arachne
-species-name-diona = Diona
-species-name-moth = Moth
+species-name-human = Немутована людина
+species-name-dwarf = Дворф
+species-name-felinid = Фелінід
+species-name-reptilian = Рептилія
+species-name-slime = Слайм-персона
+species-name-oni = Оні
+species-name-arachne = Арахнід
+species-name-diona = Діона
+species-name-moth = Моль

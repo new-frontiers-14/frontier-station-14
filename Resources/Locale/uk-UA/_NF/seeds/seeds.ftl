@@ -1,5 +1,5 @@
 # Seeds
-seeds-moneytree-name = moneytree
-seeds-moneytree-display-name = money tree
-seeds-pear-name = pear
-seeds-pear-display-name = pear tree
+seeds-moneytree-name = грошове дерево
+seeds-moneytree-display-name = грошове дерево
+seeds-pear-name = груша
+seeds-pear-display-name = грушеве дерево

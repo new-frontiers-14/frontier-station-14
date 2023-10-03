@@ -1,2 +1,2 @@
 ## camera frequencies
-device-frequency-prototype-name-surveillance-camera-security-bodycam = Security Body Cameras
+device-frequency-prototype-name-surveillance-camera-security-bodycam = Натільні камери безпеки

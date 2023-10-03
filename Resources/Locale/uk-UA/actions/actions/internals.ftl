@@ -1,2 +1,2 @@
-internals-no-breath-tool = You are not wearing a breathing tool
-internals-no-tank = You are not wearing a gas tank
+internals-no-breath-tool = Ви не носите респіратор
+internals-no-tank = Ви не носите балон для дихання

@@ -1,20 +1,20 @@
-book-medical-insurance = This form is a contract made with the medical frovider:
+book-medical-insurance = Ця форма є договором, укладеним з медичним закладом:
       --------------------------------------------------------------------------------------
-      SECTION 1:  Info
+      РОЗДІЛ 1:  ІНФО
       --------------------------------------------------------------------------------------
-      Full Name  :
-      Race       :
-      Blood Type :
-      Ship       :
+      Імʼя      :
+      Раса      :
+      Тип Крові :
+      Корабель  :
       
       --------------------------------------------------------------------------------------
-      SECTION 2:  Services
+      РОЗДІЛ 2:  Послуги
       --------------------------------------------------------------------------------------
-      As part of our service we will attemp to come and aid you in the case of your medical implant going off.
+      У рамках наших послуг ми спробуємо прилетіти та допомогти вам у випадку, якщо ваш медичний імплантат відключиться.
       
-      (X) Revive = Up to 8k
-      (X) Clone  = Up to 10k
+      (X) Оживити = сума до 8k
+      (X) Клонувати  = сума до 10k
       
-      In the case were unable to clone you, with your brain still intact, you also agree to be borged:
+      У випадку, якщо не вдалося клонувати вас, і ваш мозок все ще неушкоджений, ви також погоджуєтеся стати кіборгом:
       
-      ( ) Borg  = Up to 20k
+      ( ) Борг  = сума до 20k

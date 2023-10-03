@@ -1,8 +1,8 @@
-docking-component-dock = Dock
-docking-component-undock = Undock
+docking-component-dock = Стикувати
+docking-component-undock = Відстикувати
 
-cmd-dock-desc = Attempts to dock 2 airlocks together. Doesn't check whether it is valid.
-cmd-dock-help = dock <airlock entityuid1> <airlock entityuid2>
+cmd-dock-desc = Намагається зістикувати 2 шлюзи разом. Не перевіряє, чи воно дійсне.
+cmd-dock-help = стикувати <airlock entityuid1> <airlock entityuid2>
 
 cmd-dock-args = Invalid number of args
 cmd-dock-invalid = Invalid EntityUid {$entity}

@@ -1,2 +1,2 @@
-objective-condition-die-title = Die a glorious death
-objective-condition-die-description = Die.
+objective-condition-die-title = Померти славною смертю
+objective-condition-die-description = Померти.

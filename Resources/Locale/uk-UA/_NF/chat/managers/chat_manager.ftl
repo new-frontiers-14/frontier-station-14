@@ -1,4 +1,4 @@
-chat-speech-verb-vulpkanin-1 = rawrs
-chat-speech-verb-vulpkanin-2 = barks
-chat-speech-verb-vulpkanin-3 = rurs
-chat-speech-verb-vulpkanin-4 = yeeps
+chat-speech-verb-vulpkanin-1 = рявкає
+chat-speech-verb-vulpkanin-2 = гавкає
+chat-speech-verb-vulpkanin-3 = ричить
+chat-speech-verb-vulpkanin-4 = виє

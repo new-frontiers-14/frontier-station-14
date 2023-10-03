@@ -1,2 +1,2 @@
-uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Bundle
-uplink-emp-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 8 rounds of EMP.
+uplink-emp-grenade-launcher-bundle-name = Набір EMP China-Lake
+uplink-emp-grenade-launcher-bundle-desc = Старий гранатомет China-Lake в комплекті з 8 патронами EMP.

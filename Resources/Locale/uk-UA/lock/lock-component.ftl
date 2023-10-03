@@ -1,10 +1,10 @@
-lock-comp-on-examined-is-locked = The {$entityName} seems to be locked.
-lock-comp-on-examined-is-unlocked = The {$entityName} seems to be unlocked.
-lock-comp-do-lock-success = You lock the {$entityName}.
-lock-comp-do-unlock-success = You unlock the {$entityName}.
-lock-comp-has-user-access-fail = Access denied
+lock-comp-on-examined-is-locked = {$entityName} виглядає зачиненим.
+lock-comp-on-examined-is-unlocked = {$entityName} виглядає відчиненим.
+lock-comp-do-lock-success = Ви зачинили {$entityName}.
+lock-comp-do-unlock-success = Ви відчинили {$entityName}.
+lock-comp-has-user-access-fail = Доступ заборонено
 
 ## ToggleLockVerb
 
-toggle-lock-verb-unlock = Unlock
-toggle-lock-verb-lock = Lock
+toggle-lock-verb-unlock = Відчинити
+toggle-lock-verb-lock = Зачинити

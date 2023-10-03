@@ -1,41 +1,41 @@
-shuttle-pilot-start = Piloting ship
-shuttle-pilot-end = Stopped piloting
+shuttle-pilot-start = Пілотувати корабель
+shuttle-pilot-end = Перестати пілотувати
 
-shuttle-console-in-ftl = Can't FTL while in FTL!
-shuttle-console-proximity = Too close to nearby objects
-shuttle-console-prevent = You are unable to pilot this ship.
+shuttle-console-in-ftl = Неможливо виконати FTL коли вже у FTL!
+shuttle-console-proximity = Занадто близько до сусідніх обʼєктів
+shuttle-console-prevent = Ви не можете керувати цим кораблем.
 
 # Display
-shuttle-console-display-label = Display
+shuttle-console-display-label = Дисплей
 
-shuttle-console-ftl-state = FTL State
-shuttle-console-ftl-available = Available
-shuttle-console-ftl-starting = Starting
-shuttle-console-ftl-travelling = Travelling
-shuttle-console-ftl-arriving = Arriving
-shuttle-console-ftl-cooldown = Cooldown
+shuttle-console-ftl-state = Статус FTL
+shuttle-console-ftl-available = Доступний
+shuttle-console-ftl-starting = Стартує
+shuttle-console-ftl-travelling = Подорожує
+shuttle-console-ftl-arriving = Прибуває
+shuttle-console-ftl-cooldown = Охолодження
 
-shuttle-console-ftl-timer = FTL Time
+shuttle-console-ftl-timer = Час у FTL
 
-shuttle-console-max-radar = Max radar range:
-shuttle-console-radar = Radar range:
-shuttle-console-position = Position:
-shuttle-console-orientation = Orientation:
-shuttle-console-linear-velocity = Linear velocity:
-shuttle-console-angular-velocity = Angular velocity:
+shuttle-console-max-radar = Max радіус дії радара:
+shuttle-console-radar = Радіус радара:
+shuttle-console-position = Позиція:
+shuttle-console-orientation = Орієнтація:
+shuttle-console-linear-velocity = Лінійна швидкість:
+shuttle-console-angular-velocity = Кутова швидкість:
 
-shuttle-console-dock-label = Docking ports
+shuttle-console-dock-label = Док-порти
 shuttle-console-docked = (Docked)
-shuttle-console-dock-button = Dock {$suffix}
+shuttle-console-dock-button = Док {$suffix}
 
-shuttle-console-hyperspace-label = FTL destinations
-shuttle-console-hyperspace-none = No destinations found
+shuttle-console-hyperspace-label = Пункти призначення FTL
+shuttle-console-hyperspace-none = Не знайдено пунктів призначення
 
-shuttle-console-unknown = Unknown
+shuttle-console-unknown = Невідомо
 shuttle-console-iff-label = {$name} ({$distance}m)
 
 # Buttons
-shuttle-console-strafing = Strafing mode
-shuttle-console-iff-toggle = Show IFF
-shuttle-console-dock-toggle = Show docks
-shuttle-console-undock = Undock
+shuttle-console-strafing = Страфінговий режим
+shuttle-console-iff-toggle = Перемкнути IFF
+shuttle-console-dock-toggle = Перемкнути доки
+shuttle-console-undock = Відстикувати

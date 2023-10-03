@@ -1,2 +1,2 @@
-oni-gun-fire = You can't fire guns!
+oni-gun-fire = Ви не можете стріляти!
 namepreset-x-no-y = {$last}-no-{$first}

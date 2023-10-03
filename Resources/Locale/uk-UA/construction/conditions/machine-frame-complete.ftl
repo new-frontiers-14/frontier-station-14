@@ -1,8 +1,8 @@
-construction-condition-machine-container-empty = Remove the parts from the frame using a [color=cyan]Crowbar[/color].
+construction-condition-machine-container-empty = Вийміть частини з основи за допомогою [color=cyan]лому[/color].
 
 # MachineFrameComplete
-construction-condition-machine-frame-requirement-label = Requires:
-construction-condition-machine-frame-insert-circuit-board-message = Insert [color=cyan]any machine circuit board[/color].
+construction-condition-machine-frame-requirement-label = Потребує:
+construction-condition-machine-frame-insert-circuit-board-message = Вставте [color=cyan]будь-яку материнську плату[/color].
 construction-condition-machine-frame-required-element-entry = [color=yellow]{$amount}x[/color] [color=green]{$elementName}[/color]
-construction-step-condition-machine-frame-board = You will need to insert a machine board.
-construction-step-condition-machine-frame-parts = Afterwards, insert all required parts.
+construction-step-condition-machine-frame-board = Вам потрібно буде внести материнську плату.
+construction-step-condition-machine-frame-parts = Після, вставте всі потрібні частини.

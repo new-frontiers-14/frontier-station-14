@@ -1,8 +1,8 @@
-game-hud-open-escape-menu-button-tooltip = Open escape menu.
-game-hud-open-guide-menu-button-tooltip = Open guidebook menu.
-game-hud-open-character-menu-button-tooltip = Open character menu.
-game-hud-open-inventory-menu-button-tooltip = Open inventory menu.
-game-hud-open-crafting-menu-button-tooltip = Open crafting menu.
-game-hud-open-actions-menu-button-tooltip = Open actions menu.
-game-hud-open-admin-menu-button-tooltip = Open admin menu.
-game-hud-open-sandbox-menu-button-tooltip = Open sandbox menu.
+game-hud-open-escape-menu-button-tooltip = Відкрити escape меню.
+game-hud-open-guide-menu-button-tooltip = Відкрити guidebook.
+game-hud-open-character-menu-button-tooltip = Відкрити меню персонажа.
+game-hud-open-inventory-menu-button-tooltip = Відкрити інвентар.
+game-hud-open-crafting-menu-button-tooltip = Відкрити меню крафту.
+game-hud-open-actions-menu-button-tooltip = Відкрити меню дій.
+game-hud-open-admin-menu-button-tooltip = Відкрити меню адміна.
+game-hud-open-sandbox-menu-button-tooltip = Відкрити меню пісочниці.

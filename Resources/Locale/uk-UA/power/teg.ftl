@@ -1,2 +1,2 @@
-﻿teg-generator-examine-power = It's generating [color=yellow]{ POWERWATTS($power) }[/color].
-teg-generator-examine-connection = To function, a [color=white]circulator[/color] must be attached on both sides.
+﻿teg-generator-examine-power = Воно генерує [color=yellow]{ POWERWATTS($power) }[/color].
+teg-generator-examine-connection = Щоб працювати, [color=white]циркулятор circulator[/color] має бути підʼєднано до обох сторін.

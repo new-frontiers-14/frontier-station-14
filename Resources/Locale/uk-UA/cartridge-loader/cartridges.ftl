@@ -1,13 +1,13 @@
-﻿default-program-name = Program
-notekeeper-program-name = Notekeeper
-news-read-program-name = Station news
+﻿default-program-name = Програма
+notekeeper-program-name = Заміки
+news-read-program-name = Новини станції
 
-crew-manifest-program-name = Crew manifest
-crew-manifest-cartridge-loading = Loading ...
+crew-manifest-program-name = Маніфест екіпажу
+crew-manifest-cartridge-loading = Загрузка ...
 
 net-probe-program-name = NetProbe
-net-probe-scan = Scanned {$device}!
-net-probe-label-name = Name
-net-probe-label-address = Address
-net-probe-label-frequency = Frequency
-net-probe-label-network = Network
+net-probe-scan = Скановано {$device}!
+net-probe-label-name = Імʼя
+net-probe-label-address = Адреса
+net-probe-label-frequency = Частота
+net-probe-label-network = Мережа

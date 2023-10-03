@@ -1,2 +1,2 @@
-stamp-component-unknown-name = Unknown
-stamp-component-unknown-job = No job
+stamp-component-unknown-name = Невідомий
+stamp-component-unknown-job = Немає роботи

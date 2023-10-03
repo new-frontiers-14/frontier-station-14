@@ -1,1 +1,1 @@
-melee-stamina = Not enough stamina
+melee-stamina = Не вистачає витривалості

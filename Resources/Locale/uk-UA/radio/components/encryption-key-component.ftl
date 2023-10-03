@@ -1,10 +1,10 @@
-encryption-key-successfully-installed = You put the encryption key inside.
-encryption-key-slots-already-full = There is no place for another encryption key.
-encryption-keys-all-extracted = You pop out the encryption keys!
-encryption-keys-no-keys = This device has no encryption keys!
-encryption-keys-are-locked = Encryption key slots are locked!
-encryption-keys-panel-locked = Open maintenance panel first!
+encryption-key-successfully-installed = Ви вставляєте ключ шифрування всередину.
+encryption-key-slots-already-full = Немає місця для ключа шифрування.
+encryption-keys-all-extracted = Ви витягуєте ключі шифрування!
+encryption-keys-no-keys = Цей пристрій не має ключів шифрування!
+encryption-keys-are-locked = Слоти для ключів шифрування заблоковані!
+encryption-keys-panel-locked = Спочатку відкрийте панель!
 
-examine-encryption-channels-prefix = Available frequencies:
-examine-encryption-channel = [color={$color}]{$key} for {$id} ({$freq})[/color]
-examine-encryption-default-channel = The default channel is [color={$color}]{$channel}[/color].
+examine-encryption-channels-prefix = Доступні частоти:
+examine-encryption-channel = [color={$color}]{$key} для {$id} ({$freq})[/color]
+examine-encryption-default-channel = Стандартним каналом є [color={$color}]{$channel}[/color].

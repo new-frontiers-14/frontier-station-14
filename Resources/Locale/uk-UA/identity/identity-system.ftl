@@ -1,9 +1,9 @@
 ﻿identity-unknown-name = ???
 
-identity-age-young = young
-identity-age-middle-aged = middle-aged
-identity-age-old = old
+identity-age-young = молодого віку
+identity-age-middle-aged = середнього віку
+identity-age-old = похилого віку
 
-identity-gender-feminine = woman
-identity-gender-masculine = man
-identity-gender-person = person
+identity-gender-feminine = жінка
+identity-gender-masculine = чоловік
+identity-gender-person = особа

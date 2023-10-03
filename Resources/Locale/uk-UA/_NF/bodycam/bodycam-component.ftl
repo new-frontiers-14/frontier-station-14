@@ -1,17 +1,17 @@
 ﻿## Modes
 
-bodycam-power-off = Off
-bodycam-power-on = On
+bodycam-power-off = Вимкнути
+bodycam-power-on = Увімкнути
 
 ## Popups
-bodycam-power-state = Bodycam: {$mode}
+bodycam-power-state = Бодікамера: {$mode}
 
 ## Components
 
-bodycam-component-unknown-name = Unknown
-bodycam-component-unknown-job = No job
+bodycam-component-unknown-name = Невідомо
+bodycam-component-unknown-job = Немає роботи
 
 ## Examine
 
-bodycam-examine-off = The bodycam appear to be [color=darkred]off[/color].
-bodycam-examine-on = The bodycam appear to be on.
+bodycam-examine-off = Бодікамера виглядає [color=darkred]вимкненою[/color].
+bodycam-examine-on = Бодікамера виглядає увімкненою.
