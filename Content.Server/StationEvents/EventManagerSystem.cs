@@ -192,11 +192,6 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        if (playerCount > stationEvent.MaximumPlayers)
-        {
-            return false;
-        }
-
         if (currentTime != TimeSpan.Zero && currentTime.TotalMinutes < stationEvent.EarliestStart)
         {
             return false;
@@ -205,6 +200,11 @@ public sealed class EventManagerSystem : EntitySystem
         var lastRun = TimeSinceLastEvent(prototype);
         if (lastRun != TimeSpan.Zero && currentTime.TotalMinutes <
             stationEvent.ReoccurrenceDelay + lastRun.TotalMinutes)
+        {
+            return false;
+        }
+
+        if (playerCount > stationEvent.MaximumPlayers)
         {
             return false;
         }
