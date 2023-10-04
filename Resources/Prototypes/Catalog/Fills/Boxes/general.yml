@@ -1,14 +1,14 @@
 - type: entity
-  name: cardboard box
+  name: картонна коробка
   parent: BoxBase
   id: BoxCardboard
-  description: A cardboard box for storing things.
+  description: Картонна коробка для зберігання речей.
   components:
   - type: Sprite
     state: box
 
 - type: entity
-  name: mousetrap box
+  name: ящик з мишоловками
   parent: BoxCardboard
   id: BoxMousetrap
   description: This box is filled with mousetraps. Try not to get your hand stuck in one.
@@ -23,7 +23,7 @@
         - state: mousetraps
 
 - type: entity
-  name: lightbulb box
+  name: коробка лампочок
   parent: BoxCardboard
   id: BoxLightbulb
   description: This box is shaped on the inside so that only light tubes and bulbs fit.
@@ -46,7 +46,7 @@
       - DroneUsable
 
 - type: entity
-  name: lighttube box
+  name: коробка лампочок
   parent: BoxCardboard
   id: BoxLighttube
   description: This box is shaped on the inside so that only light tubes and bulbs fit.
@@ -69,7 +69,7 @@
       - DroneUsable
 
 - type: entity
-  name: mixed lights box
+  name: коробка змішаних ламп
   parent: BoxCardboard
   id: BoxLightMixed
   description: This box is shaped on the inside so that only light tubes and bulbs fit.
@@ -94,7 +94,7 @@
       - DroneUsable
 
 - type: entity
-  name: PDA box
+  name: Коробка планшетів
   parent: BoxCardboard
   id: BoxPDA
   description: A box of spare PDA microcomputers.
@@ -114,7 +114,7 @@
       - Pda
 
 - type: entity
-  name: ID card box
+  name: коробка ID карток
   parent: BoxCardboard
   id: BoxID
   description: A box of spare blank ID cards.
@@ -134,7 +134,7 @@
       - IdCard
 
 - type: entity
-  name: headset box
+  name: коробка з гарнітурами
   parent: BoxCardboard
   id: BoxHeadset
   description: A box of spare passenger headsets.
@@ -186,7 +186,7 @@
       - state: writing
 
 - type: entity
-  name: box of hugs
+  name: коробка обіймів
   parent: BoxCardboard
   id: BoxHugHealing
   description: A special box for sensitive people.
@@ -257,7 +257,7 @@
       - state: flare
 
 - type: entity
-  name: trashbag box
+  name: ящик з рулонами для сміття
   parent: BoxCardboard
   id: BoxTrashbag
   description: A box of trashbags. Happy janitor noises.
@@ -280,7 +280,7 @@
       - DroneUsable
 
 - type: entity
-  name: passenger encryption key box
+  name: ящик з ключами шифрування пасажира
   parent: BoxCardboard
   id: BoxEncryptionKeyPassenger
   description: A box of spare encryption keys.
@@ -300,7 +300,7 @@
       - EncryptionKey
 
 - type: entity
-  name: cargo encryption key box
+  name: ящик з ключами шифрування карго
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyCargo
   components:
@@ -310,7 +310,7 @@
         amount: 6
 
 - type: entity
-  name: engineering encryption key box
+  name: ящик з ключами шифрування інженерів
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyEngineering
   components:
@@ -320,7 +320,7 @@
         amount: 6
 
 - type: entity
-  name: med-sci encryption key box
+  name: ящик з ключами шифрування мед-наука
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyMedicalScience
   components:
@@ -330,7 +330,7 @@
         amount: 6
 
 - type: entity
-  name: medical encryption key box
+  name: ящик з ключами шифрування меду
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyMedical
   components:
@@ -340,7 +340,7 @@
         amount: 6
 
 - type: entity
-  name: robotech encryption key box
+  name: ящик з ключами шифрування роботехів
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyRobo
   components:
@@ -350,7 +350,7 @@
         amount: 6
 
 - type: entity
-  name: science encryption key box
+  name: ящик з ключами шифрування науки
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyScience
   components:
@@ -370,7 +370,7 @@
         amount: 6
 
 - type: entity
-  name: service encryption key box
+  name: ящик з ключами шифрування сервісу
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeyService
   components:
@@ -380,10 +380,10 @@
         amount: 6
 
 - type: entity
-  name: syndicate encryption key box
+  name: ящик з ключами шифрування синдикату
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeySyndie
-  description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
+  description: Два синдикатних ключі шифрування за ціною одного. Мініатюрний для зручності використання.
   components:
   - type: Item
     size: 15
@@ -395,10 +395,10 @@
     capacity: 15
 
 - type: entity
-  name: deathrattle implant box
+  name: бокс для імплантатів Deathrattle
   parent: BoxCardboard
   id: BoxDeathRattleImplants
-  description: Six deathrattle implants and handheld GPS devices for the whole squad.
+  description: Шість смертоносних імплантатів і портативні GPS-пристрої для всього загону.
   components:
   - type: Item
     size: 60
@@ -416,11 +416,11 @@
       - state: syringe
 
 - type: entity
-  name: lead-lined box
+  name: свинцева коробка
   parent: BoxCardboard
   suffix: Debug
   id: BoxLeadLined
-  description: This box stymies the transmission of harmful radiation.
+  description: Ця коробка блокує передачу шкідливого випромінювання.
   components:
   - type: Sprite
     state: box

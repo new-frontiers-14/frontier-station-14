@@ -1,6 +1,6 @@
 - type: entity
   id: ActionScream
-  name: Scream
+  name: Кричати
   description: AAAAAAAAAAAAAAAAAAAAAAAAA
   noSpawn: true
   components:
@@ -12,8 +12,8 @@
 
 - type: entity
   id: ActionTurnUndead
-  name: Turn Undead
-  description: Succumb to your infection and become a zombie.
+  name: Стати Нежитю
+  description: Піддайтеся своїй інфекції та стань зомбі.
   noSpawn: true
   components:
   - type: InstantAction
@@ -23,8 +23,8 @@
 
 - type: entity
   id: ActionToggleLight
-  name: Toggle Light
-  description: Turn the light on and off.
+  name: Перемкнути світло
+  description: Вмикайте і вимикайте світло.
   noSpawn: true
   components:
   - type: InstantAction
@@ -34,8 +34,8 @@
 
 - type: entity
   id: ActionOpenStorageImplant
-  name: Open Storage Implant
-  description: Opens the storage implant embedded under your skin
+  name: Відкрити імплантат зберігання
+  description: Відкриває накопичувальний імплантат, вбудований під шкіру
   noSpawn: true
   components:
   - type: InstantAction
@@ -48,8 +48,8 @@
 
 - type: entity
   id: ActionActivateMicroBomb
-  name: Activate Microbomb
-  description: Activates your internal microbomb, completely destroying you and your equipment
+  name: Активуйте мікробомбу
+  description: Активує вашу внутрішню мікробомбу, повністю знищуючи вас і ваше обладнання
   noSpawn: true
   components:
   - type: InstantAction
@@ -63,8 +63,8 @@
 
 - type: entity
   id: ActionActivateFreedomImplant
-  name: Break Free
-  description: Activating your freedom implant will free you from any hand restraints
+  name: Вирватись
+  description: Активація вашого імплантату свободи звільнить вас від будь-яких обмежень для рук
   noSpawn: true
   components:
   - type: InstantAction
@@ -79,8 +79,8 @@
 
 - type: entity
   id: ActionOpenUplinkImplant
-  name: Open Uplink
-  description: Opens the syndicate uplink embedded under your skin
+  name: Відкрити Uplink
+  description: Відкриває вихідний Аплінк синдикату, вбудований під вашу шкіру
   noSpawn: true
   components:
   - type: InstantAction
@@ -93,8 +93,8 @@
 
 - type: entity
   id: ActionActivateEmpImplant
-  name: Activate EMP
-  description: Triggers a small EMP pulse around you
+  name: Активувати EMP
+  description: Викликає невеликий імпульс ЕМП навколо вас
   noSpawn: true
   components:
   - type: InstantAction
@@ -109,8 +109,8 @@
 
 - type: entity
   id: ActionActivateDnaScramblerImplant
-  name: Scramble DNA
-  description:  Randomly changes your name and appearance.
+  name: Зібрати ДНК
+  description:  Випадково змінює ваше ім'я та зовнішність.
   noSpawn: true
   components:
   - type: InstantAction
@@ -124,8 +124,8 @@
 
 - type: entity
   id: ActionToggleSuitPiece
-  name: Toggle Suit Piece
-  description: Remember to equip the important pieces of your suit before going into action.
+  name: Перемкнути шматок костюма
+  description: Не забудьте спорядити важливі частини свого костюма, перш ніж почати дію.
   noSpawn: true
   components:
   - type: InstantAction
@@ -135,8 +135,8 @@
 
 - type: entity
   id: ActionCombatModeToggle
-  name: "[color=red]Combat Mode[/color]"
-  description: Enter combat mode
+  name: "[color=red]Бойовий режим[/color]"
+  description: Увійти в бойовий режим
   noSpawn: true
   components:
   - type: InstantAction
@@ -149,8 +149,8 @@
 - type: entity
   id: ActionCombatModeToggleOff
   parent: ActionCombatModeToggle
-  name: "[color=red]Combat Mode[/color]"
-  description: Enter combat mode
+  name: "[color=red]Бойовий режим[/color]"
+  description: Увійти в бойовий режим
   noSpawn: true
   components:
   - type: InstantAction
@@ -160,8 +160,8 @@
 
 - type: entity
   id: ActionChangeVoiceMask
-  name: Set name
-  description: Change the name others hear to something else.
+  name: Встановити їмʼя
+  description: Змініть ім'я, яке чують інші, на інше.
   components:
   - type: InstantAction
     icon: Interface/Actions/scream.png # somebody else can figure out a better icon for this
@@ -169,8 +169,8 @@
 
 - type: entity
   id: ActionVendingThrow
-  name: Dispense Item
-  description: Randomly dispense an item from your stock.
+  name: Видати предмет
+  description: Довільно видавайте товар зі свого запасу.
   noSpawn: true
   components:
   - type: InstantAction
@@ -179,8 +179,8 @@
 
 - type: entity
   id: ActionArtifactActivate
-  name: Activate Artifact
-  description: Immediately activates your current artifact node.
+  name: Активувати артефакт
+  description: Миттєво активує ваш поточний вузол артефакту.
   noSpawn: true
   components:
   - type: InstantAction
@@ -192,8 +192,8 @@
 
 - type: entity
   id: ActionToggleBlock
-  name: Block
-  description: Raise or lower your shield.
+  name: Блок
+  description: Підніміть або опустіть свій щит.
   noSpawn: true
   components:
   - type: InstantAction
@@ -203,8 +203,8 @@
 
 - type: entity
   id: ActionClearNetworkLinkOverlays
-  name: Clear network link overlays
-  description: Clear network link overlays.
+  name: Очистити створення мережевих посилань
+  description: Очистити створення мережевих посилань.
   noSpawn: true
   components:
   - type: InstantAction
@@ -213,8 +213,8 @@
 
 - type: entity
   id: ActionAnimalLayEgg
-  name: Lay egg
-  description: Uses hunger to lay an egg.
+  name: Відкласти яйце
+  description: Використовує ситість, щоб відкласти яйце.
   noSpawn: true
   components:
   - type: InstantAction
@@ -224,8 +224,8 @@
 
 - type: entity
   id: ActionSleep
-  name: Sleep
-  description: Go to sleep.
+  name: Спати
+  description: Час подрімати.
   noSpawn: true
   components:
   - type: InstantAction
@@ -235,8 +235,8 @@
 
 - type: entity
   id: ActionWake
-  name: Wake up
-  description: Stop sleeping.
+  name: Прокинутись
+  description: Досить спати.
   noSpawn: true
   components:
   - type: InstantAction
@@ -246,8 +246,8 @@
 
 - type: entity
   id: ActionActivateHonkImplant
-  name: Honk
-  description: Activates your honking implant, which will produce the signature sound of the clown.
+  name: Хонк
+  description: Активує ваш хонк імплантат, який видає характерний звук клоуна.
   noSpawn: true
   components:
   - type: InstantAction
