@@ -1,8 +1,8 @@
 - type: entity
-  name: shipyard console
+  name: консоль верфі
   parent: BaseStructureComputer
   id: ComputerShipyard
-  description: Used to purchase and sell shuttles
+  description: Використовується для купівлі та продажу човників. Поки я директор цього.. фонду ми не будемо малювати шатли!
   placement:
     mode: SnapgridCenter
   components:
@@ -83,8 +83,8 @@
 - type: entity
   id: ComputerShipyardSecurity
   parent: ComputerShipyard
-  name: security shipyard console
-  description: Used to enlist into Nanotrasen Security Forces
+  name: консоль верфі для СБ
+  description: Використовується для залучення до сил безпеки Nanotrasen
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Security
@@ -107,8 +107,8 @@
 - type: entity
   id: ComputerShipyardBlackMarket
   parent: ComputerShipyard
-  name: black market shipyard console
-  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  name: консоль верфі чорного ринку
+  description: Використовується для покупки кораблів, недоступних іншими способами. Має наклейку з написом ПОДАТОК З ПРОДАЖУ 30%
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.BlackMarket
@@ -137,11 +137,11 @@
           acts: ["Destruction"]
 
 - type: entity
-  name: cargo sale computer
+  name: комп'ютер продажу вантажів
   suffix: Normal
   parent: BaseStructureComputer
   id: ComputerPalletConsoleNFNormalMarket
-  description: Used to sell goods loaded onto cargo pallets
+  description: Використовується для продажу товарів, завантажених на вантажні піддони
   placement:
     mode: SnapgridCenter
   components:
@@ -212,7 +212,7 @@
   parent: ComputerPalletConsoleNFNormalMarket
   id: ComputerPalletConsoleNFHighMarket
   suffix: High
-  description: Used to sell goods loaded onto cargo pallets
+  description: Використовується для продажу товарів, завантажених на вантажні піддони
   components:
   - type: MarketModifier
     mod: 1.59
@@ -221,7 +221,7 @@
   parent: ComputerPalletConsoleNFNormalMarket
   id: ComputerPalletConsoleNFLowMarket
   suffix: Low
-  description: Used to sell goods loaded onto cargo pallets
+  description: Використовується для продажу товарів, завантажених на вантажні піддони
   components:
   - type: MarketModifier
     mod: 0.698
@@ -230,7 +230,7 @@
   parent: ComputerPalletConsoleNFNormalMarket
   id: ComputerPalletConsoleNFVeryLowMarket
   suffix: VeryLow
-  description: Used to sell goods loaded onto cargo pallets
+  description: Використовується для продажу товарів, завантажених на вантажні піддони
   components:
   - type: MarketModifier
     mod: 0.40

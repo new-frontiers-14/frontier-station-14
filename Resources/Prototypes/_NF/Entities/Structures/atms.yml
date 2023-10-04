@@ -1,8 +1,8 @@
 - type: entity
-  name: bank atm
+  name: Банкомат
   parent: BaseStructureComputer
   id: ComputerBankATM
-  description: Used to deposit and withdraw funds from a personal bank account
+  description: Просто скинь донат
   placement:
     mode: SnapgridCenter
   components:
@@ -80,10 +80,10 @@
         damage: 0
         
 - type: entity
-  name: black market atm
+  name: банкомат чорного ринку
   parent: BaseStructureComputer
   id: ComputerBlackMarketBankATM
-  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
+  description: Має деякі схематозні зміни та наклейку з написом КОМІСІЯ ЗА ДЕПОЗИТ 30%
   placement:
     mode: SnapgridCenter
   components:
@@ -167,10 +167,10 @@
         acts: ["Destruction"]
 
 - type: entity
-  name: withdraw-only bank atm
+  name: банкомат лише для зняття готівки
   parent: BaseStructureComputer
   id: ComputerWithdrawBankATM
-  description: Used to withdraw funds from a personal bank account. Unable to deposit.
+  description: Використовується для зняття коштів з особистого банківського рахунку. Неможливо внести кошти.
   placement:
     mode: SnapgridCenter
   components:
@@ -245,10 +245,10 @@
         acts: ["Destruction"]
 
 - type: entity
-  name: wallmount bank atm
+  name: настінний банкомат
   parent: BaseStructureComputer
   id: ComputerWallmountBankATM
-  description: Used to deposit and withdraw funds from a personal bank account, it now comes in a more compact design!
+  description: Використовувався для внесення та зняття коштів з особистого банківського рахунку, тепер він має більш компактний дизайн!
   placement:
     mode: SnapgridCenter
   components:
@@ -328,10 +328,10 @@
         damage: 0
 
 - type: entity
-  name: wallmount withdraw-only bank atm
+  name: настінний банківський банкомат лише для зняття
   parent: BaseStructureComputer
   id: ComputerWallmountWithdrawBankATM
-  description: Used to withdraw funds from a personal bank account. Unable to deposit. It now comes in a more compact design!
+  description: Використовується для зняття коштів з особистого банківського рахунку. Неможливо внести кошти. Тепер він має більш компактний дизайн!
   placement:
     mode: SnapgridCenter
   components:
@@ -411,10 +411,10 @@
         acts: ["Destruction"]
 
 - type: entity
-  name: station administration console
+  name: консоль адміністрування станції
   parent: BaseStructureComputer
   id: StationAdminBankATM
-  description: Used to pay out from the station's bank account
+  description: Використовується для виплат з банківського рахунку станції
   placement:
     mode: SnapgridCenter
   components:

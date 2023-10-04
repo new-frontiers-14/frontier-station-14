@@ -1,10 +1,10 @@
 # Moth Foods, the three C's: cheese, coleslaw, and cotton
 # Base ingredients
 - type: entity
-  name: herby cheese
+  name: сир з пліснявою
   parent: FoodBakingBase
   id: FoodMothHerbyCheese
-  description: As a staple of mothic cuisine, cheese is often augmented with various flavours to keep variety in their diet.
+  description: Як основний продукт традиційної кухні, сир часто доповнюють різними смаками, щоб зберегти різноманітність у їхньому раціоні.
   components:
   - type: FlavorProfile
     flavors:
@@ -27,10 +27,10 @@
 #Tastes like cheese, herbs
 
 - type: entity
-  name: mothic salad
+  name: салат
   parent: FoodBowlBase
   id: FoodMothSaladBase
-  description: A basic salad of cabbage, red onion and tomato.
+  description: Базовий салат з капусти, червоної цибулі та помідорів.
   components:
   - type: FlavorProfile
     flavors:
@@ -54,9 +54,9 @@
 - type: entity
   parent: BaseItem
   id: BaseFoodMothSauce
-  name: sauce bowl
+  name: боул з соусом
   abstract: true
-  description: A small bowl for condiment. Not reusable.
+  description: Маленька миска для приправ. Не підлягає багаторазовому використанню.
   components:
   - type: Drink
     solution: food
@@ -86,10 +86,10 @@
 
 # Tomato Sauce
 - type: entity
-  name: tomato sauce
+  name: томатний соус
   parent: BaseFoodMothSauce
   id: FoodMothTomatoSauce
-  description: Tomato with salt and herbs.
+  description: Помідори з сіллю і зеленню.
   components:
   - type: FlavorProfile
     flavors:
@@ -114,10 +114,10 @@
 
 # Pesto
 - type: entity
-  name: pesto sauce
+  name: соус песто
   parent: BaseFoodMothSauce
   id: FoodMothPesto
-  description: A combination of salt, herbs, garlic, oil, and pine nuts. Frequently used as a sauce for pasta or pizza, or eaten on bread.
+  description: Поєднання солі, трав, часнику, олії та кедрових горіхів. Часто використовується як соус до пасти чи піци, або їдять на хлібі.
   components:
   - type: FlavorProfile
     flavors:
@@ -143,10 +143,10 @@
 
 # Bechamel
 - type: entity
-  name: bechamel sauce
+  name: соус бешамель
   parent: BaseFoodMothSauce
   id: FoodMothBechamel
-  description: A classic white sauce common to several European cultures.
+  description: Класичний білий соус, поширений у кількох європейських культурах.
   components:
   - type: FlavorProfile
     flavors:
@@ -174,7 +174,7 @@
   name: squeaking stir fry
   parent: FoodMealBase
   id: FoodMothSqueakingFry
-  description: A mothic classic made with cheese curds and tofu (amongst other things).
+  description: Класичний мотелик, виготовлений із сирної маси та тофу (серед іншого).
   components:
   - type: FlavorProfile
     flavors:
@@ -200,10 +200,10 @@
 #Tastes like cheese, tofu and veggies
 
 - type: entity
-  name: toasted seeds
+  name: підсмажене насіння
   parent: FoodBakingBase
   id: FoodMothToastedSeeds
-  description: While they're far from filling, toasted seeds are a popular snack amongst the moths. Some more exotic flavours may be added for some extra pep.
+  description: Незважаючи на те, що вони далеко не ситні, підсмажені насіння є популярною закускою серед молі. Для додаткового бадьорості можна додати деякі екзотичні смаки.
   components:
   - type: FlavorProfile
     flavors:
@@ -222,10 +222,10 @@
           Quantity: 5
 
 - type: entity
-  name: sweet chili cabbage wrap
+  name: Шавуха
   parent: FoodMealBase
   id: FoodMothChiliCabbageWrap
-  description: Grilled cheese and salad in a cabbage wrap, topped with delicious sweet chili sauce.
+  description: Смажений сир і салат у капустяній загортці, заправлені смачним солодким соусом чилі.
   components:
   - type: FlavorProfile
     flavors:
@@ -250,10 +250,10 @@
 #Tastes like cheese, salad, sweet chili
 
 - type: entity
-  name: baked cheese wheel
+  name: запечене сирне колесо
   parent: FoodBakingBase
   id: FoodMothBakedCheese
-  description: A baked cheese wheel, melty and delicious..
+  description: Запечене сирне колесо, розплавлене та смачне..
   components:
   - type: FlavorProfile
     flavors:
@@ -274,10 +274,10 @@
     state: bakedcheese
 
 - type: entity
-  name: baked cheese platter
+  name: запечена сирна тарілка
   parent: FoodBakingBase
   id: FoodMothBakedCheesePlatter
-  description: A favourite for sharing. Usually served with crispy bread slices for dipping, because the only thing better than good cheese is good cheese on bread.
+  description: Найраще для компанії. Зазвичай подається з хрусткими скибочками хліба для занурення, адже єдине, що краще хорошого сиру – це хороший сир на хлібі.
   components:
   - type: FlavorProfile
     flavors:
@@ -299,10 +299,10 @@
           Quantity: 2
 
 - type: entity
-  name: big baked rice
+  name: великий печений рис
   parent: FoodBakingBase
   id: FoodMothBakedRice
-  description: A mothic favourite, baked rice can be filled with a variety of vegetable fillings to make a delicious meal to share.
+  description: Запечений рис, улюблений молі, можна наповнити різними овочевими начинками, щоб зробити смачну їжу.
   components:
   - type: FlavorProfile
     flavors:
@@ -328,10 +328,10 @@
           Quantity: 8
 
 - type: entity
-  name: lil baked rice
+  name: запечений рис
   parent: FoodBakingBase
   id: FoodMothBakedRicePortion
-  description: A single portion of baked rice, perfect as a side dish, or even as a full meal.
+  description: Одна порція запеченого рису ідеально підходить як гарнір або навіть повноцінний обід.
   components:
   - type: FlavorProfile
     flavors:
@@ -356,10 +356,10 @@
 # Meals
 
 - type: entity
-  name: green lasagne
+  name: зелена лазанья
   parent: FoodMealBase
   id: FoodMothGreenLasagne
-  description: A fine lasagne made with pesto and a herby white sauce. Good for multiple servings.
+  description: Прекрасна лазанья, приготовлена з соусом песто та трав’яним білим соусом. Добре підходить для кількох порцій.
   components:
   - type: FlavorProfile
     flavors:
@@ -387,10 +387,10 @@
 #Tastes like cheese, pesto and pasta
 
 - type: entity
-  name: green lasagne slice
+  name: скибочка зеленої лазаньї
   parent: FoodMealBase
   id: FoodMothGreenLasagneSlice
-  description: A slice of herby, pesto-y lasagne.
+  description: Скибочка зелені, песто-і лазанья.
   components:
   - type: FlavorProfile
     flavors:
@@ -414,10 +414,10 @@
 #Tastes like cheese, pesto and pasta
 
 - type: entity
-  name: oven-baked corn
+  name: запечена в духовці кукурудза
   parent: FoodBakingBase
   id: FoodMothBakedCorn
-  description: A cob of corn, baked in the roasting heat of an oven until it blisters and blackens.
+  description: Качан кукурудзи, запечений у жарі в духовці, доки він не стане пухирцем і не почорніє.
   components:
   - type: FlavorProfile
     flavors:
@@ -437,10 +437,10 @@
 #Tastes like corn and char
 
 - type: entity
-  name: buttered baked corn
+  name: змащена маслом печена кукурудза
   parent: FoodBakingBase
   id: FoodMothButteredBakedCorn
-  description: A cob of corn, baked in the roasting heat of an oven until it blisters and blackens.
+  description: Качан кукурудзи, запечений у жарі в духовці, доки він не стане пухирцем і не почорніє.
   components:
   - type: FlavorProfile
     flavors:
@@ -461,10 +461,10 @@
 #Tastes like corn, butter and char
 
 - type: entity
-  name: mozzarella sticks
+  name: палички моцарели
   parent: FoodBakingBase
   id: FoodMothMozzarellaSticks
-  description: Little sticks of mozzarella, breaded and fried.
+  description: Маленькі палички моцарели, запаніровані та смажені.
   components:
   - type: FlavorProfile
     flavors:
@@ -487,10 +487,10 @@
 
 # Mac Balls should use macncheese donks
 - type: entity
-  name: mac balls
+  name: мак кулі
   parent: FoodBakingBase
   id: FoodMothMacBalls
-  description: Fried balls of donk-pocket dipped in corn batter, served with tomato sauce.
+  description: Смажені кульки з донк-покету в кукурудзяному клярі, подаються з томатним соусом.
   components:
   - type: FlavorProfile
     flavors:
@@ -518,10 +518,10 @@
 #Soups and Stews
 
 - type: entity
-  name: cotton soup
+  name: ватний суп
   parent: FoodBowlBase
   id: FoodMothCottonSoup
-  description: A soup made from raw cotton in a flavourful vegetable broth. Enjoyed only by moths and the criminally tasteless.
+  description: Суп із сирої бавовни на ароматному овочевому бульйоні. Насолоджується тільки моль і він жахливий.
   components:
   - type: FlavorProfile
     flavors:
@@ -543,10 +543,10 @@
 #Tastes like cotton and broth
 
 - type: entity
-  name: cheese soup
+  name: сирний суп
   parent: FoodBowlBase
   id: FoodMothCheeseSoup
-  description: A simple and filling soup made from homemade cheese and sweet potato.
+  description: Простий і ситний суп з домашнього сиру та батату.
   components:
   - type: FlavorProfile
     flavors:
@@ -571,10 +571,10 @@
           Quantity: 3
 
 - type: entity
-  name: seed soup
+  name: суп з насінням
   parent: FoodBowlBase
   id: FoodMothSeedSoup
-  description: A seed based soup, made by germinating seeds and then boiling them.
+  description: Суп на основі насіння, виготовлений шляхом пророщування насіння та їхнього кип’ятіння.
   components:
   - type: FlavorProfile
     flavors:
@@ -597,10 +597,10 @@
           Quantity: 5
 
 - type: entity
-  name: moth eyeball soup
+  name: суп з очей мотиля
   parent: FoodBowlBase
   id: FoodMothEyeballSoup
-  description: It's looking back at you...
+  description: Воно дивиться на вас...
   components:
   - type: FlavorProfile
     flavors:
@@ -621,10 +621,10 @@
 # Tastes like tomato, squirming.
 
 - type: entity
-  name: bean stew
+  name: тушкована квасоля
   parent: FoodBowlBase
   id: FoodMothBeanStew
-  description: A spicy bean stew with lots of veggies, commonly served as a filling and satisfying meal with rice or bread.
+  description: Пряне рагу з квасолі з великою кількістю овочів, яке зазвичай подають як ситну та ситну їжу з рисом або хлібом.
   components:
   - type: FlavorProfile
     flavors:
@@ -650,10 +650,10 @@
 #Tastes like beans, cabbage and spicy sauce
 
 - type: entity
-  name: oat stew
+  name: вівсяне рагу
   parent: FoodBowlBase
   id: FoodMothOatStew
-  description: A hearty oat stew, prepared with oats, sweet potatoes, and various winter vegetables.
+  description: Ситне рагу з вівса, приготоване з вівса, солодкої картоплі та різноманітних зимових овочів.
   components:
   - type: FlavorProfile
     flavors:
@@ -677,10 +677,10 @@
 #Tastes like oats, sweet potato, carrot and parsnip
 
 - type: entity
-  name: heartburn soup
+  name: суп від печії
   parent: FoodBowlBase
   id: FoodMothHeartburnSoup
-  description: The heartburn soup is named after two things; it's rosy pink colour and it's scorchingly hot chili heat.
+  description: Суп від печії названий на честь двох речей; це рожево-рожевий колір і пекучий перець чилі.
   components:
   - type: FlavorProfile
     flavors:
@@ -705,10 +705,10 @@
 #Tastes like oats, sweet potato, carrot and parsnip
 
 - type: entity
-  name: mulan congee
+  name: мулан конгі
   parent: FoodBowlBase
   id: FoodMothHuaMulanCongee
-  description: A smiley bowl of rice porridge with eggs and bacon.
+  description: Смайлик рисової каші з яйцями та беконом.
   components:
   - type: FlavorProfile
     flavors:
@@ -729,10 +729,10 @@
           Quantity: 8
 
 - type: entity
-  name: cornmeal porridge
+  name: кукурудзяна каша
   parent: FoodBowlBase
   id: FoodMothCornmealPorridge
-  description: A plate of cornmeal porridge. It's more flavourful than most porridges, and makes a good base for other flavours, too.
+  description: Тарілка кукурудзяної каші. Вона смачніша, ніж більшість каш, і є гарною основою для інших смаків.
   components:
   - type: FlavorProfile
     flavors:
@@ -752,10 +752,10 @@
 #Tastes like cornmeal.
 
 - type: entity
-  name: cheesy porridge
+  name: сирна каша
   parent: FoodBowlBase
   id: FoodMothCheesyPorridge
-  description: A rich and creamy bowl of cheesy cornmeal porridge.
+  description: Насичена та вершкова миска сирної кукурудзяної каші.
   components:
   - type: FlavorProfile
     flavors:
@@ -778,10 +778,10 @@
 #Tastes like cornmeal, cheese, more cheese, lots of cheese.
 
 - type: entity
-  name: fried eggplant and polenta
+  name: смажені баклажани і полента
   parent: FoodBowlBase
   id: FoodMothEggplantPolenta
-  description: Polenta loaded with cheese, served with a few discs of fried eggplant and some tomato sauce.
+  description: Полента, наповнена сиром, подається з кількома дисками смажених баклажанів і трохи томатного соусу.
   components:
   - type: FlavorProfile
     flavors:
@@ -806,10 +806,10 @@
 #Tastes like cornmeal, cheese, eggplant and tomato sauce
 
 - type: entity
-  name: vegetarian chili
+  name: вегетаріанський чилі
   parent: FoodBowlBase
   id: FoodMothVegetarianChili
-  description: For the hombres who don't want carne.
+  description: Для людей, які не хочуть карне.
   components:
   - type: FlavorProfile
     flavors:
@@ -838,10 +838,10 @@
 #Salads
 
 - type: entity
-  name: caprese salad
+  name: салат капрезе
   parent: FoodBakingBase
   id: FoodMothCapreseSalad
-  description: A very tasty yet simple to prepare salad.
+  description: Дуже смачний, але простий у приготуванні салат.
   components:
   - type: FlavorProfile
     flavors:
@@ -863,10 +863,10 @@
 #Tastes like mozzarella, tomato and balsamic
 
 - type: entity
-  name: fleet salad
+  name: флотський салат
   parent: FoodBowlBase
   id: FoodMothFleetSalad
-  description: The grilled cheese makes it particularly filling, while the croutons provide a crunchy kick.
+  description: Смажений сир робить його особливо ситним, а грінки забезпечують хрусткий смак.
   components:
   - type: FlavorProfile
     flavors:
@@ -890,10 +890,10 @@
 #Tastes like cheese, salad and bread
 
 - type: entity
-  name: cotton salad
+  name: бавовняний салат
   parent: FoodBowlBase
   id: FoodMothCottonSalad
-  description: A salad with added cotton and a basic dressing. Presumably moths are around.
+  description: Салат з додаванням бавовни та основною заправкою. Імовірно міль навколо.
   components:
   - type: FlavorProfile
     flavors:
@@ -915,7 +915,7 @@
 #Tastes like cheese, salad and bread
 
 - type: entity
-  name: kachumbari salad
+  name: Салат з огірків
   parent: FoodBowlBase
   id: FoodMothKachumbariSalad
   description: 
@@ -944,10 +944,10 @@
 # Pizzas
 
 - type: entity
-  name: firecracker pizza
+  name: піца firecracker
   parent: FoodPizzaBase
   id: FoodMothPizzaFirecracker
-  description: They're not kidding when they call this a hot pizza pie.
+  description: Вони не жартують, коли називають це гарячим пирогом з піцою
   components:
   - type: FlavorProfile
     flavors:
@@ -975,10 +975,10 @@
           Quantity: 4
 
 - type: entity
-  name: slice of firecracker pizza
+  name: скибочка петарди піци
   parent: FoodPizzaSliceBase
   id: FoodMothPizzaFirecrackerSlice
-  description: A spicy slice of something quite nice.
+  description: Пряний шматочок чогось досить приємного.
   components:
   - type: FlavorProfile
     flavors:
@@ -1005,10 +1005,10 @@
 # Tastes like crust, chili, corn, cheese
 
 - type: entity
-  name: quattro formaggi pizza
+  name: піца з чотири сири
   parent: FoodPizzaBase
   id: FoodMothPizzaFiveCheese
-  description: For centuries, scholars have asked; how much cheese is too much cheese?
+  description: Століттями вчені запитували; скільки сиру це занадто багато сиру?
   components:
   - type: FlavorProfile
     flavors:
@@ -1022,10 +1022,10 @@
     state: pizza-fivecheese
 
 - type: entity
-  name: slice of quattro formaggi pizza
+  name: скибочка піци з чотирьох сирів
   parent: FoodPizzaSliceBase
   id: FoodMothPizzaFiveCheeseSlice
-  description: It's the cheesiest slice in the galaxy!
+  description: Це найсирніший шматочок у галактиці!
   components:
   - type: FlavorProfile
     flavors:
@@ -1038,10 +1038,10 @@
 # Tastes like crust, cheese, more cheese, excessive amount of cheese
 
 - type: entity
-  name: pesto pizza
+  name: піца песто
   parent: FoodPizzaBase
   id: FoodMothPizzaPesto
-  description: Pesto is a popular pizza topping for moths, quite possibly because it exemplifies their favourite flavours; cheese, herbs, and veggies.
+  description: Песто — популярна начинка для піци для молі, цілком можливо, тому що вона є прикладом їхніх улюблених смаків; сир, зелень і овочі.
   components:
   - type: FlavorProfile
     flavors:
@@ -1067,10 +1067,10 @@
           Quantity: 2
 
 - type: entity
-  name: slice of pesto pizza
+  name: скибочка піци песто
   parent: FoodPizzaSliceBase
   id: FoodMothPizzaPestoSlice
-  description: Green as the grass in the garden.
+  description: Зелений, як трава в саду.
   components:
   - type: FlavorProfile
     flavors:
@@ -1095,10 +1095,10 @@
 # Tastes like crust, pesto, cheese
 
 - type: entity
-  name: cotton pizza
+  name: бавовняна піца
   parent: FoodPizzaBase
   id: FoodMothPizzaCotton
-  description: A crime to some, a delicious pizza to others. Cotton and cheese.
+  description: Комусь злочин, комусь смачна піца. Бавовна і сир.
   components:
   - type: FlavorProfile
     flavors:
@@ -1112,10 +1112,10 @@
     state: pizza-cotton
 
 - type: entity
-  name: slice of cotton pizza
+  name: скибочка бавовняної піци
   parent: FoodPizzaSliceBase
   id: FoodMothPizzaCottonSlice
-  description: White as a sheet of paper.
+  description: Білий, як аркуш паперу.
   components:
   - type: FlavorProfile
     flavors:
@@ -1130,10 +1130,10 @@
 # Sweets
 
 - type: entity
-  name: cheesecake balls
+  name: кульки для чізкейку
   parent: FoodBakedBase
   id: FoodMothCheesecakeBalls
-  description: Made of soft cheese, powdered sugar and flour, rolled into balls, battered and then deep fried. They're often served with honey.
+  description: Готується з м’якого сиру, цукрової пудри і борошна, скачується в кульки, збивається і смажиться у фритюрі. Їх часто подають з медом.
   components:
   - type: FlavorProfile
     flavors:
@@ -1157,10 +1157,10 @@
 #Tastes like cheesecake and honey
 
 - type: entity
-  name: mothmallow tray
+  name: мольмелоу
   parent: FoodBakedBase
   id: FoodMothMothmallow
-  description: A light and fluffy vegan marshmallow flavoured with vanilla and rum. These are known to the moths as cloud squares.
+  description: Легкий і пухнастий веганський зефір зі смаком ванілі та рому. Вони відомі метеликам як хмарні квадрати.
   components:
   - type: FlavorProfile
     flavors:
@@ -1185,10 +1185,10 @@
 #Tastes like vanilla and clouds.
 
 - type: entity
-  name: mothmallow slice
+  name: скибочка мольмелоу
   parent: FoodBakedBase
   id: FoodMothMothmallowSlice
-  description: Fluffy little clouds of joy- in a strangely moth-like form and colour.
+  description: Пухнасті маленькі хмаринки радості дивної метеликової форми та кольору.
   components:
   - type: FlavorProfile
     flavors:
@@ -1210,10 +1210,10 @@
 #Tastes like vanilla and clouds.
 
 - type: entity
-  name: moffin
+  name: мофін
   parent: FoodBakedBase
   id: FoodMothMoffin
-  description: A delicious, spongy and dusty little cake.
+  description: Смачний, бісквітний і пиловий торт.
   components:
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
