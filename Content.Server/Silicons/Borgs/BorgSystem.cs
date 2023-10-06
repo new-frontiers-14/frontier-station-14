@@ -1,4 +1,4 @@
-﻿using Content.Server.Actions;
+using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Hands.Systems;
@@ -281,7 +281,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         Popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(uid, EntityManager))), uid);
         _powerCell.SetPowerCellDrawEnabled(uid, true);
-        _access.SetAccessEnabled(uid, true);
+        //_access.SetAccessEnabled(uid, true);
         _appearance.SetData(uid, BorgVisuals.HasPlayer, true);
         Dirty(uid, component);
     }
@@ -293,7 +293,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         Popup.PopupEntity(Loc.GetString("borg-mind-removed", ("name", Identity.Name(uid, EntityManager))), uid);
         _powerCell.SetPowerCellDrawEnabled(uid, false);
-        _access.SetAccessEnabled(uid, false);
+        //_access.SetAccessEnabled(uid, false);
         _appearance.SetData(uid, BorgVisuals.HasPlayer, false);
         Dirty(uid, component);
     }
