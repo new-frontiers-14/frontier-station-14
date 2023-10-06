@@ -1,3 +1,4 @@
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -11,6 +12,11 @@ public sealed partial class StationBankATMComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
     public string CashType = "Credit";
+
+    public static string CashSlotSlotId = "station-bank-ATM-cashSlot";
+
+    [DataField("station-bank-ATM-cashSlot")]
+    public ItemSlot CashSlot = new();
 
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
