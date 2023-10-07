@@ -297,7 +297,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
             access.Add($"Cargo");
             access.Add($"Salvage");
             access.Add($"Medical");
-            access.Add($"Medical");
             access.Add($"Service");
             access.Add($"Research");
             access.Add($"Engineering");
