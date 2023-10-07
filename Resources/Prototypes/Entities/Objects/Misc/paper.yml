@@ -56,8 +56,10 @@
               max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
+  - type: VendPrice
     price: 1
+  - type: StaticPrice
+    price: 0 # Stop fax copy abuse.
 
 - type: entity
   name: office paper
@@ -253,6 +255,18 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
+  - type: Pen
+    mode: PenWrite
+  - type: Stamp
+    stampedColor: "#000001"
+    stampState: "paper_stamp-generic"
+    stampedPersonal: true
+    stampedBorderless: true
+    sound:
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg
+      params:
+        volume: -2
+        maxdistance: 5
   - type: StaticPrice
     price: 1
 
@@ -283,6 +297,18 @@
     sprite: Objects/Misc/bureaucracy.rsi
     heldPrefix: overpriced_pen
     size: 2
+  - type: Pen
+    mode: PenWrite
+  - type: Stamp
+    stampedColor: "#000001"
+    stampState: "paper_stamp-cap"
+    stampedPersonal: true
+    stampedBorderless: true
+    sound:
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg
+      params:
+        volume: -2
+        maxdistance: 5
   - type: StaticPrice
     price: 20
 
@@ -320,6 +346,18 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_hop
+  - type: Pen
+    mode: PenWrite
+  - type: Stamp
+    stampedColor: "#000001"
+    stampState: "paper_stamp-generic"
+    stampedPersonal: true
+    stampedBorderless: true
+    sound:
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg
+      params:
+        volume: -2
+        maxdistance: 5
   - type: StaticPrice
     price: 10
 
@@ -469,6 +507,8 @@
     state: stamp-mime
   - type: Item
     size: 3
+  - type: StaticPrice
+    price: 3
 
 - type: entity
   name: alternate rubber stamp
@@ -484,8 +524,6 @@
       params:
         volume: -2
         maxdistance: 5
-  - type: StaticPrice
-    price: 3
 
 - type: entity
   name: captain's rubber stamp
@@ -497,7 +535,6 @@
     stampedName: stamp-component-stamped-name-captain
     stampedColor: "#3681bb"
     stampState: "paper_stamp-cap"
-    stampedPersonal: true
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: stamp-cap

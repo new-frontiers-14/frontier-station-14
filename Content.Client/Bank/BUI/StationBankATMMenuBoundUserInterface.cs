@@ -18,6 +18,7 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
 
         _menu = new StationBankATMMenu();
         _menu.WithdrawRequest += OnWithdraw;
+        _menu.DepositRequest += OnDeposit;
         _menu.OnClose += Close;
         _menu.PopulateReasons();
         _menu.OpenCentered();
@@ -40,6 +41,14 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
         SendMessage(new StationBankWithdrawMessage(amount, _menu.Reason, _menu.Description));
     }
 
+    private void OnDeposit()
+    {
+        if (_menu?.Amount is not int amount)
+            return;
+
+        SendMessage(new StationBankDepositMessage(amount, _menu.Reason, _menu.Description));
+    }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
@@ -49,5 +58,6 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
 
         _menu?.SetEnabled(bankState.Enabled);
         _menu?.SetBalance(bankState.Balance);
+        _menu?.SetDeposit(bankState.Deposit);
     }
 }

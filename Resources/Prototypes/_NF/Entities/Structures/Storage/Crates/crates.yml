@@ -2,7 +2,6 @@
   parent: CrateBaseWeldable
   id: CratePlasticBiodegradable
   name: biodegradable plastic crate
-  noSpawn: true
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/plastic.rsi
@@ -15,6 +14,16 @@
     - entity_storage
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateUranium
+  name: uranium crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/radiation_secure.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/radiation_secure.rsi
 
 - type: entity
   parent: CrateTradeBaseSecure
@@ -43,6 +52,8 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: StaticPrice
+    price: 1000
 
 - type: entity
   parent: CrateTradeBaseSecure
@@ -71,3 +82,5 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: StaticPrice
+    price: 2000

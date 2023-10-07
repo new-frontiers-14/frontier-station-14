@@ -44,6 +44,7 @@ public sealed partial class SalvageSystem
                 continue;
             }
 
+            PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
             UpdateConsoles(data);
             return;
@@ -98,5 +99,9 @@ public sealed partial class SalvageSystem
         }
 
         _ui.TrySetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
+    }
+    private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
+    {
+        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
     }
 }

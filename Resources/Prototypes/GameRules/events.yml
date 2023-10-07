@@ -140,31 +140,29 @@
     # startDelay: 30
   # - type: MeteorSwarmRule
 
-- type: entity
-  id: MouseMigration
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-  - type: StationEvent
-    earliestStart: 30
-    minimumPlayers: 15
-    weight: 5
-    duration: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobMouse
-      prob: 0.015
-    - id: MobMouse1
-      prob: 0.015
-    - id: MobMouse2
-      prob: 0.015
-    - id: MobMothroach
-      prob: 0.015
-    - id: MobRatServant
-      prob: 0.015
-    specialEntries:
-    - id: SpawnPointGhostRatKing
-      prob: 0.005
+# - type: entity
+  # id: MouseMigration
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # earliestStart: 30
+    # minimumPlayers: 15
+    # weight: 5
+    # duration: 50
+  # - type: VentCrittersRule
+    # entries:
+    # - id: MobMouse
+      # prob: 0.015
+    # - id: MobMouse1
+      # prob: 0.015
+    # - id: MobMouse2
+      # prob: 0.015
+    # - id: MobRatServant
+      # prob: 0.015
+    # specialEntries:
+    # - id: SpawnPointGhostRatKing
+      # prob: 0.005
 
 # - type: entity
   # id: PowerGridCheck
@@ -234,25 +232,27 @@
     # duration: 60
   # - type: VentClogRule
 
-# - type: entity
-  # id: VentCritters
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # id: VentCritters
-    # earliestStart: 15
-    # minimumPlayers: 15
-    # weight: 5
-    # duration: 60
-  # - type: VentCrittersRule
-    # entries:
-    # - id: MobMouse
-      # prob: 0.02
-    # - id: MobMouse1
-      # prob: 0.02
-    # - id: MobMouse2
-      # prob: 0.02
+- type: entity
+  id: VentCritters
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    id: VentCritters
+    earliestStart: 15
+    minimumPlayers: 15
+    weight: 5
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobMouse
+      prob: 0.02
+    - id: MobMouse1
+      prob: 0.02
+    - id: MobMouse2
+      prob: 0.02
+    - id: MobMothroach
+      prob: 0.015
 
 # - type: entity
   # id: SlimesSpawn

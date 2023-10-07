@@ -1,4 +1,5 @@
 using Content.Shared.Salvage.Expeditions.Modifiers;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -30,7 +31,9 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SalvageExpeditionConsoleComponent : Component
 {
-
+    [DataField("soundError")]
+    public SoundSpecifier ErrorSound =
+    new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 }
 
 [Serializable, NetSerializable]

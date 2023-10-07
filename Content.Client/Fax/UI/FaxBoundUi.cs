@@ -23,6 +23,7 @@ public sealed class FaxBoundUi : BoundUserInterface
 
         _window.OnClose += Close;
         _window.SendButtonPressed += OnSendButtonPressed;
+        _window.CopyButtonPressed += OnCopyButtonPressed;
         _window.RefreshButtonPressed += OnRefreshButtonPressed;
         _window.PeerSelected += OnPeerSelected;
     }
@@ -30,6 +31,11 @@ public sealed class FaxBoundUi : BoundUserInterface
     private void OnSendButtonPressed()
     {
         SendMessage(new FaxSendMessage());
+    }
+
+    private void OnCopyButtonPressed()
+    {
+        SendMessage(new FaxCopyMessage());
     }
 
     private void OnRefreshButtonPressed()
