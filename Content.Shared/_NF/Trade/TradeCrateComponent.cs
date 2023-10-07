@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Trade.Components;
+namespace Content.Shared._NF.Trade.Components;
 
 /// <summary>
 /// This is used to mark an entity to be used in a trade crates

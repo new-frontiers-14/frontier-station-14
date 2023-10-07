@@ -18,7 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
-using Content.Server._NF.Trade.Components;
+using Content.Shared._NF.Trade.Components;
 
 namespace Content.Server.Cargo.Systems;
 
