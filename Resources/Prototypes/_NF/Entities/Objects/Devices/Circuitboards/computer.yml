@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: AdvancedShuttleConsoleCircuitboard
+  name: advanced shuttle console computer board
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerShuttleAdvanced
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: AdvancedRadarConsoleCircuitboard
+  name: advanced radar console computer board
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: AdvancedComputerRadar
