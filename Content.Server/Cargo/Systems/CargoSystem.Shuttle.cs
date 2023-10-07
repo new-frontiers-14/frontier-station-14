@@ -18,6 +18,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Coordinates;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -266,32 +267,14 @@ public sealed partial class CargoSystem
                 // - anything already being sold
                 // - anything anchored (e.g. light fixtures)
                 // - anything blacklisted (e.g. players).
-
-                // Dont look for the trading crate content, since it can only have trade items in.
-                if (_tradeCrateQuery.HasComponent(ent))
+                if (toSell.Contains(ent) ||
+                    _xformQuery.TryGetComponent(ent, out var xform) &&
+                    (xform.Anchored || !CanSell(ent, xform)))
                 {
-                    if (toSell.Contains(ent) ||
-                       _xformQuery.TryGetComponent(ent, out var xform) &&
-                        (xform.Anchored))
-                    {
-                        continue;
-                    }
-                }
-                else
-                {
-                    if (toSell.Contains(ent) ||
-                        _xformQuery.TryGetComponent(ent, out var xform) &&
-                        (xform.Anchored || !CanSell(ent, xform)))
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 if (_blacklistQuery.HasComponent(ent))
-                    continue;
-
-                // Look for trade items and stop the sell unless they are in a trade crate.
-                if (_tradeItemQuery.HasComponent(ent))
                     continue;
 
                 var price = _pricing.GetPrice(ent);
@@ -325,12 +308,6 @@ public sealed partial class CargoSystem
 
         // Look for blacklisted items and stop the selling of the container.
         if (_blacklistQuery.HasComponent(uid))
-        {
-            return false;
-        }
-
-        // Look for trade items and stop the selling of the container, this is needed to make sure the trade items wont be sold in normal crates.
-        if (_tradeItemQuery.HasComponent(uid))
         {
             return false;
         }
@@ -411,7 +388,7 @@ public sealed partial class CargoSystem
         }
     }
 
-#endregion
+    #endregion
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {

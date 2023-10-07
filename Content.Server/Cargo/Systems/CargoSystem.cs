@@ -49,7 +49,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
-    private EntityQuery<TradeItemComponent> _tradeItemQuery;
     private EntityQuery<TradeCrateComponent> _tradeCrateQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
 
@@ -59,7 +58,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
 
         _xformQuery = GetEntityQuery<TransformComponent>();
         _blacklistQuery = GetEntityQuery<CargoSellBlacklistComponent>();
-        _tradeItemQuery = GetEntityQuery<TradeItemComponent>();
         _tradeCrateQuery = GetEntityQuery<TradeCrateComponent>();
         _mobQuery = GetEntityQuery<MobStateComponent>();
 
