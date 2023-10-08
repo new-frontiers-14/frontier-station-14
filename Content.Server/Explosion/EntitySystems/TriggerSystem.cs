@@ -24,6 +24,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Server.Station.Systems;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -171,28 +173,30 @@ namespace Content.Server.Explosion.EntitySystems
 
             // Gets station location of the implant
             var station = _station.GetOwningStation(uid);
-            var stationName = station is null ? null : Name(station.Value);
+            var stationText = station is null ? null : $"{Name(station.Value)} ";
 
-            if (!(stationName == null))
-            {
-                stationName += " ";
-            }
-            else
-            {
-                stationName = "";
-            }
+            if (stationText == null)
+                stationText = "";
 
-            var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("grid", stationName!), ("position", posText));
-            var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("grid", stationName!), ("position", posText));
+            // Gets specie of the implant user
+            var speciesText = $"";
+            if (TryComp<HumanoidAppearanceComponent?>(implanted.ImplantedEntity, out var species))
+                speciesText = $" ({species!.Species})";
+
+            var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
+            var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
 
             if (!TryComp<MobStateComponent>(implanted.ImplantedEntity, out var mobstate))
                 return;
 
-            // Sends a message to the radio channel specified by the implant
-            if (mobstate.CurrentState == MobState.Critical)
-                _radioSystem.SendRadioMessage(uid, critMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
-            if (mobstate.CurrentState == MobState.Dead)
-                _radioSystem.SendRadioMessage(uid, deathMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+            if (mobstate.CurrentState != MobState.Alive)
+            {
+                // Sends a message to the radio channel specified by the implant
+                if (mobstate.CurrentState == MobState.Critical)
+                    _radioSystem.SendRadioMessage(uid, critMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+                if (mobstate.CurrentState == MobState.Dead)
+                    _radioSystem.SendRadioMessage(uid, deathMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+            }
 
             args.Handled = true;
         }
@@ -337,6 +341,17 @@ namespace Content.Server.Explosion.EntitySystems
                 // In case this is a re-usable grenade, un-prime it.
                 if (TryComp<AppearanceComponent>(uid, out var appearance))
                     _appearance.SetData(uid, TriggerVisuals.VisualState, TriggerVisualState.Unprimed, appearance);
+            }
+        }
+        private string GetSpeciesRepresentation(string speciesId)
+        {
+            if (_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
+            {
+                return Loc.GetString(species.Name);
+            }
+            else
+            {
+                return Loc.GetString("humanoid-appearance-component-unknown-species");
             }
         }
     }
