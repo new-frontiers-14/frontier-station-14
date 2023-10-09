@@ -12,6 +12,7 @@ using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
+using Content.Shared._NF.Trade.Components;
 
 namespace Content.Shared.Lock;
 
@@ -211,6 +212,9 @@ public sealed class LockSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, LockComponent component, ref GotEmaggedEvent args)
     {
+        if (HasComp<TradeCrateComponent>(uid))
+            return;
+
         if (!component.Locked || !component.BreakOnEmag)
             return;
         _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
