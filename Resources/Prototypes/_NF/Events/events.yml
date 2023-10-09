@@ -141,3 +141,22 @@
     maxDuration: 1200
   - type: BluespaceErrorRule
     gridPath: /Maps/Bluespace/cargoniaship.yml
+
+    - type: entity
+  id: BluespaceDungeonScienceLarge
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-rndvault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-rndvault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 25
+    weight: 2
+    startDelay: 10
+    duration: 1200
+    maxDuration: 1800
+  - type: BluespaceErrorRule
+    gridPath: /Maps/Bluespace/bluespacedungeonsciencelarge.yml
