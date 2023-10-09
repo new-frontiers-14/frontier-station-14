@@ -1,0 +1,39 @@
+﻿- type: entity
+  id: RandomMagicBook
+  name: random magic book spawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Misc/books.rsi
+          state: book_demonomicon
+    - type: RandomSpawner
+      prototypes:
+        - SpawnSpellbook
+        - ForceWallSpellbook
+        - BlinkBook
+        - KnockSpellbook
+        - FireballSpellbook
+        - ScrollRunes
+        - SmiteBook
+      chance: 1
+
+- type: entity
+  id: RandomMagicBookSafe
+  name: random magic book spawner [safe]
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Misc/books.rsi
+          state: book_demonomicon
+    - type: RandomSpawner
+      prototypes:
+        - SpawnSpellbook
+        - ForceWallSpellbook
+        - BlinkBook
+        - KnockSpellbook
+        - ScrollRunes
+      chance: 1
