@@ -24,7 +24,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Server.Station.Systems;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
 
 namespace Content.Server.Explosion.EntitySystems
