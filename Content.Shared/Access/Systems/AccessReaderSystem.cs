@@ -12,6 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.Trade.Components;
 
 namespace Content.Shared.Access.Systems;
 
@@ -69,6 +70,9 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
+        if (HasComp<TradeCrateComponent>(uid))
+            return;
+
         args.Handled = true;
         reader.Enabled = false;
         Dirty(reader);
