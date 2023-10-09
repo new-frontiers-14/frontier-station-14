@@ -8,12 +8,6 @@ namespace Content.Shared._NF.Bodycam
     public sealed partial class BodycamComponent : Component
     {
         /// <summary>
-        ///     Choose a random camera mode when item is spawned.
-        /// </summary>
-        [DataField("randomMode")]
-        public bool RandomMode = false;
-
-        /// <summary>
         ///     If true user can't change camera mode
         /// </summary>
         [DataField("controlsLocked")]
@@ -41,7 +35,7 @@ namespace Content.Shared._NF.Bodycam
         ///     How often does camera update its owners status (in seconds). Limited by the system update rate.
         /// </summary>
         [DataField("updateRate")]
-        public TimeSpan UpdateRate = TimeSpan.FromSeconds(2f);
+        public TimeSpan UpdateRate = TimeSpan.FromSeconds(5);
 
         /// <summary>
         ///     Current user that wears camera. Null if nobody wearing it.
