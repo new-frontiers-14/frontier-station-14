@@ -9,3 +9,6 @@ station-event-bluespace-asteroid-end-announcement = We've detected an unexpected
 
 station-event-bluespace-ship-start-announcement = We have detected an unusual FTL signature, witch long range scans have detected as an unknown ship, if you wish to investigate be cautious.
 station-event-bluespace-ship-end-announcement = We've detected an unexpected FTL jump from the unknown ship, its has left the sector.
+
+station-event-bluespace-rndvault-start-announcement = We have recieved a panic beacon from a corporate deep-space R&D facility that has arrived to this sector via FTL. Nanotrasen requests all available personnel investigate.
+station-event-bluespace-rndvault-end-announcement = The R&D facility has entered FTL once more.
