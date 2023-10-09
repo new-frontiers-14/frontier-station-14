@@ -343,16 +343,5 @@ namespace Content.Server.Explosion.EntitySystems
                     _appearance.SetData(uid, TriggerVisuals.VisualState, TriggerVisualState.Unprimed, appearance);
             }
         }
-        private string GetSpeciesRepresentation(string speciesId)
-        {
-            if (_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
-            {
-                return Loc.GetString(species.Name);
-            }
-            else
-            {
-                return Loc.GetString("humanoid-appearance-component-unknown-species");
-            }
-        }
     }
 }
