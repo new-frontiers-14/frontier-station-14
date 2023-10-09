@@ -14,6 +14,7 @@ using Content.Shared.Explosion;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Throwing;
+using Content.Shared.Tiles;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -23,6 +24,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Maps;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -45,6 +48,8 @@ public sealed partial class ExplosionSystem : EntitySystem
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsSys = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+
+    [Dependency] private readonly IMapManager _mapMan = default!;
 
     /// <summary>
     ///     "Tile-size" for space when there are no nearby grids to use as a reference.
@@ -301,8 +306,6 @@ public sealed partial class ExplosionSystem : EntitySystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
-        var visualEnt = CreateExplosionVisualEntity(epicenter, type.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
-
         // camera shake
         CameraShake(iterationIntensity.Count * 2.5f, epicenter, totalIntensity);
 
@@ -313,6 +316,25 @@ public sealed partial class ExplosionSystem : EntitySystem
         var audioRange = iterationIntensity.Count * 5;
         var filter = Filter.Pvs(epicenter).AddInRange(epicenter, audioRange);
         SoundSystem.Play(type.Sound.GetSound(), filter, mapEntityCoords, _audioParams);
+
+        // Block explosions on safe zone
+        var location = mapEntityCoords;
+        var gridId = location.GetGridUid(EntityManager);
+        if (!HasComp<MapGridComponent>(gridId))
+        {
+            location = location.AlignWithClosestGridTile();
+            gridId = location.GetGridUid(EntityManager);
+            // Check if fixing it failed / get final grid ID
+            if (!HasComp<MapGridComponent>(gridId))
+                return null;
+        }
+        var mapGrid = _mapMan.GetGrid(gridId.Value);
+        var gridUid = mapGrid.Owner;
+        var ev = new FloorTileAttemptEvent();
+        if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+            return null;
+
+        var visualEnt = CreateExplosionVisualEntity(epicenter, type.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         return new Explosion(this,
             type,
