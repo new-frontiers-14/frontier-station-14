@@ -23,8 +23,8 @@ public partial struct StampDisplayInfo
     [DataField("stampedColor")]
     public Color StampedColor;
 
-    [DataField("stampedPersonal")]
-    public bool StampedPersonal = false;
+    [DataField("stampedBorderless")]
+    public bool StampedBorderless;
 };
 
 [RegisterComponent]
@@ -58,6 +58,9 @@ public sealed partial class StampComponent : Component
     /// </summary>
     [DataField("stampedPersonal")]
     public bool StampedPersonal = false;
+
+    [DataField("stampedBorderless")]
+    public bool StampedBorderless = false;
 
     [ViewVariables]
     public EntityUid? StampedIdUser = null;
