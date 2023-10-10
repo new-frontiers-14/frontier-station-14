@@ -8,7 +8,7 @@ If you want to host or create content for FS14, this is the repo you need. It co
 
 ## Links
 
-[Discord](https://discord.gg/tpuAT7d3zm/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
+[Discord](https://discord.gg/tpuAT7d3zm/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
 
 ## Documentation/Wiki
 
