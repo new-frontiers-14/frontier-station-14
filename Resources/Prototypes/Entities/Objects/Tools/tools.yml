@@ -369,32 +369,11 @@
   description: A bluespace-enhanced RCD that regenerates charges passively.
   suffix: AutoRecharge
   components:
-  - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
-    state: experimental
   - type: Item
     size: 20
   - type: LimitedCharges
     maxCharges: 3
     charges: 3
-  - type: AutoRecharge
-    rechargeDuration: 30
-
-  - type: entity
-  id: RCDCombat
-  parent: RCDRecharging
-  name: combat rcd
-  description: A combat bluespace-enhanced RCD that regenerates charges passively.
-  suffix: AutoRecharge
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
-    state: combat
-  - type: Item
-    size: 20
-  - type: LimitedCharges
-    maxCharges: 6
-    charges: 6
   - type: AutoRecharge
     rechargeDuration: 30
 
