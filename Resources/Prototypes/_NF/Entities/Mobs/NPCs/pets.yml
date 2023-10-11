@@ -2,7 +2,7 @@
   name: Clippy
   parent: MobCatGhost
   id: MobCatClippy
-  description: It looks like you’re writing a letter, would you like help? Clippy is here to help!
+  description: It looks like you’re writing a letter, would you like help?
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -29,3 +29,7 @@
     templateId: clippy
   - type: Loadout
     prototypes: [ MobClippyGear ]
+  - type: ReplacementAccent
+    accent: archaic
+  - type: RandomMetadata
+    nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
