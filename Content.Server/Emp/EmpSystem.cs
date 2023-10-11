@@ -5,7 +5,9 @@ using Content.Server.Radio;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
+using Content.Shared.Tiles;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
 
 namespace Content.Server.Emp;
@@ -13,6 +15,9 @@ namespace Content.Server.Emp;
 public sealed class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+
+    [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
 
@@ -37,6 +42,24 @@ public sealed class EmpSystem : SharedEmpSystem
             var attemptEv = new EmpAttemptEvent();
             RaiseLocalEvent(uid, attemptEv);
             if (attemptEv.Cancelled)
+                continue;
+
+            // Block EMP on grid
+            var mapEntityCoords = EntityCoordinates.FromMap(EntityManager, _mapManager.GetMapEntityId(coordinates.MapId), coordinates);
+
+            var location = mapEntityCoords;
+            var gridId = location.GetGridUid(EntityManager);
+            if (!HasComp<MapGridComponent>(gridId))
+            {
+                location = location.AlignWithClosestGridTile();
+                gridId = location.GetGridUid(EntityManager);
+                // Check if fixing it failed / get final grid ID
+                if (!HasComp<MapGridComponent>(gridId))
+                    continue;
+            }
+            var mapGrid = _mapMan.GetGrid(gridId.Value);
+            var gridUid = mapGrid.Owner;
+            if (HasComp<EmpImmuneGridComponent>(gridUid))
                 continue;
 
             var ev = new EmpPulseEvent(energyConsumption, false, false);
