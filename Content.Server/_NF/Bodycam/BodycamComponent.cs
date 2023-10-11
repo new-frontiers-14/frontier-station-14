@@ -35,7 +35,7 @@ namespace Content.Shared._NF.Bodycam
         ///     How often does camera update its owners status (in seconds). Limited by the system update rate.
         /// </summary>
         [DataField("updateRate")]
-        public TimeSpan UpdateRate = TimeSpan.FromSeconds(5);
+        public TimeSpan UpdateRate = TimeSpan.FromSeconds(30);
 
         /// <summary>
         ///     Current user that wears camera. Null if nobody wearing it.
