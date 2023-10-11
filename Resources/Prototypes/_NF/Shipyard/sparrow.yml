@@ -1,0 +1,29 @@
+- type: vessel
+  id: Sparrow
+  name: NR Sparrow
+  description: A small research and engineering vessel.
+  price: 45875
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/sparrow.yml
+
+- type: gameMap
+  id: Sparrow
+  mapName: 'NR Sparrow'
+  mapPath: /Maps/Shuttles/sparrow.yml
+  minPlayers: 0
+  stations:
+    Sparrow:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Sparrow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            Borg: [ 0, 0 ]

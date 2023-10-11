@@ -2,10 +2,10 @@ using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
+using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
-using Content.Shared.Tiles;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
@@ -17,7 +17,6 @@ public sealed class EmpSystem : SharedEmpSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
 
@@ -39,13 +38,8 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
-            var attemptEv = new EmpAttemptEvent();
-            RaiseLocalEvent(uid, attemptEv);
-            if (attemptEv.Cancelled)
-                continue;
-
             // Block EMP on grid
-            var mapEntityCoords = EntityCoordinates.FromMap(EntityManager, _mapManager.GetMapEntityId(coordinates.MapId), coordinates);
+            var mapEntityCoords = EntityCoordinates.FromMap(EntityManager, _mapMan.GetMapEntityId(coordinates.MapId), coordinates);
 
             var location = mapEntityCoords;
             var gridId = location.GetGridUid(EntityManager);
@@ -59,17 +53,24 @@ public sealed class EmpSystem : SharedEmpSystem
             }
             var mapGrid = _mapMan.GetGrid(gridId.Value);
             var gridUid = mapGrid.Owner;
-            if (HasComp<EmpImmuneGridComponent>(gridUid))
+
+            var attemptEv = new EmpAttemptEvent();
+            RaiseLocalEvent(uid, attemptEv);
+            if (attemptEv.Cancelled)
                 continue;
 
             var ev = new EmpPulseEvent(energyConsumption, false, false);
             RaiseLocalEvent(uid, ref ev);
             if (ev.Affected)
             {
+                if (!HasComp<StationEmpImmuneComponent>(gridUid))
+                    continue;
                 Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
             }
             if (ev.Disabled)
             {
+                if (!HasComp<StationEmpImmuneComponent>(gridUid))
+                    continue;
                 var disabled = EnsureComp<EmpDisabledComponent>(uid);
                 disabled.DisabledUntil = Timing.CurTime + TimeSpan.FromSeconds(duration);
             }
