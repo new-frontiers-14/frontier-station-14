@@ -4,6 +4,7 @@ using Content.Server.Radio;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
+using Content.Shared.Tiles;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
@@ -34,9 +35,6 @@ public sealed class EmpSystem : SharedEmpSystem
 
     public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration)
     {
-        //if (!_mapMan.MapExists(coordinates.MapId))
-        //    return;
-
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
             // Block EMP on grid
@@ -53,8 +51,8 @@ public sealed class EmpSystem : SharedEmpSystem
             }
             var mapGrid = _mapMan.GetGrid(gridId.Value);
             var gridUid = mapGrid.Owner;
-            //if (HasComp<EmpImmuneGridComponent>(gridUid))
-            //    continue;
+            if (HasComp<EmpImmuneGridComponent>(gridUid))
+                continue;
 
             var attemptEv = new EmpAttemptEvent();
             RaiseLocalEvent(uid, attemptEv);
