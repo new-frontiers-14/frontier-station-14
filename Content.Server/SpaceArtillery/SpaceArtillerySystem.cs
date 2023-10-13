@@ -17,7 +17,7 @@ using Content.Shared.Buckle.Components;
 
 namespace Content.Shared.SpaceArtillery;
 
-public sealed class SpaceArtillerySystem : EntitySystem
+public sealed partial class SpaceArtillerySystem : EntitySystem
 {
 
 	[Dependency] private readonly ProjectileSystem _projectile = default!;
@@ -95,7 +95,7 @@ public sealed class SpaceArtillerySystem : EntitySystem
 
             if (TryComp<ActionsComponent>(args.BuckledEntity, out var actions))
             {
-                _actionsSystem.AddAction(args.BuckledEntity, component.FireAction, uid, actions);
+                _actionsSystem.AddAction(args.BuckledEntity, ref component.FireActionEntity, component.FireAction, uid, actions);
             }
             return;
         }

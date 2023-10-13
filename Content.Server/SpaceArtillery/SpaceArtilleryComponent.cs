@@ -6,12 +6,27 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 using Robust.Shared.Utility;
 
 [RegisterComponent]
-public sealed class SpaceArtilleryComponent : Component
+public sealed partial class SpaceArtilleryComponent : Component
 {
+	// Whether the space artillery has enough power
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowered = false;
+	
+	// Whether the space artillery need power to operate
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequired = true;
+	
+	// Whether the space artillery need power to operate
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsArmed = false;
+	
+    /// <summary>
+    /// The current amount of power being used.
+    /// </summary>
+    [DataField("powerUseActive")]
+    public int PowerUseActive = 600;
+	
     /// <summary>
     /// Signal port that makes space artillery fire.
     /// </summary>
@@ -27,14 +42,14 @@ public sealed class SpaceArtilleryComponent : Component
     /// <summary>
     /// The action for firing the artillery when mounted
     /// </summary>
-    [DataField("fireAction")]
+
+    [DataField("fireAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string? FireAction = "ActionSpaceArtilleryFire";
+
+    /// <summary>
+    /// The action for the horn (if any)
+    /// </summary>
+    [DataField("fireActionEntity")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public InstantAction FireAction = new()
-    {
-        UseDelay = TimeSpan.FromSeconds(0.1),
-        Icon = new SpriteSpecifier.Texture(new("Objects/Fun/bikehorn.rsi/icon.png")),
-        DisplayName = "action-name-honk", //To be changed
-        Description = "action-desc-honk", //To be changed
-        Event = new FireActionEvent(),
-    };
+    public EntityUid? FireActionEntity;
 }
