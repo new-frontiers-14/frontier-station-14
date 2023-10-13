@@ -36,7 +36,6 @@ namespace Content.Server._NF.Bodycam
 
             var curTime = _gameTiming.CurTime;
             var cameras = EntityManager.EntityQueryEnumerator<BodycamComponent, DeviceNetworkComponent>();
-            bool power = false;
 
             while (cameras.MoveNext(out var uid, out var camera, out var device))
             {
@@ -52,11 +51,11 @@ namespace Content.Server._NF.Bodycam
 
                 // get camera status
                 var status = GetCameraState(uid, camera);
-                if (status == null);
-                else
-                {
+
+                var power = false;
+                if (status != null)
                     power = true;
-                }
+
                 _surveillanceCameras.SetActive(uid, power);
                 continue;
             }

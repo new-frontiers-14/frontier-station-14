@@ -17,12 +17,12 @@ namespace Content.Shared._NF.Bodycam
     public enum BodycamMode : byte
     {
         /// <summary>
-        /// Sensor doesn't send any information about owner
+        /// Bodycam off
         /// </summary>
         CameraOff = 0,
 
         /// <summary>
-        /// Sensor sends only binary status (alive/dead)
+        /// Bodycam on
         /// </summary>
         CameraOn = 1,
     }
