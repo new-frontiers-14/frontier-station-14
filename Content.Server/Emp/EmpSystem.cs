@@ -14,9 +14,6 @@ public sealed class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
 
     public override void Initialize()
@@ -38,33 +35,15 @@ public sealed class EmpSystem : SharedEmpSystem
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
             // Block EMP on grid
-            var mapEntityCoords = EntityCoordinates.FromMap(EntityManager, _mapMan.GetMapEntityId(coordinates.MapId), coordinates);
-            var location = mapEntityCoords;
-            var gridId = location.GetGridUid(EntityManager);
-            if (!HasComp<MapGridComponent>(gridId))
-            {
-                location = location.AlignWithClosestGridTile();
-                gridId = location.GetGridUid(EntityManager);
-                // Check if fixing it failed / get final grid ID
-                if (!HasComp<MapGridComponent>(gridId))
-                    continue;
-            }
-            var mapGrid = _mapMan.GetGrid(gridId.Value);
-            var gridUid = mapGrid.Owner;
-
+            var gridUid = Transform(uid).GridUid;
             var attemptEv = new EmpAttemptEvent();
-            RaiseLocalEvent(mapGrid);
             if (HasComp<EmpImmuneGridComponent>(gridUid))
                 continue;
-
             RaiseLocalEvent(uid, attemptEv);
             if (attemptEv.Cancelled)
                 continue;
 
-            var ev = new EmpPulseEvent(energyConsumption, false, false, gridUid);
-            if (HasComp<EmpImmuneGridComponent>(ev.MapUid))
-                continue;
-
+            var ev = new EmpPulseEvent(energyConsumption, false, false);
             RaiseLocalEvent(uid, ref ev);
             if (ev.Affected)
             {
@@ -146,7 +125,7 @@ public sealed partial class EmpAttemptEvent : CancellableEntityEventArgs
 }
 
 [ByRefEvent]
-public record struct EmpPulseEvent(float EnergyConsumption, bool Affected, bool Disabled, EntityUid MapUid);
+public record struct EmpPulseEvent(float EnergyConsumption, bool Affected, bool Disabled);
 
 [ByRefEvent]
 public record struct EmpDisabledRemoved();
