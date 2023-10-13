@@ -329,7 +329,6 @@ namespace Content.Server.Mail
             // It can be spilled easily and has something to spill.
             if (HasComp<SpillableComponent>(uid)
                 && TryComp(uid, out DrinkComponent? drinkComponent)
-                && drinkComponent.Opened
                 && _solutionContainerSystem.PercentFull(uid) > 0)
                 return true;
 

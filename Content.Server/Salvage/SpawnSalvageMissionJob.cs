@@ -49,7 +49,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly BiomeSystem _biome;
     private readonly DungeonSystem _dungeon;
     private readonly MetaDataSystem _metaData;
-    private readonly SalvageSystem _salvage;
     private readonly ShuttleSystem _shuttle;
     private readonly StationSystem _stationSystem;
 

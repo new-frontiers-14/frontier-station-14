@@ -125,14 +125,6 @@ public sealed class JobRequirementsManager
             reasons.Add(jobReason.ToMarkup());
         }
 
-        if (job.WhitelistRequired == true && _whitelisted)
-        {
-            if (reasons.Count > 0)
-                reasons.Append('\n');
-
-            reasons.Append(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-        }
-
         reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
         return reason == null;
     }
