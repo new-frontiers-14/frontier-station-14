@@ -4,7 +4,6 @@ using Content.Server.Radio;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
-using Content.Shared.Tiles;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
@@ -16,6 +15,7 @@ public sealed class EmpSystem : SharedEmpSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
 
@@ -51,15 +51,20 @@ public sealed class EmpSystem : SharedEmpSystem
             }
             var mapGrid = _mapMan.GetGrid(gridId.Value);
             var gridUid = mapGrid.Owner;
+
+            var attemptEv = new EmpAttemptEvent();
+            RaiseLocalEvent(mapGrid);
             if (HasComp<EmpImmuneGridComponent>(gridUid))
                 continue;
 
-            var attemptEv = new EmpAttemptEvent();
             RaiseLocalEvent(uid, attemptEv);
             if (attemptEv.Cancelled)
                 continue;
 
-            var ev = new EmpPulseEvent(energyConsumption, false, false);
+            var ev = new EmpPulseEvent(energyConsumption, false, false, gridUid);
+            if (HasComp<EmpImmuneGridComponent>(ev.MapUid))
+                continue;
+
             RaiseLocalEvent(uid, ref ev);
             if (ev.Affected)
             {
@@ -141,7 +146,7 @@ public sealed partial class EmpAttemptEvent : CancellableEntityEventArgs
 }
 
 [ByRefEvent]
-public record struct EmpPulseEvent(float EnergyConsumption, bool Affected, bool Disabled);
+public record struct EmpPulseEvent(float EnergyConsumption, bool Affected, bool Disabled, EntityUid MapUid);
 
 [ByRefEvent]
 public record struct EmpDisabledRemoved();
