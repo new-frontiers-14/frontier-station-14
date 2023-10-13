@@ -1,3 +1,4 @@
+using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
@@ -5,7 +6,6 @@ using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
 
 namespace Content.Server.Emp;

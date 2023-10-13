@@ -8,11 +8,8 @@ using Content.Shared.APC;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Power.EntitySystems;
@@ -25,8 +22,6 @@ public sealed class ApcSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-
-    [Dependency] private readonly IMapManager _mapMan = default!;
 
     public override void Initialize()
     {
