@@ -26,6 +26,7 @@ using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
+using Content.Server.Station.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -182,6 +183,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize((EntityUid) shuttleStation);
             _records.Synchronize(station);
         }
+
+        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
+            EnsureComp<StationEmpImmuneComponent>(shuttle.Owner);
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");

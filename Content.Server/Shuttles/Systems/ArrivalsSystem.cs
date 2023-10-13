@@ -22,7 +22,6 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -407,7 +406,7 @@ public sealed class ArrivalsSystem : EntitySystem
             EnsureComp<ArrivalsSourceComponent>(id);
             EnsureComp<ProtectedGridComponent>(id);
             EnsureComp<PreventPilotComponent>(id);
-            EnsureComp<EmpImmuneGridComponent>(id);
+            EnsureComp<StationEmpImmuneComponent>(id);
         }
 
         // Handle roundstart stations.
@@ -476,7 +475,7 @@ public sealed class ArrivalsSystem : EntitySystem
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(component.Shuttle);
             arrivalsComp.Station = uid;
             EnsureComp<ProtectedGridComponent>(uid);
-            EnsureComp<EmpImmuneGridComponent>(uid);
+            EnsureComp<StationEmpImmuneComponent>(uid);
             _shuttles.FTLTravel(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: 10f, dock: true);
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }

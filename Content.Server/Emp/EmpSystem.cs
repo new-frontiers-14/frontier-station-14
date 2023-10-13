@@ -2,6 +2,7 @@ using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
+using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
@@ -37,7 +38,7 @@ public sealed class EmpSystem : SharedEmpSystem
             // Block EMP on grid
             var gridUid = Transform(uid).GridUid;
             var attemptEv = new EmpAttemptEvent();
-            if (HasComp<EmpImmuneGridComponent>(gridUid))
+            if (HasComp<StationEmpImmuneComponent>(gridUid))
                 continue;
             RaiseLocalEvent(uid, attemptEv);
             if (attemptEv.Cancelled)
