@@ -27,7 +27,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Emp;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 

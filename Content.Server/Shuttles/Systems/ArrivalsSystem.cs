@@ -22,7 +22,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Emp;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
