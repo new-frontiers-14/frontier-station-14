@@ -157,7 +157,7 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
-            if (!TryComp<SubdermalImplantComponent?>(uid, out var implanted))
+            if (!TryComp<SubdermalImplantComponent>(uid, out var implanted))
                 return;
 
             if (implanted.ImplantedEntity == null)

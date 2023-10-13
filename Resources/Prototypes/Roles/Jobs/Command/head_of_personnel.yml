@@ -39,8 +39,12 @@
   # - Cargo
   # - Atmospherics
   # - Medical
-  accessGroups:
-  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: HoPGear
@@ -52,6 +56,7 @@
     id: HoPPDA
     ears: ClothingHeadsetAltCentCom
     eyes: ClothingEyesGlassesSunglasses
+    belt: BoxFolderClipboard
   innerclothingskirt: ClothingUniformJumpskirtHoP
   satchel: ClothingBackpackSatchelHOPFilled
   duffelbag: ClothingBackpackDuffelHOPFilled
