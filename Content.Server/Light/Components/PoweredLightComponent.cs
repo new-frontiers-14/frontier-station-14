@@ -82,6 +82,6 @@ namespace Content.Server.Light.Components
         public TimeSpan UnarmedHitStun = TimeSpan.FromSeconds(5);
 
         [DataField("lightBreakChance")]
-        public float LightBreakChance = 0.0003f;
+        public float LightBreakChance = 0.1f;
     }
 }
