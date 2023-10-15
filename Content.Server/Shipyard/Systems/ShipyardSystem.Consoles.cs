@@ -26,8 +26,6 @@ using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
-using Content.Server.Shuttles.Components;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Content.Server.Shipyard.Systems;
 
