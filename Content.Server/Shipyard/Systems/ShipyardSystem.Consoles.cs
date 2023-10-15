@@ -184,8 +184,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize(station);
         }
 
-        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
-            EnsureComp<StationEmpImmuneComponent>(shuttle.Owner);
+        //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
+        //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
