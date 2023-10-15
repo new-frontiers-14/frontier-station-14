@@ -43,7 +43,7 @@ cargo-shuttle-console-station-unknown = Unknown
 cargo-shuttle-console-shuttle-not-found = Not found
 cargo-shuttle-console-organics = Detected organic lifeforms on the shuttle
 cargo-shuttle-console-bank-amount = Bank spesos:${$amount}
-cargo-shuttle-console-sell-value = Shuttle value:${$value}
+cargo-shuttle-console-sell-value = Shuttle estimate value:${$value}
 cargo-no-shuttle = No cargo shuttle found!
 
 cargo-telepad-delay-upgrade = Teleport delay

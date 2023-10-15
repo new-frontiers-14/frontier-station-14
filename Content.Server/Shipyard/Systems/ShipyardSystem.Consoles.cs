@@ -186,17 +186,19 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize(station);
         }
 
-        float shipSellTax = 0.0f;
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
-            shipSellTax = 0.30f;
-
         int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        {
+            var tax = (int) (sellValue * 0.30f);
+            sellValue -= tax;
+        }
+
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, name, sellValue, shipSellTax, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, name, sellValue, true, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     public void OnSellMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsoleSellMessage args)
@@ -264,7 +266,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         RemComp<ShuttleDeedComponent>(targetId);
 
-        float shipSellTax = 0.0f;
         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
         {
             var tax = (int) (bill * 0.30f);
@@ -276,13 +277,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             bill -= tax;
-            shipSellTax = 0.30f;
         }
 
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, null, 0, shipSellTax, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
@@ -300,16 +300,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        float shipSellTax = 0.0f;
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
-            shipSellTax = 0.30f;
-
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
         int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, shipSellTax, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        {
+            var tax = (int) (sellValue * 0.30f);
+            sellValue -= tax;
+        }
+
+        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void ConsolePopup(ICommonSession session, string text)
@@ -348,16 +350,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        float shipSellTax = 0.0f;
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
-            shipSellTax = 0.30f;
-
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
         int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, shipSellTax, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
+        {
+            var tax = (int) (sellValue * 0.30f);
+            sellValue -= tax;
+        }
+
+        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
     }
 
     public bool FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)
@@ -374,14 +378,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return false;
     }
 
-    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, float shipSellTax, bool isTargetIdPresent, ShipyardConsoleUiKey uiKey)
+    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, bool isTargetIdPresent, ShipyardConsoleUiKey uiKey)
     {
         var newState = new ShipyardConsoleInterfaceState(
             balance,
             access,
             shipDeed,
             shipSellValue,
-            shipSellTax,
             isTargetIdPresent,
             ((byte)uiKey));
 

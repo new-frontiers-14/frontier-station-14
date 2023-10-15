@@ -9,7 +9,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public readonly bool AccessGranted;
     public readonly string? ShipDeedTitle;
     public int ShipSellValue;
-    public float ShipSellTax;
     public readonly bool IsTargetIdPresent;
     public readonly byte UiKey;
 
@@ -18,7 +17,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         bool accessGranted,
         string? shipDeedTitle,
         int shipSellValue,
-        float shipSellTax,
         bool isTargetIdPresent,
         byte uiKey)
     {
@@ -26,7 +24,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         AccessGranted = accessGranted;
         ShipDeedTitle = shipDeedTitle;
         ShipSellValue = shipSellValue;
-        ShipSellTax = shipSellTax;
         IsTargetIdPresent = isTargetIdPresent;
         UiKey = uiKey;
     }

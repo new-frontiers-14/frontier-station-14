@@ -134,12 +134,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
-        if (state.ShipSellTax != 0.0f)
-        {
-            var tax = (int) (state.ShipSellValue * state.ShipSellTax);
-            state.ShipSellValue -= tax;
-        }
-
         BankAccountLabel.Text = Loc.GetString("cargo-shuttle-console-bank-amount", ("amount", state.Balance.ToString()));
         ShipSellValueLabel.Text = Loc.GetString("cargo-shuttle-console-sell-value", ("value", state.ShipSellValue.ToString()));
         SellShipButton.Disabled = state.ShipDeedTitle == null;
