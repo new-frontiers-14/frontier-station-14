@@ -111,12 +111,14 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         var depotMap = "/Maps/cargodepot.yml";
         var tinnia = "/Maps/tinnia.yml";
+        var caseys = "/Maps/caseyscasino.yml";
         var lpbravo = "/Maps/lpbravo.yml";
         var arena = "/Maps/arena.yml";
         var cove = "/Maps/cove.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
+        var caseysColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(1500f, 2400f);
 
@@ -187,6 +189,17 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
         }
+
+        if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2250f, 2250f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
+            meta.EntityName = "Crazy Casey's Casino";
+            _shuttle.SetIFFColor(depotUid7s[0], caseysColor);
+        }
+
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
