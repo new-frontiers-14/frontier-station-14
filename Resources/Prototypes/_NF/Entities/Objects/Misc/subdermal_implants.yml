@@ -4,21 +4,21 @@
   parent: BaseSubdermalImplant
   id: MedicalTrackingImplant
   name: medical insurance tracking implant
-  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Medical radio channel.
+  description: This implant has a tracking device monitor for the Medical radio channel.
   noSpawn: true
   components:
     - type: SubdermalImplant
-    - type: SuitSensor
-      randomMode: false
-      controlsLocked: true
-      mode: SensorCords
-      activationContainer: "implant"
-    - type: DeviceNetwork
-      deviceNetId: Wireless
-      transmitFrequencyId: SuitSensor
-    - type: StationLimitedNetwork
-    - type: WirelessNetworkConnection
-      range: 10000
+#    - type: SuitSensor
+#      randomMode: false
+#      controlsLocked: true
+#      mode: SensorCords
+#      activationContainer: "implant"
+#    - type: DeviceNetwork
+#      deviceNetId: Wireless
+#      transmitFrequencyId: SuitSensor
+#    - type: StationLimitedNetwork
+#    - type: WirelessNetworkConnection
+#      range: 500
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
