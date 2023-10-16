@@ -1,8 +1,8 @@
 # Anything human specific (e.g. UI, input) goes under MobHuman
 - type: entity
-  name: Urist McHands
-  parent: BaseMobOrganic
+  parent: BaseMobSpeciesOrganic
   id: BaseMobHuman
+  name: Urist McHands
   abstract: true
   components:
   - type: Hunger
@@ -22,7 +22,6 @@
       amount: 5
 
 - type: entity
-  name: Urist McHands
+  parent: BaseSpeciesDummy
   id: MobHumanDummy
-  parent: BaseMobOrganicDummy
   noSpawn: true

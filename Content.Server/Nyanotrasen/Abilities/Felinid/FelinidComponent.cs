@@ -18,6 +18,7 @@ namespace Content.Server.Abilities.Felinid
         public string HairballActionPrototype = "ActionHairBall";
 
         public EntityUid? HairballAction = null;
+        public EntityUid? EatMouseAction = null;
         public EntityUid? PotentialTarget = null;
     }
 }
