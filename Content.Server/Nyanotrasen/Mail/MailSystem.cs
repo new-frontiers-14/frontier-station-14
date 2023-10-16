@@ -9,7 +9,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
