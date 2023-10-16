@@ -47,21 +47,7 @@ public sealed class EmpSystem : SharedEmpSystem
             var attemptEv = new EmpAttemptEvent();
             if (HasComp<StationEmpImmuneComponent>(gridUid))
                 continue;
-            RaiseLocalEvent(uid, attemptEv);
-            if (attemptEv.Cancelled)
-                continue;
 
-            var ev = new EmpPulseEvent(energyConsumption, false, false);
-            RaiseLocalEvent(uid, ref ev);
-            if (ev.Affected)
-            {
-                Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
-            }
-            if (ev.Disabled)
-            {
-                var disabled = EnsureComp<EmpDisabledComponent>(uid);
-                disabled.DisabledUntil = Timing.CurTime + TimeSpan.FromSeconds(duration);
-            }
             TryEmpEffects(uid, energyConsumption, duration);
         }
         Spawn(EmpPulseEffectPrototype, coordinates);
