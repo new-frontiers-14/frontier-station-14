@@ -14,6 +14,7 @@ namespace Content.Client.Paper.UI
     [GenerateTypedNameReferences]
     public sealed partial class PaperWindow : BaseWindow
     {
+        [ViewVariables]
         private static Color DefaultTextColor = new(25, 25, 25);
 
         // <summary>
@@ -227,7 +228,10 @@ namespace Content.Client.Paper.UI
             StampDisplay.RemoveStamps();
             foreach(var stamper in state.StampedBy)
             {
-                StampDisplay.AddStamp(new StampWidget{ StampInfo = stamper });
+                if (stamper.StampedBorderless)
+                    StampDisplay.AddStamp(new StampWidget(true) { StampInfo = stamper });
+                else
+                    StampDisplay.AddStamp(new StampWidget { StampInfo = stamper });
             }
         }
 

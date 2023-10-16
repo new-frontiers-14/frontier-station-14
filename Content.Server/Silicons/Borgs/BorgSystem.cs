@@ -1,9 +1,11 @@
-﻿using Content.Server.Actions;
+using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Hands.Systems;
 using Content.Server.PowerCell;
 using Content.Server.UserInterface;
+using Content.Shared.Access;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Database;
@@ -22,7 +24,9 @@ using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Players;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -43,6 +47,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     [ValidatePrototypeId<JobPrototype>]
     public const string BorgJobId = "Borg";
@@ -281,7 +287,24 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         Popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(uid, EntityManager))), uid);
         _powerCell.SetPowerCellDrawEnabled(uid, true);
+
+        if (TryComp<AccessComponent>(uid, out var oldAccess))
+        {
+            var access = oldAccess.Tags.ToList();
+
+            access.Clear();
+            access.Add($"Captain");
+            access.Add($"Cargo");
+            access.Add($"Salvage");
+            access.Add($"Medical");
+            access.Add($"Service");
+            access.Add($"Research");
+            access.Add($"Engineering");
+
+            _access.TrySetTags(uid, access);
+        }
         _access.SetAccessEnabled(uid, true);
+
         _appearance.SetData(uid, BorgVisuals.HasPlayer, true);
         Dirty(uid, component);
     }
