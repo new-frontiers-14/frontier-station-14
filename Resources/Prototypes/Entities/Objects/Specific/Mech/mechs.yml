@@ -5,6 +5,7 @@
   components:
   - type: MobMover
   - type: Mech
+    maxEquipmentAmount: 2
   - type: MechAir
   - type: MechAirFilter
     # everything except oxygen and nitrogen
@@ -54,8 +55,8 @@
   - type: Clickable
   - type: WiresPanel
   - type: Wires #we just want the panel
-    BoardName: wires-board-name-mech
-    LayoutId: Mech
+    boardName: wires-board-name-mech
+    layoutId: Mech
   - type: Fixtures
     fixtures:
       fix1:
@@ -145,6 +146,7 @@
     footstepSoundCollection:
       collection: FootstepClown
   - type: Mech
+    maxEquipmentAmount: 2
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
