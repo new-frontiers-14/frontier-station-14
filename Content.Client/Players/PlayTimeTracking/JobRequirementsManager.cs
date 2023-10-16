@@ -103,29 +103,29 @@ public sealed class JobRequirementsManager
         }
 
         var player = _playerManager.LocalPlayer?.Session;
-
         if (player == null)
             return true;
 
-        var reasonBuilder = new StringBuilder();
+        return CheckRoleTime(job.Requirements, out reason);
+    }
 
-        foreach (var requirement in job.Requirements)
+    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = null;
+
+        if (requirements == null)
+            return true;
+
+        var reasons = new List<string>();
+        foreach (var requirement in requirements)
         {
             if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
                 continue;
 
-            reasonBuilder.AppendLine(jobReason.ToMarkup());
+            reasons.Add(jobReason.ToMarkup());
         }
 
-        if (job.WhitelistRequired == true && _whitelisted)
-        {
-            if (reasonBuilder.Length > 0)
-                reasonBuilder.Append('\n');
-
-            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-        }
-
-        reason = reasonBuilder.Length == 0 ? null : FormattedMessage.FromMarkup(reasonBuilder.ToString().Trim());
+        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
         return reason == null;
     }
 }
