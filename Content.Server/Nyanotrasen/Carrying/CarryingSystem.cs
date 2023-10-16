@@ -3,7 +3,6 @@ using Content.Server.Hands.Systems;
 using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Contests;
-using Content.Server.Climbing;
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
 using Content.Shared.Buckle.Components;
@@ -19,6 +18,7 @@ using Content.Shared.Pulling;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Climbing.Events;
 using Content.Shared.Throwing;
 using Content.Shared.Physics.Pull;
 using Content.Shared.Mobs.Systems;
@@ -181,7 +181,7 @@ namespace Content.Server.Carrying
             args.Cancelled = true;
         }
 
-        private void OnStartClimb(EntityUid uid, BeingCarriedComponent component, StartClimbEvent args)
+        private void OnStartClimb(EntityUid uid, BeingCarriedComponent component, ref StartClimbEvent args)
         {
             DropCarried(component.Carrier, uid);
         }

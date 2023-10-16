@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McVulp
-  parent: BaseMobOrganic
+  parent: BaseMobSpeciesOrganic
   id: BaseMobVulpkanin
   abstract: true
   components:
@@ -9,6 +9,10 @@
     species: Vulpkanin
   - type: Hunger
     baseDecayRate: 0.06
+    starvationDamage:
+      types:
+        Cold: 0.05
+        Bloodloss: 0.1
   - type: Thirst
     baseDecayRate: 0.0125
   - type: Icon
