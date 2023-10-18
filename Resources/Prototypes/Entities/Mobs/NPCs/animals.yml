@@ -41,6 +41,7 @@
     successChance: 0.2
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-bat
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: SentienceTarget
@@ -111,6 +112,14 @@
     bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
   - type: Puller
     needsHands: true
 
@@ -196,6 +205,7 @@
     successChance: 0.8
     interactSuccessString: petting-success-bird
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/chicken_cluck_happy.ogg
   - type: Bloodstream
@@ -283,6 +293,7 @@
     successChance: 0.9
     interactSuccessString: petting-success-bird
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/duck_quack_happy.ogg
   - type: Bloodstream
@@ -464,6 +475,7 @@
     interactDelay: 2 # Avoids overlapping SFX due to spam - these SFX are a little longer than the typical 1 second.
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/cow_moo.ogg
   - type: Perishable
@@ -518,11 +530,15 @@
     successChance: 0.5
     interactSuccessString: petting-success-crab
     interactFailureString: petting-failure-crab
+    interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: Tag
     tags:
     - VimPilot
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
 
 - type: entity
   name: goat
@@ -565,6 +581,8 @@
     states:
       Alive:
         Base: goat
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: SolutionContainerManager
@@ -590,6 +608,7 @@
     successChance: 0.2
     interactSuccessString: petting-success-goat
     interactFailureString: petting-failure-goat
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/goat_bah.ogg
   - type: NpcFactionMember
@@ -597,9 +616,12 @@
     - Passive
   - type: Body
     prototype: AnimalRuminant
+  - type: NPCRetaliation
+    attackMemoryLength: 5
+  - type: FactionException
   - type: HTN
     rootTask:
-      task: RuminantCompound
+      task: RuminantHostileCompound
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -639,6 +661,7 @@
     successChance: 0.1 # Yeah, good luck with that.
     interactSuccessString: petting-success-goose
     interactFailureString: petting-failure-goose
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/goose_honk.ogg
   - type: Bloodstream
@@ -676,6 +699,8 @@
     states:
       Alive:
         Base: crawling
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -684,6 +709,20 @@
       amount: 4
   - type: Bloodstream
     bloodMaxVolume: 300
+    # if you fuck with the gorilla he will harambe you
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
+    animation: WeaponArcFist
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
   - type: Puller
 
 - type: entity
@@ -765,6 +804,15 @@
     soundHit:
       collection: BoxingHit
     animation: WeaponArcFist
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
 
 - type: entity
   name: boxing kangaroo
@@ -773,9 +821,6 @@
   components:
   - type: Loadout
     prototypes: [ BoxingKangarooGear ]
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -862,10 +907,16 @@
   - type: MonkeyAccent
   - type: Puller
   - type: CanHostGuardian
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: FactionException
   - type: NpcFactionMember
     factions:
-    - Passive
-    - Monkey
+      - Passive
+      - Monkey
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
   - type: GhostRole
     prob: 0.05
     makeSentient: true
@@ -885,6 +936,7 @@
   - type: Tag
     tags:
     - LabGrown
+  - type: AlwaysRevolutionaryConvertible
 
 - type: entity
   name: guidebook monkey
@@ -989,7 +1041,7 @@
     - Trash
     - VimPilot
     - Mouse
-    - DoorBumpOpener
+    - Meat
   - type: Respirator
     damage:
       types:
@@ -1124,6 +1176,7 @@
     successChance: 0.3
     interactSuccessString: petting-success-reptile
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
   - type: Bloodstream
@@ -1179,6 +1232,7 @@
     successChance: 0.3
     interactSuccessString: petting-success-generic
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
 
@@ -1223,6 +1277,7 @@
     successChance: 0.6
     interactSuccessString: petting-success-frog
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/frog_ribbit.ogg
   - type: Bloodstream
@@ -1274,6 +1329,7 @@
     successChance: 0.6
     interactSuccessString: petting-success-bird
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
@@ -1317,6 +1373,7 @@
     successChance: 0.5
     interactSuccessString: petting-success-bird
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/penguin_squawk.ogg
   - type: Tag
@@ -1542,6 +1599,7 @@
     successChance: 0.6
     interactSuccessString: petting-success-reptile
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: Damageable
@@ -1600,13 +1658,26 @@
     damage:
       types:
         Piercing: 6
-        Poison: 6
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
   - type: ReplacementAccent
     accent: xeno
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-tarantula
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -1677,7 +1748,6 @@
       damage:
         types:
           Piercing: 8
-          Poison: 6
     - type: FootstepModifier
       footstepSoundCollection:
         collection: FootstepClownFast
@@ -1787,6 +1857,7 @@
     successChance: 0.2 # Low when undomesticated.
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/raccoon_chatter.ogg
   - type: Grammar
@@ -1843,6 +1914,7 @@
     successChance: 0.5
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Grammar
@@ -1904,6 +1976,7 @@
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
   - type: Grammar
@@ -2056,6 +2129,7 @@
     successChance: 0.7
     interactSuccessString: petting-success-cat
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: Grammar
@@ -2110,8 +2184,11 @@
     successChance: 0.7
     interactSuccessString: petting-success-space-cat
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
+  - type: Respirator #It just works?
+    minSaturation: 5.0
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2216,6 +2293,7 @@
     successChance: 0.9
     interactSuccessString: petting-success-sloth
     interactFailureString: petting-failure-sloth
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/sloth_squeak.ogg
   - type: Grammar
@@ -2273,6 +2351,7 @@
     interactDelay: 1.5 # Avoids overlapping SFX due to spam - these SFX are a little longer than the typical 1 second.
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/ferret_happy.ogg
   - type: Grammar
@@ -2377,6 +2456,7 @@
     - VimPilot
     - Trash
     - Hamster
+    - Meat
   - type: Respirator
     damage:
       types:
@@ -2402,6 +2482,7 @@
     successChance: 0.4
     interactSuccessString: petting-success-hamster
     interactFailureString: petting-failure-hamster
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
@@ -2463,7 +2544,7 @@
         Base: dead
   - type: Butcherable
     spawned:
-    - id: FoodMeat
+    - id: FoodMeatBacon
       amount: 6
   - type: Grammar
     attributes:
@@ -2472,6 +2553,7 @@
     successChance: 0.7
     interactSuccessString: petting-success-pig
     interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/pig_oink.ogg
   - type: ReplacementAccent

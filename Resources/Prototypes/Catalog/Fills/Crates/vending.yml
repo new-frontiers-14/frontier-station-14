@@ -8,6 +8,15 @@
         amount: 2
 
 - type: entity
+  id: CrateVendingMachineRestockChefvendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockChefvend
+        amount: 2
+
+- type: entity
   id: CrateVendingMachineRestockClothesFilled
   parent: CratePlasticBiodegradable
   components:
@@ -16,6 +25,15 @@
       - id: VendingMachineRestockClothes
         amount: 2
       - id: VendingMachineRestockCostumes
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockCondimentStationFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCondimentStation
         amount: 2
 
 - type: entity

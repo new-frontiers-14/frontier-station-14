@@ -44,30 +44,55 @@
     minimumPlayers: 15
   - type: BreakerFlipRule
 
-# - type: entity
-  # id: BureaucraticError
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-bureaucratic-error-announcement
-    # minimumPlayers: 25
-    # weight: 5
-    # duration: 1
-  # - type: BureaucraticErrorRule
+#- type: entity
+#  id: BureaucraticError
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    startAnnouncement: station-event-bureaucratic-error-announcement
+#    minimumPlayers: 25
+#    weight: 5
+#    duration: 1
+#  - type: BureaucraticErrorRule
+
+#- type: entity
+#  parent: BaseGameRule
+#  id: ClosetSkeleton
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    weight: 10
+#    duration: 1
+#  - type: RandomEntityStorageSpawnRule
+#    prototype: MobSkeletonCloset
+
+#- type: entity
+#  parent: BaseGameRule
+#  id: DragonSpawn
+#  noSpawn: true
+#  components:
+#  - type: StationEvent
+#    weight: 5
+#    duration: 1
+#    earliestStart: 45
+#    reoccurrenceDelay: 60
+#    minimumPlayers: 20
+#  - type: RandomSpawnRule
+#    prototype: SpawnPointGhostDragon
 
 # - type: entity
   # parent: BaseGameRule
-  # id: Dragon
+  # id: NinjaSpawn
   # noSpawn: true
   # components:
   # - type: StationEvent
-    # weight: 1
+    # weight: 10
     # duration: 1
-    # earliestStart: 45
-    # minimumPlayers: 60
-  # - type: RandomSpawnRule
-    # prototype: SpawnPointGhostDragon
+    # earliestStart: 30
+    # reoccurrenceDelay: 60
+    # minimumPlayers: 40
+  # - type: NinjaSpawnRule
 
 # - type: entity
   # parent: BaseGameRule
@@ -75,10 +100,10 @@
   # noSpawn: true
   # components:
   # - type: StationEvent
-    # weight: 5
+    # weight: 7.5
     # duration: 1
     # earliestStart: 45
-    # minimumPlayers: 60
+    # minimumPlayers: 20
   # - type: RandomSpawnRule
     # prototype: MobRevenant
 
