@@ -7,10 +7,6 @@
   components:
   - type: HumanoidAppearance
     species: Vulpkanin
-    starvationDamage:
-      types:
-        Cold: 0.05
-        Bloodloss: 0.1
   - type: Icon
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: full
@@ -79,6 +75,20 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulps
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/slash.ogg
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 4
+        Blunt: 1
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: pat-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: pat-success-generic-others
   - type: Perishable
   - type: Carriable
   - type: Temperature
