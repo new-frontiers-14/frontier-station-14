@@ -17,6 +17,10 @@
       - !type:Oxygenate
         conditions:
         - !type:OrganType
+          type: Reptilian
+      - !type:Oxygenate
+        conditions:
+        - !type:OrganType
           type: Animal
       - !type:Oxygenate
         conditions:
@@ -205,6 +209,9 @@
         - !type:OrganType
           type: Rat
           shouldHave: false
+        - !type:OrganType
+          type: Reptilian
+          shouldHave: false
         - !type:ReagentThreshold
           reagent: Miasma
           min: 1
@@ -217,6 +224,9 @@
         conditions:
         - !type:OrganType
           type: Rat
+          shouldHave: false
+        - !type:OrganType
+          type: Reptilian
           shouldHave: false
         - !type:ReagentThreshold
           reagent: Miasma
