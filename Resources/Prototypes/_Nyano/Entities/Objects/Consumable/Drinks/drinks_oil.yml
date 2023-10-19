@@ -16,7 +16,7 @@
         drinkCanIcon:
           True: {state: "icon_open"}
           False: {state: "icon"}
-          
+
 - type: entity
   parent: BaseOilJar
   id: OilJarGhee
@@ -53,4 +53,23 @@
         maxVol: 100
         reagents:
         - ReagentId: Cornoil
+          Quantity: 100
+
+- type: entity
+  parent: BaseOilJar
+  id: OilJarOlive
+  name: jar of olive oil
+  description: A large tinted glass jar with a simple label of olives on it.
+  components:
+  - type: Sprite
+    layers:
+      - state: icon
+        map: ["drinkCanIcon"]
+      - state: olives
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: OilOlive
           Quantity: 100
