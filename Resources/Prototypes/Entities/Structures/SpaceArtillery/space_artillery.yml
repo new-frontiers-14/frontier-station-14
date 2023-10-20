@@ -65,6 +65,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
+    projectileSpeed: 30
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -81,12 +82,20 @@
     position: Stand
     buckleOffset: "0,0.5"
     maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 5000
+  - type: ExaminableBattery
+  - type: BatterySelfRecharger
   
   
 - type: entity
   id: Space_Machine_Gun
   name: space machine gun
-  parent: ConstructibleMachine
+  parent: ConstructibleMachine #base machine powered makes power work but also messes with rotation
   description: It's like from 20th century second planet wars! Old and reliable.
   placement:
     mode: SnapgridCenter
@@ -119,6 +128,10 @@
     rotateWhileAnchored: true
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 5000
+  - type: ExaminableBattery
   - type: BallisticAmmoProvider
     autoCycle: true
     capacity: 60
@@ -145,6 +158,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
+    projectileSpeed: 30
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -161,6 +175,10 @@
     position: Stand
     buckleOffset: "0,0.5"
     maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
   
 
 - type: entity
@@ -201,13 +219,11 @@
   - type: AmmoCounter
   - type: Battery
     maxCharge: 10000
-    startingCharge: 10000
+    startingCharge: 5000
+  - type: ExaminableBattery
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -223,6 +239,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
+    projectileSpeed: 30
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -239,6 +256,10 @@
     position: Stand
     buckleOffset: "0,0.5"
     maxBuckleDistance: 1
-  
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
   
 # Space Artillery projectiles

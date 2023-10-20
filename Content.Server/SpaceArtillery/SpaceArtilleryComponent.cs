@@ -12,21 +12,55 @@ using Robust.Shared.Utility;
 [RegisterComponent]
 public sealed partial class SpaceArtilleryComponent : Component
 {
-	// Whether the space artillery has enough power
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowered = false;
-	
-	// Whether the space artillery need power to operate
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequired = true;
-	
-	// Whether the space artillery need power to operate
+	/// <summary>
+	/// Whether the space artillery's safety is enabled or not
+	/// </summary>
     [ViewVariables(VVAccess.ReadWrite)] public bool IsArmed = false;
 	
-    /// <summary>
-    /// The current amount of power being used.
+	/// <summary>
+	/// Whether the space artillery has enough power
+	/// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowered = false;
+	
+	/// <summary>
+	/// Whether the space artillery's battery is being charged
+	/// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsCharging = false;
+	
+	/// <summary>
+    /// Rate of charging the battery
     /// </summary>
-    [DataField("powerUseActive")]
+    [DataField("powerChargeRate"), ViewVariables(VVAccess.ReadWrite)]
+    public int PowerChargeRate = 30;
+	
+	/// <summary>
+	/// Whether the space artillery need power to operate remotely from signal
+	/// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForSignal = true;
+	
+	/// <summary>
+	/// Whether the space artillery need power to operate manually when mounted/buckled to
+	/// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForMount = false;
+	
+    /// <summary>
+    /// Amount of power being used when operating
+    /// </summary>
+    [DataField("powerUsePassive"), ViewVariables(VVAccess.ReadWrite)]
+    public int PowerUsePassive = 60;
+	
+	/// <summary>
+	/// Whether the space artillery needs power to fire a shot
+	/// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredToFire = false;
+	
+	/// <summary>
+    /// Amount of power used when firing
+    /// </summary>
+    [DataField("powerUseActive"), ViewVariables(VVAccess.ReadWrite)]
     public int PowerUseActive = 600;
 	
+
     /// <summary>
     /// Signal port that makes space artillery fire.
     /// </summary>

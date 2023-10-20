@@ -14,6 +14,10 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Actions;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+using Content.Shared.Power;
+using Content.Shared.Rounding;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -27,7 +31,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 	[Dependency] private readonly SharedBuckleSystem _buckle = default!;
 	
-	private const float ShootSpeed = 25f;
+	private const float ShootSpeed = 30f;
 	private const float distance = 100;
 	private const float rotOffset = 3.14159265f; //Without it the artillery would be shooting backwards.The rotation is in radians and equals to 180 degrees
 	//private readonly TransformSystem _transform;
@@ -41,45 +45,59 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, SignalReceivedEvent>(OnSignalReceived);
 		SubscribeLocalEvent<SpaceArtilleryComponent, BuckleChangeEvent>(OnBuckleChange);
 		SubscribeLocalEvent<SpaceArtilleryComponent, FireActionEvent>(OnFireAction);
+		SubscribeLocalEvent<SpaceArtilleryComponent, PowerChangedEvent>(OnApcChanged);
+		SubscribeLocalEvent<SpaceArtilleryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
 	}
 
 	private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
 	{
-		//Sawmill.Info($"Space Artillery has been pinged. Entity: {ToPrettyString(uid)}");
-		if (args.Port == component.SpaceArtilleryFirePort)
+		if(component.IsPowered == true || component.IsPowerRequiredForSignal == false)
 		{
-			var xform = Transform(uid);
-			
-			if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+			//Sawmill.Info($"Space Artillery has been pinged. Entity: {ToPrettyString(uid)}");
+			if (args.Port == component.SpaceArtilleryFirePort && component.IsArmed == true)
 			{
-				return;
-			}
-			
-			if(TryComp<TransformComponent>(uid, out var transformComponent)){
-				
-				var worldPosX = transformComponent.WorldPosition.X;
-				var worldPosY = transformComponent.WorldPosition.Y;
-				var worldRot = transformComponent.WorldRotation+rotOffset;
-				var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-				
-				EntityCoordinates targetCordinates;
-				targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-				
-				_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-			}
-            
-		}
-		if (args.Port == component.SpaceArtillerySafetyPort)
-		{
-			if (TryComp<CombatModeComponent>(uid, out var combat))
-			{
-				if(combat.IsInCombatMode == false && combat.IsInCombatMode != null)
+				if(TryComp<BatteryComponent>(uid, out var battery))
 				{
-					_combat.SetInCombatMode(uid, true, combat);
+					if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
+					{
+						var xform = Transform(uid);
+						
+						if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+						{
+							return;
+						}
+						
+						if(TryComp<TransformComponent>(uid, out var transformComponent)){
+							
+							var worldPosX = transformComponent.WorldPosition.X;
+							var worldPosY = transformComponent.WorldPosition.Y;
+							var worldRot = transformComponent.WorldRotation+rotOffset;
+							var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
+							
+							EntityCoordinates targetCordinates;
+							targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+							
+							_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+							if(component.IsPowerRequiredToFire == true)
+							battery.CurrentCharge -= component.PowerUseActive;
+						}
+					}
 				}
-				else
+			}
+			if (args.Port == component.SpaceArtillerySafetyPort)
+			{
+				if (TryComp<CombatModeComponent>(uid, out var combat))
 				{
-					_combat.SetInCombatMode(uid, false, combat);
+					if(combat.IsInCombatMode == false && combat.IsInCombatMode != null)
+					{
+						_combat.SetInCombatMode(uid, true, combat);
+						component.IsArmed = true;
+					}
+					else
+					{
+						_combat.SetInCombatMode(uid, false, combat);
+						component.IsArmed = false;
+					}
 				}
 			}
 		}
@@ -112,30 +130,72 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	
     private void OnFireAction(EntityUid uid, SpaceArtilleryComponent component, FireActionEvent args)
     {
-        if (args.Handled)
-            return;
-
-		var xform = Transform(uid);
-		
-		if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+		if((component.IsPowered == true || component.IsPowerRequiredForMount == false) && component.IsArmed == true)
 		{
-			return;
-		}
-		
-		if(TryComp<TransformComponent>(uid, out var transformComponent)){
-			
-			var worldPosX = transformComponent.WorldPosition.X;
-			var worldPosY = transformComponent.WorldPosition.Y;
-			var worldRot = transformComponent.WorldRotation+rotOffset;
-			var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-			
-			EntityCoordinates targetCordinates;
-			targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-			
-			_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-		}
+			if(TryComp<BatteryComponent>(uid, out var battery))
+			{
+				if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
+				{
+					if (args.Handled)
+						return;
 
-        
-        args.Handled = true;
+					var xform = Transform(uid);
+					
+					if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+					{
+						return;
+					}
+					
+					if(TryComp<TransformComponent>(uid, out var transformComponent)){
+						
+						var worldPosX = transformComponent.WorldPosition.X;
+						var worldPosY = transformComponent.WorldPosition.Y;
+						var worldRot = transformComponent.WorldRotation+rotOffset;
+						var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
+						
+						EntityCoordinates targetCordinates;
+						targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+						
+						_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+						if(component.IsPowerRequiredToFire == true)
+							battery.CurrentCharge -= component.PowerUseActive;
+					}
+
+					
+					args.Handled = true;
+				}
+			}
+		}
     }
+	
+	private void OnApcChanged(EntityUid uid, SpaceArtilleryComponent component, ref PowerChangedEvent args){
+		
+		if(TryComp<BatterySelfRechargerComponent>(uid, out var batteryCharger)){
+		
+			if (args.Powered)
+			{
+				component.IsCharging = true;
+				batteryCharger.AutoRecharge = true;
+				batteryCharger.AutoRechargeRate = component.PowerChargeRate;
+			}
+			else
+			{
+				component.IsCharging = false;
+				batteryCharger.AutoRecharge = true;
+				batteryCharger.AutoRechargeRate = component.PowerUsePassive * -1;
+			}
+		}
+	}
+	
+	private void OnBatteryChargeChanged(EntityUid uid, SpaceArtilleryComponent component, ref ChargeChangedEvent args){
+		
+		if(args.Charge > 0)
+		{
+			component.IsPowered = true;
+		}
+		else
+		{
+			component.IsPowered = false;
+		}
+	}
 }
