@@ -115,12 +115,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lpbravo = "/Maps/lpbravo.yml";
         var arena = "/Maps/arena.yml";
         var cove = "/Maps/cove.yml";
+        var courthouse = "/Maps/courthouse.yml";
         var depotColor = new Color(55, 200, 55);
         var tinniaColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var caseysColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(1500f, 2400f);
+        var depotOffset = _random.NextVector2(2400f, 4000f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
@@ -134,7 +135,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1275f, 1975f)
+                Offset = _random.NextVector2(1400f, 2100f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
@@ -142,10 +143,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid2s[0], tinniaColor);
         }
 
-        depotOffset = _random.NextVector2(2600f, 3750f);
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
-                Offset = depotOffset
+                Offset = -depotOffset
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
@@ -155,7 +155,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1950f, 3500f)
+                Offset = _random.NextVector2(2350f, 3900f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
@@ -166,7 +166,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1500f, 3000f)
+                Offset = _random.NextVector2(1900f, 3500f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
@@ -192,7 +192,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2250f, 2250f)
+                Offset = _random.NextVector2(2250f, 4600f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
@@ -200,35 +200,21 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid7s[0], caseysColor);
         }
 
+        if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(1150f, 2050f)
+            }))
+        {
+            _shuttle.SetIFFColor(depotUid8s[0], tinniaColor);
+        }
+
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
         {
-            var seed = _random.Next();
-            var offset = _random.NextVector2(2750f, 4400f);
-            if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
-                {
-                    Offset = offset
-                }))
-            {
-                continue;
-            }
-
-            var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
-            _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
-            _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2i(0, 0);
-
-            //pls fit the grid I beg, this is so hacky
-            //its better now but i think i need to do a normalization pass on the dungeon configs
-            //because they are all offset
-            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
-        }
-        foreach (var dunGen in dungenTypes)
-        {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(3800f, 8500f);
+            var offset = _random.NextVector2(3000f, 8500f);
             if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
