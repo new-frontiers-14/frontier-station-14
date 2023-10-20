@@ -9,12 +9,12 @@
 
 - type: entity
   id: CrateVendingMachineRestockChefvendFilled
-  name: ChefVend restock crate
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockChefvend
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockClothesFilled
@@ -29,12 +29,12 @@
 
 - type: entity
   id: CrateVendingMachineRestockCondimentStationFilled
-  name: Condiment Station restock crate
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockCondimentStation
+        amount: 2
 
 - type: entity
   id: CrateVendingMachineRestockDinnerwareFilled
