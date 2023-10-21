@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -68,6 +68,15 @@ public sealed partial class StationEventComponent : Component
     /// </remarks>
     [DataField("minimumPlayers")]
     public int MinimumPlayers;
+
+    /// <summary>
+    ///     How many players need to be present on station for the event to not run
+    /// </summary>
+    /// <remarks>
+    ///     To avoid running safe events with high-pop
+    /// </remarks>
+    [DataField("maximumPlayers")]
+    public int MaximumPlayers = 999;
 
     /// <summary>
     ///     How many times this even can occur in a single round

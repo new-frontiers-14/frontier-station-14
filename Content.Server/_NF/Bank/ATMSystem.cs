@@ -182,9 +182,9 @@ public sealed partial class BankSystem
             new BankATMMenuInterfaceState(bank.Balance, true, 0));
         return;
     }
+
     private void OnCashSlotChanged(EntityUid uid, BankATMComponent component, ContainerModifiedMessage args)
     {
-
         var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM) ?? _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.BlackMarket);
 
         var uiUser = bankUi!.SubscribedSessions.FirstOrDefault();

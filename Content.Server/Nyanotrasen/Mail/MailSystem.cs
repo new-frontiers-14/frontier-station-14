@@ -9,7 +9,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
@@ -329,7 +329,6 @@ namespace Content.Server.Mail
             // It can be spilled easily and has something to spill.
             if (HasComp<SpillableComponent>(uid)
                 && TryComp(uid, out DrinkComponent? drinkComponent)
-                && drinkComponent.Opened
                 && _solutionContainerSystem.PercentFull(uid) > 0)
                 return true;
 
@@ -472,6 +471,9 @@ namespace Content.Server.Mail
 
             if (TryMatchJobTitleToIcon(recipient.Job, out string? icon))
                 _appearanceSystem.SetData(uid, MailVisuals.JobIcon, icon);
+
+            MetaData(uid).EntityName = Loc.GetString("mail-item-name-addressed",
+                ("recipient", recipient.Name));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
             accessReader.AccessLists.Add(recipient.AccessTags);

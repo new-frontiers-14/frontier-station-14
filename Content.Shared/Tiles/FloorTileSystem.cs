@@ -126,7 +126,7 @@ public sealed class FloorTileSystem : EntitySystem
                 var ev = new FloorTileAttemptEvent();
                 RaiseLocalEvent(mapGrid);
 
-                if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+                if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && currentTileDefinition.ID == "Lattice")
                 {
                     if (_netManager.IsClient && _timing.IsFirstTimePredicted)
                         _popup.PopupEntity(Loc.GetString("invalid-floor-placement"), args.User);

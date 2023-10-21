@@ -5,13 +5,10 @@ using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Inventory.Events;
 using Content.Shared.SurveillanceCamera;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Content.Server.Access.Systems;
-
 
 namespace Content.Server.SurveillanceCamera;
 
@@ -23,8 +20,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
 
     // Pings a surveillance camera subnet. All cameras will always respond
     // with a data message if they are on the same subnet.
@@ -66,8 +61,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         
         SubscribeLocalEvent<SurveillanceCameraComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<SurveillanceCameraComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved);
-
-        SubscribeLocalEvent<SurveillanceCameraComponent, GotEquippedEvent>(OnEquipped);
     }
 
     private void OnPacketReceived(EntityUid uid, SurveillanceCameraComponent component, DeviceNetworkPacketEvent args)
@@ -213,11 +206,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         UpdateSetupInterface(uid, camera);
     }
 
-    private void OnEquipped(EntityUid uid, SurveillanceCameraComponent component, GotEquippedEvent args)
-    {
-        component.CameraIdUser = args.Equipee;
-    }
-
     private void UpdateSetupInterface(EntityUid uid, SurveillanceCameraComponent? camera = null, DeviceNetworkComponent? deviceNet = null)
     {
         if (!Resolve(uid, ref camera, ref deviceNet))
@@ -242,21 +230,6 @@ public sealed class SurveillanceCameraSystem : EntitySystem
                 _userInterface.TryCloseAll(uid, SurveillanceCameraSetupUiKey.Camera);
                 return;
             }
-        }
-
-        if (camera.NameSetUser)
-        {
-            var userName = Loc.GetString("bodycam-component-unknown-name");
-            var userJob = Loc.GetString("bodycam-component-unknown-job");
-            if (_idCardSystem.TryFindIdCard(camera.CameraIdUser!.Value, out var card))
-            {
-                if (card.FullName != null)
-                    userName = card.FullName;
-                if (card.JobTitle != null)
-                    userJob = card.JobTitle;
-            }
-            string cameraName = userJob + " - " + userName;
-            camera.CameraId = cameraName;
         }
 
         var state = new SurveillanceCameraSetupBoundUiState(camera.CameraId, deviceNet.ReceiveFrequency ?? 0,

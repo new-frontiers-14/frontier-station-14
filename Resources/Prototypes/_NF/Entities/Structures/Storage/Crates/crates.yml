@@ -14,3 +14,65 @@
     - entity_storage
   - type: StaticPrice
     price: 0
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateUranium
+  name: uranium crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/radiation_secure.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/radiation_secure.rsi
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeBaseSecureNormal
+  name: cargo steel crate
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/tradedark.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 150 # Heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeBaseSecureHigh
+  name: high value cargo steel crate
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/tradelight.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 2000
