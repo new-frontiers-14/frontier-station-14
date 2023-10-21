@@ -32,6 +32,7 @@
   - type: Rotatable
     rotateWhilePulling: false
     rotateWhileAnchored: true
+    increment: 45
   - type: Appearance
   - type: Storage
     capacity: 120
@@ -47,7 +48,7 @@
     container: storagebase
   - type: PneumaticCannon
     gasUsage: 0
-    baseProjectileSpeed: 25
+    baseProjectileSpeed: 30
     toolModifyPower: Screwing
     throwItems: false
   - type: DeviceNetwork
@@ -126,6 +127,7 @@
   - type: Rotatable
     rotateWhilePulling: false
     rotateWhileAnchored: true
+    increment: 45
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
@@ -215,15 +217,16 @@
   - type: Rotatable
     rotateWhilePulling: false
     rotateWhileAnchored: true
+    increment: 45
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 10000
-    startingCharge: 5000
+    maxCharge: 100000
+    startingCharge: 50000
   - type: ExaminableBattery
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
-    fireCost: 100
+    fireCost: 45000
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

@@ -167,7 +167,8 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			}
 		}
     }
-	
+
+
 	private void OnApcChanged(EntityUid uid, SpaceArtilleryComponent component, ref PowerChangedEvent args){
 		
 		if(TryComp<BatterySelfRechargerComponent>(uid, out var batteryCharger)){
@@ -183,9 +184,13 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				component.IsCharging = false;
 				batteryCharger.AutoRecharge = true;
 				batteryCharger.AutoRechargeRate = component.PowerUsePassive * -1;
+				
+				if(TryComp<BatteryComponent>(uid, out var battery))
+					battery.CurrentCharge -= 1; //It is done so that BatterySelfRecharger will get start operating instead of being blocked by fully charged battery
 			}
 		}
 	}
+	
 	
 	private void OnBatteryChargeChanged(EntityUid uid, SpaceArtilleryComponent component, ref ChargeChangedEvent args){
 		
@@ -196,6 +201,18 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		else
 		{
 			component.IsPowered = false;
+		}
+		
+		if(TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerReceiver) && TryComp<BatteryComponent>(uid, out var battery))
+		{
+			if(battery.IsFullyCharged == false)
+			{
+				apcPowerReceiver.Load = component.PowerUsePassive + component.PowerChargeRate;
+			}
+			else
+			{
+				apcPowerReceiver.Load = component.PowerUsePassive;
+			}
 		}
 	}
 }
