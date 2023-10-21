@@ -29,14 +29,16 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
-  accessGroups:
-  - AllAccess
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  access:
+  - Captain # Just making sure in the case of any error that this role cannot be used for any bad doing.
+  # accessGroups:
+  # - AllAccess
+  # special:
+  # - !type:AddImplantSpecial
+    # implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+    # components:
+      # - type: CommandStaff
 
 - type: startingGear
   id: CaptainGear
@@ -49,7 +51,8 @@
     gloves: ClothingHandsGlovesCaptain
     outerClothing: ClothingOuterArmorCaptainCarapace
     id: CaptainPDA
-    ears: ClothingHeadsetAltCommand
+    # ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetGrey
   innerClothingSkirt: ClothingUniformJumpskirtCaptain
   satchel: ClothingBackpackSatchelCaptainFilled
   duffelbag: ClothingBackpackDuffelCaptainFilled
