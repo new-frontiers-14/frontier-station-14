@@ -15,7 +15,7 @@ public sealed partial class SpaceArtilleryComponent : Component
 	/// <summary>
 	/// Whether the space artillery's safety is enabled or not
 	/// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsArmed = false;
+    [DataField("isArmed"),ViewVariables(VVAccess.ReadWrite)] public bool IsArmed = false;
 	
 	/// <summary>
 	/// Whether the space artillery has enough power
@@ -36,12 +36,12 @@ public sealed partial class SpaceArtilleryComponent : Component
 	/// <summary>
 	/// Whether the space artillery need power to operate remotely from signal
 	/// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForSignal = true;
+    [DataField("isPowerRequiredForSignal"),ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForSignal = true;
 	
 	/// <summary>
 	/// Whether the space artillery need power to operate manually when mounted/buckled to
 	/// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForMount = false;
+    [DataField("isPowerRequiredForMount"),ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForMount = false;
 	
     /// <summary>
     /// Amount of power being used when operating
@@ -52,7 +52,7 @@ public sealed partial class SpaceArtilleryComponent : Component
 	/// <summary>
 	/// Whether the space artillery needs power to fire a shot
 	/// </summary>
-    [ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredToFire = false;
+    [DataField("isPowerRequiredToFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredToFire = false;
 	
 	/// <summary>
     /// Amount of power used when firing

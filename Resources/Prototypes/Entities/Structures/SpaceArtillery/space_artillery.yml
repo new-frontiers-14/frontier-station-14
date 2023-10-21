@@ -81,7 +81,7 @@
     IsInCombatMode: true
   - type: Strap
     position: Stand
-    buckleOffset: "0,0.5"
+    buckleOffset: "0,0.8"
     maxBuckleDistance: 1
   - type: ApcPowerReceiver
     powerLoad: 1000
@@ -137,10 +137,10 @@
   - type: BallisticAmmoProvider
     autoCycle: true
     capacity: 60
-    proto: CartridgeLightRifle
+    proto: CartridgeShellSolid
     whitelist:
       tags:
-      - CartridgeLightRifle
+      - CartridgeShell
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -175,7 +175,7 @@
     IsInCombatMode: true
   - type: Strap
     position: Stand
-    buckleOffset: "0,0.5"
+    buckleOffset: "0,0.8"
     maxBuckleDistance: 1
   - type: ApcPowerReceiver
     powerLoad: 1000
@@ -257,12 +257,325 @@
     IsInCombatMode: true
   - type: Strap
     position: Stand
-    buckleOffset: "0,0.5"
+    buckleOffset: "0,0.8"
     maxBuckleDistance: 1
   - type: ApcPowerReceiver
     powerLoad: 1000
   - type: ExtensionCableReceiver
   - type: BatterySelfRecharger
 
+# Actual Space weapons
+- type: entity
+  id: Artillery_Gun_630
+  name: artillery gun 630cal
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Fires 630 caliber shells. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 1000000
+    startingCharge: 1000000
+  - type: ExaminableBattery
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 1
+    proto: CartridgeShellSolid
+    whitelist:
+      tags:
+      - CartridgeShell
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 30
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 2000
+    powerUsePassive: 3000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: false
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+
+- type: entity
+  id: Mounted_Machine_Gun_60
+  name: mounted machine gun 60
+  parent: ConstructibleMachine 
+  description: It's like from 20th century second planet wars! Puts down suppressive fire. With enough shots turns hull into swiss cheese. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Battery
+    maxCharge: 0
+    startingCharge: 0
+  - type: Appearance
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 60
+    proto: CartridgeMachineGun
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Gun
+    fireRate: 5
+    projectileSpeed: 30
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 0
+    powerUsePassive: 0
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+    isPowerRequiredForSignal: false
+  - type: BatterySelfRecharger
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
   
 # Space Artillery projectiles
+
+
+#EMP shell
+- type: entity
+  id: BulletShellEmp
+  name: shell
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 100
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag-emp
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000
+    disableDuration: 60
+
+- type: entity
+  id: CartridgeShellEmp
+  name: 630 EMP shell
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeShell
+  - type: Item
+    size: 60
+  - type: CartridgeAmmo
+    proto: BulletShellEmp
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/emp_shell_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+#Solid Shell
+- type: entity
+  id: BulletShellSolid
+  name: shell
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 1000
+        #currently explosion deals roughly 22.5 damage
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag-emp
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 4
+    intensitySlope: 3
+    totalIntensity: 10
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeShellSolid
+  name: 630 Solid shell
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeShell
+  - type: Item
+    size: 60
+  - type: CartridgeAmmo
+    proto: BulletShellSolid
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/shell_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+
+#.60 call for machine gun
+- type: entity
+  id: BulletMachineGun
+  name: 60 Machine Gun bullet
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 30
+        #currently explosion deals roughly ? damage
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag-emp
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 5
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeMachineGun
+  name: 60 Machine Gun cartridge
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeAntiMateriel
+  - type: Item
+    size: 2
+  - type: CartridgeAmmo
+    proto: BulletMachineGun
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals

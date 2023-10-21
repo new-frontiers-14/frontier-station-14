@@ -186,7 +186,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				batteryCharger.AutoRechargeRate = component.PowerUsePassive * -1;
 				
 				if(TryComp<BatteryComponent>(uid, out var battery))
-					battery.CurrentCharge -= 1; //It is done so that BatterySelfRecharger will get start operating instead of being blocked by fully charged battery
+					battery.CurrentCharge -= component.PowerUsePassive; //It is done so that BatterySelfRecharger will get start operating instead of being blocked by fully charged battery
 			}
 		}
 	}
