@@ -58,11 +58,10 @@ namespace Content.Client.VendingMachines
             var priceMod = 1f;
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
-            {
                 priceMod = market.Mod;
-            }
-            _cachedInventory = newState.Inventory;
+
             _menu?.UpdateBalance(newState.Balance);
+            _cachedInventory = newState.Inventory;
             _menu?.Populate(_cachedInventory, priceMod);
         }
 
