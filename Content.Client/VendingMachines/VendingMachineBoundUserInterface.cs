@@ -30,9 +30,7 @@ namespace Content.Client.VendingMachines
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
-            {
                 _mod = market.Mod;
-            }
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
@@ -42,7 +40,7 @@ namespace Content.Client.VendingMachines
             _menu.OnItemSelected += OnItemSelected;
             _menu.OnSearchChanged += OnSearchChanged;
 
-            _menu.Populate(_cachedInventory, _mod);
+            _menu.Populate(_cachedInventory, null, _mod);
 
             _menu.OpenCentered();
         }
@@ -62,7 +60,7 @@ namespace Content.Client.VendingMachines
 
             _menu?.UpdateBalance(newState.Balance);
             _cachedInventory = newState.Inventory;
-            _menu?.Populate(_cachedInventory, priceMod);
+            _menu?.Populate(_cachedInventory, null, priceMod);
         }
 
         private void OnItemSelected(ItemList.ItemListSelectedEventArgs args)
@@ -94,7 +92,7 @@ namespace Content.Client.VendingMachines
 
         private void OnSearchChanged(string? filter)
         {
-            _menu?.Populate(_cachedInventory, _mod, filter);
+            _menu?.Populate(_cachedInventory, filter, _mod);
         }
     }
 }

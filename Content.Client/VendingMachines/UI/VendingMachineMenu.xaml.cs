@@ -45,7 +45,7 @@ namespace Content.Client.VendingMachines.UI
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, string? filter = null)
+        public void Populate(List<VendingMachineInventoryEntry> inventory, string? filter = null, float priceModifier = 10)
         {
             if (inventory.Count == 0)
             {
