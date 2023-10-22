@@ -177,6 +177,8 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
+        Heat: 0.70
+        Radiation: 0.5
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.85
@@ -198,19 +200,20 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.65
-        Heat: 0.85
+        Heat: 0.70
+        Radiation: 0.70
         Caustic: 0.8
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.80
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
 
@@ -228,12 +231,17 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.7
+        Heat: 0.70
+        Radiation: 0.70
+        Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.90
     sprintModifier: 0.85
@@ -262,6 +270,8 @@
         Blunt: 0.5
         Slash: 0.6
         Piercing: 0.6
+        Heat: 0.60
+        Radiation: 0.50
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.85
@@ -274,7 +284,7 @@
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitCap
   name: captain's armored spacesuit
-  description: A formal armored spacesuit, made for the station's captain.
+  description: A formal armored spacesuit, made for the a captain.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/capspace.rsi
@@ -288,12 +298,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.6
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.70
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.85
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -409,14 +419,15 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.4
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
-        Radiation: 0.5
+        Heat: 0.50
+        Radiation: 0.4
         Caustic: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.85
