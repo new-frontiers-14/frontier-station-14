@@ -68,7 +68,11 @@
     - state: apple
   - type: SliceableFood
     slice: FoodPieAppleSlice
-
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie 
+  
 - type: entity
   name: slice of apple pie
   parent: FoodPieSliceBase
@@ -83,6 +87,10 @@
     - state: plain-slice
     - state: alpha-slice-filling
       color: orange
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like pie, apple.
 
 - type: entity
@@ -147,6 +155,10 @@
           path: /Audio/Weapons/Guns/Empty/empty.ogg
         ejectSound:
           path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like pie, cream, banana.
 
 - type: entity
@@ -158,8 +170,7 @@
   - type: FlavorProfile
     flavors:
       - sweet
-      - banana
-      - creamy
+      - berry
   - type: Sprite
     layers:
     - state: tin
@@ -167,6 +178,10 @@
     - state: berryclafoutis
   - type: SliceableFood
     slice: FoodPieClafoutisSlice
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 
 - type: entity
   name: slice of berry clafoutis
@@ -176,11 +191,16 @@
   - type: FlavorProfile
     flavors:
       - sweet
+      - berry
   - type: Sprite
     layers:
     - state: plain-slice
     - state: alpha-slice-filling
       color: pink
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like pie, blackberries.
 
 - type: entity
@@ -198,6 +218,10 @@
     - state: cherry
   - type: SliceableFood
     slice: FoodPieCherrySlice
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 
 - type: entity
   name: slice of cherry pie
@@ -212,6 +236,10 @@
     - state: plain-slice
     - state: alpha-slice-filling
       color: red
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like pie, cherries.
 
 - type: entity
@@ -229,6 +257,10 @@
     - state: meat
   - type: SliceableFood
     slice: FoodPieMeatSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
 
 - type: entity
   name: slice of meat pie
@@ -243,6 +275,10 @@
     - state: plain-slice
     - state: alpha-slice-filling
       color: brown
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
 # Tastes like pie, meat.
 
 - type: entity
@@ -260,6 +296,10 @@
     - state: xeno
   - type: SliceableFood
     slice: FoodPieXenoSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
 
 - type: entity
   name: slice of xeno pie
@@ -275,6 +315,10 @@
     - state: plain-slice
     - state: alpha-slice-filling
       color: green
+  - type: Tag
+    tags:
+    - Meat
+    - Pie
 # Tastes like pie, meat, acid.
 
 - type: entity
@@ -362,6 +406,10 @@
       - sweet
   - type: Sprite
     state: grape
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like tart, grape.
 
 - type: entity
@@ -388,6 +436,10 @@
       - apple
   - type: Sprite
     state: gapple
+  - type: Tag
+    tags:
+    - Fruit 
+    - Pie
 # Tastes like tart, apple, expensive metal.
 
 - type: entity

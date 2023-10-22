@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.StationEvents.Components;
 using Content.Shared.CCVar;
@@ -200,6 +200,11 @@ public sealed class EventManagerSystem : EntitySystem
         var lastRun = TimeSinceLastEvent(prototype);
         if (lastRun != TimeSpan.Zero && currentTime.TotalMinutes <
             stationEvent.ReoccurrenceDelay + lastRun.TotalMinutes)
+        {
+            return false;
+        }
+
+        if (playerCount > stationEvent.MaximumPlayers)
         {
             return false;
         }

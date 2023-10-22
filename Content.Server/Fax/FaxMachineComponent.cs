@@ -97,11 +97,25 @@ public sealed partial class FaxMachineComponent : Component
     public float SendTimeoutRemaining;
 
     /// <summary>
+    /// Message copying timeout
+    /// </summary>
+    [ViewVariables]
+    [DataField("copyTimeoutRemaining")]
+    public float CopyTimeoutRemaining;
+
+    /// <summary>
     /// Message sending timeout
     /// </summary>
     [ViewVariables]
     [DataField("sendTimeout")]
     public float SendTimeout = 5f;
+
+    /// <summary>
+    /// Message copying timeout
+    /// </summary>
+    [ViewVariables]
+    [DataField("copyTimeout")]
+    public float CopyTimeout = 5f;
 
     /// <summary>
     /// Remaining time of inserting animation

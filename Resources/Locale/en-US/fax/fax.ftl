@@ -9,6 +9,7 @@ fax-machine-dialog-field-name = Name
 
 fax-machine-ui-window = Fax Machine
 fax-machine-ui-send-button = Send
+fax-machine-ui-copy-button = Copy
 fax-machine-ui-refresh-button = Refresh
 fax-machine-ui-no-peers = No Peers
 fax-machine-ui-to = To:

@@ -39,7 +39,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
     private void OnMagnetMapInit(EntityUid uid, MagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = _timing.CurTime;
+        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
     }
 
     public override void Update(float frameTime)
@@ -50,7 +50,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
-            if (comp.NextScan < currentTime)
+            if (comp.NextScan > currentTime)
                 continue;
 
             comp.NextScan += ScanDelay;

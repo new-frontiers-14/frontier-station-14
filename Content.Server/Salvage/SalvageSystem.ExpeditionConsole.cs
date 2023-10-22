@@ -1,5 +1,6 @@
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
+using Content.Shared.Procedural;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Server.GameObjects;
@@ -44,6 +45,7 @@ public sealed partial class SalvageSystem
                 continue;
             }
 
+            PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
             UpdateConsoles(data);
             return;
@@ -53,7 +55,7 @@ public sealed partial class SalvageSystem
         SpawnMission(missionparams, station.Value);
 
         data.ActiveMission = args.Index;
-        var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
+        var mission = GetMission(_prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
         UpdateConsoles(data);
     }
@@ -98,5 +100,9 @@ public sealed partial class SalvageSystem
         }
 
         _ui.TrySetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
+    }
+    private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
+    {
+        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
     }
 }

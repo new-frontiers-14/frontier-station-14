@@ -3,13 +3,14 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.VulpLangauge;
 
 namespace Content.Shared.Station;
 
 public abstract class SharedStationSpawningSystem : EntitySystem
 {
     [Dependency] protected readonly InventorySystem InventorySystem = default!;
-    [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     /// <summary>
     /// Equips starting gear onto the given entity.
@@ -27,7 +28,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 if (!string.IsNullOrEmpty(equipmentStr))
                 {
                     var equipmentEntity = EntityManager.SpawnEntity(equipmentStr, EntityManager.GetComponent<TransformComponent>(entity).Coordinates);
-                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, true);
+                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, true, force:true);
                 }
             }
         }
@@ -37,10 +38,20 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         var inhand = startingGear.Inhand;
         var coords = EntityManager.GetComponent<TransformComponent>(entity).Coordinates;
-        foreach (var (hand, prototype) in inhand)
+        foreach (var prototype in inhand)
         {
             var inhandEntity = EntityManager.SpawnEntity(prototype, coords);
-            _handsSystem.TryPickup(entity, inhandEntity, hand, checkActionBlocker: false, handsComp: handsComponent);
+
+            if (_handsSystem.TryGetEmptyHand(entity, out var emptyHand, handsComponent))
+            {
+                _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
+            }
+        }
+
+        if (HasComp<VulpGiveTranslatorComponent>(entity))
+        {
+            var vulpTranslatorEntity = EntityManager.SpawnEntity("VulpTranslator", coords);
+            _handsSystem.TryForcePickupAnyHand(entity, vulpTranslatorEntity, checkActionBlocker: false, handsComp: handsComponent);
         }
     }
 }

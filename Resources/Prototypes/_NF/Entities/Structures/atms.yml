@@ -465,6 +465,15 @@
     sound:
       collection: Keyboard
   - type: StationBankATM
+    station-bank-ATM-cashSlot:
+      name: station-bank-ATM-cashSlot
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+          - Currency
   - type: ActivatableUI
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
@@ -473,6 +482,10 @@
       type: StationBankATMMenuBoundUserInterface
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      station-bank-ATM-cashSlot: !type:ContainerSlot {}
   - type: Destructible
     thresholds:
     - trigger:

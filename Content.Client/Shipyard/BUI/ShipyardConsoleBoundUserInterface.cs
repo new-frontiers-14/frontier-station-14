@@ -15,6 +15,8 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     private ShipyardRulesPopup? _rulesWindow;
     public int Balance { get; private set; }
 
+    public int? ShipSellValue { get; private set; }
+
     public ShipyardConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
@@ -57,6 +59,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             return;
 
         Balance = cState.Balance;
+        ShipSellValue = cState.ShipSellValue;
         var castState = (ShipyardConsoleInterfaceState) state;
         Populate(castState.UiKey);
         _menu?.UpdateState(castState);

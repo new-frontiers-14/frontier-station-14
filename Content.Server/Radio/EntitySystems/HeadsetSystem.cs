@@ -48,6 +48,10 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
     {
+        if (args.Canilunzt)
+        {
+            return;
+        }
         if (args.Channel != null
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))

@@ -1,0 +1,81 @@
+
+#Clothing
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterRobesWeedChurch
+  name: church of weedgod robes
+  description: the robes of those dedicated to the god who's name begins with G
+  components:
+  - type: Sprite
+    sprite: _NF/Faction/Clothing/OuterClothing/weedchurchrobes.rsi
+  - type: Clothing
+    sprite: _NF/Faction/Clothing/OuterClothing/weedchurchrobes.rsi
+
+- type: entity
+  parent: ClothingHeadBaseButcherable
+  id: ClothingHeadBeanieWeedChurch
+  name: church of weedgod beanie
+  description: the beanie worn by followers of the church of weedgod
+  components:
+  - type: Sprite
+    sprite: _NF/Faction/Clothing/Head/weedchurchbeanie.rsi
+  - type: Clothing
+    sprite: _NF/Faction/Clothing/Head/weedchurchbeanie.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadWeedChurchBishop
+  name: church of weedgod bishop's hat
+  description: a holy hat worn by those with high status in the church of weedgod
+  components:
+  - type: Sprite
+    sprite: _NF/Faction/Clothing/Head/weedchurchbishop.rsi
+  - type: Clothing
+    sprite: _NF/Faction/Clothing/Head/weedchurchbishop.rsi
+
+#Bible
+- type: entity
+  name: weejurnum
+  description: holy book to followers of the church of weedgod
+  parent: BaseStorageItem
+  id: Weejurnum
+  components:
+  - type: UseDelay
+    delay: 10.0
+  - type: Bible
+    damage:
+      groups:
+        Brute: -15
+        Burn: -15
+    damageOnFail:
+      groups:
+        Brute: 15
+        Airloss: 15
+    damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
+      groups:
+        Burn: 10
+  - type: Prayable
+    bibleUserOnly: true
+  - type: ReactionMixer
+    mixMessage: "bible-mixing-success"
+    reactionTypes:
+    - Holy
+  - type: ItemCooldown
+  - type: Sprite
+    sprite: _NF/Faction/Objects/weejurnum.rsi
+    state: icon
+  - type: Item
+    size: 15
+    sprite: _NF/Faction/Objects/weejurnum.rsi
+  - type: Clothing
+    slots:
+    - Belt
+  - type: Storage
+    capacity: 10
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Tag
+    tags:
+    - Book
