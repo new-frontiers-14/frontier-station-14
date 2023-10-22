@@ -1,0 +1,30 @@
+- type: vessel
+  id: Barge
+  name: NC Barge
+  description: A medium shipping vessel repurposed into a salvage bar.
+  price: 42300
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/barge.yml
+
+- type: gameMap
+  id: Barge
+  mapName: 'NC Barge'
+  mapPath: /Maps/Shuttles/barge.yml
+  minPlayers: 0
+  stations:
+    Barge:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Barge {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            CargoTechnician: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            Quartermaster: [ 0, 0 ]

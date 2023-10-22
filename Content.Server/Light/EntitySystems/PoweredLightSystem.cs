@@ -23,6 +23,7 @@ using Content.Shared.DoAfter;
 using Content.Server.Emp;
 using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
+using Robust.Shared.Random;
 using Content.Shared.Inventory;
 
 namespace Content.Server.Light.EntitySystems
@@ -46,6 +47,8 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly PointLightSystem _pointLight = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+
+        [Dependency] protected readonly IRobustRandom RobustRandom = default!;
 
         private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
         public const string LightBulbContainer = "light_bulb";
@@ -438,8 +441,11 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnEmpPulse(EntityUid uid, PoweredLightComponent component, ref EmpPulseEvent args)
         {
-            //   if (TryDestroyBulb(uid, component)) // Make it so EMP isnt exploding lights
-            //       args.Affected = true; // Make it so EMP isnt exploding lights
+            if (RobustRandom.Prob(component.LightBreakChance))
+            {
+                if (TryDestroyBulb(uid, component))
+                    args.Affected = true;
+            }
         }
     }
 }

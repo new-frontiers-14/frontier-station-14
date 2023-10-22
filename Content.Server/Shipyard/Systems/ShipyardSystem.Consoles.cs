@@ -26,6 +26,7 @@ using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
+using Content.Server.Station.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -184,7 +185,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize(station);
         }
 
-        int sellValue = 0;
+        //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
+        //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
+        
+		int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 

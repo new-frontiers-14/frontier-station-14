@@ -1,0 +1,27 @@
+- type: vessel
+  id: Construct
+  name: NT Construct
+  description: A technically spacefaring vessel.  No livery.
+  price: 12075
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/construct.yml
+
+- type: gameMap
+  id: Construct
+  mapName: 'NT Construct'
+  mapPath: /Maps/Shuttles/construct.yml
+  minPlayers: 0
+  stations:
+    Construct:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Construct {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]

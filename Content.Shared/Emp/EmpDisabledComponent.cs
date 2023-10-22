@@ -20,9 +20,6 @@ public sealed partial class EmpDisabledComponent : Component
     [DataField("effectCoolDown"), ViewVariables(VVAccess.ReadWrite)]
     public float EffectCooldown = 3f;
 
-    [DataField("ignored"), ViewVariables(VVAccess.ReadWrite)]
-    public bool Ignored = false;
-
     /// <summary>
     /// When next effect will be spawned
     /// </summary>
