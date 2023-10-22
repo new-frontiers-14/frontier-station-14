@@ -16,6 +16,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
+using Content.Shared.MassMedia.Components;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -270,9 +271,18 @@ public sealed class RadarControl : MapGridControl
                 // plus by the offset.
                 var uiPosition = ScalePosition(gridCentre) / UIScale - new Vector2(label.Width / 2f, -yOffset);
 
-                // Look this is uggo so feel free to cleanup. We just need to clamp the UI position to within the viewport.
-                uiPosition = new Vector2(Math.Clamp(uiPosition.X, 0f, Width - label.Width),
-                    Math.Clamp(uiPosition.Y, 10f, Height - label.Height));
+                // Confines the UI position within the viewport.
+                var uiXCentre = (int) (Width - label.Width) / 2;
+                var uiYCentre = (int) (Height - label.Height) / 2;
+                var uiXOffset = uiPosition.X - uiXCentre;
+                var uiYOffset = uiPosition.Y - uiYCentre;
+                var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
+                var uiX = uiXCentre * uiXOffset / uiDistance;
+                var uiY = uiYCentre * uiYOffset / uiDistance;
+                if (uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY))
+                {
+                    uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
+                }
 
                 label.Visible = true;
                 label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
@@ -318,7 +328,7 @@ public sealed class RadarControl : MapGridControl
         if (!ShowDocks)
             return;
 
-        const float DockScale = 1f;
+        const float dockScale = 1f;
 
         if (_docks.TryGetValue(uid, out var docks))
         {
@@ -331,7 +341,7 @@ public sealed class RadarControl : MapGridControl
                 var position = state.Coordinates.Position;
                 var uiPosition = matrix.Transform(position);
 
-                if (uiPosition.Length() > WorldRange - DockScale)
+                if (uiPosition.Length() > WorldRange - dockScale)
                     continue;
 
                 var color = HighlightedDock == ent ? state.HighlightedColor : state.Color;
@@ -340,10 +350,10 @@ public sealed class RadarControl : MapGridControl
 
                 var verts = new[]
                 {
-                    matrix.Transform(position + new Vector2(-DockScale, -DockScale)),
-                    matrix.Transform(position + new Vector2(DockScale, -DockScale)),
-                    matrix.Transform(position + new Vector2(DockScale, DockScale)),
-                    matrix.Transform(position + new Vector2(-DockScale, DockScale)),
+                    matrix.Transform(position + new Vector2(-dockScale, -dockScale)),
+                    matrix.Transform(position + new Vector2(dockScale, -dockScale)),
+                    matrix.Transform(position + new Vector2(dockScale, dockScale)),
+                    matrix.Transform(position + new Vector2(-dockScale, dockScale)),
                 };
 
                 for (var i = 0; i < verts.Length; i++)
