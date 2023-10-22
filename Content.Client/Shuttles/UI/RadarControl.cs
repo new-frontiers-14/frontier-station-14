@@ -16,7 +16,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
-using Content.Shared.MassMedia.Components;
 
 namespace Content.Client.Shuttles.UI;
 
