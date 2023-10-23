@@ -40,6 +40,7 @@ using Content.Shared.Maps;
 using Content.Shared.PDA;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Timer = Robust.Shared.Timing.Timer;
@@ -399,21 +400,6 @@ namespace Content.Server.Mail
             return false;
         }
 
-        public bool TryMatchJobTitleToIcon(string jobTitle, [NotNullWhen(true)] out string? jobIcon)
-        {
-            foreach (var job in _prototypeManager.EnumeratePrototypes<JobPrototype>())
-            {
-                if (job.LocalizedName == jobTitle)
-                {
-                    jobIcon = job.Icon;
-                    return true;
-                }
-            }
-
-            jobIcon = null;
-            return false;
-        }
-
         /// <summary>
         /// Handle all the gritty details particular to a new mail entity.
         /// </summary>
@@ -470,10 +456,9 @@ namespace Content.Server.Mail
                     mailComp.priorityCancelToken.Token);
             }
 
-            if (TryMatchJobTitleToIcon(recipient.Job, out string? icon))
-                _appearanceSystem.SetData(uid, MailVisuals.JobIcon, icon);
+            _appearanceSystem.SetData(uid, MailVisuals.JobIcon, recipient.JobIcon);
 
-            _meta.SetEntityName(uid, Loc.GetString("mail-item-name-addressed",
+            _metaDataSystem.SetEntityName(uid, Loc.GetString("mail-item-name-addressed",
                 ("recipient", recipient.Name)));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
@@ -567,6 +552,7 @@ namespace Content.Server.Mail
 
                 recipient = new MailRecipient(idCard.Comp.FullName,
                     idCard.Comp.JobTitle,
+                    idCard.Comp.JobIcon,
                     accessTags,
                     mayReceivePriorityMail,
                     stationName);
@@ -725,14 +711,16 @@ namespace Content.Server.Mail
     {
         public string Name;
         public string Job;
+        public string JobIcon;
         public HashSet<String> AccessTags;
         public bool MayReceivePriorityMail;
         public string Ship;
 
-        public MailRecipient(string name, string job, HashSet<String> accessTags, bool mayReceivePriorityMail, string ship)
+        public MailRecipient(string name, string job, string jobIcon, HashSet<String> accessTags, bool mayReceivePriorityMail)
         {
             Name = name;
             Job = job;
+            JobIcon = jobIcon;
             AccessTags = accessTags;
             MayReceivePriorityMail = mayReceivePriorityMail;
             Ship = ship;
