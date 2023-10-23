@@ -77,24 +77,25 @@
   parent: BaseSubdermalImplant
   id: TrackingImplant
   name: tracking implant
-  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Security radio channel.
+  description: This implant has a tracking device monitor for the Security radio channel.
   noSpawn: true
   components:
     - type: SubdermalImplant
-    - type: SuitSensor
-      randomMode: false
-      controlsLocked: true
-      mode: SensorCords
-      activationContainer: "implant"
-    - type: DeviceNetwork
-      deviceNetId: Wireless
-      transmitFrequencyId: SuitSensor
-    - type: StationLimitedNetwork
-    - type: WirelessNetworkConnection
-      range: 10000
+#    - type: SuitSensor
+#      randomMode: false
+#      controlsLocked: true
+#      mode: SensorCords
+#      activationContainer: "implant"
+#    - type: DeviceNetwork
+#      deviceNetId: Wireless
+#      transmitFrequencyId: SuitSensor
+#    - type: StationLimitedNetwork
+#    - type: WirelessNetworkConnection
+#      range: 500
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
+      - Dead
     - type: Rattle
       radioChannel: "Security"
 
@@ -256,3 +257,17 @@
       - Dead
     - type: Rattle
 
+# Sec and Command implants
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: MindShieldImplant
+  name: mind-shield implant
+  description: This implant will ensure loyalty to Nanotrasen and prevent mind control devices.
+  noSpawn: true
+  components:
+   - type: SubdermalImplant
+     permanent: true
+   - type: Tag
+     tags:
+       - MindShield

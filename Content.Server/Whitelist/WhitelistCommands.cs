@@ -1,7 +1,9 @@
 ﻿using Content.Server.Administration;
 using Content.Server.Database;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Players;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
@@ -22,6 +24,8 @@ public sealed class AddWhitelistCommand : IConsoleCommand
 
         var db = IoCManager.Resolve<IServerDbManager>();
         var loc = IoCManager.Resolve<IPlayerLocator>();
+        var player = IoCManager.Resolve<IPlayerManager>();
+        var playtime = IoCManager.Resolve<PlayTimeTrackingManager>();
 
         var name = args[0];
         var data = await loc.LookupIdByNameAsync(name);
@@ -37,6 +41,15 @@ public sealed class AddWhitelistCommand : IConsoleCommand
             }
 
             await db.AddToWhitelistAsync(guid);
+
+            // Nyanotrasen - Update whitelist status in player data.
+            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
+                player.TryGetSessionByUsername(name, out var session))
+            {
+                playerData.ContentData()!.Whitelisted = true;
+                playtime.SendWhitelistCached(session);
+            }
+
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
             return;
         }
@@ -58,6 +71,8 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
 
         var db = IoCManager.Resolve<IServerDbManager>();
         var loc = IoCManager.Resolve<IPlayerLocator>();
+        var player = IoCManager.Resolve<IPlayerManager>();
+        var playtime = IoCManager.Resolve<PlayTimeTrackingManager>();
 
         var name = args[0];
         var data = await loc.LookupIdByNameAsync(name);
@@ -73,6 +88,15 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
             }
 
             await db.RemoveFromWhitelistAsync(guid);
+
+            // Nyanotrasen - Update whitelist status in player data.
+            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
+                player.TryGetSessionByUsername(name, out var session))
+            {
+                playerData.ContentData()!.Whitelisted = false;
+                playtime.SendWhitelistCached(session);
+            }
+
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
             return;
         }
