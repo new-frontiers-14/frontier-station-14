@@ -7,11 +7,15 @@ using Content.Server.Players;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Server.Storage.Components;
 using Content.Shared.CCVar;
+using Content.Shared.Clothing;
 using Content.Shared.Database;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Storage;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Map;
@@ -20,12 +24,15 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
+
 namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly LoadoutSystem _loadout = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!;
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string ObserverPrototypeName = "MobObserver";
@@ -215,6 +222,25 @@ namespace Content.Server.GameTicking
             {
                 EntityManager.AddComponent<OwOAccentComponent>(mob);
             }
+
+
+            if (_configurationManager.GetCVar(CCVars.GameLoadoutsEnabled))
+            {
+                // Spawn the loadout, get a list of items that failed to equip
+                var failedLoadouts = _loadout.ApplyCharacterLoadout(mob, jobPrototype, character);
+
+                foreach (var loadout in failedLoadouts)
+                {
+                    // Try to find back-mounted storage apparatus
+                    if (!_inventory.TryGetSlotEntity(mob, "back", out var item) ||
+                        !EntityManager.TryGetComponent<StorageComponent>(item, out var inventory))
+                        continue;
+
+                    // Try inserting the entity into the storage, if it can't, it leaves the loadout item on the ground
+                    inventory.Container.Insert(loadout);
+                }
+            }
+
 
             _stationJobs.TryAssignJob(station, jobPrototype);
 

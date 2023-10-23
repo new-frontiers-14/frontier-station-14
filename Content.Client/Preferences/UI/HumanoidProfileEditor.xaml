@@ -60,6 +60,12 @@
                                     <Control HorizontalExpand="True"/>
                                     <Button Name="ShowClothes" Pressed="True" ToggleMode="True" Text="{Loc 'humanoid-profile-editor-clothing-show'}" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Show loadouts -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-loadouts'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Button Name="ShowLoadouts" Pressed="True" ToggleMode="True" Text="{Loc 'Show'}" HorizontalAlignment="Right" />
+                                </BoxContainer>
                                 <!-- Clothing -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-clothing-label'}" />
@@ -133,6 +139,13 @@
                     <!-- Traits -->
                     <ScrollContainer VerticalExpand="True">
                         <BoxContainer Name="CTraitsList" Orientation="Vertical" />
+                    </ScrollContainer>
+                </BoxContainer>
+                <BoxContainer Name="CLoadoutsTab" Orientation="Vertical" Margin="10">
+                    <!-- Loadouts -->
+                    <ProgressBar Name="LoadoutPoints" MaxValue="1" Value="1" />
+                    <ScrollContainer VerticalExpand="True">
+                        <TabContainer Name="CLoadoutsTabs" VerticalExpand="True" />
                     </ScrollContainer>
                 </BoxContainer>
                 <BoxContainer Name="CMarkingsTab" Orientation="Vertical" Margin="10">

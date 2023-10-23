@@ -221,10 +221,8 @@ namespace Content.Client.Preferences.UI
                 };
                 deleteButton.OnPressed += _ =>
                 {
-
                     deleteButton.Visible = false;
                     confirmDeleteButton.Visible = true;
-
                 };
 
                 var internalHBox = new BoxContainer
