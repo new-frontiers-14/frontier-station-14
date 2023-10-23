@@ -15,6 +15,9 @@ namespace Content.Client.VendingMachines
         [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
+        [ViewVariables]
+        private float _mod = 1f;
+
         public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -25,11 +28,10 @@ namespace Content.Client.VendingMachines
 
             var entMan = IoCManager.Resolve<IEntityManager>();
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
-            var priceMod = 1f;
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
             {
-                priceMod = market.Mod;
+                _mod = market.Mod;
             }
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
@@ -38,8 +40,9 @@ namespace Content.Client.VendingMachines
 
             _menu.OnClose += Close;
             _menu.OnItemSelected += OnItemSelected;
+            _menu.OnSearchChanged += OnSearchChanged;
 
-            _menu.Populate(_cachedInventory, priceMod);
+            _menu.Populate(_cachedInventory, _mod);
 
             _menu.OpenCentered();
         }
@@ -88,6 +91,11 @@ namespace Content.Client.VendingMachines
             _menu.OnItemSelected -= OnItemSelected;
             _menu.OnClose -= Close;
             _menu.Dispose();
+        }
+
+        private void OnSearchChanged(string? filter)
+        {
+            _menu?.Populate(_cachedInventory, _mod, filter);
         }
     }
 }

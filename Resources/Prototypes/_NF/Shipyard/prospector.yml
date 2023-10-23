@@ -1,0 +1,27 @@
+- type: vessel
+  id: Prospector
+  name: NC Prospector
+  description: A small mining vessel designed to assist salvage operations.
+  price: 23000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/prospector.yml
+
+- type: gameMap
+  id: Prospector
+  mapName: 'NC Prospector'
+  mapPath: /Maps/Shuttles/prospector.yml
+  minPlayers: 0
+  stations:
+    Prospector:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Prospector {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]

@@ -23,7 +23,7 @@
           Quantity: 20
         - ReagentId: Flavorol
           Quantity: 5
-          
+
 - type: entity
   parent: FoodBreadBase
   id: FoodBreadSliceBase
@@ -95,6 +95,10 @@
     - state: banana
   - type: SliceableFood
     slice: FoodBreadBananaSlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Bread
 # Tastes like bread, banana, nut.
 
 - type: entity
@@ -111,6 +115,9 @@
   - type: Sprite
     layers:
     - state: banana-slice
+  - type: Tag
+    tags:
+    - Fruit
 
 - type: entity
   name: cornbread
@@ -219,7 +226,7 @@
           Quantity: 1.2
         - ReagentId: Flavorol
           Quantity: 1.5
-          
+
 - type: entity
   name: meat bread
   parent: FoodBreadBase
@@ -247,6 +254,10 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Bread
 # Tastes like bread, meat.
 
 - type: entity
@@ -274,7 +285,10 @@
           Quantity: 1.2
         - ReagentId: Flavorol
           Quantity: 2
-          
+  - type: Tag
+    tags:
+    - Meat
+
 - type: entity
   name: mimana bread
   parent: FoodBreadBase
@@ -337,7 +351,7 @@
           Quantity: 1
         - ReagentId: Flavorol
           Quantity: 1
-          
+
 - type: entity
   name: bread
   parent: FoodBreadBase
@@ -391,6 +405,10 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+    - Bread
 
 - type: entity
   name: sausage bread slice
@@ -419,6 +437,9 @@
           Quantity: 1
         - ReagentId: Flavorol
           Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
 
 - type: entity
   name: spider meat bread
@@ -449,6 +470,10 @@
           Quantity: 15
         - ReagentId: Flavorol
           Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Bread
 # Tastes like bread, cobwebs.
 
 - type: entity
@@ -478,7 +503,10 @@
           Quantity: 3
         - ReagentId: Flavorol
           Quantity: 2
-          
+  - type: Tag
+    tags:
+    - Meat
+
 - type: entity
   name: tofu bread
   parent: FoodBreadBase
@@ -533,7 +561,7 @@
           Quantity: 2.4
         - ReagentId: Flavorol
           Quantity: 3
-          
+
 - type: entity
   name: xeno meat bread
   parent: FoodBreadBase
@@ -561,6 +589,10 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+    - Bread
 # Tastes like bread, acid.
 
 - type: entity
@@ -588,6 +620,10 @@
           Quantity: 1.2
         - ReagentId: Flavorol
           Quantity: 2.4
+  - type: Tag
+    tags:
+    - Meat
+
 # Other than bread/slices
 
 - type: entity

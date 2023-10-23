@@ -54,11 +54,13 @@
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
     hostileOnFail: true
-  - type: DogVision
+#  - type: DogVision
+  - type: NPCRetaliation
+  - type: FactionException
   - type: NpcFactionMember
     factions:
-    - PetsNT
-    - Pibble
+      - PetsNT
+      - Pibble
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

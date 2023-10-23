@@ -5,7 +5,7 @@
   playTimeTracker: JobPrisonGuard
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 18000
+      time: 1400
   startingGear: PrisonGuardGear
   canBeAntag: false
   icon: "JobIconWarden" 
@@ -15,6 +15,9 @@
   - Security
   - Brig
   - Maintenance
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
   id: PrisonGuardGear
@@ -27,7 +30,6 @@
     id: GuardPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    # neck: ClothingNeckBodycam
-  innerclothingskirt: ClothingUniformJumpsuitPrisonGuard
+  innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled

@@ -162,6 +162,7 @@
   id: ActionChangeVoiceMask
   name: Встановити їмʼя
   description: Змініть ім'я, яке чують інші, на інше.
+  noSpawn: true
   components:
   - type: InstantAction
     icon: Interface/Actions/scream.png # somebody else can figure out a better icon for this
@@ -208,6 +209,9 @@
   noSpawn: true
   components:
   - type: InstantAction
+    clientExclusive: true
+    checkCanInteract: false
+    temporary: true
     icon: { sprite: Objects/Tools/multitool.rsi, state: icon }
     event: !type:ClearAllOverlaysEvent
 

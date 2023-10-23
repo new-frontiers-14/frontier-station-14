@@ -1,0 +1,30 @@
+- type: vessel
+  id: Helix
+  name: NM Helix
+  description: A medium, modular hospital. Standard issue equipped with chem lab, cloning, and treatment ward
+  price: 52400
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/helix.yml
+
+- type: gameMap
+  id: Helix
+  mapName: 'NM Helix'
+  mapPath: /Maps/Shuttles/helix.yml
+  minPlayers: 0
+  stations:
+    Helix:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Helix {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chemist: [ 0, 0 ]

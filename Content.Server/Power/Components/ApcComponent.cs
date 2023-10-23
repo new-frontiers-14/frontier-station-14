@@ -11,9 +11,6 @@ public sealed partial class ApcComponent : BaseApcNetComponent
     [DataField("onReceiveMessageSound")]
     public SoundSpecifier OnReceiveMessageSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
-    [DataField("apcIgnoreEmp")]
-    public bool ApcIgnoreEmp = false;
-
     [DataField("lastChargeState")]
     public ApcChargeState LastChargeState;
     [DataField("lastChargeStateTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
@@ -40,13 +37,14 @@ public sealed partial class ApcComponent : BaseApcNetComponent
     public static TimeSpan VisualsChangeDelay = TimeSpan.FromSeconds(1);
 
     // TODO ECS power a little better!
+    // End the suffering
     protected override void AddSelfToNet(IApcNet apcNet)
     {
-        apcNet.AddApc(this);
+        apcNet.AddApc(Owner, this);
     }
 
     protected override void RemoveSelfFromNet(IApcNet apcNet)
     {
-        apcNet.RemoveApc(this);
+        apcNet.RemoveApc(Owner, this);
     }
 }
