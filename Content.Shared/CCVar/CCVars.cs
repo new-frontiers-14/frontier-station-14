@@ -1205,7 +1205,7 @@ namespace Content.Shared.CCVar
         /// Whether or not to restrict the restart vote when there's online admins.
         /// </summary>
         public static readonly CVarDef<bool> VoteRestartNotAllowedWhenAdminOnline =
-            CVarDef.Create("vote.restart_not_allowed_when_admin_online", true, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_not_allowed_when_admin_online", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
@@ -1298,10 +1298,10 @@ namespace Content.Shared.CCVar
         /// Whether to automatically spawn escape shuttles.
         /// </summary>
         public static readonly CVarDef<bool> GridFill =
-            CVarDef.Create("shuttle.grid_fill", false, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.grid_fill", true, CVar.SERVERONLY);
 
         public static readonly CVarDef<bool> CargoShuttles =
-            CVarDef.Create("shuttle.cargo", false, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.cargo", true, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the Shipyard is enabled.
@@ -1323,7 +1323,7 @@ namespace Content.Shared.CCVar
         /// How long the emergency shuttle remains docked with the station, in seconds.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleDockTime =
-            CVarDef.Create("shuttle.emergency_dock_time", 300f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_dock_time", 180f, CVar.SERVERONLY);
 
         /// <summary>
         /// How long after the console is authorized for the shuttle to early launch.
@@ -1335,19 +1335,19 @@ namespace Content.Shared.CCVar
         /// The minimum time for the emergency shuttle to arrive at centcomm.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMinTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_min", 300f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_min", 60f, CVar.SERVERONLY);
 
         /// <summary>
         /// The maximum time for the emergency shuttle to arrive at centcomm.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMaxTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_max", 600f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_max", 180f, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the emergency shuttle is enabled or should the round just end.
         /// </summary>
         public static readonly CVarDef<bool> EmergencyShuttleEnabled =
-            CVarDef.Create("shuttle.emergency", false, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency", true, CVar.SERVERONLY);
 
         /// <summary>
         ///     The percentage of time passed from the initial call to when the shuttle can no longer be recalled.
