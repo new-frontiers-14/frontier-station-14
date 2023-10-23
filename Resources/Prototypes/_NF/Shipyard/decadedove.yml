@@ -1,0 +1,30 @@
+- type: vessel
+  id: DecadeDove
+  name: NT Decade Dove
+  description: Versatile expedition-capable multi-purpose light freighter.
+  price: 72500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/decadedove.yml
+
+- type: gameMap
+  id: DecadeDove
+  mapName: 'Decade Dove'
+  mapPath: /Maps/Shuttles/decadedove.yml
+  minPlayers: 0
+  stations:
+    DecadeDove:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Decade Dove {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            ChiefEngineer: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            Borg: [ 0, 0 ]
+            
