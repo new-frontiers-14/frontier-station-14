@@ -4,6 +4,9 @@
   description: job-description-stc
   playTimeTracker: JobSTC
   startingGear: STCGear
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   canBeAntag: false
   icon: "JobIconServiceWorker" 
   supervisors: job-supervisors-hop
@@ -15,12 +18,12 @@
 - type: startingGear
   id: STCGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitMailCarrier
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
     back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
     id: STCPDA
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
-  innerClothingSkirt: ClothingUniformJumpskirtMailCarrier
+  innerClothingSkirt: ClothingUniformJumpskirtDetectiveGrey
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
