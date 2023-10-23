@@ -17,11 +17,12 @@
       - !type:HealthChange #minor health benefit if you eat full meals, helps with the existing 'healthy' vitamins etc. to create a complete and balanced diet.
         conditions:
         - !type:ReagentThreshold
-          min: 10
+          min: 7
         damage:
           types:
             Poison: -0.2
             Radiation: -0.2
+            Cold: -0.2
       - !type:ModifyBloodLevel
         amount: .5
   plantMetabolism:
