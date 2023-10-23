@@ -15,7 +15,7 @@ namespace Content.Shared.Carrying
     }
 
     [Serializable, NetSerializable]
-    public sealed partial class CarryingSlowdownComponentState : ComponentState
+    public sealed class CarryingSlowdownComponentState : ComponentState
     {
         public float WalkModifier;
         public float SprintModifier;
