@@ -1,0 +1,172 @@
+- type: entity
+  name: Shredder
+  id: MobArcIndShredder
+  parent: SimpleSpaceMobBase
+  description: A small drone meant to deconstruct both organic and non-organic structures
+  components:
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind-shredder.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: alive
+          scale: 0.8, 0.8
+    - type: Physics
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 4
+      baseSprintSpeed : 6
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.20
+          density: 20
+          mask:
+            - SmallMobMask
+          layer:
+            - SmallMobLayer
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        25: Dead
+    - type: Stamina
+      critThreshold: 25
+    - type: MovementAlwaysTouching
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: CombatMode
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        groups:
+          Brute: 4
+
+- type: entity
+  name: Hijacked Hologuardian
+  id: MobArcIndHoloparasiteGuardian
+  parent: SimpleSpaceMobBase
+  description: A syndicate hologuardian that seems to have been modified by unknown means.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind-guardians.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: alive
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: Dead
+    - type: Stamina
+      critThreshold: 100
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        50: 0.8
+        90: 0.65
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: MeleeWeapon
+      angle: 30
+      animation: WeaponArcClaw
+      attackRate: 1
+      damage:
+        types:
+          Piercing: 5
+          Heat: 5
+
+- type: entity
+  name: Mobile Blaster Unit
+  parent: SimpleMobBase
+  id: MobArcIndBlaster
+  description: A mobile energy blaster that capable of... oh god run it's spotted you!
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind-blasters.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: alive
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.30
+          density: 80
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        60: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 5
+    - type: Tag
+      tags:
+        - FootstepSound
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLightLaser
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: Gun
+      fireRate: 1
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    - type: CombatMode

@@ -1,0 +1,27 @@
+- type: vessel
+  id: MailTruck
+  name: NC Mail Truck
+  description: A cramped yet reliable shuttle for delivering packages.
+  price: 12150
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/mail.yml
+
+- type: gameMap
+  id: MailTruck
+  mapName: 'NC Mail Truck'
+  mapPath: /Maps/Shuttles/mail.yml
+  minPlayers: 0
+  stations:
+    MailTruck:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Mail Truck {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            MailCarrier: [ 0, 0 ]

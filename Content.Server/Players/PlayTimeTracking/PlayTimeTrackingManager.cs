@@ -54,7 +54,7 @@ public delegate void CalcPlayTimeTrackersCallback(IPlayerSession player, HashSet
 /// Operations like refreshing and sending play time info to clients are deferred until the next frame (note: not tick).
 /// </para>
 /// </remarks>
-public sealed class PlayTimeTrackingManager
+public sealed partial class PlayTimeTrackingManager
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IServerNetManager _net = default!;

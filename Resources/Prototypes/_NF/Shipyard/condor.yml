@@ -1,0 +1,32 @@
+- type: vessel
+  id: Condor
+  name: NR Condor
+  description: A combined research and engineering vessel #suited for xeno-archeological expeditions. -soon
+  price: 72890
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/condor.yml
+
+- type: gameMap
+  id: Condor
+  mapName: 'NR Condor'
+  mapPath: /Maps/Shuttles/condor.yml
+  minPlayers: 0
+  stations:
+    Condor:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Condor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            Borg: [ 0, 0 ]

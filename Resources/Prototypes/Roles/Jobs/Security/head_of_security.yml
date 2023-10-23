@@ -6,6 +6,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 50400
+    - !type:WhitelistRequirement
     # - !type:RoleTimeRequirement
       # role: JobWarden
       # time: 21600 #6 hrs
@@ -38,7 +39,7 @@
   - Detective
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplant, TrackingImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -54,7 +55,7 @@
     head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
   innerClothingSkirt: ClothingUniformJumpskirtHoS
