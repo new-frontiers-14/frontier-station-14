@@ -1,0 +1,19 @@
+- type: entity
+  parent: AirlockCommand
+  id: AirlockFrontierLocked
+  suffix: Frontier, Locked
+  components:
+  - type: AccessReader
+    access: [["Frontier"]]
+  - type: Wires
+    layoutId: AirlockCommand
+    
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockFrontierGlassLocked
+  suffix: Frontier, Locked
+  components:
+  - type: AccessReader
+    access: [["Frontier"]]
+  - type: Wires
+    layoutId: AirlockCommand
