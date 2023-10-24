@@ -47,7 +47,7 @@ public sealed class AddWhitelistCommand : IConsoleCommand
                 player.TryGetSessionByUsername(name, out var session))
             {
                 playerData.ContentData()!.Whitelisted = true;
-                playtime.SendWhitelistCached(session);
+                playtime.QueueSendWhitelist(session);
             }
 
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
@@ -94,7 +94,7 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
                 player.TryGetSessionByUsername(name, out var session))
             {
                 playerData.ContentData()!.Whitelisted = false;
-                playtime.SendWhitelistCached(session);
+                playtime.QueueSendWhitelist(session);
             }
 
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
