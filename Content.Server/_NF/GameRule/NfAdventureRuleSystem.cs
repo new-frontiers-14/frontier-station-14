@@ -116,10 +116,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var arena = "/Maps/arena.yml";
         var cove = "/Maps/cove.yml";
         var courthouse = "/Maps/courthouse.yml";
+        var lodge = "/Maps/lodge.yml";
         var depotColor = new Color(55, 200, 55);
-        var tinniaColor = new Color(55, 55, 200);
+        var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
-        var caseysColor = new Color(255, 165, 0);
+        var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(2400f, 4000f);
 
@@ -140,7 +141,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
             meta.EntityName = "Tinnia's Rest";
-            _shuttle.SetIFFColor(depotUid2s[0], tinniaColor);
+            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
@@ -171,7 +172,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
             meta.EntityName = "The Pit";
-            _shuttle.SetIFFColor(depotUid5s[0], tinniaColor);
+            _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
         }
 
         if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
@@ -190,6 +191,21 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
         }
 
+        if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2050f, 3900f)
+            }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["Lodge"], lodgeUids);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
+            meta.EntityName = "Expeditionary Lodge";
+            _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
+        }
+
         if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2250f, 4600f)
@@ -197,7 +213,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
             meta.EntityName = "Crazy Casey's Casino";
-            _shuttle.SetIFFColor(depotUid7s[0], caseysColor);
+            _shuttle.SetIFFColor(depotUid7s[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
@@ -205,7 +221,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 Offset = _random.NextVector2(1150f, 2050f)
             }))
         {
-            _shuttle.SetIFFColor(depotUid8s[0], tinniaColor);
+            _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
