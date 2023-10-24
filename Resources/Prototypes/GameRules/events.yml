@@ -45,41 +45,41 @@
   - type: BreakerFlipRule
 
 - type: entity
- id: BureaucraticError
- parent: BaseGameRule
- noSpawn: true
- components:
- - type: StationEvent
-   startAnnouncement: station-event-bureaucratic-error-announcement
-   minimumPlayers: 3
-   weight: 5
-   duration: 1
- - type: BureaucraticErrorRule
+  id: BureaucraticError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bureaucratic-error-announcement
+    minimumPlayers: 3
+    weight: 5
+    duration: 1
+  - type: BureaucraticErrorRule
 
 - type: entity
- parent: BaseGameRule
- id: ClosetSkeleton
- noSpawn: true
- components:
- - type: StationEvent
-   weight: 10
-   duration: 1
- - type: RandomEntityStorageSpawnRule
-   prototype: MobSkeletonCloset
+  parent: BaseGameRule
+  id: ClosetSkeleton
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 10
+    duration: 1
+  - type: RandomEntityStorageSpawnRule
+    prototype: MobSkeletonCloset
 
 - type: entity
- parent: BaseGameRule
- id: DragonSpawn
- noSpawn: true
- components:
- - type: StationEvent
-   weight: 5
-   duration: 1
-   earliestStart: 45
-   reoccurrenceDelay: 60
-   minimumPlayers: 4
- - type: RandomSpawnRule
-   prototype: SpawnPointGhostDragon
+  parent: BaseGameRule
+  id: DragonSpawn
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: 1
+    earliestStart: 45
+    reoccurrenceDelay: 60
+    minimumPlayers: 4
+  - type: RandomSpawnRule
+    prototype: SpawnPointGhostDragon
 
 - type: entity
   parent: BaseGameRule
@@ -329,33 +329,33 @@
       prob: 0.05
 
 - type: entity
- id: ZombieOutbreak
- parent: BaseGameRule
- noSpawn: true
- components:
- - type: StationEvent
-   earliestStart: 50
-   weight: 2.5
-   duration: 1
- - type: ZombieRule
-   minStartDelay: 0 #let them know immediately
-   maxStartDelay: 10
-   maxInitialInfected: 3 #fewer zombies
-   minInitialInfectedGrace: 300 #less time to prepare
-   maxInitialInfectedGrace: 450
+  id: ZombieOutbreak
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    earliestStart: 50
+    weight: 2.5
+    duration: 1
+  - type: ZombieRule
+    minStartDelay: 0 #let them know immediately
+    maxStartDelay: 10
+    maxInitialInfected: 3 #fewer zombies
+    minInitialInfectedGrace: 300 #less time to prepare
+    maxInitialInfectedGrace: 450
 
 - type: entity
- id: LoneOpsSpawn
- parent: BaseGameRule
- noSpawn: true
- components:
- - type: StationEvent
-   earliestStart: 30
-   weight: 5
-   minimumPlayers: 5
-   reoccurrenceDelay: 25
-   duration: 1
- - type: LoneOpsSpawnRule
+  id: LoneOpsSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    earliestStart: 30
+    weight: 5
+    minimumPlayers: 5
+    reoccurrenceDelay: 25
+    duration: 1
+  - type: LoneOpsSpawnRule
 
 - type: entity
   id: MassHallucinations
