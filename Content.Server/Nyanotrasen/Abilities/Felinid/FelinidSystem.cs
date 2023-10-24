@@ -5,7 +5,6 @@ using Content.Shared.Throwing;
 using Content.Shared.Item;
 using Content.Shared.Inventory;
 using Content.Shared.Hands;
-using Content.Shared.Actions;
 using Content.Shared.IdentityManagement;
 using Content.Server.Body.Components;
 using Content.Server.Medical;
@@ -41,7 +40,7 @@ namespace Content.Server.Abilities.Felinid
             SubscribeLocalEvent<FelinidComponent, HairballActionEvent>(OnHairball);
             SubscribeLocalEvent<FelinidComponent, EatMouseActionEvent>(OnEatMouse);
             SubscribeLocalEvent<FelinidComponent, DidEquipHandEvent>(OnEquipped);
-            SubscribeLocalEvent<FelinidComponent,DidUnequipHandEvent>(OnUnequipped);
+            SubscribeLocalEvent<FelinidComponent, DidUnequipHandEvent>(OnUnequipped);
             SubscribeLocalEvent<HairballComponent, ThrowDoHitEvent>(OnHairballHit);
             SubscribeLocalEvent<HairballComponent, GettingPickedUpAttemptEvent>(OnHairballPickupAttempt);
         }
