@@ -1716,6 +1716,10 @@ entities:
             2908: 10,2
             2947: -8,4
             2948: -7,4
+            2985: -50,3
+            2986: -50,3
+            2987: -53,6
+            2988: -52,6
         - node:
             cleanable: True
             zIndex: 180
@@ -1778,9 +1782,6 @@ entities:
             2852: -52,15
             2853: -52,14
             2854: -51,15
-            2871: -50,3
-            2872: -50,3
-            2873: -50,3
             2874: -49,5
             2875: -49,5
             2876: -56,2
@@ -3116,11 +3117,10 @@ entities:
             2782: -1,40
             2783: -3,47
         - node:
-            cleanable: True
-            color: '#334E6DD0'
+            color: '#334E6DC8'
             id: FullTileOverlayGreyscale
           decals:
-            952: -50,3
+            2984: -50,3
         - node:
             color: '#35526FFF'
             id: FullTileOverlayGreyscale
@@ -3697,6 +3697,12 @@ entities:
             593: 30,18
             1015: -41,8
             1016: -40,8
+            2992: -31,0
+            2993: -30,0
+            2994: -29,0
+            2995: -31,-11
+            2996: -29,-11
+            3000: 29,-11
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
@@ -3830,6 +3836,12 @@ entities:
             1012: -41,6
             1013: -41,9
             1014: -40,9
+            2989: -31,0
+            2990: -30,0
+            2991: -29,0
+            2997: -31,-11
+            2998: -29,-11
+            2999: 29,-11
         - node:
             color: '#E69FAEFF'
             id: WoodTrimThinCornerNe
@@ -17114,6 +17126,11 @@ entities:
       type: Transform
 - proto: ComputerRadar
   entities:
+  - uid: 345
+    components:
+    - pos: 21.5,26.5
+      parent: 2173
+      type: Transform
   - uid: 2230
     components:
     - rot: -1.5707963267948966 rad
@@ -17149,6 +17166,11 @@ entities:
   - uid: 4475
     components:
     - pos: -2.5,41.5
+      parent: 2173
+      type: Transform
+  - uid: 5848
+    components:
+    - pos: 47.5,26.5
       parent: 2173
       type: Transform
 - proto: ComputerShipyard
@@ -17321,38 +17343,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 51.5,4.5
-      parent: 2173
-      type: Transform
-    - containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-      type: ContainerContainer
-  - uid: 6010
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 30.5,-20.5
-      parent: 2173
-      type: Transform
-    - containers:
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-      type: ContainerContainer
-  - uid: 6011
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -31.5,-20.5
       parent: 2173
       type: Transform
     - containers:
@@ -17724,21 +17714,22 @@ entities:
       type: Transform
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 5727
+  - uid: 2229
     components:
-    - pos: -54.5,9.5
+    - rot: -1.5707963267948966 rad
+      pos: -46.5,12.5
+      parent: 2173
+      type: Transform
+  - uid: 2555
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -55.5,5.5
       parent: 2173
       type: Transform
   - uid: 5728
     components:
     - rot: -1.5707963267948966 rad
       pos: -27.5,-20.5
-      parent: 2173
-      type: Transform
-  - uid: 5733
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 26.5,-20.5
       parent: 2173
       type: Transform
   - uid: 5734
@@ -31068,11 +31059,6 @@ entities:
     - pos: -0.5,13.5
       parent: 2173
       type: Transform
-  - uid: 2229
-    components:
-    - pos: -54.5,8.5
-      parent: 2173
-      type: Transform
   - uid: 2237
     components:
     - pos: -17.5,10.5
@@ -32461,24 +32447,9 @@ entities:
     - pos: -5.5,13.5
       parent: 2173
       type: Transform
-  - uid: 2555
-    components:
-    - pos: 49.5,4.5
-      parent: 2173
-      type: Transform
   - uid: 2658
     components:
     - pos: 4.5,13.5
-      parent: 2173
-      type: Transform
-  - uid: 5746
-    components:
-    - pos: 29.5,-19.5
-      parent: 2173
-      type: Transform
-  - uid: 5748
-    components:
-    - pos: -30.5,-19.5
       parent: 2173
       type: Transform
   - uid: 5823
@@ -36092,15 +36063,6 @@ entities:
     - pos: 48.5,16.5
       parent: 2173
       type: Transform
-- proto: VendingMachineAmmo
-  entities:
-  - uid: 345
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 12.5,5.5
-      parent: 2173
-      type: Transform
 - proto: VendingMachineAstroVend
   entities:
   - uid: 2756
@@ -36117,22 +36079,11 @@ entities:
     - pos: 4.5,51.5
       parent: 2173
       type: Transform
-- proto: VendingMachineBountyVend
+- proto: VendingMachineCargoDrobe
   entities:
-  - uid: 5848
+  - uid: 5746
     components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 42.5,13.5
-      parent: 2173
-      type: Transform
-- proto: VendingMachineBoxingDrobe
-  entities:
-  - uid: 4249
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 30.5,5.5
+    - pos: 6.5,6.5
       parent: 2173
       type: Transform
 - proto: VendingMachineCart
@@ -36155,6 +36106,11 @@ entities:
       type: Transform
 - proto: VendingMachineCigs
   entities:
+  - uid: 2420
+    components:
+    - pos: 49.5,4.5
+      parent: 2173
+      type: Transform
   - uid: 5705
     components:
     - flags: SessionSpecific
@@ -36173,13 +36129,6 @@ entities:
       type: Transform
 - proto: VendingMachineClothing
   entities:
-  - uid: 2413
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 6.5,6.5
-      parent: 2173
-      type: Transform
   - uid: 2433
     components:
     - flags: SessionSpecific
@@ -36194,6 +36143,20 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: -18.5,12.5
+      parent: 2173
+      type: Transform
+- proto: VendingMachineCuraDrobe
+  entities:
+  - uid: 4249
+    components:
+    - pos: 12.5,5.5
+      parent: 2173
+      type: Transform
+- proto: VendingMachineDetDrobe
+  entities:
+  - uid: 5727
+    components:
+    - pos: 42.5,13.5
       parent: 2173
       type: Transform
 - proto: VendingMachineEngivend
@@ -36214,6 +36177,13 @@ entities:
     - pos: -3.5,22.5
       parent: 2173
       type: Transform
+- proto: VendingMachineLawDrobe
+  entities:
+  - uid: 5733
+    components:
+    - pos: 30.5,5.5
+      parent: 2173
+      type: Transform
 - proto: VendingMachineMailDrobe
   entities:
   - uid: 2664
@@ -36225,11 +36195,30 @@ entities:
       type: Transform
 - proto: VendingMachineMedical
   entities:
+  - uid: 2413
+    components:
+    - pos: -54.5,8.5
+      parent: 2173
+      type: Transform
   - uid: 2439
     components:
     - flags: SessionSpecific
       type: MetaData
     - pos: -45.5,7.5
+      parent: 2173
+      type: Transform
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 4139
+    components:
+    - pos: -45.5,10.5
+      parent: 2173
+      type: Transform
+- proto: VendingMachineRepDrobe
+  entities:
+  - uid: 5748
+    components:
+    - pos: 10.5,6.5
       parent: 2173
       type: Transform
 - proto: VendingMachineSalvage
@@ -36286,13 +36275,6 @@ entities:
       type: Transform
 - proto: VendingMachineTheater
   entities:
-  - uid: 2420
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 10.5,6.5
-      parent: 2173
-      type: Transform
   - uid: 2434
     components:
     - flags: SessionSpecific
