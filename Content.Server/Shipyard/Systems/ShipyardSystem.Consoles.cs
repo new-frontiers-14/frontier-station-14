@@ -169,8 +169,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
         newDeed.ShuttleUid = shuttle.Owner;
         newDeed.ShuttleName = name;
+
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
             _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
+
         _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), channel, uid);
         _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), InGameICChatType.Speak, true);
 
@@ -187,7 +189,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
-        
+
 		int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));

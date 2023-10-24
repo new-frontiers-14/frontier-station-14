@@ -3,6 +3,9 @@
   name: job-name-valet
   description: job-description-valet
   playTimeTracker: JobValet
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ValetGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-everyone
