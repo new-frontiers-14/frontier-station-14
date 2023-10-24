@@ -12,6 +12,7 @@ public sealed partial class JobRequirementsManager
 
     private void RxWhitelist(MsgWhitelist message)
     {
+        _sawmill.Debug($"Received new whitelist status: {message.Whitelisted}, previously {_whitelisted}");
         _whitelisted = message.Whitelisted;
     }
 
