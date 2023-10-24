@@ -86,15 +86,15 @@ reagent-effect-guidebook-status-effect =
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+                } {LOC($key)} for at least {NATURALFIXED($time, 3)} with accumulation
         *[set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                } {LOC($key)} for at least {NATURALFIXED($time, 3)} without accumulation
         [remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {LOC($key)}
+                } {NATURALFIXED($time, 3)} of {LOC($key)}
     }
 
 reagent-effect-guidebook-activate-artifact =
@@ -241,7 +241,7 @@ reagent-effect-guidebook-electrocute =
     { $chance ->
         [1] Electrocutes
         *[other] electrocute
-    } the metabolizer for {NATURALFIXED($time, 3)} {MANY("second", $time)}
+    } the metabolizer for {NATURALFIXED($time, 3)}
 
 reagent-effect-guidebook-extinguish-reaction =
     { $chance ->
@@ -301,13 +301,13 @@ reagent-effect-guidebook-paralyze =
     { $chance ->
         [1] Paralyzes
         *[other] paralyze
-    } the metabolizer for at least {NATURALFIXED($time, 3)} {MANY("second", $time)}
+    } the metabolizer for at least {NATURALFIXED($time, 3)}
 
 reagent-effect-guidebook-movespeed-modifier =
     { $chance ->
         [1] Modifies
         *[other] modify
-    } movement speed by {NATURALFIXED($walkspeed, 3)}x for at least {NATURALFIXED($time, 3)} {MANY("second", $time)}
+    } movement speed by {NATURALFIXED($walkspeed, 3)}x for at least {NATURALFIXED($time, 3)}
 
 reagent-effect-guidebook-reset-narcolepsy =
     { $chance ->
