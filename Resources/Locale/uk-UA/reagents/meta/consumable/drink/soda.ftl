@@ -1,4 +1,4 @@
-ent-name-cola = кола
+reagent-name-cola = кола
 reagent-desc-cola = солодка дієтична кола. без цукру та кофеїну
 
 reagent-name-changeling-sting = приховане жало
