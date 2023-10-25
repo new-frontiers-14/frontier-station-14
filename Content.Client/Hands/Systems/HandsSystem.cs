@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
+using Content.Client.Animations;
 using Content.Client.Examine;
 using Content.Client.Strip;
 using Content.Client.Verbs.UI;
@@ -13,6 +15,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Hands.Systems
@@ -95,8 +98,7 @@ namespace Content.Client.Hands.Systems
                     }
                 }
 
-                component.SortedHands.Clear();
-                component.SortedHands.AddRange(state.HandNames);
+                component.SortedHands = new(state.HandNames);
                 var sorted = addedHands.OrderBy(hand => component.SortedHands.IndexOf(hand.Name));
 
                 foreach (var hand in sorted)
@@ -414,21 +416,21 @@ namespace Content.Client.Hands.Systems
             base.RemoveHand(uid, handName, handsComp);
         }
 
-        private void OnHandActivated(Entity<HandsComponent>? ent)
+        private void OnHandActivated(HandsComponent? handsComponent)
         {
-            if (ent is not { } hand)
+            if (handsComponent == null)
                 return;
 
-            if (_playerManager.LocalPlayer?.ControlledEntity != hand.Owner)
+            if (_playerManager.LocalPlayer?.ControlledEntity != handsComponent.Owner)
                 return;
 
-            if (hand.Comp.ActiveHand == null)
+            if (handsComponent.ActiveHand == null)
             {
                 OnPlayerSetActiveHand?.Invoke(null);
                 return;
             }
 
-            OnPlayerSetActiveHand?.Invoke(hand.Comp.ActiveHand.Name);
+            OnPlayerSetActiveHand?.Invoke(handsComponent.ActiveHand.Name);
         }
     }
 }

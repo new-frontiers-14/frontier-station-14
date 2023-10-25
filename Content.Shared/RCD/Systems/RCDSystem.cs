@@ -23,19 +23,17 @@ namespace Content.Shared.RCD.Systems;
 
 public sealed class RCDSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefMan = default!;
-    [Dependency] private readonly FloorTileSystem _floors = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefMan = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
     private readonly int RcdModeCount = Enum.GetValues(typeof(RcdMode)).Length;
@@ -159,8 +157,6 @@ public sealed class RCDSystem : EntitySystem
         var tile = mapGrid.GetTileRef(location);
         var snapPos = mapGrid.TileIndicesFor(location);
 
-        // I love that this uses entirely separate code to construction and tile placement!!!
-
         var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
 
@@ -168,14 +164,11 @@ public sealed class RCDSystem : EntitySystem
         {
             //Floor mode just needs the tile to be a space tile (subFloor)
             case RcdMode.Floors:
-                if (!_floors.CanPlaceTile(gridId.Value, mapGrid, null, out var reason))
+                if (!(HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled))
                 {
-                    _popup.PopupClient(reason, user, user);
-                    return;
+                    mapGrid.SetTile(snapPos, new Tile(_tileDefMan[comp.Floor].TileId));
+                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to set grid: {tile.GridUid} {snapPos} to {comp.Floor}");
                 }
-
-                mapGrid.SetTile(snapPos, new Tile(_tileDefMan[comp.Floor].TileId));
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to set grid: {tile.GridUid} {snapPos} to {comp.Floor}");
                 break;
             //We don't want to place a space tile on something that's already a space tile. Let's do the inverse of the last check.
             case RcdMode.Deconstruct:

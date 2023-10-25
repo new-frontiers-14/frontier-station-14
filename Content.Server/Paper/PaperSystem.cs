@@ -151,10 +151,10 @@ namespace Content.Server.Paper
                     var userJob = Loc.GetString("stamp-component-unknown-job");
                     if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                     {
-                        if (card.Comp.FullName != null)
-                            userName = card.Comp.FullName;
-                        if (card.Comp.JobTitle != null)
-                            userJob = card.Comp.JobTitle;
+                        if (card.FullName != null)
+                            userName = card.FullName;
+                        if (card.JobTitle != null)
+                            userJob = card.JobTitle;
                     }
                     //string stampedName = userJob + " - " + userName;
                     string stampedName = userName;
@@ -275,10 +275,10 @@ namespace Content.Server.Paper
                 var userJob = Loc.GetString("stamp-component-unknown-job");
                 if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                 {
-                    if (card.Comp.FullName != null)
-                        userName = card.Comp.FullName;
-                    if (card.Comp.JobTitle != null)
-                        userJob = card.Comp.JobTitle;
+                    if (card.FullName != null)
+                        userName = card.FullName;
+                    if (card.JobTitle != null)
+                        userJob = card.JobTitle;
                 }
                 //string stampedName = userJob + " - " + userName;
                 string stampedName = userName;

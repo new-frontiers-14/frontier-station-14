@@ -3,9 +3,10 @@
   name: job-name-chef
   description: job-description-chef
   playTimeTracker: JobChef
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+  # requirements:
+    # - !type:DepartmentTimeRequirement
+      # department: Civilian
+      # time: 1800
   startingGear: ChefGear
   icon: "JobIconChef"
   supervisors: job-supervisors-hop
@@ -15,11 +16,7 @@
   - Kitchen
   extendedAccess:
   - Hydroponics
-  - Bar #Nyano - Summary: After this line, Professional Che is a component to be added. Very important.
-  special: 
-  - !type:AddComponentSpecial
-    components:
-    - type: ProfessionalChef #Nyano - End Summary. 
+  - Bar
 
 - type: startingGear
   id: ChefGear

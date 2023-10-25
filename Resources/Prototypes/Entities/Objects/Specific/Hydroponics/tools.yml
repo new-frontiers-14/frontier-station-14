@@ -13,8 +13,6 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
-    wideAnimationRotation: 135
-    swingLeft: true
     damage:
       types:
         Slash: 10
@@ -35,7 +33,6 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
-    wideAnimationRotation: 90
     damage:
       types:
         Slash: 7
@@ -54,7 +51,6 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
-    wideAnimationRotation: 135
     damage:
       types:
         Slash: 10
@@ -82,8 +78,6 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
-    wideAnimationRotation: 135
-    swingLeft: true
     damage:
       types:
         Slash: 10
@@ -106,7 +100,6 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
-    wideAnimationRotation: 45
     damage:
       types:
         Blunt: 10
@@ -138,3 +131,7 @@
         - Seed
   - type: Dumpable
   - type: MagnetPickup
+    whitelist:
+      components:
+        - Produce
+        - Seed

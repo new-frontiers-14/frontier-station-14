@@ -3,7 +3,6 @@ using Content.Server.Access.Systems;
 using Content.Server.Bank;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-using Content.Server.Paper;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
@@ -159,8 +158,7 @@ namespace Content.Server.Cargo.Systems
             }
 
             _idCardSystem.TryFindIdCard(player, out var idCard);
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
+            order.SetApproverData(idCard?.FullName, idCard?.JobTitle);
             _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
 
             // Log order approval

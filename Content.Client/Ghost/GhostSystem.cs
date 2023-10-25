@@ -51,10 +51,9 @@ namespace Content.Client.Ghost
 
                 _ghostVisibility = value;
 
-                var query = AllEntityQuery<GhostComponent, SpriteComponent>();
-                while (query.MoveNext(out var uid, out _, out var sprite))
+                foreach (var ghost in EntityQuery<GhostComponent, SpriteComponent>(true))
                 {
-                    sprite.Visible = value || uid == _playerManager.LocalPlayer?.ControlledEntity;
+                    ghost.Item2.Visible = true;
                 }
             }
         }
@@ -122,10 +121,7 @@ namespace Content.Client.Ghost
                 return;
 
             Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-ghost-visibility-popup"), args.Performer);
-
-            if (uid == _playerManager.LocalPlayer?.ControlledEntity)
-                ToggleGhostVisibility();
-
+            ToggleGhostVisibility();
             args.Handled = true;
         }
 
@@ -226,7 +222,7 @@ namespace Content.Client.Ghost
 
         public void ToggleGhostVisibility()
         {
-            GhostVisibility = !GhostVisibility;
+            _console.RemoteExecuteCommand(null, "toggleghosts");
         }
     }
 }

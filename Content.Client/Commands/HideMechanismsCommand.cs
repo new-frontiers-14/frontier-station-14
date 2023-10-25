@@ -16,18 +16,18 @@ namespace Content.Client.Commands
         {
             var entityManager = IoCManager.Resolve<IEntityManager>();
             var containerSys = entityManager.System<SharedContainerSystem>();
-            var query = entityManager.AllEntityQueryEnumerator<OrganComponent>();
+            var organs = entityManager.EntityQuery<OrganComponent>(true);
 
-            while (query.MoveNext(out var uid, out _))
+            foreach (var part in organs)
             {
-                if (!entityManager.TryGetComponent(uid, out SpriteComponent? sprite))
+                if (!entityManager.TryGetComponent(part.Owner, out SpriteComponent? sprite))
                 {
                     continue;
                 }
 
                 sprite.ContainerOccluded = false;
 
-                var tempParent = uid;
+                var tempParent = part.Owner;
                 while (containerSys.TryGetContainingContainer(tempParent, out var container))
                 {
                     if (!container.ShowContents)

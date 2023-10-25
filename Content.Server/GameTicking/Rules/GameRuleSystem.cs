@@ -3,7 +3,7 @@ using Content.Server.GameTicking.Rules.Components;
 
 namespace Content.Server.GameTicking.Rules;
 
-public abstract partial class GameRuleSystem<T> : EntitySystem where T : IComponent
+public abstract partial class GameRuleSystem<T> : EntitySystem where T : Component
 {
     [Dependency] protected readonly IChatManager ChatManager = default!;
     [Dependency] protected readonly GameTicker GameTicker = default!;

@@ -34,7 +34,6 @@
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
   - type: MeleeWeapon
-    wideAnimationRotation: -135
     damage:
       types:
         Piercing: 12
@@ -60,7 +59,7 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 2
+        maxVol: 5
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -68,10 +67,10 @@
   - type: InjectableSolution
     solution: melee
   - type: SolutionInjectOnCollide
-    transferAmount: 2
+    transferAmount: 5
     blockSlots: NONE
   - type: SolutionTransfer
-    maxTransferAmount: 2
+    maxTransferAmount: 5
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -105,8 +104,6 @@
     damage:
       types:
         Blunt: 5
-  - type: UseDelay
-    delay: 1
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
@@ -121,7 +118,6 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/reinforced_spear.rsi
   - type: MeleeWeapon
-    wideAnimationRotation: -135
     damage:
       types:
         Piercing: 15
@@ -141,7 +137,6 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/plasma_spear.rsi
   - type: MeleeWeapon
-    wideAnimationRotation: -135
     damage:
       types:
         Piercing: 18
@@ -161,7 +156,6 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/uranium_spear.rsi
   - type: MeleeWeapon
-    wideAnimationRotation: -135
     damage:
       types:
         Piercing: 10

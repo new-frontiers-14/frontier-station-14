@@ -21,17 +21,17 @@
           tags:
             - SubdermalImplant
     - type: Sprite
-      sprite: Objects/Specific/Medical/implanter.rsi
-      state: implanter0
+      sprite: Objects/Specific/Chemistry/syringe.rsi
+      state: syringe_base0
       layers:
-        - state: implanter0
-          map: [ "implantOnly" ]
-          visible: true
-        - state: implanter1
+        - state: syringe2
           map: [ "implantFull" ]
+          color: '#1cd94e'
           visible: false
+        - state: syringe_base0
+          map: [ "implantOnly" ]
     - type: Item
-      sprite: Objects/Specific/Medical/implanter.rsi
+      sprite: Objects/Specific/Chemistry/syringe.rsi
       heldPrefix: 0
     - type: Appearance
     - type: GenericVisualizer
@@ -43,7 +43,7 @@
         enum.ImplanterImplantOnlyVisuals.ImplantOnly:
           implantOnly:
             True: {state: broken}
-            False: {state: implanter0}
+            False: {state: syringe_base0}
 
 - type: entity
   id: Implanter
@@ -61,13 +61,14 @@
   abstract: true
   components:
     - type: Sprite
-      sprite: Objects/Specific/Medical/implanter.rsi
-      state: implanter0
+      sprite: Objects/Specific/Chemistry/syringe.rsi
+      state: syringe_base0
       layers:
-        - state: implanter1
+        - state: syringe2
           map: [ "implantFull" ]
+          color: '#1cd94e'
           visible: true
-        - state: implanter0
+        - state: syringe_base0
           map: [ "implantOnly" ]
     - type: Implanter
       currentMode: Inject
@@ -80,10 +81,10 @@
   abstract: true
   components:
     - type: Item
-      sprite: Objects/Specific/Medical/syndi_implanter.rsi
+      sprite: Objects/Specific/Medical/implanter.rsi
       size: 3
     - type: Sprite
-      sprite: Objects/Specific/Medical/syndi_implanter.rsi
+      sprite: Objects/Specific/Medical/implanter.rsi
       state: implanter1
       layers:
         - state: implanter0

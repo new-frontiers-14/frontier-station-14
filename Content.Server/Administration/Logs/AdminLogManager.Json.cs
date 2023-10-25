@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Content.Server.Administration.Logs.Converters;
+using Content.Server.Database;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Map;
@@ -33,9 +34,10 @@ public sealed partial class AdminLogManager
         _sawmill.Debug($"Admin log converters found: {string.Join(" ", converterNames)}");
     }
 
-    private (JsonDocument Json, HashSet<Guid> Players) ToJson(
+    private (JsonDocument Json, HashSet<Guid> Players, List<AdminLogEntity> Entities) ToJson(
         Dictionary<string, object?> properties)
     {
+        var entities = new Dictionary<EntityUid, AdminLogEntity>();
         var players = new HashSet<Guid>();
         var parsed = new Dictionary<string, object?>();
 
@@ -61,12 +63,24 @@ public sealed partial class AdminLogManager
                 _ => null
             };
 
-            if (_entityManager.TryGetComponent(entityId, out ActorComponent? actor))
+            if (entityId is not { } uid)
+            {
+                continue;
+            }
+
+            var entityName = _entityManager.TryGetComponent(uid, out MetaDataComponent? metadata)
+                ? metadata.EntityName
+                : null;
+
+            // TODO set the id too whenever we feel like running a migration for 10 hours
+            entities.TryAdd(uid, new AdminLogEntity { Name = entityName });
+
+            if (_entityManager.TryGetComponent(uid, out ActorComponent? actor))
             {
                 players.Add(actor.PlayerSession.UserId.UserId);
             }
         }
 
-        return (JsonSerializer.SerializeToDocument(parsed, _jsonOptions), players);
+        return (JsonSerializer.SerializeToDocument(parsed, _jsonOptions), players, entities.Values.ToList());
     }
 }

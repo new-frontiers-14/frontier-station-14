@@ -12,6 +12,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Kitchen;
 using Content.Shared.Popups;
 using Content.Shared.Random;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -58,9 +59,10 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             base.Update(frameTime);
 
-            var query = EntityQueryEnumerator<ActiveReagentGrinderComponent, ReagentGrinderComponent>();
-            while (query.MoveNext(out var uid, out var active, out var reagentGrinder))
+            foreach (var (active, reagentGrinder) in EntityQuery<ActiveReagentGrinderComponent, ReagentGrinderComponent>())
             {
+                var uid = reagentGrinder.Owner;
+
                 if (active.EndTime > _timing.CurTime)
                     continue;
 

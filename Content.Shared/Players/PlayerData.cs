@@ -38,12 +38,6 @@ public sealed class PlayerData
     /// </summary>
     public bool ExplicitlyDeadminned { get; set; }
 
-    /// <summary>
-    ///     Nyanotrasen - Are they whitelisted? Lets us avoid async.
-    /// </summary>
-    [ViewVariables]
-    public bool Whitelisted { get; set; }
-
     public PlayerData(NetUserId userId, string name)
     {
         UserId = userId;

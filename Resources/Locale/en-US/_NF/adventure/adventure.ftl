@@ -23,5 +23,3 @@ shipyard-rules-default2 =
     Thank you for choosing Nanotrasen Security Forces.
 
 shuttle-ftl-proximity = Nearby objects too massive for FTL!
-
-changelog-tab-title-Upstream = Upstream Changelog

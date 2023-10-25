@@ -30,9 +30,6 @@ public sealed partial class RevolutionaryRuleComponent : Component
     public Dictionary<string, EntityUid> HeadRevs = new();
 
     [DataField]
-    public ProtoId<AntagPrototype> HeadRevPrototypeId = "HeadRev";
-
-    [DataField]
     public ProtoId<AntagPrototype> RevPrototypeId = "Rev";
 
     /// <summary>

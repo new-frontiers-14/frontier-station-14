@@ -96,7 +96,7 @@ public abstract class SharedActionsSystem : EntitySystem
     {
         if (result != null)
         {
-            DebugTools.AssertOwner(uid, result);
+            DebugTools.Assert(result.Owner == uid);
             return true;
         }
 
@@ -494,10 +494,7 @@ public abstract class SharedActionsSystem : EntitySystem
                           (TryComp(action.Container, out ActionsContainerComponent? containerComp)
                            && containerComp.Container.Contains(actionId)));
 
-        if (action.AttachedEntity != null)
-            RemoveAction(action.AttachedEntity.Value, actionId, action: action);
-
-        DebugTools.AssertOwner(performer, comp);
+        DebugTools.Assert(comp == null || comp.Owner == performer);
         comp ??= EnsureComp<ActionsComponent>(performer);
         action.AttachedEntity = performer;
         comp.Actions.Add(actionId);
@@ -526,32 +523,12 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!Resolve(container, ref containerComp))
             return;
 
-        DebugTools.AssertOwner(performer, comp);
+        DebugTools.Assert(comp == null || comp.Owner == performer);
         comp ??= EnsureComp<ActionsComponent>(performer);
 
         foreach (var actionId in actions)
         {
             AddAction(performer, actionId, container, comp, containerComp: containerComp);
-        }
-    }
-
-    /// <summary>
-    ///     Grants all actions currently contained in some action-container. If the target entity has no action
-    /// component, this will give them one.
-    /// </summary>
-    /// <param name="performer">Entity to receive the actions</param>
-    /// <param name="container">The entity that contains thee actions.</param>
-    public void GrantContainedActions(Entity<ActionsComponent?> performer, Entity<ActionsContainerComponent?> container)
-    {
-        if (!Resolve(container, ref container.Comp))
-            return;
-
-        performer.Comp ??= EnsureComp<ActionsComponent>(performer);
-
-        foreach (var actionId in container.Comp.Container.ContainedEntities)
-        {
-            if (TryGetActionData(actionId, out var action))
-                AddActionDirect(performer, actionId, performer.Comp, action);
         }
     }
 

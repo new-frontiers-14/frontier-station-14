@@ -58,14 +58,13 @@ public sealed class PlantHolderSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<PlantHolderComponent>();
-        while (query.MoveNext(out var uid, out var plantHolder))
+        foreach (var plantHolder in EntityQuery<PlantHolderComponent>())
         {
             if (plantHolder.NextUpdate > _gameTiming.CurTime)
                 continue;
             plantHolder.NextUpdate = _gameTiming.CurTime + plantHolder.UpdateDelay;
 
-            Update(uid, plantHolder);
+            Update(plantHolder.Owner, plantHolder);
         }
     }
 

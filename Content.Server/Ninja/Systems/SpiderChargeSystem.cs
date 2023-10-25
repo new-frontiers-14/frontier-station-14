@@ -23,7 +23,7 @@ public sealed class SpiderChargeSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SpiderChargeComponent, AttemptEntityStickEvent>(OnAttemptStick);
+        SubscribeLocalEvent<SpiderChargeComponent, BeforeRangedInteractEvent>(BeforePlant);
         SubscribeLocalEvent<SpiderChargeComponent, EntityStuckEvent>(OnStuck);
         SubscribeLocalEvent<SpiderChargeComponent, TriggerEvent>(OnExplode);
     }
@@ -31,17 +31,14 @@ public sealed class SpiderChargeSystem : EntitySystem
     /// <summary>
     /// Require that the planter is a ninja and the charge is near the target warp point.
     /// </summary>
-    private void OnAttemptStick(EntityUid uid, SpiderChargeComponent comp, AttemptEntityStickEvent args)
+    private void BeforePlant(EntityUid uid, SpiderChargeComponent comp, BeforeRangedInteractEvent args)
     {
-        if (args.Cancelled)
-            return;
-
         var user = args.User;
 
         if (!_mind.TryGetRole<NinjaRoleComponent>(user, out var role))
         {
             _popup.PopupEntity(Loc.GetString("spider-charge-not-ninja"), user, user);
-            args.Cancelled = true;
+            args.Handled = true;
             return;
         }
 
@@ -50,14 +47,12 @@ public sealed class SpiderChargeSystem : EntitySystem
             return;
 
         // assumes warp point still exists
-        var targetXform = Transform(role.SpiderChargeTarget.Value);
-        var locXform = Transform(args.Target);
-        if (locXform.MapID != targetXform.MapID ||
-            (_transform.GetWorldPosition(locXform) - _transform.GetWorldPosition(targetXform)).LengthSquared() > comp.Range * comp.Range)
+        var target = Transform(role.SpiderChargeTarget.Value).MapPosition;
+        var coords = args.ClickLocation.ToMap(EntityManager, _transform);
+        if (!coords.InRange(target, comp.Range))
         {
             _popup.PopupEntity(Loc.GetString("spider-charge-too-far"), user, user);
-            args.Cancelled = true;
-            return;
+            args.Handled = true;
         }
     }
 

@@ -1,8 +1,6 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -59,7 +57,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly PowerCellSystem _cell = default!;
@@ -759,8 +756,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
         var newMessage = message.Trim();
-        newMessage = SanitizeMessageReplaceWords(newMessage);
-
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
         if (capitalizeTheWordI)
@@ -806,20 +801,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (char.IsLetter(message[^1]))
             message += ".";
         return message;
-    }
-
-    [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize";
-
-    public string SanitizeMessageReplaceWords(string message)
-    {
-        if (string.IsNullOrEmpty(message)) return message;
-
-        var msg = message;
-
-        msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
-
-        return msg;
     }
 
     /// <summary>

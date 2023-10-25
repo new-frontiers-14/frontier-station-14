@@ -2,7 +2,6 @@ using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio;
-using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
@@ -42,12 +41,6 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
-            // Block EMP on grid
-            var gridUid = Transform(uid).GridUid;
-            var attemptEv = new EmpAttemptEvent();
-            if (HasComp<StationEmpImmuneComponent>(gridUid))
-                continue;
-
             TryEmpEffects(uid, energyConsumption, duration);
         }
         Spawn(EmpPulseEffectPrototype, coordinates);
