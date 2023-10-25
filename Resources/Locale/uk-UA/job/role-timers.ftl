@@ -5,6 +5,6 @@ role-timer-overall-too-high = You require [color=yellow]{TOSTRING($time, "0")}[/
 role-timer-role-insufficient = You require [color=yellow]{TOSTRING($time, "0")}[/color] more minutes with [color={$departmentColor}]{$job}[/color] to play this role.
 role-timer-role-too-high = You require[color=yellow] {TOSTRING($time, "0")}[/color] fewer minutes with [color={$departmentColor}]{$job}[/color] to play this role. (Are you trying to play a trainee role?)
 
-role-timer-locked = Locked (hover for details)
+role-timer-locked = Заборонено (наведіть курсор, для деталей)
 
-role-ban = You have been banned from this role.
+role-ban = Вам заборонено цю роль.

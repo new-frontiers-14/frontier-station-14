@@ -1,8 +1,8 @@
-department-Cargo = Cargo
-department-Civilian = Civilian
-department-Command = Command
-department-Engineering = Engineering
-department-Medical = Medical
-department-Security = New Frontier Sheriff's Department
-department-Science = Science
-department-Specific = Station specific
+department-Cargo = Карго
+department-Civilian = Цивільні
+department-Command = Командування
+department-Engineering = Інженерний
+department-Medical = Медичний
+department-Security = Служба Безпеки
+department-Science = Науковий
+department-Specific = Специфічне для станції
