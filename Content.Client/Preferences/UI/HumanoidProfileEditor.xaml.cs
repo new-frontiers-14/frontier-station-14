@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using System.Text;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
@@ -61,6 +62,7 @@ namespace Content.Client.Preferences.UI
         private readonly IConfigurationManager _configurationManager;
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
+        private readonly LoadoutSystem _loadoutSystem;
 
         private LineEdit _ageEdit => CAgeEdit;
         private LineEdit _nameEdit => CNameEdit;
@@ -120,6 +122,7 @@ namespace Content.Client.Preferences.UI
             _preferencesManager = preferencesManager;
             _configurationManager = configurationManager;
             _markingManager = IoCManager.Resolve<MarkingManager>();
+            _loadoutSystem = EntitySystem.Get<LoadoutSystem>();
 
             #region Left
 
@@ -456,7 +459,7 @@ namespace Content.Client.Preferences.UI
 
             _tabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-loadouts-tab"));
             _loadoutPreferences = new List<LoadoutPreferenceSelector>();
-            var loadouts = prototypeManager.EnumeratePrototypes<LoadoutPrototype>().OrderBy(l => l.ID).ToList();
+            var loadouts = prototypeManager.EnumeratePrototypes<LoadoutPrototype>().ToList();
 
             var loadoutsEnabled = _configurationManager.GetCVar(CCVars.GameLoadoutsEnabled);
             _tabContainer.SetTabVisible(4, loadoutsEnabled);
@@ -486,7 +489,7 @@ namespace Content.Client.Preferences.UI
 
                 // Make categories
                 var currentCategory = 1;
-                foreach (var loadout in loadouts)
+                foreach (var loadout in loadouts.OrderBy(l => l.Category))
                 {
                     // Check for existing category
                     BoxContainer? match = null;
@@ -511,14 +514,14 @@ namespace Content.Client.Preferences.UI
                     };
 
                     _loadoutsTabs.AddChild(box);
-                    _loadoutsTabs.SetTabTitle(currentCategory, Loc.GetString(loadout.Category));
+                    _loadoutsTabs.SetTabTitle(currentCategory, Loc.GetString($"loadout-category-{loadout.Category}"));
                     currentCategory++;
                 }
 
                 // Fill categories
-                foreach (var loadout in loadouts.OrderBy(l => !l.Exclusive))
+                foreach (var loadout in loadouts.OrderBy(l => l.ID))
                 {
-                    var selector = new LoadoutPreferenceSelector(loadout);
+                    var selector = new LoadoutPreferenceSelector(loadout, _entMan, _loadoutSystem);
 
                     // Look for an existing loadout category
                     BoxContainer? match = null;
@@ -1533,56 +1536,51 @@ namespace Content.Client.Preferences.UI
 
             public event Action<bool>? PreferenceChanged;
 
-            public LoadoutPreferenceSelector(LoadoutPrototype loadout)
+            public LoadoutPreferenceSelector(LoadoutPrototype loadout, IEntityManager entityManager, LoadoutSystem loadoutSystem)
             {
                 Loadout = loadout;
 
-                // Dependencies
-                var entMan = IoCManager.Resolve<IEntityManager>();
-                var loadoutSystem = EntitySystem.Get<LoadoutSystem>();
+                // Display the first item in the loadout as a preview
+                // TODO: Maybe allow custom icons to be specified in the prototype?
+                var dummyLoadoutItem = entityManager.SpawnEntity(loadout.Items.First(), MapCoordinates.Nullspace);
 
-                // Does the loadout item entity exist?
-                var exists = IoCManager.Resolve<IPrototypeManager>().TryIndex<EntityPrototype>(loadout.Item!, out _);
-                // Spawn an Error entity if it doesn't exist, instead of crashing the client
-                var dummyLoadoutItem = entMan.SpawnEntity(exists ? loadout.Item : "Error", MapCoordinates.Nullspace);
-
-                // Get the sprite component of the dummy entity and create a sprite view for it
-                var sprite = entMan.GetComponent<SpriteComponent>(dummyLoadoutItem);
+                // Create a sprite preview of the loadout item
                 var previewLoadout = new SpriteView
                 {
-                    Sprite = sprite,
                     Scale = new Vector2(1, 1),
                     OverrideDirection = Direction.South,
                     VerticalAlignment = VAlignment.Center,
                     SizeFlagsStretchRatio = 1
                 };
+                previewLoadout.SetEntity(dummyLoadoutItem);
 
 
                 // Create a checkbox to get the loadout
                 _checkBox = new CheckBox
                 {
-                    Text = $"[{loadout.Cost}] {Loc.GetString(loadout.Name)}",
+                    Text = $"[{loadout.Cost}] {(Loc.GetString($"loadout-name-{loadout.ID}") == $"loadout-name-{loadout.ID}" ? entityManager.GetComponent<MetaDataComponent>(dummyLoadoutItem).EntityName : Loc.GetString($"loadout-name-{loadout.ID}"))}",
                     VerticalAlignment = VAlignment.Center
                 };
                 _checkBox.OnToggled += OnCheckBoxToggled;
 
-                var tooltip = "";
+                var tooltip = new StringBuilder();
                 // Add the loadout description to the tooltip if there is one
-                if (loadout.Description is { } desc)
+                var desc = Loc.GetString($"loadout-description-{loadout.ID}") == $"loadout-description-{loadout.ID}" ? entityManager.GetComponent<MetaDataComponent>(dummyLoadoutItem).EntityDescription : Loc.GetString($"loadout-description-{loadout.ID}");
+                if (!string.IsNullOrEmpty(desc))
                 {
-                    tooltip += $"{Loc.GetString(desc)}";
+                    tooltip.Append($"{Loc.GetString(desc)}");
                     if (loadoutSystem.LoadoutWhitelistExists(loadout) || loadoutSystem.LoadoutBlacklistExists(loadout))
-                        tooltip += "\n";
+                        tooltip.AppendLine();
                 }
 
                 // Add the loadout whitelist and blacklist descriptions to the tooltip if there are any
-                tooltip += loadoutSystem.GetLoadoutWhitelistString(loadout);
-                tooltip += loadoutSystem.GetLoadoutBlacklistString(loadout);
+                tooltip.Append(loadoutSystem.GetLoadoutWhitelistString(loadout));
+                tooltip.Append(loadoutSystem.GetLoadoutBlacklistString(loadout));
 
                 // If the tooltip has any content, add it to the checkbox
-                if (tooltip != "")
+                if (!string.IsNullOrEmpty(tooltip.ToString()))
                 {
-                    _checkBox.ToolTip = tooltip;
+                    _checkBox.ToolTip = tooltip.ToString();
                     _checkBox.TooltipDelay = 0.2f;
                 }
 

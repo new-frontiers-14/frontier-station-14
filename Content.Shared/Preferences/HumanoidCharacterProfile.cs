@@ -15,6 +15,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared.Loadouts;
+using Content.Shared.Loadouts;
 
 namespace Content.Shared.Preferences
 {

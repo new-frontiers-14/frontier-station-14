@@ -1,59 +1,53 @@
 - type: loadout
   id: LoadoutSecurityUniformGrey
-  name: Сірий комбінезон безпеки
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 2
   exclusive: true
   jobWhitelist:
     - SecurityOfficer
     - SecurityCadet
+    - SeniorOfficer
     - Warden
-  item: ClothingUniformJumpsuitSecGrey
+  items:
+    - ClothingUniformJumpsuitSecGrey
 
 - type: loadout
   id: LoadoutSecurityOuterArmorBasic
-  name: Базовий бронежилет
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 4
   exclusive: true
   jobWhitelist:
     - SecurityOfficer
     - SeniorOfficer
-  item: ClothingOuterArmorBasic
+  items:
+    - ClothingOuterArmorBasic
 
 - type: loadout
   id: LoadoutSecurityHeadHelmetBasic
-  name: Звичайний шолом
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 2
   exclusive: true
   jobWhitelist:
     - SecurityOfficer
     - SeniorOfficer
-  item: ClothingHeadHelmetBasic
+  items:
+    - ClothingHeadHelmetBasic
 
 - type: loadout
   id: LoadoutSecurityMaskGasSwat
-  name: SWAT Газ маска
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 2
   exclusive: true
   jobWhitelist:
-    - SecurityOfficer
-    - SecurityCadet
+    - SeniorOfficer
     - Warden
     - HeadOfSecurity
-  item: ClothingMaskGasSwat
+  items:
+    - ClothingMaskGasSwat
 
 - type: loadout
   id: LoadoutSecurityEyesGlasses
-  name: Охоронні окуляри
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 1
   exclusive: true
   jobWhitelist:
@@ -62,45 +56,45 @@
     - SeniorOfficer
     - Warden
     - HeadOfSecurity
-  item: ClothingEyesGlassesSecurity
+  items:
+    - ClothingEyesGlassesSecurity
 
 - type: loadout
   id: LoadoutSecurityEyesHud
-  name: Сек Худ
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 3
   exclusive: true
   jobWhitelist:
     - SecurityOfficer
-    - SecurityCadet
+    - SeniorOfficer
     - Warden
     - HeadOfSecurity
-  item: ClothingEyesHudSecurity
+  items:
+    - ClothingEyesHudSecurity
 
 - type: loadout
   id: LoadoutSecurityShoesBootsCombatFilled
-  name: Бойові черевики
-  description: An alternate job equipment.
-  category: Робота
+  category: Jobs
   cost: 3
   exclusive: true
   jobWhitelist:
     - SecurityOfficer
+    - SeniorOfficer
     - Warden
     - HeadOfSecurity
-  item: ClothingShoesBootsCombatFilled
+  items:
+    - ClothingShoesBootsCombatFilled
 
 - type: loadout
   id: LoadoutSecurityShoesJackboots
-  name: Чоботи
-  description: A really nice, heavy, pair of black boots.
-  category: Робота
+  category: Jobs
   cost: 1
   jobWhitelist:
     - Detective
     - SecurityOfficer
     - SecurityCadet
+    - SeniorOfficer
     - Warden
     - HeadOfSecurity
-  item: ClothingShoesBootsJack
+  items:
+    - ClothingShoesBootsJack
