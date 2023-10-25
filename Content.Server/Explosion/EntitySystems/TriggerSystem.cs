@@ -180,7 +180,7 @@ namespace Content.Server.Explosion.EntitySystems
 
             // Gets specie of the implant user
             var speciesText = $"";
-            if (TryComp<HumanoidAppearanceComponent?>(implanted.ImplantedEntity, out var species))
+            if (TryComp<HumanoidAppearanceComponent>(implanted.ImplantedEntity, out var species))
                 speciesText = $" ({species!.Species})";
 
             var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));

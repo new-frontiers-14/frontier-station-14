@@ -126,7 +126,6 @@ public sealed class TileSystem : EntitySystem
         var gridUid = tileRef.GridUid;
         var mapGrid = Comp<MapGridComponent>(gridUid);
 
-        var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
         RaiseLocalEvent(mapGrid);
 

@@ -86,6 +86,7 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly TemperatureSystem _temperature = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] private readonly MetaDataSystem _meta = default!;
 
         private static readonly string CookingDamageType = "Heat";
         private static readonly float CookingDamageAmount = 10.0f;
@@ -162,7 +163,7 @@ namespace Content.Server.Kitchen.EntitySystems
                     {
                         //JJ Comment - this code block makes the Linter fail, and doesn't seem to be necessary with the changes I made.
                         foreach (var reagent in component.Solution.Contents.ToArray())
-                        {  
+                        {
                             _prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.ToString(), out var proto);
 
                             foreach (var effect in component.UnsafeOilVolumeEffects)
@@ -176,7 +177,7 @@ namespace Content.Server.Kitchen.EntitySystems
                                         null,
                                         1f));
                             }
-                            
+
                         }
 
                         component.Solution.RemoveAllSolution();
@@ -511,12 +512,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     // Already handled at OnInitDeepFried.
                     break;
                 case 1:
-                    MetaData(uid).EntityName = Loc.GetString("deep-fried-fried-item",
-                        ("entity", component.OriginalName));
+                    _meta.SetEntityName(uid, Loc.GetString("deep-fried-fried-item",
+                        ("entity", component.OriginalName)));
                     break;
                 default:
-                    MetaData(uid).EntityName = Loc.GetString("deep-fried-burned-item",
-                        ("entity", component.OriginalName));
+                    _meta.SetEntityName(uid, Loc.GetString("deep-fried-burned-item",
+                        ("entity", component.OriginalName)));
                     break;
             }
         }
@@ -619,7 +620,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 _sawmill.Warning($"{ToPrettyString(uid)} did not have a {component.SolutionName} solution container. It has been created.");
             foreach (var reagent in component.Solution.Contents.ToArray())
             {
-                //JJ Comment - not sure this works. Need to check if Reagent.ToString is correct. 
+                //JJ Comment - not sure this works. Need to check if Reagent.ToString is correct.
                 _prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.ToString(), out var proto);
                 var effectsArgs = new ReagentEffectArgs(uid,
                         null,
@@ -818,8 +819,8 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnRemoveItem(EntityUid uid, DeepFryerComponent component, DeepFryerRemoveItemMessage args)
         {
-            var removedItem = EntityManager.GetEntity( args.Item ); 
-            if (removedItem.Valid) { //JJ Comment - This line should be unnecessary. Some issue is keeping the UI from updating when converting straight to a Burned Mess while the UI is still open. To replicate, put a Raw Meat in the fryer with no oil in it. Wait until it sputters with no effect. It should transform to Burned Mess, but doesn't. 
+            var removedItem = EntityManager.GetEntity( args.Item );
+            if (removedItem.Valid) { //JJ Comment - This line should be unnecessary. Some issue is keeping the UI from updating when converting straight to a Burned Mess while the UI is still open. To replicate, put a Raw Meat in the fryer with no oil in it. Wait until it sputters with no effect. It should transform to Burned Mess, but doesn't.
                 if (!component.Storage.Remove(removedItem))
                     return;
 
@@ -989,7 +990,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             var meta = MetaData(uid);
             component.OriginalName = meta.EntityName;
-            meta.EntityName = Loc.GetString("deep-fried-crispy-item", ("entity", meta.EntityName));
+            _meta.SetEntityName(uid, Loc.GetString("deep-fried-crispy-item", ("entity", meta.EntityName)));
         }
 
         private void OnExamineFried(EntityUid uid, DeepFriedComponent component, ExaminedEvent args)

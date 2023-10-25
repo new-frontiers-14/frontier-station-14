@@ -2,7 +2,6 @@ using Content.Server.Station.Components;
 using Content.Shared.Popups;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 
@@ -46,7 +45,7 @@ public sealed partial class SalvageSystem
 
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-            UpdateConsoles(data);
+            UpdateConsoles((station.Value, data));
             return;
         }
         // end of Frontier proximity check
