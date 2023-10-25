@@ -51,6 +51,7 @@ namespace Content.Server.GameTicking
                     {
                         var data = new PlayerData(session.UserId, args.Session.Name);
                         data.Mind = mindId;
+                        data.Whitelisted = await _db.GetWhitelistStatusAsync(session.UserId); // Nyanotrasen - Whitelist
                         session.Data.ContentDataUncast = data;
                     }
 
@@ -127,8 +128,6 @@ namespace Content.Server.GameTicking
             async void SpawnWaitDb()
             {
                 await _userDb.WaitLoadComplete(session);
-
-                //session.ContentData()!.Whitelisted = await _db.GetWhitelistStatusAsync(session.UserId); // Nyanotrasen - Whitelist
 
                 SpawnPlayer(session, EntityUid.Invalid);
             }

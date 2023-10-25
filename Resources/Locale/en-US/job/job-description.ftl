@@ -48,3 +48,4 @@ job-description-senior-engineer = Teach new engineers the basics of the station'
 job-description-senior-researcher = Teach new scientists the basics of item printing, artifact research and anomalous objects.
 job-description-senior-physician = Teach new medics the basics of tending to the wounded, chemistry, diagnosing the diseased and disposing of the dead.
 job-description-senior-officer = Teach new deputies the basics of searches, preforming arrests, prison times and how to properly shoot a firearm.
+job-description-stc = Expertly de-conflict the space around the station and help the NFSD issue fines for overdocked ships.

@@ -154,6 +154,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         _tracking.QueueRefreshTrackers(ev.PlayerSession);
         // Send timers to client when they join lobby, so the UIs are up-to-date.
         _tracking.QueueSendTimers(ev.PlayerSession);
+        _tracking.QueueSendWhitelist(ev.PlayerSession); // Nyanotrasen - Send whitelist
     }
 
     public bool IsAllowed(IPlayerSession player, string role)
