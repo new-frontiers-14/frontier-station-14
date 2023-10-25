@@ -2,8 +2,8 @@
   abstract: true
   parent: BaseItem
   id: BasePDA
-  name: PDA
-  description: Personal Data Assistant.
+  name: Планшет
+  description: Помічник по станції.
   components:
   - type: Appearance
   - type: Sprite
@@ -108,8 +108,8 @@
 - type: entity
   parent: BasePDA
   id: PassengerPDA
-  name: passenger PDA
-  description: Why isn't it gray?
+  name: Планшет пасажира
+  description: Чому не сірий?
   components:
   - type: Pda
     id: PassengerIDCard
@@ -120,8 +120,8 @@
 - type: entity
   parent: BasePDA
   id: TechnicalAssistantPDA
-  name: technical assistant PDA
-  description: Why isn't it yellow?
+  name: Планшет тех асистента
+  description: Чому не жовтий?
   components:
   - type: Pda
     id: TechnicalAssistantIDCard
@@ -135,8 +135,8 @@
 - type: entity
   parent: BasePDA
   id: MedicalInternPDA
-  name: medical intern PDA
-  description: Why isn't it white? Has a built-in health analyzer.
+  name: Планшет мед інтерна
+  description: Чому він не білий? Має вбудований аналізатор здоровʼя.
   components:
   - type: Pda
     id: MedicalInternIDCard
@@ -157,8 +157,8 @@
 - type: entity
   parent: BasePDA
   id: SecurityCadetPDA
-  name: cadet PDA
-  description: Why isn't it red?
+  name: Планшет кадета
+  description: Чому не червоний?
   components:
   - type: Pda
     id: SecurityCadetIDCard
@@ -172,8 +172,8 @@
 - type: entity
   parent: BasePDA
   id: ResearchAssistantPDA
-  name: research assistant PDA
-  description: Why isn't it purple?
+  name: Планшет наукового асистента
+  description: Чому не фіолетовий?
   components:
   - type: Pda
     id: ResearchAssistantIDCard
@@ -187,8 +187,8 @@
 - type: entity
   parent: BasePDA
   id: ServiceWorkerPDA
-  name: service worker PDA
-  description: Why isn't it gray?
+  name: Планшет сервісного працівника
+  description: Чому не сірий?
   components:
   - type: Pda
     id: ServiceWorkerIDCard
@@ -202,8 +202,8 @@
 - type: entity
   parent: BasePDA
   id: ChefPDA
-  name: chef PDA
-  description: Covered in grease and flour.
+  name: Планшет шефа
+  description: Покритий жиром і борошном.
   components:
   - type: Pda
     id: ChefIDCard
@@ -216,8 +216,8 @@
 - type: entity
   parent: BasePDA
   id: BotanistPDA
-  name: botanist PDA
-  description: Has an earthy scent.
+  name: Планшет ботаніка
+  description: Має землистий аромат.
   components:
   - type: Pda
     id: BotanistIDCard
@@ -231,8 +231,8 @@
 - type: entity
   parent: BasePDA
   id: ClownPDA
-  name: clown PDA
-  description: Looks can be deceiving.
+  name: Планшет клоуна
+  description: Зовнішній вигляд може бути оманливим.
   components:
   - type: Pda
     id: ClownIDCard
@@ -277,8 +277,8 @@
 - type: entity
   parent: BasePDA
   id: MimePDA
-  name: mime PDA
-  description: Suprisingly not on mute.
+  name: Планшет міма
+  description: На диво, не беззвучний.
   components:
   - type: Pda
     id: MimeIDCard
@@ -295,10 +295,10 @@
     state: pda-mime
 
 - type: entity
-  name: chaplain PDA
+  name: Планшет капелана
   parent: BasePDA
   id: ChaplainPDA
-  description: God's chosen PDA.
+  description: Богообраний планшет.
   components:
   - type: Pda
     id: ChaplainIDCard
@@ -309,10 +309,10 @@
     state: pda-chaplain
 
 - type: entity
-  name: quartermaster PDA
+  name: Планшет Голови Карго
   parent: BasePDA
   id: QuartermasterPDA
-  description: PDA for the guy that orders the guns.
+  description: Планшет для хлопця, який замовляє зброю.
   components:
   - type: Pda
     id: QuartermasterIDCard
@@ -326,8 +326,8 @@
 - type: entity
   parent: BasePDA
   id: CargoPDA
-  name: cargo PDA
-  description: PDA for the guys that order the pizzas.
+  name: Планшет карго
+  description: Планшет для тих, хто замовляє піцу.
   components:
   - type: Pda
     id: CargoIDCard
@@ -340,8 +340,8 @@
 - type: entity
   parent: BasePDA
   id: SalvagePDA
-  name: salvage PDA
-  description: Smells like ash.
+  name: Планшет шахтаря
+  description: Пахне попелом.
   components:
   - type: Pda
     id: SalvageIDCard
@@ -355,8 +355,8 @@
 - type: entity
   parent: BasePDA
   id: BartenderPDA
-  name: bartender PDA
-  description: Smells like beer.
+  name: Планшет бармена
+  description: Пахне пивом.
   components:
   - type: Pda
     id: BartenderIDCard
@@ -369,8 +369,8 @@
 - type: entity
   parent: BasePDA
   id: LibrarianPDA
-  name: librarian PDA
-  description: Smells like books.
+  name: Планшет Бібліотекаря
+  description: Пахне книгами.
   components:
   - type: Pda
     id: LibrarianIDCard
@@ -383,8 +383,8 @@
 - type: entity
   parent: BasePDA
   id: LawyerPDA
-  name: lawyer PDA
-  description: For lawyers to poach dubious clients.
+  name: Планшет адвоката
+  description: Щоб адвокати переслідували сумнівних клієнтів.
   components:
   - type: Pda
     id: LawyerIDCard
@@ -397,8 +397,8 @@
 - type: entity
   parent: BasePDA
   id: JanitorPDA
-  name: janitor PDA
-  description: Smells like bleach.
+  name: Планшет прибиральника
+  description: Пахне відбілювачем.
   components:
   - type: Pda
     id: JanitorIDCard
@@ -411,8 +411,8 @@
 - type: entity
   parent: BasePDA
   id: CaptainPDA
-  name: captain PDA
-  description: Surprisingly no different from your PDA.
+  name: Планшет капітана
+  description: На диво нічим не відрізняється від вашого планшета.
   components:
   - type: Pda
     id: CaptainIDCard
@@ -431,8 +431,8 @@
 - type: entity
   parent: BasePDA
   id: HoPPDA
-  name: station representative PDA
-  description: Looks like it's been chewed on.
+  name: Планшет Голови Персоналу
+  description: Здається, його пожували.
   components:
   - type: Pda
     id: HoPIDCard
@@ -452,8 +452,8 @@
 - type: entity
   parent: BasePDA
   id: CEPDA
-  name: chief engineer PDA
-  description: Looks like it's barely been used.
+  name: Планшет Головного Інженера
+  description: Здається, майже не використовувався.
   components:
   - type: Pda
     id: CEIDCard
@@ -467,8 +467,8 @@
 - type: entity
   parent: BasePDA
   id: EngineerPDA
-  name: engineer PDA
-  description: Rugged and well-worn.
+  name: Планшет Інженера
+  description: Міцний і добре поношений.
   components:
   - type: Pda
     id: EngineeringIDCard
@@ -482,8 +482,8 @@
 - type: entity
   parent: BasePDA
   id: CMOPDA
-  name: chief medical officer PDA
-  description: Extraordinarily shiny and sterile. Has a built-in health analyzer.
+  name: планшет головного лікаря
+  description: Надзвичайно блискучий і стерильний. Має вбудований аналізатор здоровʼя.
   components:
   - type: Pda
     id: CMOIDCard
@@ -502,8 +502,8 @@
 - type: entity
   parent: BasePDA
   id: MedicalPDA
-  name: medical PDA
-  description: Shiny and sterile. Has a built-in health analyzer.
+  name: Медичний планшет
+  description: Блискучий і стерильний. Має вбудований аналізатор здоровʼя.
   components:
   - type: Pda
     id: MedicalIDCard
@@ -524,8 +524,8 @@
 - type: entity
   parent: BasePDA
   id: ParamedicPDA
-  name: paramedic PDA
-  description: Shiny and sterile. Has a built-in rapid health analyzer.
+  name: Планшет Парамедика
+  description:  Блискучий і стерильний. Має вбудований аналізатор здоровʼя.
   components:
   - type: Pda
     id: ParamedicIDCard
@@ -543,8 +543,8 @@
 - type: entity
   parent: BasePDA
   id: ChemistryPDA
-  name: chemistry PDA
-  description: It has a few discolored blotches here and there.
+  name: Планшет хіміка
+  description: Тут і там є кілька знебарвлених плям.
   components:
   - type: Pda
     id: ChemistIDCard
@@ -562,8 +562,8 @@
 - type: entity
   parent: BasePDA
   id: RnDPDA
-  name: research director PDA
-  description: It appears surprisingly ordinary.
+  name: Планшет наукового директора
+  description: Це виглядає напрочуд звичайно.
   components:
   - type: Pda
     id: RDIDCard
@@ -578,8 +578,8 @@
 - type: entity
   parent: BasePDA
   id: SciencePDA
-  name: science PDA
-  description: It's covered with an unknown gooey substance.
+  name: науковий планшет
+  description: Він покритий невідомою липкою речовиною.
   components:
   - type: Pda
     id: ResearchIDCard
@@ -593,8 +593,8 @@
 - type: entity
   parent: BasePDA
   id: HoSPDA
-  name: sheriff PDA
-  description: Whosoever bears this PDA is the law.
+  name: Планшет Голови Безпеки
+  description: Хто носить цей Планшет, той і є закон.
   components:
   - type: Pda
     id: HoSIDCard
@@ -608,8 +608,8 @@
 - type: entity
   parent: BasePDA
   id: WardenPDA
-  name: bailiff PDA
-  description: The OS appears to have been jailbroken.
+  name: Планшет Вардена
+  description: Схоже, ОС була зламана.
   components:
   - type: Pda
     id: WardenIDCard
@@ -623,8 +623,8 @@
 - type: entity
   parent: BasePDA
   id: SecurityPDA
-  name: deputy PDA
-  description: Red to hide the stains of passenger blood.
+  name: Планшет Офіцера
+  description: Червоний, щоб приховати плями крові пасажирів.
   components:
   - type: Pda
     id: SecurityIDCard
@@ -637,8 +637,8 @@
 - type: entity
   parent: BasePDA
   id: CentcomPDA
-  name: CentCom PDA
-  description: Light green sign of walking bureaucracy.
+  name: Планшет ЦК
+  description: Світло-зелений знак ходячої бюрократії.
   components:
   - type: Pda
     id: CentcomIDCard
@@ -672,8 +672,8 @@
 - type: entity
   parent: BasePDA
   id: MusicianPDA
-  name: musician PDA
-  description: It fills you with inspiration.
+  name: Музичний планшет
+  description: Він наповнює вас натхненням.
   components:
   - type: Pda
     id: MusicianIDCard
@@ -691,8 +691,8 @@
 - type: entity
   parent: BasePDA
   id: AtmosPDA
-  name: atmos PDA
-  description: Still smells like plasma.
+  name: Планшет Атмоса
+  description: Все ще пахне плазмою.
   components:
   - type: Pda
     id: AtmosIDCard
@@ -706,8 +706,8 @@
 - type: entity
   parent: BasePDA
   id: ClearPDA
-  name: clear PDA
-  description: 99 and 44/100ths percent pure plastic.
+  name: Чистий планшет
+  description: 99 і 44/100% чистого пластику.
   components:
   - type: Pda
     id: PassengerIDCard
@@ -720,8 +720,8 @@
 - type: entity
   parent: BasePDA
   id: SyndiPDA
-  name: syndicate PDA
-  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  name: Планшет Синдикату
+  description: Гаразд, час бути продуктивним учасником – о, круто, я поганий хлопець, час вбивати людей!
   components:
   - type: Pda
     id: SyndicateIDCard
@@ -776,8 +776,8 @@
 - type: entity
   parent: BasePDA
   id: PsychologistPDA
-  name: psychologist PDA
-  description: Looks immaculately cleaned.
+  name: Планшет психолога
+  description: Виглядає бездоганно очищеним.
   components:
   - type: Pda
     id: PsychologistIDCard
@@ -791,8 +791,8 @@
 - type: entity
   parent: BasePDA
   id: ReporterPDA
-  name: reporter PDA
-  description: Smells like freshly printed press.
+  name: Планшет журналіста
+  description: Пахне свіжодрукованою пресою.
   components:
   - type: Pda
     id: ReporterIDCard
@@ -805,8 +805,8 @@
 - type: entity
   parent: BasePDA
   id: ZookeeperPDA
-  name: zookeeper PDA
-  description: Made with genuine synthetic leather. Crikey!
+  name: Планшет зоолога
+  description: Виготовлений з натуральної синтетичної шкіри. Крикі!
   components:
   - type: Pda
     id: ZookeeperIDCard
@@ -819,8 +819,8 @@
 - type: entity
   parent: BasePDA
   id: BoxerPDA
-  name: boxer PDA
-  description: Float like a butterfly, ringtone like a bee.
+  name: Планшет Боксера
+  description: Плитай, як метелик, мелодія, як бджола.
   components:
   - type: Pda
     id: BoxerIDCard
@@ -834,8 +834,8 @@
 - type: entity
   parent: BasePDA
   id: DetectivePDA
-  name: detective PDA
-  description: Smells like rain... pouring down the rooftops...
+  name: Планшет Детектива
+  description: Пахне дощем... що ллється з дахів...
   components:
   - type: Pda
     id: DetectiveIDCard
@@ -848,8 +848,8 @@
 - type: entity
   parent: BasePDA
   id: BrigmedicPDA
-  name: brigmedic PDA
-  description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
+  name: Планшет Брігмеда
+  description: Цікаво, чий пульс на екрані? Сподіваюся, він не зупиниться... Планшет має вбудований аналізатор здоровʼя.
   components:
   - type: Pda
     id: BrigmedicIDCard
@@ -868,7 +868,7 @@
 - type: entity
   parent: ClownPDA
   id: CluwnePDA
-  name: cluwne PDA
+  name: Планшет клувні
   suffix: Unremoveable
   description: Cursed cluwne PDA.
   components:
