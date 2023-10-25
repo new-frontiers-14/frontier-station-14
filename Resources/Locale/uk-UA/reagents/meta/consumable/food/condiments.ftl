@@ -1,38 +1,38 @@
-reagent-name-astrotame = Astrotame
-reagent-desc-astrotame = The sweetness of a thousand sugars but none of the calories.
+reagent-name-astrotame = астротейм
+reagent-desc-astrotame = безкалорійний нічний кошмар діабетика!
 
-reagent-name-bbq-sauce = BBQ sauce
-reagent-desc-bbq-sauce = Hand wipes not included.
+reagent-name-bbq-sauce = BBQ соус
+reagent-desc-bbq-sauce = домашян атмосфера в домевленість не входила.
 
-reagent-name-cornoil = corn oil
-reagent-desc-cornoil = Corn oil, A delicious oil used in cooking. Made from corn.
+reagent-name-cornoil = кукурудзяна олія
+reagent-desc-cornoil = зроблена з кукурудзи. Найчастіше можна побачити на кухні!
 
-reagent-name-frostoil = frostoil
-reagent-desc-frostoil = Leaves the tongue numb in its passage.
+reagent-name-frostoil = лід-олія
+reagent-desc-frostoil = О НІ! У мене замерз мозок лиш від згадки про це!
 
-reagent-name-horseradish-sauce = horseradish sauce
-reagent-desc-horseradish-sauce = Smelly horseradish sauce.
+reagent-name-horseradish-sauce = хрін
+reagent-desc-horseradish-sauce = смачна добавка до будь-якої страви
 
-reagent-name-hotsauce = hotsauce
-reagent-desc-hotsauce = Burns so good.
+reagent-name-hotsauce = пекельний соус
+reagent-desc-hotsauce = твої нутрощі тепер well done.
 
-reagent-name-ketchup = ketchup
-reagent-desc-ketchup = Made from pureed tomatoes and flavored with spices.
+reagent-name-ketchup = кетчуп
+reagent-desc-ketchup = зроблений з томатів та приправ,до твоїх вареників!
 
-reagent-name-ketchunaise = ketchunaise
-reagent-desc-ketchunaise = So-called Russian dressing, popular among Space Americans.
+reagent-name-ketchunaise = кетчунез
+reagent-desc-ketchunaise = створена провідними інженерами для економії часу під час їжі!
 
-reagent-name-mayo = mayonnaise
-reagent-desc-mayo = Creamy sauce, made from oil, egg, and some (edible) acid.
+reagent-name-mayo = майонез
+reagent-desc-mayo = зроблений з яєць та олії.
 
-reagent-name-mustard = mustard
-reagent-desc-mustard = Basic yellow mustard, made from the seeds of the mustard plant.
+reagent-name-mustard = гірчиця
+reagent-desc-mustard = зроблений з насіння гірчиці. Слабо зжерти всю пачку?!
 
-reagent-name-vinaigrette = vinaigrette
-reagent-desc-vinaigrette = A basic salad dressing made with oil, vinegar and seasoning.
+reagent-name-vinaigrette = вінігрет
+reagent-desc-vinaigrette = святкова страва,навіює згадки про Новий Рік!
 
-reagent-name-soysauce = soy sauce
-reagent-desc-soysauce = A salty soy-based flavoring.
+reagent-name-soysauce = соєвий соус
+reagent-desc-soysauce = не рекомендую змішувати з соєвим молоком...ти справді про це думав?
 
-reagent-name-table-salt = table salt
-reagent-desc-table-salt = Commonly known as salt, Sodium Chloride is often used to season food or kill borers instantly.
+reagent-name-table-salt = харчова сіль
+reagent-desc-table-salt = в минулому була дуже дорогою,але зараз ні,дякуюємо НТ!
