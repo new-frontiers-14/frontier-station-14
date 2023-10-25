@@ -1,14 +1,14 @@
-reagent-name-nutriment = nutriment
-reagent-desc-nutriment = All the vitamins, minerals, and carbohydrates the body needs in pure form.
+reagent-name-nutriment = поживна речовина
+reagent-desc-nutriment = всі елементи,що треба твому організму!
 
-reagent-name-glucose = glucose
-reagent-desc-glucose = A simple sugar found in many foods.
+reagent-name-glucose = глюкоза
+reagent-desc-glucose = звичний цукор,його можна знайти у багатьох стравах.
 
-reagent-name-vitamin = vitamin
-reagent-desc-vitamin = Found in healthy, complete meals.
+reagent-name-vitamin = вітаміни
+reagent-desc-vitamin = збадьорять пацієнтів психолога,невід'ємна складова більшості фруктів.
 
-reagent-name-protein = protein
-reagent-desc-protein = Found in certain meals, good for bodily health.
+reagent-name-protein = протеїн
+reagent-desc-protein = не треба нам тренболон,ми справжні вікінги! Бобік дякує вам!
 
-reagent-name-cocoapowder = сocoa powder
-reagent-desc-cocoapowder = From the best varieties of cocoa beans
+reagent-name-cocoapowder = какао порошок
+reagent-desc-cocoapowder = виготовлено з найкращих какао бобів цієї станції!
