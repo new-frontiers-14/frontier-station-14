@@ -7,18 +7,25 @@ using Content.Server.Players;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Server.Storage.Components;
 using Content.Shared.CCVar;
+using Content.Shared.Clothing;
 using Content.Shared.Database;
+using Content.Shared.Inventory;
+using Content.Shared.Item;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Storage;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+
 
 namespace Content.Server.GameTicking
 {
@@ -26,6 +33,8 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly LoadoutSystem _loadout = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!;
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string ObserverPrototypeName = "MobObserver";
@@ -34,10 +43,22 @@ namespace Content.Server.GameTicking
         /// How many players have joined the round through normal methods.
         /// Useful for game rules to look at. Doesn't count observers, people in lobby, etc.
         /// </summary>
-        public int PlayersJoinedRoundNormally = 0;
+        public int PlayersJoinedRoundNormally;
 
         // Mainly to avoid allocations.
         private readonly List<EntityCoordinates> _possiblePositions = new();
+
+        private List<EntityUid> GetSpawnableStations()
+        {
+            var spawnableStations = new List<EntityUid>();
+            var query = EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
+            while (query.MoveNext(out var uid, out _, out _))
+            {
+                spawnableStations.Add(uid);
+            }
+
+            return spawnableStations;
+        }
 
         private void SpawnPlayers(List<IPlayerSession> readyPlayers, Dictionary<NetUserId, HumanoidCharacterProfile> profiles, bool force)
         {
@@ -66,8 +87,7 @@ namespace Content.Server.GameTicking
                 }
             }
 
-            var spawnableStations = EntityQuery<StationJobsComponent, StationSpawningComponent>().Select(x => x.Item1.Owner).ToList();
-
+            var spawnableStations = GetSpawnableStations();
             var assignedJobs = _stationJobs.AssignJobs(profiles, spawnableStations);
 
             _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, spawnableStations);
@@ -125,7 +145,7 @@ namespace Content.Server.GameTicking
 
             if (station == EntityUid.Invalid)
             {
-                var stations = EntityQuery<StationJobsComponent, StationSpawningComponent>().Select(x => x.Item1.Owner).ToList();
+                var stations = GetSpawnableStations();
                 _robustRandom.Shuffle(stations);
                 if (stations.Count == 0)
                     station = EntityUid.Invalid;
@@ -161,7 +181,8 @@ namespace Content.Server.GameTicking
             restrictedRoles.UnionWith(getDisallowed);
 
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if(jobBans != null) restrictedRoles.UnionWith(jobBans);
+            if (jobBans != null)
+                restrictedRoles.UnionWith(jobBans);
 
             // Pick best job best on prefs.
             jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station, character.JobPriorities, true,
@@ -215,6 +236,24 @@ namespace Content.Server.GameTicking
             {
                 EntityManager.AddComponent<OwOAccentComponent>(mob);
             }
+
+
+            if (_configurationManager.GetCVar(CCVars.GameLoadoutsEnabled))
+            {
+                // Spawn the loadout, get a list of items that failed to equip
+                var failedLoadouts = _loadout.ApplyCharacterLoadout(mob, jobPrototype, character);
+
+                // Try to find back-mounted storage apparatus
+                if (_inventory.TryGetSlotEntity(mob, "back", out var item) &&
+                    EntityManager.TryGetComponent<StorageComponent>(item, out var inventory))
+                    // Try inserting the entity into the storage, if it can't, it leaves the loadout item on the ground
+                    foreach (var loadout in failedLoadouts)
+                        // Check if the item can fit in the storage
+                        if (EntityManager.TryGetComponent<ItemComponent>(loadout, out var itemComp) &&
+                            inventory.StorageUsed + itemComp.Size <= inventory.StorageCapacityMax)
+                            inventory.Container.Insert(loadout);
+            }
+
 
             _stationJobs.TryAssignJob(station, jobPrototype);
 
@@ -351,15 +390,16 @@ namespace Content.Server.GameTicking
             // Fallback to a random grid.
             if (_possiblePositions.Count == 0)
             {
-                foreach (var grid in _mapManager.GetAllGrids())
+                var query = AllEntityQuery<MapGridComponent>();
+                while (query.MoveNext(out var uid, out var grid))
                 {
-                    if (!metaQuery.TryGetComponent(grid.Owner, out var meta) ||
+                    if (!metaQuery.TryGetComponent(uid, out var meta) ||
                         meta.EntityPaused)
                     {
                         continue;
                     }
 
-                    _possiblePositions.Add(new EntityCoordinates(grid.Owner, Vector2.Zero));
+                    _possiblePositions.Add(new EntityCoordinates(uid, Vector2.Zero));
                 }
             }
 

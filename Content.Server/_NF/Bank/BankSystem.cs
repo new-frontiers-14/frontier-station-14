@@ -74,7 +74,8 @@ public sealed partial class BankSystem : EntitySystem
             profile.JobPriorities,
             profile.PreferenceUnavailable,
             profile.AntagPreferences,
-            profile.TraitPreferences);
+            profile.TraitPreferences,
+            profile.LoadoutPreferences);
 
         args.State = new BankAccountComponentState
         {

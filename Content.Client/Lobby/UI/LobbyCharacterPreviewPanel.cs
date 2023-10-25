@@ -1,13 +1,17 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Alerts;
+using Content.Client.Hands.Systems;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Preferences;
 using Content.Client.UserInterface.Controls;
+using Content.Shared.Clothing;
+using Content.Shared.Clothing.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
+using Content.Shared.Loadouts;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.GameObjects;
@@ -136,6 +140,7 @@ namespace Content.Client.Lobby.UI
                     _summaryLabel.Text = selectedCharacter.Summary;
                     _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(_previewDummy.Value, selectedCharacter);
                     GiveDummyJobClothes(_previewDummy.Value, selectedCharacter);
+                    GiveDummyLoadoutItems(_previewDummy.Value, selectedCharacter);
                 }
             }
         }
@@ -170,6 +175,14 @@ namespace Content.Client.Lobby.UI
                     }
                 }
             }
+        }
+
+        public static void GiveDummyLoadoutItems(EntityUid dummy, HumanoidCharacterProfile profile)
+        {
+            var highPriorityJobId = profile.JobPriorities.FirstOrDefault(j => j.Value == JobPriority.High).Key;
+            var highPriorityJob = IoCManager.Resolve<IPrototypeManager>().Index<JobPrototype>(highPriorityJobId ?? SharedGameTicker.FallbackOverflowJob);
+
+            EntitySystem.Get<LoadoutSystem>().ApplyCharacterLoadout(dummy, highPriorityJob, profile);
         }
     }
 }

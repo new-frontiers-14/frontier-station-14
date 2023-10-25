@@ -3,6 +3,9 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop

@@ -173,6 +173,7 @@ namespace Content.Client.Preferences.UI
                 if (humanoid != null)
                 {
                     LobbyCharacterPreviewPanel.GiveDummyJobClothes(_previewDummy, humanoid);
+                    LobbyCharacterPreviewPanel.GiveDummyLoadoutItems(_previewDummy, humanoid);
                 }
 
                 var isSelectedCharacter = profile == preferencesManager.Preferences?.SelectedCharacter;
@@ -221,10 +222,8 @@ namespace Content.Client.Preferences.UI
                 };
                 deleteButton.OnPressed += _ =>
                 {
-
                     deleteButton.Visible = false;
                     confirmDeleteButton.Visible = true;
-
                 };
 
                 var internalHBox = new BoxContainer
