@@ -36,6 +36,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly DungeonSystem _dunGen = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -130,7 +131,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
-            meta.EntityName = "Cargo Depot A";
+            _meta.SetEntityName(depotUids[0], "Cargo Depot A", meta);
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
@@ -140,7 +141,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            meta.EntityName = "Tinnia's Rest";
+            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
             _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 
@@ -150,7 +151,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            meta.EntityName = "Cargo Depot B";
+            _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
         }
 
@@ -160,7 +161,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            meta.EntityName = "Listening Point Bravo";
+            _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
             _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
@@ -171,7 +172,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
-            meta.EntityName = "The Pit";
+            _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
             _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
         }
 
@@ -186,7 +187,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
-            meta.EntityName = "Pirate's Cove";
+            _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
             _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
         }
@@ -202,7 +203,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
-            meta.EntityName = "Expeditionary Lodge";
+            _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
@@ -212,7 +213,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            meta.EntityName = "Crazy Casey's Casino";
+            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
             _shuttle.SetIFFColor(depotUid7s[0], factionColor);
         }
 
