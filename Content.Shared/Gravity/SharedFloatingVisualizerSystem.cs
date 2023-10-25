@@ -45,8 +45,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
 
     private void OnGravityChanged(ref GravityChangedEvent args)
     {
-        var query = EntityQueryEnumerator<FloatingVisualsComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var floating, out var transform))
+        foreach (var (floating, transform) in EntityQuery<FloatingVisualsComponent, TransformComponent>(true))
         {
             if (transform.MapID == MapId.Nullspace)
                 continue;
@@ -55,8 +54,9 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
                 continue;
 
             floating.CanFloat = !args.HasGravity;
-            Dirty(uid, floating);
+            Dirty(floating);
 
+            var uid = floating.Owner;
             if (!args.HasGravity)
                 FloatAnimation(uid, floating.Offset, floating.AnimationKey, floating.AnimationTime);
         }

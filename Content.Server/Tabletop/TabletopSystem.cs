@@ -1,5 +1,6 @@
 using Content.Server.Popups;
 using Content.Server.Tabletop.Components;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -177,19 +178,20 @@ namespace Content.Server.Tabletop
         {
             base.Update(frameTime);
 
-            var query = EntityQueryEnumerator<TabletopGamerComponent>();
-            while (query.MoveNext(out var uid, out var gamer))
+            foreach (var gamer in EntityManager.EntityQuery<TabletopGamerComponent>())
             {
-                if (!Exists(gamer.Tabletop))
+                if (!EntityManager.EntityExists(gamer.Tabletop))
                     continue;
 
-                if (!TryComp(uid, out ActorComponent? actor))
+                if (!EntityManager.TryGetComponent(gamer.Owner, out ActorComponent? actor))
                 {
-                    EntityManager.RemoveComponent<TabletopGamerComponent>(uid);
+                    EntityManager.RemoveComponent<TabletopGamerComponent>(gamer.Owner);
                     return;
                 }
 
-                if (actor.PlayerSession.Status != SessionStatus.InGame || !CanSeeTable(uid, gamer.Tabletop))
+                var gamerUid = (gamer).Owner;
+
+                if (actor.PlayerSession.Status != SessionStatus.InGame || !CanSeeTable(gamerUid, gamer.Tabletop))
                     CloseSessionFor(actor.PlayerSession, gamer.Tabletop);
             }
         }

@@ -126,7 +126,6 @@ public sealed class PryingSystem : EntitySystem
         {
             BreakOnDamage = true,
             BreakOnUserMove = true,
-            BreakOnWeightlessMove = true,
         };
 
         if (tool != null)

@@ -1,19 +1,20 @@
-using System.Linq;
-using System.Threading;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Salvage;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using System.Linq;
+using System.Threading;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Coordinates;
 using Content.Shared.Procedural;
+using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 
@@ -99,7 +100,7 @@ public sealed partial class SalvageSystem
         // Finish mission
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
-            FinishExpedition((component.Station, data), uid);
+            FinishExpedition(data, uid);
         }
     }
 
@@ -128,8 +129,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        foreach (var comp in EntityQuery<SalvageExpeditionDataComponent>())
         {
             // Update offers
             if (comp.NextOffer > currentTime || comp.Claimed)
@@ -138,18 +138,17 @@ public sealed partial class SalvageSystem
             comp.Cooldown = false;
             comp.NextOffer += TimeSpan.FromSeconds(_cooldown);
             GenerateMissions(comp);
-            UpdateConsoles((uid, comp));
+            UpdateConsoles(comp);
         }
     }
 
-    private void FinishExpedition(Entity<SalvageExpeditionDataComponent> expedition, EntityUid uid)
+    private void FinishExpedition(SalvageExpeditionDataComponent component, EntityUid uid)
     {
-        var component = expedition.Comp;
         component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
         Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
         component.ActiveMission = 0;
         component.Cooldown = true;
-        UpdateConsoles(expedition);
+        UpdateConsoles(component);
     }
 
     private void GenerateMissions(SalvageExpeditionDataComponent component)

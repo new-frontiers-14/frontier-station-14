@@ -27,7 +27,6 @@ public abstract partial class InventorySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private void InitializeEquip()
     {
@@ -373,10 +372,20 @@ public abstract partial class InventorySystem
             }
         }
 
-        if (!slotContainer.Remove(removedItem.Value, force: force))
-            return false;
+        if (force)
+        {
+            slotContainer.ForceRemove(removedItem.Value);
+        }
+        else
+        {
+            if (!slotContainer.Remove(removedItem.Value))
+            {
+                //should never happen bc of the canremove lets just keep in just in case
+                return false;
+            }
+        }
 
-        _transform.DropNextTo(removedItem.Value, target);
+        Transform(removedItem.Value).Coordinates = Transform(target).Coordinates;
 
         if (!silent && Resolve(removedItem.Value, ref clothing, false) && clothing.UnequipSound != null && _gameTiming.IsFirstTimePredicted)
         {
@@ -396,7 +405,8 @@ public abstract partial class InventorySystem
             SoundSystem.Play(clothing.UnequipSound.GetSound(), filter, target, clothing.UnequipSound.Params.WithVolume(-2f));
         }
 
-        Dirty(target, inventory);
+        inventory.Dirty();
+
         _movementSpeed.RefreshMovementSpeedModifiers(target);
 
         return true;

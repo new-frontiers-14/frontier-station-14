@@ -16,7 +16,9 @@ using Content.Shared.Temperature;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.GameObjects;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 
@@ -46,7 +48,7 @@ namespace Content.Server.Atmos.EntitySystems
 
         private float _timer;
 
-        private readonly Dictionary<Entity<FlammableComponent>, float> _fireEvents = new();
+        private Dictionary<FlammableComponent, float> _fireEvents = new();
 
         public override void Initialize()
         {
@@ -186,14 +188,14 @@ namespace Content.Server.Atmos.EntitySystems
             args.IsHot = flammable.OnFire;
         }
 
-        private void OnTileFire(Entity<FlammableComponent> ent, ref TileFireEvent args)
+        private void OnTileFire(EntityUid uid, FlammableComponent flammable, ref TileFireEvent args)
         {
             var tempDelta = args.Temperature - MinIgnitionTemperature;
 
-            _fireEvents.TryGetValue(ent, out var maxTemp);
+            _fireEvents.TryGetValue(flammable, out var maxTemp);
 
             if (tempDelta > maxTemp)
-                _fireEvents[ent] = tempDelta;
+                _fireEvents[flammable] = tempDelta;
         }
 
         private void OnRejuvenate(EntityUid uid, FlammableComponent component, RejuvenateEvent args)
@@ -293,7 +295,7 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 // 100 -> 1, 200 -> 2, 400 -> 3...
                 var fireStackMod = Math.Max(MathF.Log2(deltaTemp / 100) + 1, 0);
-                var fireStackDelta = fireStackMod - flammable.Comp.FireStacks;
+                var fireStackDelta = fireStackMod - flammable.FireStacks;
                 var flammableEntity = flammable.Owner;
                 if (fireStackDelta > 0)
                 {
@@ -311,9 +313,10 @@ namespace Content.Server.Atmos.EntitySystems
             _timer -= UpdateTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
-            var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out var flammable, out var transform))
+            foreach (var (flammable, transform) in EntityManager.EntityQuery<FlammableComponent, TransformComponent>())
             {
+                var uid = flammable.Owner;
+
                 // Slowly dry ourselves off if wet.
                 if (flammable.FireStacks < 0)
                 {

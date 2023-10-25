@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Destructible;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared.Administration;
 using Content.Shared.NPC;
@@ -576,10 +577,9 @@ namespace Content.Server.NPC.Pathfinding
         {
             var msg = new PathBreadcrumbsMessage();
 
-            var query = AllEntityQuery<GridPathfindingComponent>();
-            while (query.MoveNext(out var uid, out var comp))
+            foreach (var comp in EntityQuery<GridPathfindingComponent>(true))
             {
-                var netGrid = GetNetEntity(uid);
+                var netGrid = GetNetEntity(comp.Owner);
 
                 msg.Breadcrumbs.Add(netGrid, new Dictionary<Vector2i, List<PathfindingBreadcrumb>>(comp.Chunks.Count));
 
@@ -626,10 +626,9 @@ namespace Content.Server.NPC.Pathfinding
         {
             var msg = new PathPolysMessage();
 
-            var query = AllEntityQuery<GridPathfindingComponent>();
-            while (query.MoveNext(out var uid, out var comp))
+            foreach (var comp in EntityQuery<GridPathfindingComponent>(true))
             {
-                var netGrid = GetNetEntity(uid);
+                var netGrid = GetNetEntity(comp.Owner);
 
                 msg.Polys.Add(netGrid, new Dictionary<Vector2i, Dictionary<Vector2i, List<DebugPathPoly>>>(comp.Chunks.Count));
 

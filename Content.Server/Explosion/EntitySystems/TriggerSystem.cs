@@ -151,7 +151,7 @@ namespace Content.Server.Explosion.EntitySystems
             if (!TryComp<TransformComponent>(uid, out var xform))
                 return;
 
-            _body.GibBody(xform.ParentUid, true, deleteItems: component.DeleteItems);
+            _body.GibBody(xform.ParentUid, deleteItems: component.DeleteItems);
 
             args.Handled = true;
         }
@@ -180,7 +180,7 @@ namespace Content.Server.Explosion.EntitySystems
 
             // Gets specie of the implant user
             var speciesText = $"";
-            if (TryComp<HumanoidAppearanceComponent>(implanted.ImplantedEntity, out var species))
+            if (TryComp<HumanoidAppearanceComponent?>(implanted.ImplantedEntity, out var species))
                 speciesText = $" ({species!.Species})";
 
             var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));

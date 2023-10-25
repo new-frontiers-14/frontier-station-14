@@ -457,7 +457,7 @@ public abstract partial class SharedBuckleSystem
 
         if (buckleXform.ParentUid == strapUid && !Terminating(buckleXform.ParentUid))
         {
-            _container.AttachParentToContainerOrGrid((buckleUid, buckleXform));
+            _container.AttachParentToContainerOrGrid(buckleXform);
 
             var oldBuckledToWorldRot = _transform.GetWorldRotation(strapUid);
             _transform.SetWorldRotation(buckleXform, oldBuckledToWorldRot);

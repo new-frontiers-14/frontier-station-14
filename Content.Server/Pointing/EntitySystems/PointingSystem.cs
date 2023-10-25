@@ -166,7 +166,7 @@ namespace Content.Server.Pointing.EntitySystems
             {
                 var arrowVisibility = EntityManager.EnsureComponent<VisibilityComponent>(arrow);
                 layer = playerVisibility.Layer;
-                _visibilitySystem.SetLayer(arrow, arrowVisibility, layer);
+                _visibilitySystem.SetLayer(arrowVisibility, layer);
             }
 
             // Get players that are in range and whose visibility layer matches the arrow's.
@@ -274,28 +274,26 @@ namespace Content.Server.Pointing.EntitySystems
         {
             var currentTime = _gameTiming.CurTime;
 
-            var query = AllEntityQuery<PointingArrowComponent>();
-            while (query.MoveNext(out var uid, out var component))
+            foreach (var component in EntityQuery<PointingArrowComponent>(true))
             {
-                Update((uid, component), currentTime);
+                Update(component, currentTime);
             }
         }
 
-        private void Update(Entity<PointingArrowComponent> pointing, TimeSpan currentTime)
+        private void Update(PointingArrowComponent component, TimeSpan currentTime)
         {
             // TODO: That pause PR
-            var component = pointing.Comp;
             if (component.EndTime > currentTime)
                 return;
 
             if (component.Rogue)
             {
-                RemComp<PointingArrowComponent>(pointing);
-                EnsureComp<RoguePointingArrowComponent>(pointing);
+                RemComp<PointingArrowComponent>(component.Owner);
+                EnsureComp<RoguePointingArrowComponent>(component.Owner);
                 return;
             }
 
-            Del(pointing);
+            Del(component.Owner);
         }
     }
 }

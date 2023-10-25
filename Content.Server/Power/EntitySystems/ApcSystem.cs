@@ -189,16 +189,25 @@ public sealed class ApcSystem : EntitySystem
 
         return ApcExternalPowerState.Good;
     }
-    private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
-    {
-        if (component.MainBreakerEnabled)
+
+        private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
         {
-            args.Affected = true;
-            args.Disabled = true;
-            ApcToggleBreaker(uid, component);
+            if (component.ApcIgnoreEmp)
+            {
+                args.Affected = false;
+                args.Disabled = false;
+            }
+            else
+            {
+                if (component.MainBreakerEnabled)
+                {
+                    args.Affected = true;
+                    args.Disabled = true;
+                    ApcToggleBreaker(uid, component);
+                }
+            }
         }
     }
-}
 
 [ByRefEvent]
 public record struct ApcToggleMainBreakerAttemptEvent(bool Cancelled);

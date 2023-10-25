@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
-public sealed partial class JobRequirementsManager
+public sealed class JobRequirementsManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
@@ -30,6 +30,8 @@ public sealed partial class JobRequirementsManager
 
     public event Action? Updated;
 
+    private bool _whitelisted = false;
+
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("job_requirements");
@@ -38,7 +40,6 @@ public sealed partial class JobRequirementsManager
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
-
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
 
@@ -80,6 +81,10 @@ public sealed partial class JobRequirementsManager
         }*/
         Updated?.Invoke();
     }
+    private void RxWhitelist(MsgWhitelist message)
+    {
+        _whitelisted = message.Whitelisted;
+    }
 
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
@@ -114,7 +119,7 @@ public sealed partial class JobRequirementsManager
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes, _whitelisted))
+            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
                 continue;
 
             reasons.Add(jobReason.ToMarkup());

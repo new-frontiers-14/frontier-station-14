@@ -1,8 +1,6 @@
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -12,7 +10,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Temperature;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics.Components;
+using System.Linq;
 
 namespace Content.Server.Temperature.Systems;
 
@@ -20,8 +18,8 @@ public sealed class TemperatureSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     /// <summary>
@@ -29,7 +27,7 @@ public sealed class TemperatureSystem : EntitySystem
     ///     This is done because both AtmosExposed and Flammable call ChangeHeat in the same tick, meaning
     ///     that we need some mechanism to ensure it doesn't double dip on damage for both calls.
     /// </summary>
-    public HashSet<Entity<TemperatureComponent>> ShouldUpdateDamage = new();
+    public HashSet<TemperatureComponent> ShouldUpdateDamage = new();
 
     public float UpdateInterval = 1.0f;
 
@@ -44,8 +42,6 @@ public sealed class TemperatureSystem : EntitySystem
         SubscribeLocalEvent<TemperatureProtectionComponent, InventoryRelayedEvent<ModifyChangedTemperatureEvent>>(
             OnTemperatureChangeAttempt);
 
-        SubscribeLocalEvent<InternalTemperatureComponent, MapInitEvent>(OnInit);
-
         // Allows overriding thresholds based on the parent's thresholds.
         SubscribeLocalEvent<TemperatureComponent, EntParentChangedMessage>(OnParentChange);
         SubscribeLocalEvent<ContainerTemperatureDamageThresholdsComponent, ComponentStartup>(
@@ -58,34 +54,6 @@ public sealed class TemperatureSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // conduct heat from the surface to the inside of entities with internal temperatures
-        var query = EntityQueryEnumerator<InternalTemperatureComponent, TemperatureComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var temp))
-        {
-            // don't do anything if they equalised
-            var diff = Math.Abs(temp.CurrentTemperature - comp.Temperature);
-            if (diff < 0.1f)
-                continue;
-
-            // heat flow in W/m^2 as per fourier's law in 1D.
-            var q = comp.Conductivity * diff / comp.Thickness;
-
-            // convert to J then K
-            var joules = q * comp.Area * frameTime;
-            var degrees = joules / GetHeatCapacity(uid, temp);
-            if (temp.CurrentTemperature < comp.Temperature)
-                degrees *= -1;
-
-            // exchange heat between inside and surface
-            comp.Temperature += degrees;
-            ForceChangeTemperature(uid, temp.CurrentTemperature - degrees, temp);
-        }
-
-        UpdateDamage(frameTime);
-    }
-
-    private void UpdateDamage(float frameTime)
-    {
         _accumulatedFrametime += frameTime;
 
         if (_accumulatedFrametime < UpdateInterval)
@@ -130,12 +98,12 @@ public sealed class TemperatureSystem : EntitySystem
         if (!ignoreHeatResistance)
         {
             var ev = new ModifyChangedTemperatureEvent(heatAmount);
-            RaiseLocalEvent(uid, ev);
+            RaiseLocalEvent(uid, ev, false);
             heatAmount = ev.TemperatureDelta;
         }
 
         float lastTemp = temperature.CurrentTemperature;
-        temperature.CurrentTemperature += heatAmount / GetHeatCapacity(uid, temperature);
+        temperature.CurrentTemperature += heatAmount / temperature.HeatCapacity;
         float delta = temperature.CurrentTemperature - lastTemp;
 
         RaiseLocalEvent(uid, new OnTemperatureChangeEvent(temperature.CurrentTemperature, lastTemp, delta), true);
@@ -145,7 +113,6 @@ public sealed class TemperatureSystem : EntitySystem
         ref AtmosExposedUpdateEvent args)
     {
         var transform = args.Transform;
-
         if (transform.MapUid == null)
             return;
 
@@ -154,28 +121,9 @@ public sealed class TemperatureSystem : EntitySystem
         var temperatureDelta = args.GasMixture.Temperature - temperature.CurrentTemperature;
         var tileHeatCapacity =
             _atmosphere.GetTileHeatCapacity(transform.GridUid, transform.MapUid.Value, position);
-        var heatCapacity = GetHeatCapacity(uid, temperature);
-        var heat = temperatureDelta * (tileHeatCapacity * heatCapacity /
-                                       (tileHeatCapacity + heatCapacity));
+        var heat = temperatureDelta * (tileHeatCapacity * temperature.HeatCapacity /
+                                       (tileHeatCapacity + temperature.HeatCapacity));
         ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
-    }
-
-    public float GetHeatCapacity(EntityUid uid, TemperatureComponent? comp = null, PhysicsComponent? physics = null)
-    {
-        if (!Resolve(uid, ref comp) || !Resolve(uid, ref physics, false) || physics.FixturesMass <= 0)
-        {
-            return Atmospherics.MinimumHeatCapacity;
-        }
-
-        return comp.SpecificHeat * physics.FixturesMass;
-    }
-
-    private void OnInit(EntityUid uid, InternalTemperatureComponent comp, MapInitEvent args)
-    {
-        if (!TryComp<TemperatureComponent>(uid, out var temp))
-            return;
-
-        comp.Temperature = temp.CurrentTemperature;
     }
 
     private void OnRejuvenate(EntityUid uid, TemperatureComponent comp, RejuvenateEvent args)
@@ -185,64 +133,48 @@ public sealed class TemperatureSystem : EntitySystem
 
     private void ServerAlert(EntityUid uid, AlertsComponent status, OnTemperatureChangeEvent args)
     {
-        AlertType type;
-        float threshold;
-        float idealTemp;
-
-        if (!TryComp<TemperatureComponent>(uid, out var temperature))
+        switch (args.CurrentTemperature)
         {
-            _alerts.ClearAlertCategory(uid, AlertCategory.Temperature);
-            return;
-        }
-
-        if (TryComp<ThermalRegulatorComponent>(uid, out var regulator) &&
-            regulator.NormalBodyTemperature > temperature.ColdDamageThreshold &&
-            regulator.NormalBodyTemperature < temperature.HeatDamageThreshold)
-        {
-            idealTemp = regulator.NormalBodyTemperature;
-        }
-        else
-        {
-            idealTemp = (temperature.ColdDamageThreshold + temperature.HeatDamageThreshold) / 2;
-        }
-
-        if (args.CurrentTemperature <= idealTemp)
-        {
-            type = AlertType.Cold;
-            threshold = temperature.ColdDamageThreshold;
-        }
-        else
-        {
-            type = AlertType.Hot;
-            threshold = temperature.HeatDamageThreshold;
-        }
-
-        // Calculates a scale where 1.0 is the ideal temperature and 0.0 is where temperature damage begins
-        // The cold and hot scales will differ in their range if the ideal temperature is not exactly halfway between the thresholds
-        var tempScale = (args.CurrentTemperature - threshold) / (idealTemp - threshold);
-        switch (tempScale)
-        {
-            case <= 0f:
-                _alerts.ShowAlert(uid, type, 3);
+            // Cold strong.
+            case <= 260:
+                _alerts.ShowAlert(uid, AlertType.Cold, 3);
                 break;
 
-            case <= 0.4f:
-                _alerts.ShowAlert(uid, type, 2);
+            // Cold mild.
+            case <= 280 and > 260:
+                _alerts.ShowAlert(uid, AlertType.Cold, 2);
                 break;
 
-            case <= 0.66f:
-                _alerts.ShowAlert(uid, type, 1);
+            // Cold weak.
+            case <= 292 and > 280:
+                _alerts.ShowAlert(uid, AlertType.Cold, 1);
                 break;
 
-            case > 0.66f:
+            // Safe.
+            case <= 327 and > 292:
                 _alerts.ClearAlertCategory(uid, AlertCategory.Temperature);
+                break;
+
+            // Heat weak.
+            case <= 335 and > 327:
+                _alerts.ShowAlert(uid, AlertType.Hot, 1);
+                break;
+
+            // Heat mild.
+            case <= 360 and > 335:
+                _alerts.ShowAlert(uid, AlertType.Hot, 2);
+                break;
+
+            // Heat strong.
+            case > 360:
+                _alerts.ShowAlert(uid, AlertType.Hot, 3);
                 break;
         }
     }
 
-    private void EnqueueDamage(Entity<TemperatureComponent> temperature, ref OnTemperatureChangeEvent args)
+    private void EnqueueDamage(EntityUid uid, TemperatureComponent component, OnTemperatureChangeEvent args)
     {
-        ShouldUpdateDamage.Add(temperature);
+        ShouldUpdateDamage.Add(component);
     }
 
     private void ChangeDamage(EntityUid uid, TemperatureComponent temperature)

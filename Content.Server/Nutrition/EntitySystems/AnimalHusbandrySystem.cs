@@ -1,5 +1,6 @@
 ﻿using Content.Server.Administration.Logs;
 using Content.Server.Interaction.Components;
+using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
@@ -83,8 +84,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
 
         var xform = Transform(uid);
 
-        var partners = new HashSet<Entity<ReproductivePartnerComponent>>();
-        _entityLookup.GetEntitiesInRange(xform.Coordinates, component.BreedRange, partners);
+        var partners = _entityLookup.GetComponentsInRange<ReproductivePartnerComponent>(xform.Coordinates, component.BreedRange);
 
         if (partners.Count >= component.Capacity)
             return false;

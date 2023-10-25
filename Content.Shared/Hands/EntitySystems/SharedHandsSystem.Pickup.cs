@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;
@@ -201,7 +202,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         {
             // TODO make this check upwards for any container, and parent to that.
             // Currently this just checks the direct parent, so items can still teleport through containers.
-            ContainerSystem.AttachParentToContainerOrGrid((entity, Transform(entity)));
+            ContainerSystem.AttachParentToContainerOrGrid(Transform(entity));
         }
     }
 

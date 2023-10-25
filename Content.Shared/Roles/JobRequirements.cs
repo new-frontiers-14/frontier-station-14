@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
-using Robust.Shared.Players;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -77,8 +76,7 @@ namespace Content.Shared.Roles
             Dictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes,
-            bool isWhitelisted)
+            IPrototypeManager prototypes)
         {
             reason = null;
             if (job.Requirements == null)
@@ -86,7 +84,7 @@ namespace Content.Shared.Roles
 
             foreach (var requirement in job.Requirements)
             {
-                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes, isWhitelisted))
+                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
                     return false;
             }
 
@@ -101,8 +99,7 @@ namespace Content.Shared.Roles
             Dictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes,
-            bool isWhitelisted)
+            IPrototypeManager prototypes)
         {
             reason = null;
 
@@ -219,15 +216,6 @@ namespace Content.Shared.Roles
 
                         return true;
                     }
-                case WhitelistRequirement _: // DeltaV - Whitelist requirement
-                    if (isWhitelisted == null)
-                        throw new ArgumentNullException(nameof(isWhitelisted), "isWhitelisted cannot be null.");
-
-                    if (isWhitelisted)
-                        return true;
-
-                    reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-                    return false;
                 default:
                     throw new NotImplementedException();
             }

@@ -11,6 +11,9 @@ public sealed partial class ApcComponent : BaseApcNetComponent
     [DataField("onReceiveMessageSound")]
     public SoundSpecifier OnReceiveMessageSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
+    [DataField("apcIgnoreEmp")]
+    public bool ApcIgnoreEmp = false;
+
     [DataField("lastChargeState")]
     public ApcChargeState LastChargeState;
     [DataField("lastChargeStateTime", customTypeSerializer: typeof(TimeOffsetSerializer))]

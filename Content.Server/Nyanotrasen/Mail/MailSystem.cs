@@ -65,7 +65,6 @@ namespace Content.Server.Mail
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
         [Dependency] private readonly MindSystem _mind = default!;
-        [Dependency] private readonly MetaDataSystem _meta = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -473,8 +472,8 @@ namespace Content.Server.Mail
             if (TryMatchJobTitleToIcon(recipient.Job, out string? icon))
                 _appearanceSystem.SetData(uid, MailVisuals.JobIcon, icon);
 
-            _meta.SetEntityName(uid, Loc.GetString("mail-item-name-addressed",
-                ("recipient", recipient.Name)));
+            MetaData(uid).EntityName = Loc.GetString("mail-item-name-addressed",
+                ("recipient", recipient.Name));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
             accessReader.AccessLists.Add(recipient.AccessTags);
@@ -538,8 +537,8 @@ namespace Content.Server.Mail
 
             if (_idCardSystem.TryFindIdCard(receiver.Owner, out var idCard)
                 && TryComp<AccessComponent>(idCard.Owner, out var access)
-                && idCard.Comp.FullName != null
-                && idCard.Comp.JobTitle != null)
+                && idCard.FullName != null
+                && idCard.JobTitle != null)
             {
                 HashSet<String> accessTags = access.Tags;
 
@@ -565,8 +564,8 @@ namespace Content.Server.Mail
                     return false;
                 }
 
-                recipient = new MailRecipient(idCard.Comp.FullName,
-                    idCard.Comp.JobTitle,
+                recipient = new MailRecipient(idCard.FullName,
+                    idCard.JobTitle,
                     accessTags,
                     mayReceivePriorityMail,
                     stationName);

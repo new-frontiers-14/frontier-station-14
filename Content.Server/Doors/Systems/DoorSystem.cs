@@ -59,7 +59,7 @@ public sealed class DoorSystem : SharedDoorSystem
             return;
 
         if (door.ChangeAirtight && TryComp(uid, out AirtightComponent? airtight))
-            _airtightSystem.SetAirblocked((uid, airtight), collidable);
+            _airtightSystem.SetAirblocked(uid, airtight, collidable);
 
         // Pathfinding / AI stuff.
         RaiseLocalEvent(new AccessReaderChangeEvent(uid, collidable));
@@ -201,14 +201,14 @@ public sealed class DoorSystem : SharedDoorSystem
         }
     }
 
-    protected override void CheckDoorBump(Entity<DoorComponent, PhysicsComponent> ent)
+    protected override void CheckDoorBump(DoorComponent component, PhysicsComponent body)
     {
-        var (uid, door, physics) = ent;
-        if (door.BumpOpen)
+        var uid = body.Owner;
+        if (component.BumpOpen)
         {
-            foreach (var other in PhysicsSystem.GetContactingEntities(uid, physics, approximate: true))
+            foreach (var other in PhysicsSystem.GetContactingEntities(uid, body, approximate: true))
             {
-                if (Tags.HasTag(other, "DoorBumpOpener") && TryOpen(uid, door, other, quiet: true))
+                if (Tags.HasTag(other, "DoorBumpOpener") && TryOpen(uid, component, other, false, quiet: true))
                     break;
             }
         }

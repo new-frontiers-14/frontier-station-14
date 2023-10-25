@@ -67,12 +67,13 @@ public sealed partial class MindTests
             var entity = entMan.SpawnEntity(null, new MapCoordinates());
             var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
 
-            var mind = mindSystem.CreateMind(null);
+            var mindId = mindSystem.CreateMind(null);
+            var mind = entMan.GetComponent<MindComponent>(mindId);
 
-            Assert.That(mind.Comp.UserId, Is.EqualTo(null));
+            Assert.That(mind.UserId, Is.EqualTo(null));
 
-            mindSystem.TransferTo(mind, entity, mind: mind);
-            Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(mind.Owner));
+            mindSystem.TransferTo(mindId, entity, mind: mind);
+            Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(mindId));
         });
 
         await pair.CleanReturnAsync();
@@ -93,11 +94,11 @@ public sealed partial class MindTests
             var entity = entMan.SpawnEntity(null, new MapCoordinates());
             var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
 
-            var mindId = mindSystem.CreateMind(null).Owner;
+            var mindId = mindSystem.CreateMind(null);
             mindSystem.TransferTo(mindId, entity);
             Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(mindId));
 
-            var mind2 = mindSystem.CreateMind(null).Owner;
+            var mind2 = mindSystem.CreateMind(null);
             mindSystem.TransferTo(mind2, entity);
             Assert.Multiple(() =>
             {
@@ -183,7 +184,7 @@ public sealed partial class MindTests
             var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
             entMan.EnsureComponent<MindContainerComponent>(targetEntity);
 
-            var mind = mindSystem.CreateMind(null).Owner;
+            var mind = mindSystem.CreateMind(null);
 
             mindSystem.TransferTo(mind, entity);
 
@@ -275,7 +276,7 @@ public sealed partial class MindTests
             var entity = entMan.SpawnEntity(null, new MapCoordinates());
             var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
 
-            var mindId = mindSystem.CreateMind(null).Owner;
+            var mindId = mindSystem.CreateMind(null);
             var mind = entMan.EnsureComponent<MindComponent>(mindId);
 
             Assert.That(mind.UserId, Is.EqualTo(null));
@@ -333,7 +334,7 @@ public sealed partial class MindTests
     public async Task TestPlayerCanGhost()
     {
         // Client is needed to spawn session
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true, DummyTicker = false });
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
         var server = pair.Server;
 
         var entMan = server.ResolveDependency<IServerEntityManager>();
