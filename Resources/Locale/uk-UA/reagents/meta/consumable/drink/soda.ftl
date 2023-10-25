@@ -1,45 +1,45 @@
-reagent-name-cola = cola
-reagent-desc-cola = A sweet, carbonated soft drink. Caffeine free.
+reagent-name-cola = кола
+reagent-desc-cola = солодка дієтична кола. без цукру та кофеїну
 
-reagent-name-changeling-sting = changeling sting
-reagent-desc-changeling-sting = You take a tiny sip and feel a burning sensation...
+reagent-name-changeling-sting = приховане жало
+reagent-desc-changeling-sting = одного ковтка вистачить,не випробовуй долю!
 
 reagent-name-dr-gibb = Dr. Gibb
-reagent-desc-dr-gibb = A delicious blend of 42 different flavours.
+reagent-desc-dr-gibb = на смак наче безалкогольний ягермейстер
 
-reagent-name-energy-drink = Energy Drink
-reagent-desc-energy-drink = A dose of energy! Nanotrasen is not responsible if you grow avian appendages.
+reagent-name-energy-drink = енергетик
+reagent-desc-energy-drink = Нанотрайзен радіє,що ти вибрав не спати,а працювати!
 
-reagent-name-grape-soda = grape soda
-reagent-desc-grape-soda = It's Graaaaaape!
+reagent-name-grape-soda = виноградна содова
+reagent-desc-grape-soda = воно Шипиииить!
 
-reagent-name-ice-cream = ice cream
-reagent-desc-ice-cream = It was either this or the microwave, and nobody wants ice cream soup!
+reagent-name-ice-cream = морозиво
+reagent-desc-ice-cream = не треба сувати його в мікрохвильовку,ти ж не хочеш їсти суп з морозива!
 
 reagent-name-lemon-lime = lemon-lime
-reagent-desc-lemon-lime = tangy lime and lemon soda
+reagent-desc-lemon-lime = содова з лимону та лайму
 
 reagent-name-pwr-game = Pwr Game
-reagent-desc-pwr-game = The only drink with the PWR that true gamers crave. When a gamer talks about gamerfuel, this is what they're literally referring to.
+reagent-desc-pwr-game = Ви справді потребуєте це на своїй роботі прибиральника,точно!
 
-reagent-name-root-beer = root beer
-reagent-desc-root-beer = A very sweet, carbonated drink reminiscent of sarsparilla. Goes well with ice cream.
+reagent-name-root-beer = корневе пиво
+reagent-desc-root-beer = смачний газований напій,добре смакує з морозивом!
 
-reagent-name-root-beer-float = root beer float
-reagent-desc-root-beer-float = Root beer, but now with ice cream on top. It truly is the magnum opus of Canadian summertime drinks.
+reagent-name-root-beer-float = корневе пиво з морозивом
+reagent-desc-root-beer-float = корневе пиво з морозивом зверху,виглядає чудово,офіцерші в захваті!
 
 reagent-name-space-mountain-wind = Space Mountain Wind
-reagent-desc-space-mountain-wind = Blows right through you like a space wind.
+reagent-desc-space-mountain-wind = проходе скрізь тебе як теплі космічні вітри!
 
-reagent-name-space-up = Space-Up
-reagent-desc-space-up = Tastes like a hull breach in your mouth.
+reagent-name-space-up = розгерм
+reagent-desc-space-up = смакує як стимул до дій!
 
-reagent-name-starkist = starkist
-reagent-desc-starkist = A sweet, orange flavored soft drink.
+reagent-name-starkist = астроном
+reagent-desc-starkist = чудовий напій для споглядання вибуху супернової!
 
 reagent-name-fourteen-loko = Fourteen Loko
-reagent-desc-fourteen-loko = A highly processed liquid substance barely-passing intergalatic health standards for a soft drink.
+reagent-desc-fourteen-loko = зашурований напій,що з натяжкою досягає рівня безпеки для безалкогольних напоїв
 
-reagent-name-shamblers-juice = Shambler's Juice
-reagent-desc-shamblers-juice = ~Shake me up some of that Shambler's Juice!~
+reagent-name-shamblers-juice = сік Шамблерів
+reagent-desc-shamblers-juice = -Бармене налий пінту соку Шамблерів!
 
