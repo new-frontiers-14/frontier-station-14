@@ -24,8 +24,10 @@ using Content.Server.Maps;
 using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
+using Content.Server.Mind;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
+using Content.Server.Station.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -44,6 +46,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     public void InitializeConsole()
     {
@@ -168,8 +171,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
         newDeed.ShuttleUid = shuttle.Owner;
         newDeed.ShuttleName = name;
+
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
             _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
+
         _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), channel, uid);
         _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), InGameICChatType.Speak, true);
 
@@ -184,7 +189,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _records.Synchronize(station);
         }
 
-        int sellValue = 0;
+        //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
+        //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
+
+		int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
@@ -369,8 +377,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child.Value, out var mobState) && !_mobState.IsDead(child.Value, mobState)
-                || FoundOrganics(child.Value, mobQuery, xformQuery)) return true;
+            if (mobQuery.TryGetComponent(child.Value, out var mobState)
+                && !_mobState.IsDead(child.Value, mobState)
+                && _mind.TryGetMind(child.Value, out var mind, out var mindComp)
+                && !_mind.IsCharacterDeadIc(mindComp)
+                || FoundOrganics(child.Value, mobQuery, xformQuery))
+                return true;
         }
 
         return false;

@@ -54,7 +54,7 @@ public delegate void CalcPlayTimeTrackersCallback(IPlayerSession player, HashSet
 /// Operations like refreshing and sending play time info to clients are deferred until the next frame (note: not tick).
 /// </para>
 /// </remarks>
-public sealed class PlayTimeTrackingManager
+public sealed partial class PlayTimeTrackingManager
 {
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
@@ -131,8 +131,13 @@ public sealed class PlayTimeTrackingManager
             if (data.NeedSendTimers)
             {
                 SendPlayTimes(player);
-                SendWhitelist(player);
                 data.NeedSendTimers = false;
+            }
+
+            if (data.NeedRefreshWhitelist)
+            {
+                SendWhitelistCached(player);
+                data.NeedRefreshWhitelist = false;
             }
 
             data.IsDirty = false;
@@ -213,17 +218,6 @@ public sealed class PlayTimeTrackingManager
         };
 
         _net.ServerSendMessage(msg, pSession.ConnectedClient);
-    }
-    public async void SendWhitelist(IPlayerSession playerSession)
-    {
-        var whitelist = await _db.GetWhitelistStatusAsync(playerSession.UserId);
-
-        var msg = new MsgWhitelist
-        {
-            Whitelisted = whitelist
-        };
-
-        _net.ServerSendMessage(msg, playerSession.ConnectedClient);
     }
 
     /// <summary>
@@ -325,10 +319,13 @@ public sealed class PlayTimeTrackingManager
             data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
         }
 
+        session.ContentData()!.Whitelisted = await _db.GetWhitelistStatusAsync(session.UserId); // Nyanotrasen - Whitelist
+
         data.Initialized = true;
 
         QueueRefreshTrackers(session);
         QueueSendTimers(session);
+        QueueSendWhitelist(session);
     }
 
     public void ClientDisconnected(IPlayerSession session)
@@ -434,6 +431,7 @@ public sealed class PlayTimeTrackingManager
         public bool IsDirty;
         public bool NeedRefreshTackers;
         public bool NeedSendTimers;
+        public bool NeedRefreshWhitelist;
 
         // Active tracking info
         public readonly HashSet<string> ActiveTrackers = new();

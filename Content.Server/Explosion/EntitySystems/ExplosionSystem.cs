@@ -350,7 +350,7 @@ public sealed partial class ExplosionSystem : EntitySystem
             if (!HasComp<MapGridComponent>(gridId))
                 return null;
         }
-        var mapGrid = _mapMan.GetGrid(gridId.Value);
+        var mapGrid = _mapManager.GetGrid(gridId.Value);
         var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
         if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)

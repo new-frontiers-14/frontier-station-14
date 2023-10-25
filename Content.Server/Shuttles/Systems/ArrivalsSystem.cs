@@ -407,6 +407,7 @@ public sealed class ArrivalsSystem : EntitySystem
             EnsureComp<ArrivalsSourceComponent>(id);
             EnsureComp<ProtectedGridComponent>(id);
             EnsureComp<PreventPilotComponent>(id);
+            // EnsureComp<StationEmpImmuneComponent>(id); Enable in the case we want to ensure EMP immune grid
         }
 
         // Handle roundstart stations.
@@ -475,6 +476,7 @@ public sealed class ArrivalsSystem : EntitySystem
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(component.Shuttle);
             arrivalsComp.Station = uid;
             EnsureComp<ProtectedGridComponent>(uid);
+            // EnsureComp<StationEmpImmuneComponent>(uid); Enable in the case we want to ensure EMP immune grid
             _shuttles.FTLTravel(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: 10f, dock: true);
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
