@@ -73,6 +73,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             ShipyardConsoleUiKey.Shipyard => "Civilian",
             ShipyardConsoleUiKey.Security => "Security",
             ShipyardConsoleUiKey.BlackMarket => "BlackMarket",
+            ShipyardConsoleUiKey.Expedition => "Expedition",
             _ => "Shipyard",
         };
 

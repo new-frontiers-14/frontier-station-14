@@ -66,7 +66,7 @@ public sealed class MutationSystem : EntitySystem
         // Fun (90)
         MutateBool(ref seed.Seedless      , true , 10, totalbits, severity);
         MutateBool(ref seed.Slip          , true , 10, totalbits, severity);
-        //MutateBool(ref seed.Sentient      , true , 10, totalbits, severity);
+        MutateBool(ref seed.Sentient      , true , 10, totalbits, severity);
         MutateBool(ref seed.Ligneous      , true , 10, totalbits, severity);
         //MutateBool(ref seed.Bioluminescent, true , 10, totalbits, severity);
         MutateBool(ref seed.TurnIntoKudzu , true , 10, totalbits, severity);
