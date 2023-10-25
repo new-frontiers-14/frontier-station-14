@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Content.Shared.Tools.Components;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -36,6 +37,8 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, GotEmaggedEvent>(OnEmagged);
 
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
+
+        SubscribeLocalEvent<ApcComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 
     public override void Update(float deltaTime)
@@ -117,7 +120,7 @@ public sealed class ApcSystem : EntitySystem
     }
 
     public void UpdateApcState(EntityUid uid,
-        ApcComponent? apc=null,
+        ApcComponent? apc = null,
         PowerNetworkBatteryComponent? battery = null)
     {
         if (!Resolve(uid, ref apc, ref battery, false))
@@ -197,6 +200,13 @@ public sealed class ApcSystem : EntitySystem
             args.Disabled = true;
             ApcToggleBreaker(uid, component);
         }
+    }
+
+    private void OnToolUseAttempt(EntityUid uid, ApcComponent component, ToolUseAttemptEvent args)
+    {
+        // prevent reconstruct exploit to skip cooldowns
+        if (!component.MainBreakerEnabled)
+            args.Cancel();
     }
 }
 
