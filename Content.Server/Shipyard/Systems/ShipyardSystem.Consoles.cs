@@ -24,6 +24,7 @@ using Content.Server.Maps;
 using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
+using Content.Server.Mind;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Server.Station.Components;
@@ -45,6 +46,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     public void InitializeConsole()
     {
@@ -375,8 +377,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child.Value, out var mobState) && !_mobState.IsDead(child.Value, mobState)
-                || FoundOrganics(child.Value, mobQuery, xformQuery)) return true;
+            if (mobQuery.TryGetComponent(child.Value, out var mobState)
+                && !_mobState.IsDead(child.Value, mobState)
+                && _mind.TryGetMind(child.Value, out var mind, out var mindComp)
+                && !_mind.IsCharacterDeadIc(mindComp)
+                || FoundOrganics(child.Value, mobQuery, xformQuery))
+                return true;
         }
 
         return false;
