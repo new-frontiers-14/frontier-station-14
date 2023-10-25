@@ -122,7 +122,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(2400f, 4000f);
+        var depotOffset = _random.NextVector2(3000f, 5000f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
@@ -136,7 +136,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1400f, 2100f)
+                Offset = _random.NextVector2(2100f, 3800f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
@@ -156,7 +156,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2350f, 3900f)
+                Offset = _random.NextVector2(2150f, 3900f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
@@ -167,7 +167,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1900f, 3500f)
+                Offset = _random.NextVector2(1900f, 3800f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
@@ -193,7 +193,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2050f, 3900f)
+                Offset = _random.NextVector2(1650f, 3400f)
             }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
