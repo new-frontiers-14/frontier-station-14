@@ -148,7 +148,6 @@
   - type: Bloodstream
     bloodMaxVolume: 0.1
 
-
 - type: entity
   name: chicken
   parent: SimpleMobBase
@@ -221,6 +220,15 @@
     factions:
     - Passive
     - Chicken
+  - type: Inventory # Frontier
+    speciesId: chicken
+    templateId: pet
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
 
 - type: entity
   id: FoodEggChickenFertilized
