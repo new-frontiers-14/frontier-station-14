@@ -1,6 +1,6 @@
 - type: entity
   id: SignalTimer
-  name: signal timer
+  name: сигнальний таймер
   description: It's a timer for sending timed signals to things.
   placement:
     mode: SnapgridCenter
@@ -45,7 +45,7 @@
 - type: entity
   id: ScreenTimer
   parent: SignalTimer
-  name: screen timer
+  name: екранний таймер
   description: It's a timer for sending timed signals to things, with a built-in screen.
   components:
   - type: SignalTimer
@@ -63,7 +63,7 @@
 - type: entity
   id: BrigTimer
   parent: ScreenTimer
-  name: brig timer
+  name: бріг таймер
   description: It's a timer for brig cells.
   components:
   - type: AccessReader
@@ -77,7 +77,7 @@
 - type: entity
   noSpawn: true
   id: TimerFrame
-  name: timer frame
+  name: каркас таймеру
   description: A construction frame for a timer.
   placement:
     mode: SnapgridCenter
