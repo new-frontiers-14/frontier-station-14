@@ -1,0 +1,29 @@
+- type: entity
+  id: Shredder
+  parent: BaseLathe
+  name: shredder
+  description: It Shreds. What more is there to say?
+  components:
+  - type: Sprite
+    sprite: _NF\Structures\Machines\Shredder.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: normal
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: shredding-money
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+  - type: Machine
+    board: ShredderMachineCircuitboard
+  - type: MaterialStorage
+    dropOnDeconstruct: false
+    whitelist:
+      tags:
+        - Money
+  - type: Lathe
+    idleState: icon
+    runningState: shredding-empty
+    canEjectStoredMaterials: false
+    staticRecipes:
