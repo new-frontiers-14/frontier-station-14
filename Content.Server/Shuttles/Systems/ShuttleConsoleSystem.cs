@@ -21,6 +21,8 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server.Emp;
+using Content.Shared.Tools.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -59,6 +61,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
+
+        SubscribeLocalEvent<ShuttleConsoleComponent, EmpPulseEvent>(OnEmpPulse);
+
+        SubscribeLocalEvent<ShuttleConsoleComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)
@@ -462,4 +468,24 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 RemovePilot(pilot, pilotComponent);
         }
     }
+
+    private void OnEmpPulse(EntityUid uid, ShuttleConsoleComponent component, ref EmpPulseEvent args)
+    {
+        if (component.MainBreakerEnabled)
+        {
+            args.Affected = true;
+            args.Disabled = true;
+            component.TimeoutFromEmp = _timing.CurTime;
+        }
+    }
+
+    private void OnToolUseAttempt(EntityUid uid, ShuttleConsoleComponent component, ToolUseAttemptEvent args)
+    {
+        // prevent reconstruct exploit to skip cooldowns
+        if (!component.MainBreakerEnabled)
+            args.Cancel();
+    }
+
+    [ByRefEvent]
+    public record struct ShuttleToggleAttemptEvent(bool Cancelled);
 }

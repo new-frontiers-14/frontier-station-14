@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Shuttles.Components;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Shuttles.Components
 {
@@ -14,5 +15,20 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField("zoom")]
         public Vector2 Zoom = new(1.5f, 1.5f);
+
+        /// <summary>
+        /// For EMP to allow keeping the shuttle off
+        /// </summary>
+        [DataField("enabled")]
+        public bool MainBreakerEnabled = true;
+
+        /// <summary>
+        ///     While disabled by EMP
+        /// </summary>
+        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
+
+        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+        public float DisableDuration = 60f;
     }
 }
