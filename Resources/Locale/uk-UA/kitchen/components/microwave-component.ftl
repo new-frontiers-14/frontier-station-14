@@ -1,25 +1,25 @@
 ## Entity
 
-microwave-component-interact-using-no-power = It has no power!
-microwave-component-interact-using-broken = It's broken!
-microwave-component-interact-using-container-full = Container is full
-microwave-component-interact-using-transfer-success = Transferred {$amount}u
-microwave-component-interact-using-transfer-fail = That won't work!
-microwave-component-suicide-multi-head-others-message = {$victim} is trying to cook their heads!
-microwave-component-suicide-others-message = {$victim} is trying to cook their head!
-microwave-component-suicide-multi-head-message = You cook your heads!
-microwave-component-suicide-message = You cook your head!
-microwave-component-upgrade-cook-time = cook time
+microwave-component-interact-using-no-power = немає електроенергії!
+microwave-component-interact-using-broken = Воно зламане!
+microwave-component-interact-using-container-full = Воно повне
+microwave-component-interact-using-transfer-success = перелито {$amount}u
+microwave-component-interact-using-transfer-fail = Це не спрацює!
+microwave-component-suicide-multi-head-others-message = {$victim} намагається приготувати свій казанок!
+microwave-component-suicide-others-message = {$victim} намагаються приготувати їхню голову!
+microwave-component-suicide-multi-head-message = Ти приготував свою голову,довбню!
+microwave-component-suicide-message = Ти приготував свою голову!
+microwave-component-upgrade-cook-time = час готування
 
 ## Bound UI
 
-microwave-bound-user-interface-instant-button = INSTANT
-microwave-bound-user-interface-cook-time-label = COOK TIME: {$time}
+microwave-bound-user-interface-instant-button = МОМЕНТАЛЬНО
+microwave-bound-user-interface-cook-time-label = ЧАС ГОТУВАННЯ: {$time}
 
 ## UI
 
-microwave-menu-title = Microwave
-microwave-menu-start-button = Start
-microwave-menu-eject-all-text = Eject All Contents
-microwave-menu-eject-all-tooltip = This vaporizes all reagents, but ejects any solids.
-microwave-menu-instant-button = INSTANT
+microwave-menu-title = Мікрохвильовка
+microwave-menu-start-button = Старт
+microwave-menu-eject-all-text = Вийняти усе
+microwave-menu-eject-all-tooltip = Це випаровує всі реагенти, але викидає будь-які тверді речовини.
+microwave-menu-instant-button = Моментально

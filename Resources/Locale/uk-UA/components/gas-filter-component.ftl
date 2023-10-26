@@ -1,13 +1,13 @@
-comp-gas-filter-ui-filter-status = Status:
-comp-gas-filter-ui-status-enabled = On
-comp-gas-filter-ui-status-disabled = Off
+comp-gas-filter-ui-filter-status =Статус:
+comp-gas-filter-ui-status-enabled = Ввімкнено
+comp-gas-filter-ui-status-disabled = Вимкнено
 
-comp-gas-filter-ui-filter-transfer-rate = Transfer Rate (L/s):
-comp-gas-filter-ui-filter-set-rate = Set
+comp-gas-filter-ui-filter-transfer-rate = Швидкість передачі (L/s):
+comp-gas-filter-ui-filter-set-rate = Встановити
 
-comp-gas-filter-ui-filter-gas-current = Currently Filtering:
-comp-gas-filter-ui-filter-gas-select = Select a gas to filter out:
-comp-gas-filter-ui-filter-gas-confirm = Set Gas
-comp-gas-filter-ui-filter-gas-none = None
+comp-gas-filter-ui-filter-gas-current = Наразі фільтрується:
+comp-gas-filter-ui-filter-gas-select = Виберіть газ для фільтрації:
+comp-gas-filter-ui-filter-gas-confirm = Встановити газ
+comp-gas-filter-ui-filter-gas-none = Жодний
 
-comp-gas-filter-ui-needs-anchor = Anchor it first!
+comp-gas-filter-ui-needs-anchor = Прикрутіть до підлоги спочатку!
