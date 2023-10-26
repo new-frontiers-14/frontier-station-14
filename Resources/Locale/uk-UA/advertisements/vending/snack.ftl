@@ -1,5 +1,5 @@
-﻿advertisement-snack-1 = Try our new nougat bar!
-advertisement-snack-2 = Twice the calories for half the price!
+﻿advertisement-snack-1 = Спробуйте наш новий батончик з нугою!
+advertisement-snack-2 = Вдвічі більше калорій за половину ціни!
 advertisement-snack-3 = The healthiest!
 advertisement-snack-4 = Award-winning chocolate bars!
 advertisement-snack-5 = Mmm! So good!

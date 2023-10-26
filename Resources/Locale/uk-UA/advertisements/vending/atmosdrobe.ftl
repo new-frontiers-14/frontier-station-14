@@ -1,1 +1,1 @@
-advertisement-atmosdrobe-1 = Get your inflammable clothing right here!!!
+advertisement-atmosdrobe-1 = Беріть свій легкозаймистий одяг прямо з собою!!!

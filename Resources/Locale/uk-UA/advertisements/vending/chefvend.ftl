@@ -1,7 +1,7 @@
-﻿advertisement-chefvend-1 = At least sixty percent of our eggs un-broken, guranteed!
-advertisement-chefvend-2 = Rice, rice, baby.
-advertisement-chefvend-3 = Slap some butter on it!
-advertisement-chefvend-4 = Are you worth your salt? We are.
-advertisement-chefvend-5 = Mmm, meat.
-advertisement-chefvend-6 = Harness the power of flour.
-advertisement-chefvend-7 = Show your customers who's the best chef around with our galaxy famous, award winning BBQ sauce.
+﻿advertisement-chefvend-1 = Принаймні шістдесят відсотків наших яєць не розбиті, гарантовано!
+advertisement-chefvend-2 = Рис, мій любий рис, крихітко.
+advertisement-chefvend-3 = Намажте трохи масла!
+advertisement-chefvend-4 = Чи варті ви своєї солі? Саме так.
+advertisement-chefvend-5 = Сало,сало українське сало,воно є і його завжди мало!
+advertisement-chefvend-6 = Використовуйте силу борошна.
+advertisement-chefvend-7 = Покажіть своїм клієнтам, хто є найкращим шеф-кухарем, за допомогою нашого знаменитого, відзначеного нагородами соусу барбекю.

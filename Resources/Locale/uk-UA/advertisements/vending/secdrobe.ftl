@@ -1,4 +1,4 @@
-advertisement-secdrobe-1 = Beat perps in style!
-advertisement-secdrobe-2 = It's red so you can't see the blood!
-advertisement-secdrobe-3 = You have the right to be fashionable!
-advertisement-secdrobe-4 = Now you can be the fashion police you always wanted to be!
+advertisement-secdrobe-1 = Офіцерші,будьте готові до немитого гнома,що намагається вас закадрити!
+advertisement-secdrobe-2 = Він червоний, тому крові не видно!
+advertisement-secdrobe-3 = Ви маєш право бути модним!
+advertisement-secdrobe-4 = Тепер ви можете бути модною поліцією, якою завжди хотіли бути!

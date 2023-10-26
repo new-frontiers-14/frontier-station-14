@@ -1,2 +1,2 @@
-advertisement-engidrobe-1 = Guaranteed to protect your feet from industrial accidents!
-advertisement-engidrobe-2 = Afraid of radiation? Then wear yellow!
+advertisement-engidrobe-1 = Гарантовано захистить ваші ноги від нещасних випадків на виробництві!
+advertisement-engidrobe-2 = Боїтеся радіації? Тоді одягни жовтий!
