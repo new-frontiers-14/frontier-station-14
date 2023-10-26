@@ -154,7 +154,7 @@ namespace Content.Server.RoundEnd
                 null,
                 Color.Gold);
 
-            SoundSystem.Play("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast());
+            SoundSystem.Play("/Audio/Announcements/shuttlecalled-ua.ogg", Filter.Broadcast());
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -185,7 +185,7 @@ namespace Content.Server.RoundEnd
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("Station"), false, colorOverride: Color.Gold);
 
-            SoundSystem.Play("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast());
+            SoundSystem.Play("/Audio/Announcements/shuttlerecalled-ua.ogg", Filter.Broadcast());
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
