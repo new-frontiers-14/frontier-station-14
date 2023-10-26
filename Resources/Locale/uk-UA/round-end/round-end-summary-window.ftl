@@ -1,8 +1,8 @@
-round-end-summary-window-title = Round End Summary
-round-end-summary-window-round-end-summary-tab-title = Round Information
-round-end-summary-window-player-manifest-tab-title = Player Manifest
-round-end-summary-window-round-id-label = Round [color=white]#{$roundId}[/color] has ended.
-round-end-summary-window-gamemode-name-label = The game mode was [color=white]{$gamemode}[/color].
-round-end-summary-window-duration-label = It lasted for [color=yellow]{$hours} hours, {$minutes} minutes, and {$seconds} seconds.
-round-end-summary-window-player-info-if-observer-text = [color=gray]{$playerOOCName}[/color] was [color=lightblue]{$playerICName}[/color], an observer.
-round-end-summary-window-player-info-if-not-observer-text = [color=gray]{$playerOOCName}[/color] was [color={$icNameColor}]{$playerICName}[/color] playing role of [color=orange]{$playerRole}[/color].
+round-end-summary-window-title = Підсумок раунду
+round-end-summary-window-round-end-summary-tab-title = Інформація про раунд
+round-end-summary-window-player-manifest-tab-title = Маніфест гравця
+round-end-summary-window-round-id-label = Раунд [color=white]#{$roundId}[/color] завершився.
+round-end-summary-window-gamemode-name-label = Режим гри був [color=white]{$gamemode}[/color].
+round-end-summary-window-duration-label = Це тривало [color=yellow]{$hours} годин, {$minutes} хвилин і {$seconds} секунд.
+round-end-summary-window-player-info-if-observer-text = [color=gray]{$playerOOCName}[/color] був [color=lightblue]{$playerICName}[/color], спостерігачем.
+round-end-summary-window-player-info-if-not-observer-text = [color=gray]{$playerOOCName}[/color] був [color={$icNameColor}]{$playerICName}[/color] у ролі [color=orange]{$playerRole}[/color].
