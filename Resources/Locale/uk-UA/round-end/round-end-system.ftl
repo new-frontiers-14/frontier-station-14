@@ -1,9 +1,9 @@
 ## RoundEndSystem
 
-round-end-system-shuttle-called-announcement = An emergency shuttle has been sent. ETA: {$time} {$units}.
-round-end-system-shuttle-auto-called-announcement = An automatic crew shift change shuttle has been sent. ETA: {$time} {$units}. Recall the shuttle to extend the shift.
-round-end-system-shuttle-recalled-announcement = The emergency shuttle has been recalled.
-round-end-system-round-restart-eta-announcement = Restarting the round in {$time} {$units}...
+round-end-system-shuttle-called-announcement = Було відправлено евакуаційниш шатл. Час очікування: {$time} {$units}.
+round-end-system-shuttle-auto-called-announcement = Був відправлений автоматичний шатл. Час очікування: {$time} {$units}. Відкликайте шатл, щоб продовжити зміну.
+round-end-system-shuttle-recalled-announcement = Евакуаційний шатл відкликано.
+round-end-system-round-restart-eta-announcement = Перезапуск раунду через {$time} {$units}...
 
-eta-units-minutes = minutes
-eta-units-seconds = seconds
+eta-units-minutes = хвилин
+eta-units-seconds = секунд

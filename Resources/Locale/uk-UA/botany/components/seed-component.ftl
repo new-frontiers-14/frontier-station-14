@@ -1,11 +1,11 @@
 ## Entity
 
-seed-component-description = It has a picture of [color=yellow]{$seedName}[/color] on the front.
-seed-component-has-variety-tag = It's tagged as variety [color=lightgray]no. {$seedUid}[/color].
-seed-component-plant-yield-text = Plant Yield:    [color=lightblue]{$seedYield}[/color]
-seed-component-plant-potency-text = Plant Potency: [color=lightblue]{$seedPotency}[/color]
+seed-component-description = На ньому є зображення [color=yellow]{$seedName}[/color] на передній частині.
+seed-component-has-variety-tag = Це позначено як сорт [color=lightgray]no. {$seedUid}[/color].
+seed-component-plant-yield-text = Врожайність рослин:    [color=lightblue]{$seedYield}[/color]
+seed-component-plant-potency-text = Сила рослин: [color=lightblue]{$seedPotency}[/color]
 
-botany-seed-packet-name = packet of {$seedName} {$seedNoun}
-botany-harvest-fail-message = You fail to harvest anything useful.
-botany-harvest-success-message = You harvest from the {$name}
-botany-mysterious-description-addon = On second thought, something about this one looks strange.
+botany-seed-packet-name = пакет з {$seedName} {$seedNoun}
+botany-harvest-fail-message = Вам не вдається зібрати нічого корисного.
+botany-harvest-success-message = Ви збираєте з {$name}
+botany-mysterious-description-addon = Якщо подумати, щось у цьому виглядає дивно.

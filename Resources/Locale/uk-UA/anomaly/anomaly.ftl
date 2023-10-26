@@ -1,46 +1,46 @@
-anomaly-component-contact-damage = The anomaly sears off your skin!
+anomaly-component-contact-damage = Аномалія обпікає вашу шкіру!
 
-anomaly-vessel-component-anomaly-assigned = Anomaly assigned to vessel.
-anomaly-vessel-component-not-assigned = This vessel is not assigned to any anomaly. Try using a scanner on it.
-anomaly-vessel-component-assigned = This vessel is currently assigned to an anomaly.
-anomaly-vessel-component-upgrade-output = point output
+anomaly-vessel-component-anomaly-assigned = Аномалія, присвоєна судині.
+anomaly-vessel-component-not-assigned = Ця судина не віднесена до жодної аномалії. Спробуйте скористатися сканером.
+anomaly-vessel-component-assigned = Ця судина наразі віднесена до аномалії.
+anomaly-vessel-component-upgrade-output = точковий вихід
 
-anomaly-particles-delta = Delta particles
-anomaly-particles-epsilon = Epsilon particles
-anomaly-particles-zeta = Zeta particles
-anomaly-particles-omega = Omega particles
+anomaly-particles-delta = Дельта-частинки
+anomaly-particles-epsilon = Епсилон частинки
+anomaly-particles-zeta = Зета-частинки
+anomaly-particles-omega = Омега-частинки
 
-anomaly-scanner-component-scan-complete = Scan complete!
+anomaly-scanner-component-scan-complete = Сканування завершено!
 
-anomaly-scanner-ui-title = anomaly scanner
-anomaly-scanner-no-anomaly = No anomaly currently scanned.
-anomaly-scanner-severity-percentage = Current severity: [color=gray]{$percent}[/color]
-anomaly-scanner-stability-low = Current anomaly state: [color=gold]Decaying[/color]
-anomaly-scanner-stability-medium = Current anomaly state: [color=forestgreen]Stable[/color]
-anomaly-scanner-stability-high = Current anomaly state: [color=crimson]Growing[/color]
-anomaly-scanner-point-output = Point output: [color=gray]{$point}[/color]
-anomaly-scanner-particle-readout = Particle Reaction Analysis:
-anomaly-scanner-particle-danger = - [color=crimson]Danger type:[/color] {$type}
-anomaly-scanner-particle-unstable = - [color=plum]Unstable type:[/color] {$type}
-anomaly-scanner-particle-containment = - [color=goldenrod]Containment type:[/color] {$type}
-anomaly-scanner-pulse-timer = Time until next pulse: [color=gray]{$time}[/color]
+anomaly-scanner-ui-title = сканер аномалій
+anomaly-scanner-no-anomaly = Наразі жодна аномалія не сканується.
+anomaly-scanner-severity-percentage = Поточна серйозність: [color=gray]{$percent}[/color]
+anomaly-scanner-stability-low = Поточний стан аномалії: [color=gold]Decaying[/color]
+anomaly-scanner-stability-medium = Поточний стан аномалії: [color=forestgreen]Stable[/color]
+anomaly-scanner-stability-high = Поточний стан аномалії: [color=crimson]Growing[/color]
+anomaly-scanner-point-output = Вихід точки: [color=gray]{$point}[/color]
+anomaly-scanner-particle-readout = Аналіз реакції частинок:
+anomaly-scanner-particle-danger = - [color=crimson]Тип небезпеки:[/color] {$type}
+anomaly-scanner-particle-unstable = - [color=plum]Нестабільний тип:[/color] {$type}
+anomaly-scanner-particle-containment = - [color=goldenrod]Тип утримання:[/color] {$type}
+anomaly-scanner-pulse-timer = Час до наступного імпульсу: [color=gray]{$time}[/color]
 
-anomaly-generator-ui-title = Anomaly Generator
-anomaly-generator-fuel-display = Fuel:
-anomaly-generator-cooldown = Cooldown: [color=gray]{$time}[/color]
-anomaly-generator-no-cooldown = Cooldown: [color=gray]Complete[/color]
-anomaly-generator-yes-fire = Status: [color=forestgreen]Ready[/color]
-anomaly-generator-no-fire = Status: [color=crimson]Not ready[/color]
-anomaly-generator-generate = Generate Anomaly
+anomaly-generator-ui-title = Генератор аномалій
+anomaly-generator-fuel-display = Паливо:
+anomaly-generator-cooldown = Заспокоєння: [color=gray]{$time}[/color]
+anomaly-generator-no-cooldown = Заспокоєння: [color=gray]Повний[/color]
+anomaly-generator-yes-fire = Статус: [color=forestgreen]Готовий[/color]
+anomaly-generator-no-fire = Статус: [color=crimson]Не готовий[/color]
+anomaly-generator-generate = Створити аномалію
 anomaly-generator-charges = {$charges ->
-    [one] {$charges} charge
-    *[other] {$charges} charges
+    [one] {$charges} заряд
+    *[other] {$charges} зарядів
 }
-anomaly-generator-announcement = An anomaly has been generated!
+anomaly-generator-announcement = Виникла аномалія!
 
-anomaly-command-pulse = Pulses a target anomaly
-anomaly-command-supercritical = Makes a target anomaly go supercritical
+anomaly-command-pulse = Пульсує цільову аномалію
+anomaly-command-supercritical = Робить цільову аномалію надкритичною
 
 # Flavor text on the footer
-anomaly-generator-flavor-left = Anomaly may spawn inside the operator.
+anomaly-generator-flavor-left = Аномалія може породжуватися всередині оператора.
 anomaly-generator-flavor-right = v1.1
