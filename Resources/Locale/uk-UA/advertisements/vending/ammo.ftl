@@ -1,4 +1,4 @@
-﻿advertisement-ammo-1 =Liberation Station: ваше єдиний вибір для всього, що стосується другого шансу!
+﻿advertisement-ammo-1 = Liberation Station: ваше єдиний вибір для всього, що стосується другого шансу!
 advertisement-ammo-2 = Будь патріотом вже сьогодні, бери зброю в руки!
 advertisement-ammo-3 = Якісна таки зброя за доступними цінами!
 advertisement-ammo-4 = Better dead than red! 
