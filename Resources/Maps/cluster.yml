@@ -27986,6 +27986,53 @@ entities:
         6124:
         - ArtifactAnalyzerSender: ArtifactAnalyzerReceiver
       type: DeviceLinkSource
+- proto: ComputerBankATM
+  entities:
+  - uid: 9050
+    components:
+    - pos: 0.5,-23.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 9051
+    components:
+    - pos: -41.5,14.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 9308
+    components:
+    - pos: 44.5,4.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: ComputerCargoBounty
   entities:
   - uid: 7247
@@ -28002,12 +28049,20 @@ entities:
       pos: 8.5,-22.5
       parent: 1
       type: Transform
+    - containers:
+        board: !type:Container
+          ents: []
+      type: ContainerContainer
   - uid: 7395
     components:
     - rot: 1.5707963267948966 rad
       pos: 4.5,-14.5
       parent: 1
       type: Transform
+    - containers:
+        board: !type:Container
+          ents: []
+      type: ContainerContainer
 - proto: ComputerCargoShuttle
   entities:
   - uid: 4918
@@ -28158,6 +28213,41 @@ entities:
       pos: 13.5,-24.5
       parent: 1
       type: Transform
+- proto: ComputerShipyard
+  entities:
+  - uid: 9505
+    components:
+    - pos: -7.5,30.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+- proto: ComputerShipyardSecurity
+  entities:
+  - uid: 9309
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 16.5,14.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: ComputerShuttleCargo
   entities:
   - uid: 1723
@@ -28258,6 +28348,83 @@ entities:
     - pos: -14.5,-4.5
       parent: 1
       type: Transform
+- proto: ComputerWallmountBankATM
+  entities:
+  - uid: 7562
+    components:
+    - pos: -3.5,11.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 8931
+    components:
+    - pos: 6.5,11.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 8933
+    components:
+    - pos: 4.5,-6.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 8934
+    components:
+    - pos: -2.5,-23.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 9201
+    components:
+    - pos: -42.5,4.5
+      parent: 1
+      type: Transform
+    - containers:
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: ConveyorBelt
   entities:
   - uid: 1730
@@ -56123,6 +56290,13 @@ entities:
     - pos: 38.75,11.506845
       parent: 1
       type: Transform
+- proto: MailTeleporter
+  entities:
+  - uid: 9504
+    components:
+    - pos: 2.5,16.5
+      parent: 1
+      type: Transform
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 8830
@@ -67198,6 +67372,24 @@ entities:
     - pos: -21.5,5.5
       parent: 1
       type: Transform
+- proto: StationAdminBankATM
+  entities:
+  - uid: 9503
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -0.5,30.5
+      parent: 1
+      type: Transform
+    - containers:
+        station-bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: StationMap
   entities:
   - uid: 12501
