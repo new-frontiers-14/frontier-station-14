@@ -121,8 +121,8 @@
         - id: ClothingShoesBootsMag
         - id: ClothingOuterHardsuitEngineering
         - id: ClothingMaskBreath
-  - type: AccessReader
-    access: [["Engineering"]]
+  # - type: AccessReader
+    # access: [["Engineering"]]
 
 #Atmospherics hardsuit
 - type: entity
@@ -136,8 +136,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitAtmos
         - id: ClothingMaskBreath
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  # - type: AccessReader
+    # access: [["Atmospherics"]]
 
 #Security hardsuit
 - type: entity
@@ -151,6 +151,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
+        - id: JetpackSecurityFilled
   - type: AccessReader
     access: [["Security"]]
 
@@ -168,8 +169,8 @@
         - id: ClothingShoesBootsMagAdv
         - id: ClothingOuterHardsuitEngineeringWhite
         - id: ClothingMaskBreath
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
+  # - type: AccessReader
+    # access: [["ChiefEngineer"]]
 
 #CMO's hardsuit
 - type: entity
@@ -183,8 +184,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitMedical
         - id: ClothingMaskBreathMedical
-  - type: AccessReader
-    access: [ [ "ChiefMedicalOfficer" ] ]
+  # - type: AccessReader
+    # access: [ [ "ChiefMedicalOfficer" ] ]
 
 #RD's hardsuit
 - type: entity
@@ -198,8 +199,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitRd
         - id: ClothingMaskBreath
-  - type: AccessReader
-    access: [ [ "ResearchDirector" ] ]
+  # - type: AccessReader
+    # access: [ [ "ResearchDirector" ] ]
 
 #HOS's hardsuit
 - type: entity
@@ -229,6 +230,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
+        - id: JetpackSecurityFilled
   - type: AccessReader
     access: [["Armory"]]
 
@@ -244,8 +246,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitCap
         - id: ClothingMaskGasCaptain
-  - type: AccessReader
-    access: [["Captain"]]
+  # - type: AccessReader
+    # access: [["Captain"]]
 
 #Salvage hardsuit
 - type: entity
@@ -260,8 +262,9 @@
       - id: ClothingShoesBootsMag
       - id: ClothingOuterHardsuitSpatio
       - id: ClothingMaskGasExplorer
-  - type: AccessReader
-    access: [["Salvage"]]
+      - id: JetpackMiniFilled
+  # - type: AccessReader
+    # access: [["Salvage"]]
 
 #Blood-red hardsuit
 - type: entity
