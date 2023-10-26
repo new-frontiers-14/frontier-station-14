@@ -1,1 +1,1 @@
-advertisement-virodrobe-1 = Viruses getting you down? Then upgrade to sterilized clothing today!
+advertisement-virodrobe-1 = Віруси знемагають? Тоді перейдіть на стерилізований одяг вже сьогодні!

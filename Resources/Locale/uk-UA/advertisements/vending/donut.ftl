@@ -1,3 +1,3 @@
-﻿advertisement-donut-1 = Each of us is a little cop!
-advertisement-donut-2 = Hope you're hunger!
-advertisement-donut-3 = Over 1 million donuts sold!
+﻿advertisement-donut-1 = Кожен з нас маленький поліцейський!
+advertisement-donut-2 = Сподіваюся, ти голодний!
+advertisement-donut-3 = Продано понад 1 мільйон пончиків!

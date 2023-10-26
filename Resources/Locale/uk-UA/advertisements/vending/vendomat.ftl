@@ -1,4 +1,4 @@
-﻿advertisement-vendomat-1 = Only the finest!
-advertisement-vendomat-2 = Have some tools.
-advertisement-vendomat-3 = The most robust equipment.
-advertisement-vendomat-4 = The finest gear in space!
+﻿advertisement-vendomat-1 = Тільки найкраще!
+advertisement-vendomat-2 = Отримайте ці інструменти.
+advertisement-vendomat-3 = Це треба щоб робастити всю зміну!
+advertisement-vendomat-4 = Найкраще спорядження в космосі!

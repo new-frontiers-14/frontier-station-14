@@ -1,6 +1,6 @@
 ﻿advertisement-smartfridge-1 = Hello world!
-advertisement-smartfridge-2 = PLEASE LET ME OUT
-advertisement-smartfridge-3 = I can make a quintillion calculations a second. Now, I am a fridge.
-advertisement-smartfridge-4 = New firmware update available.
-advertisement-smartfridge-5 = I am completely operational, and all my circuits are functioning perfectly.
-advertisement-smartfridge-6 = Scanning system for malicious software...
+advertisement-smartfridge-2 = ВИПУСТИ МЕНЕ!
+advertisement-smartfridge-3 = Я можу зробити квінтильйон обчислень за секунду. Тепер я холодильник.
+advertisement-smartfridge-4 = Доступне нове оновлення мікропрограми.
+advertisement-smartfridge-5 = Я повністю справний, і всі мої схеми функціонують ідеально.
+advertisement-smartfridge-6 = Сканую систему на наявність того,хто працює не по спеціальності...
