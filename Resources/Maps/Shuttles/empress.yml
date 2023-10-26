@@ -1204,110 +1204,6 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: ActionToggleBlock
-  entities:
-  - uid: 1028
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1027
-      type: Transform
-- proto: ActionToggleInternals
-  entities:
-  - uid: 910
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 894
-      type: Transform
-  - uid: 917
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 915
-      type: Transform
-  - uid: 921
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 919
-      type: Transform
-  - uid: 928
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 926
-      type: Transform
-  - uid: 936
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 934
-      type: Transform
-  - uid: 944
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 942
-      type: Transform
-  - uid: 2419
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 922
-      type: Transform
-  - uid: 2420
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 924
-      type: Transform
-- proto: ActionToggleJetpack
-  entities:
-  - uid: 909
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 894
-      type: Transform
-  - uid: 916
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 915
-      type: Transform
-  - uid: 920
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 919
-      type: Transform
-  - uid: 927
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 926
-      type: Transform
-  - uid: 935
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 934
-      type: Transform
-  - uid: 943
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 942
-      type: Transform
-- proto: ActionToggleLight
-  entities:
-  - uid: 1435
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1434
-      type: Transform
 - proto: AirlockBrigGlassLocked
   entities:
   - uid: 466
@@ -9138,9 +9034,6 @@ entities:
     - pos: 40.5,6.5
       parent: 1
       type: Transform
-    - sleepAction: invalid
-      type: HealOnBuckle
-    - type: HealOnBuckleHealing
 - proto: DonkpocketBoxSpawner
   entities:
   - uid: 2016
@@ -9263,15 +9156,8 @@ entities:
       type: MetaData
     - parent: 1023
       type: Transform
-    - blockingToggleActionEntity: 1028
-      type: Blocking
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 1028
-      type: ContainerContainer
     - type: InsideEntityStorage
 - proto: ExGrenade
   entities:
@@ -13373,18 +13259,8 @@ entities:
       type: MetaData
     - parent: 671
       type: Transform
-    - toggleActionEntity: 910
-      type: GasTank
-    - toggleActionEntity: 909
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 909
-          - 910
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 915
     components:
@@ -13392,18 +13268,8 @@ entities:
       type: MetaData
     - parent: 672
       type: Transform
-    - toggleActionEntity: 917
-      type: GasTank
-    - toggleActionEntity: 916
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 916
-          - 917
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 919
     components:
@@ -13411,18 +13277,8 @@ entities:
       type: MetaData
     - parent: 2418
       type: Transform
-    - toggleActionEntity: 921
-      type: GasTank
-    - toggleActionEntity: 920
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 920
-          - 921
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 926
     components:
@@ -13430,18 +13286,8 @@ entities:
       type: MetaData
     - parent: 674
       type: Transform
-    - toggleActionEntity: 928
-      type: GasTank
-    - toggleActionEntity: 927
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 927
-          - 928
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 934
     components:
@@ -13449,18 +13295,8 @@ entities:
       type: MetaData
     - parent: 675
       type: Transform
-    - toggleActionEntity: 936
-      type: GasTank
-    - toggleActionEntity: 935
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 935
-          - 936
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 942
     components:
@@ -13468,18 +13304,8 @@ entities:
       type: MetaData
     - parent: 676
       type: Transform
-    - toggleActionEntity: 944
-      type: GasTank
-    - toggleActionEntity: 943
-      type: Jetpack
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 943
-          - 944
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 1309
     components:
@@ -13562,21 +13388,6 @@ entities:
     - pos: -3.2778687,6.908551
       parent: 1
       type: Transform
-    - toggleActionEntity: 1435
-      type: HandheldLight
-    - containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ProvidedActionContainer: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1435
-      type: ContainerContainer
-    - canCollide: True
-      type: Physics
   - uid: 2033
     components:
     - pos: 4.235004,10.953442
@@ -14125,15 +13936,8 @@ entities:
       type: MetaData
     - parent: 2418
       type: Transform
-    - toggleActionEntity: 2420
-      type: GasTank
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 2420
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 931
     components:
@@ -14227,15 +14031,8 @@ entities:
       type: MetaData
     - parent: 2418
       type: Transform
-    - toggleActionEntity: 2419
-      type: GasTank
     - canCollide: False
       type: Physics
-    - containers:
-        ProvidedActionContainer: !type:Container
-          ents:
-          - 2419
-      type: ContainerContainer
     - type: InsideEntityStorage
   - uid: 930
     components:
