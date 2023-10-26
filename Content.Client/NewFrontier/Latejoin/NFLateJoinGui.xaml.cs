@@ -10,6 +10,8 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using static Robust.Client.UserInterface.Controls.BoxContainer;
+using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client.NewFrontier.Latejoin;
 
@@ -68,14 +70,35 @@ public sealed partial class NFLateJoinGui : FancyWindow
         var station = VesselSelection.Selected.Value;
         var jobs = obj[station];
 
+        var jobList = new BoxContainer()
+        {
+            Orientation = LayoutOrientation.Vertical,
+            Margin = new Thickness(0, 0, 5f, 0),
+        };
+        var jobListScroll = new ScrollContainer()
+        {
+            VerticalExpand = true,
+            Children = {jobList},
+            Visible = true,
+        };
+        JobList.RemoveAllChildren();
+
         if (station != _lastSelection)
         {
-            foreach (var (_, button) in _buttons)
-            {
-                JobList.RemoveChild(button);
-            }
             _buttons.Clear();
         }
+
+        var crewManifestButton = new Button()
+        {
+            Text = Loc.GetString("crew-manifest-button-label")
+        };
+        crewManifestButton.OnPressed += args =>
+        {
+            EntitySystem.Get<CrewManifestSystem>().RequestCrewManifest(_lastSelection);
+        };
+
+        JobList.AddChild(crewManifestButton);
+        JobList.AddChild(jobListScroll);
 
         _lastSelection = station;
 
@@ -102,8 +125,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
                 newButton.Disabled = true;
                 newButton.ToolTip = denyReason.ToString();
             }
-
-            JobList.AddChild(newButton);
+            jobList.AddChild(newButton);
 
             _buttons.Add(jobId, newButton);
         }
