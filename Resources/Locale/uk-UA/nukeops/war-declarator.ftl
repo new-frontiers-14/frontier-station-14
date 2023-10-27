@@ -1,6 +1,6 @@
 war-declarator-not-nukeops = Пристрій блимає та скреготить,але нічого не відбувається...
 war-declarator-ui-header = Оголошення війни
-war-declarator-ui-war-button = ОГОЛОСИТИ ВІЙНЮ!
+war-declarator-ui-war-button = ОГОЛОСИТИ ВІЙНУ!
 war-declarator-conditions-small-crew = Менше ніж { $min } оперативників.
 war-declarator-conditions-left-outpost = Шатл покинув форпост синдикату
 war-declarator-conditions-time-out = Минув час оголошення війни
