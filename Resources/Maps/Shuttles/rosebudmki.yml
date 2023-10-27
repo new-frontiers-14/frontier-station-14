@@ -18,7 +18,7 @@ entities:
   entities:
   - uid: 1
     components:
-    - name: RosebudMKII
+    - name: RosebudMKI
       type: MetaData
     - pos: -0.66406155,-0.5000076
       parent: invalid
@@ -781,7 +781,7 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - id: RosebudMKII
+    - id: RosebudMKI
       type: BecomesStation
 - proto: AirlockAtmosphericsGlass
   entities:
@@ -3061,29 +3061,19 @@ entities:
     - pos: -10.5,5.5
       parent: 1
       type: Transform
-  - uid: 566
-    components:
-    - pos: -11.5,5.5
-      parent: 1
-      type: Transform
   - uid: 567
     components:
-    - pos: -11.5,6.5
+    - pos: -10.5,8.5
       parent: 1
       type: Transform
   - uid: 568
     components:
-    - pos: -11.5,7.5
-      parent: 1
-      type: Transform
-  - uid: 569
-    components:
-    - pos: -11.5,8.5
+    - pos: -10.5,7.5
       parent: 1
       type: Transform
   - uid: 570
     components:
-    - pos: -12.5,8.5
+    - pos: -10.5,6.5
       parent: 1
       type: Transform
   - uid: 990
@@ -3131,16 +3121,6 @@ entities:
   - uid: 110
     components:
     - pos: 8.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 571
-    components:
-    - pos: -12.5,8.5
-      parent: 1
-      type: Transform
-  - uid: 573
-    components:
-    - pos: -11.5,8.5
       parent: 1
       type: Transform
   - uid: 574
@@ -3668,6 +3648,13 @@ entities:
   - uid: 1405
     components:
     - pos: 0.5,-1.5
+      parent: 1
+      type: Transform
+- proto: ComputerStationRecords
+  entities:
+  - uid: 569
+    components:
+    - pos: -12.5,8.5
       parent: 1
       type: Transform
 - proto: ConveyorBelt
@@ -7706,7 +7693,7 @@ entities:
   entities:
   - uid: 88
     components:
-    - pos: -12.5,8.5
+    - pos: -10.5,8.5
       parent: 1
       type: Transform
   - uid: 730
@@ -8680,7 +8667,7 @@ entities:
     - pos: 0.5,2.5
       parent: 1
       type: Transform
-    - location: RosebudMKII
+    - location: RosebudMKI
       type: WarpPoint
 - proto: WeaponCapacitorRecharger
   entities:
