@@ -1,7 +1,7 @@
-entity-storage-component-welded-shut-message = It's welded completely shut!
-entity-storage-component-locked-message = It's Locked!
-entity-storage-component-already-contains-user-message = It's too Cramped!
-entity-storage-component-cannot-open-no-space = There's no room to open it!
+entity-storage-component-welded-shut-message = Він повністю заварений!
+entity-storage-component-locked-message = Воно замкнуте!
+entity-storage-component-already-contains-user-message = Надто тісно!
+entity-storage-component-cannot-open-no-space = Немає місця, щоб його відкрити!
 
 ## OpenToggleVerb
 
