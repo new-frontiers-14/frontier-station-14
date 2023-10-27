@@ -1,0 +1,16 @@
+- type: entity
+  id: ShredderMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: shredder machine board
+  description: A machine printed circuit board for a shredder.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: Shredder
+      requirements:
+        MatterBin: 1
+      materialRequirements:
+        Glass: 1
+    - type: StaticPrice
+      price: 100

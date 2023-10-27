@@ -2,7 +2,7 @@
   id: Shredder
   parent: BaseLathe
   name: shredder
-  description: It Shreds. What more is there to say?
+  description: It shreds things. What more is there to say?
   components:
   - type: Sprite
     sprite: _NF\Structures\Machines\Shredder.rsi
@@ -13,17 +13,21 @@
     - state: normal
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: shredding-money
+    - state: shredding-empty
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
   - type: Machine
     board: ShredderMachineCircuitboard
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: MaterialStorage
     dropOnDeconstruct: false
     whitelist:
       tags:
-        - Money
+        - Currency #<--- Cant seem to insert spesos in here despite the tag
   - type: Lathe
     idleState: icon
-    runningState: shredding-empty
+    runningState: shredding-money
     canEjectStoredMaterials: false
     staticRecipes:
+    - ShreddedMoney
