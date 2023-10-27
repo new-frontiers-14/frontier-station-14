@@ -22,7 +22,7 @@ nuke-user-interface-first-status-device-cooldown = ДЕАКТИВОВАНО
 nuke-user-interface-status-error = ПОМИЛКА
 
 ## Lower status
-nuke-user-interface-second-status-await-disk = ЧЕКАЄМО НА ДИСК
+nuke-user-interface-second-status-await-disk = ДИСК ВІДСУТНІЙ
 nuke-user-interface-second-status-time = ЧАС: {$time}
 nuke-user-interface-second-status-current-code = КОД: {$code}
 nuke-user-interface-second-status-cooldown-time = ЗАЧЕКАЙТЕ: {$time}
