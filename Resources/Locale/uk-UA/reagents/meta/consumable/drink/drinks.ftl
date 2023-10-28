@@ -76,8 +76,8 @@ reagent-desc-pilk = молоко та кола,відчуття,що це нап
 reagent-name-posca = поска
 reagent-desc-posca = напій воїнів,після якого краще вмерти,ніж пити його знову
 
-reagent-name-the-martinez = Мартінез 
+reagent-name-the-martinez = мартінез 
 reagent-desc-the-martinez = легенда Карпат,мікс відпочинку на Гавайях та пригод у пірамідах Єгипту!
 
-reagent-name-white-gilgamesh = Блідий Гільгамеш
+reagent-name-white-gilgamesh = блідий Гільгамеш
 reagent-desc-white-gilgamesh = якщо ви вважаєте що можете назвати пиво з молоком на честь шумерського царя...
