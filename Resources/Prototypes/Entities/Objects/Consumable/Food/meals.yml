@@ -603,9 +603,9 @@
     - Fruit
 
 - type: entity
-  name: taco
+  name: soft taco
   parent: FoodMealBase
-  id: FoodMealTaco
+  id: FoodMealSoftTaco
   description: Take a bite!
   components:
   - type: FlavorProfile
@@ -615,10 +615,8 @@
       - meaty
       - onion
   - type: Sprite
-    state: taco
-  - type: Tag
-    tags:
-    - Meat
+    state: softtaco
+
 
 - type: entity
   name: corn in butter

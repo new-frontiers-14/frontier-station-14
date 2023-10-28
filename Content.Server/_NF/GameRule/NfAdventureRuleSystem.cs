@@ -36,6 +36,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly DungeonSystem _dunGen = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -122,7 +123,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(2400f, 4000f);
+        var depotOffset = _random.NextVector2(3000f, 5000f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
@@ -130,17 +131,17 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
-            meta.EntityName = "Cargo Depot A";
+            _meta.SetEntityName(depotUids[0], "Cargo Depot A", meta);
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1400f, 2100f)
+                Offset = _random.NextVector2(2100f, 3800f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            meta.EntityName = "Tinnia's Rest";
+            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
             _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 
@@ -150,28 +151,28 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            meta.EntityName = "Cargo Depot B";
+            _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
         }
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2350f, 3900f)
+                Offset = _random.NextVector2(2150f, 3900f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            meta.EntityName = "Listening Point Bravo";
+            _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
             _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1900f, 3500f)
+                Offset = _random.NextVector2(1900f, 3800f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
-            meta.EntityName = "The Pit";
+            _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
             _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
         }
 
@@ -186,14 +187,14 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
-            meta.EntityName = "Pirate's Cove";
+            _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
             _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
         }
 
         if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2050f, 3900f)
+                Offset = _random.NextVector2(1650f, 3400f)
             }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
@@ -202,7 +203,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
-            meta.EntityName = "Expeditionary Lodge";
+            _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
@@ -212,7 +213,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            meta.EntityName = "Crazy Casey's Casino";
+            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
             _shuttle.SetIFFColor(depotUid7s[0], factionColor);
         }
 
