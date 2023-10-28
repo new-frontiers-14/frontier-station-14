@@ -396,7 +396,7 @@ public sealed class MagicSystem : EntitySystem
 
     #endregion
 
-    private void Speak(BaseActionEvent args)
+    public void Speak(BaseActionEvent args)
     {
         if (args is not ISpeakSpell speak || string.IsNullOrWhiteSpace(speak.Speech))
             return;

@@ -1,0 +1,13 @@
+namespace Content.Server.Visible
+{
+    [Flags]
+    public enum VisibilityFlags : uint
+    {
+        None   = 0,
+        Normal = 1 << 0,
+        Ghost  = 1 << 1,
+        // PsionicInvisibility = 1 << 2,
+        DarkSwapInvisibility = 1 << 2,
+        AIEye = 1 << 3,
+    }
+}

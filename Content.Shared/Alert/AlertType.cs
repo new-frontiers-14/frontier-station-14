@@ -30,6 +30,7 @@ namespace Content.Shared.Alert
         Thirsty,
         Parched,
         Stamina,
+        ShadowkinPower,
         Pulled,
         Pulling,
         Magboots,

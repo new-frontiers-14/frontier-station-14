@@ -11,6 +11,9 @@ namespace Content.Shared.SSDIndicator;
 [AutoGenerateComponentState]
 public sealed partial class SSDIndicatorComponent : Component
 {
+
+    public bool Updated = false;
+    
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool IsSSD = false;

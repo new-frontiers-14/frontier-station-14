@@ -1,0 +1,47 @@
+# - type: worldTargetAction
+#   id: ShadowkinTeleport
+#   name: action-name-shadowkin-teleport
+#   description: action-description-shadowkin-teleport
+#   useDelay: 5
+#   range: 32
+#   itemIconStyle: NoItem
+#   checkCanAccess: true
+#   repeat: true
+#   priority: -20
+#   icon:
+#     sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+#     state: teleport
+#   serverEvent: !type:ShadowkinTeleportEvent
+#     powerCost: 40
+#     staminaCost: 20
+#     speech: action-description-shadowkin-teleport
+
+# - type: instantAction
+#   id: ShadowkinDarkSwap
+#   name: action-name-shadowkin-darkswap
+#   description: action-description-shadowkin-darkswap
+#   useDelay: 15
+#   itemIconStyle: NoItem
+#   priority: -21
+#   icon:
+#     sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+#     state: darkswap
+#   serverEvent: !type:ShadowkinDarkSwapEvent
+#     powerCostOn: 60
+#     powerCostOff: 45
+#     staminaCostOn: 25
+#     staminaCostOff: 25
+#     speech: action-description-shadowkin-darkswap
+
+# - type: instantAction
+#   id: ShadowkinRest
+#   name: action-name-shadowkin-rest
+#   description: action-description-shadowkin-rest
+#   useDelay: 60
+#   itemIconStyle: NoItem
+#   priority: -22
+#   icon:
+#     sprite: SimpleStation14/Interface/Actions/shadowkin_icons.rsi
+#     state: rest
+#   checkCanInteract: false
+#   serverEvent: !type:ShadowkinRestEvent
