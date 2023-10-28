@@ -58,6 +58,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Command",
         "Engineering",
         "External",
+        "Frontier",
         "HeadOfPersonnel",
         "HeadOfSecurity",
         "Hydroponics",

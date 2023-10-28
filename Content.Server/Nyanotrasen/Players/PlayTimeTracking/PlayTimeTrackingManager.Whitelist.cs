@@ -6,7 +6,7 @@ namespace Content.Server.Players.PlayTimeTracking;
 
 public sealed partial class PlayTimeTrackingManager
 {
-    public void SendWhitelistCached(IPlayerSession playerSession)
+    private void SendWhitelistCached(IPlayerSession playerSession)
     {
         var whitelist = playerSession.ContentData()?.Whitelisted ?? false;
 
@@ -16,5 +16,14 @@ public sealed partial class PlayTimeTrackingManager
         };
 
         _net.ServerSendMessage(msg, playerSession.ConnectedClient);
+    }
+
+    /// <summary>
+    /// Queue sending whitelist status to the client.
+    /// </summary>
+    public void QueueSendWhitelist(IPlayerSession player)
+    {
+        if (DirtyPlayer(player) is { } data)
+            data.NeedRefreshWhitelist = true;
     }
 }
