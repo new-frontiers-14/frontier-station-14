@@ -1,17 +1,17 @@
 ﻿# Uplink
 store-category-debug = debug category
 store-category-debug2 = debug category 2
-store-category-weapons = Weapons
-store-category-ammo = Ammo
-store-category-explosives = Explosives
-store-category-misc = Misc
-store-category-bundles = Bundles
-store-category-tools = Tools
-store-category-utility = Utility
-store-category-implants = Implants
-store-category-job = Job
-store-category-armor = Armor
-store-category-pointless = Pointless
+store-category-weapons = Зброя
+store-category-ammo = Набої
+store-category-explosives = Вибухівка
+store-category-misc = Різне
+store-category-bundles = Набори
+store-category-tools =  Інструменти
+store-category-utility = Доп. Спорядження
+store-category-implants = Імпланти
+store-category-job = Професійне
+store-category-armor = Броня
+store-category-pointless = Безглузде
 
 # Revenant
-store-category-abilities = Abilities
+store-category-abilities = Вміння
