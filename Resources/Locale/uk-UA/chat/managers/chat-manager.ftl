@@ -49,7 +49,7 @@ chat-manager-admin-channel-name = АДМІНИ
 
 chat-manager-send-empathy-chat-wrap-message = {$empathyChannelName}: {$message}
 chat-manager-send-empathy-chat-wrap-message-admin = {$empathyChannelName} - {$source}: {$message}
-chat-manager-empathy-channel-name = EMPATHY
+chat-manager-empathy-channel-name = ЕМПАТІЯ
 
 ## Speech verbs for chat
 
