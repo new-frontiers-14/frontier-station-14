@@ -42,6 +42,11 @@
         Emotes = ChatChannel.Emotes,
 
         /// <summary>
+        ///     Empathy
+        /// </summary>
+        Empathy = ChatChannel.Empathy,
+
+        /// <summary>
         ///     Deadchat
         /// </summary>
         Dead = ChatChannel.Dead,

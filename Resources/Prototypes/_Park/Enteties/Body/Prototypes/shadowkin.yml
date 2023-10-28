@@ -1,0 +1,49 @@
+- type: body
+  id: Shadowkin
+  name: "Shadowkin"
+  root: torso
+  slots:
+    head:
+      part: HeadShadowkin
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoShadowkin
+      connections:
+      - left arm
+      - right arm
+      - left leg
+      - right leg
+      organs: # placeholders
+        heart: OrganHumanHeart
+        lungs: OrganHumanLungs
+        stomach: OrganHumanStomach
+        liver:  OrganHumanLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmShadowkin
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmShadowkin
+      connections:
+      - left hand
+    right hand:
+      part: RightHandShadowkin
+    left hand:
+      part: LeftHandShadowkin
+    right leg:
+      part: RightLegShadowkin
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegShadowkin
+      connections:
+      - left foot
+    right foot:
+      part: RightFootShadowkin
+    left foot:
+      part: LeftFootShadowkin
