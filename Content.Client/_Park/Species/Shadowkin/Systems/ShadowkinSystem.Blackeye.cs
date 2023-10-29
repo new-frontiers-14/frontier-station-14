@@ -32,10 +32,10 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
             return;
 
         // Blackeye if none of the RGB values are greater than 75
-        if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
-        {
-            RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid, false));
-        }
+        // if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
+        // {
+        //     RaiseNetworkEvent(new ShadowkinBlackeyeEvent(uid, false));
+        // }
     }
 
 
