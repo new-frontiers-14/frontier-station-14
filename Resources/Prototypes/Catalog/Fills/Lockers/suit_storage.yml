@@ -121,6 +121,8 @@
         - id: ClothingShoesBootsMag
         - id: ClothingOuterHardsuitEngineering
         - id: ClothingMaskBreath
+  - type: AccessReader
+    # access: [["Engineering"]] # Frontier
 
 #Atmospherics hardsuit
 - type: entity
@@ -134,6 +136,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitAtmos
         - id: ClothingMaskBreath
+  - type: AccessReader
+    # access: [["Atmospherics"]] # Frontier
 
 #Security hardsuit
 - type: entity
@@ -146,7 +150,13 @@
         - id: NitrogenTankFilled
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecurity
+          orGroup: HardsuitSecurity
+        - id: ClothingOuterHardsuitSecuritypatrol # Frontier - 50% to get the patrol suit
+          orGroup: HardsuitSecurity
         - id: ClothingMaskBreath
+        - id: JetpackSecurityFilled # Frontier
+  - type: AccessReader
+    access: [["Security"]]
 
 #CE's hardsuit
 - type: entity
@@ -162,6 +172,8 @@
         - id: ClothingShoesBootsMagAdv
         - id: ClothingOuterHardsuitEngineeringWhite
         - id: ClothingMaskBreath
+  - type: AccessReader
+    # access: [["ChiefEngineer"]] # Frontier
 
 #CMO's hardsuit
 - type: entity
@@ -175,6 +187,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitMedical
         - id: ClothingMaskBreathMedical
+  - type: AccessReader
+    # access: [ [ "ChiefMedicalOfficer" ] ] # Frontier
 
 #RD's hardsuit
 - type: entity
@@ -188,6 +202,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitRd
         - id: ClothingMaskBreath
+  - type: AccessReader
+    # access: [ [ "ResearchDirector" ] ] # Frontier
 
 #HOS's hardsuit
 - type: entity
@@ -202,6 +218,8 @@
         - id: JetpackSecurityFilled
         - id: ClothingOuterHardsuitSecurityRed
         - id: ClothingMaskGasSwat
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
 
 #Warden's hardsuit
 - type: entity
@@ -215,6 +233,9 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
+        - id: JetpackSecurityFilled # Frontier
+  - type: AccessReader
+    access: [["Armory"]]
 
 #Captain's hardsuit
 - type: entity
@@ -228,6 +249,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitCap
         - id: ClothingMaskGasCaptain
+  - type: AccessReader
+    # access: [["Captain"]] # Frontier
 
 #Salvage hardsuit
 - type: entity
@@ -242,6 +265,9 @@
       - id: ClothingShoesBootsMag
       - id: ClothingOuterHardsuitSpatio
       - id: ClothingMaskGasExplorer
+      - id: JetpackMiniFilled # Frontier
+  - type: AccessReader
+    # access: [["Salvage"]] # Frontier
 
 #Blood-red hardsuit
 - type: entity

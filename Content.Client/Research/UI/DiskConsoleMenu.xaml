@@ -1,4 +1,4 @@
-﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+<controls:FancyWindow xmlns="https://spacestation14.io"
                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                      Title="{Loc 'tech-disk-ui-name'}"
@@ -19,14 +19,18 @@
                 <Label Name="TotalLabel"
                        HorizontalAlignment="Center">
                 </Label>
-                <Label Name="CostLabel"
-                       HorizontalAlignment="Center">
-                </Label>
                 <BoxContainer MinHeight="20"></BoxContainer>
                 <Button
                     Name="PrintButton"
                     Text="{Loc 'tech-disk-ui-print-button'}"
-                    MaxWidth="120"
+                    MaxWidth="240"
+                    HorizontalAlignment="Center"
+                    VerticalExpand="False">
+                </Button>
+                <Button
+                    Name="PrintRareButton"
+                    Text="{Loc 'tech-disk-ui-print-rare-button'}"
+                    MaxWidth="240"
                     HorizontalAlignment="Center"
                     VerticalExpand="False">
                 </Button>
