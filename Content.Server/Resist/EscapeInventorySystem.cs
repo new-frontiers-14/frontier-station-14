@@ -106,13 +106,6 @@ public sealed class EscapeInventorySystem : EntitySystem
             return;
         } // End of carrying system of nyanotrasen.
 
-
-        if (TryComp<BeingCarriedComponent>(uid, out carried))
-        {
-            _carryingSystem.DropCarried(carried.Carrier, uid);
-            return;
-        }
-
         _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));
         args.Handled = true;
     }
