@@ -61,8 +61,9 @@
     - enum.DamageStateVisualLayers.Base:
         datadisk_base: Sixteen
   - type: TechnologyDisk
+    tierWeightPrototype: TechDiskTierWeights # Frontier
   - type: StaticPrice
-    price: 550 # It's still need to be worth it, but as it was stranding (1000) it was too much
+    price: 5000 # Frontier - Rebalance
 
 - type: entity
   parent: TechnologyDisk
@@ -70,5 +71,4 @@
   suffix: rare.
   components:
   - type: TechnologyDisk
-    tierWeightPrototype: RareTechDiskTierWeights
-    price: 750 # It's still need to be worth it, but as it was stranding (1000) it was too much
+    tierWeightPrototype: RareTechDiskTierWeights # Frontier
