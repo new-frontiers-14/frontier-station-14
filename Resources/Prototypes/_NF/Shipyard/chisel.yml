@@ -1,0 +1,27 @@
+- type: vessel
+  id: Chisel
+  name: ICR Chisel
+  description: Standard small size multipurpose vessel , originally meant to aid in ship scrapping.
+  price: 31340
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/chisel.yml
+
+- type: gameMap
+  id: Chisel
+  mapName: 'ICR Chisel'
+  mapPath: /Maps/Shuttles/chisel.yml
+  minPlayers: 0
+  stations:
+    Chisel:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Chisel {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
