@@ -16,7 +16,7 @@ public sealed class ColorTintOverlay : Overlay
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
-    private readonly ShaderInstance _shader;
+    // private readonly ShaderInstance _shader;
 
     /// <summary>
     ///     The color to tint the screen to as RGB on a scale of 0-1.
@@ -35,27 +35,27 @@ public sealed class ColorTintOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototype.Index<ShaderPrototype>("ColorTint").InstanceUnique();
+        // _shader = _prototype.Index<ShaderPrototype>("ColorTint").InstanceUnique();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (ScreenTexture == null ||
-            _player.LocalPlayer?.ControlledEntity is not { Valid: true } player ||
-            Comp != null && !_entity.HasComponent(player, Comp.GetType()))
-            return;
+        // if (ScreenTexture == null ||
+        //     _player.LocalPlayer?.ControlledEntity is not { Valid: true } player ||
+        //     Comp != null && !_entity.HasComponent(player, Comp.GetType()))
+        //     return;
 
-        _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-        if (TintColor != null)
-            _shader.SetParameter("tint_color", (Vector3) TintColor);
-        if (TintAmount != null)
-            _shader.SetParameter("tint_amount", (float) TintAmount);
+        // _shader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        // if (TintColor != null)
+        //     _shader.SetParameter("tint_color", (Vector3) TintColor);
+        // if (TintAmount != null)
+        //     _shader.SetParameter("tint_amount", (float) TintAmount);
 
-        var worldHandle = args.WorldHandle;
-        var viewport = args.WorldBounds;
-        worldHandle.SetTransform(Matrix3.Identity);
-        worldHandle.UseShader(_shader);
-        worldHandle.DrawRect(viewport, Color.White);
-        worldHandle.UseShader(null);
+        // var worldHandle = args.WorldHandle;
+        // var viewport = args.WorldBounds;
+        // worldHandle.SetTransform(Matrix3.Identity);
+        // worldHandle.UseShader(_shader);
+        // worldHandle.DrawRect(viewport, Color.White);
+        // worldHandle.UseShader(null);
     }
 }
