@@ -1,0 +1,37 @@
+- type: species
+  id: Harpy
+  name: species-name-harpy
+  roundStart: true
+  prototype: MobHarpy
+  sprites: MobHumanSprites
+  markingLimits: MobHarpyMarkingLimits
+  dollPrototype: MobHarpyDummy
+  skinColoration: HumanToned
+
+- type: markingPoints
+  id: MobHarpyMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ HarpyTailPhoenix ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ HarpyEarsDefault ]
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 1
+      required: false
+      defaultMarkings: [ HarpyWingDefault ]
