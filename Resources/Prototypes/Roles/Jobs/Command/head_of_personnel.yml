@@ -5,7 +5,7 @@
   playTimeTracker: JobHeadOfPersonnel
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # Frontier
+      time: 36000
     - !type:WhitelistRequirement
   weight: 20
   startingGear: HoPGear
@@ -29,27 +29,27 @@
   # I mean they'll give themselves the rest of the access levels *anyways*.
   # As of 15/03/23 they can't do that so here's MOST of the rest of the access levels.
   # Head level access that isn't their own was deliberately left out, get AA from the captain instead.
-  - Chemistry # Frontier
-  - Engineering # Frontier
-  - Quartermaster # Frontier
-  - Research # Frontier
-  - Detective # Frontier
-  - Salvage # Frontier
-  - Security # Frontier
-  - Brig # Frontier
-  - Cargo # Frontier
-  - Atmospherics # Frontier
-  - Medical # Frontier
-  - EmergencyShuttleRepealAll # Frontier
-  - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - ChiefMedicalOfficer # Frontier
-#  - HeadOfSecurity # Frontier - Whitelist for sheriff only.
-  - ResearchDirector # Frontier
-  - Armory # Frontier
+  - Chemistry
+  - Engineering
+  - Quartermaster
+  - Research
+  - Detective
+  - Salvage
+  - Security
+  - Brig
+  - Cargo
+  - Atmospherics
+  - Medical
+  - EmergencyShuttleRepealAll
+  - Captain
+  - ChiefEngineer
+  - ChiefMedicalOfficer
+#  - HeadOfSecurity Whitelist for sheriff only.
+  - ResearchDirector
+  - Armory
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ] # Frontier - Added TrackingImplant
+    implants: [ MindShieldImplant, TrackingImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -64,7 +64,7 @@
     id: HoPPDA
     ears: ClothingHeadsetAltCentCom
     eyes: ClothingEyesGlassesSunglasses
-    belt: BoxFolderQmClipboard # Frontier
+    belt: BoxFolderClipboard
   innerClothingSkirt: ClothingUniformJumpskirtHoP
   satchel: ClothingBackpackSatchelHOPFilled
   duffelbag: ClothingBackpackDuffelHOPFilled

@@ -1,6 +1,6 @@
 - type: vessel
   id: Marauder
-  name: NSF Marauder
+  name: NT Marauder
   description: A heavy corvette, the marauder class is a dedicated deep space patrol vessel outfitted with a reduced radar cross-section and heavily fortified against hostile assault.
   price: 100220
   category: Large
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Marauder
-  mapName: 'NSF Marauder'
+  mapName: 'NT Marauder'
   mapPath: /Maps/Shuttles/marauder.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NSF14 Marauder {1}'
+          mapNameTemplate: '{0} Marauder {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

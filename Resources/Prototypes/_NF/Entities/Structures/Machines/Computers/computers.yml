@@ -159,6 +159,14 @@
       state: shipyard_blackmarket   
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
 
 - type: entity
   name: cargo sale computer

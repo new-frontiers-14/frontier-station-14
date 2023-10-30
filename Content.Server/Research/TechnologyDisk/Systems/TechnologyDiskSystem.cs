@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Content.Server.Popups;
 using Content.Server.Research.Systems;
 using Content.Server.Research.TechnologyDisk.Components;
@@ -88,28 +88,5 @@ public sealed class TechnologyDiskSystem : EntitySystem
         //pick one
         component.Recipes = new();
         component.Recipes.Add(_random.Pick(techs));
-
-        if (component.RecipesRare != null)
-            return;
-
-        var weightedRandomRare = _prototype.Index<WeightedRandomPrototype>(component.TierWeightPrototypeRare);
-        var tierRare = int.Parse(weightedRandomRare.Pick(_random));
-
-        var techsRare = new List<ProtoId<LatheRecipePrototype>>();
-        foreach (var techRare in _prototype.EnumeratePrototypes<TechnologyPrototype>())
-        {
-            if (techRare.Tier != tierRare)
-                continue;
-
-            techsRare.AddRange(techRare.RecipeUnlocks);
-        }
-        techsRare = techsRare.Distinct().ToList();
-
-        if (!techsRare.Any())
-            return;
-
-        //pick one
-        component.RecipesRare = new();
-        component.RecipesRare.Add(_random.Pick(techsRare));
     }
 }

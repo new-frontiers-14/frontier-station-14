@@ -1,6 +1,6 @@
 - type: vessel
   id: Cleric
-  name: NSF Cleric
+  name: NT Cleric
   description: Small support vessel used for emergency rescues and first aid.
   price: 10800 #Appraisal is 10500
   category: Small
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Cleric
-  mapName: 'NSF Cleric'
+  mapName: 'NT Cleric'
   mapPath: /Maps/Shuttles/cleric.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NSF14 Cleric {1}'
+          mapNameTemplate: '{0} Cleric {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

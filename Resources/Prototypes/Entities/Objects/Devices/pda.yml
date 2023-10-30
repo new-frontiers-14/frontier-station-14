@@ -29,12 +29,6 @@
       whitelist:
         tags:
         - Write
-    bookSlot: # Frontier
-      startingItem: HyperlinkBookSpaceLaw
-      priority: -2
-      whitelist:
-        tags:
-        - BookSpaceLaw
     idSlot:
       name: ID Card
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -48,7 +42,6 @@
     containers:
       PDA-id: !type:ContainerSlot {}
       PDA-pen: !type:ContainerSlot {}
-      PDA-book: !type:ContainerSlot {} # Frontier
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
   - type: ItemSlots
@@ -68,8 +61,8 @@
     deviceNetId: Wireless
     receiveFrequencyId: PDA
     prefix: device-address-prefix-console
-#  - type: WirelessNetworkConnection # Frontier
-#    range: 500 # Frontier
+#  - type: WirelessNetworkConnection
+#    range: 500
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:

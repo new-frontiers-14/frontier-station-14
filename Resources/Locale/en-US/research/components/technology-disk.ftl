@@ -6,5 +6,4 @@ tech-disk-examine-more = There are more images printed, but they're too small to
 tech-disk-ui-name = technology disk terminal
 tech-disk-ui-total-label = There are {$amount} points on the selected server
 tech-disk-ui-cost-label = Each disk costs {$amount} points to print
-tech-disk-ui-print-button = Print Disk ({$amount})
-tech-disk-ui-print-rare-button = Print Rare Disk ({$amount})
+tech-disk-ui-print-button = Print Disk

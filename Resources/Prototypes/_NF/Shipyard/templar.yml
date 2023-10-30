@@ -1,6 +1,6 @@
 - type: vessel
   id: Templar
-  name: NSF Templar
+  name: NT Templar
   description: A small security assault craft designed for combat interdiction operations.
   price: 21220
   category: Small
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Templar
-  mapName: 'NSF Templar'
+  mapName: 'NT Templar'
   mapPath: /Maps/Shuttles/templar.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NSF14 Templar {1}'
+          mapNameTemplate: '{0} Templar {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
