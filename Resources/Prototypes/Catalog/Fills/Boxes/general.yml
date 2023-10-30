@@ -11,7 +11,7 @@
   name: ящик з мишоловками
   parent: BoxCardboard
   id: BoxMousetrap
-  description: This box is filled with mousetraps. Try not to get your hand stuck in one.
+  description: Ця коробка наповнена мишоловками. Намагайтеся, щоб ваша рука не застрягла в одному.
   components:
     - type: StorageFill
       contents:
@@ -26,7 +26,7 @@
   name: коробка лампочок
   parent: BoxCardboard
   id: BoxLightbulb
-  description: This box is shaped on the inside so that only light tubes and bulbs fit.
+  description: Ця коробка має внутрішню форму, щоб у неї поміщалися лише світлові трубки та лампочки.
   components:
   - type: StorageFill
     contents:
@@ -49,7 +49,7 @@
   name: коробка лампочок
   parent: BoxCardboard
   id: BoxLighttube
-  description: This box is shaped on the inside so that only light tubes and bulbs fit.
+  description: Ця коробка має внутрішню форму, щоб у неї поміщалися лише світлові трубки та лампочки.
   components:
   - type: StorageFill
     contents:
@@ -72,7 +72,7 @@
   name: коробка змішаних ламп
   parent: BoxCardboard
   id: BoxLightMixed
-  description: This box is shaped on the inside so that only light tubes and bulbs fit.
+  description: Ця коробка має внутрішню форму, щоб у неї поміщалися лише світлові трубки та лампочки.
   components:
   - type: StorageFill
     contents:
@@ -97,7 +97,7 @@
   name: Коробка планшетів
   parent: BoxCardboard
   id: BoxPDA
-  description: A box of spare PDA microcomputers.
+  description: Коробка запасних PDA.
   components:
   - type: StorageFill
     contents:
@@ -117,7 +117,7 @@
   name: коробка ID карток
   parent: BoxCardboard
   id: BoxID
-  description: A box of spare blank ID cards.
+  description: Коробка запасних ID картох без інформації про власника
   components:
   - type: StorageFill
     contents:
@@ -137,7 +137,7 @@
   name: коробка з гарнітурами
   parent: BoxCardboard
   id: BoxHeadset
-  description: A box of spare passenger headsets.
+  description: Коробка запасних пасажирських гарнітур.
   components:
   - type: StorageFill
     contents:
@@ -154,10 +154,10 @@
       - Headset
 
 - type: entity
-  name: meson box
+  name: мезонний ящик
   parent: BoxCardboard
   id: BoxMesonScanners
-  description: A box of spare meson goggles.
+  description: Коробка запасних мезонних окулярів.
   components:
   - type: StorageFill
     contents:
@@ -172,7 +172,7 @@
   name: M.R.E.
   parent: BoxCardboard
   id: BoxMRE
-  description: A box of decades old military surplus rations. It is surprisingly not rotten.
+  description: Коробка із надлишковими військовими пайками десятиліттями. Воно, як не дивно, не гниле.
   components:
   - type: StorageFill
     contents:
@@ -189,7 +189,7 @@
   name: коробка обіймів
   parent: BoxCardboard
   id: BoxHugHealing
-  description: A special box for sensitive people.
+  description: Спеціальний ящик для чутливих людей.
   components:
   - type: Storage
     capacity: 30
@@ -208,10 +208,10 @@
       - BoxHug
 
 - type: entity
-  name: inflatable wall box
+  name: надувні стіни
   parent: BoxCardboard
   id: BoxInflatable
-  description: Inflatable walls are not to be used as floatation devices.
+  description: Надувні стінки не можна використовувати як частину для будівництва
   components:
   - type: StorageFill
     contents:
@@ -229,10 +229,10 @@
 
 
 - type: entity
-  name: hatsune miku day box
+  name: денна коробка Хацуне Міку
   parent: BoxCardboard
   id: BoxPerformer
-  description: Happy Hatsune Miku Day!
+  description: З Днем Хацуне Міку!
   components:
   - type: StorageFill
     contents:
@@ -242,10 +242,10 @@
         amount: 2
 
 - type: entity
-  name: flare box
+  name: Коробка флаєрів
   parent: BoxCardboard
   id: BoxFlare
-  description: A box of flares. Party time.
+  description: Коробка сигнальних ракет. Час веселитися.
   components:
   - type: StorageFill
     contents:
@@ -257,10 +257,10 @@
       - state: flare
 
 - type: entity
-  name: ящик з рулонами для сміття
+  name: ящик з мішками для сміття
   parent: BoxCardboard
   id: BoxTrashbag
-  description: A box of trashbags. Happy janitor noises.
+  description: Коробка мішків для сміття. Веселі звуки прибиральника.
   components:
   - type: StorageFill
     contents:
@@ -283,7 +283,7 @@
   name: ящик з ключами шифрування пасажира
   parent: BoxCardboard
   id: BoxEncryptionKeyPassenger
-  description: A box of spare encryption keys.
+  description: Коробка із запасними ключами шифрування.
   components:
   - type: StorageFill
     contents:
@@ -360,7 +360,7 @@
         amount: 6
 
 - type: entity
-  name: nfsd encryption key box
+  name: ключ шифрування охорони
   parent: BoxEncryptionKeyPassenger
   id: BoxEncryptionKeySecurity
   components:
@@ -395,7 +395,7 @@
     capacity: 15
 
 - type: entity
-  name: бокс для імплантатів Deathrattle
+  name: бокс для смертельних імплантатів
   parent: BoxCardboard
   id: BoxDeathRattleImplants
   description: Шість смертоносних імплантатів і портативні GPS-пристрої для всього загону.
@@ -428,10 +428,10 @@
     resistance: 2
 
 - type: entity
-  name: darts box
+  name: ящик для дартсу
   parent: BoxCardboard
   id: BoxDarts
-  description: This box filled with colorful darts.
+  description: Ця коробка наповнена різнокольоровими дротиками.
   components:
   - type: Item
     size: 40
