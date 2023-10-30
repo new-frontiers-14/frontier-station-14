@@ -42,19 +42,6 @@ public sealed class SpiderSystem : SharedSpiderSystem
             result = true;
         }
 
-        // Spawn web in other directions
-        for (var i = 0; i < 4; i++)
-        {
-            var direction = (DirectionFlag) (1 << i);
-            coords = transform.Coordinates.Offset(direction.AsDir().ToVec());
-
-            if (!IsTileBlockedByWeb(coords))
-            {
-                Spawn(component.WebPrototype, coords);
-                result = true;
-            }
-        }
-
         if (result)
         {
             _popup.PopupEntity(Loc.GetString("spider-web-action-success"), args.Performer, args.Performer);
