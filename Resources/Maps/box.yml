@@ -57033,6 +57033,26 @@ entities:
     - pos: 28.5,-55.5
       parent: 8364
       type: Transform
+- proto: CargoPallet
+  entities:
+  - uid: 27779
+    components:
+    - pos: -36.5,-18.5
+      parent: 8364
+      type: Transform
+- proto: CargoTelepad
+  entities:
+  - uid: 27777
+    components:
+    - pos: -27.5,-19.5
+      parent: 8364
+      type: Transform
+    - containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
+      type: ContainerContainer
 - proto: Carpet
   entities:
   - uid: 370
@@ -70157,6 +70177,13 @@ entities:
       pos: 46.5,-25.5
       parent: 8364
       type: Transform
+- proto: ComputerPalletConsole
+  entities:
+  - uid: 27778
+    components:
+    - pos: -37.5,-18.5
+      parent: 8364
+      type: Transform
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 595
@@ -70206,6 +70233,12 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -29.5,-38.5
+      parent: 8364
+      type: Transform
+  - uid: 27782
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -36.5,-10.5
       parent: 8364
       type: Transform
 - proto: ComputerResearchAndDevelopment
@@ -70263,6 +70296,56 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 3.5,-5.5
+      parent: 8364
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 27781
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -36.5,-11.5
+      parent: 8364
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+- proto: ComputerShipyardExpedition
+  entities:
+  - uid: 27783
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -41.5,-24.5
+      parent: 8364
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 27784
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -4.5,-5.5
       parent: 8364
       type: Transform
     - containers:
@@ -122085,6 +122168,13 @@ entities:
     - pos: -12.493954,3.065948
       parent: 8364
       type: Transform
+- proto: KitchenDeepFryer
+  entities:
+  - uid: 27780
+    components:
+    - pos: 34.5,-6.5
+      parent: 8364
+      type: Transform
 - proto: KitchenKnife
   entities:
   - uid: 15583
@@ -145532,6 +145622,7 @@ entities:
       nameSet: True
       id: Vault
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 298
     components:
     - rot: 1.5707963267948966 rad
@@ -145543,6 +145634,7 @@ entities:
       nameSet: True
       id: HoP Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 299
     components:
     - rot: 3.141592653589793 rad
@@ -145554,6 +145646,7 @@ entities:
       nameSet: True
       id: Conference Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 300
     components:
     - rot: 3.141592653589793 rad
@@ -145565,6 +145658,7 @@ entities:
       nameSet: True
       id: Bridge West
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 301
     components:
     - rot: 3.141592653589793 rad
@@ -145576,6 +145670,7 @@ entities:
       nameSet: True
       id: Bridge East
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 302
     components:
     - rot: 3.141592653589793 rad
@@ -145587,6 +145682,7 @@ entities:
       nameSet: True
       id: Captain's Bedroom
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 304
     components:
     - pos: 9.5,-18.5
@@ -145597,6 +145693,7 @@ entities:
       nameSet: True
       id: Captain's Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 932
     components:
     - rot: 1.5707963267948966 rad
@@ -145608,6 +145705,7 @@ entities:
       nameSet: True
       id: High Sec Circuitry
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 14461
     components:
     - rot: 1.5707963267948966 rad
@@ -145619,6 +145717,7 @@ entities:
       nameSet: True
       id: Drone Storage
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 21763
     components:
     - rot: 1.5707963267948966 rad
@@ -145630,6 +145729,7 @@ entities:
       nameSet: True
       id: Grav Gen
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27657
     components:
     - rot: 3.141592653589793 rad
@@ -145641,6 +145741,7 @@ entities:
       nameSet: True
       id: Show Room
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraEngineering
   entities:
   - uid: 101
@@ -145654,6 +145755,7 @@ entities:
       nameSet: True
       id: SMES Bank
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 122
     components:
     - rot: -1.5707963267948966 rad
@@ -145665,6 +145767,7 @@ entities:
       nameSet: True
       id: North Atmos
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 294
     components:
     - rot: 3.141592653589793 rad
@@ -145676,6 +145779,7 @@ entities:
       nameSet: True
       id: EVA Supply
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 3722
     components:
     - rot: 3.141592653589793 rad
@@ -145687,6 +145791,7 @@ entities:
       nameSet: True
       id: Atmos Canister Storage
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 14631
     components:
     - rot: 1.5707963267948966 rad
@@ -145698,6 +145803,7 @@ entities:
       nameSet: True
       id: Circuitry
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 16950
     components:
     - rot: 1.5707963267948966 rad
@@ -145709,6 +145815,7 @@ entities:
       nameSet: True
       id: Lobby
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 16983
     components:
     - rot: 1.5707963267948966 rad
@@ -145720,6 +145827,7 @@ entities:
       nameSet: True
       id: TEG East
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 17072
     components:
     - rot: -1.5707963267948966 rad
@@ -145731,6 +145839,7 @@ entities:
       nameSet: True
       id: TEG West
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 17382
     components:
     - rot: 1.5707963267948966 rad
@@ -145742,6 +145851,7 @@ entities:
       nameSet: True
       id: Telecomms
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 17779
     components:
     - rot: 3.141592653589793 rad
@@ -145753,6 +145863,7 @@ entities:
       nameSet: True
       id: AME Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 22987
     components:
     - rot: 3.141592653589793 rad
@@ -145764,6 +145875,7 @@ entities:
       nameSet: True
       id: Atmos Locker Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 23174
     components:
     - rot: 1.5707963267948966 rad
@@ -145775,6 +145887,7 @@ entities:
       nameSet: True
       id: Front Desk
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26613
     components:
     - rot: -1.5707963267948966 rad
@@ -145786,6 +145899,7 @@ entities:
       nameSet: True
       id: Break Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27420
     components:
     - rot: -1.5707963267948966 rad
@@ -145797,6 +145911,7 @@ entities:
       nameSet: True
       id: Particle Accelerator
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27421
     components:
     - rot: 3.141592653589793 rad
@@ -145808,6 +145923,7 @@ entities:
       nameSet: True
       id: Singulo Supply
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27422
     components:
     - rot: 1.5707963267948966 rad
@@ -145819,6 +145935,7 @@ entities:
       nameSet: True
       id: AME Entrance
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27423
     components:
     - rot: 3.141592653589793 rad
@@ -145830,6 +145947,7 @@ entities:
       nameSet: True
       id: Soft Play Area
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27424
     components:
     - rot: 3.141592653589793 rad
@@ -145841,6 +145959,7 @@ entities:
       nameSet: True
       id: SMES Hall
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27445
     components:
     - rot: 3.141592653589793 rad
@@ -145852,6 +145971,7 @@ entities:
       nameSet: True
       id: Locker Room
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 40
@@ -145864,6 +145984,7 @@ entities:
       nameSet: True
       id: Tool Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 284
     components:
     - rot: -1.5707963267948966 rad
@@ -145875,6 +145996,7 @@ entities:
       nameSet: True
       id: Chapel Crematorium
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 285
     components:
     - rot: 1.5707963267948966 rad
@@ -145886,6 +146008,7 @@ entities:
       nameSet: True
       id: Chapel
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 286
     components:
     - rot: 1.5707963267948966 rad
@@ -145897,6 +146020,7 @@ entities:
       nameSet: True
       id: Library
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 287
     components:
     - rot: 1.5707963267948966 rad
@@ -145908,6 +146032,7 @@ entities:
       nameSet: True
       id: Hydroponics
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 288
     components:
     - pos: 39.5,-9.5
@@ -145918,6 +146043,7 @@ entities:
       nameSet: True
       id: Kitchen
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 289
     components:
     - rot: 3.141592653589793 rad
@@ -145929,6 +146055,7 @@ entities:
       nameSet: True
       id: Theater
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 290
     components:
     - rot: 1.5707963267948966 rad
@@ -145940,6 +146067,7 @@ entities:
       nameSet: True
       id: Bar
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 291
     components:
     - rot: -1.5707963267948966 rad
@@ -145951,6 +146079,7 @@ entities:
       nameSet: True
       id: Bathroom
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 292
     components:
     - rot: 3.141592653589793 rad
@@ -145962,6 +146091,7 @@ entities:
       nameSet: True
       id: Dorms
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraMedical
   entities:
   - uid: 234
@@ -145975,6 +146105,7 @@ entities:
       nameSet: True
       id: Surgery
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 235
     components:
     - rot: 3.141592653589793 rad
@@ -145986,6 +146117,7 @@ entities:
       nameSet: True
       id: Virology
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 236
     components:
     - pos: 44.5,-20.5
@@ -145996,6 +146128,7 @@ entities:
       nameSet: True
       id: Morgue
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 277
     components:
     - pos: 33.5,-36.5
@@ -146006,6 +146139,7 @@ entities:
       nameSet: True
       id: Medbay Storage
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 279
     components:
     - rot: 3.141592653589793 rad
@@ -146017,6 +146151,7 @@ entities:
       nameSet: True
       id: Emergency Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 280
     components:
     - pos: 31.5,-21.5
@@ -146027,6 +146162,7 @@ entities:
       nameSet: True
       id: Medbay Lobby
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 282
     components:
     - rot: -1.5707963267948966 rad
@@ -146038,6 +146174,7 @@ entities:
       nameSet: True
       id: Chemistry
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 17461
     components:
     - rot: -1.5707963267948966 rad
@@ -146049,6 +146186,7 @@ entities:
       nameSet: True
       id: CMO Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 18665
     components:
     - rot: 1.5707963267948966 rad
@@ -146060,6 +146198,7 @@ entities:
       nameSet: True
       id: Surgery prep
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 19214
     components:
     - rot: 3.141592653589793 rad
@@ -146071,6 +146210,7 @@ entities:
       nameSet: True
       id: Medical Storage
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 19215
     components:
     - rot: 1.5707963267948966 rad
@@ -146082,6 +146222,7 @@ entities:
       nameSet: True
       id: Cryonics
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 19216
     components:
     - rot: -1.5707963267948966 rad
@@ -146093,6 +146234,7 @@ entities:
       nameSet: True
       id: Dissection
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraRouterCommand
   entities:
   - uid: 27338
@@ -146169,6 +146311,7 @@ entities:
       nameSet: True
       id: Toxins
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 226
     components:
     - rot: 3.141592653589793 rad
@@ -146180,6 +146323,7 @@ entities:
       nameSet: True
       id: RD's Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 227
     components:
     - rot: -1.5707963267948966 rad
@@ -146191,6 +146335,7 @@ entities:
       nameSet: True
       id: RND
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27219
     components:
     - rot: 3.141592653589793 rad
@@ -146202,6 +146347,7 @@ entities:
       nameSet: True
       id: Anomaly Lab
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraSecurity
   entities:
   - uid: 17
@@ -146215,6 +146361,7 @@ entities:
       nameSet: True
       id: Armory Exterior
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 233
     components:
     - rot: 1.5707963267948966 rad
@@ -146226,6 +146373,7 @@ entities:
       nameSet: True
       id: Robotics
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 293
     components:
     - rot: -1.5707963267948966 rad
@@ -146237,6 +146385,7 @@ entities:
       nameSet: True
       id: Courtroom
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 311
     components:
     - pos: -20.5,-31.5
@@ -146247,6 +146396,7 @@ entities:
       nameSet: True
       id: Cargo Sec Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 338
     components:
     - rot: -1.5707963267948966 rad
@@ -146258,6 +146408,7 @@ entities:
       nameSet: True
       id: Arrivals Sec Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 371
     components:
     - rot: 1.5707963267948966 rad
@@ -146269,6 +146420,7 @@ entities:
       nameSet: True
       id: Shooting Range
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 387
     components:
     - pos: 15.5,37.5
@@ -146279,6 +146431,7 @@ entities:
       nameSet: True
       id: HoS Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 388
     components:
     - rot: -1.5707963267948966 rad
@@ -146290,6 +146443,7 @@ entities:
       nameSet: True
       id: Locker Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 389
     components:
     - rot: 3.141592653589793 rad
@@ -146301,6 +146455,7 @@ entities:
       nameSet: True
       id: Armory
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 394
     components:
     - rot: 3.141592653589793 rad
@@ -146312,6 +146467,7 @@ entities:
       nameSet: True
       id: Warden's Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 397
     components:
     - rot: 3.141592653589793 rad
@@ -146323,6 +146479,7 @@ entities:
       nameSet: True
       id: Cell Block
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 398
     components:
     - rot: 3.141592653589793 rad
@@ -146334,6 +146491,7 @@ entities:
       nameSet: True
       id: Detective Office
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 403
     components:
     - rot: 3.141592653589793 rad
@@ -146345,6 +146503,7 @@ entities:
       nameSet: True
       id: sec hallway
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26391
     components:
     - rot: 3.141592653589793 rad
@@ -146356,6 +146515,7 @@ entities:
       nameSet: True
       id: Perma Hall
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26392
     components:
     - rot: 1.5707963267948966 rad
@@ -146367,6 +146527,7 @@ entities:
       nameSet: True
       id: Perma Recreation
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26393
     components:
     - rot: 3.141592653589793 rad
@@ -146378,6 +146539,7 @@ entities:
       nameSet: True
       id: Perma Botany
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26394
     components:
     - rot: 1.5707963267948966 rad
@@ -146389,6 +146551,7 @@ entities:
       nameSet: True
       id: Perma Library
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26395
     components:
     - pos: -19.5,43.5
@@ -146399,6 +146562,7 @@ entities:
       nameSet: True
       id: Perma Cells
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 26578
     components:
     - pos: 8.5,43.5
@@ -146409,6 +146573,7 @@ entities:
       nameSet: True
       id: Security Exterior Armory
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 27217
     components:
     - rot: 3.141592653589793 rad
@@ -146420,6 +146585,7 @@ entities:
       nameSet: True
       id: Perma Entryway
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraService
   entities:
   - uid: 27582
@@ -146433,6 +146599,7 @@ entities:
       nameSet: True
       id: Janitor Closet
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraSupply
   entities:
   - uid: 41
@@ -146445,6 +146612,7 @@ entities:
       nameSet: True
       id: Mail Room
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 283
     components:
     - rot: -1.5707963267948966 rad
@@ -146456,6 +146624,7 @@ entities:
       nameSet: True
       id: Cargo Lobby
       type: SurveillanceCamera
+    - type: Visibility
   - uid: 931
     components:
     - rot: 1.5707963267948966 rad
@@ -146467,6 +146636,7 @@ entities:
       nameSet: True
       id: Salvage Bay
       type: SurveillanceCamera
+    - type: Visibility
 - proto: SurveillanceCameraWirelessRouterEntertainment
   entities:
   - uid: 27339
