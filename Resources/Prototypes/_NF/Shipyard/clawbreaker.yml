@@ -1,0 +1,27 @@
+- type: vessel
+  id: Clawbreaker
+  name: Clawbreaker
+  description: A modified variant of the Crab, this vessel is ideal for a raiding group of two.
+  price: 75000
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/Shuttles/clawbreaker.yml
+
+- type: gameMap
+  id: clawbreaker
+  mapName: 'Clawbreaker'
+  mapPath: /Maps/Shuttles/clawbreaker.yml
+  minPlayers: 0
+  stations:
+    Clawbreaker:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Clawbreaker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 1 ]

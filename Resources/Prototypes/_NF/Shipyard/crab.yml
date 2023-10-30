@@ -1,0 +1,27 @@
+- type: vessel
+  id: crab
+  name: NT Crab
+  description: A small, fragile, solar-powered ship, for the DIY upstart salvager.
+  price: 21000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/crab.yml
+
+- type: gameMap
+  id: crab
+  mapName: 'NT Crab'
+  mapPath: /Maps/Shuttles/crab.yml
+  minPlayers: 0
+  stations:
+    crab:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Crab {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 1 ]
