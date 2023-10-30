@@ -18,18 +18,18 @@ public sealed class DogVisionSystem : EntitySystem
         SubscribeLocalEvent<DogVisionComponent, ComponentInit>(OnDogVisionInit);
         SubscribeLocalEvent<DogVisionComponent, ComponentShutdown>(OnDogVisionShutdown);
 
-        SubscribeLocalEvent<DogVisionComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<DogVisionComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<DogVisionComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<DogVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
         _overlay = new();
     }
 
-    private void OnPlayerAttached(EntityUid uid, DogVisionComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, DogVisionComponent component, LocalPlayerAttachedEvent args)
     {
         _overlayMan.AddOverlay(_overlay);
     }
 
-    private void OnPlayerDetached(EntityUid uid, DogVisionComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, DogVisionComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
     }
