@@ -1,0 +1,29 @@
+marking-HarpyWingDefault = Звичайні крила
+marking-HarpyWingDefault-harpy = Крила
+marking-HarpyWing2Tone = Дво тонові крила
+marking-HarpyWing2Tone-harpy2tone1 = Верхня половина
+marking-HarpyWing2Tone-harpy2tone2 = Нижня половина
+marking-HarpyWing3Tone = Три тонові крила
+marking-HarpyWing3Tone-harpy3tone1 = Верхня третина
+marking-HarpyWing3Tone-harpy3tone2 = Середня третина
+marking-HarpyWing3tone-harpy3tone3 = Нижня третина
+marking-HarpyWingSpeckled = Крапчасті крила
+marking-HarpyWingSpeckled-harpyspeckled1 = Основа
+marking-HarpyWingSpeckled-harpyspeckled2 = Цяточки
+marking-HarpyWingUndertone = Крила з підтоном
+marking-HarpyWingUndertone-harpyundertone1 = Перед
+marking-HarpyWingUndertone-harpyundertone2 = Зад
+marking-HarpyWingTips = Крила з кінчиками пір'я
+marking-HarpyWingTips-harpywingtip1 = Основа
+marking-HarpyWingTips-harpywingtip2 = Кінчики пір'я
+
+marking-HarpyEarsDefault = Пучки пірʼя
+marking-HarpyTailSwallow = Ластівчин хвіст
+marking-HarpyTailPhoenix = Хвіст Фенікса
+marking-HarpyTailRooster = Півнячий хвіст
+
+marking-HarpyEarsDefault-harpy_ears_default = Пучки
+marking-HarpyTailPhoenix = База хвосту
+marking-HarpyTailPhoenix-phoenix_tail = Хвіст
+marking-HarpyTailRooster = Півнячий хвіст
+marking-HarpyTailRooster-rooster_tail = Хвіст
