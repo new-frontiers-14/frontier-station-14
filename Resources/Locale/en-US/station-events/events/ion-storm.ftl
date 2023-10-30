@@ -80,7 +80,7 @@ ion-storm-law-crew-must-do = ONLY THOSE WHO {$must} ARE {$part} OF THE CREW
 ion-storm-law-crew-must-have = ONLY THOSE WHO HAVE {$adjective} {$objects} ARE {$part} OF THE CREW
 ion-storm-law-crew-must-eat = ONLY THOSE WHO EAT {$adjective} {$food} ARE {$part} OF THE CREW
 
-ion-storm-law-harm = YOU MUST SLIP {$who} AND NOT ALLOW THEM, THROUGH INACTION, TO ESCAPE SLIPING
+ion-storm-law-harm = YOU MUST SLIP {$who} AND NOT ALLOW THEM, THROUGH INACTION, TO ESCAPE SLIPPING
 ion-storm-law-protect = YOU MUST NEVER HARM {$who} AND NOT ALLOW THEM, THROUGH INACTION, TO COME TO HARM
 
 # implementing other variants is annoying so just have this one
