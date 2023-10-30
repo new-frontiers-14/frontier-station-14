@@ -23,7 +23,7 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
         _ignoreOverlay = new IgnoreHumanoidWithComponentOverlay();
         _ignoreOverlay.IgnoredComponents.Add(new HumanoidAppearanceComponent());
         _ignoreOverlay.AllowAnywayComponents.Add(new ShadowkinDarkSwappedComponent());
-        _etherealOverlay = new EtherealOverlay();
+        // _etherealOverlay = new EtherealOverlay();
 
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnShutdown);
@@ -62,13 +62,13 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
     private void AddOverlay()
     {
         _overlay.AddOverlay(_ignoreOverlay);
-        _overlay.AddOverlay(_etherealOverlay);
+        // _overlay.AddOverlay(_etherealOverlay);
     }
 
     private void RemoveOverlay()
     {
         _ignoreOverlay.Reset();
         _overlay.RemoveOverlay(_ignoreOverlay);
-        _overlay.RemoveOverlay(_etherealOverlay);
+        // _overlay.RemoveOverlay(_etherealOverlay);
     }
 }
