@@ -1,0 +1,29 @@
+- type: vessel
+  id: starrunner
+  name: NT StarRunner
+  description: A well worn planetary exploration shuttle, now used for expeditions by subcontractors.
+  price: 29000
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/Shuttles/starrunner.yml
+  
+- type: gameMap
+  id: starrunner
+  mapName: 'NT starrunner'
+  mapPath: /Maps/Shuttles/starrunner.yml
+  minPlayers: 0
+  stations: 
+    starrunner:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'NT14 StarRunner {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
