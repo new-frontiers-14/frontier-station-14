@@ -1,0 +1,28 @@
+- type: vessel
+  id: Comet
+  name: NT Comet
+  description: A mining and construction vessel intended to help build or repair quickly.
+  price: 61821
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/comet.yml
+
+- type: gameMap
+  id: Comet
+  mapName: 'NT Comet'
+  mapPath: /Maps/Shuttles/comet.yml
+  minPlayers: 0
+  stations: 
+    Comet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Comet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
+            Passenger: [ 0, 0 ]

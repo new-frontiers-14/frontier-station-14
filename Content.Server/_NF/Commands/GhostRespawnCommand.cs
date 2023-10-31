@@ -9,6 +9,7 @@ using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.NF14.Commands;
@@ -66,6 +67,6 @@ public sealed class GhostRespawnCommand : IConsoleCommand
         }
 
         var gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-        gameTicker.Respawn((IPlayerSession) shell.Player);
+        gameTicker.Respawn(shell.Player);
     }
 }
