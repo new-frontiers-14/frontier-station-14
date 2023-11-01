@@ -12,7 +12,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
@@ -27,7 +27,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.Mind;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
-using Content.Server.Station.Components;
 
 namespace Content.Server.Shipyard.Systems;
 

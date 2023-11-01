@@ -40,6 +40,11 @@ namespace Content.Client.PDA
                 SendMessage(new ItemSlotButtonPressedEvent(PdaComponent.PdaPenSlotId));
             };
 
+            _menu.EjectBookButton.OnPressed += _ =>
+            {
+                SendMessage(new ItemSlotButtonPressedEvent(PdaComponent.PdaBookSlotId));
+            };
+
             _menu.ActivateMusicButton.OnPressed += _ =>
             {
                 SendMessage(new PdaShowMusicMessage());
