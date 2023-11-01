@@ -1,16 +1,11 @@
 - type: entity
   name: web cocoon
-  description: Strong web cocoon used to restrain preys or just criminals.
+  description: Strong web cocoon used to restrain criminal or preys, its also prevent rotting.
   id: WebCocoon
-  parent: Handcuffs
+  parent: ClothingOuterStraightjacket
   components:
-  - type: Item
-    size: 30
   - type: Handcuff
-    CuffTime: 5
-    breakoutTime: 30
-    UncuffTime: 10
-    cuffedRSI: Objects/Misc/webcocoon.rsi
+    cuffedRSI: Clothing/OuterClothing/Misc/webcocoon.rsi
     bodyIconState: body-overlay
     breakOnRemove: true
     brokenPrototype: WebSilk
@@ -28,5 +23,5 @@
     graph: WebObjects
     node: cocoon
   - type: Sprite
-    sprite: Objects/Misc/webcocoon.rsi
+    sprite: Clothing/OuterClothing/Misc/webcocoon.rsi
     state: cocoon
