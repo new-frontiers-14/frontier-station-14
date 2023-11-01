@@ -14,6 +14,7 @@ using Robust.Shared.Player;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Body.Systems;
 using Content.Shared.Database;
+using Robust.Shared.Utility;
 
 namespace Content.Server.ArachnidChaos
 {
@@ -54,9 +55,10 @@ namespace Content.Server.ArachnidChaos
                     if (!IsActionValid(args.User, args.Target))
                         return;
 
+                    _popupSystem.PopupEntity(Loc.GetString("spider-biting", ("UsernameName", args.User), ("targetName", args.Target)), args.User);
                     _popupSystem.PopupEntity(Loc.GetString("spider-biting"), args.User, args.User);
 
-                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, 3f, new ArachnidChaosDoAfterEvent(), args.Target, args.Target)
+                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, 3f, new ArachnidChaosDoAfterEvent(), uid, target: args.Target, used: uid)
                     {
                         BreakOnTargetMove = true,
                         BreakOnUserMove = true,
@@ -66,6 +68,7 @@ namespace Content.Server.ArachnidChaos
 
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 },
+                Icon = new SpriteSpecifier.Rsi(new ("Nyanotrasen/Icons/verbiconfangs.png"), "icon"),
                 Text = Loc.GetString("action-name-spider-bite"),
                 Priority = 2
             };
@@ -73,28 +76,23 @@ namespace Content.Server.ArachnidChaos
         }
         private void OnDoAfter(EntityUid uid, ArachnidChaosComponent comp, DoAfterEvent args)
         {
-            if (args.Cancelled || args.Handled || comp.Deleted)
+            if (args.Cancelled || args.Handled || args.Args.Target == null)
                 return;
 
-            if (args.Args.Target is not { } target)
+            if (!IsActionValid(args.Args.User, args.Args.Target.Value))
                 return;
 
-            var user = args.Args.User;
-
-            if (!IsActionValid(user, target))
+            if (!TryComp<HungerComponent>(args.Args.User, out var hunger))
                 return;
 
-            if (!TryComp<HungerComponent>(user, out var hunger))
+            if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream))
                 return;
 
-            if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
-                return;
+            _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -10, bloodstream);
+            SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(args.Args.User), args.Args.User, AudioHelpers.WithVariation(0.15f));
+            _hunger.ModifyHunger(args.Args.User, 1, hunger);
 
-            _bloodstreamSystem.TryModifyBloodLevel(target, -15, bloodstream);
-            SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(user), user, AudioHelpers.WithVariation(0.15f));
-            _hunger.ModifyHunger(user, 1, hunger);
-
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user):actor} drank blood from {ToPrettyString(target):actor}");
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Args.User):actor} drank blood from {ToPrettyString(args.Args.Target.Value):actor}");
 
             args.Repeat = true;
         }
