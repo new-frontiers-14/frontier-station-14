@@ -522,11 +522,6 @@ entities:
     - pos: -0.5,-4.5
       parent: 1
       type: Transform
-  - uid: 56
-    components:
-    - pos: 6.5,-2.5
-      parent: 1
-      type: Transform
   - uid: 57
     components:
     - pos: -2.5,-1.5
@@ -655,6 +650,11 @@ entities:
 - proto: CableHV
   entities:
   - uid: 55
+    components:
+    - pos: 6.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 56
     components:
     - pos: 6.5,-2.5
       parent: 1
@@ -1007,6 +1007,16 @@ entities:
   - uid: 316
     components:
     - pos: 2.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 323
+    components:
+    - pos: 6.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 324
+    components:
+    - pos: 5.5,-3.5
       parent: 1
       type: Transform
 - proto: CableMV
@@ -1654,12 +1664,13 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 201
-          - 113
-          - 248
-          - 200
-          - 202
+          - 322
           - 249
+          - 202
+          - 200
+          - 248
+          - 113
+          - 201
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1774,6 +1785,17 @@ entities:
       type: Physics
     - type: InsideEntityStorage
   - uid: 201
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 197
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: Pickaxe
+  entities:
+  - uid: 322
     components:
     - flags: InContainer
       type: MetaData

@@ -462,6 +462,11 @@ entities:
     - pos: 0.5,-3.5
       parent: 1
       type: Transform
+  - uid: 65
+    components:
+    - pos: 3.5,-1.5
+      parent: 1
+      type: Transform
   - uid: 66
     components:
     - pos: 3.5,-4.5
@@ -490,11 +495,6 @@ entities:
   - uid: 302
     components:
     - pos: 2.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 303
-    components:
-    - pos: 3.5,-1.5
       parent: 1
       type: Transform
 - proto: CableHV
@@ -934,18 +934,13 @@ entities:
     - pos: 4.5,7.5
       parent: 1
       type: Transform
-  - uid: 301
+  - uid: 296
     components:
     - pos: 2.5,-1.5
       parent: 1
       type: Transform
 - proto: CableMV
   entities:
-  - uid: 65
-    components:
-    - pos: 3.5,-1.5
-      parent: 1
-      type: Transform
   - uid: 156
     components:
     - pos: 3.5,-0.5
@@ -986,29 +981,34 @@ entities:
     - pos: 0.5,-4.5
       parent: 1
       type: Transform
-  - uid: 296
+  - uid: 297
     components:
     - pos: 2.5,-1.5
       parent: 1
       type: Transform
-  - uid: 297
+  - uid: 298
     components:
     - pos: 2.5,-2.5
       parent: 1
       type: Transform
-  - uid: 298
+  - uid: 299
     components:
     - pos: 3.5,-2.5
       parent: 1
       type: Transform
-  - uid: 299
+  - uid: 300
     components:
     - pos: 4.5,-2.5
       parent: 1
       type: Transform
-  - uid: 300
+  - uid: 301
     components:
     - pos: 5.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 303
+    components:
+    - pos: 3.5,-1.5
       parent: 1
       type: Transform
 - proto: CableTerminal
@@ -1179,7 +1179,7 @@ entities:
   entities:
   - uid: 191
     components:
-    - pos: -1.2814695,-1.2548147
+    - pos: -1.5,-1.5
       parent: 1
       type: Transform
     - air:
@@ -1718,7 +1718,7 @@ entities:
       type: Transform
   - uid: 250
     components:
-    - pos: -5.5,0.5
+    - pos: -3.5,0.5
       parent: 1
       type: Transform
   - uid: 252
@@ -1737,11 +1737,6 @@ entities:
       parent: 1
       type: Transform
   - uid: 259
-    components:
-    - pos: -3.5,0.5
-      parent: 1
-      type: Transform
-  - uid: 260
     components:
     - pos: 5.5,0.5
       parent: 1
@@ -1821,13 +1816,18 @@ entities:
     - pos: -6.5,4.5
       parent: 1
       type: Transform
+- proto: SolarTracker
+  entities:
+  - uid: 260
+    components:
+    - pos: -5.5,0.5
+      parent: 1
+      type: Transform
   - uid: 277
     components:
     - pos: 6.5,0.5
       parent: 1
       type: Transform
-- proto: SolarTracker
-  entities:
   - uid: 278
     components:
     - pos: -5.5,5.5
