@@ -68,7 +68,7 @@ namespace Content.Server.ArachnidChaos
 
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 },
-                Icon = new SpriteSpecifier.Rsi(new ("Nyanotrasen/Icons/verbiconfangs.png"), "icon"),
+                Icon = new SpriteSpecifier.Rsi(new ("Nyanotrasen/Icons/verbiconfangs.rsi"), "icon"),
                 Text = Loc.GetString("action-name-spider-bite"),
                 Priority = 2
             };
