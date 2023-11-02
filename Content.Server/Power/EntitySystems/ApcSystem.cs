@@ -37,7 +37,6 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, GotEmaggedEvent>(OnEmagged);
 
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
-
         SubscribeLocalEvent<ApcComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 

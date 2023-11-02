@@ -23,6 +23,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Emp;
 using Content.Shared.Tools.Components;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -374,6 +375,20 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         foreach (var (uid, comp) in toRemove)
         {
             RemovePilot(uid, comp);
+        }
+
+        /// <summary>
+        /// This makes the Shuttle Console pulse like its trying to come back online
+        /// After the EMP is over it will try to toggle it back on
+        /// </summary>
+        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
+        while (disabled.MoveNext(out var uid, out _, out var comp))
+        {
+            if (comp.TimeoutFromEmp <= _timing.CurTime)
+            {
+                ClearPilots(comp);
+                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.1);
+            }
         }
     }
 
