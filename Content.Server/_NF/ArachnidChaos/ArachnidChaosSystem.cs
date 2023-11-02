@@ -88,9 +88,9 @@ namespace Content.Server.ArachnidChaos
             if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream))
                 return;
 
-            _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -10, bloodstream);
+            _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -5, bloodstream);
             SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(args.Args.User), args.Args.User, AudioHelpers.WithVariation(0.15f));
-            _hunger.ModifyHunger(args.Args.User, 1, hunger);
+            _hunger.ModifyHunger(args.Args.User, 5, hunger);
 
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Args.User):actor} drank blood from {ToPrettyString(args.Args.Target.Value):actor}");
 
