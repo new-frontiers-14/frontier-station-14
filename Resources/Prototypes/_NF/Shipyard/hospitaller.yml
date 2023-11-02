@@ -1,6 +1,6 @@
 - type: vessel
   id: Hospitaller
-  name: NT Hospitaller
+  name: NSF Hospitaller
   description: A small security medical craft designed for emergency response and search and rescue operations.
   price: 23220
   category: Small
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Hospitaller
-  mapName: 'NT Hospitaller'
+  mapName: 'NSF14 Hospitaller'
   mapPath: /Maps/Shuttles/hospitaller.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Hospitaller {1}'
+          mapNameTemplate: 'NSF14 Hospitaller {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
