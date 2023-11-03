@@ -386,7 +386,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             {
                 ClearPilots(comp);
                 comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.1);
+                comp.MainBreakerEnabled = false;
             }
+            else
+                comp.MainBreakerEnabled = true;
         }
     }
 
