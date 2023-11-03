@@ -64,7 +64,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
 
         SubscribeLocalEvent<ShuttleConsoleComponent, EmpPulseEvent>(OnEmpPulse);
-
         SubscribeLocalEvent<ShuttleConsoleComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 
@@ -378,8 +377,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
 
         /// <summary>
-        /// This makes the Shuttle Console pulse like its trying to come back online
-        /// After the EMP is over it will try to toggle it back on
+        /// This makes the Shuttle Console kick pilots like its removed, to make sure EMP in effect.
         /// </summary>
         var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
         while (disabled.MoveNext(out var uid, out _, out var comp))
