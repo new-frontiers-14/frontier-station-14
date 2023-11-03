@@ -487,12 +487,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private void OnEmpPulse(EntityUid uid, ShuttleConsoleComponent component, ref EmpPulseEvent args)
     {
-        if (component.MainBreakerEnabled)
-        {
-            args.Affected = true;
-            args.Disabled = true;
-            component.TimeoutFromEmp = _timing.CurTime;
-        }
+        args.Affected = true;
+        args.Disabled = true;
+        component.TimeoutFromEmp = _timing.CurTime;
     }
 
     private void OnToolUseAttempt(EntityUid uid, ShuttleConsoleComponent component, ToolUseAttemptEvent args)
