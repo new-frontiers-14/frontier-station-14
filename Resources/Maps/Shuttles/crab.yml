@@ -832,11 +832,6 @@ entities:
     - pos: 6.5,-0.5
       parent: 1
       type: Transform
-  - uid: 148
-    components:
-    - pos: 6.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 149
     components:
     - pos: -2.5,-3.5
@@ -1090,7 +1085,7 @@ entities:
   entities:
   - uid: 191
     components:
-    - pos: 2.5767863,-1.2787222
+    - pos: 2.5,-1.5
       parent: 1
       type: Transform
     - air:
@@ -1250,6 +1245,14 @@ entities:
   - uid: 326
     components:
     - pos: -2.5,3.5
+      parent: 1
+      type: Transform
+- proto: Gyroscope
+  entities:
+  - uid: 148
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -1.5,-3.5
       parent: 1
       type: Transform
 - proto: LockerCaptain
