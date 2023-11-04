@@ -1,6 +1,6 @@
 - type: vessel
   id: Empress
-  name: NT Empress
+  name: NSF Empress
   description: A large patrol vessel capable of carrying up to 3 smaller faster attack ships. the flagship vessel of security.
   price: 170200
   category: Large
@@ -9,15 +9,15 @@
 
 - type: gameMap
   id: Empress
-  mapName: 'NT Empress'
+  mapName: 'NSF Empress'
   mapPath: /Maps/Shuttles/empress.yml
   minPlayers: 0
   stations:
     Empress:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Empress {1}'
+          mapNameTemplate: 'NSF14 Empress {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

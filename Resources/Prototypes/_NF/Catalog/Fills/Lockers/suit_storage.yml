@@ -1,0 +1,34 @@
+#HARDSUITS
+#Brigmedic's hardsuit
+- type: entity
+  id: SuitStorageBrigmedic
+  parent: SuitStorageBase
+  suffix: Brigmedic
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitBrigmedic
+        - id: ClothingMaskBreathMedicalSecurity
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Security"]]
+
+#Paramedic's hardsuit
+- type: entity
+  id: SuitStorageParamedic
+  parent: SuitStorageBase
+  suffix: Paramedic
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingHeadHelmetVoidParamed
+        - id: ClothingOuterHardsuitVoidParamed
+        - id: ClothingMaskBreathMedical
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader

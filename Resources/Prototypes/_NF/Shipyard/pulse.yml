@@ -1,0 +1,27 @@
+- type: vessel
+  id: Pulse
+  name: NM Pulse
+  description: A small rapid response medical ship
+  price: 17765
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/pulse.yml
+
+- type: gameMap
+  id: Pulse
+  mapName: 'NM Pulse'
+  mapPath: /Maps/Shuttles/pulse.yml
+  minPlayers: 0
+  stations:
+    Pulse:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Pulse {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]

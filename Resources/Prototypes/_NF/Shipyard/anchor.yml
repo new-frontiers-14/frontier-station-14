@@ -1,15 +1,15 @@
 - type: vessel
   id: Anchor
-  name: NT Anchor
+  name: KC Anchor
   description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
   price: 135020
   category: Large
-  group: Civilian
+  group: Expedition
   shuttlePath: /Maps/Shuttles/anchor.yml
   
 - type: gameMap
   id: Anchor
-  mapName: 'NT Anchor'
+  mapName: 'KC Anchor'
   mapPath: /Maps/Shuttles/anchor.yml
   minPlayers: 0
   stations: 
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Anchor {1}'
+          mapNameTemplate: 'KC14 Anchor {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

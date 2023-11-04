@@ -4,12 +4,10 @@ using Content.Server.Popups;
 using Content.Server.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Examine;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
@@ -151,10 +149,10 @@ namespace Content.Server.Paper
                     var userJob = Loc.GetString("stamp-component-unknown-job");
                     if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                     {
-                        if (card.FullName != null)
-                            userName = card.FullName;
-                        if (card.JobTitle != null)
-                            userJob = card.JobTitle;
+                        if (card.Comp.FullName != null)
+                            userName = card.Comp.FullName;
+                        if (card.Comp.JobTitle != null)
+                            userJob = card.Comp.JobTitle;
                     }
                     //string stampedName = userJob + " - " + userName;
                     string stampedName = userName;
@@ -256,7 +254,7 @@ namespace Content.Server.Paper
             _appearance.SetData(uid, PaperVisuals.Status, status, appearance);
         }
 
-        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null, IPlayerSession? session = null)
+        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null, ICommonSession? session = null)
         {
             if (!Resolve(uid, ref paperComp))
                 return;
@@ -275,10 +273,10 @@ namespace Content.Server.Paper
                 var userJob = Loc.GetString("stamp-component-unknown-job");
                 if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                 {
-                    if (card.FullName != null)
-                        userName = card.FullName;
-                    if (card.JobTitle != null)
-                        userJob = card.JobTitle;
+                    if (card.Comp.FullName != null)
+                        userName = card.Comp.FullName;
+                    if (card.Comp.JobTitle != null)
+                        userJob = card.Comp.JobTitle;
                 }
                 //string stampedName = userJob + " - " + userName;
                 string stampedName = userName;

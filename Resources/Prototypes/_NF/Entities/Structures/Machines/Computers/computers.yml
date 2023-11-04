@@ -137,6 +137,30 @@
           acts: ["Destruction"]
 
 - type: entity
+  id: ComputerShipyardExpedition
+  parent: ComputerShipyard
+  name: expedition shipyard console
+  description: Used to buy ships outfitted for planetary expeditions
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Expedition
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Expedition
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket   
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+
+- type: entity
   name: cargo sale computer
   suffix: Normal
   parent: BaseStructureComputer

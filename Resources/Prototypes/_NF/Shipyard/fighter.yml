@@ -1,6 +1,6 @@
 - type: vessel
   id: Fighter
-  name: NT Fighter
+  name: NSF Fighter
   description: Small attack vessel used for boarding and transport of prisoners.
   price: 9000 #not sure how much mark up % to add but the appraisal is 8491$
   category: Small
@@ -9,15 +9,15 @@
 
 - type: gameMap
   id: Fighter
-  mapName: 'NT Fighter'
+  mapName: 'NSF Fighter'
   mapPath: /Maps/Shuttles/fighter.yml
   minPlayers: 0
   stations:
     Fighter:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Fighter {1}'
+          mapNameTemplate: 'NSF14 Fighter {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
