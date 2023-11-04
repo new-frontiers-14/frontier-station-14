@@ -42,13 +42,13 @@
   name: survival box
   parent: BoxCardboard
   id: BoxSurvivalSecurity
-  description: It's a box with basic internals inside.
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Security
   components:
   - type: StorageFill
     contents:
       - id: ClothingMaskGasSecurity
-      - id: EmergencyOxygenTankFilled
+      - id: ExtendedEmergencyOxygenTankFilled # Frontier
       - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
@@ -57,19 +57,19 @@
   - type: Sprite
     layers:
       - state: internals
-      - state: emergencytank
+      - state: extendedtank # Frontier
 
 - type: entity
   name: survival box
   parent: BoxCardboard
   id: BoxSurvivalBrigmedic
-  description: It's a box with basic internals inside.
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: MedSec
   components:
   - type: StorageFill
     contents:
       - id: ClothingMaskBreathMedicalSecurity
-      - id: EmergencyOxygenTankFilled
+      - id: ExtendedEmergencyOxygenTankFilled # Frontier
       - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: EmergencyMedipen
@@ -78,7 +78,7 @@
   - type: Sprite
     layers:
       - state: internals
-      - state: emergencytank
+      - state: extendedtank # Frontier
 
 - type: entity
   name: survival box
