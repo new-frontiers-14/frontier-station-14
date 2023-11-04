@@ -61,7 +61,6 @@ namespace Content.Client.VendingMachines
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
                 priceMod = market.Mod;
 
-            _menu?.UpdateBalance(newState.Balance);
             _cachedInventory = newState.Inventory;
             _menu?.UpdateBalance(newState.Balance);
             _menu?.Populate(_cachedInventory, priceMod, out _cachedFilteredIndex, _menu.SearchBar.Text);
