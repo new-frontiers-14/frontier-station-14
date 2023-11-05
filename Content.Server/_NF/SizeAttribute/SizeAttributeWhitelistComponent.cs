@@ -15,6 +15,9 @@ namespace Content.Server.SizeAttribute
         [DataField("shortDensity")]
         public float ShortDensity = 0f;
 
+        [DataField("shortPseudoItem")]
+        public bool ShortPseudoItem = false;
+
         // Tall
         [DataField("tall")]
         public bool Tall = false;
@@ -24,5 +27,8 @@ namespace Content.Server.SizeAttribute
 
         [DataField("tallDensity")]
         public float TallDensity = 0f;
+
+        [DataField("tallPseudoItem")]
+        public bool TallPseudoItem = false;
     }
 }

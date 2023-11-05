@@ -3,6 +3,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
+using Content.Server.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {
@@ -23,27 +24,41 @@ namespace Content.Server.SizeAttribute
             if (!TryComp<SizeAttributeWhitelistComponent>(uid, out var whitelist))
                 return;
 
-            var scale = 0f;
-            var density = 0f;
-            if (whitelist.Tall)
+            if (whitelist.Tall && component.Tall)
             {
-                scale = whitelist.TallScale;
-                density = whitelist.TallDensity;
+                Scale(uid, component, whitelist.TallScale, whitelist.TallDensity);
+                PseudoItem(uid, component, whitelist.TallPseudoItem);
             }
-            else if (whitelist.Short)
+            else if (whitelist.Short && component.Short)
             {
-                scale = whitelist.ShortScale;
-                density = whitelist.ShortDensity;
+                Scale(uid, component, whitelist.ShortScale, whitelist.ShortDensity);
+                PseudoItem(uid, component, whitelist.ShortPseudoItem);
             }
+        }
 
-            if (scale <= 0f && density <= 0f)
-                return;
+        private void PseudoItem(EntityUid uid, SizeAttributeComponent component, bool active)
+        {
+            if (active)
+            {
+                if (TryComp<PseudoItemComponent>(uid, out var pseudoI))
+                    return;
 
-            Scale(uid, component, scale, density);
+                _entityManager.AddComponent<PseudoItemComponent>(uid);
+            }
+            else
+            {
+                if (!TryComp<PseudoItemComponent>(uid, out var pseudoI))
+                    return;
+
+                _entityManager.RemoveComponent<PseudoItemComponent>(uid);
+            }
         }
 
         private void Scale(EntityUid uid, SizeAttributeComponent component, float scale, float density)
         {
+            if (scale <= 0f && density <= 0f)
+                return;
+
             _entityManager.EnsureComponent<ScaleVisualsComponent>(uid);
 
             var appearanceComponent = _entityManager.EnsureComponent<AppearanceComponent>(uid);
