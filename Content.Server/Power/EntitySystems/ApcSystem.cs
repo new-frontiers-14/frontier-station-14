@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
+using Content.Shared.Emp;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -204,6 +205,9 @@ public sealed class ApcSystem : EntitySystem
 
     private void OnToolUseAttempt(EntityUid uid, ApcComponent component, ToolUseAttemptEvent args)
     {
+        if (!HasComp<EmpDisabledComponent>(uid))
+            return;
+
         // prevent reconstruct exploit to skip cooldowns
         if (!component.MainBreakerEnabled)
             args.Cancel();

@@ -494,6 +494,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private void OnToolUseAttempt(EntityUid uid, ShuttleConsoleComponent component, ToolUseAttemptEvent args)
     {
+        if (!HasComp<EmpDisabledComponent>(uid))
+            return;
+
         // prevent reconstruct exploit to skip cooldowns
         if (!component.MainBreakerEnabled)
             args.Cancel();
