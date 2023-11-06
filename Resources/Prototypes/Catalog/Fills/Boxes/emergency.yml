@@ -12,7 +12,7 @@
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
@@ -32,7 +32,7 @@
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
@@ -42,43 +42,45 @@
   name: survival box
   parent: BoxCardboard
   id: BoxSurvivalSecurity
-  description: It's a box with basic internals inside.
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: Security
   components:
   - type: StorageFill
     contents:
       - id: ClothingMaskGasSecurity
-      - id: EmergencyOxygenTankFilled
+#      - id: EmergencyOxygenTankFilled
+      - id: ExtendedEmergencyOxygenTankFilled # Frontier
       - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
-      - state: emergencytank
+      - state: extendedtank # Frontier
 
 - type: entity
   name: survival box
   parent: BoxCardboard
   id: BoxSurvivalBrigmedic
-  description: It's a box with basic internals inside.
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
   suffix: MedSec
   components:
   - type: StorageFill
     contents:
       - id: ClothingMaskBreathMedicalSecurity
-      - id: EmergencyOxygenTankFilled
+#      - id: EmergencyOxygenTankFilled
+      - id: ExtendedEmergencyOxygenTankFilled # Frontier
       - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: EmergencyMedipen
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
-      - state: emergencytank
+      - state: extendedtank # Frontier
 
 - type: entity
   name: survival box
@@ -95,7 +97,7 @@
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
@@ -121,7 +123,7 @@
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Tag
     tags:
       - BoxHug
@@ -140,7 +142,7 @@
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
-      - id: EncryptionKeyCommand
+      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
