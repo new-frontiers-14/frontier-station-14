@@ -172,7 +172,7 @@ entities:
     - pos: -0.5,-4.5
       parent: 1
       type: Transform
-  - uid: 5
+  - uid: 196
     components:
     - pos: 1.5,-4.5
       parent: 1
@@ -1162,14 +1162,10 @@ entities:
       type: Transform
 - proto: Grille
   entities:
-  - uid: 310
+  - uid: 214
     components:
-    - pos: 3.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 311
-    components:
-    - pos: 3.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,0.5
       parent: 1
       type: Transform
   - uid: 312
@@ -1182,16 +1178,6 @@ entities:
     - pos: 3.5,-0.5
       parent: 1
       type: Transform
-  - uid: 314
-    components:
-    - pos: 3.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 315
-    components:
-    - pos: 3.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 316
     components:
     - pos: 3.5,-4.5
@@ -1200,11 +1186,6 @@ entities:
   - uid: 317
     components:
     - pos: 2.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 318
-    components:
-    - pos: 0.5,-4.5
       parent: 1
       type: Transform
   - uid: 319
@@ -1217,34 +1198,9 @@ entities:
     - pos: -2.5,-4.5
       parent: 1
       type: Transform
-  - uid: 321
-    components:
-    - pos: -2.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 322
-    components:
-    - pos: -2.5,-1.5
-      parent: 1
-      type: Transform
   - uid: 323
     components:
     - pos: -2.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 324
-    components:
-    - pos: -2.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 325
-    components:
-    - pos: -2.5,0.5
-      parent: 1
-      type: Transform
-  - uid: 326
-    components:
-    - pos: -2.5,3.5
       parent: 1
       type: Transform
 - proto: Gyroscope
@@ -1517,20 +1473,26 @@ entities:
       type: Transform
 - proto: RandomPosterLegit
   entities:
-  - uid: 213
+  - uid: 162
     components:
     - rot: -1.5707963267948966 rad
-      pos: 3.5,0.5
+      pos: 3.5,-1.5
       parent: 1
       type: Transform
-  - uid: 214
+  - uid: 217
     components:
     - rot: 1.5707963267948966 rad
-      pos: -2.5,0.5
+      pos: -2.5,1.5
       parent: 1
       type: Transform
 - proto: ReinforcedWindow
   entities:
+  - uid: 213
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,0.5
+      parent: 1
+      type: Transform
   - uid: 215
     components:
     - pos: -2.5,-4.5
@@ -1541,34 +1503,9 @@ entities:
     - pos: 3.5,-4.5
       parent: 1
       type: Transform
-  - uid: 217
-    components:
-    - pos: -2.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 218
-    components:
-    - pos: -2.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 219
-    components:
-    - pos: -2.5,0.5
-      parent: 1
-      type: Transform
   - uid: 220
     components:
     - pos: -2.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 221
-    components:
-    - pos: -2.5,-1.5
-      parent: 1
-      type: Transform
-  - uid: 222
-    components:
-    - pos: 3.5,-1.5
       parent: 1
       type: Transform
   - uid: 223
@@ -1581,26 +1518,6 @@ entities:
     - pos: 3.5,0.5
       parent: 1
       type: Transform
-  - uid: 225
-    components:
-    - pos: 3.5,1.5
-      parent: 1
-      type: Transform
-  - uid: 227
-    components:
-    - pos: 3.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 228
-    components:
-    - pos: -2.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 229
-    components:
-    - pos: 3.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 231
     components:
     - pos: 2.5,-4.5
@@ -1609,11 +1526,6 @@ entities:
   - uid: 232
     components:
     - pos: -1.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 233
-    components:
-    - pos: 0.5,-4.5
       parent: 1
       type: Transform
 - proto: SheetGlass
@@ -1956,6 +1868,62 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 6.5,-0.5
+      parent: 1
+      type: Transform
+- proto: WallPlastitanium
+  entities:
+  - uid: 5
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 0.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 161
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 177
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 218
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 219
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 221
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 222
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 225
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 227
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,-3.5
       parent: 1
       type: Transform
 - proto: WarpPointShip
