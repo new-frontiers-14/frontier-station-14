@@ -238,7 +238,8 @@ public sealed class MutationSystem : EntitySystem
         Gas gas = _robustRandom.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
         if (gasses.ContainsKey(gas))
         {
-            gasses[gas] += amount;
+            //gasses[gas] += amount; // This is a real issue since it will keep stacking to infinite
+            gasses[gas] = amount; // Just change the amount to new one
         }
         else
         {
