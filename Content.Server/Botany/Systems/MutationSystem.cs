@@ -239,7 +239,7 @@ public sealed class MutationSystem : EntitySystem
         if (gasses.ContainsKey(gas))
         {
             //gasses[gas] += amount; // This is a real issue since it will keep stacking to infinite
-            gasses[gas] = amount; // Just change the amount to new one anount
+            gasses[gas] = amount; // Just change the amount to new amount
         }
         else
         {
