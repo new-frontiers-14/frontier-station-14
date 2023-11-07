@@ -239,10 +239,11 @@ public sealed class MutationSystem : EntitySystem
         if (gasses.ContainsKey(gas))
         {
             //gasses[gas] += amount; // This is a real issue since it will keep stacking to infinite
-            gasses[gas] = amount; // Just change the amount to new one
+            gasses[gas] = amount; // Just change the amount to new one anount
         }
         else
         {
+            gasses.Clear(); // Remove the gas it was making before, so it will only make one type of gas, this isnt even a nerf by itself, as some might find it as a blance to help with getting only one type of gas out, or loss it all in a bet.
             gasses.Add(gas, amount);
         }
     }
