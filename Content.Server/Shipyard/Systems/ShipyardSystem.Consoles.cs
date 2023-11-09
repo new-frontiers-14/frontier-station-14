@@ -203,7 +203,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
+            SendPurchaseMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
         }
 
         SendPurchaseMessage(uid, player, name, channel, false);
