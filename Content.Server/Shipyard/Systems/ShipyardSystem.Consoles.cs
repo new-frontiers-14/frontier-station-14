@@ -27,6 +27,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Mind;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
+using System.Xml.Linq;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -167,13 +168,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var newDeed = EnsureComp<ShuttleDeedComponent>(targetId);
-        var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
         newDeed.ShuttleUid = shuttle.Owner;
         newDeed.ShuttleName = name;
         newDeed.ShuttleOwner = player;
 
+        var channel = component.ShipyardChannel;
+
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
             _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
+        else
+            channel = component.SecurityShipyardChannel;
 
         if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
                 && shuttleStation !=null
@@ -197,10 +201,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
+            channel = component.BlackMarketShipyardChannel;
+
+            SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
         }
 
-        _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player), ("vessel", name)), channel, uid);
-        _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player), ("vessel", name)), InGameICChatType.Speak, true);
+        SendPurchaseMessage(uid, player, name, channel, false);
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
@@ -263,7 +269,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
-        var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
+        var channel = component.ShipyardChannel;
 
         if (!TrySellShuttle(stationUid, shuttleUid, out var bill))
         {
@@ -273,6 +279,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         RemComp<ShuttleDeedComponent>(targetId);
+
+        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
+            channel = component.SecurityShipyardChannel;
 
         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
         {
@@ -285,13 +294,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             bill -= tax;
+            channel = component.BlackMarketShipyardChannel;
+
+            SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
         }
 
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
 
-        _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", deed.ShuttleOwner!), ("vessel", deed.ShuttleName!), ("player", player)), channel, uid);
-        _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", deed.ShuttleOwner!), ("vessel", deed.ShuttleName!), ("player", player)), InGameICChatType.Speak, true);
+        SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, channel, player, false);
 
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
@@ -330,6 +341,38 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         if (session.AttachedEntity is { Valid : true } player)
             _popup.PopupEntity(text, player);
+    }
+
+    private void SendPurchaseMessage(EntityUid uid, EntityUid player, string name, string shipyardChannel, bool secret)
+    {
+        var channel = _prototypeManager.Index<RadioChannelPrototype>(shipyardChannel);
+
+        if (secret)
+        {
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), InGameICChatType.Speak, true);
+        }
+        else
+        {
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player), ("vessel", name)), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player!), ("vessel", name)), InGameICChatType.Speak, true);
+        }
+    }
+
+    private void SendSellMessage(EntityUid uid, EntityUid? player, string name, string shipyardChannel, EntityUid seller, bool secret)
+    {
+        var channel = _prototypeManager.Index<RadioChannelPrototype>(shipyardChannel);
+
+        if (secret)
+        {
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), InGameICChatType.Speak, true);
+        }
+        else
+        {
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", player!), ("vessel", name!), ("player", seller)), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", player!), ("vessel", name!), ("player", seller)), InGameICChatType.Speak, true);
+        }
     }
 
     private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component)
