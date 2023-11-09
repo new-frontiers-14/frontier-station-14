@@ -1,0 +1,71 @@
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagCombat
+  name: combat magboots
+  description: combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+  - type: Magboots
+    toggleAction: ActionToggleMagbootsCombat
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.9
+    enabled: false
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1
+    weightlessFriction: 0.3
+    weightlessModifier: 1.2
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: Storage
+    capacity: 10
+    whitelist:
+      tags:
+        - Knife
+        - Sidearm
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+
+- type: entity
+  parent: ClothingShoesBootsMagCombat
+  id: ClothingShoesBootsMagPirate
+  name: pirate magboots
+  description: pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+  - type: Magboots
+    toggleAction: ActionToggleMagbootsPirate
+
+- type: entity
+  id: ActionToggleMagbootsCombat
+  parent: ActionBaseToggleMagboots
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
+    iconOn: _NF/Clothing/Shoes/Boots/magboots-combat.rsi/icon-on.png
+
+- type: entity
+  id: ActionToggleMagbootsPirate
+  parent: ActionBaseToggleMagboots
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
+    iconOn: _NF/Clothing/Shoes/Boots/magboots-combat.rsi/icon-on.png
