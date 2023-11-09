@@ -7,14 +7,15 @@
     - !type:OverallPlaytimeRequirement
       time: 21600
   startingGear: PrisonGuardGear
-  canBeAntag: false
   icon: "JobIconWarden" 
-  supervisors: job-supervisors-warden
-  setPreference: true
+  supervisors: job-supervisors-hos # Frontier
+  canBeAntag: false
   access:
   - Security
   - Brig
   - Maintenance
+  - Service # Frontier
+  - External # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -24,12 +25,14 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisonGuard
     back: ClothingBackpackSecurityFilled
-    shoes: ClothingShoesBootsJack
+    shoes: ClothingShoesBootsMagCombatFilled # Frontier
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadPrisonGuard
+    outerClothing: ClothingOuterArmorBasic # Frontier
     id: GuardPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolMk58Nonlethal # Frontier
   innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
