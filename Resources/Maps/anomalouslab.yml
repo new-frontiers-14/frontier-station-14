@@ -7659,6 +7659,26 @@ entities:
       pos: 18.498629,-14.220733
       parent: 1
       type: Transform
+- proto: LiquidNitrogenCanister
+  entities:
+  - uid: 710
+    components:
+    - pos: 5.5,11.5
+      parent: 1
+      type: Transform
+    - releaseValve: True
+      releasePressure: 300
+      type: GasCanister
+- proto: LiquidOxygenCanister
+  entities:
+  - uid: 711
+    components:
+    - pos: 3.5,11.5
+      parent: 1
+      type: Transform
+    - releaseValve: True
+      releasePressure: 300
+      type: GasCanister
 - proto: LockerAtmosphericsFilledHardsuit
   entities:
   - uid: 122
@@ -7748,6 +7768,37 @@ entities:
       pos: 2.5,-3.5
       parent: 1
       type: Transform
+- proto: MaintenancePlantSpawner
+  entities:
+  - uid: 1855
+    components:
+    - pos: -5.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 1856
+    components:
+    - pos: 7.5,-2.5
+      parent: 1
+      type: Transform
+- proto: MaintenanceToolSpawner
+  entities:
+  - uid: 1854
+    components:
+    - pos: 4.5,-5.5
+      parent: 1
+      type: Transform
+  - uid: 1857
+    components:
+    - pos: 5.5,-5.5
+      parent: 1
+      type: Transform
+- proto: MaintenanceWeaponSpawner
+  entities:
+  - uid: 1858
+    components:
+    - pos: -6.5,5.5
+      parent: 1
+      type: Transform
 - proto: MedicalBed
   entities:
   - uid: 621
@@ -7795,26 +7846,6 @@ entities:
     - pos: 13.938791,8.600368
       parent: 1
       type: Transform
-- proto: NitrogenCanister
-  entities:
-  - uid: 711
-    components:
-    - pos: 5.5,11.5
-      parent: 1
-      type: Transform
-    - releaseValve: True
-      releasePressure: 200
-      type: GasCanister
-- proto: OxygenCanister
-  entities:
-  - uid: 710
-    components:
-    - pos: 3.5,11.5
-      parent: 1
-      type: Transform
-    - releaseValve: True
-      releasePressure: 200
-      type: GasCanister
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 357
@@ -11712,7 +11743,7 @@ entities:
     - pos: -17.5,-13.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -22552.613
+    - secondsUntilStateChange: -22706.4
       state: Opening
       type: Door
   - uid: 464
