@@ -1,0 +1,28 @@
+- type: vessel
+  id: BULKER
+  name: NC Bulker
+  description: Small mining vessel for deep space operations
+  price: 35000 #31000ish after the mapinit appraisal
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/bulkermax.yml
+
+- type: gameMap
+  id: Prospector
+  mapName: 'NC Prospector'
+  mapPath: /Maps/Shuttles/bulkermax.yml
+  minPlayers: 0
+  stations:
+    BULKER:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Bulker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+            Chef: [ 0, 0 ]
