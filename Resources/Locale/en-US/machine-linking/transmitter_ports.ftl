@@ -45,3 +45,9 @@ signal-port-description-air-warning = This port is invoked with HIGH when in war
 
 signal-port-name-air-normal = Normal
 signal-port-description-air-normal = This port is invoked with HIGH when in normal mode and LOW when not.
+
+signal-port-name-space-artillery-fire = Fire
+signal-port-description-space-artillery-fire = Controls Space Artillery's firing mechanism.
+
+signal-port-name-space-artillery-safety = Safety
+signal-port-description-space-artillery-safety = Toggles Space Artillery's safety mechanism.

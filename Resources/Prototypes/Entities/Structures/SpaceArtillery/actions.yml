@@ -1,0 +1,10 @@
+﻿- type: entity
+  id: ActionSpaceArtilleryFire
+  name: Fire
+  description: Sends lead downrange
+  noSpawn: true
+  components:
+  - type: InstantAction
+    useDelay: 0.1
+    icon: Objects/Fun/bikehorn.rsi/icon.png #To be changed
+    event: !type:FireActionEvent
