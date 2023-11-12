@@ -1,21 +1,4 @@
-#HARDSUITS
-#Brigmedic's hardsuit
-- type: entity
-  id: SuitStorageBrigmedic
-  parent: SuitStorageBase
-  suffix: Brigmedic
-  components:
-  - type: StorageFill
-    contents:
-        - id: NitrogenTankFilled
-        - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitBrigmedic
-        - id: ClothingMaskBreathMedicalSecurity
-        - id: JetpackSecurityFilled
-        - id: HandheldGPSBasic
-  - type: AccessReader
-    access: [["Security"]]
-
+#SOFTSUITS
 #Paramedic's hardsuit
 - type: entity
   id: SuitStorageParamedic
@@ -32,3 +15,41 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
+#    access: [["Medical"]]
+
+#HARDSUITS
+#Brigmedic's hardsuit
+- type: entity
+  id: SuitStorageBrigmedic
+  parent: SuitStorageBase
+  suffix: Brigmedic
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitBrigmedic
+        - id: ClothingMaskBreathMedicalSecurity
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagCombatFilled
+  - type: AccessReader
+    access: [["Security"]]
+
+#Quartermaster hardsuit
+- type: entity
+  id: SuitStorageQuartermaster
+  parent: SuitStorageBase
+  suffix: Quartermaster
+  components:
+  - type: StorageFill
+    contents:
+      - id: NitrogenTankFilled
+      - id: YellowOxygenTankFilled
+      - id: ClothingShoesBootsMag
+      - id: ClothingOuterHardsuitLuxury
+      - id: ClothingMaskGasExplorer
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+  - type: AccessReader
+    # access: [["Quartermaster"]]

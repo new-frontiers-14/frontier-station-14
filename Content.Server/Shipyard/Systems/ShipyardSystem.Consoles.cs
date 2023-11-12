@@ -24,10 +24,13 @@ using Content.Server.Maps;
 using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
+using Content.Server.Forensics;
 using Content.Server.Mind;
+using Content.Server.Preferences.Managers;
+using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
-using System.Xml.Linq;
+using Content.Shared.Preferences;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -37,6 +40,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -147,14 +151,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 R = 10,
                 G = 50,
-                B = 175,
-                A = 155
+                B = 100,
+                A = 100
             });
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
         {
-            //later we will make a custom pilot job, for now they get the captain treatment
             var newAccess = newCap.Tags.ToList();
             newAccess.Add($"Captain");
 
@@ -179,16 +182,40 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         else
             channel = component.SecurityShipyardChannel;
 
+        // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
+        // it is ass.
+        // This probably shouldnt be messed with further until station records themselves become more robust
+        // and not entirely dependent upon linking ID card entity to station records key lookups
+        // its just bad
+
+        var stationList = EntityQueryEnumerator<StationRecordsComponent>();
+
         if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
-                && shuttleStation !=null
-                && keyStorage.Key != null
-                && _records.TryGetRecord<GeneralStationRecord>(station, keyStorage.Key.Value, out var record))
+                && shuttleStation != null
+                && keyStorage.Key != null)
         {
-            _records.RemoveRecord(station, keyStorage.Key.Value);
-            _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, record.Name, record.Age, record.Species, record.Gender, $"Captain", record.Fingerprint, record.DNA);
-            _records.Synchronize((EntityUid) shuttleStation);
-            _records.Synchronize(station);
+            bool recSuccess = false;
+            while (stationList.MoveNext(out var stationUid, out var stationRecComp))
+            {
+                if (!_records.TryGetRecord<GeneralStationRecord>(stationUid, keyStorage.Key.Value, out var record))
+                    continue;
+
+                _records.RemoveRecord(stationUid, keyStorage.Key.Value);
+                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, record.Name, record.Age, record.Species, record.Gender, $"Captain", record.Fingerprint, record.DNA);
+                recSuccess = true;
+                break;
+            }
+
+            if (!recSuccess
+                && _prefManager.GetPreferences(args.Session.UserId).SelectedCharacter is HumanoidCharacterProfile profile)
+            {
+                TryComp<FingerprintComponent>(player, out var fingerprintComponent);
+                TryComp<DnaComponent>(player, out var dnaComponent);
+                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA);
+            }
         }
+        _records.Synchronize(shuttleStation!.Value);
+        _records.Synchronize(station);
 
         //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
