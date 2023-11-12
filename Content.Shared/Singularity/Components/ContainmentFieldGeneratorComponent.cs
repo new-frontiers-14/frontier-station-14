@@ -59,7 +59,7 @@ public sealed partial class ContainmentFieldGeneratorComponent : Component
     /// How many tiles should this field check before giving up?
     /// </summary>
     [DataField("maxLength")]
-    public float MaxLength = 16F;
+    public float MaxLength = 8F;
 
     /// <summary>
     /// What collision should power this generator?
