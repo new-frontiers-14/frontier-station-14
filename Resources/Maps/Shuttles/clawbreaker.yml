@@ -66,8 +66,7 @@ entities:
           -1,0:
             0: 61439
           0,-1:
-            0: 64511
-            1: 1024
+            0: 65535
           0,0:
             0: 65535
           1,0:
@@ -94,21 +93,6 @@ entities:
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 23.721722
-          - 89.23887
           - 0
           - 0
           - 0
@@ -265,20 +249,64 @@ entities:
     - pos: -1.5,-3.5
       parent: 1
       type: Transform
-- proto: BoxMagazinePistol
+- proto: BoxBeanbag
   entities:
-  - uid: 169
+  - uid: 176
     components:
-    - pos: 2.4970973,-1.5348185
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
-- proto: BoxMagazinePistolRubber
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 180
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 184
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: BoxLethalshot
   entities:
-  - uid: 172
+  - uid: 181
     components:
-    - pos: 2.4970973,-1.5053201
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 190
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 203
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: CableApcExtension
   entities:
   - uid: 17
@@ -896,24 +924,40 @@ entities:
   entities:
   - uid: 16
     components:
-    - pos: 2.5,-1.5
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
   - uid: 185
     components:
-    - pos: 2.5,-1.5
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
   - uid: 211
     components:
-    - pos: 2.5,-1.5
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
   - uid: 251
     components:
-    - pos: 2.5,-1.5
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 187
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: Chair
   entities:
   - uid: 78
@@ -929,16 +973,16 @@ entities:
       pos: 0.5,-2.5
       parent: 1
       type: Transform
-- proto: ClothingBeltHolster
+- proto: ClothingBeltBandolier
   entities:
-  - uid: 176
+  - uid: 169
     components:
-    - pos: 2.6160936,0.70260054
+    - pos: 2.3687525,0.62998855
       parent: 1
       type: Transform
-  - uid: 180
+  - uid: 172
     components:
-    - pos: 2.3357008,0.73209894
+    - pos: 2.7081769,0.6004902
       parent: 1
       type: Transform
 - proto: ClothingBeltSheathFilled
@@ -1154,31 +1198,13 @@ entities:
     - pos: 2.5,-1.5
       parent: 1
       type: Transform
-    - fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.4,-0.4
-            - 0.4,-0.4
-            - 0.4,0.29
-            - -0.4,0.29
-          mask:
-          - Impassable
-          - LowImpassable
-          layer:
-          - BulletImpassable
-          - Opaque
-          density: 50
-          hard: True
-          restitution: 0
-          friction: 0.4
-      type: Fixtures
     - air:
         volume: 200
         immutable: False
         temperature: 293.1496
         moles:
+        - 1.8977377
+        - 7.139109
         - 0
         - 0
         - 0
@@ -1189,13 +1215,27 @@ entities:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-      open: True
-      removedMasks: 20
       type: EntityStorage
-    - isPlaceable: True
-      type: PlaceableSurface
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 176
+          - 180
+          - 181
+          - 184
+          - 190
+          - 251
+          - 203
+          - 185
+          - 211
+          - 16
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: EmergencyLight
   entities:
   - uid: 192
@@ -2029,16 +2069,16 @@ entities:
     - pos: -1.2470659,0.64559627
       parent: 1
       type: Transform
-- proto: WeaponPistolMk58
+- proto: WeaponShotgunSawn
   entities:
   - uid: 96
     components:
-    - pos: 2.7037024,0.13482693
+    - pos: 2.6491468,0.025268763
       parent: 1
       type: Transform
   - uid: 105
     components:
-    - pos: 2.3937938,0.19382375
+    - pos: 2.3244805,0.20225987
       parent: 1
       type: Transform
 ...
