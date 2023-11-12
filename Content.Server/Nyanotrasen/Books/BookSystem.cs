@@ -1,8 +1,7 @@
 using Content.Shared.Interaction;
 using Content.Shared.Books;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
-using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Books
 {
@@ -43,7 +42,7 @@ namespace Content.Server.Books
             args.Verbs.Add(verb);
         }
 
-        public void OpenURL(IPlayerSession session, string url)
+        public void OpenURL(ICommonSession session, string url)
         {
             var ev = new OpenURLEvent(url);
             RaiseNetworkEvent(ev, session.ConnectedClient);

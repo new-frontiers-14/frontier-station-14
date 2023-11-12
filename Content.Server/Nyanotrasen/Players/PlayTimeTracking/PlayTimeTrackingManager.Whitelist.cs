@@ -1,12 +1,12 @@
-﻿using Content.Server.Players;
+﻿using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
-using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
 public sealed partial class PlayTimeTrackingManager
 {
-    private void SendWhitelistCached(IPlayerSession playerSession)
+    private void SendWhitelistCached(ICommonSession playerSession)
     {
         var whitelist = playerSession.ContentData()?.Whitelisted ?? false;
 
@@ -21,7 +21,7 @@ public sealed partial class PlayTimeTrackingManager
     /// <summary>
     /// Queue sending whitelist status to the client.
     /// </summary>
-    public void QueueSendWhitelist(IPlayerSession player)
+    public void QueueSendWhitelist(ICommonSession player)
     {
         if (DirtyPlayer(player) is { } data)
             data.NeedRefreshWhitelist = true;

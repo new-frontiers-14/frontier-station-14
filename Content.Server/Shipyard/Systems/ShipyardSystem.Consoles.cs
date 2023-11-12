@@ -12,7 +12,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
@@ -24,10 +24,13 @@ using Content.Server.Maps;
 using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
+using Content.Server.Forensics;
 using Content.Server.Mind;
+using Content.Server.Preferences.Managers;
+using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
-using Content.Server.Station.Components;
+using Content.Shared.Preferences;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -37,6 +40,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -147,14 +151,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 R = 10,
                 G = 50,
-                B = 175,
-                A = 155
+                B = 100,
+                A = 100
             });
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
         {
-            //later we will make a custom pilot job, for now they get the captain treatment
             var newAccess = newCap.Tags.ToList();
             newAccess.Add($"Captain");
 
@@ -171,23 +174,45 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
         newDeed.ShuttleUid = shuttle.Owner;
         newDeed.ShuttleName = name;
+        newDeed.ShuttleOwner = player;
 
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
             _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
 
-        _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), channel, uid);
-        _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", name)), InGameICChatType.Speak, true);
+        // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
+        // it is ass.
+        // This probably shouldnt be messed with further until station records themselves become more robust
+        // and not entirely dependent upon linking ID card entity to station records key lookups
+        // its just bad
+
+        var stationList = EntityQueryEnumerator<StationRecordsComponent>();
 
         if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
-                && shuttleStation !=null
-                && keyStorage.Key != null
-                && _records.TryGetRecord<GeneralStationRecord>(station, keyStorage.Key.Value, out var record))
+                && shuttleStation != null
+                && keyStorage.Key != null)
         {
-            _records.RemoveRecord(station, keyStorage.Key.Value);
-            _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, record.Name, record.Age, record.Species, record.Gender, $"Captain", record.Fingerprint, record.DNA);
-            _records.Synchronize((EntityUid) shuttleStation);
-            _records.Synchronize(station);
+            bool recSuccess = false;
+            while (stationList.MoveNext(out var stationUid, out var stationRecComp))
+            {
+                if (!_records.TryGetRecord<GeneralStationRecord>(stationUid, keyStorage.Key.Value, out var record))
+                    continue;
+
+                _records.RemoveRecord(stationUid, keyStorage.Key.Value);
+                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, record.Name, record.Age, record.Species, record.Gender, $"Captain", record.Fingerprint, record.DNA);
+                recSuccess = true;
+                break;
+            }
+
+            if (!recSuccess
+                && _prefManager.GetPreferences(args.Session.UserId).SelectedCharacter is HumanoidCharacterProfile profile)
+            {
+                TryComp<FingerprintComponent>(player, out var fingerprintComponent);
+                TryComp<DnaComponent>(player, out var dnaComponent);
+                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA);
+            }
         }
+        _records.Synchronize(shuttleStation!.Value);
+        _records.Synchronize(station);
 
         //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
@@ -201,6 +226,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
         }
+
+        _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player), ("vessel", name)), channel, uid);
+        _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking", ("owner", player), ("vessel", name)), InGameICChatType.Speak, true);
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
@@ -263,6 +291,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
+        var channel = _prototypeManager.Index<RadioChannelPrototype>(component.ShipyardChannel);
+
         if (!TrySellShuttle(stationUid, shuttleUid, out var bill))
         {
             ConsolePopup(args.Session, Loc.GetString("shipyard-console-sale-reqs"));
@@ -287,6 +317,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
+
+        _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", deed.ShuttleOwner!), ("vessel", deed.ShuttleName!), ("player", player)), channel, uid);
+        _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving", ("owner", deed.ShuttleOwner!), ("vessel", deed.ShuttleName!), ("player", player)), InGameICChatType.Speak, true);
+
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
     }

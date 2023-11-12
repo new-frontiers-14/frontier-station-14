@@ -1,0 +1,29 @@
+- type: vessel
+  id: liquidator
+  name: NT Liquidator
+  description: A small ship equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included).
+  price: 28500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/liquidator.yml
+
+- type: gameMap
+  id: liquidator
+  mapName: 'NT Liquidator'
+  mapPath: /Maps/Shuttles/liquidator.yml
+  minPlayers: 0
+  stations:
+    liquidator:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Liquidator {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Janitor: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
