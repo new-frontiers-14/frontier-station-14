@@ -51,10 +51,6 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
             var parentUid = xform.ParentUid;
 
-            // No space
-            if (storage.StorageLimit == null || _storage.GetTotalMaterialAmount(uid, storage) + 1 <= storage.StorageLimit)
-                continue;
-
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
