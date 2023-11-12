@@ -66,6 +66,8 @@
       - id: DrinkFlask # Frontier
       - id: OxygenTankFilled # Frontier
       - id: NitrogenTankFilled # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
 
 - type: entity
   id: LockerCaptainFilled
@@ -171,6 +173,8 @@
       - id: BoxEncryptionKeyEngineering
 #      - id: AccessConfigurator # Frontier
       - id: ClothingNeckMantleCE # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -222,7 +226,14 @@
       - id: MaterialBiomass
         amount: 3
       - id: BoxEncryptionKeyMedical
+      - id: HandLabeler # Frontier
+      - id: ClothingBeltMedical # Frontier
       - id: ClothingNeckMantleCMO # Frontier
+      - id: NitrogenTankFilled # Frontier
+      - id: OxygenTankFilled # Frontier
+      - id: ClothingMaskBreathMedical # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -250,6 +261,8 @@
       - id: MaterialBiomass
         amount: 3
       - id: BoxEncryptionKeyMedical
+      - id: HandLabeler # Frontier
+      - id: ClothingBeltMedical # Frontier
       - id: ClothingNeckMantleCMO # Frontier
       - id: ClothingOuterWinterCMO # Frontier
 
@@ -260,11 +273,11 @@
   components:
   - type: StorageFill
     contents:
-      - id: ResearchComputerCircuitboard
-      - id: ProtolatheMachineCircuitboard
-      - id: CircuitImprinterMachineCircuitboard
+#      - id: ResearchComputerCircuitboard # Frontier
+#      - id: ProtolatheMachineCircuitboard # Frontier
+#      - id: CircuitImprinterMachineCircuitboard # Frontier
       - id: ClothingNeckCloakRd
-      - id: ClothingHeadsetMedicalScience
+#      - id: ClothingHeadsetMedicalScience # Frontier
       - id: ClothingOuterHardsuitRd
 #      - id: HandTeleporter # Frontier
 #      - id: DoorRemoteResearch # Frontier
@@ -273,34 +286,14 @@
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
-      - id: BoxEncryptionKeyRobo
+#      - id: BoxEncryptionKeyRobo # Frontier
       - id: ClothingBeltUtilityEngineering # Frontier
       - id: ClothingNeckMantleRD # Frontier
-
-- type: entity
-  id: LockerResearchDirectorShuttleFilled
-  suffix: Filled, Shuttle
-  parent: LockerResearchDirector
-  components:
-  - type: StorageFill
-    contents:
-      - id: ResearchComputerCircuitboard
-      - id: ProtolatheMachineCircuitboard
-      - id: CircuitImprinterMachineCircuitboard
-      - id: ClothingNeckCloakRd
-      - id: ClothingHeadsetMedicalScience
-      - id: PlushieSlime
-        prob: 0.1
-#      - id: DoorRemoteResearch # Frontier
-      - id: ClothingHeadHatBeretRND
-      - id: ClothingHandsGlovesColorPurple
-      - id: ClothingBeltUtilityEngineering # Frontier
-      - id: RubberStampRd
-      - id: ClothingHeadsetAltScience
-      - id: BoxEncryptionKeyScience
-      - id: BoxEncryptionKeyRobo # Frontier
-      - id: ClothingNeckMantleRD # Frontier
-      - id: ClothingOuterWinterRD # Frontier
+      - id: NitrogenTankFilled # Frontier
+      - id: OxygenTankFilled # Frontier
+      - id: ClothingMaskBreath # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -309,20 +302,19 @@
   components:
   - type: StorageFill
     contents:
-      - id: ResearchComputerCircuitboard
-      - id: ProtolatheMachineCircuitboard
-      - id: CircuitImprinterMachineCircuitboard
+#      - id: ResearchComputerCircuitboard # Frontier
+#      - id: ProtolatheMachineCircuitboard # Frontier
+#      - id: CircuitImprinterMachineCircuitboard # Frontier
       - id: ClothingNeckCloakRd
-      - id: ClothingHeadsetMedicalScience
+#      - id: ClothingHeadsetMedicalScience # Frontier
 #      - id: HandTeleporter # Frontier
 #      - id: DoorRemoteResearch # Frontier
       - id: ClothingHeadHatBeretRND
       - id: ClothingHandsGlovesColorPurple
-      - id: ClothingBeltUtilityEngineering # Frontier
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
-      - id: BoxEncryptionKeyRobo # Frontier
+      - id: ClothingBeltUtilityEngineering # Frontier
       - id: ClothingNeckMantleRD # Frontier
       - id: ClothingOuterWinterRD # Frontier
 
@@ -359,6 +351,10 @@
       - id: HoloprojectorSecurity
       - id: ClothingNeckMantleHOS # Frontier
       - id: CrowbarRed # Frontier
+      - id: NitrogenTankFilled # Frontier
+      - id: OxygenTankFilled # Frontier
+      - id: JetpackSecurityFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
 
 - type: entity
   id: LockerHeadOfSecurityFilled
