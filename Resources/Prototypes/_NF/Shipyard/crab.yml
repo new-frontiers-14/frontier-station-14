@@ -1,0 +1,30 @@
+- type: vessel
+  id: crab
+  name: NT Crab
+  description: An advanced salvage ship with the capacity for auto-mining of asteroids.
+  price: 50500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/crab.yml
+
+- type: gameMap
+  id: crab
+  mapName: 'NT Crab'
+  mapPath: /Maps/Shuttles/crab.yml
+  minPlayers: 0
+  stations: 
+    crab:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Crab {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
+            Passenger: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
