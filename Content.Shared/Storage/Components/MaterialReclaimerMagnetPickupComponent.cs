@@ -1,5 +1,3 @@
-using Content.Shared.Inventory;
-
 namespace Content.Server.Storage.Components;
 
 /// <summary>
