@@ -21,6 +21,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server.Emp;
+using Content.Shared.Tools.Components;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -59,6 +62,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
+
+        SubscribeLocalEvent<ShuttleConsoleComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<ShuttleConsoleComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)
@@ -369,6 +375,22 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             RemovePilot(uid, comp);
         }
+
+        /// <summary>
+        /// This makes the Shuttle Console kick pilots like its removed, to make sure EMP in effect.
+        /// </summary>
+        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
+        while (disabled.MoveNext(out var uid, out _, out var comp))
+        {
+            if (comp.TimeoutFromEmp <= _timing.CurTime)
+            {
+                ClearPilots(comp);
+                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.1);
+                comp.MainBreakerEnabled = false;
+            }
+            else
+                comp.MainBreakerEnabled = true;
+        }
     }
 
     /// <summary>
@@ -462,4 +484,24 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 RemovePilot(pilot, pilotComponent);
         }
     }
+
+    private void OnEmpPulse(EntityUid uid, ShuttleConsoleComponent component, ref EmpPulseEvent args)
+    {
+        args.Affected = true;
+        args.Disabled = true;
+        component.TimeoutFromEmp = _timing.CurTime;
+    }
+
+    private void OnToolUseAttempt(EntityUid uid, ShuttleConsoleComponent component, ToolUseAttemptEvent args)
+    {
+        if (!HasComp<EmpDisabledComponent>(uid))
+            return;
+
+        // prevent reconstruct exploit to skip cooldowns
+        if (!component.MainBreakerEnabled)
+            args.Cancel();
+    }
+
+    [ByRefEvent]
+    public record struct ShuttleToggleAttemptEvent(bool Cancelled);
 }

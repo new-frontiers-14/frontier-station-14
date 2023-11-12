@@ -121,9 +121,7 @@ namespace Content.Server.VendingMachines
             var balance = 0;
 
             if (TryComp<BankAccountComponent>(player, out var bank))
-            {
                 balance = bank.Balance;
-            }
 
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
@@ -321,14 +319,10 @@ namespace Content.Server.VendingMachines
         public void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
         {
             if (!TryComp<BankAccountComponent>(sender, out var bank))
-            {
                 return;
-            }
 
             if (!_prototypeManager.TryIndex<EntityPrototype>(itemId, out var proto))
-            {
                 return;
-            }
 
             var price = _pricing.GetEstimatedPrice(proto);
             // Somewhere deep in the code of pricing, a hardcoded 20 dollar value exists for anything without
@@ -337,14 +331,10 @@ namespace Content.Server.VendingMachines
             // this will undoubtably lead to vending machine exploits if I cant find wtf pricing system is doing.
             // also stacks, food, solutions, are handled poorly too f
             if (price == 0)
-            {
                 price = 20;
-            }
 
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
-            {
                 price *= modifier.Mod;
-            }
 
             var totalPrice = ((int) price);
 
@@ -422,26 +412,28 @@ namespace Content.Server.VendingMachines
             if (availableItems.Count <= 0)
                 return;
 
+            if (!vendComponent.Ejecting)
+                return;
+
+            if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
+                return;
+
             var item = _random.Pick(availableItems);
 
-            if (!vendComponent.Ejecting)
+            if (forceEject)
             {
-                if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
-                {
-                    if (forceEject)
-                    {
-                        vendComponent.NextItemToEject = item.ID;
-                        vendComponent.ThrowNextItem = throwItem;
-                        var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
-                        if (entry != null)
-                            entry.Amount--;
-                        EjectItem(uid, vendComponent, forceEject);
-                    }
-                    else
-                        TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
-                    vendComponent.EjectRandomCounter += 1;
-                }
+                vendComponent.NextItemToEject = item.ID;
+                vendComponent.ThrowNextItem = throwItem;
+                var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
+                if (entry != null)
+                    entry.Amount--;
+                EjectItem(uid, vendComponent, forceEject);
             }
+            else
+                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+            vendComponent.EjectRandomCounter += 1;
+
+
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
