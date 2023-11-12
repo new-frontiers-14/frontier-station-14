@@ -20,7 +20,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
 
-    private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScanDelay;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -39,7 +39,7 @@ public sealed class MagnetPickupSystem : EntitySystem
 
     private void OnMagnetMapInit(EntityUid uid, MagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
+        component.NextScan = _timing.CurTime;
     }
 
     public override void Update(float frameTime)

@@ -1,5 +1,4 @@
-using Content.Shared.Tag;
-using Content.Shared.Whitelist;
+using Content.Shared.Inventory;
 
 namespace Content.Server.Storage.Components;
 
@@ -14,10 +13,4 @@ public sealed partial class MaterialReclaimerMagnetPickupComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]
     public float Range = 1f;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("whitelist")]
-    public EntityWhitelist? Whitelist;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("blacklist")]
-    public EntityWhitelist? Blacklist;
 }

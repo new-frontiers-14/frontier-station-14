@@ -12,10 +12,9 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _storage = default!;
 
-    private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScanDelay;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -34,14 +33,14 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
     private void OnMagnetMapInit(EntityUid uid, MaterialStorageMagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
+        component.NextScan = _timing.CurTime;
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var currentTime = _timing.CurTime;
         var query = EntityQueryEnumerator<MaterialStorageMagnetPickupComponent, MaterialStorageComponent, TransformComponent>();
+        var currentTime = _timing.CurTime;
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
@@ -52,14 +51,12 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
             var parentUid = xform.ParentUid;
 
+            // No space
+            if (storage.StorageLimit == null || _storage.GetTotalMaterialAmount(uid, storage) + 1 <= storage.StorageLimit)
+                continue;
+
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
-                if (comp.Blacklist is { } blacklist && blacklist.IsValid(near, EntityManager) == true)
-                    continue;
-
-                if (comp.Whitelist is { } whitelist && whitelist.IsValid(near, EntityManager) == false)
-                    continue;
-
                 if (!_physicsQuery.TryGetComponent(near, out var physics) || physics.BodyStatus != BodyStatus.OnGround)
                     continue;
 
