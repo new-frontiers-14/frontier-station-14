@@ -328,8 +328,25 @@ entities:
     - pos: -2.5,-1.5
       parent: 2
       type: Transform
+    - injectionAmount: 4
+      injecting: True
+      type: AmeController
+    - containers:
+        AmeFuel: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 9
+      type: ContainerContainer
 - proto: AmeJar
   entities:
+  - uid: 9
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 1
+      type: Transform
+    - canCollide: False
+      type: Physics
   - uid: 869
     components:
     - pos: -2.5194843,-0.512216
@@ -337,70 +354,70 @@ entities:
       type: Transform
 - proto: AmeShielding
   entities:
-  - uid: 9
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -3.5,0.5
-      parent: 2
-      type: Transform
   - uid: 13
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-2.5
+    - pos: -3.5,0.5
       parent: 2
       type: Transform
   - uid: 15
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-0.5
+    - pos: -3.5,-1.5
       parent: 2
       type: Transform
   - uid: 17
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -4.5,0.5
+    - pos: -5.5,-0.5
+      parent: 2
+      type: Transform
+  - uid: 112
+    components:
+    - pos: -5.5,-1.5
       parent: 2
       type: Transform
   - uid: 146
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
+    - pos: -4.5,-2.5
       parent: 2
       type: Transform
   - uid: 168
     components:
-    - pos: -3.5,-2.5
+    - pos: -4.5,-1.5
       parent: 2
       type: Transform
+    - radius: 2
+      enabled: True
+      type: PointLight
   - uid: 170
     components:
-    - pos: -4.5,-2.5
+    - pos: -5.5,0.5
       parent: 2
       type: Transform
   - uid: 173
     components:
-    - pos: -4.5,-1.5
+    - pos: -5.5,-2.5
       parent: 2
       type: Transform
   - uid: 174
     components:
-    - pos: -3.5,-1.5
+    - pos: -3.5,-2.5
       parent: 2
       type: Transform
   - uid: 176
     components:
-    - pos: -4.5,-0.5
+    - pos: -3.5,-0.5
       parent: 2
       type: Transform
   - uid: 178
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,0.5
+    - pos: -4.5,-0.5
       parent: 2
       type: Transform
+    - radius: 2
+      enabled: True
+      type: PointLight
   - uid: 182
     components:
-    - pos: -3.5,-0.5
+    - pos: -4.5,0.5
       parent: 2
       type: Transform
 - proto: APCBasic
@@ -518,6 +535,11 @@ entities:
     - pos: 8.5,-5.5
       parent: 2
       type: Transform
+  - uid: 582
+    components:
+    - pos: -2.5,-2.5
+      parent: 2
+      type: Transform
   - uid: 621
     components:
     - pos: -2.5,2.5
@@ -525,7 +547,7 @@ entities:
       type: Transform
   - uid: 622
     components:
-    - pos: -3.5,1.5
+    - pos: -2.5,-1.5
       parent: 2
       type: Transform
   - uid: 623
@@ -1243,6 +1265,11 @@ entities:
     - pos: 13.5,13.5
       parent: 2
       type: Transform
+  - uid: 876
+    components:
+    - pos: -2.5,-0.5
+      parent: 2
+      type: Transform
 - proto: CableHV
   entities:
   - uid: 4
@@ -1740,6 +1767,11 @@ entities:
     - pos: -6.5,11.5
       parent: 2
       type: Transform
+  - uid: 877
+    components:
+    - pos: -2.5,-1.5
+      parent: 2
+      type: Transform
 - proto: CableMV
   entities:
   - uid: 5
@@ -1770,11 +1802,6 @@ entities:
   - uid: 110
     components:
     - pos: -6.5,11.5
-      parent: 2
-      type: Transform
-  - uid: 112
-    components:
-    - pos: -3.5,0.5
       parent: 2
       type: Transform
   - uid: 142
@@ -1985,11 +2012,6 @@ entities:
   - uid: 581
     components:
     - pos: -2.5,9.5
-      parent: 2
-      type: Transform
-  - uid: 582
-    components:
-    - pos: -3.5,1.5
       parent: 2
       type: Transform
   - uid: 583
