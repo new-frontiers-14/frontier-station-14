@@ -92,6 +92,7 @@ entities:
             0: 42697
           -2,0:
             0: 65231
+            1: 32
           -2,1:
             0: 65535
           -2,2:
@@ -144,6 +145,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -3341,6 +3357,11 @@ entities:
       type: Transform
     - color: '#947507FF'
       type: AtmosPipeColor
+  - uid: 836
+    components:
+    - pos: -2.5,0.5
+      parent: 2
+      type: Transform
 - proto: GasPressurePump
   entities:
   - uid: 14
@@ -3728,6 +3749,13 @@ entities:
   - uid: 175
     components:
     - pos: 0.5,0.5
+      parent: 2
+      type: Transform
+- proto: LiquidOxygenCanister
+  entities:
+  - uid: 835
+    components:
+    - pos: -2.5,0.5
       parent: 2
       type: Transform
 - proto: LockerChemistryFilled
