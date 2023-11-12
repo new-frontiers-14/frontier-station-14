@@ -1,10 +1,7 @@
 using Content.Server.Storage.Components;
-using Content.Shared.Hands;
 using Content.Shared.Inventory;
-using Content.Shared.Stacks;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Storage.EntitySystems;
@@ -20,7 +17,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
 
-    private static readonly TimeSpan ScanDelay;
+    private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 

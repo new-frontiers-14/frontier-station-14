@@ -14,7 +14,7 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _storage = default!;
 
-    private static readonly TimeSpan ScanDelay;
+    private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
 
