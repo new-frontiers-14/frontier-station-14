@@ -33,7 +33,7 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
     private void OnMagnetMapInit(EntityUid uid, MaterialStorageMagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = _timing.CurTime;
+        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
     }
 
     public override void Update(float frameTime)
