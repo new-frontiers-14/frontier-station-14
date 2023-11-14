@@ -1,0 +1,32 @@
+#When adding new hardsuits, please try to keep the organization consistent with hardsuit-helmets.yml (if possible.)
+
+#CREW HARDSUITS
+#Janitor Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitJanitor
+  name: janitor hardsuit
+  description: A lightweight hardsuit designed for cleaning in zero gravity.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/janitor.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/janitor.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.7
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Radiation: 0.3 #salv is supposed to have radiation hazards in the future
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitJanitor
+  - type: StaticPrice
+    price: 235
