@@ -296,21 +296,25 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 65023
+            1: 512
           0,1:
             0: 65535
           0,2:
             0: 255
           1,0:
-            0: 65535
+            0: 32767
+            2: 32768
           1,1:
             0: 65535
           1,2:
-            0: 65535
+            0: 65023
+            3: 512
           1,3:
             0: 4983
           2,0:
-            0: 65535
+            0: 65503
+            1: 32
           2,1:
             0: 15359
           2,2:
@@ -322,7 +326,8 @@ entities:
           0,-3:
             0: 65280
           0,-2:
-            0: 65535
+            0: 49151
+            4: 16384
           0,-1:
             0: 65535
           1,-3:
@@ -334,7 +339,9 @@ entities:
           2,-2:
             0: 29456
           2,-1:
-            0: 65527
+            0: 53239
+            5: 4096
+            2: 8192
           3,-1:
             0: 4352
           -3,-1:
@@ -362,7 +369,8 @@ entities:
           -2,1:
             0: 65535
           -2,2:
-            0: 52462
+            0: 52454
+            6: 8
           -2,3:
             0: 136
           -1,0:
@@ -370,7 +378,8 @@ entities:
           -1,1:
             0: 65535
           -1,2:
-            0: 30719
+            0: 30717
+            6: 2
           -1,3:
             0: 26487
         uniqueMixes:
@@ -379,6 +388,96 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.813705
+          - 82.06108
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824806
+          - 82.102844
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.823984
+          - 82.09976
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824877
+          - 82.10311
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -633,7 +732,7 @@ entities:
     - pos: 1.5,4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -14652.679
+    - secondsUntilStateChange: -14830.431
       state: Opening
       type: Door
   - uid: 311
@@ -707,7 +806,7 @@ entities:
       pos: -9.5,-0.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -1269.4619
+    - secondsUntilStateChange: -1447.2137
       state: Opening
       type: Door
   - uid: 418
@@ -2543,8 +2642,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -3832,8 +3931,8 @@ entities:
         immutable: False
         temperature: 293.1495
         moles:
-        - 1.8978146
-        - 7.139398
+        - 1.8978153
+        - 7.139401
         - 0
         - 0
         - 0
@@ -3891,8 +3990,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -3916,8 +4015,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -3936,15 +4035,13 @@ entities:
     - pos: 5.5,10.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
     - air:
         volume: 200
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8977377
-        - 7.139109
+        - 1.8978093
+        - 7.139378
         - 0
         - 0
         - 0
@@ -3963,11 +4060,47 @@ entities:
     - pos: -2.5,8.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
   - uid: 852
     components:
     - pos: -4.5,8.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerWallMedical
   entities:
   - uid: 146
@@ -3975,8 +4108,29 @@ entities:
     - pos: 2.5,-3.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.8977377
+        - 7.139109
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 221
+    components:
+    - pos: 7.5,4.5
+      parent: 1
+      type: Transform
     - air:
         volume: 200
         immutable: False
@@ -3995,45 +4149,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 153
-      type: ContainerContainer
-  - uid: 221
-    components:
-    - pos: 7.5,4.5
-      parent: 1
-      type: Transform
-    - locked: False
-      type: Lock
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 237
-      type: ContainerContainer
 - proto: MaterialReclaimer
   entities:
   - uid: 566
@@ -4045,22 +4160,14 @@ entities:
   entities:
   - uid: 153
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 146
+    - pos: 0.66236365,-4.5040092
+      parent: 1
       type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 237
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 221
+    - pos: 0.39153028,-4.2540092
+      parent: 1
       type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: MopBucketFull
   entities:
   - uid: 277
