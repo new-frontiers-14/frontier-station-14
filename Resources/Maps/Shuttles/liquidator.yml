@@ -63,6 +63,7 @@ entities:
             30: -4,-5
             31: -2,-5
             39: -4,-7
+            41: -2,-7
         - node:
             color: '#3AB3DAFF'
             id: BotRightGreyscale
@@ -323,11 +324,17 @@ entities:
     - pos: -3.5,-5.5
       parent: 1
       type: Transform
+    - links:
+      - 393
+      type: DeviceLinkSink
   - uid: 237
     components:
     - pos: -1.5,-5.5
       parent: 1
       type: Transform
+    - links:
+      - 393
+      type: DeviceLinkSink
 - proto: AirlockGlassShuttle
   entities:
   - uid: 111
@@ -395,6 +402,8 @@ entities:
   entities:
   - uid: 19
     components:
+    - desc: Only one APC? Dang.
+      type: MetaData
     - pos: 0.5,-3.5
       parent: 1
       type: Transform
@@ -422,7 +431,7 @@ entities:
       type: Transform
 - proto: AtmosFixNitrogenMarker
   entities:
-  - uid: 367
+  - uid: 376
     components:
     - pos: 5.5,0.5
       parent: 1
@@ -473,11 +482,11 @@ entities:
     - pos: 0.7108896,1.719961
       parent: 1
       type: Transform
-- proto: BoxFolderBlue
+- proto: BoxFolderBase
   entities:
-  - uid: 40
+  - uid: 8
     components:
-    - pos: -1.6615257,1.9856031
+    - pos: -1.6713722,1.8778938
       parent: 1
       type: Transform
 - proto: BoxLightbulb
@@ -1005,13 +1014,6 @@ entities:
     - pos: 5.2959647,-1.1305447
       parent: 1
       type: Transform
-- proto: CigarSpent
-  entities:
-  - uid: 71
-    components:
-    - pos: -1.6756959,1.475688
-      parent: 1
-      type: Transform
 - proto: ClosetJanitorFilled
   entities:
   - uid: 4
@@ -1143,6 +1145,55 @@ entities:
   - uid: 255
     components:
     - pos: 5.480175,-1.6262951
+      parent: 1
+      type: Transform
+- proto: EmergencyLight
+  entities:
+  - uid: 6
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 5.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 367
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 5.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 379
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+  - uid: 380
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -1.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 381
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -1.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 382
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,-0.5
+      parent: 1
+      type: Transform
+  - uid: 385
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 3.5,4.5
+      parent: 1
+      type: Transform
+  - uid: 392
+    components:
+    - pos: -2.5,-7.5
       parent: 1
       type: Transform
 - proto: ExtinguisherCabinetFilled
@@ -1539,6 +1590,8 @@ entities:
       type: AtmosPipeColor
   - uid: 222
     components:
+    - name: waste loop pump
+      type: MetaData
     - rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
@@ -1547,6 +1600,8 @@ entities:
       type: AtmosPipeColor
   - uid: 288
     components:
+    - name: N2 pump
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
@@ -1555,6 +1610,8 @@ entities:
       type: AtmosPipeColor
   - uid: 290
     components:
+    - name: O2 pump
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
@@ -1802,6 +1859,13 @@ entities:
     - pos: 3.5,-4.5
       parent: 1
       type: Transform
+- proto: HandLabeler
+  entities:
+  - uid: 40
+    components:
+    - pos: 5.6751294,-1.3722651
+      parent: 1
+      type: Transform
 - proto: JanitorialTrolley
   entities:
   - uid: 284
@@ -1814,6 +1878,8 @@ entities:
   entities:
   - uid: 375
     components:
+    - name: jug (space cleaner)
+      type: MetaData
     - pos: 4.543024,-1.5893128
       parent: 1
       type: Transform
@@ -1833,7 +1899,7 @@ entities:
   - uid: 182
     components:
     - rot: -1.5707963267948966 rad
-      pos: -1.4866235,1.9537734
+      pos: -1.3161628,2.3328702
       parent: 1
       type: Transform
 - proto: LargeBeaker
@@ -1909,20 +1975,26 @@ entities:
     - pos: 5.5,2.5
       parent: 1
       type: Transform
-- proto: PenCap
+- proto: Paper
   entities:
-  - uid: 8
+  - uid: 71
     components:
-    - pos: -1.2647647,2.0564246
+    - pos: -1.3445798,1.5508795
       parent: 1
       type: Transform
-- proto: PortableGeneratorPacman
+  - uid: 390
+    components:
+    - pos: -1.5008717,1.6219696
+      parent: 1
+      type: Transform
+- proto: PortableGeneratorSuperPacman
   entities:
-  - uid: 236
+  - uid: 331
     components:
     - pos: 2.5,-5.5
       parent: 1
       type: Transform
+    - type: ItemCooldown
 - proto: PortableScrubber
   entities:
   - uid: 5
@@ -2016,6 +2088,20 @@ entities:
       pos: 3.5,1.5
       parent: 1
       type: Transform
+- proto: PoweredSmallLight
+  entities:
+  - uid: 383
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 5.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 384
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 5.5,2.5
+      parent: 1
+      type: Transform
 - proto: Railing
   entities:
   - uid: 77
@@ -2099,20 +2185,20 @@ entities:
       pos: -2.5,-0.5
       parent: 1
       type: Transform
-- proto: RandomSpawner
-  entities:
-  - uid: 283
-    components:
-    - pos: -2.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 331
-    components:
-    - pos: -3.5,-2.5
-      parent: 1
-      type: Transform
 - proto: RandomSpawner100
   entities:
+  - uid: 236
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -3.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 283
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -2.5,-4.5
+      parent: 1
+      type: Transform
   - uid: 371
     components:
     - pos: 1.5,1.5
@@ -2284,17 +2370,48 @@ entities:
     - pos: 6.5,-1.5
       parent: 1
       type: Transform
-- proto: SheetPlasma
+- proto: SheetUranium
   entities:
-  - uid: 6
+  - uid: 136
     components:
-    - pos: 2.5246549,-4.5689898
+    - pos: 2.5533805,-4.4859014
       parent: 1
       type: Transform
+- proto: ShuttersNormalOpen
+  entities:
+  - uid: 389
+    components:
+    - pos: -3.5,-7.5
+      parent: 1
+      type: Transform
+    - links:
+      - 388
+      type: DeviceLinkSink
+  - uid: 391
+    components:
+    - pos: -1.5,-7.5
+      parent: 1
+      type: Transform
+    - links:
+      - 388
+      type: DeviceLinkSink
+- proto: ShuttersWindowOpen
+  entities:
+  - uid: 386
+    components:
+    - pos: -2.5,-7.5
+      parent: 1
+      type: Transform
+    - links:
+      - 388
+      type: DeviceLinkSink
 - proto: SignalButtonDirectional
   entities:
   - uid: 188
     components:
+    - desc: 'Reminder: keep... Uhh.. I forgot..'
+      name: Blast Doors Switch
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -0.5,2.5
       parent: 1
@@ -2304,6 +2421,38 @@ entities:
         - Pressed: Toggle
         186:
         - Pressed: Toggle
+      type: DeviceLinkSource
+  - uid: 388
+    components:
+    - desc: You think it's enough to keep the greytide out?
+      name: Shutters Switch
+      type: MetaData
+    - rot: 1.5707963267948966 rad
+      pos: -4.5,-1.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        389:
+        - Pressed: Toggle
+        386:
+        - Pressed: Toggle
+        391:
+        - Pressed: Toggle
+      type: DeviceLinkSource
+  - uid: 393
+    components:
+    - desc: Will this stop 'em?
+      name: Bolts Switch
+      type: MetaData
+    - rot: 1.5707963267948966 rad
+      pos: -4.4988146,-1.174572
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        146:
+        - Pressed: DoorBolt
+        237:
+        - Pressed: DoorBolt
       type: DeviceLinkSource
 - proto: SignDirectionalJanitor
   entities:
@@ -2337,26 +2486,20 @@ entities:
       pos: 6.5,3.5
       parent: 1
       type: Transform
+- proto: SignRadiationMed
+  entities:
+  - uid: 387
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 3.5,-3.5
+      parent: 1
+      type: Transform
 - proto: SinkWide
   entities:
   - uid: 356
     components:
     - rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
-      parent: 1
-      type: Transform
-- proto: SmallLight
-  entities:
-  - uid: 136
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 5.5,0.5
-      parent: 1
-      type: Transform
-  - uid: 376
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 5.5,2.5
       parent: 1
       type: Transform
 - proto: SMESBasic
@@ -2722,8 +2865,7 @@ entities:
   entities:
   - uid: 200
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 2.0368552,-4.586635
+    - pos: 1.8714454,-4.3941445
       parent: 1
       type: Transform
 ...
