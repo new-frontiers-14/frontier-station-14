@@ -53,3 +53,21 @@
       - id: HandheldGPSBasic
   - type: AccessReader
     # access: [["Quartermaster"]]
+
+#Janitor hardsuit
+- type: entity
+  id: SuitStorageJanitor
+  parent: SuitStorageBase
+  suffix: Janitor
+  components:
+  - type: StorageFill
+    contents:
+      - id: NitrogenTankFilled
+      - id: OxygenTankFilled
+      - id: ClothingShoesBootsMagGaloshes
+      - id: ClothingOuterHardsuitJanitor
+      - id: ClothingMaskBreath
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+  - type: AccessReader
+    # access: [["Janitor"]]
