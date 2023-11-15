@@ -13,9 +13,9 @@ using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared.Coordinates;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
+using FastAccessors;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Shipyard.Systems;
@@ -248,5 +248,32 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         ShipyardMap = _mapManager.CreateMap();
 
         _mapManager.SetMapPaused(ShipyardMap.Value, false);
+    }
+
+    // <summary>
+    // Tries to rename a shuttle deed and update the respective components.
+    // Returns true if successful.
+    // </summary>
+    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed, string newName)
+    {
+        if (!Resolve(uid, ref shuttleDeed))
+            return false;
+
+        var shuttle = shuttleDeed.ShuttleUid;
+        if (shuttle != null
+             && _station.GetOwningStation(shuttle.Value) !is { Valid : true } shuttleStation)
+        {
+
+            _station.RenameStation(shuttleStation, newName);
+            shuttleDeed.ShuttleName = newName;
+            Dirty(uid, shuttleDeed);
+        }
+        else
+        {
+            _sawmill.Error($"Could not rename shuttle {ToPrettyString(shuttle):entity} to {newName}");
+            return false;
+        }
+
+        return true;
     }
 }

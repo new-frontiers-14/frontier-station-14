@@ -25,6 +25,7 @@ namespace Content.Client.Access.UI
 
         private string? _lastFullName;
         private string? _lastJobTitle;
+        private string? _lastShuttleName;
         private string? _lastJobProto;
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
@@ -49,6 +50,11 @@ namespace Content.Client.Access.UI
                 JobTitleSaveButton.Disabled = JobTitleLineEdit.Text == _lastJobTitle;
             };
             JobTitleSaveButton.OnPressed += _ => SubmitData();
+            ShipNameLineEdit.OnTextChanged += _ =>
+            {
+                ShipNameSaveButton.Disabled = ShipNameLineEdit.Text == _lastShuttleName;
+            };
+            ShipNameSaveButton.OnPressed += _ => SubmitShuttleData();
 
             var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>().ToList();
             jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
@@ -182,6 +188,12 @@ namespace Content.Client.Access.UI
 
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
+            // Frontier - shuttle renaming support
+            ShipNameLineEdit.Editable = interfaceEnabled && state.HasOwnedShuttle;
+            ShipNameLineEdit.Text = state.TargetShuttleName ?? (state.HasOwnedShuttle
+                ? String.Empty
+                : Loc.GetString("id-card-console-window-shuttle-placeholder"));
+
             JobPresetOptionButton.Disabled = !interfaceEnabled;
 
             foreach (var (accessName, button) in _accessButtons)
@@ -203,6 +215,7 @@ namespace Content.Client.Access.UI
             _lastFullName = state.TargetIdFullName;
             _lastJobTitle = state.TargetIdJobTitle;
             _lastJobProto = state.TargetIdJobPrototype;
+            _lastShuttleName = state.TargetShuttleName;
         }
 
         private void SubmitData()
@@ -217,6 +230,13 @@ namespace Content.Client.Access.UI
                 // Iterate over the buttons dictionary, filter by `Pressed`, only get key from the key/value pair
                 _accessButtons.Where(x => x.Value.Pressed).Select(x => x.Key).ToList(),
                 jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
+        }
+
+        private void SubmitShuttleData()
+        {
+            var shipName = ShipNameLineEdit.Text;
+
+            _owner.SubmitShipData(shipName);
         }
     }
 }

@@ -79,5 +79,10 @@ namespace Content.Client.Access.UI
                 newAccessList,
                 newJobPrototype));
         }
+
+        public void SubmitShipData(string newShuttleName)
+        {
+            SendMessage(new WriteToShuttleDeedMessage(newShuttleName));
+        }
     }
 }

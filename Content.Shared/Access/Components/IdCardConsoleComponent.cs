@@ -39,6 +39,18 @@ public sealed partial class IdCardConsoleComponent : Component
         }
     }
 
+    [Serializable, NetSerializable]
+    public sealed class WriteToShuttleDeedMessage : BoundUserInterfaceMessage
+    {
+        // Other fields are not currently supported for logical reasons.
+        public readonly string ShuttleName;
+
+        public WriteToShuttleDeedMessage(string shuttleName)
+        {
+            ShuttleName = shuttleName;
+        }
+    }
+
     // Put this on shared so we just send the state once in PVS range rather than every time the UI updates.
 
     [DataField, AutoNetworkedField]
@@ -85,6 +97,8 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string TargetIdName;
         public readonly string? TargetIdFullName;
         public readonly string? TargetIdJobTitle;
+        public readonly bool HasOwnedShuttle;
+        public readonly string? TargetShuttleName;
         public readonly string[]? TargetIdAccessList;
         public readonly string[]? AllowedModifyAccessList;
         public readonly string TargetIdJobPrototype;
@@ -94,6 +108,8 @@ public sealed partial class IdCardConsoleComponent : Component
             bool isTargetIdPresent,
             string? targetIdFullName,
             string? targetIdJobTitle,
+            bool hasOwnedShuttle,
+            string? targetShuttleName,
             string[]? targetIdAccessList,
             string[]? allowedModifyAccessList,
             string targetIdJobPrototype,
@@ -105,6 +121,8 @@ public sealed partial class IdCardConsoleComponent : Component
             IsTargetIdPresent = isTargetIdPresent;
             TargetIdFullName = targetIdFullName;
             TargetIdJobTitle = targetIdJobTitle;
+            HasOwnedShuttle = hasOwnedShuttle;
+            TargetShuttleName = targetShuttleName;
             TargetIdAccessList = targetIdAccessList;
             AllowedModifyAccessList = allowedModifyAccessList;
             TargetIdJobPrototype = targetIdJobPrototype;

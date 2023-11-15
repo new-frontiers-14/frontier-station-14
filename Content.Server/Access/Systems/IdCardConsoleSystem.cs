@@ -12,7 +12,10 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Server.Shipyard.Systems;
+using Content.Shared.Shipyard.Components;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
+using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 
 namespace Content.Server.Access.Systems;
 
@@ -27,12 +30,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     [Dependency] private readonly AccessSystem _access = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly ShipyardSystem _shipyard = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<IdCardConsoleComponent, WriteToTargetIdMessage>(OnWriteToTargetIdMessage);
+        SubscribeLocalEvent<IdCardConsoleComponent, WriteToShuttleDeedMessage>(OnWriteToShuttleDeedMessage);
 
         // one day, maybe bound user interfaces can be shared too.
         SubscribeLocalEvent<IdCardConsoleComponent, ComponentStartup>(UpdateUserInterface);
@@ -46,6 +51,17 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             return;
 
         TryWriteToTargetId(uid, args.FullName, args.JobTitle, args.AccessList, args.JobPrototype, player, component);
+
+        UpdateUserInterface(uid, component, args);
+    }
+
+    private void OnWriteToShuttleDeedMessage(EntityUid uid, IdCardConsoleComponent component,
+        WriteToShuttleDeedMessage args)
+    {
+        if (args.Session.AttachedEntity is not { Valid: true } player)
+            return;
+
+        TryWriteToShuttleDeed(uid, args.ShuttleName, player, component);
 
         UpdateUserInterface(uid, component, args);
     }
@@ -73,6 +89,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 false,
                 null,
                 null,
+                false,
+                null,
                 null,
                 possibleAccess,
                 string.Empty,
@@ -93,12 +111,22 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 jobProto = record.JobPrototype;
             }
 
+            string? shuttleName = null;
+            var hasShuttle = false;
+            if (EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var comp))
+            {
+                shuttleName = comp.ShuttleName;
+                hasShuttle = true;
+            }
+
             newState = new IdCardConsoleBoundUserInterfaceState(
                 component.PrivilegedIdSlot.HasItem,
                 PrivilegedIdIsAuthorized(uid, component),
                 true,
                 targetIdComponent.FullName,
                 targetIdComponent.JobTitle,
+                hasShuttle,
+                shuttleName,
                 targetAccessComponent.Tags.ToArray(),
                 possibleAccess,
                 jobProto,
@@ -171,6 +199,30 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             $"{ToPrettyString(player):player} has modified {ToPrettyString(targetId):entity} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
 
         UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
+    }
+
+    // <summary>
+    // Called whenever an attempt to change the shuttle deed of the target id is made.
+    // Writes data passed from the ui to the shuttle deed and the grid of shuttle.
+    // </summary>
+    private void TryWriteToShuttleDeed(EntityUid uid,
+        string newShuttleName,
+        EntityUid player,
+        IdCardConsoleComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component))
+            return;
+
+        if (!EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var shuttleDeed))
+            return;
+
+        _shipyard.TryRenameShuttle(targetId, shuttleDeed, newShuttleName);
+
+        _adminLogger.Add(LogType.Action, LogImpact.Medium,
+            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {newShuttleName}");
     }
 
     /// <summary>
