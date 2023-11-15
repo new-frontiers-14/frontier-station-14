@@ -114,6 +114,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var tinnia = "/Maps/tinnia.yml";
         var caseys = "/Maps/caseyscasino.yml";
         var lpbravo = "/Maps/lpbravo.yml";
+        var northpole = "/Maps/northpole.yml";
         var arena = "/Maps/arena.yml";
         var cove = "/Maps/cove.yml";
         var courthouse = "/Maps/courthouse.yml";
@@ -164,6 +165,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
             _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
+        }
+
+        if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2150f, 3900f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
+            _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
+            _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
         }
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
