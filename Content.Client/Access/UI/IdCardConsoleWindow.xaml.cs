@@ -192,7 +192,7 @@ namespace Content.Client.Access.UI
             // Frontier - shuttle renaming support
             ShipNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             ShipNameLineEdit.Editable = interfaceEnabled && state.HasOwnedShuttle;
-            ShipNameLineEdit.Text = state.TargetShuttleName ?? (state.HasOwnedShuttle
+            ShipNameLineEdit.Text = state.TargetShuttleName ?? (state.HasOwnedShuttle || !interfaceEnabled
                 ? String.Empty
                 : Loc.GetString("id-card-console-window-shuttle-placeholder"));
             ShipNameSaveButton.Disabled = !interfaceEnabled || !state.HasOwnedShuttle || !shuttleNameDirty;
