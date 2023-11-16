@@ -17,6 +17,7 @@ using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using FastAccessors;
 using Robust.Shared.Containers;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -30,6 +31,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -261,10 +263,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var shuttle = shuttleDeed.ShuttleUid;
         if (shuttle != null
-             && _station.GetOwningStation(shuttle.Value) !is { Valid : true } shuttleStation)
+             && _station.GetOwningStation(shuttle.Value) is { Valid : true } shuttleStation)
         {
-
-            _station.RenameStation(shuttleStation, newName);
+            _station.RenameStation(shuttleStation, newName, loud: false);
+            _metaData.SetEntityName(shuttle.Value, newName);
+            _metaData.SetEntityName(shuttleStation, newName);
             shuttleDeed.ShuttleName = newName;
             Dirty(uid, shuttleDeed);
         }
