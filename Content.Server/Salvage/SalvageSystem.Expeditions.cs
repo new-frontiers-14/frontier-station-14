@@ -310,16 +310,22 @@ public sealed partial class SalvageSystem
 
     private void GiveRewards(SalvageExpeditionComponent comp)
     {
-        // send it to cargo, no rewards otherwise.
-        if (!TryComp<StationCargoOrderDatabaseComponent>(comp.Station, out var cargoDb))
+        var palletList = new List<EntityUid>();
+        var pallets = EntityQueryEnumerator<CargoPalletComponent>();
+        while (pallets.MoveNext(out var pallet, out var palletComp))
+        {
+            if (_stationSystem.GetOwningStation(pallet) == comp.Station)
+            {
+                palletList.Add(pallet);
+            }
+        }
+
+        if (!(palletList.Count > 0))
             return;
 
         foreach (var reward in comp.Rewards)
         {
-            var sender = Loc.GetString("cargo-gift-default-sender");
-            var desc = Loc.GetString("salvage-expedition-reward-description");
-            var dest = Loc.GetString("cargo-gift-default-dest");
-            _cargo.AddAndApproveOrder(comp.Station, reward, 0, 1, sender, desc, dest, cargoDb);
+            Spawn(reward, (Transform(_random.Pick(palletList)).MapPosition));
         }
     }
 }
