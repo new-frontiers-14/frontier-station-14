@@ -169,6 +169,7 @@ namespace Content.Client.Access.UI
 
             var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
             var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
+            var shuttleNameDirty = _lastShuttleName != null && ShipNameLineEdit.Text != state.TargetShuttleName;
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             FullNameLineEdit.Editable = interfaceEnabled;
@@ -189,10 +190,12 @@ namespace Content.Client.Access.UI
             JobTitleSaveButton.Disabled = !interfaceEnabled || !jobTitleDirty;
 
             // Frontier - shuttle renaming support
+            ShipNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             ShipNameLineEdit.Editable = interfaceEnabled && state.HasOwnedShuttle;
             ShipNameLineEdit.Text = state.TargetShuttleName ?? (state.HasOwnedShuttle
                 ? String.Empty
                 : Loc.GetString("id-card-console-window-shuttle-placeholder"));
+            ShipNameSaveButton.Disabled = !interfaceEnabled || !state.HasOwnedShuttle || !shuttleNameDirty;
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
 
@@ -234,9 +237,8 @@ namespace Content.Client.Access.UI
 
         private void SubmitShuttleData()
         {
-            var shipName = ShipNameLineEdit.Text;
-
-            _owner.SubmitShipData(shipName);
+            var shuttleName = ShipNameLineEdit.Text;
+            _owner.SubmitShipData(shuttleName);
         }
     }
 }
