@@ -100,18 +100,15 @@ public abstract class SharedSalvageSystem : EntitySystem
         // - Biome
         // - Lighting
         // - Atmos
-        var biome = GetMod<SalvageBiomeModPrototype>(rand, ref modifierBudget);
-        var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref modifierBudget);
-        var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref modifierBudget);
-        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref modifierBudget);
-        var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref modifierBudget);
+        var biome = GetMod<SalvageBiomeMod>(rand, ref rating);
+        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
+        var dungeon = GetBiomeMod<SalvageDungeonMod>(biome.ID, rand, ref rating);
         var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
         factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
         var faction = factionProtos[rand.Next(factionProtos.Count)];
 
         var mods = new List<string>();
 
-        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
         if (air.Description != string.Empty)
         {
             mods.Add(air.Description);

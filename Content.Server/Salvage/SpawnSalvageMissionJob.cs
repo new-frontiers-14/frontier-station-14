@@ -223,18 +223,12 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Handle loot
         // We'll always add this loot if possible
         foreach (var lootProto in _prototypeManager.EnumeratePrototypes<SalvageLootPrototype>())
+
         {
             if (!lootProto.Guaranteed)
                 continue;
-
-                var uid = _entManager.SpawnAtPosition(entry.Proto, grid.GridTileToLocal(tile));
-                _entManager.RemoveComponent<GhostRoleComponent>(uid);
-                _entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
-                return;
-            }
             await SpawnDungeonLoot(dungeon, missionBiome, lootProto, mapUid, grid, random, reservedTiles);
         }
-
         return true;
     }
 

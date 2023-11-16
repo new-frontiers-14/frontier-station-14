@@ -16,6 +16,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Procedural;
 using System.Linq;
 using System.Threading;
+using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
@@ -120,7 +121,7 @@ public sealed partial class SalvageSystem
         // Finish mission
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
-            FinishExpedition((component.Station, data), uid, component, null);
+            FinishExpedition(data, uid, component, null);
         }
     }
 
@@ -159,13 +160,12 @@ public sealed partial class SalvageSystem
             comp.Cooldown = false;
             comp.NextOffer += TimeSpan.FromSeconds(_cooldown);
             GenerateMissions(comp);
-            UpdateConsoles((uid, comp));
+            UpdateConsoles(comp);
         }
     }
 
-    private void FinishExpedition(Entity<SalvageExpeditionDataComponent> expedition, EntityUid uid, SalvageExpeditionComponent expedition, EntityUid? shuttle)
+    private void FinishExpedition(SalvageExpeditionDataComponent component, EntityUid uid, SalvageExpeditionComponent expedition, EntityUid? shuttle)
     {
-        var component = expedition.Comp;
         component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
         Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
         // Finish mission cleanup.
@@ -209,9 +209,10 @@ public sealed partial class SalvageSystem
             Announce(uid, Loc.GetString("salvage-expedition-mission-failed"));
         }
 
+
         component.ActiveMission = 0;
         component.Cooldown = true;
-        UpdateConsoles(expedition);
+        UpdateConsoles(component);
     }
 
     /// <summary>

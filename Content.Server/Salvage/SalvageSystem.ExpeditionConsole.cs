@@ -46,7 +46,7 @@ public sealed partial class SalvageSystem
 
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-            UpdateConsoles((station.Value, data));
+            UpdateConsoles(data);
             return;
         }
         // end of Frontier proximity check
@@ -56,7 +56,7 @@ public sealed partial class SalvageSystem
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
-        UpdateConsoles((station.Value, data));
+        UpdateConsoles(data);
     }
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
@@ -69,7 +69,7 @@ public sealed partial class SalvageSystem
         UpdateConsole(console);
     }
 
-    private void UpdateConsoles(Entity<SalvageExpeditionDataComponent> component)
+    private void UpdateConsoles(SalvageExpeditionDataComponent component)
     {
         var state = GetState(component);
 
