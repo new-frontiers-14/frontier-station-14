@@ -118,6 +118,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var cove = "/Maps/cove.yml";
         var courthouse = "/Maps/courthouse.yml";
         var lodge = "/Maps/lodge.yml";
+        var lab = "/Maps/anomalouslab.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -137,7 +138,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2100f, 3800f)
+                Offset = _random.NextVector2(1100f, 2800f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
@@ -168,7 +169,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1900f, 3800f)
+                Offset = _random.NextVector2(2200f, 4200f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
@@ -223,6 +224,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
+        }
+
+        if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2100f, 3800f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(labUids[0]);
+            _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
+            _shuttle.SetIFFColor(labUids[0], factionColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
