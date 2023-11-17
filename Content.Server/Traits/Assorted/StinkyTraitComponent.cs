@@ -1,0 +1,26 @@
+using System.Numerics;
+
+namespace Content.Server.Traits.Assorted;
+
+/// <summary>
+/// This is used for the stinky trait.
+/// </summary>
+[RegisterComponent, Access(typeof(StinkyTraitSystem))]
+public sealed partial class StinkyTraitComponent : Component
+{
+    /// <summary>
+    /// The random time between incidents, (min, max).
+    /// </summary>
+    [DataField("timeBetweenIncidents", required: true)]
+    public Vector2 TimeBetweenIncidents { get; private set; }
+
+    /// <summary>
+    /// The duration of incidents, (min, max).
+    /// </summary>
+    [DataField("durationOfIncident", required: true)]
+    public Vector2 DurationOfIncident { get; private set; }
+
+    public float NextIncidentTime;
+
+    public bool IsActive = true;
+}
