@@ -33,9 +33,7 @@ namespace Content.Client.VendingMachines
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
-            {
                 _mod = market.Mod;
-            }
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
@@ -61,9 +59,8 @@ namespace Content.Client.VendingMachines
             var priceMod = 1f;
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
-            {
                 priceMod = market.Mod;
-            }
+
             _cachedInventory = newState.Inventory;
             _menu?.UpdateBalance(newState.Balance);
             _menu?.Populate(_cachedInventory, priceMod, out _cachedFilteredIndex, _menu.SearchBar.Text);

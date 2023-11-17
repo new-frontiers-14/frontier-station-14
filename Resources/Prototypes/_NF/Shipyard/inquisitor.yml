@@ -1,0 +1,29 @@
+- type: vessel
+  id: Inquisitor
+  name: NSF Inquisitor
+  description: A small detective-oriented ship with two cells for holding prisoners
+  price: 25170
+  category: Small
+  group: Security
+  shuttlePath: /Maps/Shuttles/inquisitor.yml
+
+- type: gameMap
+  id: Inquisitor
+  mapName: 'NSF Inquisitor'
+  mapPath: /Maps/Shuttles/inquisitor.yml
+  minPlayers: 0
+  stations:
+    Inquisitor:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'NSF14 Inquisitor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SecurityOfficer: [ 0, 0 ]
+            Warden: [ 0, 0 ]
+            Detective: [ 0, 0 ]
