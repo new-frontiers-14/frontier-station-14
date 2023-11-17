@@ -9,6 +9,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
+using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 
 namespace Content.Client.Access.UI
 {
@@ -26,8 +27,9 @@ namespace Content.Client.Access.UI
 
         private string? _lastFullName;
         private string? _lastJobTitle;
-        private string? _lastShuttleName;
+        private string?[]? _lastShuttleName;
         private string? _lastJobProto;
+        private bool _interfaceEnabled = false;
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
             List<ProtoId<AccessLevelPrototype>> accessLevels)
@@ -170,7 +172,6 @@ namespace Content.Client.Access.UI
 
             var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
             var jobTitleDirty = _lastJobTitle != null && JobTitleLineEdit.Text != state.TargetIdJobTitle;
-            var shuttleNameDirty = _lastShuttleName != null && ShipNameLineEdit.Text != state.TargetShuttleName;
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             FullNameLineEdit.Editable = interfaceEnabled;
@@ -198,29 +199,20 @@ namespace Content.Client.Access.UI
 
             if (interfaceEnabled && state.HasOwnedShuttle)
             {
-                // Split shuttle name into 3 parts. The suffix and the prefix must contain no spaces as per convention.
-                // Stations cannot be renamed through this ui and thus remain unaffected.
-                // If the shuttle has only 1 name parts, it's the name. If 2, it's the prefix+name.
-                var shuttleName = state.TargetShuttleName ?? String.Empty;
-                var shuttleNameParts = shuttleName.Split(" ");
-                var prefix = shuttleNameParts.Length > 1 ? shuttleNameParts.FirstOrDefault("") : "";
-                var suffix = shuttleNameParts.Length > 2 ? shuttleNameParts.LastOrDefault("") : "";
-                var rest = prefix.Length + suffix.Length < shuttleName.Length && shuttleNameParts.Length > 2
-                    ? shuttleName.Substring(prefix.Length + suffix.Length).Trim()
-                    : String.Empty;
+                var parts = state.TargetShuttleNameParts ?? new string?[] { null, null, null };
+                ShipPrefixLineEdit.Text = !interfaceEnabled ? string.Empty : parts[0] ?? string.Empty;
+                ShipNameLineEdit.Text = !interfaceEnabled ? string.Empty : parts[1] ?? string.Empty;
+                ShipSuffixLineEdit.Text = !interfaceEnabled ? string.Empty : parts[2] ?? string.Empty;
 
-                ShipPrefixLineEdit.Text = !interfaceEnabled ? String.Empty : prefix;
-                ShipSuffixLineEdit.Text = !interfaceEnabled ? String.Empty : suffix;
-                ShipNameLineEdit.Text = rest;
-
-                ShipNameSaveButton.Disabled = !interfaceEnabled || !state.HasOwnedShuttle || !shuttleNameDirty;
+                ShipNameSaveButton.Disabled = !interfaceEnabled || !state.HasOwnedShuttle;
             }
             else
             {
-                ShipPrefixLineEdit.Text = ShipSuffixLineEdit.Text = String.Empty;
+                ShipPrefixLineEdit.Text = ShipSuffixLineEdit.Text = string.Empty;
                 ShipNameLineEdit.Text = state.HasOwnedShuttle
                     ? Loc.GetString("id-card-console-window-shuttle-placeholder")
-                    : String.Empty;
+                    : string.Empty;
+                ShipNameSaveButton.Disabled = true;
             }
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
@@ -244,7 +236,10 @@ namespace Content.Client.Access.UI
             _lastFullName = state.TargetIdFullName;
             _lastJobTitle = state.TargetIdJobTitle;
             _lastJobProto = state.TargetIdJobPrototype;
-            _lastShuttleName = state.TargetShuttleName;
+            _lastShuttleName = state.TargetShuttleNameParts;
+            _interfaceEnabled = interfaceEnabled;
+
+            EnsureValidShuttleName();
         }
 
         // <summary>
@@ -258,15 +253,31 @@ namespace Content.Client.Access.UI
         // </summary>
         private void EnsureValidShuttleName()
         {
-            // We skip suffix validation because it's immutable and is not sent
             var prefix = ShipPrefixLineEdit.Text;
             var name = ShipNameLineEdit.Text;
-            var valid = prefix.Length <= MaxShuttlePrefixLength
-                && name.Length <= MaxShuttleNameLength
-                && name.Trim().Length > 3 // Arbitrary number, should hopefully be long enough.
-                && !prefix.Contains(" ");
+            var suffix = ShipSuffixLineEdit.Text;
 
-            ShipNameSaveButton.Disabled = !valid;
+            // We skip suffix validation because it's immutable and is ignored by the server
+            var valid = prefix.Length <= MaxPrefixLength
+                && !prefix.Contains(' ')
+                && name.Length <= MaxNameLength
+                && name.Trim().Length >= 3; // Arbitrary client-side number, should hopefully be long enough.
+                //&& suffix.Length <= MaxShuttleSuffixLength
+                //&& suffix.Contains('-')
+                //&& !suffix.Contains(' ')
+
+            ShipNameSaveButton.Disabled = !_interfaceEnabled || !valid;
+
+            // If still enabled, check for dirtiness and disable it if the name is not dirty
+            if (!ShipNameSaveButton.Disabled)
+            {
+                var dirty = _lastShuttleName != null &&
+                    ((_lastShuttleName[0] ?? string.Empty) != prefix
+                    || (_lastShuttleName[1] ?? string.Empty) != name
+                    || (_lastShuttleName[2] ?? string.Empty) != suffix);
+
+                ShipNameSaveButton.Disabled = !dirty;
+            }
         }
 
         private void SubmitData()

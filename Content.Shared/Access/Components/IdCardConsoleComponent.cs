@@ -12,8 +12,6 @@ public sealed partial class IdCardConsoleComponent : Component
 {
     public const int MaxFullNameLength = 30;
     public const int MaxJobTitleLength = 30;
-    public const int MaxShuttlePrefixLength = 5;
-    public const int MaxShuttleNameLength = 24;
 
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
@@ -103,7 +101,7 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string? TargetIdFullName;
         public readonly string? TargetIdJobTitle;
         public readonly bool HasOwnedShuttle;
-        public readonly string? TargetShuttleName;
+        public readonly string?[]? TargetShuttleNameParts;
         public readonly string[]? TargetIdAccessList;
         public readonly string[]? AllowedModifyAccessList;
         public readonly string TargetIdJobPrototype;
@@ -114,7 +112,7 @@ public sealed partial class IdCardConsoleComponent : Component
             string? targetIdFullName,
             string? targetIdJobTitle,
             bool hasOwnedShuttle,
-            string? targetShuttleName,
+            string?[]? targetShuttleNameParts,
             string[]? targetIdAccessList,
             string[]? allowedModifyAccessList,
             string targetIdJobPrototype,
@@ -127,7 +125,7 @@ public sealed partial class IdCardConsoleComponent : Component
             TargetIdFullName = targetIdFullName;
             TargetIdJobTitle = targetIdJobTitle;
             HasOwnedShuttle = hasOwnedShuttle;
-            TargetShuttleName = targetShuttleName;
+            TargetShuttleNameParts = targetShuttleNameParts;
             TargetIdAccessList = targetIdAccessList;
             AllowedModifyAccessList = allowedModifyAccessList;
             TargetIdJobPrototype = targetIdJobPrototype;

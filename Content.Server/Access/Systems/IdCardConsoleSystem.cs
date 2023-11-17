@@ -111,11 +111,11 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 jobProto = record.JobPrototype;
             }
 
-            string? shuttleName = null;
+            string?[]? shuttleNameParts = null;
             var hasShuttle = false;
             if (EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var comp))
             {
-                shuttleName = comp.ShuttleName;
+                shuttleNameParts = comp.GetNameParts();
                 hasShuttle = true;
             }
 
@@ -126,7 +126,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 targetIdComponent.FullName,
                 targetIdComponent.JobTitle,
                 hasShuttle,
-                shuttleName,
+                shuttleNameParts,
                 targetAccessComponent.Tags.ToArray(),
                 possibleAccess,
                 jobProto,
@@ -201,10 +201,10 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
     }
 
-    // <summary>
-    // Called whenever an attempt to change the shuttle deed of the target id is made.
-    // Writes data passed from the ui to the shuttle deed and the grid of shuttle.
-    // </summary>
+    /// <summary>
+    /// Called whenever an attempt to change the shuttle deed of the target id is made.
+    /// Writes data passed from the ui to the shuttle deed and the grid of shuttle.
+    /// </summary>
     private void TryWriteToShuttleDeed(EntityUid uid,
         string newShuttlePrefix,
         string newShuttleName,
@@ -221,22 +221,24 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (!EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var shuttleDeed))
             return;
 
-        var originalNameParts = (shuttleDeed.ShuttleName ?? String.Empty).Split(' ');
         // Ensure the name is valid and follows the convention - see IdCardConsoleWindow.EnsureValidShuttleName for explanation
-        var prefix = newShuttlePrefix.Replace(" ", "")[..MaxShuttlePrefixLength];
-        var name = newShuttleName.Trim()[..MaxShuttleNameLength];
-        // The suffix is currently ignored as per request and is instead retained
-        // var suffix = newShuttleSuffix.Replace(" ", "")[..MaxShuttleSuffixLength];
-        var suffix = originalNameParts.Length > 2 ? originalNameParts.Last() : "";
+        var prefix = newShuttlePrefix;
+        var name = newShuttleName.Trim();
+        // The suffix is ignored as per request
+        // var suffix = newShuttleSuffix;
+        var suffix = shuttleDeed.ShuttleNameSuffix;
 
-        var fullName = (prefix.Length > 0 ? prefix + " " : "")
-            + (name.Length + suffix.Length > 0 ? name + " " : name)
-            + suffix;
+        if (prefix.Length > MaxPrefixLength)
+            prefix = prefix[..MaxPrefixLength];
+        if (name.Length > MaxNameLength)
+            name = name[..MaxNameLength];
+        // if (suffix.Length > MaxSuffixLength)
+        //     suffix = suffix[..MaxSuffixLength];
 
-        _shipyard.TryRenameShuttle(targetId, shuttleDeed, fullName);
+        _shipyard.TryRenameShuttle(targetId, shuttleDeed, prefix, name, suffix);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {fullName}");
+            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {shuttleDeed.GetFullName()}");
     }
 
     /// <summary>

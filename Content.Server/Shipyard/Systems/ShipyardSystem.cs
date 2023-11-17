@@ -255,8 +255,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     // <summary>
     // Tries to rename a shuttle deed and update the respective components.
     // Returns true if successful.
+    //
+    // Null name parts are promptly ignored.
     // </summary>
-    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed, string newName)
+    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed, string? newPrefix, string? newName, string? newSuffix)
     {
         if (!Resolve(uid, ref shuttleDeed))
             return false;
@@ -265,11 +267,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (shuttle != null
              && _station.GetOwningStation(shuttle.Value) is { Valid : true } shuttleStation)
         {
-            _station.RenameStation(shuttleStation, newName, loud: false);
-            _metaData.SetEntityName(shuttle.Value, newName);
-            _metaData.SetEntityName(shuttleStation, newName);
+            shuttleDeed.ShuttleNamePrefix = newPrefix;
             shuttleDeed.ShuttleName = newName;
+            shuttleDeed.ShuttleNameSuffix = newSuffix;
             Dirty(uid, shuttleDeed);
+
+            var fullName = shuttleDeed.GetFullName();
+            _station.RenameStation(shuttleStation, fullName, loud: false);
+            _metaData.SetEntityName(shuttle.Value, fullName);
+            _metaData.SetEntityName(shuttleStation, fullName);
         }
         else
         {
