@@ -4,7 +4,6 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Procedural;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
@@ -54,10 +53,8 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
         for (var i = 0; i < state.Missions.Count; i++)
         {
             var missionParams = state.Missions[i];
-            var difficultyId = "Moderate";
-            var difficultyProto = _prototype.Index<SalvageDifficultyPrototype>(difficultyId);
-            // TODO: Selectable difficulty soon.
-            var mission = _salvage.GetMission(difficultyProto, missionParams.Seed);
+            var config = missionParams.MissionType;
+            var mission = _salvage.GetMission(missionParams.MissionType, missionParams.Difficulty, missionParams.Seed);
 
             // Mission title
             var missionStripe = new StripeBack()
@@ -67,7 +64,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
             missionStripe.AddChild(new Label()
             {
-                Text = Loc.GetString($"salvage-expedition-type"),
+                Text = Loc.GetString($"salvage-expedition-type-{config.ToString()}"),
                 HorizontalAlignment = HAlignment.Center,
                 Margin = new Thickness(0f, 5f, 0f, 5f),
             });
@@ -84,25 +81,48 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Text = Loc.GetString("salvage-expedition-window-difficulty")
             });
 
-            var difficultyColor = difficultyProto.Color;
+            Color difficultyColor;
+
+            switch (missionParams.Difficulty)
+            {
+                case DifficultyRating.Minimal:
+                    difficultyColor = Color.FromHex("#52B4E996");
+                    break;
+                case DifficultyRating.Minor:
+                    difficultyColor = Color.FromHex("#9FED5896");
+                    break;
+                case DifficultyRating.Moderate:
+                    difficultyColor = Color.FromHex("#EFB34196");
+                    break;
+                case DifficultyRating.Hazardous:
+                    difficultyColor = Color.FromHex("#DE3A3A96");
+                    break;
+                case DifficultyRating.Extreme:
+                    difficultyColor = Color.FromHex("#D381C996");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             lBox.AddChild(new Label
             {
-                Text = Loc.GetString("salvage-expedition-difficulty-Moderate"),
+                Text = Loc.GetString($"salvage-expedition-difficulty-{missionParams.Difficulty.ToString()}"),
                 FontColorOverride = difficultyColor,
                 HorizontalAlignment = HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
             });
 
+            // Details
+            var details = _salvage.GetMissionDescription(mission);
+
             lBox.AddChild(new Label
             {
-                Text = Loc.GetString("salvage-expedition-difficulty-players"),
-                HorizontalAlignment = HAlignment.Left,
+                Text = Loc.GetString("salvage-expedition-window-details")
             });
 
             lBox.AddChild(new Label
             {
-                Text = difficultyProto.RecommendedPlayers.ToString(),
+                Text = details,
                 FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
@@ -148,7 +168,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
             lBox.AddChild(new Label
             {
-                Text = Loc.GetString(_prototype.Index<SalvageBiomeModPrototype>(biome).ID),
+                Text = Loc.GetString(_prototype.Index<SalvageBiomeMod>(biome).ID),
                 FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
@@ -168,6 +188,29 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+            });
+
+            lBox.AddChild(new Label()
+            {
+                Text = Loc.GetString("salvage-expedition-window-rewards")
+            });
+
+            var rewards = new Dictionary<string, int>();
+            foreach (var reward in mission.Rewards)
+            {
+                var name = _prototype.Index<EntityPrototype>(reward).Name;
+                var count = rewards.GetOrNew(name);
+                count++;
+                rewards[name] = count;
+            }
+
+            // there will always be 3 or more rewards so no need for 0 check
+            lBox.AddChild(new Label()
+            {
+                Text = string.Join("\n", rewards.Select(o => "- " + o.Key + (o.Value > 1 ? $" x {o.Value}" : ""))).TrimEnd(),
+                FontColorOverride = StyleNano.ConcerningOrangeFore,
+                HorizontalAlignment = HAlignment.Left,
+                Margin = new Thickness(0f, 0f, 0f, 5f)
             });
 
             // Claim
@@ -246,7 +289,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
         else
         {
             var cooldown = _cooldown
-                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown))
+                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown))
                 : TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
 
             NextOfferBar.Value = 1f - (float) (remaining / cooldown);
