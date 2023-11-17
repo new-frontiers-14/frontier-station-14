@@ -26,10 +26,13 @@
             <Button Name="JobTitleSaveButton" Text="{Loc 'id-card-console-window-save-button'}" Disabled="True" />
 
             <Label Name="ShipNameLabel" Text="{Loc 'id-card-console-window-ship-name-label'}" />
-            <LineEdit Name="ShipNameLineEdit" HorizontalExpand="True" />
+            <GridContainer Columns="3" HSeparationOverride="4" HorizontalExpand="True">
+                <LineEdit Name="ShipPrefixLineEdit" HorizontalExpand="True" />
+                <LineEdit Name="ShipNameLineEdit" HorizontalExpand="True" />
+                <LineEdit Name="ShipSuffixLineEdit" HorizontalExpand="True" />
+            </GridContainer>
             <Button Name="ShipNameSaveButton" Text="{Loc 'id-card-console-window-save-button'}" Disabled="True" />
         </GridContainer>
-        <Control MinSize="0 8" />
         <GridContainer Columns="2">
             <Label Text="{Loc 'id-card-console-window-job-selection-label'}" />
             <OptionButton Name="JobPresetOptionButton" />

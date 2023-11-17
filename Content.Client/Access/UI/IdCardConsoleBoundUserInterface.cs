@@ -80,9 +80,9 @@ namespace Content.Client.Access.UI
                 newJobPrototype));
         }
 
-        public void SubmitShipData(string newShuttleName)
+        public void SubmitShipData(string newShuttlePrefix, string newShuttleName, string newShuttleSuffix)
         {
-            SendMessage(new WriteToShuttleDeedMessage(newShuttleName));
+            SendMessage(new WriteToShuttleDeedMessage(newShuttlePrefix, newShuttleName, newShuttleSuffix));
         }
     }
 }

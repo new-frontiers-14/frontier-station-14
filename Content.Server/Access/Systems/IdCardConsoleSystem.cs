@@ -61,7 +61,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
 
-        TryWriteToShuttleDeed(uid, args.ShuttleName, player, component);
+        TryWriteToShuttleDeed(uid, args.ShuttlePrefix, args.ShuttleName, args.ShuttleSuffix, player, component);
 
         UpdateUserInterface(uid, component, args);
     }
@@ -206,7 +206,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     // Writes data passed from the ui to the shuttle deed and the grid of shuttle.
     // </summary>
     private void TryWriteToShuttleDeed(EntityUid uid,
+        string newShuttlePrefix,
         string newShuttleName,
+        string newShuttleSuffix,
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
@@ -219,10 +221,22 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (!EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var shuttleDeed))
             return;
 
-        _shipyard.TryRenameShuttle(targetId, shuttleDeed, newShuttleName);
+        var originalNameParts = (shuttleDeed.ShuttleName ?? String.Empty).Split(' ');
+        // Ensure the name is valid and follows the convention - see IdCardConsoleWindow.EnsureValidShuttleName for explanation
+        var prefix = newShuttlePrefix.Replace(" ", "")[..MaxShuttlePrefixLength];
+        var name = newShuttleName.Trim()[..MaxShuttleNameLength];
+        // The suffix is currently ignored as per request and is instead retained
+        // var suffix = newShuttleSuffix.Replace(" ", "")[..MaxShuttleSuffixLength];
+        var suffix = originalNameParts.Length > 2 ? originalNameParts.Last() : "";
+
+        var fullName = (prefix.Length > 0 ? prefix + " " : "")
+            + (name.Length + suffix.Length > 0 ? name + " " : name)
+            + suffix;
+
+        _shipyard.TryRenameShuttle(targetId, shuttleDeed, fullName);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {newShuttleName}");
+            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {fullName}");
     }
 
     /// <summary>

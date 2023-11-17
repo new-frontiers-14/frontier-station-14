@@ -12,6 +12,8 @@ public sealed partial class IdCardConsoleComponent : Component
 {
     public const int MaxFullNameLength = 30;
     public const int MaxJobTitleLength = 30;
+    public const int MaxShuttlePrefixLength = 5;
+    public const int MaxShuttleNameLength = 24;
 
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
@@ -42,12 +44,15 @@ public sealed partial class IdCardConsoleComponent : Component
     [Serializable, NetSerializable]
     public sealed class WriteToShuttleDeedMessage : BoundUserInterfaceMessage
     {
-        // Other fields are not currently supported for logical reasons.
+        public readonly string ShuttlePrefix;
         public readonly string ShuttleName;
+        public readonly string ShuttleSuffix;
 
-        public WriteToShuttleDeedMessage(string shuttleName)
+        public WriteToShuttleDeedMessage(string shuttlePrefix, string shuttleName, string shuttleSuffix)
         {
+            ShuttlePrefix = shuttlePrefix;
             ShuttleName = shuttleName;
+            ShuttleSuffix = shuttleSuffix;
         }
     }
 
