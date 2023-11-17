@@ -55,6 +55,14 @@ public sealed class StinkyTraitSystem : EntitySystem
         }
     }
 
+    private bool OnAirFreshener(EntityUid? uid)
+    {
+        if (HasComp<AirFreshenerComponent>(uid))
+            return false;
+
+        return true;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -62,48 +70,25 @@ public sealed class StinkyTraitSystem : EntitySystem
         var query = EntityQueryEnumerator<StinkyTraitComponent>();
         while (query.MoveNext(out var uid, out var stinky))
         {
-            /// <summary>
-            /// Finds the entity that can hold an uplink for a user.
-            /// Usually this is a pda in their pda slot, but can also be in their hands. (but not pockets or inside bag, etc.)
-            /// </summary>
-            ///
-
-            //if (_inventory.TryGetContainerSlotEnumerator(uid, out var containerSlotEnumerator))
-            //{
-            //    while (containerSlotEnumerator.MoveNext(out var item))
-            //    {
-            //        if (!item.ContainedEntity.HasValue)
-            //            continue;
-
-            //        if (HasComp<AirFreshenerComponent>(item.ContainedEntity.Value))
-            //            stinky.IsActive = false;
-            //        else
-            //            stinky.IsActive = true;
-            //    }
-            //}
-
             stinky.NextIncidentTime -= frameTime;
 
             if (stinky.NextIncidentTime >= 0)
                 continue;
 
-            if (_inventory.TryGetSlotEntity(uid, "pocket1", out var pocket1))
-            {
-                if (HasComp<AirFreshenerComponent>(pocket1))
-                {
-                    stinky.IsActive = false;
-                    continue;
-                }
-            }
-            else if (_inventory.TryGetSlotEntity(uid, "pocket2", out var pocket2))
-            {
-                if (HasComp<AirFreshenerComponent>(pocket2))
-                {
-                    stinky.IsActive = false;
-                    continue;
-                }
-            }
             stinky.IsActive = true;
+            if (_inventory.TryGetSlotEntity(uid, "neck", out var neck)) // Not yet added to any item as neck
+                stinky.IsActive = OnAirFreshener(neck);
+            if (_inventory.TryGetSlotEntity(uid, "pocket1", out var pocket1))
+                stinky.IsActive = OnAirFreshener(pocket1);
+            if (_inventory.TryGetSlotEntity(uid, "pocket2", out var pocket2))
+                stinky.IsActive = OnAirFreshener(pocket2);
+            if (_inventory.TryGetSlotEntity(uid, "pocket3", out var pocket3))
+                stinky.IsActive = OnAirFreshener(pocket3);
+            if (_inventory.TryGetSlotEntity(uid, "pocket4", out var pocket4))
+                stinky.IsActive = OnAirFreshener(pocket4);
+
+            if (!stinky.IsActive)
+                continue;
 
             // Set the new time.
             stinky.NextIncidentTime +=
@@ -111,7 +96,7 @@ public sealed class StinkyTraitSystem : EntitySystem
 
             var duration = _random.NextFloat(stinky.DurationOfIncident.X, stinky.DurationOfIncident.Y);
 
-            // Make sure the stink time doesn't cut into the time to next incident.
+            // Make sure the stink time doesn't cut into the time to next pulse.
             stinky.NextIncidentTime += duration;
 
             if (!TryComp<TransformComponent>(uid, out var xform))
