@@ -1,0 +1,32 @@
+- type: vessel
+  id: MONOLITH
+  name: KL Monolith
+  description: A large and slow universal ship designed for manual upgrades by the crew.
+  price: 80000 #68k before +15% 
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/monolith.yml
+
+- type: gameMap
+  id: MONOLITH
+  mapName: 'KL Monolith'
+  mapPath: /Maps/Shuttles/monolith.yml
+  minPlayers: 0
+  stations:
+    MONOLITH:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Monolith {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chef: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
