@@ -209,7 +209,7 @@ namespace Content.Client.Access.UI
             else
             {
                 ShipPrefixLineEdit.Text = ShipSuffixLineEdit.Text = string.Empty;
-                ShipNameLineEdit.Text = state.HasOwnedShuttle
+                ShipNameLineEdit.Text = !state.HasOwnedShuttle
                     ? Loc.GetString("id-card-console-window-shuttle-placeholder")
                     : string.Empty;
                 ShipNameSaveButton.Disabled = true;
