@@ -1186,31 +1186,19 @@ entities:
       type: Transform
   - uid: 40
     components:
-    - anchored: False
-      rot: -1.5707963267948966 rad
-      pos: -0.50000006,5.5
+    - pos: 1.5,5.5
       parent: 1
       type: Transform
-    - bodyType: Dynamic
-      type: Physics
   - uid: 41
     components:
-    - anchored: False
-      rot: -1.5707963267948966 rad
-      pos: 0.5,5.5
+    - pos: 0.5,5.5
       parent: 1
       type: Transform
-    - bodyType: Dynamic
-      type: Physics
   - uid: 42
     components:
-    - anchored: False
-      rot: -1.5707963267948966 rad
-      pos: 1.5,5.5
+    - pos: -0.5,5.5
       parent: 1
       type: Transform
-    - bodyType: Dynamic
-      type: Physics
   - uid: 43
     components:
     - rot: -1.5707963267948966 rad
@@ -7951,42 +7939,6 @@ entities:
       type: Anchorable
 - proto: Grille
   entities:
-  - uid: 295
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -8.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 335
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -7.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 337
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 338
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -3.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 339
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -4.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 352
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -6.5,12.5
-      parent: 1
-      type: Transform
   - uid: 355
     components:
     - pos: -1.5,10.5
@@ -8747,13 +8699,6 @@ entities:
     - pos: -10.5,-2.5
       parent: 1
       type: Transform
-- proto: RandomAnomalySpawner
-  entities:
-  - uid: 665
-    components:
-    - pos: -16.5,0.5
-      parent: 1
-      type: Transform
 - proto: RandomInstruments
   entities:
   - uid: 1844
@@ -9027,9 +8972,44 @@ entities:
       type: Transform
 - proto: ReagentSlimeSpawner
   entities:
+  - uid: 335
+    components:
+    - pos: -3.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 337
+    components:
+    - pos: 6.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 338
+    components:
+    - pos: 14.5,-9.5
+      parent: 1
+      type: Transform
+  - uid: 339
+    components:
+    - pos: 14.5,-11.5
+      parent: 1
+      type: Transform
+  - uid: 351
+    components:
+    - pos: 13.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 352
+    components:
+    - pos: 14.5,5.5
+      parent: 1
+      type: Transform
   - uid: 651
     components:
-    - pos: -6.5,18.5
+    - pos: -0.5,10.5
+      parent: 1
+      type: Transform
+  - uid: 665
+    components:
+    - pos: 14.5,-7.5
       parent: 1
       type: Transform
   - uid: 667
@@ -9069,12 +9049,7 @@ entities:
       type: Transform
   - uid: 1053
     components:
-    - pos: 17.5,-8.5
-      parent: 1
-      type: Transform
-  - uid: 1054
-    components:
-    - pos: 17.5,-9.5
+    - pos: 16.5,-13.5
       parent: 1
       type: Transform
   - uid: 1055
@@ -9121,6 +9096,41 @@ entities:
       pos: -17.5,-0.5
       parent: 1
       type: Transform
+  - uid: 1646
+    components:
+    - pos: 12.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 1649
+    components:
+    - pos: 10.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 1650
+    components:
+    - pos: 2.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 1651
+    components:
+    - pos: -1.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 1652
+    components:
+    - pos: 2.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 1662
+    components:
+    - pos: -5.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 1665
+    components:
+    - pos: -6.5,-5.5
+      parent: 1
+      type: Transform
   - uid: 1829
     components:
     - pos: 6.5,8.5
@@ -9129,11 +9139,6 @@ entities:
   - uid: 1830
     components:
     - pos: 1.5,9.5
-      parent: 1
-      type: Transform
-  - uid: 1831
-    components:
-    - pos: -5.5,15.5
       parent: 1
       type: Transform
   - uid: 1833
@@ -9156,16 +9161,6 @@ entities:
     - pos: -15.5,-3.5
       parent: 1
       type: Transform
-  - uid: 1845
-    components:
-    - pos: -3.5,14.5
-      parent: 1
-      type: Transform
-  - uid: 1846
-    components:
-    - pos: -1.5,16.5
-      parent: 1
-      type: Transform
   - uid: 1848
     components:
     - pos: -1.5,-0.5
@@ -9181,49 +9176,8 @@ entities:
     - pos: 14.5,7.5
       parent: 1
       type: Transform
-  - uid: 1851
-    components:
-    - pos: 17.5,-7.5
-      parent: 1
-      type: Transform
 - proto: ReinforcedWindow
   entities:
-  - uid: 323
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -8.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 330
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -7.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 332
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 333
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -3.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 334
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -4.5,12.5
-      parent: 1
-      type: Transform
-  - uid: 351
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -6.5,12.5
-      parent: 1
-      type: Transform
   - uid: 356
     components:
     - rot: -1.5707963267948966 rad
@@ -10117,9 +10071,34 @@ entities:
       type: Transform
 - proto: SpawnMobSlug
   entities:
+  - uid: 295
+    components:
+    - pos: -0.5,16.5
+      parent: 1
+      type: Transform
+  - uid: 323
+    components:
+    - pos: -0.5,18.5
+      parent: 1
+      type: Transform
+  - uid: 334
+    components:
+    - pos: -6.5,15.5
+      parent: 1
+      type: Transform
+  - uid: 1054
+    components:
+    - pos: -1.5,14.5
+      parent: 1
+      type: Transform
   - uid: 1059
     components:
     - pos: 10.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 1645
+    components:
+    - pos: -3.5,17.5
       parent: 1
       type: Transform
 - proto: SpawnVehicleJanicart
@@ -11030,6 +11009,21 @@ entities:
       pos: -2.5,6.5
       parent: 1
       type: Transform
+  - uid: 330
+    components:
+    - pos: -8.5,12.5
+      parent: 1
+      type: Transform
+  - uid: 332
+    components:
+    - pos: -4.5,12.5
+      parent: 1
+      type: Transform
+  - uid: 333
+    components:
+    - pos: -6.5,12.5
+      parent: 1
+      type: Transform
   - uid: 340
     components:
     - rot: -1.5707963267948966 rad
@@ -11834,6 +11828,21 @@ entities:
       pos: -13.5,-14.5
       parent: 1
       type: Transform
+  - uid: 1641
+    components:
+    - pos: -7.5,12.5
+      parent: 1
+      type: Transform
+  - uid: 1642
+    components:
+    - pos: -3.5,12.5
+      parent: 1
+      type: Transform
+  - uid: 1644
+    components:
+    - pos: -2.5,12.5
+      parent: 1
+      type: Transform
   - uid: 1654
     components:
     - rot: -1.5707963267948966 rad
@@ -12043,7 +12052,7 @@ entities:
     - pos: -17.5,-13.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -25757.055
+    - secondsUntilStateChange: -26473.672
       state: Opening
       type: Door
   - uid: 464
