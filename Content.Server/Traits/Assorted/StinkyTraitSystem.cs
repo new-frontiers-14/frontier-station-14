@@ -10,6 +10,8 @@ using Content.Shared.Inventory;
 using Robust.Server.Player;
 using Content.Shared._NF.AirFreshener.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Popups;
+using Robust.Shared.Player;
 
 namespace Content.Server.Traits.Assorted;
 
@@ -25,6 +27,7 @@ public sealed class StinkyTraitSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -97,19 +100,24 @@ public sealed class StinkyTraitSystem : EntitySystem
             // Make sure the stink time doesn't cut into the time to next pulse.
             stinky.NextIncidentTime += duration;
 
-            if (!TryComp<TransformComponent>(uid, out var xform))
-                continue;
-
-            if (!TryComp<PhysicsComponent>(uid, out var physics))
-                continue;
-
-            var indices = _transform.GetGridOrMapTilePosition(uid);
-
             if (stinky.Miasma)
             {
+                if (!TryComp<TransformComponent>(uid, out var xform))
+                    continue;
+
+                if (!TryComp<PhysicsComponent>(uid, out var physics))
+                    continue;
+
+                var indices = _transform.GetGridOrMapTilePosition(uid);
                 var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
                 tileMix?.AdjustMoles(Gas.Miasma, 0.01f * physics.FixturesMass);
             }
+
+            var othersMessage = Loc.GetString("trait-stinky-in-range", ("target", uid));
+            _popup.PopupEntity(othersMessage, uid, Filter.PvsExcept(uid), true);
+
+            var selfMessage = Loc.GetString("miasma-smell");
+            _popup.PopupEntity(selfMessage, uid, uid);
         }
     }
 }
