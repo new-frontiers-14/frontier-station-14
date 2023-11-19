@@ -238,7 +238,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _shipyard.TryRenameShuttle(targetId, shuttleDeed, prefix, name, suffix);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {ShipyardSystem.GetFullName(shuttleDeed)}");
+            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleUid):entity} to {ShipyardSystem.GetFullName(shuttleDeed)}");
     }
 
     /// <summary>
