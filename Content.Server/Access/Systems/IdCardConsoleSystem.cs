@@ -115,7 +115,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             var hasShuttle = false;
             if (EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var comp))
             {
-                shuttleNameParts = comp.GetNameParts();
+                shuttleNameParts = new[] { comp.ShuttleNamePrefix, comp.ShuttleName, comp.ShuttleNameSuffix };
                 hasShuttle = true;
             }
 
@@ -238,7 +238,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _shipyard.TryRenameShuttle(targetId, shuttleDeed, prefix, name, suffix);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {shuttleDeed.GetFullName()}");
+            $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleOwner):entity} to {ShipyardSystem.GetFullName(shuttleDeed)}");
     }
 
     /// <summary>

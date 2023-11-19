@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
@@ -272,7 +273,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             shuttleDeed.ShuttleNameSuffix = newSuffix;
             Dirty(uid, shuttleDeed);
 
-            var fullName = shuttleDeed.GetFullName();
+            var fullName = GetFullName(shuttleDeed);
             _station.RenameStation(shuttleStation, fullName, loud: false);
             _metaData.SetEntityName(shuttle.Value, fullName);
             _metaData.SetEntityName(shuttleStation, fullName);
@@ -284,5 +285,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Returns the full name of the shuttle component in the form of [prefix] [name] [suffix].
+    /// </summary>
+    public static string GetFullName(ShuttleDeedComponent comp)
+    {
+        string?[] parts = { comp.ShuttleNamePrefix, comp.ShuttleName, comp.ShuttleNameSuffix };
+        return string.Join(' ', parts.Where(it => it != null));
     }
 }

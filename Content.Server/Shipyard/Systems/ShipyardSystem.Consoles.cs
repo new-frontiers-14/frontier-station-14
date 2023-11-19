@@ -339,13 +339,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             bill -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            SendSellMessage(uid, deed.ShuttleOwner!, deed.GetFullName(), component.SecurityShipyardChannel, player, true);
+            SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
 
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
 
-        SendSellMessage(uid, deed.ShuttleOwner!, deed.GetFullName(), channel, player, false);
+        SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), channel, player, false);
 
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
@@ -377,7 +377,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
         }
 
-        RefreshState(uid, bank.Balance, true, deed?.GetFullName(), sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
+        var fullName = deed != null ? GetFullName(deed) : null;
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void ConsolePopup(ICommonSession session, string text)
@@ -459,7 +460,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
         }
 
-        RefreshState(uid, bank.Balance, true, deed?.GetFullName(), sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
+        var fullName = deed != null ? GetFullName(deed) : null;
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
     }
 
     public bool FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)

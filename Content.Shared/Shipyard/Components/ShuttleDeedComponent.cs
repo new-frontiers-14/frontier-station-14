@@ -27,22 +27,4 @@ public sealed partial class ShuttleDeedComponent : Component
 
     [DataField("shuttleOwner")]
     public EntityUid? ShuttleOwner;
-
-    /// <summary>
-    /// Returns the full name of this shuttle in the form of [prefix] [name] [suffix].
-    /// </summary>
-    public string GetFullName()
-    {
-        return JoinNameParts(GetNameParts());
-    }
-
-    public string?[] GetNameParts()
-    {
-        return new[] { ShuttleNamePrefix, ShuttleName, ShuttleNameSuffix };
-    }
-
-    public static string JoinNameParts(string?[] parts)
-    {
-        return string.Join(' ', parts.Where(it => it != null));
-    }
 }
