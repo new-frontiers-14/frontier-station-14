@@ -48,7 +48,7 @@ namespace Content.Shared.VendingMachines
         /// The time it takes to regain a single charge
         /// </summary>
         [DataField("rechargeDuration"), ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan RechargeDuration = TimeSpan.FromSeconds(1800);
+        public TimeSpan RechargeDuration = TimeSpan.FromSeconds(3600);
 
         /// <summary>
         /// The time when the next charge will be added
