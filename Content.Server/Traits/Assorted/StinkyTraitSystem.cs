@@ -50,9 +50,7 @@ public sealed class StinkyTraitSystem : EntitySystem
     private void OnExamined(EntityUid uid, StinkyTraitComponent component, ExaminedEvent args)
     {
         if (args.IsInDetailsRange && !_net.IsClient && component.IsActive)
-        {
             args.PushMarkup(Loc.GetString("trait-stinky-examined", ("target", Identity.Entity(uid, EntityManager))));
-        }
     }
 
     private bool OnAirFreshener(EntityUid? uid)
@@ -106,8 +104,12 @@ public sealed class StinkyTraitSystem : EntitySystem
                 continue;
 
             var indices = _transform.GetGridOrMapTilePosition(uid);
-            var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
-            tileMix?.AdjustMoles(Gas.Miasma, 0.01f * physics.FixturesMass);
+
+            if (stinky.Miasma)
+            {
+                var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
+                tileMix?.AdjustMoles(Gas.Miasma, 0.01f * physics.FixturesMass);
+            }
         }
     }
 }

@@ -23,4 +23,6 @@ public sealed partial class StinkyTraitComponent : Component
     public float NextIncidentTime;
 
     public bool IsActive = true;
+
+    public bool Miasma = false;
 }
