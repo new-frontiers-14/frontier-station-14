@@ -36,8 +36,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdCardConsoleComponent, WriteToTargetIdMessage>(OnWriteToTargetIdMessage);
-        SubscribeLocalEvent<IdCardConsoleComponent, WriteToShuttleDeedMessage>(OnWriteToShuttleDeedMessage);
+        SubscribeLocalEvent<IdCardConsoleComponent, SharedIdCardSystem.WriteToTargetIdMessage>(OnWriteToTargetIdMessage);
+        SubscribeLocalEvent<IdCardConsoleComponent, SharedIdCardSystem.WriteToShuttleDeedMessage>(OnWriteToShuttleDeedMessage);
 
         // one day, maybe bound user interfaces can be shared too.
         SubscribeLocalEvent<IdCardConsoleComponent, ComponentStartup>(UpdateUserInterface);
@@ -45,7 +45,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         SubscribeLocalEvent<IdCardConsoleComponent, EntRemovedFromContainerMessage>(UpdateUserInterface);
     }
 
-    private void OnWriteToTargetIdMessage(EntityUid uid, IdCardConsoleComponent component, WriteToTargetIdMessage args)
+    private void OnWriteToTargetIdMessage(EntityUid uid, IdCardConsoleComponent component, SharedIdCardSystem.WriteToTargetIdMessage args)
     {
         if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
@@ -56,7 +56,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     }
 
     private void OnWriteToShuttleDeedMessage(EntityUid uid, IdCardConsoleComponent component,
-        WriteToShuttleDeedMessage args)
+        SharedIdCardSystem.WriteToShuttleDeedMessage args)
     {
         if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
