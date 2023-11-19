@@ -438,8 +438,6 @@ namespace Content.Server.VendingMachines
             else
                 TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
             vendComponent.EjectRandomCounter += 1;
-
-
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
