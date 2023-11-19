@@ -408,16 +408,22 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            if (vendComponent.Ejecting)
+                return;
+
+            if (vendComponent.EjectRandomMax <= vendComponent.EjectRandomCounter)
+            {
+                _audioSystem.PlayPvs(_audioSystem.GetSound(vendComponent.SoundDeny), uid);
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
+                return;
+            }
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;
-
-            if (!vendComponent.Ejecting)
-                return;
-
-            if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
-                return;
-
             var item = _random.Pick(availableItems);
 
             if (forceEject)
