@@ -11,14 +11,14 @@ public sealed partial class StinkyTraitComponent : Component
     /// <summary>
     /// The random time between incidents, (min, max).
     /// </summary>
-    [DataField("timeBetweenIncidents", required: true)]
-    public Vector2 TimeBetweenIncidents { get; private set; } // TODO: Fix this to have added numbers here to allow mid game adding.
+    [DataField("timeBetweenIncidents")]
+    public Vector2 TimeBetweenIncidents { get; private set; } = new(300, 600);
 
     /// <summary>
     /// The duration of incidents, (min, max).
     /// </summary>
-    [DataField("durationOfIncident", required: true)]
-    public Vector2 DurationOfIncident { get; private set; } // TODO: Fix this to have added numbers here to allow mid game adding.
+    [DataField("durationOfIncident")]
+    public Vector2 DurationOfIncident { get; private set; } = new(0.1f, 0.1f);
 
     public float NextIncidentTime;
 
