@@ -8,6 +8,8 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 using Content.Shared.Actions;
 using Robust.Shared.Utility;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Stacks;
 
 [RegisterComponent]
 public sealed partial class SpaceArtilleryComponent : Component
@@ -86,4 +88,23 @@ public sealed partial class SpaceArtilleryComponent : Component
     [DataField("fireActionEntity")]
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? FireActionEntity;
+	
+	[ViewVariables(VVAccess.ReadWrite), DataField("coolantType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
+    public string CoolantType = "Coolant";
+	
+    public static string CoolantSlotSlotId = "SpaceArtillery-CoolantSlot";
+
+    [DataField("SpaceArtillery-CoolantSlot")]
+    public ItemSlot CoolantSlot = new();
+	
+	/// <summary>
+	/// Whether the space artillery need coolant to fire on top of ammunition or power
+	/// </summary>
+    [DataField("isCoolantRequiredForFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsCoolantRequiredForFire = false;
+	
+	/// <summary>
+    /// Stored amount of coolant
+    /// </summary>
+    [DataField("coolantStored"), ViewVariables(VVAccess.ReadWrite)]
+    public int CoolantStored = 0;
 }

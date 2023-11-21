@@ -18,18 +18,25 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Power;
 using Content.Shared.Rounding;
+using Robust.Shared.Containers;
+using Content.Shared.Stacks;
+using Content.Server.Stack;
+using Robust.Shared.Prototypes;
+using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Shared.SpaceArtillery;
 
 public sealed partial class SpaceArtillerySystem : EntitySystem
 {
-
+	[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 	[Dependency] private readonly ProjectileSystem _projectile = default!;
 	[Dependency] private readonly GunSystem _gun = default!;
 	[Dependency] private readonly SharedCombatModeSystem _combat = default!;
 	//[Dependency] private readonly RotateToFaceSystem _rotate = default!;
 	[Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 	[Dependency] private readonly SharedBuckleSystem _buckle = default!;
+	[Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+	[Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -47,7 +54,23 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, FireActionEvent>(OnFireAction);
 		SubscribeLocalEvent<SpaceArtilleryComponent, PowerChangedEvent>(OnApcChanged);
 		SubscribeLocalEvent<SpaceArtilleryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
+		SubscribeLocalEvent<SpaceArtilleryComponent, EntInsertedIntoContainerMessage>(OnCoolantSlotChanged);
+        SubscribeLocalEvent<SpaceArtilleryComponent, EntRemovedFromContainerMessage>(OnCoolantSlotChanged);
+		SubscribeLocalEvent<SpaceArtilleryComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<SpaceArtilleryComponent, ComponentRemove>(OnComponentRemove);
 	}
+
+
+    private void OnComponentInit(EntityUid uid, SpaceArtilleryComponent component, ComponentInit args)
+    {
+        _itemSlotsSystem.AddItemSlot(uid, SpaceArtilleryComponent.CoolantSlotSlotId, component.CoolantSlot);
+    }
+
+    private void OnComponentRemove(EntityUid uid, SpaceArtilleryComponent component, ComponentRemove args)
+    {
+        _itemSlotsSystem.RemoveItemSlot(uid, component.CoolantSlot);
+    }
+
 
 	private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
 	{
@@ -215,4 +238,47 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			}
 		}
 	}
+	
+	private void OnCoolantSlotChanged(EntityUid uid, SpaceArtilleryComponent component, ContainerModifiedMessage args)
+    {
+		GetInsertedCoolantAmount(component, out var storage);
+		
+		// validating the cash slot was setup correctly in the yaml
+        if (component.CoolantSlot.ContainerSlot is not BaseContainer coolantSlot)
+        {
+            return;
+        }
+		
+		// validate stack prototypes
+        if (!TryComp<StackComponent>(component.CoolantSlot.ContainerSlot.ContainedEntity, out var stackComponent) ||
+            stackComponent.StackTypeId == null)
+        {
+            return;
+        }
+		
+        // and then check them against the ATM's CashType
+        if (_prototypeManager.Index<StackPrototype>(component.CoolantType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
+        {
+            return;
+        }
+		
+		var currentCoolant = component.CoolantStored;
+		component.CoolantStored = currentCoolant + storage;
+		 _containerSystem.CleanContainer(coolantSlot);
+	}
+	
+    private void GetInsertedCoolantAmount(SpaceArtilleryComponent component, out int amount)
+    {
+        amount = 0;
+        var coolantEntity = component.CoolantSlot.ContainerSlot?.ContainedEntity;
+
+        if (!TryComp<StackComponent>(coolantEntity, out var coolantStack) ||
+            coolantStack.StackTypeId != component.CoolantType)
+        {
+            return;
+        }
+
+        amount = coolantStack.Count;
+        return;
+    }
 }

@@ -1,268 +1,3 @@
-- type: entity
-  id: Space_Artillery
-  name: space artillery
-  parent: ConstructibleMachine
-  description: It's like from 20th century second planet wars! Old and reliable.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 600
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
-    layers:
-    - state: space_artillery
-  - type: Anchorable
-  - type: Pullable
-  - type: Rotatable
-    rotateWhilePulling: false
-    rotateWhileAnchored: true
-    increment: 45
-  - type: Appearance
-  - type: Storage
-    capacity: 120
-  - type: UserInterface
-    interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: ContainerAmmoProvider
-    container: storagebase
-  - type: PneumaticCannon
-    gasUsage: 0
-    baseProjectileSpeed: 30
-    toolModifyPower: Screwing
-    throwItems: false
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: DeviceLinkSource
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: Gun
-    fireRate: 3
-    projectileSpeed: 30
-    selectedMode: FullAuto
-    availableModes:
-    - SemiAuto
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Effects/thunk.ogg
-    soundEmpty:
-      path: /Audio/Items/hiss.ogg
-  - type: SpaceArtillery
-  - type: Actions
-  - type: CombatMode
-    IsInCombatMode: true
-  - type: Strap
-    position: Stand
-    buckleOffset: "0,0.8"
-    maxBuckleDistance: 1
-  - type: ApcPowerReceiver
-    powerLoad: 1000
-  - type: ExtensionCableReceiver
-  - type: Battery
-    maxCharge: 10000
-    startingCharge: 5000
-  - type: ExaminableBattery
-  - type: BatterySelfRecharger
-  
-  
-- type: entity
-  id: Space_Machine_Gun
-  name: space machine gun
-  parent: ConstructibleMachine #base machine powered makes power work but also messes with rotation
-  description: It's like from 20th century second planet wars! Old and reliable.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 600
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
-    layers:
-    - state: space_artillery
-  - type: Anchorable
-  - type: Pullable
-  - type: Rotatable
-    rotateWhilePulling: false
-    rotateWhileAnchored: true
-    increment: 45
-  - type: Appearance
-  - type: AmmoCounter
-  - type: Battery
-    maxCharge: 10000
-    startingCharge: 5000
-  - type: ExaminableBattery
-  - type: BallisticAmmoProvider
-    autoCycle: true
-    capacity: 60
-    proto: CartridgeShellSolid
-    whitelist:
-      tags:
-      - CartridgeShell
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: DeviceLinkSource
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: Gun
-    fireRate: 3
-    projectileSpeed: 30
-    selectedMode: FullAuto
-    availableModes:
-    - SemiAuto
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Effects/thunk.ogg
-    soundEmpty:
-      path: /Audio/Items/hiss.ogg
-  - type: SpaceArtillery
-  - type: Actions
-  - type: CombatMode
-    IsInCombatMode: true
-  - type: Strap
-    position: Stand
-    buckleOffset: "0,0.8"
-    maxBuckleDistance: 1
-  - type: ApcPowerReceiver
-    powerLoad: 1000
-  - type: ExtensionCableReceiver
-  - type: BatterySelfRecharger
-  
-
-- type: entity
-  id: Space_Ray
-  name: space ray
-  parent: ConstructibleMachine
-  description: It's like from 20th century second planet wars! Old and reliable.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.25,-0.25,0.25,0.25"
-        density: 600
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
-    layers:
-    - state: space_artillery
-  - type: Anchorable
-  - type: Pullable
-  - type: Rotatable
-    rotateWhilePulling: false
-    rotateWhileAnchored: true
-    increment: 45
-  - type: Appearance
-  - type: AmmoCounter
-  - type: Battery
-    maxCharge: 100000
-    startingCharge: 50000
-  - type: ExaminableBattery
-  - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
-    fireCost: 45000
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: DeviceLinkSource
-    ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
-  - type: Gun
-    fireRate: 3
-    projectileSpeed: 30
-    selectedMode: FullAuto
-    availableModes:
-    - SemiAuto
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Effects/thunk.ogg
-    soundEmpty:
-      path: /Audio/Items/hiss.ogg
-  - type: SpaceArtillery
-  - type: Actions
-  - type: CombatMode
-    IsInCombatMode: true
-  - type: Strap
-    position: Stand
-    buckleOffset: "0,0.8"
-    maxBuckleDistance: 1
-  - type: ApcPowerReceiver
-    powerLoad: 1000
-  - type: ExtensionCableReceiver
-  - type: BatterySelfRecharger
 
 # Actual Space weapons
 - type: entity
@@ -709,6 +444,295 @@
   - type: RadiationBlocker
     resistance: 8
 
+- type: entity
+  id: Military_Laser
+  name: military laser
+  parent: ConstructibleMachine
+  description: Highly focused laser beam designed to melt through hull.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 25000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 30
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+#Insert Mining Laser here
+
+- type: entity
+  id: Pneumatic_Launcher
+  name: pneumatic launcher
+  parent: ConstructibleMachine
+  description: Utilises internal piston and pressure mechanisms to launch small and medium items forward at large speeds. 
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: Storage
+    capacity: 120
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: PneumaticCannon
+    gasUsage: 0
+    baseProjectileSpeed: 70
+    toolModifyPower: Screwing
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtillerySafety
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 30
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 2000
+    powerUsePassive: 1000
+    powerUseActive: 10000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: true
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,1.2"
+    maxBuckleDistance: 1.5
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: Battery
+    maxCharge: 300000
+    startingCharge: 300000
+  - type: ExaminableBattery
+  - type: BatterySelfRecharger
+
+#Deployable weaponry
+
+- type: entity
+  name: General Purpose Machine Gun .35 cal
+  parent: BaseItem
+  id: WeaponGPMG
+  description: Designed for tearing through armored cover of vessels. Utilises .35 caliber ammunition with explosive tip.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: 60
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: MultiHandedItem
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBox
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: UseDelay
+    delay: 1
+  - type: SpaceArtillery
+    isArmed: true
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: ExtensionCableReceiver
+  - type: Battery
+    maxCharge: 0
+    startingCharge: 0
+  - type: BatterySelfRecharger
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+    
+
   
 # Space Artillery projectiles
 
@@ -924,3 +948,131 @@
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: SpaceGarbage
+
+
+
+
+# Coolant object
+- type: entity
+  parent: BaseItem
+  id: CoolantCartridge
+  name: coolant cartridge
+  description: A rather dense package. Utilises reaction of Frezon and Nitrogen to rappidly cool whatever machine it's in. Most often used in Space Armaments or Mining Lasers.
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Coolant: 1
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: Coolant
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_1000000
+  - type: Sprite
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+
+- type: material
+  id: Coolant
+  name: coolant
+  unit: materials-unit-bill
+  stackEntity: CoolantCartridge
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  price: 500
+
+- type: stack
+  id: Coolant
+  name: coolant
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  spawn: CoolantCartridge
+  maxCount: 30
+  itemSize: 4
+
+
+- type: entity
+  parent: CoolantCartridge
+  id: CoolantCartridge10
+  suffix: 10
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: CoolantCartridge
+  id: CoolantCartridge30
+  suffix: 30
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_100
+  - type: Stack
+    count: 30
+
+
+- type: entity
+  parent: BaseItem
+  id: CoolantCartridgeHighQuality
+  name: coolant cartridge high quality
+  description: A rather dense package. This one was made using very advanced methods. Utilises reaction of Frezon and Nitrogen to rappidly cool whatever machine it's in. Most often used in Space Armaments or Mining Lasers.
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Coolant: 10
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: Coolant
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_1000000
+  - type: Sprite
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
