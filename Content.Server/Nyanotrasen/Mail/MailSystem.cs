@@ -218,7 +218,8 @@ namespace Content.Server.Mail
                 return;
             }
 
-            _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User);
+            //_popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward"), uid, args.User); // Frontier - Remove the mention of station income
 
             component.IsProfitable = false;
 
