@@ -234,10 +234,10 @@ entities:
       type: DeviceNetwork
 - proto: APCBasic
   entities:
-  - uid: 76
+  - uid: 45
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -2.5,-0.5
+    - rot: 3.141592653589793 rad
+      pos: 2.5,-2.5
       parent: 1
       type: Transform
 - proto: AtmosDeviceFanTiny
@@ -396,29 +396,14 @@ entities:
       type: Transform
 - proto: CableHV
   entities:
+  - uid: 80
+    components:
+    - pos: -2.5,-0.5
+      parent: 1
+      type: Transform
   - uid: 110
     components:
-    - pos: 2.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 111
-    components:
-    - pos: 2.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 112
-    components:
-    - pos: 1.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 113
-    components:
-    - pos: 0.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 114
-    components:
-    - pos: 0.5,-3.5
+    - pos: -1.5,-0.5
       parent: 1
       type: Transform
 - proto: CableMV
@@ -672,18 +657,6 @@ entities:
       type: DeviceNetwork
     - color: '#990000FF'
       type: AtmosPipeColor
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 80
-    components:
-    - pos: 0.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 98
-    components:
-    - pos: 2.5,-3.5
-      parent: 1
-      type: Transform
 - proto: GravityGeneratorMini
   entities:
   - uid: 78
@@ -753,6 +726,11 @@ entities:
       pos: 4.5,1.5
       parent: 1
       type: Transform
+  - uid: 111
+    components:
+    - pos: 0.5,-3.5
+      parent: 1
+      type: Transform
 - proto: Gyroscope
   entities:
   - uid: 56
@@ -802,6 +780,13 @@ entities:
     - pos: 2.5246253,0.7558562
       parent: 1
       type: Transform
+- proto: PortableGeneratorPacman
+  entities:
+  - uid: 3
+    components:
+    - pos: -1.5,-0.5
+      parent: 1
+      type: Transform
 - proto: PottedPlantRandom
   entities:
   - uid: 65
@@ -821,6 +806,13 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -1.5,0.5
+      parent: 1
+      type: Transform
+- proto: SheetPlasma
+  entities:
+  - uid: 113
+    components:
+    - pos: -0.675385,-0.84057385
       parent: 1
       type: Transform
 - proto: ShuttleWindow
@@ -885,6 +877,11 @@ entities:
       pos: -2.5,1.5
       parent: 1
       type: Transform
+  - uid: 76
+    components:
+    - pos: 0.5,-3.5
+      parent: 1
+      type: Transform
 - proto: SignConspiracyBoard
   entities:
   - uid: 47
@@ -910,15 +907,8 @@ entities:
   entities:
   - uid: 41
     components:
-    - rot: 3.141592653589793 rad
-      pos: 2.5,-2.5
-      parent: 1
-      type: Transform
-- proto: SurveillanceCameraWirelessRouterEntertainment
-  entities:
-  - uid: 115
-    components:
-    - pos: -1.5,-0.5
+    - rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
       parent: 1
       type: Transform
 - proto: SurveillanceWirelessCameraMovableEntertainment
@@ -980,27 +970,14 @@ entities:
       pos: -1.5,-3.5
       parent: 1
       type: Transform
-  - uid: 3
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 0.5,-3.5
-      parent: 1
-      type: Transform
   - uid: 13
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 2.5,-3.5
+    - pos: 2.5,-3.5
       parent: 1
       type: Transform
   - uid: 18
     components:
     - pos: 1.5,3.5
-      parent: 1
-      type: Transform
-  - uid: 45
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 2.5,-2.5
       parent: 1
       type: Transform
   - uid: 46
@@ -1017,6 +994,11 @@ entities:
   - uid: 69
     components:
     - pos: 4.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 112
+    components:
+    - pos: 2.5,-2.5
       parent: 1
       type: Transform
   - uid: 129
@@ -1111,6 +1093,13 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
+      parent: 1
+      type: Transform
+- proto: Wrench
+  entities:
+  - uid: 98
+    components:
+    - pos: -0.6184354,-0.4702037
       parent: 1
       type: Transform
 ...
