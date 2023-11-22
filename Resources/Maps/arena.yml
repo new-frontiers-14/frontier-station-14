@@ -1895,13 +1895,15 @@ entities:
           3,7:
             0: 34952
           -4,-5:
-            0: 65331
+            0: 65280
+            2: 51
           -3,-5:
             0: 65280
           -2,-5:
             0: 65484
           -1,-5:
-            0: 65535
+            0: 61439
+            3: 4096
           0,-5:
             0: 65535
           1,-5:
@@ -1913,7 +1915,8 @@ entities:
           4,-5:
             0: 65399
           -5,-5:
-            0: 52360
+            0: 52224
+            2: 136
           -5,4:
             0: 35020
           -5,5:
@@ -1989,35 +1992,36 @@ entities:
           1,-6:
             0: 36608
           4,-7:
-            0: 30583
+            0: 30576
+            2: 7
           4,-6:
             0: 30583
           -4,-8:
-            0: 65280
+            2: 65280
           -4,-7:
-            0: 13119
+            2: 13119
           -4,-6:
-            0: 13107
+            2: 13107
           -3,-8:
-            0: 65280
+            2: 65280
           -3,-7:
-            0: 15
+            2: 15
           2,-8:
-            0: 34816
+            2: 34816
           2,-7:
-            0: 8
+            2: 8
           3,-8:
-            0: 65280
+            2: 65280
           3,-7:
-            0: 15
+            2: 15
           4,-8:
-            0: 30464
+            2: 30464
           -5,-8:
-            0: 34816
+            2: 34816
           -5,-7:
-            0: 34952
+            2: 34952
           -5,-6:
-            0: 34952
+            2: 34952
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -2039,6 +2043,36 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -2679,10 +2713,6 @@ entities:
       pos: 13.5,5.5
       parent: 2
       type: Transform
-    - hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
-      type: Apc
   - uid: 1364
     components:
     - rot: 1.5707963267948966 rad
@@ -3465,6 +3495,8 @@ entities:
       pos: 10.5,-8.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: BoxCartridgeCap
   entities:
   - uid: 2538
@@ -3490,7 +3522,7 @@ entities:
   entities:
   - uid: 1700
     components:
-    - pos: 5.5,-6.5
+    - pos: 9.5,1.5
       parent: 2
       type: Transform
 - proto: BrutepackAdvanced1
@@ -10718,16 +10750,22 @@ entities:
     - pos: -17.5,-6.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 2310
     components:
     - pos: 19.5,-6.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 2311
     components:
     - pos: 16.5,13.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: ComputerSolarControl
   entities:
   - uid: 708
@@ -10736,6 +10774,8 @@ entities:
       pos: -8.5,5.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: ComputerTelevision
   entities:
   - uid: 685
@@ -10847,13 +10887,6 @@ entities:
   - uid: 2323
     components:
     - pos: -10.5,13.5
-      parent: 2
-      type: Transform
-- proto: DonkpocketBoxSpawner
-  entities:
-  - uid: 3129
-    components:
-    - pos: 13.5,-10.5
       parent: 2
       type: Transform
 - proto: FireAlarm
@@ -11195,14 +11228,6 @@ entities:
   - uid: 2549
     components:
     - pos: 13.721807,0.43556106
-      parent: 2
-      type: Transform
-- proto: FoodCartHot
-  entities:
-  - uid: 3130
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 12.5,-9.5
       parent: 2
       type: Transform
 - proto: GasPassiveVent
@@ -13521,6 +13546,8 @@ entities:
     - pos: -8.5,4.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: Grille
   entities:
   - uid: 3
@@ -14307,26 +14334,11 @@ entities:
     - pos: 12.562465,-1.3926609
       parent: 2
       type: Transform
-- proto: KitchenDeepFryer
-  entities:
-  - uid: 3131
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 12.5,-8.5
-      parent: 2
-      type: Transform
-    - delay: 999999
-      type: Anchorable
 - proto: KitchenMicrowave
   entities:
   - uid: 1663
     components:
     - pos: -8.5,-8.5
-      parent: 2
-      type: Transform
-  - uid: 3128
-    components:
-    - pos: 13.5,-9.5
       parent: 2
       type: Transform
     - delay: 999999
@@ -14338,6 +14350,8 @@ entities:
     - pos: -8.5,-7.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: KitchenSpike
   entities:
   - uid: 807
@@ -14378,18 +14392,6 @@ entities:
   - uid: 2820
     components:
     - pos: 4.433182,-7.4173126
-      parent: 2
-      type: Transform
-- proto: OilJarGhee
-  entities:
-  - uid: 3132
-    components:
-    - pos: 11.774997,-10.328179
-      parent: 2
-      type: Transform
-  - uid: 3133
-    components:
-    - pos: 11.465089,-10.357678
       parent: 2
       type: Transform
 - proto: PartRodMetal
@@ -14482,17 +14484,23 @@ entities:
       pos: -0.5,-11.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 2268
     components:
     - rot: -1.5707963267948966 rad
       pos: 2.5,11.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 2476
     components:
     - pos: -8.5,2.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: Poweredlight
   entities:
   - uid: 1614
@@ -16701,11 +16709,15 @@ entities:
     - pos: -10.5,5.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 707
     components:
     - pos: -10.5,4.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: soda_dispenser
   entities:
   - uid: 815
@@ -16714,6 +16726,8 @@ entities:
       pos: 10.5,-7.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: SolarPanel
   entities:
   - uid: 1100
@@ -17511,6 +17525,8 @@ entities:
     - pos: -9.5,-4.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: VendingMachineCigs
   entities:
   - uid: 2336
@@ -17538,6 +17554,8 @@ entities:
     - pos: -10.5,-4.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: VendingMachineJaniDrobe
   entities:
   - uid: 172
@@ -17556,6 +17574,8 @@ entities:
     - pos: -10.5,2.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: WallGold
   entities:
   - uid: 8
@@ -19504,12 +19524,16 @@ entities:
       pos: 2.5,-11.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
   - uid: 2267
     components:
     - rot: -1.5707963267948966 rad
       pos: -0.5,11.5
       parent: 2
       type: Transform
+    - delay: 999999
+      type: Anchorable
 - proto: WeaponDisablerPractice
   entities:
   - uid: 1772
