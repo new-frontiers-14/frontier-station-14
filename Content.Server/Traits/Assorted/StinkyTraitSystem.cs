@@ -116,10 +116,10 @@ public sealed class StinkyTraitSystem : EntitySystem
                 tileMix?.AdjustMoles(component.SpawnGas.Value, 0.01f * physics.FixturesMass);
             }
 
-            var othersMessage = Loc.GetString("trait-stinky-in-range", ("target", uid));
+            var othersMessage = Loc.GetString("trait-stinky-in-range-others", ("target", uid));
             _popup.PopupEntity(othersMessage, uid, Filter.PvsExcept(uid), true);
 
-            var selfMessage = Loc.GetString("miasma-smell");
+            var selfMessage = Loc.GetString("trait-stinky-in-range-self");
             _popup.PopupEntity(selfMessage, uid, uid);
         }
     }
