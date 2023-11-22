@@ -10,7 +10,6 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
@@ -26,18 +25,15 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Coordinates;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Spawners.EntitySystems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Emag.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
-using Content.Shared.Coordinates;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -46,7 +42,6 @@ using Content.Shared.Maps;
 using Content.Shared.PDA;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
-using Content.Shared.StatusIcon;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Timer = Robust.Shared.Timing.Timer;
@@ -71,9 +66,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
         [Dependency] private readonly MindSystem _mind = default!;
-        [Dependency] private readonly MetaDataSystem _meta = default!;
         [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
@@ -694,6 +687,8 @@ namespace Content.Server.Mail
 
                 var mail = EntityManager.SpawnEntity(chosenParcel, Transform(uid).Coordinates);
                 SetupMail(mail, component, candidate);
+
+                _tagSystem.AddTag(mail, "Recyclable"); // Frontier - Make it so mail can be destroyed by reclaimer
             }
 
             if (_containerSystem.TryGetContainer(uid, "queued", out var queued))
@@ -727,6 +722,7 @@ namespace Content.Server.Mail
             _itemSystem.SetSize(uid, 1);
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
+            _tagSystem.AddTag(uid, "ClothMade"); // Frontier - Make it so moth can eat open mail.
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }

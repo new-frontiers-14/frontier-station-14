@@ -95,8 +95,17 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 5
+        Blunt: 1 # Frontier - 5<1, death by 1000 cuts.
   - type: CargoSellBlacklist
+  - type: Food # Frontier - Moth food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
 
 # This empty parcel is allowed to exist and evade the tests for the admin
 # mailto command.
