@@ -123,8 +123,7 @@ namespace Content.Server.Mail
         private void OnSpawnPlayer(PlayerSpawningEvent args)
         {
             if (args.SpawnResult == null ||
-                args.Job == null ||
-                args.Station is not { } station)
+                args.Job == null )
             {
                 return;
             }
