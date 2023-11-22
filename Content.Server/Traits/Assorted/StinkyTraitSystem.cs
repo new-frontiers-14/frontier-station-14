@@ -100,7 +100,7 @@ public sealed class StinkyTraitSystem : EntitySystem
             // Make sure the stink time doesn't cut into the time to next pulse.
             stinky.NextIncidentTime += duration;
 
-            if (stinky.Miasma)
+            if (stinky.SpreadGas)
             {
                 if (!TryComp<TransformComponent>(uid, out var xform))
                     continue;
@@ -108,9 +108,12 @@ public sealed class StinkyTraitSystem : EntitySystem
                 if (!TryComp<PhysicsComponent>(uid, out var physics))
                     continue;
 
+                if (stinky.SpawnGas == null)
+                    continue;
+
                 var indices = _transform.GetGridOrMapTilePosition(uid);
                 var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
-                tileMix?.AdjustMoles(Gas.Miasma, 0.01f * physics.FixturesMass);
+                tileMix?.AdjustMoles(stinky.SpawnGas.Value, 0.01f * physics.FixturesMass);
             }
 
             var othersMessage = Loc.GetString("trait-stinky-in-range", ("target", uid));
