@@ -1,5 +1,5 @@
 - type: vessel
-  id: BULKER
+  id: Bulker
   name: KL Bulker
   description: A medium mining vessel designed for deep space missions
   price: 34250 #29751 before the +15% (4462) 
@@ -8,16 +8,16 @@
   shuttlePath: /Maps/Shuttles/bulker.yml
 
 - type: gameMap
-  id: BULKER
-  mapName: 'KC Barge'
+  id: Bulker
+  mapName: 'KL Bulker'
   mapPath: /Maps/Shuttles/bulker.yml
   minPlayers: 0
   stations:
-    Barge:
+    Bulker:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} KL Bulker {1}'
+          mapNameTemplate: 'Bulker {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
