@@ -25,7 +25,6 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords.Systems;
 using Content.Server.Spawners.EntitySystems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -284,7 +283,7 @@ namespace Content.Server.Mail
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
             while (query.MoveNext(out var station, out var account))
             {
-                //if (_stationSystem.GetOwningStation(uid) != station) // No need for this test
+                //if (_stationSystem.GetOwningStation(uid) != station) // Frontier - No need for this test
                 //    continue;
 
                 //_cargoSystem.UpdateBankAccount(station, account, component.Penalty); // Frontier - Dont remove money.
@@ -298,7 +297,7 @@ namespace Content.Server.Mail
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
             // if (component.IsEnabled)
-            //     OpenMail(uid, component); // Dont open the mail on destruction. // Frontier
+            //     OpenMail(uid, component); // Frontier - Dont open the mail on destruction.
 
             UpdateAntiTamperVisuals(uid, false);
         }
