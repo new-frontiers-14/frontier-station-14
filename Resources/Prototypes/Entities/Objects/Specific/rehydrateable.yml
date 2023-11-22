@@ -46,6 +46,8 @@
         hard: false
         layer:
         - LowImpassable
+  - type: StaticPrice
+    price: 35 # The same price as dead (-20)
 
 - type: entity
   parent: PlushieCarp
@@ -101,6 +103,8 @@
     handle: false
     sound:
       path: /Audio/Effects/bite.ogg
+  - type: StaticPrice
+    price: 220 # The same price as dead (-20)
 
 - type: entity
   parent: BaseItem
@@ -132,7 +136,6 @@
         solution: cube
   - type: Rehydratable
     possibleSpawns:
-    - MobRatServant
     - MobCarpHolo
     - MobXenoRavager
     - MobAngryBee
@@ -160,3 +163,5 @@
         hard: false
         layer:
         - LowImpassable
+  - type: StaticPrice
+    price: 0 # Syndicate

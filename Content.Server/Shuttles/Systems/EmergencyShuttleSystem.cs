@@ -20,7 +20,6 @@ using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -140,7 +139,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     /// </summary>
     private void OnShuttleRequestPosition(EmergencyShuttleRequestPositionMessage msg, EntitySessionEventArgs args)
     {
-        if (!_admin.IsAdmin((IPlayerSession) args.SenderSession))
+        if (!_admin.IsAdmin(args.SenderSession))
             return;
 
         var player = args.SenderSession.AttachedEntity;
@@ -165,7 +164,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         RaiseNetworkEvent(new EmergencyShuttlePositionMessage()
         {
-            StationUid = targetGrid,
+            StationUid = GetNetEntity(targetGrid),
             Position = config.Area,
         });
     }
@@ -375,6 +374,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         component.EmergencyShuttle = shuttle;
         EnsureComp<ProtectedGridComponent>(shuttle.Value);
         EnsureComp<PreventPilotComponent>(shuttle.Value);
+        // EnsureComp<StationEmpImmuneComponent>(shuttle.Value); Enable in the case we want to ensure EMP immune grid
     }
 
     private void OnEscapeUnpaused(EntityUid uid, EscapePodComponent component, ref EntityUnpausedEvent args)

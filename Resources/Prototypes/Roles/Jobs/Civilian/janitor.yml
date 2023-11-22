@@ -3,6 +3,9 @@
   name: job-name-janitor
   description: job-description-janitor
   playTimeTracker: JobJanitor
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: JanitorGear
   icon: "JobIconJanitor"
   supervisors: job-supervisors-hop
@@ -24,7 +27,7 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
-  innerclothingskirt: ClothingUniformJumpskirtJanitor
+  innerClothingSkirt: ClothingUniformJumpskirtJanitor
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
 
@@ -37,6 +40,6 @@
     head: ClothingHeadHatCatEars
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
-  innerclothingskirt: ClothingUniformJumpskirtJanimaid
+  innerClothingSkirt: ClothingUniformJumpskirtJanimaid
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

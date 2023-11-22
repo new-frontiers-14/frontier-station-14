@@ -12,7 +12,6 @@ using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Bank.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -55,6 +54,7 @@ namespace Content.Server.VendingMachines
             base.Initialize();
 
             _sawmill = Logger.GetSawmill("vending");
+            SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnComponentMapInit);
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
@@ -71,6 +71,12 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
+        }
+
+        private void OnComponentMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
+        {
+            _action.AddAction(uid, ref component.ActionEntity, component.Action, uid);
+            Dirty(uid, component);
         }
 
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
@@ -99,12 +105,6 @@ namespace Content.Server.VendingMachines
             {
                 TryUpdateVisualState(uid, component);
             }
-
-            if (component.Action != null)
-            {
-                var action = new InstantAction(PrototypeManager.Index<InstantActionPrototype>(component.Action));
-                _action.AddAction(uid, action, uid);
-            }
         }
 
         private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
@@ -121,9 +121,7 @@ namespace Content.Server.VendingMachines
             var balance = 0;
 
             if (TryComp<BankAccountComponent>(player, out var bank))
-            {
                 balance = bank.Balance;
-            }
 
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
@@ -247,10 +245,10 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return false;
 
-            if (!TryComp<AccessReaderComponent?>(uid, out var accessReader))
+            if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
                 return true;
 
-            if (_accessReader.IsAllowed(sender, accessReader) || HasComp<EmaggedComponent>(uid))
+            if (_accessReader.IsAllowed(sender, uid, accessReader) || HasComp<EmaggedComponent>(uid))
                 return true;
 
             Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-denied"), uid);
@@ -321,14 +319,10 @@ namespace Content.Server.VendingMachines
         public void AuthorizedVend(EntityUid uid, EntityUid sender, InventoryType type, string itemId, VendingMachineComponent component)
         {
             if (!TryComp<BankAccountComponent>(sender, out var bank))
-            {
                 return;
-            }
 
             if (!_prototypeManager.TryIndex<EntityPrototype>(itemId, out var proto))
-            {
                 return;
-            }
 
             var price = _pricing.GetEstimatedPrice(proto);
             // Somewhere deep in the code of pricing, a hardcoded 20 dollar value exists for anything without
@@ -337,14 +331,10 @@ namespace Content.Server.VendingMachines
             // this will undoubtably lead to vending machine exploits if I cant find wtf pricing system is doing.
             // also stacks, food, solutions, are handled poorly too f
             if (price == 0)
-            {
                 price = 20;
-            }
 
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
-            {
                 price *= modifier.Mod;
-            }
 
             var totalPrice = ((int) price);
 
@@ -418,30 +408,47 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            if (vendComponent.Ejecting)
+                return;
+
+            if (vendComponent.EjectRandomCounter <= 0)
+            {
+                _audioSystem.PlayPvs(_audioSystem.GetSound(vendComponent.SoundDeny), uid);
+                _popupSystem.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-abused"), uid, PopupType.MediumCaution);
+                return;
+            }
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;
-
             var item = _random.Pick(availableItems);
 
-            if (!vendComponent.Ejecting)
+            if (forceEject)
             {
-                if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
-                {
-                    if (forceEject)
-                    {
-                        vendComponent.NextItemToEject = item.ID;
-                        vendComponent.ThrowNextItem = throwItem;
-                        var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
-                        if (entry != null)
-                            entry.Amount--;
-                        EjectItem(uid, vendComponent, forceEject);
-                    }
-                    else
-                        TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
-                    vendComponent.EjectRandomCounter += 1;
-                }
+                vendComponent.NextItemToEject = item.ID;
+                vendComponent.ThrowNextItem = throwItem;
+                var entry = GetEntry(uid, item.ID, item.Type, vendComponent);
+                if (entry != null)
+                    entry.Amount--;
+                EjectItem(uid, vendComponent, forceEject);
             }
+            else
+                TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
+            vendComponent.EjectRandomCounter -= 1;
+        }
+
+        public void AddCharges(EntityUid uid, int change, VendingMachineComponent? comp = null)
+        {
+            if (!Resolve(uid, ref comp, false))
+                return;
+
+            var old = comp.EjectRandomCounter;
+            comp.EjectRandomCounter = Math.Clamp(comp.EjectRandomCounter + change, 0, comp.EjectRandomMax);
+            if (comp.EjectRandomCounter != old)
+                Dirty(comp);
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
@@ -525,6 +532,14 @@ namespace Content.Server.VendingMachines
                         comp.DispenseOnHitCoolingDown = false;
                     }
                 }
+
+                // Added block for charges
+                if (comp.EjectRandomCounter == comp.EjectRandomMax || _timing.CurTime < comp.NextChargeTime)
+                    continue;
+
+                AddCharges(uid, 1, comp);
+                comp.NextChargeTime = _timing.CurTime + comp.RechargeDuration;
+                // Added block for charges
             }
             var disabled = EntityQueryEnumerator<EmpDisabledComponent, VendingMachineComponent>();
             while (disabled.MoveNext(out var uid, out _, out var comp))

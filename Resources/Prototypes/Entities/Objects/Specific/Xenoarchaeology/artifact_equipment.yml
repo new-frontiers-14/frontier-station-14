@@ -5,7 +5,7 @@
     - type: Transform
       noRot: true
     - type: AccessReader
-      access: [["Research"], ["Salvage"]]
+#      access: [["Research"], ["Salvage"]]
     - type: Lock
     - type: Sprite
       drawdepth: Objects
@@ -44,6 +44,8 @@
         - Artifact
     - type: Weldable
     - type: SuppressArtifactContainer
+    - type: RadiationBlockingContainer
+      resistance: 5
     - type: PlaceableSurface
       isPlaceable: false
     - type: Damageable

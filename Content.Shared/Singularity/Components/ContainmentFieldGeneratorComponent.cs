@@ -8,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Singularity.Components;
 
 [RegisterComponent, NetworkedComponent]
-public sealed class ContainmentFieldGeneratorComponent : Component
+public sealed partial class ContainmentFieldGeneratorComponent : Component
 {
         private int _powerBuffer;
 
@@ -53,13 +53,13 @@ public sealed class ContainmentFieldGeneratorComponent : Component
     /// How many seconds should the generators wait before losing power?
     /// </summary>
     [DataField("threshold")]
-    public float Threshold = 10f;
+    public float Threshold = 20f;
 
     /// <summary>
     /// How many tiles should this field check before giving up?
     /// </summary>
     [DataField("maxLength")]
-    public float MaxLength = 8F;
+    public float MaxLength = 16F;
 
     /// <summary>
     /// What collision should power this generator?
@@ -92,7 +92,7 @@ public sealed class ContainmentFieldGeneratorComponent : Component
     /// Stores a list of fields connected between generators in this direction.
     /// </summary>
     [ViewVariables]
-    public Dictionary<Direction, (ContainmentFieldGeneratorComponent, List<EntityUid>)> Connections = new();
+    public Dictionary<Direction, (Entity<ContainmentFieldGeneratorComponent>, List<EntityUid>)> Connections = new();
 
     /// <summary>
     /// What fields should this spawn?

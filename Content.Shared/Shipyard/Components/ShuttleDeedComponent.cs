@@ -6,11 +6,14 @@ namespace Content.Shared.Shipyard.Components;
 /// Tied to an ID card when a ship is purchased. 1 ship per captain.
 /// </summary>
 [RegisterComponent, Access(typeof(SharedShipyardSystem))]
-public sealed class ShuttleDeedComponent : Component
+public sealed partial class ShuttleDeedComponent : Component
 {
-    [DataField("shuttleuid")]
+    [DataField("shuttleUid")]
     public EntityUid? ShuttleUid;
 
-    [DataField("shuttlename")]
+    [DataField("shuttleName")]
     public string? ShuttleName;
+
+    [DataField("shuttleOwner")]
+    public EntityUid? ShuttleOwner;
 }

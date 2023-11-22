@@ -21,6 +21,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, GeneralStationRecordsFilterMsg>(OnFiltersChanged);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
+        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob);
     }
 
@@ -76,7 +77,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var consoleRecords =
             _stationRecordsSystem.GetRecordsOfType<GeneralStationRecord>(owningStation.Value, stationRecordsComponent);
 
-        var listing = new Dictionary<StationRecordKey, string>();
+        var listing = new Dictionary<(NetEntity, uint), string>();
 
         foreach (var pair in consoleRecords)
         {
@@ -85,7 +86,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
                 continue;
             }
 
-            listing.Add(pair.Item1, pair.Item2.Name);
+            listing.Add(_stationRecordsSystem.Convert(pair.Item1), pair.Item2.Name);
         }
 
         if (listing.Count == 0)
@@ -104,7 +105,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         GeneralStationRecord? record = null;
         if (console.ActiveKey != null)
         {
-            _stationRecordsSystem.TryGetRecord(owningStation.Value, console.ActiveKey.Value, out record,
+            _stationRecordsSystem.TryGetRecord(owningStation.Value, _stationRecordsSystem.Convert(console.ActiveKey.Value), out record,
                 stationRecordsComponent);
         }
 

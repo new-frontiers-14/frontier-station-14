@@ -1,6 +1,6 @@
 - type: entity
   id: CrateChemistryP
-  parent: CrateChemistrySupplies
+  parent: CrateChemistrySecure
   components:
     - type: StorageFill
       contents:
@@ -27,7 +27,7 @@
 
 - type: entity
   id: CrateChemistryS
-  parent: CrateChemistrySupplies
+  parent: CrateChemistrySecure
   components:
     - type: StorageFill
       contents:
@@ -48,7 +48,7 @@
 
 - type: entity
   id: CrateChemistryD
-  parent: CrateChemistrySupplies
+  parent: CrateChemistrySecure
   components:
     - type: StorageFill
       contents:
@@ -62,3 +62,12 @@
           amount: 1
         - id: JugSilver
           amount: 1
+
+- type: entity
+  id: CratePlantBGone
+  parent: CrateGenericSteel
+  components:
+    - type: StorageFill
+      contents:
+        - id: JugPlantBGone
+          amount: 5

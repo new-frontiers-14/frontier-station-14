@@ -103,9 +103,7 @@
     tags:
       - Syndicate
   - type: RadarConsole
-    maxRange: 1536
-  - type: WorldLoader
-    radius: 1536
+    maxRange: 512
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -317,6 +315,9 @@
     color: "#1f8c28"
   - type: Computer
     board: StationRecordsComputerCircuitboard
+  - type: GuideHelp
+    guides:
+    - DNA
 
 - type: entity
   parent: BaseComputer
@@ -350,8 +351,8 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
-  - type: WirelessNetworkConnection
-    range: 1200
+#  - type: WirelessNetworkConnection
+#    range: 1200
 
 - type: entity
   parent: BaseComputer
@@ -385,12 +386,15 @@
     priority: Low
   - type: Computer
     board: ResearchComputerCircuitboard
-#  - type: AccessReader
+  - type: AccessReader
 #    access: [["Research"]]
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b53ca1"
+  - type: GuideHelp
+    guides:
+    - Science
 
 - type: entity
   parent: BaseComputer
@@ -516,7 +520,7 @@
   parent: BaseComputer
   id: ComputerComms
   name: communications computer
-  description: A computer used to make station wide announcements, set the appropriate alert level, and call the emergency shuttle.
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
     layers:
@@ -529,9 +533,10 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
   - type: AccessReader
-    access: [[ "Command" ]]
+    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
+    global: true #SR WILL NOT BE IGNORED
   - type: ActivatableUI
     key: enum.CommunicationsConsoleUiKey.Key
   - type: UserInterface
@@ -552,7 +557,7 @@
   parent: ComputerComms
   id: SyndicateComputerComms
   name: syndicate communications computer
-  description: This can be used for various important functions. Still under development.
+  description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
   components:
   - type: Sprite
     layers:
@@ -674,14 +679,32 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Cargo"]]
+  - type: GuideHelp
+    guides:
+    - Cargo
 
 - type: entity
   id: ComputerCargoOrders
-  parent: BaseComputer
+  parent: BaseStructureComputer
   name: cargo request computer
   description: Used to order supplies and approve requests.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
   - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -698,23 +721,36 @@
     interfaces:
     - key: enum.CargoConsoleUiKey.Orders
       type: CargoOrderConsoleBoundUserInterface
-  - type: Computer
-    board: CargoRequestComputerCircuitboard
+  - type: LitOnPowered
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  #- type: AccessReader
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: AccessReader
     #access: [["Cargo"]]
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
+#  - type: WirelessNetworkConnection
+#    range: 200
   - type: DeviceLinkSource
     range: 200
     ports:
       - OrderSender
+  - type: GuideHelp
+    guides:
+    - Cargo
+  - type: Anchorable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
 
 - type: entity
   id: ComputerCargoBounty
@@ -838,7 +874,7 @@
       radius: 1.5
       energy: 1.6
       color: "#b89f25"
-#    - type: AccessReader
+    - type: AccessReader
 #      access: [["Salvage"]]
 
 - type: entity
@@ -898,8 +934,8 @@
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera
     transmitFrequencyId: SurveillanceCamera
-  - type: WirelessNetworkConnection
-    range: 200
+#  - type: WirelessNetworkConnection
+#    range: 200
   - type: DeviceNetworkRequiresPower
   - type: Speech
     speechVerb: Robotic
@@ -945,6 +981,9 @@
     color: "#b89f25"
   - type: MarketModifier # In the case someone got a computer board from QM locker, they can use it to sell on a ship if they have the grids, just to make sure its useless.
     mod: 0
+  - type: GuideHelp
+    guides:
+    - Cargo
 
 - type: entity
   parent: BaseComputer

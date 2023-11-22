@@ -1,6 +1,7 @@
 id-card-access-level-command = Command
 id-card-access-level-captain = Captain
 id-card-access-level-head-of-personnel = Station Representative
+id-card-access-level-frontier = Station Traffic Controller
 
 id-card-access-level-head-of-security = Sheriff
 id-card-access-level-security = Security
@@ -37,3 +38,4 @@ id-card-access-level-maintenance = Maintenance
 id-card-access-level-external = External
 
 id-card-access-level-nuclear-operative = Nuclear Operative
+id-card-access-level-syndicate-agent = Syndicate Agent

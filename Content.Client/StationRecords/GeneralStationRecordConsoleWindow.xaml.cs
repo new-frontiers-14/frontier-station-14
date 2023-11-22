@@ -13,7 +13,7 @@ namespace Content.Client.StationRecords;
 [GenerateTypedNameReferences]
 public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 {
-    public Action<StationRecordKey?>? OnKeySelected;
+    public Action<(NetEntity, uint)?>? OnKeySelected;
 
     public Action<GeneralStationRecordFilterType, string>? OnFiltersChanged;
 
@@ -37,7 +37,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         RecordListing.OnItemSelected += args =>
         {
-            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not StationRecordKey cast)
+            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not ValueTuple<NetEntity, uint> cast)
             {
                 return;
             }
@@ -131,8 +131,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
             RecordContainer.RemoveAllChildren();
         }
     }
-
-    private void PopulateRecordListing(Dictionary<StationRecordKey, string> listing, StationRecordKey? selected)
+    private void PopulateRecordListing(Dictionary<(NetEntity, uint), string> listing, (NetEntity, uint)? selected)
     {
         RecordListing.Clear();
         RecordListing.ClearSelected();
@@ -143,7 +142,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         {
             var item = RecordListing.AddItem(name);
             item.Metadata = key;
-            if (selected != null && key.ID == selected.Value.ID)
+            if (selected != null && key.Item1 == selected.Value.Item1 && key.Item2 == selected.Value.Item2)
             {
                 item.Selected = true;
             }

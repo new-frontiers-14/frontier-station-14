@@ -449,7 +449,7 @@
     - type: Sprite
       state: service
     - type: MachineBoard
-      prototype: hydroponicsTray
+      prototype: HydroponicsTrayEmpty
       materialRequirements:
         # replacing the console screen
         Glass: 5
@@ -492,7 +492,10 @@
     - type: MachineBoard
       prototype: SMESBasicEmpty
       requirements:
-        Capacitor: 5
+        Capacitor: 1
+        PowerCell: 4
+      materialRequirements:
+        CableHV: 10
 
 - type: entity
   id: CellRechargerCircuitboard
@@ -569,7 +572,8 @@
     - type: MachineBoard
       prototype: SubstationBasicEmpty
       requirements:
-        Capacitor: 3
+        Capacitor: 1
+        PowerCell: 1
       materialRequirements:
         CableMV: 5
         CableHV: 5
@@ -618,14 +622,14 @@
 
 
 - type: entity
-  id: GeneratorPlasmaMachineCircuitboard
+  id: PortableGeneratorPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: generator (plasma) machine board
+  name: P.A.C.M.A.N.-type portable generator machine board
   components:
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: GeneratorPlasma
+      prototype: PortableGeneratorPacman
       requirements:
         Capacitor: 1
       materialRequirements:
@@ -662,18 +666,37 @@
       Glass: 2
 
 - type: entity
-  id: GeneratorUraniumMachineCircuitboard
+  id: PortableGeneratorSuperPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: generator (uranium) machine board
+  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator machine board
   components:
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: GeneratorUranium
+      prototype: PortableGeneratorSuperPacman
       requirements:
         Capacitor: 2
       materialRequirements:
         CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+
+- type: entity
+  id: PortableGeneratorJrPacmanMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: J.R.P.A.C.M.A.N.-type portable generator machine board
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorJrPacman
+      requirements:
+        Capacitor: 1
+      materialRequirements:
+        Cable: 10
     - type: PhysicalComposition
       materialComposition:
         Glass: 200
@@ -709,6 +732,20 @@
         Capacitor: 2
       materialRequirements:
         Glass: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ElectricGrillMachineCircuitboard
+  name: electric grill machine board
+  description: A machine printed circuit board for an electric grill.
+  components:
+  - type: MachineBoard
+    prototype: KitchenElectricGrill
+    requirements:
+      Capacitor: 4
+    materialRequirements:
+      Glass: 2
+      Cable: 5
 
 - type: entity
   id: StasisBedMachineCircuitboard
@@ -980,6 +1017,7 @@
       Steel: 5
       CableHV: 5
       Uranium: 2
+
 - type: entity
   parent: BaseMachineCircuitboard
   id: M_EmpMachineCircuitboard

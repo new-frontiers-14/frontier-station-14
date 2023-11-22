@@ -1,0 +1,25 @@
+- type: entity
+  name: Clippy Spawner
+  id: SpawnMobCatClippy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatClippy
+
+- type: entity
+  name: Clarpy Spawner
+  id: SpawnMobCatClarpy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatClarpy

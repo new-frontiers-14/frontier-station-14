@@ -20,7 +20,7 @@
     tags:
     - DoorBumpOpener
   - type: StaticPrice
-    price: 150
+    price: 5 # The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Liltenhead moment
 
 #IDs with layers
@@ -298,6 +298,19 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PunPunIDCard
+  name: pun pun ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbartender
+    - type: PresetIdCard
+      job: Bartender
+      name: Pun Pun
+
+- type: entity
+  parent: IDCardStandard
   id: ChefIDCard
   name: chef ID card
   components:
@@ -437,6 +450,7 @@
     heldPrefix: blue
   - type: IdCard
     jobTitle: Central Commander
+    jobIcon: JobIconNanotrasen
   - type: Access
     groups:
     - AllAccess
@@ -486,7 +500,7 @@
 - type: entity
   parent: CentcomIDCard
   id: CentcomIDCardDeathsquad
-  name: deathsquad ID card
+  name: death squad ID card
   components:
   - type: Sprite
     layers:
@@ -497,10 +511,21 @@
     jobTitle: Centcom Agent
 
 - type: entity
-  parent: PassengerIDCard
+  name: passenger ID card
+  parent: IDCardStandard
   id: AgentIDCard
   suffix: Agent
   components:
+  - type: IdCard
+    jobTitle: Passenger
+  - type: Access
+    tags:
+    - Maintenance
+    - SyndicateAgent
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpassenger
   - type: AgentIDCard
     icons:
     # TODO figure out a better way of doing this.
@@ -565,6 +590,18 @@
     price: 200
 
 - type: entity
+  name: passenger ID card
+  parent: AgentIDCard
+  id: NukieAgentIDCard
+  suffix: Nukie
+  components:
+  - type: Access
+    tags:
+    - Maintenance
+    - SyndicateAgent
+    - NuclearOperative
+
+- type: entity
   parent: IDCardStandard
   id: AtmosIDCard
   name: atmospheric technician ID card
@@ -587,6 +624,7 @@
   - type: Access
     tags:
     - NuclearOperative
+    - SyndicateAgent
 
 - type: entity
   parent: IDCardStandard

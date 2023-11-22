@@ -3,6 +3,9 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop
@@ -14,10 +17,10 @@
   id: ReporterGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitReporter
-    back: ClothingBackpackFilled
+    back: ClothingBackpackReporterFilled
     shoes: ClothingShoesColorWhite
     id: ReporterPDA
     ears: ClothingHeadsetService
-  innerclothingskirt: ClothingUniformJumpsuitJournalist
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  innerClothingSkirt: ClothingUniformJumpsuitJournalist
+  satchel: ClothingBackpackSatchelReporterFilled
+  duffelbag: ClothingBackpackDuffelReporterFilled

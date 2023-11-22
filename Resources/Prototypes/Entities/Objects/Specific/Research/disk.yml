@@ -8,6 +8,9 @@
     sprite: Objects/Specific/Research/researchdisk.rsi
     state: icon
   - type: ResearchDisk
+  - type: GuideHelp
+    guides:
+    - Science
 
 - type: entity
   parent: ResearchDisk
@@ -17,6 +20,8 @@
   components:
   - type: ResearchDisk
     points: 5000
+  - type: StaticPrice
+    price: 1500 # Frontier - To be fair, its worth half a tech disk, but we still require tech to print it so its lower.
 
 - type: entity
   parent: ResearchDisk
@@ -26,6 +31,8 @@
   components:
   - type: ResearchDisk
     points: 10000
+  - type: StaticPrice
+    price: 3000 # Frontier - To be fair, its worth a tech disk, but we still require tech to print it so its lower.
 
 - type: entity
   parent: ResearchDisk
@@ -54,8 +61,9 @@
     - enum.DamageStateVisualLayers.Base:
         datadisk_base: Sixteen
   - type: TechnologyDisk
+    tierWeightPrototype: TechDiskTierWeights # Frontier
   - type: StaticPrice
-    price: 1000
+    price: 5000 # Frontier - Rebalance
 
 - type: entity
   parent: TechnologyDisk
@@ -63,4 +71,4 @@
   suffix: rare.
   components:
   - type: TechnologyDisk
-    tierWeightPrototype: RareTechDiskTierWeights
+    tierWeightPrototype: RareTechDiskTierWeights # Frontier

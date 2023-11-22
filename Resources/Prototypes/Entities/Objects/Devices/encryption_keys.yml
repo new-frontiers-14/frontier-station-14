@@ -8,8 +8,11 @@
   - type: EncryptionKey
   - type: Item
     sprite: Objects/Devices/encryption_keys.rsi
+    size: 2 # Frontier - 5 to 2 size
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
+  - type: StaticPrice
+    price: 2
 
 - type: entity
   parent: EncryptionKey
@@ -72,6 +75,7 @@
     - Security
     - Service
     - Supply
+    - Traffic # Frontier
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -81,8 +85,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyCommand
-  name: traffic control encryption key
-  description: An encryption key for the space traffic control channel.
+  name: command encryption key
+  description: An encryption key used by crew's bosses.
   components:
   - type: EncryptionKey
     channels:
@@ -92,8 +96,6 @@
     layers:
     - state: crypt_silver
     - state: com_label
-  - type: StaticPrice
-    price: 7.5
 
 - type: entity
   parent: EncryptionKey
@@ -215,3 +217,18 @@
     layers:
     - state: crypt_red
     - state: synd_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyBinary
+  name: binary translator key
+  description: An encryption key that translates binary signals used by silicons.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Binary
+    defaultChannel: Binary
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: rd_label

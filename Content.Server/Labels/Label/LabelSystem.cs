@@ -3,6 +3,7 @@ using Content.Server.Paper;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Labels;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -18,8 +19,12 @@ namespace Content.Server.Labels
     {
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!;
 
         public const string ContainerName = "paper_label";
+        [ValidatePrototypeId<TagPrototype>]
+        private const string PreventTag = "PreventLabel";
 
         public override void Initialize()
         {
@@ -44,6 +49,8 @@ namespace Content.Server.Labels
         {
             if (!Resolve(uid, ref metadata))
                 return;
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items
+                return;
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
 
@@ -53,7 +60,7 @@ namespace Content.Server.Labels
                     return;
 
                 // Remove label
-                metadata.EntityName = label.OriginalName;
+                _metaData.SetEntityName(uid, label.OriginalName, metadata);
                 label.CurrentLabel = null;
                 label.OriginalName = null;
 
@@ -63,7 +70,7 @@ namespace Content.Server.Labels
             // Update label
             label.OriginalName ??= metadata.EntityName;
             label.CurrentLabel = text;
-            metadata.EntityName = $"{label.OriginalName} ({text})";
+            _metaData.SetEntityName(uid, $"{label.OriginalName} ({text})", metadata);
         }
 
         private void OnComponentInit(EntityUid uid, PaperLabelComponent component, ComponentInit args)

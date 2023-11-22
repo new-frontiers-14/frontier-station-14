@@ -72,6 +72,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         {
             ShipyardConsoleUiKey.Shipyard => "Civilian",
             ShipyardConsoleUiKey.Security => "Security",
+            ShipyardConsoleUiKey.BlackMarket => "BlackMarket",
+            ShipyardConsoleUiKey.Expedition => "Expedition",
             _ => "Shipyard",
         };
 
@@ -133,7 +135,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
-        BankAccountLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));
+        BankAccountLabel.Text = Loc.GetString("cargo-shipyard-console-bank-amount", ("amount", state.Balance.ToString()));
+        ShipSellValueLabel.Text = Loc.GetString("cargo-shipyard-console-sell-value", ("value", state.ShipSellValue.ToString()));
         SellShipButton.Disabled = state.ShipDeedTitle == null;
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")

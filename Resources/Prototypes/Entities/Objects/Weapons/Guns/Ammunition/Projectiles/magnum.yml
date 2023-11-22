@@ -31,7 +31,7 @@
       types:
         Blunt: 3
   - type: StaminaDamageOnCollide
-    damage: 35 # 3 hits to stun cuz revolver
+    damage: 30 # 4 hits to stun cuz revolver
 
 - type: entity
   id: BulletMagnumIncendiary
@@ -41,9 +41,10 @@
   components:
   - type: Projectile
     damage:
-      groups:
-        Burn: 32
-
+      types:
+        Blunt: 3
+        Heat: 32
+        
 - type: entity
   id: BulletMagnumAP
   name: bullet (.45 magnum armor-piercing)

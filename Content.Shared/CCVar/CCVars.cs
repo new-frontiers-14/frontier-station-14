@@ -222,7 +222,7 @@ namespace Content.Shared.CCVar
         /// Does nothing without <see cref="StationOffset"/> as true.
         /// </summary>
         public static readonly CVarDef<float> MaxStationOffset =
-            CVarDef.Create("game.maxstationoffset", 900.0f);
+            CVarDef.Create("game.maxstationoffset", 500.0f);
 
         /// <summary>
         ///     Whether a random rotation will be applied to the station on roundstart.
@@ -247,6 +247,26 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<bool> PanicBunkerEnabled =
             CVarDef.Create("game.panic_bunker.enabled", false, CVar.NOTIFY | CVar.REPLICATED);
+
+        /// <summary>
+        /// Whether or not the panic bunker will disable when an admin comes online.
+        /// </summary>
+        public static readonly CVarDef<bool> PanicBunkerDisableWithAdmins =
+            CVarDef.Create("game.panic_bunker.disable_with_admins", false, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Whether or not the panic bunker will enable when no admins are online.
+        /// </summary>
+        public static readonly CVarDef<bool> PanicBunkerEnableWithoutAdmins =
+            CVarDef.Create("game.panic_bunker.enable_without_admins", false, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Whether or not the panic bunker will count deadminned admins for
+        /// <see cref="PanicBunkerDisableWithAdmins"/> and
+        /// <see cref="PanicBunkerEnableWithoutAdmins"/>
+        /// </summary>
+        public static readonly CVarDef<bool> PanicBunkerCountDeadminnedAdmins =
+            CVarDef.Create("game.panic_bunker.count_deadminned_admins", false, CVar.SERVERONLY);
 
         /// <summary>
         /// Show reason of disconnect for user or not.
@@ -326,7 +346,7 @@ namespace Content.Shared.CCVar
         /// URL of the Discord webhook which will relay all ahelp messages.
         /// </summary>
         public static readonly CVarDef<string> DiscordAHelpWebhook =
-            CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY);
+            CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
@@ -364,6 +384,18 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<string> DiscordLeaderboardWebhook =
             CVarDef.Create("discord.leaderboard_webhook", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// URL of the Discord webhook which will relay round restart messages.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordRoundUpdateWebhook =
+            CVarDef.Create("discord.round_update_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        /// <summary>
+        /// Role id for the Discord webhook to ping when the round ends.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordRoundEndRoleWebhook =
+            CVarDef.Create("discord.round_end_role", string.Empty, CVar.SERVERONLY);
 
         /*
          * Suspicion
@@ -972,6 +1004,28 @@ namespace Content.Shared.CCVar
             CVarDef.Create("atmos.grid_impulse", false, CVar.SERVERONLY);
 
         /// <summary>
+        ///     What fraction of air from a spaced tile escapes every tick.
+        ///     1.0 for instant spacing, 0.2 means 20% of remaining air lost each time
+        /// </summary>
+        public static readonly CVarDef<float> AtmosSpacingEscapeRatio =
+            CVarDef.Create("atmos.mmos_spacing_speed", 0.05f, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     Minimum amount of air allowed on a spaced tile before it is reset to 0 immediately in kPa
+        ///     Since the decay due to SpacingEscapeRatio follows a curve, it would never reach 0.0 exactly
+        ///     unless we truncate it somewhere.
+        /// </summary>
+        public static readonly CVarDef<float> AtmosSpacingMinGas =
+            CVarDef.Create("atmos.mmos_min_gas", 1.0f, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     How much wind can go through a single tile before that tile doesn't depressurize itself
+        ///     (I.e spacing is limited in large rooms heading into smaller spaces)
+        /// </summary>
+        public static readonly CVarDef<float> AtmosSpacingMaxWind =
+            CVarDef.Create("atmos.mmos_max_wind", 500f, CVar.SERVERONLY);
+
+        /// <summary>
         ///     Whether atmos superconduction is enabled.
         /// </summary>
         /// <remarks> Disabled by default, superconduction is awful. </remarks>
@@ -1105,7 +1159,7 @@ namespace Content.Shared.CCVar
         ///     If the playercount is below this number, the whitelist will not apply.
         /// </summary>
         public static readonly CVarDef<int> WhitelistMinPlayers =
-            CVarDef.Create("whitelist.min_players", 28, CVar.SERVERONLY);
+            CVarDef.Create("whitelist.min_players", 32, CVar.SERVERONLY);
 
         /// <summary>
         ///     If the playercount is above this number, the whitelist will not apply.
@@ -1157,7 +1211,7 @@ namespace Content.Shared.CCVar
         ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
         /// </summary>
         public static readonly CVarDef<float> VoteSameTypeTimeout =
-            CVarDef.Create("vote.same_type_timeout", 360f, CVar.SERVERONLY);
+            CVarDef.Create("vote.same_type_timeout", 600f, CVar.SERVERONLY);
 
 
         /// <summary>
@@ -1390,6 +1444,18 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> PsionicRollsEnabled =
             CVarDef.Create("psionics.rolls_enabled", false, CVar.SERVERONLY);
 
+        /// <summary>
+        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate cargo crate.
+        /// </summary>
+        public static readonly CVarDef<float> CargoGenerationGridBoundsScale =
+            CVarDef.Create("cargo.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate syndicate crate.
+        /// </summary>
+        public static readonly CVarDef<float> SyndicateCrateGenerationGridBoundsScale =
+            CVarDef.Create("syndicatecrate.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
         /*
          * VIEWPORT
          */
@@ -1505,6 +1571,12 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> ICRandomSpeciesWeights =
             CVarDef.Create("ic.random_species_weights", "SpeciesWeights", CVar.SERVER);
 
+        /// <summary>
+        /// Control displaying SSD indicators near players
+        /// </summary>
+        public static readonly CVarDef<bool> ICShowSSDIndicator =
+            CVarDef.Create("ic.show_ssd_indicator", true, CVar.CLIENTONLY);
+
         /*
          * Salvage
          */
@@ -1519,7 +1591,7 @@ namespace Content.Shared.CCVar
         /// Cooldown for successful missions.
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 160f, CVar.REPLICATED);
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED);
 
         public static readonly CVarDef<float>
             SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 600f, CVar.REPLICATED);
@@ -1609,6 +1681,12 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<float> DragDropDeadZone =
             CVarDef.Create("control.drag_dead_zone", 12f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Toggles whether the walking key is a toggle or a held key.
+        /// </summary>
+        public static readonly CVarDef<bool> ToggleWalk =
+            CVarDef.Create("control.toggle_walk", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         /*
          * UPDATE
@@ -1756,7 +1834,7 @@ namespace Content.Shared.CCVar
         ///     The maximum amount of time the entity GC can process, in ms.
         /// </summary>
         public static readonly CVarDef<int> GCMaximumTimeMs =
-            CVarDef.Create("entgc.maximum_time_ms", 5, CVar.SERVERONLY);
+            CVarDef.Create("entgc.maximum_time_ms", 10, CVar.SERVERONLY);
 
         /*
          * Replays
@@ -1792,6 +1870,7 @@ namespace Content.Shared.CCVar
         /// <summary>
         /// Path that, if provided, automatic replays are initially recorded in.
         /// When the recording is done, the file is moved into its final destination.
+        /// Unless this path is rooted, it will be relative to <see cref="CVars.ReplayDirectory"/>.
         /// </summary>
         public static readonly CVarDef<string> ReplayAutoRecordTempDir =
             CVarDef.Create("replay.auto_record_temp_dir", "", CVar.SERVERONLY);

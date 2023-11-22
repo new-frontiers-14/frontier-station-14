@@ -30,6 +30,10 @@ namespace Content.Client.Research.UI
             {
                 SendMessage(new DiskConsolePrintDiskMessage());
             };
+            _menu.OnPrintRareButtonPressed += () =>
+            {
+                SendMessage(new DiskConsolePrintRareDiskMessage());
+            };
         }
 
         protected override void Dispose(bool disposing)

@@ -2,11 +2,11 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Body.Systems;
 using Content.Server.Cargo.Components;
-using Content.Server.Chemistry.Components.SolutionManager;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared._NF.Cargo.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
 using Content.Shared.Mobs.Components;
@@ -15,8 +15,10 @@ using Content.Shared.Stacks;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Tag;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -31,6 +33,8 @@ public sealed class PricingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -53,13 +57,13 @@ public sealed class PricingSystem : EntitySystem
 
         foreach (var gid in args)
         {
-            if (!EntityUid.TryParse(gid, out var gridId) || !gridId.IsValid())
+            if (!EntityManager.TryParseNetEntity(gid, out var gridId) || !gridId.Value.IsValid())
             {
                 shell.WriteError($"Invalid grid ID \"{gid}\".");
                 continue;
             }
 
-            if (!_mapManager.TryGetGrid(gridId, out var mapGrid))
+            if (!TryComp(gridId, out MapGridComponent? mapGrid))
             {
                 shell.WriteError($"Grid \"{gridId}\" doesn't exist.");
                 continue;
@@ -67,7 +71,7 @@ public sealed class PricingSystem : EntitySystem
 
             List<(double, EntityUid)> mostValuable = new();
 
-            var value = AppraiseGrid(mapGrid.Owner, null, (uid, price) =>
+            var value = AppraiseGrid(gridId.Value, null, (uid, price) =>
             {
                 mostValuable.Add((price, uid));
                 mostValuable.Sort((i1, i2) => i2.Item1.CompareTo(i1.Item1));
@@ -92,18 +96,19 @@ public sealed class PricingSystem : EntitySystem
 
         if (!TryComp<BodyComponent>(uid, out var body) || !TryComp<MobStateComponent>(uid, out var state))
         {
-            Logger.ErrorS("pricing", $"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(BodyComponent)} and no {nameof(MobStateComponent)}.");
+            Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(BodyComponent)} and no {nameof(MobStateComponent)}.");
             return;
         }
 
-        var partList = _bodySystem.GetBodyAllSlots(uid, body).ToList();
-        var totalPartsPresent = partList.Sum(x => x.Child != null ? 1 : 0);
+        // TODO: Better handling of missing.
+        var partList = _bodySystem.GetBodyChildren(uid, body).ToList();
+        var totalPartsPresent = partList.Sum(_ => 1);
         var totalParts = partList.Count;
 
         var partRatio = totalPartsPresent / (double) totalParts;
         var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
 
-        args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty);
+        args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (!_tagSystem.HasTag(uid, "LabGrown") ? 1.0 : component.LabGrownPenalty);
     }
 
     private double GetSolutionPrice(SolutionContainerManagerComponent component)
@@ -112,11 +117,13 @@ public sealed class PricingSystem : EntitySystem
 
         foreach (var solution in component.Solutions.Values)
         {
-            foreach (var reagent in solution.Contents)
+            foreach (var (reagent, quantity) in solution.Contents)
             {
-                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.ReagentId, out var reagentProto))
+                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
                     continue;
-                price += (float) reagent.Quantity * reagentProto.PricePerUnit;
+
+                // TODO check ReagentData for price information?
+                price += (float) quantity * reagentProto.PricePerUnit;
             }
         }
 

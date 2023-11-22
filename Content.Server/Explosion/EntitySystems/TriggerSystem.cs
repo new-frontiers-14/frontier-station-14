@@ -1,11 +1,12 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.Components.SolutionManager;
 using Content.Server.Explosion.Components;
 using Content.Server.Flash;
 using Content.Server.Flash.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -23,6 +24,8 @@ using Robust.Shared.Physics.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Server.Station.Systems;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -61,6 +64,7 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly RadioSystem _radioSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly StationSystem _station = default!;
 
         public override void Initialize()
         {
@@ -107,7 +111,7 @@ namespace Content.Server.Explosion.EntitySystems
 
             _transformSystem.AnchorEntity(uid, xform);
 
-            if(component.RemoveOnTrigger)
+            if (component.RemoveOnTrigger)
                 RemCompDeferred<AnchorOnTriggerComponent>(uid);
         }
 
@@ -147,14 +151,14 @@ namespace Content.Server.Explosion.EntitySystems
             if (!TryComp<TransformComponent>(uid, out var xform))
                 return;
 
-            _body.GibBody(xform.ParentUid, deleteItems: component.DeleteItems);
+            _body.GibBody(xform.ParentUid, true, deleteItems: component.DeleteItems);
 
             args.Handled = true;
         }
 
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
-            if (!TryComp<SubdermalImplantComponent?>(uid, out var implanted))
+            if (!TryComp<SubdermalImplantComponent>(uid, out var implanted))
                 return;
 
             if (implanted.ImplantedEntity == null)
@@ -167,30 +171,45 @@ namespace Content.Server.Explosion.EntitySystems
             var y = (int) pos.Y;
             var posText = $"({x}, {y})";
 
-            var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("position", posText));
-            var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("position", posText));
+            // Gets station location of the implant
+            var station = _station.GetOwningStation(uid);
+            var stationText = station is null ? null : $"{Name(station.Value)} ";
+
+            if (stationText == null)
+                stationText = "";
+
+            // Gets specie of the implant user
+            var speciesText = $"";
+            if (TryComp<HumanoidAppearanceComponent>(implanted.ImplantedEntity, out var species))
+                speciesText = $" ({species!.Species})";
+
+            var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
+            var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
 
             if (!TryComp<MobStateComponent>(implanted.ImplantedEntity, out var mobstate))
                 return;
 
-            // Sends a message to the radio channel specified by the implant
-            if (mobstate.CurrentState == MobState.Critical)
-                _radioSystem.SendRadioMessage(uid, critMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
-            if (mobstate.CurrentState == MobState.Dead)
-                _radioSystem.SendRadioMessage(uid, deathMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+            if (mobstate.CurrentState != MobState.Alive)
+            {
+                // Sends a message to the radio channel specified by the implant
+                if (mobstate.CurrentState == MobState.Critical)
+                    _radioSystem.SendRadioMessage(uid, critMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+                if (mobstate.CurrentState == MobState.Dead)
+                    _radioSystem.SendRadioMessage(uid, deathMessage, _prototypeManager.Index<RadioChannelPrototype>(component.RadioChannel), uid);
+            }
 
             args.Handled = true;
         }
 
         private void OnTriggerCollide(EntityUid uid, TriggerOnCollideComponent component, ref StartCollideEvent args)
         {
-            if (args.OurFixture.ID == component.FixtureID && (!component.IgnoreOtherNonHard || args.OtherFixture.Hard))
-                Trigger(component.Owner);
+            if (args.OurFixtureId == component.FixtureID && (!component.IgnoreOtherNonHard || args.OtherFixture.Hard))
+                Trigger(uid);
         }
 
         private void OnActivate(EntityUid uid, TriggerOnActivateComponent component, ActivateInWorldEvent args)
         {
-            Trigger(component.Owner, args.User);
+            Trigger(uid, args.User);
             args.Handled = true;
         }
 
@@ -221,6 +240,14 @@ namespace Content.Server.Explosion.EntitySystems
             return triggerEvent.Handled;
         }
 
+        public void TryDelay(EntityUid uid, float amount, ActiveTimerTriggerComponent? comp = null)
+        {
+            if (!Resolve(uid, ref comp, false))
+                return;
+
+            comp.TimeRemaining += amount;
+        }
+
         public void HandleTimerTrigger(EntityUid uid, EntityUid? user, float delay , float beepInterval, float? initialBeepDelay, SoundSpecifier? beepSound)
         {
             if (delay <= 0)
@@ -236,7 +263,7 @@ namespace Content.Server.Explosion.EntitySystems
             if (user != null)
             {
                 // Check if entity is bomb/mod. grenade/etc
-                if (_container.TryGetContainer(uid, "payload", out IContainer? container) &&
+                if (_container.TryGetContainer(uid, "payload", out BaseContainer? container) &&
                     container.ContainedEntities.Count > 0 &&
                     TryComp(container.ContainedEntities[0], out ChemicalPayloadComponent? chemicalPayloadComponent))
                 {

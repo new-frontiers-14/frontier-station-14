@@ -5,16 +5,16 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxPillCanister
       - id: BoxSyringe
       - id: EpinephrineChemistryBottle
-        amount: 3
+        amount: 1
       - id: Brutepack
         amount: 2
       - id: Ointment
         amount: 2
       - id: Bloodpack
         amount: 2
+      - id: Gauze
 
 - type: entity
   id: LockerWallMedicalFilled
@@ -24,16 +24,16 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxPillCanister
       - id: BoxSyringe
       - id: EpinephrineChemistryBottle
-        amount: 3
+        amount: 1
       - id: Brutepack
         amount: 2
       - id: Ointment
         amount: 2
       - id: Bloodpack
         amount: 2
+      - id: Gauze
 
 
 - type: entity
@@ -67,9 +67,9 @@
       - id: UniformScrubsColorPurple
         prob: 0.05
         orGroup: Surgshrubs
-      - id: NitrousOxideTankFilled
-        prob: 0.3
       - id: ClothingMaskSterile
+      - id: HandLabeler # Frontier
+      - id: ClothingBeltMedical # Frontier
 
 - type: entity
   parent: LockerWallMedical
@@ -103,9 +103,9 @@
       - id: UniformScrubsColorPurple
         prob: 0.05
         orGroup: Surgshrubs
-      - id: NitrousOxideTankFilled
-        prob: 0.3
       - id: ClothingMaskSterile
+      - id: HandLabeler # Frontier
+      - id: ClothingBeltMedical # Frontier
 
 - type: entity
   id: LockerChemistryFilled
@@ -116,10 +116,19 @@
     contents:
       - id: BoxSyringe
       - id: BoxBeaker
+        amount: 2
       - id: BoxPillCanister
       - id: BoxBottle
-        amount: 2
-        
+      - id: ChemBag
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingHeadsetMedical
+      - id: ClothingMaskSterile
+      - id: HandLabeler
+      - id: ClothingBeltMedical # Frontier
+      - id: ClothingEyesGlassesChemical # Frontier
+      - id: SheetPlasma1 # Frontier
+        amount: 3
+
 - type: entity
   id: LockerParamedicFilled
   suffix: Filled
@@ -127,11 +136,16 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingHeadHelmetVoidParamed
-      - id: ClothingOuterHardsuitVoidParamed
+#      - id: ClothingHeadHelmetVoidParamed # Frontier
+#      - id: ClothingOuterHardsuitVoidParamed # Frontier
       - id: ClothingOuterCoatParamedicWB
       - id: ClothingHeadHatParamedicsoft
       - id: ClothingUniformJumpsuitParamedic
       - id: ClothingUniformJumpskirtParamedic
       - id: ClothingEyesHudMedical
-      
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingHeadsetMedical
+      - id: ClothingMaskSterile
+      - id: MedkitFilled
+      - id: HandLabeler # Frontier
+      - id: ClothingBeltMedical # Frontier

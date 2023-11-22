@@ -1,43 +1,14 @@
 - type: entity
   save: false
-  name: Player felinid
-  parent: MobFelinidBase
+  name: Urist McFelinid
+  parent: [MobFelinidBase, BaseMob]
   id: MobFelinid
   components:
-  - type: CombatMode
-    canDisarm: true
-  - type: MindContainer
-    showExamineInfo: true
-  - type: Input
-    context: "human"
-  - type: MobMover
-  - type: InputMover
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.5
+        Asphyxiation: 1.0
     damageRecovery:
       types:
-        Asphyxiation: -1.5
-  - type: Alerts
-  - type: Vocal
-    wilhelm: "/Audio/Voice/Felinid/cat_wilhelm.ogg"
-    sounds:
-      Male: MaleFelinid
-      Female: FemaleFelinid
-      Unsexed: MaleFelinid
-  - type: Actions
-  - type: Eye
-  - type: CameraRecoil
-  - type: Examiner
-  - type: CanHostGuardian
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-  - type: Felinid #since this just adds an action...
+        Asphyxiation: -1.0
   - type: MailReceiver
-  - type: InteractionPopup
-    successChance: 1
-    interactSuccessString: hugging-success-generic
-    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    messagePerceivedByOthers: hugging-success-generic-others

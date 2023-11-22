@@ -1,8 +1,8 @@
 # Anything human specific (e.g. UI, input) goes under MobHuman
 - type: entity
-  name: Urist McHands
-  parent: BaseMobOrganic
+  parent: BaseMobSpeciesOrganic
   id: BaseMobHuman
+  name: Urist McHands
   abstract: true
   components:
   - type: Hunger
@@ -14,6 +14,7 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Thirst
+  - type: Carriable # Carrying system from nyanotrasen.
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike
@@ -22,7 +23,6 @@
       amount: 5
 
 - type: entity
-  name: Urist McHands
+  parent: BaseSpeciesDummy
   id: MobHumanDummy
-  parent: BaseMobOrganicDummy
   noSpawn: true

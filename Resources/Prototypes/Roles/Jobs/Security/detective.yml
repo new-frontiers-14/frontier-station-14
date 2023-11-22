@@ -5,7 +5,7 @@
   playTimeTracker: JobDetective
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800 #3 hr
+      time: 21600
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
@@ -16,21 +16,22 @@
   - Maintenance
   - Service
   - Detective
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
   id: DetectiveGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurityFilledDetective
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses
     head: ClothingHeadHatFedoraBrown
     outerClothing: ClothingOuterVestDetective
     id: DetectivePDA
     ears: ClothingHeadsetSecurity
-    pocket1: ForensicPad
-    pocket2: ForensicScanner
-    belt: ClothingBeltHolster
-  innerclothingskirt: ClothingUniformJumpskirtDetective
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+    belt: ClothingBeltHolsterFilled
+  innerClothingSkirt: ClothingUniformJumpskirtDetective
+  satchel: ClothingBackpackSatchelSecurityFilledDetective
+  duffelbag: ClothingBackpackDuffelSecurityFilledDetective

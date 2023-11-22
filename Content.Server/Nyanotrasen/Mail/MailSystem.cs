@@ -9,7 +9,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
@@ -17,7 +17,7 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Fluids.Components;
 using Content.Server.Mail.Components;
-using Content.Server.Mind.Components;
+using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -64,6 +64,8 @@ namespace Content.Server.Mail
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
+        [Dependency] private readonly MindSystem _mind = default!;
+        [Dependency] private readonly MetaDataSystem _meta = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -249,8 +251,8 @@ namespace Content.Server.Mail
             if (!component.IsProfitable)
                 return;
 
-            _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false);
-            _audioSystem.PlayPvs(component.PenaltySound, uid);
+            //_chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false); # Dont show message.
+            //_audioSystem.PlayPvs(component.PenaltySound, uid); # Dont play sound.
 
             component.IsProfitable = false;
 
@@ -262,7 +264,7 @@ namespace Content.Server.Mail
             {
                 // only our main station will have an account anyway so I guess we are just going to add it this way shrug.
 
-                _cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty);
+                //_cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty); # Dont remove money.
                 return;
             }
         }
@@ -272,8 +274,8 @@ namespace Content.Server.Mail
             if (component.IsLocked)
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
-            if (component.IsEnabled)
-                OpenMail(uid, component);
+           // if (component.IsEnabled)
+           //     OpenMail(uid, component); # Dont open the mail on destruction.
 
             UpdateAntiTamperVisuals(uid, false);
         }
@@ -328,7 +330,6 @@ namespace Content.Server.Mail
             // It can be spilled easily and has something to spill.
             if (HasComp<SpillableComponent>(uid)
                 && TryComp(uid, out DrinkComponent? drinkComponent)
-                && drinkComponent.Opened
                 && _solutionContainerSystem.PercentFull(uid) > 0)
                 return true;
 
@@ -472,6 +473,9 @@ namespace Content.Server.Mail
             if (TryMatchJobTitleToIcon(recipient.Job, out string? icon))
                 _appearanceSystem.SetData(uid, MailVisuals.JobIcon, icon);
 
+            _meta.SetEntityName(uid, Loc.GetString("mail-item-name-addressed",
+                ("recipient", recipient.Name)));
+
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
             accessReader.AccessLists.Add(recipient.AccessTags);
         }
@@ -534,8 +538,8 @@ namespace Content.Server.Mail
 
             if (_idCardSystem.TryFindIdCard(receiver.Owner, out var idCard)
                 && TryComp<AccessComponent>(idCard.Owner, out var access)
-                && idCard.FullName != null
-                && idCard.JobTitle != null)
+                && idCard.Comp.FullName != null
+                && idCard.Comp.JobTitle != null)
             {
                 HashSet<String> accessTags = access.Tags;
 
@@ -555,14 +559,14 @@ namespace Content.Server.Mail
                     stationName = "Unknown";
                 }
 
-                if (TryComp<MindContainerComponent>(receiver.Owner, out MindContainerComponent? mind)
-                    && mind.Mind?.Session == null)
+                if (!_mind.TryGetMind(receiver.Owner, out var mindId, out var mindComp))
                 {
-                    mayReceivePriorityMail = false;
+                    recipient = null;
+                    return false;
                 }
 
-                recipient = new MailRecipient(idCard.FullName,
-                    idCard.JobTitle,
+                recipient = new MailRecipient(idCard.Comp.FullName,
+                    idCard.Comp.JobTitle,
                     accessTags,
                     mayReceivePriorityMail,
                     stationName);

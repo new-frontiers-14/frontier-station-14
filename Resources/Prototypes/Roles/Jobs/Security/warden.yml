@@ -5,7 +5,10 @@
   playTimeTracker: JobWarden
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 1400
+      time: 21600 # Frontier - 6 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 21600 # Frontier - 6 hours
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
@@ -18,6 +21,9 @@
   - Brig
   - External
   - Detective
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ] # Frontier
 
 - type: startingGear
   id: WardenGear
@@ -29,9 +35,9 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetAltSecurityWarden # Frontier
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
-  innerclothingskirt: ClothingUniformJumpskirtWarden
+  innerClothingSkirt: ClothingUniformJumpskirtWarden
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled

@@ -113,3 +113,21 @@
     - state: green_bit
       shader: unshaded
     - state: refill_parts # TODO Update this later with a new sprite
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockLessLethalVend
+  name: LessLethalVend restock box
+  description: A box containing rubber bullets and disruptors for the Less Lethal vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - LessLethalVendInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_lesslethal
+  - type: CargoSellBlacklist

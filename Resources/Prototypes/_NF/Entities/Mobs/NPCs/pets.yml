@@ -1,0 +1,124 @@
+- type: entity
+  name: Clippy
+  parent: MobCatGhost
+  id: MobCatClippy
+  description: It looks like you’re writing a letter, would you like help?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mailcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mailcat
+      Critical:
+        Base: mailcat_dead
+      Dead:
+        Base: mailcat_dead
+  - type: GhostRole
+    name: ghost-role-information-clippy-name
+    description: ghost-role-information-clippy-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: Inventory
+    speciesId: cat
+    templateId: clippy
+  - type: Loadout
+    prototypes: [ MobClippyGear ]
+#  - type: ReplacementAccent
+#    accent: archaic
+  - type: RandomMetadata
+    nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+
+- type: entity
+  name: Clarpy
+  parent: MobCatGhost
+  id: MobCatClarpy
+  description: First cat to gain a bounty.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: piratecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: piratecat
+      Critical:
+        Base: piratecat_dead
+      Dead:
+        Base: piratecat_dead
+  - type: GhostRole
+    name: ghost-role-information-clarpy-name
+    description: ghost-role-information-clarpy-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: Inventory
+    speciesId: cat
+    templateId: clarpy
+  - type: Loadout
+    prototypes: [ MobClarpyGear ]
+  - type: ReplacementAccent
+    accent: pirateCat
+  - type: RandomMetadata
+    nameSegments: [names_cat_clarpy] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: AutoImplant
+    implants:
+    - DeathRattleImplant
+
+- type: entity
+  name: Mistake
+  parent: MobCatGhost
+  id: MobCatMistake
+  description: ???
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mistakecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mistakecat
+      Critical:
+        Base: mistakecat_dead
+      Dead:
+        Base: mistakecat_dead
+  - type: GhostRole
+    name: ghost-role-information-mistake-name
+    description: ghost-role-information-mistake-description
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+  - type: Inventory
+    speciesId: cat
+    templateId: mistake
+  - type: Loadout
+    prototypes: [ MobMistakeGear ]
+  - type: ReplacementAccent
+    accent: mistakeCat
+  - type: RandomMetadata
+    nameSegments: [names_cat_mistake] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: Vocal
+    sounds:
+      Male: CatMistake
+      Female: CatMistake
+      Unsexed: CatMistake
+  - type: InteractionPopup
+    successChance: 0.0
+    interactFailureString: petting-failure-mistake
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 8
+    baseSprintSpeed : 8

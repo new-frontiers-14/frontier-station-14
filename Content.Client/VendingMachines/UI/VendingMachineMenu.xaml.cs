@@ -20,12 +20,18 @@ namespace Content.Client.VendingMachines.UI
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         public event Action<ItemList.ItemListSelectedEventArgs>? OnItemSelected;
+        public event Action<string>? OnSearchChanged;
 
         public VendingMachineMenu()
         {
             MinSize = SetSize = new Vector2(250, 150);
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+
+            SearchBar.OnTextChanged += _ =>
+            {
+                OnSearchChanged?.Invoke(SearchBar.Text);
+            };
 
             VendingContents.OnItemSelected += args =>
             {
@@ -37,14 +43,16 @@ namespace Content.Client.VendingMachines.UI
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier)
+        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, out List<int> filteredInventory,  string? filter = null)
         {
+            filteredInventory = new();
+
             if (inventory.Count == 0)
             {
                 VendingContents.Clear();
                 var outOfStockText = Loc.GetString("vending-machine-component-try-eject-out-of-stock");
                 VendingContents.AddItem(outOfStockText);
-                SetSizeAfterUpdate(outOfStockText.Length);
+                SetSizeAfterUpdate(outOfStockText.Length, VendingContents.Count);
                 return;
             }
 
@@ -59,10 +67,11 @@ namespace Content.Client.VendingMachines.UI
             var longestEntry = string.Empty;
             var spriteSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<SpriteSystem>();
 
+            var filterCount = 0;
             for (var i = 0; i < inventory.Count; i++)
             {
                 var entry = inventory[i];
-                var vendingItem = VendingContents[i];
+                var vendingItem = VendingContents[i - filterCount];
                 vendingItem.Text = string.Empty;
                 vendingItem.Icon = null;
 
@@ -72,6 +81,15 @@ namespace Content.Client.VendingMachines.UI
                 {
                     itemName = prototype.Name;
                     icon = spriteSystem.GetPrototypeIcon(prototype).Default;
+                }
+
+                // search filter
+                if (!string.IsNullOrEmpty(filter) &&
+                    !itemName.ToLowerInvariant().Contains(filter.Trim().ToLowerInvariant()))
+                {
+                    VendingContents.Remove(vendingItem);
+                    filterCount++;
+                    continue;
                 }
 
                 if (itemName.Length > longestEntry.Length)
@@ -126,19 +144,20 @@ namespace Content.Client.VendingMachines.UI
 
                 vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
                 vendingItem.Icon = icon;
+                filteredInventory.Add(i);
             }
 
-            SetSizeAfterUpdate(longestEntry.Length);
+            SetSizeAfterUpdate(longestEntry.Length, inventory.Count);
         }
         public void UpdateBalance(int balance)
         {
             BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance.ToString()));
         }
 
-        private void SetSizeAfterUpdate(int longestEntryLength)
+        private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
         {
             SetSize = new Vector2(Math.Clamp((longestEntryLength + 2) * 12, 250, 300),
-                Math.Clamp(VendingContents.Count * 50, 150, 350));
+                Math.Clamp(contentCount * 50, 150, 350));
         }
     }
 }

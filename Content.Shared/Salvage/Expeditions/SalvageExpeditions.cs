@@ -1,4 +1,5 @@
 using Content.Shared.Salvage.Expeditions.Modifiers;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -28,9 +29,11 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
 /// Used to interact with salvage expeditions and claim them.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed class SalvageExpeditionConsoleComponent : Component
+public sealed partial class SalvageExpeditionConsoleComponent : Component
 {
-
+    [DataField("soundError")]
+    public SoundSpecifier ErrorSound =
+    new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 }
 
 [Serializable, NetSerializable]
@@ -43,7 +46,7 @@ public sealed class ClaimSalvageMessage : BoundUserInterfaceMessage
 /// Added per station to store data on their available salvage missions.
 /// </summary>
 [RegisterComponent]
-public sealed class SalvageExpeditionDataComponent : Component
+public sealed partial class SalvageExpeditionDataComponent : Component
 {
     /// <summary>
     /// Is there an active salvage expedition.

@@ -72,6 +72,8 @@
   - type: StaticPrice
     price: 62
   - type: PowerSwitch
+  - type: ApcPowerReceiver # Frontier
+    powerLoad: 250 # Allows us to not use the 1000 baseline
 
 - type: entity
   id: DisposalUnit
@@ -86,6 +88,7 @@
     interfaces:
     - key: enum.DisposalUnitUiKey.Key
       type: DisposalUnitBoundUserInterface
+  - type: RatKingRummageable
 
 - type: entity
   id: MailingUnit

@@ -9,10 +9,10 @@
       stationProto: StandardFrontierStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Frontier Outpost {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+          mapNameTemplate: 'Frontier Outpost'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'
         - type: StationJobs
           overflowJobs:
             - Passenger
@@ -20,8 +20,12 @@
             HeadOfPersonnel: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 0, 0 ]
+            SeniorOfficer: [ 0, 0 ]
+            SecurityCadet: [ 0, 0 ]
+            StationTrafficController: [ 0, 0 ]
             Borg: [ 0, 0 ]
             Valet: [ 1, 1 ]
+            MailCarrier: [ 0, 0 ]
             Janitor: [ 1, 1 ]
             Musician: [ 0, 0 ]
             Lawyer: [ 0, 0 ]

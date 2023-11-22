@@ -5,7 +5,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Item;
 using Content.Shared.Inventory;
 using Content.Shared.Hands;
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
@@ -13,12 +13,13 @@ using Content.Server.Body.Components;
 using Content.Server.Medical;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Nutrition.Components;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
+using Content.Shared.Nyanotrasen.Abilities;
 
 namespace Content.Server.Abilities.Felinid
 {
@@ -71,11 +72,9 @@ namespace Content.Server.Abilities.Felinid
 
         private void OnInit(EntityUid uid, FelinidComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<InstantActionPrototype>("HairballAction", out var hairball))
+            if (!_prototypeManager.TryIndex<EntityPrototype>("ActionHairball", out var hairball))
                 return;
-
-            component.HairballAction = new InstantAction(hairball);
-            _actionsSystem.AddAction(uid, component.HairballAction, uid);
+            _actionsSystem.AddAction(uid, hairball.ID);
         }
 
         private void OnEquipped(EntityUid uid, FelinidComponent component, DidEquipHandEvent args)
@@ -85,8 +84,9 @@ namespace Content.Server.Abilities.Felinid
 
             component.PotentialTarget = args.Equipped;
 
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("EatMouse", out var eatMouse))
-                _actionsSystem.AddAction(uid, new InstantAction(eatMouse), null);
+            if (!_prototypeManager.TryIndex<EntityPrototype>("ActionEatMouse", out var eatMouse))
+                return;
+            component.EatMouseAction = _actionsSystem.AddAction(uid, eatMouse.ID);
         }
 
         private void OnUnequipped(EntityUid uid, FelinidComponent component, DidUnequipHandEvent args)
@@ -94,8 +94,8 @@ namespace Content.Server.Abilities.Felinid
             if (args.Unequipped == component.PotentialTarget)
             {
                 component.PotentialTarget = null;
-                if (_prototypeManager.TryIndex<InstantActionPrototype>("EatMouse", out var eatMouse))
-                    _actionsSystem.RemoveAction(uid, eatMouse);
+                if (component.EatMouseAction != null)
+                    _actionsSystem.RemoveAction(component.EatMouseAction);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Content.Server.Abilities.Felinid
             }
 
             _popupSystem.PopupEntity(Loc.GetString("hairball-cough", ("name", Identity.Entity(uid, EntityManager))), uid);
-            SoundSystem.Play("/Audio/Effects/Species/hairball.ogg", Filter.Pvs(uid), uid, AudioHelpers.WithVariation(0.15f));
+            SoundSystem.Play("/Audio/Nyanotrasen/Voice/Felinid/hairball.ogg", Filter.Pvs(uid), uid, AudioHelpers.WithVariation(0.15f));
 
             EnsureComp<CoughingUpHairballComponent>(uid);
             args.Handled = true;
@@ -138,9 +138,10 @@ namespace Content.Server.Abilities.Felinid
                 return;
             }
 
-            if (component.HairballAction != null)
+            if (component.HairballAction != null
+                && _actionsSystem.TryGetActionData(component.HairballAction, out var actionData))
             {
-                _actionsSystem.SetCharges(component.HairballAction, component.HairballAction.Charges + 1);
+                _actionsSystem.SetCharges(component.HairballAction, actionData!.Charges + 1);
                 _actionsSystem.SetEnabled(component.HairballAction, true);
             }
             Del(component.PotentialTarget.Value);
@@ -150,8 +151,7 @@ namespace Content.Server.Abilities.Felinid
 
             _hungerSystem.ModifyHunger(uid, 70f, hunger);
 
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("EatMouse", out var eatMouse))
-                    _actionsSystem.RemoveAction(uid, eatMouse);
+            _actionsSystem.RemoveAction(uid, component.EatMouseAction);
         }
 
         private void SpawnHairball(EntityUid uid, FelinidComponent component)
@@ -190,6 +190,4 @@ namespace Content.Server.Abilities.Felinid
         }
     }
 
-    public sealed class HairballActionEvent : InstantActionEvent {}
-    public sealed class EatMouseActionEvent : InstantActionEvent {}
 }

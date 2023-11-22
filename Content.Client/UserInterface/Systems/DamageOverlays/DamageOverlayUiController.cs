@@ -1,11 +1,9 @@
-﻿using Content.Client.Alerts;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -19,20 +17,19 @@ public sealed class DamageOverlayUiController : UIController
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    [UISystemDependency] private readonly ClientAlertsSystem _alertsSystem = default!;
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     private Overlays.DamageOverlay _overlay = default!;
 
     public override void Initialize()
     {
         _overlay = new Overlays.DamageOverlay();
-        SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttach);
-        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttach);
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MobThresholdChecked>(OnThresholdCheck);
     }
 
-    private void OnPlayerAttach(PlayerAttachedEvent args)
+    private void OnPlayerAttach(LocalPlayerAttachedEvent args)
     {
         ClearOverlay();
         if (!EntityManager.TryGetComponent<MobStateComponent>(args.Entity, out var mobState))
@@ -42,7 +39,7 @@ public sealed class DamageOverlayUiController : UIController
         _overlayManager.AddOverlay(_overlay);
     }
 
-    private void OnPlayerDetached(PlayerDetachedEvent args)
+    private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
         _overlayManager.RemoveOverlay(_overlay);
         ClearOverlay();
@@ -80,9 +77,15 @@ public sealed class DamageOverlayUiController : UIController
             damageable == null && !EntityManager.TryGetComponent(entity, out  damageable))
             return;
 
-
         if (!_mobThresholdSystem.TryGetIncapThreshold(entity, out var foundThreshold, thresholds))
             return; //this entity cannot die or crit!!
+
+        if (!thresholds.ShowOverlays)
+        {
+            ClearOverlay();
+            return; //this entity intentionally has no overlays
+        }
+
         var critThreshold = foundThreshold.Value;
         _overlay.State = mobState.CurrentState;
 

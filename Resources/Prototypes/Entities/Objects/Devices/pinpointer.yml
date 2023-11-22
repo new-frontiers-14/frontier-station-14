@@ -66,3 +66,13 @@
       visible: false
   - type: StaticPrice
     price: 150
+
+
+- type: entity
+  parent: PinpointerBase
+  id: PinpointerStation
+  suffix: Station
+  components:
+  - type: Pinpointer
+    component: BecomesStation
+    targetName: the station

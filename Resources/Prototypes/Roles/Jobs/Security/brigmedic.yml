@@ -2,10 +2,13 @@
   id: Brigmedic
   name: job-name-brigmedic
   description: job-description-brigmedic
-  playTimeTracker: JobSeniorOfficer
+  playTimeTracker: JobBrigmedic
   requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 10800 # 3 hrs
     - !type:OverallPlaytimeRequirement
-      time: 1400
+      time: 21600 # 6 hrs
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -16,3 +19,24 @@
   - Brig
   - Maintenance
   - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: BrigmedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+    outerClothing: ClothingOuterCoatAMG
+    back: ClothingBackpackBrigmedicFilled
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesNitrile
+    eyes: ClothingEyesHudMedical
+    head: ClothingHeadHatBeretSecurity
+    id: BrigmedicPDA
+    ears: ClothingHeadsetBrigmedic
+    belt: ClothingBeltMedicalFilled
+    pocket1: WeaponPistolMk58Nonlethal # Frontier
+  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
+  satchel: ClothingBackpackSatchelBrigmedicFilled
+  duffelbag: ClothingBackpackDuffelBrigmedicFilled
