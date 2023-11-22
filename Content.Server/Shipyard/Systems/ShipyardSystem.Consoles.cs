@@ -243,12 +243,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
     {
-        // The logic behind this is: if a name part fits the requirements, it is the part. Otherwise it's not.
-        // If there's just 1 part, it's the name. If 2, it's name+suffix. Otherwise it's prefix+name+suffix.
+        // The logic behind this is: if a name part fits the requirements, it is the required part. Otherwise it's the name.
         // This may cause problems but ONLY when renaming a ship. It will still display properly regardless of this.
         var nameParts = name.Split(' ');
 
-        var hasPrefix = nameParts.Length > 2 && nameParts.First().Length < MaxPrefixLength;
+        // Prefix parsing is disabled until further notice.
+        var hasPrefix = false; //nameParts.Length > 2 && nameParts.First().Length < MaxPrefixLength;
         var hasSuffix = nameParts.Length > 1 && nameParts.Last().Length < MaxSuffixLength && nameParts.Last().Contains('-');
 
         deed.ShuttleNamePrefix = hasPrefix ? nameParts.First() : null;
