@@ -16,9 +16,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
-using FastAccessors;
 using Robust.Shared.Containers;
-using Robust.Shared.Map.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
