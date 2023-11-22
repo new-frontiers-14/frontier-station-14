@@ -69,51 +69,51 @@ public sealed class StinkyTraitSystem : EntitySystem
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<StinkyTraitComponent>();
-        while (query.MoveNext(out var uid, out var stinky))
+        while (query.MoveNext(out var uid, out var component))
         {
-            stinky.NextIncidentTime -= frameTime;
+            component.NextIncidentTime -= frameTime;
 
-            if (stinky.NextIncidentTime >= 0)
+            if (component.NextIncidentTime >= 0)
                 continue;
 
-            stinky.IsActive = true;
+            component.IsActive = true;
             if (_inventory.TryGetSlotEntity(uid, "neck", out var neck)) // Not yet added to any item as neck
-                stinky.IsActive = OnAirFreshener(neck);
+                component.IsActive = OnAirFreshener(neck);
             if (_inventory.TryGetSlotEntity(uid, "pocket1", out var pocket1))
-                stinky.IsActive = OnAirFreshener(pocket1);
+                component.IsActive = OnAirFreshener(pocket1);
             if (_inventory.TryGetSlotEntity(uid, "pocket2", out var pocket2))
-                stinky.IsActive = OnAirFreshener(pocket2);
+                component.IsActive = OnAirFreshener(pocket2);
             if (_inventory.TryGetSlotEntity(uid, "pocket3", out var pocket3))
-                stinky.IsActive = OnAirFreshener(pocket3);
+                component.IsActive = OnAirFreshener(pocket3);
             if (_inventory.TryGetSlotEntity(uid, "pocket4", out var pocket4))
-                stinky.IsActive = OnAirFreshener(pocket4);
+                component.IsActive = OnAirFreshener(pocket4);
 
-            if (!stinky.IsActive)
+            if (!component.IsActive)
                 continue;
 
             // Set the new time.
-            stinky.NextIncidentTime +=
-                _random.NextFloat(stinky.TimeBetweenIncidents.X, stinky.TimeBetweenIncidents.Y);
+            component.NextIncidentTime +=
+                _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
 
-            var duration = _random.NextFloat(stinky.DurationOfIncident.X, stinky.DurationOfIncident.Y);
+            var duration = _random.NextFloat(component.DurationOfIncident.X, component.DurationOfIncident.Y);
 
             // Make sure the stink time doesn't cut into the time to next pulse.
-            stinky.NextIncidentTime += duration;
+            component.NextIncidentTime += duration;
 
-            if (stinky.SpreadGas)
+            if (component.SpreadGas)
             {
+                if (component.SpawnGas == null)
+                    continue;
+
                 if (!TryComp<TransformComponent>(uid, out var xform))
                     continue;
 
                 if (!TryComp<PhysicsComponent>(uid, out var physics))
                     continue;
 
-                if (stinky.SpawnGas == null)
-                    continue;
-
                 var indices = _transform.GetGridOrMapTilePosition(uid);
                 var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
-                tileMix?.AdjustMoles(stinky.SpawnGas.Value, 0.01f * physics.FixturesMass);
+                tileMix?.AdjustMoles(component.SpawnGas.Value, 0.01f * physics.FixturesMass);
             }
 
             var othersMessage = Loc.GetString("trait-stinky-in-range", ("target", uid));
