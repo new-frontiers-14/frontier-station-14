@@ -197,9 +197,15 @@ namespace Content.Server.Mail
 
             if (!HasComp<EmaggedComponent>(uid))
             {
-                if (idCard.FullName != component.Recipient || idCard.JobTitle != component.RecipientJob)
+                //if (idCard.FullName != component.Recipient || idCard.JobTitle != component.RecipientJob)
+                //{
+                //    _popupSystem.PopupEntity(Loc.GetString("mail-recipient-mismatch"), uid, args.User);
+                //    return;
+                //}
+
+                if (idCard.FullName != component.Recipient) // Frontier - Only match the name
                 {
-                    _popupSystem.PopupEntity(Loc.GetString("mail-recipient-mismatch"), uid, args.User);
+                    _popupSystem.PopupEntity(Loc.GetString("mail-recipient-mismatch-name"), uid, args.User);
                     return;
                 }
 
