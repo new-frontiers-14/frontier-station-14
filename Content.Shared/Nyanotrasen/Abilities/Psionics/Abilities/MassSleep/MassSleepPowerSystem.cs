@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
@@ -59,5 +59,5 @@ namespace Content.Shared.Abilities.Psionics
         }
     }
 
-    public sealed class MassSleepPowerActionEvent : WorldTargetActionEvent {}
+    public sealed partial class MassSleepPowerActionEvent : WorldTargetActionEvent {}
 }

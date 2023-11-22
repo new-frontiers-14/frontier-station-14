@@ -1,10 +1,10 @@
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Abilities.Psionics
 {
     [RegisterComponent, NetworkedComponent]
-    public sealed class PsionicComponent : Component
+    public sealed partial class PsionicComponent : Component
     {
         public ActionType? PsionicAbility = null;
 

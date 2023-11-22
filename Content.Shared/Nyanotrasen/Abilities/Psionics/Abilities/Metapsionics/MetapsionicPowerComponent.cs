@@ -1,9 +1,9 @@
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 
 namespace Content.Shared.Abilities.Psionics
 {
     [RegisterComponent]
-    public sealed class MetapsionicPowerComponent : Component
+    public sealed partial class MetapsionicPowerComponent : Component
     {
         [DataField("range")]
         public float Range = 5f;

@@ -1,9 +1,9 @@
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
 
 namespace Content.Shared.Abilities.Psionics
 {
     [RegisterComponent]
-    public sealed class MindSwapPowerComponent : Component
+    public sealed partial class MindSwapPowerComponent : Component
     {
         public EntityTargetAction? MindSwapPowerAction = null;
     }
