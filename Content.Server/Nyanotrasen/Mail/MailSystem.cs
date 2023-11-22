@@ -10,28 +10,34 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Fluids.Components;
+using Content.Server.Item;
 using Content.Server.Mail.Components;
 using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
+using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Coordinates;
 using Content.Server.StationRecords.Systems;
+using Content.Server.Spawners.EntitySystems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Coordinates;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Emag.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Coordinates;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -58,6 +64,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly CargoSystem _cargoSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly ChatSystem _chatSystem = default!;
+        [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
@@ -67,6 +74,9 @@ namespace Content.Server.Mail
         [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
         [Dependency] private readonly MindSystem _mind = default!;
         [Dependency] private readonly MetaDataSystem _meta = default!;
+        [Dependency] private readonly ItemSystem _itemSystem = default!;
+        [Dependency] private readonly MindSystem _mindSystem = default!;
+        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -75,6 +85,8 @@ namespace Content.Server.Mail
             base.Initialize();
 
             _sawmill = Logger.GetSawmill("mail");
+
+            SubscribeLocalEvent<PlayerSpawningEvent>(OnSpawnPlayer, after: new[] { typeof(SpawnPointSystem) });
 
             SubscribeLocalEvent<MailComponent, ComponentRemove>(OnRemove);
             SubscribeLocalEvent<MailComponent, UseInHandEvent>(OnUseInHand);
@@ -103,6 +115,21 @@ namespace Content.Server.Mail
 
                 SpawnMail(mailTeleporter.Owner, mailTeleporter);
             }
+        }
+
+        /// <summary>
+        /// Dynamically add the MailReceiver component to appropriate entities.
+        /// </summary>
+        private void OnSpawnPlayer(PlayerSpawningEvent args)
+        {
+            if (args.SpawnResult == null ||
+                args.Job == null ||
+                args.Station is not { } station)
+            {
+                return;
+            }
+
+            AddComp<MailReceiverComponent>(args.SpawnResult.Value);
         }
 
         private void OnRemove(EntityUid uid, MailComponent component, ComponentRemove args)
@@ -203,12 +230,14 @@ namespace Content.Server.Mail
             _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User);
 
             component.IsProfitable = false;
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-            while (query.MoveNext(out var oUid, out var oComp))
-            {
-                // only our main station will have an account anyway so I guess we are just going to add it this way shrug.
 
-                _cargoSystem.UpdateBankAccount(oUid, oComp, component.Bounty);
+            var query = EntityQueryEnumerator<StationBankAccountComponent>();
+            while (query.MoveNext(out var station, out var account))
+            {
+                if (_stationSystem.GetOwningStation(uid) != station)
+                    continue;
+
+                _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
                 return;
             }
         }
@@ -252,8 +281,8 @@ namespace Content.Server.Mail
             if (!component.IsProfitable)
                 return;
 
-            //_chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false); # Dont show message.
-            //_audioSystem.PlayPvs(component.PenaltySound, uid); # Dont play sound.
+            //_chatSystem.TrySendInGameICMessage(uid, Loc.GetString(localizationString, ("credits", component.Penalty)), InGameICChatType.Speak, false); // Frontier - Dont show message.
+            //_audioSystem.PlayPvs(component.PenaltySound, uid); // Frontier - Dont show message. // Frontier - Dont play sound.
 
             component.IsProfitable = false;
 
@@ -261,11 +290,12 @@ namespace Content.Server.Mail
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriorityInactive, true);
 
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
-            while (query.MoveNext(out var oUid, out var oComp))
+            while (query.MoveNext(out var station, out var account))
             {
-                // only our main station will have an account anyway so I guess we are just going to add it this way shrug.
+                //if (_stationSystem.GetOwningStation(uid) != station) // No need for this test
+                //    continue;
 
-                //_cargoSystem.UpdateBankAccount(oUid, oComp, component.Penalty); # Dont remove money.
+                //_cargoSystem.UpdateBankAccount(station, account, component.Penalty); // Frontier - Dont remove money.
                 return;
             }
         }
@@ -275,8 +305,8 @@ namespace Content.Server.Mail
             if (component.IsLocked)
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
-           // if (component.IsEnabled)
-           //     OpenMail(uid, component); # Dont open the mail on destruction.
+            // if (component.IsEnabled)
+            //     OpenMail(uid, component); // Dont open the mail on destruction. // Frontier
 
             UpdateAntiTamperVisuals(uid, false);
         }
@@ -330,7 +360,8 @@ namespace Content.Server.Mail
 
             // It can be spilled easily and has something to spill.
             if (HasComp<SpillableComponent>(uid)
-                && TryComp(uid, out DrinkComponent? drinkComponent)
+                && TryComp<OpenableComponent>(uid, out var openable)
+                && !_openable.IsClosed(uid, null, openable)
                 && _solutionContainerSystem.PercentFull(uid) > 0)
                 return true;
 
@@ -435,7 +466,8 @@ namespace Content.Server.Mail
 
             mailComp.RecipientJob = recipient.Job;
             mailComp.Recipient = recipient.Name;
-            mailComp.RecipientStation = recipient.Ship;
+            mailComp.RecipientStation = recipient.Ship; // Frontier
+
             if (mailComp.IsFragile)
             {
                 mailComp.Bounty += component.FragileBonus;
@@ -526,9 +558,6 @@ namespace Content.Server.Mail
                 && idCard.Comp.FullName != null
                 && idCard.Comp.JobTitle != null)
             {
-                HashSet<String> accessTags = access.Tags;
-
-                var mayReceivePriorityMail = true;
                 var stationUid = _stationSystem.GetOwningStation(receiver.Owner);
                 var stationName = string.Empty;
                 if (stationUid is EntityUid station
@@ -549,6 +578,10 @@ namespace Content.Server.Mail
                     recipient = null;
                     return false;
                 }
+
+                var accessTags = access.Tags;
+
+                var mayReceivePriorityMail = !(_mindSystem.GetMind(receiver.Owner) == null);
 
                 recipient = new MailRecipient(idCard.Comp.FullName,
                     idCard.Comp.JobTitle,
@@ -571,12 +604,14 @@ namespace Content.Server.Mail
         {
             List<MailRecipient> candidateList = new();
             var mailLocation = Transform(uid);
+
             foreach (var receiver in EntityQuery<MailReceiverComponent>())
             {
-                // mail is mapwide now, dont need to check if they are on the same station
+                var location = Transform(receiver.Owner); // mail is mapwide now, dont need to check if they are on the same station
+
+                //if (location.MapID != mailLocation.MapID)
                 //if (_stationSystem.GetOwningStation(receiver.Owner) != _stationSystem.GetOwningStation(uid))
-                //    continue;
-                var location = Transform(receiver.Owner);
+                //continue;
 
                 if (location.MapID != mailLocation.MapID)
                     continue;
@@ -690,6 +725,7 @@ namespace Content.Server.Mail
                 _handsSystem.PickupOrDrop(user, entity);
             }
 
+            _itemSystem.SetSize(uid, 1);
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
             component.IsEnabled = false;
@@ -716,7 +752,7 @@ namespace Content.Server.Mail
         public bool MayReceivePriorityMail;
         public string Ship;
 
-        public MailRecipient(string name, string job, string jobIcon, HashSet<String> accessTags, bool mayReceivePriorityMail)
+        public MailRecipient(string name, string job, string jobIcon, HashSet<String> accessTags, bool mayReceivePriorityMail, string ship)
         {
             Name = name;
             Job = job;
