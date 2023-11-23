@@ -11,6 +11,8 @@ using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
@@ -37,6 +39,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly SharedBuckleSystem _buckle = default!;
 	[Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 	[Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+	[Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -97,12 +100,20 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 							var worldRot = transformComponent.WorldRotation+rotOffset;
 							var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
 							
-							EntityCoordinates targetCordinates;
-							targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+							var _gridUid = transformComponent.GridUid;
+							if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid){
 							
-							_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-							if(component.IsPowerRequiredToFire == true)
-							battery.CurrentCharge -= component.PowerUseActive;
+								EntityCoordinates targetCordinates;
+								targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+								
+								_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+								if(component.IsPowerRequiredToFire == true)
+								battery.CurrentCharge -= component.PowerUseActive;
+								
+
+								var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
+								_physicsSystem.SetLinearVelocity(gridUid, new Vector2(oldLinearVelocity.X + 1,oldLinearVelocity.Y + 1));
+							}
 						}
 					}
 				}
