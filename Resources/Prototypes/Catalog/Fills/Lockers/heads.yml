@@ -111,19 +111,19 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingNeckCloakHop
-      - id: ClothingHeadHatHopcap
+#      - id: ClothingNeckCloakHop # Frontier - bloat
+#      - id: ClothingHeadHatHopcap # Frontier - bloat
       - id: HoPIDCard
 #      - id: ClothingHeadsetCommand # Frontier
       - id: ClothingHeadsetCentCom # Frontier
-      - id: BoxPDA
-      - id: BoxID
-      - id: BoxHeadset
+#      - id: BoxPDA # Frontier - bloat
+#      - id: BoxID # Frontier - bloat
+#      - id: BoxHeadset # Frontier - bloat
       - id: BoxHandcuff # Frontier
       - id: IDComputerCircuitboard
       - id: CommsComputerCircuitboard # Frontier
-      - id: WeaponDisabler
-      - id: ClothingOuterWinterHoP
+#      - id: WeaponDisabler # Frontier - bloat
+#      - id: ClothingOuterWinterHoP # Frontier - bloat
       - id: CigarGoldCase
         prob: 0.25
         # Fuck the HoP they don't deserve fucking cigars.
@@ -131,8 +131,8 @@
 #      - id: DoorRemoteService # Frontier
 #      - id: ClothingNeckGoldmedal # Frontier
 #      - id: RubberStampHop # Frontier
-      - id: BoxEncryptionKeyPassenger
-      - id: BoxEncryptionKeyService
+#      - id: BoxEncryptionKeyPassenger # Frontier - bloat
+#      - id: BoxEncryptionKeyService # Frontier - bloat
       - id: ClothingBackpackIan
 #        prob: 0.5 # Frontier
 #      - id: AccessConfigurator # Frontier
@@ -208,27 +208,24 @@
   components:
   - type: StorageFill
     contents:
-      - id: MedkitFilled
-      - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingHeadsetAltMedical
-      - id: ClothingCloakCmo
-      - id: ClothingBackpackDuffelSurgeryFilled
-      - id: ClothingOuterCoatLabCmo
-      - id: ClothingMaskSterile
-      - id: ClothingHeadHatBeretCmo
+#      - id: MedkitFilled # Frontier - bloat
+#      - id: ClothingHandsGlovesNitrile # Frontier - bloat
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingHeadsetAltMedical # Frontier - bloat
+#      - id: ClothingCloakCmo # Frontier - bloat
+#      - id: ClothingBackpackDuffelSurgeryFilled # Frontier - bloat
+#      - id: ClothingOuterCoatLabCmo # Frontier - bloat
+#      - id: ClothingMaskSterile # Frontier - bloat
+#      - id: ClothingHeadHatBeretCmo # Frontier - bloat
       - id: ClothingOuterHardsuitMedical
       - id: Hypospray
       - id: HandheldCrewMonitor
 #      - id: DoorRemoteMedical # Frontier
-      - id: RubberStampCMO
-      - id: MedicalTechFabCircuitboard
+#      - id: RubberStampCMO # Frontier - bloat
+#      - id: MedicalTechFabCircuitboard # Frontier - bloat
       - id: MaterialBiomass
-        amount: 3
-      - id: BoxEncryptionKeyMedical
-      - id: HandLabeler # Frontier
-      - id: ClothingBeltMedical # Frontier
-      - id: ClothingNeckMantleCMO # Frontier
+        amount: 1 # Frontier - 3<1
+#      - id: BoxEncryptionKeyMedical # Frontier - bloat
       - id: NitrogenTankFilled # Frontier
       - id: OxygenTankFilled # Frontier
       - id: ClothingMaskBreathMedical # Frontier
@@ -242,29 +239,25 @@
   components:
   - type: StorageFill
     contents:
-      - id: MedkitFilled
-      - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingHeadsetAltMedical
-      - id: ClothingCloakCmo
-      - id: ClothingBackpackDuffelSurgeryFilled
-      - id: ClothingOuterCoatLabCmo
-      - id: ClothingMaskSterile
-      - id: ClothingHeadHatBeretCmo
-      - id: DiagnoserMachineCircuitboard
-      - id: VaccinatorMachineCircuitboard
+#      - id: MedkitFilled # Frontier - bloat
+#      - id: ClothingHandsGlovesNitrile # Frontier - bloat
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingHeadsetAltMedical # Frontier - bloat
+#      - id: ClothingCloakCmo # Frontier - bloat
+#      - id: ClothingBackpackDuffelSurgeryFilled # Frontier - bloat
+#      - id: ClothingOuterCoatLabCmo # Frontier - bloat
+#      - id: ClothingMaskSterile # Frontier - bloat
+#      - id: ClothingHeadHatBeretCmo # Frontier - bloat
+#      - id: DiagnoserMachineCircuitboard # Frontier - bloat
+#      - id: VaccinatorMachineCircuitboard # Frontier - bloat
       - id: Hypospray
       - id: HandheldCrewMonitor
 #      - id: DoorRemoteMedical # Frontier
-      - id: RubberStampCMO
-      - id: MedicalTechFabCircuitboard
+#      - id: RubberStampCMO # Frontier - bloat
+#      - id: MedicalTechFabCircuitboard # Frontier - bloat
       - id: MaterialBiomass
-        amount: 3
-      - id: BoxEncryptionKeyMedical
-      - id: HandLabeler # Frontier
-      - id: ClothingBeltMedical # Frontier
-      - id: ClothingNeckMantleCMO # Frontier
-      - id: ClothingOuterWinterCMO # Frontier
+        amount: 1 # Frontier - 3<1
+#      - id: BoxEncryptionKeyMedical # Frontier - bloat
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
