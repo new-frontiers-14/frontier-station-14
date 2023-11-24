@@ -14,6 +14,25 @@ using Content.Shared.Stacks;
 [RegisterComponent]
 public sealed partial class SpaceArtilleryComponent : Component
 {
+	[ViewVariables(VVAccess.ReadWrite), DataField("coolantType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
+    public string CoolantType = "Coolant";
+	
+    public static string CoolantSlotSlotId = "SpaceArtillery-CoolantSlot";
+
+    [DataField("SpaceArtillery-CoolantSlot")]
+    public ItemSlot CoolantSlot = new();
+	
+	/// <summary>
+	/// Whether the space artillery need coolant to fire on top of ammunition or power
+	/// </summary>
+    [DataField("isCoolantRequiredForFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsCoolantRequiredForFire = false;
+	
+	/// <summary>
+    /// Stored amount of coolant
+    /// </summary>
+    [DataField("coolantStored"), ViewVariables(VVAccess.ReadWrite)]
+    public int CoolantStored = 0;
+	
 	/// <summary>
 	/// Whether the space artillery's safety is enabled or not
 	/// </summary>
@@ -89,22 +108,4 @@ public sealed partial class SpaceArtilleryComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? FireActionEntity;
 	
-	[ViewVariables(VVAccess.ReadWrite), DataField("coolantType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
-    public string CoolantType = "Coolant";
-	
-    public static string CoolantSlotSlotId = "SpaceArtillery-CoolantSlot";
-
-    [DataField("SpaceArtillery-CoolantSlot")]
-    public ItemSlot CoolantSlot = new();
-	
-	/// <summary>
-	/// Whether the space artillery need coolant to fire on top of ammunition or power
-	/// </summary>
-    [DataField("isCoolantRequiredForFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsCoolantRequiredForFire = false;
-	
-	/// <summary>
-    /// Stored amount of coolant
-    /// </summary>
-    [DataField("coolantStored"), ViewVariables(VVAccess.ReadWrite)]
-    public int CoolantStored = 0;
 }

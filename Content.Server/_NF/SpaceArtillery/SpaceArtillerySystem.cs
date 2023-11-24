@@ -110,9 +110,21 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 								if(component.IsPowerRequiredToFire == true)
 								battery.CurrentCharge -= component.PowerUseActive;
 								
-
+								//TODO Add calculation where velocity gained is based on mass
+								var gridMass = gridPhysicsComponent.FixturesMass;
 								var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
-								_physicsSystem.SetLinearVelocity(gridUid, new Vector2(oldLinearVelocity.X + 1,oldLinearVelocity.Y + 1));
+								var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
+								
+								if(transformComponent.Anchored == true)
+								{
+									_physicsSystem.SetLinearVelocity(gridUid, new Vector2(oldLinearVelocity.X + (30f/(gridMass*0.1f)), oldLinearVelocity.Y + (30f/(gridMass*0.1f))));
+									_physicsSystem.SetAngularVelocity(gridUid, oldAngularVelocity + (10f/(gridMass*0.1f)));
+								} 
+								else
+								{ //TODO, get velocity for the weapon itself separate from shuttle
+									_physicsSystem.SetLinearVelocity(uid, new Vector2(oldLinearVelocity.X + 1, oldLinearVelocity.Y + 1));
+									_physicsSystem.SetAngularVelocity(uid, oldAngularVelocity + 1);
+								}
 							}
 						}
 					}

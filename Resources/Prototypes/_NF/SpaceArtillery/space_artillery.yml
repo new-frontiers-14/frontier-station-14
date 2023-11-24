@@ -471,9 +471,16 @@
     anchored: true
   - type: Sprite
     sprite: _NF/Objects/SpaceArtillery/mining_laser.rsi
+    granularLayersRendering: true
     layers:
-    - state: mining_laser
+    - state: capacitor
+      renderingStrategy: SnapToCardinals
+    - state: chair
+      renderingStrategy: SnapToCardinals
+    - state: turret
+      renderingStrategy: Default
   - type: Anchorable
+    delay: 9999
   - type: Pullable
   - type: Rotatable
     rotateWhilePulling: false
