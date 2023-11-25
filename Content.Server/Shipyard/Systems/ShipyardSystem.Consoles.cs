@@ -31,6 +31,7 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -60,9 +61,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private void OnPurchaseMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
     {
         if (args.Session.AttachedEntity is not { Valid : true } player)
-        {
             return;
-        }
 
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid : true } targetId)
         {
@@ -175,6 +174,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         newDeed.ShuttleName = name;
         newDeed.ShuttleOwner = player;
 
+        var newDeed2 = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
+        newDeed2.ShuttleUid = shuttle.Owner;
+        newDeed2.ShuttleName = name;
+        newDeed2.ShuttleOwner = player;
+
         var channel = component.ShipyardChannel;
 
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
@@ -220,7 +224,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
 
-		int sellValue = 0;
+        int sellValue = 0;
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
@@ -244,9 +248,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
 
         if (args.Session.AttachedEntity is not { Valid: true } player)
-        {
             return;
-        }
 
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
         {
@@ -338,17 +340,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
         if (args.Session.AttachedEntity is not { Valid: true } player)
-        {
             return;
-        }
 
         //      mayhaps re-enable this later for HoS/SA
         //        var station = _station.GetOwningStation(uid);
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
-        {
             return;
-        }
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
         int sellValue = 0;
@@ -416,21 +414,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
-        {
             return;
-        }
+
         var shipyardUi = _ui.GetUi(uid, uiComp.Key);
         var uiUser = shipyardUi.SubscribedSessions.FirstOrDefault();
 
         if (uiUser?.AttachedEntity is not { Valid: true } player)
-        {
             return;
-        }
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
-        {
             return;
-        }
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
         int sellValue = 0;
@@ -475,5 +468,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             ((byte)uiKey));
 
         _ui.TrySetUiState(uid, uiKey, newState);
+    }
+
+    private void OnInitDeedSpawner(EntityUid uid, ShuttleDeedSpawnerComponent component, MapInitEvent args)
+    {
+        //if (!TryComp<IdCardComponent>(uid, out var idCard))
+        //    return;
+
+        //if (!TryComp<ShuttleComponent>(shuttleUid, out var shuttle))
+        //    return;
+
+        var shuttle = _station.GetOwningStation(uid);
+        if (!TryComp<ShuttleDeedComponent>(shuttle, out var shuttleDeed))
+            return;
+
+        //if (shuttle.Owner == null)
+        //    return;
+
+        var newDeed = EnsureComp<ShuttleDeedComponent>(uid);
+        newDeed.ShuttleUid = shuttleDeed.ShuttleUid;
+        newDeed.ShuttleName = shuttleDeed.ShuttleName;
+        newDeed.ShuttleOwner = shuttleDeed.ShuttleOwner;
     }
 }
