@@ -232,9 +232,6 @@ namespace Content.Server.Mail
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
             while (query.MoveNext(out var station, out var account))
             {
-                if (_stationSystem.GetOwningStation(uid) != station)
-                    continue;
-
                 _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
                 return;
             }

@@ -30,7 +30,6 @@ namespace Content.Client.Mail
     public sealed class MailJobVisualizerSystem : VisualizerSystem<MailComponent>
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SpriteSystem _stateManager = default!;
         [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
         protected override void OnAppearanceChange(EntityUid uid, MailComponent component, ref AppearanceChangeEvent args)
