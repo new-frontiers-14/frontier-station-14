@@ -15,5 +15,5 @@ public sealed partial class ShuttleDeedComponent : Component
     public string? ShuttleName = "Unknown";
 
     [ViewVariables(VVAccess.ReadWrite), DataField("shuttleOwner")]
-    public EntityUid? ShuttleOwner = "Unknown";
+    public EntityUid? ShuttleOwner = null;
 }
