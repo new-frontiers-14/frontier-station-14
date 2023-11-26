@@ -31,6 +31,7 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
+using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -172,7 +173,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var newDeed = EnsureComp<ShuttleDeedComponent>(targetId);
         newDeed.ShuttleUid = shuttle.Owner;
-        newDeed.ShuttleName = name;
+        TryParseShuttleName(newDeed, name);
         newDeed.ShuttleOwner = player;
 
         var channel = component.ShipyardChannel;
@@ -238,6 +239,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, name, sellValue, true, (ShipyardConsoleUiKey) args.UiKey);
+    }
+
+    private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
+    {
+        // The logic behind this is: if a name part fits the requirements, it is the required part. Otherwise it's the name.
+        // This may cause problems but ONLY when renaming a ship. It will still display properly regardless of this.
+        var nameParts = name.Split(' ');
+
+        var hasSuffix = nameParts.Length > 1 && nameParts.Last().Length < MaxSuffixLength && nameParts.Last().Contains('-');
+        deed.ShuttleNameSuffix = hasSuffix ? nameParts.Last() : null;
+        deed.ShuttleName = String.Join(" ", nameParts.SkipLast(hasSuffix ? 1 : 0));
     }
 
     public void OnSellMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsoleSellMessage args)
@@ -323,13 +335,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             bill -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
+            SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
 
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
 
-        SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, channel, player, false);
+        SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), channel, player, false);
 
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
         RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
@@ -361,7 +373,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
         }
 
-        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
+        var fullName = deed != null ? GetFullName(deed) : null;
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void ConsolePopup(ICommonSession session, string text)
@@ -443,7 +456,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
         }
 
-        RefreshState(uid, bank.Balance, true, deed?.ShuttleName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
+        var fullName = deed != null ? GetFullName(deed) : null;
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
     }
 
     public bool FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)
