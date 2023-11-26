@@ -489,7 +489,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle)) // Test if the grid a shuttle
             return;
 
-        if (!TryComp<StationDataComponent>(xform.GridUid.Value, out var stationData)) // Test if the grid is a shuttle with jobs
+        if (!TryComp<StationJobsComponent>(xform.GridUid.Value, out var shuttleJobs)) // Test if the grid is a shuttle with jobs
             return;
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
