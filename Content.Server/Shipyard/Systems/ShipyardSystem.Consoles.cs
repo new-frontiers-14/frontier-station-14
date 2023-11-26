@@ -170,15 +170,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
 
-        var newDeed = EnsureComp<ShuttleDeedComponent>(targetId);
-        newDeed.ShuttleUid = shuttle.Owner;
-        newDeed.ShuttleName = name;
-        newDeed.ShuttleOwner = player;
+        var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
+        deedID.ShuttleUid = shuttle.Owner;
+        deedID.ShuttleName = name;
+        deedID.ShuttleOwner = player;
 
-        var newDeed2 = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
-        newDeed2.ShuttleUid = shuttle.Owner;
-        newDeed2.ShuttleName = name;
-        newDeed2.ShuttleOwner = player;
+        var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
+        deedShuttle.ShuttleUid = shuttle.Owner;
+        deedShuttle.ShuttleName = name;
+        deedShuttle.ShuttleOwner = player;
 
         var channel = component.ShipyardChannel;
 
