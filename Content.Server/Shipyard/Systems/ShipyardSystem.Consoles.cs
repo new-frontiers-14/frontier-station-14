@@ -490,8 +490,5 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         newDeed.ShuttleUid = shuttleDeed.ShuttleUid;
         newDeed.ShuttleName = shuttleDeed.ShuttleName;
         newDeed.ShuttleOwner = shuttleDeed.ShuttleOwner;
-
-        //if (shuttle.Owner == null)
-        //    return;
     }
 }
