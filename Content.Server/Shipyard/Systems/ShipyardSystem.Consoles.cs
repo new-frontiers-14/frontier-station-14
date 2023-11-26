@@ -476,17 +476,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
     {
-        if (!TryComp<IdCardComponent>(uid, out var idCard))
+        if (!TryComp<IdCardComponent>(uid, out var idCard)) // Test if the deed on an ID
             return;
 
-        var xform = Transform(uid);
+        var xform = Transform(uid); // Get the grid the card is on
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle))
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed)) // Test if the grid is a shuttle with deed
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed))
+        if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle)) // Test if the grid a shuttle
+            return;
+
+        if (!TryComp<StationDataComponent>(xform.GridUid.Value, out var stationData)) // Test if the grid is a shuttle with jobs
             return;
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
