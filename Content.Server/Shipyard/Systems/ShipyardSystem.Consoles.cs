@@ -493,6 +493,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
-        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleOwner, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner);
+        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner);
     }
 }
