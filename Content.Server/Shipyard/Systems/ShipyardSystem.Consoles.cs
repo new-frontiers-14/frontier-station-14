@@ -171,14 +171,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
-        deedID.ShuttleUid = shuttle.Owner;
-        deedID.ShuttleName = name;
-        deedID.ShuttleOwner = player;
+        AssignShuttleDeedProperties(deedID, shuttle.Owner, name, player);
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
-        deedShuttle.ShuttleUid = shuttle.Owner;
-        deedShuttle.ShuttleName = name;
-        deedShuttle.ShuttleOwner = player;
+        AssignShuttleDeedProperties(deedShuttle, shuttle.Owner, name, player);
 
         var channel = component.ShipyardChannel;
 
@@ -471,6 +467,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _ui.TrySetUiState(uid, uiKey, newState);
     }
 
+    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid shuttleUid, string shuttleName, EntityUid shuttleOwner)
+    {
+        deed.ShuttleUid = shuttleUid;
+        deed.ShuttleName = shuttleName;
+        deed.ShuttleOwner = shuttleOwner;
+    }
+
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
     {
         if (!TryComp<IdCardComponent>(uid, out var idCard))
@@ -486,9 +489,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed))
             return;
 
-        var newDeed = EnsureComp<ShuttleDeedComponent>(uid);
-        newDeed.ShuttleUid = shuttleDeed.ShuttleUid;
-        newDeed.ShuttleName = shuttleDeed.ShuttleName;
-        newDeed.ShuttleOwner = shuttleDeed.ShuttleOwner;
+        var deedID = EnsureComp<ShuttleDeedComponent>(uid);
+        AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleOwner, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner);
     }
 }
