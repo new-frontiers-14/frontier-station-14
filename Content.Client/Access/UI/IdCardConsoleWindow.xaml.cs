@@ -54,7 +54,6 @@ namespace Content.Client.Access.UI
             };
             JobTitleSaveButton.OnPressed += _ => SubmitData();
 
-            ShipPrefixLineEdit.OnTextChanged += _ => EnsureValidShuttleName();
             ShipNameLineEdit.OnTextChanged += _ => EnsureValidShuttleName();
             ShipSuffixLineEdit.OnTextChanged += _ => EnsureValidShuttleName();
             ShipNameSaveButton.OnPressed += _ => SubmitShuttleData();
@@ -194,21 +193,20 @@ namespace Content.Client.Access.UI
             // Frontier - shuttle renaming support
             ShipNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
 
-            ShipNameLineEdit.Editable = ShipPrefixLineEdit.Editable = interfaceEnabled && state.HasOwnedShuttle;
+            ShipNameLineEdit.Editable = interfaceEnabled && state.HasOwnedShuttle;
             ShipSuffixLineEdit.Editable = false; // "Make sure you cannot change the suffix at all." - @dvir001, 2023.11.16
 
             if (interfaceEnabled && state.HasOwnedShuttle)
             {
-                var parts = state.TargetShuttleNameParts ?? new string?[] { null, null, null };
-                ShipPrefixLineEdit.Text = !interfaceEnabled ? string.Empty : parts[0] ?? string.Empty;
-                ShipNameLineEdit.Text = !interfaceEnabled ? string.Empty : parts[1] ?? string.Empty;
-                ShipSuffixLineEdit.Text = !interfaceEnabled ? string.Empty : parts[2] ?? string.Empty;
+                var parts = state.TargetShuttleNameParts ?? new string?[] { null, null };
+                ShipNameLineEdit.Text = !interfaceEnabled ? string.Empty : parts[0] ?? string.Empty;
+                ShipSuffixLineEdit.Text = !interfaceEnabled ? string.Empty : parts[1] ?? string.Empty;
 
                 ShipNameSaveButton.Disabled = !interfaceEnabled || !state.HasOwnedShuttle;
             }
             else
             {
-                ShipPrefixLineEdit.Text = ShipSuffixLineEdit.Text = string.Empty;
+                ShipSuffixLineEdit.Text = string.Empty;
                 ShipNameLineEdit.Text = !state.HasOwnedShuttle
                     ? Loc.GetString("id-card-console-window-shuttle-placeholder")
                     : string.Empty;
@@ -253,18 +251,12 @@ namespace Content.Client.Access.UI
         // </summary>
         private void EnsureValidShuttleName()
         {
-            var prefix = ShipPrefixLineEdit.Text;
             var name = ShipNameLineEdit.Text;
             var suffix = ShipSuffixLineEdit.Text;
 
             // We skip suffix validation because it's immutable and is ignored by the server
-            var valid = prefix.Length <= MaxPrefixLength
-                && !prefix.Contains(' ')
-                && name.Length <= MaxNameLength
+            var valid = name.Length <= MaxNameLength
                 && name.Trim().Length >= 3; // Arbitrary client-side number, should hopefully be long enough.
-                //&& suffix.Length <= MaxShuttleSuffixLength
-                //&& suffix.Contains('-')
-                //&& !suffix.Contains(' ')
 
             ShipNameSaveButton.Disabled = !_interfaceEnabled || !valid;
 
@@ -272,9 +264,8 @@ namespace Content.Client.Access.UI
             if (!ShipNameSaveButton.Disabled)
             {
                 var dirty = _lastShuttleName != null &&
-                    ((_lastShuttleName[0] ?? string.Empty) != prefix
-                    || (_lastShuttleName[1] ?? string.Empty) != name
-                    || (_lastShuttleName[2] ?? string.Empty) != suffix);
+                    ((_lastShuttleName[0] ?? string.Empty) != name
+                    || (_lastShuttleName[1] ?? string.Empty) != suffix);
 
                 ShipNameSaveButton.Disabled = !dirty;
             }
@@ -297,7 +288,6 @@ namespace Content.Client.Access.UI
         private void SubmitShuttleData()
         {
             _owner.SubmitShipData(
-                ShipPrefixLineEdit.Text,
                 ShipNameLineEdit.Text,
                 ShipSuffixLineEdit.Text);
         }

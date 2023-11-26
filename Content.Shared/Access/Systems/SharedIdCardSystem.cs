@@ -78,13 +78,11 @@ public abstract class SharedIdCardSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class WriteToShuttleDeedMessage : BoundUserInterfaceMessage
     {
-        public readonly string ShuttlePrefix;
         public readonly string ShuttleName;
         public readonly string ShuttleSuffix;
 
-        public WriteToShuttleDeedMessage(string shuttlePrefix, string shuttleName, string shuttleSuffix)
+        public WriteToShuttleDeedMessage(string shuttleName, string shuttleSuffix)
         {
-            ShuttlePrefix = shuttlePrefix;
             ShuttleName = shuttleName;
             ShuttleSuffix = shuttleSuffix;
         }

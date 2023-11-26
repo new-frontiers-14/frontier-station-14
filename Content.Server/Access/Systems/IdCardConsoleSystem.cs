@@ -61,7 +61,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
 
-        TryWriteToShuttleDeed(uid, args.ShuttlePrefix, args.ShuttleName, args.ShuttleSuffix, player, component);
+        TryWriteToShuttleDeed(uid, args.ShuttleName, args.ShuttleSuffix, player, component);
 
         UpdateUserInterface(uid, component, args);
     }
@@ -115,7 +115,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             var hasShuttle = false;
             if (EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var comp))
             {
-                shuttleNameParts = new[] { comp.ShuttleNamePrefix, comp.ShuttleName, comp.ShuttleNameSuffix };
+                shuttleNameParts = new[] { comp.ShuttleName, comp.ShuttleNameSuffix };
                 hasShuttle = true;
             }
 
@@ -206,7 +206,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     /// Writes data passed from the ui to the shuttle deed and the grid of shuttle.
     /// </summary>
     private void TryWriteToShuttleDeed(EntityUid uid,
-        string newShuttlePrefix,
         string newShuttleName,
         string newShuttleSuffix,
         EntityUid player,
@@ -221,21 +220,18 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (!EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var shuttleDeed))
             return;
 
-        // Ensure the name is valid and follows the convention - see IdCardConsoleWindow.EnsureValidShuttleName for explanation
-        var prefix = newShuttlePrefix;
+        // Ensure the name is valid and follows the convention
         var name = newShuttleName.Trim();
         // The suffix is ignored as per request
         // var suffix = newShuttleSuffix;
         var suffix = shuttleDeed.ShuttleNameSuffix;
 
-        if (prefix.Length > MaxPrefixLength)
-            prefix = prefix[..MaxPrefixLength];
         if (name.Length > MaxNameLength)
             name = name[..MaxNameLength];
         // if (suffix.Length > MaxSuffixLength)
         //     suffix = suffix[..MaxSuffixLength];
 
-        _shipyard.TryRenameShuttle(targetId, shuttleDeed, prefix, name, suffix);
+        _shipyard.TryRenameShuttle(targetId, shuttleDeed, name, suffix);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(player):player} has changed the shuttle name of {ToPrettyString(shuttleDeed.ShuttleUid):entity} to {ShipyardSystem.GetFullName(shuttleDeed)}");

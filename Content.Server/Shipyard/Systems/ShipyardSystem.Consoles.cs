@@ -247,13 +247,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // This may cause problems but ONLY when renaming a ship. It will still display properly regardless of this.
         var nameParts = name.Split(' ');
 
-        // Prefix parsing is disabled until further notice.
-        var hasPrefix = false; //nameParts.Length > 2 && nameParts.First().Length < MaxPrefixLength;
         var hasSuffix = nameParts.Length > 1 && nameParts.Last().Length < MaxSuffixLength && nameParts.Last().Contains('-');
-
-        deed.ShuttleNamePrefix = hasPrefix ? nameParts.First() : null;
         deed.ShuttleNameSuffix = hasSuffix ? nameParts.Last() : null;
-        deed.ShuttleName = String.Join(" ", nameParts.Skip(hasPrefix ? 1 : 0).SkipLast(hasSuffix ? 1 : 0));
+        deed.ShuttleName = String.Join(" ", nameParts.SkipLast(hasSuffix ? 1 : 0));
     }
 
     public void OnSellMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsoleSellMessage args)

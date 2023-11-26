@@ -257,7 +257,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     //
     // Null name parts are promptly ignored.
     // </summary>
-    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed, string? newPrefix, string? newName, string? newSuffix)
+    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed,  string? newName, string? newSuffix)
     {
         if (!Resolve(uid, ref shuttleDeed))
             return false;
@@ -266,7 +266,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (shuttle != null
              && _station.GetOwningStation(shuttle.Value) is { Valid : true } shuttleStation)
         {
-            shuttleDeed.ShuttleNamePrefix = newPrefix;
             shuttleDeed.ShuttleName = newName;
             shuttleDeed.ShuttleNameSuffix = newSuffix;
             Dirty(uid, shuttleDeed);
@@ -290,7 +289,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     public static string GetFullName(ShuttleDeedComponent comp)
     {
-        string?[] parts = { comp.ShuttleNamePrefix, comp.ShuttleName, comp.ShuttleNameSuffix };
+        string?[] parts = { comp.ShuttleName, comp.ShuttleNameSuffix };
         return string.Join(' ', parts.Where(it => it != null));
     }
 }

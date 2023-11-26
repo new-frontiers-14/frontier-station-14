@@ -6,15 +6,11 @@ namespace Content.Shared.Shipyard.Components;
 [RegisterComponent, Access(typeof(SharedShipyardSystem))]
 public sealed partial class ShuttleDeedComponent : Component
 {
-    public const int MaxPrefixLength = 6;
     public const int MaxNameLength = 30;
     public const int MaxSuffixLength = 3 + 1 + 4; // 3 digits, dash, up to 4 letters - should be enough
 
     [DataField("shuttleUid")]
     public EntityUid? ShuttleUid;
-
-    [DataField("shuttlePrefix")]
-    public string? ShuttleNamePrefix;
 
     [DataField("shuttleName")]
     public string? ShuttleName;
