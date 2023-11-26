@@ -467,7 +467,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _ui.TrySetUiState(uid, uiKey, newState);
     }
 
-    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid shuttleUid, string shuttleName, EntityUid shuttleOwner)
+    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, EntityUid? shuttleOwner)
     {
         deed.ShuttleUid = shuttleUid;
         deed.ShuttleName = shuttleName;
