@@ -8,12 +8,12 @@ namespace Content.Shared.Shipyard.Components;
 [RegisterComponent, Access(typeof(SharedShipyardSystem))]
 public sealed partial class ShuttleDeedComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("shuttleUid")]
+    [DataField("shuttleUid")]
     public EntityUid? ShuttleUid;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("shuttleName")]
+    [DataField("shuttleName")]
     public string? ShuttleName = "Unknown";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("shuttleOwner")]
+    [DataField("shuttleOwner")]
     public EntityUid? ShuttleOwner = null;
 }
