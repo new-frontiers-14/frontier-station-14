@@ -489,8 +489,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle)) // Test if the grid a shuttle
             return;
 
-        if (!TryComp<StationJobsComponent>(xform.GridUid.Value, out var shuttleJobs)) // Test if the grid is a shuttle with jobs
+        if (shuttle == null) // No shuttle?
             return;
+
+        //if (!TryComp<StationJobsComponent>(shuttle.Owner, out var shuttleJobs)) // Test if the grid is a shuttle with jobs TODO: Fix this.
+        //    return;
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
         AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner);
