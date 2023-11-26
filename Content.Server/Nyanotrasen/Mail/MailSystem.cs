@@ -120,7 +120,7 @@ namespace Content.Server.Mail
                 return;
             }
 
-            AddComp<MailReceiverComponent>(args.SpawnResult.Value);
+            EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
         }
 
         private void OnRemove(EntityUid uid, MailComponent component, ComponentRemove args)
