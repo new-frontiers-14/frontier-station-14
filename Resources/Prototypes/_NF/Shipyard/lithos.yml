@@ -1,0 +1,30 @@
+- type: vessel
+  id: Lithos
+  name: ICR Lithos
+  description: First medium-class ship made from scratch by ICR , expedition capable.
+  price: 72150
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Shuttles/lithos.yml
+  
+- type: gameMap
+  id: Lithos
+  mapName: 'ICR Lithos'
+  mapPath: /Maps/Shuttles/lithos.yml
+  minPlayers: 0
+  stations: 
+    Lithos:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lithos {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chef: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]        
