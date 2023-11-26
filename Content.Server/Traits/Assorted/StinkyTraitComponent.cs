@@ -18,14 +18,4 @@ public sealed partial class StinkyTraitComponent : Component
     public float NextIncidentTime;
 
     public bool IsActive = true;
-
-    /// <summary>
-    /// The duration of incidents, (min, max).
-    /// </summary>
-    [DataField("durationOfIncident")]
-    public Vector2 DurationOfIncident { get; private set; } = new(0.1f, 0.1f);
-
-    public bool SpreadGas = false;
-
-    public Gas? SpawnGas { get; set; } = null;
 }

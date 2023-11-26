@@ -88,33 +88,12 @@ public sealed class StinkyTraitSystem : EntitySystem
             if (_inventory.TryGetSlotEntity(uid, "pocket4", out var pocket4))
                 component.IsActive = OnAirFreshener(pocket4);
 
-            if (!component.IsActive)
-                continue;
-
             // Set the new time.
             component.NextIncidentTime +=
                 _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
 
-            var duration = _random.NextFloat(component.DurationOfIncident.X, component.DurationOfIncident.Y);
-
-            // Make sure the stink time doesn't cut into the time to next pulse.
-            component.NextIncidentTime += duration;
-
-            if (component.SpreadGas)
-            {
-                if (component.SpawnGas == null)
-                    continue;
-
-                if (!TryComp<TransformComponent>(uid, out var xform))
-                    continue;
-
-                if (!TryComp<PhysicsComponent>(uid, out var physics))
-                    continue;
-
-                var indices = _transform.GetGridOrMapTilePosition(uid);
-                var tileMix = _atmosphere.GetTileMixture(xform.GridUid, null, indices, true);
-                tileMix?.AdjustMoles(component.SpawnGas.Value, 0.01f * physics.FixturesMass);
-            }
+            if (!component.IsActive)
+                continue;
 
             var othersMessage = Loc.GetString("trait-stinky-in-range-others", ("target", uid));
             _popup.PopupEntity(othersMessage, uid, Filter.PvsExcept(uid), true);
