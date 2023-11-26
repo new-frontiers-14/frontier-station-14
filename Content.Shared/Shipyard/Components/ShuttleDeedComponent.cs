@@ -12,7 +12,7 @@ public sealed partial class ShuttleDeedComponent : Component
     public EntityUid? ShuttleUid;
 
     [DataField("shuttleName")]
-    public string? ShuttleName;
+    public string? ShuttleName = "Unknown";
 
     [DataField("shuttleOwner")]
     public EntityUid? ShuttleOwner = null;

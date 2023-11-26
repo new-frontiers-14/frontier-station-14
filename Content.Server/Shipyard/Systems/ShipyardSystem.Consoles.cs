@@ -32,6 +32,7 @@ using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
 using Content.Server.Shuttles.Components;
+using Content.Server.Station.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -470,24 +471,27 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _ui.TrySetUiState(uid, uiKey, newState);
     }
 
-    private void OnInitDeedSpawner(EntityUid uid, ShuttleDeedSpawnerComponent component, MapInitEvent args)
+    private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
     {
-        //if (!TryComp<IdCardComponent>(uid, out var idCard))
-        //    return;
-
-        //if (!TryComp<ShuttleComponent>(shuttleUid, out var shuttle))
-        //    return;
-
-        var shuttle = _station.GetOwningStation(uid);
-        if (!TryComp<ShuttleDeedComponent>(shuttle, out var shuttleDeed))
+        if (!TryComp<IdCardComponent>(uid, out var idCard))
             return;
 
-        //if (shuttle.Owner == null)
-        //    return;
+        var xform = Transform(uid);
+        if (xform.GridUid == null)
+            return;
+
+        if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle))
+            return;
+
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed))
+            return;
 
         var newDeed = EnsureComp<ShuttleDeedComponent>(uid);
         newDeed.ShuttleUid = shuttleDeed.ShuttleUid;
         newDeed.ShuttleName = shuttleDeed.ShuttleName;
         newDeed.ShuttleOwner = shuttleDeed.ShuttleOwner;
+
+        //if (shuttle.Owner == null)
+        //    return;
     }
 }
