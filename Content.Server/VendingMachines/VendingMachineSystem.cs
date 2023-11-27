@@ -408,16 +408,22 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            if (vendComponent.Ejecting)
+                return;
+
+            if (vendComponent.EjectRandomCounter <= 0)
+            {
+                _audioSystem.PlayPvs(_audioSystem.GetSound(vendComponent.SoundDeny), uid);
+                _popupSystem.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-abused"), uid, PopupType.MediumCaution);
+                return;
+            }
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;
-
-            if (!vendComponent.Ejecting)
-                return;
-
-            if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
-                return;
-
             var item = _random.Pick(availableItems);
 
             if (forceEject)
@@ -431,9 +437,18 @@ namespace Content.Server.VendingMachines
             }
             else
                 TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
-            vendComponent.EjectRandomCounter += 1;
+            vendComponent.EjectRandomCounter -= 1;
+        }
 
+        public void AddCharges(EntityUid uid, int change, VendingMachineComponent? comp = null)
+        {
+            if (!Resolve(uid, ref comp, false))
+                return;
 
+            var old = comp.EjectRandomCounter;
+            comp.EjectRandomCounter = Math.Clamp(comp.EjectRandomCounter + change, 0, comp.EjectRandomMax);
+            if (comp.EjectRandomCounter != old)
+                Dirty(comp);
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
@@ -517,6 +532,14 @@ namespace Content.Server.VendingMachines
                         comp.DispenseOnHitCoolingDown = false;
                     }
                 }
+
+                // Added block for charges
+                if (comp.EjectRandomCounter == comp.EjectRandomMax || _timing.CurTime < comp.NextChargeTime)
+                    continue;
+
+                AddCharges(uid, 1, comp);
+                comp.NextChargeTime = _timing.CurTime + comp.RechargeDuration;
+                // Added block for charges
             }
             var disabled = EntityQueryEnumerator<EmpDisabledComponent, VendingMachineComponent>();
             while (disabled.MoveNext(out var uid, out _, out var comp))
