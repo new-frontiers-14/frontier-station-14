@@ -349,15 +349,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
-        // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
-        if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
+        if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
 
-        var shipyardUi = _ui.GetUi(uid, uiComp.Key);
-        var uiUser = shipyardUi.SubscribedSessions.FirstOrDefault();
-
-        if (uiUser?.AttachedEntity is not { Valid: true } player)
-            return;
+        //      mayhaps re-enable this later for HoS/SA
+        //        var station = _station.GetOwningStation(uid);
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
             return;
