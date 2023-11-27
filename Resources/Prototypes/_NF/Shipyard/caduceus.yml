@@ -1,0 +1,33 @@
+- type: vessel
+  id: caduceus
+  name: NM Caduceus
+  description: A former humanitarian vessel, the Caduceus now works as the best mobile hospital money can buy.
+  price: 105000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/caduceus.yml
+
+- type: gameMap
+  id: caduceus
+  mapName: 'NM Caduceus'
+  mapPath: /Maps/Shuttles/caduceus.yml
+  minPlayers: 0
+  stations:
+    caduceus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Caduceus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
+            Borg: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            MedicalIntern: [ 0, 0 ]

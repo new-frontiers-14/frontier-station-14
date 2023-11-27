@@ -199,3 +199,36 @@
       radius: 1.5
       energy: 1.6
       color: "#ff033e"
+
+- type: entity
+  parent: VendingMachine
+  id: LessLethalVendingMachine
+  name: LessLethalVend
+  description: Making violence safe since '08
+  components:
+    - type: VendingMachine
+      pack: LessLethalVendInventory
+      dispenseOnHitChance: 0.25
+      dispenseOnHitThreshold: 2
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+      ejectState: eject-unshaded
+      denyState: deny-unshaded
+      ejectDelay: 3
+    - type: Advertise
+      pack: LessLethalVendAds
+    - type: Sprite
+      sprite: _NF/Structures/Machines/VendingMachines/lesslethalvend.rsi
+      layers:
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.Base"]
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#ff033e"

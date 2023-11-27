@@ -100,19 +100,7 @@
     solution: output
   - type: StaticPrice
     price: 500
-  - type: MaterialReclaimerMagnetPickup
+  - type: ApcPowerReceiver # Frontier
+    powerLoad: 500 # Allows us to not use the 1000 baseline
+  - type: MaterialReclaimerMagnetPickup # Frontier
     range: 0.30
-    whitelist:
-      components:
-      - PhysicalComposition
-      - SpaceGarbage
-      tags:
-      - Trash
-      - Recyclable
-    blacklist:
-      components:
-      - Material
-      - Pda
-      - IdCard
-      tags:
-      - HighRiskItem

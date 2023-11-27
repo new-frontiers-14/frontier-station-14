@@ -164,6 +164,9 @@ public sealed class RCDSystem : EntitySystem
         var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
 
+        if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) // Frontier - Remove all RCD use on outpost.
+            return;
+
         switch (comp.Mode)
         {
             //Floor mode just needs the tile to be a space tile (subFloor)
@@ -179,19 +182,16 @@ public sealed class RCDSystem : EntitySystem
                 break;
             //We don't want to place a space tile on something that's already a space tile. Let's do the inverse of the last check.
             case RcdMode.Deconstruct:
-                if (!(HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled))
+                if (!IsTileBlocked(tile)) // Delete the turf
                 {
-                    if (!IsTileBlocked(tile)) // Delete the turf
-                    {
-                        mapGrid.SetTile(snapPos, Tile.Empty);
-                        _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to set grid: {tile.GridUid} tile: {snapPos} to space");
-                    }
-                    else // Delete the targeted thing
-                    {
-                        var target = args.Target!.Value;
-                        _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to delete {ToPrettyString(target):target}");
-                        QueueDel(target);
-                    }
+                    mapGrid.SetTile(snapPos, Tile.Empty);
+                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to set grid: {tile.GridUid} tile: {snapPos} to space");
+                }
+                else // Delete the targeted thing
+                {
+                    var target = args.Target!.Value;
+                    _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(args.User):user} used RCD to delete {ToPrettyString(target):target}");
+                    QueueDel(target);
                 }
                 break;
             //Walls are a special behaviour, and require us to build a new object with a transform rather than setting a grid tile,
@@ -219,11 +219,9 @@ public sealed class RCDSystem : EntitySystem
                 return; //I don't know why this would happen, but sure I guess. Get out of here invalid state!
         }
 
-        if (!(HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled))
-        {
-            _audio.PlayPredicted(comp.SuccessSound, uid, user);
-            _charges.UseCharge(uid);
-        }
+        _audio.PlayPredicted(comp.SuccessSound, uid, user);
+        _charges.UseCharge(uid);
+
         args.Handled = true;
     }
 
