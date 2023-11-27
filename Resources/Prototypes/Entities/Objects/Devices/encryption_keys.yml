@@ -75,6 +75,7 @@
     - Security
     - Service
     - Supply
+    - Traffic # Frontier
     defaultChannel: Command
   - type: Sprite
     layers:
@@ -84,8 +85,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyCommand
-  name: traffic control encryption key
-  description: An encryption key for the space traffic control channel.
+  name: command encryption key
+  description: An encryption key used by crew's bosses.
   components:
   - type: EncryptionKey
     channels:
