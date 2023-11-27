@@ -33,6 +33,7 @@ using Content.Shared.Database;
 using Content.Shared.Preferences;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -494,6 +495,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         //if (!TryComp<StationJobsComponent>(shuttle.Owner, out var shuttleJobs)) // Test if the grid is a shuttle with jobs TODO: Fix this.
         //    return;
+
+        var shuttleOwner = ToPrettyString(shuttleDeed.ShuttleOwner); // Grab owner name
+        var output = Regex.Replace($"{shuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space
+        _idSystem.TryChangeFullName(uid, output); // Update the card with owner name
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);
         AssignShuttleDeedProperties(deedID, shuttleDeed.ShuttleUid, shuttleDeed.ShuttleName, shuttleDeed.ShuttleOwner);
