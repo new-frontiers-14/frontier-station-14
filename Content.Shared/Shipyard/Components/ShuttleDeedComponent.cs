@@ -9,7 +9,7 @@ namespace Content.Shared.Shipyard.Components;
 public sealed partial class ShuttleDeedComponent : Component
 {
     [DataField("shuttleUid")]
-    public EntityUid? ShuttleUid;
+    public EntityUid? ShuttleUid = null;
 
     [DataField("shuttleName")]
     public string? ShuttleName = "Unknown";

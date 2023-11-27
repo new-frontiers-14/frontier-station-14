@@ -347,11 +347,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+
+        if (TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed!.ShuttleUid == null)
+            RemComp<ShuttleDeedComponent>(targetId!.Value);
+
         int sellValue = 0;
-        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+        if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
@@ -424,8 +428,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+
+        if (TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed!.ShuttleUid == null)
+            RemComp<ShuttleDeedComponent>(targetId!.Value);
+
         int sellValue = 0;
-        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+        if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
@@ -477,24 +485,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
     {
-        if (!TryComp<IdCardComponent>(uid, out var idCard)) // Test if the deed on an ID
+        if (!HasComp<IdCardComponent>(uid)) // Test if the deed on an ID
             return;
 
         var xform = Transform(uid); // Get the grid the card is on
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed)) // Test if the grid is a shuttle with deed
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
             return;
-
-        if (!TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle)) // Test if the grid a shuttle
-            return;
-
-        if (shuttle == null) // No shuttle?
-            return;
-
-        //if (!TryComp<StationJobsComponent>(shuttle.Owner, out var shuttleJobs)) // Test if the grid is a shuttle with jobs TODO: Fix this.
-        //    return;
 
         var shuttleOwner = ToPrettyString(shuttleDeed.ShuttleOwner); // Grab owner name
         var output = Regex.Replace($"{shuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space
