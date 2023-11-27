@@ -1,6 +1,6 @@
 - type: vessel
   id: crab
-  name: NT Crab
+  name: EEC Crab
   description: An advanced salvage ship with the capacity for auto-mining of asteroids.
   price: 50500
   category: Medium
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: crab
-  mapName: 'NT Crab'
+  mapName: 'Crab'
   mapPath: /Maps/Shuttles/crab.yml
   minPlayers: 0
   stations: 
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Crab {1}'
+          mapNameTemplate: 'Crab {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
