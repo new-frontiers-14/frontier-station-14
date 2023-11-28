@@ -349,6 +349,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
+        // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
+        if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
+            return;
+
         if (args.Session.AttachedEntity is not { Valid: true } player)
             return;
 
@@ -360,9 +364,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
 
-        TryComp<ShuttleDeedComponent>(targetId, out var deed);
-        //if (TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed!.ShuttleUid == null)
-        //    RemComp<ShuttleDeedComponent>(targetId!.Value);
+        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+        {
+            if (Deleted(deed!.ShuttleUid))
+            {
+                RemComp<ShuttleDeedComponent>(targetId!.Value);
+                return;
+            }
+        }
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
@@ -443,9 +452,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
 
-        TryComp<ShuttleDeedComponent>(targetId, out var deed);
-        //if (TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed!.ShuttleUid == null)
-        //    RemComp<ShuttleDeedComponent>(targetId!.Value);
+        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+        {
+            if (Deleted(deed!.ShuttleUid))
+            {
+                RemComp<ShuttleDeedComponent>(targetId!.Value);
+                return;
+            }
+        }
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
