@@ -35,7 +35,6 @@
         amount: 2
       - id: Gauze
 
-
 - type: entity
   id: LockerMedicalFilled
   suffix: Filled
@@ -44,30 +43,32 @@
   - type: StorageFill
     contents:
       - id: HandheldHealthAnalyzer
-        prob: 0.6
+#        prob: 0.6
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
-     # - id: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingBeltMedical
-      - id: ClothingHeadHatSurgcapGreen
-        prob: 0.1
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapPurple
-        prob: 0.05
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapBlue
-        prob: 0.90
-        orGroup: Surgcaps
-      - id: UniformScrubsColorBlue
-        prob: 0.5
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorGreen
-        prob: 0.1
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorPurple
-        prob: 0.05
-        orGroup: Surgshrubs
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingBeltMedical
+#      - id: ClothingHeadHatSurgcapGreen
+#        prob: 0.1
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapPurple
+#        prob: 0.05
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapBlue
+#        prob: 0.90
+#        orGroup: Surgcaps
+#      - id: UniformScrubsColorBlue
+#        prob: 0.5
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorGreen
+#        prob: 0.1
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorPurple
+#        prob: 0.05
+#        orGroup: Surgshrubs
       - id: ClothingMaskSterile
+#      - id: ClothingBeltMedical # Frontier
+      - id: ClothingBeltMedicalFilled # Frontier
 
 - type: entity
   parent: LockerWallMedical
@@ -78,30 +79,31 @@
   - type: StorageFill
     contents:
       - id: HandheldHealthAnalyzer
-        prob: 0.6
+#        prob: 0.6
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
-     # - id: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingBeltMedical
-      - id: ClothingHeadHatSurgcapGreen
-        prob: 0.1
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapPurple
-        prob: 0.05
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapBlue
-        prob: 0.90
-        orGroup: Surgcaps
-      - id: UniformScrubsColorBlue
-        prob: 0.5
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorGreen
-        prob: 0.1
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorPurple
-        prob: 0.05
-        orGroup: Surgshrubs
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingBeltMedical
+#      - id: ClothingHeadHatSurgcapGreen
+#        prob: 0.1
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapPurple
+#        prob: 0.05
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapBlue
+#        prob: 0.90
+#        orGroup: Surgcaps
+#      - id: UniformScrubsColorBlue
+#        prob: 0.5
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorGreen
+#        prob: 0.1
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorPurple
+#        prob: 0.05
+#        orGroup: Surgshrubs
       - id: ClothingMaskSterile
+      - id: ClothingBeltMedicalFilled # Frontier
 
 - type: entity
   id: LockerChemistryFilled
@@ -117,9 +119,12 @@
       - id: BoxBottle
       - id: ChemBag
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
+#      - id: ClothingHeadsetMedical # Frontier
       - id: ClothingMaskSterile
-      - id: HandLabeler
+#      - id: HandLabeler
+      - id: ClothingEyesGlassesChemical # Frontier
+      - id: SheetPlasma1 # Frontier
+        amount: 3
 
 - type: entity
   id: LockerParamedicFilled
@@ -130,12 +135,13 @@
     contents:
 #      - id: ClothingHeadHelmetVoidParamed # Frontier
 #      - id: ClothingOuterHardsuitVoidParamed # Frontier
-      - id: ClothingOuterCoatParamedicWB
-      - id: ClothingHeadHatParamedicsoft
-      - id: ClothingUniformJumpsuitParamedic
-      - id: ClothingUniformJumpskirtParamedic
+#      - id: ClothingOuterCoatParamedicWB # Frontier
+#      - id: ClothingHeadHatParamedicsoft # Frontier
+#      - id: ClothingUniformJumpsuitParamedic # Frontier
+#      - id: ClothingUniformJumpskirtParamedic # Frontier
       - id: ClothingEyesHudMedical
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
+#      - id: ClothingHeadsetMedical  # Frontier
       - id: ClothingMaskSterile
-      - id: MedkitFilled
+      - id: ClothingBeltParamedicFilled # Frontier
+      - id: MedkitFilled # Frontier

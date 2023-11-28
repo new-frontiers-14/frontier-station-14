@@ -633,7 +633,7 @@ entities:
     - pos: 1.5,4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -14388.413
+    - secondsUntilStateChange: -14820.753
       state: Opening
       type: Door
   - uid: 311
@@ -707,7 +707,7 @@ entities:
       pos: -9.5,-0.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -1005.1962
+    - secondsUntilStateChange: -1437.5358
       state: Opening
       type: Door
   - uid: 418
@@ -2083,12 +2083,6 @@ entities:
       type: Transform
 - proto: CargoPallet
   entities:
-  - uid: 43
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.5,1.5
-      parent: 1
-      type: Transform
   - uid: 71
     components:
     - pos: -5.5,1.5
@@ -2109,21 +2103,9 @@ entities:
     - pos: -5.5,2.5
       parent: 1
       type: Transform
-  - uid: 178
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.5,2.5
-      parent: 1
-      type: Transform
   - uid: 249
     components:
     - pos: -5.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 474
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.5,-0.5
       parent: 1
       type: Transform
 - proto: Catwalk
@@ -2776,31 +2758,9 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
-- proto: EncryptionKeyCommand
-  entities:
-  - uid: 293
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 12.566157,5.575511
-      parent: 1
-      type: Transform
-  - uid: 466
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 13.488032,5.575511
-      parent: 1
-      type: Transform
-  - uid: 820
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 816
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: EncryptionKeyCommon
   entities:
-  - uid: 817
+  - uid: 293
     components:
     - flags: InContainer
       type: MetaData
@@ -2811,6 +2771,16 @@ entities:
 - proto: EncryptionKeyEngineering
   entities:
   - uid: 819
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 816
+      type: Transform
+    - canCollide: False
+      type: Physics
+- proto: EncryptionKeyTraffic
+  entities:
+  - uid: 466
     components:
     - flags: InContainer
       type: MetaData
@@ -3837,6 +3807,8 @@ entities:
     - pos: 8.5,-0.5
       parent: 1
       type: Transform
+    - locked: False
+      type: Lock
     - air:
         volume: 200
         immutable: False
@@ -3921,6 +3893,8 @@ entities:
     - pos: 9.5,1.5
       parent: 1
       type: Transform
+    - locked: False
+      type: Lock
     - air:
         volume: 200
         immutable: False
@@ -5028,10 +5002,10 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 817
           - 818
           - 819
-          - 820
+          - 293
+          - 466
         machine_board: !type:Container
           showEnts: False
           occludes: True

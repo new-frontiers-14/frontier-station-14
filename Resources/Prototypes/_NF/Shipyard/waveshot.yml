@@ -1,0 +1,27 @@
+- type: vessel
+  id: WaveShot
+  name: NT WaveShot
+  description: A mobile reporting studio fit for broadcasting the news.
+  price: 40000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/waveshot.yml
+
+- type: gameMap
+  id: WaveShot
+  mapName: 'NT WaveShot'
+  mapPath: /Maps/Shuttles/waveshot.yml
+  minPlayers: 0
+  stations: 
+    WaveShot:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'WaveShot {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Reporter: [ 0, 0 ]
