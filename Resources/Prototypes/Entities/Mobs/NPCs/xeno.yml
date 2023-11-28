@@ -26,6 +26,11 @@
     speed: 1.5
     qualities:
       - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Reactive
@@ -67,7 +72,6 @@
     bloodReagent: FluorosulfuricAcid
   - type: MeleeWeapon
     altDisarm: false
-    hidden: true
     angle: 0
     soundHit:
      collection: AlienClaw
@@ -149,6 +153,7 @@
         - MobLayer
   - type: ReplacementAccent
     accent: genericAggressive
+
 - type: entity
   name: Drone
   parent: MobXeno
@@ -212,7 +217,6 @@
     baseWalkSpeed: 2.8
     baseSprintSpeed: 3.8
   - type: MeleeWeapon
-    hidden: true
     damage:
      groups:
        Brute: 20
@@ -257,7 +261,6 @@
     baseWalkSpeed: 2.3
     baseSprintSpeed: 4.2
   - type: MeleeWeapon
-    hidden: true
     damage:
      groups:
        Brute: 10
@@ -297,7 +300,6 @@
     baseWalkSpeed: 2.7
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
-    hidden: true
     damage:
      groups:
        Brute: 3
@@ -324,6 +326,11 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatRouny
+      amount: 3
   - type: ReplacementAccent
     accent: genericAggressive
 
@@ -411,7 +418,6 @@
     factions:
     - Xeno
   - type: MeleeWeapon
-    hidden: true
     angle: 0
     animation: WeaponArcBite
     damage:

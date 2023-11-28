@@ -12,13 +12,13 @@ using Content.Shared.CCVar;
 using Content.Shared.Dataset;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -150,9 +150,9 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         }
     }
 
-    private List<IPlayerSession> FindPotentialTraitors(in Dictionary<IPlayerSession, HumanoidCharacterProfile> candidates, TraitorRuleComponent component)
+    private List<ICommonSession> FindPotentialTraitors(in Dictionary<ICommonSession, HumanoidCharacterProfile> candidates, TraitorRuleComponent component)
     {
-        var list = new List<IPlayerSession>();
+        var list = new List<ICommonSession>();
         var pendingQuery = GetEntityQuery<PendingClockInComponent>();
 
         foreach (var player in candidates.Keys)
@@ -170,7 +170,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
             list.Add(player);
         }
 
-        var prefList = new List<IPlayerSession>();
+        var prefList = new List<ICommonSession>();
 
         foreach (var player in list)
         {
@@ -188,9 +188,9 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         return prefList;
     }
 
-    private List<IPlayerSession> PickTraitors(int traitorCount, List<IPlayerSession> prefList)
+    private List<ICommonSession> PickTraitors(int traitorCount, List<ICommonSession> prefList)
     {
-        var results = new List<IPlayerSession>(traitorCount);
+        var results = new List<ICommonSession>(traitorCount);
         if (prefList.Count == 0)
         {
             Log.Info("Insufficient ready players to fill up with traitors, stopping the selection.");
@@ -299,8 +299,8 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
                 if (objective == null)
                     continue;
 
-                if (_mindSystem.TryAddObjective(mindId, mind, objective))
-                    difficulty += objective.Difficulty;
+                _mindSystem.AddObjective(mindId, mind, objective.Value);
+                difficulty += Comp<ObjectiveComponent>(objective.Value).Difficulty;
             }
         }
 

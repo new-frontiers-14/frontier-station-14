@@ -59,8 +59,8 @@
     board: MaterialReclaimerMachineCircuitboard
   - type: WiresPanel
   - type: Wires
-    BoardName: wires-board-name-reclaimer
-    LayoutId: Reclaimer
+    boardName: wires-board-name-reclaimer
+    layoutId: Reclaimer
   - type: MaterialReclaimer
     whitelist:
       components:
@@ -100,3 +100,7 @@
     solution: output
   - type: StaticPrice
     price: 500
+  - type: ApcPowerReceiver # Frontier
+    powerLoad: 500 # Allows us to not use the 1000 baseline
+  - type: MaterialReclaimerMagnetPickup # Frontier
+    range: 0.30

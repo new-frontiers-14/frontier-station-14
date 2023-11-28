@@ -124,7 +124,7 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 5
-          
+
 - type: entity
   name: slice of carrot cake
   parent: FoodCakeSliceBase
@@ -307,6 +307,9 @@
     state: apple
   - type: SliceableFood
     slice: FoodCakeAppleSlice
+  - type: Tag
+    tags:
+    - Fruit
 
 - type: entity
   name: slice of apple cake
@@ -316,6 +319,9 @@
   components:
   - type: Sprite
     state: apple-slice
+  - type: Tag
+    tags:
+    - Fruit
 # Tastes like sweetness, cake, slime.
 
 - type: entity
@@ -360,6 +366,9 @@
           Quantity: 11
         - ReagentId: Flavorol
           Quantity: 20
+  - type: Tag
+    tags:
+    - Fruit
 
 - type: entity
   name: slice of pumpkin-spice cake
@@ -380,6 +389,9 @@
           Quantity: 2.2
         - ReagentId: Flavorol
           Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
 # Tastes like sweetness, cake, pumpkin.
 
 - type: entity
@@ -446,7 +458,7 @@
           Quantity: 15
         - ReagentId: Flavorol
           Quantity: 20
-          
+
 - type: entity
   name: slice of vanilla cake
   parent: FoodCakeSliceBase
@@ -493,7 +505,7 @@
           Quantity: 15
         - ReagentId: Flavorol
           Quantity: 20
-          
+
 - type: entity
   name: slice of clown cake
   parent: FoodCakeSliceBase

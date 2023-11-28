@@ -12,7 +12,7 @@
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetAltSecurity
+      - id: ClothingHeadsetAltSecurityWarden # Frontier
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsJack
       - id: ClothingOuterCoatWarden
@@ -22,7 +22,13 @@
       - id: ClothingOuterHardsuitWarden
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
-      - id: ClothingNeckBodycam
+      - id: CrowbarRed # Frontier
+      - id: NitrogenTankFilled # Frontier
+      - id: OxygenTankFilled # Frontier
+      - id: ClothingMaskGasSecurity # Frontier
+      - id: JetpackSecurityFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
+      - id: ClothingShoesBootsMagCombatFilled # Frontier
 
 - type: entity
   id: LockerWardenFilled
@@ -38,7 +44,7 @@
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetAltSecurity
+      - id: ClothingHeadsetAltSecurityWarden # Frontier
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsJack
       - id: ClothingOuterCoatWarden
@@ -47,7 +53,7 @@
 #      - id: DoorRemoteArmory
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
-      - id: ClothingNeckBodycam
+      - id: CrowbarRed # Frontier
 
 - type: entity
   id: LockerSecurityFilled
@@ -64,49 +70,13 @@
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetSecurity
+      - id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
       - id: ClothingHandsGlovesColorBlack
       - id: ClothingShoesBootsJack
       - id: WeaponMeleeNeedle
         prob: 0.1
       - id: ClothingEyesHudSecurity
-      - id: ClothingNeckBodycam
-
-- type: entity
-  id: LockerBrigmedicFilled
-  suffix: Brigmedic, Filled
-  parent: LockerBrigmedic
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingEyesHudSecurity
-      - id: WeaponDisabler
-      - id: TrackingImplanter
-        amount: 2
-      - id: ClothingOuterHardsuitBrigmedic
-      - id: BoxSterileMask
-      - id: ClothingHeadHatBeretBrigmedic
-      - id: ClothingOuterCoatAMG
-      - id: ClothingUniformJumpsuitBrigmedic
-      - id: ClothingUniformJumpskirtBrigmedic
-      - id: ClothingUniformJumpskirtOfLife
-        prob: 0.1
-      - id: MedkitFilled
-      - id: MedkitCombatFilled
-        prob: 0.6
-      - id: MedkitAdvancedFilled
-        prob: 0.4
-      - id: MedkitOxygenFilled
-        prob: 0.3
-      - id: MedkitBruteFilled
-        prob: 0.3
-      - id: MedkitToxinFilled
-        prob: 0.3
-      - id: MedkitBurnFilled
-        prob: 0.7
-      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
-        prob: 0.15
-      - id: ClothingNeckBodycam
+      - id: CrowbarRed # Frontier
 
 - type: entity
   id: LockerDetectiveFilled
@@ -125,7 +95,7 @@
       - id: BoxForensicPad
       - id: DrinkDetFlask
       - id: ClothingHandsGlovesForensic
-      - id: ClothingNeckBodycam
+      - id: CrowbarRed # Frontier
 
 - type: entity
   id: ClosetBombFilled
@@ -136,7 +106,13 @@
     contents:
       - id: ClothingHeadHelmetBombSuit
       - id: ClothingOuterSuitBomb
-      - id: ClothingMaskGas
+      # NT is cheap, what can you do...
+      - id: Wirecutter
+        prob: 0.9
+      - id: Screwdriver
+        prob: 0.9
+      - id: Multitool
+        prob: 0.5
 
 - type: entity
   parent: GunSafe

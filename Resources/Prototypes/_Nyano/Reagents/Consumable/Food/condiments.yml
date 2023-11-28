@@ -6,6 +6,7 @@
   physicalDesc: reagent-physical-desc-dark-red
   flavor: tomato
   color: "#a61600"
+  recognizable: true
   metabolisms:
     Food:
       effects:
@@ -24,6 +25,7 @@
   physicalDesc: reagent-physical-desc-oily
   flavor: nutty
   color: "#5c8400"
+  recognizable: true
   metabolisms:
     Food:
       effects:
@@ -45,6 +47,7 @@
   physicalDesc: reagent-physical-desc-creamy
   flavor: creamy
   color: "#fffbc7"
+  recognizable: true
   metabolisms:
     Food:
       effects:
@@ -57,3 +60,19 @@
       - !type:AdjustReagent
         reagent: OilOlive
         amount: 0.10
+
+- type: reagent
+  id: OilGhee
+  name: reagent-name-oil-ghee
+  group: Foods
+  desc: reagent-desc-oil-ghee
+  physicalDesc: reagent-physical-desc-oily
+  flavor: butter
+  color: gold
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.75

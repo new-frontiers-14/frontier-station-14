@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -14,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
-public sealed class JobRequirementsManager
+public sealed partial class JobRequirementsManager
 {
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
@@ -30,8 +28,6 @@ public sealed class JobRequirementsManager
 
     public event Action? Updated;
 
-    private bool _whitelisted = false;
-
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("job_requirements");
@@ -40,6 +36,7 @@ public sealed class JobRequirementsManager
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgWhitelist>(RxWhitelist);
+
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
 
@@ -81,10 +78,6 @@ public sealed class JobRequirementsManager
         }*/
         Updated?.Invoke();
     }
-    private void RxWhitelist(MsgWhitelist message)
-    {
-        _whitelisted = message.Whitelisted;
-    }
 
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
@@ -103,29 +96,49 @@ public sealed class JobRequirementsManager
         }
 
         var player = _playerManager.LocalPlayer?.Session;
-
         if (player == null)
             return true;
 
-        var reasonBuilder = new StringBuilder();
+        return CheckRoleTime(job.Requirements, out reason);
+    }
 
-        foreach (var requirement in job.Requirements)
+    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = null;
+
+        if (requirements == null)
+            return true;
+
+        var reasons = new List<string>();
+        foreach (var requirement in requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
+            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes, _whitelisted))
                 continue;
 
-            reasonBuilder.AppendLine(jobReason.ToMarkup());
+            reasons.Add(jobReason.ToMarkup());
         }
 
-        if (job.WhitelistRequired == true && _whitelisted)
-        {
-            if (reasonBuilder.Length > 0)
-                reasonBuilder.Append('\n');
-
-            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-        }
-
-        reason = reasonBuilder.Length == 0 ? null : FormattedMessage.FromMarkup(reasonBuilder.ToString().Trim());
+        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
         return reason == null;
     }
+
+    public TimeSpan FetchOverallPlaytime()
+    {
+        return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+    }
+
+    public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
+    {
+        var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
+
+        foreach (var job in jobsToMap)
+        {
+            if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
+            {
+                yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
+            }
+        }
+    }
+
+
 }

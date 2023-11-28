@@ -3,6 +3,9 @@
   name: job-name-serviceworker
   description: job-description-serviceworker
   playTimeTracker: JobServiceWorker
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
@@ -23,6 +26,6 @@
     shoes: ClothingShoesColorBlack
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
-  innerclothingskirt: ClothingUniformJumpskirtBartender
+  innerClothingSkirt: ClothingUniformJumpskirtBartender
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

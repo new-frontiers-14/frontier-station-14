@@ -22,6 +22,7 @@ entities:
   entities:
   - uid: 1
     components:
+    - type: StationEmpImmune
     - type: MetaData
     - pos: 10,10
       parent: invalid
@@ -4078,18 +4079,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 4.5,18.5
-      parent: 1
-      type: Transform
-- proto: EncryptionKeyCommand
-  entities:
-  - uid: 614
-    components:
-    - pos: -0.46291542,19.523981
-      parent: 1
-      type: Transform
-  - uid: 615
-    components:
-    - pos: 1.5214596,19.477106
       parent: 1
       type: Transform
 - proto: EnergySword

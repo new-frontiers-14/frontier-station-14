@@ -19,12 +19,32 @@
   group: market
 
 - type: cargoProduct
+  id: AtmosphericsLiquidOxygen
+  icon:
+    sprite: Structures/Storage/canister.rsi
+    state: blue
+  product: LiquidOxygenCanister
+  cost: 3500
+  category: Atmospherics
+  group: market
+
+- type: cargoProduct
   id: AtmosphericsNitrogen
   icon:
     sprite: Structures/Storage/canister.rsi
     state: red
   product: NitrogenCanister
   cost: 1100
+  category: Atmospherics
+  group: market
+
+- type: cargoProduct
+  id: AtmosphericsLiquidNitrogen
+  icon:
+    sprite: Structures/Storage/canister.rsi
+    state: red
+  product: LiquidNitrogenCanister
+  cost: 3500
   category: Atmospherics
   group: market
 
@@ -37,6 +57,16 @@
   cost: 2200 # Until someone fixes it co2 can be used to oneshot people so it's more expensive
   category: Atmospherics
   group: market
+
+# - type: cargoProduct
+  # id: AtmosphericsLiquidCarbonDioxide
+  # icon:
+    # sprite: Structures/Storage/canister.rsi
+    # state: black
+  # product: LiquidCarbonDioxideCanister
+  # cost: 4000
+  # category: Atmospherics
+  # group: market
 
 - type: cargoProduct
   id: AtmosphericsStorage

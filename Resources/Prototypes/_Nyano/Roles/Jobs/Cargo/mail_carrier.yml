@@ -4,6 +4,9 @@
   description: job-name-mail-carrier
   startingGear: MailCarrierGear
   playTimeTracker: JobMailCarrier
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   icon: "JobIconMailCarrier"
   supervisors: "station representative"
   access:
@@ -15,12 +18,12 @@
   id: MailCarrierGear
   equipment:
     head: ClothingHeadMailCarrier
-    jumpsuit: ClothingUniformMailCarrier
+    jumpsuit: ClothingUniformJumpsuitMailCarrier
     back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
     id: MailCarrierPDA
     ears: ClothingHeadsetCargo
     belt: MailBag
-  innerclothingskirt: ClothingUniformSkirtMailCarrier
+  innerClothingSkirt: ClothingUniformJumpskirtMailCarrier
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

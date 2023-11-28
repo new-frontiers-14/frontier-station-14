@@ -3,12 +3,9 @@
   name: job-name-paramedic
   description: job-description-paramedic
   playTimeTracker: JobParamedic
-  # requirements:
-    # - !type:DepartmentTimeRequirement
-      # department: Medical
-      # time: 9000
-    # - !type:OverallPlaytimeRequirement
-      # time: 54000
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
@@ -28,6 +25,6 @@
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltParamedicFilled
-  innerclothingskirt: ClothingUniformJumpskirtParamedic
+  innerClothingSkirt: ClothingUniformJumpskirtParamedic
   satchel: ClothingBackpackSatchelMedicalFilled
   duffelbag: ClothingBackpackDuffelMedicalFilled

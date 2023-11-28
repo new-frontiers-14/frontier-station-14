@@ -31,8 +31,8 @@
         acts: ["Destruction"]
   - type: WiresPanel
   - type: Wires
-    BoardName: wires-board-name-autolathe
-    LayoutId: Autolathe
+    boardName: wires-board-name-autolathe
+    layoutId: Autolathe
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -97,8 +97,8 @@
       - TRayScanner
       - GasAnalyzer
       - UtilityBelt
-      - Fulton
-      - FultonBeacon
+#      - Fulton
+#      - FultonBeacon
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -114,6 +114,10 @@
       - FoodPlateSmallPlastic
       - SprayBottle
       - PowerCellSmall
+      - VehicleWheelchairFolded
+      - RollerBedSpawnFolded
+      - CheapRollerBedSpawnFolded
+      - EmergencyRollerBedSpawnFolded
       - MicroManipulatorStockPart
       - MatterBinStockPart
       - CapacitorStockPart
@@ -187,8 +191,8 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: Wires
-    BoardName: wires-board-name-protolathe
-    LayoutId: Protolathe
+    boardName: wires-board-name-protolathe
+    layoutId: Protolathe
   - type: MaterialStorage
     whitelist:
       tags:
@@ -203,6 +207,7 @@
       - MiningDrill
       - AnomalyScanner
       - AnomalyLocator
+      - AnomalyLocatorWide
       - RCD
       - RCDAmmo
       - HandheldCrewMonitor
@@ -242,6 +247,7 @@
       - Signaller
       - SignalTrigger
       - VoiceTrigger
+      - Igniter
       - PowerCellMedium
       - PowerCellHigh
       - WeaponPistolCHIMP
@@ -325,6 +331,7 @@
       - ReagentGrinderMachineCircuitboard
       - HotplateMachineCircuitboard
       - MicrowaveMachineCircuitboard
+      - ElectricGrillMachineCircuitboard
       - FatExtractorMachineCircuitboard
       - SheetifierMachineCircuitboard
       - UniformPrinterMachineCircuitboard
@@ -367,6 +374,15 @@
       - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
+    # Begin Nyano additions
+      - DoorElectronics
+      - FireAlarmElectronics
+      - FirelockElectronics
+      - IntercomElectronics
+      - MailingUnitElectronics
+      - StationMapElectronics
+      - DeepFryerMachineCircuitboard
+    # End Nyano additions
   - type: MaterialStorage
     whitelist:
       tags:
@@ -397,7 +413,7 @@
     staticRecipes:
     - MMI
     - PositronicBrain
-    - Flash
+    - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
     - BorgModuleGPS
@@ -460,6 +476,7 @@
     - BorgModuleDiagnosis
     - BorgModuleTreatment
     - BorgModuleDefibrillator
+    - BorgModuleAdvancedTreatment
     - RipleyHarness
     - RipleyLArm
     - RipleyRArm
@@ -500,6 +517,7 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sec
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -533,40 +551,50 @@
       - MagazineBoxMagnum
       - MagazineBoxRifle
       - MagazineBoxLightRifle
+      - SpeedLoaderMagnum
       - TargetHuman
       - TargetSyndicate
       - TargetClown
     dynamicRecipes:
-      - CartridgePistolRubber
-      - CartridgeMagnumRubber
-      - ShellShotgunBeanbag
-      - CartridgeRifleRubber
-      - CartridgeLightRifleRubber
-      - MagazineBoxPistolRubber
-      - MagazineBoxMagnumRubber
-      - MagazineBoxRifleRubber
-      - MagazineBoxLightRifleRubber
-      - ShellShotgunIncendiary
-      - CartridgePistolIncendiary
-      - CartridgeMagnumIncendiary
       - CartridgeLightRifleIncendiary
+      - CartridgeMagnumIncendiary
+      - CartridgePistolIncendiary
       - CartridgeRifleIncendiary
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxMagnumIncendiary
+      - CartridgeLightRifleRubber
+      - CartridgeMagnumRubber
+      - CartridgePistolRubber
+      - CartridgeRifleRubber
+      - ExplosivePayload
+      - FlashPayload
+      - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxPistolIncendiary
       - MagazineBoxRifleIncendiary
+      - MagazineBoxLightRiflePractice
+      - MagazineBoxMagnumPractice
+      - MagazineBoxPistolPractice
+      - MagazineBoxRiflePractice
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      - ShellShotgunBeanbag
+      - ShellShotgunIncendiary
+      - ShellShotgunPractice
       - Signaller
       - SignalTrigger
-      - VoiceTrigger
+      - TelescopicShield
       - TimerTrigger
       - Truncheon
-      - FlashPayload
-      - ExplosivePayload
-      - WeaponLaserCarbine
+      - VoiceTrigger
       - WeaponAdvancedLaser
+      - WeaponDisablerPractice
       - WeaponLaserCannon
-      - WeaponXrayCannon
+      - WeaponLaserCarbine
+      - WeaponLaserCarbinePractice
       - WeaponTaser
+      - WeaponXrayCannon
   - type: MaterialStorage
     whitelist:
       tags:
@@ -652,6 +680,10 @@
       - PillCanister
       - BodyBag
       - ChemistryEmptyBottle01
+      - VehicleWheelchairFolded
+      - RollerBedSpawnFolded
+      - CheapRollerBedSpawnFolded
+      - EmergencyRollerBedSpawnFolded
       - Medkit
       - MedkitBurn
       - MedkitToxin
@@ -674,6 +706,7 @@
       - Hemostat
       - BluespaceBeaker
       - SyringeBluespace
+      - Jug
   - type: Machine
     board: MedicalTechFabCircuitboard
 
@@ -737,6 +770,8 @@
       - ClothingUniformJumpsuitLawyerBlack
       - ClothingUniformJumpsuitLibrarian
       - ClothingUniformJumpskirtColorLightBrown
+      - ClothingUniformJumpsuitMailCarrier
+      - ClothingUniformJumpskirtMailCarrier
       - ClothingUniformJumpsuitMedicalDoctor
       - ClothingUniformJumpskirtMedicalDoctor
       - ClothingUniformJumpsuitMime
@@ -773,6 +808,7 @@
       - ClothingNeckMantleHOP
       - ClothingNeckMantleHOS
       - ClothingNeckMantleRD
+      - ClothingNeckMantleQM
       - ClothingOuterWinterMusician
       - ClothingOuterWinterClown
       - ClothingOuterWinterMime
@@ -793,6 +829,7 @@
       - ClothingOuterWinterSci
       - ClothingOuterWinterRobo
       - ClothingOuterWinterSec
+      - ClothingOuterWinterCoatMail
   - type: MaterialStorage
     whitelist:
       tags:
@@ -841,6 +878,8 @@
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
+    - type: MaterialStorageMagnetPickup # Frontier
+      range: 0.30
 
 - type: entity
   parent: BaseLathe

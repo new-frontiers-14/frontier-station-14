@@ -13,7 +13,7 @@ namespace Content.Client.StationRecords;
 [GenerateTypedNameReferences]
 public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 {
-    public Action<StationRecordKey?>? OnKeySelected;
+    public Action<(NetEntity, uint)?>? OnKeySelected;
 
     public Action<GeneralStationRecordFilterType, string>? OnFiltersChanged;
 
@@ -37,7 +37,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         RecordListing.OnItemSelected += args =>
         {
-            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not StationRecordKey cast)
+            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not ValueTuple<NetEntity, uint> cast)
             {
                 return;
             }

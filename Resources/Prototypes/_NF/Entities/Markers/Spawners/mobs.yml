@@ -1,0 +1,41 @@
+﻿- type: entity
+  name: Arcadia Industries Shredder Spawner
+  id: SpawnMobArcIndShredder
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - state: icon
+          sprite: _NF/Mobs/ArcadiaIndustries/arcind-shredder.rsi
+    - type: ConditionalSpawner
+      prototypes:
+        - MobArcIndShredder
+
+- type: entity
+  name: Arcadia Industries Guardian Spawner
+  id: SpawnMobArcIndHoloparasiteGuardian
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - state: icon
+          sprite: _NF/Mobs/ArcadiaIndustries/arcind-guardians.rsi
+    - type: ConditionalSpawner
+      prototypes:
+        - MobArcIndHoloparasiteGuardian
+
+- type: entity
+  name: Arcadia Industries Blaster Spawner
+  id: SpawnMobArcIndBlaster
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - state: icon
+          sprite: _NF/Mobs/ArcadiaIndustries/arcind-blasters.rsi
+    - type: ConditionalSpawner
+      prototypes:
+        - MobArcIndBlaster

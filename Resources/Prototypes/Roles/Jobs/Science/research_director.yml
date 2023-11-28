@@ -3,10 +3,9 @@
   name: job-name-rd
   description: job-description-rd
   playTimeTracker: JobResearchDirector
-  # requirements:
-    # - !type:DepartmentTimeRequirement
-      # department: Science
-      # time: 108000 # 30 hrs
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -18,6 +17,12 @@
   - Command
   - Maintenance
   - ResearchDirector
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ResearchDirectorGear
@@ -28,6 +33,6 @@
     outerClothing: ClothingOuterCoatRnd
     id: RnDPDA
     ears: ClothingHeadsetRD
-  innerclothingskirt: ClothingUniformJumpskirtResearchDirector
+  innerClothingSkirt: ClothingUniformJumpskirtResearchDirector
   satchel: ClothingBackpackSatchelResearchDirectorFilled
   duffelbag: ClothingBackpackDuffelResearchDirectorFilled

@@ -345,30 +345,176 @@
   id: CratePartsT3
   name: tier 3 parts crate
   description: Contains 5 random tier 3 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT3Spawner
-      amount: 5
+     - id: SuperCapacitorStockPart
+       orGroup: Part1
+     - id: PicoManipulatorStockPart
+       orGroup: Part1
+     - id: SuperMatterBinStockPart
+       orGroup: Part1
+     - id: SuperCapacitorStockPart
+       orGroup: Part2
+     - id: PicoManipulatorStockPart
+       orGroup: Part2
+     - id: SuperMatterBinStockPart
+       orGroup: Part2
+     - id: SuperCapacitorStockPart
+       orGroup: Part3
+     - id: PicoManipulatorStockPart
+       orGroup: Part3
+     - id: SuperMatterBinStockPart
+       orGroup: Part3
+     - id: SuperCapacitorStockPart
+       orGroup: Part4
+     - id: PicoManipulatorStockPart
+       orGroup: Part4
+     - id: SuperMatterBinStockPart
+       orGroup: Part4
+     - id: SuperCapacitorStockPart
+       orGroup: Part5
+     - id: PicoManipulatorStockPart
+       orGroup: Part5
+     - id: SuperMatterBinStockPart
+       orGroup: Part5
 
 - type: entity
   parent: CrateGenericSteel
   id: CratePartsT3T4
   name: tier 3/4 parts crate
   description: Contains 5 random tier 3 or 4 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT3T4Spawner
-      amount: 5
+    #tier 3
+     - id: SuperCapacitorStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part5
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part5
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part5
+       prob: 0.2
+    #tier 4
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part5
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part5
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part5
+       prob: 0.1
 
 - type: entity
   parent: CrateGenericSteel
   id: CratePartsT4
   name: tier 4 parts crate
   description: Contains 5 random tier 4 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT4Spawner
-      amount: 5
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part2
+     - id: FemtoManipulatorStockPart
+       orGroup: Part2
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part2
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part3
+     - id: FemtoManipulatorStockPart
+       orGroup: Part3
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part3
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part4
+     - id: FemtoManipulatorStockPart
+       orGroup: Part4
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part4
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part5
+     - id: FemtoManipulatorStockPart
+       orGroup: Part5
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part5

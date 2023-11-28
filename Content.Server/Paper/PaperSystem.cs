@@ -4,18 +4,17 @@ using Content.Server.Popups;
 using Content.Server.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Examine;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
 using Content.Server.Access.Systems;
 using Content.Shared.Hands;
 using static Content.Shared.Paper.SharedPaperComponent;
+using Content.Shared.Verbs;
 
 namespace Content.Server.Paper
 {
@@ -46,6 +45,8 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
             SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
+
+            SubscribeLocalEvent<PenComponent, GetVerbsEvent<Verb>>(OnVerb);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -106,22 +107,40 @@ namespace Content.Server.Paper
 
         private void OnInteractUsing(EntityUid uid, PaperComponent paperComp, InteractUsingEvent args)
         {
+            // If a pen, attempt to use on paper
             if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
             {
-                var writeEvent = new PaperWriteEvent(uid, args.User);
-                RaiseLocalEvent(args.Used, ref writeEvent);
-                if (!TryComp<ActorComponent>(args.User, out var actor))
-                    return;
+                bool write = true;
 
-                paperComp.Mode = PaperAction.Write;
-                _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
-                UpdateUserInterface(uid, paperComp, actor.PlayerSession);
-                return;
+                if (TryComp<PenComponent>(args.Used, out var penComp))
+                {
+                    // If a pen in sign mod, dont try to write.
+                    if (penComp.Pen == PenMode.PenSign)
+                    {
+                        write = false;
+                    }
+                }
+
+                if (write)
+                {
+                    var writeEvent = new PaperWriteEvent(uid, args.User);
+                    RaiseLocalEvent(args.Used, ref writeEvent);
+                    if (!TryComp<ActorComponent>(args.User, out var actor))
+                        return;
+
+                    paperComp.Mode = PaperAction.Write;
+                    _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
+                    UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+                    return;
+                }
             }
 
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
+                var actionOther = "stamps";
+                var actionSelf = "stamp";
+
                 if (stampComp.StampedPersonal)
                 {
                     stampComp.StampedIdUser = args.User;
@@ -130,23 +149,26 @@ namespace Content.Server.Paper
                     var userJob = Loc.GetString("stamp-component-unknown-job");
                     if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                     {
-                        if (card.FullName != null)
-                            userName = card.FullName;
-                        if (card.JobTitle != null)
-                            userJob = card.JobTitle;
+                        if (card.Comp.FullName != null)
+                            userName = card.Comp.FullName;
+                        if (card.Comp.JobTitle != null)
+                            userJob = card.Comp.JobTitle;
                     }
                     //string stampedName = userJob + " - " + userName;
                     string stampedName = userName;
                     stampComp.StampedName = stampedName;
+
+                    actionOther = "signs";
+                    actionSelf = "sign";
                 }
 
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                        ("action", actionOther), ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
                 _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
                 var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                        ("target", args.Target), ("stamp", args.Used));
+                        ("action", actionSelf), ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
@@ -161,7 +183,7 @@ namespace Content.Server.Paper
             {
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor,
-                StampedPersonal = stamp.StampedPersonal
+                StampedBorderless = stamp.StampedBorderless
             };
         }
 
@@ -232,7 +254,7 @@ namespace Content.Server.Paper
             _appearance.SetData(uid, PaperVisuals.Status, status, appearance);
         }
 
-        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null, IPlayerSession? session = null)
+        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null, ICommonSession? session = null)
         {
             if (!Resolve(uid, ref paperComp))
                 return;
@@ -251,15 +273,83 @@ namespace Content.Server.Paper
                 var userJob = Loc.GetString("stamp-component-unknown-job");
                 if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
                 {
-                    if (card.FullName != null)
-                        userName = card.FullName;
-                    if (card.JobTitle != null)
-                        userJob = card.JobTitle;
+                    if (card.Comp.FullName != null)
+                        userName = card.Comp.FullName;
+                    if (card.Comp.JobTitle != null)
+                        userJob = card.Comp.JobTitle;
                 }
                 //string stampedName = userJob + " - " + userName;
                 string stampedName = userName;
                 stampComp.StampedName = stampedName;
             }
+        }
+
+        private void OnVerb(EntityUid uid, PenComponent component, GetVerbsEvent<Verb> args)
+        {
+            // standard interaction checks
+            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+                return;
+
+            args.Verbs.UnionWith(new[]
+            {
+                CreateVerb(uid, component, args.User, PenMode.PenWrite),
+                CreateVerb(uid, component, args.User, PenMode.PenSign)
+            });
+        }
+
+        private Verb CreateVerb(EntityUid uid, PenComponent component, EntityUid userUid, PenMode mode)
+        {
+            return new Verb()
+            {
+                Text = GetModeName(mode),
+                Disabled = component.Pen == mode,
+                Priority = -(int) mode, // sort them in descending order
+                Category = VerbCategory.Pen,
+                Act = () => SetPen(uid, mode, userUid, component)
+            };
+        }
+
+        private string GetModeName(PenMode mode)
+        {
+            string name;
+            switch (mode)
+            {
+                case PenMode.PenWrite:
+                    name = "pen-mode-write";
+                    break;
+                case PenMode.PenSign:
+                    name = "pen-mode-sign";
+                    break;
+                default:
+                    return "";
+            }
+
+            return Loc.GetString(name);
+        }
+
+        public void SetPen(EntityUid uid, PenMode mode, EntityUid? userUid = null,
+          PenComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            component.Pen = mode;
+
+            if (userUid != null)
+            {
+                var msg = Loc.GetString("pen-mode-state", ("mode", GetModeName(mode)));
+                _popupSystem.PopupEntity(msg, uid, userUid.Value);
+            }
+        }
+
+        public PenStatus? GetPenState(EntityUid uid, PenComponent? pen = null, TransformComponent? transform = null)
+        {
+            if (!Resolve(uid, ref pen, ref transform))
+                return null;
+
+            // finally, form pen status
+            var status = new PenStatus(GetNetEntity(uid));
+            return status;
         }
     }
 

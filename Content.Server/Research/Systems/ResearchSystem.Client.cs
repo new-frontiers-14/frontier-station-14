@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
-using Robust.Server.Player;
 
 namespace Content.Server.Research.Systems;
 
@@ -47,7 +46,7 @@ public sealed partial class ResearchSystem
         if (!this.IsPowered(uid, EntityManager))
             return;
 
-        _uiSystem.TryToggleUi(uid, ResearchClientUiKey.Key, (IPlayerSession) args.Session);
+        _uiSystem.TryToggleUi(uid, ResearchClientUiKey.Key, args.Session);
     }
     #endregion
 
@@ -60,7 +59,10 @@ public sealed partial class ResearchSystem
     {
         var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
         if (allServers.Length > 0)
+        {
             RegisterClient(uid, allServers[0].Owner, component, allServers[0]);
+            UnregisterClient(uid, component); // Unrigister a new computer from servers, this is need right after to make sure it didnt register unser someone else server.
+        }
     }
 
     private void OnClientShutdown(EntityUid uid, ResearchClientComponent component, ComponentShutdown args)

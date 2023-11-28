@@ -1,0 +1,18 @@
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyTraffic
+  name: traffic control encryption key
+  description: An encryption key for the space traffic control channel.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Traffic
+    defaultChannel: Traffic
+  - type: Item
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+    size: 2 # Frontier - 5 to 2 size
+  - type: Sprite
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+    - state: stc_label

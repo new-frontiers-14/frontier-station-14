@@ -22,3 +22,4 @@ station-bank-bounty = Bounty
 station-bank-other = Other
 station-bank-required = {"("}Required{")"}
 station-bank-requires-reason = NT Requires transaction details
+station-bank-unauthorized = Unauthorized!

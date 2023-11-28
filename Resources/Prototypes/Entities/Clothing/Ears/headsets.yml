@@ -14,7 +14,7 @@
       - EncryptionKeyCommon
   - type: Headset
   - type: EncryptionKeyHolder
-    keySlots: 4
+    keySlots: 5 # Frontier 4<5
   - type: Sprite
     state: icon
   - type: Clothing
@@ -70,7 +70,7 @@
     containers:
       key_slots:
       - EncryptionKeyCargo
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -130,7 +130,7 @@
     containers:
       key_slots:
       - EncryptionKeyEngineering
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -159,7 +159,7 @@
     containers:
       key_slots:
       - EncryptionKeyMedical
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -220,7 +220,7 @@
     containers:
       key_slots:
       - EncryptionKeyScience
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -271,4 +271,6 @@
     sprite: Clothing/Ears/Headsets/service.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/service.rsi
-
+  - type: Tag
+    tags:
+      - PetWearableCat

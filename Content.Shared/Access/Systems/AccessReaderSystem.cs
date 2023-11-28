@@ -12,6 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.Trade.Components;
 
 namespace Content.Shared.Access.Systems;
 
@@ -69,9 +70,12 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
+        if (HasComp<TradeCrateComponent>(uid))
+            return;
+
         args.Handled = true;
         reader.Enabled = false;
-        Dirty(reader);
+        Dirty(uid, reader);
     }
 
     /// <summary>
@@ -183,16 +187,16 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         FindAccessItemsInventory(uid, out var items);
 
-        foreach (var item in new ValueList<EntityUid>(items))
-        {
-            items.UnionWith(FindPotentialAccessItems(item));
-        }
-
         var ev = new GetAdditionalAccessEvent
         {
             Entities = items
         };
         RaiseLocalEvent(uid, ref ev);
+
+        foreach (var item in new ValueList<EntityUid>(items))
+        {
+            items.UnionWith(FindPotentialAccessItems(item));
+        }
         items.Add(uid);
         return items;
     }

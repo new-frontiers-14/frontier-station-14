@@ -3,6 +3,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
@@ -12,9 +13,11 @@ namespace Content.Shared.Roles
     /// Abstract class for playtime and other requirements for role gates.
     /// </summary>
     [ImplicitDataDefinitionForInheritors]
+    [Serializable, NetSerializable]
     public abstract partial class JobRequirement{}
 
     [UsedImplicitly]
+    [Serializable, NetSerializable]
     public sealed partial class DepartmentTimeRequirement : JobRequirement
     {
         /// <summary>
@@ -39,6 +42,7 @@ namespace Content.Shared.Roles
     }
 
     [UsedImplicitly]
+    [Serializable, NetSerializable]
     public sealed partial class RoleTimeRequirement : JobRequirement
     {
         /// <summary>
@@ -55,6 +59,7 @@ namespace Content.Shared.Roles
     }
 
     [UsedImplicitly]
+    [Serializable, NetSerializable]
     public sealed partial class OverallPlaytimeRequirement : JobRequirement
     {
         /// <inheritdoc cref="DepartmentTimeRequirement.Time"/>
@@ -71,7 +76,8 @@ namespace Content.Shared.Roles
             Dictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes)
+            IPrototypeManager prototypes,
+            bool isWhitelisted)
         {
             reason = null;
             if (job.Requirements == null)
@@ -79,7 +85,7 @@ namespace Content.Shared.Roles
 
             foreach (var requirement in job.Requirements)
             {
-                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
+                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes, isWhitelisted))
                     return false;
             }
 
@@ -94,7 +100,8 @@ namespace Content.Shared.Roles
             Dictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes)
+            IPrototypeManager prototypes,
+            bool isWhitelisted)
         {
             reason = null;
 
@@ -209,9 +216,17 @@ namespace Content.Shared.Roles
                             return false;
                         }
 
-
                         return true;
                     }
+                case WhitelistRequirement _: // DeltaV - Whitelist requirement
+                    if (isWhitelisted == null)
+                        throw new ArgumentNullException(nameof(isWhitelisted), "isWhitelisted cannot be null.");
+
+                    if (isWhitelisted)
+                        return true;
+
+                    reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                    return false;
                 default:
                     throw new NotImplementedException();
             }

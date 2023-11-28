@@ -11,6 +11,8 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Content.Shared.Tools.Components;
+using Content.Shared.Emp;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -36,6 +38,7 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, GotEmaggedEvent>(OnEmagged);
 
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<ApcComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
     }
 
     public override void Update(float deltaTime)
@@ -117,7 +120,7 @@ public sealed class ApcSystem : EntitySystem
     }
 
     public void UpdateApcState(EntityUid uid,
-        ApcComponent? apc=null,
+        ApcComponent? apc = null,
         PowerNetworkBatteryComponent? battery = null)
     {
         if (!Resolve(uid, ref apc, ref battery, false))
@@ -190,24 +193,26 @@ public sealed class ApcSystem : EntitySystem
         return ApcExternalPowerState.Good;
     }
 
-        private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
+    private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
+    {
+        if (component.MainBreakerEnabled)
         {
-            if (component.ApcIgnoreEmp)
-            {
-                args.Affected = false;
-                args.Disabled = false;
-            }
-            else
-            {
-                if (component.MainBreakerEnabled)
-                {
-                    args.Affected = true;
-                    args.Disabled = true;
-                    ApcToggleBreaker(uid, component);
-                }
-            }
+            args.Affected = true;
+            args.Disabled = true;
+            ApcToggleBreaker(uid, component);
         }
     }
+
+    private void OnToolUseAttempt(EntityUid uid, ApcComponent component, ToolUseAttemptEvent args)
+    {
+        if (!HasComp<EmpDisabledComponent>(uid))
+            return;
+
+        // prevent reconstruct exploit to skip cooldowns
+        if (!component.MainBreakerEnabled)
+            args.Cancel();
+    }
+}
 
 [ByRefEvent]
 public record struct ApcToggleMainBreakerAttemptEvent(bool Cancelled);

@@ -46,9 +46,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly BiomeSystem _biome;
     private readonly DungeonSystem _dungeon;
     private readonly MetaDataSystem _metaData;
-    private readonly SalvageSystem _salvage;
     private readonly ShuttleSystem _shuttle;
     private readonly StationSystem _stationSystem;
+    private readonly SalvageSystem _salvage;
+
     public readonly EntityUid Station;
     private readonly SalvageMissionParams _missionParams;
 
@@ -222,13 +223,12 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Handle loot
         // We'll always add this loot if possible
         foreach (var lootProto in _prototypeManager.EnumeratePrototypes<SalvageLootPrototype>())
+
         {
             if (!lootProto.Guaranteed)
                 continue;
-
             await SpawnDungeonLoot(dungeon, missionBiome, lootProto, mapUid, grid, random, reservedTiles);
         }
-
         return true;
     }
 

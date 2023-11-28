@@ -9,11 +9,10 @@ using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Cargo.Components;
-using Content.Shared.Cargo;
 using Content.Shared.Database;
 
 namespace Content.Server.Bank;
@@ -182,9 +181,9 @@ public sealed partial class BankSystem
             new BankATMMenuInterfaceState(bank.Balance, true, 0));
         return;
     }
+
     private void OnCashSlotChanged(EntityUid uid, BankATMComponent component, ContainerModifiedMessage args)
     {
-
         var bankUi = _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.ATM) ?? _uiSystem.GetUiOrNull(uid, BankATMMenuUiKey.BlackMarket);
 
         var uiUser = bankUi!.SubscribedSessions.FirstOrDefault();

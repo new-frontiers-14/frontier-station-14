@@ -64,8 +64,8 @@
       type: WiresBoundUserInterface
   - type: WiresPanel
   - type: Wires
-    BoardName: wires-board-name-vendingmachine
-    LayoutId: Vending
+    boardName: wires-board-name-vendingmachine
+    layoutId: Vending
   - type: Anchorable
   - type: TypingIndicator
     proto: robot
@@ -221,14 +221,14 @@
     energy: 1.3
     color: "#ffb0b0"
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]] # Frontier - Added sheriff access
   - type: MarketModifier
     mod: 5
 
 - type: entity
   parent: VendingMachine
   id: VendingMachineChefvend
-  name: Chefvend
+  name: ChefVend
   description: An ingredient vendor for all your cheffin needs.
   components:
   - type: VendingMachine
@@ -1616,6 +1616,32 @@
 
 - type: entity
   parent: VendingMachine
+  id: VendingMachineCuraDrobe
+  name: CuraDrobe
+  description: A lowstock vendor only capable of vending clothing for curators and librarians.
+  components:
+  - type: VendingMachine
+    pack: CuraDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: CuraDrobeAds
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/curadrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+#  - type: AccessReader # Frontier
+#    access: [["Service"]]
+
+- type: entity
+  parent: VendingMachine
   id: VendingMachineAtmosDrobe
   name: AtmosDrobe
   description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
@@ -1781,7 +1807,7 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-#  - type: AccessReader
+  - type: AccessReader
 #    access: [["NuclearOperative"], ["SyndicateAgent"]]
 
 - type: entity

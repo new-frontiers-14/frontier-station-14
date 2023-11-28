@@ -34,16 +34,9 @@ public sealed partial class SurveillanceCameraComponent : Component
     [DataField("id")]
     public string CameraId { get; set;  } = "camera";
 
-    [ViewVariables]
-    public EntityUid? CameraIdUser = null;
-
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("nameSet")]
     public bool NameSet { get; set; }
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("nameSetUser")]
-    public bool NameSetUser { get; set; }
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("networkSet")]
