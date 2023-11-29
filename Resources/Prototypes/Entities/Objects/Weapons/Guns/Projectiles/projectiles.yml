@@ -888,3 +888,39 @@
     range: 2
     energyConsumption: 500000
     disableDuration: 30
+
+#Frontier mining emitter
+ type: entity
+  name: mining bolt
+  id: MiningBolt
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/miningemitter.rsi
+    layers:
+      - state: projectile
+        shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+      damage:
+      types:
+        Heat: 4
+  - type: GatheringProjectile
+  - type: Tag
+    tags:
+    - MiningBolt
+  - type: TimedDespawn
+    lifetime: 3
