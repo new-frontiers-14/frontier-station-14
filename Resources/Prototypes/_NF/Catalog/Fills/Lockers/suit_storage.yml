@@ -53,3 +53,21 @@
       - id: HandheldGPSBasic
   - type: AccessReader
     # access: [["Quartermaster"]]
+
+#Mercenary hardsuit
+- type: entity
+  id: SuitStorageMercenary
+  parent: SuitStorageBase
+  suffix: Mercenary
+  components:
+  - type: StorageFill
+    contents:
+        - id: NitrogenTankFilled
+        - id: OxygenTankFilled
+#        - id: ClothingOuterHardsuitMercenary
+        - id: ClothingMaskGasMercenary
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier
+  - type: AccessReader
+    access: [["Mercenary"]]
