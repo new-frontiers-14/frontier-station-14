@@ -70,74 +70,83 @@ entities:
         - node:
             cleanable: True
             color: '#FFFFFFFF'
+            id: Arrows
+          decals:
+            63: -5,4
+            64: 5,4
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
             id: Bot
           decals:
-            62: 2,8
-            63: 1,8
-            64: -3,4
-            65: -2,4
-            66: 2,4
-            67: 3,4
-            68: 4,4
-            69: -4,4
+            50: -3,4
+            51: -2,4
+            52: 2,4
+            53: 3,4
+            54: 4,4
+            55: -4,4
         - node:
             color: '#334E6DC8'
             id: BrickTileSteelLineE
           decals:
-            18: 2,10
-            19: 2,10
-            20: 2,11
-            21: 2,11
-            22: 2,12
-            23: 2,12
+            10: 2,10
+            11: 2,10
+            12: 2,11
+            13: 2,11
+            14: 2,12
+            15: 2,12
         - node:
             angle: 1.5707963267948966 rad
             color: '#334E6DC8'
             id: BrickTileSteelLineE
           decals:
-            24: 2,12
-            25: 2,12
-            26: 1,12
-            27: 1,12
-            28: 0,12
-            29: 0,12
-            30: -1,12
-            31: -1,12
-            32: -2,12
-            33: -2,12
+            16: 2,12
+            17: 2,12
+            18: 1,12
+            19: 1,12
+            20: 0,12
+            21: 0,12
+            22: -1,12
+            23: -1,12
+            24: -2,12
+            25: -2,12
         - node:
             angle: 3.141592653589793 rad
             color: '#334E6DC8'
             id: BrickTileSteelLineE
           decals:
-            34: -2,12
-            35: -2,12
-            36: -2,11
-            37: -2,11
-            38: -2,10
-            39: -2,10
+            26: -2,12
+            27: -2,12
+            28: -2,11
+            29: -2,11
+            30: -2,10
+            31: -2,10
         - node:
             angle: 4.71238898038469 rad
             color: '#334E6DC8'
             id: BrickTileSteelLineE
           decals:
-            40: -2,10
-            41: -2,10
-            42: -1,10
-            43: -1,10
-            44: 1,10
-            45: 1,10
-            46: 2,10
-            47: 2,10
+            32: -2,10
+            33: -2,10
+            34: -1,10
+            35: -1,10
+            36: 1,10
+            37: 1,10
+            38: 2,10
+            39: 2,10
         - node:
-            angle: 4.71238898038469 rad
+            cleanable: True
             color: '#FFFFFFFF'
             id: Delivery
           decals:
-            48: -6,-4
-            49: -6,-2
-            50: 6,-4
-            51: 6,-2
+            65: -7,-2
+        - node:
+            cleanable: True
+            angle: 1.5707963267948966 rad
+            color: '#FFFFFFFF'
+            id: Delivery
+          decals:
+            68: 7,-2
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -146,6 +155,8 @@ entities:
             0: 6,-6
             4: 5,-6
             5: 5,-5
+            61: -2,4
+            62: 2,4
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -160,22 +171,22 @@ entities:
           decals:
             7: 6,-6
             8: 6,-6
-            57: -3,0
-            58: 4,1
-            59: 3,0
-            60: -4,2
-            61: -4,1
+            45: -3,0
+            46: 4,1
+            47: 3,0
+            48: -4,2
+            49: -4,1
         - node:
             cleanable: True
             angle: 4.71238898038469 rad
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
           decals:
-            52: -3,2
-            53: -1,1
-            54: -3,0
-            55: 4,2
-            56: 2,1
+            40: -3,2
+            41: -1,1
+            42: -3,0
+            43: 4,2
+            44: 2,1
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -183,6 +194,11 @@ entities:
           decals:
             3: 6,-6
             9: 5,-6
+            56: -4,5
+            57: -2,7
+            58: -3,4
+            59: 2,5
+            60: 5,6
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -190,23 +206,19 @@ entities:
           decals:
             6: 5,-6
         - node:
+            cleanable: True
             angle: -1.5707963267948966 rad
             color: '#FFFFFFFF'
             id: StandClear
           decals:
-            10: -7,-4
-            11: -7,-2
-            14: 5,-4
-            15: 5,-2
+            66: -7,-4
         - node:
+            cleanable: True
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
             id: StandClear
           decals:
-            12: 7,-4
-            13: 7,-2
-            16: -5,-4
-            17: -5,-2
+            67: 7,-4
       type: DecalGrid
     - version: 2
       data:
@@ -220,7 +232,8 @@ entities:
           -1,0:
             0: 65535
           0,1:
-            0: 65535
+            0: 65531
+            1: 4
           0,2:
             0: 65535
           0,3:
@@ -237,10 +250,10 @@ entities:
             0: 65535
           1,-3:
             0: 40816
-            1: 24576
+            2: 24576
           1,-2:
             0: 65529
-            1: 6
+            2: 6
           1,-1:
             0: 65535
           2,-2:
@@ -275,6 +288,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -366,20 +394,18 @@ entities:
       parent: 1
       type: Transform
     - ShutdownSubscribers:
-      - 561
-      - 562
-      - 560
       - 476
       - 595
       - 509
+      - 623
+      - 622
       type: DeviceNetwork
     - devices:
-      - 561
-      - 562
-      - 560
       - 476
       - 595
       - 509
+      - 623
+      - 622
       type: DeviceList
   - uid: 587
     components:
@@ -388,20 +414,18 @@ entities:
       parent: 1
       type: Transform
     - ShutdownSubscribers:
-      - 563
-      - 565
-      - 564
       - 594
       - 475
       - 510
+      - 620
+      - 621
       type: DeviceNetwork
     - devices:
-      - 563
-      - 565
-      - 564
-      - 594
       - 475
+      - 594
       - 510
+      - 620
+      - 621
       type: DeviceList
   - uid: 588
     components:
@@ -476,10 +500,6 @@ entities:
       - 577
       - 578
       - 579
-      - 560
-      - 561
-      - 563
-      - 565
       - 567
       - 583
       - 582
@@ -490,18 +510,14 @@ entities:
       - 466
       - 593
       - 531
-      - 562
-      - 564
       - 568
       - 566
+      - 620
+      - 621
+      - 623
+      - 622
       type: DeviceNetwork
     - devices:
-      - 563
-      - 564
-      - 565
-      - 561
-      - 562
-      - 560
       - 579
       - 578
       - 577
@@ -523,6 +539,10 @@ entities:
       - 567
       - 568
       - 566
+      - 620
+      - 621
+      - 623
+      - 622
       type: DeviceList
 - proto: AirCanister
   entities:
@@ -561,6 +581,26 @@ entities:
       pos: 4.5,-7.5
       parent: 1
       type: Transform
+- proto: AirlockGlass
+  entities:
+  - uid: 113
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 1
+      type: Transform
+    - links:
+      - 617
+      type: DeviceLinkSink
+  - uid: 396
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 6.5,-3.5
+      parent: 1
+      type: Transform
+    - links:
+      - 149
+      type: DeviceLinkSink
 - proto: AirlockGlassShuttle
   entities:
   - uid: 235
@@ -754,6 +794,37 @@ entities:
       pos: 0.5,-9.5
       parent: 1
       type: Transform
+- proto: BenchSofaCorpCorner
+  entities:
+  - uid: 560
+    components:
+    - pos: 2.5,8.5
+      parent: 1
+      type: Transform
+    - canCollide: False
+      bodyType: Static
+      type: Physics
+    - fixtures: {}
+      type: Fixtures
+- proto: BenchSofaCorpLeft
+  entities:
+  - uid: 248
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 2.5,7.5
+      parent: 1
+      type: Transform
+    - bodyType: Static
+      type: Physics
+- proto: BenchSofaCorpRight
+  entities:
+  - uid: 249
+    components:
+    - pos: 1.5,8.5
+      parent: 1
+      type: Transform
+    - bodyType: Static
+      type: Physics
 - proto: BikeHorn
   entities:
   - uid: 442
@@ -761,44 +832,6 @@ entities:
     - pos: -1.6969528,12.535424
       parent: 1
       type: Transform
-- proto: BlastDoorOpen
-  entities:
-  - uid: 242
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 6.5,-3.5
-      parent: 1
-      type: Transform
-    - links:
-      - 375
-      type: DeviceLinkSink
-  - uid: 243
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 6.5,-1.5
-      parent: 1
-      type: Transform
-    - links:
-      - 375
-      type: DeviceLinkSink
-  - uid: 244
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
-      parent: 1
-      type: Transform
-    - links:
-      - 374
-      type: DeviceLinkSink
-  - uid: 245
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-3.5
-      parent: 1
-      type: Transform
-    - links:
-      - 374
-      type: DeviceLinkSink
 - proto: CableApcExtension
   entities:
   - uid: 295
@@ -1428,23 +1461,53 @@ entities:
       pos: -4.5,-8.5
       parent: 1
       type: Transform
-- proto: ChairOfficeDark
+- proto: CarpetBlack
   entities:
-  - uid: 248
+  - uid: 565
     components:
-    - rot: -1.5707963267948966 rad
-      pos: -4.5,-2.5
+    - pos: 2.5,8.5
       parent: 1
       type: Transform
-  - uid: 249
+  - uid: 608
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 5.5,-2.5
+    - pos: 1.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 610
+    components:
+    - pos: 2.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 611
+    components:
+    - pos: 1.5,8.5
+      parent: 1
+      type: Transform
+- proto: ChairFolding
+  entities:
+  - uid: 251
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 0.5,1.5
+      parent: 1
+      type: Transform
+- proto: ChairOfficeDark
+  entities:
+  - uid: 244
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-1.5
       parent: 1
       type: Transform
   - uid: 394
     components:
     - pos: 0.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 563
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 5.5,-1.5
       parent: 1
       type: Transform
 - proto: ChairPilotSeat
@@ -1749,10 +1812,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 75.31249
+        temperature: 293.1497
         moles:
-        - 0
-        - 0
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -1815,6 +1878,30 @@ entities:
     - pos: 1.2322425,4.6308975
       parent: 1
       type: Transform
+- proto: DrinkMugGreen
+  entities:
+  - uid: 606
+    components:
+    - pos: 1.3063598,7.710977
+      parent: 1
+      type: Transform
+    - solutions:
+        drink:
+          temperature: 293.15
+          canMix: True
+          canReact: True
+          maxVol: 20
+          reagents:
+          - data: null
+            ReagentId: GreenTea
+            Quantity: 2
+          - data: null
+            ReagentId: Water
+            Quantity: 1
+          - data: null
+            ReagentId: SpaceDrugs
+            Quantity: 1
+      type: SolutionContainerManager
 - proto: ElectricGuitarInstrument
   entities:
   - uid: 419
@@ -1848,60 +1935,6 @@ entities:
     - ShutdownSubscribers:
       - 589
       - 591
-      type: DeviceNetwork
-  - uid: 560
-    components:
-    - pos: 6.5,-1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 591
-      - 586
-      type: DeviceNetwork
-  - uid: 561
-    components:
-    - pos: 6.5,-3.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 591
-      - 586
-      type: DeviceNetwork
-  - uid: 562
-    components:
-    - pos: 6.5,-2.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 586
-      - 591
-      type: DeviceNetwork
-  - uid: 563
-    components:
-    - pos: -5.5,-3.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 591
-      - 587
-      type: DeviceNetwork
-  - uid: 564
-    components:
-    - pos: -5.5,-2.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 587
-      - 591
-      type: DeviceNetwork
-  - uid: 565
-    components:
-    - pos: -5.5,-1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 591
-      - 587
       type: DeviceNetwork
   - uid: 566
     components:
@@ -1987,6 +2020,46 @@ entities:
     - ShutdownSubscribers:
       - 591
       - 584
+      type: DeviceNetwork
+  - uid: 620
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 587
+      - 591
+      type: DeviceNetwork
+  - uid: 621
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 587
+      - 591
+      type: DeviceNetwork
+  - uid: 622
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 6.5,-3.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 586
+      - 591
+      type: DeviceNetwork
+  - uid: 623
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 6.5,-1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 586
+      - 591
       type: DeviceNetwork
 - proto: FirelockEdge
   entities:
@@ -2095,6 +2168,23 @@ entities:
   - uid: 443
     components:
     - pos: 3.648841,4.382324
+      parent: 1
+      type: Transform
+- proto: FoodBoxDonut
+  entities:
+  - uid: 612
+    components:
+    - pos: 1.7737156,7.8469253
+      parent: 1
+      type: Transform
+- proto: FoodPlateTin
+  entities:
+  - uid: 607
+    components:
+    - desc: A cheap foil tin for cigs.
+      name: Ashtray
+      type: MetaData
+    - pos: 1.6501098,7.570352
       parent: 1
       type: Transform
 - proto: GasPassiveVent
@@ -2889,6 +2979,17 @@ entities:
       pos: -1.5,13.5
       parent: 1
       type: Transform
+  - uid: 106
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 246
+    components:
+    - pos: -5.5,-2.5
+      parent: 1
+      type: Transform
 - proto: Gyroscope
   entities:
   - uid: 231
@@ -2964,10 +3065,10 @@ entities:
       type: Transform
 - proto: PianoInstrument
   entities:
-  - uid: 417
+  - uid: 250
     components:
-    - rot: 3.141592653589793 rad
-      pos: 2.5,8.5
+    - rot: -1.5707963267948966 rad
+      pos: -0.5,1.5
       parent: 1
       type: Transform
 - proto: PortableGeneratorPacman
@@ -2980,6 +3081,13 @@ entities:
   - uid: 452
     components:
     - pos: -3.5,-7.5
+      parent: 1
+      type: Transform
+- proto: PottedPlantRandom
+  entities:
+  - uid: 626
+    components:
+    - pos: -3.5,7.5
       parent: 1
       type: Transform
 - proto: PoweredlightExterior
@@ -3103,17 +3211,7 @@ entities:
       type: Transform
     - invokeCounter: 2
       links:
-      - 396
-      type: DeviceLinkSink
-  - uid: 106
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -2.5,0.5
-      parent: 1
-      type: Transform
-    - invokeCounter: 2
-      links:
-      - 396
+      - 115
       type: DeviceLinkSink
   - uid: 109
     components:
@@ -3123,7 +3221,7 @@ entities:
       type: Transform
     - invokeCounter: 2
       links:
-      - 396
+      - 115
       type: DeviceLinkSink
   - uid: 112
     components:
@@ -3133,17 +3231,7 @@ entities:
       type: Transform
     - invokeCounter: 2
       links:
-      - 396
-      type: DeviceLinkSink
-  - uid: 113
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 3.5,0.5
-      parent: 1
-      type: Transform
-    - invokeCounter: 2
-      links:
-      - 396
+      - 115
       type: DeviceLinkSink
   - uid: 114
     components:
@@ -3153,27 +3241,7 @@ entities:
       type: Transform
     - invokeCounter: 2
       links:
-      - 396
-      type: DeviceLinkSink
-  - uid: 115
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 1.5,0.5
-      parent: 1
-      type: Transform
-    - invokeCounter: 2
-      links:
-      - 396
-      type: DeviceLinkSink
-  - uid: 149
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -0.5,0.5
-      parent: 1
-      type: Transform
-    - invokeCounter: 2
-      links:
-      - 396
+      - 115
       type: DeviceLinkSink
   - uid: 150
     components:
@@ -3183,7 +3251,7 @@ entities:
       type: Transform
     - invokeCounter: 2
       links:
-      - 396
+      - 115
       type: DeviceLinkSink
   - uid: 165
     components:
@@ -3262,10 +3330,10 @@ entities:
       type: Transform
 - proto: RandomPosterAny
   entities:
-  - uid: 399
+  - uid: 375
     components:
-    - rot: 3.141592653589793 rad
-      pos: -4.5,-4.5
+    - rot: 1.5707963267948966 rad
+      pos: -6.5,-6.5
       parent: 1
       type: Transform
   - uid: 400
@@ -3279,6 +3347,19 @@ entities:
     - pos: 2.5,9.5
       parent: 1
       type: Transform
+- proto: ReinforcedWindow
+  entities:
+  - uid: 242
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 245
+    components:
+    - pos: -5.5,-2.5
+      parent: 1
+      type: Transform
 - proto: SheetPlasma
   entities:
   - uid: 406
@@ -3286,6 +3367,62 @@ entities:
     - pos: -4.6123443,-7.540342
       parent: 1
       type: Transform
+- proto: ShuttersNormalOpen
+  entities:
+  - uid: 613
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -1.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 399
+      type: DeviceLinkSink
+  - uid: 614
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -0.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 399
+      type: DeviceLinkSink
+  - uid: 615
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 399
+      type: DeviceLinkSink
+  - uid: 616
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 1.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 399
+      type: DeviceLinkSink
+  - uid: 618
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 1
+      type: Transform
+    - links:
+      - 59
+      type: DeviceLinkSink
+  - uid: 619
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 1
+      type: Transform
+    - links:
+      - 627
+      type: DeviceLinkSink
 - proto: ShuttleWindow
   entities:
   - uid: 27
@@ -3386,59 +3523,79 @@ entities:
       type: Transform
 - proto: SignalButton
   entities:
-  - uid: 374
+  - uid: 59
     components:
     - rot: -1.5707963267948966 rad
       pos: -4.5,-2.5
       parent: 1
       type: Transform
     - linkedPorts:
-        245:
-        - Pressed: Toggle
-        244:
+        618:
         - Pressed: Toggle
       type: DeviceLinkSource
-  - uid: 375
+  - uid: 115
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -0.5,4.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        150:
+        - Pressed: Toggle
+        109:
+        - Pressed: Toggle
+        105:
+        - Pressed: Toggle
+        114:
+        - Pressed: Toggle
+        112:
+        - Pressed: Toggle
+      type: DeviceLinkSource
+  - uid: 149
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 5.5,-2.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        396:
+        - Pressed: DoorBolt
+      type: DeviceLinkSource
+  - uid: 399
+    components:
+    - pos: 2.5,-5.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        616:
+        - Pressed: Toggle
+        615:
+        - Pressed: Toggle
+        614:
+        - Pressed: Toggle
+        613:
+        - Pressed: Toggle
+      type: DeviceLinkSource
+  - uid: 617
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -4.5,-2.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        113:
+        - Pressed: DoorBolt
+      type: DeviceLinkSource
+  - uid: 627
     components:
     - rot: 1.5707963267948966 rad
       pos: 5.5,-2.5
       parent: 1
       type: Transform
     - linkedPorts:
-        243:
-        - Pressed: Toggle
-        242:
+        619:
         - Pressed: Toggle
       type: DeviceLinkSource
-  - uid: 396
-    components:
-    - name: Stage lights
-      type: MetaData
-    - rot: 3.141592653589793 rad
-      pos: -0.5,4.5
-      parent: 1
-      type: Transform
-    - linkedPorts:
-        105:
-        - Pressed: Toggle
-        149:
-        - Pressed: Toggle
-        109:
-        - Pressed: Toggle
-        106:
-        - Pressed: Toggle
-        150:
-        - Pressed: Toggle
-        115:
-        - Pressed: Toggle
-        114:
-        - Pressed: Toggle
-        113:
-        - Pressed: Toggle
-        112:
-        - Pressed: Toggle
-      type: DeviceLinkSource
-    - type: ItemCooldown
 - proto: Sink
   entities:
   - uid: 408
@@ -3555,22 +3712,14 @@ entities:
     - pos: -0.8644831,8.574975
       parent: 1
       type: Transform
-- proto: Table
-  entities:
-  - uid: 246
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -5.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 247
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 6.5,-2.5
-      parent: 1
-      type: Transform
 - proto: TableCounterMetal
   entities:
+  - uid: 60
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 5.5,-2.5
+      parent: 1
+      type: Transform
   - uid: 202
     components:
     - pos: -0.5,-8.5
@@ -3584,6 +3733,12 @@ entities:
   - uid: 204
     components:
     - pos: 1.5,-8.5
+      parent: 1
+      type: Transform
+  - uid: 243
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 6.5,-1.5
       parent: 1
       type: Transform
   - uid: 379
@@ -3633,6 +3788,18 @@ entities:
     - pos: -0.5,8.5
       parent: 1
       type: Transform
+  - uid: 417
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 421
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -4.5,-2.5
+      parent: 1
+      type: Transform
 - proto: TableCounterWood
   entities:
   - uid: 36
@@ -3657,6 +3824,13 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 1.5,-5.5
+      parent: 1
+      type: Transform
+- proto: TableReinforcedGlass
+  entities:
+  - uid: 609
+    components:
+    - pos: 1.5,7.5
       parent: 1
       type: Transform
 - proto: Thruster
@@ -3717,11 +3891,33 @@ entities:
       type: Transform
 - proto: TomDrumsInstrument
   entities:
-  - uid: 421
+  - uid: 374
     components:
-    - pos: 1.5,8.5
+    - pos: 0.5,2.5
       parent: 1
       type: Transform
+- proto: ToySword
+  entities:
+  - uid: 624
+    components:
+    - pos: 2.5253882,4.8477974
+      parent: 1
+      type: Transform
+    - soundHit: !type:SoundPathSpecifier
+        params:
+          variation: null
+          playoffset: 0
+          loop: False
+          referenceDistance: 1
+          rolloffFactor: 1
+          maxdistance: 25
+          busname: Master
+          pitchscale: 1
+          volume: 0
+          attenuation: Default
+        path: /Audio/Weapons/genhit1.ogg
+      type: MeleeWeapon
+    - type: ItemCooldown
 - proto: VendingMachineChefDrobe
   entities:
   - uid: 215
@@ -4239,6 +4435,16 @@ entities:
       pos: 3.5,-9.5
       parent: 1
       type: Transform
+  - uid: 561
+    components:
+    - pos: 3.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 562
+    components:
+    - pos: -2.5,8.5
+      parent: 1
+      type: Transform
 - proto: WallShuttleDiagonal
   entities:
   - uid: 20
@@ -4265,18 +4471,6 @@ entities:
       pos: 5.5,7.5
       parent: 1
       type: Transform
-  - uid: 59
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -2.5,8.5
-      parent: 1
-      type: Transform
-  - uid: 60
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 3.5,8.5
-      parent: 1
-      type: Transform
   - uid: 91
     components:
     - pos: -2.5,13.5
@@ -4295,18 +4489,25 @@ entities:
     - pos: 0.5,0.5
       parent: 1
       type: Transform
-- proto: WindoorSecure
+- proto: WaterCooler
   entities:
-  - uid: 250
+  - uid: 625
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 6.5,-2.5
+    - pos: 3.5,7.5
       parent: 1
       type: Transform
-  - uid: 251
+- proto: WindoorSecure
+  entities:
+  - uid: 247
     components:
     - rot: 1.5707963267948966 rad
-      pos: -5.5,-2.5
+      pos: -5.5,-1.5
+      parent: 1
+      type: Transform
+  - uid: 564
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 6.5,-1.5
       parent: 1
       type: Transform
 - proto: Wrench
