@@ -1,0 +1,61 @@
+#Security Patrol Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitSecuritypatrol
+  name: security patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by security patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.70
+        Radiation: 0.70
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.80
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
+
+#Mercenary Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitMercenary
+  name: mercenary hardsuit
+  description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.70
+        Radiation: 0.9
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.80
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMercenary
