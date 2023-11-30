@@ -150,7 +150,7 @@ public sealed partial class ArtifactSystem : EntitySystem
         if (component.IsSuppressed)
             return false;
 
-        // Frontier - check if artifact in on a protected grid
+        // Frontier - check if artifact on a protected grid
         var xform = Transform(uid);
         if (xform.GridUid != null)
         {
