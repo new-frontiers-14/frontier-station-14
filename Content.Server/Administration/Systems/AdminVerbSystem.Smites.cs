@@ -5,9 +5,13 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Damage.Systems;
+using Content.Server.Disease;
+using Content.Server.Disease.Components;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
+using Content.Server.Interaction.Components;
 using Content.Server.Medical;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Pointing.Components;
@@ -27,6 +31,7 @@ using Content.Shared.Cluwne;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
+using Content.Shared.Disease;
 using Content.Shared.Electrocution;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
@@ -41,6 +46,7 @@ using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Server.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -49,6 +55,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Robust.Shared.Audio;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Administration.Systems;
@@ -59,6 +66,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
+    [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
     [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorageSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
@@ -190,6 +198,24 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-smite-garbage-can-description")
         };
         args.Verbs.Add(disposalBin);
+
+        if (TryComp<DiseaseCarrierComponent>(args.Target, out var carrier))
+        {
+            Verb lungCancer = new()
+            {
+                Text = "Lung Cancer",
+                Category = VerbCategory.Smite,
+                Icon = new SpriteSpecifier.Rsi(new ("/Textures/Mobs/Species/Human/organs.rsi"), "lung-l"),
+                Act = () =>
+                {
+                    _diseaseSystem.TryInfect(carrier, _prototypeManager.Index<DiseasePrototype>("StageIIIALungCancer"),
+                        1.0f, true);
+                },
+                Impact = LogImpact.Extreme,
+                Message = Loc.GetString("admin-smite-lung-cancer-description")
+            };
+            args.Verbs.Add(lungCancer);
+        }
 
         if (TryComp<DamageableComponent>(args.Target, out var damageable) &&
             HasComp<MobStateComponent>(args.Target))

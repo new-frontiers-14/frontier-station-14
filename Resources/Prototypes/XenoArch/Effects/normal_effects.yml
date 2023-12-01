@@ -510,6 +510,20 @@
 #    - Amatoxin
 
 - type: artifactEffect
+  id: EffectDisease
+  targetDepth: 3
+  effectHint: artifact-effect-hint-biochemical
+  components:
+  - type: DiseaseArtifact
+    diseasePrototypes:
+    - VanAusdallsRobovirus
+    - OwOnavirus
+    - BleedersBite
+    - MemeticAmirmir
+    - TongueTwister
+    - AMIV
+
+- type: artifactEffect
   id: EffectIgnite
   targetDepth: 3
   effectHint: artifact-effect-hint-release
