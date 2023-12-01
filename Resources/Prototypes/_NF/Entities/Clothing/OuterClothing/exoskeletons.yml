@@ -1,0 +1,218 @@
+#Exoskeleton Base
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingExoskeletonBase
+  components:
+  - type: Clothing
+    slots:
+    - outerClothing
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: Item
+    size: 120
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+  - type: Storage
+    capacity: 30
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    state: icon
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 14
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: _NF/Audio/Exoskeleton/sound_exoskeleton_servomotor_short.ogg
+  - type: Tag
+    tags:
+    - Exoskeleton
+  - type: StaticPrice
+    price: 2500
+  - type: Prying #this is a bit awkward: you can pry open airlock while holding the suit in hand, but it doesn't do anything while you wear the suit
+
+#Exoskeleton Base with lights
+- type: entity
+  parent: ClothingExoskeletonBase
+  id: ClothingExoskeletonLightBase
+  noSpawn: true
+  components:
+  - type: Sprite #Light related part starts here
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      map: [ "light" ]
+  - type: Clothing
+    equippedPrefix: off
+  - type: ToggleableLightVisuals
+  - type: PointLight
+#    color: "#daffad"
+    enabled: false
+    radius: 3
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: true
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+#  - type: Battery
+#    maxCharge: 600 #lights drain 3/s but recharge of 3 makes this 0/s.
+#    startingCharge: 600
+#  - type: BatterySelfRecharger
+#    autoRecharge: true
+#    autoRechargeRate: 3 #Having recharge (lower than 3 ofc) gives light an extended flicker period which gives you some warning to return to light area.
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+
+#Exoskeleton Base with lights, Armored edition for combat application
+- type: entity
+  parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonArmoredBase
+  noSpawn: true
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.7
+        Caustic: 0.75
+  - type: GroupExamine
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: PointLight
+#    color: "#FFC458"
+    enabled: false
+    radius: 8
+
+#Departmental variations
+#Engineer's Exoskeleton
+- type: entity
+  parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonLightEngi
+  name: engineer's exoskeleton
+  description: A linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonengi.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonengi.rsi
+
+#Generic Exoskeleton
+- type: entity
+  parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonLightGeneric
+  name: exoskeleton
+  description: A linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletongeneric.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletongeneric.rsi
+
+#Medic's Exoskeleton
+- type: entity
+  parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonLightMedical
+  name: medic's exoskeleton
+  description: A linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonmedical.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonmedical.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: PointLight
+    enabled: false
+    radius: 4
+
+#Salvager's Exoskeleton
+- type: entity
+  parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonLightSalvage
+  name: salvage specialist's exoskeleton
+  description: A linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonsalvage.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonsalvage.rsi
+  - type: PointLight
+    enabled: false
+#    color: "#00FF00"
+    radius: 5
+    netsync: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+        Caustic: 0.90
+
+#Security's Exoskeleton
+- type: entity
+  parent: ClothingExoskeletonArmoredBase
+  id: ClothingExoskeletonLightSecurity
+  name: security issued exoskeleton
+  description: An armored linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonsecurity.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonsecurity.rsi
+  - type: ShowSecurityIcons
