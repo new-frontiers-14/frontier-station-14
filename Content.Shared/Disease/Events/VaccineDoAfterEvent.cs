@@ -4,6 +4,6 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Disease.Events;
 
 [Serializable, NetSerializable]
-public sealed class VaccineDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class VaccineDoAfterEvent : SimpleDoAfterEvent
 {
 }

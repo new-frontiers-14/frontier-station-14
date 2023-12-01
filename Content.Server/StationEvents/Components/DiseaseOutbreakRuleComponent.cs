@@ -3,7 +3,7 @@
 namespace Content.Server.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(DiseaseOutbreakRule))]
-public sealed class DiseaseOutbreakRuleComponent : Component
+public sealed partial class DiseaseOutbreakRuleComponent : Component
 {
     /// <summary>
     /// Disease prototypes I decided were not too deadly for a random event
@@ -12,7 +12,7 @@ public sealed class DiseaseOutbreakRuleComponent : Component
     /// Fire name
     /// </remarks>
     [DataField("notTooSeriousDiseases")]
-    public readonly IReadOnlyList<string> NotTooSeriousDiseases = new[]
+    public IReadOnlyList<string> NotTooSeriousDiseases = new[]
     {
         "SpaceCold",
         "VanAusdallsRobovirus",

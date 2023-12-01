@@ -9,11 +9,11 @@ namespace Content.Shared.Disease
     /// </summary>
     [Prototype("disease")]
     [DataDefinition]
-    public sealed class DiseasePrototype : IPrototype, IInheritingPrototype
+    public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
     {
         [ViewVariables]
         [IdDataField]
-        public string ID { get; } = default!;
+        public string ID { get; set; } = default!;
 
         [DataField("name")]
         public string Name { get; private set; } = string.Empty;
@@ -48,20 +48,20 @@ namespace Content.Shared.Disease
         /// float: the time it takes for the stage to begin.
         /// </summary>
         [DataField("stages", serverOnly: true)]
-        public readonly List<float> Stages = new() { 0f };
+        public List<float> Stages = new() { 0f };
         /// <summary>
         /// List of effects the disease has that will
         /// run every second (by default anyway)
         /// </summary>
         [DataField("effects", serverOnly: true)]
-        public readonly List<DiseaseEffect> Effects = new(0);
+        public List<DiseaseEffect> Effects = new(0);
         /// <summary>
         /// List of SPECIFIC CURES the disease has that will
         /// be checked every second.
         /// Stuff like spaceacillin operates outside this.
         /// </summary>
         [DataField("cures", serverOnly: true)]
-        public readonly List<DiseaseCure> Cures = new(0);
+        public List<DiseaseCure> Cures = new(0);
         /// <summary>
         /// This flatly reduces the probabilty disease medicine
         /// has to cure it every tick. Although, since spaceacillin is

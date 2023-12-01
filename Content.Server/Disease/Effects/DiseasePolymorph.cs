@@ -11,11 +11,11 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Disease.Effects
 {
     [UsedImplicitly]
-    public sealed class DiseasePolymorph : DiseaseEffect
+    public sealed partial class DiseasePolymorph : DiseaseEffect
     {
         [DataField("polymorphId", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PolymorphPrototype>))]
         [ViewVariables(VVAccess.ReadWrite)]
-        public readonly string PolymorphId = default!;
+        public string PolymorphId = default!;
 
         [DataField("polymorphSound")]
         [ViewVariables(VVAccess.ReadWrite)]

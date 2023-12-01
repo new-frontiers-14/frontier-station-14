@@ -1,6 +1,7 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Disease;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.ReagentEffects
 {
@@ -8,13 +9,16 @@ namespace Content.Server.Chemistry.ReagentEffects
     /// Default metabolism for medicine reagents.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemCureDisease : ReagentEffect
+    public sealed partial class ChemCureDisease : ReagentEffect
     {
         /// <summary>
         /// Chance it has each tick to cure a disease, between 0 and 1
         /// </summary>
         [DataField("cureChance")]
         public float CureChance = 0.15f;
+
+        protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+            => Loc.GetString("reagent-effect-guidebook-cure-disease");
 
         public override void Effect(ReagentEffectArgs args)
         {

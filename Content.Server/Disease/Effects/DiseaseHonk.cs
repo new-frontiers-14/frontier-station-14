@@ -11,7 +11,7 @@ namespace Content.Server.Disease
     /// or neither.
     /// </summary>
     [UsedImplicitly]
-    public sealed class DiseaseHonk : DiseaseEffect
+    public sealed partial class DiseaseHonk : DiseaseEffect
     {
         /// <summary>
         /// Message to play when honking.

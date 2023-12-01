@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.Reagent;
 using JetBrains.Annotations;
 using Content.Server.Atmos.Miasma;
 using Content.Server.Disease;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.ReagentEffects
 {
@@ -11,8 +12,11 @@ namespace Content.Server.Chemistry.ReagentEffects
     /// For things ingested by one person, you probably want ChemCauseRandomDisease instead.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemMiasmaPoolSource : ReagentEffect
+    public sealed partial class ChemMiasmaPoolSource : ReagentEffect
     {
+        protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+            => Loc.GetString("reagent-effect-guidebook-cause-disease");
+
         public override void Effect(ReagentEffectArgs args)
         {
             if (args.Scale != 1f)

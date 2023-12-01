@@ -286,7 +286,7 @@ namespace Content.Server.Disease
                 return;
             }
 
-            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(args.User, vaxx.InjectDelay, new VaccineDoAfterEvent(), uid, target: args.Target, used: uid)
+            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, vaxx.InjectDelay, new VaccineDoAfterEvent(), uid, target: args.Target, used: uid)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

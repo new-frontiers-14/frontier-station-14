@@ -33,6 +33,7 @@ namespace Content.Server.Disease
         [Dependency] private readonly PaperSystem _paperSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly MetaDataSystem _meta = default!;
 
         public override void Initialize()
         {
@@ -115,7 +116,7 @@ namespace Content.Server.Disease
                 return;
             }
 
-            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(args.User, swab.SwabDelay, new DiseaseSwabDoAfterEvent(), uid, target: args.Target, used: uid)
+            _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, swab.SwabDelay, new DiseaseSwabDoAfterEvent(), uid, target: args.Target, used: uid)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
@@ -363,8 +364,7 @@ namespace Content.Server.Disease
                 reportTitle = Loc.GetString("diagnoser-disease-report-none");
                 contents.AddMarkup(Loc.GetString("diagnoser-disease-report-none-contents"));
             }
-            MetaData(printed).EntityName = reportTitle;
-
+            _meta.SetEntityName(printed, reportTitle);
             _paperSystem.SetContent(printed, contents.ToMarkup(), paper);
         }
 

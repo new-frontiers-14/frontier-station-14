@@ -3,6 +3,7 @@ using Content.Server.Disease;
 using Content.Shared.Disease;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.ReagentEffects
 {
@@ -10,7 +11,7 @@ namespace Content.Server.Chemistry.ReagentEffects
     /// Default metabolism for medicine reagents.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemCauseDisease : ReagentEffect
+    public sealed partial class ChemCauseDisease : ReagentEffect
     {
         /// <summary>
         /// Chance it has each tick to cause disease, between 0 and 1
@@ -24,6 +25,9 @@ namespace Content.Server.Chemistry.ReagentEffects
         [DataField("disease", customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>), required: true)]
         [ViewVariables(VVAccess.ReadWrite)]
         public string Disease = default!;
+
+        protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+            => Loc.GetString("reagent-effect-guidebook-cause-disease");
 
         public override void Effect(ReagentEffectArgs args)
         {

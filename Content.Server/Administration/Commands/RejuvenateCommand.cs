@@ -2,6 +2,7 @@ using Content.Shared.Administration;
 using Content.Shared.Rejuvenate;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.Player;
 
 namespace Content.Server.Administration.Commands
 {
@@ -16,7 +17,7 @@ namespace Content.Server.Administration.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (args.Length < 1 && shell.Player is IPlayerSession player) //Try to heal the users mob if applicable
+            if (args.Length < 1 && shell.Player is ICommonSession player) //Try to heal the users mob if applicable
             {
                 shell.WriteLine(Loc.GetString("rejuvenate-command-self-heal-message"));
                 if (player.AttachedEntity == null)

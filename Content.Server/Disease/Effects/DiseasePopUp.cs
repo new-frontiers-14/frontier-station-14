@@ -12,7 +12,7 @@ namespace Content.Server.Disease.Effects
     /// in PVS ones with {$person}
     /// </summary>
     [UsedImplicitly]
-    public sealed class DiseasePopUp : DiseaseEffect
+    public sealed partial class DiseasePopUp : DiseaseEffect
     {
         [DataField("message")]
         public string Message = "disease-sick-generic";

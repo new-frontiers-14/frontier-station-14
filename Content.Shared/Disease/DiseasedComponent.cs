@@ -7,6 +7,6 @@ namespace Content.Shared.Disease.Components
     /// when they are not relevant.
     [NetworkedComponent]
     [RegisterComponent]
-    public sealed class DiseasedComponent : Component
+    public sealed partial class DiseasedComponent : Component
     {}
 }

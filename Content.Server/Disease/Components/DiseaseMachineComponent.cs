@@ -8,7 +8,7 @@ namespace Content.Server.Disease.Components
     /// For shared behavior between both disease machines
     /// </summary>
     [RegisterComponent]
-    public sealed class DiseaseMachineComponent : Component
+    public sealed partial class DiseaseMachineComponent : Component
     {
         [DataField("delay")]
         public float Delay = 5f;

@@ -4,7 +4,7 @@ namespace Content.Shared.Disease
 {
     [ImplicitDataDefinitionForInheritors]
     [MeansImplicitUse]
-    public abstract class DiseaseEffect
+    public abstract partial class DiseaseEffect
     {
         /// <summary>
         ///     What's the chance, from 0 to 1, that this effect will occur?
@@ -15,7 +15,7 @@ namespace Content.Shared.Disease
         ///     What stages this effect triggers on
         /// </summary>
         [DataField("stages")]
-        public readonly int[] Stages = { 0 };
+        public int[] Stages = { 0 };
         /// <summary>
         /// What effect the disease will have.
         /// </summary>

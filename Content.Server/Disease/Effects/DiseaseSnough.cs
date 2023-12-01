@@ -10,7 +10,7 @@ namespace Content.Server.Disease
     /// or neither.
     /// </summary>
     [UsedImplicitly]
-    public sealed class DiseaseSnough : DiseaseEffect
+    public sealed partial class DiseaseSnough : DiseaseEffect
     {
         /// <summary>
         /// Emote to play when snoughing

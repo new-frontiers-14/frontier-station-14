@@ -10,12 +10,12 @@ namespace Content.Server.Disease.Cures
     /// Cures the disease if a certain amount of reagent
     /// is in the host's chemstream.
     /// </summary>
-    public sealed class DiseaseReagentCure : DiseaseCure
+    public sealed partial class DiseaseReagentCure : DiseaseCure
     {
         [DataField("min")]
         public FixedPoint2 Min = 5;
         [DataField("reagent")]
-        public string? Reagent;
+        public ReagentId? Reagent;
 
         public override bool Cure(DiseaseEffectArgs args)
         {
@@ -23,9 +23,9 @@ namespace Content.Server.Disease.Cures
                 return false;
 
             var quant = FixedPoint2.Zero;
-            if (Reagent != null && bloodstream.ChemicalSolution.ContainsReagent(Reagent))
+            if (Reagent is ReagentId reagentToAdd && bloodstream.ChemicalSolution.ContainsReagent(reagentToAdd))
             {
-                quant = bloodstream.ChemicalSolution.GetReagentQuantity(Reagent);
+                quant = bloodstream.ChemicalSolution.GetReagentQuantity(reagentToAdd);
             }
             return quant >= Min;
         }
@@ -33,9 +33,9 @@ namespace Content.Server.Disease.Cures
         public override string CureText()
         {
             var prototypeMan = IoCManager.Resolve<IPrototypeManager>();
-            if (Reagent == null || !prototypeMan.TryIndex<ReagentPrototype>(Reagent, out var reagentProt))
+            if (Reagent is not ReagentId reagentToAdd)
                 return string.Empty;
-            return (Loc.GetString("diagnoser-cure-reagent", ("units", Min), ("reagent", reagentProt.LocalizedName)));
+            return (Loc.GetString("diagnoser-cure-reagent", ("units", Min), ("reagent", Reagent)));
         }
     }
 }

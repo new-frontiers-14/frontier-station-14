@@ -7,7 +7,7 @@ namespace Content.Server.Disease.Components
     /// disease samples.
     /// </summary>
     [RegisterComponent]
-    public sealed class DiseaseSwabComponent : Component
+    public sealed partial class DiseaseSwabComponent : Component
     {
         /// <summary>
         /// How long it takes to swab someone.

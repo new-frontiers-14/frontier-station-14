@@ -7,7 +7,7 @@ namespace Content.Server.Traits.Assorted;
 /// This is used for the occasional sneeze or cough.
 /// </summary>
 [RegisterComponent]
-public sealed class UncontrollableSnoughComponent : Component
+public sealed partial class UncontrollableSnoughComponent : Component
 {
     /// <summary>
     /// Emote to play when snoughing
@@ -19,7 +19,7 @@ public sealed class UncontrollableSnoughComponent : Component
     /// The random time between incidents, (min, max).
     /// </summary>
     [DataField("timeBetweenIncidents", required: true)]
-    public Vector2 TimeBetweenIncidents { get; }
+    public Vector2i TimeBetweenIncidents { get; set; }
 
     public float NextIncidentTime;
 }

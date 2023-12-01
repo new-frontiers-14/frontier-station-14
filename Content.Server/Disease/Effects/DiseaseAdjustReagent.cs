@@ -3,6 +3,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Content.Server.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Disease;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -13,13 +14,13 @@ namespace Content.Server.Disease.Effects
     /// host's chemstream.
     /// </summary>
     [UsedImplicitly]
-    public sealed class DiseaseAdjustReagent : DiseaseEffect
+    public sealed partial class DiseaseAdjustReagent : DiseaseEffect
     {
         /// <summary>
         ///     The reagent ID to add or remove.
         /// </summary>
         [DataField("reagent", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
-        public string? Reagent = null;
+        public ReagentId? Reagent = null;
 
         [DataField("amount", required: true)]
         public FixedPoint2 Amount = default!;
@@ -34,14 +35,14 @@ namespace Content.Server.Disease.Effects
                 return;
 
             var solutionSys = args.EntityManager.EntitySysManager.GetEntitySystem<SolutionContainerSystem>();
-            if (Reagent == null)
+            if (Reagent is not ReagentId reagentId)
                 return;
 
-            if (Amount < 0 && stream.ContainsReagent(Reagent))
-                solutionSys.TryRemoveReagent(args.DiseasedEntity, stream, Reagent, -Amount);
+            if (Amount < 0 && stream.ContainsReagent(reagentId))
+                solutionSys.RemoveReagent(args.DiseasedEntity, stream, reagentId, -Amount);
 
             if (Amount > 0)
-                solutionSys.TryAddReagent(args.DiseasedEntity, stream, Reagent, Amount, out _);
+                solutionSys.TryAddReagent(args.DiseasedEntity, stream, reagentId, Amount, out _);
         }
     }
 }
