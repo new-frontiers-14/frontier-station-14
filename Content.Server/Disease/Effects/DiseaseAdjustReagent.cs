@@ -20,7 +20,7 @@ namespace Content.Server.Disease.Effects
         ///     The reagent ID to add or remove.
         /// </summary>
         [DataField("reagent", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
-        public ReagentId? Reagent = null;
+        public string? Reagent = null;
 
         [DataField("amount", required: true)]
         public FixedPoint2 Amount = default!;
@@ -35,14 +35,14 @@ namespace Content.Server.Disease.Effects
                 return;
 
             var solutionSys = args.EntityManager.EntitySysManager.GetEntitySystem<SolutionContainerSystem>();
-            if (Reagent is not ReagentId reagentId)
+            if (Reagent == null)
                 return;
 
-            if (Amount < 0 && stream.ContainsReagent(reagentId))
-                solutionSys.RemoveReagent(args.DiseasedEntity, stream, reagentId, -Amount);
+            if (Amount < 0 && stream.ContainsReagent(new(Reagent, null)))
+                solutionSys.RemoveReagent(args.DiseasedEntity, stream, new(Reagent, null), -Amount);
 
             if (Amount > 0)
-                solutionSys.TryAddReagent(args.DiseasedEntity, stream, reagentId, Amount, out _);
+                solutionSys.TryAddReagent(args.DiseasedEntity, stream, Reagent, Amount, out _);
         }
     }
 }

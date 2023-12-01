@@ -15,7 +15,7 @@ namespace Content.Server.Disease.Cures
         [DataField("min")]
         public FixedPoint2 Min = 5;
         [DataField("reagent")]
-        public ReagentId? Reagent;
+        public string? Reagent;
 
         public override bool Cure(DiseaseEffectArgs args)
         {
@@ -23,9 +23,9 @@ namespace Content.Server.Disease.Cures
                 return false;
 
             var quant = FixedPoint2.Zero;
-            if (Reagent is ReagentId reagentToAdd && bloodstream.ChemicalSolution.ContainsReagent(reagentToAdd))
+            if (Reagent != null && bloodstream.ChemicalSolution.ContainsReagent(new(Reagent, null)))
             {
-                quant = bloodstream.ChemicalSolution.GetReagentQuantity(reagentToAdd);
+                quant = bloodstream.ChemicalSolution.GetReagentQuantity(new(Reagent, null));
             }
             return quant >= Min;
         }
@@ -33,7 +33,7 @@ namespace Content.Server.Disease.Cures
         public override string CureText()
         {
             var prototypeMan = IoCManager.Resolve<IPrototypeManager>();
-            if (Reagent is not ReagentId reagentToAdd)
+            if (Reagent == null)
                 return string.Empty;
             return (Loc.GetString("diagnoser-cure-reagent", ("units", Min), ("reagent", Reagent)));
         }
