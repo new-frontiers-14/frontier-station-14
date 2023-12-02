@@ -117,21 +117,21 @@
     duration: 1
   - type: FalseAlarmRule
 
-# - type: entity
-  # id: GasLeak
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-gas-leak-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-gas-leak-end-announcement
-    # earliestStart: 10
-    # minimumPlayers: 5
-    # weight: 5
-    # startDelay: 20
-  # - type: GasLeakRule
+- type: entity
+  id: GasLeak
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-gas-leak-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-gas-leak-end-announcement
+    earliestStart: 10
+    minimumPlayers: 5
+    weight: 5
+    startDelay: 20
+  - type: GasLeakRule
 
 # - type: entity
   # id: KudzuGrowth
