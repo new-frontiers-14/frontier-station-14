@@ -82,8 +82,8 @@
       state: cpu_supply
     - type: ComputerBoard
       prototype: ComputerCargoOrders
-    - type: StaticPrice
-      price: 750
+#    - type: StaticPrice # Frontier
+#      price: 750
     - type: Tag
       tags:
       - DroneUsable
@@ -188,8 +188,8 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerResearchAndDevelopment
-    - type: StaticPrice
-      price: 250
+    - type: VendPrice # Frontier
+      price: 2500
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -232,8 +232,8 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerId
-    - type: StaticPrice
-      price: 750
+#    - type: StaticPrice # Frontier
+#      price: 750
     - type: Tag
       tags:
       - DroneUsable
@@ -357,8 +357,8 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerIFF
-    - type: StaticPrice
-      price: 750
+    - type: VendPrice # Frontier
+      price: 7500
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -371,27 +371,14 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: ShipyardComputerCircuitboard
-  name: shipyard computer board
-  description: A computer printed circuit board for a shipyard computer.
-  components:
-    - type: Sprite
-      state: cpu_supply
-    - type: ComputerBoard
-      prototype: ComputerShipyard
-    - type: StaticPrice
-      price: 750
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: ComputerMassMediaCircuitboard
   name: mass-media console board
   description: Write your message to the world!
   components:
     - type: Sprite
       state: cpu_service
-    - type: StaticPrice
-      price: 150
+#    - type: StaticPrice # Frontier
+#      price: 150
     - type: ComputerBoard
       prototype: ComputerMassMedia
 
