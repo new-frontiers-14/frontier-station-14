@@ -70,3 +70,29 @@
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.15
       - id: CrowbarRed
+
+- type: entity
+  id: LockerMercenaryFilled
+  suffix: Filled
+  parent: LockerMercenary
+  components:
+  - type: StorageFill
+    contents:
+      - id: PinpointerUniversal
+      - id: HandHeldMassScanner
+      - id: WeaponGrapplingGun
+      - id: BoxZiptie
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeShotgunDoubleBarreled
+  name: double barreled shotgun safe
+  suffix: Ship
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunDoubleBarreledRubber
+      amount: 2
+    - id: BoxBeanbag
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
