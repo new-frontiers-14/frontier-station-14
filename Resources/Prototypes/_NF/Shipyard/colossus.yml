@@ -1,20 +1,20 @@
 - type: vessel
   id: colossus
   name: EEC Colossus
-  description: A large ship with a robust atmospherics arrangement, this ship is adept at harvesting gasses from planets.
-  price: 120000
+  description: A large, sturdy ship with a robust atmospherics arrangement, this ship is adept at harvesting and refining gasses.
+  price: 135000
   category: Large
   group: Civilian
   shuttlePath: /Maps/Shuttles/colossus.yml
   
 - type: gameMap
   id: colossus
-  mapName: 'EEC Colossus'
+  mapName: 'Colossus'
   mapPath: /Maps/Shuttles/colossus.yml
   minPlayers: 0
   stations: 
-    Bison:
-      stationProto: StandardFrontierVessel
+    colossus:
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Colossus {1}'
@@ -28,3 +28,4 @@
             StationEngineer: [ 0, 0 ]
             AtmosphericTechnician: [ 0, 0 ]
             Bartender: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
