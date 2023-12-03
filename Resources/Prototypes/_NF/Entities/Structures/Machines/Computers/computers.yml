@@ -152,13 +152,61 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_expedition   
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: telesci_key
+
+- type: entity
+  id: ComputerShipyardSaleOnly
+  parent: ComputerShipyard
+  name: sale-only shipyard console
+  description: Used to sell your ship. No takebacks!
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.SaleOnly
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.SaleOnly
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_saleonly
+    - map: ["computerLayerKeys"]
+      state: saleonly_key
+
+- type: entity
+  id: ComputerShipyardSpecialty
+  parent: ComputerShipyard
+  name: specialty shipyard console
+  description: Contains a more eccentric selection of ships.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Specialty
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Specialty
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_specialty
+    - map: ["computerLayerKeys"]
+      state: specialty_key
 
 - type: entity
   name: cargo sale computer
