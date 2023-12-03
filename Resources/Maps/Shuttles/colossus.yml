@@ -364,8 +364,6 @@ entities:
       - 68
       type: DeviceNetwork
     - devices:
-      - 33
-      - 30
       - 28
       - 31
       - 131
@@ -380,16 +378,12 @@ entities:
     - ShutdownSubscribers:
       - 1347
       - 1346
-      - 80
-      - 79
       - 83
       - 84
       type: DeviceNetwork
     - devices:
       - 84
       - 83
-      - 79
-      - 80
       - 1346
       - 1347
       type: DeviceList
@@ -528,6 +522,20 @@ entities:
     - devices:
       - 1132
       - 1372
+      type: DeviceList
+  - uid: 1439
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -14.5,-12.5
+      parent: 2
+      type: Transform
+    - ShutdownSubscribers:
+      - 1143
+      - 1228
+      type: DeviceNetwork
+    - devices:
+      - 1143
+      - 1228
       type: DeviceList
 - proto: Airlock
   entities:
@@ -2686,6 +2694,36 @@ entities:
     - pos: -14.5,-6.5
       parent: 2
       type: Transform
+  - uid: 1440
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -12.5,-14.5
+      parent: 2
+      type: Transform
+  - uid: 1441
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -1.5,-1.5
+      parent: 2
+      type: Transform
+  - uid: 1442
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -1.5,-2.5
+      parent: 2
+      type: Transform
+  - uid: 1443
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -6.5,-1.5
+      parent: 2
+      type: Transform
+  - uid: 1444
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -6.5,-2.5
+      parent: 2
+      type: Transform
 - proto: GasAnalyzer
   entities:
   - uid: 1398
@@ -2730,6 +2768,30 @@ entities:
       type: GasMixer
     - color: '#03FCD3FF'
       type: AtmosPipeColor
+- proto: GasOutletInjector
+  entities:
+  - uid: 80
+    components:
+    - pos: -3.5,-11.5
+      parent: 2
+      type: Transform
+  - uid: 91
+    components:
+    - pos: -4.5,-11.5
+      parent: 2
+      type: Transform
+  - uid: 1229
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -3.5,-21.5
+      parent: 2
+      type: Transform
+  - uid: 1311
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -4.5,-21.5
+      parent: 2
+      type: Transform
 - proto: GasPipeBend
   entities:
   - uid: 71
@@ -5254,20 +5316,6 @@ entities:
       type: Transform
 - proto: GasPressurePump
   entities:
-  - uid: 46
-    components:
-    - pos: -2.5,-14.5
-      parent: 2
-      type: Transform
-    - color: '#FF7F50FF'
-      type: AtmosPipeColor
-  - uid: 91
-    components:
-    - pos: -5.5,-14.5
-      parent: 2
-      type: Transform
-    - color: '#FF7F50FF'
-      type: AtmosPipeColor
   - uid: 562
     components:
     - rot: -1.5707963267948966 rad
@@ -5296,22 +5344,6 @@ entities:
       parent: 2
       type: Transform
     - color: '#947507FF'
-      type: AtmosPipeColor
-  - uid: 1229
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -2.5,-19.5
-      parent: 2
-      type: Transform
-    - color: '#003366FF'
-      type: AtmosPipeColor
-  - uid: 1311
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -5.5,-19.5
-      parent: 2
-      type: Transform
-    - color: '#003366FF'
       type: AtmosPipeColor
   - uid: 1330
     components:
@@ -5349,20 +5381,6 @@ entities:
       type: Transform
 - proto: GasVentPump
   entities:
-  - uid: 30
-    components:
-    - pos: -4.5,-11.5
-      parent: 2
-      type: Transform
-    - color: '#FF7F50FF'
-      type: AtmosPipeColor
-  - uid: 33
-    components:
-    - pos: -3.5,-11.5
-      parent: 2
-      type: Transform
-    - color: '#FF7F50FF'
-      type: AtmosPipeColor
   - uid: 68
     components:
     - rot: 3.141592653589793 rad
@@ -5373,28 +5391,6 @@ entities:
       - 167
       type: DeviceNetwork
     - color: '#947507FF'
-      type: AtmosPipeColor
-  - uid: 79
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -4.5,-21.5
-      parent: 2
-      type: Transform
-    - ShutdownSubscribers:
-      - 168
-      type: DeviceNetwork
-    - color: '#003366FF'
-      type: AtmosPipeColor
-  - uid: 80
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -3.5,-21.5
-      parent: 2
-      type: Transform
-    - ShutdownSubscribers:
-      - 168
-      type: DeviceNetwork
-    - color: '#003366FF'
       type: AtmosPipeColor
   - uid: 131
     components:
@@ -5522,6 +5518,9 @@ entities:
       pos: -15.5,-10.5
       parent: 2
       type: Transform
+    - ShutdownSubscribers:
+      - 1439
+      type: DeviceNetwork
     - color: '#03FCD3FF'
       type: AtmosPipeColor
   - uid: 1346
@@ -5793,6 +5792,9 @@ entities:
       pos: -16.5,-8.5
       parent: 2
       type: Transform
+    - ShutdownSubscribers:
+      - 1439
+      type: DeviceNetwork
     - color: '#947507FF'
       type: AtmosPipeColor
   - uid: 1372
@@ -5806,6 +5808,30 @@ entities:
       type: DeviceNetwork
     - color: '#947507FF'
       type: AtmosPipeColor
+- proto: GasVolumePump
+  entities:
+  - uid: 30
+    components:
+    - pos: -5.5,-14.5
+      parent: 2
+      type: Transform
+  - uid: 33
+    components:
+    - pos: -2.5,-14.5
+      parent: 2
+      type: Transform
+  - uid: 46
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -5.5,-19.5
+      parent: 2
+      type: Transform
+  - uid: 79
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -2.5,-19.5
+      parent: 2
+      type: Transform
 - proto: GravityGeneratorMini
   entities:
   - uid: 1298
