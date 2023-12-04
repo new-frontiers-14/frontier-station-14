@@ -1,4 +1,5 @@
-#Exoskeleton Base
+# Note: Speed Boots [Tier 3 Civ-Service] PR - https://github.com/space-wizards/space-station-14/pull/21438
+# Exoskeleton Base
 - type: entity
   abstract: true
   parent: Clothing
@@ -8,17 +9,17 @@
     slots:
     - outerClothing
   - type: ClothingSpeedModifier
-    walkModifier: 1.1
-    sprintModifier: 1.1
+    walkModifier: 1
+    sprintModifier: 1
   - type: Item
     size: 120
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.95
+        Slash: 0.95
   - type: Storage
-    capacity: 30
+    capacity: 20
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -37,21 +38,21 @@
         Blunt: 14
   - type: FootstepModifier
     footstepSoundCollection:
-      path: _NF/Audio/Exoskeleton/sound_exoskeleton_servomotor_short.ogg
+      path: Audio/_NF/Exoskeleton/sound_exoskeleton_servomotor_short.ogg
   - type: Tag
     tags:
     - Exoskeleton
   - type: StaticPrice
     price: 2500
-  - type: Prying #this is a bit awkward: you can pry open airlock while holding the suit in hand, but it doesn't do anything while you wear the suit
+#  - type: Prying #this is a bit awkward: you can pry open airlock while holding the suit in hand, but it doesn't do anything while you wear the suit
 
-#Exoskeleton Base with lights
+# Adding flashlight and battery to ClothingExoskeletonBase
 - type: entity
   parent: ClothingExoskeletonBase
   id: ClothingExoskeletonLightBase
   noSpawn: true
   components:
-  - type: Sprite #Light related part starts here
+  - type: Sprite
     layers:
     - state: icon
     - state: icon-flash
@@ -95,7 +96,7 @@
 #    startingCharge: 600
 #  - type: BatterySelfRecharger
 #    autoRecharge: true
-#    autoRechargeRate: 3 #Having recharge (lower than 3 ofc) gives light an extended flicker period which gives you some warning to return to light area.
+#    autoRechargeRate: 2 #Having recharge gives light an extended flicker period which gives you some warning to return to lit area.
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ContainerContainer
@@ -107,9 +108,52 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
 
-#Exoskeleton Base with lights, Armored edition for combat application
+# Adding ToggleClothingSpeed to ClothingExoskeletonLightBase
 - type: entity
   parent: ClothingExoskeletonLightBase
+  id: ClothingExoskeletonLightToggleSpeed
+  noSpawn: true
+  description: A linear frame powered by servomotors. Protects your back and joints from straining.
+  components:
+  - type: Magboots # Should be replaced later with 'ToggleClothingSpeed' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+    toggleAction: ActionToggleExoskeletonServomotors
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85 # Should be replaced later with '1' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+    sprintModifier: 0.85 # Should be replaced later with '1' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+    enabled: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { state: icon-servos-off } # Should be replaced later with 'icon-servos-on' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+          False: { state: icon-servos-on } # Should be replaced later with 'icon-servos-off' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+#  - type: PowerCellDraw # should uncomment once Speed Boots [Tier 3 Civ-Service] PR is merged 
+#    drawRate: 4 # should uncomment once Speed Boots [Tier 3 Civ-Service] PR is merged 
+
+# Action
+- type: entity
+  id: ActionBaseToggleExoskeletonServomotors
+  name: Toggle Exoskeleton Servomotors
+  description: Toggles the servomotors on and off.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    event: !type:ToggleMagbootsEvent # Should be replaced later with '!type:ToggleClothingSpeedEvent' once Speed Boots [Tier 3 Civ-Service] PR is merged 
+
+- type: entity
+  id: ActionToggleExoskeletonServomotors
+  parent: ActionBaseToggleExoskeletonServomotors
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonengi.rsi, state: icon-servos-off }
+    iconOn: { sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonengi.rsi, state: icon-servos-on }
+
+# Adding armor for security exclusive variant of ClothingExoskeletonLightBase
+- type: entity
+  parent: ClothingExoskeletonLightToggleSpeed
   id: ClothingExoskeletonArmoredBase
   noSpawn: true
   components:
@@ -119,14 +163,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.7
-        Caustic: 0.75
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.95
+#        Heat: 0.7
+#        Caustic: 0.75
   - type: GroupExamine
-  - type: ExplosionResistance
-    damageCoefficient: 0.7
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.7
   - type: PointLight
 #    color: "#FFC458"
     enabled: false
@@ -135,7 +179,7 @@
 #Departmental variations
 #Engineer's Exoskeleton
 - type: entity
-  parent: ClothingExoskeletonLightBase
+  parent: ClothingExoskeletonLightToggleSpeed
   id: ClothingExoskeletonLightEngi
   name: engineer's exoskeleton
   description: A linear frame powered by servomotors. Protects your back and joints from straining.
@@ -147,7 +191,7 @@
 
 #Generic Exoskeleton
 - type: entity
-  parent: ClothingExoskeletonLightBase
+  parent: ClothingExoskeletonLightToggleSpeed
   id: ClothingExoskeletonLightGeneric
   name: exoskeleton
   description: A linear frame powered by servomotors. Protects your back and joints from straining.
@@ -159,7 +203,7 @@
 
 #Medic's Exoskeleton
 - type: entity
-  parent: ClothingExoskeletonLightBase
+  parent: ClothingExoskeletonLightToggleSpeed
   id: ClothingExoskeletonLightMedical
   name: medic's exoskeleton
   description: A linear frame powered by servomotors. Protects your back and joints from straining.
@@ -168,21 +212,16 @@
     sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonmedical.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Exoskeletons/exoskeletonmedical.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-  - type: ClothingSpeedModifier
-    walkModifier: 1.15
-    sprintModifier: 1.15
+#  - type: ClothingSpeedModifier
+#    walkModifier: 1.05
+#    sprintModifier: 1.05
   - type: PointLight
     enabled: false
-    radius: 4
+    radius: 5
 
 #Salvager's Exoskeleton
 - type: entity
-  parent: ClothingExoskeletonLightBase
+  parent: ClothingExoskeletonLightToggleSpeed
   id: ClothingExoskeletonLightSalvage
   name: salvage specialist's exoskeleton
   description: A linear frame powered by servomotors. Protects your back and joints from straining.
@@ -194,7 +233,7 @@
   - type: PointLight
     enabled: false
 #    color: "#00FF00"
-    radius: 5
+    radius: 6
     netsync: false
   - type: Armor
     modifiers:

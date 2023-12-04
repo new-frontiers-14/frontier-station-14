@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseSign
+  id: FrontierSignBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Textures/_NF/Structures/Wallmounts/signs.rsi
+
+# Exoskeleton Signs
+- type: entity
+  parent: FrontierSignBase
+  id: SignClothingExoskeletonStorage
+  name: exoskeletons storage
+  description: A sign, indicating the exoskeletons storage.
+  components:
+  - type: Sprite
+    state: exoskeletons_storage
+
+- type: entity
+  parent: FrontierSignBase
+  id: SignClothingExoskeletonWarningBig
+  name: exoskeleton sign big
+  description: Caution! Exoskeleton area ahead.
+  components:
+  - type: Sprite
+    state: exoskeletons_warning_big
+
+- type: entity
+  parent: FrontierSignBase
+  id: SignClothingExoskeletonWarningMedium
+  name: exoskeleton sign medium
+  description: Caution! Exoskeleton area ahead.
+  components:
+  - type: Sprite
+    state: exoskeletons_warning_medium
+
+- type: entity
+  parent: FrontierSignBase
+  id: SignClothingExoskeletonWarningMediumAlt
+  name: exoskeleton sign medium alt
+  description: Caution! Exoskeleton area ahead.
+  components:
+  - type: Sprite
+    state: exoskeletons_warning_medium_alt
+
+- type: entity
+  parent: FrontierSignBase
+  id: SignClothingExoskeletonSafety
+  name: exoskeleton safety sign medium
+  description: Instructions for safety procedures in exoskeleton areas.
+  components:
+  - type: Sprite
+    state: exoskeletons_safety

@@ -1,0 +1,18 @@
+- type: entity
+  parent: PosterBase
+  id: FrontierPosterBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Textures/_NF/Structures/Wallmounts/posters.rsi
+
+# Legit
+- type: entity
+  parent: FrontierPosterBase
+  id: PosterLegitSafetyExoskeletons
+  name: "Safety: Exoskeletons"
+  description: "A poster instructing the viewer how to safely operate exoskeleton suit and how to behave in exoskeleton operation areas."
+  components:
+  - type: Sprite
+    state: poster_exoskeleton_safety
+
