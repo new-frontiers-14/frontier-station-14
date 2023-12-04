@@ -81,6 +81,31 @@ public sealed partial class SpaceArtilleryComponent : Component
     [DataField("powerUseActive"), ViewVariables(VVAccess.ReadWrite)]
     public int PowerUseActive = 6000;
 	
+	
+	/// <summary>
+    /// Amount of power used when firing
+    /// </summary>
+    [DataField("linearRecoilGrid"), ViewVariables(VVAccess.ReadWrite)]
+    public float LinearRecoilGrid = 30;
+	
+	/// <summary>
+    /// Amount of power used when firing
+    /// </summary>
+    [DataField("angularInstabilityGrid"), ViewVariables(VVAccess.ReadWrite)]
+    public float AngularInstabilityGrid = 10;
+	
+	/// <summary>
+    /// Amount of power used when firing
+    /// </summary>
+    [DataField("linearRecoilWeapon"), ViewVariables(VVAccess.ReadWrite)]
+    public float LinearRecoilWeapon = 60;
+	
+	/// <summary>
+    /// Amount of power used when firing
+    /// </summary>
+    [DataField("angularInstabilityWeapon"), ViewVariables(VVAccess.ReadWrite)]
+    public float AngularInstabilityWeapon = 30;
+	
 
     /// <summary>
     /// Signal port that makes space artillery fire.

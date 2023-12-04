@@ -25,6 +25,7 @@ using Content.Shared.Stacks;
 using Content.Server.Stack;
 using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.Random;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -40,6 +41,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 	[Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 	[Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
+	[Dependency] private readonly IRobustRandom _random = default!;
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -74,7 +76,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         _itemSlotsSystem.RemoveItemSlot(uid, component.CoolantSlot);
     }
 
-
+//TODO move firing system into separate function
 	private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
 	{
 		if(component.IsPowered == true || component.IsPowerRequiredForSignal == false)
@@ -111,14 +113,26 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 								battery.CurrentCharge -= component.PowerUseActive;
 								
 								//TODO Add calculation where velocity gained is based on mass
+								//TODO Calculation for linear velocity direction with rotation
 								var gridMass = gridPhysicsComponent.FixturesMass;
 								var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
 								var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
 								
 								if(transformComponent.Anchored == true)
 								{
-									_physicsSystem.SetLinearVelocity(gridUid, new Vector2(oldLinearVelocity.X + (30f/(gridMass*0.1f)), oldLinearVelocity.Y + (30f/(gridMass*0.1f))));
-									_physicsSystem.SetAngularVelocity(gridUid, oldAngularVelocity + (10f/(gridMass*0.1f)));
+									var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilGrid * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilGrid * (float) Math.Cos(worldRot));
+									var recoilX = (worldPosX - targetSpotRecoil.X);
+									var recoilY = (worldPosY - targetSpotRecoil.Y);
+									var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/gridMass), oldLinearVelocity.Y + (recoilY/gridMass));
+									
+									var randomAngularInstability = _random.Next((int) -component.AngularInstabilityGrid, (int) component.AngularInstabilityGrid);
+									var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/gridMass);
+									
+									_physicsSystem.SetLinearVelocity(gridUid, newLinearVelocity);
+									_physicsSystem.SetAngularVelocity(gridUid, newAngularVelocity);
+									
+									Sawmill.Info($"Space Artillery recoil. RecoilX: {recoilX}  RecoilY: {recoilY}  Instability: {randomAngularInstability}");
+									Sawmill.Info($"Space Artillery recoil. LinearVelocityX: {newLinearVelocity.X}/{oldLinearVelocity.X}  LinearVelocityY: {newLinearVelocity.Y}/{oldLinearVelocity.Y}  AngularInstability: {newAngularVelocity}/{oldAngularVelocity}");
 								} 
 								else
 								{ //TODO, get velocity for the weapon itself separate from shuttle
