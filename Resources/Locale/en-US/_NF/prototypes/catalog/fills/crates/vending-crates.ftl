@@ -11,7 +11,10 @@ ent-CrateVendingMachineRestockCuddlyCritterVendFilled = CuddlyCritterVend restoc
     .desc = Contains two restock boxes for a CuddlyCritterVend vending machine.
 
 ent-CrateVendingMachineRestockChefvendFilled = ChefVend restock crate
-    .desc = Contains two restock boxes for a Chefvend vending machine.
+    .desc = Contains two restock boxes for a ChefVend vending machine.
 
 ent-CrateVendingMachineRestockCondimentStationFilled = Condiment Station restock crate
     .desc = Contains two restock boxes for a condiment station.
+
+ent-CrateVendingMachineRestockLessLethalVendFilled = LessLethalVend restock crate
+    .desc = Contains two restock boxes for the LessLethalVend vending machine.
