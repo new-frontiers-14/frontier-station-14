@@ -117,21 +117,21 @@
     duration: 1
   - type: FalseAlarmRule
 
-# - type: entity
-  # id: GasLeak
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-gas-leak-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-gas-leak-end-announcement
-    # earliestStart: 10
-    # minimumPlayers: 5
-    # weight: 5
-    # startDelay: 20
-  # - type: GasLeakRule
+- type: entity
+  id: GasLeak
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-gas-leak-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-gas-leak-end-announcement
+    earliestStart: 10
+    minimumPlayers: 5
+    weight: 5
+    startDelay: 20
+  - type: GasLeakRule
 
 # - type: entity
   # id: KudzuGrowth
@@ -189,23 +189,23 @@
     # - id: SpawnPointGhostRatKing
       # prob: 0.005
 
-# - type: entity
-  # id: PowerGridCheck
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # weight: 10
-    # startAnnouncement: station-event-power-grid-check-start-announcement
-    # endAnnouncement: station-event-power-grid-check-end-announcement
-    # startAudio:
-      # path: /Audio/Announcements/power_off.ogg
-      # params:
-       # volume: -4
-    # startDelay: 12
-    # duration: 60
-    # maxDuration: 120
-  # - type: PowerGridCheckRule
+- type: entity
+  id: PowerGridCheck
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 10
+    startAnnouncement: station-event-power-grid-check-start-announcement
+    endAnnouncement: station-event-power-grid-check-end-announcement
+    startAudio:
+      path: /Audio/Announcements/power_off.ogg
+      params:
+       volume: -4
+    startDelay: 12
+    duration: 60
+    maxDuration: 60 # Frontier 120<60
+  - type: PowerGridCheckRule
 
 - type: entity
   id: RandomSentience
@@ -242,21 +242,21 @@
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
-# - type: entity
-  # id: VentClog
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-vent-clog-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # earliestStart: 15
-    # minimumPlayers: 15
-    # weight: 5
-    # startDelay: 50
-    # duration: 60
-  # - type: VentClogRule
+- type: entity
+  id: VentClog
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-clog-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 50
+    duration: 60
+  - type: VentClogRule
 
 - type: entity
   id: VentCritters
