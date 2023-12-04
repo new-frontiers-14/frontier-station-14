@@ -1,0 +1,28 @@
+- type: vessel
+  id: Mayflower
+  name: USS Mayflower
+  description: An oldership from an Older world found cover in Space Spiders and Web
+  price: 50000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Shuttles/Mushroom.yml
+  
+- type: gameMap
+  id: Mayflower
+  mapName: 'USS Mayflower'
+  mapPath: /Maps/Shuttles/Mushroom.yml
+  minPlayers: 0
+  stations: 
+    Mayflower:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'USS Mayflower{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            MedicalDoctor: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
