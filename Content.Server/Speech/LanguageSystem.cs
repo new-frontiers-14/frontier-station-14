@@ -58,6 +58,10 @@ public sealed class LanguageSystem : EntitySystem
             language = GetLanguage(source.Value);
         }
 
+        // TODO: REWORK THIS!
+        // Should instead use random number of syllables/phrases per word/sentence depending on its length
+        // Also preferably should use a simple hash code of the word as the random seed to make obfuscation stable
+        // This will also allow people to learn certain phrases, e.g. how "yes" is spelled in canilunzt.
         var builder = new StringBuilder();
         if (language.ObfuscateSyllables)
         {
@@ -73,7 +77,6 @@ public sealed class LanguageSystem : EntitySystem
                 else if (IsVowel(ch))
                 {
                     builder.Append(_random.Pick(language.Replacement));
-                    _sawmill.Debug("Found a vowel: " + ch);
                 }
             }
         }
@@ -116,6 +119,7 @@ public sealed class LanguageSystem : EntitySystem
         return listenerLanguages.Contains(language.ID, StringComparer.Ordinal);
     }
 
+    [Obsolete("Use CanUnderstand(EntityUid, LanguagePrototype) instead if possible.", error: false)]
     public bool CanUnderstand(EntityUid speaker, EntityUid listener,
         LanguageSpeakerComponent? speakerComp = null,
         LanguageSpeakerComponent? listenerComp = null)
