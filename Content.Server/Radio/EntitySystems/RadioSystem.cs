@@ -69,12 +69,12 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    /// <param name="language">The language to send the message in. Defaults to galactic common.</param>
+    /// <param name="language">The language to send the message in.</param>
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null)
     {
         if (language == null)
         {
-            language = _language.GetLanguage(messageSource); // Will return galactic common for non-player sources
+            language = _language.GetLanguage(messageSource);
         }
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
