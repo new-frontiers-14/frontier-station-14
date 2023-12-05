@@ -684,7 +684,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// </summary>
     private void SendInVoiceRange(ChatChannel channel, string name, string message, string wrappedMessage, string obfuscated, string obfuscatedWrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, LanguagePrototype? languageOverride = null)
     {
-        var language = languageOverride ?? _language.GetLanguage(source)
+        var language = languageOverride ?? _language.GetLanguage(source);
 
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
