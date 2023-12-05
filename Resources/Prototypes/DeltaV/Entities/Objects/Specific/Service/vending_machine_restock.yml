@@ -1,23 +1,14 @@
 - type: entity
-  parent: BaseVendingMachineRestock
-  id: BaseVendingMachineRestockDeltaV
-  name: vending machine restock box
-  description: A box for restocking vending machines with corporate goodies.
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: DeltaV/Objects/Specific/Service/vending_machine_restock.rsi
-
-- type: entity
-  parent: BaseVendingMachineRestockDeltaV
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockPride
   name: Pride-O-Mat restock box
-  description: The station needs more plushie sharks and you know it.
+  description: The station needs more plushie sharks and you know it. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
     - PrideDrobeInventory
   - type: Sprite
+    sprite: DeltaV/Objects/Specific/Service/vending_machine_restock.rsi
     layers:
     - state: base
     - state: green_bit
