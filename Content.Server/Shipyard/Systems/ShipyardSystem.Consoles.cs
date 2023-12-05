@@ -326,6 +326,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             SendSellMessage(uid, deed.ShuttleOwner!, deed.ShuttleName!, component.SecurityShipyardChannel, player, true);
         }
 
+        if (ShipyardConsoleUiKey.Eccentric == (ShipyardConsoleUiKey) args.UiKey)
+        {
+            var tax = (int) (bill * 0.20f);
+            var query = EntityQueryEnumerator<StationBankAccountComponent>();
+
+            while (query.MoveNext(out _, out var comp))
+            {
+                _cargo.DeductFunds(comp, -tax);
+            }
+
+            bill -= tax;
+        }
+
+
         _bank.TryBankDeposit(player, bill);
         PlayConfirmSound(uid, component);
 
