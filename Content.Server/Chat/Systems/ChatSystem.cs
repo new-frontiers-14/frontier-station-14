@@ -771,17 +771,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         return ev.Message;
     }
 
-    /// <summary>
-    ///     Transforms the given message perceived by the given listener and returns the new message and the new wrapped message.
-    /// </summary>
-    public string TransformPerceivedSpeech(EntityUid speaker, EntityUid listener, string message)
-    {
-        var ev = new TransformPerceivedMessageEvent(speaker, listener, message);
-        RaiseLocalEvent(ev);
-
-        return ev.Message;
-    }
-
     private IEnumerable<INetChannel> GetDeadChatClients()
     {
         return Filter.Empty()
@@ -927,23 +916,6 @@ public sealed class TransformSpeechEvent : EntityEventArgs
     public TransformSpeechEvent(EntityUid sender, string message)
     {
         Sender = sender;
-        Message = message;
-    }
-}
-
-/// <summary>
-///     Raised broadcast in order to transform the way an entity perceives a message.
-/// </summary>
-public sealed class TransformPerceivedMessageEvent : EntityEventArgs
-{
-    public EntityUid Sender;
-    public EntityUid Listener;
-    public string Message;
-
-    public TransformPerceivedMessageEvent(EntityUid sender, EntityUid listener, string message)
-    {
-        Sender = sender;
-        Listener = listener;
         Message = message;
     }
 }
