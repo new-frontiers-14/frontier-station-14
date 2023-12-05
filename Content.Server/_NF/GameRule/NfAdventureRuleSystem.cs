@@ -143,9 +143,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             {
                 if (_prototypeManager.TryIndex<GameMapPrototype>("Tinnia", out var stationProto))
-                {
-                    _station.InitializeNewStation(stationProto.Stations["Tinnia"], depotUid2s);
-                }
+            {
+                _station.InitializeNewStation(stationProto.Stations["Tinnia"], depotUid2s);
+            }
 
                 var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
                 _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
