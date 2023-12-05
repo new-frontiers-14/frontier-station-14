@@ -96,7 +96,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
-        ReportRound(relayText);
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -128,9 +127,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotOffset = _random.NextVector2(3000f, 5000f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
-            {
-                Offset = depotOffset
-            }))
+        {
+            Offset = depotOffset
+        }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
             _meta.SetEntityName(depotUids[0], "Cargo Depot A", meta);
@@ -138,173 +137,150 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(1100f, 2800f)
-            }))
         {
-            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
-            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
-        }
+            Offset = _random.NextVector2(1100f, 2800f)
+        }))
+        {
+            {
+                if (_prototypeManager.TryIndex<GameMapPrototype>("Tinnia", out var stationProto))
+                {
+                    _station.InitializeNewStation(stationProto.Stations["Tinnia"], depotUid2s);
+                }
 
-        if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
+                var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
+                _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
+                _shuttle.SetIFFColor(depotUid2s[0], factionColor);
+            }
+
+            if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
                 Offset = -depotOffset
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
-            _shuttle.SetIFFColor(depotUid3s[0], depotColor);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
+                _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
+                _shuttle.SetIFFColor(depotUid3s[0], depotColor);
+            }
 
-        if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
+            if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2150f, 3900f)
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
-            _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
-            _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
+                _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
+                _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
+                _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
+            }
 
-        if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
+            if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2150f, 3900f)
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
-            _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
-            _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
+                _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
+                _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
+            }
 
-        if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
+            if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2200f, 4200f)
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
-            _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
-            _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
+                _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
+                _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
+            }
 
-        if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
+            if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2250f, 4600f)
             }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Cove", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["Cove"], depotUid6s);
+                if (_prototypeManager.TryIndex<GameMapPrototype>("Cove", out var stationProto))
+                {
+                    _station.InitializeNewStation(stationProto.Stations["Cove"], depotUid6s);
+                }
+
+                var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
+                _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
+                _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
+                _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
             }
 
-            var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
-            _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
-            _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
-            _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
-        }
-
-        if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
+            if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1650f, 3400f)
             }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["Lodge"], lodgeUids);
+                if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
+                {
+                    _station.InitializeNewStation(stationProto.Stations["Lodge"], lodgeUids);
+                }
+
+                var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
+                _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
+                _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
             }
 
-            var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
-            _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
-            _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
-        }
-
-        if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
+            if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2250f, 4600f)
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
-            _shuttle.SetIFFColor(depotUid7s[0], factionColor);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
+                _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
+                _shuttle.SetIFFColor(depotUid7s[0], factionColor);
+            }
 
-        if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
+            if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1150f, 2050f)
             }))
-        {
-            _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
-        }
+            {
+                _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
+            }
 
-        if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
+            if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2100f, 3800f)
             }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(labUids[0]);
-            _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
-            _shuttle.SetIFFColor(labUids[0], factionColor);
-        }
+            {
+                var meta = EnsureComp<MetaDataComponent>(labUids[0]);
+                _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
+                _shuttle.SetIFFColor(labUids[0], factionColor);
+            }
 
-        var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
+            var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
-        foreach (var dunGen in dungenTypes)
-        {
+            foreach (var dunGen in dungenTypes)
+            {
 
-            var seed = _random.Next();
-            var offset = _random.NextVector2(3000f, 8500f);
-            if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
+                var seed = _random.Next();
+                var offset = _random.NextVector2(3000f, 8500f);
+                if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
                 }))
-            {
-                continue;
-            }
-
-            var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
-            _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
-            _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2i(0, 0);
-
-            //pls fit the grid I beg, this is so hacky
-            //its better now but i think i need to do a normalization pass on the dungeon configs
-            //because they are all offset. confirmed good size grid, just need to fix all the offsets.
-            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
-        }
-    }
-
-    private async Task ReportRound(String message,  int color = 0x77DDE7)
-    {
-        Logger.InfoS("discord", message);
-        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
-        if (_webhookUrl == string.Empty)
-            return;
-
-        var payload = new WebhookPayload
-        {
-            Embeds = new List<Embed>
-            {
-                new()
                 {
-                    Title = Loc.GetString("adventure-list-start"),
-                    Description = message,
-                    Color = color,
-                },
-            },
-        };
+                    continue;
+                }
 
-        var ser_payload = JsonSerializer.Serialize(payload);
-        var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
-        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
-        var reply = await request.Content.ReadAsStringAsync();
-        if (!request.IsSuccessStatusCode)
-        {
-            Logger.ErrorS("mining", $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
+                var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
+                _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
+                _console.WriteLine(null, $"dungeon spawned at {offset}");
+                offset = new Vector2i(0, 0);
+
+                //pls fit the grid I beg, this is so hacky
+                //its better now but i think i need to do a normalization pass on the dungeon configs
+                //because they are all offset. confirmed good size grid, just need to fix all the offsets.
+                _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
+            }
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#message-object-message-structure
+    // https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
         [JsonPropertyName("username")] public string? Username { get; set; } = null;
