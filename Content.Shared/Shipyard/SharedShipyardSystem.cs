@@ -14,8 +14,7 @@ public enum ShipyardConsoleUiKey : byte
     Security,
     BlackMarket,
     Expedition,
-    SaleOnly,
-    Specialty
+    Eccentric
     // Syndicate
     //Not currently implemented. Could be used in the future to give other factions a variety of shuttle options,
     //like nukies, syndicate, or for evac purchases.

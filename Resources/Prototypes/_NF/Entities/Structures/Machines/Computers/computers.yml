@@ -161,16 +161,16 @@
       state: telesci_key
 
 - type: entity
-  id: ComputerShipyardSaleOnly
+  id: ComputerShipyardEccentric
   parent: ComputerShipyard
-  name: sale-only shipyard console
-  description: Used to sell your ship. No takebacks!
+  name: eccentric shipyard console
+  description: Contains a more unorthodox selection of ships.
   components:
   - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.SaleOnly
+    key: enum.ShipyardConsoleUiKey.Eccentric
   - type: UserInterface
     interfaces:
-    - key: enum.ShipyardConsoleUiKey.SaleOnly
+    - key: enum.ShipyardConsoleUiKey.Eccentric
       type: ShipyardConsoleBoundUserInterface
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -180,33 +180,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_saleonly
+      state: shipyard_eccentric
     - map: ["computerLayerKeys"]
-      state: saleonly_key
-
-- type: entity
-  id: ComputerShipyardSpecialty
-  parent: ComputerShipyard
-  name: specialty shipyard console
-  description: Contains a more eccentric selection of ships.
-  components:
-  - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Specialty
-  - type: UserInterface
-    interfaces:
-    - key: enum.ShipyardConsoleUiKey.Specialty
-      type: ShipyardConsoleBoundUserInterface
-  - type: Sprite
-    sprite: _NF/Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: shipyard_specialty
-    - map: ["computerLayerKeys"]
-      state: specialty_key
+      state: eccentric_key
 
 - type: entity
   name: cargo sale computer
