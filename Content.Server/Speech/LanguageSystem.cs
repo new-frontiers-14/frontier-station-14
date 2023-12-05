@@ -31,14 +31,14 @@ public sealed class LanguageSystem : EntitySystem
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
     {
-        if (component.Languages.Count == 0)
+        if (component.SpokenLanguages.Count == 0)
         {
-            throw new ArgumentException("Language speaker must know at least one language.");
+            throw new ArgumentException("Language speaker must speak at least one language.");
         }
 
         if (string.IsNullOrEmpty(component.CurrentLanguage))
         {
-            component.CurrentLanguage = component.Languages.First();
+            component.CurrentLanguage = component.SpokenLanguages.First();
         };
     }
 
@@ -65,7 +65,7 @@ public sealed class LanguageSystem : EntitySystem
             // Effectively, the number of syllables in a word is equal to the number of vowels in it.
             for (var i = 0; i < message.Length; i++)
             {
-                var ch = message[i];
+                var ch = char.ToLower(message[i]);
                 if (char.IsWhiteSpace(ch) || IsSentenceEnd(ch))
                 {
                     builder.Append(ch); // This will preserve major punctuation and spaces
@@ -82,7 +82,7 @@ public sealed class LanguageSystem : EntitySystem
             // Replace every sentence with "replacement"
             for (int i = 0; i < message.Length; i++)
             {
-                var ch = message[i];
+                var ch = char.ToLower(message[i]);
                 if (IsSentenceEnd(ch))
                 {
                     builder.Append(_random.Pick(language.Replacement));
@@ -99,7 +99,7 @@ public sealed class LanguageSystem : EntitySystem
                 builder.Append(_random.Pick(language.Replacement));
         }
 
-        _sawmill.Info($"Got {message}, obfuscated to {builder.ToString()}. Language: {language.ID}, replacements: {string.Join(", ", language.Replacement)}");
+        _sawmill.Info($"Got {message}, obfuscated to {builder}. Language: {language.ID}");
 
         return builder.ToString();
     }
@@ -108,70 +108,98 @@ public sealed class LanguageSystem : EntitySystem
         LanguagePrototype language,
         LanguageSpeakerComponent? listenerLanguageComp = null)
     {
-        if (HasComp<UniversalLanguageSpeakerComponent>(listener))
-        {
+        if (language.ID == Universal.ID || HasComp<UniversalLanguageSpeakerComponent>(listener))
             return true;
-        }
 
-        if (listenerLanguageComp == null && !TryComp(listener, out listenerLanguageComp))
-        {
-            return false;
-        }
+        var listenerLanguages = GetLanguages(listener, listenerLanguageComp).UnderstoodLanguages;
 
-        return language.ID == listenerLanguageComp.CurrentLanguage ||
-               listenerLanguageComp.Languages.Contains(language.ID, StringComparer.Ordinal);
+        return listenerLanguages.Contains(language.ID, StringComparer.Ordinal);
     }
 
     public bool CanUnderstand(EntityUid speaker, EntityUid listener,
-        LanguageSpeakerComponent? speakerLanguage = null,
-        LanguageSpeakerComponent? listenerLanguage = null)
+        LanguageSpeakerComponent? speakerComp = null,
+        LanguageSpeakerComponent? listenerComp = null)
     {
         if (HasComp<UniversalLanguageSpeakerComponent>(listener) || HasComp<UniversalLanguageSpeakerComponent>(speaker))
-        {
             return true;
-        }
 
-        if (speakerLanguage == null && !TryComp(speaker, out speakerLanguage))
-        {
-            return false;
-        }
+        var speakerLanguage = GetLanguages(speaker, speakerComp).CurrentLanguage;
+        if (speakerLanguage == Universal.ID)
+            return true;
+        var listenerLanguages = GetLanguages(listener, listenerComp).UnderstoodLanguages;
 
-        if (listenerLanguage == null && !TryComp(listener, out listenerLanguage))
-        {
-            return false;
-        }
-
-        return listenerLanguage.Languages.Contains(speakerLanguage.CurrentLanguage, StringComparer.Ordinal);
+        return listenerLanguages.Contains(speakerLanguage, StringComparer.Ordinal);
     }
 
     // <summary>
-    //     Returns the current language of the given entity. Assumes GalacticCommon if not specified.
+    //     Returns the current language of the given entity. Assumes Universal if not specified.
     // </summary>
     public LanguagePrototype GetLanguage(EntityUid speaker, LanguageSpeakerComponent? languageComp = null)
     {
-        if (languageComp != null || TryComp(speaker, out languageComp))
-        {
-            return _prototype.Index<LanguagePrototype>(languageComp.CurrentLanguage);
-        }
-        // Fall back if the entity is not a language speaker.
-        // This may include breads, doors, walls - anything an admin can decide to possess
-        // TODO: may want to use Universal instead!
-        return GalacticCommon;
-    }
+        var id = GetLanguages(speaker, languageComp).CurrentLanguage;
+        _prototype.TryIndex(id, out LanguagePrototype? proto);
 
-    private bool HasIntersectingLanguages(LanguageSpeakerComponent speaker, LanguageSpeakerComponent listener)
-    {
-        return listener != null && listener.Languages.Contains(speaker.CurrentLanguage, StringComparer.Ordinal);
+        return proto ?? Universal;
     }
 
     private bool IsVowel(char ch)
     {
         // This is not a language-agnostic approach and will totally break with non-latin languages.
-        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y';
+        return ch is 'a' or 'e' or 'i' or 'o' or 'u' or 'y';
     }
 
     private bool IsSentenceEnd(char ch)
     {
-        return ch == '.' || ch == '!' || ch == '?';
+        return ch is '.' or '!' or '?';
+    }
+
+    // This event is reused because re-allocating it each time is way too costly.
+    private DetermineEntityLanguagesEvent _determineLanguagesEvent = new("", new(), new());
+
+    /// <summary>
+    ///   Dynamically resolves the current language of the entity and the list of all languages it speaks.
+    ///   The returned event is reused and thus must not be held as a reference anywhere but inside the caller function.
+    /// </summary>
+    private DetermineEntityLanguagesEvent GetLanguages(EntityUid speaker, LanguageSpeakerComponent? comp = null)
+    {
+        var ev = _determineLanguagesEvent;
+        ev.CurrentLanguage = Universal.ID;
+        ev.SpokenLanguages.Clear();
+        ev.UnderstoodLanguages.Clear();
+
+        if (comp != null || TryComp(speaker, out comp))
+        {
+            ev.CurrentLanguage = comp.CurrentLanguage;
+            ev.SpokenLanguages.AddRange(comp.SpokenLanguages);
+            ev.UnderstoodLanguages.AddRange(comp.UnderstoodLanguages);
+        }
+
+        RaiseLocalEvent(speaker, ev);
+
+        return ev;
+    }
+
+    /// <summary>
+    ///   Raised in order to determine the language an entity speaks at the current moment,
+    ///   as well as the list of all languages the entity may speak and understand.
+    /// </summary>
+    public sealed class DetermineEntityLanguagesEvent : EntityEventArgs
+    {
+        public string CurrentLanguage;
+        /// <summary>
+        ///   The list of all languages the entity may speak. Must NOT be held as a reference!
+        /// </summary>
+        public List<string> SpokenLanguages;
+        /// <summary>
+        ///   The list of all languages the entity may understand. Must NOT be held as a reference!
+        /// </summary>
+        public List<string> UnderstoodLanguages;
+
+        public DetermineEntityLanguagesEvent(string currentLanguage, List<string> spokenLanguages, List<string> understoodLanguages)
+        {
+            CurrentLanguage = currentLanguage;
+            SpokenLanguages = spokenLanguages;
+            UnderstoodLanguages = understoodLanguages;
+        }
     }
 }

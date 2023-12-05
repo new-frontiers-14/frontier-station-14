@@ -15,9 +15,16 @@ public sealed partial class LanguageSpeakerComponent : Component
     public string CurrentLanguage = default!;
 
     /// <summary>
-    ///     List of languages this entity can speak and understand.
+    ///     List of languages this entity can speak.
     /// </summary>
     [ViewVariables]
-    [DataField("languages", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>), required: true)]
-    public List<string> Languages = new();
+    [DataField("speaks", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>), required: true)]
+    public List<string> SpokenLanguages = new();
+
+    /// <summary>
+    ///     List of languages this entity can understand.
+    /// </summary>
+    [ViewVariables]
+    [DataField("understands", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>), required: true)]
+    public List<string> UnderstoodLanguages = new();
 }
