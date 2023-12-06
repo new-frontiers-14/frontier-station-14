@@ -228,6 +228,16 @@ public sealed class MutationSystem : EntitySystem
 
     private void MutateGasses(ref Dictionary<Gas, float> gasses, float min, float max, int bits, int totalbits, float mult)
     {
+        // Frontier - List of gasses
+        Gas[] gassesList =
+        {
+          Gas.Miasma,
+          Gas.Plasma,
+          Gas.Tritium,
+          Gas.WaterVapor,
+        };
+        // Frontier - List of gasses
+
         float probModify = mult * bits / totalbits;
         probModify = Math.Clamp(probModify, 0, 1);
         if (!Random(probModify))
@@ -235,7 +245,8 @@ public sealed class MutationSystem : EntitySystem
 
         // Add a random amount of a random gas to this gas dictionary
         float amount = _robustRandom.NextFloat(min, max);
-        Gas gas = _robustRandom.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+        //Gas gas = _robustRandom.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList()); // Frontier
+        Gas gas = _robustRandom.Pick(gassesList); // Frontier
         if (gasses.ContainsKey(gas))
         {
             gasses[gas] += amount;
