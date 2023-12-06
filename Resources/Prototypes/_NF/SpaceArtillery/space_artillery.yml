@@ -67,7 +67,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 1
-    projectileSpeed: 30
+    projectileSpeed: 70
     soundGunshot:
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
@@ -160,7 +160,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 1
-    projectileSpeed: 30
+    projectileSpeed: 70
     soundGunshot:
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
@@ -234,7 +234,7 @@
         ents: []
   - type: Gun
     fireRate: 5
-    projectileSpeed: 30
+    projectileSpeed: 70
     soundGunshot:
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
@@ -321,7 +321,7 @@
         ents: []
   - type: Gun
     fireRate: 5
-    projectileSpeed: 30
+    projectileSpeed: 70
     soundGunshot:
       path: /Audio/Effects/thunk.ogg
     soundEmpty:
@@ -514,7 +514,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
-    projectileSpeed: 30
+    projectileSpeed: 70
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -524,6 +524,9 @@
     soundEmpty:
       path: /Audio/Items/hiss.ogg
   - type: SpaceArtillery
+    isArmed: true
+    isCoolantRequiredToFire: true
+    isPowerRequiredToFire: true
     SpaceArtillery-CoolantSlot:
             name:  SpaceArtillery-CoolantSlot
             insertSound: /Audio/Machines/scanning.ogg
@@ -614,7 +617,7 @@
       - SpaceArtillerySafety
   - type: Gun
     fireRate: 3
-    projectileSpeed: 30
+    projectileSpeed: 70
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -647,7 +650,7 @@
   - type: BatterySelfRecharger
 
 #Deployable weaponry
-
+#WARNING CURRENTLY VERY BUGGED. NEED TO RESOLVE THE ISSUE OF ACTING LIKE ITEM
 - type: entity
   name: General Purpose Machine Gun .35 cal
   parent: BaseItem
@@ -679,6 +682,7 @@
     angleIncrease: 4
     angleDecay: 16
     fireRate: 8
+    projectileSpeed: 70
     selectedMode: FullAuto
     availableModes:
       - FullAuto

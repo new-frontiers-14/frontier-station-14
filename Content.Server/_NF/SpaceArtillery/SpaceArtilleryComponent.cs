@@ -25,13 +25,19 @@ public sealed partial class SpaceArtilleryComponent : Component
 	/// <summary>
 	/// Whether the space artillery need coolant to fire on top of ammunition or power
 	/// </summary>
-    [DataField("isCoolantRequiredForFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsCoolantRequiredForFire = false;
+    [DataField("isCoolantRequiredToFire"),ViewVariables(VVAccess.ReadWrite)] public bool IsCoolantRequiredToFire = false;
 	
 	/// <summary>
     /// Stored amount of coolant
     /// </summary>
     [DataField("coolantStored"), ViewVariables(VVAccess.ReadWrite)]
     public int CoolantStored = 0;
+	
+	/// <summary>
+    /// Maximum amount of coolant that can fit
+    /// </summary>
+    [DataField("maxCoolantStored"), ViewVariables(VVAccess.ReadWrite)]
+    public int MaxCoolantStored = 90;
 	
 	/// <summary>
 	/// Whether the space artillery's safety is enabled or not

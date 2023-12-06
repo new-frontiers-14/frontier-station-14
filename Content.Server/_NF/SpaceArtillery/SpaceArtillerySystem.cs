@@ -68,6 +68,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 
     private void OnComponentInit(EntityUid uid, SpaceArtilleryComponent component, ComponentInit args)
     {
+		if(component.IsCoolantRequiredToFire == true)
         _itemSlotsSystem.AddItemSlot(uid, SpaceArtilleryComponent.CoolantSlotSlotId, component.CoolantSlot);
     }
 
@@ -88,58 +89,9 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				{
 					if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
 					{
-						var xform = Transform(uid);
-						
-						if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+						if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= 1) || component.IsCoolantRequiredToFire == false)
 						{
-							return;
-						}
-						
-						if(TryComp<TransformComponent>(uid, out var transformComponent)){
-							
-							var worldPosX = transformComponent.WorldPosition.X;
-							var worldPosY = transformComponent.WorldPosition.Y;
-							var worldRot = transformComponent.WorldRotation+rotOffset;
-							var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-							
-							var _gridUid = transformComponent.GridUid;
-							if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid){
-							
-								EntityCoordinates targetCordinates;
-								targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-								
-								_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-								if(component.IsPowerRequiredToFire == true)
-								battery.CurrentCharge -= component.PowerUseActive;
-								
-								//TODO Add calculation where velocity gained is based on mass
-								//TODO Calculation for linear velocity direction with rotation
-								var gridMass = gridPhysicsComponent.FixturesMass;
-								var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
-								var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
-								
-								if(transformComponent.Anchored == true)
-								{
-									var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilGrid * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilGrid * (float) Math.Cos(worldRot));
-									var recoilX = (worldPosX - targetSpotRecoil.X);
-									var recoilY = (worldPosY - targetSpotRecoil.Y);
-									var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/gridMass), oldLinearVelocity.Y + (recoilY/gridMass));
-									
-									var randomAngularInstability = _random.Next((int) -component.AngularInstabilityGrid, (int) component.AngularInstabilityGrid);
-									var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/gridMass);
-									
-									_physicsSystem.SetLinearVelocity(gridUid, newLinearVelocity);
-									_physicsSystem.SetAngularVelocity(gridUid, newAngularVelocity);
-									
-									Sawmill.Info($"Space Artillery recoil. RecoilX: {recoilX}  RecoilY: {recoilY}  Instability: {randomAngularInstability}");
-									Sawmill.Info($"Space Artillery recoil. LinearVelocityX: {newLinearVelocity.X}/{oldLinearVelocity.X}  LinearVelocityY: {newLinearVelocity.Y}/{oldLinearVelocity.Y}  AngularInstability: {newAngularVelocity}/{oldAngularVelocity}");
-								} 
-								else
-								{ //TODO, get velocity for the weapon itself separate from shuttle
-									_physicsSystem.SetLinearVelocity(uid, new Vector2(oldLinearVelocity.X + 1, oldLinearVelocity.Y + 1));
-									_physicsSystem.SetAngularVelocity(uid, oldAngularVelocity + 1);
-								}
-							}
+							TryFireArtillery(uid, component, battery);
 						}
 					}
 				}
@@ -196,33 +148,15 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			{
 				if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
 				{
-					if (args.Handled)
-						return;
-
-					var xform = Transform(uid);
-					
-					if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+					if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= 1) || component.IsCoolantRequiredToFire == false)
 					{
-						return;
-					}
-					
-					if(TryComp<TransformComponent>(uid, out var transformComponent)){
-						
-						var worldPosX = transformComponent.WorldPosition.X;
-						var worldPosY = transformComponent.WorldPosition.Y;
-						var worldRot = transformComponent.WorldRotation+rotOffset;
-						var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-						
-						EntityCoordinates targetCordinates;
-						targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-						
-						_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-						if(component.IsPowerRequiredToFire == true)
-							battery.CurrentCharge -= component.PowerUseActive;
-					}
+						if (args.Handled)
+							return;
 
-					
-					args.Handled = true;
+						TryFireArtillery(uid, component, battery);
+
+						args.Handled = true;
+					}
 				}
 			}
 		}
@@ -280,7 +214,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
     {
 		GetInsertedCoolantAmount(component, out var storage);
 		
-		// validating the cash slot was setup correctly in the yaml
+		// validating the coolant slot was setup correctly in the yaml
         if (component.CoolantSlot.ContainerSlot is not BaseContainer coolantSlot)
         {
             return;
@@ -293,15 +227,107 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
             return;
         }
 		
-        // and then check them against the ATM's CashType
+        // and then check them against the Armament's CoolantType
         if (_prototypeManager.Index<StackPrototype>(component.CoolantType) != _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId))
         {
             return;
         }
 		
 		var currentCoolant = component.CoolantStored;
-		component.CoolantStored = currentCoolant + storage;
-		 _containerSystem.CleanContainer(coolantSlot);
+		var maxCoolant = component.MaxCoolantStored;
+		var totalCoolantPresent = currentCoolant + storage;
+		if(totalCoolantPresent > maxCoolant)
+		{
+			var remainingCoolant = totalCoolantPresent - maxCoolant;
+			stackComponent.Count = remainingCoolant;
+			stackComponent.UiUpdateNeeded = true;
+			component.CoolantStored = maxCoolant;
+		}
+		else
+		{
+			component.CoolantStored = totalCoolantPresent;
+			 _containerSystem.CleanContainer(coolantSlot);
+		}
+	}
+	
+	private void TryFireArtillery(EntityUid uid, SpaceArtilleryComponent component, BatteryComponent battery)
+	{
+		var xform = Transform(uid);
+		
+		if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+		{
+			return;
+		}
+		
+		if(TryComp<TransformComponent>(uid, out var transformComponent)){
+			
+			if(component.IsPowerRequiredToFire == true)
+			{
+				battery.CurrentCharge -= component.PowerUseActive;
+			}
+			if(component.IsCoolantRequiredToFire == true)
+			{
+				component.CoolantStored -= 1;
+			}
+			
+			var worldPosX = transformComponent.WorldPosition.X;
+			var worldPosY = transformComponent.WorldPosition.Y;
+			var worldRot = transformComponent.WorldRotation+rotOffset;
+			var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
+			//TODO  Fix armament recoil not working in space
+			var _gridUid = transformComponent.GridUid;
+			
+			EntityCoordinates targetCordinates;
+			targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+			
+			_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+			
+			
+			///Space Recoil is handled here
+			if(transformComponent.Anchored == true)
+			{
+				if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid)
+				{
+					var gridMass = gridPhysicsComponent.FixturesMass;
+					var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
+					var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
+					
+					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilGrid * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilGrid * (float) Math.Cos(worldRot));
+					var recoilX = (worldPosX - targetSpotRecoil.X);
+					var recoilY = (worldPosY - targetSpotRecoil.Y);
+					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/gridMass), oldLinearVelocity.Y + (recoilY/gridMass));
+					
+					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityGrid, (int) component.AngularInstabilityGrid);
+					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/gridMass);
+					
+					_physicsSystem.SetLinearVelocity(gridUid, newLinearVelocity);
+					_physicsSystem.SetAngularVelocity(gridUid, newAngularVelocity);
+					
+					Sawmill.Info($"Space Artillery recoil. RecoilX: {recoilX}  RecoilY: {recoilY}  Instability: {randomAngularInstability}");
+					Sawmill.Info($"Space Artillery recoil. LinearVelocityX: {newLinearVelocity.X}/{oldLinearVelocity.X}  LinearVelocityY: {newLinearVelocity.Y}/{oldLinearVelocity.Y}  AngularInstability: {newAngularVelocity}/{oldAngularVelocity}");
+				}
+			} 
+			else
+			{ //TODO, get velocity for the weapon itself separate from shuttle
+				if(TryComp<PhysicsComponent>(uid, out var weaponPhysicsComponent) && uid is {Valid :true} weaponUid)
+				{
+					var weaponMass = weaponPhysicsComponent.FixturesMass;
+					var oldLinearVelocity = weaponPhysicsComponent.LinearVelocity;
+					var oldAngularVelocity = weaponPhysicsComponent.AngularVelocity;
+				
+					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilWeapon * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilWeapon * (float) Math.Cos(worldRot));
+					var recoilX = (worldPosX - targetSpotRecoil.X);
+					var recoilY = (worldPosY - targetSpotRecoil.Y);
+					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/weaponMass), oldLinearVelocity.Y + (recoilY/weaponMass));
+					
+					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityWeapon, (int) component.AngularInstabilityWeapon);
+					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/weaponMass);
+					
+					_physicsSystem.SetLinearVelocity(uid, newLinearVelocity);
+					_physicsSystem.SetAngularVelocity(uid, newAngularVelocity);
+				}
+			}
+		}
 	}
 	
     private void GetInsertedCoolantAmount(SpaceArtilleryComponent component, out int amount)
