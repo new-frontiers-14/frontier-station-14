@@ -231,6 +231,10 @@ public sealed class MutationSystem : EntitySystem
         // Frontier - List of gasses
         Gas[] gassesList =
         {
+          Gas.Oxygen,
+          Gas.Nitrogen,
+          Gas.CarbonDioxide,
+          Gas.NitrousOxide,
           Gas.Miasma,
           Gas.Plasma,
           Gas.Tritium,
