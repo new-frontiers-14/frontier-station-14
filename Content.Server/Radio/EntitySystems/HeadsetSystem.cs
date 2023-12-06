@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
+using Content.Server.Language;
 using Content.Server.Radio.Components;
 using Content.Server.Speech;
 using Content.Shared.Chat;

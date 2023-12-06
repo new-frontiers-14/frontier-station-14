@@ -6,7 +6,7 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Speech;
+namespace Content.Server.Language;
 
 public sealed class LanguageSystem : SharedLanguageSystem
 {
