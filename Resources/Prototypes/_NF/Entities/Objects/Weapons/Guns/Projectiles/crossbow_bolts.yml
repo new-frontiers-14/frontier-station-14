@@ -16,7 +16,7 @@
 # Spawnable variations
 - type: entity
   parent: BaseCrossbowBolt
-  id: CrossbowBoltRegular
+  id: CrossbowBolt
   name: bolt
   description: One of these was enough to put down King Richard the Lionheart. Should do for a Xeno Queen too.
   components:
@@ -37,7 +37,7 @@
 
 # Craftable variations
 - type: entity
-  parent: BaseCrossbowBolt
+  parent: CrossbowBolt
   id: CrossbowBoltGlassShard
   name: glass shard bolt
   description: A bolt with a glass shard as a tip.
@@ -62,7 +62,7 @@
     node: CraftCrossbowBoltGlassShard
 
 - type: entity
-  parent: BaseCrossbowBolt
+  parent: CrossbowBolt
   id: CrossbowBoltPlasmaGlassShard
   name: plasma glass shard bolt
   description: A bolt with a plasma glass shard as a tip.
@@ -87,13 +87,12 @@
     node: CraftCrossbowBoltPlasmaGlassShard
 
 - type: entity
-  parent: BaseCrossbowBolt
+  parent: CrossbowBolt
   id: CrossbowBoltUraniumGlassShard
   name: uranium glass shard bolt
   description: A bolt with a uranium glass shard as a tip. God have mercy on thy victims for you won't.
   components:
   - type: Sprite
-#    sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
     layers:
     - state: tail
       color: yellow
