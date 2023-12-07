@@ -805,7 +805,8 @@ entities:
             0: 65535
           -1,-1:
             0: 30719
-            7: 34816
+            7: 2048
+            1: 32768
           0,-3:
             0: 65535
           0,-2:
@@ -1415,7 +1416,7 @@ entities:
     - pos: -4.5,-6.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -28251.107
+    - secondsUntilStateChange: -28297.084
       state: Opening
       type: Door
   - uid: 455
@@ -1465,7 +1466,7 @@ entities:
     - pos: -10.5,-3.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -27164.596
+    - secondsUntilStateChange: -27210.572
       state: Opening
       type: Door
   - uid: 449
@@ -4077,7 +4078,7 @@ entities:
     - pos: -2.5,-1.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -790.7324
+    - secondsUntilStateChange: -836.7099
       state: Closing
       type: Door
     - ShutdownSubscribers:
@@ -6490,13 +6491,6 @@ entities:
     - pos: 1.7180693,-8.41663
       parent: 2
       type: Transform
-- proto: LiquidOxygenCanister
-  entities:
-  - uid: 1292
-    components:
-    - pos: 8.5,1.5
-      parent: 2
-      type: Transform
 - proto: LockerBotanistFilled
   entities:
   - uid: 191
@@ -6600,6 +6594,24 @@ entities:
     - pos: -0.5,-0.5
       parent: 2
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14957
+        moles:
+        - 1.734816
+        - 6.5262127
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerSalvageSpecialistFilledHardsuit
   entities:
   - uid: 20
@@ -6801,6 +6813,13 @@ entities:
   - uid: 384
     components:
     - pos: -8.5,7.5
+      parent: 2
+      type: Transform
+- proto: OxygenCanister
+  entities:
+  - uid: 111
+    components:
+    - pos: 8.5,1.5
       parent: 2
       type: Transform
 - proto: OxygenTankFilled
