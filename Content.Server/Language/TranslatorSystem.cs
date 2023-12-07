@@ -88,7 +88,7 @@ public sealed class TranslatorSystem : EntitySystem
         if (intrinsic.Issuer == component)
         {
             intrinsic.Enabled = false;
-            EntityManager.RemoveComponent<HoldsTranslatorComponent>(holder);
+            EntityManager.RemoveComponent(holder, intrinsic);
         }
     }
 

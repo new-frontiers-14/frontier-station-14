@@ -39,60 +39,85 @@ public sealed class LanguageSystem : SharedLanguageSystem
     {
         if (language == null)
         {
-            if (source == null)
+            if (source is not { Valid: true })
             {
                 throw new NullReferenceException("Either source or language must be set.");
             }
             language = GetLanguage(source.Value);
         }
 
-        // TODO: REWORK THIS!
-        // Should instead use random number of syllables/phrases per word/sentence depending on its length
-        // Also preferably should use a simple hash code of the word as the random seed to make obfuscation stable
-        // This will also allow people to learn certain phrases, e.g. how "yes" is spelled in canilunzt.
         var builder = new StringBuilder();
         if (language.ObfuscateSyllables)
         {
-            // Go through every syllable in every sentence and replace it with "replacement", preserving spaces
-            // Effectively, the number of syllables in a word is equal to the number of vowels in it.
-            for (var i = 0; i < message.Length; i++)
-            {
-                var ch = char.ToLower(message[i]);
-                if (char.IsWhiteSpace(ch) || IsSentenceEnd(ch))
-                {
-                    builder.Append(ch); // This will preserve major punctuation and spaces
-                }
-                else if (IsVowel(ch))
-                {
-                    builder.Append(_random.Pick(language.Replacement));
-                }
-            }
+            ObfuscateSyllables(builder, message, language);
         }
         else
         {
-            // Replace every sentence with "replacement"
-            for (int i = 0; i < message.Length; i++)
-            {
-                var ch = char.ToLower(message[i]);
-                if (IsSentenceEnd(ch))
-                {
-                    builder.Append(_random.Pick(language.Replacement));
-                    builder.Append(' ');
-                }
-
-                // Skip any consequent sentence ends to account for !.., ?.., ?!, and similar
-                while (i < message.Length - 1 && (IsSentenceEnd(message[i + 1]) || char.IsWhiteSpace(message[i + 1])))
-                    i++;
-            }
-
-            // Finally, add one more string unless the last character is a sentence end
-            if (IsSentenceEnd(message[^1]))
-                builder.Append(_random.Pick(language.Replacement));
+            ObfuscatePhrases(builder, message, language);
         }
 
         _sawmill.Info($"Got {message}, obfuscated to {builder}. Language: {language.ID}");
 
         return builder.ToString();
+    }
+
+    private void ObfuscateSyllables(StringBuilder builder, string message, LanguagePrototype language)
+    {
+        // Go through each word. Calculate its hash sum and count the number of letters.
+        // Replicate it with pseudo-random syllables of pseudo-random (but similar) length. Use the hash code as the seed.
+        // This means that identical words will be obfuscated identically. Simple words like "hello" or "yes" in different langs can be memorized.
+        var wordBeginIndex = 0;
+        var hashCode = 0;
+        for (var i = 0; i < message.Length; i++)
+        {
+            var ch = char.ToLower(message[i]);
+            // A word ends when one of the following is found: a space, a sentence end, or EOM
+            if (ch == ' ' || IsSentenceEnd(ch) || i == message.Length - 1)
+            {
+                var wordLength = i - wordBeginIndex - 1;
+                if (wordLength > 0)
+                {
+                    var newWordLength = PseudoRandomNumber(hashCode, 1, 4);
+
+                    for (var j = 0; j < newWordLength; j++)
+                    {
+                        var index = PseudoRandomNumber(hashCode + j, 0, language.Replacement.Count);
+                        builder.Append(language.Replacement[index]);
+                    }
+                }
+
+                builder.Append(ch);
+                hashCode = 0;
+                wordBeginIndex = i + 1;
+            }
+            else
+            {
+                hashCode = hashCode * 31 + ch;
+            }
+        }
+    }
+
+    private void ObfuscatePhrases(StringBuilder builder, string message, LanguagePrototype language)
+    {
+        // In a similar manner, each phrase is obfuscated with a random number of conjoined obfuscation phrases.
+        // However, the number of phrases depends on the number of characters in the original phrase.
+        var sentenceBeginIndex = 0;
+        for (var i = 0; i < message.Length; i++)
+        {
+            var ch = char.ToLower(message[i]);
+            if (IsSentenceEnd(ch) || i == message.Length - 1)
+            {
+                var length = i - sentenceBeginIndex - 1;
+                var newLength = (int) Math.Clamp(Math.Cbrt(length) - 1, 1, 4); // 27+ chars for 2 phrases, 64+ for 3, 125+ for 4.
+
+                for (var j = 0; j < newLength; j++)
+                {
+                    var phrase = _random.Pick(language.Replacement);
+                    builder.Append(phrase);
+                }
+                sentenceBeginIndex = i + 1;
+            }
+        }
     }
 
     public bool CanUnderstand(EntityUid listener,
@@ -130,13 +155,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
         return proto ?? Universal;
     }
 
-    private bool IsVowel(char ch)
-    {
-        // This is not a language-agnostic approach and will totally break with non-latin languages.
-        return ch is 'a' or 'e' or 'i' or 'o' or 'u' or 'y';
-    }
-
-    private bool IsSentenceEnd(char ch)
+    private static bool IsSentenceEnd(char ch)
     {
         return ch is '.' or '!' or '?';
     }
@@ -179,6 +198,17 @@ public sealed class LanguageSystem : SharedLanguageSystem
         if (ev.CurrentLanguage.Length == 0)
             ev.CurrentLanguage = comp?.CurrentLanguage ?? Universal.ID; // Fall back to account for admemes like admins possessing a bread
         return ev;
+    }
+
+    /// <summary>
+    ///   Generates a stable pseudo-random number in the range [min, max) for the given seed. Each input seed corresponds to exactly one random number.
+    /// </summary>
+    private static int PseudoRandomNumber(int seed, int min, int max)
+    {
+        // This is not a uniform distribution, but it shouldn't matter: given there's 2^31 possible random numbers,
+        // The bias of this function should be so tiny it will never be noticed.
+        var random = ((seed * 1103515245) + 12345) & 0x7fffffff; // Source: http://cs.uccs.edu/~cs591/bufferOverflow/glibc-2.2.4/stdlib/random_r.c
+        return random % (max - min) + min;
     }
 
     /// <summary>
