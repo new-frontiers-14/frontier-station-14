@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Chat.Systems;
+using Content.Shared.GameTicking;
 using Content.Shared.Language;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
@@ -10,11 +11,16 @@ namespace Content.Server.Language;
 
 public sealed class LanguageSystem : SharedLanguageSystem
 {
+    /// <summary>
+    ///   A random number added to each pseudo-random number's seed. Changes every round.
+    /// </summary>
+    public int RandomRoundSeed { get; private set; }
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
+        SubscribeAllEvent<RoundStartedEvent>(it => RandomRoundSeed = _random.Next());
     }
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
@@ -72,9 +78,9 @@ public sealed class LanguageSystem : SharedLanguageSystem
         {
             var ch = char.ToLower(message[i]);
             // A word ends when one of the following is found: a space, a sentence end, or EOM
-            if (ch is ' ' || IsSentenceEnd(ch) || i == message.Length - 1)
+            if (char.IsWhiteSpace(ch) || IsSentenceEnd(ch) || i == message.Length - 1)
             {
-                var wordLength = i - wordBeginIndex - 1;
+                var wordLength = i - wordBeginIndex;
                 if (wordLength > 0)
                 {
                     var newWordLength = PseudoRandomNumber(hashCode, 1, 4);
@@ -107,7 +113,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
             var ch = char.ToLower(message[i]);
             if (IsSentenceEnd(ch) || i == message.Length - 1)
             {
-                var length = i - sentenceBeginIndex - 1;
+                var length = i - sentenceBeginIndex;
                 if (length > 0)
                 {
                     var newLength = (int) Math.Clamp(Math.Cbrt(length) - 1, 1, 4); // 27+ chars for 2 phrases, 64+ for 3, 125+ for 4.
@@ -209,10 +215,11 @@ public sealed class LanguageSystem : SharedLanguageSystem
     /// <summary>
     ///   Generates a stable pseudo-random number in the range [min, max) for the given seed. Each input seed corresponds to exactly one random number.
     /// </summary>
-    private static int PseudoRandomNumber(int seed, int min, int max)
+    private int PseudoRandomNumber(int seed, int min, int max)
     {
         // This is not a uniform distribution, but it shouldn't matter: given there's 2^31 possible random numbers,
         // The bias of this function should be so tiny it will never be noticed.
+        seed += RandomRoundSeed;
         var random = ((seed * 1103515245) + 12345) & 0x7fffffff; // Source: http://cs.uccs.edu/~cs591/bufferOverflow/glibc-2.2.4/stdlib/random_r.c
         return random % (max - min) + min;
     }
