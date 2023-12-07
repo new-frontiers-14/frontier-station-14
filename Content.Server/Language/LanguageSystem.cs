@@ -72,7 +72,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
         {
             var ch = char.ToLower(message[i]);
             // A word ends when one of the following is found: a space, a sentence end, or EOM
-            if (ch == ' ' || IsSentenceEnd(ch) || i == message.Length - 1)
+            if (ch is ' ' || IsSentenceEnd(ch) || i == message.Length - 1)
             {
                 var wordLength = i - wordBeginIndex - 1;
                 if (wordLength > 0)
@@ -108,14 +108,20 @@ public sealed class LanguageSystem : SharedLanguageSystem
             if (IsSentenceEnd(ch) || i == message.Length - 1)
             {
                 var length = i - sentenceBeginIndex - 1;
-                var newLength = (int) Math.Clamp(Math.Cbrt(length) - 1, 1, 4); // 27+ chars for 2 phrases, 64+ for 3, 125+ for 4.
-
-                for (var j = 0; j < newLength; j++)
+                if (length > 0)
                 {
-                    var phrase = _random.Pick(language.Replacement);
-                    builder.Append(phrase);
+                    var newLength = (int) Math.Clamp(Math.Cbrt(length) - 1, 1, 4); // 27+ chars for 2 phrases, 64+ for 3, 125+ for 4.
+
+                    for (var j = 0; j < newLength; j++)
+                    {
+                        var phrase = _random.Pick(language.Replacement);
+                        builder.Append(phrase);
+                    }
                 }
                 sentenceBeginIndex = i + 1;
+
+                if (IsSentenceEnd(ch))
+                    builder.Append(ch).Append(" ");
             }
         }
     }
