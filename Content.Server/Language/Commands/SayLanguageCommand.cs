@@ -8,9 +8,6 @@ namespace Content.Server.Language.Commands;
 [AnyCommand]
 public sealed class SayLanguageCommand : IConsoleCommand
 {
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-
     public string Command => "lsay";
     public string Description => "Send chat languages to the local channel or a specific chat channel, in a specific language.";
     public string Help => "lsay <language id> <text>";
@@ -41,13 +38,16 @@ public sealed class SayLanguageCommand : IConsoleCommand
         if (string.IsNullOrEmpty(message))
             return;
 
-        var language = _language.GetLanguage(languageId);
-        if (language == null || !_language.CanSpeak(playerEntity, language.ID))
+        var languages = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
+        var chats = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>();
+
+        var language = languages.GetLanguage(languageId);
+        if (language == null || !languages.CanSpeak(playerEntity, language.ID))
         {
             shell.WriteError($"Language {languageId} is invalid or you cannot speak it!");
             return;
         }
 
-        _chat.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player, languageOverride: language);
+        chats.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player, languageOverride: language);
     }
 }

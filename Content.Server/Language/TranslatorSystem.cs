@@ -17,7 +17,6 @@ public sealed class TranslatorSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<BaseTranslatorComponent, ComponentInit>(OnInitTranslator);
         SubscribeLocalEvent<IntrinsicTranslatorComponent, DetermineEntityLanguagesEvent>(ApplyTranslation);
 
         SubscribeLocalEvent<HandheldTranslatorComponent, InteractEvent>(OnTranslatorToggle);
@@ -25,11 +24,6 @@ public sealed class TranslatorSystem : EntitySystem
         SubscribeLocalEvent<HandheldTranslatorComponent, EquippedHandEvent>(OnHandEquipTranslator);
         SubscribeLocalEvent<HandheldTranslatorComponent, UnequippedEventBase>(OnUnequipTranslator);
         SubscribeLocalEvent<HandheldTranslatorComponent, UnequippedHandEvent>(OnHandUnequipTranslator);
-    }
-
-    private void OnInitTranslator(EntityUid uid, BaseTranslatorComponent component, ComponentInit args)
-    {
-        // TODO: anything?
     }
 
     private void ApplyTranslation(EntityUid uid, IntrinsicTranslatorComponent component,

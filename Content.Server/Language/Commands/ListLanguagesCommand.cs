@@ -8,8 +8,6 @@ namespace Content.Server.Language.Commands;
 [AnyCommand]
 public sealed class ListLanguagesCommand : IConsoleCommand
 {
-    [Dependency] private readonly LanguageSystem _language = default!;
-
     public string Command => "lslangs";
     public string Description => "List languages your current entity can speak at the current moment.";
     public string Help => "lslangs";
@@ -31,7 +29,9 @@ public sealed class ListLanguagesCommand : IConsoleCommand
             return;
         }
 
-        var (spokenLangs, knownLangs) = _language.GetAllLanguages(playerEntity);
+        var languages = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
+
+        var (spokenLangs, knownLangs) = languages.GetAllLanguages(playerEntity);
 
         shell.WriteLine("Spoken: " + string.Join(", ", spokenLangs));
         shell.WriteLine("Understood: " + string.Join(", ", knownLangs));
