@@ -24,4 +24,10 @@ public abstract class SharedLanguageSystem : EntitySystem
         _universal = universal;
         _sawmill = Logger.GetSawmill("language");
     }
+
+    public LanguagePrototype? GetLanguage(string id)
+    {
+        _prototype.TryIndex<LanguagePrototype>(id, out var proto);
+        return proto;
+    }
 }

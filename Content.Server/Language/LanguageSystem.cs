@@ -13,7 +13,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);\
+        SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
     }
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
@@ -101,25 +101,9 @@ public sealed class LanguageSystem : SharedLanguageSystem
         if (language.ID == Universal.ID || HasComp<UniversalLanguageSpeakerComponent>(listener))
             return true;
 
-        var listenerLanguages = GetLanguages(listener, listenerLanguageComp).UnderstoodLanguages;
+        var listenerLanguages = GetLanguages(listener, listenerLanguageComp)?.UnderstoodLanguages;
 
-        return listenerLanguages.Contains(language.ID, StringComparer.Ordinal);
-    }
-
-    [Obsolete("Use CanUnderstand(EntityUid, LanguagePrototype) instead if possible.", error: false)]
-    public bool CanUnderstand(EntityUid speaker, EntityUid listener,
-        LanguageSpeakerComponent? speakerComp = null,
-        LanguageSpeakerComponent? listenerComp = null)
-    {
-        if (HasComp<UniversalLanguageSpeakerComponent>(listener) || HasComp<UniversalLanguageSpeakerComponent>(speaker))
-            return true;
-
-        var speakerLanguage = GetLanguages(speaker, speakerComp).CurrentLanguage;
-        if (speakerLanguage == Universal.ID)
-            return true;
-        var listenerLanguages = GetLanguages(listener, listenerComp).UnderstoodLanguages;
-
-        return listenerLanguages.Contains(speakerLanguage, StringComparer.Ordinal);
+        return listenerLanguages?.Contains(language.ID, StringComparer.Ordinal) ?? false;
     }
 
     public bool CanSpeak(EntityUid speaker, string language, LanguageSpeakerComponent? speakerComp = null)
@@ -127,8 +111,8 @@ public sealed class LanguageSystem : SharedLanguageSystem
         if (HasComp<UniversalLanguageSpeakerComponent>(speaker))
             return true;
 
-        var langs = GetLanguages(speaker, speakerComp).UnderstoodLanguages;
-        return langs.Contains(language, StringComparer.Ordinal);
+        var langs = GetLanguages(speaker, speakerComp)?.UnderstoodLanguages;
+        return langs?.Contains(language, StringComparer.Ordinal) ?? false;
     }
 
     // <summary>
@@ -136,7 +120,10 @@ public sealed class LanguageSystem : SharedLanguageSystem
     // </summary>
     public LanguagePrototype GetLanguage(EntityUid speaker, LanguageSpeakerComponent? languageComp = null)
     {
-        var id = GetLanguages(speaker, languageComp).CurrentLanguage;
+        var id = GetLanguages(speaker, languageComp)?.CurrentLanguage;
+        if (id == null)
+            return Universal; // Fallback
+
         _prototype.TryIndex(id, out LanguagePrototype? proto);
 
         return proto ?? Universal;
@@ -154,34 +141,44 @@ public sealed class LanguageSystem : SharedLanguageSystem
     }
 
     // This event is reused because re-allocating it each time is way too costly.
-    private DetermineEntityLanguagesEvent _determineLanguagesEvent = new(null, new(), new());
+    private DetermineEntityLanguagesEvent _determineLanguagesEvent = new(string.Empty, new(), new());
+
+    /// <summary>
+    ///   Returns a pair of (spoken, understood) languages of the given entity.
+    /// </summary>
+    public (List<string>, List<string>) GetAllLanguages(EntityUid speaker)
+    {
+        var languages = GetLanguages(speaker);
+        if (languages == null)
+            return (new(), new());
+
+        // The lists need to be copied because the internal ones are re-used for performance reasons.
+        return (new List<string>(languages.SpokenLanguages), new List<string>(languages.UnderstoodLanguages));
+    }
 
     /// <summary>
     ///   Dynamically resolves the current language of the entity and the list of all languages it speaks.
     ///   The returned event is reused and thus must not be held as a reference anywhere but inside the caller function.
     /// </summary>
-    private DetermineEntityLanguagesEvent GetLanguages(EntityUid speaker, LanguageSpeakerComponent? comp = null)
+    private DetermineEntityLanguagesEvent? GetLanguages(EntityUid speaker, LanguageSpeakerComponent? comp = null)
     {
+        if (comp == null && !TryComp(speaker, out comp))
+            return null;
+
         var ev = _determineLanguagesEvent;
-        ev.CurrentLanguage = null;
         ev.SpokenLanguages.Clear();
         ev.UnderstoodLanguages.Clear();
 
-        if (comp != null || TryComp(speaker, out comp))
-        {
-            ev.CurrentLanguage = comp.CurrentLanguage;
-            ev.SpokenLanguages.AddRange(comp.SpokenLanguages);
-            ev.UnderstoodLanguages.AddRange(comp.UnderstoodLanguages);
-        }
+        ev.CurrentLanguage = comp.CurrentLanguage;
+        ev.SpokenLanguages.AddRange(comp.SpokenLanguages);
+        ev.UnderstoodLanguages.AddRange(comp.UnderstoodLanguages);
 
-        RaiseLocalEvent(speaker, ev);
+        RaiseLocalEvent(speaker, ev, true);
 
-        if (ev.CurrentLanguage == null)
+        if (ev.CurrentLanguage.Length == 0)
             ev.CurrentLanguage = comp?.CurrentLanguage ?? Universal.ID; // Fall back to account for admemes like admins possessing a bread
         return ev;
     }
-
-    private fun OnGetLanguageMessage
 
     /// <summary>
     ///   Raised in order to determine the language an entity speaks at the current moment,
@@ -189,7 +186,11 @@ public sealed class LanguageSystem : SharedLanguageSystem
     /// </summary>
     public sealed class DetermineEntityLanguagesEvent : EntityEventArgs
     {
-        public string? CurrentLanguage;
+        /// <summary>
+        ///   The default language of this entity. If empty, remain unchanged.
+        ///   This field has no effect if the entity decides to speak in a concrete language.
+        /// </summary>
+        public string CurrentLanguage;
         /// <summary>
         ///   The list of all languages the entity may speak. Must NOT be held as a reference!
         /// </summary>
@@ -199,7 +200,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
         /// </summary>
         public List<string> UnderstoodLanguages;
 
-        public DetermineEntityLanguagesEvent(string? currentLanguage, List<string> spokenLanguages, List<string> understoodLanguages)
+        public DetermineEntityLanguagesEvent(string currentLanguage, List<string> spokenLanguages, List<string> understoodLanguages)
         {
             CurrentLanguage = currentLanguage;
             SpokenLanguages = spokenLanguages;
