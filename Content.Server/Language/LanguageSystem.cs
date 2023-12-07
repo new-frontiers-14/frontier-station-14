@@ -13,6 +13,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
     }
 
