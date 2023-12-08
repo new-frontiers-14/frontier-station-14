@@ -1,0 +1,50 @@
+- type: entity
+  name: Atmos Fix Shuttle Oxygen Marker
+  id: AtmosFixShuttleOxygenMarker
+  description: "Oxygen at lower presure"
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/atmos.rsi # {
+          state: base
+          shader: unshaded
+        - sprite: Markers/atmos.rsi
+          shader: unshaded # }
+          state: oxygen
+    - type: AtmosFixMarker
+      mode: 7
+
+- type: entity
+  name: Atmos Fix Shuttle Nitrogen Marker
+  id: AtmosFixShuttleNitrogenMarker
+  description: "Nitrogen at lower presure"
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/atmos.rsi # {
+          state: base
+          shader: unshaded
+        - sprite: Markers/atmos.rsi
+          shader: unshaded # }
+          state: nitrogen
+    - type: AtmosFixMarker
+      mode: 8
+
+- type: entity
+  name: Atmos Fix Shuttle Plasma Marker
+  id: AtmosFixShuttlePlasmaMarker
+  description: "Plasma at lower presure"
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/atmos.rsi # {
+          state: base
+          shader: unshaded
+        - sprite: Markers/atmos.rsi
+          shader: unshaded # }
+          state: plasma
+    - type: AtmosFixMarker
+      mode: 9
