@@ -242,6 +242,23 @@ public sealed class LanguageSystem : SharedLanguageSystem
     }
 
     /// <summary>
+    ///   Ensures the given entity has a valid language as its current language.
+    ///   If not, sets it to the first entry of its SpokenLanguages list, or universal if it's empty.
+    /// </summary>
+    public void EnsureValidLanguage(EntityUid entity, LanguageSpeakerComponent? comp = null)
+    {
+        if (comp == null && !TryComp(entity, out comp))
+            return;
+
+        var langs = GetLanguages(entity, comp);
+
+        if (langs != null && !langs.SpokenLanguages.Contains(comp!.CurrentLanguage, StringComparer.Ordinal))
+        {
+            comp.CurrentLanguage = langs.SpokenLanguages.FirstOrDefault(Universal.ID);
+        }
+    }
+
+    /// <summary>
     ///   Raised in order to determine the language an entity speaks at the current moment,
     ///   as well as the list of all languages the entity may speak and understand.
     /// </summary>
