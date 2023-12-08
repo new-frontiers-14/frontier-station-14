@@ -167,6 +167,23 @@ public sealed class LanguageSystem : SharedLanguageSystem
         return proto ?? Universal;
     }
 
+    // <summary>
+    //     Set the CurrentLangauge of the given entity.
+    // </summary>
+    public void SetLanguage(EntityUid speaker, string language, LanguageSpeakerComponent? languageComp = null)
+    {
+        if (!CanSpeak(speaker, language))
+            return;
+
+        if (languageComp == null && !TryComp(speaker, out languageComp))
+            return;
+
+        if (languageComp.CurrentLanguage == language)
+            return;
+
+        languageComp.CurrentLanguage = language;
+    }
+
     private static bool IsSentenceEnd(char ch)
     {
         return ch is '.' or '!' or '?';
