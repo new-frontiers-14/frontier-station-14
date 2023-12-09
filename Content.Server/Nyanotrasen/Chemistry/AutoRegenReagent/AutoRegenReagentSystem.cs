@@ -1,5 +1,5 @@
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 

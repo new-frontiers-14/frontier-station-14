@@ -8,7 +8,8 @@ namespace Content.Shared.Bank;
 [NetSerializable, Serializable]
 public enum BankATMMenuUiKey : byte
 {
-    ATM
+    ATM,
+    BlackMarket
 }
 
 public sealed partial class SharedBankSystem : EntitySystem
@@ -21,6 +22,8 @@ public sealed partial class SharedBankSystem : EntitySystem
         SubscribeLocalEvent<BankAccountComponent, ComponentHandleState>(OnHandleState);
         SubscribeLocalEvent<BankATMComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<BankATMComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<StationBankATMComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<StationBankATMComponent, ComponentRemove>(OnComponentRemove);
     }
 
     private void OnComponentInit(EntityUid uid, BankATMComponent component, ComponentInit args)
@@ -29,6 +32,16 @@ public sealed partial class SharedBankSystem : EntitySystem
     }
 
     private void OnComponentRemove(EntityUid uid, BankATMComponent component, ComponentRemove args)
+    {
+        _itemSlotsSystem.RemoveItemSlot(uid, component.CashSlot);
+    }
+
+    private void OnComponentInit(EntityUid uid, StationBankATMComponent component, ComponentInit args)
+    {
+        _itemSlotsSystem.AddItemSlot(uid, StationBankATMComponent.CashSlotSlotId, component.CashSlot);
+    }
+
+    private void OnComponentRemove(EntityUid uid, StationBankATMComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.CashSlot);
     }

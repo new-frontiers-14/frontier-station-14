@@ -14,13 +14,16 @@
       - EncryptionKeyCommon
   - type: Headset
   - type: EncryptionKeyHolder
-    keySlots: 4
+    keySlots: 5 # Frontier 4<5
   - type: Sprite
     state: icon
   - type: Clothing
     slots:
     - ears
     sprite: Clothing/Ears/Headsets/base.rsi
+  - type: GuideHelp
+    guides:
+    - Radio
 
 - type: entity
   parent: ClothingHeadset
@@ -67,7 +70,7 @@
     containers:
       key_slots:
       - EncryptionKeyCargo
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -127,7 +130,7 @@
     containers:
       key_slots:
       - EncryptionKeyEngineering
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -156,7 +159,7 @@
     containers:
       key_slots:
       - EncryptionKeyMedical
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
@@ -217,14 +220,14 @@
     containers:
       key_slots:
       - EncryptionKeyScience
-      - EncryptionKeyCommand
+#      - EncryptionKeyCommand # Frontier
       - EncryptionKeyCommon
 
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetSecurity
-  name: security headset
-  description: This is used by your elite security force.
+  name: deputy headset
+  description: This is used by your elite sheriff's department force.
   components:
   - type: ContainerFill
     containers:
@@ -268,4 +271,6 @@
     sprite: Clothing/Ears/Headsets/service.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/service.rsi
-
+  - type: Tag
+    tags:
+      - PetWearableCat

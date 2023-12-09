@@ -19,6 +19,7 @@
     - state: cutters-cutty-thingy
   - type: ItemCooldown
   - type: MeleeWeapon
+    wideAnimationRotation: -90
     damage:
       types:
         Piercing: 2
@@ -41,7 +42,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 19.5
+    price: 15
 
 - type: entity
   name: screwdriver
@@ -65,6 +66,7 @@
     sprite: Objects/Tools/screwdriver.rsi
   - type: ItemCooldown
   - type: MeleeWeapon
+    wideAnimationRotation: -90
     attackRate: 1
     damage:
       types:
@@ -105,6 +107,7 @@
     sprite: Objects/Tools/wrench.rsi
   - type: ItemCooldown
   - type: MeleeWeapon
+    wideAnimationRotation: 135
     attackRate: 1.5
     damage:
       types:
@@ -118,7 +121,7 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 22
+    price: 15
 
 - type: entity
   name: crowbar
@@ -140,6 +143,7 @@
     size: 10
   - type: ItemCooldown
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Blunt: 8
@@ -154,7 +158,8 @@
     materialComposition:
       Steel: 100
   - type: StaticPrice
-    price: 15.5
+    price: 15
+  - type: Prying
 
 - type: entity
   parent: Crowbar
@@ -184,7 +189,6 @@
     layers:
     - state: icon
     - state: green-unlit
-      shader: unshaded
   - type: Item
     size: 5
   - type: Clothing
@@ -216,7 +220,7 @@
       Steel: 100
       Plastic: 100
   - type: StaticPrice
-    price: 40
+    price: 35
 
 - type: entity
   name: network configurator
@@ -315,8 +319,9 @@
       Steel: 300
       Plastic: 100
   - type: StaticPrice
-    price: 100
+    price: 60
   - type: MeleeWeapon
+    wideAnimationRotation: -90
     attackRate: 1.5
     damage:
       types:
@@ -351,7 +356,7 @@
       Steel: 600
       Plastic: 100
   - type: StaticPrice
-    price: 100
+    price: 60
 
 - type: entity
   id: RCDEmpty
@@ -361,6 +366,19 @@
   - type: LimitedCharges
     maxCharges: 5
     charges: 0
+
+- type: entity
+  id: RCDRecharging
+  parent: RCD
+  name: experimental rcd
+  description: A bluespace-enhanced RCD that regenerates charges passively.
+  suffix: AutoRecharge
+  components:
+  - type: LimitedCharges
+    maxCharges: 3
+    charges: 3
+  - type: AutoRecharge
+    rechargeDuration: 30
 
 - type: entity
   id: RCDExperimental
@@ -390,7 +408,7 @@
       Steel: 100
       Plastic: 100
   - type: StaticPrice
-    price: 60
+    price: 40
 
 - type: entity
   name: omnitool
@@ -408,6 +426,8 @@
     tags:
     - Multitool
   - type: TilePrying
+  - type: Prying
+    enabled: false
   - type: Tool
     qualities:
       - Screwing
@@ -471,10 +491,12 @@
     state: icon
   - type: ItemCooldown
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     damage:
       types:
         Blunt: 14
   - type: Item
+    size: 90
     sprite: Objects/Tools/shovel.rsi
   - type: PhysicalComposition
     materialComposition:
@@ -482,3 +504,33 @@
       Wood: 50
   - type: StaticPrice
     price: 25
+
+- type: entity
+  parent: BaseItem
+  id: RollingPin
+  name: rolling pin
+  description: A tool used to shape and flatten dough.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/rolling_pin.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/rolling_pin.rsi
+    size: 10
+  - type: Clothing
+    sprite: Objects/Tools/rolling_pin.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: ItemCooldown
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 7
+  - type: Tool
+    qualities:
+    - Rolling
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100

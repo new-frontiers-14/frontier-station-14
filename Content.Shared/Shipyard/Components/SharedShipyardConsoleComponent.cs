@@ -6,7 +6,7 @@ using Content.Shared.Containers.ItemSlots;
 namespace Content.Shared.Shipyard.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedShipyardSystem))]
-public sealed class ShipyardConsoleComponent : Component
+public sealed partial class ShipyardConsoleComponent : Component
 {
     public static string TargetIdCardSlotId = "ShipyardConsole-targetId";
 
@@ -22,5 +22,11 @@ public sealed class ShipyardConsoleComponent : Component
         new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 
     [DataField("shipyardChannel")]
-    public string ShipyardChannel = "Command";
+    public string ShipyardChannel = "Traffic";
+
+    [DataField("securityShipyardChannel")]
+    public string SecurityShipyardChannel = "Security";
+
+    [DataField("blackMarketShipyardChannel")]
+    public string BlackMarketShipyardChannel = "Syndicate";
 }

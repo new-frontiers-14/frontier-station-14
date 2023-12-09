@@ -6,12 +6,13 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
+using Content.Shared.CCVar;
+using Content.Shared.Tiles;
 using Content.Shared.Xenoarchaeology.XenoArtifacts;
 using JetBrains.Annotations;
+using Robust.Shared.Configuration;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Configuration;
-using Content.Shared.CCVar;
 
 namespace Content.Server.Xenoarchaeology.XenoArtifacts;
 
@@ -30,17 +31,11 @@ public sealed partial class ArtifactSystem : EntitySystem
 
         _sawmill = Logger.GetSawmill("artifact");
 
-        SubscribeLocalEvent<ArtifactComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<ArtifactComponent, PriceCalculationEvent>(GetPrice);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
 
         InitializeCommands();
         InitializeActions();
-    }
-
-    private void OnInit(EntityUid uid, ArtifactComponent component, MapInitEvent args)
-    {
-        RandomizeArtifact(uid, component);
     }
 
     /// <summary>
@@ -154,6 +149,14 @@ public sealed partial class ArtifactSystem : EntitySystem
         // check if artifact is under suppression field
         if (component.IsSuppressed)
             return false;
+
+        // Frontier - check if artifact on a protected grid
+        var xform = Transform(uid);
+        if (xform.GridUid != null)
+        {
+            if (HasComp<ProtectedGridComponent>(xform.GridUid.Value))
+                return false;
+        }
 
         // check if artifact isn't under cooldown
         var timeDif = _gameTiming.CurTime - component.LastActivationTime;

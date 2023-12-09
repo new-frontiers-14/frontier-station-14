@@ -31,17 +31,21 @@
   - type: StorageFill
     contents:
         # Normal (10%)
-      - id: ToolboxEmergencyFilled
-        prob: 0.1
-      - id: ClothingMaskBreath
-        prob: 0.1
       - id: OxygenTankFilled
+        prob: 0.1
+      - id: SheetPlasma
+        prob: 0.1
+      - id: IngotGold
+        prob: 0.1
+      - id: IngotSilver
         prob: 0.1
       - id: SheetPlasma
         prob: 0.1
       - id: WelderIndustrialAdvanced
         prob: 0.1
       - id: ResearchDisk
+        prob: 0.1
+      - id: SheetUranium
         prob: 0.1
       - id: ClothingBeltStorageWaistbag
         prob: 0.1
@@ -55,11 +59,6 @@
         prob: 0.1
       - id: BoxBeaker
         prob: 0.1
-        #  - Scaf
-      - id: ClothingHeadHelmetScaf
-        prob: 0.1
-      - id: ClothingOuterArmorScaf
-        prob: 0.1
         #  - Heh
       - id: SalvageHumanCorpse
         prob: 0.1
@@ -69,7 +68,7 @@
         #  - Ammo
       - id: MagazineBoxMagnum
         prob: 0.01
-      - id: ResearchDisk5000
+      - id: ResearchDisk10000
         prob: 0.01
         # Just no (0.1%)
         #  - Working guns
@@ -81,31 +80,258 @@
         prob: 0.001
         #  - Skub
       - id: Skub
-        prob: 0.001
-      - id: ResearchDisk10000
-        prob: 0.001
-      - id: ClothingHeadHatCatEars
         prob: 0.01
-        #  - Pins
+      - id: ResearchDisk10000
+        prob: 0.005
+      - id: ClothingHeadHatCatEars
+        prob: 0.001
+        #  - Drip
       - id: ClothingNeckLGBTPin
-        prob: 0.025
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckAromanticPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckAsexualPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckBisexualPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckIntersexPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckLesbianPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckNonBinaryPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckPansexualPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
       - id: ClothingNeckTransPin
-        orGroup: LGBTQIAPlusPins
+        orGroup: DripLoot
+      - id: ClothingBeltStorageWaistbag
+        orGroup: DripLoot
+      - id: ClothingBeltBandolier
+        orGroup: DripLoot
+      - id: ClothingBeltSuspenders
+        orGroup: DripLoot
+      - id: ClothingEyesGlassesGar
+        orGroup: DripLoot
+      - id: ClothingEyesGlassesGarOrange
+        orGroup: DripLoot
+      - id: ClothingEyesGlassesGarGiga
+        orGroup: DripLoot
+      - id: ClothingEyesGlasses
+        orGroup: DripLoot
+      - id: ClothingEyesGlassesSunglasses
+        orGroup: DripLoot
+      - id: ClothingEyesEyepatch
+        orGroup: DripLoot
+      - id: ClothingEyesBlindfold
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorPurple
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorRed
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorBlack
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorBlue
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorBrown
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorGray
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorGreen
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorLightBrown
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorOrange
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorWhite
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesColorYellowBudget
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesPowerglove
+        orGroup: DripLoot
+      - id: ClothingHandsGlovesRobohands
+        orGroup: DripLoot
+      - id: ClothingHeadHatAnimalCat
+        orGroup: DripLoot
+      - id: ClothingHeadHatAnimalCatBrown
+        orGroup: DripLoot
+      - id: ClothingHeadHatAnimalCatBlack
+        orGroup: DripLoot
+      - id: ClothingHeadHatAnimalHeadslime
+        orGroup: DripLoot
+      - id: ClothingHeadHatAnimalMonkey
+        orGroup: DripLoot
+      - id: ClothingHeadBandBlack
+        orGroup: DripLoot
+      - id: ClothingHeadBandBlue
+        orGroup: DripLoot
+      - id: ClothingHeadBandGrey
+        orGroup: DripLoot
+      - id: ClothingHeadBandBrown
+        orGroup: DripLoot
+      - id: ClothingHeadHatBeaverHat
+        orGroup: DripLoot
+      - id: ClothingHeadHatBeret
+        orGroup: DripLoot
+      - id: ClothingHeadHatCasa
+        orGroup: DripLoot
+      - id: ClothingHeadHatBowlerHat
+        orGroup: DripLoot
+      - id: ClothingHeadHatCardborg
+        orGroup: DripLoot
+      - id: ClothingHeadHatFedoraBrown
+        orGroup: DripLoot
+      - id: ClothingHeadHatFedoraGrey
+        orGroup: DripLoot
+      - id: ClothingHeadHatFez
+        orGroup: DripLoot
+      - id: ClothingHeadHatWitch1
+        orGroup: DripLoot
+      - id: ClothingHeadHatPaper
+        orGroup: DripLoot
+      - id: ClothingHeadHatPirate
+        orGroup: DripLoot
+      - id: ClothingHeadHatTophat
+        orGroup: DripLoot
+      - id: ClothingHeadHatUshanka
+        orGroup: DripLoot
+      - id: ClothingHeadHatWitch
+        orGroup: DripLoot
+      - id: ClothingHeadHatTrucker
+        orGroup: DripLoot
+      - id: ClothingHeadFishCap
+        orGroup: DripLoot
+      - id: ClothingHeadSafari
+        orGroup: DripLoot
+      - id: ClothingHeadHatPirateTricord
+        orGroup: DripLoot
+      - id: ClothingHeadHatHoodGoliathCloak
+        orGroup: DripLoot
+      - id: ClothingHeadHatBluesoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatBluesoftFlipped
+        orGroup: DripLoot
+      - id: ClothingHeadHatCorpsoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatCorpsoftFlipped
+        orGroup: DripLoot
+      - id: ClothingHeadHatGreensoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatGreensoftFlipped
+        orGroup: DripLoot
+      - id: ClothingHeadHatGreysoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatGreysoftFlipped
+        orGroup: DripLoot
+      - id: ClothingHeadHatOrangesoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatOrangesoftFlipped
+        orGroup: DripLoot
+      - id: ClothingHeadHatPurplesoft
+        orGroup: DripLoot
+      - id: ClothingHeadHatPurplesoftFlipped
+        orGroup: DripLoot
+      - id: ClothingMaskRat
+        orGroup: DripLoot
+      - id: ClothingMaskFox
+        orGroup: DripLoot
+      - id: ClothingMaskBee
+        orGroup: DripLoot
+      - id: ClothingMaskBear
+        orGroup: DripLoot
+      - id: ClothingMaskRaven
+        orGroup: DripLoot
+      - id: ClothingMaskJackal
+        orGroup: DripLoot
+      - id: ClothingMaskBat
+        orGroup: DripLoot
+      - id: ClothingNeckCloakHerald
+        orGroup: DripLoot
+      - id: ClothingNeckCloakAdmin
+        orGroup: DripLoot
+        prob: 0.5
+      - id: ClothingNeckCloakTrans
+        orGroup: DripLoot
+      - id: ClothingNeckCloakPirateCap
+        orGroup: DripLoot
+        prob: 0.25
+      - id: ClothingNeckHeadphones
+        orGroup: DripLoot
+      - id: ClothingNeckBling
+        orGroup: DripLoot
+      - id: ClothingNeckTieRed
+        orGroup: DripLoot
+      - id: ClothingNeckTieSci
+        orGroup: DripLoot
+      - id: ClothingOuterCoatBomber
+        orGroup: DripLoot
+      - id: ClothingOuterCoatGentle
+        orGroup: DripLoot
+      - id: ClothingOuterCoatJensen
+        orGroup: DripLoot
+      - id: ClothingOuterCoatPirate
+        orGroup: DripLoot
+      - id: ClothingOuterDameDane
+        orGroup: DripLoot
+      - id: ClothingOuterDogi
+        orGroup: DripLoot
+      - id: ClothingOuterHoodieBlack
+        orGroup: DripLoot
+      - id: ClothingOuterHoodieGrey
+        orGroup: DripLoot
+      - id: ClothingOuterCardborg
+        orGroup: DripLoot
+      - id: ClothingOuterGhostSheet
+        orGroup: DripLoot
+      - id: ClothingShoesBootsWork
+        orGroup: DripLoot
+      - id: ClothingShoesBootsLaceup
+        orGroup: DripLoot
+      - id: ClothingShoesColorBlack
+        orGroup: DripLoot
+      - id: ClothingShoesColorBlue
+        orGroup: DripLoot
+      - id: ClothingShoesColorBrown
+        orGroup: DripLoot
+      - id: ClothingShoesColorGreen
+        orGroup: DripLoot
+      - id: ClothingShoesColorOrange
+        orGroup: DripLoot
+      - id: ClothingShoesColorPurple
+        orGroup: DripLoot
+      - id: ClothingShoesColorRed
+        orGroup: DripLoot
+      - id: ClothingShoesColorWhite
+        orGroup: DripLoot
+      - id: ClothingShoesColorYellow
+        orGroup: DripLoot
+      - id: ClothingShoesFlippers
+        orGroup: DripLoot
+      - id: ClothingShoesLeather
+        orGroup: DripLoot
+      - id: ClothingShoesSlippers
+        orGroup: DripLoot
+      - id: ClothingShoeSlippersDuck
+        orGroup: DripLoot
+      - id: ClothingShoesTourist
+        orGroup: DripLoot
+      - id: ClothingShoesDameDane
+        orGroup: DripLoot
+      - id: ClothingUnderSocksBee
+        orGroup: DripLoot
+      - id: ClothingUnderSocksCoder
+        orGroup: DripLoot
+      - id: ClothingUniformJumpsuitKimono
+        orGroup: DripLoot
+      - id: ClothingUniformOveralls
+        orGroup: DripLoot
+      - id: ClothingUniformJumpsuitSafari
+        orGroup: DripLoot
+      - id: ClothingUniformJumpsuitDameDane
+        orGroup: DripLoot
+      - id: ClothingUniformJumpsuitPirate
+        orGroup: DripLoot
+      - id: ClothingUniformJumpsuitCossack
+        orGroup: DripLoot
         # TRAITOR EQUIPMENT (0.01%)
       - id: Telecrystal10
         prob: 0.0001
@@ -119,30 +345,176 @@
   id: CratePartsT3
   name: tier 3 parts crate
   description: Contains 5 random tier 3 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT3Spawner
-      amount: 5
+     - id: SuperCapacitorStockPart
+       orGroup: Part1
+     - id: PicoManipulatorStockPart
+       orGroup: Part1
+     - id: SuperMatterBinStockPart
+       orGroup: Part1
+     - id: SuperCapacitorStockPart
+       orGroup: Part2
+     - id: PicoManipulatorStockPart
+       orGroup: Part2
+     - id: SuperMatterBinStockPart
+       orGroup: Part2
+     - id: SuperCapacitorStockPart
+       orGroup: Part3
+     - id: PicoManipulatorStockPart
+       orGroup: Part3
+     - id: SuperMatterBinStockPart
+       orGroup: Part3
+     - id: SuperCapacitorStockPart
+       orGroup: Part4
+     - id: PicoManipulatorStockPart
+       orGroup: Part4
+     - id: SuperMatterBinStockPart
+       orGroup: Part4
+     - id: SuperCapacitorStockPart
+       orGroup: Part5
+     - id: PicoManipulatorStockPart
+       orGroup: Part5
+     - id: SuperMatterBinStockPart
+       orGroup: Part5
 
 - type: entity
   parent: CrateGenericSteel
   id: CratePartsT3T4
   name: tier 3/4 parts crate
   description: Contains 5 random tier 3 or 4 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT3T4Spawner
-      amount: 5
+    #tier 3
+     - id: SuperCapacitorStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part1
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part2
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part3
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part4
+       prob: 0.2
+     - id: SuperCapacitorStockPart
+       orGroup: Part5
+       prob: 0.2
+     - id: PicoManipulatorStockPart
+       orGroup: Part5
+       prob: 0.2
+     - id: SuperMatterBinStockPart
+       orGroup: Part5
+       prob: 0.2
+    #tier 4
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part1
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part2
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part3
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part4
+       prob: 0.1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part5
+       prob: 0.1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part5
+       prob: 0.1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part5
+       prob: 0.1
 
 - type: entity
   parent: CrateGenericSteel
   id: CratePartsT4
   name: tier 4 parts crate
   description: Contains 5 random tier 4 parts for upgrading machines.
-  components:
+  components: # Frontier - Fixed the crates spawn in the most stupid way, but its fully working as it need to.
   - type: StorageFill
     contents:
-    - id: SalvagePartsT4Spawner
-      amount: 5
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part1
+     - id: FemtoManipulatorStockPart
+       orGroup: Part1
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part1
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part2
+     - id: FemtoManipulatorStockPart
+       orGroup: Part2
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part2
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part3
+     - id: FemtoManipulatorStockPart
+       orGroup: Part3
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part3
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part4
+     - id: FemtoManipulatorStockPart
+       orGroup: Part4
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part4
+     - id: QuadraticCapacitorStockPart
+       orGroup: Part5
+     - id: FemtoManipulatorStockPart
+       orGroup: Part5
+     - id: BluespaceMatterBinStockPart
+       orGroup: Part5

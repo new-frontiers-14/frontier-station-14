@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.StationRecords;
@@ -32,29 +33,31 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     /// <summary>
     ///     Current selected key.
     /// </summary>
-    public StationRecordKey? SelectedKey { get; }
+    public (NetEntity, uint)? SelectedKey { get; }
     public GeneralStationRecord? Record { get; }
-    public Dictionary<StationRecordKey, string>? RecordListing { get; }
+    public Dictionary<(NetEntity, uint), string>? RecordListing { get; }
     public GeneralStationRecordsFilter? Filter { get; }
-    public GeneralStationRecordConsoleState(StationRecordKey? key, GeneralStationRecord? record,
-        Dictionary<StationRecordKey, string>? recordListing, GeneralStationRecordsFilter? newFilter)
+    public GeneralStationRecordConsoleState((NetEntity, uint)? key, GeneralStationRecord? record,
+        Dictionary<(NetEntity, uint), string>? recordListing, GeneralStationRecordsFilter? newFilter, IReadOnlyDictionary<string, uint?>? jobList)
     {
         SelectedKey = key;
         Record = record;
         RecordListing = recordListing;
         Filter = newFilter;
+        JobList = jobList;
     }
+    public IReadOnlyDictionary<string, uint?>? JobList { get;  }
 
     public bool IsEmpty() => SelectedKey == null
-        && Record == null && RecordListing == null;
+                             && Record == null && RecordListing == null;
 }
 
 [Serializable, NetSerializable]
 public sealed class SelectGeneralStationRecord : BoundUserInterfaceMessage
 {
-    public StationRecordKey? SelectedKey { get; }
+    public (NetEntity, uint)? SelectedKey { get; }
 
-    public SelectGeneralStationRecord(StationRecordKey? selectedKey)
+    public SelectGeneralStationRecord((NetEntity, uint)? selectedKey)
     {
         SelectedKey = selectedKey;
     }

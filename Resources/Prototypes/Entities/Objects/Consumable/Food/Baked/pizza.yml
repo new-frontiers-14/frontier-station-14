@@ -30,6 +30,7 @@
   - type: Tag
     tags:
     - Pizza
+    - Fruit # Tomato? idk
 
 - type: entity
   parent: FoodInjectableBase # Not sliceable
@@ -60,6 +61,7 @@
   - type: Tag
     tags:
     - Pizza
+    - Fruit
 
 # Pizza
 
@@ -112,6 +114,10 @@
     - state: meat
   - type: SliceableFood
     slice: FoodPizzaMeatSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 
 - type: entity
   name: slice of meat pizza
@@ -128,6 +134,10 @@
   - type: Sprite
     layers:
     - state: meat-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 # Tastes like crust, tomato, cheese, meat.
 
 - type: entity
@@ -227,7 +237,7 @@
           Quantity: 1
         - ReagentId: Flavorol
           Quantity: 3
-          
+
 # Tastes like crust, tomato, cheese, carrot.
 
 - type: entity
@@ -257,6 +267,11 @@
           Quantity: 9
         - ReagentId: Flavorol
           Quantity: 15
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
 
 - type: entity
   name: slice of donk-pocket pizza
@@ -283,6 +298,10 @@
           Quantity: 1.5
         - ReagentId: Flavorol
           Quantity: 3
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 # Tastes like crust, tomato, cheese, meat, laziness.
 
 - type: entity
@@ -363,6 +382,10 @@
     - state: sassysage
   - type: SliceableFood
     slice: FoodPizzaSassysageSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 
 - type: entity
   name: slice of sassysage pizza
@@ -379,6 +402,10 @@
   - type: Sprite
     layers:
     - state: sassysage-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 # Tastes like crust, tomato, cheese, sausage, sass.
 
 - type: entity
@@ -416,6 +443,10 @@
   - type: Sprite
     layers:
     - state: pineapple-slice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 # Tastes like crust, tomato, cheese, pineapple, ham.
 
 #TODO: This is a meme pizza from /tg/. It has specially coded mechanics.
@@ -452,7 +483,11 @@
           Quantity: 30
         - ReagentId: Flavorol
           Quantity: 15
-          
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
+
 - type: entity
   name: slice of Arnold's pizza
   parent: FoodPizzaSliceBase
@@ -484,6 +519,10 @@
           Quantity: 5
         - ReagentId: Flavorol
           Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 # Tastes like crust, tomato, cheese, pepperoni, 9 millimeter bullets.
 
 #TODO: Make this do poison damage and make cut pizza slices eventually rot into this.

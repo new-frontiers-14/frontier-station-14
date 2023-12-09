@@ -1,13 +1,11 @@
-using Content.Server.Chemistry.Components.SolutionManager;
-using Content.Server.Chemistry.EntitySystems;
-using Content.Server.Nutrition;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Item;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -47,7 +45,7 @@ namespace Content.Server.Nutrition.EntitySystems
                 return false;
             }
 
-            if (!_solutionContainerSystem.TryGetSolution(uid, food.SolutionName, out var solution))
+            if (!_solutionContainerSystem.TryGetSolution(uid, food.Solution, out var solution))
             {
                 return false;
             }
@@ -73,7 +71,7 @@ namespace Content.Server.Nutrition.EntitySystems
             else
             {
                 var xform = Transform(sliceUid);
-                _containerSystem.AttachParentToContainerOrGrid(xform);
+                _containerSystem.AttachParentToContainerOrGrid((sliceUid, xform));
                 xform.LocalRotation = 0;
             }
 
@@ -88,6 +86,12 @@ namespace Content.Server.Nutrition.EntitySystems
             // }
 
             component.Count--;
+
+            //Nyano - Summary: Begin Nyano Code to tell us we've sliced something for Fryer --
+
+            var sliceEvent = new SliceFoodEvent(user, usedItem, uid, sliceUid);
+            RaiseLocalEvent(uid, sliceEvent);
+            //Nyano - End Nyano Code. 
 
             // If someone makes food proto with 1 slice...
             if (component.Count < 1)
@@ -112,7 +116,7 @@ namespace Content.Server.Nutrition.EntitySystems
             else
             {
                 var xform = Transform(sliceUid);
-                _containerSystem.AttachParentToContainerOrGrid(xform);
+                _containerSystem.AttachParentToContainerOrGrid((sliceUid, xform));
                 xform.LocalRotation = 0;
             }
 
@@ -136,7 +140,7 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             // Replace all reagents on prototype not just copying poisons (example: slices of eaten pizza should have less nutrition)
             if (TryComp<FoodComponent>(sliceUid, out var sliceFoodComp) &&
-                _solutionContainerSystem.TryGetSolution(sliceUid, sliceFoodComp.SolutionName, out var itsSolution))
+                _solutionContainerSystem.TryGetSolution(sliceUid, sliceFoodComp.Solution, out var itsSolution))
             {
                 _solutionContainerSystem.RemoveAllSolution(sliceUid, itsSolution);
 
@@ -151,7 +155,7 @@ namespace Content.Server.Nutrition.EntitySystems
             var foodComp = EnsureComp<FoodComponent>(uid);
 
             EnsureComp<SolutionContainerManagerComponent>(uid);
-            _solutionContainerSystem.EnsureSolution(uid, foodComp.SolutionName);
+            _solutionContainerSystem.EnsureSolution(uid, foodComp.Solution);
         }
 
         private void OnExamined(EntityUid uid, SliceableFoodComponent component, ExaminedEvent args)
@@ -159,4 +163,40 @@ namespace Content.Server.Nutrition.EntitySystems
             args.PushMarkup(Loc.GetString("sliceable-food-component-on-examine-remaining-slices-text", ("remainingCount", component.Count)));
         }
     }
+    //Nyano - Summary: Begin Nyano Code for the sliced food event. 
+    public sealed class SliceFoodEvent : EntityEventArgs
+    {
+        /// <summary>
+        /// Who did the slicing?
+        /// <summary>
+        public EntityUid User;
+
+        /// <summary>
+        /// What did the slicing?
+        /// <summary>
+        public EntityUid Tool;
+
+        /// <summary>
+        /// What has been sliced?
+        /// <summary>
+        /// <remarks>
+        /// This could soon be deleted if there was not enough food left to
+        /// continue slicing.
+        /// </remarks>
+        public EntityUid Food;
+
+        /// <summary>
+        /// What is the slice?
+        /// <summary>
+        public EntityUid Slice;
+
+        public SliceFoodEvent(EntityUid user, EntityUid tool, EntityUid food, EntityUid slice)
+        {
+            User = user;
+            Tool = tool;
+            Food = food;
+            Slice = slice;
+        }
+    }
+    //End Nyano Code. 
 }

@@ -3,6 +3,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Bank;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
+using Content.Server.Paper;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
@@ -19,7 +20,7 @@ using Content.Server.Paper;
 using Content.Shared.Access.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -47,7 +48,6 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
-            SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
             Reset();
         }
 
@@ -55,11 +55,6 @@ namespace Content.Server.Cargo.Systems
         {
             var station = _station.GetOwningStation(uid);
             UpdateOrderState(orderConsole, station);
-        }
-
-        private void Reset(RoundRestartCleanupEvent ev)
-        {
-            Reset();
         }
 
         private void Reset()
@@ -164,7 +159,8 @@ namespace Content.Server.Cargo.Systems
             }
 
             _idCardSystem.TryFindIdCard(player, out var idCard);
-            order.SetApproverData(idCard?.FullName, idCard?.JobTitle);
+            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
+            order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
             _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
 
             // Log order approval
@@ -263,7 +259,7 @@ namespace Content.Server.Cargo.Systems
                 balance,
                 orderDatabase.Orders);
 
-            UserInterfaceSystem.SetUiState(bui, state);
+            _uiSystem.SetUiState(bui, state);
         }
 
         private void ConsolePopup(ICommonSession session, string text)

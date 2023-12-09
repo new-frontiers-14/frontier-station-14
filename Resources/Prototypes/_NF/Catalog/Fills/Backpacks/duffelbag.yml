@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledEmpGrenadeLauncher
+  name: China-Lake EMP bundle
+  description: "An old China-Lake grenade launcher bundled with 8 rounds of EMP."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherChinaLakeEmp
+      - id: GrenadeEmp
+        amount: 8
+
+- type: entity
+  id: ClothingBackpackDuffelScienceBundle
+  parent: ClothingBackpackDuffelScience
+  suffix: Science Kit
+  components:
+    - type: StorageFill
+      contents:
+        - id: SheetGlass1
+          amount: 14
+        - id: SheetPGlass1
+          amount: 10
+        - id: SheetPlasma1
+          amount: 5
+        - id: Beaker
+          amount: 4
+        - id: MatterBinStockPart
+          amount: 10
+        - id: CapacitorStockPart
+          amount: 8
+        - id: MicroManipulatorStockPart
+          amount: 5

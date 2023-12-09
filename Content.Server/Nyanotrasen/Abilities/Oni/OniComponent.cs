@@ -3,12 +3,12 @@ using Content.Shared.Damage;
 namespace Content.Server.Abilities.Oni
 {
     [RegisterComponent]
-    public sealed class OniComponent : Component
+    public sealed partial class OniComponent : Component
     {
         [DataField("modifiers", required: true)]
         public DamageModifierSet MeleeModifiers = default!;
 
         [DataField("stamDamageBonus")]
-        public float StamDamageMultiplier = 1.25f;
+        public float StamDamageMultiplier = 1.20f;
     }
 }

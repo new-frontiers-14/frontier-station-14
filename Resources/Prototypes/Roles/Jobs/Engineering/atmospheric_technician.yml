@@ -4,11 +4,10 @@
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
   requirements:
-    # - !type:DepartmentTimeRequirement
-      # department: Engineering
-      # time: 3600
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: AtmosphericTechnicianGear
-  icon: "AtmosphericTechnician"
+  icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce
   access:
   - Maintenance
@@ -20,12 +19,12 @@
   id: AtmosphericTechnicianGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmos
-    back: ClothingBackpackEngineeringFilled
+    back: ClothingBackpackAtmosphericsFilled
     shoes: ClothingShoesColorWhite
     eyes: ClothingEyesGlassesMeson
     id: AtmosPDA
-    belt: ClothingBeltUtilityEngineering
+#    belt: ClothingBeltUtilityEngineering # Frontier - Moved to locker
     ears: ClothingHeadsetEngineering
-  innerclothingskirt: ClothingUniformJumpskirtAtmos
-  satchel: ClothingBackpackSatchelEngineeringFilled
-  duffelbag: ClothingBackpackDuffelEngineeringFilled
+  innerClothingSkirt: ClothingUniformJumpskirtAtmos
+  satchel: ClothingBackpackSatchelAtmosphericsFilled
+  duffelbag: ClothingBackpackDuffelAtmosphericsFilled

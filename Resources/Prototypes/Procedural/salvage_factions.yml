@@ -22,17 +22,21 @@
       amount: 3
     prob: 0.25
   - entries:
+      - id: MobXenoSpitter
+        amount: 2
+    prob: 0.25
+  - entries:
     - id: MobXenoRavager
       amount: 1
     prob: 0.1
-  - entries:
-    - id: MobXenoRouny
-      amount: 1
-    prob: 0.001
+#  - entries:
+#    - id: MobXenoRouny
+#      amount: 1
+#    prob: 0.001
   configs:
     DefenseStructure: XenoWardingTower
     Mining: Xenos
-    Megafauna: MobXenoQueen
+    Megafauna: MobXenoQueenDungeon # Frontier
 
 - type: salvageFaction
   id: Carps
@@ -45,12 +49,17 @@
     - id: MobCarpMagic
       amount: 1
       maxAmount: 3
-    prob: 0.5
+    prob: 0.1
+#  - entries:
+#    - id: MobCarpHolo
+#      amount: 1
+#      maxAmount: 2
+#    prob: 0.25'
   - entries:
-    - id: MobCarpHolo
+    - id: MobCarpRainbow # carp version of rouny...
       amount: 1
-      maxAmount: 2
-    prob: 0.25
+      maxAmount: 1
+    prob: 0.05
   configs:
     DefenseStructure: CarpStatue
     Mining: Carps

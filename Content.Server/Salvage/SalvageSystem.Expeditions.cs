@@ -1,18 +1,22 @@
+using System.Linq;
+using System.Threading;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
-using Content.Shared.Salvage;
+using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
-using System.Linq;
-using System.Threading;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Coordinates;
+using Content.Shared.Procedural;
+using System.Linq;
+using System.Threading;
+using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
@@ -146,7 +150,8 @@ public sealed partial class SalvageSystem
             }
         }
 
-        foreach (var comp in EntityQuery<SalvageExpeditionDataComponent>())
+        var query = EntityQueryEnumerator<SalvageExpeditionDataComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
             // Update offers
             if (comp.NextOffer > currentTime || comp.Claimed)
@@ -161,6 +166,8 @@ public sealed partial class SalvageSystem
 
     private void FinishExpedition(SalvageExpeditionDataComponent component, EntityUid uid, SalvageExpeditionComponent expedition, EntityUid? shuttle)
     {
+        component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
+        Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
         // Finish mission cleanup.
         switch (expedition.MissionParams.MissionType)
         {
@@ -201,6 +208,7 @@ public sealed partial class SalvageSystem
             component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_failedCooldown);
             Announce(uid, Loc.GetString("salvage-expedition-mission-failed"));
         }
+
 
         component.ActiveMission = 0;
         component.Cooldown = true;
@@ -285,6 +293,7 @@ public sealed partial class SalvageSystem
             _dungeon,
             _shuttle,
             _stationSystem,
+            _metaData,
             this,
             station,
             missionParams,
@@ -316,7 +325,7 @@ public sealed partial class SalvageSystem
 
         foreach (var reward in comp.Rewards)
         {
-            Spawn(reward, (_random.Pick(palletList)).ToCoordinates());
+            Spawn(reward, (Transform(_random.Pick(palletList)).MapPosition));
         }
     }
 }

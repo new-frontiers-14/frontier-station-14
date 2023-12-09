@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - SuitEVA
+    - WhitelistChameleon
   - type: StaticPrice
     price: 65
 
@@ -29,6 +30,7 @@
   - type: Tag
     tags:
     - SuitEVA
+    - WhitelistChameleon
 
 #Emergency EVA
 - type: entity
@@ -48,6 +50,7 @@
     coefficient: 0.5
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetEVALarge
+    slot: head
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -66,6 +69,7 @@
   - type: Tag
     tags:
     - SuitEVA
+    - WhitelistChameleon
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -110,3 +114,7 @@
         Radiation: 0.75
         Caustic: 0.5
   - type: GroupExamine
+  - type: VendPrice # Frontier
+    price: 750
+  - type: StaticPrice # Frontier
+    price: 50

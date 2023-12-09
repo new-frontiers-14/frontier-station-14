@@ -1,5 +1,5 @@
-using System.Linq;
 using System.Numerics;
+using Content.Server.Emp;
 using Content.Server.Audio;
 using Content.Server.Construction;
 using Content.Server.Power.Components;
@@ -12,26 +12,31 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server.Popups;
+using Content.Shared.Popups;
+using Content.Shared.Access.Systems;
+using Content.Shared.Emp;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed class ThrusterSystem : EntitySystem
 {
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly AmbientSoundSystem _ambient = default!;
     [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     // Essentially whenever thruster enables we update the shuttle's available impulses which are used for movement.
@@ -59,6 +64,9 @@ public sealed class ThrusterSystem : EntitySystem
         SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+
+        SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<ThrusterComponent, ThrusterToggleMessage>(OnToggleThruster);
     }
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -132,6 +140,15 @@ public sealed class ThrusterSystem : EntitySystem
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
         component.Enabled ^= true;
+
+        if (!component.Enabled)
+        {
+            DisableThruster(uid, component);
+        }
+        else if (CanEnable(uid, component))
+        {
+            EnableThruster(uid, component);
+        }
     }
 
     /// <summary>
@@ -173,10 +190,12 @@ public sealed class ThrusterSystem : EntitySystem
         var direction = (int) args.NewRotation.GetCardinalDir() / 2;
 
         shuttleComponent.LinearThrust[oldDirection] -= component.Thrust;
+        shuttleComponent.BaseLinearThrust[oldDirection] -= component.BaseThrust;
         DebugTools.Assert(shuttleComponent.LinearThrusters[oldDirection].Contains(uid));
         shuttleComponent.LinearThrusters[oldDirection].Remove(uid);
 
         shuttleComponent.LinearThrust[direction] += component.Thrust;
+        shuttleComponent.BaseLinearThrust[direction] += component.BaseThrust;
         DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
         shuttleComponent.LinearThrusters[direction].Add(uid);
     }
@@ -233,6 +252,18 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
+    private void OnToggleThruster(EntityUid uid, ThrusterComponent component, ThrusterToggleMessage args)
+    {
+        var attemptEv = new ThrusterToggleAttemptEvent();
+        RaiseLocalEvent(uid, ref attemptEv);
+        if (attemptEv.Cancelled)
+        {
+            _popup.PopupCursor(Loc.GetString("apc-component-on-toggle-cancel"),
+                args.Session, PopupType.Medium);
+            return;
+        }
+    }
+
     /// <summary>
     /// Tries to enable the thruster and turn it on. If it's already enabled it does nothing.
     /// </summary>
@@ -257,6 +288,7 @@ public sealed class ThrusterSystem : EntitySystem
                 var direction = (int) xform.LocalRotation.GetCardinalDir() / 2;
 
                 shuttleComponent.LinearThrust[direction] += component.Thrust;
+                shuttleComponent.BaseLinearThrust[direction] += component.BaseThrust;
                 DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Add(uid);
 
@@ -284,9 +316,9 @@ public sealed class ThrusterSystem : EntitySystem
             _appearance.SetData(uid, ThrusterVisualState.State, true, appearance);
         }
 
-        if (EntityManager.TryGetComponent(uid, out PointLightComponent? pointLightComponent))
+        if (_light.TryGetLight(uid, out var pointLightComponent))
         {
-            pointLightComponent.Enabled = true;
+            _light.SetEnabled(uid, true, pointLightComponent);
         }
 
         _ambient.SetAmbience(uid, true);
@@ -355,6 +387,7 @@ public sealed class ThrusterSystem : EntitySystem
                 var direction = (int) angle.Value.GetCardinalDir() / 2;
 
                 shuttleComponent.LinearThrust[direction] -= component.Thrust;
+                shuttleComponent.BaseLinearThrust[direction] -= component.BaseThrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Remove(uid);
                 break;
@@ -372,9 +405,9 @@ public sealed class ThrusterSystem : EntitySystem
             _appearance.SetData(uid, ThrusterVisualState.State, false, appearance);
         }
 
-        if (EntityManager.TryGetComponent(uid, out PointLightComponent? pointLightComponent))
+        if (_light.TryGetLight(uid, out var pointLightComponent))
         {
-            pointLightComponent.Enabled = false;
+            _light.SetEnabled(uid, false, pointLightComponent);
         }
 
         _ambient.SetAmbience(uid, false);
@@ -441,11 +474,26 @@ public sealed class ThrusterSystem : EntitySystem
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
         }
+
+        /// <summary>
+        /// This makes the thruster pulse like its trying to come back online
+        /// After the EMP is over it will try to toggle it back on
+        /// </summary>
+        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ThrusterComponent>();
+        while (disabled.MoveNext(out var uid, out _, out var comp))
+        {
+            if (comp.TimeoutFromEmp <= _timing.CurTime)
+            {
+                EnableThruster(uid, comp);
+                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.5);
+            }
+            else { DisableThruster(uid, comp); }
+        }
     }
 
     private void OnStartCollide(EntityUid uid, ThrusterComponent component, ref StartCollideEvent args)
     {
-        if (args.OurFixture.ID != BurnFixture)
+        if (args.OurFixtureId != BurnFixture)
             return;
 
         component.Colliding.Add(args.OtherEntity);
@@ -453,7 +501,7 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnEndCollide(EntityUid uid, ThrusterComponent component, ref EndCollideEvent args)
     {
-        if (args.OurFixture.ID != BurnFixture)
+        if (args.OurFixtureId != BurnFixture)
             return;
 
         component.Colliding.Remove(args.OtherEntity);
@@ -552,9 +600,15 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
     {
+        if (component.IsOn) // safely disable thruster to prevent negative thrust
+            DisableThruster(uid, component);
+
         var thrustRating = args.PartRatings[component.MachinePartThrust];
 
         component.Thrust = component.BaseThrust * MathF.Pow(component.PartRatingThrustMultiplier, thrustRating - 1);
+
+        if (component.Enabled && CanEnable(uid, component))
+            EnableThruster(uid, component);
     }
 
     private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args)
@@ -568,4 +622,22 @@ public sealed class ThrusterSystem : EntitySystem
     {
         return (int) Math.Log2((int) flag);
     }
+
+    private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
+    {
+        if (component.ThrusterIgnoreEmp)
+        {
+            args.Affected = false;
+            args.Disabled = false;
+        }
+        else
+        {
+            args.Affected = true;
+            args.Disabled = true;
+            component.TimeoutFromEmp = _timing.CurTime;
+        }
+    }
+
+    [ByRefEvent]
+    public record struct ThrusterToggleAttemptEvent(bool Cancelled);
 }

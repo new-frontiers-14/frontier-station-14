@@ -3,8 +3,11 @@
   name: job-name-clown
   description: job-description-clown
   playTimeTracker: JobClown
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: ClownGear
-  icon: "Clown"
+  icon: "JobIconClown"
   supervisors: job-supervisors-hop
   access:
   - Theatre

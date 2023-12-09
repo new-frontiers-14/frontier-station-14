@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._NF.M_Emp;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
@@ -10,36 +11,13 @@ namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent, NetworkedComponent]
     [Access(typeof(ThrusterSystem))]
-    public sealed class ThrusterComponent : Component
+    public sealed partial class ThrusterComponent : Component
     {
         /// <summary>
         /// Whether the thruster has been force to be enabled / disabled (e.g. VV, interaction, etc.)
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        public bool Enabled
-        {
-            get => _enabled;
-            [Obsolete("Use the system method")]
-            set
-            {
-                if (_enabled == value) return;
-                _enabled = value;
-
-                var system = EntitySystem.Get<ThrusterSystem>();
-
-                if (!_enabled)
-                {
-                    system.DisableThruster(Owner, this);
-                }
-                else if (system.CanEnable(Owner, this))
-                {
-                    system.EnableThruster(Owner, this);
-                }
-            }
-        }
-
-        [DataField("enabled")]
-        private bool _enabled = true;
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool Enabled { get; set; } = true;
 
         /// <summary>
         /// This determines whether the thruster is actually enabled for the purposes of thrust
@@ -89,6 +67,18 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("partRatingThrustMultiplier")]
         public float PartRatingThrustMultiplier = 1.5f;
+
+        [DataField("thrusterIgnoreEmp")]
+        public bool ThrusterIgnoreEmp = false;
+
+        /// <summary>
+        ///     While disabled by EMP
+        /// </summary>
+        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
+
+        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+        public float DisableDuration = 60f;
     }
 
     public enum ThrusterType

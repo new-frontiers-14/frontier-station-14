@@ -1,18 +1,16 @@
+using System.Linq;
+using System.Numerics;
 using Content.Shared.Audio;
 using Content.Shared.CCVar;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Audio;
-using Robust.Shared.Log;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using System.Linq;
-using System.Numerics;
-using Robust.Client.GameObjects;
 
 namespace Content.Client.Audio;
 //TODO: This is using a incomplete version of the whole "only play nearest sounds" algo, that breaks down a bit should the ambient sound cap get hit.
@@ -50,7 +48,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     /// </summary>
     private int MaxSingleSound => (int) (_maxAmbientCount / (16.0f / 6.0f));
 
-    private readonly Dictionary<AmbientSoundComponent, (IPlayingAudioStream? Stream, string Sound)> _playingSounds = new();
+    private readonly Dictionary<Entity<AmbientSoundComponent>, (IPlayingAudioStream? Stream, SoundSpecifier Sound, string Path)> _playingSounds = new();
     private readonly Dictionary<string, int> _playingCount = new();
 
     public bool OverlayEnabled
@@ -80,7 +78,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     /// </summary>
     /// <param name="component"></param>
     /// <returns></returns>
-    public bool IsActive(AmbientSoundComponent component)
+    public bool IsActive(Entity<AmbientSoundComponent> component)
     {
         return _playingSounds.ContainsKey(component);
     }
@@ -100,20 +98,20 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
     private void OnShutdown(EntityUid uid, AmbientSoundComponent component, ComponentShutdown args)
     {
-        if (!_playingSounds.Remove(component, out var sound))
+        if (!_playingSounds.Remove((uid, component), out var sound))
             return;
 
         sound.Stream?.Stop();
-        _playingCount[sound.Sound] -= 1;
-        if (_playingCount[sound.Sound] == 0)
-            _playingCount.Remove(sound.Sound);
+        _playingCount[sound.Path] -= 1;
+        if (_playingCount[sound.Path] == 0)
+            _playingCount.Remove(sound.Path);
     }
 
     private void SetAmbienceVolume(float value)
     {
         _ambienceVolume = value;
 
-        foreach (var (comp, values) in _playingSounds)
+        foreach (var ((_, comp), values) in _playingSounds)
         {
             if (values.Stream == null)
                 continue;
@@ -141,9 +139,9 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     {
         var count = 0;
 
-        foreach (var (_, (_, sound)) in _playingSounds)
+        foreach (var (_, (_, sound, path)) in _playingSounds)
         {
-            if (sound.Equals(countSound))
+            if (path.Equals(countSound))
                 count++;
         }
 
@@ -177,7 +175,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
     private void ClearSounds()
     {
-        foreach (var (stream, _) in _playingSounds.Values)
+        foreach (var (stream, _, _) in _playingSounds.Values)
         {
             stream?.Stop();
         }
@@ -188,7 +186,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
     private readonly struct QueryState
     {
-        public readonly Dictionary<string, List<(float Importance, AmbientSoundComponent)>> SourceDict = new();
+        public readonly Dictionary<string, List<(float Importance, Entity<AmbientSoundComponent>)>> SourceDict = new();
         public readonly Vector2 MapPos;
         public readonly TransformComponent Player;
         public readonly EntityQuery<TransformComponent> Query;
@@ -226,7 +224,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
         // Prioritize far away & loud sounds.
         var importance = range * (ambientComp.Volume + 32);
-        state.SourceDict.GetOrNew(key).Add((importance, ambientComp));
+        state.SourceDict.GetOrNew(key).Add((importance, (ambientComp.Owner, ambientComp)));
         return true;
     }
 
@@ -240,11 +238,14 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
         var mapPos = playerXform.MapPosition;
 
         // Remove out-of-range ambiences
-        foreach (var (comp, sound) in _playingSounds)
+        foreach (var (ent, sound) in _playingSounds)
         {
-            var entity = comp.Owner;
+            var entity = ent.Owner;
+            var comp = ent.Comp;
 
             if (comp.Enabled &&
+                // Don't keep playing sounds that have changed since.
+                sound.Sound == comp.Sound &&
                 query.TryGetComponent(entity, out var xform) &&
                 xform.MapID == playerXform.MapID &&
                 !metaQuery.GetComponent(entity).EntityPaused)
@@ -258,10 +259,10 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
             }
 
             sound.Stream?.Stop();
-            _playingSounds.Remove(comp);
-            _playingCount[sound.Sound] -= 1;
-            if (_playingCount[sound.Sound] == 0)
-                _playingCount.Remove(sound.Sound);
+            _playingSounds.Remove((entity, comp));
+            _playingCount[sound.Path] -= 1;
+            if (_playingCount[sound.Path] == 0)
+                _playingCount.Remove(sound.Path);
         }
 
         if (_playingSounds.Count >= _maxAmbientCount)
@@ -283,11 +284,12 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
 
             sources.Sort(static (a, b) => b.Importance.CompareTo(a.Importance));
 
-            foreach (var (_, comp) in sources)
+            foreach (var (_, ent) in sources)
             {
-                var uid = comp.Owner;
+                var uid = ent.Owner;
+                var comp = ent.Comp;
 
-                if (_playingSounds.ContainsKey(comp) ||
+                if (_playingSounds.ContainsKey(ent) ||
                     metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
@@ -301,7 +303,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
                 if (stream == null)
                     continue;
 
-                _playingSounds[comp] = (stream, key);
+                _playingSounds[ent] = (stream, comp.Sound, key);
                 playingCount++;
 
                 if (_playingSounds.Count >= _maxAmbientCount)

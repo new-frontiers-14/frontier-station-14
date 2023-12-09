@@ -75,8 +75,8 @@
 - type: salvageTimeMod
   id: RushTime
   desc: Rush
-  minDuration: 600
-  maxDuration: 800
+  minDuration: 420
+  maxDuration: 465
   cost: 1
 
 # Misc mods
@@ -134,7 +134,7 @@
   - 0
   - 0
   - 0
-  - 10 # nitrous oxide
+  - 8 # nitrous oxide
   biomes:
   - Caves
   #- LowDesert
@@ -149,7 +149,7 @@
   gases:
   - 21.824779 # oxygen
   - 77.10312 # nitrogen
-  - 10 # carbon dioxide
+  - 8 # carbon dioxide
   biomes:
   - Caves
   #- LowDesert
@@ -163,8 +163,14 @@
   desc: Toxic atmosphere
   gases:
   - 21.824779 # oxygen
-  - 0
-  - 82.10312 # carbon dioxide
+  - 43.649558 # nitrogen
+  - 20.453562 # carbon dioxide
+  - 0 # plasma
+  - 0 # tritium
+  - 0 # water vapor
+  - 12 # miasma
+  - 0 # nitrous oxide
+  - 0 # frezon
   biomes:
   - Caves
   - Snow
@@ -175,10 +181,15 @@
   cost: 4
   desc: Toxic atmosphere
   gases:
-  - 0
-  - 0
-  - 0
-  - 103.927899 # plasma
+  - 0 # oxygen
+  - 21.824779 # nitrogen
+  - 21.824779 # carbon dioxide
+  - 38.453562 # plasma
+  - 0 # tritium
+  - 0 # water vapor
+  - 0 # miasma
+  - 0 # nitrous oxide
+  - 0 # frezon
   biomes:
   - Caves
   - Lava
@@ -189,9 +200,14 @@
   desc: Volatile atmosphere
   gases:
   - 21.824779 # oxygen
-  - 0
-  - 0
-  - 82.10312 # plasma
+  - 21.824779 # nitrogen
+  - 21.824779 # carbon dioxide
+  - 36.453562 # plasma
+  - 0.1 # tritium
+  - 1.9 # water vapor
+  - 0 # miasma
+  - 0 # nitrous oxide
+  - 0 # frezon
   biomes:
   - Caves
   - Lava

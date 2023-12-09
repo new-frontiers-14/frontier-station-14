@@ -1,4 +1,5 @@
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -6,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Fax;
 
 [RegisterComponent]
-public sealed class FaxMachineComponent : Component
+public sealed partial class FaxMachineComponent : Component
 {
     /// <summary>
     /// Name with which the fax will be visible to others on the network
@@ -14,6 +15,13 @@ public sealed class FaxMachineComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("name")]
     public string FaxName { get; set; } = "Unknown";
+
+    /// <summary>
+    /// If true, will sync fax name with a station name.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("useStationName")]
+    public bool UseStationName { get; set; }
 
     /// <summary>
     /// Device address of fax in network to which data will be send
@@ -79,7 +87,7 @@ public sealed class FaxMachineComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("printingQueue")]
-    public Queue<FaxPrintout> PrintingQueue { get; } = new();
+    public Queue<FaxPrintout> PrintingQueue { get; private set; } = new();
 
     /// <summary>
     /// Message sending timeout
@@ -89,11 +97,25 @@ public sealed class FaxMachineComponent : Component
     public float SendTimeoutRemaining;
 
     /// <summary>
+    /// Message copying timeout
+    /// </summary>
+    [ViewVariables]
+    [DataField("copyTimeoutRemaining")]
+    public float CopyTimeoutRemaining;
+
+    /// <summary>
     /// Message sending timeout
     /// </summary>
     [ViewVariables]
     [DataField("sendTimeout")]
     public float SendTimeout = 5f;
+
+    /// <summary>
+    /// Message copying timeout
+    /// </summary>
+    [ViewVariables]
+    [DataField("copyTimeout")]
+    public float CopyTimeout = 5f;
 
     /// <summary>
     /// Remaining time of inserting animation
@@ -121,33 +143,33 @@ public sealed class FaxMachineComponent : Component
 }
 
 [DataDefinition]
-public sealed class FaxPrintout
+public sealed partial class FaxPrintout
 {
     [DataField("name", required: true)]
-    public string Name { get; } = default!;
+    public string Name { get; private set; } = default!;
 
     [DataField("content", required: true)]
-    public string Content { get; } = default!;
+    public string Content { get; private set; } = default!;
 
     [DataField("prototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
-    public string PrototypeId { get; } = default!;
+    public string PrototypeId { get; private set; } = default!;
 
     [DataField("stampState")]
-    public string? StampState { get; }
+    public string? StampState { get; private set; }
 
     [DataField("stampedBy")]
-    public List<string> StampedBy { get; } = new();
+    public List<StampDisplayInfo> StampedBy { get; private set; } = new();
 
     private FaxPrintout()
     {
     }
 
-    public FaxPrintout(string content, string name, string? prototypeId = null, string? stampState = null, List<string>? stampedBy = null)
+    public FaxPrintout(string content, string name, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null)
     {
         Content = content;
         Name = name;
         PrototypeId = prototypeId ?? "";
         StampState = stampState;
-        StampedBy = stampedBy ?? new List<string>();
+        StampedBy = stampedBy ?? new List<StampDisplayInfo>();
     }
 }

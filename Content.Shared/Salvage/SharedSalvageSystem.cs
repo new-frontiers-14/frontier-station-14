@@ -95,12 +95,20 @@ public abstract class SharedSalvageSystem : EntitySystem
         // easy to be a 1 for difficulty.
         rating -= 1f;
         var rand = new System.Random(seed);
-        var faction = GetMod<SalvageFactionPrototype>(rand, ref rating);
+
+        // Run budget in order of priority
+        // - Biome
+        // - Lighting
+        // - Atmos
         var biome = GetMod<SalvageBiomeMod>(rand, ref rating);
+        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
         var dungeon = GetBiomeMod<SalvageDungeonMod>(biome.ID, rand, ref rating);
+        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
+        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+        var faction = factionProtos[rand.Next(factionProtos.Count)];
+
         var mods = new List<string>();
 
-        var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
         if (air.Description != string.Empty)
         {
             mods.Add(air.Description);
@@ -179,7 +187,7 @@ public abstract class SharedSalvageSystem : EntitySystem
         foreach (var id in ids)
         {
             // pick a random reward to give
-            var weights = _proto.Index<WeightedRandomPrototype>(id);
+            var weights = _proto.Index<WeightedRandomEntityPrototype>(id);
             rewards.Add(weights.Pick(rand));
         }
 
@@ -187,7 +195,7 @@ public abstract class SharedSalvageSystem : EntitySystem
     }
 
     /// <summary>
-    /// Get a list of WeightedRandomPrototype IDs with the rewards for a certain difficulty.
+    /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
     /// </summary>
     private string[] RewardsForDifficulty(DifficultyRating rating)
     {

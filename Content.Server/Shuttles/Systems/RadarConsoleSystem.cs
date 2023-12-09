@@ -5,6 +5,8 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Content.Shared.PowerCell;
+using Content.Shared.Movement.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -30,6 +32,13 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         EntityCoordinates? coordinates = onGrid ? xform.Coordinates : null;
         Angle? angle = onGrid ? xform.LocalRotation : null;
 
+        //handheld test
+        if (HasComp<PowerCellDrawComponent>(uid))
+        {
+            coordinates = new EntityCoordinates(uid, Vector2.Zero);
+            angle = Angle.Zero + MathHelper.DegreesToRadians(180);
+        }
+
         // Use ourself I guess.
         if (TryComp<IntrinsicUIComponent>(uid, out var intrinsic))
         {
@@ -45,9 +54,9 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         }
 
         if (_uiSystem.TryGetUi(uid, RadarConsoleUiKey.Key, out var bui))
-            UserInterfaceSystem.SetUiState(bui, new RadarConsoleBoundInterfaceState(
+            _uiSystem.SetUiState(bui, new RadarConsoleBoundInterfaceState(
                 component.MaxRange,
-                coordinates,
+                GetNetCoordinates(coordinates),
                 angle,
                 new List<DockingInterfaceState>()
             ));

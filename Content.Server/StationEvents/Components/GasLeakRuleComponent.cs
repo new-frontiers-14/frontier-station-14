@@ -1,18 +1,19 @@
-﻿using Content.Server.StationEvents.Events;
+using Content.Server.StationEvents.Events;
 using Content.Shared.Atmos;
 using Robust.Shared.Map;
 
 namespace Content.Server.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(GasLeakRule))]
-public sealed class GasLeakRuleComponent : Component
+public sealed partial class GasLeakRuleComponent : Component
 {
     public readonly Gas[] LeakableGases =
     {
-        Gas.Miasma,
-        Gas.Plasma,
-        Gas.Tritium,
-        Gas.Frezon,
+//        Gas.Miasma,
+//        Gas.Plasma,
+//        Gas.Tritium,
+//        Gas.Frezon,
+          Gas.WaterVapor,
     };
 
     /// <summary>

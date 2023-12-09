@@ -1,7 +1,7 @@
 namespace Content.Server.Abilities.Oni
 {
     [RegisterComponent]
-    public sealed class HeldByOniComponent : Component
+    public sealed partial class HeldByOniComponent : Component
     {
         public EntityUid Holder = default!;
     }

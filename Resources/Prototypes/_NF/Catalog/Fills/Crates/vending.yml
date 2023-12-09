@@ -1,6 +1,6 @@
 - type: entity
   id: CrateVendingMachineRestockAstroVendFilled
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
@@ -9,7 +9,7 @@
 
 - type: entity
   id: CrateVendingMachineRestockAmmoFilled
-  parent: CrateWeaponSecure
+  parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
@@ -18,9 +18,27 @@
 
 - type: entity
   id: CrateVendingMachineRestockCircuitVendFilled
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockCircuitVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockCuddlyCritterVendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCuddlyCritterVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockLessLethalVendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockLessLethalVend
         amount: 2

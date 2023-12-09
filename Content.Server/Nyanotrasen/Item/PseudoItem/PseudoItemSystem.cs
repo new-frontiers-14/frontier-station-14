@@ -8,6 +8,8 @@ using Content.Shared.Pseudo;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.DoAfter;
+using Content.Shared.Storage;
+using Content.Shared.Tag;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Item.PseudoItem
@@ -17,7 +19,10 @@ namespace Content.Server.Item.PseudoItem
         [Dependency] private readonly StorageSystem _storageSystem = default!;
         [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        public override void Initialize()
+        [Dependency] private readonly TagSystem _tagSystem = default!;
+
+    [ValidatePrototypeId<TagPrototype>]
+    private const string PreventTag = "PreventLabel";public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<PseudoItemComponent, GetVerbsEvent<InnateVerb>>(AddInsertVerb);
@@ -36,7 +41,7 @@ namespace Content.Server.Item.PseudoItem
             if (component.Active)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Target, out var targetStorage))
+            if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
                 return;
 
             if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
@@ -68,7 +73,7 @@ namespace Content.Server.Item.PseudoItem
             if (args.Hands == null)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Hands.ActiveHandEntity, out var targetStorage))
+            if (!TryComp<StorageComponent>(args.Hands.ActiveHandEntity, out var targetStorage))
                 return;
 
             AlternativeVerb verb = new()
@@ -114,7 +119,7 @@ namespace Content.Server.Item.PseudoItem
             args.Handled = TryInsert(args.Args.Used.Value, uid, component);
         }
 
-        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, ServerStorageComponent? storage = null)
+        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, StorageComponent? storage = null)
         {
             if (!Resolve(storageUid, ref storage))
                 return false;
@@ -123,26 +128,27 @@ namespace Content.Server.Item.PseudoItem
                 return false;
 
             var item = EnsureComp<ItemComponent>(toInsert);
-            _itemSystem.SetSize(toInsert, component.Size, item);
+            _tagSystem.TryAddTag(toInsert, PreventTag);
+        _itemSystem.SetSize(toInsert, component.Size, item);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, storageComp: storage))
             {
                 component.Active = false;
                 RemComp<ItemComponent>(toInsert);
                 return false;
-            } else
-            {
+            }
+
                 component.Active = true;
                 Transform(storageUid).AttachToGridOrMap();
                 return true;
-            }
+
         }
         private void StartInsertDoAfter(EntityUid inserter, EntityUid toInsert, EntityUid storageEntity, PseudoItemComponent? pseudoItem = null)
         {
             if (!Resolve(toInsert, ref pseudoItem))
                 return;
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, inserter, 5f, new PseudoDoAfterEvent(), toInsert, target: toInsert, used: storageEntity)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

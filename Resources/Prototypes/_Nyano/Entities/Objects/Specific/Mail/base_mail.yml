@@ -2,7 +2,7 @@
   parent: BaseItem
   abstract: true
   id: BaseMail
-  name: mail
+  name: mail-item-name-unaddressed
   components:
   - type: Item
     size: 20
@@ -18,7 +18,6 @@
       map: ["enum.MailVisualLayers.FragileStamp"]
       visible: false
     - map: ["enum.MailVisualLayers.JobStamp"]
-      sprite: Interface/Misc/job_icons.rsi
       scale: 0.5, 0.5
       offset: 0.275, 0.2
     - state: locked
@@ -96,7 +95,17 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 5
+        Blunt: 1 # Frontier - 5<1, death by 1000 cuts.
+  - type: CargoSellBlacklist
+  - type: Food # Frontier - Moth food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Nothing
+          Quantity: 1
 
 # This empty parcel is allowed to exist and evade the tests for the admin
 # mailto command.

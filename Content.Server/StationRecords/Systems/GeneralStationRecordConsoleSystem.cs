@@ -1,7 +1,9 @@
+using System.Collections.ObjectModel;
 using Content.Server.Station.Systems;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 using System.Linq;
+using Content.Shared.Roles;
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -10,6 +12,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecordsSystem = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
 
     public override void Initialize()
     {
@@ -18,6 +21,8 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, GeneralStationRecordsFilterMsg>(OnFiltersChanged);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
+        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
+        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob);
     }
 
     private void UpdateUserInterface<T>(EntityUid uid, GeneralStationRecordConsoleComponent component, T ev)
@@ -32,6 +37,15 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         UpdateUserInterface(uid, component);
     }
 
+    private void OnAdjustJob(EntityUid uid, GeneralStationRecordConsoleComponent component, AdjustStationJobMsg msg)
+    {
+        var stationUid = _stationSystem.GetOwningStation(uid);
+        if (stationUid is EntityUid station)
+        {
+            _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
+        }
+        UpdateUserInterface(uid, component);
+    }
     private void OnFiltersChanged(EntityUid uid,
         GeneralStationRecordConsoleComponent component, GeneralStationRecordsFilterMsg msg)
     {
@@ -55,7 +69,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecordsComponent))
         {
-            GeneralStationRecordConsoleState state = new(null, null, null, null);
+            GeneralStationRecordConsoleState state = new(null, null, null, null, null);
             SetStateForInterface(uid, state);
             return;
         }
@@ -63,7 +77,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var consoleRecords =
             _stationRecordsSystem.GetRecordsOfType<GeneralStationRecord>(owningStation.Value, stationRecordsComponent);
 
-        var listing = new Dictionary<StationRecordKey, string>();
+        var listing = new Dictionary<(NetEntity, uint), string>();
 
         foreach (var pair in consoleRecords)
         {
@@ -72,12 +86,12 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
                 continue;
             }
 
-            listing.Add(pair.Item1, pair.Item2.Name);
+            listing.Add(_stationRecordsSystem.Convert(pair.Item1), pair.Item2.Name);
         }
 
         if (listing.Count == 0)
         {
-            GeneralStationRecordConsoleState state = new(null, null, null, console.Filter);
+            GeneralStationRecordConsoleState state = new(null, null, null, console.Filter, null);
             SetStateForInterface(uid, state);
             return;
         }
@@ -86,14 +100,16 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             console.ActiveKey = listing.Keys.First();
         }
 
+        var jobList = _stationJobsSystem.GetJobs(owningStation.Value);
+
         GeneralStationRecord? record = null;
         if (console.ActiveKey != null)
         {
-            _stationRecordsSystem.TryGetRecord(owningStation.Value, console.ActiveKey.Value, out record,
+            _stationRecordsSystem.TryGetRecord(owningStation.Value, _stationRecordsSystem.Convert(console.ActiveKey.Value), out record,
                 stationRecordsComponent);
         }
 
-        GeneralStationRecordConsoleState newState = new(console.ActiveKey, record, listing, console.Filter);
+        GeneralStationRecordConsoleState newState = new(console.ActiveKey, record, listing, console.Filter, jobList);
         SetStateForInterface(uid, newState);
     }
 

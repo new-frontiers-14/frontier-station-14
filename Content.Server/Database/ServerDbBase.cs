@@ -14,6 +14,7 @@ using Content.Shared.Preferences;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Database
 {
@@ -428,7 +429,7 @@ namespace Content.Server.Database
             ImmutableArray<byte>? hwId,
             bool includeUnbanned);
 
-        public abstract Task AddServerRoleBanAsync(ServerRoleBanDef serverRoleBan);
+        public abstract Task<ServerRoleBanDef> AddServerRoleBanAsync(ServerRoleBanDef serverRoleBan);
         public abstract Task AddServerRoleUnbanAsync(ServerRoleUnbanDef serverRoleUnban);
 
         public async Task EditServerRoleBan(int id, string reason, NoteSeverity severity, DateTime? expiration, Guid editedBy, DateTime editedAt)
@@ -673,6 +674,7 @@ namespace Content.Server.Database
 
             var round = new Round
             {
+                StartDate = DateTime.UtcNow,
                 Players = players,
                 ServerId = server.Id
             };
@@ -755,14 +757,18 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         public async Task AddAdminLogs(List<AdminLog> logs)
         {
+            DebugTools.Assert(logs.All(x => x.RoundId > 0), "Adding logs with invalid round ids.");
             await using var db = await GetDb();
             db.DbContext.AdminLog.AddRange(logs);
             await db.DbContext.SaveChangesAsync();
         }
 
-        private static IQueryable<AdminLog> GetAdminLogsQuery(ServerDbContext db, LogFilter? filter = null)
+        protected abstract IQueryable<AdminLog> StartAdminLogsQuery(ServerDbContext db, LogFilter? filter = null);
+
+        private IQueryable<AdminLog> GetAdminLogsQuery(ServerDbContext db, LogFilter? filter = null)
         {
-            IQueryable<AdminLog> query = db.AdminLog;
+            // Save me from SQLite
+            var query = StartAdminLogsQuery(db, filter);
 
             if (filter == null)
             {
@@ -772,11 +778,6 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             if (filter.Round != null)
             {
                 query = query.Where(log => log.RoundId == filter.Round);
-            }
-
-            if (filter.Search != null)
-            {
-                query = query.Where(log => log.Message.Contains(filter.Search));
             }
 
             if (filter.Types != null)

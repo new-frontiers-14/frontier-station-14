@@ -3,8 +3,11 @@
   name: job-name-boxer
   description: job-description-boxer
   playTimeTracker: JobBoxer
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: BoxerGear
-  icon: "Boxer"
+  icon: "JobIconBoxer"
   supervisors: job-supervisors-hop
   access:
   - Service
@@ -20,6 +23,6 @@
     gloves: ClothingHandsGlovesBoxingRed
     shoes: ClothingShoesColorRed
     belt: ClothingBeltChampion
-  innerclothingskirt: UniformShortsRedWithTop
+  innerClothingSkirt: UniformShortsRedWithTop
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseHandheldInstrument
   id: ElectricGuitarInstrument
   name: electric guitar
@@ -16,6 +16,11 @@
     state: icon
   - type: Item
     size: 24
+    sprite: Objects/Fun/Instruments/eguitar.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
     sprite: Objects/Fun/Instruments/eguitar.rsi
   - type: Tag
     tags:
@@ -41,6 +46,11 @@
   - type: Item
     size: 24
     sprite: Objects/Fun/Instruments/bassguitar.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    sprite: Objects/Fun/Instruments/bassguitar.rsi
   - type: Tag
     tags:
     - StringInstrument
@@ -64,10 +74,16 @@
   - type: Item
     size: 24
     sprite: Objects/Fun/Instruments/rockguitar.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    sprite: Objects/Fun/Instruments/rockguitar.rsi
   - type: Tag
     tags:
     - StringInstrument
   - type: MeleeWeapon
+    wideAnimationRotation: 45
     damage:
       types:
         Blunt: 6
@@ -106,7 +122,7 @@
     - back
     sprite: Objects/Fun/Instruments/guitar.rsi
   - type: Wieldable
-  - type: Damageable # Smash it! Does 20 damage a hit, but breaks after 1 hit. 
+  - type: Damageable # Smash it! Does 20 damage a hit, but breaks after 1 hit.
     damageContainer: Inorganic
   - type: Destructible
     thresholds:
@@ -129,6 +145,7 @@
       types:
         Blunt: 20
   - type: MeleeWeapon
+    wideAnimationRotation: 45
     damage:
       types:
         Blunt: 5

@@ -1,4 +1,4 @@
-﻿- type: artifactEffect
+- type: artifactEffect
   id: EffectBadFeeling
   targetDepth: 0
   effectHint: artifact-effect-hint-mental
@@ -406,6 +406,21 @@
   - type: EmpArtifact
 
 - type: artifactEffect
+  id: EffectPolyMonkey
+  targetDepth: 2
+  effectHint: artifact-effect-hint-polymorph
+  components:
+  - type: PolyArtifact
+
+- type: artifactEffect
+  id: EffectPolyLizard
+  targetDepth: 2
+  effectHint: artifact-effect-hint-polymorph
+  components:
+  - type: PolyArtifact
+    polymorphPrototypeName: ArtifactLizard
+
+- type: artifactEffect
   id: EffectHealAll
   targetDepth: 3
   effectHint: artifact-effect-hint-environment
@@ -534,9 +549,10 @@
   - type: Explosive
     deleteAfterExplosion: false
     explosionType: Default
-    totalIntensity: 500
+    totalIntensity: 300
     intensitySlope: 2.5
     maxIntensity: 50
+    canCreateVacuum: false
 
 - type: artifactEffect
   id: EffectSingulo

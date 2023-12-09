@@ -1,9 +1,11 @@
+using System.Threading;
+using Content.Server.DoAfter;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Contests;
-using Content.Server.Climbing;
+using Content.Shared.Climbing; // Shared instead of Server
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
 using Content.Shared.Buckle.Components;
@@ -12,6 +14,7 @@ using Content.Shared.Hands;
 using Content.Shared.Stunnable;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Verbs;
+using Content.Shared.Climbing.Events; // Added this.
 using Content.Shared.Carrying;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -30,7 +33,7 @@ namespace Content.Server.Carrying
     {
         [Dependency] private readonly HandVirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly StandingStateSystem _standingState = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly SharedPullingSystem _pullingSystem = default!;
@@ -57,7 +60,7 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, PullAttemptEvent>(OnPullAttempt);
             SubscribeLocalEvent<BeingCarriedComponent, StartClimbEvent>(OnStartClimb);
             SubscribeLocalEvent<BeingCarriedComponent, BuckleChangeEvent>(OnBuckleChange);
-            SubscribeLocalEvent<CarriableComponent, DoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
         }
 
 
@@ -181,7 +184,7 @@ namespace Content.Server.Carrying
             args.Cancelled = true;
         }
 
-        private void OnStartClimb(EntityUid uid, BeingCarriedComponent component, StartClimbEvent args)
+        private void OnStartClimb(EntityUid uid, BeingCarriedComponent component, ref StartClimbEvent args)
         {
             DropCarried(component.Carrier, uid);
         }
@@ -191,7 +194,7 @@ namespace Content.Server.Carrying
             DropCarried(component.Carrier, uid);
         }
 
-        private void OnDoAfter(EntityUid uid, CarriableComponent component, DoAfterEvent args)
+        private void OnDoAfter(EntityUid uid, CarriableComponent component, CarryDoAfterEvent args)
         {
             component.CancelToken = null;
             if (args.Handled || args.Cancelled)
@@ -205,14 +208,14 @@ namespace Content.Server.Carrying
         }
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
-            float length = 3f;
+            TimeSpan length = TimeSpan.FromSeconds(3);
 
             var mod = _contests.MassContest(carrier, carried);
 
             if (mod != 0)
                 length /= mod;
 
-            if (length >= 9)
+            if (length >= TimeSpan.FromSeconds(9))
             {
                 _popupSystem.PopupEntity(Loc.GetString("carry-too-heavy"), carried, carrier, Shared.Popups.PopupType.SmallCaution);
                 return;
@@ -221,7 +224,10 @@ namespace Content.Server.Carrying
             if (!HasComp<KnockedDownComponent>(carried))
                 length *= 2f;
 
-            var args = new DoAfterArgs(carrier, length, new CarryDoAfterEvent(), carried, target: carried)
+            component.CancelToken = new CancellationTokenSource();
+
+            var ev = new CarryDoAfterEvent();
+            var args = new DoAfterArgs(EntityManager, carrier, length, ev, carried, target: carried)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,
@@ -293,8 +299,8 @@ namespace Content.Server.Carrying
             if (HasComp<BeingCarriedComponent>(carrier) || HasComp<BeingCarriedComponent>(carried))
                 return false;
 
-            if (_respirator.IsReceivingCPR(carried))
-                return false;
+        //  if (_respirator.IsReceivingCPR(carried))
+            //  return false;
 
             if (!TryComp<HandsComponent>(carrier, out var hands))
                 return false;
@@ -304,8 +310,5 @@ namespace Content.Server.Carrying
 
             return true;
         }
-
-        private record struct CarryData()
-        {}
     }
 }

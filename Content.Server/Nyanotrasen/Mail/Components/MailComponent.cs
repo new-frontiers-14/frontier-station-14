@@ -6,7 +6,7 @@ using Content.Shared.Mail;
 namespace Content.Server.Mail.Components
 {
     [RegisterComponent]
-    public sealed class MailComponent : SharedMailComponent
+    public sealed partial class MailComponent : SharedMailComponent
     {
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("recipient")]
@@ -15,6 +15,10 @@ namespace Content.Server.Mail.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("recipientJob")]
         public string RecipientJob = "None";
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("recipientStation")]
+        public string RecipientStation = "None";
 
         // Why do we not use LockComponent?
         // Because this can't be locked again,

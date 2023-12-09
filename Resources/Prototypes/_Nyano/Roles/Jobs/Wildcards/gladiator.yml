@@ -2,21 +2,15 @@
   id: Gladiator
   name: job-name-gladiator
   description: job-description-gladiator
-  playTimeTracker: JobPrisoner
+  playTimeTracker: JobGladiator
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
   startingGear: GladiatorGear
   canBeAntag: false
-  icon: "Boxer"
+  icon: "JobIconBoxer"
   supervisors: job-supervisors-security
   access:
   - Service
   - Maintenance
 
-- type: startingGear
-  id: GladiatorGear
-  equipment:
-    jumpsuit: UniformShortsRed
-    outerClothing: ClothingOuterArmorGladiator
-    id: GladiatorPDA
-    ears: ClothingHeadsetGrey
-  innerclothingskirt: UniformShortsRedWithTop
-  #any other possessions, spawn in cell

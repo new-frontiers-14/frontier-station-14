@@ -5,16 +5,16 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxPillCanister
       - id: BoxSyringe
       - id: EpinephrineChemistryBottle
-        amount: 3
+        amount: 1
       - id: Brutepack
         amount: 2
       - id: Ointment
         amount: 2
       - id: Bloodpack
         amount: 2
+      - id: Gauze
 
 - type: entity
   id: LockerWallMedicalFilled
@@ -24,17 +24,16 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxPillCanister
       - id: BoxSyringe
       - id: EpinephrineChemistryBottle
-        amount: 3
+        amount: 1
       - id: Brutepack
         amount: 2
       - id: Ointment
         amount: 2
       - id: Bloodpack
         amount: 2
-
+      - id: Gauze
 
 - type: entity
   id: LockerMedicalFilled
@@ -44,32 +43,32 @@
   - type: StorageFill
     contents:
       - id: HandheldHealthAnalyzer
-        prob: 0.6
+#        prob: 0.6
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
-     # - id: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingBeltMedical
-      - id: ClothingHeadHatSurgcapGreen
-        prob: 0.1
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapPurple
-        prob: 0.05
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapBlue
-        prob: 0.90
-        orGroup: Surgcaps
-      - id: UniformScrubsColorBlue
-        prob: 0.5
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorGreen
-        prob: 0.1
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorPurple
-        prob: 0.05
-        orGroup: Surgshrubs
-      - id: NitrousOxideTankFilled
-        prob: 0.3
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingBeltMedical
+#      - id: ClothingHeadHatSurgcapGreen
+#        prob: 0.1
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapPurple
+#        prob: 0.05
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapBlue
+#        prob: 0.90
+#        orGroup: Surgcaps
+#      - id: UniformScrubsColorBlue
+#        prob: 0.5
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorGreen
+#        prob: 0.1
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorPurple
+#        prob: 0.05
+#        orGroup: Surgshrubs
       - id: ClothingMaskSterile
+#      - id: ClothingBeltMedical # Frontier
+      - id: ClothingBeltMedicalFilled # Frontier
 
 - type: entity
   parent: LockerWallMedical
@@ -80,32 +79,31 @@
   - type: StorageFill
     contents:
       - id: HandheldHealthAnalyzer
-        prob: 0.6
+#        prob: 0.6
       - id: ClothingHandsGlovesLatex
-      - id: ClothingHeadsetMedical
-     # - id: ClothingEyesHudMedical #Removed until working properly
-      - id: ClothingBeltMedical
-      - id: ClothingHeadHatSurgcapGreen
-        prob: 0.1
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapPurple
-        prob: 0.05
-        orGroup: Surgcaps
-      - id: ClothingHeadHatSurgcapBlue
-        prob: 0.90
-        orGroup: Surgcaps
-      - id: UniformScrubsColorBlue
-        prob: 0.5
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorGreen
-        prob: 0.1
-        orGroup: Surgshrubs
-      - id: UniformScrubsColorPurple
-        prob: 0.05
-        orGroup: Surgshrubs
-      - id: NitrousOxideTankFilled
-        prob: 0.3
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingEyesHudMedical # Frontier
+#      - id: ClothingBeltMedical
+#      - id: ClothingHeadHatSurgcapGreen
+#        prob: 0.1
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapPurple
+#        prob: 0.05
+#        orGroup: Surgcaps
+#      - id: ClothingHeadHatSurgcapBlue
+#        prob: 0.90
+#        orGroup: Surgcaps
+#      - id: UniformScrubsColorBlue
+#        prob: 0.5
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorGreen
+#        prob: 0.1
+#        orGroup: Surgshrubs
+#      - id: UniformScrubsColorPurple
+#        prob: 0.05
+#        orGroup: Surgshrubs
       - id: ClothingMaskSterile
+      - id: ClothingBeltMedicalFilled # Frontier
 
 - type: entity
   id: LockerChemistryFilled
@@ -116,10 +114,18 @@
     contents:
       - id: BoxSyringe
       - id: BoxBeaker
+        amount: 2
       - id: BoxPillCanister
       - id: BoxBottle
-        amount: 2
-        
+      - id: ChemBag
+      - id: ClothingHandsGlovesLatex
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingMaskSterile
+#      - id: HandLabeler
+      - id: ClothingEyesGlassesChemical # Frontier
+      - id: SheetPlasma1 # Frontier
+        amount: 3
+
 - type: entity
   id: LockerParamedicFilled
   suffix: Filled
@@ -127,11 +133,15 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingHeadHelmetVoidParamed
-      - id: ClothingOuterHardsuitVoidParamed
-      - id: ClothingOuterCoatParamedicWB
-      - id: ClothingHeadHatParamedicsoft
-      - id: ClothingUniformJumpsuitParamedic
-      - id: ClothingUniformJumpskirtParamedic
+#      - id: ClothingHeadHelmetVoidParamed # Frontier
+#      - id: ClothingOuterHardsuitVoidParamed # Frontier
+#      - id: ClothingOuterCoatParamedicWB # Frontier
+#      - id: ClothingHeadHatParamedicsoft # Frontier
+#      - id: ClothingUniformJumpsuitParamedic # Frontier
+#      - id: ClothingUniformJumpskirtParamedic # Frontier
       - id: ClothingEyesHudMedical
-      
+      - id: ClothingHandsGlovesLatex
+#      - id: ClothingHeadsetMedical  # Frontier
+      - id: ClothingMaskSterile
+      - id: ClothingBeltParamedicFilled # Frontier
+      - id: MedkitFilled # Frontier

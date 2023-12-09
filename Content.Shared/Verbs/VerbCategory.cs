@@ -83,5 +83,8 @@ namespace Content.Shared.Verbs
         public static readonly VerbCategory Lever = new("verb-categories-lever", null);
 
         public static readonly VerbCategory SelectType = new("verb-categories-select-type", null);
+
+        public static readonly VerbCategory Pen =
+            new("verb-categories-pen", "/Textures/Interface/pencil.png");
     }
 }

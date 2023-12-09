@@ -1,14 +1,14 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Access.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedIdCardConsoleSystem))]
-public sealed class IdCardConsoleComponent : Component
+public sealed partial class IdCardConsoleComponent : Component
 {
     public const int MaxFullNameLength = 30;
     public const int MaxJobTitleLength = 30;
@@ -16,33 +16,16 @@ public sealed class IdCardConsoleComponent : Component
     public static string PrivilegedIdCardSlotId = "IdCardConsole-privilegedId";
     public static string TargetIdCardSlotId = "IdCardConsole-targetId";
 
-    [DataField("privilegedIdSlot")]
+    [DataField]
     public ItemSlot PrivilegedIdSlot = new();
 
-    [DataField("targetIdSlot")]
+    [DataField]
     public ItemSlot TargetIdSlot = new();
-
-    [Serializable, NetSerializable]
-    public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
-    {
-        public readonly string FullName;
-        public readonly string JobTitle;
-        public readonly List<string> AccessList;
-        public readonly string JobPrototype;
-
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<string> accessList, string jobPrototype)
-        {
-            FullName = fullName;
-            JobTitle = jobTitle;
-            AccessList = accessList;
-            JobPrototype = jobPrototype;
-        }
-    }
 
     // Put this on shared so we just send the state once in PVS range rather than every time the UI updates.
 
-    [DataField("accessLevels", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessLevelPrototype>))]
-    public List<string> AccessLevels = new()
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new()
     {
         "Armory",
         "Atmospherics",
@@ -58,6 +41,7 @@ public sealed class IdCardConsoleComponent : Component
         "Command",
         "Engineering",
         "External",
+        "Frontier",
         "HeadOfPersonnel",
         "HeadOfSecurity",
         "Hydroponics",
@@ -84,6 +68,8 @@ public sealed class IdCardConsoleComponent : Component
         public readonly string TargetIdName;
         public readonly string? TargetIdFullName;
         public readonly string? TargetIdJobTitle;
+        public readonly bool HasOwnedShuttle;
+        public readonly string?[]? TargetShuttleNameParts;
         public readonly string[]? TargetIdAccessList;
         public readonly string[]? AllowedModifyAccessList;
         public readonly string TargetIdJobPrototype;
@@ -93,6 +79,8 @@ public sealed class IdCardConsoleComponent : Component
             bool isTargetIdPresent,
             string? targetIdFullName,
             string? targetIdJobTitle,
+            bool hasOwnedShuttle,
+            string?[]? targetShuttleNameParts,
             string[]? targetIdAccessList,
             string[]? allowedModifyAccessList,
             string targetIdJobPrototype,
@@ -104,6 +92,8 @@ public sealed class IdCardConsoleComponent : Component
             IsTargetIdPresent = isTargetIdPresent;
             TargetIdFullName = targetIdFullName;
             TargetIdJobTitle = targetIdJobTitle;
+            HasOwnedShuttle = hasOwnedShuttle;
+            TargetShuttleNameParts = targetShuttleNameParts;
             TargetIdAccessList = targetIdAccessList;
             AllowedModifyAccessList = allowedModifyAccessList;
             TargetIdJobPrototype = targetIdJobPrototype;

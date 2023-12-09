@@ -35,7 +35,7 @@ public sealed class ListeningSystem : EntitySystem
         var obfuscatedEv = obfuscatedMessage == null ? null : new ListenEvent(obfuscatedMessage, source);
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
-        while(query.MoveNext(out var listenerUid, out var listener, out var xform))
+        while (query.MoveNext(out var listenerUid, out var listener, out var xform))
         {
             if (xform.MapID != sourceXform.MapID)
                 continue;
@@ -53,7 +53,7 @@ public sealed class ListeningSystem : EntitySystem
                 continue;
             }
 
-            if (obfuscatedEv != null && distance > ChatSystem.WhisperRange)
+            if (obfuscatedEv != null && distance > ChatSystem.WhisperClearRange)
                 RaiseLocalEvent(listenerUid, obfuscatedEv);
             else
                 RaiseLocalEvent(listenerUid, ev);

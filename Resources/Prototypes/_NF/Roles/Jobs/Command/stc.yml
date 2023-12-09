@@ -1,0 +1,29 @@
+- type: job
+  id: StationTrafficController
+  name: job-name-stc
+  description: job-description-stc
+  playTimeTracker: JobSTC
+  startingGear: STCGear
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
+  canBeAntag: false
+  icon: "JobIconServiceWorker" 
+  supervisors: job-supervisors-hop
+  setPreference: true
+  access:
+  - Maintenance
+  - Frontier
+
+- type: startingGear
+  id: STCGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: STCPDA
+    ears: ClothingHeadsetAltCommand
+    belt: BoxFolderClipboard
+  innerClothingSkirt: ClothingUniformJumpskirtDetectiveGrey
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

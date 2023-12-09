@@ -43,7 +43,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 6
+        maxVol: 6
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -103,7 +103,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: TomatoSauce
           Quantity: 15
@@ -132,7 +132,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: Pesto
           Quantity: 15
@@ -318,7 +318,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 30
+        maxVol: 30
         reagents:
         - ReagentId: Nutriment
           Quantity: 16
@@ -344,7 +344,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 5
+        maxVol: 5
         reagents:
         - ReagentId: Nutriment
           Quantity: 2.5
@@ -532,7 +532,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -540,6 +540,11 @@
           Quantity: 6
         - ReagentId: Water
           Quantity: 4
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
 #Tastes like cotton and broth
 
 - type: entity
@@ -559,7 +564,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -587,7 +592,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 7
@@ -637,7 +642,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 25
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
           Quantity: 12
@@ -666,7 +671,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -692,7 +697,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -721,7 +726,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 30
+        maxVol: 30
         reagents:
         - ReagentId: Nutriment
           Quantity: 22
@@ -743,7 +748,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 11
+        maxVol: 11
         reagents:
         - ReagentId: Nutriment
           Quantity: 9
@@ -767,7 +772,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 12
@@ -795,7 +800,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 30
+        maxVol: 30
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -824,7 +829,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -854,7 +859,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 10
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 7
@@ -879,7 +884,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 12
@@ -906,7 +911,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 15
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
@@ -918,7 +923,7 @@
   name: kachumbari salad
   parent: FoodBowlBase
   id: FoodMothKachumbariSalad
-  description: 
+  description:
   components:
   - type: FlavorProfile
     flavors:
@@ -931,7 +936,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxvol: 20
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 12
@@ -1110,6 +1115,11 @@
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: pizza-cotton
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
 
 - type: entity
   name: slice of cotton pizza
@@ -1125,6 +1135,11 @@
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: pizza-cotton-slice
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
 # Tastes like crust, cotton, cheese
 
 # Sweets
@@ -1182,6 +1197,11 @@
           Quantity: 10
         - ReagentId: Sugar
           Quantity: 10
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1207,6 +1227,11 @@
           Quantity: 4
         - ReagentId: Sugar
           Quantity: 2
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1243,4 +1268,10 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Tag
+    tags:
+    - MothFood
+  - type: Food
+    requiresSpecialDigestion: true
+
 #Tastes like muffin, dust and lint

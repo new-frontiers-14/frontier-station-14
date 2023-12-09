@@ -45,9 +45,11 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly AnchorableSystem _anchorable;
     private readonly BiomeSystem _biome;
     private readonly DungeonSystem _dungeon;
-    private readonly SalvageSystem _salvage;
+    private readonly MetaDataSystem _metaData;
     private readonly ShuttleSystem _shuttle;
     private readonly StationSystem _stationSystem;
+    private readonly SalvageSystem _salvage;
+
     public readonly EntityUid Station;
     private readonly SalvageMissionParams _missionParams;
 
@@ -62,6 +64,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         DungeonSystem dungeon,
         ShuttleSystem shuttle,
         StationSystem stationSystem,
+        MetaDataSystem metaData,
         SalvageSystem salvage,
         EntityUid station,
         SalvageMissionParams missionParams,
@@ -76,6 +79,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         _dungeon = dungeon;
         _shuttle = shuttle;
         _stationSystem = stationSystem;
+        _metaData = metaData;
         _salvage = salvage;
         Station = station;
         _missionParams = missionParams;
@@ -147,8 +151,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         expedition.Rewards = mission.Rewards;
 
         // On Frontier, we cant share our locations it breaks ftl in a bad bad way
-        /*var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, Vector2.Zero));
-        _entManager.GetComponent<MetaDataComponent>(ftlUid).EntityName = SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed);
+        // Don't want consoles to have the incorrect name until refreshed.
+        /*var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, grid.TileSizeHalfVector));
+        _metaData.SetEntityName(ftlUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed));
         _entManager.InitializeAndStartEntity(ftlUid);*/
 
         // so we just gunna yeet them there instead why not. they chose this life.
@@ -218,13 +223,12 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Handle loot
         // We'll always add this loot if possible
         foreach (var lootProto in _prototypeManager.EnumeratePrototypes<SalvageLootPrototype>())
+
         {
             if (!lootProto.Guaranteed)
                 continue;
-
             await SpawnDungeonLoot(dungeon, missionBiome, lootProto, mapUid, grid, random, reservedTiles);
         }
-
         return true;
     }
 

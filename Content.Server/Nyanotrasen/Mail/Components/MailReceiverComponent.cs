@@ -1,6 +1,6 @@
 namespace Content.Server.Mail.Components
 {
     [RegisterComponent]
-    public sealed class MailReceiverComponent : Component
+    public sealed partial class MailReceiverComponent : Component
     {}
 }

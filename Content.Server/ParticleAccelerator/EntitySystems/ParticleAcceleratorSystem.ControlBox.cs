@@ -2,10 +2,10 @@ using Content.Server.ParticleAccelerator.Components;
 using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Singularity.Components;
-using Robust.Server.Player;
-using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
 using System.Diagnostics;
+using Content.Shared.CCVar;
+using Robust.Shared.Player;
 
 namespace Content.Server.ParticleAccelerator.EntitySystems;
 
@@ -59,7 +59,7 @@ public sealed partial class ParticleAcceleratorSystem
         FireEmitter(comp.StarboardEmitter!.Value, strength);
     }
 
-    public void SwitchOn(EntityUid uid, IPlayerSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
+    public void SwitchOn(EntityUid uid, ICommonSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -82,7 +82,7 @@ public sealed partial class ParticleAcceleratorSystem
         UpdateUI(uid, comp);
     }
 
-    public void SwitchOff(EntityUid uid, IPlayerSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
+    public void SwitchOff(EntityUid uid, ICommonSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -130,7 +130,7 @@ public sealed partial class ParticleAcceleratorSystem
         UpdateUI(uid, comp);
     }
 
-    public void SetStrength(EntityUid uid, ParticleAcceleratorPowerState strength, IPlayerSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
+    public void SetStrength(EntityUid uid, ParticleAcceleratorPowerState strength, ICommonSession? user = null, ParticleAcceleratorControlBoxComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -159,6 +159,17 @@ public sealed partial class ParticleAcceleratorSystem
             };
 
             _adminLogger.Add(LogType.Action, impact, $"{ToPrettyString(player):player} has set the strength of {ToPrettyString(uid)} to {strength}");
+
+
+            var alertMinPowerState = (ParticleAcceleratorPowerState)_cfg.GetCVar(CCVars.AdminAlertParticleAcceleratorMinPowerState);
+            if (strength >= alertMinPowerState)
+            {
+                var pos = Transform(uid);
+                _chat.SendAdminAlert(player, Loc.GetString("particle-accelerator-admin-power-strength-warning",
+                    ("machine", ToPrettyString(uid)),
+                    ("powerState", strength),
+                    ("coordinates", pos.Coordinates)));
+            }
         }
 
         comp.SelectedStrength = strength;
@@ -221,7 +232,7 @@ public sealed partial class ParticleAcceleratorSystem
             receive = powerConsumer.ReceivedPower;
         }
 
-        UserInterfaceSystem.SetUiState(bui, new ParticleAcceleratorUIState(
+        _uiSystem.SetUiState(bui, new ParticleAcceleratorUIState(
             comp.Assembled,
             comp.Enabled,
             comp.SelectedStrength,
@@ -335,10 +346,10 @@ public sealed partial class ParticleAcceleratorSystem
         if (msg.Enabled)
         {
             if (comp.Assembled)
-                SwitchOn(uid, (IPlayerSession?) msg.Session, comp);
+                SwitchOn(uid, msg.Session, comp);
         }
         else
-            SwitchOff(uid, (IPlayerSession?) msg.Session, comp);
+            SwitchOff(uid, msg.Session, comp);
 
         UpdateUI(uid, comp);
     }
@@ -352,7 +363,7 @@ public sealed partial class ParticleAcceleratorSystem
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && !apcPower.Powered)
             return;
 
-        SetStrength(uid, msg.State, (IPlayerSession?) msg.Session, comp);
+        SetStrength(uid, msg.State, msg.Session, comp);
 
         UpdateUI(uid, comp);
     }
@@ -366,7 +377,7 @@ public sealed partial class ParticleAcceleratorSystem
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && !apcPower.Powered)
             return;
 
-        RescanParts(uid, (IPlayerSession?) msg.Session, comp);
+        RescanParts(uid, msg.Session, comp);
 
         UpdateUI(uid, comp);
     }

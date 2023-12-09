@@ -1,14 +1,19 @@
 using Content.Server.Contests;
-using Robust.Shared.Containers;
 using Content.Server.Popups;
 using Content.Shared.Storage;
+using Content.Server.Carrying; // Carrying system from Nyanotrasen.
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
+using Content.Server.Storage.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
-using Content.Shared.Movement.Events;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
+using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
+using Content.Shared.Storage;
+using Robust.Shared.Containers;
 using Content.Server.Storage.Components;
 using Content.Server.Carrying;
 
@@ -22,7 +27,7 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
-    [Dependency] private readonly CarryingSystem _carryingSystem = default!;
+    [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
 
     /// <summary>
     /// You can't escape the hands of an entity this many times more massive than you.
@@ -62,16 +67,16 @@ public sealed class EscapeInventorySystem : EntitySystem
         }
 
         // Uncontested
-        if (HasComp<SharedStorageComponent>(container.Owner) || HasComp<InventoryComponent>(container.Owner) || HasComp<SecretStashComponent>(container.Owner))
+        if (HasComp<StorageComponent>(container.Owner) || HasComp<InventoryComponent>(container.Owner) || HasComp<SecretStashComponent>(container.Owner))
             AttemptEscape(uid, container.Owner, component);
     }
 
-    public void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f)
+    public void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f) //private to public for carrying system.
     {
         if (component.IsEscaping)
             return;
 
-        var doAfterEventArgs = new DoAfterArgs(user, component.BaseResistTime * multiplier, new EscapeInventoryEvent(), user, target: container)
+        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, component.BaseResistTime * multiplier, new EscapeInventoryEvent(), user, target: container)
         {
             BreakOnTargetMove = false,
             BreakOnUserMove = true,
@@ -82,7 +87,7 @@ public sealed class EscapeInventorySystem : EntitySystem
         if (!_doAfterSystem.TryStartDoAfter(doAfterEventArgs, out component.DoAfter))
             return;
 
-        Dirty(component);
+        Dirty(user, component);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting"), user, user);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting-target"), container, container);
     }
@@ -90,18 +95,18 @@ public sealed class EscapeInventorySystem : EntitySystem
     private void OnEscape(EntityUid uid, CanEscapeInventoryComponent component, EscapeInventoryEvent args)
     {
         component.DoAfter = null;
-        Dirty(component);
+        Dirty(uid, component);
 
         if (args.Handled || args.Cancelled)
             return;
 
-        if (TryComp<BeingCarriedComponent>(uid, out var carried))
+        if (TryComp<BeingCarriedComponent>(uid, out var carried)) // Start of carrying system of nyanotrasen.
         {
             _carryingSystem.DropCarried(carried.Carrier, uid);
             return;
-        }
+        } // End of carrying system of nyanotrasen.
 
-        Transform(uid).AttachParentToContainerOrGrid(EntityManager);
+        _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));
         args.Handled = true;
     }
 
