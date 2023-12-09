@@ -106,6 +106,8 @@ public sealed class TranslatorSystem : EntitySystem
 
         var intrinsic = EntityManager.EnsureComponent<HoldsTranslatorComponent>(holder);
         UpdateBoundIntrinsicComp(component, intrinsic, component.Enabled);
+
+        UpdatedLanguages(holder);
     }
 
     private void TranslatorUnequipped(EntityUid holder, EntityUid translator, HandheldTranslatorComponent component)
@@ -121,6 +123,8 @@ public sealed class TranslatorSystem : EntitySystem
         }
 
         _language.EnsureValidLanguage(holder);
+
+        UpdatedLanguages(holder);
     }
 
     private void OnTranslatorToggle(EntityUid translator, HandheldTranslatorComponent component, ActivateInWorldEvent args)
@@ -152,6 +156,8 @@ public sealed class TranslatorSystem : EntitySystem
             // This is a standalone translator (e.g. lying on the ground). Simply toggle its state.
             component.Enabled = !component.Enabled && hasPower;
         }
+
+        UpdatedLanguages(uid);
 
         // HasPower shows a popup when there's no power, so we do not proceed in that case
         if (hasPower)
@@ -189,5 +195,10 @@ public sealed class TranslatorSystem : EntitySystem
         if (list.Contains(item))
             return;
         list.Add(item);
+    }
+
+    private void UpdatedLanguages(EntityUid uid)
+    {
+        RaiseLocalEvent(uid, new SharedLanguageSystem.LanguagesUpdateEvent());
     }
 }

@@ -36,11 +36,25 @@ public abstract class SharedLanguageSystem : EntitySystem
         _action.AddAction(uid, ref component.Action, component.LanguageMenuAction, uid);
     }
 
+    /// <summary>
+    ///   Raised when on an entity when its list of languages changes.
+    /// </summary>
+    public sealed class LanguagesUpdateEvent : EntityEventArgs
+    {
+    }
+
+    /// <summary>
+    ///   Sent when a client wants to update its language menu.
+    /// </summary>
     [Serializable, NetSerializable]
     public sealed class RequestLanguageMenuStateMessage : EntityEventArgs
     {
     }
 
+    /// <summary>
+    ///   Sent by the server when the client needs to update its language menu,
+    ///   or directly after [RequestLanguageMenuStateMessage].
+    /// </summary>
     [Serializable, NetSerializable]
     public sealed class LanguageMenuStateMessage : EntityEventArgs
     {
