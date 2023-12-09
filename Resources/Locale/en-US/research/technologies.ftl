@@ -69,3 +69,5 @@ research-technology-meat-manipulation = Meat Manipulation
 research-technology-honk-mech = H.O.N.K. Mech
 research-technology-advanced-spray = Advanced Spray
 research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
+research-technology-basic-translation = Basic Translation
+research-technology-advanced-translation = Advanced Translation

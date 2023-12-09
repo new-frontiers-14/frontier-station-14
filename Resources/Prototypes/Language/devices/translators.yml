@@ -1,22 +1,50 @@
 - type: entity
-  id: BaseTranslator
-  parent: [ BaseItem, PowerCellSlotMediumItem ]
+  id: TranslatorUnpowered
+  parent: [ BaseItem ]
   name: Translator
   description: "Translates speech."
   components:
   - type: Sprite
-    sprite: /Textures/Objects/Devices/translator.rsi
+    sprite: Objects/Devices/translator.rsi
+    state: icon
     layers:
-    - state: icon
+      - state: icon
+      - state: translator
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: Translator
+  parent: [ TranslatorUnpowered, PowerCellSlotMediumItem ]
+  suffix: Powered
+  components:
   - type: PowerCellDraw
     drawRate: 0
     useRate: 1
 
 - type: entity
+  id: TranslatorEmtpy
+  parent: [ TranslatorUnpowered ]
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
   id: VulpTranslator
-  parent: [BaseTranslator]
-  name: Canilunzt translator
-  description: "Translates speech between Canilunzt and Galactic Common. Commonly used by Vulpkanin to communicate with galactic common speakers"
+  parent: [ Translator ]
+  name: Vulpkanin translator
+  description: "Used only by Vulpkanin to understand and speak with Galatic Common speakers."
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
@@ -26,4 +54,117 @@
     - GalacticCommon
     requires:
     - Canilunzt
+    requires-all: false
+
+- type: entity
+  id: CanilunztTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Canilunzt translator
+  description: "Translates speech between Canilunzt and Galactic Common. Commonly used by Vulpkanin to communicate with galactic common speakers"
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - Canilunzt
+    understands:
+    - GalacticCommon
+    - Canilunzt
+    requires:
+    - GalacticCommon
+    - Canilunzt
+    requires-all: false
+
+- type: entity
+  id: BubblishTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Bubblish translator
+  description: "Translates speech between Bubblish and Galactic Common."
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - Bubblish
+    understands:
+    - GalacticCommon
+    - Bubblish
+    requires:
+    - GalacticCommon
+    - Bubblish
+    requires-all: false
+
+- type: entity
+  id: NekomimeticTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Nekomimetic translator
+  description: "Translates speech between Nekomimetic and Galactic Common. Why would you want that?"
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - Nekomimetic
+    understands:
+    - GalacticCommon
+    - Nekomimetic
+    requires:
+    - GalacticCommon
+    - Nekomimetic
+    requires-all: false
+
+- type: entity
+  id: DraconicTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Draconic translator
+  description: "Translates speech between Draconic and Galactic Common."
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - Draconic
+    understands:
+    - GalacticCommon
+    - Draconic
+    requires:
+    - GalacticCommon
+    - Draconic
+    requires-all: false
+
+- type: entity
+  id: SolCommonTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Sol Common translator
+  description: "Translates speech between Sol Common and Galactic Common. Like a true Earthman!"
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+    requires:
+    - GalacticCommon
+    - SolCommon
+    requires-all: false
+
+- type: entity
+  id: XenoTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Xeno translator
+  description: "Translates speech between Xeno and Galactic Common. Not sure if that will help."
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - Xeno
+    understands:
+    - GalacticCommon
+    - Xeno
+    requires:
+    - GalacticCommon
     requires-all: false
