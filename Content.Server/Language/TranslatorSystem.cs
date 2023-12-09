@@ -7,7 +7,11 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 using static Content.Server.Language.LanguageSystem;
+using HandheldTranslatorComponent = Content.Shared.Language.Components.HandheldTranslatorComponent;
+using HoldsTranslatorComponent = Content.Shared.Language.Components.HoldsTranslatorComponent;
+using IntrinsicTranslatorComponent = Content.Shared.Language.Components.IntrinsicTranslatorComponent;
 
 namespace Content.Server.Language;
 
@@ -163,7 +167,7 @@ public sealed class TranslatorSystem : EntitySystem
         if (hasPower)
         {
             var message =
-                Loc.GetString(component.Enabled ? "translator-component-turnon" : "translator-component-shutoff");
+                Loc.GetString(component.Enabled ? "translator-component-turnon" : "translator-component-shutoff", ("translator", component.Owner));
             _popup.PopupEntity(message, component.Owner, args.User);
         }
     }

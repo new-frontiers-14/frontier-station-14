@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Language;
+namespace Content.Shared.Language.Systems;
 
 public abstract class SharedLanguageSystem : EntitySystem
 {

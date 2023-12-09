@@ -2,9 +2,11 @@ using System.Linq;
 using System.Text;
 using Content.Shared.GameTicking;
 using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Server.GameObjects;
+using UniversalLanguageSpeakerComponent = Content.Shared.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server.Language;
 

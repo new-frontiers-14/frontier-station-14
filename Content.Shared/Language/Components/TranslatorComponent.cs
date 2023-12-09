@@ -1,4 +1,4 @@
-namespace Content.Shared.Language;
+namespace Content.Shared.Language.Components;
 
 public abstract partial class BaseTranslatorComponent : Component
 {
