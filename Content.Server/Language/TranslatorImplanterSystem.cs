@@ -37,7 +37,7 @@ public sealed class TranslatorImplanterSystem : EntitySystem
         var (_, understood) = _language.GetAllLanguages(args.Target.Value);
         if (!component.RequiredLanguages.Any(lang => understood.Contains(lang)))
         {
-            RefusesPopup(implanter, args.Target!);
+            RefusesPopup(implanter, args.Target.Value);
             return;
         }
 

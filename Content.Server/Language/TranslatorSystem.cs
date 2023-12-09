@@ -154,14 +154,14 @@ public sealed class TranslatorSystem : EntitySystem
             isEnabled &= hasPower;
             UpdateBoundIntrinsicComp(component, intrinsic, isEnabled);
             component.Enabled = isEnabled;
+
+            UpdatedLanguages(holder);
         }
         else
         {
             // This is a standalone translator (e.g. lying on the ground). Simply toggle its state.
             component.Enabled = !component.Enabled && hasPower;
         }
-
-        UpdatedLanguages(uid);
 
         // HasPower shows a popup when there's no power, so we do not proceed in that case
         if (hasPower)
