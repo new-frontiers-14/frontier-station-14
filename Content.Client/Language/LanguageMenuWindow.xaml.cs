@@ -20,22 +20,22 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
     public void UpdateState(SharedLanguageSystem.LanguageMenuState state)
     {
         // TODO: this is a placeholder
-        CurrentLanguageLabel.Text = "Current language: " + state.CurrentLanguage;
-
-        OptionsContainer.DisposeAllChildren();
-        _buttons.Clear();
-
-        foreach (var language in state.Options)
-        {
-            var entry = MakeLanguageEntry(language);
-            OptionsContainer.AddChild(entry);
-        }
-
-        foreach (var entry in _buttons)
-        {
-            // Disable the button for the current language, if any.
-            entry.button.Disabled = state.CurrentLanguage == entry.language;
-        }
+        // CurrentLanguageLabel.Text = "Current language: " + state.CurrentLanguage;
+        //
+        // OptionsContainer.RemoveAllChildren();
+        // _buttons.Clear();
+        //
+        // foreach (var language in state.Options)
+        // {
+        //     var entry = MakeLanguageEntry(language);
+        //     OptionsContainer.AddChild(entry);
+        // }
+        //
+        // foreach (var entry in _buttons)
+        // {
+        //     // Disable the button for the current language, if any.
+        //     entry.button.Disabled = state.CurrentLanguage == entry.language;
+        // }
     }
 
     private BoxContainer MakeLanguageEntry(string language)

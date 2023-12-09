@@ -39,7 +39,7 @@ public sealed partial class LanguageSpeakerComponent : Component
 }
 
 [Serializable, NetSerializable]
-public enum LanguageMenuUiKey
+public enum LanguageMenuUiKey : byte
 {
     Key
 }
