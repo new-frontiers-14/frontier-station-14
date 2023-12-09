@@ -41,6 +41,131 @@
         name: power-cell-slot-component-slot-name-default
 
 - type: entity
+  id: BaseTranslatorImplanter
+  parent: [ BaseItem ]
+  name: Basic Internal-Translator
+  description: "Translates speech."
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+    layers:
+      - state: implanter1
+        map: [ "implantFull" ]
+        visible: true
+      - state: implanter0
+        map: [ "implantOnly" ]
+
+- type: entity
+  id: BasicGalaticCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Basic Galatic Common Internal-Translator
+  description: "An Internal-Translator giving the ability to understand Galatic Common."
+  components:
+  - type: TranslatorImplanter
+    UnderstoodLanguages:
+    - GalacticCommon
+    MobsOnly: true
+
+- type: entity
+  id: AdvancedGalaticCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Advanced Galatic Common Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak Galatic Common."
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - GalacticCommon
+    UnderstoodLanguages:
+    - GalacticCommon
+
+- type: entity
+  id: BubblishTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Bubblish Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak Bubblish."
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - Bubblish
+    UnderstoodLanguages:
+    - Bubblish
+
+- type: entity
+  id: NekomimeticTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Nekomimetic Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak Nekomimetic, Nya~!"
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - Nekomimetic
+    UnderstoodLanguages:
+    - Nekomimetic
+
+- type: entity
+  id: DraconicTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Draconic Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak Draconic."
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - Draconic
+    UnderstoodLanguages:
+    - Draconic
+
+- type: entity
+  id: CanilunztTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Canilunzt Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak Canilunzt, Yeeps!"
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - Canilunzt
+    UnderstoodLanguages:
+    - Canilunzt
+
+- type: entity
+  id: SolCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: SolCommon Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak SolCommon, Yeeps!"
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - SolCommon
+    UnderstoodLanguages:
+    - SolCommon
+
+- type: entity
+  id: RootSpeakTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: RootSpeak Internal-Translator
+  description: "An Internal-Translator giving the ability to understand and speak RootSpeak."
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - RootSpeak
+    UnderstoodLanguages:
+    - RootSpeak
+
+- type: entity
+  id: CodespeakImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Codespeak Implanter
+  description: "\"Codespeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
+  components:
+  - type: TranslatorImplanter
+    SpokenLanguages:
+    - Codespeak
+    UnderstoodLanguages:
+    - Codespeak
+    RequiredLanguages:
+    - GalacticCommon
+
+- type: entity
   id: VulpTranslator
   parent: [ Translator ]
   name: Vulpkanin translator
@@ -152,6 +277,25 @@
     requires-all: false
 
 - type: entity
+  id: RootSpeakTranslator
+  parent: [ TranslatorEmtpy ]
+  name: RootSpeak translator
+  description: "Translates speech between RootSpeak and Galactic Common. Like a true plant?"
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    speaks:
+    - GalacticCommon
+    - RootSpeak
+    understands:
+    - GalacticCommon
+    - RootSpeak
+    requires:
+    - GalacticCommon
+    - RootSpeak
+    requires-all: false
+
+- type: entity
   id: XenoTranslator
   parent: [ TranslatorEmtpy ]
   name: Xeno translator
@@ -165,6 +309,30 @@
     understands:
     - GalacticCommon
     - Xeno
+    requires:
+    - GalacticCommon
+    requires-all: false
+
+- type: entity
+  id: AnimalTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Animal translator
+  description: "Translates all the cutes nosies that animals makes!"
+  components:
+  - type: HandheldTranslator
+    understands:
+    - Cat
+    - Dog
+    - Mothroach
+    - Monkey
+    - Bee
+    - Mouse
+    - Chicken
+    - Duck
+    - Cow
+    - Sheep
+    - Kangaroo
+    - Pig
     requires:
     - GalacticCommon
     requires-all: false
