@@ -7,7 +7,11 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 using static Content.Server.Language.LanguageSystem;
+using HandheldTranslatorComponent = Content.Shared.Language.Components.HandheldTranslatorComponent;
+using HoldsTranslatorComponent = Content.Shared.Language.Components.HoldsTranslatorComponent;
+using IntrinsicTranslatorComponent = Content.Shared.Language.Components.IntrinsicTranslatorComponent;
 
 namespace Content.Server.Language;
 
@@ -106,6 +110,8 @@ public sealed class TranslatorSystem : EntitySystem
 
         var intrinsic = EntityManager.EnsureComponent<HoldsTranslatorComponent>(holder);
         UpdateBoundIntrinsicComp(component, intrinsic, component.Enabled);
+
+        UpdatedLanguages(holder);
     }
 
     private void TranslatorUnequipped(EntityUid holder, EntityUid translator, HandheldTranslatorComponent component)
@@ -121,6 +127,8 @@ public sealed class TranslatorSystem : EntitySystem
         }
 
         _language.EnsureValidLanguage(holder);
+
+        UpdatedLanguages(holder);
     }
 
     private void OnTranslatorToggle(EntityUid translator, HandheldTranslatorComponent component, ActivateInWorldEvent args)
@@ -146,6 +154,8 @@ public sealed class TranslatorSystem : EntitySystem
             isEnabled &= hasPower;
             UpdateBoundIntrinsicComp(component, intrinsic, isEnabled);
             component.Enabled = isEnabled;
+
+            UpdatedLanguages(holder);
         }
         else
         {
@@ -157,7 +167,7 @@ public sealed class TranslatorSystem : EntitySystem
         if (hasPower)
         {
             var message =
-                Loc.GetString(component.Enabled ? "translator-component-turnon" : "translator-component-shutoff");
+                Loc.GetString(component.Enabled ? "translator-component-turnon" : "translator-component-shutoff", ("translator", component.Owner));
             _popup.PopupEntity(message, component.Owner, args.User);
         }
     }
@@ -189,5 +199,10 @@ public sealed class TranslatorSystem : EntitySystem
         if (list.Contains(item))
             return;
         list.Add(item);
+    }
+
+    private void UpdatedLanguages(EntityUid uid)
+    {
+        RaiseLocalEvent(uid, new SharedLanguageSystem.LanguagesUpdateEvent());
     }
 }

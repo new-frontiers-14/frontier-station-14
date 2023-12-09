@@ -2,9 +2,11 @@ using System.Linq;
 using System.Text;
 using Content.Shared.GameTicking;
 using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Server.GameObjects;
+using UniversalLanguageSpeakerComponent = Content.Shared.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server.Language;
 
@@ -184,6 +186,8 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             return;
 
         languageComp.CurrentLanguage = language;
+
+        RaiseLocalEvent(speaker, new LanguagesUpdateEvent());
     }
 
     private static bool IsSentenceEnd(char ch)
@@ -192,7 +196,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     }
 
     // This event is reused because re-allocating it each time is way too costly.
-    private DetermineEntityLanguagesEvent _determineLanguagesEvent = new(string.Empty, new(), new());
+    private readonly DetermineEntityLanguagesEvent _determineLanguagesEvent = new(string.Empty, new(), new());
 
     /// <summary>
     ///   Returns a pair of (spoken, understood) languages of the given entity.

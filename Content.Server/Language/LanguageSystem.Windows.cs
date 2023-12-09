@@ -4,13 +4,14 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Language;
 
-public sealed partial class LanguageSystem : SharedLanguageSystem
+public sealed partial class LanguageSystem
 {
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     public void InitializeWindows()
     {
         SubscribeNetworkEvent<RequestLanguageMenuStateMessage>(OnLanguagesRequest);
+        SubscribeLocalEvent<LanguageSpeakerComponent, LanguagesUpdateEvent>(OnLanguageSwitch);
     }
 
     private void OnLanguagesRequest(RequestLanguageMenuStateMessage args, EntitySessionEventArgs session)
@@ -25,5 +26,18 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
         var state = new LanguageMenuStateMessage(langs.CurrentLanguage, langs.SpokenLanguages);
         RaiseNetworkEvent(state, uid.Value);
+    }
+
+    private void OnLanguageSwitch(EntityUid uid, LanguageSpeakerComponent component, LanguagesUpdateEvent args)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        var langs = GetLanguages(uid);
+        if (langs == null)
+            return;
+
+        var state = new LanguageMenuStateMessage(langs.CurrentLanguage, langs.SpokenLanguages);
+        RaiseNetworkEvent(state, actor.PlayerSession);
     }
 }

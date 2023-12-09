@@ -3,7 +3,7 @@ using Content.Client.Language;
 using Content.Shared.Language;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
-using static Content.Shared.Language.SharedLanguageSystem;
+using static Content.Shared.Language.Systems.SharedLanguageSystem;
 
 namespace Content.Client.UserInterface.Systems.Language;
 
