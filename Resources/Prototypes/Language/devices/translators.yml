@@ -1,22 +1,29 @@
 - type: entity
+  id: BaseTranslator
+  parent: [ BaseItem, PowerCellSlotMediumItem ]
+  name: Translator
+  description: "Translates speech."
+  components:
+ - type: Sprite
+   sprite: /Textures/Objects/Devices/translator.rsi
+   layers:
+   - state: icon
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 1
+
+- type: entity
   id: VulpTranslator
   parent: [BaseTranslator]
   name: Canilunzt translator
   description: "Translates speech between Canilunzt and Galactic Common. Commonly used by Vulpkanin to communicate with galactic common speakers"
   components:
-  - type: Sprite
-    sprite: /Textures/Objects/Devices/vulp_translator.rsi
-    layers:
-    - state: icon
   - type: HandheldTranslator
     default-language: GalacticCommon
     speaks:
     - GalacticCommon
-    - Canilunzt # To allow galactic common speakers to speak canilunzt
     understands:
     - GalacticCommon
-    - Canilunzt
     requires:
     - Canilunzt
-    - GalacticCommon
     requires-all: false
