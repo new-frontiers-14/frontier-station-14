@@ -6,7 +6,7 @@ public abstract partial class BaseTranslatorComponent : Component
     ///   The language this translator changes the speaker's language to when they don't specify one.
     ///   If null, does not modify the default language.
     /// </summary>
-    [DataField("current-language")]
+    [DataField("default-language")]
     [ViewVariables(VVAccess.ReadWrite)]
     public string? CurrentSpeechLanguage = null;
 
@@ -24,6 +24,24 @@ public abstract partial class BaseTranslatorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> UnderstoodLanguages = new();
 
+    /// <summary>
+    ///   The languages the wielding MUST know in order for this translator to have effect.
+    ///   The field [RequiresAllLanguages] indicates whether all of them are required, or just one.
+    /// </summary>
+    [DataField("requires")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<string> RequiredLanguages = new();
+
+    /// <summary>
+    ///   If true, the wielder must understand all languages in [RequiredLanguages] to speak [SpokenLanguages],
+    ///   and understand all languages in [RequiredLanguages] to understand [UnderstoodLanguages].
+    ///
+    ///   Otherwise, at least one language must be known (or the list must be empty).
+    /// </summary>
+    [DataField("requires-all")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool RequiresAllLanguages = false;
+
     [DataField("enabled")]
     public bool Enabled = true;
 }
@@ -40,14 +58,6 @@ public sealed partial class HandheldTranslatorComponent : BaseTranslatorComponen
     /// </summary>
     [DataField("toggleOnInteract")]
     public bool ToggleOnInteract = true;
-
-    // TODO: not implemented
-    // /// <summary>
-    // ///   Whether or not this translator requires a power cell to work.
-    // /// </summary>
-    // [DataField("requiresPower")]
-    // [ViewVariables(VVAccess.ReadWrite)]
-    // public bool RequiresPower = true;
 }
 
 /// <summary>
