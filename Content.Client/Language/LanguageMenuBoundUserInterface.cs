@@ -2,38 +2,41 @@ using Content.Shared.Language;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 
-namespace Content.Client.Language
+namespace Content.Client.Language;
+
+[UsedImplicitly]
+public sealed class LanguageMenuUserInterface : BoundUserInterface
 {
-    [UsedImplicitly]
-    public sealed class LanguageMenuUserInterface : BoundUserInterface
+    private LanguageMenuWindow? _window;
+
+    public LanguageMenuUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        private LanguageMenuWindow? _window;
+    }
 
-        public LanguageMenuUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    protected override void Open()
+    {
+        base.Open();
+
+        _window = new LanguageMenuWindow(this);
+        _window.OnClose += Close;
+        _window.OpenCentered();
+    }
+    protected override void UpdateState(BoundUserInterfaceState state)
+    {
+        base.UpdateState(state);
+
+        if (state is SharedLanguageSystem.LanguageMenuState menuState)
         {
+            _window?.UpdateState(menuState);
         }
+    }
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
 
-        protected override void Open()
+        if (disposing)
         {
-            base.Open();
-
-            _window = new LanguageMenuWindow(this);
-            _window.OnClose += Close;
-            _window.OpenCentered();
-        }
-        protected override void UpdateState(BoundUserInterfaceState state)
-        {
-            base.UpdateState(state);
-        }
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            if (disposing)
-            {
-                _window?.Dispose();
-            }
+            _window?.Dispose();
         }
     }
 }
-

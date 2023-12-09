@@ -38,4 +38,16 @@ public abstract class SharedLanguageSystem : EntitySystem
     {
         _action.AddAction(uid, ref component.Action, component.LanguageMenuAction, uid);
     }
+
+    public sealed class LanguageMenuState : BoundUserInterfaceState
+    {
+        public string CurrentLanguage;
+        public List<string> Options;
+
+        public LanguageMenuState(string currentLanguage, List<string> options)
+        {
+            CurrentLanguage = currentLanguage;
+            Options = options;
+        }
+    }
 }
