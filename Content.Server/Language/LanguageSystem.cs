@@ -1,11 +1,10 @@
 using System.Linq;
 using System.Text;
-using Content.Server.Chat.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Language;
-using Content.Shared.Speech;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Player;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Language;
 
@@ -16,11 +15,29 @@ public sealed class LanguageSystem : SharedLanguageSystem
     /// </summary>
     public int RandomRoundSeed { get; private set; }
 
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
         SubscribeAllEvent<RoundStartedEvent>(it => RandomRoundSeed = _random.Next());
+        SubscribeLocalEvent<LanguageSpeakerComponent, LanguageMenuActionEvent>(MenuEvent);
+    }
+
+    private void MenuEvent(EntityUid uid, LanguageSpeakerComponent component, LanguageMenuActionEvent args)
+    {
+        if (!TryComp(uid, out ActorComponent? actor))
+            return;
+
+        _uiSystem.TryOpen(uid, LanguageMenuUiKey.Key, actor.PlayerSession);
+
+        UpdateUserInterface(uid, component, args);
+    }
+
+    private void UpdateUserInterface(EntityUid uid, LanguageSpeakerComponent component, EntityEventArgs args)
+    {
+
     }
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
@@ -168,7 +185,7 @@ public sealed class LanguageSystem : SharedLanguageSystem
     }
 
     // <summary>
-    //     Set the CurrentLangauge of the given entity.
+    //     Set the CurrentLanguage of the given entity.
     // </summary>
     public void SetLanguage(EntityUid speaker, string language, LanguageSpeakerComponent? languageComp = null)
     {

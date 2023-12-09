@@ -1,3 +1,6 @@
+using Content.Shared.Actions;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
@@ -27,4 +30,18 @@ public sealed partial class LanguageSpeakerComponent : Component
     [ViewVariables]
     [DataField("understands", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>), required: true)]
     public List<string> UnderstoodLanguages = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("languageMenuAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string LanguageMenuAction = "ActionLanguageMenu";
+
+    [DataField] public EntityUid? Action;
 }
+
+[Serializable, NetSerializable]
+public enum LanguageMenuUiKey
+{
+    Key
+}
+
+public sealed partial class LanguageMenuActionEvent : InstantActionEvent { }
