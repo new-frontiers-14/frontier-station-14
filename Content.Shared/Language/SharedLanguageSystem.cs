@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Language;
 
@@ -17,13 +18,9 @@ public abstract class SharedLanguageSystem : EntitySystem
 
     public override void Initialize()
     {
-        _prototype.TryIndex("GalacticCommon", out LanguagePrototype? gc);
-        _prototype.TryIndex("Universal", out LanguagePrototype? universal);
-        _galacticCommon = gc;
-        _universal = universal;
+        _galacticCommon = _prototype.Index<LanguagePrototype>("GalacticCommon");
+        _universal = _prototype.Index<LanguagePrototype>("Universal");
         _sawmill = Logger.GetSawmill("language");
-
-        base.Initialize();
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInit);
     }
@@ -39,12 +36,18 @@ public abstract class SharedLanguageSystem : EntitySystem
         _action.AddAction(uid, ref component.Action, component.LanguageMenuAction, uid);
     }
 
-    public sealed class LanguageMenuState : BoundUserInterfaceState
+    [Serializable, NetSerializable]
+    public sealed class RequestLanguageMenuStateMessage : EntityEventArgs
+    {
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class LanguageMenuStateMessage : EntityEventArgs
     {
         public string CurrentLanguage;
         public List<string> Options;
 
-        public LanguageMenuState(string currentLanguage, List<string> options)
+        public LanguageMenuStateMessage(string currentLanguage, List<string> options)
         {
             CurrentLanguage = currentLanguage;
             Options = options;
