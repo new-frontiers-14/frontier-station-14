@@ -7,6 +7,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Language;
+using Content.Shared.Language.Components;
 using Content.Shared.Language.Systems;
 using static Content.Server.Language.LanguageSystem;
 using HandheldTranslatorComponent = Content.Shared.Language.Components.HandheldTranslatorComponent;
@@ -32,6 +33,7 @@ public sealed class TranslatorSystem : EntitySystem
         // I wanna die. But my death won't help us discover polymorphism.
         SubscribeLocalEvent<IntrinsicTranslatorComponent, DetermineEntityLanguagesEvent>(ApplyTranslation);
         SubscribeLocalEvent<HoldsTranslatorComponent, DetermineEntityLanguagesEvent>(ApplyTranslation);
+        SubscribeLocalEvent<ImplantedTranslatorComponent, DetermineEntityLanguagesEvent>(ApplyTranslation);
         // TODO: make this thing draw power
         // SubscribeLocalEvent<HoldsTranslatorComponent, ListenEvent>(...);
 

@@ -78,3 +78,11 @@ public sealed partial class HoldsTranslatorComponent : IntrinsicTranslatorCompon
 {
     public Component? Issuer = null;
 }
+
+/// <summary>
+///   Applied to entities who were injected with a translator implant.
+/// </summary>
+[RegisterComponent]
+public sealed partial class ImplantedTranslatorComponent : IntrinsicTranslatorComponent
+{
+}
