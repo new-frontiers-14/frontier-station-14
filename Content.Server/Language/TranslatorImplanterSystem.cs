@@ -58,6 +58,8 @@ public sealed class TranslatorImplanterSystem : SharedTranslatorImplanterSystem
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(args.User):player} used {ToPrettyString(implanter):implanter} to give {ToPrettyString(args.Target.Value):target} the following languages:"
             + $"\nSpoken: {string.Join(", ", component.SpokenLanguages)}; Understood: {string.Join(", ", component.UnderstoodLanguages)}");
+
+        OnAppearanceChange(implanter, component);
     }
 
     private void RefusesPopup(EntityUid implanter, EntityUid target)

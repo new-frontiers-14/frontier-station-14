@@ -30,14 +30,11 @@ public sealed partial class LanguageSystem
 
     private void OnLanguageSwitch(EntityUid uid, LanguageSpeakerComponent component, LanguagesUpdateEvent args)
     {
-        if (!TryComp<ActorComponent>(uid, out var actor))
-            return;
-
         var langs = GetLanguages(uid);
         if (langs == null)
             return;
 
         var state = new LanguageMenuStateMessage(langs.CurrentLanguage, langs.SpokenLanguages);
-        RaiseNetworkEvent(state, actor.PlayerSession);
+        RaiseNetworkEvent(state, uid);
     }
 }

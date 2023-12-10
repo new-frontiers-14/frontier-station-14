@@ -18,7 +18,7 @@ namespace Content.Server.Language;
 
 // this does not support holding multiple translators at once yet.
 // that should not be an issue for now, but it better get fixed later.
-public sealed class TranslatorSystem : EntitySystem
+public sealed class TranslatorSystem : SharedTranslatorSystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
@@ -28,6 +28,7 @@ public sealed class TranslatorSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
         _sawmill = Logger.GetSawmill("translator");
 
         // I wanna die. But my death won't help us discover polymorphism.
@@ -49,6 +50,9 @@ public sealed class TranslatorSystem : EntitySystem
         DetermineEntityLanguagesEvent ev)
     {
         if (!component.Enabled)
+            return;
+
+        if (!_powerCell.HasActivatableCharge(uid))
             return;
 
         var addUnderstood = true;
@@ -164,6 +168,8 @@ public sealed class TranslatorSystem : EntitySystem
             // This is a standalone translator (e.g. lying on the ground). Simply toggle its state.
             component.Enabled = !component.Enabled && hasPower;
         }
+
+        OnAppearanceChange(translator, component);
 
         // HasPower shows a popup when there's no power, so we do not proceed in that case
         if (hasPower)

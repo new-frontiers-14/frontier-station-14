@@ -12,12 +12,16 @@
       - state: translator
         shader: unshaded
         visible: true
-        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        map: [ "enum.ToggleVisuals.Layer", "enum.PowerDeviceVisualLayers.Powered" ]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PowerCellSlotVisuals.Enabled:
         enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
 
@@ -55,6 +59,16 @@
         visible: true
       - state: implanter0
         map: [ "implantOnly" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ImplanterVisuals.Full:
+        implantFull:
+          True: {visible: true}
+          False: {visible: false}
+      enum.ImplanterImplantOnlyVisuals.ImplantOnly:
+        implantOnly:
+          True: {state: broken}
+          False: {state: implanter0}
 
 - type: entity
   id: BasicGalaticCommonTranslatorImplanter

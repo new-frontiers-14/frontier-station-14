@@ -1,10 +1,14 @@
 using Content.Shared.Examine;
+using Content.Shared.Implants.Components;
 using Content.Shared.Language.Components;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Language.Systems;
 
 public abstract class SharedTranslatorImplanterSystem : EntitySystem
 {
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -22,5 +26,13 @@ public abstract class SharedTranslatorImplanterSystem : EntitySystem
             : Loc.GetString("translator-implanter-used");
 
         args.PushText(text);
+    }
+
+    protected void OnAppearanceChange(EntityUid implanter, TranslatorImplanterComponent component)
+    {
+        var used = component.Used;
+
+        _appearance.SetData(implanter, ImplanterVisuals.Full, used);
+        _appearance.SetData(implanter, ImplanterImplantOnlyVisuals.ImplantOnly, used);
     }
 }
