@@ -13,14 +13,14 @@ public abstract partial class BaseTranslatorComponent : Component
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to speak.
     /// </summary>
-    [DataField("speaks")]
+    [DataField("spoken")]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> SpokenLanguages = new();
 
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to understand.
     /// </summary>
-    [DataField("understands")]
+    [DataField("understood")]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> UnderstoodLanguages = new();
 

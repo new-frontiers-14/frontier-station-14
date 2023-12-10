@@ -63,7 +63,7 @@
   description: "An Internal-Translator giving the ability to understand Galatic Common."
   components:
   - type: TranslatorImplanter
-    UnderstoodLanguages:
+    understood:
     - GalacticCommon
     MobsOnly: true
 
@@ -74,9 +74,9 @@
   description: "An Internal-Translator giving the ability to understand and speak Galatic Common."
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - GalacticCommon
-    UnderstoodLanguages:
+    understood:
     - GalacticCommon
 
 - type: entity
@@ -86,9 +86,9 @@
   description: "An Internal-Translator giving the ability to understand and speak Bubblish."
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - Bubblish
-    UnderstoodLanguages:
+    understood:
     - Bubblish
 
 - type: entity
@@ -98,9 +98,9 @@
   description: "An Internal-Translator giving the ability to understand and speak Nekomimetic, Nya~!"
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - Nekomimetic
-    UnderstoodLanguages:
+    understood:
     - Nekomimetic
 
 - type: entity
@@ -110,9 +110,9 @@
   description: "An Internal-Translator giving the ability to understand and speak Draconic."
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - Draconic
-    UnderstoodLanguages:
+    understood:
     - Draconic
 
 - type: entity
@@ -122,9 +122,9 @@
   description: "An Internal-Translator giving the ability to understand and speak Canilunzt, Yeeps!"
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - Canilunzt
-    UnderstoodLanguages:
+    understood:
     - Canilunzt
 
 - type: entity
@@ -134,9 +134,9 @@
   description: "An Internal-Translator giving the ability to understand and speak SolCommon, Yeeps!"
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - SolCommon
-    UnderstoodLanguages:
+    understood:
     - SolCommon
 
 - type: entity
@@ -146,9 +146,9 @@
   description: "An Internal-Translator giving the ability to understand and speak RootSpeak."
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - RootSpeak
-    UnderstoodLanguages:
+    understood:
     - RootSpeak
 
 - type: entity
@@ -158,11 +158,11 @@
   description: "\"CodeSpeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
   components:
   - type: TranslatorImplanter
-    SpokenLanguages:
+    spoken:
     - CodeSpeak
-    UnderstoodLanguages:
+    understood:
     - CodeSpeak
-    RequiredLanguages:
+    required:
     - GalacticCommon
 
 - type: entity
@@ -173,9 +173,9 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
-    understands:
+    understood:
     - GalacticCommon
     requires:
     - Canilunzt
@@ -189,10 +189,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - Canilunzt
-    understands:
+    understood:
     - GalacticCommon
     - Canilunzt
     requires:
@@ -208,10 +208,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - Bubblish
-    understands:
+    understood:
     - GalacticCommon
     - Bubblish
     requires:
@@ -227,10 +227,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - Nekomimetic
-    understands:
+    understood:
     - GalacticCommon
     - Nekomimetic
     requires:
@@ -246,10 +246,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - Draconic
-    understands:
+    understood:
     - GalacticCommon
     - Draconic
     requires:
@@ -265,10 +265,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - SolCommon
-    understands:
+    understood:
     - GalacticCommon
     - SolCommon
     requires:
@@ -284,10 +284,10 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - RootSpeak
-    understands:
+    understood:
     - GalacticCommon
     - RootSpeak
     requires:
@@ -303,24 +303,23 @@
   components:
   - type: HandheldTranslator
     default-language: GalacticCommon
-    speaks:
+    spoken:
     - GalacticCommon
     - Xeno
-    understands:
+    understood:
     - GalacticCommon
     - Xeno
     requires:
     - GalacticCommon
-    requires-all: false
 
 - type: entity
   id: AnimalTranslator
   parent: [ TranslatorEmtpy ]
   name: Animal translator
-  description: "Translates all the cutes nosies that animals makes!"
+  description: "Translates all the cutes nosies that animals make into a more understandable form!"
   components:
   - type: HandheldTranslator
-    understands:
+    understood:
     - Cat
     - Dog
     - Mothroach
