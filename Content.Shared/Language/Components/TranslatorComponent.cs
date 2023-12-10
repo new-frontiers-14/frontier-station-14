@@ -13,14 +13,14 @@ public abstract partial class BaseTranslatorComponent : Component
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to speak.
     /// </summary>
-    [DataField("spoken")]
+    [DataField("spoken", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> SpokenLanguages = new();
 
     /// <summary>
     ///   The list of additional languages this translator allows the wielder to understand.
     /// </summary>
-    [DataField("understood")]
+    [DataField("understood", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> UnderstoodLanguages = new();
 
@@ -28,7 +28,8 @@ public abstract partial class BaseTranslatorComponent : Component
     ///   The languages the wielding MUST know in order for this translator to have effect.
     ///   The field [RequiresAllLanguages] indicates whether all of them are required, or just one.
     /// </summary>
-    [DataField("requires")]
+    [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
+    [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> RequiredLanguages = new();
 

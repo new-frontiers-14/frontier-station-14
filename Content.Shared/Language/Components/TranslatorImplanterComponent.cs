@@ -1,3 +1,5 @@
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+
 namespace Content.Shared.Language.Components;
 
 /// <summary>
@@ -6,17 +8,17 @@ namespace Content.Shared.Language.Components;
 [RegisterComponent]
 public sealed partial class TranslatorImplanterComponent : Component
 {
-    [DataField("speaks"), ViewVariables]
+    [DataField("spoken", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>)), ViewVariables]
     public List<string> SpokenLanguages = new();
 
-    [DataField("understands"), ViewVariables]
+    [DataField("understood", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>)), ViewVariables]
     public List<string> UnderstoodLanguages = new();
 
     /// <summary>
     ///   The list of languages the mob must understand in order for this translator to have effect.
     ///   Knowing one language is enough.
     /// </summary>
-    [DataField("requires"), ViewVariables]
+    [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>)), ViewVariables]
     public List<string> RequiredLanguages = new();
 
     /// <summary>
