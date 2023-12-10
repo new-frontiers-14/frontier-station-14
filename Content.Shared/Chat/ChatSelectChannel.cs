@@ -1,4 +1,4 @@
-﻿namespace Content.Shared.Chat
+namespace Content.Shared.Chat
 {
     /// <summary>
     ///     Chat channels that the player can select in the chat box.
@@ -40,6 +40,11 @@
         ///     Emotes
         /// </summary>
         Emotes = ChatChannel.Emotes,
+
+        /// <summary>
+        ///     Telepathic
+        /// </summary>
+        Telepathic = ChatChannel.Telepathic,
 
         /// <summary>
         ///     Deadchat

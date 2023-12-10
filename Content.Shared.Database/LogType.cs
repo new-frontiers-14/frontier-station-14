@@ -74,6 +74,7 @@ public enum LogType
     Emag = 69,
     Gib = 70,
     Identity = 71,
+    Psionics = 421,
     CableCut = 72,
     StorePurchase = 73,
     LatticeCut = 74,
