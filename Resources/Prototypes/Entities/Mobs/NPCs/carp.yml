@@ -70,8 +70,11 @@
       tags:
         - Carp
         - DoorBumpOpener
-    - type: ReplacementAccent
-      accent: genericAggressive
+    - type: LanguageSpeaker
+      speaks:
+      - Xeno
+      understands:
+      - Xeno
     - type: Speech
       speechVerb: LargeMob
 
@@ -183,6 +186,13 @@
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+    - type: LanguageSpeaker
+      speaks:
+      - GalacticCommon
+      - Xeno
+      understands:
+      - GalacticCommon
+      - Xeno
 
 - type: entity
   id: MobCarpDungeon
