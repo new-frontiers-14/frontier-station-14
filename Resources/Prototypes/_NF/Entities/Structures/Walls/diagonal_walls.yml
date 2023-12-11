@@ -1,0 +1,135 @@
+# entities list: WallReinforcedDiagonal, WallWoodDiagona, GrilleDiagona, WindowReinforcedDiagonal
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallReinforcedDiagonal
+  name: reinforced wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/solid_reinforced_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/solid_reinforced_diagonal.rsi
+    state: state0
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallWoodDiagonal
+  name: wood wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/wood_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/wood_diagonal.rsi
+    state: state0
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: GrilleDiagonal
+  name: grille
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: CanBuildWindowOnTop
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/grille_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/grille_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - RCDDeconstructWhitelist
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: PerforatedMetallic
+  - type: Reflect
+    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WindowReinforcedDiagonal
+  name: reinforced window
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - RCDDeconstructWhitelist
+    - Window
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+  - type: Reflect
+    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
