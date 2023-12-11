@@ -212,6 +212,6 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
 
     private void UpdatedLanguages(EntityUid uid)
     {
-        RaiseLocalEvent(uid, new SharedLanguageSystem.LanguagesUpdateEvent());
+        RaiseLocalEvent(uid, new SharedLanguageSystem.LanguagesUpdateEvent(), true);
     }
 }

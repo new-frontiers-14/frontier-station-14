@@ -1,7 +1,10 @@
 using Content.Server.Administration;
+using Content.Server.Language;
 using Content.Shared.Administration;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
+using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Speech;
@@ -55,6 +58,14 @@ namespace Content.Server.Mind.Commands
             {
                 entityManager.EnsureComponent<SpeechComponent>(uid);
                 entityManager.EnsureComponent<EmotingComponent>(uid);
+
+                var language = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
+                var speaker = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
+                // The logic is simple, if the speaker knows any language (like monkey or robot), it should keep speaking that language
+                if (speaker.SpokenLanguages.Count == 0)
+                {
+                    language.AddLanguage(speaker, SharedLanguageSystem.GalacticCommon.ID);
+                }
             }
 
             entityManager.EnsureComponent<ExaminerComponent>(uid);

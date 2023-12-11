@@ -60,7 +60,7 @@ public sealed class TranslatorImplanterSystem : SharedTranslatorImplanterSystem
             + $"\nSpoken: {string.Join(", ", component.SpokenLanguages)}; Understood: {string.Join(", ", component.UnderstoodLanguages)}");
 
         OnAppearanceChange(implanter, component);
-        RaiseLocalEvent(target, new SharedLanguageSystem.LanguagesUpdateEvent());
+        RaiseLocalEvent(target, new SharedLanguageSystem.LanguagesUpdateEvent(), true);
     }
 
     private void RefusesPopup(EntityUid implanter, EntityUid target)
