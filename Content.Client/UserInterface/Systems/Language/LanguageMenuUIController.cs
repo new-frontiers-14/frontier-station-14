@@ -30,9 +30,15 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
         if (_languageWindow == null)
             return;
 
-        _languageWindow!.Open();
-
-        EntityManager.EntityNetManager?.SendSystemNetworkMessage(new RequestLanguageMenuStateMessage());
+        if (_languageWindow.IsOpen)
+        {
+            _languageWindow.Close();
+        }
+        else
+        {
+            _languageWindow!.Open();
+            EntityManager.EntityNetManager?.SendSystemNetworkMessage(new RequestLanguageMenuStateMessage());
+        }
     }
 
     public void OnStateEntered(GameplayState state)

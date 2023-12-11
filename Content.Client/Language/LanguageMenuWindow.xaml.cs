@@ -27,10 +27,8 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
     public void UpdateState(LanguageMenuStateMessage state)
     {
-        // TODO: this is a placeholder
         CurrentLanguageLabel.Text = "Current language: " + state.CurrentLanguage;
 
-        CurrentLanguageContainer.RemoveAllChildren();
         OptionsContainer.RemoveAllChildren();
         _buttons.Clear();
 
@@ -66,6 +64,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
         description.MaxWidth = 150;
 
         var button = new Button();
+        button.VerticalExpand = false;
         button.Text = "Choose";
         button.OnPressed += _ => OnLanguageChosen(language);
 
