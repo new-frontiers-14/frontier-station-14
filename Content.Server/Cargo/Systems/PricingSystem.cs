@@ -359,18 +359,6 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
-    private double GetVendPrice(EntityUid uid)
-    {
-        var price = 0.0;
-
-        if (TryComp<VendPriceComponent>(uid, out var vendPrice))
-        {
-            price += vendPrice.Price;
-        }
-
-        return price;
-    }
-
     private double GetVendPrice(EntityPrototype prototype)
     {
         var price = 0.0;
