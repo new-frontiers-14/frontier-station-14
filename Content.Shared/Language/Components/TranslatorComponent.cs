@@ -1,3 +1,8 @@
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+
 namespace Content.Shared.Language.Components;
 
 public abstract partial class BaseTranslatorComponent : Component
@@ -28,7 +33,6 @@ public abstract partial class BaseTranslatorComponent : Component
     ///   The languages the wielding MUST know in order for this translator to have effect.
     ///   The field [RequiresAllLanguages] indicates whether all of them are required, or just one.
     /// </summary>
-    [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
     [DataField("requires", customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
     [ViewVariables(VVAccess.ReadWrite)]
     public List<string> RequiredLanguages = new();

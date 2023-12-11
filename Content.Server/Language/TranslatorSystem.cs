@@ -161,6 +161,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
             UpdateBoundIntrinsicComp(component, intrinsic, isEnabled);
             component.Enabled = isEnabled;
 
+            _language.EnsureValidLanguage(holder);
             UpdatedLanguages(holder);
         }
         else
