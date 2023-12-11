@@ -190,6 +190,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
+        if (player != null && !_chatManager.HandleRateLimit(player))
+            return;
+
         // Sus
         if (player?.AttachedEntity is { Valid: true } entity && source != entity)
         {
@@ -220,7 +223,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
+        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation) && (desiredType != InGameICChatType.Emote);
         // Capitalizing the word I only happens in English, so we check language here
         bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
@@ -272,6 +275,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         )
     {
         if (!CanSendInGame(message, shell, player))
+            return;
+
+        if (player != null && !_chatManager.HandleRateLimit(player))
             return;
 
         // It doesn't make any sense for a non-player to send in-game OOC messages, whereas non-players may be sending

@@ -10,14 +10,14 @@ public sealed partial class ShuttleDeedComponent : Component
     public const int MaxSuffixLength = 3 + 1 + 4; // 3 digits, dash, up to 4 letters - should be enough
 
     [DataField("shuttleUid")]
-    public EntityUid? ShuttleUid;
+    public EntityUid? ShuttleUid = null;
 
     [DataField("shuttleName")]
-    public string? ShuttleName;
+    public string? ShuttleName = "Unknown";
 
     [DataField("shuttleSuffix")]
     public string? ShuttleNameSuffix;
 
     [DataField("shuttleOwner")]
-    public EntityUid? ShuttleOwner;
+    public EntityUid? ShuttleOwner = null;
 }
