@@ -69,7 +69,6 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
     private void OnLanguageChosen(string id)
     {
-        // TODO: send some message to the server or execute a command, idk
         _consoleHost.ExecuteCommand("lsselectlang " + id);
     }
 }
