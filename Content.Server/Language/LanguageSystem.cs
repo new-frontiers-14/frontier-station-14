@@ -29,14 +29,9 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
     {
-        if (component.SpokenLanguages.Count == 0)
-        {
-            throw new ArgumentException("Language speaker must speak at least one language.");
-        }
-
         if (string.IsNullOrEmpty(component.CurrentLanguage))
         {
-            component.CurrentLanguage = component.SpokenLanguages.First();
+            component.CurrentLanguage = component.SpokenLanguages.FirstOrDefault(Universal.ID);
         }
     }
 
@@ -187,7 +182,21 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
         languageComp.CurrentLanguage = language;
 
-        RaiseLocalEvent(speaker, new LanguagesUpdateEvent());
+        RaiseLocalEvent(speaker, new LanguagesUpdateEvent(), true);
+    }
+
+    /// <summary>
+    ///   Adds a new language to the lists of understood and/or spoken languages of the given component.
+    /// </summary>
+    public void AddLanguage(LanguageSpeakerComponent comp, string language, bool addSpoken = true, bool addUnderstood = true)
+    {
+        if (addSpoken && !comp.SpokenLanguages.Contains(language, StringComparer.Ordinal))
+            comp.SpokenLanguages.Add(language);
+
+        if (addUnderstood && !comp.UnderstoodLanguages.Contains(language, StringComparer.Ordinal))
+            comp.UnderstoodLanguages.Add(language);
+
+        RaiseLocalEvent(comp.Owner, new LanguagesUpdateEvent(), true);
     }
 
     private static bool IsSentenceEnd(char ch)
