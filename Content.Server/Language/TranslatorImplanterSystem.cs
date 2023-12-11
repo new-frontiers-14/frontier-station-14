@@ -24,26 +24,26 @@ public sealed class TranslatorImplanterSystem : SharedTranslatorImplanterSystem
 
     private void OnImplant(EntityUid implanter, TranslatorImplanterComponent component, AfterInteractEvent args)
     {
-        if (component.Used || !args.CanReach || args.Target == null)
+        if (component.Used || !args.CanReach || args.Target is not { Valid: true } target)
             return;
 
-        if (!TryComp<LanguageSpeakerComponent>(args.Target, out var speaker))
+        if (!TryComp<LanguageSpeakerComponent>(target, out var speaker))
             return;
 
-        if (component.MobsOnly && !HasComp<MobStateComponent>(args.Target))
+        if (component.MobsOnly && !HasComp<MobStateComponent>(target))
         {
             _popup.PopupEntity("translator-implanter-refuse", component.Owner);
             return;
         }
 
-        var (_, understood) = _language.GetAllLanguages(args.Target.Value);
+        var (_, understood) = _language.GetAllLanguages(target);
         if (component.RequiredLanguages.Count > 0 && !component.RequiredLanguages.Any(lang => understood.Contains(lang)))
         {
-            RefusesPopup(implanter, args.Target.Value);
+            RefusesPopup(implanter, target);
             return;
         }
 
-        var intrinsic = EnsureComp<ImplantedTranslatorComponent>(args.Target.Value);
+        var intrinsic = EnsureComp<ImplantedTranslatorComponent>(target);
         intrinsic.Enabled = true;
 
         foreach (var lang in component.SpokenLanguages.Where(lang => !intrinsic.SpokenLanguages.Contains(lang)))
@@ -53,13 +53,14 @@ public sealed class TranslatorImplanterSystem : SharedTranslatorImplanterSystem
             intrinsic.UnderstoodLanguages.Add(lang);
 
         component.Used = true;
-        SuccessPopup(implanter, args.Target.Value);
+        SuccessPopup(implanter, target);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(args.User):player} used {ToPrettyString(implanter):implanter} to give {ToPrettyString(args.Target.Value):target} the following languages:"
+            $"{ToPrettyString(args.User):player} used {ToPrettyString(implanter):implanter} to give {ToPrettyString(target):target} the following languages:"
             + $"\nSpoken: {string.Join(", ", component.SpokenLanguages)}; Understood: {string.Join(", ", component.UnderstoodLanguages)}");
 
         OnAppearanceChange(implanter, component);
+        RaiseLocalEvent(target, new SharedLanguageSystem.LanguagesUpdateEvent());
     }
 
     private void RefusesPopup(EntityUid implanter, EntityUid target)
