@@ -13,6 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Shared.IdentityManagement; // Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -64,7 +65,8 @@ public sealed class RadioSystem : EntitySystem
             return;
 
         var name = TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled
-            ? mask.VoiceName
+            ? Identity.Name(messageSource, EntityManager) // Frontier
+            //? mask.VoiceName Frontier - Do not show fake name on radio.
             : MetaData(messageSource).EntityName;
 
         name = FormattedMessage.EscapeText(name);
