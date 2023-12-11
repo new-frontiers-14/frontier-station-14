@@ -60,11 +60,10 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
         name.Text = proto?.LocalizedName ?? "<error>";
         name.MinWidth = 50;
 
-        var description = new Label();
-        description.Text = proto?.LocalizedDescription ?? string.Empty;
+        var description = new RichTextLabel();
+        description.SetMessage(proto?.LocalizedDescription ?? string.Empty);
         description.HorizontalExpand = true;
         description.MaxWidth = 150;
-        description.Align = Label.AlignMode.Fill;
 
         var button = new Button();
         button.Text = "Choose";
