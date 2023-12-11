@@ -14,12 +14,15 @@ namespace Content.Client.Language;
 public sealed partial class LanguageMenuWindow : DefaultWindow
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
+    private readonly LanguageSystem _language;
+
     private readonly List<(string language, Button button)> _buttons = new();
 
     public LanguageMenuWindow()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        _language = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
     }
 
     public void UpdateState(LanguageMenuStateMessage state)
@@ -46,7 +49,6 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
     private BoxContainer MakeLanguageEntry(string language)
     {
-        var _language = IoCManager.Resolve<LanguageSystem>();
         var proto = _language.GetLanguage(language);
 
         var container = new BoxContainer();
@@ -56,10 +58,13 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
         var name = new Label();
         name.Text = proto?.LocalizedName ?? "<error>";
+        name.MinWidth = 50;
 
         var description = new Label();
         description.Text = proto?.LocalizedDescription ?? string.Empty;
         description.HorizontalExpand = true;
+        description.MaxWidth = 150;
+        description.Align = Label.AlignMode.Fill;
 
         var button = new Button();
         button.Text = "Choose";
