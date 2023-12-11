@@ -1,8 +1,17 @@
-<DefaultWindow xmlns="https://spacestation14.io" Title="Language Menu">
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="a">
     <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
-        <Label Name="CurrentLanguageLabel" Access="Public" Text="Current Language:" HorizontalExpand="True"></Label>
+        <PanelContainer Name="CurrentLanguageContainer" Access="Public" StyleClasses="PdaBorderRect">
+            <Label Name="CurrentLanguageLabel" Access="Public" Text="Current Language:" HorizontalExpand="True"></Label>
+        </PanelContainer>
 
-        <BoxContainer Name="OptionsContainer" Access="Public" Orientation="Vertical" HorizontalExpand="True">
-        </BoxContainer>
+        <ui:HLine></ui:HLine>
+
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" VScrollEnabled="True" MinHeight="50">
+            <BoxContainer Name="OptionsList" Access="Public" HorizontalExpand="True" SeparationOverride="5" Orientation="Vertical">
+                <!-- The rest here is generated programmatically -->
+            </BoxContainer>
+        </ScrollContainer>
     </BoxContainer>
 </DefaultWindow>
