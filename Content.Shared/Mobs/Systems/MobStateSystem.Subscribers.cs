@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.ForceSay;
+using Content.Shared.Disease.Events;
+using Content.Shared.DragDrop;
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
@@ -39,6 +41,7 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, StandAttemptEvent>(CheckAct);
         SubscribeLocalEvent<MobStateComponent, TryingToSleepEvent>(OnSleepAttempt);
         SubscribeLocalEvent<MobStateComponent, CombatModeShouldHandInteractEvent>(OnCombatModeShouldHandInteract);
+        SubscribeLocalEvent<MobStateComponent, AttemptSneezeCoughEvent>(OnSneezeAttempt);
     }
 
     private void OnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
@@ -103,6 +106,12 @@ public partial class MobStateSystem
     #region Event Subscribers
 
     private void OnSleepAttempt(EntityUid target, MobStateComponent component, ref TryingToSleepEvent args)
+    {
+        if (IsDead(target, component))
+            args.Cancelled = true;
+    }
+
+    private void OnSneezeAttempt(EntityUid target, MobStateComponent component, ref AttemptSneezeCoughEvent args)
     {
         if (IsDead(target, component))
             args.Cancelled = true;

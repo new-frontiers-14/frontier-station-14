@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Disease;
 using Content.Shared.FixedPoint;
 using Content.Shared.Store;
 using Robust.Shared.GameStates;
@@ -160,6 +161,12 @@ public sealed partial class RevenantComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("blightRadius")]
     public float BlightRadius = 3.5f;
+
+    /// <summary>
+    /// The disease that is given to the victims of the ability.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("blightDiseasePrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>))]
+    public string BlightDiseasePrototypeId = "SpectralTiredness";
     #endregion
 
     #region Malfunction Ability

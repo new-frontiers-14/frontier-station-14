@@ -81,6 +81,22 @@
 #  - type: RandomSpawnRule
 #    prototype: SpawnPointGhostDragon
 
+- type: entity
+  id: DiseaseOutbreak
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-disease-outbreak-announcement
+    startAudio:
+      path: /Audio/Announcements/outbreak7.ogg
+      params:
+        volume: -4
+    weight: 5
+    duration: 1
+    earliestStart: 15
+  - type: DiseaseOutbreakRule
+
 # - type: entity
   # parent: BaseGameRule
   # id: NinjaSpawn

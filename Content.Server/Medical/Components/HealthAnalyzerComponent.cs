@@ -1,7 +1,9 @@
 using Content.Server.UserInterface;
+using Content.Shared.Disease;
 using Content.Shared.MedicalScanner;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Medical.Components
 {
@@ -28,5 +30,12 @@ namespace Content.Server.Medical.Components
         /// </summary>
         [DataField("scanningEndSound")]
         public SoundSpecifier? ScanningEndSound;
+
+        /// <summary>
+        /// The disease this will give people.
+        /// </summary>
+        [DataField("disease", customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>))]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public string? Disease;
     }
 }
