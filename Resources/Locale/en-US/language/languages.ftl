@@ -5,22 +5,22 @@ language-GalacticCommon-name = Galactic common
 language-GalacticCommon-description = Commonly used for inter-species communications and official purposes.
 
 language-Bubblish-name = Bubblish
-language-Bubblish-description = Primitive collection of sounds used by slimes for communication.
+language-Bubblish-description = The language of slimes. It's a mixture of bubbling noises and pops. Very difficult to speak without mechanical aid for humans.
 
 language-RootSpeak-name = Rootspeak
 language-RootSpeak-description = Strange whistling language spoken by the diona.
 
 language-CodeSpeak-name = Codespeak
-language-CodeSpeak-description = The cryptographic language used for communication among syndicate operatives.
+language-CodeSpeak-description = Syndicate operatives can use a series of codewords to convey complex information, while sounding like random concepts and drinks to anyone listening in.
 
 language-Nekomimetic-name = Nekomimetic
-language-Nekomimetic-description = A cute and soft language spoken by the felinid.
+language-Nekomimetic-description = To the casual observer, this langauge is an incomprehensible mess of broken Japanese. To the felinids, it's somehow comprehensible.
 
 language-Draconic-name = Draconic
-language-Draconic-description = A primitive language spoken by dragon-like creatures.
+language-Draconic-description = The common language of lizard-people, composed of sibilant hisses and rattles.
 
 language-Canilunzt-name = Canilunzt
-language-Canilunzt-description = A rather complex language spoken by the vulpkanin.
+language-Canilunzt-description = "The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements, Vulpkanin speak this language with ease.
 
 language-SolCommon-name = Sol-common
 language-SolCommon-description = The language species from the Sol System use between each other.
