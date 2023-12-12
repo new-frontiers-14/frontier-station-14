@@ -39,6 +39,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         // SubscribeLocalEvent<HoldsTranslatorComponent, ListenEvent>(...);
 
         SubscribeLocalEvent<HandheldTranslatorComponent, ActivateInWorldEvent>(OnTranslatorToggle);
+        SubscribeLocalEvent<HandheldTranslatorComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
 
         SubscribeLocalEvent<HandheldTranslatorComponent, InteractHandEvent>(
             (uid, component, args) => TranslatorEquipped(args.User, uid, component));
@@ -142,7 +143,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         if (!component.ToggleOnInteract)
             return;
 
-        var hasPower = _powerCell.HasActivatableCharge(translator, user: args.User);
+        var hasPower = _powerCell.HasDrawCharge(translator);
 
         if (Transform(args.Target).ParentUid is { Valid: true } holder && EntityManager.HasComponent<LanguageSpeakerComponent>(holder))
         {
@@ -160,6 +161,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
             isEnabled &= hasPower;
             UpdateBoundIntrinsicComp(component, intrinsic, isEnabled);
             component.Enabled = isEnabled;
+            _powerCell.SetPowerCellDrawEnabled(translator, isEnabled);
 
             _language.EnsureValidLanguage(holder);
             UpdatedLanguages(holder);
@@ -168,6 +170,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         {
             // This is a standalone translator (e.g. lying on the ground). Simply toggle its state.
             component.Enabled = !component.Enabled && hasPower;
+            _powerCell.SetPowerCellDrawEnabled(translator, !component.Enabled && hasPower);
         }
 
         OnAppearanceChange(translator, component);
@@ -179,6 +182,16 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
                 Loc.GetString(component.Enabled ? "translator-component-turnon" : "translator-component-shutoff", ("translator", component.Owner));
             _popup.PopupEntity(message, component.Owner, args.User);
         }
+    }
+
+    private void OnPowerCellSlotEmpty(EntityUid translator, HandheldTranslatorComponent component, PowerCellSlotEmptyEvent args)
+    {
+        component.Enabled = false;
+        _powerCell.SetPowerCellDrawEnabled(translator, false);
+        OnAppearanceChange(translator, component);
+
+        // TODO: UpdateBoundIntrinsicComp, EnsureValidLanguage, UpdatedLanguages.
+        // But i need to get EntityUid of the holder, if not and so standalone (lying on ground), this check/function should get ingored.
     }
 
     /// <summary>
