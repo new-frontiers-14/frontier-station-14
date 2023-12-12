@@ -26,13 +26,13 @@ public abstract class SharedTranslatorImplanterSystem : EntitySystem
             : Loc.GetString("translator-implanter-used");
 
         args.PushText(text);
+
+        OnAppearanceChange(uid, component);
     }
 
     protected void OnAppearanceChange(EntityUid implanter, TranslatorImplanterComponent component)
     {
         var used = component.Used;
-
-        _appearance.SetData(implanter, ImplanterVisuals.Full, used);
-        _appearance.SetData(implanter, ImplanterImplantOnlyVisuals.ImplantOnly, used);
+        _appearance.SetData(implanter, ImplanterVisuals.Full, !used);
     }
 }

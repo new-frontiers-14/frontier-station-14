@@ -12,17 +12,17 @@
       map: [ "implantFull" ]
       visible: true
     - state: implanter0
-      map: [ "implantOnly" ]
+      map: [ "implantBroken" ]
+  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ImplanterVisuals.Full:
         implantFull:
           True: {visible: true}
           False: {visible: false}
-      enum.ImplanterImplantOnlyVisuals.ImplantOnly:
-        implantOnly:
-          True: {state: broken}
-          False: {state: implanter0}
+        implantBroken:
+          True: {visible: false}
+          False: {visible: true}
 
 - type: entity
   id: BasicGalaticCommonTranslatorImplanter
@@ -132,3 +132,5 @@
     - CodeSpeak
     required:
     - GalacticCommon
+  - type: StaticPrice
+    price: 150
