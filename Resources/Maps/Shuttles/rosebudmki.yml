@@ -3811,70 +3811,13 @@ entities:
     - links:
       - 74
       type: DeviceLinkSink
-- proto: CrateChemistryD
+- proto: CrateChemistrySupplies
   entities:
-  - uid: 52
-    components:
-    - pos: -8.5,8.5
-      parent: 1
-      type: Transform
-- proto: CrateChemistryP
-  entities:
-  - uid: 1296
-    components:
-    - pos: -5.5,8.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-- proto: CrateChemistryS
-  entities:
-  - uid: 456
+  - uid: 118
     components:
     - pos: -5.5,9.5
       parent: 1
       type: Transform
-- proto: CrateChemistrySupplies
-  entities:
-  - uid: 1293
-    components:
-    - pos: -8.5,9.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 677
@@ -4410,10 +4353,9 @@ entities:
       type: Transform
 - proto: FloorDrain
   entities:
-  - uid: 583
+  - uid: 114
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -8.5,8.5
+    - pos: -7.5,9.5
       parent: 1
       type: Transform
     - fixtures: {}
@@ -5533,43 +5475,13 @@ entities:
     - pos: -12.719942,5.755196
       parent: 1
       type: Transform
-- proto: LockerCaptainFilledHardsuit
+- proto: LockerCaptainFilled
   entities:
-  - uid: 114
+  - uid: 120
     components:
     - pos: -12.5,3.5
       parent: 1
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14963
-        moles:
-        - 1.8978093
-        - 7.139378
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 382
-          - 124
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
 - proto: LockerChiefEngineerFilledHardsuit
   entities:
   - uid: 455
@@ -5595,6 +5507,13 @@ entities:
         - 0
         - 0
       type: EntityStorage
+- proto: LockerMedicalFilled
+  entities:
+  - uid: 117
+    components:
+    - pos: -5.5,8.5
+      parent: 1
+      type: Transform
 - proto: LockerParamedicFilled
   entities:
   - uid: 486
@@ -5814,9 +5733,12 @@ entities:
   entities:
   - uid: 101
     components:
-    - pos: 7.512883,3.6851313
+    - anchored: True
+      pos: 7.5,3.5
       parent: 1
       type: Transform
+    - bodyType: Static
+      type: Physics
 - proto: PosterContrabandAmbrosiaVulgaris
   entities:
   - uid: 1337
@@ -7025,12 +6947,12 @@ entities:
       pos: -4.5,11.5
       parent: 1
       type: Transform
-- proto: SinkStemlessWater
+- proto: Sink
   entities:
-  - uid: 581
+  - uid: 121
     components:
     - rot: 1.5707963267948966 rad
-      pos: -8.5,8.5
+      pos: -8.5,9.5
       parent: 1
       type: Transform
 - proto: SMESBasic
@@ -8020,6 +7942,13 @@ entities:
     - pos: -5.5,10.5
       parent: 1
       type: Transform
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 52
+    components:
+    - pos: 9.5,8.5
+      parent: 1
+      type: Transform
 - proto: VendingMachineEngivend
   entities:
   - uid: 452
@@ -8027,6 +7956,13 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: 9.5,10.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 119
+    components:
+    - pos: -8.5,8.5
       parent: 1
       type: Transform
 - proto: VendingMachineSalvage
@@ -8652,33 +8588,22 @@ entities:
       pos: 13.210068,7.582043
       parent: 1
       type: Transform
-  - uid: 124
+  - uid: 122
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 114
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: WeaponLaserCannon
-  entities:
-  - uid: 382
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 114
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: WeaponLaserGun
-  entities:
-  - uid: 168
-    components:
-    - pos: -12.509163,4.8928776
+    - rot: 1.5707963267948966 rad
+      pos: -12.3163185,4.912707
       parent: 1
       type: Transform
+- proto: WeaponLaserCannon
+  entities:
+  - uid: 123
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -12.906937,4.7357154
+      parent: 1
+      type: Transform
+- proto: WeaponLaserGun
+  entities:
   - uid: 799
     components:
     - rot: -1.5707963267948966 rad
