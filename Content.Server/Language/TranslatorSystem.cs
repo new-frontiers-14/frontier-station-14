@@ -190,8 +190,20 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         _powerCell.SetPowerCellDrawEnabled(translator, false);
         OnAppearanceChange(translator, component);
 
-        // TODO: UpdateBoundIntrinsicComp, EnsureValidLanguage, UpdatedLanguages.
-        // But i need to get EntityUid of the holder, if not and so standalone (lying on ground), this check/function should get ingored.
+        if (Transform(translator).ParentUid is { Valid: true } holder && EntityManager.HasComponent<LanguageSpeakerComponent>(holder))
+        {
+            if (!EntityManager.TryGetComponent<HoldsTranslatorComponent>(holder, out var intrinsic))
+                return;
+
+            if (intrinsic.Issuer == component)
+            {
+                intrinsic.Enabled = false;
+                EntityManager.RemoveComponent(holder, intrinsic);
+            }
+
+            _language.EnsureValidLanguage(holder);
+            UpdatedLanguages(holder);
+        }
     }
 
     /// <summary>
