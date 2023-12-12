@@ -64,7 +64,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
             header.Orientation = BoxContainer.LayoutOrientation.Horizontal;
             header.HorizontalExpand = true;
-            header.SeparationOverride = 4;
+            header.SeparationOverride = 2;
 
             var name = new Label();
             name.Text = proto?.LocalizedName ?? "<error>";
