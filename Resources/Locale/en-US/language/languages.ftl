@@ -20,7 +20,7 @@ language-Draconic-name = Draconic
 language-Draconic-description = The common language of lizard-people, composed of sibilant hisses and rattles.
 
 language-Canilunzt-name = Canilunzt
-language-Canilunzt-description = "The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements, Vulpkanin speak this language with ease.
+language-Canilunzt-description = The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements, Vulpkanin speak this language with ease.
 
 language-SolCommon-name = Sol-common
 language-SolCommon-description = The language species from the Sol System use between each other.
