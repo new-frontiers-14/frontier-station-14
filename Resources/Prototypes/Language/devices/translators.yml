@@ -30,8 +30,6 @@
   components:
   - type: PowerCellDraw
     drawRate: 10
-  - type: HandheldTranslator
-    enabled: true
 
 - type: entity
   id: TranslatorEmtpy
@@ -42,8 +40,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-  - type: HandheldTranslator
-    enabled: false
 
 - type: entity
   id: BaseTranslatorImplanter
@@ -188,15 +184,6 @@
   name: Vulpkanin translator
   description: "Used only by Vulpkanin to understand and speak with Galatic Common speakers."
   components:
-  - type: Sprite
-    sprite: Objects/Devices/translator.rsi
-    state: icon
-    layers:
-      - state: icon
-      - state: translator
-        shader: unshaded
-        visible: true
-        map: [ "enum.ToggleVisuals.Layer", "enum.PowerDeviceVisualLayers.Powered" ]
   - type: HandheldTranslator
     default-language: GalacticCommon
     spoken:
@@ -207,7 +194,7 @@
     - Canilunzt
     requires-all: false
   - type: PowerCellDraw
-    drawRate: 0.5
+    drawRate: 0.1
   - type: StaticPrice
     price: 35
 
