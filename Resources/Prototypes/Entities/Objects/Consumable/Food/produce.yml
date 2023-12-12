@@ -184,7 +184,7 @@
   - type: Produce
     seedId: deathNettle
   - type: MeleeChemicalInjector
-    transferAmount: 6 
+    transferAmount: 6
     solution: food
     pierceArmor: true # We do a little trolling
   - type: Extractable
@@ -222,7 +222,7 @@
   - type: Tag
     tags:
     - Fruit
-    
+
 - type: entity
   name: mimana
   parent: FoodProduceBase
@@ -314,7 +314,7 @@
     state: peel
   - type: Item
     sprite: Objects/Specific/Hydroponics/mimana.rsi
-    heldPrefix: peel  
+    heldPrefix: peel
   - type: Slippery
     slipSound:
       path: /Audio/Effects/slip.ogg
@@ -699,6 +699,7 @@
   - type: Tag
     tags:
     - Fruit # Fuck you they're a fruit
+    - BloodFood
 
 - type: entity
   name: eggplant
@@ -1237,7 +1238,7 @@
   - type: Tag
     tags:
     - Galaxythistle
-    - Fruit # Probably? 
+    - Fruit # Probably?
 
 - type: entity
   name: fly amanita
@@ -1565,3 +1566,30 @@
     seedId: bungo
   - type: SpaceGarbage
   - type: BadFood
+- type: entity
+  name: cotton bol
+  description: Moth people's favorite snack, and just as fluffy as them.
+  id: CottonBol
+  parent: FoodProduceBase
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cotton.rsi
+  - type: FlavorProfile
+    flavors:
+      - cotton
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: Log
+    spawnedPrototype: MaterialCotton1
+    spawnCount: 2
+  - type: Produce
+    seedId: cotton
+  - type: Tag
+    tags:
+    - MothFood

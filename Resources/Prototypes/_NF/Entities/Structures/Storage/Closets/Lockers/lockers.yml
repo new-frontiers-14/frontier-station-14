@@ -1,16 +1,14 @@
-# Janitor Captain
+# Mercenary
 - type: entity
-  id: LockerCaptainJanitor
+  id: LockerMercenary
   parent: LockerBaseSecure
-  name: janitor captain's locker
+  name: mercenary locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBaseClosed: capjanitor
-    stateDoorOpen: capjanitor_open
-    stateDoorClosed: capjanitor_door
-  - type: AccessReader
-    access: [["Captain"]]
+    stateBaseClosed: mercenary
+    stateDoorOpen: mercenary_open
+    stateDoorClosed: mercenary_door
   - type: Sprite
     sprite: _NF/Structures/Storage/closet.rsi
     noRot: true
@@ -25,3 +23,5 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
