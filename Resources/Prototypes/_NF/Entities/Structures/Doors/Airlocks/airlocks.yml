@@ -1,0 +1,18 @@
+- type: entity
+  parent: Airlock
+  id: AirlockMercenary
+  suffix: Mercenary
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/mercenary.rsi
+
+# Glass
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMercenaryGlass
+  suffix: Mercenary
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/mercenary.rsi
+  - type: PaintableAirlock
+    group: Glass
