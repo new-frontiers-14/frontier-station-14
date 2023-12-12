@@ -26,8 +26,6 @@ public abstract class SharedTranslatorImplanterSystem : EntitySystem
             : Loc.GetString("translator-implanter-used");
 
         args.PushText(text);
-
-        OnAppearanceChange(uid, component);
     }
 
     protected void OnAppearanceChange(EntityUid implanter, TranslatorImplanterComponent component)
