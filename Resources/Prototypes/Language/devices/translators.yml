@@ -179,6 +179,8 @@
     - CodeSpeak
     required:
     - GalacticCommon
+  - type: StaticPrice
+    price: 150
 
 - type: entity
   id: VulpTranslator
@@ -186,6 +188,15 @@
   name: Vulpkanin translator
   description: "Used only by Vulpkanin to understand and speak with Galatic Common speakers."
   components:
+  - type: Sprite
+    sprite: Objects/Devices/translator.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: translator
+        shader: unshaded
+        visible: true
+        map: [ "enum.ToggleVisuals.Layer", "enum.PowerDeviceVisualLayers.Powered" ]
   - type: HandheldTranslator
     default-language: GalacticCommon
     spoken:
@@ -197,6 +208,8 @@
     requires-all: false
   - type: PowerCellDraw
     drawRate: 0.5
+  - type: StaticPrice
+    price: 35
 
 - type: entity
   id: CanilunztTranslator
