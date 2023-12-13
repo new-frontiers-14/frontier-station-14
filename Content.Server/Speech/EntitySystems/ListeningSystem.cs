@@ -8,7 +8,7 @@ namespace Content.Server.Speech.EntitySystems;
 /// </summary>
 public sealed class ListeningSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;  // Frontier - languages mechanic
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
 
     public override void Initialize()
@@ -33,6 +33,7 @@ public sealed class ListeningSystem : EntitySystem
 
         var attemptEv = new ListenAttemptEvent(source);
         var ev = new ListenEvent(message, source);
+        // Frontier - languages mechanic
         var obfuscatedEv = !isWhisper ? null : new ListenEvent(_chat.ObfuscateMessageReadability(message), source);
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
