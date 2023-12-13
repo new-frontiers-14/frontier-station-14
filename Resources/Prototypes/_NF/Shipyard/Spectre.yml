@@ -1,19 +1,19 @@
 - type: vessel
   id: Spectre
   name: SH Spectre
-  description: A research mothership meant to be crewed with multiple scientists and atleast one engineer.
-  price: 0
+  description: A research mothership meant to be crewed with multiple scientists and atleast one engineer and to be accompanied by a salvage ship.
+  price: 1
   category: Large
   group: Civilian
-  shuttlePath: /Maps/Shuttles/Spectre.yml
+  shuttlePath: /Maps/Shuttles/spectre.yml
 
 - type: gameMap
   id: Spectre
   mapName: 'SH Spectre'
-  mapPath: /Maps/Shuttles/Spectre.yml
+  mapPath: /Maps/Shuttles/spectre.yml
   minPlayers: 0
   stations:
-    Sparrow:
+    Spectre:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -27,3 +27,4 @@
             ChiefEngineer: [ 0, 0 ]
             Scientist: [ 0, 0 ]
             ScienceDirector: [ 0, 0 ]
+            Bartendar: [ 0, 0 ]
