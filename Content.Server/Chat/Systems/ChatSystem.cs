@@ -180,7 +180,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride = null,
         bool checkRadioPrefix = true,
         bool ignoreActionBlocker = false,
-        LanguagePrototype? languageOverride = null
+        LanguagePrototype? languageOverride = null // Frontier - languages mechanic
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -253,6 +253,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Otherwise, send whatever type.
         switch (desiredType)
         {
+            // Frontier - languages mechanic
             case InGameICChatType.Speak:
                 SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, languageOverride: languageOverride);
                 break;
@@ -384,7 +385,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         bool hideLog = false,
         bool ignoreActionBlocker = false,
-        LanguagePrototype? languageOverride = null
+        LanguagePrototype? languageOverride = null // Frontier: languages mechanic
+
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -407,6 +409,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             name = nameEv.Name;
         }
 
+        // Frontier - languages mechanic
         var language = languageOverride ?? _language.GetLanguage(source);
 
         name = FormattedMessage.EscapeText(name);
@@ -414,6 +417,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var obfuscated = _language.ObfuscateSpeech(source, message, language);
         var wrappedObfuscated = WrapPublicMessage(source, name, obfuscated);
 
+        // Frontier: languages mechanic
         SendInVoiceRange(ChatChannel.Local, name, message, wrappedMessage, obfuscated, wrappedObfuscated, source, range, languageOverride: language);
 
         var ev = new EntitySpokeEvent(source, message, null, false, language);
@@ -450,7 +454,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         bool hideLog = false,
         bool ignoreActionBlocker = false,
-        LanguagePrototype? languageOverride = null
+        LanguagePrototype? languageOverride = null // Frontier: languages mechanic
+
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -460,6 +465,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (message.Length == 0)
             return;
 
+        // Frontier - languages mechanic
+        // var obfuscatedMessage = ObfuscateMessageReadability(message, 0.2f);
         // get the entity's name by visual identity (if no override provided).
         string nameIdentity = FormattedMessage.EscapeText(nameOverride ?? Identity.Name(source, EntityManager));
         // get the entity's name by voice (if no override provided).
@@ -477,6 +484,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         name = FormattedMessage.EscapeText(name);
 
+        // Frontier - languages mechanic (+ everything in the foreach loop)
         var language = languageOverride ?? _language.GetLanguage(source);
         var languageObfuscatedMessage = _language.ObfuscateSpeech(source, message, language);
 
@@ -574,7 +582,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        // Emotes are skipped in obfuscation check
+        // Frontier - languages (emotes are skipped in obfuscation check)
         SendInVoiceRange(ChatChannel.Emotes, name, action, wrappedMessage, obfuscated: "", obfuscatedWrappedMessage: "", source, range, author);
         if (!hideLog)
             if (name != Name(source))
@@ -602,6 +610,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
 
+        // Frontier - languages mechanic
         SendInVoiceRange(ChatChannel.LOOC, name, message, wrappedMessage,
             obfuscated: string.Empty,
             obfuscatedWrappedMessage: string.Empty, // will be skipped anyway
@@ -691,7 +700,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// </summary>
     private void SendInVoiceRange(ChatChannel channel, string name, string message, string wrappedMessage, string obfuscated, string obfuscatedWrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, LanguagePrototype? languageOverride = null)
     {
-        var language = languageOverride ?? _language.GetLanguage(source);
+
+        var language = languageOverride ?? _language.GetLanguage(source); // frontier
 
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -700,6 +710,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
 
+            // Frontier - languages mechanic
             if (session.AttachedEntity is not { Valid: true } playerEntity)
                 continue;
             EntityUid listener = session.AttachedEntity.Value;
@@ -811,6 +822,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         return msg;
     }
 
+    // Frontier - languages mechanic
     public string WrapPublicMessage(EntityUid source, string name, string message)
     {
         var speech = GetSpeechVerb(source, message);
@@ -934,6 +946,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
     public readonly string Message;
+    // Frontier - languages mechanic
     public readonly bool IsWhisper;
     public readonly LanguagePrototype Language;
 

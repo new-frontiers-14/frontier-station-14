@@ -54,6 +54,7 @@ public sealed class RadioSystem : EntitySystem
     {
         if (TryComp(uid, out ActorComponent? actor))
         {
+            // Frontier - languages mechanic
             var listener = component.Owner;
             var msg = args.UnderstoodChatMsg;
             if (listener != null && !_language.CanUnderstand(listener, args.Language))
@@ -73,6 +74,7 @@ public sealed class RadioSystem : EntitySystem
     /// <param name="language">The language to send the message in.</param>
     public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null)
     {
+        // Frontier - languages mechanic
         if (language == null)
         {
             language = _language.GetLanguage(messageSource);
@@ -89,6 +91,8 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
+
+        // Frontier - languages mechanic
         // A message that the listener could understand
         var wrappedMessage = WrapRadioMessage(messageSource, channel, name, message);
         var msg = new ChatMessage(ChatChannel.Radio, message, wrappedMessage, NetEntity.Invalid, null);
@@ -140,10 +144,11 @@ public sealed class RadioSystem : EntitySystem
         else
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
 
-        _replay.RecordServerMessage(notUdsMsg);
+        _replay.RecordServerMessage(msg);
         _messages.Remove(message);
     }
 
+    // Frontier - languages mechanic (extracted from above)
     private string WrapRadioMessage(EntityUid source, RadioChannelPrototype channel, string name, string message)
     {
         var speech = _chat.GetSpeechVerb(source, message);

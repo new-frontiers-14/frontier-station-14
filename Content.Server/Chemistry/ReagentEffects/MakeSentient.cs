@@ -25,6 +25,7 @@ public sealed partial class MakeSentient : ReagentEffect
         entityManager.RemoveComponent<ReplacementAccentComponent>(uid);
         entityManager.RemoveComponent<MonkeyAccentComponent>(uid);
 
+        // Frontier - languages mechanic
         // Try to make the entity speak GalacticCommon - the default language for sentient species
         var speaker = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
         var gc = SharedLanguageSystem.GalacticCommon.ID;

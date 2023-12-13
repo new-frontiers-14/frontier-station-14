@@ -205,6 +205,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             ("originalName", nameEv.Name));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
+        // Frontier - languages mechanic
         var message = args.UnderstoodChatMsg.Message; // The chat system will handle the rest and re-obfuscate if needed.
         _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language);
     }

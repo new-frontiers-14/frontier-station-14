@@ -61,7 +61,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             ObfuscatePhrases(builder, message, language);
         }
 
-        _sawmill.Info($"Got {message}, obfuscated to {builder}. Language: {language.ID}");
+        //_sawmill.Info($"Got {message}, obfuscated to {builder}. Language: {language.ID}");
 
         return builder.ToString();
     }
