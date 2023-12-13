@@ -176,6 +176,25 @@
     requires-all: false
 
 - type: entity
+  id: MofficTranslator
+  parent: [ TranslatorEmtpy ]
+  name: Moffic translator
+  description: "Translates speech between Moffic and Galactic Common. Like a true moth... or bug?"
+  components:
+  - type: HandheldTranslator
+    default-language: GalacticCommon
+    spoken:
+    - GalacticCommon
+    - Moffic
+    understood:
+    - GalacticCommon
+    - Moffic
+    requires:
+    - GalacticCommon
+    - Moffic
+    requires-all: false
+
+- type: entity
   id: XenoTranslator
   parent: [ TranslatorEmtpy ]
   name: Xeno translator

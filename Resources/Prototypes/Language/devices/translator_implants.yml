@@ -119,6 +119,18 @@
     - RootSpeak
 
 - type: entity
+  id: MofficTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Moffic translator implant
+  description: "An implant giving the ability to understand and speak Moffic."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Moffic
+    understood:
+    - Moffic
+
+- type: entity
   id: CodeSpeakImplanter
   parent: [ BaseTranslatorImplanter ]
   name: CodeSpeak Implanter

@@ -68,3 +68,5 @@ language-Kangaroo-description = A collection of sounds made by kangaroos.
 language-Pig-name = Animal pig
 language-Pig-description = A collection of sounds made by pigs.
 
+language-Moffic-name = Moffic
+language-Moffic-description = The language of the mothpeople borders on complete unintelligibility.
