@@ -1,0 +1,27 @@
+﻿- type: vessel
+  id: Aegis
+  name: NM Aegis
+  description: A compact, civilian retrofit of the Hospitaller, the Aegis offers swift emergency response for critical care in EVA environments.
+  price: 15430
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/aegis.yml
+
+- type: gameMap
+  id: Aegis
+  mapName: 'NM Aegis'
+  mapPath: /Maps/Shuttles/aegis.yml
+  minPlayers: 0
+  stations:
+    Aegis:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Aegis {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
