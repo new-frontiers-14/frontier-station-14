@@ -1,0 +1,30 @@
+- type: vessel
+  id: Vagabond
+  name: HS Vagabond
+  description: A adaptable long-haul industrial freighter that pilots have adapted to many different purposes.
+  price: 65700
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/vagabond.yml
+
+- type: gameMap
+  id: Vagabond
+  mapName: 'HS Vagabond'
+  mapPath: /Maps/Shuttles/vagabond.yml
+  minPlayers: 0
+  stations:
+    Vagabond:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Vagabond {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            CargoTechnician: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            Quartermaster: [ 0, 0 ]
