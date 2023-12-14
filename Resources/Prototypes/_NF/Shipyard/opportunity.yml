@@ -1,0 +1,28 @@
+- type: vessel
+  id: Opportunity
+  name: NSF Opportunity
+  description: A medium expeditionary prison vessel capable of incarcerating up to 4 criminals. The ship is capable of planetfall and mining operations. Find a reliable crew of prison guards to help you keep your prisoners in line.
+  price: 70000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/Shuttles/opportunity.yml
+
+- type: gameMap
+  id: Opportunity
+  mapName: 'NSF Opportunity'
+  mapPath: /Maps/Shuttles/opportunity.yml
+  minPlayers: 0
+  stations:
+    Opportunity:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Opportunity {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            PrisonGuard: [ 0, 0 ]
+            Warden: [ 0, 0 ]
