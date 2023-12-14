@@ -5,11 +5,13 @@ using Content.Server.GameTicking;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Server.Traits.Assorted;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.CryoSleep;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction.Events;
@@ -58,6 +60,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         SubscribeLocalEvent<CryoSleepComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<CryoSleepComponent, DestructionEventArgs>((e,c,_) => EjectBody(e, c));
         SubscribeLocalEvent<CryoSleepComponent, CryoStoreDoAfterEvent>(OnAutoCryoSleep);
+        SubscribeLocalEvent<CryoSleepComponent, DragDropTargetEvent>(OnEntityDragDropped);
         SubscribeLocalEvent<RoundEndedEvent>(OnRoundEnded);
     }
 
@@ -123,7 +126,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         // Self-insert verb
         if (!IsOccupied(component) &&
-            _actionBlocker.CanMove(args.User))
+            (_actionBlocker.CanMove(args.User) || HasComp<WheelchairBoundComponent>(args.User))) // just get working legs
         {
             AlternativeVerb verb = new()
             {
@@ -157,7 +160,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         args.PushMarkup(Loc.GetString(message));
     }
 
-    public void OnAutoCryoSleep(EntityUid uid, CryoSleepComponent component, CryoStoreDoAfterEvent args)
+    private void OnAutoCryoSleep(EntityUid uid, CryoSleepComponent component, CryoStoreDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
@@ -169,6 +172,14 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         CryoStoreBody(body, pod.Value);
         args.Handled = true;
+    }
+
+    private void OnEntityDragDropped(EntityUid uid, CryoSleepComponent component, DragDropTargetEvent args)
+    {
+        if (InsertBody(args.Dragged, component, false))
+        {
+            args.Handled = true;
+        }
     }
 
     public bool InsertBody(EntityUid? toInsert, CryoSleepComponent component, bool force)
@@ -231,6 +242,9 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
     public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)
     {
+        if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
+            return;
+
         if (TryComp<MindComponent>(bodyId, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
             _gameTicker.OnGhostAttempt(bodyId, false, true, mind: mind);
@@ -243,6 +257,9 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         var storage = GetStorageMap();
         var xform = Transform(bodyId);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
+
+        if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
+            _doAfter.Cancel(cryo.CryosleepDoAfter);
     }
 
     /// <param name="body">If not null, will not eject if the stored body is different from that parameter.</param>
@@ -260,6 +277,9 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         component.BodyContainer.Remove(toEject.Value);
         _climb.ForciblySetClimbing(toEject.Value, pod);
+
+        if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
+            _doAfter.Cancel(component.CryosleepDoAfter);
 
         return true;
     }
