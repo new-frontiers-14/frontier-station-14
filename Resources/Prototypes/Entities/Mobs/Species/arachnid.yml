@@ -22,20 +22,15 @@
   # Damage (Self)
   - type: Bloodstream
     bloodReagent: SpiderBlood # would be cool if they had to drink copper instead of iron but that might just be more bloat to deal with.
-  # Damage (Others)
-  - type: MeleeWeapon
-    animation: WeaponArcClaw
-    soundHit:
-      collection: AlienClaw
-    damage:
-      types: # Realisically this is more like 5 slash
-        Slash: 4
   # Fun
   - type: Sericulture
     action: ActionSericulture
     productionLength: 3
     entityProduced: MaterialWebSilk1
     hungerCost: 9 # Should total to 12 total silk on full hunger
+  - type: ArachnidChaos
+  - type: Spider
+  - type: IgnoreSpiderWeb
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike

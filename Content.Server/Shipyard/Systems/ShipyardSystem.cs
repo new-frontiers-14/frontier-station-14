@@ -12,8 +12,8 @@ using Robust.Shared.Map;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Numerics;
-using Content.Shared.Coordinates;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
@@ -30,6 +30,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -51,6 +52,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         SubscribeLocalEvent<ShipyardConsoleComponent, EntInsertedIntoContainerMessage>(OnItemSlotChanged);
         SubscribeLocalEvent<ShipyardConsoleComponent, EntRemovedFromContainerMessage>(OnItemSlotChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<StationDeedSpawnerComponent, MapInitEvent>(OnInitDeedSpawner);
     }
     public override void Shutdown()
     {
@@ -248,5 +250,47 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         ShipyardMap = _mapManager.CreateMap();
 
         _mapManager.SetMapPaused(ShipyardMap.Value, false);
+    }
+
+    // <summary>
+    // Tries to rename a shuttle deed and update the respective components.
+    // Returns true if successful.
+    //
+    // Null name parts are promptly ignored.
+    // </summary>
+    public bool TryRenameShuttle(EntityUid uid, ShuttleDeedComponent? shuttleDeed,  string? newName, string? newSuffix)
+    {
+        if (!Resolve(uid, ref shuttleDeed))
+            return false;
+
+        var shuttle = shuttleDeed.ShuttleUid;
+        if (shuttle != null
+             && _station.GetOwningStation(shuttle.Value) is { Valid : true } shuttleStation)
+        {
+            shuttleDeed.ShuttleName = newName;
+            shuttleDeed.ShuttleNameSuffix = newSuffix;
+            Dirty(uid, shuttleDeed);
+
+            var fullName = GetFullName(shuttleDeed);
+            _station.RenameStation(shuttleStation, fullName, loud: false);
+            _metaData.SetEntityName(shuttle.Value, fullName);
+            _metaData.SetEntityName(shuttleStation, fullName);
+        }
+        else
+        {
+            _sawmill.Error($"Could not rename shuttle {ToPrettyString(shuttle):entity} to {newName}");
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Returns the full name of the shuttle component in the form of [prefix] [name] [suffix].
+    /// </summary>
+    public static string GetFullName(ShuttleDeedComponent comp)
+    {
+        string?[] parts = { comp.ShuttleName, comp.ShuttleNameSuffix };
+        return string.Join(' ', parts.Where(it => it != null));
     }
 }

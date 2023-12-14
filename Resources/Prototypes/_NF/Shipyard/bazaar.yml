@@ -1,0 +1,30 @@
+- type: vessel
+  id: Bazaar
+  name: SLI Bazaar
+  description: The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods, it features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security.
+  price: 55000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/bazaar.yml
+  
+- type: gameMap
+  id: Bazaar
+  mapName: 'SLI Bazaar'
+  mapPath: /Maps/Shuttles/bazaar.yml
+  minPlayers: 0
+  stations: 
+    Bazaar:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'SLI Bazaar {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Quartermaster: [ 0, 0 ]
+            CargoTechnician: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            ServiceWorker: [ 0, 0 ]

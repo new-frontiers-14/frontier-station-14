@@ -56,10 +56,17 @@ public sealed class MagnetPickupSystem : EntitySystem
             if (storage.StorageUsed >= storage.StorageCapacityMax)
                 continue;
 
-            if (!_inventory.TryGetContainingSlot(uid, out var slotDef))
-                continue;
 
-            if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
+            if (!comp.IsFixture)
+            {
+                if (!_inventory.TryGetContainingSlot(uid, out var slotDef))
+                    continue;
+            
+                if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
+                    continue;
+            }
+            // Magnet disabled in current fixture anchor state
+            else if (xform.Anchored && !comp.PickupWhenAnchored || !xform.Anchored && !comp.PickupWhenNotAnchored)
                 continue;
 
             var parentUid = xform.ParentUid;

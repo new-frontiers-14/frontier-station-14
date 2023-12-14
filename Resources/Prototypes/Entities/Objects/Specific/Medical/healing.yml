@@ -205,7 +205,19 @@
   components:
   - type: Tag
     tags:
+    - BloodFood
     - Bloodpack
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 5
   - type: Sprite
     state: bloodpack
   - type: Healing

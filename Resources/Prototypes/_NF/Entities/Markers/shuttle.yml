@@ -1,0 +1,13 @@
+- type: entity
+  parent: IDCardStandard
+  id: ShuttleDeedIDCard
+  name: shuttle deed
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpassenger
+  - type: PresetIdCard
+    job: Captain
+  - type: StationDeedSpawner
