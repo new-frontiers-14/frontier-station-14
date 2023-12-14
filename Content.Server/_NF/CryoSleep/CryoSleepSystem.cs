@@ -48,7 +48,6 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
     private readonly Dictionary<NetUserId, StoredBody?> _storedBodies = new();
     private EntityUid? _storageMap;
 
-    // TODO: add a proper doafter system once that all gets sorted out
     public override void Initialize()
     {
         base.Initialize();
@@ -195,6 +194,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (!TryComp<MobStateComponent>(toInsert, out var mob) || !_mobSystem.IsAlive(toInsert.Value, mob))
         {
             _popup.PopupEntity(Loc.GetString("cryopod-refuse-dead"), cryopod, PopupType.SmallCaution);
+            return false;
         }
 
         // If the inserted player has disconnected, it will be stored immediately.
