@@ -1,0 +1,27 @@
+- type: vessel
+  id: Garden
+  name: HS Garden
+  description: A small botany vessel dedicated to horiticultural experimentation.
+  price: 29750
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/garden.yml
+
+- type: gameMap
+  id: Garden
+  mapName: 'HS Garden'
+  mapPath: /Maps/Shuttles/garden.yml
+  minPlayers: 0
+  stations:
+    Garden:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Garden {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Botanist: [ 0, 0 ]
