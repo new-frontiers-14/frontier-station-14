@@ -159,6 +159,9 @@
       weapon6_slot: !type:ContainerSlot {}
   - type: StaticPrice
     price: 80
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: GunRackNode
 
 - type: entity
   id: WeaponRackWallmountedBase
@@ -172,6 +175,9 @@
   - type: Sprite
     noRot: true
     sprite: _NF/Structures/Furniture/Armory/gunrack_wallmounted.rsi
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: GunRackWallmountedNode
 
 # Melee weapon racks
 - type: entity
@@ -260,6 +266,9 @@
           tags:
             - WeaponMelee
     sprite: _NF/Structures/Furniture/Armory/meleerack.rsi
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: MeleeRackNode
 
 - type: entity
   id: WeaponRackMeleeWallmountedBase
@@ -273,6 +282,9 @@
   - type: Sprite
     noRot: true
     sprite: _NF/Structures/Furniture/Armory/meleerack_wallmounted.rsi
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: MeleeRackWallmountedNode
 
 # Pistol weapon racks
 - type: entity
@@ -357,6 +369,9 @@
             - WeaponShortArms
             - Sidearm
     sprite: _NF/Structures/Furniture/Armory/pistolrack.rsi
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: PistolRackNode
 
 - type: entity
   id: WeaponRackPistolWallmountedBase
@@ -370,6 +385,9 @@
   - type: Sprite
     noRot: true
     sprite: _NF/Structures/Furniture/Armory/pistolrack_wallmounted.rsi
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: PistolRackWallmountedNode
 
 
 # Restricted access variants
