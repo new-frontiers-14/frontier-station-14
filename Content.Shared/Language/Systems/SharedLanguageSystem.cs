@@ -7,19 +7,22 @@ namespace Content.Shared.Language.Systems;
 
 public abstract class SharedLanguageSystem : EntitySystem
 {
+    [ValidatePrototypeId<LanguagePrototype>]
+    public static readonly string GalacticCommonPrototype = "GalacticCommon";
+    [ValidatePrototypeId<LanguagePrototype>]
+    public static readonly string UniversalPrototype = "Universal";
+    public static LanguagePrototype GalacticCommon { get; private set; } = default!;
+    public static LanguagePrototype Universal { get; private set; } = default!;
+
     [Dependency] private readonly SharedActionsSystem _action = default!;
-    private static LanguagePrototype? _galacticCommon;
-    private static LanguagePrototype? _universal;
-    public static LanguagePrototype GalacticCommon { get => _galacticCommon!; }
-    public static LanguagePrototype Universal { get => _universal!; }
     [Dependency] protected readonly IPrototypeManager _prototype = default!;
     [Dependency] protected readonly IRobustRandom _random = default!;
     protected ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
-        _galacticCommon = _prototype.Index<LanguagePrototype>("GalacticCommon");
-        _universal = _prototype.Index<LanguagePrototype>("Universal");
+        GalacticCommon = _prototype.Index<LanguagePrototype>("GalacticCommon");
+        Universal = _prototype.Index<LanguagePrototype>("Universal");
         _sawmill = Logger.GetSawmill("language");
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInit);
