@@ -1,0 +1,29 @@
+- type: vessel
+  id: Spectre
+  name: SH Spectre
+  description: A science based mothership that is meant to be crewed mainly by scientists. Aswell as a small fleet of auxilary ships.
+  price: 185000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/spectre.yml
+
+- type: gameMap
+  id: Spectre
+  mapName: 'SH Spectre'
+  mapPath: /Maps/Shuttles/spectre.yml
+  minPlayers: 0
+  stations:
+    Spectre:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spectre {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            ChiefEngineer: [ 0, 0 ]
+            ScienceDirector: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
