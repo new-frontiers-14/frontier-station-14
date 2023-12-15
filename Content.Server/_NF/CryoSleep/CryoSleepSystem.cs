@@ -61,6 +61,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         SubscribeLocalEvent<CryoSleepComponent, CryoStoreDoAfterEvent>(OnAutoCryoSleep);
         SubscribeLocalEvent<CryoSleepComponent, DragDropTargetEvent>(OnEntityDragDropped);
         SubscribeLocalEvent<RoundEndedEvent>(OnRoundEnded);
+
+        InitReturning();
     }
 
     private EntityUid GetStorageMap()
@@ -248,7 +250,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
-            _gameTicker.OnGhostAttempt(bodyId, false, true, mind: mind);
+            _gameTicker.OnGhostAttempt(mindEntityx, false, true, mind: mind);
 
             var id = mind.UserId;
             if (id != null)
