@@ -3,12 +3,17 @@
   id: MercenaryIDCard
   name: mercenary ID card
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idpassenger
   - type: PresetIdCard
     job: Mercenary
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmercenary
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
   parent: IDCardStandard
