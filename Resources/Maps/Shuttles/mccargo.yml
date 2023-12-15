@@ -175,12 +175,18 @@ entities:
       pos: -3.5,2.5
       parent: 1
       type: Transform
+    - links:
+      - 675
+      type: DeviceLinkSink
   - uid: 300
     components:
     - rot: 1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 1
       type: Transform
+    - links:
+      - 675
+      type: DeviceLinkSink
   - uid: 301
     components:
     - rot: 1.5707963267948966 rad
@@ -316,6 +322,21 @@ entities:
       pos: -0.5,10.5
       parent: 1
       type: Transform
+  - uid: 778
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
+      parent: 1
+      type: Transform
+  - uid: 779
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,8.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
 - proto: AmeController
   entities:
   - uid: 201
@@ -666,12 +687,12 @@ entities:
   entities:
   - uid: 755
     components:
-    - pos: -6.3390713,6.5673923
+    - pos: -5.978621,7.13103
       parent: 1
       type: Transform
   - uid: 756
     components:
-    - pos: -6.2320156,6.744476
+    - pos: -6.1140375,6.9018636
       parent: 1
       type: Transform
 - proto: Bucket
@@ -679,6 +700,16 @@ entities:
   - uid: 324
     components:
     - pos: 7.0689917,12.330349
+      parent: 1
+      type: Transform
+  - uid: 768
+    components:
+    - pos: -3.7585487,6.0110874
+      parent: 1
+      type: Transform
+  - uid: 769
+    components:
+    - pos: -3.2481322,6.0215044
       parent: 1
       type: Transform
 - proto: ButchCleaver
@@ -1395,7 +1426,7 @@ entities:
   entities:
   - uid: 765
     components:
-    - pos: -5.760623,6.5683117
+    - pos: -5.817134,6.56853
       parent: 1
       type: Transform
 - proto: ClothingBeltUtilityEngineering
@@ -1485,16 +1516,24 @@ entities:
     - pos: 8.5,12.5
       parent: 1
       type: Transform
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 766
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 4.5,-5.5
+      parent: 1
+      type: Transform
 - proto: DeskBell
   entities:
   - uid: 753
     components:
-    - pos: -6.514953,7.0399404
+    - pos: -6.4043546,7.0158014
       parent: 1
       type: Transform
   - uid: 754
     components:
-    - pos: -6.671203,6.810774
+    - pos: -6.6647716,7.067885
       parent: 1
       type: Transform
 - proto: DisposalBend
@@ -1884,16 +1923,22 @@ entities:
       parent: 1
       type: Transform
     - ShutdownSubscribers:
-      - 39
-      - 41
-      - 70
-      - 79
+      - 779
       type: DeviceNetwork
     - devices:
       - 39
       - 41
       - 70
       - 79
+      - 757
+      - 646
+      - 637
+      - 778
+      - 254
+      - 647
+      - 644
+      - 645
+      - 779
       type: DeviceList
 - proto: Firelock
   entities:
@@ -1902,35 +1947,23 @@ entities:
     - pos: 3.5,9.5
       parent: 1
       type: Transform
-    - ShutdownSubscribers:
-      - 154
-      type: DeviceNetwork
   - uid: 41
     components:
     - pos: -0.5,9.5
       parent: 1
       type: Transform
-    - ShutdownSubscribers:
-      - 154
-      type: DeviceNetwork
   - uid: 70
     components:
     - rot: 1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 1
       type: Transform
-    - ShutdownSubscribers:
-      - 154
-      type: DeviceNetwork
   - uid: 79
     components:
     - rot: 1.5707963267948966 rad
       pos: -2.5,3.5
       parent: 1
       type: Transform
-    - ShutdownSubscribers:
-      - 154
-      type: DeviceNetwork
   - uid: 171
     components:
     - rot: 1.5707963267948966 rad
@@ -2770,6 +2803,14 @@ entities:
     - pos: -6.5,2.5
       parent: 1
       type: Transform
+- proto: PowerCellRecharger
+  entities:
+  - uid: 767
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -6.5,6.5
+      parent: 1
+      type: Transform
 - proto: Poweredlight
   entities:
   - uid: 60
@@ -3309,6 +3350,62 @@ entities:
     - links:
       - 702
       type: DeviceLinkSink
+  - uid: 771
+    components:
+    - pos: -2.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 772
+    components:
+    - pos: -1.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 773
+    components:
+    - pos: -0.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 774
+    components:
+    - pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 775
+    components:
+    - pos: 1.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 776
+    components:
+    - pos: 2.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
+  - uid: 777
+    components:
+    - pos: 3.5,-5.5
+      parent: 1
+      type: Transform
+    - links:
+      - 770
+      type: DeviceLinkSink
 - proto: SignalButton
   entities:
   - uid: 150
@@ -3368,6 +3465,10 @@ entities:
         - Pressed: Toggle
         684:
         - Pressed: Toggle
+        193:
+        - Pressed: DoorBolt
+        300:
+        - Pressed: DoorBolt
       type: DeviceLinkSource
   - uid: 702
     components:
@@ -3426,6 +3527,28 @@ entities:
       type: Transform
     - linkedPorts:
         143:
+        - Pressed: Toggle
+      type: DeviceLinkSource
+  - uid: 770
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -3.5,-5.5
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        771:
+        - Pressed: Toggle
+        772:
+        - Pressed: Toggle
+        773:
+        - Pressed: Toggle
+        774:
+        - Pressed: Toggle
+        775:
+        - Pressed: Toggle
+        776:
+        - Pressed: Toggle
+        777:
         - Pressed: Toggle
       type: DeviceLinkSource
 - proto: SignDirectionalFood
