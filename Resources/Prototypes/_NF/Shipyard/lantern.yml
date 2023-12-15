@@ -1,0 +1,28 @@
+- type: vessel
+  id: lantern
+  name: NM Lantern
+  description: A small vessel outfitted for the search and recovery of wounded NT personnel. Primarily for recovery. Search though? Well. You got that medical tracker implanted, right?
+  price: 29500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/lantern.yml
+
+- type: gameMap
+  id: lantern
+  mapName: 'NM Lantern'
+  mapPath: /Maps/Shuttles/lantern.yml
+  minPlayers: 0
+  stations:
+    lantern:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lantern {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
