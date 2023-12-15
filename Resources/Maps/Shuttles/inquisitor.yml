@@ -144,27 +144,35 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 65527
+            1: 8
           0,-1:
-            0: 65535
+            0: 61439
+            2: 4096
           -1,-1:
-            0: 65535
+            0: 65407
+            3: 128
           -1,0:
-            0: 4095
+            0: 3967
+            4: 128
           0,1:
-            0: 4095
+            0: 4063
+            5: 32
           1,0:
             0: 65535
           1,1:
-            0: 3310
+            0: 3182
+            3: 128
           2,0:
             0: 61951
           2,1:
             0: 4095
           0,-2:
-            0: 65535
+            0: 65503
+            5: 32
           1,-2:
-            0: 65260
+            0: 65132
+            6: 128
           1,-1:
             0: 65535
           2,-2:
@@ -181,6 +189,96 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.81398
+          - 82.06227
+          - 3.3618784E-05
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.1316
+          moles:
+          - 21.809319
+          - 82.04652
+          - 0.00051328994
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.685034
+          - 81.57705
+          - 3.522008E-06
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.8143
+          - 82.06333
           - 0
           - 0
           - 0
@@ -216,58 +314,6 @@ entities:
     - parent: 2
       type: Transform
     - container: 2
-      type: InstantAction
-  - uid: 9
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 8
-      type: Transform
-    - container: 8
-      type: InstantAction
-  - uid: 10
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 8
-      type: Transform
-    - container: 8
-      type: InstantAction
-  - uid: 25
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - container: 24
-      type: InstantAction
-  - uid: 26
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - container: 24
-      type: InstantAction
-- proto: ActionToggleSuitPiece
-  entities:
-  - uid: 18
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 17
-      type: Transform
-    - container: 17
-      entIcon: 19
-      type: InstantAction
-  - uid: 34
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 33
-      type: Transform
-    - container: 33
-      entIcon: 35
       type: InstantAction
 - proto: ActionVendingThrow
   entities:
@@ -2359,8 +2405,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -2379,11 +2425,11 @@ entities:
           ents:
           - 94
           - 95
-          - 96
           - 102
           - 103
           - 104
           - 105
+          - 9
           - 106
         paper_label: !type:ContainerSlot
           showEnts: False
@@ -2400,8 +2446,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -2418,14 +2464,14 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 120
-          - 119
-          - 118
-          - 117
-          - 111
-          - 110
-          - 109
           - 108
+          - 109
+          - 110
+          - 117
+          - 118
+          - 119
+          - 10
+          - 120
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2439,74 +2485,18 @@ entities:
       pos: -0.5,-3.5
       parent: 1
       type: Transform
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17
-          - 20
-          - 7
-          - 22
-          - 21
-      type: ContainerContainer
-  - uid: 32
+  - uid: 8
     components:
     - pos: -0.5,2.5
       parent: 1
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14963
-        moles:
-        - 1.7458104
-        - 6.567589
-        - 3.8282697E-06
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 33
-          - 36
-          - 37
-          - 49
-      type: ContainerContainer
-    - dnas: []
-      fibers:
-      - black insulative fibers
-      fingerprints: []
-      type: Forensics
 - proto: ClosetWallFireFilledRandom
   entities:
-  - uid: 23
+  - uid: 7
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 6.5,5.5
+    - pos: 6.5,5.5
       parent: 1
       type: Transform
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 29
-          - 24
-          - 28
-          - 31
-          - 30
-      type: ContainerContainer
 - proto: ClosetWallOrange
   entities:
   - uid: 242
@@ -2578,115 +2568,6 @@ entities:
     - pos: 6.4939165,4.6486845
       parent: 1
       type: Transform
-- proto: ClothingHeadHelmetEVALarge
-  entities:
-  - uid: 19
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 17
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - AttachedUid: 17
-      type: AttachedClothing
-  - uid: 35
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 33
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - AttachedUid: 33
-      type: AttachedClothing
-- proto: ClothingHeadHelmetFire
-  entities:
-  - uid: 24
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 23
-      type: Transform
-    - selfToggleActionEntity: 26
-      toggleActionEntity: 25
-      type: HandheldLight
-    - containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 27
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 25
-          - 26
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: ActionsContainer
-    - actions:
-      - 26
-      type: Actions
-    - type: InsideEntityStorage
-- proto: ClothingMaskBreath
-  entities:
-  - uid: 12
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 13
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 20
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 6
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 36
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 32
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingMaskBreathMedical
-  entities:
-  - uid: 38
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: ClothingMaskGas
-  entities:
-  - uid: 28
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 23
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitEVAPrisoner
   entities:
   - uid: 248
@@ -2703,67 +2584,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 251
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterSuitEmergency
-  entities:
-  - uid: 17
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 6
-      type: Transform
-    - clothingUid: 19
-      actionEntity: 18
-      type: ToggleableClothing
-    - containers:
-        toggleable-clothing: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 19
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 18
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: ActionsContainer
-    - type: InsideEntityStorage
-  - uid: 33
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 32
-      type: Transform
-    - clothingUid: 35
-      actionEntity: 34
-      type: ToggleableClothing
-    - containers:
-        toggleable-clothing: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 35
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 34
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: ActionsContainer
-    - type: InsideEntityStorage
-- proto: ClothingOuterSuitFire
-  entities:
-  - uid: 29
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 23
       type: Transform
     - canCollide: False
       type: Physics
@@ -2897,16 +2717,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 256
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: CrowbarRed
-  entities:
-  - uid: 14
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
       type: Transform
     - canCollide: False
       type: Physics
@@ -3093,44 +2903,6 @@ entities:
     - startingCharge: 6078.6914
       type: Battery
     - type: ActiveEmergencyLight
-- proto: EmergencyMedipen
-  entities:
-  - uid: 39
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: EmergencyOxygenTankFilled
-  entities:
-  - uid: 21
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 6
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 40
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 49
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 32
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: EuphoniumInstrument
   entities:
   - uid: 117
@@ -3162,17 +2934,6 @@ entities:
     - pos: 10.5,-6.5
       parent: 1
       type: Transform
-- proto: FireExtinguisher
-  entities:
-  - uid: 30
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 23
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: FirelockElectronics
   entities:
   - uid: 282
@@ -3306,53 +3067,6 @@ entities:
       - 54
       - 60
       type: DeviceNetwork
-- proto: FlashlightLantern
-  entities:
-  - uid: 8
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
-      type: Transform
-    - selfToggleActionEntity: 10
-      toggleActionEntity: 9
-      type: HandheldLight
-    - containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 11
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 9
-          - 10
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: ActionsContainer
-    - actions:
-      - 10
-      type: Actions
-- proto: FoodSnackChocolate
-  entities:
-  - uid: 15
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 16
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 7
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: FoodSnackSus
   entities:
   - uid: 94
@@ -5042,8 +4756,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8863183
-        - 7.09615
+        - 1.8968958
+        - 7.1359415
         - 0
         - 0
         - 0
@@ -5067,9 +4781,9 @@ entities:
         immutable: False
         temperature: 293.13718
         moles:
-        - 1.8859696
-        - 7.0949974
-        - 3.6542155E-05
+        - 1.8968678
+        - 7.1358495
+        - 2.9233722E-06
         - 0
         - 0
         - 0
@@ -5085,9 +4799,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 248
-          - 249
           - 250
+          - 249
+          - 248
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -5145,159 +4859,21 @@ entities:
       type: Transform
 - proto: Matchbox
   entities:
-  - uid: 96
+  - uid: 9
     components:
     - flags: InContainer
       type: MetaData
     - parent: 93
       type: Transform
-    - storageUsed: 5
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 97
-          - 98
-          - 99
-          - 100
-          - 101
-      type: ContainerContainer
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 111
+  - uid: 10
     components:
     - flags: InContainer
       type: MetaData
     - parent: 107
       type: Transform
-    - storageUsed: 5
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 112
-          - 113
-          - 114
-          - 115
-          - 116
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: Matchstick
-  entities:
-  - uid: 97
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 96
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 98
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 96
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 99
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 96
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 100
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 96
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 101
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 96
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 112
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 111
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 113
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 111
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 114
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 111
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 115
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 111
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 116
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 111
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: MedkitOxygenFilled
-  entities:
-  - uid: 37
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 32
-      type: Transform
-    - storageUsed: 28
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 38
-          - 40
-          - 39
-          - 48
-          - 41
-          - 42
-          - 43
-          - 44
-          - 45
-          - 46
-          - 47
-      type: ContainerContainer
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
@@ -5316,64 +4892,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 225
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: PillDexalin
-  entities:
-  - uid: 41
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 42
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 43
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 44
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 45
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 46
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 47
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
       type: Transform
     - canCollide: False
       type: Physics
@@ -5541,24 +5059,6 @@ entities:
     - pos: 1.5,2.5
       parent: 1
       type: Transform
-- proto: PowerCellMedium
-  entities:
-  - uid: 11
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 8
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 27
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: PowerCellRecharger
   entities:
   - uid: 178
@@ -6153,11 +5653,11 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 292.91797
+        temperature: 293.1316
         moles:
-        - 1.8809017
-        - 7.077882
-        - 0.00055792386
+        - 1.8964623
+        - 7.13448
+        - 4.4633907E-05
         - 0
         - 0
         - 0
@@ -6168,16 +5668,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: SyringeInaprovaline
-  entities:
-  - uid: 48
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 37
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: TableWood
   entities:
   - uid: 460
@@ -6238,31 +5728,6 @@ entities:
     - pos: 4.5,2.5
       parent: 1
       type: Transform
-- proto: ToolboxEmergencyFilled
-  entities:
-  - uid: 7
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 6
-      type: Transform
-    - storageUsed: 31
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 14
-          - 12
-          - 13
-          - 15
-          - 8
-          - 16
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: VendingMachineBooze
   entities:
   - uid: 50
@@ -6912,19 +6377,6 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
-- proto: WeaponFlareGun
-  entities:
-  - uid: 22
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 6
-      type: Transform
-    - unspawnedCount: 1
-      type: BallisticAmmoProvider
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: WindoorSecure
   entities:
   - uid: 566
@@ -6961,17 +6413,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 93
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: YellowOxygenTankFilled
-  entities:
-  - uid: 31
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 23
       type: Transform
     - canCollide: False
       type: Physics
