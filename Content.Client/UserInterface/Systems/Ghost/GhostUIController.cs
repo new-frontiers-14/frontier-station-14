@@ -25,6 +25,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
+    private bool _canUncryo = true; // Frontier. TODO: find a reliable way to update this, for now it just stays active all the time
 
     public override void Initialize()
     {
@@ -75,7 +76,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
             _system?.Player?.TimeOfDeath,
-            _cfg.GetCVar(NF14CVars.RespawnTime));
+            _cfg.GetCVar(NF14CVars.RespawnTime),
+            _canUncryo);
     }
 
     private void UpdateRespawn(TimeSpan? timeOfDeath)

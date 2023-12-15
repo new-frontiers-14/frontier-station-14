@@ -11,28 +11,49 @@ public abstract partial class SharedCryoSleepSystem : EntitySystem
     }
 
     /// <summary>
-    ///   Send from the client to the server when the client, controlling a ghost, wants to return to a cryosleeping body.
+    ///   Sent from the server to the client when the server wants to know if it has a body that is cryosleeping or not.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed partial class WakeupRequestMessage : EntityEventArgs
+    public sealed class GetStatusMessage : EntityEventArgs
     {
         /// <summary>
-        ///   Send from the server to the client in response to a WakeupRequestMessage.
+        ///   Sent from the server to the client in response to a GetStatusMessage.
         /// </summary>
         [Serializable, NetSerializable]
         public sealed class Response : EntityEventArgs
         {
-            public readonly ReturnToBodyResult Result;
+            public readonly bool HasCryosleepingBody;
 
-            public Response(ReturnToBodyResult result)
+            public Response(bool hasCryosleepingBody)
             {
-                Result = result;
+                HasCryosleepingBody = hasCryosleepingBody;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Sent from the client to the server when the client, controlling a ghost, wants to return to a cryosleeping body.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class WakeupRequestMessage : EntityEventArgs
+    {
+        /// <summary>
+        ///   Sent from the server to the client in response to a WakeupRequestMessage.
+        /// </summary>
+        [Serializable, NetSerializable]
+        public sealed class Response : EntityEventArgs
+        {
+            public readonly ReturnToBodyStatus Status;
+
+            public Response(ReturnToBodyStatus status)
+            {
+                Status = status;
             }
         }
     }
 
     [Serializable, NetSerializable]
-    public enum ReturnToBodyResult : byte
+    public enum ReturnToBodyStatus : byte
     {
         Success,
         Occupied,

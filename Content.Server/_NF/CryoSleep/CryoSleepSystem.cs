@@ -250,7 +250,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
-            _gameTicker.OnGhostAttempt(mindEntityx, false, true, mind: mind);
+            _gameTicker.OnGhostAttempt(mindEntity, false, true, mind: mind);
 
             var id = mind.UserId;
             if (id != null)
@@ -261,6 +261,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         var xform = Transform(bodyId);
         cryo.BodyContainer.Remove(bodyId, _entityManager, xform, reparent: false, force: true);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
+
+        RaiseLocalEvent(bodyId, new CryosleepEnterEvent(cryopod, mind?.UserId), true);
 
         if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
             _doAfter.Cancel(cryo.CryosleepDoAfter);

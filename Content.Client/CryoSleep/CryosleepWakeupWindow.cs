@@ -29,7 +29,12 @@ public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscribe
                     Orientation = BoxContainer.LayoutOrientation.Vertical,
                     Children =
                     {
-                        (Label = new RichTextLabel()),
+                        (Label = new RichTextLabel()
+                        {
+                            HorizontalExpand = true,
+                            MaxWidth = 300,
+                            StyleClasses = {  }
+                        }),
                         new BoxContainer
                         {
                             Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -81,7 +86,7 @@ public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscribe
 
     private void OnWakeupResponse(WakeupRequestMessage.Response response)
     {
-        if (response.Result == ReturnToBodyResult.Success)
+        if (response.Status == ReturnToBodyStatus.Success)
         {
             Close();
             return;
@@ -89,11 +94,11 @@ public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscribe
 
         // Failure
         DenyButton.Disabled = false;
-        if (response.Result == ReturnToBodyResult.Occupied)
+        if (response.Status == ReturnToBodyStatus.Occupied)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-occupied"));
-        else if (response.Result == ReturnToBodyResult.CryopodMissing)
+        else if (response.Status == ReturnToBodyStatus.CryopodMissing)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-cryopod"));
-        else if (response.Result == ReturnToBodyResult.BodyMissing)
+        else if (response.Status == ReturnToBodyStatus.BodyMissing)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-body"));
     }
 }

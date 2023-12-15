@@ -62,7 +62,7 @@ public sealed partial class GhostGui : UIWidget
         }
     }
 
-    public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn)
+    public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn, bool canUncryo)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
         _timeOfDeath = timeOfDeath;
@@ -82,6 +82,8 @@ public sealed partial class GhostGui : UIWidget
         }
 
         TargetWindow.Populate();
+
+        CryosleepReturnButton.Disabled = !canUncryo;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
