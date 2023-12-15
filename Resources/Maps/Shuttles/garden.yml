@@ -214,16 +214,6 @@ entities:
     - type: RadiationGridResistance
     - id: Garden
       type: BecomesStation
-- proto: ActionToggleLight
-  entities:
-  - uid: 187
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 186
-      type: Transform
-    - container: 186
-      type: InstantAction
 - proto: AirAlarm
   entities:
   - uid: 140
@@ -350,43 +340,6 @@ entities:
       pos: 1.5,9.5
       parent: 1
       type: Transform
-- proto: BotanistPDA
-  entities:
-  - uid: 186
-    components:
-    - pos: -0.6323787,4.6829796
-      parent: 1
-      type: Transform
-    - containers:
-        PDA-id: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-pen: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-book: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        Cartridge-Slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        program-container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 187
-      type: ContainerContainer
-    - toggleActionEntity: 187
-      type: UnpoweredFlashlight
-    - type: ActionsContainer
 - proto: CableApcExtension
   entities:
   - uid: 213
@@ -1597,6 +1550,20 @@ entities:
       pos: 4.5,-3.5
       parent: 1
       type: Transform
+- proto: SpawnPointBotanist
+  entities:
+  - uid: 261
+    components:
+    - pos: -1.5,5.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 262
+    components:
+    - pos: 2.5,5.5
+      parent: 1
+      type: Transform
 - proto: SubstationWallBasic
   entities:
   - uid: 190
@@ -1938,6 +1905,13 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -1.5,2.5
+      parent: 1
+      type: Transform
+- proto: WarpPointShip
+  entities:
+  - uid: 263
+    components:
+    - pos: 0.5,3.5
       parent: 1
       type: Transform
 - proto: WaterTankHighCapacity
