@@ -7,12 +7,12 @@ namespace Content.Server.CryoSleep;
 public sealed class CryoSleepEui : BaseEui
 {
     private readonly CryoSleepSystem _cryoSystem;
-    private readonly EntityUid _mind;
+    private readonly EntityUid _body;
     private readonly EntityUid _cryopod;
 
-    public CryoSleepEui(EntityUid mind, EntityUid cryopod, CryoSleepSystem cryoSys)
+    public CryoSleepEui(EntityUid body, EntityUid cryopod, CryoSleepSystem cryoSys)
     {
-        _mind = mind;
+        _body = body;
         _cryopod = cryopod;
         _cryoSystem = cryoSys;
     }
@@ -27,15 +27,15 @@ public sealed class CryoSleepEui : BaseEui
             return;
         }
 
-        if (_mind is { Valid: true } body)
+        if (_body is { Valid: true })
         {
             if (choice.Button == AcceptCryoUiButton.Accept)
             {
-                _cryoSystem.CryoStoreBody(body, _cryopod);
+                _cryoSystem.CryoStoreBody(_body, _cryopod);
             }
             else
             {
-                _cryoSystem.EjectBody(_cryopod, body: body);
+                _cryoSystem.EjectBody(_cryopod, body: _body);
             }
         }
 

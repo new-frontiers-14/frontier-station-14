@@ -212,7 +212,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         if (success && mindComp?.Session != null)
         {
-            _euiManager.OpenEui(new CryoSleepEui(mind,  cryopod, this), mindComp.Session);
+            _euiManager.OpenEui(new CryoSleepEui(toInsert.Value,  cryopod, this), mindComp.Session);
         }
 
         if (success)
@@ -234,7 +234,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
                 BreakOnWeightlessMove = true
             };
 
-            _doAfter.TryStartDoAfter(args);
+            if (_doAfter.TryStartDoAfter(args))
+                component.CryosleepDoAfter = ev.DoAfter.Id;
         }
 
         return success;
@@ -245,7 +246,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
             return;
 
-        if (TryComp<MindComponent>(bodyId, out var mind) && mind.CurrentEntity is { Valid : true } body)
+        if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
             _gameTicker.OnGhostAttempt(bodyId, false, true, mind: mind);
 
@@ -256,6 +257,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         var storage = GetStorageMap();
         var xform = Transform(bodyId);
+        cryo.BodyContainer.Remove(bodyId, _entityManager, xform, reparent: false, force: true);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
 
         if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
@@ -275,7 +277,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (toEject == null)
             return false;
 
-        component.BodyContainer.Remove(toEject.Value);
+        component.BodyContainer.Remove(toEject.Value, force: true);
         _climb.ForciblySetClimbing(toEject.Value, pod);
 
         if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
