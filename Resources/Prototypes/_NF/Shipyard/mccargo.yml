@@ -2,11 +2,14 @@
 # GitHub: dvir001
 # Discord: dvir01 (84770870936997888)
 
+# Shuttle Notes:
+# 
+
 - type: vessel
   id: mccargo
   name: DC McCargo
   description: "Your very own McCargo :tm: franchisee! comes fully stocked and ready for production of McCargo meals"
-  price: 65000
+  price: 70000
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/mccargo.yml
@@ -21,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'mccargo {1}'
+          mapNameTemplate: 'McCargo {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
@@ -30,6 +33,7 @@
           availableJobs:
             Quartermaster: [ 0, 0 ]
             CargoTechnician: [ 0, 0 ]
+            Chef: [ 0, 0 ]
             Botanist: [ 0, 0 ]
             Janitor: [ 0, 0 ]
             Borg: [ 0, 0 ]
