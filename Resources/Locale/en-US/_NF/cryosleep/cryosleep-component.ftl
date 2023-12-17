@@ -15,5 +15,7 @@ cryo-wakeup-result-no-cryopod = The cryopod went missing! Uh oh.
 cryo-wakeup-result-no-body = You do not have a cryosleeping body!
 
 # Cryopod
-cryopod-refuse-dead = The cryo sleep chamber refuses to accept dead patients.
+cryopod-refuse-dead = The {$cryopod} refuses to accept dead patients.
+cryopod-refuse-organic = The {$cryopod} refuses to accept more than 1 sentient entity at once.
+
 cryopod-wake-up = {$entity} returns from cryosleep!
