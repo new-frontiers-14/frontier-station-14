@@ -1,10 +1,13 @@
 ﻿using System.Text;
 using Content.Server._NF.Smuggling.Components;
+using Content.Server.Administration.Logs;
 using Content.Server.Paper;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems;
+using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Radio;
@@ -21,6 +24,7 @@ namespace Content.Server._NF.Smuggling;
 
 public sealed class DeadDropSystem : EntitySystem
 {
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -64,7 +68,6 @@ public sealed class DeadDropSystem : EntitySystem
         if (_timing.CurTime < component.NextDrop)
             return;
 
-
         if (_shipyard.ShipyardMap is not MapId shipyardMap)
             return;
 
@@ -90,7 +93,9 @@ public sealed class DeadDropSystem : EntitySystem
         }
 
         var channel = _prototypeManager.Index<RadioChannelPrototype>("Security");
-        _radio.SendRadioMessage(uid, Loc.GetString("deaddrop-security-report"), channel, uid);
+        var sender = Transform(user).GridUid ?? uid;
+        _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} activated a dead drop from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
         var dropHint = new StringBuilder();
 
