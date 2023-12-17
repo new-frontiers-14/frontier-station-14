@@ -1,12 +1,12 @@
 ﻿- type: entity
   id: OreBox
   name: ore box
-  description: A large storage container for holding unprocessed ores.
+  description: A large storage container for collecting and holding unprocessed ores and fragments.
   parent: BaseStructureDynamic
   components:
   - type: StaticPrice
     # price: 500
-    price: 1000
+    price: 0    # To make dumping and selling contents more convenient
   - type: Anchorable
   - type: InteractionOutline
   - type: Damageable
