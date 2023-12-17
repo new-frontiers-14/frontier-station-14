@@ -16,4 +16,10 @@ public sealed class NF14CVars
     /// </summary>
     public static readonly CVarDef<float> RespawnTime =
         CVarDef.Create("nf14.respawn.time", 600.0f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether or not returning from cryosleep is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> CryoReturnEnabled =
+        CVarDef.Create("nf14.cryoreturn.enabled", true, CVar.SERVER | CVar.REPLICATED);
 }

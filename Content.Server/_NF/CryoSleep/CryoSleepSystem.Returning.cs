@@ -2,13 +2,17 @@ using Content.Server.GameTicking;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
+using Content.Shared.NF14.CCVar;
 using Content.Shared.Players;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 
 namespace Content.Server.CryoSleep;
 
 public sealed partial class CryoSleepSystem
 {
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+
     private void InitReturning()
     {
         SubscribeNetworkEvent<WakeupRequestMessage>(OnWakeupMessage);
@@ -40,6 +44,9 @@ public sealed partial class CryoSleepSystem
     /// </summary>
     public ReturnToBodyStatus TryReturnToBody(MindComponent mind, bool force = false)
     {
+        if (!_configurationManager.GetCVar(NF14CVars.RespawnEnabled))
+            return ReturnToBodyStatus.Disabled;
+
         var id = mind.UserId;
         if (id == null || !_storedBodies.TryGetValue(id.Value, out var storedBody))
             return ReturnToBodyStatus.BodyMissing;

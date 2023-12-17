@@ -13,6 +13,7 @@ cryo-wakeup-window-rules = You are going to try to return from your cryosleep! Y
 cryo-wakeup-result-occupied = The cryopod is occupied! Try waiting a bit.
 cryo-wakeup-result-no-cryopod = The cryopod went missing! Uh oh.
 cryo-wakeup-result-no-body = You do not have a cryosleeping body!
+cryo-wakeup-result-disabled = Returning from cryosleep is disabled on this server.
 
 # Cryopod
 cryopod-refuse-dead = The {$cryopod} refuses to accept dead patients.

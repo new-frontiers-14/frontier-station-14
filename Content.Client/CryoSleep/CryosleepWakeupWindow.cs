@@ -1,6 +1,7 @@
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Configuration;
 using static Content.Shared.CryoSleep.SharedCryoSleepSystem;
 
 namespace Content.Client.CryoSleep;
@@ -100,5 +101,7 @@ public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscribe
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-cryopod"));
         else if (response.Status == ReturnToBodyStatus.BodyMissing)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-body"));
+        else if (response.Status == ReturnToBodyStatus.Disabled)
+            Label.SetMessage(Loc.GetString("cryo-wakeup-result-disabled"));
     }
 }
