@@ -1,23 +1,23 @@
 - type: vessel
-  id: lantern
-  name: NM Lantern
+  id: searchlight
+  name: NM Searchlight
   description: A small vessel outfitted for the search and recovery of wounded NT personnel. Primarily for recovery. Search though? Well. You got that medical tracker implanted, right?
   price: 29500
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/lantern.yml
+  shuttlePath: /Maps/Shuttles/searchlight.yml
 
 - type: gameMap
-  id: lantern
-  mapName: 'NM Lantern'
-  mapPath: /Maps/Shuttles/lantern.yml
+  id: searchlight
+  mapName: 'NM Searchlight'
+  mapPath: /Maps/Shuttles/searchlight.yml
   minPlayers: 0
   stations:
-    lantern:
+    searchlight:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Lantern {1}'
+          mapNameTemplate: 'Searchlight {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
