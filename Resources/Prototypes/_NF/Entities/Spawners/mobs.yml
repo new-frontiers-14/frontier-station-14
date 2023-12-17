@@ -23,3 +23,16 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCatClarpy
+
+- type: entity
+  name: Crispy Spawner
+  id: SpawnMobCatCrispy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatCrispy
