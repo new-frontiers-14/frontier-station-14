@@ -37,5 +37,6 @@ shuttle-console-iff-label = {$name} ({$distance}m)
 # Buttons
 shuttle-console-strafing = Strafing mode
 shuttle-console-iff-toggle = Show IFF
+shuttle-console-iffshuttles-toggle = Show Shuttle Labels
 shuttle-console-dock-toggle = Show docks
 shuttle-console-undock = Undock
