@@ -1,0 +1,27 @@
+- type: vessel
+  id: Garden
+  name: Garden
+  description: A small, fully-equipped horticulture ship with two sequestered grow rooms.
+  price: 29930
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/garden.yml
+
+- type: gameMap
+  id: Garden
+  mapName: 'Garden'
+  mapPath: /Maps/Shuttles/garden.yml
+  minPlayers: 0
+  stations:
+    Garden:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Garden {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Botanist: [ 0, 0 ]
