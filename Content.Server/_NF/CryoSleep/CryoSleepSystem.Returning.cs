@@ -1,5 +1,8 @@
+using System.Threading;
+using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.NF14.CCVar;
@@ -12,6 +15,7 @@ namespace Content.Server.CryoSleep;
 public sealed partial class CryoSleepSystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     private void InitReturning()
     {
@@ -44,7 +48,7 @@ public sealed partial class CryoSleepSystem
     /// </summary>
     public ReturnToBodyStatus TryReturnToBody(MindComponent mind, bool force = false)
     {
-        if (!_configurationManager.GetCVar(NF14CVars.RespawnEnabled))
+        if (!_configurationManager.GetCVar(NF14CVars.CryoReturnEnabled))
             return ReturnToBodyStatus.Disabled;
 
         var id = mind.UserId;
@@ -72,15 +76,22 @@ public sealed partial class CryoSleepSystem
 
         RaiseLocalEvent(body, new CryosleepWakeUpEvent(storedBody.Value.Cryopod, id), true);
 
+        _adminLogger.Add(LogType.LateJoin, LogImpact.Medium, $"{id.Value} has returned from cryosleep!");
         return ReturnToBodyStatus.Success;
     }
 
     /// <summary>
     ///   Removes the body of the given user from the cryosleep dictionary, making them unable to return to it.
+    ///   Also actually deletes the body if it's still on that map.
     /// </summary>
     public void ResetCryosleepState(NetUserId id)
     {
-        _storedBodies.Remove(id);
+        var body = _storedBodies.GetValueOrDefault(id, null);
+
+        if (body != null && _storedBodies.Remove(id) && Transform(body!.Value.Body).ParentUid == _storageMap)
+        {
+            QueueDel(body.Value.Body);
+        }
     }
 
     public bool HasCryosleepingBody(NetUserId id)

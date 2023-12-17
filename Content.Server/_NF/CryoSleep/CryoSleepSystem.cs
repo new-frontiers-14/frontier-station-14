@@ -20,6 +20,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NF14.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
@@ -27,6 +28,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Server.CryoSleep;
 
@@ -258,11 +260,12 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
             return;
 
+        NetUserId? id = null;
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
             _gameTicker.OnGhostAttempt(mindEntity, false, true, mind: mind);
 
-            var id = mind.UserId;
+            id = mind.UserId;
             if (id != null)
                 _storedBodies[id.Value] = new StoredBody() { Body = body, Cryopod = cryopod };
         }
@@ -276,6 +279,16 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
             _doAfter.Cancel(cryo.CryosleepDoAfter);
+
+        // Start a timer. When it ends, the body needs to be deleted.
+        Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NF14CVars.CryoExpirationTime)), () =>
+        {
+            if (id != null)
+                ResetCryosleepState(id.Value);
+
+            if (!Deleted(bodyId) && Transform(bodyId).ParentUid == _storageMap)
+                QueueDel(bodyId);
+        });
     }
 
     /// <param name="body">If not null, will not eject if the stored body is different from that parameter.</param>
