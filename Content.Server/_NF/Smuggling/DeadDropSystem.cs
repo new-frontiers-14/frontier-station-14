@@ -6,7 +6,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -52,6 +51,7 @@ public sealed class DeadDropSystem : EntitySystem
     {
         if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop)
             return;
+
         InteractionVerb searchVerb = new()
         {
             IconEntity = GetNetEntity(uid),
@@ -94,6 +94,7 @@ public sealed class DeadDropSystem : EntitySystem
 
         var channel = _prototypeManager.Index<RadioChannelPrototype>("Security");
         var sender = Transform(user).GridUid ?? uid;
+
         _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} activated a dead drop from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
@@ -106,6 +107,7 @@ public sealed class DeadDropSystem : EntitySystem
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-posttext"));
 
         var paper = EntityManager.SpawnEntity(component.HintPaper, Transform(uid).Coordinates);
+
         _paper.SetContent(paper, dropHint.ToString());
         _meta.SetEntityName(paper, Loc.GetString("deaddrop-hint-name"));
         _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
