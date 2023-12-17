@@ -106,7 +106,7 @@ public sealed class DeadDropSystem : EntitySystem
         var sender = Transform(user).GridUid ?? uid;
 
         _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} activated a dead drop from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
         // here we are just building a string for the hint paper so that it looks pretty and RP-like on the paper itself.
         var dropHint = new StringBuilder();
