@@ -200,14 +200,14 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         // Refuse to accept "passengers" (e.g. pet felinids in bags)
         if (_shipyard.FoundOrganics(toInsert.Value, mobQuery, xformQuery))
         {
-            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic"), cryopod, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic", ("cryopod", cryopod)), cryopod, PopupType.SmallCaution);
             return false;
         }
 
         // Refuse to accept dead or crit bodies, as well as non-mobs
         if (!TryComp<MobStateComponent>(toInsert, out var mob) || !_mobSystem.IsAlive(toInsert.Value, mob))
         {
-            _popup.PopupEntity(Loc.GetString("cryopod-refuse-dead"), cryopod, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("cryopod-refuse-dead", ("cryopod", cryopod)), cryopod, PopupType.SmallCaution);
             return false;
         }
 
