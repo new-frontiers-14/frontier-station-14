@@ -1,0 +1,20 @@
+﻿- type: constructionGraph
+  id: ImprovisedCrossbow
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ImprovisedCrossbow
+      steps:
+      - material: WoodPlank
+        amount: 15
+        doAfter: 4
+      - material: Cloth
+        amount: 10
+        doAfter: 4
+      - material: MetalRod
+        amount: 10
+        doAfter: 0.5
+
+  - node: ImprovisedCrossbow
+    entity: CrossbowImprovised
