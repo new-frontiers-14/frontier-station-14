@@ -31,7 +31,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     {
         if (string.IsNullOrEmpty(component.CurrentLanguage))
         {
-            component.CurrentLanguage = component.SpokenLanguages.FirstOrDefault(Universal.ID);
+            component.CurrentLanguage = component.SpokenLanguages.FirstOrDefault(UniversalPrototype);
         }
     }
 
@@ -135,7 +135,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         LanguagePrototype language,
         LanguageSpeakerComponent? listenerLanguageComp = null)
     {
-        if (language.ID == Universal.ID || HasComp<UniversalLanguageSpeakerComponent>(listener))
+        if (language.ID == UniversalPrototype || HasComp<UniversalLanguageSpeakerComponent>(listener))
             return true;
 
         var listenerLanguages = GetLanguages(listener, listenerLanguageComp)?.UnderstoodLanguages;
@@ -240,7 +240,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         RaiseLocalEvent(speaker, ev, true);
 
         if (ev.CurrentLanguage.Length == 0)
-            ev.CurrentLanguage = comp?.CurrentLanguage ?? Universal.ID; // Fall back to account for admemes like admins possessing a bread
+            ev.CurrentLanguage = !string.IsNullOrEmpty(comp.CurrentLanguage) ? comp.CurrentLanguage : UniversalPrototype; // Fall back to account for admemes like admins possessing a bread
         return ev;
     }
 
@@ -269,7 +269,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
         if (langs != null && !langs.SpokenLanguages.Contains(comp!.CurrentLanguage, StringComparer.Ordinal))
         {
-            comp.CurrentLanguage = langs.SpokenLanguages.FirstOrDefault(Universal.ID);
+            comp.CurrentLanguage = langs.SpokenLanguages.FirstOrDefault(UniversalPrototype);
         }
     }
 
