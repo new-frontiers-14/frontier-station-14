@@ -1,0 +1,23 @@
+- type: entity
+  name: Argenti
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverArgenti
+  description: Argenti Type 20 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well. Uses .20 rifle ammo.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Argenti-Revolver.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Argenti-Revolver.rsi
+  - type: Gun
+    fireRate: 2
+    resetOnHandSelected: false
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRifle
+    proto: CartridgeRifle
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StaticPrice
+    price: 200

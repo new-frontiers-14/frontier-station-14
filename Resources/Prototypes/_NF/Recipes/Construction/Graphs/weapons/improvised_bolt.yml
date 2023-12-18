@@ -1,0 +1,71 @@
+﻿- type: constructionGraph
+  id: CraftCrossbowBoltGlassShard
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltGlassShard
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: GlassShard
+        name: Glass Shard
+        icon:
+          sprite: Objects/Materials/Shards/shard.rsi
+          state: shard1
+        doAfter: 0.5
+
+  - node: CraftCrossbowBoltGlassShard
+    entity: CrossbowBoltGlassShard
+
+- type: constructionGraph
+  id: CraftCrossbowBoltPlasmaGlassShard
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltPlasmaGlassShard
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: PlasmaGlassShard
+        name: Plasma Glass Shard
+        icon:
+          sprite: Objects/Materials/Shards/shard.rsi
+          state: shard1
+        doAfter: 0.5
+
+  - node: CraftCrossbowBoltPlasmaGlassShard
+    entity: CrossbowBoltPlasmaGlassShard
+
+- type: constructionGraph
+  id: CraftCrossbowBoltUraniumGlassShard
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltUraniumGlassShard
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: UraniumGlassShard
+        name: Uranium Glass Shard
+        icon:
+          sprite: Objects/Materials/Shards/shard.rsi
+          state: shard1
+        doAfter: 0.5
+
+  - node: CraftCrossbowBoltUraniumGlassShard
+    entity: CrossbowBoltUraniumGlassShard
