@@ -1,8 +1,8 @@
 - type: vessel
-  id: stellaris
+  id: Stellaris
   name: NT Stellaris
   description: A mobile theatre perfect for putting on any show.
-  price: 30000
+  price: 45000
   category: Medium
   group: Civilian
   shuttlePath: /Maps/Shuttles/stellaris.yml
@@ -13,11 +13,11 @@
   mapPath: /Maps/Shuttles/stellaris.yml
   minPlayers: 0
   stations:
-    stellaris:
+    Stellaris:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Stellaris {1}'
+          mapNameTemplate: '{0} Stellaris {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
