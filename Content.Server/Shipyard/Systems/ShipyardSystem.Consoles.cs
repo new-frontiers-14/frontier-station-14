@@ -31,6 +31,7 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
+using Content.Shared.Shuttles.Components;
 using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -156,6 +157,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 B = 100,
                 A = 100
             });
+            _shuttle.AddIFFFlag(shuttle.Owner, IFFFlags.IsPlayerShuttle);
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
