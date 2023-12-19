@@ -1,0 +1,406 @@
+- type: entity
+  parent: GunSafe
+  id: GunSafeShuttleCaptain
+  name: shuttle safe
+  suffix: Empty, Captain
+  components:
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttlePistolMk58
+  name: shuttle gun safe
+  suffix: T1, PistolMk58
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Pistol
+    - id: WeaponPistolMk58Nonlethal
+      amount: 2
+    # Pistol - Ammo
+    - id: MagazinePistolRubber
+      amount: 2
+      orGroup: PistolMk58Ammo
+      prob: 0.5
+    - id: MagazinePistol
+      amount: 2
+      orGroup: PistolMk58Ammo
+      prob: 0.5
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleLaserGun
+  name: shuttle gun safe
+  suffix: T1, LaserGun
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Laser
+    - id: WeaponLaserGun
+      amount: 2
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleDisabler
+  name: shuttle gun safe
+  suffix: T1, Disabler
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Disabler
+    - id: WeaponDisabler
+      amount: 2
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleShotgunDoubleBarreled
+  name: shuttle gun safe
+  suffix: T1, Shotgun Doublebarreled
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # ShotgunDouble
+    - id: WeaponShotgunDoubleBarreledRubber
+      amount: 2
+    # Shotgun - Ammo
+    - id: BoxBeanbag
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    - id: BoxLethalshot
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleRevolverArgenti
+  name: shuttle gun safe
+  suffix: T1, Argenti
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Argenti
+    - id: WeaponRevolverArgenti
+      amount: 2
+    # Argenti - Ammo
+    - id: MagazineBoxRifleRubber
+      amount: 2
+      orGroup: RevolverArgentiAmmo
+      prob: 0.5
+    - id: MagazineBoxRifle
+      amount: 2
+      orGroup: RevolverArgentiAmmo
+      prob: 0.5
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleMosin
+  name: shuttle gun safe
+  suffix: T1, Mosin
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Mosin
+    - id: WeaponSniperMosin
+      amount: 2
+    # Mosin - Ammo
+    - id: MagazineBoxLightRifleRubber
+      amount: 2
+      orGroup: MosinAmmo
+      prob: 0.5
+    - id: MagazineBoxLightRifle
+      amount: 2
+      orGroup: MosinAmmo
+      prob: 0.5
+    # Melee
+    - id: BaseBallBat
+      orGroup: Melee
+      prob: 0.05
+    - id: Spear
+      orGroup: Melee
+      prob: 0.05
+    - id: SurvivalKnife
+      orGroup: Melee
+      prob: 0.05
+    - id: MakeshiftShield
+      orGroup: Melee
+      prob: 0.05
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleRevolverDeckard
+  name: shuttle gun safe
+  suffix: T2, RevolverDeckard
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # Deckard
+    - id: WeaponRevolverDeckard
+      amount: 2
+    # Deckard - Ammo
+    - id: SpeedLoaderMagnumRubber
+      amount: 2
+      orGroup: MagnumAmmo
+      prob: 0.5
+    - id: SpeedLoaderMagnum
+      amount: 2
+      orGroup: MagnumAmmo
+      prob: 0.5
+    # Melee
+    - id: SpearReinforced
+      orGroup: Melee
+      prob: 0.1
+    - id: CombatKnife
+      orGroup: Melee
+      prob: 0.1
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleShotgunSawn
+  name: shuttle gun safe
+  suffix: T2, Shotgun Sawn
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # ShotgunDouble
+    - id: WeaponShotgunSawnEmpty
+      amount: 2
+    # Shotgun - Ammo
+    - id: BoxBeanbag
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    - id: BoxLethalshot
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    # Melee
+    - id: SpearReinforced
+      orGroup: Melee
+      prob: 0.1
+    - id: CombatKnife
+      orGroup: Melee
+      prob: 0.1
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.8
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleEnergyGun
+  name: shuttle gun safe
+  suffix: T3, EnergyGun
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # EnergyGun
+    - id: WeaponEnergyGun
+      amount: 2
+    # Melee
+    - id: KukriKnife
+      orGroup: Melee
+      prob: 0.07
+      amount: 2
+    - id: SpearPlasma
+      orGroup: Melee
+      prob: 0.07
+    - id: SpearUranium
+      orGroup: Melee
+      prob: 0.07
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.79
+
+- type: entity
+  parent: GunSafeShuttleCaptain
+  id: GunSafeShuttleShotgunKammerer
+  name: shuttle gun safe
+  suffix: T3, Shotgun Kammerer
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    # ShotgunKammerer
+    - id: WeaponShotgunKammerer
+      amount: 2
+    # Shotgun - Ammo
+    - id: BoxBeanbag
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    - id: BoxLethalshot
+      amount: 2
+      orGroup: ShotgunAmmo
+      prob: 0.5
+    # Melee
+    - id: KukriKnife
+      orGroup: Melee
+      prob: 0.07
+      amount: 2
+    - id: SpearPlasma
+      orGroup: Melee
+      prob: 0.07
+    - id: SpearUranium
+      orGroup: Melee
+      prob: 0.07
+    - id: Null # Nothing
+      orGroup: Melee
+      prob: 0.79
+
+- type: entity
+  parent: MarkerBase
+  id: GunSafeShuttleT1
+  name: shuttle gun safe
+  suffix: T1
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: RandomSpawner
+      offset: 0.0
+      prototypes:
+        - GunSafeShuttlePistolMk58
+        - GunSafeShuttleLaserGun
+        - GunSafeShuttleDisabler
+        - GunSafeShuttleShotgunDoubleBarreled
+        - GunSafeShuttleRevolverArgenti
+        - GunSafeShuttleMosin
+      chance: 0.95
+      rarePrototypes:
+        - GunSafeShuttleRevolverDeckard
+      rareChance: 0.05
+
+- type: entity
+  parent: MarkerBase
+  id: GunSafeShuttleT2
+  name: shuttle gun safe
+  suffix: T2
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: RandomSpawner
+      offset: 0.0
+      prototypes:
+        - GunSafeShuttleShotgunSawn
+        - GunSafeShuttleRevolverDeckard
+      chance: 1
+
+- type: entity
+  parent: MarkerBase
+  id: GunSafeShuttleT3
+  name: shuttle gun safe
+  suffix: T3
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: shotguncase
+    - type: RandomSpawner
+      offset: 0.0
+      prototypes:
+        - GunSafeShuttleEnergyGun
+        - GunSafeShuttleShotgunKammerer
+      chance: 1
