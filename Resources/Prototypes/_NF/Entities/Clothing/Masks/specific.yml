@@ -1,8 +1,17 @@
 ﻿- type: entity
   parent: ClothingMaskGasVoiceChameleon
   id: ClothingMaskGasVoiceChameleonRadio
-  suffix: Voice Mask, Chameleon, Radio
+  suffix: Voice Mask, Chameleon, Radio Fake Name
   components:
     - type: VoiceMasker
       default: ClothingMaskGas
       radioMode: Fake
+
+- type: entity
+  parent: ClothingMaskGasVoiceChameleon
+  id: ClothingMaskGasVoiceChameleonRadio
+  suffix: Voice Mask, Chameleon, Radio Real Name
+  components:
+    - type: VoiceMasker
+      default: ClothingMaskGas
+      radioMode: Real
