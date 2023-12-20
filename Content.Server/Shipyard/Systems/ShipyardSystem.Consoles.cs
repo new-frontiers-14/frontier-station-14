@@ -173,7 +173,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
-        
+
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
         AssignShuttleDeedProperties(deedID, shuttle.Owner, name, player);
 
@@ -235,7 +235,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
+            // SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
         }
 
         SendPurchaseMessage(uid, player, name, channel, false);
@@ -337,7 +337,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             bill -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
+            // SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
 
         _bank.TryBankDeposit(player, bill);
