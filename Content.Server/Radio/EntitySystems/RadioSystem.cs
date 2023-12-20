@@ -64,10 +64,26 @@ public sealed class RadioSystem : EntitySystem
         if (!_messages.Add(message))
             return;
 
-        var name = TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled
-            ? Identity.Name(messageSource, EntityManager) // Frontier
-            //? mask.VoiceName Frontier - Do not show fake name on radio.
-            : MetaData(messageSource).EntityName;
+        var name = MetaData(messageSource).EntityName;
+        var mode = "Unknown";
+
+        if (TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled)
+        {
+            switch (mask.Mode)
+            {
+                case RadioMode.Real:
+                    mode = Identity.Name(messageSource, EntityManager);
+                    break;
+                case RadioMode.Fake:
+                    mode = mask.VoiceName;
+                    break;
+                case RadioMode.Unknown:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {mask.VoiceName}!");
+            }
+            name = mode;
+        }
 
         name = FormattedMessage.EscapeText(name);
 

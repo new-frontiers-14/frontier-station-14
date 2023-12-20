@@ -12,4 +12,8 @@ public sealed partial class VoiceMaskerComponent : Component
     public string Action = "ActionChangeVoiceMask";
 
     [DataField("actionEntity")] public EntityUid? ActionEntity;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("mode")]
+    [AutoNetworkedField]
+    public RadioMode Mode = RadioMode.Unknown;
 }
