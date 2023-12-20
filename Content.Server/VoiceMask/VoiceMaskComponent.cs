@@ -1,6 +1,6 @@
 namespace Content.Server.VoiceMask;
 
-public enum RadioMode : byte // Frontier 
+public enum Mode : byte // Frontier 
 {
     Real,
     Fake,
@@ -16,5 +16,5 @@ public sealed partial class VoiceMaskComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("mode")]
     [AutoNetworkedField]
-    public RadioMode Mode = RadioMode.Unknown;
+    public Mode Mode = Mode.Unknown;
 }

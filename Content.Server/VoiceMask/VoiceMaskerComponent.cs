@@ -3,6 +3,13 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.VoiceMask;
 
+public enum RadioMode : byte // Frontier 
+{
+    Real,
+    Fake,
+    Unknown
+}
+
 [RegisterComponent]
 public sealed partial class VoiceMaskerComponent : Component
 {
@@ -13,7 +20,7 @@ public sealed partial class VoiceMaskerComponent : Component
 
     [DataField("actionEntity")] public EntityUid? ActionEntity;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("mode")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("radioMode")]
     [AutoNetworkedField]
-    public RadioMode Mode = RadioMode.Unknown;
+    public RadioMode RadioMode = RadioMode.Unknown;
 }

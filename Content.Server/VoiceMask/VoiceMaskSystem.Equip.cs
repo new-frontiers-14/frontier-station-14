@@ -22,6 +22,20 @@ public sealed partial class VoiceMaskSystem
         var comp = EnsureComp<VoiceMaskComponent>(user);
         comp.VoiceName = component.LastSetName;
 
+        switch (component.RadioMode)
+        {
+            case RadioMode.Real:
+                comp.Mode = Mode.Real;
+                break;
+            case RadioMode.Fake:
+                comp.Mode = Mode.Fake;
+                break;
+            case RadioMode.Unknown:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {component.RadioMode}!");
+        }
+
         _actions.AddAction(user, ref component.ActionEntity, component.Action, uid);
     }
 

@@ -71,16 +71,16 @@ public sealed class RadioSystem : EntitySystem
         {
             switch (mask.Mode)
             {
-                case RadioMode.Real:
+                case Mode.Real:
                     mode = Identity.Name(messageSource, EntityManager);
                     break;
-                case RadioMode.Fake:
+                case Mode.Fake:
                     mode = mask.VoiceName;
                     break;
-                case RadioMode.Unknown:
+                case Mode.Unknown:
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {mask.VoiceName}!");
+                    throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {mask.Mode}!");
             }
             name = mode;
         }
