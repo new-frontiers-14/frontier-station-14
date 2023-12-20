@@ -14,7 +14,7 @@ public sealed partial class VoiceMaskComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)] public string VoiceName = "Unknown";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("mode")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("mode")] // Frontier 
     [AutoNetworkedField]
     public Mode Mode = Mode.Unknown;
 }

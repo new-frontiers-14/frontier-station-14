@@ -20,7 +20,7 @@ public sealed partial class VoiceMaskerComponent : Component
 
     [DataField("actionEntity")] public EntityUid? ActionEntity;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("radioMode")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("radioMode")] // Frontier 
     [AutoNetworkedField]
     public RadioMode RadioMode = RadioMode.Unknown;
 }
