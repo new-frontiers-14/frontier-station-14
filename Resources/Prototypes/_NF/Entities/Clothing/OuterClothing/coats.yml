@@ -13,3 +13,40 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatBishop
+  name: bishop's robes
+  description: Golden threads aren't actually made of gold. Bummer.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/bishop_robe.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/bishop_robe.rsi
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterCoatWitchHunter
+  name: witch hunter's coat
+  description: Looks even better under constant rain with storm wind.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/witch_hunter_coat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/witch_hunter_coat.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodChaplainHood
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterCoatCardinal
+  name: cardinal's coat
+  description: Nobody expects the spanish inquisition!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/cardinal_robe.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/cardinal_robe.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodCardinalHood
