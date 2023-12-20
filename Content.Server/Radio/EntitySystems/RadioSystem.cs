@@ -64,7 +64,7 @@ public sealed class RadioSystem : EntitySystem
         if (!_messages.Add(message))
             return;
 
-        var name = MetaData(messageSource).EntityName;
+        var name = MetaData(messageSource).EntityName; // Frontier - code block to allow multi masks.
         var mode = "Unknown";
 
         if (TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled)
@@ -83,7 +83,7 @@ public sealed class RadioSystem : EntitySystem
                     throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {mask.Mode}!");
             }
             name = mode;
-        }
+        } // Frontier - code block to allow multi masks.
 
         name = FormattedMessage.EscapeText(name);
 
