@@ -3793,20 +3793,6 @@ entities:
     - pos: 12.5,5.5
       parent: 3
       type: Transform
-- proto: Crematorium
-  entities:
-  - uid: 1563
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -9.5,-1.5
-      parent: 3
-      type: Transform
-  - uid: 1564
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 10.5,-1.5
-      parent: 3
-      type: Transform
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 1523
@@ -4094,27 +4080,13 @@ entities:
       type: Transform
 - proto: FireAxeCabinetFilled
   entities:
-  - uid: 1522
+  - uid: 81
     components:
     - pos: 1.5,19.5
       parent: 3
       type: Transform
-    - containers:
-        ItemCabinet: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 81
-      type: ContainerContainer
-- proto: FireAxeFlaming
-  entities:
-  - uid: 81
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1522
-      type: Transform
-    - canCollide: False
-      type: Physics
+    - locked: False
+      type: Lock
 - proto: Firelock
   entities:
   - uid: 68
