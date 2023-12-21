@@ -1,0 +1,14 @@
+- type: entity
+  parent: Jug
+  name: jug (Space Cleaner)
+  id: JugSpaceCleaner
+  noSpawn: true
+  components:
+    - type: Label
+      currentLabel: Space Cleaner
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          reagents:
+            - ReagentId: SpaceCleaner
+              Quantity: 200

@@ -194,14 +194,14 @@ entities:
       parent: 1
       type: Transform
     - ShutdownSubscribers:
-      - 122
-      - 133
       - 121
+      - 122
+      - 114
       type: DeviceNetwork
     - devices:
-      - 122
-      - 133
       - 121
+      - 114
+      - 122
       type: DeviceList
 - proto: AirCanister
   entities:
@@ -595,13 +595,20 @@ entities:
       type: AtmosPipeColor
 - proto: GasPipeBend
   entities:
-  - uid: 120
+  - uid: 119
     components:
     - rot: -1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 1
       type: Transform
     - color: '#990000FF'
+      type: AtmosPipeColor
+  - uid: 120
+    components:
+    - pos: 0.5,0.5
+      parent: 1
+      type: Transform
+    - color: '#03FCD3FF'
       type: AtmosPipeColor
 - proto: GasPipeStraight
   entities:
@@ -625,8 +632,20 @@ entities:
       type: AtmosPipeColor
 - proto: GasPressurePump
   entities:
-  - uid: 119
+  - uid: 115
     components:
+    - name: distribution loop pump
+      type: MetaData
+    - rot: 1.5707963267948966 rad
+      pos: -0.5,0.5
+      parent: 1
+      type: Transform
+    - color: '#03FCD3FF'
+      type: AtmosPipeColor
+  - uid: 133
+    components:
+    - name: waste loop pump
+      type: MetaData
     - pos: -0.5,-1.5
       parent: 1
       type: Transform
@@ -634,10 +653,10 @@ entities:
       type: AtmosPipeColor
 - proto: GasVentPump
   entities:
-  - uid: 133
+  - uid: 121
     components:
-    - rot: -1.5707963267948966 rad
-      pos: -0.5,0.5
+    - rot: 3.141592653589793 rad
+      pos: 0.5,-0.5
       parent: 1
       type: Transform
     - ShutdownSubscribers:
@@ -647,7 +666,7 @@ entities:
       type: AtmosPipeColor
 - proto: GasVentScrubber
   entities:
-  - uid: 121
+  - uid: 114
     components:
     - pos: -0.5,-0.5
       parent: 1
@@ -655,8 +674,6 @@ entities:
     - ShutdownSubscribers:
       - 77
       type: DeviceNetwork
-    - color: '#990000FF'
-      type: AtmosPipeColor
 - proto: GravityGeneratorMini
   entities:
   - uid: 78
@@ -773,6 +790,88 @@ entities:
       pos: 2.4393744,-0.26784068
       parent: 1
       type: Transform
+  - uid: 144
+    components:
+    - name: preflight checklist
+      type: MetaData
+    - pos: -0.87545514,-0.49337775
+      parent: 1
+      type: Transform
+    - stampState: paper_stamp-ce
+      stampedBy:
+      - stampedBorderless: False
+        stampedColor: '#C69B17FF'
+        stampedName: stamp-component-stamped-name-ce
+      - stampedBorderless: False
+        stampedColor: '#00BE00FF'
+        stampedName: stamp-component-stamped-name-approved
+      content: >-
+        [head=1]==========================[/head]
+
+        [head=1]Legman-class service ship[/head]
+
+        [head=1] [/head]
+
+        [head=1]     PREFLIGHT CHECKLIST[/head]
+
+        [head=1]==========================[/head]
+
+
+        [head=2]1. Power supply.[/head]
+
+        [head=3]1.1. Battery units.[/head]
+
+        [bullet/][ ] Check if the substation unit is anchored to the floor.
+
+        [bullet/][ ] Check if the APC unit's Main Breaker is toggled on.
+
+        [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
+
+        [head=3]1.2. P.A.C.K.M.A.N. generator unit.[/head]
+
+        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit is anchored to the floor.
+
+        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+
+        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit is set to HV output.
+
+        [bullet/][ ] Set Target Power for 9-10[bold]**[/bold] [bold]k[/bold]W.
+
+        [bullet/][ ] Start the P.A.C.K.M.A.N. generator unit.
+
+
+        [head=2]2. Atmospherics.[/head]
+
+        [head=3]2.1. Distribution Loop.[/head]
+
+        [bullet/][ ] Check if the air canister is anchored to connector port.
+
+        [bullet/][ ] Check if the distribution pump is set to normal pressure.
+
+        [bullet/][ ] Enable distribution pump.
+
+        [head=3]2.2. Waste Loop.[/head]
+
+        [bullet/][ ] Enable waste loop pump.
+
+
+        [head=2]3. Other checks.[/head]
+
+        [bullet/][ ] Check if the gyroscope is anchored, powered, and enabled.
+
+        [bullet/][ ] Check if the mini gravity generator is anchored, powered, and enabled.
+
+        [bullet/][ ] Check if the bow window shutters are closed.
+
+
+        __________________________________________________________________
+
+        [bold]*[/bold] - Legman-class service ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the P.A.C.K.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.K.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+
+        [bold]**[/bold] - Legman-class service ships have low power demand meaning that standard P.A.C.K.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
+
+        [bold]Note:[/bold] Without a working generator, fully charged battery units (SMES and substation) in unmodified Legman-class service ships can provide power for approximately 10 minutes before fully depleting their charge.
+      type: Paper
 - proto: Pen
   entities:
   - uid: 87
@@ -784,9 +883,16 @@ entities:
   entities:
   - uid: 3
     components:
-    - pos: -1.5,-0.5
+    - anchored: True
+      pos: -1.5,-0.5
       parent: 1
       type: Transform
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - type: InsertingMaterialStorage
 - proto: PottedPlantRandom
   entities:
   - uid: 65
@@ -815,6 +921,10 @@ entities:
     - pos: -0.675385,-0.84057385
       parent: 1
       type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
 - proto: ShuttleWindow
   entities:
   - uid: 6
@@ -1099,7 +1209,7 @@ entities:
   entities:
   - uid: 98
     components:
-    - pos: -0.6184354,-0.4702037
+    - pos: -0.81737554,-0.27685338
       parent: 1
       type: Transform
 ...

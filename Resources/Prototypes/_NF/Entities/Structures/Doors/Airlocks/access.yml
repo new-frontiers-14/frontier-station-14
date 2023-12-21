@@ -1,3 +1,4 @@
+# Airlocks
 - type: entity
   parent: AirlockCommand
   id: AirlockFrontierLocked
@@ -17,3 +18,21 @@
     access: [["Frontier"]]
   - type: Wires
     layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockMercenary
+  id: AirlockMercenaryLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: AccessReader
+    access: [["Mercenary"]]
+  - type: Wires
+    layoutId: AirlockMercenary
+
+- type: entity
+  parent: AirlockMercenaryGlass
+  id: AirlockMercenaryGlassLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: AccessReader
+    access: [["Mercenary"]]
