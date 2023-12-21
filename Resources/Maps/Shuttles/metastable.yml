@@ -772,7 +772,8 @@ entities:
           1,0:
             0: 65535
           1,1:
-            0: 65535
+            0: 65531
+            1: 4
           1,2:
             0: 65535
           2,0:
@@ -783,10 +784,10 @@ entities:
             0: 32767
           3,0:
             0: 20431
-            1: 32
-            2: 8192
-            3: 16
-            4: 4096
+            2: 32
+            3: 8192
+            4: 16
+            5: 4096
           3,1:
             0: 4375
           -1,1:
@@ -798,24 +799,28 @@ entities:
           -1,-4:
             0: 65408
           -1,-3:
-            0: 65535
+            0: 57343
+            6: 8192
           -1,-2:
             0: 65535
           -1,-1:
             0: 30719
-            5: 34816
+            7: 2048
+            1: 32768
           0,-3:
             0: 65535
           0,-2:
             0: 65535
           0,-1:
             0: 56831
-            5: 512
-            6: 8192
+            1: 512
+            8: 8192
           1,-3:
-            0: 65535
+            0: 49151
+            7: 16384
           1,-2:
-            0: 65535
+            0: 64511
+            9: 1024
           1,-1:
             0: 65535
           1,-4:
@@ -833,7 +838,8 @@ entities:
           3,-2:
             0: 65399
           3,-1:
-            0: 65535
+            0: 65533
+            7: 2
           0,2:
             0: 65535
           0,3:
@@ -851,7 +857,8 @@ entities:
           -3,0:
             0: 65535
           -3,1:
-            0: 65535
+            0: 65503
+            8: 32
           -3,2:
             0: 53247
           -2,0:
@@ -863,7 +870,8 @@ entities:
           -2,3:
             0: 207
           -1,2:
-            0: 65535
+            0: 65531
+            10: 4
           -1,3:
             0: 4095
           -4,-1:
@@ -877,7 +885,9 @@ entities:
           -2,-2:
             0: 65535
           -2,-1:
-            0: 65535
+            0: 64507
+            7: 4
+            10: 1024
           0,-4:
             0: 65520
           3,-4:
@@ -900,6 +910,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 19.950384
+          - 75.051445
           - 0
           - 0
           - 0
@@ -973,8 +998,53 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+          - 21.813705
+          - 82.06108
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
           - 21.6852
           - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14993
+          moles:
+          - 18.472576
+          - 69.49208
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -1015,16 +1085,6 @@ entities:
     - parent: 124
       type: Transform
     - container: 124
-      type: InstantAction
-- proto: ActionToggleInternals
-  entities:
-  - uid: 1138
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1137
-      type: Transform
-    - container: 1137
       type: InstantAction
 - proto: ActionToggleLight
   entities:
@@ -1356,7 +1416,7 @@ entities:
     - pos: -4.5,-6.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -27241.488
+    - secondsUntilStateChange: -28297.084
       state: Opening
       type: Door
   - uid: 455
@@ -1406,7 +1466,7 @@ entities:
     - pos: -10.5,-3.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -26154.977
+    - secondsUntilStateChange: -27210.572
       state: Opening
       type: Door
   - uid: 449
@@ -1481,12 +1541,12 @@ entities:
       type: Transform
   - uid: 1096
     components:
-    - pos: 6.4073234,5.4204082
+    - pos: 6.5294156,5.4516206
       parent: 2
       type: Transform
   - uid: 1097
     components:
-    - pos: 6.5531564,5.4204082
+    - pos: 6.772378,5.4516206
       parent: 2
       type: Transform
 - proto: AmeShielding
@@ -1559,28 +1619,6 @@ entities:
       pos: -7.5,-2.5
       parent: 2
       type: Transform
-- proto: AppraisalTool
-  entities:
-  - uid: 344
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: ItemCooldown
-    - type: InsideEntityStorage
-  - uid: 1130
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: ItemCooldown
-    - type: InsideEntityStorage
 - proto: AtmosDeviceFanTiny
   entities:
   - uid: 476
@@ -1931,46 +1969,13 @@ entities:
     - links:
       - 1511
       type: DeviceLinkSink
-- proto: Bloodpack
+- proto: BorgCharger
   entities:
-  - uid: 188
+  - uid: 386
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
+    - pos: -7.5,-3.5
+      parent: 2
       type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 190
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 191
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: BorgChargerCircuitboard
-  entities:
-  - uid: 513
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: BoxBeaker
   entities:
   - uid: 1276
@@ -1978,28 +1983,6 @@ entities:
     - pos: -0.56411517,-9.435656
       parent: 2
       type: Transform
-- proto: BoxEncryptionKeyCargo
-  entities:
-  - uid: 1386
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: BoxEncryptionKeyService
-  entities:
-  - uid: 1380
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: BoxFolderBlue
   entities:
   - uid: 311
@@ -2007,24 +1990,6 @@ entities:
     - pos: 3.7198377,9.857843
       parent: 2
       type: Transform
-- proto: Brutepack
-  entities:
-  - uid: 1272
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1273
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: Bucket
   entities:
   - uid: 1203
@@ -2032,24 +1997,6 @@ entities:
     - pos: 8.118639,-8.296881
       parent: 2
       type: Transform
-  - uid: 1204
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1401
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: CableApcExtension
   entities:
   - uid: 52
@@ -3715,13 +3662,6 @@ entities:
     - pos: 1.5,-10.5
       parent: 2
       type: Transform
-- proto: ChemBag
-  entities:
-  - uid: 1328
-    components:
-    - pos: 0.38201225,-10.493261
-      parent: 2
-      type: Transform
 - proto: CircuitImprinter
   entities:
   - uid: 228
@@ -3739,6 +3679,13 @@ entities:
     - links:
       - 183
       type: DeviceLinkSink
+- proto: ClosetChefFilled
+  entities:
+  - uid: 344
+    components:
+    - pos: 6.5,-5.5
+      parent: 2
+      type: Transform
 - proto: ClosetEmergency
   entities:
   - uid: 1297
@@ -3782,65 +3729,11 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
-- proto: ClosetJanitor
+- proto: ClosetJanitorFilled
   entities:
-  - uid: 512
+  - uid: 110
     components:
-    - pos: 13.735002,-3.4497733
-      parent: 2
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14972
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 540
-          - 1366
-          - 111
-          - 110
-          - 1373
-          - 1365
-          - 1204
-          - 1374
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: ClothingBackpackCaptain
-  entities:
-  - uid: 151
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingBackpackChemistry
-  entities:
-  - uid: 1464
-    components:
-    - pos: 0.41695547,-10.524511
+    - pos: 13.5,-3.5
       parent: 2
       type: Transform
 - proto: ClothingBackpackDuffelMedical
@@ -3863,68 +3756,6 @@ entities:
           - 1525
       type: ContainerContainer
     - type: ItemCooldown
-- proto: ClothingBackpackSatchelCaptain
-  entities:
-  - uid: 1074
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingBackpackSatchelScience
-  entities:
-  - uid: 1121
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1146
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 549
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingBackpackScience
-  entities:
-  - uid: 1116
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1145
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 549
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingCloakCmo
-  entities:
-  - uid: 1114
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingEyesGlassesChemical
   entities:
   - uid: 1309
@@ -3932,68 +3763,6 @@ entities:
     - pos: 1.45382,-9.0719795
       parent: 2
       type: Transform
-- proto: ClothingEyesGlassesMeson
-  entities:
-  - uid: 1293
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHandsGlovesCaptain
-  entities:
-  - uid: 1040
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHandsGlovesColorBlack
-  entities:
-  - uid: 1323
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1325
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHandsGlovesColorYellow
-  entities:
-  - uid: 1109
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1310
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingHeadHatAnimalCatBrown
   entities:
   - uid: 775
@@ -4004,48 +3773,6 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
-- proto: ClothingHeadHatBeretCmo
-  entities:
-  - uid: 1111
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHeadHatBeretRND
-  entities:
-  - uid: 1118
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHeadHatBeretSecurity
-  entities:
-  - uid: 1331
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1341
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingHeadHatBowlerHat
   entities:
   - uid: 774
@@ -4056,24 +3783,6 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
-- proto: ClothingHeadHatCapcap
-  entities:
-  - uid: 1102
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingHeadHatChef
-  entities:
-  - uid: 1317
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
 - proto: ClothingHeadHatFez
   entities:
   - uid: 766
@@ -4096,24 +3805,6 @@ entities:
       type: Physics
 - proto: ClothingMaskBreath
   entities:
-  - uid: 1127
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1141
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 1304
     components:
     - flags: InContainer
@@ -4128,366 +3819,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 1297
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingNeckCloakCap
-  entities:
-  - uid: 323
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingNeckCloakCe
-  entities:
-  - uid: 1106
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterApronBotanist
-  entities:
-  - uid: 1213
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterApronChef
-  entities:
-  - uid: 1316
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-- proto: ClothingOuterCoatLabChem
-  entities:
-  - uid: 46
-    components:
-    - pos: 0.29195547,-10.446386
-      parent: 2
-      type: Transform
-- proto: ClothingOuterCoatLabCmo
-  entities:
-  - uid: 1113
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterCoatRnd
-  entities:
-  - uid: 1122
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterCoatRobo
-  entities:
-  - uid: 1357
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitCap
-  entities:
-  - uid: 153
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitEngineeringWhite
-  entities:
-  - uid: 1105
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            This decreases your running speed by [color=yellow]20%[/color].
-
-            This decreases your walking speed by [color=yellow]25%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Blunt[/color] damage reduced by [color=lightblue]20%[/color].
-
-            - [color=yellow]Slash[/color] damage reduced by [color=lightblue]20%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]20%[/color].
-
-            - [color=yellow]Heat[/color] damage reduced by [color=lightblue]60%[/color].
-
-            - [color=yellow]Radiation[/color] damage reduced by [color=lightblue]100%[/color].
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=orange]Explosion[/color] damage reduced by [color=lightblue]80%[/color].
-          priority: 0
-          component: Armor
-        title: null
-      type: GroupExamine
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitMedical
-  entities:
-  - uid: 1115
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
-      type: Transform
-    - group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            This decreases your running speed by [color=yellow]5%[/color].
-
-            This decreases your walking speed by [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]90%[/color].
-          priority: 0
-          component: Armor
-        title: null
-      type: GroupExamine
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitRd
-  entities:
-  - uid: 1119
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSpatio
-  entities:
-  - uid: 1132
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1139
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterJacketChef
-  entities:
-  - uid: 1319
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-- proto: ClothingShoesBootsCombat
-  entities:
-  - uid: 1339
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1359
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingShoesBootsMag
-  entities:
-  - uid: 1125
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1134
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtCaptain
-  entities:
-  - uid: 541
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtChemistry
-  entities:
-  - uid: 1463
-    components:
-    - pos: 0.30758047,-10.555761
-      parent: 2
-      type: Transform
-- proto: ClothingUniformJumpskirtChiefEngineer
-  entities:
-  - uid: 1104
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtCMO
-  entities:
-  - uid: 1110
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtRoboticist
-  entities:
-  - uid: 1151
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtScientist
-  entities:
-  - uid: 1120
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpskirtSecGrey
-  entities:
-  - uid: 1360
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitCaptain
-  entities:
-  - uid: 1100
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitChemistry
-  entities:
-  - uid: 1465
-    components:
-    - pos: 0.30758047,-10.602636
-      parent: 2
-      type: Transform
-- proto: ClothingUniformJumpsuitChiefEngineerNT
-  entities:
-  - uid: 1103
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitCMO
-  entities:
-  - uid: 1112
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 22
       type: Transform
     - canCollide: False
       type: Physics
@@ -4529,48 +3860,6 @@ entities:
     - pos: 10.168591,-8.385403
       parent: 2
       type: Transform
-- proto: ClothingUniformJumpsuitRoboticist
-  entities:
-  - uid: 1358
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitScientist
-  entities:
-  - uid: 1117
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitSecGrey
-  entities:
-  - uid: 1332
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1363
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingUniformJumpsuitTshirtJeans
   entities:
   - uid: 71
@@ -4650,26 +3939,6 @@ entities:
         bank-ATM-cashSlot: !type:ContainerSlot {}
       type: ContainerContainer
     - type: ItemSlots
-- proto: CornSeeds
-  entities:
-  - uid: 1194
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1199
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: CrateEngineeringSolar
   entities:
   - uid: 1090
@@ -4677,17 +3946,6 @@ entities:
     - pos: 7.5,6.5
       parent: 2
       type: Transform
-- proto: Crowbar
-  entities:
-  - uid: 465
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: CryoPod
   entities:
   - uid: 189
@@ -4764,58 +4022,6 @@ entities:
           - 775
           - 776
       type: ContainerContainer
-- proto: DrinkGlass
-  entities:
-  - uid: 1167
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1168
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1169
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1171
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1178
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1180
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1181
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1183
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1185
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1186
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
 - proto: Dropper
   entities:
   - uid: 1336
@@ -4823,48 +4029,13 @@ entities:
     - pos: 1.5931523,-8.958708
       parent: 2
       type: Transform
-- proto: EggySeeds
+- proto: ExosuitFabricator
   entities:
-  - uid: 1193
+  - uid: 323
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
+    - pos: -7.5,-4.5
+      parent: 2
       type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1195
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: EpinephrineChemistryBottle
-  entities:
-  - uid: 1242
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ExosuitFabricatorMachineCircuitboard
-  entities:
-  - uid: 514
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: FaxMachineShip
   entities:
   - uid: 32
@@ -4880,26 +4051,6 @@ entities:
       pos: -1.5,-0.5
       parent: 2
       type: Transform
-- proto: FireExtinguisher
-  entities:
-  - uid: 1129
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1143
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: Firelock
   entities:
   - uid: 1490
@@ -4927,6 +4078,9 @@ entities:
     - pos: -2.5,-1.5
       parent: 2
       type: Transform
+    - secondsUntilStateChange: -836.7099
+      state: Closing
+      type: Door
     - ShutdownSubscribers:
       - 1488
       - 1502
@@ -5044,87 +4198,6 @@ entities:
       type: Transform
     - fixtures: {}
       type: Fixtures
-- proto: FoodBowlBig
-  entities:
-  - uid: 1187
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1188
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1189
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1190
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1191
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-- proto: FoodPlate
-  entities:
-  - uid: 1170
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1172
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1175
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1182
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1184
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-- proto: FoodPlateSmall
-  entities:
-  - uid: 1153
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1174
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1176
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1177
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-  - uid: 1179
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
 - proto: FoodPlateTin
   entities:
   - uid: 1165
@@ -5132,17 +4205,6 @@ entities:
     - pos: 8.734971,-6.4458947
       parent: 2
       type: Transform
-- proto: GasAnalyzer
-  entities:
-  - uid: 1152
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: GasFilter
   entities:
   - uid: 1291
@@ -7067,24 +6129,6 @@ entities:
       type: Transform
     - color: '#FF1212FF'
       type: AtmosPipeColor
-- proto: Gauze
-  entities:
-  - uid: 1263
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1264
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: GravityGeneratorMini
   entities:
   - uid: 1462
@@ -7269,106 +6313,6 @@ entities:
     - pos: 13.5,-2.5
       parent: 2
       type: Transform
-- proto: HandheldGPSBasic
-  entities:
-  - uid: 1128
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1140
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HandheldHealthAnalyzer
-  entities:
-  - uid: 1241
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HandLabeler
-  entities:
-  - uid: 1123
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - assignedLabel: sugar
-      type: HandLabeler
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-    - type: ItemCooldown
-- proto: HolofanProjector
-  entities:
-  - uid: 1108
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 24
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HydroponicsToolClippers
-  entities:
-  - uid: 1212
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HydroponicsToolHatchet
-  entities:
-  - uid: 1210
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HydroponicsToolMiniHoe
-  entities:
-  - uid: 1211
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: HydroponicsToolSpade
-  entities:
-  - uid: 1209
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: hydroponicsTrayAnchored
   entities:
   - uid: 138
@@ -7381,17 +6325,6 @@ entities:
     - pos: 6.5,-10.5
       parent: 2
       type: Transform
-- proto: HyperlinkBookSpaceLaw
-  entities:
-  - uid: 1340
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 551
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: JanitorialTrolley
   entities:
   - uid: 1349
@@ -7402,26 +6335,6 @@ entities:
       type: Transform
 - proto: Jug
   entities:
-  - uid: 110
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: SpaceCleaner
-            Quantity: 200
-      type: SolutionContainerManager
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 1173
     components:
     - name: jug (salt)
@@ -7461,312 +6374,6 @@ entities:
             Quantity: 200
       type: SolutionContainerManager
     - currentLabel: universal enzyme
-      type: Label
-  - uid: 1207
-    components:
-    - flags: InContainer
-      name: jug (ez nutrient)
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: EZNutrient
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: ez nutrient
-      type: Label
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1208
-    components:
-    - flags: InContainer
-      name: jug (robust harvest)
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: RobustHarvest
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: robust harvest
-      type: Label
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1219
-    components:
-    - name: jug (phosphorus)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Phosphorus
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: phosphorus
-      type: Label
-  - uid: 1221
-    components:
-    - name: jug (nitrogen)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Nitrogen
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: nitrogen
-      type: Label
-  - uid: 1222
-    components:
-    - name: jug (hydrogen)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Hydrogen
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: hydrogen
-      type: Label
-  - uid: 1223
-    components:
-    - name: jug (sugar)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Sugar
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: sugar
-      type: Label
-  - uid: 1249
-    components:
-    - name: jug (sodium)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Sodium
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: sodium
-      type: Label
-  - uid: 1250
-    components:
-    - name: jug (chlorine)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Chlorine
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: chlorine
-      type: Label
-  - uid: 1251
-    components:
-    - name: jug (oxygen)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Oxygen
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: oxygen
-      type: Label
-  - uid: 1252
-    components:
-    - name: jug (carbon)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Carbon
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: carbon
-      type: Label
-  - uid: 1253
-    components:
-    - name: jug (sulfur)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Sulfur
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: sulfur
-      type: Label
-  - uid: 1254
-    components:
-    - name: jug (radium)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Radium
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: radium
-      type: Label
-  - uid: 1255
-    components:
-    - name: jug (potassium)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Potassium
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: potassium
-      type: Label
-  - uid: 1256
-    components:
-    - name: jug (silicon)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Silicon
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: silicon
-      type: Label
-  - uid: 1257
-    components:
-    - name: jug (ethanol)
-      type: MetaData
-    - pos: 1.5171255,-9.498156
-      parent: 2
-      type: Transform
-    - solutions:
-        beaker:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 200
-          reagents:
-          - data: null
-            ReagentId: Ethanol
-            Quantity: 200
-      type: SolutionContainerManager
-    - currentLabel: ethanol
       type: Label
   - uid: 1258
     components:
@@ -7884,125 +6491,23 @@ entities:
     - pos: 1.7180693,-8.41663
       parent: 2
       type: Transform
-- proto: LightReplacer
+- proto: LockerBotanistFilled
   entities:
-  - uid: 1374
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: LiquidOxygenCanister
-  entities:
-  - uid: 1292
-    components:
-    - pos: 8.5,1.5
-      parent: 2
-      type: Transform
-- proto: LockerBotanist
-  entities:
-  - uid: 120
+  - uid: 191
     components:
     - pos: 6.5,-8.5
       parent: 2
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14972
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1213
-          - 1199
-          - 1194
-          - 1211
-          - 1210
-          - 1195
-          - 1209
-          - 1212
-          - 1208
-          - 1207
-          - 1197
-          - 1193
-          - 1196
-          - 1200
-          - 1198
-          - 1201
-          - 1202
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerCaptain
+- proto: LockerCaptainFilledHardsuit
   entities:
-  - uid: 21
+  - uid: 46
     components:
     - pos: -0.5,-1.5
       parent: 2
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14972
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1102
-          - 151
-          - 153
-          - 323
-          - 541
-          - 1040
-          - 1074
-          - 1099
-          - 1100
-          - 1380
-          - 1386
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerChiefEngineer
+- proto: LockerChiefEngineerFilledHardsuit
   entities:
-  - uid: 24
+  - uid: 188
     components:
     - pos: 1.5,-0.5
       parent: 2
@@ -8010,10 +6515,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 293.1497
+        temperature: 293.1495
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.606311
+        - 6.042789
         - 0
         - 0
         - 0
@@ -8025,25 +6530,9 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1109
-          - 1108
-          - 1106
-          - 1105
-          - 1104
-          - 1103
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerChiefMedicalOfficer
+- proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:
-  - uid: 22
+  - uid: 151
     components:
     - pos: 1.5,-1.5
       parent: 2
@@ -8051,10 +6540,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 293.1497
+        temperature: 293.14957
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.734816
+        - 6.5262127
         - 0
         - 0
         - 0
@@ -8066,25 +6555,16 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1110
-          - 1111
-          - 1112
-          - 1113
-          - 1114
-          - 1115
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerEngineer
+- proto: LockerDetectiveFilled
   entities:
-  - uid: 389
+  - uid: 172
+    components:
+    - pos: -1.5,8.5
+      parent: 2
+      type: Transform
+- proto: LockerEngineerFilled
+  entities:
+  - uid: 153
     components:
     - pos: 6.5,4.5
       parent: 2
@@ -8092,10 +6572,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 293.14972
+        temperature: 293.14957
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.734816
+        - 6.5262127
         - 0
         - 0
         - 0
@@ -8107,128 +6587,9 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1310
-          - 1293
-          - 649
-          - 1152
-          - 1296
-          - 462
-          - 1295
-          - 465
-          - 466
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerFreezerBase
+- proto: LockerResearchDirectorFilledHardsuit
   entities:
-  - uid: 136
-    components:
-    - pos: 6.5,-5.5
-      parent: 2
-      type: Transform
-    - locked: False
-      type: Lock
-    - fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.48
-            - 0.25,-0.48
-            - 0.25,0.48
-            - -0.25,0.48
-          mask:
-          - Impassable
-          - MidImpassable
-          - LowImpassable
-          layer:
-          - BulletImpassable
-          - Opaque
-          density: 75
-          hard: True
-          restitution: 0
-          friction: 0.4
-      type: Fixtures
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14975
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      open: True
-      removedMasks: 20
-      type: EntityStorage
-    - isPlaceable: True
-      type: PlaceableSurface
-- proto: LockerMedicine
-  entities:
-  - uid: 199
-    components:
-    - pos: -2.5,-8.5
-      parent: 2
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14972
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1241
-          - 1242
-          - 1261
-          - 1277
-          - 1224
-          - 188
-          - 191
-          - 190
-          - 1290
-          - 1289
-          - 1260
-          - 1235
-          - 1243
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerResearchDirector
-  entities:
-  - uid: 20
+  - uid: 120
     components:
     - pos: -0.5,-0.5
       parent: 2
@@ -8236,10 +6597,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 293.14972
+        temperature: 293.14957
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.734816
+        - 6.5262127
         - 0
         - 0
         - 0
@@ -8251,29 +6612,9 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1376
-          - 1354
-          - 1122
-          - 1121
-          - 1120
-          - 1119
-          - 1118
-          - 1116
-          - 1117
-          - 1123
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerSalvageSpecialist
+- proto: LockerSalvageSpecialistFilledHardsuit
   entities:
-  - uid: 385
+  - uid: 20
     components:
     - pos: -10.5,5.5
       parent: 2
@@ -8281,10 +6622,10 @@ entities:
     - air:
         volume: 200
         immutable: False
-        temperature: 99.49301
+        temperature: 293.1495
         moles:
-        - 0
-        - 0
+        - 1.606311
+        - 6.042789
         - 0
         - 0
         - 0
@@ -8296,197 +6637,31 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1133
-          - 1132
-          - 1124
-          - 1125
-          - 1126
-          - 1127
-          - 1128
-          - 1129
-          - 1130
-          - 1131
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-  - uid: 386
+  - uid: 21
     components:
     - pos: -11.5,5.5
       parent: 2
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 99.49301
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1141
-          - 1140
-          - 344
-          - 1139
-          - 1137
-          - 1136
-          - 1135
-          - 1134
-          - 1142
-          - 1143
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerScientist
+- proto: LockerScienceFilled
   entities:
-  - uid: 549
-    components:
-    - pos: -5.5,-1.5
-      parent: 2
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 99.138466
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 515
-          - 1146
-          - 1145
-          - 1144
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-  - uid: 550
+  - uid: 24
     components:
     - pos: -5.5,-3.5
       parent: 2
       type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.14972
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1398
-          - 1151
-          - 1399
-          - 1400
-          - 513
-          - 514
-          - 1401
-          - 1357
-          - 1358
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-- proto: LockerSecurity
-  entities:
-  - uid: 551
+  - uid: 136
     components:
-    - pos: -1.5,8.5
+    - pos: -5.5,-1.5
       parent: 2
       type: Transform
-    - locked: False
-      type: Lock
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 93.465614
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1340
-          - 1363
-          - 1360
-          - 1332
-          - 1339
-          - 1325
-          - 1359
-          - 1331
-          - 1341
-          - 1323
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
+- proto: LockerWallMedicalFilled
+  entities:
+  - uid: 22
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -2.5,-12.5
+      parent: 2
+      type: Transform
 - proto: MachineArtifactAnalyzer
   entities:
   - uid: 248
@@ -8498,20 +6673,6 @@ entities:
     - links:
       - 246
       type: DeviceLinkSink
-- proto: MachineFrame
-  entities:
-  - uid: 172
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.5,-10.5
-      parent: 2
-      type: Transform
-  - uid: 511
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -7.5,-3.5
-      parent: 2
-      type: Transform
 - proto: MagazineBoxMagnum
   entities:
   - uid: 526
@@ -8569,174 +6730,6 @@ entities:
     - links:
       - 183
       type: DeviceLinkSink
-- proto: MedicatedSuture
-  entities:
-  - uid: 1262
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: Medkit
-  entities:
-  - uid: 1398
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: MedkitBrute
-  entities:
-  - uid: 1261
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - storageUsed: 57
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1262
-          - 1263
-          - 1264
-          - 1265
-          - 1266
-          - 1267
-          - 1268
-          - 1269
-          - 1270
-          - 1271
-          - 1272
-          - 1273
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: MedkitBurn
-  entities:
-  - uid: 1224
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - storageUsed: 48
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1225
-          - 1226
-          - 1227
-          - 1228
-          - 1229
-          - 1230
-          - 1231
-          - 1232
-          - 1233
-          - 1234
-          - 1418
-          - 1436
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: MedkitO2
-  entities:
-  - uid: 1277
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - storageUsed: 14
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1278
-          - 1279
-          - 1280
-          - 1281
-          - 1282
-          - 1284
-          - 1283
-          - 1285
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: MedkitRadiation
-  entities:
-  - uid: 1235
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - storageUsed: 10
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1236
-          - 1237
-          - 1238
-          - 1239
-          - 1240
-          - 1467
-          - 1468
-          - 1475
-          - 1479
-          - 1480
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: MedkitToxin
-  entities:
-  - uid: 1243
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - storageUsed: 10
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1244
-          - 1245
-          - 1246
-          - 1247
-          - 1248
-          - 1438
-          - 1439
-          - 1450
-          - 1459
-          - 1460
-      type: ContainerContainer
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: MonkeyCube
   entities:
   - uid: 38
@@ -8749,17 +6742,6 @@ entities:
     - pos: 8.513721,-6.241157
       parent: 2
       type: Transform
-- proto: MopItem
-  entities:
-  - uid: 540
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: MusicianPDA
   entities:
   - uid: 1350
@@ -8797,37 +6779,8 @@ entities:
     - toggleActionEntity: 1351
       type: UnpoweredFlashlight
     - type: ActionsContainer
-- proto: NetworkConfigurator
-  entities:
-  - uid: 1376
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: NitrogenTankFilled
   entities:
-  - uid: 1131
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1142
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 1298
     components:
     - flags: InContainer
@@ -8855,81 +6808,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: NodeScanner
-  entities:
-  - uid: 1144
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 549
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: Ointment
-  entities:
-  - uid: 1225
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1227
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1418
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1436
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: OintmentAdvanced1
-  entities:
-  - uid: 1226
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: OreBag
-  entities:
-  - uid: 1126
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1135
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: OreProcessor
   entities:
   - uid: 384
@@ -8937,34 +6815,15 @@ entities:
     - pos: -8.5,7.5
       parent: 2
       type: Transform
+- proto: OxygenCanister
+  entities:
+  - uid: 111
+    components:
+    - pos: 8.5,1.5
+      parent: 2
+      type: Transform
 - proto: OxygenTankFilled
   entities:
-  - uid: 1124
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1137
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - toggleActionEntity: 1138
-      type: GasTank
-    - canCollide: False
-      type: Physics
-    - type: ActionsContainer
-    - containers:
-        actions: !type:Container
-          ents:
-          - 1138
-      type: ContainerContainer
-    - type: InsideEntityStorage
   - uid: 1301
     components:
     - flags: InContainer
@@ -9004,68 +6863,6 @@ entities:
       type: Paper
     - canCollide: False
       type: Physics
-- proto: Pickaxe
-  entities:
-  - uid: 1133
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 385
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1136
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 386
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: PillBicaridine
-  entities:
-  - uid: 1265
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1266
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1267
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1268
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1269
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: PillCanister
   entities:
   - uid: 1288
@@ -9073,254 +6870,6 @@ entities:
     - pos: -0.25187993,-9.548609
       parent: 2
       type: Transform
-- proto: PillDermaline
-  entities:
-  - uid: 1228
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1229
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1230
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1231
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1232
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: PillDexalin
-  entities:
-  - uid: 1278
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1279
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1280
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1281
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1282
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: PillDylovene
-  entities:
-  - uid: 1244
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1245
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1246
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1247
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1248
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1438
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1439
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1450
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1459
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1460
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1243
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: PillHyronalin
-  entities:
-  - uid: 1236
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1237
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1238
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1239
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1240
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1467
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1468
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1475
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1479
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1480
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1235
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: PillSpaceDrugs
   entities:
   - uid: 1294
@@ -9328,51 +6877,6 @@ entities:
     - pos: -5.783679,-6.509516
       parent: 2
       type: Transform
-- proto: PillTricordrazine
-  entities:
-  - uid: 1233
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1234
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1224
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1270
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1271
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1261
-      type: Transform
-    - canCollide: False
-      type: Physics
-- proto: Plunger
-  entities:
-  - uid: 1373
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: PortableScrubber
   entities:
   - uid: 387
@@ -9380,26 +6884,6 @@ entities:
     - pos: 6.5,1.5
       parent: 2
       type: Transform
-- proto: PotatoSeeds
-  entities:
-  - uid: 1197
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1200
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: PottedPlantRandom
   entities:
   - uid: 1405
@@ -9734,17 +7218,6 @@ entities:
     - pos: -9.5,-0.5
       parent: 2
       type: Transform
-- proto: ProximitySensor
-  entities:
-  - uid: 1400
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: Rack
   entities:
   - uid: 519
@@ -10087,17 +7560,6 @@ entities:
     - pos: 8.5,-14.5
       parent: 2
       type: Transform
-- proto: RemoteSignaller
-  entities:
-  - uid: 1354
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 20
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ResearchAndDevelopmentServer
   entities:
   - uid: 229
@@ -10105,17 +7567,6 @@ entities:
     - pos: -10.5,0.5
       parent: 2
       type: Transform
-- proto: RightArmBorg
-  entities:
-  - uid: 1399
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 550
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: RollerBedSpawnFolded
   entities:
   - uid: 1481
@@ -10134,24 +7585,9 @@ entities:
   entities:
   - uid: 515
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 549
+    - pos: -7.688261,0.75153637
+      parent: 2
       type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: Screwdriver
-  entities:
-  - uid: 462
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: SecBreachingHammer
   entities:
   - uid: 1326
@@ -10607,28 +8043,6 @@ entities:
     - pos: 8.5683975,-8.66102
       parent: 2
       type: Transform
-- proto: SprayBottleSpaceCleaner
-  entities:
-  - uid: 111
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: SprayPainter
-  entities:
-  - uid: 649
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: StoolBar
   entities:
   - uid: 1159
@@ -10658,61 +8072,6 @@ entities:
     - pos: 6.5,7.5
       parent: 2
       type: Transform
-- proto: Syringe
-  entities:
-  - uid: 1260
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1289
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1290
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 199
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: SyringeInaprovaline
-  entities:
-  - uid: 1283
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1284
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
-  - uid: 1285
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1277
-      type: Transform
-    - canCollide: False
-      type: Physics
 - proto: Table
   entities:
   - uid: 31
@@ -10766,14 +8125,15 @@ entities:
     - pos: 9.5,-6.5
       parent: 2
       type: Transform
+  - uid: 389
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 1.5,-9.5
+      parent: 2
+      type: Transform
   - uid: 1259
     components:
     - pos: 1.5,-8.5
-      parent: 2
-      type: Transform
-  - uid: 1286
-    components:
-    - pos: 1.5,-9.5
       parent: 2
       type: Transform
 - proto: TableCounterWood
@@ -10945,57 +8305,6 @@ entities:
       pos: 0.5,8.5
       parent: 2
       type: Transform
-- proto: TomatoSeeds
-  entities:
-  - uid: 1196
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1201
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ToyAi
-  entities:
-  - uid: 1099
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 21
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: TrashBag
-  entities:
-  - uid: 1365
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1366
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 512
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: TrashBananaPeel
   entities:
   - uid: 1440
@@ -11003,17 +8312,6 @@ entities:
     - pos: 11.458923,-1.5594192
       parent: 2
       type: Transform
-- proto: trayScanner
-  entities:
-  - uid: 1296
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: Vapor
   entities:
   - uid: 1516
@@ -11085,6 +8383,48 @@ entities:
       thrownTime: 2415.073673
       thrower: invalid
       type: ThrownItem
+- proto: VendingMachineChefDrobe
+  entities:
+  - uid: 199
+    components:
+    - pos: 1.5,-3.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 385
+    components:
+    - pos: 0.5,-10.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 466
+    components:
+    - pos: -1.5,-3.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineHydrobe
+  entities:
+  - uid: 190
+    components:
+    - pos: 2.5,-3.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 462
+    components:
+    - pos: -0.5,-3.5
+      parent: 2
+      type: Transform
+- proto: VendingMachineSciDrobe
+  entities:
+  - uid: 465
+    components:
+    - pos: 0.5,-3.5
+      parent: 2
+      type: Transform
 - proto: WallReinforced
   entities:
   - uid: 73
@@ -12470,37 +9810,6 @@ entities:
     - pos: -4.392517,11.3763
       parent: 2
       type: Transform
-- proto: WelderIndustrialAdvanced
-  entities:
-  - uid: 1295
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: WheatSeeds
-  entities:
-  - uid: 1198
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 1202
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 120
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: Windoor
   entities:
   - uid: 154
@@ -12566,15 +9875,4 @@ entities:
       pos: -4.5,-4.5
       parent: 2
       type: Transform
-- proto: Wrench
-  entities:
-  - uid: 466
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 389
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 ...

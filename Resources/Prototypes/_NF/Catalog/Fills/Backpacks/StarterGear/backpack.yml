@@ -1,7 +1,7 @@
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackMerc
-  id: ClothingBackpackMercFilled
+  parent: ClothingBackpackMercenary
+  id: ClothingBackpackMercenaryFilled
   components:
     - type: StorageFill
       contents:
@@ -19,3 +19,23 @@
     contents:
       - id: BoxSurvival
       - id: ComputerMassMediaCircuitboard
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackMedical
+  id: ClothingBackpackPsychologistFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      - id: RubberStampPsychologist
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpack
+  id: ClothingBackpackLawyerFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      - id: RubberStampLawyer

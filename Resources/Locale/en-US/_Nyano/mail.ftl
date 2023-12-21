@@ -1,4 +1,5 @@
 mail-recipient-mismatch = Recipient name or job does not match.
+mail-recipient-mismatch-name = Recipient name does not match.
 mail-invalid-access = Recipient name and job match, but access isn't as expected.
 mail-locked = The anti-tamper lock hasn't been removed. Tap the recipient's ID.
 mail-desc-far = A parcel of mail.
@@ -8,7 +9,7 @@ mail-desc-priority = The anti-tamper lock's [color=yellow]yellow priority tape[/
 mail-desc-priority-inactive = The anti-tamper lock's [color=#886600]yellow priority tape[/color] is inactive.
 mail-unlocked = Anti-tamper system unlocked.
 mail-unlocked-by-emag = Anti-tamper system *BZZT*.
-mail-unlocked-reward = Anti-tamper system unlocked. {$bounty} spesos have been added to station's account.
+mail-unlocked-reward = Anti-tamper system unlocked.
 mail-penalty-lock = ANTI-TAMPER LOCK BROKEN. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
 mail-penalty-fragile = INTEGRITY COMPROMISED. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
 mail-penalty-expired = DELIVERY PAST DUE. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
