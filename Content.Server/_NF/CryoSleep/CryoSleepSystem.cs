@@ -237,7 +237,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             var args = new DoAfterArgs(
                 _entityManager,
                 toInsert.Value,
-                TimeSpan.FromSeconds(10),
+                TimeSpan.FromSeconds(30),
                 ev,
                 cryopod,
                 toInsert,
@@ -305,7 +305,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             return false;
 
         component.BodyContainer.Remove(toEject.Value, force: true);
-        _climb.ForciblySetClimbing(toEject.Value, pod);
+        //_climb.ForciblySetClimbing(toEject.Value, pod);
 
         if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
             _doAfter.Cancel(component.CryosleepDoAfter);
