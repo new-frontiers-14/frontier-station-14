@@ -235,7 +235,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            // SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
+            SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
         }
 
         SendPurchaseMessage(uid, player, name, channel, false);
@@ -337,7 +337,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             bill -= tax;
             channel = component.BlackMarketShipyardChannel;
 
-            // SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
+            SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
 
         _bank.TryBankDeposit(player, bill);
@@ -401,8 +401,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret"), InGameICChatType.Speak, true);
         }
         else
         {
@@ -417,8 +417,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), InGameICChatType.Speak, true);
         }
         else
         {

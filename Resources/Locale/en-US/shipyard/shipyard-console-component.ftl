@@ -1,9 +1,9 @@
 ## UI
-shipyard-console-invalid-vessel = Cannot purchase vessel: 
+shipyard-console-invalid-vessel = Cannot purchase vessel:
 shipyard-console-menu-title = Shipyard Menu
 shipyard-console-docking = Captain {$owner} shuttle {$vessel} en route, eta 10 seconds.
 shipyard-console-leaving = Captain {$owner} shuttle {$vessel} sold by {$player}.
-shipyard-console-docking-secret = shuttle {$vessel} en route, eta 10 seconds.
+shipyard-console-docking-secret = unregistered vessel detected, arrving eta 10 seconds.
 shipyard-console-leaving-secret = shuttle {$vessel} sold.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
 shipyard-console-no-idcard = No ID card present
