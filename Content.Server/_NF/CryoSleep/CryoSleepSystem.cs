@@ -170,8 +170,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (args.Cancelled || args.Handled)
             return;
 
-        var body = args.Used;
-        var pod = args.Target;
+        var pod = args.Used;
+        var body = args.Target;
         if (body is not { Valid: true } || pod is not { Valid: true })
             return;
 
@@ -237,7 +237,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             var args = new DoAfterArgs(
                 _entityManager,
                 toInsert.Value,
-                TimeSpan.FromSeconds(30),
+                TimeSpan.FromSeconds(10),
                 ev,
                 cryopod,
                 toInsert,
