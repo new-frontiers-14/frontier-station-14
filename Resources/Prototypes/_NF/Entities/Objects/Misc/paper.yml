@@ -55,3 +55,17 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi # Cannot use _NF or its exploding
     state: stamp-lawyer
+
+- type: entity
+  name: station traffic controller's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampStc
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-stc
+    stampedColor: "#CC6633"
+    stampState: "paper_stamp-stc"
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi # Cannot use _NF or its exploding
+    state: stamp-stc
