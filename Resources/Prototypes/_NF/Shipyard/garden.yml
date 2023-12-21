@@ -1,27 +1,27 @@
 - type: vessel
-  id: Pulse
-  name: NM Pulse
-  description: A small rapid response medical ship
-  price: 18765
+  id: Garden
+  name: HS Garden
+  description: A small botany vessel dedicated to horiticultural experimentation.
+  price: 24750
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/pulse.yml
+  shuttlePath: /Maps/Shuttles/garden.yml
 
 - type: gameMap
-  id: Pulse
-  mapName: 'NM Pulse'
-  mapPath: /Maps/Shuttles/pulse.yml
+  id: Garden
+  mapName: 'HS Garden'
+  mapPath: /Maps/Shuttles/garden.yml
   minPlayers: 0
   stations:
-    Pulse:
+    Garden:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Pulse {1}'
+          mapNameTemplate: 'Garden {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Paramedic: [ 0, 0 ]
+            Botanist: [ 0, 0 ]
