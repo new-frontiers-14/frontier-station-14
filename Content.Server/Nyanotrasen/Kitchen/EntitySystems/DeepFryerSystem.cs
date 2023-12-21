@@ -514,11 +514,11 @@ namespace Content.Server.Kitchen.EntitySystems
                     // Already handled at OnInitDeepFried.
                     break;
                 case 1:
-                    _meta.SetEntityName(uid, Loc.GetString("deep-fried-fried-item",
+                    _metaDataSystem.SetEntityName(uid, Loc.GetString("deep-fried-crispy-item",
                         ("entity", component.OriginalName)));
                     break;
                 default:
-                    _meta.SetEntityName(uid, Loc.GetString("deep-fried-burned-item",
+                    _metaDataSystem.SetEntityName(uid, Loc.GetString("deep-fried-burned-item",
                         ("entity", component.OriginalName)));
                     break;
             }
