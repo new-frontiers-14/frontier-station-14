@@ -12,3 +12,6 @@ ent-FunChurchOrganInstrument = { ent-ChurchOrganInstrument }
 
 ent-FunMinimoogInstrument = { ent-MinimoogInstrument }
     .desc = { ent-MinimoogInstrument.desc }
+
+ent-FunDawInstrument = { ent-DawInstrument }
+    .desc = { ent-DawInstrument.desc }
