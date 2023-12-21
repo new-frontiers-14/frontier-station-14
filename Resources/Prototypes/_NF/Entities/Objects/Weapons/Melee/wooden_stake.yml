@@ -8,6 +8,7 @@
     tags:
     - Spear
     - WeaponMeleeStake
+    - Wooden
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/wooden_stake.rsi
     size: 2
@@ -36,9 +37,6 @@
         !type:DamageTrigger
         damage: 10
       behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Item
