@@ -15,16 +15,24 @@ public sealed partial class MagnetPickupComponent : Component
     public float Range = 1f;
 
     /// <summary>
-    /// Whether the magnet is attached to a fixture (e.g. ore box) or not (e.g. ore bag)
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("isFixture")]
-    public bool IsFixture = false;
-
-    /// <summary>
     /// What container slot the magnet needs to be in to work (if not a fixture)
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("slotFlags")]
     public SlotFlags SlotFlags = SlotFlags.BELT;
+
+    // Everything below this line is from Frontier
+
+    /// <summary>
+    /// Whether the magnet is attached to a fixture (e.g. ore box) or not (e.g. ore bag)
+    /// </summary>
+    // [ViewVariables(VVAccess.ReadWrite), DataField("isFixture")]
+    // public bool IsFixture = false;
+
+    /// <summary>
+    /// Is the magnet currently enabled?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
+    public bool MagnetEnabled = true;
 
     /// <summary>
     /// Is magnet active, when fixture is anchored?

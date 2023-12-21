@@ -1,0 +1,1 @@
+magnet-pickup-component-toggle-verb = Toggle magnet

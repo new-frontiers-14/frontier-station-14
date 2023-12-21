@@ -1,5 +1,8 @@
 using Content.Server.Storage.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Verbs;     // Frontier
+using Robust.Shared.Audio;      // Frontier
+using Content.Shared.Hands.Components;  // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -27,6 +30,7 @@ public sealed class MagnetPickupSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
         SubscribeLocalEvent<MagnetPickupComponent, EntityUnpausedEvent>(OnMagnetUnpaused);
+        SubscribeLocalEvent<MagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb);    // Frontier
     }
 
     private void OnMagnetUnpaused(EntityUid uid, MagnetPickupComponent component, ref EntityUnpausedEvent args)
@@ -38,6 +42,43 @@ public sealed class MagnetPickupSystem : EntitySystem
     {
         component.NextScan = _timing.CurTime;
     }
+
+    // Frontier, used to add the magnet toggle to the context menu
+    private void AddToggleMagnetVerb(EntityUid uid, MagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if(!args.CanAccess || !args.CanInteract)
+                return;
+
+        if (!HasComp<HandsComponent>(args.User))
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                ToggleMagnet(uid);
+            },
+            //Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
+            Text = Loc.GetString("magnet-pickup-component-toggle-verb")
+        };
+
+    }
+
+    // Frontier, used to toggle the magnet on the ore bag/box
+    public bool ToggleMagnet(EntityUid uid, bool playToggleSound = true)
+    {
+        var query = EntityQueryEnumerator<MagnetPickupComponent>();
+        comp.MagnetEnabled = !comp.MagnetEnabled;
+
+        if (playToggleSound)
+        {
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg"), uid,
+                AudioParams.Default.WithVolume(-2f));
+        }
+
+        return comp.MagnetEnabled; 
+    }
+
 
     public override void Update(float frameTime)
     {
@@ -56,8 +97,10 @@ public sealed class MagnetPickupSystem : EntitySystem
             if (storage.StorageUsed >= storage.StorageCapacityMax)
                 continue;
 
+            if (!comp.MagnetEnabled)
+                continue;
 
-            if (!comp.IsFixture)
+            if (!HasComp<FixturesComponent>(uid))
             {
                 if (!_inventory.TryGetContainingSlot(uid, out var slotDef))
                     continue;
