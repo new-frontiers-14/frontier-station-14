@@ -316,7 +316,8 @@ entities:
             0: 30719
             1: 34816
           -1,0:
-            0: 65535
+            0: 61439
+            2: 4096
           -1,-1:
             0: 65535
           0,-1:
@@ -336,7 +337,7 @@ entities:
             0: 8
           -2,0:
             0: 63487
-            2: 2048
+            3: 2048
           -2,1:
             0: 61435
             2: 4
@@ -388,6 +389,21 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.14996
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14993
           moles:
           - 21.824879
           - 82.10312
@@ -1299,9 +1315,10 @@ entities:
       type: EntityStorage
 - proto: ClosetWallEmergencyFilledRandom
   entities:
-  - uid: 147
+  - uid: 34
     components:
-    - pos: -4.5,-0.5
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-0.5
       parent: 1
       type: Transform
 - proto: ComputerShuttle
@@ -1334,7 +1351,7 @@ entities:
     - type: ItemSlots
 - proto: CrateNPCCow
   entities:
-  - uid: 223
+  - uid: 36
     components:
     - pos: -4.5,2.5
       parent: 1
@@ -1855,9 +1872,9 @@ entities:
       type: Transform
 - proto: LockerBotanistFilled
   entities:
-  - uid: 241
+  - uid: 44
     components:
-    - pos: -2.5,8.5
+    - pos: -1.5,8.5
       parent: 1
       type: Transform
 - proto: LockerFreezer
@@ -1906,19 +1923,25 @@ entities:
     - pos: -2.4983687,3.2123425
       parent: 1
       type: Transform
-- proto: PlantBag
-  entities:
-  - uid: 373
-    components:
-    - pos: -1.2547346,5.524218
-      parent: 1
-      type: Transform
 - proto: PortableGeneratorPacman
   entities:
-  - uid: 34
+  - uid: 41
     components:
     - anchored: True
-      pos: -1.5,8.5
+      pos: -2.5,8.5
+      parent: 1
+      type: Transform
+    - storage:
+        Plasma: 3000
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 46
+    components:
+    - anchored: True
+      pos: -0.5,8.5
       parent: 1
       type: Transform
     - storage:
@@ -2016,14 +2039,6 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-- proto: Rack
-  entities:
-  - uid: 36
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -1.5,5.5
-      parent: 1
-      type: Transform
 - proto: ReagentContainerFlour
   entities:
   - uid: 256
@@ -2054,11 +2069,22 @@ entities:
       type: Transform
 - proto: SeedExtractor
   entities:
-  - uid: 262
+  - uid: 45
     components:
-    - pos: -0.5,8.5
+    - pos: -1.5,5.5
       parent: 1
       type: Transform
+- proto: SheetPlasma
+  entities:
+  - uid: 43
+    components:
+    - pos: -1.5039086,7.4487405
+      parent: 1
+      type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
 - proto: ShuttersNormal
   entities:
   - uid: 263
@@ -2359,7 +2385,7 @@ entities:
       pos: 1.5,2.5
       parent: 1
       type: Transform
-  - uid: 41
+  - uid: 48
     components:
     - rot: 3.141592653589793 rad
       pos: 0.5,5.5
@@ -2367,9 +2393,9 @@ entities:
       type: Transform
 - proto: SpawnMobAlexander
   entities:
-  - uid: 294
+  - uid: 47
     components:
-    - pos: -1.5,7.5
+    - pos: -4.5,3.5
       parent: 1
       type: Transform
 - proto: SpawnPointBotanist
