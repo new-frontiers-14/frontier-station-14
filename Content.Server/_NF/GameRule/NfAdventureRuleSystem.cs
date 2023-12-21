@@ -121,6 +121,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lodge = "/Maps/lodge.yml";
         var lab = "/Maps/anomalouslab.yml";
         var church = "Maps/beacon.yml";
+        var grifty = "Maps/grifty.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -128,7 +129,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(3000f, 5000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
-
+        var caseysOffset = _random.NextVector2(2250f, 4600f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -231,14 +232,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
-        if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
+        if (_map.TryLoad(mapId, caseys, out var caseyUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2250f, 4600f)
+                Offset = caseysOffset
             }))
         {
-            var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
-            _shuttle.SetIFFColor(depotUid7s[0], factionColor);
+            var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
+            _meta.SetEntityName(caseyUids[0], "Crazy Casey's Casino", meta);
+            _shuttle.SetIFFColor(caseyUids[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, grifty, out var griftyUids, new MapLoadOptions
+            {
+                Offset = -caseysOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
+            _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
+            _shuttle.SetIFFColor(griftyUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
