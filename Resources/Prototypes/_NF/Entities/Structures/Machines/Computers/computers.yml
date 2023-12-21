@@ -152,13 +152,37 @@
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer_blackmarket
+      state: computer
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_expedition   
     - map: ["computerLayerKeys"]
-      state: blackmarket_key
+      state: telesci_key
+
+- type: entity
+  id: ComputerShipyardEccentric
+  parent: ComputerShipyard
+  name: eccentric shipyard console
+  description: Contains a more unorthodox selection of ships.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Eccentric
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Eccentric
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_eccentric
+    - map: ["computerLayerKeys"]
+      state: eccentric_key
 
 - type: entity
   name: cargo sale computer

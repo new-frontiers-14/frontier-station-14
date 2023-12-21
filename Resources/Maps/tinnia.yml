@@ -6763,6 +6763,55 @@ entities:
       type: Transform
     - delay: 999999
       type: Anchorable
+- proto: ComputerShipyardEccentric
+  entities:
+  - uid: 2176
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 7.5,-6.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 2177
+    components:
+    - pos: -10.5,-7.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
+  - uid: 2178
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -6.5,0.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: ComputerSolarControl
   entities:
   - uid: 1412

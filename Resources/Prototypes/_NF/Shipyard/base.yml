@@ -39,6 +39,21 @@
     - type: Transform
 
 - type: entity
+  id: StandardFrontierTinnia
+  parent:
+    - BaseStation
+    - BaseStationCargo
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationShuttles
+    - BaseStationAlertLevels
+    - BaseStationSiliconLawFrontierStation
+    - BaseStationEmpImmune
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierSecurityVessel
   parent:
     - BaseStation
