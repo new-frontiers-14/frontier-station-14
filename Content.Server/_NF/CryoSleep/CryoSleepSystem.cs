@@ -170,12 +170,12 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (args.Cancelled || args.Handled)
             return;
 
-        var body = args.User;
+        var body = args.Used;
         var pod = args.Target;
         if (body is not { Valid: true } || pod is not { Valid: true })
             return;
 
-        CryoStoreBody(body, pod.Value);
+        CryoStoreBody(body.Value, pod.Value);
         args.Handled = true;
     }
 
