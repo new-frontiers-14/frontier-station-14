@@ -743,12 +743,10 @@ entities:
       type: Transform
   - uid: 109
     components:
-    - pos: -1.5,-8.5
+    - rot: 3.141592653589793 rad
+      pos: -1.5,-8.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -5685.6816
-      state: Opening
-      type: Door
   - uid: 174
     components:
     - rot: 1.5707963267948966 rad
@@ -787,13 +785,10 @@ entities:
       type: Transform
   - uid: 240
     components:
-    - pos: 1.5,-1.5
+    - rot: 3.141592653589793 rad
+      pos: -0.5,-3.5
       parent: 2
       type: Transform
-    - hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
-      type: Apc
 - proto: APCHighCapacity
   entities:
   - uid: 216
@@ -1701,6 +1696,11 @@ entities:
     - pos: -2.5,0.5
       parent: 2
       type: Transform
+  - uid: 834
+    components:
+    - pos: 0.5,-2.5
+      parent: 2
+      type: Transform
   - uid: 872
     components:
     - pos: 1.5,-13.5
@@ -1719,6 +1719,16 @@ entities:
   - uid: 889
     components:
     - pos: 7.5,7.5
+      parent: 2
+      type: Transform
+  - uid: 948
+    components:
+    - pos: -0.5,-2.5
+      parent: 2
+      type: Transform
+  - uid: 949
+    components:
+    - pos: -0.5,-3.5
       parent: 2
       type: Transform
 - proto: CableHV
@@ -1837,7 +1847,7 @@ entities:
       type: Transform
   - uid: 442
     components:
-    - pos: 1.5,-1.5
+    - pos: -0.5,-3.5
       parent: 2
       type: Transform
   - uid: 538
@@ -2838,6 +2848,13 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
+- proto: FaxMachineShip
+  entities:
+  - uid: 947
+    components:
+    - pos: 4.5,-7.5
+      parent: 2
+      type: Transform
 - proto: FirelockGlass
   entities:
   - uid: 894
@@ -4401,21 +4418,29 @@ entities:
   entities:
   - uid: 112
     components:
+    - name: Prisoner 3
+      type: MetaData
     - pos: 2.2262268,-9.480581
       parent: 2
       type: Transform
   - uid: 821
     components:
+    - name: Prisoner 2
+      type: MetaData
     - pos: 1.7262269,-9.470158
       parent: 2
       type: Transform
   - uid: 822
     components:
+    - name: Prisoner 1
+      type: MetaData
     - pos: 1.2574768,-9.470158
       parent: 2
       type: Transform
   - uid: 824
     components:
+    - name: Prisoner 4
+      type: MetaData
     - pos: 2.7262268,-9.491006
       parent: 2
       type: Transform
@@ -4624,7 +4649,7 @@ entities:
     - pos: -2.5,-8.5
       parent: 2
       type: Transform
-- proto: LockerWardenFilled
+- proto: LockerWardenFilledHardsuit
   entities:
   - uid: 266
     components:
@@ -5071,6 +5096,12 @@ entities:
       type: Transform
 - proto: PosterLegitNanotrasenLogo
   entities:
+  - uid: 263
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 1.5,-16.5
+      parent: 2
+      type: Transform
   - uid: 839
     components:
     - rot: 3.141592653589793 rad
@@ -5145,14 +5176,6 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: 7.5,3.5
-      parent: 2
-      type: Transform
-- proto: PosterLegitSafetyReport
-  entities:
-  - uid: 834
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
       parent: 2
       type: Transform
 - proto: PosterLegitSecWatch
@@ -5720,6 +5743,12 @@ entities:
       type: Transform
 - proto: SignPrison
   entities:
+  - uid: 631
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -0.5,-16.5
+      parent: 2
+      type: Transform
   - uid: 849
     components:
     - pos: 12.5,-6.5
@@ -5783,18 +5812,6 @@ entities:
   - uid: 858
     components:
     - pos: 1.5,-8.5
-      parent: 2
-      type: Transform
-- proto: SignShipDock
-  entities:
-  - uid: 855
-    components:
-    - pos: -8.5,-7.5
-      parent: 2
-      type: Transform
-  - uid: 856
-    components:
-    - pos: 9.5,-7.5
       parent: 2
       type: Transform
 - proto: SinkWide
@@ -5881,14 +5898,7 @@ entities:
     - pos: 3.5,-7.5
       parent: 2
       type: Transform
-  - uid: 631
-    components:
-    - pos: 4.5,-7.5
-      parent: 2
-      type: Transform
-- proto: SuitStorageWarden
-  entities:
-  - uid: 263
+  - uid: 856
     components:
     - pos: 1.5,-7.5
       parent: 2
@@ -5941,6 +5951,11 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 1.5,-4.5
+      parent: 2
+      type: Transform
+  - uid: 855
+    components:
+    - pos: 4.5,-7.5
       parent: 2
       type: Transform
   - uid: 883
