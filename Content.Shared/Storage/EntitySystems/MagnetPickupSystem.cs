@@ -1,9 +1,9 @@
 using Content.Shared.Clothing.Components;    // Frontier
-using Content.Shared.Storage.Components;    // Frontier, used to be under Content.Server
 using Content.Shared.Examine;   // Frontier
+using Content.Shared.Hands.Components;  // Frontier
 using Content.Shared.Inventory;
 using Content.Shared.Verbs;     // Frontier
-using Content.Shared.Hands.Components;  // Frontier
+using Content.Shared.Storage.Components;    // Frontier, used to be under Content.Server
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -49,7 +49,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     // Frontier, used to add the magnet toggle to the context menu
     private void AddToggleMagnetVerb(EntityUid uid, MagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if(!args.CanAccess || !args.CanInteract)
+        if (!args.CanAccess || !args.CanInteract)
             return;
 
         if (!HasComp<HandsComponent>(args.User))
@@ -61,7 +61,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             {
                 ToggleMagnet(uid, component);
             },
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
             Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
             Priority = 3
         };
@@ -84,7 +84,7 @@ public sealed class MagnetPickupSystem : EntitySystem
         var query = EntityQueryEnumerator<MagnetPickupComponent>();
         comp.MagnetEnabled = !comp.MagnetEnabled;
 
-        return comp.MagnetEnabled; 
+        return comp.MagnetEnabled;
     }
 
 
@@ -114,7 +114,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             {
                 if (!_inventory.TryGetContainingSlot(uid, out var slotDef))
                     continue;
-            
+                
                 if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
                     continue;
             }
