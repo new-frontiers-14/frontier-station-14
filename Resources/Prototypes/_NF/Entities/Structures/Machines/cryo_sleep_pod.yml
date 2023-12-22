@@ -13,6 +13,17 @@
     delay: 999999
   - type: Physics
     bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MobLayer # To allow people to pass through
   - type: MaterialStorage
   - type: Appearance
   - type: Climbable
