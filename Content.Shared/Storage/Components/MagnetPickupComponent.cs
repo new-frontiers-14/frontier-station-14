@@ -1,6 +1,6 @@
 using Content.Shared.Inventory;
 
-namespace Content.Server.Storage.Components;
+namespace Content.Shared.Storage.Components;    // Frontier, used to be Content.Server
 
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.
@@ -23,26 +23,8 @@ public sealed partial class MagnetPickupComponent : Component
     // Everything below this line is from Frontier
 
     /// <summary>
-    /// Whether the magnet is attached to a fixture (e.g. ore box) or not (e.g. ore bag)
-    /// </summary>
-    // [ViewVariables(VVAccess.ReadWrite), DataField("isFixture")]
-    // public bool IsFixture = false;
-
-    /// <summary>
     /// Is the magnet currently enabled?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
     public bool MagnetEnabled = true;
-
-    /// <summary>
-    /// Is magnet active, when fixture is anchored?
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("pickupWhenAnchored")]
-    public bool PickupWhenAnchored = true;
-
-    /// <summary>
-    /// Is magnet active, when fixture is not anchored?
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("pickupWhenNotAnchored")]
-    public bool PickupWhenNotAnchored = true;
 }
