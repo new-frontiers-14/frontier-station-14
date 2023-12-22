@@ -1,6 +1,7 @@
 using Content.Shared.Inventory;
 
-namespace Content.Shared.Storage.Components;    // Frontier, used to be Content.Server
+// namespace Content.Server.Storage.Components;
+namespace Content.Shared.Storage.Components;    // Frontier
 
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.

@@ -1,9 +1,10 @@
+// using Content.Server.Storage.Components;
 using Content.Shared.Clothing.Components;    // Frontier
 using Content.Shared.Examine;   // Frontier
 using Content.Shared.Hands.Components;  // Frontier
 using Content.Shared.Inventory;
 using Content.Shared.Verbs;     // Frontier
-using Content.Shared.Storage.Components;    // Frontier, used to be under Content.Server
+using Content.Shared.Storage.Components;    // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -114,7 +115,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             {
                 if (!_inventory.TryGetContainingSlot(uid, out var slotDef))
                     continue;
-                
+
                 if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
                     continue;
             }
