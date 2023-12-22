@@ -615,6 +615,8 @@ entities:
   entities:
   - uid: 568
     components:
+    - name: Engineering Air Alarm
+      type: MetaData
     - pos: -1.5,10.5
       parent: 1
       type: Transform
@@ -628,6 +630,8 @@ entities:
       type: DeviceList
   - uid: 569
     components:
+    - name: Midship Air Alarm
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
@@ -668,6 +672,8 @@ entities:
       type: DeviceList
   - uid: 570
     components:
+    - name: Cargo Bay Air Alarm
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -3.5,-1.5
       parent: 1
@@ -690,6 +696,8 @@ entities:
       type: DeviceList
   - uid: 590
     components:
+    - name: Bridge Air Alarm
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -8.5,14.5
       parent: 1
@@ -718,6 +726,8 @@ entities:
       type: DeviceList
   - uid: 775
     components:
+    - name: Docking Access Air Alarm
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: -3.5,-10.5
       parent: 1
@@ -774,6 +784,8 @@ entities:
   entities:
   - uid: 604
     components:
+    - name: airlock
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -5.5,15.5
       parent: 1
@@ -782,6 +794,8 @@ entities:
   entities:
   - uid: 620
     components:
+    - name: Bridge Airlock
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -6.5,12.5
       parent: 1
@@ -790,6 +804,8 @@ entities:
   entities:
   - uid: 605
     components:
+    - name: Engineering Airlock
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -3.5,8.5
       parent: 1
@@ -871,12 +887,16 @@ entities:
   entities:
   - uid: 159
     components:
+    - name: Bridge APC
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -8.5,16.5
       parent: 1
       type: Transform
   - uid: 163
     components:
+    - name: Engineering APC
+      type: MetaData
     - rot: 3.141592653589793 rad
       pos: -1.5,6.5
       parent: 1
@@ -887,11 +907,15 @@ entities:
       type: Apc
   - uid: 164
     components:
+    - name: Cargo Bay APC
+      type: MetaData
     - pos: -1.5,2.5
       parent: 1
       type: Transform
   - uid: 737
     components:
+    - name: Midship APC
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -8.5,6.5
       parent: 1
@@ -1114,7 +1138,8 @@ entities:
       pos: -4.5,-14.5
       parent: 1
       type: Transform
-    - links:
+    - invokeCounter: 1
+      links:
       - 628
       type: DeviceLinkSink
   - uid: 765
@@ -1123,7 +1148,8 @@ entities:
       pos: -10.5,-7.5
       parent: 1
       type: Transform
-    - links:
+    - invokeCounter: 1
+      links:
       - 628
       type: DeviceLinkSink
 - proto: BoozeDispenser
@@ -3034,6 +3060,8 @@ entities:
   entities:
   - uid: 478
     components:
+    - name: Distro Mixer
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -5.5,11.5
       parent: 1
@@ -3934,6 +3962,8 @@ entities:
   entities:
   - uid: 495
     components:
+    - name: Waste Pipe Control
+      type: MetaData
     - pos: 0.5,-9.5
       parent: 1
       type: Transform
@@ -4230,6 +4260,9 @@ entities:
   entities:
   - uid: 698
     components:
+    - desc: This painting depicts giant devouring the corpse of a corgi. He has a frightening look in his eyes.
+      name: Head of Personnel Devouring His Son
+      type: MetaData
     - pos: -2.5,16.5
       parent: 1
       type: Transform
@@ -4722,6 +4755,9 @@ entities:
   entities:
   - uid: 266
     components:
+    - desc: Opens and closes the salvage bay blast doors.
+      name: Bay Door Control
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: 3.5,-2.5
       parent: 1
@@ -4738,18 +4774,26 @@ entities:
       type: DeviceLinkSource
   - uid: 628
     components:
+    - desc: Opens and closes the blast doors attached at each docking port.
+      type: MetaData
     - rot: 1.5707963267948966 rad
       pos: -8.5,-6.5
       parent: 1
       type: Transform
+    - state: True
+      type: SignalSwitch
     - linkedPorts:
         765:
         - Pressed: Toggle
         762:
         - Pressed: Toggle
       type: DeviceLinkSource
+    - type: ItemCooldown
   - uid: 712
     components:
+    - desc: Opens and closes the cargo shutters.
+      name: Shutter Control
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
@@ -4839,12 +4883,16 @@ entities:
   entities:
   - uid: 161
     components:
+    - name: Aft Substation
+      type: MetaData
     - rot: -1.5707963267948966 rad
       pos: -3.5,-4.5
       parent: 1
       type: Transform
   - uid: 162
     components:
+    - name: Fore Substation
+      type: MetaData
     - pos: -4.5,12.5
       parent: 1
       type: Transform
@@ -5023,6 +5071,8 @@ entities:
   entities:
   - uid: 140
     components:
+    - name: reinforced window
+      type: MetaData
     - pos: -1.5,18.5
       parent: 1
       type: Transform
