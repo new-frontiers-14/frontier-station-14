@@ -39,10 +39,6 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicSpeak(EntityUid uid, IntrinsicRadioTransmitterComponent component, EntitySpokeEvent args)
     {
-        if (args.Canilunzt)
-        {
-            return;
-        }
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
             SendRadioMessage(uid, args.Message, args.Channel, uid);

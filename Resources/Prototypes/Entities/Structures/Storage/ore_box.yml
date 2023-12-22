@@ -5,7 +5,8 @@
   parent: BaseStructureDynamic
   components:
   - type: StaticPrice
-    price: 500
+    # price: 500
+    price: 1000
   - type: Anchorable
   - type: InteractionOutline
   - type: Damageable
@@ -15,13 +16,15 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        # damage: 150
+        damage: 450     # Frontier 
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        # damage: 100
+        damage: 300     # Frontier 
       behaviors:
       - !type:EmptyAllContainersBehaviour
       - !type:SpawnEntitiesBehavior
@@ -50,12 +53,14 @@
           True: { visible: false }
           False: { visible: true }
   - type: Storage
-    capacity: 525
+    # capacity: 525
+    capacity: 900     # Frontier 
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
       - Ore
+      - ArtifactFragment  # Frontier 
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
@@ -64,6 +69,12 @@
     containers:
       storagebase: !type:Container
         ents: [ ]
+  - type: Dumpable              # Frontier
+  - type: MagnetPickup # Frontier
+    isFixture: true
+    pickupWhenNotAnchored: true
+    pickupWhenAnchored: false   
+    range: 1.5  # Ore bag has a range of 1.0
   - type: Fixtures
     fixtures:
       fix1:
