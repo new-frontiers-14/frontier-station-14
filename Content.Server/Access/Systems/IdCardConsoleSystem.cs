@@ -219,6 +219,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         if (!EntityManager.TryGetComponent<ShuttleDeedComponent>(targetId, out var shuttleDeed))
             return;
+        else
+        {
+            if (Deleted(shuttleDeed!.ShuttleUid))
+            {
+                RemComp<ShuttleDeedComponent>(targetId);
+                return;
+            }
+        }
 
         // Ensure the name is valid and follows the convention
         var name = newShuttleName.Trim();

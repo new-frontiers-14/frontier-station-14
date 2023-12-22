@@ -9,6 +9,6 @@ namespace Content.Server.Abilities.Oni
         public DamageModifierSet MeleeModifiers = default!;
 
         [DataField("stamDamageBonus")]
-        public float StamDamageMultiplier = 1.25f;
+        public float StamDamageMultiplier = 1.20f;
     }
 }

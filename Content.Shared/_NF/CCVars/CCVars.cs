@@ -16,4 +16,16 @@ public sealed class NF14CVars
     /// </summary>
     public static readonly CVarDef<float> RespawnTime =
         CVarDef.Create("nf14.respawn.time", 600.0f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether or not returning from cryosleep is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> CryoReturnEnabled =
+        CVarDef.Create("nf14.uncryo.enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// The time in seconds after which a cryosleeping body is considered expired and can be deleted from the storage map.
+    /// </summary>
+    public static readonly CVarDef<float> CryoExpirationTime =
+        CVarDef.Create("nf14.uncryo.maxtime", 60 * 60f, CVar.SERVER | CVar.REPLICATED);
 }

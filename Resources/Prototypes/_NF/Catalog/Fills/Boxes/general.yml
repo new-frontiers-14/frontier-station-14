@@ -22,3 +22,23 @@
       - state: syringe
   - type: VendPrice
     price: 200 # Single Implant Box (5 are 1000)
+
+- type: entity
+  name: Wet floor sign box
+  parent: BoxCardboard
+  id: BoxWetFloorSign
+  description: A box of wet floor signs. Happy janitor noises.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WetFloorSign
+        amount: 6
+  - type: Storage
+    capacity: 90
+    whitelist:
+      tags:
+        - WetFloorSign
+  - type: Sprite
+    layers:
+      - state: box
+#      - state: wet_floor_sign

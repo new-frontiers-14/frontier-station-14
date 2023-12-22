@@ -7,8 +7,9 @@
   components:
   - type: StorageFill
     contents:
-        - id: NitrogenTankFilled
-        - id: OxygenTankFilled
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
         - id: ClothingHeadHelmetVoidParamed
         - id: ClothingOuterHardsuitVoidParamed
         - id: ClothingMaskBreathMedical
@@ -26,8 +27,9 @@
   components:
   - type: StorageFill
     contents:
-        - id: NitrogenTankFilled
-        - id: OxygenTankFilled
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
         - id: ClothingOuterHardsuitBrigmedic
         - id: ClothingMaskBreathMedicalSecurity
         - id: JetpackSecurityFilled
@@ -44,12 +46,32 @@
   components:
   - type: StorageFill
     contents:
-      - id: NitrogenTankFilled
-      - id: YellowOxygenTankFilled
-      - id: ClothingShoesBootsMag
-      - id: ClothingOuterHardsuitLuxury
-      - id: ClothingMaskGasExplorer
-      - id: JetpackMiniFilled
-      - id: HandheldGPSBasic
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingShoesBootsMag
+        - id: ClothingOuterHardsuitLuxury
+        - id: ClothingMaskGasExplorer
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
   - type: AccessReader
     # access: [["Quartermaster"]]
+
+#Mercenary hardsuit
+- type: entity
+  id: SuitStorageMercenary
+  parent: SuitStorageBase
+  suffix: Mercenary
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitMercenary
+        - id: ClothingMaskGasMercenary
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Mercenary"]]

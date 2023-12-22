@@ -18,10 +18,6 @@ public sealed class ListeningSystem : EntitySystem
 
     private void OnSpeak(EntitySpokeEvent ev)
     {
-        if (ev.Canilunzt)
-        {
-            return;
-        }
         PingListeners(ev.Source, ev.Message, ev.ObfuscatedMessage);
     }
 
@@ -39,7 +35,7 @@ public sealed class ListeningSystem : EntitySystem
         var obfuscatedEv = obfuscatedMessage == null ? null : new ListenEvent(obfuscatedMessage, source);
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
-        while(query.MoveNext(out var listenerUid, out var listener, out var xform))
+        while (query.MoveNext(out var listenerUid, out var listener, out var xform))
         {
             if (xform.MapID != sourceXform.MapID)
                 continue;
