@@ -1,0 +1,30 @@
+- type: vessel
+  id: Wasp
+  name: NSF Wasp
+  description: A large expedition oriented ship for holding prisoners and making them work planetside.
+  price: 145700
+  category: Large
+  group: Security
+  shuttlePath: /Maps/Shuttles/wasp.yml
+
+- type: gameMap
+  id: Wasp
+  mapName: 'NSF Wasp'
+  mapPath: /Maps/Shuttles/wasp.yml
+  minPlayers: 0
+  stations:
+    Wasp:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Wasp {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SecurityOfficer: [ 0, 0 ]
+            Warden: [ 0, 0 ]
+            PrisonGuard: [ 0, 0 ]
+            Brigmedic: [ 0, 0 ]
