@@ -310,6 +310,10 @@ namespace Content.Shared.Atmos
         public const float MaxTransferRate = 200;
 
         #endregion
+
+        #region Frontier Shuttles
+        public const float MolesCellShuttle = 2500f;
+        #endregion
     }
 
     /// <summary>
