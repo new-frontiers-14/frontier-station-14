@@ -101,7 +101,7 @@ namespace Content.Server.Nutrition.EntitySystems
         /// Create a new slice in the world and returns its entity.
         /// The solutions must be set afterwards.
         /// </summary>
-        public EntityUid Slice(EntityUid uid, EntityUid user, SliceableFoodComponent? comp = null, TransformComponent? transform = null)
+        private EntityUid Slice(EntityUid uid, EntityUid user, SliceableFoodComponent? comp = null, TransformComponent? transform = null) // Frontier - Public to private
         {
             if (!Resolve(uid, ref comp, ref transform))
                 return EntityUid.Invalid;

@@ -64,6 +64,7 @@ using FastAccessors;
 using Content.Shared.NPC;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction;
+//using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -88,7 +89,7 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly TemperatureSystem _temperature = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly MetaDataSystem _meta = default!;
+        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
         private static readonly string CookingDamageType = "Heat";
         private static readonly float CookingDamageAmount = 10.0f;
@@ -821,8 +822,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnRemoveItem(EntityUid uid, DeepFryerComponent component, DeepFryerRemoveItemMessage args)
         {
-            var removedItem = EntityManager.GetEntity( args.Item );
-            if (removedItem.Valid) { //JJ Comment - This line should be unnecessary. Some issue is keeping the UI from updating when converting straight to a Burned Mess while the UI is still open. To replicate, put a Raw Meat in the fryer with no oil in it. Wait until it sputters with no effect. It should transform to Burned Mess, but doesn't.
+            var removedItem = EntityManager.GetEntity(args.Item);
+            if (removedItem.Valid)
+            { //JJ Comment - This line should be unnecessary. Some issue is keeping the UI from updating when converting straight to a Burned Mess while the UI is still open. To replicate, put a Raw Meat in the fryer with no oil in it. Wait until it sputters with no effect. It should transform to Burned Mess, but doesn't.
                 if (!component.Storage.Remove(removedItem))
                     return;
 
@@ -992,7 +994,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             var meta = MetaData(uid);
             component.OriginalName = meta.EntityName;
-            _meta.SetEntityName(uid, Loc.GetString("deep-fried-crispy-item", ("entity", meta.EntityName)));
+            _metaDataSystem.SetEntityName(uid, Loc.GetString("deep-fried-crispy-item", ("entity", meta.EntityName)));
         }
 
         private void OnExamineFried(EntityUid uid, DeepFriedComponent component, ExaminedEvent args)
