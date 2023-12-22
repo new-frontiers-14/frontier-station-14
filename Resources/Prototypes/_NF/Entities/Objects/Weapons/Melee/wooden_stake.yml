@@ -37,6 +37,9 @@
         !type:DamageTrigger
         damage: 10
       behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Item
