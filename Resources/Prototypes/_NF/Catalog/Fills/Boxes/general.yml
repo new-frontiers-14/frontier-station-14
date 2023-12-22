@@ -42,3 +42,47 @@
     layers:
       - state: box
 #      - state: wet_floor_sign
+
+- type: entity
+  name: Paper box
+  parent: BoxCardboard
+  id: BoxPaper
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Paper
+        amount: 10
+  - type: Storage
+    capacity: 30
+    whitelist:
+      tags:
+        - Document
+  - type: Sprite
+    layers:
+      - state: box
+#      - state: paper
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  name: Office paper box
+  parent: BoxPaper
+  id: BoxPaperOffice
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PaperOffice
+        amount: 10
+
+- type: entity
+  name: Captains thoughts paper box
+  parent: BoxPaper
+  id: BoxPaperCaptainsThoughts
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PaperCaptainsThoughts
+        amount: 10
