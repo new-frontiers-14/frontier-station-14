@@ -23,6 +23,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Kitchen.Components;
 using Content.Server.NPC.Components;
+using Content.Server.Nutrition;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Paper;
