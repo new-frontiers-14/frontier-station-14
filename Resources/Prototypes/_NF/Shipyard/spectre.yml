@@ -1,0 +1,30 @@
+- type: vessel
+  id: Spectre
+  name: Spectre
+  description: A large research mothership designed to be flown nexto a small fleet of other ships including salvage and food services.
+  price: 195000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/spectre.yml
+
+- type: gameMap
+  id: Spectre
+  mapName: 'Spectre'
+  mapPath: /Maps/Shuttles/spectre.yml
+  minPlayers: 0
+  stations:
+    Spectre:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spectre {1}' 
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Scientist: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
