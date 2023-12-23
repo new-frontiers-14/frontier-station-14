@@ -215,7 +215,7 @@
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorCaptainCarapace
   name: "captain's carapace"
-  description: "An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the captain's of luxury vessels."
+  description: "An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the captain's of luxury vessels." # Frontier
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
@@ -234,31 +234,6 @@
     sprintModifier: 1.0
   - type: ExplosionResistance
     damageCoefficient: 0.90
-  - type: GroupExamine
-  
-- type: entity
-  parent: ClothingOuterBaseLarge
-  id: ClothingOuterArmorSRCarapace #Frontier
-  name: "station rep's carapace"
-  description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/sr_carapace.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/sr_carapace.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.6
-        Caustic: 0.6
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: ExplosionResistance
-    damageCoefficient: 0.60
   - type: GroupExamine
 
 - type: entity
