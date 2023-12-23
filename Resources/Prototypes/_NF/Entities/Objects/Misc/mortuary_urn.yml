@@ -16,22 +16,24 @@
     price: 20
   - type: ItemSlots
     slots:
-      ashes:
+      ashes_slot:
         insertVerbText: Put Ashes
         ejectVerbText: Empty Ashes
         name: Urn Contents
+        startingItem: null
         whitelist:
           tags:
-          - Trash
           - Ash
           - Ectoplasm
         insertOnInteract: false
         priority: 1
-      label:
+      label_slot:
         insertVerbText: Attach Label
         ejectVerbText: Remove Label
+        name: Urn Label
+        startingItem: null
         whitelist:
-          components:
+          tags:
           - Document
         insertOnInteract: false
         priority: 2
@@ -39,8 +41,9 @@
     containers:
       storagebase: !type:Container
         ents: []
-      ashes: !type:ContainerSlot {}
-      label: !type:ContainerSlot {}
+      ashes_slot: !type:ContainerSlot {}
+      label_slot: !type:ContainerSlot {}
+  - type: Appearance
   - type: ItemMapper
     mapLayers:
       label:
@@ -48,4 +51,3 @@
           tags:
           - Document
     sprite: _NF/Objects/Misc/mortuary_urn.rsi
-  - type: Appearance
