@@ -170,8 +170,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (args.Cancelled || args.Handled)
             return;
 
-        var body = args.Used;
-        var pod = args.Target;
+        var pod = args.Used;
+        var body = args.Target;
         if (body is not { Valid: true } || pod is not { Valid: true })
             return;
 
@@ -305,7 +305,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             return false;
 
         component.BodyContainer.Remove(toEject.Value, force: true);
-        _climb.ForciblySetClimbing(toEject.Value, pod);
+        //_climb.ForciblySetClimbing(toEject.Value, pod);
 
         if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
             _doAfter.Cancel(component.CryosleepDoAfter);
