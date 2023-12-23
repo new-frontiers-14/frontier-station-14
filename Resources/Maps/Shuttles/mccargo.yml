@@ -95,10 +95,6 @@ entities:
             216: -4,3
             217: -6,3
             221: -8,3
-            222: -8,4
-            226: -7,4
-            227: -6,4
-            228: -5,4
             231: -8,8
             235: -6,8
             238: -5,10
@@ -109,6 +105,8 @@ entities:
             308: 7,14
             309: 6,11
             310: -1,10
+            355: -5,3
+            356: -7,3
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -123,8 +121,9 @@ entities:
             251: -3,14
             258: 0,15
             259: 0,13
-            260: -7,3
             304: 6,12
+            352: -5,4
+            354: -8,5
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -132,9 +131,7 @@ entities:
           decals:
             0: -8,3
             1: -1,12
-            218: -5,3
             219: -4,4
-            223: -8,5
             224: -4,5
             229: -8,6
             232: -8,9
@@ -142,6 +139,8 @@ entities:
             250: -2,14
             252: -4,14
             256: -1,15
+            357: -6,3
+            358: -5,4
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -149,8 +148,6 @@ entities:
           decals:
             2: 7,12
             3: 9,11
-            220: -5,4
-            225: -5,5
             230: -8,7
             233: -7,9
             236: -6,9
@@ -165,6 +162,8 @@ entities:
             305: 6,14
             306: 6,13
             307: 7,11
+            353: -8,4
+            359: -5,5
         - node:
             color: '#A46106FF'
             id: MiniTileWhiteCornerNe
@@ -344,20 +343,28 @@ entities:
           decals:
             153: -8,3
         - node:
+            color: '#9FED5896'
+            id: WarnCornerSmallNE
+          decals:
+            349: -8,4
+        - node:
             color: '#A4610696'
             id: WarnCornerSmallNE
           decals:
             130: -5,10
             131: -5,12
-            132: -8,4
-            133: -5,5
+            351: -5,5
+        - node:
+            color: '#9FED5896'
+            id: WarnCornerSmallNW
+          decals:
+            350: -5,4
         - node:
             color: '#A4610696'
             id: WarnCornerSmallNW
           decals:
             134: -1,10
             135: -1,12
-            136: -5,4
             145: -5,9
         - node:
             color: '#A4610696'
@@ -381,6 +388,11 @@ entities:
           decals:
             261: 4,12
         - node:
+            color: '#9FED5896'
+            id: WarnLineE
+          decals:
+            346: -8,5
+        - node:
             color: '#A4610696'
             id: WarnLineE
           decals:
@@ -397,7 +409,6 @@ entities:
             97: 0,14
             112: -8,6
             113: -8,7
-            119: -8,5
             127: -1,11
         - node:
             color: '#FFFFFFFF'
@@ -439,9 +450,9 @@ entities:
             color: '#9FED5896'
             id: WarnLineN
           decals:
-            148: -5,3
             149: -6,3
-            150: -7,3
+            341: -7,3
+            343: -5,3
         - node:
             color: '#A4610696'
             id: WarnLineN
@@ -485,8 +496,9 @@ entities:
             color: '#9FED5896'
             id: WarnLineS
           decals:
-            151: -8,4
-            152: -8,5
+            345: -5,5
+            347: -8,5
+            348: -8,4
         - node:
             color: '#A4610696'
             id: WarnLineS
@@ -503,7 +515,6 @@ entities:
             108: -5,14
             116: -5,7
             117: -5,6
-            118: -5,5
             128: -1,11
             129: -1,13
         - node:
@@ -531,13 +542,17 @@ entities:
             330: 8,5
             336: -11,-3
         - node:
+            color: '#9FED5896'
+            id: WarnLineW
+          decals:
+            339: -6,4
+            342: -7,4
+        - node:
             color: '#A4610696'
             id: WarnLineW
           decals:
             74: -12,-1
             75: 12,-1
-            110: -7,4
-            111: -6,4
             121: -4,12
             122: -3,12
             123: -2,12
@@ -2704,13 +2719,6 @@ entities:
   - uid: 53
     components:
     - pos: 2.5,10.5
-      parent: 1
-      type: Transform
-- proto: CrateHydroponicsSeeds
-  entities:
-  - uid: 104
-    components:
-    - pos: -6.5,5.5
       parent: 1
       type: Transform
 - proto: CrateHydroponicsTools
@@ -5076,6 +5084,13 @@ entities:
   - uid: 922
     components:
     - pos: -11.5,0.5
+      parent: 1
+      type: Transform
+- proto: SeedExtractor
+  entities:
+  - uid: 104
+    components:
+    - pos: -6.5,5.5
       parent: 1
       type: Transform
 - proto: ShuttersNormalOpen
