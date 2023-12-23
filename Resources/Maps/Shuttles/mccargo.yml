@@ -1370,12 +1370,9 @@ entities:
   entities:
   - uid: 164
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 531
+    - pos: -8.478253,9.524676
+      parent: 1
       type: Transform
-    - canCollide: False
-      type: Physics
 - proto: BrbSign
   entities:
   - uid: 755
@@ -3207,22 +3204,6 @@ entities:
     - pos: -6.5,7.5
       parent: 1
       type: Transform
-- proto: filingCabinetDrawerRandom
-  entities:
-  - uid: 531
-    components:
-    - pos: -8.5,10.5
-      parent: 1
-      type: Transform
-    - storageUsed: 10
-      type: Storage
-    - containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 164
-      type: ContainerContainer
 - proto: FireAlarm
   entities:
   - uid: 154
@@ -4371,9 +4352,9 @@ entities:
       type: Transform
 - proto: GunSafe
   entities:
-  - uid: 929
+  - uid: 123
     components:
-    - pos: -8.5,7.5
+    - pos: -8.5,10.5
       parent: 1
       type: Transform
     - locked: False
@@ -4500,21 +4481,16 @@ entities:
       type: Transform
 - proto: KitchenElectricGrill
   entities:
-  - uid: 123
+  - uid: 929
     components:
-    - pos: 1.5,5.5
-      parent: 1
-      type: Transform
-  - uid: 148
-    components:
-    - pos: 1.5,7.5
+    - pos: 4.5,5.5
       parent: 1
       type: Transform
 - proto: KitchenKnife
   entities:
   - uid: 234
     components:
-    - pos: 2.4586008,5.591034
+    - pos: 1.4792413,5.5648255
       parent: 1
       type: Transform
 - proto: KitchenMicrowave
@@ -4522,6 +4498,11 @@ entities:
   - uid: 149
     components:
     - pos: 2.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 531
+    components:
+    - pos: 1.5,7.5
       parent: 1
       type: Transform
 - proto: KitchenReagentGrinder
@@ -6349,6 +6330,13 @@ entities:
       parent: 1
       type: Transform
 - proto: VendingMachineCargoDrobe
+  entities:
+  - uid: 148
+    components:
+    - pos: -8.5,7.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineChefDrobe
   entities:
   - uid: 534
     components:
