@@ -139,7 +139,7 @@ namespace Content.Client.VendingMachines.UI
 
                             // TODO check ReagentData for price information?
                             var costReagent = (float) quantity * reagentProto.PricePerUnit;
-                            cost += (int) costReagent;
+                            cost += (int) (costReagent * priceModifier);
                         }
                     }
                 }
