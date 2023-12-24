@@ -268,7 +268,7 @@ namespace Content.Server.Kitchen.EntitySystems
         /// <summary>
         /// Make an item look deep-fried.
         /// </summary>
-        private void MakeCrispy(EntityUid item)
+        public void MakeCrispy(EntityUid item)
         {
             EnsureComp<AppearanceComponent>(item);
             EnsureComp<DeepFriedComponent>(item);
