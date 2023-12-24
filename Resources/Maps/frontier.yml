@@ -28,24 +28,11 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1578
-    components:
-    - type: MetaData
-    - type: Transform
-    - type: Map
-    - type: PhysicsMap
-    - type: Broadphase
-    - type: OccluderTree
-    - parallax: FrontierStation
-      type: Parallax
-    - type: LoadedMap
-    - type: GridTree
-    - type: MovedGrids
   - uid: 2173
     components:
     - type: MetaData
     - pos: 0.121950805,-0.15609694
-      parent: 1578
+      parent: invalid
       type: Transform
     - chunks:
         0,0:
@@ -4600,14 +4587,6 @@ entities:
     - pos: -5.5,25.5
       parent: 2173
       type: Transform
-- proto: AirlockArmoryGlassLocked
-  entities:
-  - uid: 2384
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 35.5,14.5
-      parent: 2173
-      type: Transform
 - proto: AirlockAtmosphericsGlassLocked
   entities:
   - uid: 4082
@@ -4970,6 +4949,18 @@ entities:
   - uid: 4194
     components:
     - pos: -58.5,0.5
+      parent: 2173
+      type: Transform
+- proto: AirlockFrontierCommandGlassLocked
+  entities:
+  - uid: 1578
+    components:
+    - pos: 35.5,14.5
+      parent: 2173
+      type: Transform
+  - uid: 2384
+    components:
+    - pos: 7.5,17.5
       parent: 2173
       type: Transform
 - proto: AirlockFrontierGlassLocked
@@ -5567,13 +5558,6 @@ entities:
       type: Transform
     - name: 2B
       type: Docking
-- proto: AirlockHeadOfPersonnelGlassLocked
-  entities:
-  - uid: 4113
-    components:
-    - pos: 7.5,17.5
-      parent: 2173
-      type: Transform
 - proto: AirlockJanitorLocked
   entities:
   - uid: 2754
@@ -16609,14 +16593,14 @@ entities:
     - pos: -47.5,7.5
       parent: 2173
       type: Transform
-  - uid: 2671
+  - uid: 2550
     components:
-    - pos: -31.5,6.5
+    - pos: -31.493168,6.8621655
       parent: 2173
       type: Transform
-  - uid: 2672
+  - uid: 2609
     components:
-    - pos: -32.5,6.5
+    - pos: -32.441086,6.8621655
       parent: 2173
       type: Transform
   - uid: 3133
@@ -19626,11 +19610,6 @@ entities:
       type: Transform
 - proto: DogBed
   entities:
-  - uid: 2609
-    components:
-    - pos: 3.5,21.5
-      parent: 2173
-      type: Transform
   - uid: 5017
     components:
     - pos: 9.5,20.5
@@ -19648,6 +19627,23 @@ entities:
   - uid: 4288
     components:
     - pos: 20.639734,10.901373
+      parent: 2173
+      type: Transform
+- proto: DrinkWaterCup
+  entities:
+  - uid: 4274
+    components:
+    - pos: 8.320004,13.561474
+      parent: 2173
+      type: Transform
+  - uid: 6146
+    components:
+    - pos: 8.5595875,13.707306
+      parent: 2173
+      type: Transform
+  - uid: 6147
+    components:
+    - pos: 8.6845875,13.50939
       parent: 2173
       type: Transform
 - proto: EmergencyLight
@@ -20365,9 +20361,9 @@ entities:
       - 2354
       - 2355
       type: DeviceList
-- proto: FireAxeCabinetFilled
+- proto: FireAxeCabinetFilledCommand
   entities:
-  - uid: 2550
+  - uid: 2671
     components:
     - pos: 9.5,14.5
       parent: 2173
@@ -36804,6 +36800,11 @@ entities:
       pos: 31.5,18.5
       parent: 2173
       type: Transform
+  - uid: 2672
+    components:
+    - pos: 8.5,13.5
+      parent: 2173
+      type: Transform
   - uid: 2739
     components:
     - pos: -31.5,10.5
@@ -41031,9 +41032,9 @@ entities:
       type: WarpPoint
 - proto: WaterCooler
   entities:
-  - uid: 4274
+  - uid: 4113
     components:
-    - pos: 8.5,13.5
+    - pos: 8.5,12.5
       parent: 2173
       type: Transform
 - proto: WaterTankHighCapacity
@@ -41142,6 +41143,13 @@ entities:
       pos: 4.5,24.5
       parent: 2173
       type: Transform
+    - links:
+      - 2642
+      type: DeviceLinkSink
+    - linkedPorts:
+        2642:
+        - DoorStatus: Close
+      type: DeviceLinkSource
   - uid: 2803
     components:
     - rot: 3.141592653589793 rad
@@ -41215,6 +41223,13 @@ entities:
     - pos: 4.5,24.5
       parent: 2173
       type: Transform
+    - links:
+      - 2643
+      type: DeviceLinkSink
+    - linkedPorts:
+        2643:
+        - DoorStatus: Close
+      type: DeviceLinkSource
   - uid: 4056
     components:
     - rot: -1.5707963267948966 rad
