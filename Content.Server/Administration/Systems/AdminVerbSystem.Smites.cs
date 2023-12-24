@@ -793,5 +793,19 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-smite-super-speed-description"),
         };
         args.Verbs.Add(superSpeed);
+
+        Verb blackMan = new()
+        {
+            Text = "BlackMail",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Animals/blackman.rsi"), "blackman"),
+            Act = () =>
+            {
+                _polymorphSystem.PolymorphEntity(args.Target, "AdminBlackManSmite");
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-blackmail-description")
+        };
+        args.Verbs.Add(blackMan);
     }
 }
