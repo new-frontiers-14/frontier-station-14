@@ -20,6 +20,26 @@
     layoutId: AirlockCommand
 
 - type: entity
+  parent: AirlockCommand
+  id: AirlockFrontierCommandLocked
+  suffix: Frontier Command, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+  - type: Wires
+    layoutId: AirlockCommand
+    
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockFrontierCommandGlassLocked
+  suffix: Frontier Command, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
   parent: AirlockMercenary
   id: AirlockMercenaryLocked
   suffix: Mercenary, Locked
