@@ -28,6 +28,25 @@
     damageModifierSet: PerforatedMetallic
   - type: Reflect
     reflectProb: 0
+  - type: PowerConsumer
+    showInMonitor: false
+  - type: Electrified
+    requirePower: true
+    noWindowInTile: true
+    highVoltageNode: high
+    mediumVoltageNode: medium
+    lowVoltageNode: low
+  - type: NodeContainer
+    nodes:
+      high:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      medium:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      low:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
   - type: Fixtures
     fixtures:
       fix1:
