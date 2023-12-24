@@ -1,0 +1,43 @@
+- type: entity
+  parent: WallShuttleDiagonal
+  id: GrilleDiagonal
+  name: grille
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: CanBuildWindowOnTop
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/grille_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/grille_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - RCDDeconstructWhitelist
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: PerforatedMetallic
+  - type: Reflect
+    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
