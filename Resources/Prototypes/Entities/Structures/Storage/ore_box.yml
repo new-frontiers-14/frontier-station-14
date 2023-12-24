@@ -1,12 +1,13 @@
 ﻿- type: entity
   id: OreBox
   name: ore box
-  description: A large storage container for holding unprocessed ores.
+  # description: A large storage container for holding unprocessed ores.
+  description: A large storage container for collecting and holding unprocessed ores and fragments.   # Frontier
   parent: BaseStructureDynamic
   components:
   - type: StaticPrice
     # price: 500
-    price: 1000
+    price: 1000  # Frontier
   - type: Anchorable
   - type: InteractionOutline
   - type: Damageable
@@ -71,9 +72,6 @@
         ents: [ ]
   - type: Dumpable              # Frontier
   - type: MagnetPickup # Frontier
-    isFixture: true
-    pickupWhenNotAnchored: true
-    pickupWhenAnchored: false   
     range: 1.5  # Ore bag has a range of 1.0
   - type: Fixtures
     fixtures:
@@ -84,6 +82,7 @@
         # very not dense to make it easy to pull
         density: 20
         mask:
-        - MachineMask
+        #- MachineMask
+        - SmallMobMask  # Frontier
         layer:
         - MachineLayer

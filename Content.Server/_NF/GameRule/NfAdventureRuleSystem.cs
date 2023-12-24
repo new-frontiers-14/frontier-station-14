@@ -120,13 +120,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var courthouse = "/Maps/courthouse.yml";
         var lodge = "/Maps/lodge.yml";
         var lab = "/Maps/anomalouslab.yml";
+        var church = "Maps/beacon.yml";
+        var grifty = "Maps/grifty.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(3000f, 5000f);
-
+        var tinniaOffset = _random.NextVector2(1100f, 2800f);
+        var caseysOffset = _random.NextVector2(2250f, 4600f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -137,16 +140,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
-        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(1100f, 2800f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
-            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
-        }
-
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
                 Offset = -depotOffset
@@ -155,6 +148,26 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
             _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
+        }
+
+        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
+            {
+                Offset = tinniaOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
+            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
+            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, church, out var churchUids, new MapLoadOptions
+            {
+                Offset = -tinniaOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(churchUids[0]);
+            _meta.SetEntityName(churchUids[0], "Omnichurch Beacon", meta);
+            _shuttle.SetIFFColor(churchUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
@@ -219,14 +232,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
-        if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
+        if (_map.TryLoad(mapId, caseys, out var caseyUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2250f, 4600f)
+                Offset = caseysOffset
             }))
         {
-            var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
-            _shuttle.SetIFFColor(depotUid7s[0], factionColor);
+            var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
+            _meta.SetEntityName(caseyUids[0], "Crazy Casey's Casino", meta);
+            _shuttle.SetIFFColor(caseyUids[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, grifty, out var griftyUids, new MapLoadOptions
+            {
+                Offset = -caseysOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
+            _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
+            _shuttle.SetIFFColor(griftyUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
