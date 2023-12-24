@@ -1,0 +1,24 @@
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorSRCarapace
+  name: "station rep's carapace"
+  description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/sr_carapace.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/sr_carapace.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.6
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: GroupExamine
