@@ -17145,10 +17145,9 @@ entities:
           occludes: True
           ents: []
       type: ContainerContainer
-  - uid: 3807
+  - uid: 5744
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 51.5,9.5
+    - pos: -1.5,41.5
       parent: 2173
       type: Transform
     - containers:
@@ -17161,9 +17160,12 @@ entities:
           occludes: True
           ents: []
       type: ContainerContainer
-  - uid: 5744
+- proto: ComputerShipyardScrap
+  entities:
+  - uid: 3807
     components:
-    - pos: -1.5,41.5
+    - rot: -1.5707963267948966 rad
+      pos: 51.5,9.5
       parent: 2173
       type: Transform
     - containers:
@@ -17615,6 +17617,15 @@ entities:
       type: Transform
     - links:
       - 2737
+      type: DeviceLinkSink
+  - uid: 6083
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 52.5,18.5
+      parent: 2173
+      type: Transform
+    - links:
+      - 6145
       type: DeviceLinkSink
 - proto: CrateServiceJanitorialSupplies
   entities:
@@ -31754,9 +31765,9 @@ entities:
       type: Transform
 - proto: MaterialReclaimer
   entities:
-  - uid: 6083
+  - uid: 6144
     components:
-    - pos: 52.5,18.5
+    - pos: 53.5,18.5
       parent: 2173
       type: Transform
 - proto: MedicalScanner
@@ -37134,6 +37145,17 @@ entities:
         769:
         - Left: Forward
         - Right: Reverse
+        - Middle: Off
+      type: DeviceLinkSource
+  - uid: 6145
+    components:
+    - pos: 51.5,18.5
+      parent: 2173
+      type: Transform
+    - linkedPorts:
+        6083:
+        - Left: Forward
+        - Right: Forward
         - Middle: Off
       type: DeviceLinkSource
 - proto: UniformPrinter
