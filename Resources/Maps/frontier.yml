@@ -4239,7 +4239,8 @@ entities:
           1,7:
             0: 12287
           2,4:
-            0: 65535
+            0: 61439
+            2: 4096
           2,5:
             0: 65535
           2,6:
@@ -4598,14 +4599,6 @@ entities:
   - uid: 4179
     components:
     - pos: -5.5,25.5
-      parent: 2173
-      type: Transform
-- proto: AirlockArmoryGlassLocked
-  entities:
-  - uid: 2384
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 35.5,14.5
       parent: 2173
       type: Transform
 - proto: AirlockAtmosphericsGlassLocked
@@ -4970,6 +4963,18 @@ entities:
   - uid: 4194
     components:
     - pos: -58.5,0.5
+      parent: 2173
+      type: Transform
+- proto: AirlockFrontierCommandGlassLocked
+  entities:
+  - uid: 2384
+    components:
+    - pos: 35.5,14.5
+      parent: 2173
+      type: Transform
+  - uid: 2550
+    components:
+    - pos: 7.5,17.5
       parent: 2173
       type: Transform
 - proto: AirlockFrontierGlassLocked
@@ -5567,13 +5572,6 @@ entities:
       type: Transform
     - name: 2B
       type: Docking
-- proto: AirlockHeadOfPersonnelGlassLocked
-  entities:
-  - uid: 4113
-    components:
-    - pos: 7.5,17.5
-      parent: 2173
-      type: Transform
 - proto: AirlockJanitorLocked
   entities:
   - uid: 2754
@@ -16609,14 +16607,14 @@ entities:
     - pos: -47.5,7.5
       parent: 2173
       type: Transform
-  - uid: 2671
+  - uid: 2609
     components:
-    - pos: -31.5,6.5
+    - pos: -32.472733,7.011403
       parent: 2173
       type: Transform
-  - uid: 2672
+  - uid: 2671
     components:
-    - pos: -32.5,6.5
+    - pos: -31.462313,7.0218196
       parent: 2173
       type: Transform
   - uid: 3133
@@ -17691,6 +17689,11 @@ entities:
       type: Transform
 - proto: DeployableBarrier
   entities:
+  - uid: 2672
+    components:
+    - pos: 34.5,18.5
+      parent: 2173
+      type: Transform
   - uid: 4262
     components:
     - pos: 35.5,19.5
@@ -19626,11 +19629,6 @@ entities:
       type: Transform
 - proto: DogBed
   entities:
-  - uid: 2609
-    components:
-    - pos: 3.5,21.5
-      parent: 2173
-      type: Transform
   - uid: 5017
     components:
     - pos: 9.5,20.5
@@ -19648,6 +19646,23 @@ entities:
   - uid: 4288
     components:
     - pos: 20.639734,10.901373
+      parent: 2173
+      type: Transform
+- proto: DrinkWaterCup
+  entities:
+  - uid: 6029
+    components:
+    - pos: 8.3031645,13.530552
+      parent: 2173
+      type: Transform
+  - uid: 6146
+    components:
+    - pos: 8.510882,13.686802
+      parent: 2173
+      type: Transform
+  - uid: 6147
+    components:
+    - pos: 8.698382,13.488884
       parent: 2173
       type: Transform
 - proto: EmergencyLight
@@ -20365,9 +20380,9 @@ entities:
       - 2354
       - 2355
       type: DeviceList
-- proto: FireAxeCabinetFilled
+- proto: FireAxeCabinetCommand
   entities:
-  - uid: 2550
+  - uid: 4113
     components:
     - pos: 9.5,14.5
       parent: 2173
@@ -31346,6 +31361,42 @@ entities:
       pos: 26.5,16.5
       parent: 2173
       type: Transform
+- proto: GunSafe
+  entities:
+  - uid: 4274
+    components:
+    - pos: 8.5,19.5
+      parent: 2173
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 4380
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: HandheldCrewMonitor
   entities:
   - uid: 2453
@@ -33125,12 +33176,6 @@ entities:
   - uid: 4158
     components:
     - pos: -28.5,14.5
-      parent: 2173
-      type: Transform
-  - uid: 4379
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 8.5,19.5
       parent: 2173
       type: Transform
 - proto: RadioHandheld
@@ -36861,6 +36906,11 @@ entities:
     - pos: -5.5,21.5
       parent: 2173
       type: Transform
+  - uid: 4379
+    components:
+    - pos: 8.5,13.5
+      parent: 2173
+      type: Transform
   - uid: 5197
     components:
     - rot: 3.141592653589793 rad
@@ -37369,15 +37419,6 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: 25.5,18.5
-      parent: 2173
-      type: Transform
-- proto: VendingMachineSustenance
-  entities:
-  - uid: 6029
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -15.5,12.5
       parent: 2173
       type: Transform
 - proto: VendingMachineTheater
@@ -41031,9 +41072,9 @@ entities:
       type: WarpPoint
 - proto: WaterCooler
   entities:
-  - uid: 4274
+  - uid: 4381
     components:
-    - pos: 8.5,13.5
+    - pos: 8.5,12.5
       parent: 2173
       type: Transform
 - proto: WaterTankHighCapacity
@@ -41080,18 +41121,17 @@ entities:
     - pos: 38.46429,14.810719
       parent: 2173
       type: Transform
-  - uid: 4381
-    components:
-    - pos: 8.503672,19.54045
-      parent: 2173
-      type: Transform
 - proto: WeaponPistolMk58
   entities:
   - uid: 4380
     components:
-    - pos: 8.430501,19.657524
-      parent: 2173
+    - flags: InContainer
+      type: MetaData
+    - parent: 4274
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: WelderMini
   entities:
   - uid: 5855
@@ -41142,6 +41182,13 @@ entities:
       pos: 4.5,24.5
       parent: 2173
       type: Transform
+    - links:
+      - 2642
+      type: DeviceLinkSink
+    - linkedPorts:
+        2642:
+        - DoorStatus: Close
+      type: DeviceLinkSource
   - uid: 2803
     components:
     - rot: 3.141592653589793 rad
@@ -41215,6 +41262,13 @@ entities:
     - pos: 4.5,24.5
       parent: 2173
       type: Transform
+    - links:
+      - 2643
+      type: DeviceLinkSink
+    - linkedPorts:
+        2643:
+        - DoorStatus: Close
+      type: DeviceLinkSource
   - uid: 4056
     components:
     - rot: -1.5707963267948966 rad
