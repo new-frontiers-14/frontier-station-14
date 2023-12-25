@@ -338,7 +338,7 @@ entities:
             0: 14199
           -2,-3:
             0: 65278
-            3: 1
+            2: 1
           -1,-3:
             0: 65535
           0,-3:
@@ -351,14 +351,14 @@ entities:
             0: 65535
           1,-4:
             0: 10103
-            2: 4096
+            3: 4096
           -1,-4:
             0: 65535
           -3,-3:
             0: 63727
           1,-3:
             0: 62973
-            3: 2
+            2: 2
           1,-5:
             0: 30583
           -3,-4:
@@ -413,8 +413,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.6852
-          - 81.57766
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -428,8 +428,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
+          - 21.6852
+          - 81.57766
           - 0
           - 0
           - 0
@@ -454,7 +454,7 @@ entities:
       pos: -1.5,-4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -6752.5234
+    - secondsUntilStateChange: -6870.6177
       state: Opening
       type: Door
   - uid: 3
@@ -463,7 +463,7 @@ entities:
       pos: -0.5,-4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -6752.7407
+    - secondsUntilStateChange: -6870.835
       state: Opening
       type: Door
 - proto: AirlockCaptainLocked
@@ -482,7 +482,7 @@ entities:
       pos: -1.5,-2.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -6751.5405
+    - secondsUntilStateChange: -6869.635
       state: Opening
       type: Door
   - uid: 6
@@ -491,7 +491,7 @@ entities:
       pos: -0.5,-2.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -6751.157
+    - secondsUntilStateChange: -6869.2515
       state: Opening
       type: Door
   - uid: 7
@@ -500,7 +500,7 @@ entities:
       pos: -6.5,-4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -9868.895
+    - secondsUntilStateChange: -9986.989
       state: Opening
       type: Door
   - uid: 9
@@ -509,7 +509,7 @@ entities:
       pos: -1.5,-9.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -9878.11
+    - secondsUntilStateChange: -9996.205
       state: Opening
       type: Door
   - uid: 10
@@ -518,7 +518,7 @@ entities:
       pos: -0.5,-9.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -9877.744
+    - secondsUntilStateChange: -9995.839
       state: Opening
       type: Door
   - uid: 11
@@ -527,7 +527,7 @@ entities:
       pos: 4.5,-4.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -9868.062
+    - secondsUntilStateChange: -9986.156
       state: Opening
       type: Door
 - proto: AirlockGlassShuttle
@@ -2062,6 +2062,21 @@ entities:
   - uid: 301
     components:
     - pos: -2.5,-18.5
+      parent: 1
+      type: Transform
+  - uid: 887
+    components:
+    - pos: 0.5,-13.5
+      parent: 1
+      type: Transform
+  - uid: 888
+    components:
+    - pos: 0.5,-14.5
+      parent: 1
+      type: Transform
+  - uid: 889
+    components:
+    - pos: -1.5,-14.5
       parent: 1
       type: Transform
 - proto: CableMV
