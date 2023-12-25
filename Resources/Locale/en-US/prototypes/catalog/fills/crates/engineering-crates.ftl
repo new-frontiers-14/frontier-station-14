@@ -19,6 +19,12 @@ ent-CrateEngineeringCableHV = HV cable crate
 ent-CrateEngineeringCableBulk = Bulk cable crate
     .desc = 2 coils each for every cable type.
 
+ent-CrateEngineeringGearBasic = Tool kit (basic)
+    .desc = A full set of tools, gloves and goggles.
+
+ent-CrateEngineeringGearFull = Tool kit (full)
+    .desc = An extended set of tools, gloves and goggles.
+
 ent-CrateEngineeringElectricalSupplies = Electrical Supplies Crate
     .desc = NT is not responsible for any workplace infighting relating to the insulated gloves included within these crates.
 

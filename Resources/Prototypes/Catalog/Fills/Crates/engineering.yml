@@ -17,6 +17,32 @@
       - id: ClothingHandsGlovesColorYellow
         amount: 2
 
+# Frontier
+- type: entity
+  id: CrateEngineeringGearBasic
+  parent: CrateEngineeringSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltUtilityEngineering
+      - id: ClothingEyesGlassesMeson
+      - id: ClothingHandsGlovesColorYellow
+
+# Frontier
+- type: entity
+  id: CrateEngineeringGearFull
+  parent: CrateEngineeringSecure
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltUtilityEngineering   
+      - id: ClothingEyesGlassesMeson  
+      - id: ClothingHandsGlovesColorYellow
+      - id: trayScanner
+      - id: GasAnalyzer
+      - id: HolofanProjector
+      - id: GeigerCounter
+
 - type: entity
   id: CrateEngineeringToolbox
   parent: CrateEngineering
