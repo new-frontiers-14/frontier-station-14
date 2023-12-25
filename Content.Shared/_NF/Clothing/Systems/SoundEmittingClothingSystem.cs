@@ -1,7 +1,9 @@
 using System.Numerics;
 using Content.Shared._NF.Clothing.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -18,36 +20,19 @@ public sealed class SoundEmittingClothingSystem : EntitySystem
     private EntityQuery<InputMoverComponent> _moverQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<ClothingComponent> _clothingQuery;
 
     public override void Initialize()
     {
         _moverQuery = GetEntityQuery<InputMoverComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-
-        SubscribeLocalEvent<SoundEmittingClothingComponent, GotEquippedEvent>(OnEquipped);
-        SubscribeLocalEvent<SoundEmittingClothingComponent, GotUnequippedEvent>(OnUnequipped);
-    }
-
-    private void OnEquipped(EntityUid uid, SoundEmittingClothingComponent component, GotEquippedEvent args)
-    {
-        var comp = EnsureComp<SoundEmittingEntityComponent>(args.Equipee);
-        comp.SoundCollection = component.SoundCollection;
-        comp.RequiresGravity = component.RequiresGravity;
-    }
-
-    private void OnUnequipped(EntityUid uid, SoundEmittingClothingComponent component, GotUnequippedEvent args)
-    {
-        if (TryComp<SoundEmittingEntityComponent>(args.Equipee, out var comp) &&
-            comp.SoundCollection == component.SoundCollection)
-        {
-            RemComp<SoundEmittingEntityComponent>(args.Equipee);
-        }
+        _clothingQuery = GetEntityQuery<ClothingComponent>();
     }
 
     public override void Update(float frameTime)
     {
-        var query = EntityQueryEnumerator<SoundEmittingEntityComponent>();
+        var query = EntityQueryEnumerator<EmitsSoundOnMoveComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             UpdateSound(uid, comp);
@@ -55,13 +40,10 @@ public sealed class SoundEmittingClothingSystem : EntitySystem
         query.Dispose();
     }
 
-    private void UpdateSound(EntityUid uid, SoundEmittingEntityComponent component)
+    private void UpdateSound(EntityUid uid, EmitsSoundOnMoveComponent component)
     {
         if (!_xformQuery.TryGetComponent(uid, out var xform) ||
             !_physicsQuery.TryGetComponent(uid, out var physics))
-            return;
-
-        if (!physics.Awake || physics.LinearVelocity.EqualsApprox(Vector2.Zero))
             return;
 
         // Space does not transmit sound
@@ -71,9 +53,15 @@ public sealed class SoundEmittingClothingSystem : EntitySystem
         if (component.RequiresGravity && _gravity.IsWeightless(uid, physics, xform))
             return;
 
-        // The below is shamelessly copied from SharedMoverController
-        var coordinates = xform.Coordinates;
-        var distanceNeeded = (_moverQuery.TryGetComponent(uid, out var mover) && mover.Sprinting) ? 2f : 1.5f;
+a        var parent = xform.ParentUid;
+        var isWorn = parent is { Valid: true } &&
+                     _clothingQuery.TryGetComponent(uid, out var clothing)
+                     && clothing.InSlot != null;
+        // If this entity is worn by another entity, use that entity's coordinates
+        var coordinates = isWorn ? Transform(parent).Coordinates : xform.Coordinates;
+        var distanceNeeded = (isWorn && _moverQuery.TryGetComponent(parent, out var mover) && mover.Sprinting)
+            ? 2f // The parent is a mob that is currently sprinting
+            : 1.5f; // The parent is not a mob or is not sprinting
 
         if (!coordinates.TryDistance(EntityManager, component.LastPosition, out var distance) || distance > distanceNeeded)
             component.SoundDistance = distanceNeeded;
