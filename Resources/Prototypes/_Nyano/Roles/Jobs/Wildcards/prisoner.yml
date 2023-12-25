@@ -4,13 +4,15 @@
   description: job-description-prisoner
   playTimeTracker: JobPrisoner
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 10800
+    - !type:WhitelistRequirement
   startingGear: PrisonerGear
   canBeAntag: false
   whitelistRequired: true
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-security
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ] # Frontier
 
 - type: startingGear
   id: PrisonerGear
