@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._NF.Clothing.Systems;
 
-public sealed class SoundEmittingClothingSystem : EntitySystem
+public sealed class EmitsSoundOnMoveSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMapSystem _grid = default!;
@@ -53,7 +53,7 @@ public sealed class SoundEmittingClothingSystem : EntitySystem
         if (component.RequiresGravity && _gravity.IsWeightless(uid, physics, xform))
             return;
 
-a        var parent = xform.ParentUid;
+        var parent = xform.ParentUid;
         var isWorn = parent is { Valid: true } &&
                      _clothingQuery.TryGetComponent(uid, out var clothing)
                      && clothing.InSlot != null;
