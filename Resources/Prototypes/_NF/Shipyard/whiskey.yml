@@ -1,0 +1,27 @@
+- type: vessel
+  id: Whiskey
+  name: NSF Whiskey
+  description: placeholder
+  price: 47000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/Shuttles/whiskey.yml
+
+- type: gameMap
+  id: Whiskey
+  mapName: 'NSF Whiskey'
+  mapPath: /Maps/Shuttles/whiskey.yml
+  minPlayers: 0
+  stations:
+    Whiskey:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Whiskey {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Brigmedic: [ 0, 0 ]
