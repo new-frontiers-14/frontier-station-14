@@ -42,6 +42,7 @@ public sealed class RadarControl : MapGridControl
     private Dictionary<EntityUid, List<DockingInterfaceState>> _docks = new();
 
     public bool ShowIFF { get; set; } = true;
+    public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
 
     /// <summary>
@@ -285,7 +286,20 @@ public sealed class RadarControl : MapGridControl
                     uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
                 }
 
-                label.Visible = true;
+                if (!ShowIFFShuttles)
+                {
+                    if (iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0)
+                    {
+                        label.Visible = false;
+                    }
+                    else
+                        label.Visible = true;
+                }
+                else
+                {
+                    label.Visible = true;
+                }
+
                 label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
                 LayoutContainer.SetPosition(label, uiPosition);
             }

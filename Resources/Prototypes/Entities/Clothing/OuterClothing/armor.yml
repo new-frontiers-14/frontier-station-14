@@ -215,7 +215,7 @@
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorCaptainCarapace
   name: "captain's carapace"
-  description: "An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest."
+  description: "An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the captain's of luxury vessels." # Frontier
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
@@ -229,6 +229,9 @@
         Piercing: 0.70
         Heat: 0.80
         Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: GroupExamine

@@ -76,3 +76,81 @@
         - MachineLayer
   - type: StaticPrice
     price: 2000
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeContrabandSecureNormal
+  name: Syndicate contraband crate
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 150 # Heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeContrabandSecureDonk
+  name: Donk Co. contraband crate
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 20000
+    
+- type: entity
+  parent: CrateTradeBaseSecure
+  id: CrateTradeContrabandSecureCyberSun
+  name: Cybersun Industries contraband crate
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 400 # Very heavy
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 20000
