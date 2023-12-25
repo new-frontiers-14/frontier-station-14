@@ -1,0 +1,100 @@
+#weapon racks
+- type: construction
+  name: gun rack
+  id: GunRackConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: GunRackNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/gunrack.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: gun rack (wall-mounted)
+  id: GunRackWallmountedConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: GunRackWallmountedNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/gunrack_wallmounted.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  name: melee weapon rack
+  id: MeleeRackConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: MeleeRackNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/meleerack.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: melee weapon rack (wall-mounted)
+  id: MeleeRackWallmountedConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: MeleeRackWallmountedNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/meleerack_wallmounted.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  name: pistol rack
+  id: PistolRackConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: PistolRackNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/pistolrack.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  name: pistol rack (wall-mounted)
+  id: PistolRackWallmountedConstruction
+  graph: WeaponRackConstructionGraph
+  startNode: start
+  targetNode: PistolRackWallmountedNode
+  category: construction-category-furniture
+  description: A storage unit for expeditiated pacification measures.
+  icon:
+    sprite: _NF/Structures/Furniture/Armory/pistolrack_wallmounted.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
