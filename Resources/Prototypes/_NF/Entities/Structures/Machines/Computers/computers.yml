@@ -161,6 +161,30 @@
       state: blackmarket_key
 
 - type: entity
+  id: ComputerShipyardScrap
+  parent: ComputerShipyard
+  name: scrapyard console
+  description: Used to purchase and sell "shuttles"
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Scrap
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Scrap
+      type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket   
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+
+- type: entity
   name: cargo sale computer
   suffix: Normal
   parent: BaseStructureComputer
