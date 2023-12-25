@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._NF.Clothing.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Gravity;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
@@ -28,6 +29,19 @@ public sealed class EmitsSoundOnMoveSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _clothingQuery = GetEntityQuery<ClothingComponent>();
+
+        SubscribeLocalEvent<EmitsSoundOnMoveComponent, GotEquippedEvent>(OnEquipped);
+        SubscribeLocalEvent<EmitsSoundOnMoveComponent, GotUnequippedEvent>(OnUnequipped);
+    }
+
+    private void OnEquipped(EntityUid uid, EmitsSoundOnMoveComponent component, GotEquippedEvent args)
+    {
+        component.IsSlotValid = !args.SlotFlags.HasFlag(SlotFlags.POCKET);
+    }
+
+    private void OnUnequipped(EntityUid uid, EmitsSoundOnMoveComponent component, GotUnequippedEvent args)
+    {
+        component.IsSlotValid = true;
     }
 
     public override void Update(float frameTime)
@@ -54,9 +68,11 @@ public sealed class EmitsSoundOnMoveSystem : EntitySystem
             return;
 
         var parent = xform.ParentUid;
+
         var isWorn = parent is { Valid: true } &&
                      _clothingQuery.TryGetComponent(uid, out var clothing)
-                     && clothing.InSlot != null;
+                     && clothing.InSlot != null
+                     && component.IsSlotValid;
         // If this entity is worn by another entity, use that entity's coordinates
         var coordinates = isWorn ? Transform(parent).Coordinates : xform.Coordinates;
         var distanceNeeded = (isWorn && _moverQuery.TryGetComponent(parent, out var mover) && mover.Sprinting)

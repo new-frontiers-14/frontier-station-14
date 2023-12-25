@@ -26,4 +26,10 @@ public sealed partial class EmitsSoundOnMoveComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public float SoundDistance = 0f;
+
+    /// <summary>
+    ///   Whether this item is equipped in a inventory item slot.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool IsSlotValid = true;
 }
