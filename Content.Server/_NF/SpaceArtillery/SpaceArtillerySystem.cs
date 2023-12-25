@@ -64,7 +64,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SpaceArtilleryComponent, ComponentRemove>(OnComponentRemove);
 	}
-
+	//TODO detect and handle when weapon fires from gun system and when it does not
 
     private void OnComponentInit(EntityUid uid, SpaceArtilleryComponent component, ComponentInit args)
     {
@@ -77,7 +77,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         _itemSlotsSystem.RemoveItemSlot(uid, component.CoolantSlot);
     }
 
-//TODO move firing system into separate function
+
 	private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
 	{
 		if(component.IsPowered == true || component.IsPowerRequiredForSignal == false)
@@ -274,7 +274,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			var worldPosY = transformComponent.WorldPosition.Y;
 			var worldRot = transformComponent.WorldRotation+rotOffset;
 			var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
-			//TODO  Fix armament recoil not working in space
+			
 			var _gridUid = transformComponent.GridUid;
 			
 			EntityCoordinates targetCordinates;
@@ -289,16 +289,22 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid)
 				{
 					var gridMass = gridPhysicsComponent.FixturesMass;
+					var linearVelocityLimitGrid = component.VelocityLimitRecoilGrid;
 					var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
 					var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
+					
+					if(oldLinearVelocity.X >= linearVelocityLimitGrid || oldLinearVelocity.Y >= linearVelocityLimitGrid)
+						return;
 					
 					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilGrid * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilGrid * (float) Math.Cos(worldRot));
 					var recoilX = (worldPosX - targetSpotRecoil.X);
 					var recoilY = (worldPosY - targetSpotRecoil.Y);
-					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/gridMass), oldLinearVelocity.Y + (recoilY/gridMass));
+					//TODO fix the velocity limit to work more accuretly
+					var newLinearVelocity = new Vector2(MathF.Min(oldLinearVelocity.X + (recoilX/gridMass),linearVelocityLimitGrid), MathF.Min(oldLinearVelocity.Y + (recoilY/gridMass),linearVelocityLimitGrid));
 					
 					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityGrid, (int) component.AngularInstabilityGrid);
 					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/gridMass);
+					
 					
 					_physicsSystem.SetLinearVelocity(gridUid, newLinearVelocity);
 					_physicsSystem.SetAngularVelocity(gridUid, newAngularVelocity);
@@ -308,20 +314,25 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				}
 			} 
 			else
-			{ //TODO, get velocity for the weapon itself separate from shuttle
+			{ 
 				if(TryComp<PhysicsComponent>(uid, out var weaponPhysicsComponent) && uid is {Valid :true} weaponUid)
 				{
 					var weaponMass = weaponPhysicsComponent.FixturesMass;
+					var linearVelocityLimitWeapon = component.VelocityLimitRecoilWeapon;
 					var oldLinearVelocity = weaponPhysicsComponent.LinearVelocity;
 					var oldAngularVelocity = weaponPhysicsComponent.AngularVelocity;
-				
+					
+					if(oldLinearVelocity.X >= linearVelocityLimitWeapon || oldLinearVelocity.Y >= linearVelocityLimitWeapon)
+						return;
+					
 					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilWeapon * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilWeapon * (float) Math.Cos(worldRot));
 					var recoilX = (worldPosX - targetSpotRecoil.X);
 					var recoilY = (worldPosY - targetSpotRecoil.Y);
-					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/weaponMass), oldLinearVelocity.Y + (recoilY/weaponMass));
+					var newLinearVelocity = new Vector2(MathF.Min(oldLinearVelocity.X + (recoilX/weaponMass),linearVelocityLimitWeapon), MathF.Min(oldLinearVelocity.Y + (recoilY/weaponMass),linearVelocityLimitWeapon));
 					
 					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityWeapon, (int) component.AngularInstabilityWeapon);
 					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/weaponMass);
+					
 					
 					_physicsSystem.SetLinearVelocity(uid, newLinearVelocity);
 					_physicsSystem.SetAngularVelocity(uid, newAngularVelocity);

@@ -89,6 +89,12 @@ public sealed partial class SpaceArtilleryComponent : Component
 	
 	
 	/// <summary>
+    /// Maximum velocity which grid can reach from recoil impulse, at moment there is high variance, will go above it by 10 
+    /// </summary>
+    [DataField("velocityLimitRecoilGrid"), ViewVariables(VVAccess.ReadWrite)]
+    public float VelocityLimitRecoilGrid = 30;
+	
+	/// <summary>
     /// Amount of power used when firing
     /// </summary>
     [DataField("linearRecoilGrid"), ViewVariables(VVAccess.ReadWrite)]
@@ -99,6 +105,13 @@ public sealed partial class SpaceArtilleryComponent : Component
     /// </summary>
     [DataField("angularInstabilityGrid"), ViewVariables(VVAccess.ReadWrite)]
     public float AngularInstabilityGrid = 10;
+	
+	
+	/// <summary>
+    /// Maximum velocity which unanchored weapon can reach from recoil impulse
+    /// </summary>
+    [DataField("velocityLimitRecoilWeapon"), ViewVariables(VVAccess.ReadWrite)]
+    public float VelocityLimitRecoilWeapon = 30;
 	
 	/// <summary>
     /// Amount of power used when firing
@@ -133,7 +146,7 @@ public sealed partial class SpaceArtilleryComponent : Component
     public string? FireAction = "ActionSpaceArtilleryFire";
 
     /// <summary>
-    /// The action for the horn (if any)
+    /// The action for the weapon (if any)
     /// </summary>
     [DataField("fireActionEntity")]
     [ViewVariables(VVAccess.ReadWrite)]
