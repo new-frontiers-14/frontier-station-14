@@ -9,3 +9,57 @@
   - type: Clothing
     sprite: _NF/Clothing/Belt/arcadia-webbing.rsi
 
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltChaplainSash
+  name: chaplain sash
+  description: Who knew that scarves can be also tied around your waist?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/chaplain_sash.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/chaplain_sash.rsi
+  - type: Storage
+    capacity: 45
+    # TODO: Fill this out more.
+    whitelist:
+      tags:
+        - Book
+        - Smokable
+        - Flare
+        - Matchstick
+        - Flashlight
+        - Trash
+        - CigPack
+        - Radio
+        - Crayon
+        - Bottle
+        - WeaponMeleeStake
+        - Censer
+        - ReligiousSymbol
+        - Crucifix
+  - type: ItemMapper
+    mapLayers:
+      book:
+        whitelist:
+          tags:
+          - Book
+      bottle:
+        whitelist:
+          tags:
+          - Bottle
+      censer:
+        whitelist:
+          tags:
+          - Censer
+      stake:
+        whitelist:
+          tags:
+          - WeaponMeleeStake
+      crucifix:
+        whitelist:
+          tags:
+          - Crucifix
+    sprite: _NF/Clothing/Belt/chaplain_sash_overlay.rsi
+  - type: Appearance
+
