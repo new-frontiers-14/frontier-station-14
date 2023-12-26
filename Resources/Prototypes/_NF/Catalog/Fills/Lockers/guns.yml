@@ -7,139 +7,18 @@
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
 
-- type: entity
-  parent: GunSafeShuttleCaptain
-  id: GunSafeShuttlePistolMk58
-  name: shuttle gun safe
-  suffix: T1, PistolMk58
-  noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-    # Pistol
-    - id: WeaponPistolMk58Nonlethal
-      amount: 2
-    # Pistol - Ammo
-    - id: MagazinePistolRubber
-      amount: 2
-      orGroup: PistolMk58Ammo
-      prob: 0.5
-    - id: MagazinePistol
-      amount: 2
-      orGroup: PistolMk58Ammo
-      prob: 0.5
-    # Melee
-    - id: BaseBallBat
-      orGroup: Melee
-      prob: 0.05
-    - id: Spear
-      orGroup: Melee
-      prob: 0.05
-    - id: SurvivalKnife
-      orGroup: Melee
-      prob: 0.05
-    - id: MakeshiftShield
-      orGroup: Melee
-      prob: 0.05
-    - id: Null # Nothing
-      orGroup: Melee
-      prob: 0.8
-
-- type: entity
-  parent: GunSafeShuttleCaptain
-  id: GunSafeShuttleLaserGun
-  name: shuttle gun safe
-  suffix: T1, LaserGun
-  noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-    # Laser
-    - id: WeaponLaserGun
-      amount: 2
-    # Melee
-    - id: BaseBallBat
-      orGroup: Melee
-      prob: 0.05
-    - id: Spear
-      orGroup: Melee
-      prob: 0.05
-    - id: SurvivalKnife
-      orGroup: Melee
-      prob: 0.05
-    - id: MakeshiftShield
-      orGroup: Melee
-      prob: 0.05
-    - id: Null # Nothing
-      orGroup: Melee
-      prob: 0.8
-
-- type: entity
-  parent: GunSafeShuttleCaptain
-  id: GunSafeShuttleDisabler
-  name: shuttle gun safe
-  suffix: T1, Disabler
-  noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-    # Disabler
-    - id: WeaponDisabler
-      amount: 2
-    # Melee
-    - id: BaseBallBat
-      orGroup: Melee
-      prob: 0.05
-    - id: Spear
-      orGroup: Melee
-      prob: 0.05
-    - id: SurvivalKnife
-      orGroup: Melee
-      prob: 0.05
-    - id: MakeshiftShield
-      orGroup: Melee
-      prob: 0.05
-    - id: Null # Nothing
-      orGroup: Melee
-      prob: 0.8
-
-- type: entity
-  parent: GunSafeShuttleCaptain
-  id: GunSafeShuttleShotgunDoubleBarreled
-  name: shuttle gun safe
-  suffix: T1, Shotgun Doublebarreled
-  noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-    # ShotgunDouble
-    - id: WeaponShotgunDoubleBarreledRubber
-      amount: 2
-    # Shotgun - Ammo
-    - id: BoxBeanbag
-      amount: 2
-      orGroup: ShotgunAmmo
-      prob: 0.5
-    - id: BoxLethalshot
-      amount: 2
-      orGroup: ShotgunAmmo
-      prob: 0.5
-    # Melee
-    - id: BaseBallBat
-      orGroup: Melee
-      prob: 0.05
-    - id: Spear
-      orGroup: Melee
-      prob: 0.05
-    - id: SurvivalKnife
-      orGroup: Melee
-      prob: 0.05
-    - id: MakeshiftShield
-      orGroup: Melee
-      prob: 0.05
-    - id: Null # Nothing
-      orGroup: Melee
-      prob: 0.8
+    # - id: Spear
+      # orGroup: Melee
+      # prob: 0.05
+    # - id: SurvivalKnife
+      # orGroup: Melee
+      # prob: 0.05
+    # - id: MakeshiftShield
+      # orGroup: Melee
+      # prob: 0.05
+    # - id: Null # Nothing
+      # orGroup: Melee
+      # prob: 0.8
 
 - type: entity
   parent: GunSafeShuttleCaptain
