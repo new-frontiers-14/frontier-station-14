@@ -1,0 +1,92 @@
+- type: entity
+  parent: BaseItem
+  id: DrinkKegSteel
+  name: keg
+  suffix: Steel
+  description: I don't have a drinking problem - the keg solved it.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+    state: icon
+  - type: Item
+    size: 100
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: StaticPrice
+    price: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 600
+  - type: Drink
+  - type: DrawableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+#  - type: Spillable
+#    solution: drink
+  - type: UserInterface
+    interfaces:
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  - type: ItemSlots
+    slots:
+      label_slot:
+        insertVerbText: Attach Label
+        ejectVerbText: Remove Label
+        name: Keg Label
+        startingItem: null
+        whitelist:
+          tags:
+          - Document
+        insertOnInteract: true
+        priority: 5
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      label_slot: !type:ContainerSlot {}
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      label:
+        whitelist:
+          tags:
+          - Document
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+    
+- type: entity
+  parent: DrinkKegSteel
+  id: DrinkKegWood
+  name: keg
+  suffix: Wood
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 50
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      label:
+        whitelist:
+          tags:
+          - Document
+    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi

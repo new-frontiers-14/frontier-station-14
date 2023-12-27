@@ -1,0 +1,34 @@
+﻿# TODO remove these with parameterized prototypes/whatever we end up doing
+# Windoors (alphabetical)
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureMercenaryLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureFrontierLocked
+  suffix: Frontier, Locked
+  components:
+  - type: AccessReader
+    access: [["Frontier"]]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureFrontierCommandLocked
+  suffix: Frontier Command, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureHeadOfSecurityLocked
+  suffix: Sheriff, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
