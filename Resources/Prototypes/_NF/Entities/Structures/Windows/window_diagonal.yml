@@ -1,9 +1,8 @@
 - type: entity
-  parent: BaseStructure
+  parent: Window
   id: WindowDiagonal
   name: window
   suffix: diagonal
-  description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
     snap:
@@ -20,40 +19,6 @@
   - type: Icon
     sprite: _NF/Structures/Windows/window_diagonal.rsi
     state: state0
-  - type: Tag
-    tags:
-    - RCDDeconstructWhitelist
-    - Window
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: RGlass
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). Avoid computational cost of spawning entities.
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: ExaminableDamage
-    messages: WindowMessages
-  - type: Repairable
-  - type: Reflect
-    reflectProb: 0
   - type: Fixtures
     fixtures:
       fix1:
@@ -67,13 +32,6 @@
         - FullTileMask
         layer:
         - GlassLayer
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
-  - type: StaticPrice
-    price: 25
 
 - type: entity
   parent: WindowDiagonal
@@ -89,10 +47,6 @@
     drawdepth: WallTops
     sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi
     state: state0
-  - type: IconSmooth
-    mode: Diagonal
-    key: walls
-    base: state
   - type: Icon
     sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi
     state: state0
@@ -136,10 +90,6 @@
     drawdepth: WallTops
     sprite: _NF/Structures/Windows/plasma_window_diagonal.rsi
     state: state0
-  - type: IconSmooth
-    mode: Diagonal
-    key: walls
-    base: state
   - type: Icon
     sprite: _NF/Structures/Windows/plasma_window_diagonal.rsi
     state: state0
@@ -181,18 +131,12 @@
     drawdepth: WallTops
     sprite: _NF/Structures/Windows/reinforced_plasma_window_diagonal.rsi
     state: state0
-  - type: IconSmooth
-    mode: Diagonal
-    key: walls
-    base: state
   - type: Icon
     sprite: _NF/Structures/Windows/reinforced_plasma_window_diagonal.rsi
     state: state0
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: RGlass
-  - type: RadiationBlocker
-    resistance: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -220,3 +164,5 @@
         acts: [ "Destruction" ]
   - type: StaticPrice
     price: 65
+  - type: RadiationBlocker
+    resistance: 4

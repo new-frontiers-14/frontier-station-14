@@ -1,6 +1,6 @@
 # entities list: WallReinforcedDiagonal, WallWoodDiagona, GrilleDiagona, WindowReinforcedDiagonal
 - type: entity
-  parent: WallShuttleDiagonal
+  parent: WallSolidDiagonal
   id: WallReinforcedDiagonal
   name: reinforced wall
   suffix: diagonal
@@ -36,9 +36,11 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Reflect
+    reflectProb: 0
 
 - type: entity
-  parent: WallShuttleDiagonal
+  parent: WallSolidDiagonal
   id: WallWoodDiagonal
   name: wood wall
   suffix: diagonal
@@ -58,9 +60,11 @@
   - type: Icon
     sprite: _NF/Structures/Walls/wood_diagonal.rsi
     state: state0
+  - type: Reflect
+    reflectProb: 0
 
 - type: entity
-  parent: WallShuttleDiagonal
+  parent: WallSolidDiagonal
   id: WallUraniumDiagonal
   name: uranium wall
   suffix: diagonal
@@ -80,3 +84,5 @@
   - type: Icon
     sprite: _NF/Structures/Walls/uranium_diagonal.rsi
     state: state0
+  - type: Reflect
+    reflectProb: 0
