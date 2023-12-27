@@ -320,7 +320,6 @@ entities:
             6: 3,35
             78: 14,30
             105: 31,19
-            120: 14,27
             777: 28,42
             790: 28,46
             1195: 16,34
@@ -426,7 +425,6 @@ entities:
             96: 29,14
             97: 29,13
             107: 31,20
-            119: 14,28
             782: 28,43
             1193: 16,35
             1201: 7,20
@@ -569,11 +567,7 @@ entities:
             1336: 0,38
             1347: 16,38
             1358: 0,30
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteCornerSw
-          decals:
-            121: 14,27
+            1619: 14,27
         - node:
             color: '#EFB34196'
             id: BrickTileWhiteCornerSw
@@ -880,6 +874,7 @@ entities:
             1338: 8,40
             1354: 24,46
             1355: 24,44
+            1620: 14,28
         - node:
             color: '#D4D4D419'
             id: BrickTileWhiteLineW
@@ -891,11 +886,6 @@ entities:
             234: 33,34
             235: 5,45
             240: 10,31
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteLineW
-          decals:
-            122: 14,28
         - node:
             color: '#EFB34196'
             id: BrickTileWhiteLineW
@@ -1383,6 +1373,7 @@ entities:
             1611: 30,48
             1612: 30,46
             1613: 30,45
+            1621: 14,28
         - node:
             cleanable: True
             color: '#A4610696'
@@ -1551,6 +1542,7 @@ entities:
             1614: 30,47
             1615: 28,48
             1616: 24,44
+            1622: 14,27
         - node:
             cleanable: True
             color: '#A4610696'
@@ -2710,11 +2702,11 @@ entities:
     - pos: 15.616387,0.61007345
       parent: 588
       type: Transform
-- proto: BookEscalationSecurity
+- proto: BookHowToSurvive
   entities:
-  - uid: 373
+  - uid: 329
     components:
-    - pos: 19.42657,0.6288943
+    - pos: 19.515087,0.66057134
       parent: 588
       type: Transform
 - proto: BookRandom
@@ -2726,6 +2718,16 @@ entities:
       type: Transform
 - proto: BoxFolderBlack
   entities:
+  - uid: 340
+    components:
+    - pos: 21.640549,3.6813393
+      parent: 588
+      type: Transform
+  - uid: 341
+    components:
+    - pos: 24.823723,1.650089
+      parent: 588
+      type: Transform
   - uid: 365
     components:
     - pos: 27.841173,1.5632035
@@ -2750,24 +2752,16 @@ entities:
       type: Transform
 - proto: BoxFolderRed
   entities:
-  - uid: 329
-    components:
-    - pos: 21.42984,3.6329575
-      parent: 588
-      type: Transform
-  - uid: 362
-    components:
-    - pos: 24.788435,1.6057768
-      parent: 588
-      type: Transform
-  - uid: 363
-    components:
-    - pos: 28.196142,1.5773941
-      parent: 588
-      type: Transform
   - uid: 726
     components:
     - pos: 10.428753,19.429379
+      parent: 588
+      type: Transform
+- proto: BoxFolderYellow
+  entities:
+  - uid: 342
+    components:
+    - pos: 28.104973,1.6709224
       parent: 588
       type: Transform
 - proto: BoxMouthSwab
@@ -5429,19 +5423,9 @@ entities:
     - pos: 26.5,21.5
       parent: 588
       type: Transform
-  - uid: 744
-    components:
-    - pos: 27.5,21.5
-      parent: 588
-      type: Transform
   - uid: 745
     components:
     - pos: 26.5,20.5
-      parent: 588
-      type: Transform
-  - uid: 746
-    components:
-    - pos: 25.5,21.5
       parent: 588
       type: Transform
   - uid: 768
@@ -5677,48 +5661,56 @@ entities:
       pos: 20.5,45.5
       parent: 588
       type: Transform
-- proto: Carpet
+- proto: CarpetBlue
   entities:
-  - uid: 1632
+  - uid: 744
     components:
-    - pos: 24.5,0.5
+    - rot: -1.5707963267948966 rad
+      pos: 27.5,1.5
       parent: 588
       type: Transform
-  - uid: 1633
+  - uid: 770
     components:
-    - pos: 25.5,0.5
+    - rot: -1.5707963267948966 rad
+      pos: 27.5,0.5
       parent: 588
       type: Transform
   - uid: 1634
     components:
-    - pos: 25.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: 28.5,1.5
       parent: 588
       type: Transform
   - uid: 1635
     components:
-    - pos: 24.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: 28.5,0.5
       parent: 588
       type: Transform
-- proto: CarpetBlue
+- proto: CarpetGreen
   entities:
-  - uid: 1636
+  - uid: 362
     components:
-    - pos: 27.5,0.5
+    - rot: -1.5707963267948966 rad
+      pos: 25.5,1.5
       parent: 588
       type: Transform
-  - uid: 1637
+  - uid: 363
     components:
-    - pos: 28.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: 24.5,1.5
       parent: 588
       type: Transform
-  - uid: 1638
+  - uid: 373
     components:
-    - pos: 27.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: 25.5,0.5
       parent: 588
       type: Transform
-  - uid: 1639
+  - uid: 1633
     components:
-    - pos: 28.5,0.5
+    - rot: -1.5707963267948966 rad
+      pos: 24.5,0.5
       parent: 588
       type: Transform
 - proto: CarpetPurple
@@ -8235,18 +8227,6 @@ entities:
     - pos: 8.452288,42.514927
       parent: 588
       type: Transform
-- proto: GeneratorRTG
-  entities:
-  - uid: 742
-    components:
-    - pos: 27.5,21.5
-      parent: 588
-      type: Transform
-  - uid: 748
-    components:
-    - pos: 25.5,21.5
-      parent: 588
-      type: Transform
 - proto: Girder
   entities:
   - uid: 1301
@@ -8575,6 +8555,13 @@ entities:
   - uid: 1836
     components:
     - pos: 30.241585,48.271698
+      parent: 588
+      type: Transform
+- proto: KukriKnife
+  entities:
+  - uid: 1625
+    components:
+    - pos: 26.471617,3.6373227
       parent: 588
       type: Transform
 - proto: Lamp
@@ -8993,6 +8980,22 @@ entities:
     - pos: 20.5,44.5
       parent: 588
       type: Transform
+  - uid: 1578
+    components:
+    - anchored: True
+      pos: 26.5,21.5
+      parent: 588
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Uranium: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+    - type: ItemCooldown
 - proto: PortableScrubber
   entities:
   - uid: 1101
@@ -9002,16 +9005,10 @@ entities:
       type: Transform
 - proto: PosterContrabandBountyHunters
   entities:
-  - uid: 1578
-    components:
-    - pos: 13.5,15.5
-      parent: 588
-      type: Transform
-- proto: PosterLegitDickGumshue
-  entities:
   - uid: 1576
     components:
-    - pos: 9.5,15.5
+    - rot: -1.5707963267948966 rad
+      pos: 9.5,15.5
       parent: 588
       type: Transform
 - proto: PottedPlantRandom
@@ -9744,6 +9741,11 @@ entities:
     - pos: 19.5,4.5
       parent: 588
       type: Transform
+  - uid: 343
+    components:
+    - pos: 25.5,21.5
+      parent: 588
+      type: Transform
   - uid: 396
     components:
     - pos: 28.5,8.5
@@ -9803,6 +9805,11 @@ entities:
   - uid: 598
     components:
     - pos: 5.5,12.5
+      parent: 588
+      type: Transform
+  - uid: 771
+    components:
+    - pos: 27.5,21.5
       parent: 588
       type: Transform
   - uid: 966
@@ -9881,12 +9888,6 @@ entities:
       pos: 17.5,47.5
       parent: 588
       type: Transform
-  - uid: 1858
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 26.5,21.5
-      parent: 588
-      type: Transform
 - proto: Railing
   entities:
   - uid: 313
@@ -9956,12 +9957,6 @@ entities:
     - pos: 7.5,7.5
       parent: 588
       type: Transform
-  - uid: 770
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 26.5,21.5
-      parent: 588
-      type: Transform
   - uid: 850
     components:
     - rot: 3.141592653589793 rad
@@ -10019,18 +10014,6 @@ entities:
   - uid: 316
     components:
     - pos: 30.5,3.5
-      parent: 588
-      type: Transform
-  - uid: 771
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 27.5,21.5
-      parent: 588
-      type: Transform
-  - uid: 772
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 25.5,21.5
       parent: 588
       type: Transform
   - uid: 845
@@ -10566,6 +10549,17 @@ entities:
     - pos: 29.259031,40.432583
       parent: 588
       type: Transform
+- proto: SheetUranium
+  entities:
+  - uid: 1623
+    components:
+    - pos: 25.542059,21.475338
+      parent: 588
+      type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
 - proto: ShowcaseRobot
   entities:
   - uid: 1621
@@ -11256,30 +11250,6 @@ entities:
       pos: 27.5,4.5
       parent: 588
       type: Transform
-  - uid: 340
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 24.5,1.5
-      parent: 588
-      type: Transform
-  - uid: 341
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 25.5,1.5
-      parent: 588
-      type: Transform
-  - uid: 342
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 27.5,1.5
-      parent: 588
-      type: Transform
-  - uid: 343
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 28.5,1.5
-      parent: 588
-      type: Transform
   - uid: 563
     components:
     - pos: 13.5,13.5
@@ -11293,6 +11263,24 @@ entities:
   - uid: 565
     components:
     - pos: 12.5,12.5
+      parent: 588
+      type: Transform
+  - uid: 742
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 24.5,1.5
+      parent: 588
+      type: Transform
+  - uid: 746
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 28.5,1.5
+      parent: 588
+      type: Transform
+  - uid: 748
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 27.5,1.5
       parent: 588
       type: Transform
   - uid: 1047
@@ -11318,6 +11306,12 @@ entities:
   - uid: 1228
     components:
     - pos: 22.5,34.5
+      parent: 588
+      type: Transform
+  - uid: 1632
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 25.5,1.5
       parent: 588
       type: Transform
   - uid: 1783
@@ -12151,13 +12145,62 @@ entities:
     - pos: 22.543945,6.5464144
       parent: 588
       type: Transform
+- proto: WeaponRackPistolWallmountedRestricted
+  entities:
+  - uid: 772
+    components:
+    - pos: 13.5,15.5
+      parent: 588
+      type: Transform
+    - locked: False
+      type: Lock
+    - containers:
+      - entity_storage
+      type: Construction
+    - containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        weapon1_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1613
+        weapon2_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon3_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon4_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon5_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon6_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: WeaponRevolverArgenti
   entities:
   - uid: 1613
     components:
-    - pos: 12.542872,13.183978
-      parent: 588
+    - flags: InContainer
+      type: MetaData
+    - parent: 772
       type: Transform
+    - canCollide: False
+      type: Physics
 - proto: WeaponSniperHristov
   entities:
   - uid: 997
@@ -12782,6 +12825,11 @@ entities:
   - uid: 424
     components:
     - pos: 15.156982,32.526764
+      parent: 588
+      type: Transform
+  - uid: 1624
+    components:
+    - pos: 27.484116,21.506588
       parent: 588
       type: Transform
 - proto: Zipties
