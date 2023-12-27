@@ -356,24 +356,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 130
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 132
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 135
     components:
     - flags: InContainer
@@ -684,15 +666,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 128
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 142
     components:
     - flags: InContainer
@@ -754,24 +727,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 114
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 127
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 133
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
       type: Transform
     - canCollide: False
       type: Physics
@@ -894,24 +849,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 129
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 131
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 141
     components:
     - flags: InContainer
@@ -1015,24 +952,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 125
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 126
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 124
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 136
     components:
     - flags: InContainer
@@ -1047,17 +966,6 @@ entities:
     - flags: InContainer
       type: MetaData
     - parent: 134
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClownPDA
-  entities:
-  - uid: 99
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 92
       type: Transform
     - canCollide: False
       type: Physics
@@ -1690,8 +1598,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -1708,18 +1616,17 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 93
-          - 94
-          - 95
-          - 96
-          - 97
-          - 98
-          - 99
-          - 100
-          - 101
-          - 102
-          - 206
           - 261
+          - 206
+          - 102
+          - 101
+          - 100
+          - 98
+          - 97
+          - 96
+          - 95
+          - 94
+          - 93
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2115,6 +2022,13 @@ entities:
     - pos: 4.5,10.5
       parent: 2
       type: Transform
+- proto: VendingMachineTheater
+  entities:
+  - uid: 99
+    components:
+    - pos: 0.5,9.5
+      parent: 2
+      type: Transform
 - proto: WallShuttle
   entities:
   - uid: 3
@@ -2439,48 +2353,6 @@ entities:
           - 121
           - 122
           - 123
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
-  - uid: 124
-    components:
-    - pos: 0.5,9.5
-      parent: 2
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 75.31249
-        moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 125
-          - 126
-          - 127
-          - 128
-          - 129
-          - 130
-          - 131
-          - 132
-          - 133
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
