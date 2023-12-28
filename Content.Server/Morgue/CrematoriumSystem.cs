@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Morgue.Components;
 using Content.Server.Storage.Components;
@@ -7,6 +8,8 @@ using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Morgue;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
@@ -14,6 +17,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 
 namespace Content.Server.Morgue;
@@ -27,6 +31,8 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
+    [Dependency] private readonly SharedMindSystem _mind = default!; // frontier
 
     public override void Initialize()
     {
@@ -108,6 +114,15 @@ public sealed class CrematoriumSystem : EntitySystem
         if (storage.Open || storage.Contents.ContainedEntities.Count < 1)
             return false;
 
+        // Frontier - refuse to accept alive mobs and dead-but-connected players
+        var entity = storage.Contents.ContainedEntities.First();
+        if (entity is not { Valid: true })
+            return false;
+        if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
+            return false;
+        if (_mind.TryGetMind(entity, out var _, out var mind) && mind.Session?.State?.Status == SessionStatus.InGame)
+            return false;
+
         return Cremate(uid, component, storage);
     }
 
@@ -153,7 +168,7 @@ public sealed class CrematoriumSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message-others",
-            ("victim", Identity.Entity(victim, EntityManager))),
+                ("victim", Identity.Entity(victim, EntityManager))),
             victim, Filter.PvsExcept(victim), true, PopupType.LargeCaution);
 
         if (_entityStorage.CanInsert(victim, uid))
