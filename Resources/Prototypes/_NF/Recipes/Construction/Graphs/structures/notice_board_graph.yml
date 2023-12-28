@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: NoticeBoardGraph
+  id: NoticeBoardNFGraph
   start: start
   graph:
   - node: start
@@ -9,7 +9,7 @@
         amount: 2
       - !type:DeleteEntity {}
     edges:
-    - to: NoticeBoardNode
+    - to: NoticeBoardNFNode
       completed:
       - !type:SetAnchor
         value: false
@@ -17,8 +17,8 @@
       - material: WoodPlank
         amount: 2
         doAfter: 2
-  - node: NoticeBoardNode
-    entity: NoticeBoard
+  - node: NoticeBoardNFNode
+    entity: NoticeBoardNF
     edges:
     - to: start
       completed:
