@@ -5,11 +5,16 @@
   description: You wish you could wear this on your back but alas.
   placement:
     mode: SnapgridCenter
+    snap:
+    - Wallmount
   components:
   - type: WallMount
+    arc: 200
+  - type: Rotatable
   - type: Clickable
   - type: InteractionOutline
-  - type: Rotatable
+  - type: Transform
+    anchored: true
   - type: Physics
     bodyType: Static
     canCollide: false
@@ -40,7 +45,7 @@
   - type: Sprite
     drawdepth: WallTops
     sprite: _NF/Structures/Wallmounts/notice_board.rsi
-    snapCardinals: true
+    snapCardinals: false
     state: base
     layers:
     - state: base
@@ -49,13 +54,17 @@
   - type: Icon
     sprite: _NF/Structures/Wallmounts/notice_board.rsi
     state: icon
-  - type: StaticPrice
-    price: 20
+  - type: Appearance
+  - type: StorageContainerVisuals
+    maxFillLevels: 8
+    fillBaseName: notices-
   - type: Storage
     capacity: 16
     whitelist:
       tags:
+      - Folder
       - Document
+      - Write
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -64,10 +73,8 @@
     interfaces:
     - key: enum.StorageUiKey.Key
       type: StorageBoundUserInterface
-  - type: Appearance
-  - type: StorageContainerVisuals
-    maxFillLevels: 8
-    fillBaseName: notices-
+  - type: StaticPrice
+    price: 20
   - type: Construction
     graph: NoticeBoardNFGraph
     node: NoticeBoardNFNode
