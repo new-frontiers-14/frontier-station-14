@@ -27,6 +27,11 @@
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
   - type: Icon
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
+  - type: EmitSoundOnActivate
+    sound:
+      collection: squeezeBottleUseSounds
+      params:
+        variation: 0.125
 
 - type: entity
   parent: BaseFoodCondimentSqueezeBottle
@@ -47,3 +52,20 @@
     state: squeeze-bottle-ketchup
   - type: Icon
     state: squeeze-bottle-ketchup
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleMustard
+  name: mustard squeeze bottle
+  description: You feel more American already.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Mustard
+          Quantity: 30
+  - type: Sprite
+    state: squeeze-bottle-mustard
+  - type: Icon
+    state: squeeze-bottle-mustard
