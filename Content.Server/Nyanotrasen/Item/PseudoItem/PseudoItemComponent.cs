@@ -1,4 +1,6 @@
 
+using Content.Shared._NF.Cloning;
+
 namespace Content.Server.Item.PseudoItem
 {
     /// <summary>
@@ -6,7 +8,7 @@ namespace Content.Server.Item.PseudoItem
     /// but not under most conditions.
     /// </summary>
     [RegisterComponent]
-    public sealed partial class PseudoItemComponent : Component
+    public sealed partial class PseudoItemComponent : Component, ITransferredByCloning
     {
         [DataField("size")]
         public int Size = 120;
