@@ -1,0 +1,27 @@
+- type: vessel
+  id: Whippet
+  name: NC Whippet
+  description: A no-frills cargo hauler to get large amounts there and back fast.
+  price: 17500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/whippet.yml
+
+- type: gameMap
+  id: Whippet
+  mapName: 'NC Whippet'
+  mapPath: /Maps/Shuttles/whippet.yml
+  minPlayers: 0
+  stations:
+    Whippet:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Whippet {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            CargoTechnician: [ 0, 0 ]
