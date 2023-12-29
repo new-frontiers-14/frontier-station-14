@@ -1,0 +1,37 @@
+- type: entity
+  parent: BasePDA
+  id: CorpsmanPDA
+  name: corpsman PDA
+  description: Red and Sterile. Has a built-in health analyzer.
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: CartridgeLoader # DeltaV - Crime Assist
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - CrimeAssistCartridge
+  - type: Pda
+    id: BrigmedicIDCard
+    state: pda-corpsman
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: DeltaV/Objects/Devices/pda.rsi
+    state: pda-corpsman
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
