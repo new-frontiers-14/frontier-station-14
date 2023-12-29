@@ -2491,13 +2491,6 @@ entities:
     - pos: 42.5,0.5
       parent: 1653
       type: Transform
-- proto: BluespaceBeaker
-  entities:
-  - uid: 1476
-    components:
-    - pos: 21.201073,4.650565
-      parent: 1653
-      type: Transform
 - proto: Bookshelf
   entities:
   - uid: 1241
@@ -7154,44 +7147,9 @@ entities:
     - pos: 25.5,19.5
       parent: 1653
       type: Transform
-  - uid: 540
-    components:
-    - pos: 9.5,47.5
-      parent: 1653
-      type: Transform
-  - uid: 541
-    components:
-    - pos: 13.5,47.5
-      parent: 1653
-      type: Transform
-  - uid: 542
-    components:
-    - pos: 11.5,47.5
-      parent: 1653
-      type: Transform
   - uid: 1013
     components:
     - pos: 25.5,21.5
-      parent: 1653
-      type: Transform
-  - uid: 1524
-    components:
-    - pos: 25.5,7.5
-      parent: 1653
-      type: Transform
-  - uid: 1525
-    components:
-    - pos: 25.5,9.5
-      parent: 1653
-      type: Transform
-  - uid: 1526
-    components:
-    - pos: 33.5,7.5
-      parent: 1653
-      type: Transform
-  - uid: 1527
-    components:
-    - pos: 33.5,9.5
       parent: 1653
       type: Transform
 - proto: Girder
@@ -7351,6 +7309,11 @@ entities:
       type: Transform
 - proto: LargeBeaker
   entities:
+  - uid: 540
+    components:
+    - pos: 21.472897,4.6812224
+      parent: 1653
+      type: Transform
   - uid: 1468
     components:
     - pos: 21.7339,4.82244
@@ -7732,6 +7695,13 @@ entities:
     - pos: 30.568752,4.54119
       parent: 1653
       type: Transform
+- proto: PlushieLamp
+  entities:
+  - uid: 1527
+    components:
+    - pos: 28.50188,0.5394316
+      parent: 1653
+      type: Transform
 - proto: PlushieSharkGrey
   entities:
   - uid: 926
@@ -7739,25 +7709,113 @@ entities:
     - pos: 6.4745436,18.474607
       parent: 1653
       type: Transform
-- proto: PlushieSlime
-  entities:
-  - uid: 1456
-    components:
-    - pos: 28.542555,0.5099404
-      parent: 1653
-      type: Transform
 - proto: PortableGeneratorPacman
   entities:
-  - uid: 1528
+  - uid: 541
     components:
-    - pos: 25.5,8.5
+    - anchored: True
+      pos: 9.5,47.5
       parent: 1653
       type: Transform
-  - uid: 1529
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 542
     components:
-    - pos: 33.5,8.5
+    - anchored: True
+      pos: 11.5,47.5
       parent: 1653
       type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 1456
+    components:
+    - anchored: True
+      pos: 13.5,47.5
+      parent: 1653
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 1476
+    components:
+    - anchored: True
+      pos: 33.5,7.5
+      parent: 1653
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 1524
+    components:
+    - anchored: True
+      pos: 25.5,9.5
+      parent: 1653
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 1525
+    components:
+    - anchored: True
+      pos: 25.5,7.5
+      parent: 1653
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
+  - uid: 1526
+    components:
+    - anchored: True
+      pos: 33.5,9.5
+      parent: 1653
+      type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
 - proto: PortableScrubber
   entities:
   - uid: 836
@@ -8517,6 +8575,21 @@ entities:
     - pos: 46.5,3.5
       parent: 1653
       type: Transform
+  - uid: 1528
+    components:
+    - pos: 33.5,8.5
+      parent: 1653
+      type: Transform
+  - uid: 1529
+    components:
+    - pos: 12.5,47.5
+      parent: 1653
+      type: Transform
+  - uid: 1686
+    components:
+    - pos: 25.5,8.5
+      parent: 1653
+      type: Transform
 - proto: Railing
   entities:
   - uid: 527
@@ -9053,6 +9126,35 @@ entities:
     - pos: 32.4712,4.556815
       parent: 1653
       type: Transform
+  - uid: 1687
+    components:
+    - pos: 25.545963,8.57178
+      parent: 1653
+      type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
+  - uid: 1688
+    components:
+    - pos: 12.51643,47.59593
+      parent: 1653
+      type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
+- proto: SheetPlasma1
+  entities:
+  - uid: 1689
+    components:
+    - pos: 33.562057,8.560034
+      parent: 1653
+      type: Transform
+    - count: 15
+      type: Stack
+    - size: 15
+      type: Item
 - proto: SheetPlasteel
   entities:
   - uid: 658
@@ -11728,6 +11830,13 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 26.5,12.5
+      parent: 1653
+      type: Transform
+- proto: Wrench
+  entities:
+  - uid: 1690
+    components:
+    - pos: 10.558216,45.65843
       parent: 1653
       type: Transform
 ...
