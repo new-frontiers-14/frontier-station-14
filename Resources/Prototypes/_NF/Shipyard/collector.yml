@@ -1,0 +1,27 @@
+- type: vessel
+  id: collector
+  name: NC Collector
+  description: A small hauling shuttle used for quick, solo salvage trips to and from debris.
+  price: 21800
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/collector.yml
+
+- type: gameMap
+  id: collector
+  mapName: 'NC Collector'
+  mapPath: /Maps/Shuttles/collector.yml
+  minPlayers: 0
+  stations:
+    pioneer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Collector {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
