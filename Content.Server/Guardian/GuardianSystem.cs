@@ -301,12 +301,26 @@ namespace Content.Server.Guardian
                 RetractGuardian(hostUid, hostComponent, guardianUid, guardianComponent);
         }
 
+        private bool CanRelease(EntityUid guardian)
+        {
+            return HasComp<ActorComponent>(guardian);
+        }
+
         private void ReleaseGuardian(EntityUid host, GuardianHostComponent hostComponent, EntityUid guardian, GuardianComponent guardianComponent)
         {
             if (guardianComponent.GuardianLoose)
             {
                 DebugTools.Assert(!hostComponent.GuardianContainer.Contains(guardian));
                 return;
+            }
+
+            if (!(guardianComponent.Ai))
+            {
+                if (!CanRelease(guardian))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("guardian-no-soul"), host, host);
+                    return;
+                }
             }
 
             DebugTools.Assert(hostComponent.GuardianContainer.Contains(guardian));

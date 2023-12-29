@@ -28,5 +28,9 @@ namespace Content.Server.Guardian
         /// </summary>
         public bool GuardianLoose = false;
 
+        /// <summary>
+        /// If the guardian is can be AI based
+        /// </summary>
+        public bool Ai = false;
     }
 }
