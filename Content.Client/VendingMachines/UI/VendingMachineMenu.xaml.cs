@@ -11,6 +11,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Client.VendingMachines.UI
 {
@@ -120,25 +122,33 @@ namespace Content.Client.VendingMachines.UI
                             cost = (int) (price * priceModifier);
                         }
                         else
-                        {
                             cost = (int) (cost * priceModifier);
-                        }
                     }
-
                 }
                 else
-                {
                     cost = (int) (cost * priceModifier);
+
+                if (prototype != null && prototype.TryGetComponent<SolutionContainerManagerComponent>(out var priceSolutions))
+                {
+                    foreach (var solution in priceSolutions.Solutions.Values)
+                    {
+                        foreach (var (reagent, quantity) in solution.Contents)
+                        {
+                            if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
+                                continue;
+
+                            // TODO check ReagentData for price information?
+                            var costReagent = (float) quantity * reagentProto.PricePerUnit;
+                            cost += (int) (costReagent * priceModifier);
+                        }
+                    }
                 }
 
                 // This block exists to allow the VendPrice flag to set a vending machine item price.
-                if (prototype != null && prototype.TryGetComponent<VendPriceComponent>(out var vendPriceComponent))
+                if (prototype != null && prototype.TryGetComponent<VendPriceComponent>(out var vendPriceComponent) && vendPriceComponent.Price != 0 && cost <= (float) vendPriceComponent.Price)
                 {
-                    if (vendPriceComponent.Price != 0)
-                    {
-                        var price = (float) vendPriceComponent.Price;
-                        cost = (int) (price);
-                    }
+                    var price = (float) vendPriceComponent.Price;
+                    cost = (int) price;
                 }
                 // This block exists to allow the VendPrice flag to set a vending machine item price.
 

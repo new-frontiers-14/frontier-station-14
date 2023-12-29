@@ -1,0 +1,20 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCrucifix
+  name: crucifix
+  description: Damn, it feels good to be so pious.
+  components:
+  - type: Item
+    size: 5
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/crucifix.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/crucifix.rsi
+  - type: ReactionMixer # I'm assuming that this is used to make holy water
+    mixMessage: "bible-mixing-success"
+    reactionTypes:
+    - Holy
+  - type: Tag
+    tags:
+    - ObjectOfSpiritualSignificance
+    - Crucifix

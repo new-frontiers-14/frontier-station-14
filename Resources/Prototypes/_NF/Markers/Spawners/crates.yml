@@ -1,0 +1,22 @@
+- type: entity
+  name: Contraband Crate Spawner
+  id: N14ContrabandCrateSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/Crates/generic.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - CrateTradeContrabandSecureCyberSunFilled
+        - CrateTradeContrabandSecureDonkFilled
+        - CrateTradeContrabandSecureNormalFilled
+        - CrateTradeSecureHighFilled
+        - CrateTradeSecureHighFilled #its in here twice for balance. TODO: find a better crate to put here instead like an animal one or something.
+        - CrateTradeSecureNormalFilled
+      rarePrototypes:
+        - CrateSyndicateSurplusBundle
+        - CrateSyndicateLightSurplusBundle
+      rareChance: 0.01

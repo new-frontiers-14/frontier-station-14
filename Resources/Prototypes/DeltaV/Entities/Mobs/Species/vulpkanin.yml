@@ -7,15 +7,13 @@
   components:
   - type: HumanoidAppearance
     species: Vulpkanin
+  - type: Carriable # Carrying system from nyanotrasen.
   - type: Hunger
-    baseDecayRate: 0.06
     starvationDamage:
       types:
         Cold: 0.05
         Bloodloss: 0.1
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Thirst
-    baseDecayRate: 0.0125
   - type: Icon
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: full
@@ -25,6 +23,11 @@
   - type: VulpLanguageSpeaker
   - type: VulpLangaugeListener
   - type: VulpGiveTranslator
+  - type: SizeAttributeWhitelist
+    short: true
+    shortscale: 0.8
+    shortDensity: 140
+    shortPseudoItem: true
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
@@ -84,9 +87,21 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulps
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/slash.ogg
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 4
+        Blunt: 1
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: pat-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: pat-success-generic-others
   - type: Perishable
-  - type: TemperatureProtection
-    coefficient: 0.1
   - type: Temperature
     heatDamageThreshold: 335
     coldDamageThreshold: 200
@@ -99,7 +114,6 @@
     damage:
       types:
         Heat: 1.5 # Rip Fur
-
 
 - type: entity
   save: false

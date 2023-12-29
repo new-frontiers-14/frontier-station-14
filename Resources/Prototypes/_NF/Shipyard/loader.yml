@@ -5,19 +5,16 @@
   price: 16000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/Loader.yml
 
 - type: gameMap
   id: Loader
   mapName: 'NC Loader'
-  mapPath: /Maps/Shuttles/Loader.yml
   minPlayers: 0
   stations:
     Loader:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Loader {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -58,6 +58,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         IFFToggle.OnToggled += OnIFFTogglePressed;
         IFFToggle.Pressed = RadarScreen.ShowIFF;
 
+        IFFShuttlesToggle.OnToggled += OnIFFShuttlesTogglePressed;
+        IFFShuttlesToggle.Pressed = RadarScreen.ShowIFFShuttles;
+
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = RadarScreen.ShowDocks;
 
@@ -75,6 +78,11 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         args.Button.Pressed = RadarScreen.ShowIFF;
     }
 
+    private void OnIFFShuttlesTogglePressed(BaseButton.ButtonEventArgs args)
+    {
+        RadarScreen.ShowIFFShuttles ^= true;
+        args.Button.Pressed = RadarScreen.ShowIFFShuttles;
+    }
     private void OnDockTogglePressed(BaseButton.ButtonEventArgs args)
     {
         RadarScreen.ShowDocks ^= true;

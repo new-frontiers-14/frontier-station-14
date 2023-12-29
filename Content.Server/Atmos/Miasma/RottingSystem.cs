@@ -13,6 +13,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Cuffs.Components;
 
 namespace Content.Server.Atmos.Miasma;
 
@@ -96,6 +97,17 @@ public sealed class RottingSystem : EntitySystem
             HasComp<AntiRottingContainerComponent>(container.Owner))
         {
             return false;
+        }
+
+        if (TryComp<CuffableComponent>(uid, out var cuffed) && cuffed.CuffedHandCount > 0)
+        {
+            if (TryComp<HandcuffComponent>(cuffed.LastAddedCuffs, out var cuffcomp))
+                {
+                    if (cuffcomp.NoRot)
+                    {
+                        return false;
+                    }
+                }
         }
 
         var ev = new IsRottingEvent();
