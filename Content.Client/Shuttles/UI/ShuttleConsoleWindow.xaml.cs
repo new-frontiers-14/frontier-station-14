@@ -324,18 +324,27 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             return;
         }
 
+        // Frontier change
+        ShuttleDesignation.Text = Loc.GetString("shuttle-console-unknown");
         if (_entManager.TryGetComponent<MetaDataComponent>(_shuttleEntity, out var metadata))
         {
-            ShuttleName.Text = metadata.EntityName;
+            var shipNameParts = metadata.EntityName.Split(' ');
+            var designation = shipNameParts[^1];
+            if (designation[2] == '-')
+            {
+                DisplayLabel.Text = string.Join(' ', shipNameParts[..^1]);
+                ShuttleDesignation.Text = designation;
+            }
+            else
+            {
+                DisplayLabel.Text = metadata.EntityName;
+            }
             if (metadata.EntityPaused)
             {
                 FTLTime += _timing.FrameTime;
             }
         }
-        else
-        {
-            ShuttleName.Text = Loc.GetString("shuttle-console-unknown");
-        }
+        // End Frontier change
 
         FTLTimer.Text = GetFTLText();
 
