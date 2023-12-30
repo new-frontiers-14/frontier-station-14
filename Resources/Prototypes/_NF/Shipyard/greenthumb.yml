@@ -1,0 +1,29 @@
+- type: vessel
+  id: Greenthumb
+  name: NC Greenthumb
+  description: A self-sufficient, eco-friendly bar and restaurant, featuring its own hydroponics garden.
+  price: 46000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/greenthumb.yml
+
+- type: gameMap
+  id: Greenthumb
+  mapName: 'NC Greenthumb'
+  mapPath: /Maps/Shuttles/greenthumb.yml
+  minPlayers: 0
+  stations:
+    Greenthumb:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Greenthumb {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Bartender: [ 0, 0 ]
+            Botanist: [ 0, 0 ]
+            Chef: [ 0, 0 ]
