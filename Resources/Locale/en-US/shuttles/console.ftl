@@ -8,6 +8,8 @@ shuttle-console-prevent = You are unable to pilot this ship.
 # Display
 shuttle-console-display-label = Display
 
+shuttle-console-name = Ship name:
+
 shuttle-console-ftl-state = FTL State
 shuttle-console-ftl-available = Available
 shuttle-console-ftl-starting = Starting
