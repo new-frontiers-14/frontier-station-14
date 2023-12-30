@@ -548,11 +548,6 @@ entities:
       type: Transform
 - proto: CableHV
   entities:
-  - uid: 178
-    components:
-    - pos: -1.5,-2.5
-      parent: 1
-      type: Transform
   - uid: 179
     components:
     - pos: -0.5,-2.5
@@ -587,10 +582,10 @@ entities:
       type: Transform
 - proto: CableTerminal
   entities:
-  - uid: 180
+  - uid: 175
     components:
-    - rot: -1.5707963267948966 rad
-      pos: -0.5,-2.5
+    - rot: 1.5707963267948966 rad
+      pos: -1.5,-2.5
       parent: 1
       type: Transform
 - proto: CarpetOrange
@@ -1434,18 +1429,22 @@ entities:
       type: Transform
 - proto: PortableGeneratorPacman
   entities:
-  - uid: 175
+  - uid: 177
     components:
     - anchored: True
       pos: -1.5,-2.5
       parent: 1
       type: Transform
+    - on: True
+      type: FuelGenerator
     - storage:
         Plasma: 3000
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - type: InsertingMaterialStorage
+    - endTime: 0
+      type: InsertingMaterialStorage
+    - type: ItemCooldown
 - proto: Poweredlight
   entities:
   - uid: 126
@@ -1591,7 +1590,7 @@ entities:
       type: Transform
 - proto: SMESBasic
   entities:
-  - uid: 177
+  - uid: 178
     components:
     - pos: -0.5,-2.5
       parent: 1
