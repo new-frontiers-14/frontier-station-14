@@ -324,9 +324,17 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             return;
         }
 
-        if (_entManager.TryGetComponent<MetaDataComponent>(_shuttleEntity, out var metadata) && metadata.EntityPaused)
+        if (_entManager.TryGetComponent<MetaDataComponent>(_shuttleEntity, out var metadata))
         {
-            FTLTime += _timing.FrameTime;
+            ShuttleName.Text = metadata.EntityName;
+            if (metadata.EntityPaused)
+            {
+                FTLTime += _timing.FrameTime;
+            }
+        }
+        else
+        {
+            ShuttleName.Text = Loc.GetString("shuttle-console-unknown");
         }
 
         FTLTimer.Text = GetFTLText();
