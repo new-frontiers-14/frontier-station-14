@@ -1,26 +1,26 @@
 # BaseEntity
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: ClothingBackpackDuffelMercenary
   id: ClothingBackpackDuffelShuttle
   suffix: Shuttle Guns
   noSpawn: true
   abstract: true
 
-# PistolMk58lethal
+# WeaponPistolMk58lethal
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttlePistolMk58Nonlethal
+  id: ShuttleWeaponPistolMk58lethal
   noSpawn: true
   components:
   - type: StorageFill
     contents:
-      - id: WeaponPistolMk58Nonlethal
+      - id: WeaponPistolMk58lethal
       - id: MagazinePistol
 
-# PistolMk58Nonlethal
+# WeaponPistolMk58Nonlethal
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttlePistolMk58Nonlethal
+  id: ShuttleWeaponPistolMk58Nonlethal
   components:
   - type: StorageFill
     contents:
@@ -30,7 +30,7 @@
 # LaserGun
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleLaserGun
+  id: ShuttleLaserGun
   components:
   - type: StorageFill
     contents:
@@ -39,46 +39,137 @@
 # WeaponDisabler
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleWeaponDisabler
+  id: ShuttleWeaponDisabler
   components:
   - type: StorageFill
     contents:
       - id: WeaponDisabler
 
-# ShotgunDoubleBarreled
+# WeaponShotgunDoubleBarreled
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleShotgunDoubleBarreled
+  id: ShuttleWeaponShotgunDoubleBarreled
   components:
   - type: StorageFill
     contents:
       - id: WeaponShotgunDoubleBarreled
       - id: BoxLethalshot
 
-# ShotgunDoubleBarreledNonlethal
+# WeaponShotgunDoubleBarreledRubber
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleShotgunDoubleBarreledNonlethal
+  id: ShuttleWeaponShotgunDoubleBarreledRubber
   components:
   - type: StorageFill
     contents:
       - id: WeaponShotgunDoubleBarreledRubber
       - id: BoxBeanbag
 
-# RevolverArgenti
+# WeaponRevolverArgenti
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleRevolverArgenti
+  id: ShuttleWeaponRevolverArgenti
   components:
   - type: StorageFill
     contents:
       - id: WeaponRevolverArgenti
+      - id: MagazineBoxRifle
 
-# RevolverArgenti
+# WeaponRevolverArgentiNonlethal
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ClothingBackpackDuffelShuttleRevolverArgenti
+  id: ShuttleWeaponRevolverArgentiNonlethal
   components:
   - type: StorageFill
     contents:
       - id: WeaponRevolverArgentiNonlethal
+      - id: MagazineBoxRifleRubber
+
+# WeaponSniperMosin
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponSniperMosin
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSniperMosin
+      - id: MagazineBoxLightRifle
+
+# Kardashev-MosinNonlethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleKardashev-MosinNonlethal
+  components:
+  - type: StorageFill
+    contents:
+      - id: Kardashev-MosinNonlethal
+      - id: MagazineBoxLightRifleRubber
+
+# WeaponRevolverDeckard
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponRevolverDeckard
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRevolverDeckard
+      - id: SpeedLoaderMagnum
+
+# WeaponRevolverDeckardNonlethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponRevolverDeckardNonlethal
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRevolverDeckardNonlethal
+      - id: SpeedLoaderMagnumRubber
+
+# WeaponShotgunSawn
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunSawn
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunSawn
+      - id: BoxLethalshot
+
+# WeaponShotgunSawnNonlethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunSawnNonlethal
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunSawnNonlethal
+      - id: BoxBeanbag
+
+# WeaponEnergyGun
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponEnergyGun
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponEnergyGun
+
+# WeaponShotgunKammerer
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunKammerer
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunKammerer
+      - id: BoxLethalshot
+
+# WeaponShotgunKammererNonlethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunKammererNonlethal
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunKammererNonlethal
+      - id: BoxBeanbag
