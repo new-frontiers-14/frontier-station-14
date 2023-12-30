@@ -1,0 +1,53 @@
+- type: entity
+  name: mortuary urn
+  parent: BaseItem
+  id: UrnMortuary
+  description: Keeps your beloved friend's ashes not scattered in your pocket.
+  components:
+  - type: Sprite
+    state: icon
+    sprite: _NF/Objects/Misc/mortuary_urn.rsi
+  - type: Item
+    size: 10
+  - type: Tag
+    tags:
+    - ObjectOfSpiritualSignificance
+  - type: StaticPrice
+    price: 20
+  - type: ItemSlots
+    slots:
+      ashes_slot:
+        insertVerbText: Put Ashes
+        ejectVerbText: Empty Ashes
+        name: Urn Contents
+        startingItem: null
+        whitelist:
+          tags:
+          - Ash
+          - Ectoplasm
+        insertOnInteract: true
+        priority: 1
+      label_slot:
+        insertVerbText: Attach Label
+        ejectVerbText: Remove Label
+        name: Urn Label
+        startingItem: null
+        whitelist:
+          tags:
+          - Document
+        insertOnInteract: true
+        priority: 2
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      ashes_slot: !type:ContainerSlot {}
+      label_slot: !type:ContainerSlot {}
+  - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      label:
+        whitelist:
+          tags:
+          - Document
+    sprite: _NF/Objects/Misc/mortuary_urn.rsi
