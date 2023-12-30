@@ -388,7 +388,7 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - id: brg
+    - id: Whiskey
       type: BecomesStation
 - proto: AirCanister
   entities:
@@ -1578,9 +1578,9 @@ entities:
     - pos: 1.8465811,7.7364182
       parent: 1
       type: Transform
-- proto: GasPassiveVent
+- proto: GasOutletInjector
   entities:
-  - uid: 434
+  - uid: 497
     components:
     - rot: 3.141592653589793 rad
       pos: 0.5,-8.5
@@ -2970,6 +2970,13 @@ entities:
   - uid: 267
     components:
     - pos: 3.5,10.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 434
+    components:
+    - pos: 0.5,-0.5
       parent: 1
       type: Transform
 - proto: SubstationBasic
