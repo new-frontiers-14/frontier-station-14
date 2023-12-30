@@ -6,35 +6,15 @@
   noSpawn: true
   abstract: true
 
-# WeaponPistolMk58lethal
+# T1:
+# WeaponLaserGun
 - type: entity
   parent: ClothingBackpackDuffelShuttle
-  id: ShuttleWeaponPistolMk58lethal
-  noSpawn: true
+  id: ShuttleWeaponLaserGun
   components:
   - type: StorageFill
     contents:
-      - id: WeaponPistolMk58lethal
-      - id: MagazinePistol
-
-# WeaponPistolMk58Nonlethal
-- type: entity
-  parent: ClothingBackpackDuffelShuttle
-  id: ShuttleWeaponPistolMk58Nonlethal
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponPistolMk58Nonlethal
-      - id: MagazinePistolRubber
-
-# LaserGun
-- type: entity
-  parent: ClothingBackpackDuffelShuttle
-  id: ShuttleLaserGun
-  components:
-  - type: StorageFill
-    contents:
-      - id: LaserGun
+      - id: WeaponLaserGun
 
 # WeaponDisabler
 - type: entity
@@ -44,26 +24,6 @@
   - type: StorageFill
     contents:
       - id: WeaponDisabler
-
-# WeaponShotgunDoubleBarreled
-- type: entity
-  parent: ClothingBackpackDuffelShuttle
-  id: ShuttleWeaponShotgunDoubleBarreled
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponShotgunDoubleBarreled
-      - id: BoxLethalshot
-
-# WeaponShotgunDoubleBarreledRubber
-- type: entity
-  parent: ClothingBackpackDuffelShuttle
-  id: ShuttleWeaponShotgunDoubleBarreledRubber
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponShotgunDoubleBarreledRubber
-      - id: BoxBeanbag
 
 # WeaponRevolverArgenti
 - type: entity
@@ -105,6 +65,28 @@
       - id: Kardashev-MosinNonlethal
       - id: MagazineBoxLightRifleRubber
 
+# T2:
+# WeaponPistolMk58lethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponPistolMk58
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolMk58
+      - id: MagazinePistol
+
+# WeaponPistolMk58Nonlethal
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponPistolMk58Nonlethal
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolMk58Nonlethal
+      - id: MagazinePistolRubber
+
 # WeaponRevolverDeckard
 - type: entity
   parent: ClothingBackpackDuffelShuttle
@@ -124,6 +106,26 @@
     contents:
       - id: WeaponRevolverDeckardNonlethal
       - id: SpeedLoaderMagnumRubber
+
+# WeaponShotgunDoubleBarreled
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunDoubleBarreled
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunDoubleBarreled
+      - id: BoxLethalshot
+
+# WeaponShotgunDoubleBarreledRubber
+- type: entity
+  parent: ClothingBackpackDuffelShuttle
+  id: ShuttleWeaponShotgunDoubleBarreledRubber
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunDoubleBarreledRubber
+      - id: BoxBeanbag
 
 # WeaponShotgunSawn
 - type: entity
@@ -145,6 +147,7 @@
       - id: WeaponShotgunSawnNonlethal
       - id: BoxBeanbag
 
+# T3:
 # WeaponEnergyGun
 - type: entity
   parent: ClothingBackpackDuffelShuttle
