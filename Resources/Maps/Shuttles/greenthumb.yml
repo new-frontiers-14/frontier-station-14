@@ -368,7 +368,7 @@ entities:
       pos: 0.5,-2.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -121345.47
+    - secondsUntilStateChange: -121380.266
       state: Opening
       type: Door
 - proto: AirlockEngineeringGlass
@@ -3700,9 +3700,12 @@ entities:
   entities:
   - uid: 499
     components:
-    - pos: -5.5,-10.5
+    - anchored: True
+      pos: -5.5,-10.5
       parent: 1
       type: Transform
+    - bodyType: Static
+      type: Physics
 - proto: PottedPlantRandom
   entities:
   - uid: 500
