@@ -121,7 +121,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lodge = "/Maps/lodge.yml";
         var lab = "/Maps/anomalouslab.yml";
         var church = "Maps/beacon.yml";
-        var grifty = "Maps/grifty.yml";
+        var grifty = "Maps/_NF/POI/grifty.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
