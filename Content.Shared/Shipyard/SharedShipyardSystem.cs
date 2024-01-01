@@ -19,9 +19,7 @@ public enum ShipyardConsoleUiKey : byte
     // Not currently implemented. Could be used in the future to give other factions a variety of shuttle options, like nukies, syndicate, or for evac purchases.
     // Syndicate
     // Do not add any ship to this key. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
-    Custom,
-    // Ships that do not appear in normal console should be added here. No console must have this key.
-    None
+    Custom
 }
 
 public abstract class SharedShipyardSystem : EntitySystem
@@ -33,8 +31,7 @@ public abstract class SharedShipyardSystem : EntitySystem
         {ShipyardConsoleUiKey.BlackMarket, "BlackMarket"},
         {ShipyardConsoleUiKey.Expedition, "Expedition"},
         {ShipyardConsoleUiKey.Scrap, "Scrap"},
-        {ShipyardConsoleUiKey.Custom, "Custom"},
-        {ShipyardConsoleUiKey.None, "<DO NOT USE>"}
+        {ShipyardConsoleUiKey.Custom, "<DO NOT USE>"}
     };
 
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
