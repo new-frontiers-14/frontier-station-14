@@ -529,7 +529,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             foreach (var proto in protos)
             {
                 if (proto.Group == group)
-                    availableShuttles.Add(proto.IDid);
+                    availableShuttles.Add(proto.ID);
             }
         }
 
