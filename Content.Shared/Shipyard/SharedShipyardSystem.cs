@@ -16,14 +16,15 @@ public enum ShipyardConsoleUiKey : byte
     BlackMarket,
     Expedition,
     Scrap,
-    // Not currently implemented. Could be used in the future to give other factions a variety of shuttle options, like nukies, syndicate, or for evac purchases.
-    // Syndicate
     // Do not add any ship to this key. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
     Custom
 }
 
 public abstract class SharedShipyardSystem : EntitySystem
 {
+    /// <summary>
+    ///   Maps entries of the <see cref="ShipyardConsoleUiKey"/> enum to how they're specified in shuttle prototype files
+    /// </summary>
     public static readonly Dictionary<ShipyardConsoleUiKey, string> ShipyardGroupMapping = new()
     {
         {ShipyardConsoleUiKey.Shipyard, "Civilian"},
