@@ -7,6 +7,7 @@ using Content.Shared.Shipyard.Components;
 
 namespace Content.Shared.Shipyard;
 
+// Note: when adding a new ui key, don't forget to modify the dictionary in SharedShipyardSystem
 [NetSerializable, Serializable]
 public enum ShipyardConsoleUiKey : byte
 {
@@ -14,14 +15,28 @@ public enum ShipyardConsoleUiKey : byte
     Security,
     BlackMarket,
     Expedition,
-    Scrap
+    Scrap,
+    // Not currently implemented. Could be used in the future to give other factions a variety of shuttle options, like nukies, syndicate, or for evac purchases.
     // Syndicate
-    //Not currently implemented. Could be used in the future to give other factions a variety of shuttle options,
-    //like nukies, syndicate, or for evac purchases.
+    // Do not add any ship to this key. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
+    Custom,
+    // Ships that do not appear in normal console should be added here. No console must have this key.
+    None
 }
 
 public abstract class SharedShipyardSystem : EntitySystem
 {
+    public static readonly Dictionary<ShipyardConsoleUiKey, string> ShipyardGroupMapping = new()
+    {
+        {ShipyardConsoleUiKey.Shipyard, "Civilian"},
+        {ShipyardConsoleUiKey.Security, "Security"},
+        {ShipyardConsoleUiKey.BlackMarket, "BlackMarket"},
+        {ShipyardConsoleUiKey.Expedition, "Expedition"},
+        {ShipyardConsoleUiKey.Scrap, "Scrap"},
+        {ShipyardConsoleUiKey.Custom, "Custom"},
+        {ShipyardConsoleUiKey.None, "<DO NOT USE>"}
+    };
+
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 
     public override void Initialize()
