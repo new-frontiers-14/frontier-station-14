@@ -10,3 +10,6 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "Plastitanium",  # Plastitanium walls should only be appearing on security ships.
     ],
 }
+# TODO: Currently, conditional matching does not allow for listing, for example Plastitanium, to be allowable
+#       on both Security and Pirate shipyard ships, cause they will mutually flag eachother as illegal. Redo semantics
+#       to fix this later on.
