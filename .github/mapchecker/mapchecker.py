@@ -171,12 +171,14 @@ if __name__ == "__main__":
             with open("Resources" + map_file_location, "r") as map_file:
                 map_file_contents = map_file.read()
                 for check in illegal_prototypes:
-                    if check in map_file_contents:
+                    # Wrap in 'proto: ' and '\n' here, to ensure we only match actual prototypes, not 'part of word' prototypes
+                    # Example: SignSec is a prefix of SignSecureMed
+                    if 'proto: ' + check + '\n' in map_file_contents:
                         if violations.get(map_name) is None:
                             violations[map_name] = list()
                         violations[map_name].append(check)
                 for check in conditional_checks:
-                    if check in map_file_contents:
+                    if 'proto: ' + check + '\n' in map_file_contents:
                         if violations.get(map_name) is None:
                             violations[map_name] = list()
                         violations[map_name].append(check)
