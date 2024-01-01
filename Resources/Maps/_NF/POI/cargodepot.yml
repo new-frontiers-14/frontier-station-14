@@ -43,16 +43,16 @@ entities:
       type: MapGrid
     - type: Broadphase
     - bodyStatus: InAir
-      angularDamping: 10000
-      linearDamping: 10000
+      angularDamping: 999999
+      linearDamping: 999999
       fixedRotation: False
       bodyType: Dynamic
       type: Physics
     - fixtures: {}
       type: Fixtures
     - type: OccluderTree
-    - angularDamping: 10000
-      linearDamping: 10000
+    - angularDamping: 999999
+      linearDamping: 999999
       type: Shuttle
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
