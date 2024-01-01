@@ -1,0 +1,135 @@
+# Security
+- type: entity
+  id: WeaponRackSecurity
+  parent: WeaponRackBase
+  name: gun rack
+  suffix: Security
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/Armory/gun_racks.rsi
+    layers:
+    - state: base_generic_gunrack
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackWallmountedSecurity
+  parent: WeaponRackWallmountedBase
+  name: gun rack
+  suffix: Security, wallmounted
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Furniture/Armory/gun_racks.rsi
+    layers:
+    - state: base_generic_gunrack_wallmounted
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackMeleeSecurity
+  parent: WeaponRackMeleeBase
+  name: melee weapon rack
+  suffix: Security
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/Armory/melee_weapon_racks.rsi
+    layers:
+    - state: base_generic_meleerack
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackMeleeWallmountedSecurity
+  parent: WeaponRackMeleeWallmountedBase
+  name: melee weapon rack
+  suffix: Security, wallmounted
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Furniture/Armory/melee_weapon_racks.rsi
+    layers:
+    - state: base_generic_meleerack_wallmounted
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackPistolBaseSecurity
+  parent: WeaponRackPistolBase
+  name: pistol rack
+  suffix: Security
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/Armory/pistol_racks.rsi
+    layers:
+    - state: base_generic_pistolrack
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackPistolWallmountedSecurity
+  parent: WeaponRackPistolWallmountedBase
+  name: pistol rack
+  suffix: Security, wallmounted
+  description: A storage unit for expedited pacification measures.
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Furniture/Armory/pistol_racks.rsi
+    layers:
+    - state: base_generic_pistolrack_wallmounted
+      color: red
+    - state: locked
+      map: [ locked ]
+    - state: unlocked
+      map: [ unlocked ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: true
