@@ -9,4 +9,7 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "Security",  # Anything with the word security in it should also only be appearing on security ships.
         "Plastitanium",  # Plastitanium walls should only be appearing on security ships.
     ],
+    "BlackMarket": [
+        "Plastitanium",  # And also on blackmarket ships cause syndicate.
+    ]
 }
