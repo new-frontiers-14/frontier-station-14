@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
-  id: DrinkKegSteel
+  id: DrinkKegBase
   name: keg
-  suffix: Steel
+  abstract: true
   description: I don't have a drinking problem - the keg solved it.
   components:
   - type: Sprite
@@ -42,9 +42,6 @@
     interfaces:
     - key: enum.TransferAmountUiKey.Key
       type: TransferAmountBoundUserInterface
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 150
   - type: ItemSlots
     slots:
       label_slot:
@@ -63,6 +60,20 @@
         ents: []
       label_slot: !type:ContainerSlot {}
   - type: Appearance
+
+- type: entity
+  parent: DrinkKegBase
+  id: DrinkKegSteel
+  suffix: Steel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 150
   - type: ItemMapper
     mapLayers:
       label:
@@ -70,11 +81,10 @@
           tags:
           - Document
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
-    
+
 - type: entity
-  parent: DrinkKegSteel
+  parent: DrinkKegBase
   id: DrinkKegWood
-  name: keg
   suffix: Wood
   components:
   - type: Sprite
@@ -85,7 +95,6 @@
   - type: PhysicalComposition
     materialComposition:
       Wood: 150
-  - type: Appearance
   - type: ItemMapper
     mapLayers:
       label:
@@ -95,9 +104,8 @@
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
 
 - type: entity
-  parent: DrinkKegSteel
+  parent: DrinkKegBase
   id: DrinkKegPlastic
-  name: keg
   suffix: Plastic
   components:
   - type: Sprite
@@ -112,7 +120,6 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 150
-  - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: keg-alpha-
