@@ -56,6 +56,7 @@ if __name__ == "__main__":
     proto_paths: List[str] = []
     map_proto_paths: List[str] = []
     whitelisted_protos: Dict[str, List[str]] = dict()
+    whitelisted_maps: List[str] = []
 
     # Validate provided arguments and collect file locations.
     for proto_path in args.prototypes_path:  # All prototype paths must be directories.
@@ -90,7 +91,14 @@ if __name__ == "__main__":
             if file_data is None:
                 logger.warning(f"Whitelist '{args.whitelist}' is empty. Continuing without it.")
             else:
-                whitelisted_protos = file_data
+                print(file_data)
+                for map_key in file_data:
+                    if file_data[map_key] is True:
+                        whitelisted_maps.append(map_key)
+                    elif file_data[map_key] is False:
+                        continue
+                    else:
+                        whitelisted_protos[map_key] = file_data[map_key]
 
     # ==================================================================================================================
     # PHASE 1: Collect all prototypes in proto_paths that are suffixed with target suffixes.
@@ -138,7 +146,7 @@ if __name__ == "__main__":
         with open(map_proto, "r") as map:
             file_data = yaml.load(map, Loader=YamlLoaderIgnoringTags)
             if file_data is None:
-                logger.warning(f"Map '{map_proto}' is empty. Continuing without it.")
+                logger.warning(f"Map prototype '{map_proto}' is empty. Continuing without it.")
                 continue
 
             map_name = map_proto  # The map name that will be reported over output.
@@ -158,6 +166,10 @@ if __name__ == "__main__":
             if map_file_location is None:
                 # Silently skip. If the map doesn't have a mapPath, it won't appear in game anyways.
                 continue
+
+            # CHECKPOINT - If the map_name is blanket-whitelisted, skip it, but log a warning.
+            if map_name in whitelisted_maps:
+                logger.warning(f"Map '{map_name}' (from prototype '{map_proto}') was blanket-whitelisted. Skipping it.")
 
             # Now construct a temporary list of all prototype ID's that are illegal for this map based on conditionals.
             conditional_checks = []
