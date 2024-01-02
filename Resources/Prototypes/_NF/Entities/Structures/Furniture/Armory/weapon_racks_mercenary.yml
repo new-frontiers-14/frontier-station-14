@@ -2,9 +2,7 @@
 - type: entity
   id: WeaponRackMercenary
   parent: WeaponRackBase
-  name: gun rack
   suffix: Mercenary
-  description: A storage unit for expedited pacification measures.
   components:
   - type: Sprite
     sprite: _NF/Structures/Furniture/Armory/gun_racks.rsi
@@ -16,19 +14,15 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
 
 - type: entity
   id: WeaponRackWallmountedMercenary
   parent: WeaponRackWallmountedBase
-  name: gun rack
-  suffix: Mercenary, wallmounted
-  description: A storage unit for expedited pacification measures.
+  suffix: Mercenary, Wallmounted
   components:
-  - type: WallMount
-    arc: 360
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _NF/Structures/Furniture/Armory/gun_racks.rsi
@@ -40,16 +34,14 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
 
 - type: entity
   id: WeaponRackMeleeMercenary
   parent: WeaponRackMeleeBase
-  name: melee weapon rack
   suffix: Mercenary
-  description: A storage unit for expedited pacification measures.
   components:
   - type: Sprite
     sprite: _NF/Structures/Furniture/Armory/melee_weapon_racks.rsi
@@ -61,19 +53,15 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
 
 - type: entity
   id: WeaponRackMeleeWallmountedMercenary
   parent: WeaponRackMeleeWallmountedBase
-  name: melee weapon rack
-  suffix: Mercenary, wallmounted
-  description: A storage unit for expedited pacification measures.
+  suffix: Mercenary, Wallmounted
   components:
-  - type: WallMount
-    arc: 360
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _NF/Structures/Furniture/Armory/melee_weapon_racks.rsi
@@ -85,16 +73,14 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
 
 - type: entity
   id: WeaponRackPistolBaseMercenary
   parent: WeaponRackPistolBase
-  name: pistol rack
   suffix: Mercenary
-  description: A storage unit for expedited pacification measures.
   components:
   - type: Sprite
     sprite: _NF/Structures/Furniture/Armory/pistol_racks.rsi
@@ -106,19 +92,15 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
 
 - type: entity
   id: WeaponRackPistolWallmountedMercenary
   parent: WeaponRackPistolWallmountedBase
-  name: pistol rack
-  suffix: Mercenary, wallmounted
-  description: A storage unit for expedited pacification measures.
+  suffix: Mercenary, Wallmounted
   components:
-  - type: WallMount
-    arc: 360
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _NF/Structures/Furniture/Armory/pistol_racks.rsi
@@ -130,6 +112,6 @@
     - state: unlocked
       map: [ unlocked ]
   - type: AccessReader
-    access: [["Mercenary"], ["Captain"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Lock
     locked: true
