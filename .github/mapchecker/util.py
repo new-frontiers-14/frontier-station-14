@@ -7,14 +7,14 @@ from logging import Logger, getLogger
 from config import ILLEGAL_MATCHES, CONDITIONALLY_ILLEGAL_MATCHES
 
 
-def get_logger() -> Logger:
+def get_logger(debug: bool = False) -> Logger:
     """
     Gets a logger for use by MapChecker.
 
     :return: A logger.
     """
     logger = getLogger("MapChecker")
-    logger.setLevel("INFO")
+    logger.setLevel("DEBUG" if debug else "INFO")
 
     sh = logging.StreamHandler()
     formatter = logging.Formatter(

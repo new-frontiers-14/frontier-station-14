@@ -9,14 +9,16 @@ from util import get_logger, YamlLoaderIgnoringTags, check_prototype
 from config import CONDITIONALLY_ILLEGAL_MATCHES
 
 if __name__ == "__main__":
-    logger = get_logger()
-    logger.info("MapChecker starting up.")
-
     # Set up argument parser.
     parser = argparse.ArgumentParser(description="Map prototype usage checker for Frontier Station 14.")
     parser.add_argument(
-        "--prototypes_path",
-        help="Directory holding entity prototypes.",
+        "-v", "--verbose",
+        action='store_true',
+        help="Sets log level to DEBUG if present, spitting out a lot more information. False by default,."
+    )
+    parser.add_argument(
+        "-p", "--prototypes_path",
+        help="Directory holding entity prototypes.\nDefault: All entity prototypes in the Frontier Station 14 codebase.",
         type=str,
         nargs="+",  # We accept multiple directories, but need at least one.
         required=False,
@@ -29,8 +31,9 @@ if __name__ == "__main__":
         ]
     )
     parser.add_argument(
-        "--map_path",
-        help="Map PROTOTYPES or directory of map prototypes to check. Can mix and match.",
+        "-m", "--map_path",
+        help=(f"Map PROTOTYPES or directory of map prototypes to check. Can mix and match."
+              f"Default: All maps in the Frontier Station 14 codebase."),
         type=str,
         nargs="+",  # We accept multiple pathspecs, but need at least one.
         required=False,
@@ -41,7 +44,7 @@ if __name__ == "__main__":
         ]
     )
     parser.add_argument(
-        "--whitelist",
+        "-w", "--whitelist",
         help="YML file that lists map names and prototypes to allow for them.",
         type=str,  # Using argparse.FileType here upsets os.isfile, we work around this.
         nargs=1,
@@ -53,6 +56,12 @@ if __name__ == "__main__":
     # PHASE 0: Parse arguments and transform them into lists of files to work on.
     args = parser.parse_args()
 
+    # Set up logging session.
+    logger = get_logger(args.verbose)
+    logger.info("MapChecker starting up.")
+    logger.debug("Verbosity enabled.")
+
+    # Set up argument collectors.
     proto_paths: List[str] = []
     map_proto_paths: List[str] = []
     whitelisted_protos: Dict[str, List[str]] = dict()
