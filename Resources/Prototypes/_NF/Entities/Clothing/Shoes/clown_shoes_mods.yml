@@ -1,8 +1,7 @@
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesClownModWhoopie
-  name: clown shoes
-  suffix: "whoopie mod"
+  suffix: "Whoopie"
   description: "The modified standard-issue clowning shoes. Damn they're so soft!"
   components:
   - type: FootstepModifier
@@ -17,8 +16,7 @@
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesClownModKetchup
-  name: clown shoes
-  suffix: "ketchup mod"
+  suffix: "Ketchup"
   description: "The modified standard-issue clowning shoes. Damn they're soggy!"
   components:
   - type: SolutionContainerManager
@@ -46,19 +44,18 @@
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesClownModMustarchup
-  name: clown shoes
-  suffix: "mustarchup mod"
+  suffix: "Mustarchup"
   description: "The modified standard-issue clowning shoes. Damn they're very soggy!"
   components:
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 60
+        maxVol: 30
         reagents:
         - ReagentId: Ketchup
-          Quantity: 30
+          Quantity: 15
         - ReagentId: Mustard
-          Quantity: 30
+          Quantity: 15
   - type: DrawableSolution
     solution: food
   - type: DrainableSolution
@@ -77,8 +74,7 @@
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesClownModUltimate
-  name: clown shoes
-  suffix: "ultimate mod"
+  suffix: "Ultimate"
   description: "The modified standard-issue clowning shoes. Damn they're soft and soggy!"
   components:
   - type: SolutionContainerManager
