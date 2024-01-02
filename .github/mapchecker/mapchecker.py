@@ -38,9 +38,9 @@ if __name__ == "__main__":
         nargs="+",  # We accept multiple pathspecs, but need at least one.
         required=False,
         default=[
-            "Resources/Prototypes/Maps/frontier.yml",  # Frontier Outpost
-            "Resources/Prototypes/_NF/Shipyard",
-            # Somehow. For some reason. EVERYTHING ELSE IS IN HERE WHY IS THIS LIKE THIS AAAAAAAAAA
+            "Resources/Prototypes/_NF/Maps/Outpost",  # Frontier Outpost
+            "Resources/Prototypes/_NF/Maps/POI",  # Points of interest
+            "Resources/Prototypes/_NF/Shipyard",  # Shipyard ships.
         ]
     )
     parser.add_argument(
