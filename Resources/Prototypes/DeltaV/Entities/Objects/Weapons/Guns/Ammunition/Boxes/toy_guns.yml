@@ -1,0 +1,17 @@
+- type: entity
+  parent: BoxDonkSoftBase
+  id: BoxCartridgeBB
+  name: box of BBs
+  components:
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - BulletBB
+    proto: BulletBB
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Ammunition/Boxes/bbgun.rsi
+    layers:
+      - state: bbbox
+  - type: StaticPrice
+    price: 25

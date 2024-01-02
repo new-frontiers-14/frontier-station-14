@@ -1,0 +1,69 @@
+- type: entity
+  id: BulletBB
+  description: Don't shoot your eye out.
+  name: BB
+  parent: BaseItem
+  components:
+    - type: Item
+      size: 1
+    - type: Reflective
+    - type: Appearance
+    - type: FlyBySound
+    - type: Sprite
+      sprite: DeltaV/Objects/Weapons/Guns/Ammunition/Boxes/bbgun.rsi
+      layers:
+        - state: bbbullet
+    - type: Tag
+      tags:
+        - BulletBB
+        - Trash
+    - type: Physics
+      bodyType: Dynamic
+      linearDamping: 0.1
+      angularDamping: 0.1
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.01
+          density: 1
+          mask:
+          - ItemMask
+          restitution: 0.3 #bounce
+          friction: 0.2
+        projectile:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.15,-0.15,0.15,0.15"
+          hard: false
+          mask:
+          - Impassable
+          - BulletImpassable
+        fly-by: &flybyfixture
+          shape: !type:PhysShapeCircle
+            radius: 1.5
+          layer:
+          - Impassable
+          - MidImpassable
+          - HighImpassable
+          - LowImpassable
+          hard: False
+    - type: TileFrictionModifier
+      modifier: 0.01
+    - type: Projectile
+      impactEffect: BulletImpactEffect
+      deleteOnCollide: false
+      onlyCollideWhenShot: true
+      damage:
+        types:
+          Blunt: 1
+      soundHit:
+        path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+    - type: Ammo
+      muzzleFlash: null
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 1
+    - type: SpaceGarbage
+    #- type: StaticPrice
+    #  price: 0.05

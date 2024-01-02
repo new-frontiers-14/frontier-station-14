@@ -1,0 +1,42 @@
+- type: entity
+  name: BB Gun
+  parent: BaseItem
+  id: WeaponRifleBB
+  description: The classic Red Ryder BB gun. Don't shoot your eye out.
+  components:
+  - type: Sprite
+    netsync: false
+    size: 50
+    sprite: DeltaV/Objects/Weapons/Guns/Rifles/bbgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Rifles/bbgun.rsi ##
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/click.ogg
+  - type: BallisticAmmoProvider
+    cycleable: false
+    proto: BulletBB
+    whitelist:
+      tags:
+        - BulletBB
+    soundInsert:
+      path: /Audio/Weapons/drawbow2.ogg #here
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+  - type: StaticPrice
+    price: 275
