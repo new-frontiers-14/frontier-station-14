@@ -17,7 +17,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--prototypes_path",
         help="Directory holding entity prototypes.",
-        type=argparse.FileType("r"),
+        type=str,
         nargs="+",  # We accept multiple directories, but need at least one.
         required=False,
         default=[
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--map_path",
         help="Map PROTOTYPES or directory of map prototypes to check. Can mix and match.",
-        type=argparse.FileType("r"),
+        type=str,
         nargs="+",  # We accept multiple pathspecs, but need at least one.
         required=False,
         default=[
@@ -130,9 +130,13 @@ if __name__ == "__main__":
                         conditionally_illegal_prototypes[key].append(proto_id)
 
     # Log information.
-    logger.info(f"Collected {len(illegal_prototypes)} illegal prototypes.")
+    logger.info(f"Collected {len(illegal_prototypes)} illegal prototype matchers.")
     for key in conditionally_illegal_prototypes.keys():
-        logger.info(f"Collected {len(conditionally_illegal_prototypes[key])} illegal prototypes for shipyard group {key}.")
+        logger.info(f"Collected {len(conditionally_illegal_prototypes[key])} illegal prototype matchers, whitelisted "
+                    f"for shipyard group {key}.")
+        for item in conditionally_illegal_prototypes[key]:
+            logger.debug(f" - {item}")
+
 
     # ==================================================================================================================
     # PHASE 2: Check all maps in map_proto_paths for illegal prototypes.
@@ -164,6 +168,7 @@ if __name__ == "__main__":
 
             if map_file_location is None:
                 # Silently skip. If the map doesn't have a mapPath, it won't appear in game anyways.
+                logger.debug(f"Map proto {map_proto} did not specify a map file location. Skipping.")
                 continue
 
             # CHECKPOINT - If the map_name is blanket-whitelisted, skip it, but log a warning.
@@ -171,16 +176,21 @@ if __name__ == "__main__":
                 logger.warning(f"Map '{map_name}' (from prototype '{map_proto}') was blanket-whitelisted. Skipping it.")
                 continue
 
+            logger.debug(f"Starting checks for '{map_name}' (Path: '{map_file_location}' | Shipyard: '{shipyard_group}')")
+
             # Now construct a temporary list of all prototype ID's that are illegal for this map based on conditionals.
-            conditional_checks = []
+            conditional_checks = set()  # Make a set of it. That way we get no duplicates.
             for key in conditionally_illegal_prototypes.keys():
                 if shipyard_group != key:
-                    conditional_checks.extend(conditionally_illegal_prototypes[key])
+                    for item in conditionally_illegal_prototypes[key]:
+                        conditional_checks.add(item)
             # Remove the ones that do match, if they exist.
             if shipyard_group is not None and shipyard_group in conditionally_illegal_prototypes.keys():
                 for check in conditionally_illegal_prototypes[shipyard_group]:
                     if check in conditional_checks:
                         conditional_checks.remove(check)
+
+            logger.debug(f"Conditional checks for {map_name} after removal of shipyard dups: {conditional_checks}")
 
             # Now we check the map file for these illegal prototypes. I'm being lazy here and just matching against the
             # entire file contents, without loading YAML at all. This is fine, because this job only runs after
@@ -202,6 +212,7 @@ if __name__ == "__main__":
 
     # ==================================================================================================================
     # PHASE 3: Filtering findings and reporting.
+    logger.debug(f"Violations aggregator before whitelist processing: {violations}")
 
     # Filter out all prototypes that are whitelisted.
     for key in whitelisted_protos.keys():
@@ -211,6 +222,8 @@ if __name__ == "__main__":
         for whitelisted_proto in whitelisted_protos[key]:
             if whitelisted_proto in violations[key]:
                 violations[key].remove(whitelisted_proto)
+
+    logger.debug(f"Violations aggregator after whitelist processing: {violations}")
 
     # Some maps had all their violations whitelisted. Remove them from the count.
     total_map_violations = len([viol for viol in violations.keys() if len(violations[viol]) > 0])
