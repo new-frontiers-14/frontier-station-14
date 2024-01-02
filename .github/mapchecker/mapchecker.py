@@ -159,20 +159,25 @@ if __name__ == "__main__":
                 # Silently skip. If the map doesn't have a mapPath, it won't appear in game anyways.
                 continue
 
-            # Now construct a temporary list of all prototype ID's that are illegal for this map.
+            # Now construct a temporary list of all prototype ID's that are illegal for this map based on conditionals.
             conditional_checks = []
             for key in conditionally_illegal_prototypes.keys():
                 if shipyard_group != key:
                     conditional_checks.extend(conditionally_illegal_prototypes[key])
+            # Remove the ones that do match, if they exist.
+            if shipyard_group is not None and shipyard_group in conditionally_illegal_prototypes.keys():
+                for check in conditionally_illegal_prototypes[shipyard_group]:
+                    if check in conditional_checks:
+                        conditional_checks.remove(check)
 
             # Now we check the map file for these illegal prototypes. I'm being lazy here and just matching against the
             # entire file contents, without loading YAML at all. This is fine, because this job only runs after
-            # Content.YamlLinter runs.
+            # Content.YamlLinter runs. TODO: It does not.
             with open("Resources" + map_file_location, "r") as map_file:
                 map_file_contents = map_file.read()
                 for check in illegal_prototypes:
-                    # Wrap in 'proto: ' and '\n' here, to ensure we only match actual prototypes, not 'part of word' prototypes
-                    # Example: SignSec is a prefix of SignSecureMed
+                    # Wrap in 'proto: ' and '\n' here, to ensure we only match actual prototypes, not 'part of word'
+                    # prototypes. Example: SignSec is a prefix of SignSecureMed
                     if 'proto: ' + check + '\n' in map_file_contents:
                         if violations.get(map_name) is None:
                             violations[map_name] = list()

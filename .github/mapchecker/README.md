@@ -14,14 +14,16 @@ Glad I do not have to write this myself! Get detailed help information by runnin
 Matchers are set in `config.py`. Currently it has a global list of matchers that are not allowed anywhere, and a set
 of conditional matchers.
 
-The conditional matchers work as follows: All matchers are applied, UNLESS the map is a shuttle, AND it belongs to the
-shipyard that is set as the conditional key. For example the current config disallows the usage of Plastitanium walls on
-any non-security ship.
+For each map, a set of applicable matchers is constructed according to this workflow:
+1. Add all global illegal matchers.
+2. Add all conditional matchers for non-matching shipyard groups
+3. Remove all conditional matchers from the matching shipyard group (if it exists), to support duplicates across
+   shipyard groups
 
 A match will attempt to match the following during prototype collection:
-- Prototype ID
-- Prototype name
-- Prototype suffixes (separated per `, `)
+- Prototype ID (contains matcher, case insensitive)
+- Prototype name (contains matcher, case insensitive)
+- Prototype suffixes (separated per `, `) (exact, case insensitive)
 
 ## Whitelisting
 
