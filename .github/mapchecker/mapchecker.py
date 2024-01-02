@@ -91,7 +91,6 @@ if __name__ == "__main__":
             if file_data is None:
                 logger.warning(f"Whitelist '{args.whitelist}' is empty. Continuing without it.")
             else:
-                print(file_data)
                 for map_key in file_data:
                     if file_data[map_key] is True:
                         whitelisted_maps.append(map_key)
@@ -170,6 +169,7 @@ if __name__ == "__main__":
             # CHECKPOINT - If the map_name is blanket-whitelisted, skip it, but log a warning.
             if map_name in whitelisted_maps:
                 logger.warning(f"Map '{map_name}' (from prototype '{map_proto}') was blanket-whitelisted. Skipping it.")
+                continue
 
             # Now construct a temporary list of all prototype ID's that are illegal for this map based on conditionals.
             conditional_checks = []
