@@ -44,6 +44,10 @@ public sealed partial class VesselListControl : BoxContainer
 
     private int DefaultComparison(NetEntity x, NetEntity y)
     {
+        if (_gameTicker.StationNames[x] == "Frontier Outpost" && _gameTicker.JobsAvailable[x].ContainsKey("Passenger"))
+        {
+            return 0;
+        }
         return (int)(_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) - _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
     }
 
@@ -72,10 +76,12 @@ public sealed partial class VesselListControl : BoxContainer
             if (VesselItemList.Any(x => ((NetEntity)x.Metadata!) == key))
                 continue;
 
+            var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0).ToString();
+
             var item = new ItemList.Item(VesselItemList)
             {
                 Metadata = key,
-                Text = name
+                Text = name + $" ({jobsAvailable})"
             };
 
             if (!string.IsNullOrEmpty(FilterLineEdit.Text) &&
