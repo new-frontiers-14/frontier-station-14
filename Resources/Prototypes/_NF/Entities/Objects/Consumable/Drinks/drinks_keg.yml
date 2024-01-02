@@ -22,6 +22,9 @@
       drink:
         maxVol: 600
   - type: Drink
+  - type: Openable
+    sound:
+      collection: pop
   - type: DrawableSolution
     solution: drink
   - type: RefillableSolution
@@ -41,7 +44,7 @@
       type: TransferAmountBoundUserInterface
   - type: PhysicalComposition
     materialComposition:
-      Steel: 50
+      Steel: 150
   - type: ItemSlots
     slots:
       label_slot:
@@ -81,8 +84,38 @@
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
   - type: PhysicalComposition
     materialComposition:
-      Wood: 50
+      Wood: 150
   - type: Appearance
+  - type: ItemMapper
+    mapLayers:
+      label:
+        whitelist:
+          tags:
+          - Document
+    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
+
+- type: entity
+  parent: DrinkKegSteel
+  id: DrinkKegPlastic
+  name: keg
+  suffix: Plastic
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi
+    layers:
+    - state: keg-empty
+    - state: keg-alpha-6
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: true
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: keg-alpha-
   - type: ItemMapper
     mapLayers:
       label:
