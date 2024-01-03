@@ -22,6 +22,8 @@ public sealed class EmagSystem : EntitySystem
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
     public override void Initialize()
     {
@@ -57,6 +59,10 @@ public sealed class EmagSystem : EntitySystem
         }
 
         var handled = DoEmagEffect(user, target);
+
+        if (comp.Reverse)
+            handled = DoReEmagEffect(user, target);
+
         if (!handled)
             return false;
 
@@ -86,7 +92,27 @@ public sealed class EmagSystem : EntitySystem
             EnsureComp<EmaggedComponent>(target);
         return emaggedEvent.Handled;
     }
+
+    /// <summary>
+    /// Does the emag effect on a specified entity
+    /// </summary>
+    public bool DoReEmagEffect(EntityUid user, EntityUid target)
+    {
+        // prevent removel emagging twice
+        if (!HasComp<EmaggedComponent>(target))
+            return false;
+
+        var emaggedEvent = new GotReEmaggedEvent(user);
+        RaiseLocalEvent(target, ref emaggedEvent);
+
+        if (emaggedEvent.Handled)
+            EntityManager.RemoveComponent<EmaggedComponent>(target);
+        return emaggedEvent.Handled;
+    }
 }
 
 [ByRefEvent]
 public record struct GotEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false);
+
+[ByRefEvent]
+public record struct GotReEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false);

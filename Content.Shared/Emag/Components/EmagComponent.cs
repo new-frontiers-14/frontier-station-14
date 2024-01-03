@@ -17,4 +17,6 @@ public sealed partial class EmagComponent : Component
     [DataField("emagImmuneTag", customTypeSerializer: typeof(PrototypeIdSerializer<TagPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public string EmagImmuneTag = "EmagImmune";
+
+    [ViewVariables(VVAccess.ReadWrite)] public bool Reverse = false;
 }

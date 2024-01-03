@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseItem
+  id: ReEmag
+  name: cryptographic resequencer
+  description: The all-in-one unhacking solution. The thinking man's lock. The iconic EMAG fixer.
+  components:
+  - type: Emag
+    reverse: true
+  - type: LimitedCharges
+  - type: AutoRecharge
+  - type: Sprite
+    sprite: Objects/Tools/emag.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/emag.rsi
+
+- type: entity
+  parent: BaseItem
+  id: ReEmagUnlimited
+  suffix: Unlimited
+  name: cryptographic resequencer
+  description: The all-in-one unhacking solution. The thinking man's lock. The iconic EMAG fixer.
+  components:
+  - type: Emag
+    reverse: true
+  - type: Sprite
+    sprite: Objects/Tools/emag.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/emag.rsi
