@@ -13,6 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Shared.IdentityManagement; // Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -63,9 +64,26 @@ public sealed class RadioSystem : EntitySystem
         if (!_messages.Add(message))
             return;
 
-        var name = TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled
-            ? mask.VoiceName
-            : MetaData(messageSource).EntityName;
+        var name = MetaData(messageSource).EntityName; // Frontier - code block to allow multi masks.
+        var mode = "Unknown";
+
+        if (TryComp(messageSource, out VoiceMaskComponent? mask) && mask.Enabled)
+        {
+            switch (mask.Mode)
+            {
+                case Mode.Real:
+                    mode = Identity.Name(messageSource, EntityManager);
+                    break;
+                case Mode.Fake:
+                    mode = mask.VoiceName;
+                    break;
+                case Mode.Unknown:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {mask.Mode}!");
+            }
+            name = mode;
+        } // Frontier - code block to allow multi masks.
 
         name = FormattedMessage.EscapeText(name);
 

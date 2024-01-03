@@ -1,0 +1,77 @@
+- type: entity
+  parent: BaseFoodCondiment
+  id: BaseFoodCondimentSqueezeBottle
+  abstract: true
+  name: condiment squeeze bottle
+  description: A thin plastic container used to store condiments.
+  components:
+  - type: Drink
+    solution: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: food
+  - type: Spillable
+    solution: food
+  - type: SolutionTransfer
+    playTransferSound: true
+    canChangeTransferAmount: true
+    minTransferAmount: 5
+    maxTransferAmount: 30
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/condiments.rsi
+  - type: Icon
+    sprite: _NF/Objects/Consumable/Food/condiments.rsi
+  # - type: EmitSoundOnActivate
+    # sound:
+      # collection: squeezeBottleUseSounds
+      # params:
+        # variation: 0.125
+  # - type: EmitSoundOnLand
+    # sound:
+      # collection: squeezeBottleUseSounds
+      # params:
+        # variation: 0.125
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleKetchup
+  name: ketchup squeeze bottle
+  description: You feel more American already.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Ketchup
+          Quantity: 30
+  - type: Tag
+    tags:
+      - Ketchup
+  - type: Sprite
+    state: squeeze-bottle-ketchup
+  - type: Icon
+    state: squeeze-bottle-ketchup
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleMustard
+  name: mustard squeeze bottle
+  description: You feel more American already.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Mustard
+          Quantity: 30
+  - type: Sprite
+    state: squeeze-bottle-mustard
+  - type: Icon
+    state: squeeze-bottle-mustard

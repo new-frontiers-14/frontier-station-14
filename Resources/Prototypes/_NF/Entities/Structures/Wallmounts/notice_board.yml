@@ -1,0 +1,80 @@
+- type: entity
+  id: NoticeBoardNF
+  name: notice board
+  suffix: Frontier
+  description: You wish you could wear this on your back but alas.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: WallMount
+    arc: 200
+  - type: Rotatable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 2
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Wallmounts/notice_board.rsi
+    snapCardinals: false
+    state: base
+    layers:
+    - state: base
+    - map: [ "enum.StorageContainerVisualLayers.Fill" ]
+      visible: false
+  - type: Icon
+    sprite: _NF/Structures/Wallmounts/notice_board.rsi
+    state: icon
+  - type: Appearance
+  - type: StorageContainerVisuals
+    maxFillLevels: 8
+    fillBaseName: notices-
+  - type: Storage
+    capacity: 16
+    whitelist:
+      tags:
+      - Folder
+      - Document
+      - Write
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: StaticPrice
+    price: 20
+  - type: Construction
+    graph: NoticeBoardNFGraph
+    node: NoticeBoardNFNode
