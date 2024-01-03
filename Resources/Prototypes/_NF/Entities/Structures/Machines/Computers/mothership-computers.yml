@@ -20,3 +20,26 @@
     - Fighter
     - Cleric
     - Rogue
+
+# The caduceus console
+- type: entity
+  id: CaduceusMothershipComputer
+  name: Caduceus mothership console
+  parent: BaseMothershipComputer
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: medcomp
+    - map: ["computerLayerKeys"]
+      state: med_key
+  - type: ShipyardListing
+    shuttles:
+    - Pulse
+    - searchlight # lowercase intended
+    - MailTruck
