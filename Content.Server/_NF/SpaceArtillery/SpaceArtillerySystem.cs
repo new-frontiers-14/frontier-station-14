@@ -3,12 +3,14 @@ using Content.Server.DeviceLinking.Events;
 using Content.Server.Projectiles;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Interaction.Events;
 using System.Numerics;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
+using Content.Shared.Examine;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics;
@@ -26,6 +28,9 @@ using Content.Server.Stack;
 using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Random;
+using Content.Server.DeviceLinking.Components;
+using Content.Server.DeviceLinking.Systems;
+using Content.Server.DeviceNetwork;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -42,6 +47,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 	[Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
 	[Dependency] private readonly IRobustRandom _random = default!;
+	[Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -57,10 +63,13 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, SignalReceivedEvent>(OnSignalReceived);
 		SubscribeLocalEvent<SpaceArtilleryComponent, BuckleChangeEvent>(OnBuckleChange);
 		SubscribeLocalEvent<SpaceArtilleryComponent, FireActionEvent>(OnFireAction);
+		SubscribeLocalEvent<SpaceArtilleryComponent, AmmoShotEvent>(OnShotEvent);
+		SubscribeLocalEvent<SpaceArtilleryComponent, OnEmptyGunShotEvent>(OnEmptyShotEvent);
 		SubscribeLocalEvent<SpaceArtilleryComponent, PowerChangedEvent>(OnApcChanged);
 		SubscribeLocalEvent<SpaceArtilleryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
 		SubscribeLocalEvent<SpaceArtilleryComponent, EntInsertedIntoContainerMessage>(OnCoolantSlotChanged);
         SubscribeLocalEvent<SpaceArtilleryComponent, EntRemovedFromContainerMessage>(OnCoolantSlotChanged);
+		SubscribeLocalEvent<SpaceArtilleryComponent, ExaminedEvent>(OnExamine);
 		SubscribeLocalEvent<SpaceArtilleryComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SpaceArtilleryComponent, ComponentRemove>(OnComponentRemove);
 	}
@@ -77,6 +86,31 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         _itemSlotsSystem.RemoveItemSlot(uid, component.CoolantSlot);
     }
 
+	private void OnExamine(EntityUid uid, SpaceArtilleryComponent component, ExaminedEvent args)
+	{
+		if (!args.IsInDetailsRange)
+            return;
+		
+		
+		if(component.IsArmed == true)
+		{
+			args.PushMarkup(Loc.GetString("space-artillery-on-examine-safe"));
+		} 
+		else
+		{
+			args.PushMarkup(Loc.GetString("space-artillery-on-examine-armed"));
+		}
+		
+		if(component.IsCoolantRequiredToFire == true)
+		{
+			args.PushMarkup(Loc.GetString("space-artillery-on-examine-coolant-consumed",
+            ("consumed_coolant", component.CoolantConsumed)));
+			
+			args.PushMarkup(Loc.GetString("space-artillery-on-examine-coolant-count",
+            ("current_coolant", component.CoolantStored), ("max_coolant", component.MaxCoolantStored)));
+		}
+		
+	}
 
 	private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
 	{
@@ -89,14 +123,16 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 				{
 					if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
 					{
-						if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= 1) || component.IsCoolantRequiredToFire == false)
+						if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= component.CoolantConsumed) || component.IsCoolantRequiredToFire == false)
 						{
 							TryFireArtillery(uid, component, battery);
-						}
-					}
+						} else
+							OnMalfunction(uid,component);
+					} else
+						OnMalfunction(uid,component);
 				}
 			}
-			if (args.Port == component.SpaceArtillerySafetyPort)
+			if (args.Port == component.SpaceArtilleryToggleSafetyPort)
 			{
 				if (TryComp<CombatModeComponent>(uid, out var combat))
 				{
@@ -104,15 +140,41 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 					{
 						_combat.SetInCombatMode(uid, true, combat);
 						component.IsArmed = true;
+						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					}
 					else
 					{
 						_combat.SetInCombatMode(uid, false, combat);
 						component.IsArmed = false;
+						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					}
 				}
 			}
-		}
+			if (args.Port == component.SpaceArtilleryOnSafetyPort)
+			{
+				if (TryComp<CombatModeComponent>(uid, out var combat) && combat.IsInCombatMode != null)
+				{
+					if(combat.IsInCombatMode == true)
+						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
+					
+					_combat.SetInCombatMode(uid, false, combat);
+					component.IsArmed = false;
+					
+				}
+			}
+			if (args.Port == component.SpaceArtilleryOffSafetyPort)
+			{
+				if (TryComp<CombatModeComponent>(uid, out var combat) && combat.IsInCombatMode != null)
+				{
+					if(combat.IsInCombatMode == false)
+						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
+					
+					_combat.SetInCombatMode(uid, true, combat);
+					component.IsArmed = true;
+				}
+			}
+		} else
+			OnMalfunction(uid,component);
 	}
 	
 	private void OnBuckleChange(EntityUid uid, SpaceArtilleryComponent component, ref BuckleChangeEvent args)
@@ -148,7 +210,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			{
 				if((component.IsPowered == true && battery.Charge >= component.PowerUseActive) || component.IsPowerRequiredToFire == false)
 				{
-					if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= 1) || component.IsCoolantRequiredToFire == false)
+					if((component.IsCoolantRequiredToFire == true && component.CoolantStored >= component.CoolantConsumed) || component.IsCoolantRequiredToFire == false)
 					{
 						if (args.Handled)
 							return;
@@ -156,10 +218,13 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 						TryFireArtillery(uid, component, battery);
 
 						args.Handled = true;
-					}
-				}
+					} else
+						OnMalfunction(uid,component);
+				} else
+					OnMalfunction(uid,component);
 			}
-		}
+		} else 
+			OnMalfunction(uid,component);
     }
 
 
@@ -256,19 +321,11 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		
 		if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
 		{
+			OnMalfunction(uid,component);
 			return;
 		}
 		
 		if(TryComp<TransformComponent>(uid, out var transformComponent)){
-			
-			if(component.IsPowerRequiredToFire == true)
-			{
-				battery.CurrentCharge -= component.PowerUseActive;
-			}
-			if(component.IsCoolantRequiredToFire == true)
-			{
-				component.CoolantStored -= 1;
-			}
 			
 			var worldPosX = transformComponent.WorldPosition.X;
 			var worldPosY = transformComponent.WorldPosition.Y;
@@ -282,12 +339,51 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			
 			_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
 			
+		}
+	}
+	
+    private void GetInsertedCoolantAmount(SpaceArtilleryComponent component, out int amount)
+    {
+        amount = 0;
+        var coolantEntity = component.CoolantSlot.ContainerSlot?.ContainedEntity;
+
+        if (!TryComp<StackComponent>(coolantEntity, out var coolantStack) ||
+            coolantStack.StackTypeId != component.CoolantType)
+        {
+            return;
+        }
+
+        amount = coolantStack.Count;
+        return;
+    }
+	
+	private void OnShotEvent(EntityUid uid, SpaceArtilleryComponent component, AmmoShotEvent args)
+	{
+		if(TryComp<TransformComponent>(uid, out var transformComponent) && TryComp<BatteryComponent>(uid, out var battery)){
+			var worldPosX = transformComponent.WorldPosition.X;
+			var worldPosY = transformComponent.WorldPosition.Y;
+			var worldRot = transformComponent.WorldRotation+rotOffset;
+			var targetSpot = new Vector2(worldPosX - distance * (float) Math.Sin(worldRot), worldPosY + distance * (float) Math.Cos(worldRot));
 			
-			///Space Recoil is handled here
-			if(transformComponent.Anchored == true)
+			var _gridUid = transformComponent.GridUid;
+		
+		
+		_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedFiringPort, true);
+		
+		if(component.IsPowerRequiredToFire == true)
+		{
+			battery.CurrentCharge -= component.PowerUseActive;
+		}
+		if(component.IsCoolantRequiredToFire == true)
+		{
+			component.CoolantStored -= component.CoolantConsumed;
+		}
+		
+		///Space Recoil is handled here
+		if(transformComponent.Anchored == true)
+		{
+			if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid)
 			{
-				if(TryComp<PhysicsComponent>(_gridUid, out var gridPhysicsComponent) && _gridUid is {Valid :true} gridUid)
-				{
 					var gridMass = gridPhysicsComponent.FixturesMass;
 					var linearVelocityLimitGrid = component.VelocityLimitRecoilGrid;
 					var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
@@ -341,18 +437,13 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		}
 	}
 	
-    private void GetInsertedCoolantAmount(SpaceArtilleryComponent component, out int amount)
-    {
-        amount = 0;
-        var coolantEntity = component.CoolantSlot.ContainerSlot?.ContainedEntity;
-
-        if (!TryComp<StackComponent>(coolantEntity, out var coolantStack) ||
-            coolantStack.StackTypeId != component.CoolantType)
-        {
-            return;
-        }
-
-        amount = coolantStack.Count;
-        return;
-    }
+	private void OnEmptyShotEvent(EntityUid uid, SpaceArtilleryComponent component, OnEmptyGunShotEvent args)
+	{
+		OnMalfunction(uid,component);
+	}
+	
+	private void OnMalfunction(EntityUid uid, SpaceArtilleryComponent component)
+	{
+		_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedMalfunctionPort, true);
+	}
 }

@@ -60,11 +60,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 1
     projectileSpeed: 70
@@ -153,11 +156,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 1
     projectileSpeed: 70
@@ -171,6 +177,7 @@
     powerUsePassive: 3000
     isPowerRequiredForSignal: true
     isPowerRequiredToFire: false
+    linearRecoilGrid: 300
   - type: Actions
   - type: CombatMode
     IsInCombatMode: true
@@ -254,6 +261,15 @@
     position: Stand
     buckleOffset: "0,0.8"
     maxBuckleDistance: 1
+  - type: UserInterface
+    interfaces:
+      - key: enum.RadarConsoleUiKey.Key
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      - key: enum.RadarConsoleUiKey.Key
+        toggleAction: ActionSpaceArtilleryShowRadar
+  - type: RadarConsole
     
 - type: entity
   id: Mounted_Machine_Gun_50_WallMounted
@@ -303,11 +319,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: BallisticAmmoProvider
     autoCycle: true
     capacity: 120
@@ -415,11 +434,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 1
     projectileSpeed: 70
@@ -434,6 +456,8 @@
     powerUseActive: 500000
     isPowerRequiredForSignal: true
     isPowerRequiredToFire: true
+    linearRecoilGrid: 900
+    angularInstabilityGrid: 30
   - type: Actions
   - type: CombatMode
     IsInCombatMode: true
@@ -501,11 +525,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 3
     projectileSpeed: 70
@@ -605,11 +632,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 3
     projectileSpeed: 70
@@ -707,11 +737,14 @@
   - type: DeviceLinkSink
     ports:
       - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
   - type: DeviceLinkSource
     ports:
-      - SpaceArtilleryFire
-      - SpaceArtillerySafety
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
   - type: Gun
     fireRate: 3
     projectileSpeed: 70
@@ -842,3 +875,15 @@
     
 
   
+- type: entity
+  id: ActionSpaceArtilleryShowRadar
+  name: Mass Scanner Interface
+  description: View a mass scanner interface.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+    iconOn: Structures/Machines/parts.rsi/box_2.png
+    keywords: [ "AI", "console", "interface" ]
+    priority: -10
+    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
