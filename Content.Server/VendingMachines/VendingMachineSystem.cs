@@ -187,7 +187,7 @@ namespace Content.Server.VendingMachines
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
-        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args)
+        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args) # Frontier - Added DEMUG
         {
             // only unemag if there are emag-only items
             args.Handled = component.EmaggedInventory.Count > 0;
