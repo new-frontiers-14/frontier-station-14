@@ -62,7 +62,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<VendingMachineComponent, GotReEmaggedEvent>(OnReEmagged);
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
@@ -187,9 +187,9 @@ namespace Content.Server.VendingMachines
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
-        private void OnReEmagged(EntityUid uid, VendingMachineComponent component, ref GotReEmaggedEvent args)
+        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args)
         {
-            // only emag if there are emag-only items
+            // only unemag if there are emag-only items
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 

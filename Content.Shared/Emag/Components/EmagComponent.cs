@@ -18,5 +18,6 @@ public sealed partial class EmagComponent : Component
     [AutoNetworkedField]
     public string EmagImmuneTag = "EmagImmune";
 
-    [ViewVariables(VVAccess.ReadWrite)] public bool Reverse = false;
+    [DataField("unemag")]
+    public bool Unemag = false;
 }
