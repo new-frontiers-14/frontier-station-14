@@ -18,6 +18,6 @@ public sealed partial class EmagComponent : Component
     [AutoNetworkedField]
     public string EmagImmuneTag = "EmagImmune";
 
-    [DataField("unemag")]
-    public bool Unemag = false;
+    [DataField("demag")]
+    public bool Demag = false;
 }

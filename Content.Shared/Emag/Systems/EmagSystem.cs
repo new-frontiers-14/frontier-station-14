@@ -58,7 +58,7 @@ public sealed class EmagSystem : EntitySystem
 
         bool handled;
 
-        if (comp.Unemag)
+        if (comp.Demag)
             handled = DoUnEmagEffect(user, target);
         else
             handled = DoEmagEffect(user, target);
