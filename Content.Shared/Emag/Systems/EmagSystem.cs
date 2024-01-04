@@ -115,4 +115,4 @@ public sealed class EmagSystem : EntitySystem
 public record struct GotEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false);
 
 [ByRefEvent]
-public record struct GotUnEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false);
+public record struct GotUnEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false); // Frontier
