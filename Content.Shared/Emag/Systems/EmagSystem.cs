@@ -94,7 +94,7 @@ public sealed class EmagSystem : EntitySystem
     }
 
     /// <summary>
-    /// Does the unemag effect on a specified entity
+    /// Frontier - Does the DEMAG effect on a specified entity
     /// </summary>
     public bool DoUnEmagEffect(EntityUid user, EntityUid target)
     {
