@@ -86,3 +86,24 @@
     contents:
       - id: PaperCaptainsThoughts
         amount: 10
+
+- type: entity
+  name: mystery spacemen minifigure bulk box
+  parent: BoxCardboard
+  id: MysteryFigureBoxBulk
+  description: A box containing six mystery minifigure boxes.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MysteryFigureBox
+        amount: 6
+  - type: Storage
+    capacity: 30
+    whitelist:
+      tags:
+        - MysteryFigureBox
+  - type: Sprite
+    layers:
+      - state: box
+  - type: VendPrice
+    price: 1200
