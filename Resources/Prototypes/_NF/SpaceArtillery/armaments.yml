@@ -231,7 +231,7 @@
   - type: BallisticAmmoProvider
     autoCycle: true
     capacity: 60
-    proto: CartridgeMachineGun
+    proto: CartridgeMachineGunArmorPiercing
     whitelist:
       tags:
       - CartridgeMachineGun
@@ -330,7 +330,7 @@
   - type: BallisticAmmoProvider
     autoCycle: true
     capacity: 120
-    proto: CartridgeMachineGun
+    proto: CartridgeMachineGunArmorPiercing
     whitelist:
       tags:
       - CartridgeMachineGun
@@ -456,8 +456,20 @@
     powerUseActive: 500000
     isPowerRequiredForSignal: true
     isPowerRequiredToFire: true
+    isCoolantRequiredToFire: true
+    coolantConsumed: 30
+    maxCoolantStored: 120
     linearRecoilGrid: 900
     angularInstabilityGrid: 30
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
   - type: Actions
   - type: CombatMode
     IsInCombatMode: true
@@ -467,6 +479,9 @@
   - type: BatterySelfRecharger
   - type: RadiationBlocker
     resistance: 8
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
 
 - type: entity
   id: Military_Laser

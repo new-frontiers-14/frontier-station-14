@@ -12,6 +12,7 @@
     damage:
       types:
         Structural: 100
+        Blunt: 20
   - type: TimedDespawn
     lifetime: 20
     #roughly 600m range
@@ -22,7 +23,7 @@
   - type: EmpOnTrigger
     range: 8
     energyConsumption: 50000
-    disableDuration: 60
+    disableDuration: 20
 
 - type: entity
   id: CartridgeShellEmp
@@ -59,7 +60,7 @@
     damage:
       types:
         Structural: 1000
-        #currently explosion deals roughly 22.5 damage
+        #currently explosion deals roughly 60 damage
   - type: TimedDespawn
     lifetime: 20
     #roughly 600m range
@@ -213,61 +214,6 @@
   - type: SpentAmmoVisuals
   - type: SpaceGarbage
 
-#.50 call AP for machine gun
-- type: entity
-  id: BulletMachineGun
-  name: 50 Machine Gun bullet
-  parent: BaseBulletTrigger
-  noSpawn: true
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Structural: 35
-        #currently explosion deals roughly ? damage
-  - type: TimedDespawn
-    lifetime: 20
-    #roughly 600m range
-  - type: Sprite
-    sprite: _NF/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
-    layers:
-      - state: base-projectile
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 2
-    intensitySlope: 1
-    totalIntensity: 5
-    maxTileBreak: 0
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
-
-- type: entity
-  id: CartridgeMachineGun
-  name: 50 Machine Gun cartridge
-  parent: BaseItem
-  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
-  components:
-  - type: Tag
-    tags:
-      - CartridgeMachineGun
-      - Cartridge
-  - type: Item
-    size: 2
-  - type: CartridgeAmmo
-    proto: BulletMachineGun
-    deleteOnSpawn: false
-  - type: Sprite
-    sprite: _NF/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
-    layers:
-    - state: base
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-  - type: SpaceGarbage
-
 #.50 call EMP for machine gun
 - type: entity
   id: BulletMachineGunEMP
@@ -279,7 +225,7 @@
     damage:
       types:
         Structural: 35
-        #currently explosion deals roughly ? damage
+        Blunt: 10
   - type: TimedDespawn
     lifetime: 20
     #roughly 600m range
@@ -290,7 +236,7 @@
   - type: EmpOnTrigger
     range: 3
     energyConsumption: 2000
-    disableDuration: 4
+    disableDuration: 3
   - type: PointLight
     radius: 3.5
     color: orange
@@ -320,7 +266,227 @@
   - type: SpentAmmoVisuals
   - type: SpaceGarbage
 
-#1000 cal Railgun Rails
+#.50 call AP for machine gun
+- type: entity
+  id: BulletMachineGunArmorPiercing
+  name: 50 Machine Gun Armor-Piercing bullet
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 35
+        #currently explosion deals 30 damage
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
+    layers:
+      - state: base-projectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 1
+    totalIntensity: 5
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeMachineGunArmorPiercing
+  name: 50 Machine Gun Armor-Piercing cartridge
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeMachineGun
+      - Cartridge
+  - type: Item
+    size: 2
+  - type: CartridgeAmmo
+    proto: BulletMachineGunArmorPiercing
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+#.50 call HE for machine gun
+- type: entity
+  id: BulletMachineGunHighExplosive
+  name: 50 Machine Gun High-Explosive bullet
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 24
+        #currently explosion deals 21 damage per tile in large AoE
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_highexplosive_machinegun_casing.rsi
+    layers:
+      - state: base-projectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.4
+    intensitySlope: 0.8
+    totalIntensity: 16
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeMachineGunHighExplosive
+  name: 50 Machine Gun High-Explosive cartridge
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeMachineGun
+      - Cartridge
+  - type: Item
+    size: 2
+  - type: CartridgeAmmo
+    proto: BulletMachineGunHighExplosive
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_highexplosive_machinegun_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+#.50 call Practice for machine gun
+- type: entity
+  id: BulletMachineGunPractice
+  name: 50 Machine Gun Practice bullet
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 5
+        #currently explosion deals 30 damage
+  - type: TimedDespawn
+    lifetime: 20
+    #roughly 600m range
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_practice_machinegun_casing.rsi
+    layers:
+      - state: base-projectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 0.1
+    intensitySlope: 1
+    totalIntensity: 0.6
+    maxTileBreak: 0
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeMachineGunPractice
+  name: 50 Machine Gun Practice cartridge
+  parent: BaseItem
+  description: A 1.5 emp warhead designed for the RPG-7 launcher. Has tubular shape.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeMachineGun
+      - Cartridge
+  - type: Item
+    size: 2
+  - type: CartridgeAmmo
+    proto: BulletMachineGunPractice
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/50_practice_machinegun_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+
+#1000 cal Railgun EMP Rail
+
+- type: entity
+  id: BulletRailEMP
+  name: rail
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 500
+        Blunt: 50
+  - type: TimedDespawn
+    lifetime: 34
+    #roughly 1000m range
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/1000_armorpiercing_rail_casing.rsi
+    layers:
+      - state: base-projectile
+  - type: EmpOnTrigger
+    range: 12
+    energyConsumption: 1000000
+    disableDuration: 120
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeRailEMP
+  name: 1000 EMP rail
+  parent: BaseItem
+  description: A 1000 caliber rail designed for the Railgun. Is made out of solid plasma infused tungsten rod. Punches through hull like butter.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRail
+      - Cartridge
+  - type: Item
+    size: 120
+  - type: MultiHandedItem
+  - type: CartridgeAmmo
+    proto: BulletRailEMP
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/1000_armorpiercing_rail_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
+
+#1000 cal Railgun AP Rail
 
 - type: entity
   id: BulletRailArmorPiercing
@@ -332,7 +498,7 @@
     damage:
       types:
         Structural: 10000
-        #currently explosion deals roughly 22.5 damage
+        #currently explosion deals 720 damage, gibs in 3 direct rail hits
   - type: TimedDespawn
     lifetime: 34
     #roughly 1000m range
@@ -377,6 +543,62 @@
   - type: SpentAmmoVisuals
   - type: SpaceGarbage
 
+#1000 cal Railgun HE Rail
+
+- type: entity
+  id: BulletRailHighExplosive
+  name: rail
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 1000
+        #currently explosion deals 156 damage per tile in large AoE
+  - type: TimedDespawn
+    lifetime: 34
+    #roughly 1000m range
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/1000_armorpiercing_rail_casing.rsi
+    layers:
+      - state: base-projectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 10
+    totalIntensity: 500
+    maxTileBreak: 50
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: CartridgeRailHighExplosive
+  name: 1000 High-Explosive rail
+  parent: BaseItem
+  description: A 1000 caliber rail designed for the Railgun. Is made out of solid plasma infused tungsten rod. Punches through hull like butter.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRail
+      - Cartridge
+  - type: Item
+    size: 120
+  - type: MultiHandedItem
+  - type: CartridgeAmmo
+    proto: BulletRailHighExplosive
+    deleteOnSpawn: false
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/1000_armorpiercing_rail_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: SpaceGarbage
 
 
 
