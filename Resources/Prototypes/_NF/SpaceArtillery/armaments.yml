@@ -426,6 +426,7 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -479,9 +480,6 @@
   - type: BatterySelfRecharger
   - type: RadiationBlocker
     resistance: 8
-  - type: ContainerContainer
-    containers:
-      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
 
 - type: entity
   id: Military_Laser
@@ -562,6 +560,7 @@
   - type: SpaceArtillery
     isArmed: true
     isCoolantRequiredToFire: true
+    coolantConsumed: 10
     isPowerRequiredToFire: true
     SpaceArtillery-CoolantSlot:
             name:  SpaceArtillery-CoolantSlot
