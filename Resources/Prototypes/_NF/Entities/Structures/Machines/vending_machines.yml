@@ -266,18 +266,22 @@
     color: "#4b93ad"
   - type: MarketModifier
     mod: 5
-# Music
-  # - type: Instrument
-    # allowPercussion: true
-    # allowProgramChange: true
-  # - type: ActivatableUI
-    # allowSpectator: false # otherwise they can play client-side music
-    # inHandsOnly: false
-    # singleUser: true
-    # requireHands: true
-    # verbText: verb-instrument-openui
-    # key: enum.InstrumentUiKey.Key
-  # - type: UserInterface
-    # interfaces:
-    # - key: enum.InstrumentUiKey.Key
-      # type: InstrumentBoundUserInterface
+#Interface
+  - type: UserInterface
+    interfaces:
+    - key: enum.VendingMachineUiKey.Key
+      type: VendingMachineBoundUserInterface
+    - key: enum.WiresUiKey.Key
+      type: WiresBoundUserInterface
+    - key: enum.InstrumentUiKey.Key # Added
+      type: InstrumentBoundUserInterface # Added
+#Music
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    handheld: false
+#Ghost
+  # - type: GhostRole
+    # makeSentient: true
+    # allowSpeech: true
+  # - type: GhostTakeoverAvailable
