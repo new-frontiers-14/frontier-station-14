@@ -504,6 +504,13 @@
       Wood: 50
   - type: StaticPrice
     price: 25
+  # Delta V: Adds tool quality for digging
+  - type: Tool
+    qualities:
+      - Digging
+    useSound:
+      path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
+  - type: EarthDigging
 
 - type: entity
   parent: BaseItem

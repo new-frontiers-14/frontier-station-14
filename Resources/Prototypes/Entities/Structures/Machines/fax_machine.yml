@@ -24,9 +24,13 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 25
         mask:
-        - TabletopMachineMask
-        layer:
-        - TabletopMachineLayer
+#        - TabletopMachineMask
+        - Impassable # Frontier
+#        - MidImpassable # Frontier - Do not add this, it will block shutters from closing on it.
+        - LowImpassable # Frontier
+#        layer: # Frontier
+#        - TabletopMachineLayer # Frontier
+#        - LowImpassable # Frontier
   - type: ActivatableUI
     key: enum.FaxUiKey.Key
   - type: ActivatableUIRequiresPower
