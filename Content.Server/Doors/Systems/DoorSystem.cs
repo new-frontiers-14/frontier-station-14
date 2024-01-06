@@ -6,6 +6,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Prying.Components;
@@ -33,6 +34,7 @@ public sealed class DoorSystem : SharedDoorSystem
         SubscribeLocalEvent<DoorComponent, WeldableAttemptEvent>(OnWeldAttempt);
         SubscribeLocalEvent<DoorComponent, WeldableChangedEvent>(OnWeldChanged);
         SubscribeLocalEvent<DoorComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DoorComponent, GotUnEmaggedEvent>(OnUnEmagged);
         SubscribeLocalEvent<DoorComponent, PriedEvent>(OnAfterPry);
     }
 
@@ -162,6 +164,23 @@ public sealed class DoorSystem : SharedDoorSystem
             if (door.State == DoorState.Closed)
             {
                 SetState(uid, DoorState.Emagging, door);
+                PlaySound(uid, door.SparkSound, AudioParams.Default.WithVolume(8), args.UserUid, false);
+                args.Handled = true;
+            }
+        }
+    }
+
+    private void OnUnEmagged(EntityUid uid, DoorComponent door, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
+    {
+        if (TryComp<AirlockComponent>(uid, out var airlockComponent))
+        {
+            if (HasComp<EmaggedComponent>(uid))
+            {
+                if (TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
+                {
+                    _bolts.SetBoltsDown(uid, doorBoltComponent, !doorBoltComponent.BoltsDown);
+                    SetState(uid, DoorState.Closing, door);
+                }
                 PlaySound(uid, door.SparkSound, AudioParams.Default.WithVolume(8), args.UserUid, false);
                 args.Handled = true;
             }

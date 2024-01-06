@@ -29,6 +29,7 @@ public sealed class AccessReaderSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<AccessReaderComponent, GotUnEmaggedEvent>(OnUnEmagged);
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentGetState>(OnGetState);
@@ -76,6 +77,12 @@ public sealed class AccessReaderSystem : EntitySystem
         args.Handled = true;
         reader.Enabled = false;
         Dirty(uid, reader);
+    }
+
+    private void OnUnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotUnEmaggedEvent args)
+    {
+        args.Handled = true;
+        reader.Enabled = true;
     }
 
     /// <summary>
