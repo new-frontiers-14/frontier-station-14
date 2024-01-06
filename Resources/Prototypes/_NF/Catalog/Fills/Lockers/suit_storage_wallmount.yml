@@ -2,453 +2,127 @@
 #Paramedic's hardsuit
 - type: entity
   id: SuitStorageWallmountParamedic
-  parent: SuitStorageWallmount
-  suffix: Paramedic
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingHeadHelmetVoidParamed
-        - id: ClothingOuterHardsuitVoidParamed
-        - id: ClothingMaskBreathMedical
-        - id: JetpackMiniFilled
-        - id: HandheldGPSBasic
-  - type: AccessReader
-#    access: [["Medical"]]
+  parent: [SuitStorageWallmount, SuitStorageParamedic]
 
 #HARDSUITS
 #Brigmedic's hardsuit
 - type: entity
   id: SuitStorageWallmountBrigmedic
-  parent: SuitStorageWallmount
-  suffix: Brigmedic
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitBrigmedic
-        - id: ClothingMaskBreathMedicalSecurity
-        - id: JetpackSecurityFilled
-        - id: HandheldGPSBasic
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
-  - type: AccessReader
-    access: [["Security"]]
+  parent: [SuitStorageWallmount, SuitStorageBrigmedic]
 
 #Quartermaster hardsuit
 - type: entity
   id: SuitStorageWallmountQuartermaster
-  parent: SuitStorageWallmount
-  suffix: Quartermaster
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingShoesBootsMag
-        - id: ClothingOuterHardsuitLuxury
-        - id: ClothingMaskGasExplorer
-        - id: JetpackMiniFilled
-        - id: HandheldGPSBasic
-  - type: AccessReader
-    # access: [["Quartermaster"]]
+  parent: [SuitStorageWallmount, SuitStorageQuartermaster]
 
 #Mercenary hardsuit
 - type: entity
   id: SuitStorageWallmountMercenary
-  parent: SuitStorageWallmount
-  suffix: Mercenary
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitMercenary
-        - id: ClothingMaskGasMercenary
-        - id: JetpackMiniFilled
-        - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
-  - type: AccessReader
-    access: [["Mercenary"]]
+  parent: [SuitStorageWallmount, SuitStorageMercenary]
 
 #SOFTSUITS
 #Basic EVA
 - type: entity
   id: SuitStorageWallmountEVA
-  parent: SuitStorageWallmount
-  suffix: EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitEVA
-        - id: ClothingHeadHelmetEVA
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEVA]
 
 #Basic EVA (Big Ass Helmet)
 - type: entity
   id: SuitStorageWallmountEVAAlternate
-  parent: SuitStorageWallmount
-  suffix: EVA, Large Helmet
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitEVA
-        - id: ClothingHeadHelmetEVALarge
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEVAAlternate]
 
 #Emergency EVA
 - type: entity
   id: SuitStorageWallmountEVAEmergency
-  parent: SuitStorageWallmount
-  suffix: Emergency EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterSuitEmergency
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEVAEmergency]
 
 #Prisoner EVA
 - type: entity
   id: SuitStorageWallmountEVAPrisoner
-  parent: SuitStorageWallmount
-  suffix: Prisoner EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitEVAPrisoner
-        - id: ClothingHeadHelmetEVALarge
-        - id: ClothingMaskBreath
+  parent: [SuitStorageWallmount, SuitStorageEVAPrisoner]
 
 #Syndicate EVA
 - type: entity
   id: SuitStorageWallmountEVASyndicate
-  parent: SuitStorageWallmount
-  suffix: Syndicate EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitSyndicate
-        - id: ClothingHeadHelmetSyndicate
-        - id: ClothingMaskGasSyndicate
-        - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEVASyndicate]
 
 #Pirate EVA
 - type: entity
   id: SuitStorageWallmountEVAPirate
-  parent: SuitStorageWallmount
-  suffix: Pirate EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitPirateEVA
-        - id: ClothingMaskGas
-        - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagPirateFilled # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEVAPirate]
 
 #NTSRA Voidsuit
 - type: entity
   id: SuitStorageWallmountNTSRA
-  parent: SuitStorageWallmount
-  suffix: Ancient EVA
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-#        - id: JetpackVoidFilled # Frontier
-        - id: ClothingOuterHardsuitAncientEVA
-        - id: ClothingHeadHelmetAncient
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageNTSRA]
 
 #HARDSUITS
 #Basic hardsuit
 - type: entity
   id: SuitStorageWallmountBasic
-  parent: SuitStorageWallmount
-  suffix: Basic Hardsuit
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitBasic
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageBasic]
 
 #Engineering hardsuit
 - type: entity
   id: SuitStorageWallmountEngi
-  parent: SuitStorageWallmount
-  suffix: Station Engineer
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingShoesBootsMag
-        - id: ClothingOuterHardsuitEngineering
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [["Engineering"]] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageEngi]
 
 #Atmospherics hardsuit
 - type: entity
   id: SuitStorageWallmountAtmos
-  parent: SuitStorageWallmount
-  suffix: Atmospheric Technician
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitAtmos
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [["Atmospherics"]] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageAtmos]
 
 #Security hardsuit
 - type: entity
   id: SuitStorageWallmountSec
-  parent: SuitStorageWallmount
-  suffix: Security
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitSecurity
-          orGroup: HardsuitSecurity
-        - id: ClothingOuterHardsuitSecuritypatrol # Frontier - 50% to get the patrol suit
-          orGroup: HardsuitSecurity
-        - id: ClothingMaskBreath
-        - id: JetpackSecurityFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
-  - type: AccessReader
-    access: [["Security"]]
+  parent: [SuitStorageWallmount, SuitStorageSec]
 
 #CE's hardsuit
 - type: entity
   id: SuitStorageWallmountCE
-  parent: SuitStorageWallmount
-  suffix: Chief Engineer
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-#        - id: JetpackVoidFilled # Frontier
-#        - id: ClothingShoesBootsMagAdv # Frontier
-        - id: ClothingShoesBootsMag # Frontier
-        - id: ClothingOuterHardsuitEngineeringWhite
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [["ChiefEngineer"]] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageCE]
 
 #CMO's hardsuit
 - type: entity
   id: SuitStorageWallmountCMO
-  parent: SuitStorageWallmount
-  suffix: Chief Medical Officer
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitMedical
-        - id: ClothingMaskBreathMedical
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [ [ "ChiefMedicalOfficer" ] ] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageCMO]
 
 #RD's hardsuit
 - type: entity
   id: SuitStorageWallmountRD
-  parent: SuitStorageWallmount
-  suffix: Research Director
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitRd
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [ [ "ResearchDirector" ] ] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageRD]
 
 #HOS's hardsuit
 - type: entity
   id: SuitStorageWallmountHOS
-  parent: SuitStorageWallmount
-  suffix: Head of Security
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: JetpackSecurityFilled
-        - id: ClothingOuterHardsuitSecurityRed
-        - id: ClothingMaskGasSwat
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  parent: [SuitStorageWallmount, SuitStorageHOS]
 
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWallmountWarden
-  parent: SuitStorageWallmount
-  suffix: Warden
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitWarden
-        - id: ClothingMaskBreath
-        - id: JetpackSecurityFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
-  - type: AccessReader
-    access: [["Armory"]]
+  parent: [SuitStorageWallmount, SuitStorageWarden]
 
 #Captain's hardsuit
 - type: entity
   id: SuitStorageWallmountCaptain
-  parent: SuitStorageWallmount
-  suffix: Captain
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitCap
-        - id: ClothingMaskGasCaptain
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [["Captain"]] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageCaptain]
 
 #Salvage hardsuit
 - type: entity
   id: SuitStorageWallmountSalv
-  parent: SuitStorageWallmount
-  suffix: Salvage
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingShoesBootsMag
-        - id: ClothingOuterHardsuitSpatio
-        - id: ClothingMaskGasExplorer
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-  - type: AccessReader
-    # access: [["Salvage"]] # Frontier
+  parent: [SuitStorageWallmount, SuitStorageSalv]
 
 #Blood-red hardsuit
 - type: entity
   id: SuitStorageWallmountSyndie
-  parent: SuitStorageWallmount
-  suffix: Syndicate Hardsuit
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitSyndie
-        - id: ClothingShoesBootsMagSyndie
-        - id: ClothingMaskGasSyndicate
-        - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageSyndie]
 
 #Pirate Captain's hardsuit
 - type: entity
   id: SuitStorageWallmountPirateCap
-  parent: SuitStorageWallmount
-  suffix: Pirate Captain
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitPirateCap
-        - id: ClothingMaskGas
-        - id: ClothingNeckCloakPirateCap # Frontier
-        - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagPirateFilled # Frontier
+  parent: [SuitStorageWallmount, SuitStoragePirateCap]
 
 #Wizard
 - type: entity
   id: SuitStorageWallmountWizard
-  parent: SuitStorageWallmount
-  suffix: Wizard
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitWizard
-        - id: ClothingMaskBreath
-        - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  parent: [SuitStorageWallmount, SuitStorageWizard]
