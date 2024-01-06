@@ -1,0 +1,28 @@
+- type: vessel
+  id: searchlight
+  name: NM Searchlight
+  description: A small vessel outfitted for the search and recovery of wounded NT personnel. Primarily for recovery. Search though? Well. You got that medical tracker implanted, right?
+  price: 29500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/searchlight.yml
+
+- type: gameMap
+  id: searchlight
+  mapName: 'NM Searchlight'
+  mapPath: /Maps/Shuttles/searchlight.yml
+  minPlayers: 0
+  stations:
+    searchlight:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Searchlight {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]

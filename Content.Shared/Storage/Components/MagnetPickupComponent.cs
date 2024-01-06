@@ -1,6 +1,7 @@
 using Content.Shared.Inventory;
 
-namespace Content.Server.Storage.Components;
+// namespace Content.Server.Storage.Components;
+namespace Content.Shared.Storage.Components;    // Frontier
 
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.
@@ -15,26 +16,16 @@ public sealed partial class MagnetPickupComponent : Component
     public float Range = 1f;
 
     /// <summary>
-    /// Whether the magnet is attached to a fixture (e.g. ore box) or not (e.g. ore bag)
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("isFixture")]
-    public bool IsFixture = false;
-
-    /// <summary>
     /// What container slot the magnet needs to be in to work (if not a fixture)
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("slotFlags")]
     public SlotFlags SlotFlags = SlotFlags.BELT;
 
-    /// <summary>
-    /// Is magnet active, when fixture is anchored?
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("pickupWhenAnchored")]
-    public bool PickupWhenAnchored = true;
+    // Everything below this line is from Frontier
 
     /// <summary>
-    /// Is magnet active, when fixture is not anchored?
+    /// Is the magnet currently enabled?
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("pickupWhenNotAnchored")]
-    public bool PickupWhenNotAnchored = true;
+    [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
+    public bool MagnetEnabled = true;
 }
