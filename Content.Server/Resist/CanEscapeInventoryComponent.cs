@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Robust.Shared.Serialization;
 
 namespace Content.Server.Resist;
 
@@ -15,4 +16,8 @@ public sealed partial class CanEscapeInventoryComponent : Component
 
     [DataField("doAfter")]
     public DoAfterId? DoAfter;
+
+    // Frontier
+    [DataField]
+    public EntityUid? EscapeCancelAction;
 }

@@ -16,6 +16,8 @@ using Content.Shared.Storage;
 using Robust.Shared.Containers;
 using Content.Server.Storage.Components;
 using Content.Server.Carrying;
+using Content.Shared.Actions;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Resist;
 
@@ -28,6 +30,12 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
     [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private  readonly EntityManager _entityManager = default!;
+
+    // Frontier - cancel inventory escape
+    [ValidatePrototypeId<EntityPrototype>]
+    private readonly string _escapeCancelAction = "ActionCancelEscape";
 
     /// <summary>
     /// You can't escape the hands of an entity this many times more massive than you.
@@ -41,6 +49,7 @@ public sealed class EscapeInventorySystem : EntitySystem
         SubscribeLocalEvent<CanEscapeInventoryComponent, MoveInputEvent>(OnRelayMovement);
         SubscribeLocalEvent<CanEscapeInventoryComponent, EscapeInventoryEvent>(OnEscape);
         SubscribeLocalEvent<CanEscapeInventoryComponent, DroppedEvent>(OnDropped);
+        SubscribeLocalEvent<CanEscapeInventoryComponent, EscapeInventoryCancelActionEvent>(OnCancelEscape); // Frontier
     }
 
     private void OnRelayMovement(EntityUid uid, CanEscapeInventoryComponent component, ref MoveInputEvent args)
@@ -90,6 +99,10 @@ public sealed class EscapeInventorySystem : EntitySystem
         Dirty(user, component);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting"), user, user);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting-target"), container, container);
+
+        // Frontier - escape cancel action
+        if (component.EscapeCancelAction is not { Valid: true })
+            _actions.AddAction(user, ref component.EscapeCancelAction, _escapeCancelAction);
     }
 
     private void OnEscape(EntityUid uid, CanEscapeInventoryComponent component, EscapeInventoryEvent args)
@@ -99,6 +112,8 @@ public sealed class EscapeInventorySystem : EntitySystem
 
         if (args.Handled || args.Cancelled)
             return;
+
+        RemoveCancelAction(uid, component); // Frontier
 
         if (TryComp<BeingCarriedComponent>(uid, out var carried)) // Start of carrying system of nyanotrasen.
         {
@@ -114,5 +129,26 @@ public sealed class EscapeInventorySystem : EntitySystem
     {
         if (component.DoAfter != null)
             _doAfterSystem.Cancel(component.DoAfter);
+
+        RemoveCancelAction(uid, component); // Frontier
+    }
+
+    // Frontier
+    private void RemoveCancelAction(EntityUid uid, CanEscapeInventoryComponent component)
+    {
+        if (component.EscapeCancelAction is not { Valid: true })
+         return;
+
+        _actions.RemoveAction(uid, component.EscapeCancelAction);
+        component.EscapeCancelAction = null;
+    }
+
+    // Frontier
+    private void OnCancelEscape(EntityUid uid, CanEscapeInventoryComponent component, EscapeInventoryCancelActionEvent args)
+    {
+        if (component.DoAfter != null)
+            _doAfterSystem.Cancel(component.DoAfter);
+
+        RemoveCancelAction(uid, component);
     }
 }
