@@ -127,11 +127,15 @@ namespace Content.Server.Carrying
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
         {
-            if (Transform(uid).MapID != args.OldMapId)
+            var xform = Transform(uid);
+            if (xform.MapID != args.OldMapId)
                 return;
 
-            // This causes the carrier to drop the carried entity when switching grids, which is incredibly annoying
-            // DropCarried(uid, component.Carried);
+            // Do not drop the carried entity if the new parent is a grid
+            if (xform.ParentUid == xform.GridUid)
+                return;
+
+            DropCarried(uid, component.Carried);
         }
 
         private void OnMobStateChanged(EntityUid uid, CarryingComponent component, MobStateChangedEvent args)
@@ -247,6 +251,10 @@ namespace Content.Server.Carrying
         {
             if (TryComp<SharedPullableComponent>(carried, out var pullable))
                 _pullingSystem.TryStopPull(pullable);
+
+            // Don't allow people to stack upon each other. They're too weak for that!
+            if (TryComp<CarryingComponent>(carried, out var carryComp))
+                DropCarried(carried, carryComp.Carried);
 
             Transform(carrier).AttachToGridOrMap();
             Transform(carried).AttachToGridOrMap();
