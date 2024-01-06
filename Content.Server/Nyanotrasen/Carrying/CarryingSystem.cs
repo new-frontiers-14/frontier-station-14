@@ -239,6 +239,8 @@ namespace Content.Server.Carrying
                 NeedHand = true
             };
             _doAfterSystem.TryStartDoAfter(args);
+
+            _popupSystem.PopupEntity(Loc.GetString("carry-started", ("carrier", carrier)), carried, carried);
         }
 
         private void Carry(EntityUid carrier, EntityUid carried)
