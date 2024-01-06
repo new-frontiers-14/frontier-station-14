@@ -83,6 +83,7 @@ public sealed class AccessReaderSystem : EntitySystem
     {
         args.Handled = true;
         reader.Enabled = true;
+        Dirty(uid, reader);
     }
 
     /// <summary>
