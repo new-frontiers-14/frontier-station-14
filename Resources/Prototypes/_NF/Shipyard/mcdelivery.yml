@@ -1,0 +1,30 @@
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir01 (84770870936997888)
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: mcdelivery
+  name: DC McDelivery
+  description: "WIP"
+  price: 10500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/mcdelivery.yml
+
+- type: gameMap
+  id: mcdelivery
+  mapName: 'DC McDelivery'
+  mapPath: /Maps/_NF/Shuttles/mcdelivery.yml
+  minPlayers: 0
+  stations:
+    mcdelivery:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'McDelivery {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
