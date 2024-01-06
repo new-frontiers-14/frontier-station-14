@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Threading;
 using Content.Server.DoAfter;
 using Content.Server.Body.Systems;
@@ -22,9 +23,11 @@ using Content.Shared.Pulling;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Mind.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Physics.Pull;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Carrying
@@ -127,7 +130,8 @@ namespace Content.Server.Carrying
             if (Transform(uid).MapID != args.OldMapId)
                 return;
 
-            DropCarried(uid, component.Carried);
+            // This causes the carrier to drop the carried entity when switching grids, which is incredibly annoying
+            // DropCarried(uid, component.Carried);
         }
 
         private void OnMobStateChanged(EntityUid uid, CarryingComponent component, MobStateChangedEvent args)
@@ -206,6 +210,7 @@ namespace Content.Server.Carrying
             Carry(args.Args.User, uid);
             args.Handled = true;
         }
+
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
             TimeSpan length = TimeSpan.FromSeconds(3);
@@ -299,7 +304,7 @@ namespace Content.Server.Carrying
             if (HasComp<BeingCarriedComponent>(carrier) || HasComp<BeingCarriedComponent>(carried))
                 return false;
 
-        //  if (_respirator.IsReceivingCPR(carried))
+            //  if (_respirator.IsReceivingCPR(carried))
             //  return false;
 
             if (!TryComp<HandsComponent>(carrier, out var hands))
@@ -309,6 +314,25 @@ namespace Content.Server.Carrying
                 return false;
 
             return true;
+        }
+
+        public override void Update(float frameTime)
+        {
+            var query = EntityQueryEnumerator<BeingCarriedComponent>();
+            while (query.MoveNext(out var carried, out var comp))
+            {
+                var carrier = comp.Carrier;
+                if (carrier is not { Valid: true } || carried is not { Valid: true })
+                    continue;
+
+                // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
+                var xform = Transform(carried);
+                if (!xform.LocalPosition.EqualsApprox(Vector2.Zero))
+                {
+                    xform.LocalPosition = Vector2.Zero;
+                }
+            }
+            query.Dispose();
         }
     }
 }
