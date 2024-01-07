@@ -62,7 +62,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);

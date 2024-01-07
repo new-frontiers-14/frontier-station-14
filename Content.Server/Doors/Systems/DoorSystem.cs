@@ -7,7 +7,6 @@ using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Prying.Components;
 using Content.Shared.Prying.Systems;
@@ -15,6 +14,7 @@ using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Emag.Systems; // Frontier - Added DEMUG
 
 namespace Content.Server.Doors.Systems;
 
@@ -34,7 +34,7 @@ public sealed class DoorSystem : SharedDoorSystem
         SubscribeLocalEvent<DoorComponent, WeldableAttemptEvent>(OnWeldAttempt);
         SubscribeLocalEvent<DoorComponent, WeldableChangedEvent>(OnWeldChanged);
         SubscribeLocalEvent<DoorComponent, GotEmaggedEvent>(OnEmagged);
-        SubscribeLocalEvent<DoorComponent, GotUnEmaggedEvent>(OnUnEmagged);
+        SubscribeLocalEvent<DoorComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
         SubscribeLocalEvent<DoorComponent, PriedEvent>(OnAfterPry);
     }
 

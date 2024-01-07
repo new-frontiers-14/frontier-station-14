@@ -13,6 +13,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Trade.Components;
+using Content.Shared.Emag.Components;
+using System.Text; // Frontier - DEMAG
 
 namespace Content.Shared.Lock;
 
@@ -38,6 +40,7 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<LockComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleLockVerb);
         SubscribeLocalEvent<LockComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
     }
 
     private void OnStartup(EntityUid uid, LockComponent lockComp, ComponentStartup args)
@@ -212,15 +215,27 @@ public sealed class LockSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, LockComponent component, ref GotEmaggedEvent args)
     {
-        if (HasComp<TradeCrateComponent>(uid))
+        if (HasComp<TradeCrateComponent>(uid)) // Frontier - TradeCrates
             return;
 
         if (!component.Locked || !component.BreakOnEmag)
             return;
         _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
         _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
-        RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged
+        //RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged // Frontier - Has to remove this to allow fixing locks
+        component.Locked = false;
         args.Handled = true;
+    }
+
+    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args) // Frontier - DEMAG
+    {
+        if (HasComp<EmaggedComponent>(uid))
+        {
+            _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
+            //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
+            component.Locked = true;
+            args.Handled = true;
+        }
     }
 }
 
