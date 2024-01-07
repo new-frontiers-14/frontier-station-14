@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
@@ -202,10 +202,11 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-        return component.Powered &&
-               component.Enabled &&
-               HasComp<BodyComponent>(victim) &&
-               HasComp<EmaggedComponent>(uid);
+        return false; // DeltaV - Kinda LRP
+        // return component.Powered &&
+        //       component.Enabled &&
+        //       HasComp<BodyComponent>(victim) &&
+        //       HasComp<EmaggedComponent>(uid);
     }
 
     /// <summary>
