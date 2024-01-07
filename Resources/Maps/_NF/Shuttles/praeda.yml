@@ -1331,6 +1331,9 @@ entities:
     - pos: 5.5,-30.5
       parent: 1
       type: Transform
+    - injectionAmount: 4
+      injecting: True
+      type: AmeController
     - containers:
         AmeFuel: !type:ContainerSlot
           showEnts: False
@@ -1379,14 +1382,16 @@ entities:
     - pos: 4.5,-28.5
       parent: 1
       type: Transform
-    - radius: 1
+    - radius: 2
+      enabled: True
       type: PointLight
   - uid: 80
     components:
     - pos: 3.5,-28.5
       parent: 1
       type: Transform
-    - radius: 1
+    - radius: 2
+      enabled: True
       type: PointLight
   - uid: 81
     components:
@@ -11785,9 +11790,12 @@ entities:
   entities:
   - uid: 1752
     components:
-    - pos: 5.5,-32.5
+    - anchored: True
+      pos: 5.5,-32.5
       parent: 1
       type: Transform
+    - bodyType: Static
+      type: Physics
 - proto: OperatingTable
   entities:
   - uid: 1753
@@ -11806,9 +11814,12 @@ entities:
   entities:
   - uid: 1755
     components:
-    - pos: 4.5,-32.5
+    - anchored: True
+      pos: 4.5,-32.5
       parent: 1
       type: Transform
+    - bodyType: Static
+      type: Physics
 - proto: PaintingSkeletonBoof
   entities:
   - uid: 1756
