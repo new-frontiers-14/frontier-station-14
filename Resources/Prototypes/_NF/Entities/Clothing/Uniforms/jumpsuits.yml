@@ -23,8 +23,14 @@
 - type: entity
   parent: ClothingUniformJumpsuitDetective
   id: ClothingUniformJumpsuitBH
-  name: bounty hunter's hard-worn suit
+  name: hard-worn suit
   description: Someone who wears this means business.
+
+- type: entity
+  parent: ClothingUniformJumpsuitDetectiveGrey
+  id: ClothingUniformJumpsuitBHGrey
+  name: noir suit
+  description: A grey suit, complete with tie clip.
 
 - type: entity
   parent: ClothingUniformBase
@@ -36,3 +42,14 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/chaplain-pilgrim.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/chaplain-pilgrim.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecStationGuard
+  name: station guard jumpsuit
+  description: A specialized uniform for a Frontier Outpost guard. Crisp and official to let dock loiterers know you mean business.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/security_stationguard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/security_stationguard.rsi
