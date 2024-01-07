@@ -1,0 +1,27 @@
+- type: vessel
+  id: lantern
+  name: NC Lantern
+  description: The Lantern is a medium-sized chapel-vessel equipped with everything chaplain might need in their never ending battle for salvation of NT personnel souls.
+  price: 33500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/lantern.yml
+
+- type: gameMap
+  id: lantern
+  mapName: 'NC Lantern'
+  mapPath: /Maps/Shuttles/lantern.yml
+  minPlayers: 0
+  stations:
+    lantern:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lantern {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chaplain: [ 0, 0 ]
