@@ -1,0 +1,22 @@
+# The empress console
+- type: entity
+  id: EmpressMothershipComputer
+  name: Empress mothership console
+  parent: BaseMothershipComputer
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_security
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    shuttles:
+    - Fighter
+    - Cleric
+    - Rogue
