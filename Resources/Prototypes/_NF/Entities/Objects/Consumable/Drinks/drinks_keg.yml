@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
-  id: DrinkKegSteel
+  id: DrinkKegBase
   name: keg
-  suffix: Steel
+  abstract: true
   description: I don't have a drinking problem - the keg solved it.
   components:
   - type: Sprite
@@ -22,6 +22,9 @@
       drink:
         maxVol: 600
   - type: Drink
+#  - type: Openable
+#    sound:
+#      collection: bottleOpenSounds
   - type: DrawableSolution
     solution: drink
   - type: RefillableSolution
@@ -39,9 +42,6 @@
     interfaces:
     - key: enum.TransferAmountUiKey.Key
       type: TransferAmountBoundUserInterface
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 50
   - type: ItemSlots
     slots:
       label_slot:
@@ -60,6 +60,20 @@
         ents: []
       label_slot: !type:ContainerSlot {}
   - type: Appearance
+
+- type: entity
+  parent: DrinkKegBase
+  id: DrinkKegSteel
+  suffix: Steel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 150
   - type: ItemMapper
     mapLayers:
       label:
@@ -67,11 +81,10 @@
           tags:
           - Document
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
-    
+
 - type: entity
-  parent: DrinkKegSteel
+  parent: DrinkKegBase
   id: DrinkKegWood
-  name: keg
   suffix: Wood
   components:
   - type: Sprite
@@ -81,8 +94,35 @@
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
   - type: PhysicalComposition
     materialComposition:
-      Wood: 50
-  - type: Appearance
+      Wood: 150
+  - type: ItemMapper
+    mapLayers:
+      label:
+        whitelist:
+          tags:
+          - Document
+    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
+
+- type: entity
+  parent: DrinkKegBase
+  id: DrinkKegPlastic
+  suffix: Plastic
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi
+    layers:
+    - state: keg-empty
+    - state: keg-alpha-6
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: true
+  - type: Clothing
+    sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: keg-alpha-
   - type: ItemMapper
     mapLayers:
       label:
