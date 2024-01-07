@@ -103,6 +103,7 @@
                            Align="Right"/>
                 </GridContainer>
             </BoxContainer>
+
             <Button Name="IFFToggle"
                     Text="{Loc 'shuttle-console-iff-toggle'}"
                     TextAlign="Center"
@@ -119,6 +120,13 @@
                     Text="{Loc 'shuttle-console-undock'}"
                     TextAlign="Center"
                     Disabled="True"/>
+
+            <!-- Frontier - IFF search -->
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
+                <Label Text="{Loc 'shuttle-console-iff-search'}"></Label>
+
+                <LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"></LineEdit>
+            </BoxContainer>
         </BoxContainer>
     </GridContainer>
 </controls:FancyWindow>
