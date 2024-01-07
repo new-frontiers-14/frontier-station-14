@@ -65,6 +65,9 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         DockToggle.Pressed = RadarScreen.ShowDocks;
 
         UndockButton.OnPressed += OnUndockPressed;
+
+        // Frontier - IFF search
+        IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
     }
 
     private void WorldRangeChange(float value)
@@ -93,6 +96,19 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
     {
         if (DockingScreen.ViewedDock == null) return;
         UndockPressed?.Invoke(DockingScreen.ViewedDock.Value);
+    }
+
+    private void OnIffSearchChanged(string text)
+    {
+        text = text.Trim();
+
+        RadarScreen.IFFFilter = text.Length == 0
+            ? null // If empty, do not filter
+            : (entity, grid, iff) => // Otherwise use simple search criteria
+            {
+                _entManager.TryGetComponent<MetaDataComponent>(entity, out var metadata);
+                return metadata != null && metadata.EntityName.Contains(text, StringComparison.OrdinalIgnoreCase);
+            };
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
@@ -324,10 +340,24 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             return;
         }
 
-        if (_entManager.TryGetComponent<MetaDataComponent>(_shuttleEntity, out var metadata) && metadata.EntityPaused)
+        // Frontier - PR #795
+        ShuttleDesignation.Text = Loc.GetString("shuttle-console-unknown");
+        if (_entManager.TryGetComponent<MetaDataComponent>(_shuttleEntity, out var metadata))
         {
-            FTLTime += _timing.FrameTime;
+            var shipNameParts = metadata.EntityName.Split(' ');
+            var designation = shipNameParts[^1];
+            if (designation[2] == '-')
+            {
+                DisplayLabel.Text = string.Join(' ', shipNameParts[..^1]);
+                ShuttleDesignation.Text = designation;
+            }
+            else
+                DisplayLabel.Text = metadata.EntityName;
+
+            if (metadata.EntityPaused)
+                FTLTime += _timing.FrameTime;
         }
+        // End Frontier - PR #795
 
         FTLTimer.Text = GetFTLText();
 
