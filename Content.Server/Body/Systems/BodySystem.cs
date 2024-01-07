@@ -42,7 +42,8 @@ public sealed class BodySystem : SharedBodySystem
     {
         if (_mobState.IsDead(uid) && _mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
-            mind.TimeOfDeath ??= _gameTiming.RealTime;
+            // mind.TimeOfDeath ??= _gameTiming.RealTime;
+            mind.TimeOfDeath ??= _gameTiming.CurTime; // Frontier - fix returning to body messing with the your TOD
             _ticker.OnGhostAttempt(mindId, true, mind: mind);
         }
     }

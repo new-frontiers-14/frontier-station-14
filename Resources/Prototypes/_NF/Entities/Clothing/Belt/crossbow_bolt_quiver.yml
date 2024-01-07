@@ -1,0 +1,25 @@
+﻿- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltQuiverCrossbow
+  name: quiver (bolts)
+  description: Can hold up to 20 bolts, and fits snug around your waist.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Clothing/Belt/crossbow_quiver.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.StorageContainerVisualLayers.Fill" ]
+      visible: false
+  - type: Clothing
+  - type: Storage
+    capacity: 100
+    whitelist:
+      tags:
+      - CrossbowBolt
+  - type: Appearance
+  - type: StorageContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill-
+  - type: Construction
+    graph: CraftQuiverBolt
+    node: CraftQuiverBolt

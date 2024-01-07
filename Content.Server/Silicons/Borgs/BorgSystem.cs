@@ -294,12 +294,13 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
             access.Clear();
             access.Add($"Captain");
+            access.Add($"Maintenance");
+            access.Add($"External");
             access.Add($"Cargo");
             access.Add($"Salvage");
             access.Add($"Medical");
             access.Add($"Service");
             access.Add($"Research");
-            access.Add($"Engineering");
 
             _access.TrySetTags(uid, access);
         }

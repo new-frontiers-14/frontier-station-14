@@ -31,6 +31,7 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
+using Content.Shared.Shuttles.Components;
 using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -156,6 +157,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 B = 100,
                 A = 100
             });
+            _shuttle.AddIFFFlag(shuttle.Owner, IFFFlags.IsPlayerShuttle);
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
@@ -171,7 +173,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
-        
+
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
         AssignShuttleDeedProperties(deedID, shuttle.Owner, name, player);
 
@@ -399,8 +401,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret"), InGameICChatType.Speak, true);
         }
         else
         {
@@ -415,8 +417,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), InGameICChatType.Speak, true);
         }
         else
         {
