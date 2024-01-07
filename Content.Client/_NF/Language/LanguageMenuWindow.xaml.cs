@@ -9,7 +9,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Utility;
 using static Content.Shared.Language.Systems.SharedLanguageSystem;
 
-namespace Content.Client.Language;
+namespace Content.Client._NF.Language; // This EXACT class must have the _NF part because of xaml linking
 
 [GenerateTypedNameReferences]
 public sealed partial class LanguageMenuWindow : DefaultWindow

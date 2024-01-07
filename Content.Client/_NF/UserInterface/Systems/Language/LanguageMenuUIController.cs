@@ -1,5 +1,5 @@
+using Content.Client._NF.Language;
 using Content.Client.Gameplay;
-using Content.Client.Language;
 using Content.Shared.Language;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
@@ -37,9 +37,8 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
         else
         {
             _languageWindow!.Open();
+            EntityManager.EntityNetManager?.SendSystemNetworkMessage(new RequestLanguageMenuStateMessage());
         }
-
-        EntityManager.EntityNetManager?.SendSystemNetworkMessage(new RequestLanguageMenuStateMessage());
     }
 
     public void OnStateEntered(GameplayState state)
