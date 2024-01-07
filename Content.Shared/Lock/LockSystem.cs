@@ -220,7 +220,7 @@ public sealed class LockSystem : EntitySystem
 
         if (!component.Locked || !component.BreakOnEmag)
             return;
-        //_audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5)); // 2 Times audio
+        _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
         _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
         //RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged // Frontier - Has to remove this to allow fixing locks
         component.Locked = false; // Disable lock
@@ -231,6 +231,7 @@ public sealed class LockSystem : EntitySystem
     {
         if (HasComp<EmaggedComponent>(uid))
         {
+            _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
             _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
             //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
             component.Locked = true;
