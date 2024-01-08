@@ -41,7 +41,63 @@
         reagents:
         - ReagentId: Blackpepper
           Quantity: 50
-  - type: Drink
-    solution: food
-    useSound:
-      path: /Audio/Items/eating_1.ogg
+
+- type: entity
+  parent: BaseItem
+  id: ReagentContainerRaisin
+  name: raisin pack
+  description: A pack of raisin. Good for cooking!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: raisin-big
+  - type: FlavorProfile
+    flavors:
+      - raisins
+  - type: Tag
+    tags:
+    - Fruit
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  parent: ReagentPacketBase
+  id: ReagentContainerChocolate
+  name: chocolate chips bag
+  description: A big bag of chocolate chips. Good for cooking!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: cocoa-chip-big
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: CocoaPowder
+          Quantity: 50
+
+- type: entity
+  parent: DrinkKegPlastic
+  id: DrinkKegPlasticKetchup
+  name: ketchup keg
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 600
+        reagents:
+        - ReagentId: Ketchup
+          Quantity: 600
+
+- type: entity
+  parent: DrinkKegPlastic
+  id: DrinkKegPlasticMustard
+  name: mustard keg
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 600
+        reagents:
+        - ReagentId: Mustard
+          Quantity: 600
