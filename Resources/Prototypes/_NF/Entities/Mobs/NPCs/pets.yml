@@ -29,8 +29,15 @@
     templateId: clippy
   - type: Loadout
     prototypes: [ MobClippyGear ]
-#  - type: ReplacementAccent
-#    accent: archaic
+    # Frontier - languages mechanic
+  #  - type: ReplacementAccent
+  #    accent: archaic
+  - type: LanguageSpeaker
+    speaks:
+    - Cat
+    understands:
+    - GalacticCommon
+    - Cat
   - type: RandomMetadata
     nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
@@ -68,8 +75,12 @@
     templateId: clarpy
   - type: Loadout
     prototypes: [ MobClarpyGear ]
-  - type: ReplacementAccent
-    accent: pirateCat
+  - type: LanguageSpeaker
+    speaks:
+    - Cat
+    understands:
+    - GalacticCommon
+    - Cat
   - type: RandomMetadata
     nameSegments: [names_cat_clarpy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
@@ -142,8 +153,12 @@
     templateId: mistake
   - type: Loadout
     prototypes: [ MobMistakeGear ]
-  - type: ReplacementAccent
-    accent: mistakeCat
+  - type: LanguageSpeaker
+    speaks:
+    - Cat
+    understands:
+    - GalacticCommon
+    - Cat
   - type: RandomMetadata
     nameSegments: [names_cat_mistake] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: Vocal

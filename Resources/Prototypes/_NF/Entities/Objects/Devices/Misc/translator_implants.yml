@@ -1,0 +1,145 @@
+- type: entity
+  id: BaseTranslatorImplanter
+  parent: [ BaseItem ]
+  name: Basic translator implant
+  description: "Translates speech."
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+    layers:
+    - state: implanter1
+      map: [ "implantFull" ]
+      visible: true
+    - state: implanter0
+      map: [ "implantBroken" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImplanterVisuals.Full:
+        implantFull:
+          True: {visible: true}
+          False: {visible: false}
+        implantBroken:
+          True: {visible: false}
+          False: {visible: true}
+
+- type: entity
+  id: BasicGalaticCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Basic Galatic Common translator implant
+  description: "An implant giving the ability to understand Galatic Common."
+  components:
+  - type: TranslatorImplanter
+    understood:
+    - GalacticCommon
+
+- type: entity
+  id: AdvancedGalaticCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Advanced Galatic Common translator implant
+  description: "An implant giving the ability to understand and speak Galatic Common."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - GalacticCommon
+    understood:
+    - GalacticCommon
+
+- type: entity
+  id: BubblishTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Bubblish translator implant
+  description: "An implant giving the ability to understand and speak Bubblish."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Bubblish
+    understood:
+    - Bubblish
+
+- type: entity
+  id: NekomimeticTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Nekomimetic translator implant
+  description: "An implant giving the ability to understand and speak Nekomimetic, Nya~!"
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Nekomimetic
+    understood:
+    - Nekomimetic
+
+- type: entity
+  id: DraconicTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Draconic translator implant
+  description: "An implant giving the ability to understand and speak Draconic."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Draconic
+    understood:
+    - Draconic
+
+- type: entity
+  id: CanilunztTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Canilunzt translator implant
+  description: "An implant giving the ability to understand and speak Canilunzt, Yeeps!"
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Canilunzt
+    understood:
+    - Canilunzt
+
+- type: entity
+  id: SolCommonTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: SolCommon translator implant
+  description: "An implant giving the ability to understand and speak SolCommon, raaagh!"
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - SolCommon
+    understood:
+    - SolCommon
+
+- type: entity
+  id: RootSpeakTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: RootSpeak translator implant
+  description: "An implant giving the ability to understand and speak RootSpeak."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - RootSpeak
+    understood:
+    - RootSpeak
+
+- type: entity
+  id: MofficTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Moffic translator implant
+  description: "An implant giving the ability to understand and speak Moffic."
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - Moffic
+    understood:
+    - Moffic
+
+- type: entity
+  id: CodeSpeakImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: CodeSpeak Implanter
+  description: "\"CodeSpeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
+  components:
+  - type: TranslatorImplanter
+    spoken:
+    - CodeSpeak
+    understood:
+    - CodeSpeak
+  - type: StaticPrice
+    price: 150

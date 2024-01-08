@@ -80,8 +80,14 @@
     name: ghost-role-information-space-tick-name
     description: ghost-role-information-space-tick-description
   - type: GhostTakeoverAvailable
-  - type: ReplacementAccent
-    accent: genericAggressive
+  # Frontier - languages mechanic
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
   - type: Speech
     speechVerb: SmallMob
 

@@ -14,7 +14,7 @@
     baseDecayRate: 0.0083
   - type: Thirst
     baseDecayRate: 0.0083
-  - type: Carriable # Carrying system from nyanotrasen.  
+  - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full
@@ -105,6 +105,13 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: LanguageSpeaker
+    speaks:
+    - GalacticCommon
+    - RootSpeak
+    understands:
+    - GalacticCommon
+    - RootSpeak
 
 - type: entity
   parent: BaseSpeciesDummy

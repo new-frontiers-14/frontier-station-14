@@ -20,8 +20,6 @@
   - type: Body
     prototype: Vulpkanin
     requiredLegs: 2
-  - type: VulpLanguageSpeaker
-  - type: VulpLangaugeListener
   - type: VulpGiveTranslator
   - type: SizeAttributeWhitelist
     short: true
@@ -114,6 +112,12 @@
     damage:
       types:
         Heat: 1.5 # Rip Fur
+  # Frontier - languages mechanic
+  - type: LanguageSpeaker
+    speaks:
+    - Canilunzt
+    understands:
+    - Canilunzt
 
 - type: entity
   save: false

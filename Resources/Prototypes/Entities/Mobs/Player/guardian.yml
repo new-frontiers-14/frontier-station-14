@@ -135,6 +135,14 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
+    # Frontier - languages mechanic
+    - type: LanguageSpeaker
+      speaks:
+      - GalacticCommon
+      - CodeSpeak
+      understands:
+      - GalacticCommon
+      - CodeSpeak
 
 # From Wizard deck of cards
 - type: entity
@@ -162,6 +170,12 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#40a7d7"
           shader: unshaded
+    # Frontier - languages mechanic
+    - type: LanguageSpeaker
+      speaks:
+      - GalacticCommon
+      understands:
+      - GalacticCommon
 
 - type: entity
   name: HoloClown
@@ -242,6 +256,12 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
+    # Frontier - languages mechanic
+    - type: LanguageSpeaker
+      speaks:
+      - GalacticCommon
+      understands:
+      - GalacticCommon
 
 - type: entity
   id: ActionToggleGuardian
