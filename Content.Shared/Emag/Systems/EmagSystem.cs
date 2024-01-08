@@ -56,7 +56,13 @@ public sealed class EmagSystem : EntitySystem
             return false;
         }
 
-        var handled = DoEmagEffect(user, target);
+        bool handled;
+
+        if (comp.Demag)
+            handled = DoUnEmagEffect(user, target);
+        else
+            handled = DoEmagEffect(user, target);
+
         if (!handled)
             return false;
 
@@ -86,7 +92,27 @@ public sealed class EmagSystem : EntitySystem
             EnsureComp<EmaggedComponent>(target);
         return emaggedEvent.Handled;
     }
+
+    /// <summary>
+    /// Frontier - Does the DEMAG effect on a specified entity
+    /// </summary>
+    public bool DoUnEmagEffect(EntityUid user, EntityUid target)
+    {
+        // prevent unemagging twice
+        if (!HasComp<EmaggedComponent>(target))
+            return false;
+
+        var unEmaggedEvent = new GotUnEmaggedEvent(user);
+        RaiseLocalEvent(target, ref unEmaggedEvent);
+
+        if (unEmaggedEvent.Handled)
+            EntityManager.RemoveComponent<EmaggedComponent>(target);
+        return unEmaggedEvent.Handled;
+    }
 }
 
 [ByRefEvent]
 public record struct GotEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false);
+
+[ByRefEvent]
+public record struct GotUnEmaggedEvent(EntityUid UserUid, bool Handled = false, bool Repeatable = false); // Frontier
