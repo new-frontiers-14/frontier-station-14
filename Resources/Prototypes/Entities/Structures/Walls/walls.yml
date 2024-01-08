@@ -441,7 +441,7 @@
       key: walls
       base: plastitanium
     - type: Reflect
-      reflectProb: 0.75
+      reflectProb: 0.1
 
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -466,7 +466,7 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Reflect
-      reflectProb: 0.15
+      reflectProb: 0.1
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -490,7 +490,7 @@
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
 
 - type: entity
   parent: BaseWall
@@ -758,8 +758,8 @@
           3: { state: shuttle_construct-3, visible: true}
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
-#  - type: Reflect
-#    reflectProb: 1
+  - type: Reflect
+    reflectProb: 0.1
 
 - type: entity
   parent: WallSolid
@@ -777,8 +777,8 @@
   - type: IconSmooth
     key: walls
     base: state
-#  - type: Reflect
-#    reflectProb: 1
+  - type: Reflect
+    reflectProb: 0.1
 
 - type: entity
   parent: BaseWall
