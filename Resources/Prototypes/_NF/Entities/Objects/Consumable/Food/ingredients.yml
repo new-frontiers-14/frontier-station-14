@@ -1,0 +1,47 @@
+# Lots of misc stuff in here, hard to parent it.
+
+# Powder (For when you throw stuff like flour and it explodes)
+
+# Reagent Containers
+
+- type: entity
+  parent: [ReagentPacketBase, ItemHeftyBase]
+  id: ReagentContainerSalt
+  name: salt container
+  description: A big container of salt. Good for cooking!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: salt-big
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: TableSalt
+          Quantity: 50
+  - type: Drink
+    solution: food
+    useSound:
+      path: /Audio/Items/eating_1.ogg
+
+- type: entity
+  parent: [ReagentPacketBase, ItemHeftyBase]
+  id: ReagentContainerPepper
+  name: pepper container
+  description: A big container of pepper. Good for cooking!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: pepper-big
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Blackpepper
+          Quantity: 50
+  - type: Drink
+    solution: food
+    useSound:
+      path: /Audio/Items/eating_1.ogg
