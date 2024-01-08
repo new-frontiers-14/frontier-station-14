@@ -45,3 +45,4 @@ signal-port-description-air-warning = This port is invoked with HIGH when in war
 
 signal-port-name-air-normal = Normal
 signal-port-description-air-normal = This port is invoked with HIGH when in normal mode and LOW when not.
+

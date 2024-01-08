@@ -1,0 +1,33 @@
+- type: hitscan
+  id: Mining
+  damage:
+    types:
+      Heat: 5
+      Structural: 100
+  muzzleFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: muzzle_mining
+  travelFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: beam_mining
+  impactFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: impact_mining
+  maxLength: 40
+
+- type: hitscan
+  id: Focused_Pulse
+  damage:
+    types:
+      Heat: 30
+      Structural: 800
+  muzzleFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: muzzle_focused_pulse
+  travelFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: beam_focused_pulse
+  impactFlash:
+    sprite: _NF/Objects/SpaceArtillery/lasers.rsi
+    state: impact_focused_pulse
+  maxLength: 40
