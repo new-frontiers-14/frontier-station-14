@@ -1,0 +1,27 @@
+- type: vessel
+  id: Whiskey
+  name: NSF Whiskey
+  description: A heavy duty NSFD rescue ship, for when you really need somebody alive.
+  price: 55000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/Shuttles/whiskey.yml
+
+- type: gameMap
+  id: Whiskey
+  mapName: 'Whiskey'
+  mapPath: /Maps/Shuttles/whiskey.yml
+  minPlayers: 0
+  stations:
+    Whiskey:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Whiskey {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Brigmedic: [ 0, 0 ]
