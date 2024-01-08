@@ -1,15 +1,14 @@
+# entities list: WindowDiagonal, WindowReinforcedDiagonal, WindowPlasmaDiagonal, WindowPlasmaReinforcedDiagonal
 - type: entity
-  parent: Window
+  parent: [Window, WallShuttleDiagonal]
   id: WindowDiagonal
-  name: window
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Walls
     sprite: _NF/Structures/Windows/window_diagonal.rsi
     state: state0
   - type: Icon
@@ -34,17 +33,15 @@
         - GlassLayer
 
 - type: entity
-  parent: ReinforcedWindow
+  parent: [ReinforcedWindow, WindowDiagonal]
   id: WindowReinforcedDiagonal
-  name: reinforced window
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Walls
     sprite: _NF/Structures/Windows/reinforced_window_diagonal.rsi
     state: state0
   - type: Icon
@@ -69,17 +66,15 @@
         - GlassLayer
 
 - type: entity
-  parent: PlasmaWindow
+  parent: [PlasmaWindow, WindowDiagonal]
   id: WindowPlasmaDiagonal
-  name: plasma window
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Walls
     sprite: _NF/Structures/Windows/plasma_window_diagonal.rsi
     state: state0
   - type: Icon
@@ -104,17 +99,15 @@
         - GlassLayer
 
 - type: entity
-  parent: ReinforcedPlasmaWindow
+  parent: [ReinforcedPlasmaWindow, WindowDiagonal]
   id: WindowPlasmaReinforcedDiagonal
-  name: reinforced plasma window
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
     - Window
   components:
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Walls
     sprite: _NF/Structures/Windows/reinforced_plasma_window_diagonal.rsi
     state: state0
   - type: Icon

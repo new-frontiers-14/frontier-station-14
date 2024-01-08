@@ -1,9 +1,7 @@
-# entities list: WallReinforcedDiagonal, WallWoodDiagona, GrilleDiagona, WindowReinforcedDiagonal
+# entities list: WallReinforcedDiagonal, WallWoodDiagonal, WallUraniumDiagonal
 - type: entity
-  parent: WallSolidDiagonal
+  parent: [WallReinforced, WallSolidDiagonal]
   id: WallReinforcedDiagonal
-  name: reinforced wall
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
@@ -20,30 +18,25 @@
   - type: Icon
     sprite: _NF/Structures/Walls/solid_reinforced_diagonal.rsi
     state: state0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Reflect
-    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Occluder
+    enabled: false
 
 - type: entity
-  parent: WallSolidDiagonal
+  parent: [WallWood, WallSolidDiagonal]
   id: WallWoodDiagonal
-  name: wood wall
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
@@ -60,14 +53,25 @@
   - type: Icon
     sprite: _NF/Structures/Walls/wood_diagonal.rsi
     state: state0
-  - type: Reflect
-    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Occluder
+    enabled: false
 
 - type: entity
-  parent: WallSolidDiagonal
+  parent: [WallUranium, WallSolidDiagonal]
   id: WallUraniumDiagonal
-  name: uranium wall
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
@@ -84,5 +88,18 @@
   - type: Icon
     sprite: _NF/Structures/Walls/uranium_diagonal.rsi
     state: state0
-  - type: Reflect
-    reflectProb: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Occluder
+    enabled: false

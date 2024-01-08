@@ -1,14 +1,12 @@
+# entities list: GrilleDiagonal
 - type: entity
-  parent: WallShuttleDiagonal
+  parent: [Grille, WallSolidDiagonal]
   id: GrilleDiagonal
-  name: grille
-  suffix: diagonal
   placement:
     mode: SnapgridCenter
     snap:
     - Wall
   components:
-  - type: CanBuildWindowOnTop
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/grille_diagonal.rsi
@@ -20,33 +18,6 @@
   - type: Icon
     sprite: _NF/Structures/Walls/grille_diagonal.rsi
     state: state0
-  - type: Tag
-    tags:
-    - RCDDeconstructWhitelist
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: PerforatedMetallic
-  - type: Reflect
-    reflectProb: 0
-  - type: PowerConsumer
-    showInMonitor: false
-  - type: Electrified
-    requirePower: true
-    noWindowInTile: true
-    highVoltageNode: high
-    mediumVoltageNode: medium
-    lowVoltageNode: low
-  - type: NodeContainer
-    nodes:
-      high:
-        !type:CableDeviceNode
-        nodeGroupID: HVPower
-      medium:
-        !type:CableDeviceNode
-        nodeGroupID: MVPower
-      low:
-        !type:CableDeviceNode
-        nodeGroupID: Apc
   - type: Fixtures
     fixtures:
       fix1:
@@ -60,3 +31,5 @@
         - FullTileMask
         layer:
         - GlassLayer
+  - type: Occluder
+    enabled: false
