@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Threading;
 using Content.Server.DoAfter;
 using Content.Server.Body.Systems;
@@ -22,9 +23,11 @@ using Content.Shared.Pulling;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Mind.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Physics.Pull;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Carrying
@@ -124,7 +127,12 @@ namespace Content.Server.Carrying
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
         {
-            if (Transform(uid).MapID != args.OldMapId)
+            var xform = Transform(uid);
+            if (xform.MapID != args.OldMapId)
+                return;
+
+            // Do not drop the carried entity if the new parent is a grid
+            if (xform.ParentUid == xform.GridUid)
                 return;
 
             DropCarried(uid, component.Carried);
@@ -206,6 +214,7 @@ namespace Content.Server.Carrying
             Carry(args.Args.User, uid);
             args.Handled = true;
         }
+
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
             TimeSpan length = TimeSpan.FromSeconds(3);
@@ -234,12 +243,18 @@ namespace Content.Server.Carrying
                 NeedHand = true
             };
             _doAfterSystem.TryStartDoAfter(args);
+
+            _popupSystem.PopupEntity(Loc.GetString("carry-started", ("carrier", carrier)), carried, carried);
         }
 
         private void Carry(EntityUid carrier, EntityUid carried)
         {
             if (TryComp<SharedPullableComponent>(carried, out var pullable))
                 _pullingSystem.TryStopPull(pullable);
+
+            // Don't allow people to stack upon each other. They're too weak for that!
+            if (TryComp<CarryingComponent>(carried, out var carryComp))
+                DropCarried(carried, carryComp.Carried);
 
             Transform(carrier).AttachToGridOrMap();
             Transform(carried).AttachToGridOrMap();
@@ -309,6 +324,25 @@ namespace Content.Server.Carrying
                 return false;
 
             return true;
+        }
+
+        public override void Update(float frameTime)
+        {
+            var query = EntityQueryEnumerator<BeingCarriedComponent>();
+            while (query.MoveNext(out var carried, out var comp))
+            {
+                var carrier = comp.Carrier;
+                if (carrier is not { Valid: true } || carried is not { Valid: true })
+                    continue;
+
+                // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
+                var xform = Transform(carried);
+                if (!xform.LocalPosition.EqualsApprox(Vector2.Zero))
+                {
+                    xform.LocalPosition = Vector2.Zero;
+                }
+            }
+            query.Dispose();
         }
     }
 }
