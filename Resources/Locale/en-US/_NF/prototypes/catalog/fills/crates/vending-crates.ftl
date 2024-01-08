@@ -18,3 +18,6 @@ ent-CrateVendingMachineRestockCondimentStationFilled = Condiment Station restock
 
 ent-CrateVendingMachineRestockLessLethalVendFilled = LessLethalVend restock crate
     .desc = Contains two restock boxes for the LessLethalVend vending machine.
+
+ent-CrateVendingMachineRestockAutoTuneVendFilled = AutoTuneVend restock crate
+    .desc = Contains two restock boxes for the AutoTuneVend vending machine.
