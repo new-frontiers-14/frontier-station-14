@@ -1,0 +1,29 @@
+- type: vessel
+  id: congregation
+  name: LB Congregation
+  description: The congregation is a medium sized religious vessel designed for charity work. Comes with a chapel, and small soup kitchen/medbay.
+  price: 35000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/congregation.yml
+
+- type: gameMap
+  id: congregation
+  mapName: 'LB Congregation'
+  mapPath: /Maps/Shuttles/congregation.yml
+  minPlayers: 0
+  stations:
+    congregation:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Congregation {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chaplain: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Chef: [ 0, 0 ]
