@@ -351,6 +351,20 @@ entities:
       pos: 0.5,4.5
       parent: 1
       type: Transform
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 93
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 1.5,-0.5
+      parent: 1
+      type: Transform
+    - containers:
+        board: !type:Container
+          ents: []
+        bank-ATM-cashSlot: !type:ContainerSlot {}
+      type: ContainerContainer
+    - type: ItemSlots
 - proto: CrowbarRed
   entities:
   - uid: 89
@@ -479,6 +493,12 @@ entities:
       pos: 2.5,5.5
       parent: 1
       type: Transform
+  - uid: 30
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 2.5,1.5
+      parent: 1
+      type: Transform
   - uid: 31
     components:
     - rot: 1.5707963267948966 rad
@@ -596,6 +616,12 @@ entities:
       pos: 2.5,6.5
       parent: 1
       type: Transform
+  - uid: 36
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,3.5
+      parent: 1
+      type: Transform
   - uid: 40
     components:
     - rot: 1.5707963267948966 rad
@@ -606,11 +632,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 1.5,6.5
-      parent: 1
-      type: Transform
-  - uid: 44
-    components:
-    - pos: 3.5,3.5
       parent: 1
       type: Transform
   - uid: 45
@@ -640,6 +661,12 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -0.5,5.5
+      parent: 1
+      type: Transform
+  - uid: 100
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 2.5,1.5
       parent: 1
       type: Transform
 - proto: SheetPlasma1
@@ -750,9 +777,9 @@ entities:
     - pos: -0.5,2.5
       parent: 1
       type: Transform
-  - uid: 30
+  - uid: 44
     components:
-    - rot: 3.141592653589793 rad
+    - rot: -1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
       type: Transform
@@ -762,9 +789,10 @@ entities:
       pos: 2.5,2.5
       parent: 1
       type: Transform
-  - uid: 93
+  - uid: 92
     components:
-    - pos: 2.5,1.5
+    - rot: -1.5707963267948966 rad
+      pos: 2.5,-0.5
       parent: 1
       type: Transform
 - proto: WallSolidDiagonal
@@ -773,12 +801,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 36
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 2.5,-0.5
       parent: 1
       type: Transform
   - uid: 90
