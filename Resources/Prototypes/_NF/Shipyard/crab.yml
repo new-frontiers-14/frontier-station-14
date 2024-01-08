@@ -1,0 +1,27 @@
+- type: vessel
+  id: crawdad
+  name: NT Crawdad
+  description: A small, fragile, solar-powered ship, for the DIY upstart salvager.
+  price: 21000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/crawdad.yml
+
+- type: gameMap
+  id: crawdad
+  mapName: 'NT Crawdad'
+  mapPath: /Maps/Shuttles/crawdad.yml
+  minPlayers: 0
+  stations:
+    crawdad:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Crawdad {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 1 ]
