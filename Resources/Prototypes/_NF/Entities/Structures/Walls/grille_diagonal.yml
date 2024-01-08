@@ -1,23 +1,25 @@
 # entities list: GrilleDiagonal
 - type: entity
-  parent: [Grille, WallSolidDiagonal]
+  parent: [Grille, WallShuttleDiagonal]
   id: GrilleDiagonal
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wall
   components:
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/grille_diagonal.rsi
-    state: state0
+    layers:
+      - state: grille
+      - state: electrified
+        sprite: Effects/electricity.rsi
+        map: ["enum.ElectrifiedLayers.Powered"]
+        shader: unshaded
+        visible: false
+  - type: Icon
+    sprite: _NF/Structures/Walls/grille_diagonal.rsi
+    state: grille
   - type: IconSmooth
     mode: Diagonal
     key: walls
     base: state
-  - type: Icon
-    sprite: _NF/Structures/Walls/grille_diagonal.rsi
-    state: state0
   - type: Fixtures
     fixtures:
       fix1:
@@ -31,5 +33,3 @@
         - FullTileMask
         layer:
         - GlassLayer
-  - type: Occluder
-    enabled: false
