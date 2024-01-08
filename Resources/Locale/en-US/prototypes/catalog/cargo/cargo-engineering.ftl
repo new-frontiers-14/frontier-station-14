@@ -10,6 +10,12 @@ ent-EngineeringCableHv = { ent-CrateEngineeringCableHV }
 ent-EngineeringCableBulk = { ent-CrateEngineeringCableBulk }
     .desc = { ent-CrateEngineeringCableBulk.desc }
 
+ent-EngineeringGearBasic = { ent-CrateEngineeringGearBasic }
+    .desc = { ent-CrateEngineeringGearBasic.desc }
+
+ent-EngineeringGearFull = { ent-CrateEngineeringGearFull }
+    .desc = { ent-CrateEngineeringGearFull.desc }
+
 ent-EngineeringElectricalSupplies = { ent-CrateEngineeringElectricalSupplies }
     .desc = { ent-CrateEngineeringElectricalSupplies.desc }
 
