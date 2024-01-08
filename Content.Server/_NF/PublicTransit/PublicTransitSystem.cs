@@ -1,6 +1,7 @@
-using System.Linq;
+
 using Content.Server.GameTicking.Events;
 using Content.Server._NF.PublicTransit.Components;
+using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -22,6 +23,7 @@ public sealed class PublicTransitSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
@@ -45,14 +47,13 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<TransitShuttleComponent, EntityUnpausedEvent>(OnShuttleUnpaused);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
-
         // Don't invoke immediately as it will get set in the natural course of things.
         Enabled = _cfgManager.GetCVar(NF14CVars.PublicTransit);
         FlyTime = _cfgManager.GetCVar(NF14CVars.PublicTransitFlyTime);
         Counter = 0;
         StationList.Clear();
         _cfgManager.OnValueChanged(NF14CVars.PublicTransit, SetTransit);
+        _cfgManager.OnValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
     }
 
     private void OnShuttleTag(EntityUid uid, TransitShuttleComponent component, ref FTLTagEvent args)
@@ -73,9 +74,13 @@ public sealed class PublicTransitSystem : EntitySystem
 
     private void OnStationStartup(EntityUid uid, StationTransitComponent component, ComponentStartup args)
     {
-        StationList.Add(uid);
-        if (Enabled)
-            SetupPublicTransit();
+        if (Transform(uid).MapID == _ticker.DefaultMap)
+        {
+            if (!StationList.Contains(uid))
+                StationList.Add(uid);
+            if (Enabled)
+                SetupPublicTransit();
+        }
     }
 
     private void OnStationShutdown(EntityUid uid, StationTransitComponent component, ComponentShutdown args)
@@ -131,15 +136,6 @@ public sealed class PublicTransitSystem : EntitySystem
         }
     }
 
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        // Setup arrivals station
-        if (!Enabled)
-            return;
-
-        SetupPublicTransit();
-    }
-
     private void SetTransit(bool obj)
     {
         Enabled = obj;
@@ -157,6 +153,11 @@ public sealed class PublicTransitSystem : EntitySystem
                 QueueDel(uid);
             }
         }
+    }
+
+    private void SetFly(float obj)
+    {
+        FlyTime = obj;
     }
 
     private void SetupPublicTransit()
