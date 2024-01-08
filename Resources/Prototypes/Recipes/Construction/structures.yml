@@ -401,42 +401,6 @@
   placementMode: SnapgridCenter
   canRotate: false
 
-- type: construction  
-  name: diagonal plasma window
-  id: PlasmaWindowDiagonal
-  graph: WindowDiagonal
-  startNode: start
-  targetNode: plasmaWindowDiagonal
-  category: construction-category-structures
-  canBuildInImpassable: true
-  description: Clear and even tougher, with a purple tint.
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/plasma_diagonal.rsi
-    state: state1
-  objectType: Structure
-  placementMode: SnapgridCenter
-
-- type: construction
-  name: diagonal reinforced plasma window
-  id: ReinforcedPlasmaWindowDiagonal
-  graph: WindowDiagonal
-  startNode: start
-  targetNode: reinforcedPlasmaWindowDiagonal
-  category: construction-category-structures
-  canBuildInImpassable: true
-  description: Fire resistant and even tougher, with a purple tint.
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
-    state: state1
-  objectType: Structure
-  placementMode: SnapgridCenter
-
 - type: construction
   name: directional window
   id: WindowDirectional
