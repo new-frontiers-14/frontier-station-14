@@ -39,15 +39,13 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
 
         SubscribeLocalEvent<FuelGeneratorComponent, SwitchPowerCheckEvent>(OnSwitchPowerCheck);
 
-        SubscribeLocalEvent<PortableGeneratorComponent, MapInitEvent>(GeneratorMapInit);
+        SubscribeLocalEvent<PortableGeneratorComponent, MapInitEvent>(GeneratorMapInit); // Frontier
     }
 
-    private void GeneratorMapInit(EntityUid uid, PortableGeneratorComponent component, MapInitEvent args)
+    private void GeneratorMapInit(EntityUid uid, PortableGeneratorComponent component, MapInitEvent args) // Frontier - Init on map generator
     {
         if (component.StartOnMapInit)
-        {
             _generator.SetFuelGeneratorOn(uid, true);
-        }
     }
 
     private void GeneratorSwitchOutputMessage(EntityUid uid, PortableGeneratorComponent component, PortableGeneratorSwitchOutputMessage args)

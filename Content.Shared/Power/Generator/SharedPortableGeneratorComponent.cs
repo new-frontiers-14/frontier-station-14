@@ -44,7 +44,7 @@ public sealed partial class PortableGeneratorComponent : Component
     public SoundSpecifier? StartSoundEmpty { get; set; }
 
     /// <summary>
-    /// Frontier - Start the generator with the server.
+    /// Frontier - Start the generator with the map.
     /// </summary>
     [DataField("startOnMapInit")]
     public bool StartOnMapInit { get; set; } = false;
