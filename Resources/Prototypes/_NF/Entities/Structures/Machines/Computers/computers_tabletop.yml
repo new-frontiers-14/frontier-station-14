@@ -2,7 +2,6 @@
 - type: entity
   parent: BaseStructureComputer
   id: BaseComputerTabletop
-  name: computer
   suffix: Tabletop
   abstract: true
   placement:
@@ -30,9 +29,8 @@
         - TabletopMachineMask
 
 - type: entity
-  parent: [ BaseComputerTabletop, BaseComputerShuttle ] # Shuttle
+  parent: [ BaseComputerShuttle, BaseComputerTabletop ] # Shuttle
   id: BaseComputerTabletopShuttle
-  name: shuttle console
   abstract: true
   components:
   - type: Sprite
@@ -53,7 +51,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerShipyard ] # Shuttle
   id: ComputerTabletopShipyard
-  name: shipyard console
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -80,7 +77,6 @@
 - type: entity
   parent: [ BaseMothershipComputer, ComputerTabletopShipyard ]
   id: BaseMothershipComputerTabletop
-  name: mothership console
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -108,7 +104,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerAlert ]
   id: ComputerTabletopAlert
-  name: alerts computer
   components:
   - type: Sprite
     layers:
@@ -128,7 +123,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerEmergencyShuttle ]
   id: ComputerTabletopEmergencyShuttle
-  name: emergency shuttle console
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -148,7 +142,6 @@
 - type: entity
   parent: [ ComputerShuttle, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttle
-  name: shuttle console
   components:
   - type: Sprite
     layers:
@@ -168,7 +161,6 @@
 - type: entity
   parent: [ ComputerShuttleSyndie, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSyndie
-  name: syndicate shuttle console
   components:
   - type: Sprite
     layers:
@@ -188,7 +180,6 @@
 - type: entity
   parent: [ ComputerShuttleCargo, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleCargo
-  name: cargo shuttle console
   components:
   - type: Sprite
     layers:
@@ -208,7 +199,6 @@
 - type: entity
   parent: [ ComputerShuttleSalvage, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSalvage
-  name: salvage shuttle console
   components:
   - type: Sprite
     layers:
@@ -228,7 +218,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerIFF ]
   id: ComputerTabletopIFF
-  name: IFF computer
   components:
   - type: Sprite
     layers:
@@ -246,9 +235,8 @@
       state: generic_keys
 
 - type: entity
-  parent: [ ComputerTabletopIFF, ComputerIFFSyndicate ]
+  parent: [ ComputerIFFSyndicate, ComputerTabletopIFF ]
   id: ComputerTabletopIFFSyndicate
-  name: IFF computer
   suffix: Syndicate, Tabletop
   components:
   - type: Sprite
@@ -269,7 +257,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerPowerMonitoring ]
   id: ComputerTabletopPowerMonitoring
-  name: power monitoring computer
   components:
   - type: Sprite
     layers:
@@ -289,7 +276,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerMedicalRecords ]
   id: ComputerTabletopMedicalRecords
-  name: medical records computer
   components:
   - type: Sprite
     layers:
@@ -309,7 +295,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCriminalRecords ]
   id: ComputerTabletopCriminalRecords
-  name: criminal records computer
   components:
   - type: Sprite
     layers:
@@ -329,7 +314,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerStationRecords ]
   id: ComputerTabletopStationRecords
-  name: station records computer
   components:
   - type: Sprite
     layers:
@@ -349,7 +333,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCrewMonitoring ]
   id: ComputerTabletopCrewMonitoring
-  name: crew monitoring console
   components:
   - type: Sprite
     layers:
@@ -369,7 +352,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerResearchAndDevelopment ]
   id: ComputerTabletopResearchAndDevelopment
-  name: R&D computer
   components:
   - type: Sprite
     layers:
@@ -389,7 +371,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerAnalysisConsole ]
   id: ComputerTabletopAnalysisConsole
-  name: analysis console
   components:
   - type: Sprite
     layers:
@@ -409,7 +390,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerId ]
   id: ComputerTabletopId
-  name: ID card computer
   components:
   - type: Sprite
     layers:
@@ -429,7 +409,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, computerBodyScanner ]
   id: ComputerTabletopBodyScanner
-  name: body scanner computer
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -449,7 +428,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerComms ]
   id: ComputerTabletopComms
-  name: communications computer
   components:
   - type: Sprite
     layers:
@@ -469,7 +447,6 @@
 - type: entity
   parent: ComputerTabletopComms
   id: SyndicateComputerTabletopComms
-  name: syndicate communications computer
   components:
   - type: Sprite
     layers:
@@ -489,7 +466,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerSolarControl ]
   id: ComputerTabletopSolarControl
-  name: solar control computer
   components:
   - type: Sprite
     layers:
@@ -509,7 +485,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerRadar ]
   id: ComputerTabletopRadar
-  name: mass scanner computer
   components:
   - type: Sprite
     layers:
@@ -529,7 +504,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCargoShuttle ]
   id: ComputerTabletopCargoShuttle
-  name: cargo shuttle computer
   components:
   - type: Sprite
     layers:
@@ -549,7 +523,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCargoOrders ]
   id: ComputerTabletopCargoOrders
-  name: cargo request computer
   components:
   - type: Sprite
     layers:
@@ -569,7 +542,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCargoBounty ]
   id: ComputerTabletopCargoBounty
-  name: cargo bounty computer
   components:
   - type: Sprite
     layers:
@@ -589,7 +561,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerCloningConsole ]
   id: ComputerTabletopCloningConsole
-  name: cloning console computer
   components:
   - type: Sprite
     layers:
@@ -609,7 +580,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerSalvageExpedition ]
   id: ComputerTabletopSalvageExpedition
-  name: salvage expeditions computer
   components:
   - type: Sprite
     layers:
@@ -629,7 +599,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerSurveillanceCameraMonitor ]
   id: ComputerTabletopSurveillanceCameraMonitor
-  name: camera monitor
   components:
   - type: Sprite
     layers:
@@ -649,7 +618,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerSurveillanceWirelessCameraMonitor ]
   id: ComputerTabletopSurveillanceWirelessCameraMonitor
-  name: wireless camera monitor
   components:
   - type: Sprite
     layers:
@@ -669,7 +637,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerPalletConsole ]
   id: ComputerTabletopPalletConsole
-  name: cargo sale computer
   components:
   - type: Sprite
     layers:
@@ -689,7 +656,6 @@
 - type: entity
   parent: [ BaseComputerTabletop, ComputerMassMedia ]
   id: ComputerTabletopMassMedia
-  name: mass-media console
   components:
   - type: Sprite
     layers:
@@ -709,7 +675,6 @@
 - type: entity
   parent: [ BaseComputerTabletop,  ]
   id: ComputerTabletopSensorMonitoring
-  name: sensor monitoring computer
   # Putting this as "DO NOT MAP" until the performance issues are fixed.
   # And it's more fleshed out.
   suffix: Tabletop, TESTING, DO NOT MAP
@@ -734,7 +699,6 @@
 - type: entity
   parent: [ ComputerShipyardSecurity, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardSecurity
-  name: security shipyard console
   components:
   - type: Sprite
     layers:
@@ -754,7 +718,6 @@
 - type: entity
   parent: [ ComputerShipyardBlackMarket, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardBlackMarket
-  name: black market shipyard console
   components:
   - type: Sprite
     layers:
@@ -774,7 +737,6 @@
 - type: entity
   parent: [ ComputerShipyardExpedition, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardExpedition
-  name: expedition shipyard console
   components:
   - type: Sprite
     layers:
@@ -794,7 +756,6 @@
 - type: entity
   parent: [ ComputerShipyardScrap, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardScrap
-  name: scrapyard console
   components:
   - type: Sprite
     layers:
@@ -814,7 +775,6 @@
 - type: entity
   parent: [ ComputerPalletConsoleNFNormalMarket, BaseComputerTabletop ]
   id: ComputerTabletopPalletConsoleNFNormalMarket
-  name: cargo sale computer
   suffix: Normal, Tabletop
   components:
   - type: Sprite
