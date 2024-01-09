@@ -635,7 +635,6 @@
   parent: [ BaseComputerTabletop, ComputerMassMedia ]
   id: ComputerTabletopMassMedia
   name: mass-media console
-  description: Write your message to the world!
   components:
   - type: Sprite
     layers:
@@ -656,10 +655,9 @@
   parent: [ BaseComputerTabletop,  ]
   id: ComputerTabletopSensorMonitoring
   name: sensor monitoring computer
-  description: A flexible console for monitoring all kinds of sensors.
   # Putting this as "DO NOT MAP" until the performance issues are fixed.
   # And it's more fleshed out.
-  suffix: TESTING, DO NOT MAP
+  suffix: Tabletop, TESTING, DO NOT MAP
   components:
   - type: Sprite
     layers:
@@ -677,3 +675,138 @@
       state: atmos_key
 
 # Computers: Frontier
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyard ]
+  id: ComputerTabletopShipyard
+  name: shipyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyardSecurity ]
+  id: ComputerTabletopShipyardSecurity
+  name: security shipyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_security
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyardBlackMarket ]
+  id: ComputerTabletopShipyardBlackMarket
+  name: black market shipyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyardExpedition ]
+  id: ComputerTabletopShipyardExpedition
+  name: expedition shipyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyardScrap ]
+  id: ComputerTabletopShipyardScrap
+  name: scrapyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerPalletConsoleNFNormalMarket ]
+  id: ComputerTabletopPalletConsoleNFNormalMarket
+  name: cargo sale computer
+  suffix: Normal, Tabletop
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: tech_key
+
+- type: entity
+  parent: [ ComputerTabletopPalletConsoleNFNormalMarket, ComputerPalletConsoleNFHighMarket]
+  id: ComputerTabletopPalletConsoleNFHighMarket
+  suffix: High, Tabletop
+
+- type: entity
+  parent: [ ComputerTabletopPalletConsoleNFNormalMarket, ComputerPalletConsoleNFLowMarket ]
+  id: ComputerTabletopPalletConsoleNFLowMarket
+  suffix: Low, Tabletop
+
+- type: entity
+  parent: [ ComputerTabletopPalletConsoleNFNormalMarket, ComputerPalletConsoleNFVeryLowMarket ]
+  id: ComputerTabletopPalletConsoleNFVeryLowMarket
+  suffix: VeryLow, Tabletop
