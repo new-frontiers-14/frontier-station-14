@@ -353,8 +353,10 @@ public sealed partial class ExplosionSystem : EntitySystem
         var mapGrid = _mapManager.GetGrid(gridId.Value);
         var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
-        if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
-            return null;
+        // we want the explosion!
+        // Sincerely, -Pax
+        //if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+        //    return null;
 
         var visualEnt = CreateExplosionVisualEntity(epicenter, type.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 

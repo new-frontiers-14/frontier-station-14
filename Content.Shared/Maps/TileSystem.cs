@@ -144,8 +144,8 @@ public sealed class TileSystem : EntitySystem
         var ev = new FloorTileAttemptEvent();
         RaiseLocalEvent(mapGrid);
 
-        if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && tileDef.ID == "Plating")
-            return false;
+        //if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && tileDef.ID == "Plating")
+        //    return false;
 
         const float margin = 0.1f;
         var bounds = mapGrid.TileSize - margin * 2;
