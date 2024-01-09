@@ -4,6 +4,7 @@
     roomWhitelist:
       - CaveFactory
       - LavaBrig
+      - LavaMercenary
       - RuinedHospital
       - SalvageExperiment
       - RuinedDwelling
@@ -295,4 +296,85 @@
       contents:
         - id: PottedPlantRandom
           amount: 1
+
+- type: dungeonConfig
+  id: LavaMercenary
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+      - LavaMercenary
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      width: 3
+
+    - !type:DungeonEntrancePostGen
+      count: 2
+
+    - !type:RoomEntrancePostGen
+      entities:
+        - CableApcExtension
+        - AirlockMercenaryGlass
+    - !type:EntranceFlankPostGen
+      entities:
+        - Grille
+        - Window
+
+    - !type:ExternalWindowPostGen
+      entities:
+        - Grille
+        - Window
+
+    - !type:WallMountPostGen
+      spawns:
+        # Posters
+        - id: RandomPosterContraband
+          orGroup: content
+        - id: ExtinguisherCabinetFilled
+          prob: 0.2
+          orGroup: content
+        - id: RandomPainting
+          prob: 0.05
+          orGroup: content
+        - id: IntercomCommon
+          prob: 0.1
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorSteel
+      wall: WallSolid
+      cornerWall: WallReinforced
+
+    - !type:JunctionPostGen
+      width: 1
+
+    - !type:JunctionPostGen
+
+    - !type:AutoCablingPostGen
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: PottedPlantRandom
+          amount: 1
+
+    - !type:CorridorDecalSkirtingPostGen
+      color: "#5E7C16"
+      cardinalDecals:
+        South: BrickTileWhiteLineS
+        East: BrickTileWhiteLineE
+        North: BrickTileWhiteLineN
+        West: BrickTileWhiteLineW
+      cornerDecals:
+        SouthEast: BrickTileWhiteCornerSe
+        SouthWest: BrickTileWhiteCornerSw
+        NorthEast: BrickTileWhiteCornerNe
+        NorthWest: BrickTileWhiteCornerNw
+      pocketDecals:
+        SouthWest: BrickTileWhiteInnerSw
+        SouthEast: BrickTileWhiteInnerSe
+        NorthWest: BrickTileWhiteInnerNw
+        NorthEast: BrickTileWhiteInnerNe
 

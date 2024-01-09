@@ -68,7 +68,7 @@
     interfaces:
     - key: enum.ShipyardConsoleUiKey.Shipyard
       type: ShipyardConsoleBoundUserInterface
-  - type: ItemSlots  
+  - type: ItemSlots
   - type: ContainerContainer
     containers:
       ShipyardConsole-targetId: !type:ContainerSlot {}
@@ -80,6 +80,22 @@
         !type:DamageTrigger
         damage: 0
 
+# Custom console
+- type: entity
+  id: BaseMothershipComputer
+  parent: ComputerShipyard
+  name: mothership console
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Custom
+      type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+
+# Hardcoded consoles
 - type: entity
   id: ComputerShipyardSecurity
   parent: ComputerShipyard
@@ -100,7 +116,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_security      
+      state: shipyard_security
     - map: ["computerLayerKeys"]
       state: telesci_key
 
@@ -124,7 +140,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
   - type: Destructible
@@ -156,7 +172,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
 
@@ -180,7 +196,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
 
