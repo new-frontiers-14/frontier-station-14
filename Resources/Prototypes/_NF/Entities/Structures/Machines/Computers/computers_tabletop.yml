@@ -50,6 +50,47 @@
       sprite: Structures/Machines/computers.rsi
       state: generic_keys
 
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyard ] # Shuttle
+  id: ComputerTabletopShipyard
+  name: shipyard console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic_keys
+
+- type: entity
+  parent: [ ComputerTabletopShipyard, BaseMothershipComputer ]
+  id: BaseMothershipComputerTabletop
+  name: mothership console
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: generic_keys
+
 # Computers: Base Game
 - type: entity
   parent: [ BaseComputerTabletop, ComputerAlert ]
@@ -675,28 +716,9 @@
       state: atmos_key
 
 # Computers: Frontier
-- type: entity
-  parent: [ BaseComputerTabletop, ComputerShipyard ]
-  id: ComputerTabletopShipyard
-  name: shipyard console
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard
-    - map: ["computerLayerKeys"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: telesci_key
 
 - type: entity
-  parent: [ BaseComputerTabletop, ComputerShipyardSecurity ]
+  parent: [ ComputerTabletopShipyard, ComputerShipyardSecurity ]
   id: ComputerTabletopShipyardSecurity
   name: security shipyard console
   components:
@@ -716,7 +738,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [ BaseComputerTabletop, ComputerShipyardBlackMarket ]
+  parent: [ ComputerTabletopShipyard, ComputerShipyardBlackMarket ]
   id: ComputerTabletopShipyardBlackMarket
   name: black market shipyard console
   components:
@@ -736,7 +758,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [ BaseComputerTabletop, ComputerShipyardExpedition ]
+  parent: [ ComputerTabletopShipyard, ComputerShipyardExpedition ]
   id: ComputerTabletopShipyardExpedition
   name: expedition shipyard console
   components:
@@ -756,7 +778,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [ BaseComputerTabletop, ComputerShipyardScrap ]
+  parent: [ ComputerTabletopShipyard, ComputerShipyardScrap ]
   id: ComputerTabletopShipyardScrap
   name: scrapyard console
   components:
