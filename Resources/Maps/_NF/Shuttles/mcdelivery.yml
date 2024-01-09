@@ -57,12 +57,12 @@ entities:
             color: '#FFFFFFFF'
             id: Delivery
           decals:
-            12: 1,2
+            11: 1,2
         - node:
             color: '#3C44AAFF'
             id: DeliveryGreyscale
           decals:
-            11: 1,1
+            10: 1,1
         - node:
             angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
@@ -89,7 +89,7 @@ entities:
             id: WarnCornerSmallNW
           decals:
             7: 1,4
-            10: 0,2
+            9: 0,2
         - node:
             color: '#A4610696'
             id: WarnEndN
@@ -503,10 +503,10 @@ entities:
       type: Transform
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 96
+  - uid: 108
     components:
     - rot: 1.5707963267948966 rad
-      pos: -0.5,3.5
+      pos: -0.5,0.5
       parent: 1
       type: Transform
 - proto: FaxMachineShip
@@ -647,6 +647,14 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 3.5,1.5
+      parent: 1
+      type: Transform
+- proto: NoticeBoardNF
+  entities:
+  - uid: 96
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -0.5,3.5
       parent: 1
       type: Transform
 - proto: PlasticFlapsAirtightClear
