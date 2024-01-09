@@ -363,11 +363,13 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerIFFSyndicateCircuitboard
-  name: syndicate IFF console board
+  name: security IFF console board
   description: Allows you to control the IFF and stealth characteristics of this vessel.
   components:
     - type: ComputerBoard
       prototype: ComputerIFFSyndicate
+    - type: StaticPrice
+      price: 100000 # 1 million dollars!
 
 - type: entity
   parent: BaseComputerCircuitboard
