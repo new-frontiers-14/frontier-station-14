@@ -16,6 +16,9 @@ public abstract class ClothingSystem : EntitySystem
 
     [ValidatePrototypeId<TagPrototype>]
     private const string HairTag = "HidesHair";
+    private const string HeadTopTag = "HidesHeadTop"; // Frontier
+    private const string TailTag = "HidesTail"; // Frontier
+    private const string SnoutTag = "HidesSnout"; // Frontier
 
     public override void Initialize()
     {
@@ -32,6 +35,15 @@ public abstract class ClothingSystem : EntitySystem
         component.InSlot = args.Slot;
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, HairTag))
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Hair, false);
+
+        if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, HeadTopTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.HeadTop, false); // Frontier
+
+        if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, false); // Frontier
+
+        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, false); // Frontier
     }
 
     protected virtual void OnGotUnequipped(EntityUid uid, ClothingComponent component, GotUnequippedEvent args)
@@ -39,6 +51,15 @@ public abstract class ClothingSystem : EntitySystem
         component.InSlot = null;
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, HairTag))
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Hair, true);
+
+        if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, HeadTopTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.HeadTop, true); // Frontier
+
+        if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, true); // Frontier
+
+        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag)) // Frontier
+            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, true); // Frontier
     }
 
     private void OnGetState(EntityUid uid, ClothingComponent component, ref ComponentGetState args)
