@@ -57,12 +57,12 @@ entities:
             color: '#FFFFFFFF'
             id: Delivery
           decals:
-            19: 1,2
+            12: 1,2
         - node:
             color: '#3C44AAFF'
             id: DeliveryGreyscale
           decals:
-            18: 1,1
+            11: 1,1
         - node:
             angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
@@ -89,7 +89,7 @@ entities:
             id: WarnCornerSmallNW
           decals:
             7: 1,4
-            14: 0,2
+            10: 0,2
         - node:
             color: '#A4610696'
             id: WarnEndN
@@ -198,11 +198,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
-      parent: 1
-      type: Transform
-  - uid: 52
-    components:
-    - pos: 1.5,-0.5
       parent: 1
       type: Transform
 - proto: BoxPaperOffice
@@ -608,6 +603,13 @@ entities:
       pos: 3.5,1.5
       parent: 1
       type: Transform
+- proto: PlasticFlapsAirtightClear
+  entities:
+  - uid: 52
+    components:
+    - pos: 1.5,-0.5
+      parent: 1
+      type: Transform
 - proto: PortableGeneratorPacman
   entities:
   - uid: 44
@@ -621,8 +623,7 @@ entities:
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - endTime: 0
-      type: InsertingMaterialStorage
+    - type: InsertingMaterialStorage
 - proto: PosterContrabandEAT
   entities:
   - uid: 93
@@ -869,7 +870,12 @@ entities:
       type: Transform
     - links:
       - 96
+      - 92
       type: DeviceLinkSink
+    - linkedPorts:
+        92:
+        - DoorStatus: Close
+      type: DeviceLinkSource
   - uid: 92
     components:
     - rot: 3.141592653589793 rad
@@ -878,7 +884,12 @@ entities:
       type: Transform
     - links:
       - 96
+      - 11
       type: DeviceLinkSink
+    - linkedPorts:
+        11:
+        - DoorStatus: Close
+      type: DeviceLinkSource
 - proto: Wrench
   entities:
   - uid: 67
