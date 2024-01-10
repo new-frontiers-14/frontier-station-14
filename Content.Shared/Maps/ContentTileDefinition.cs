@@ -40,6 +40,10 @@ namespace Content.Shared.Maps
 
         [DataField("canCrowbar")] public bool CanCrowbar { get; private set; }
 
+        // Delta V
+        [DataField("canShovel")] public bool CanShovel { get; private set; }
+        //Delta V
+
         /// <summary>
         /// Whether this tile can be pried by an advanced prying tool if not pryable otherwise.
         /// </summary>
