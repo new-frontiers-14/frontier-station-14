@@ -1,7 +1,9 @@
 using System.Linq;
 using Content.Server.Bank;
 using System.Numerics;
+using Content.Server.Advertise;
 using Content.Server.Cargo.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Cargo.Components;
 using Content.Server.Popups;
@@ -29,6 +31,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.VendingMachines
 {
@@ -48,6 +51,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly AdvertiseSystem _advertise = default!;
 
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
@@ -68,6 +72,7 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
             SubscribeLocalEvent<VendingMachineComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
+            SubscribeLocalEvent<VendingMachineComponent, BoundUIClosedEvent>(OnBoundUIClosed);
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineEjectMessage>(OnInventoryEjectMessage);
 
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
@@ -130,6 +135,19 @@ namespace Content.Server.VendingMachines
                 balance = bank.Balance;
 
             UpdateVendingMachineInterfaceState(uid, component, balance);
+        }
+
+        private void OnBoundUIClosed(EntityUid uid, VendingMachineComponent component, BoundUIClosedEvent args)
+        {
+            if ((VendingMachineUiKey) args.UiKey != VendingMachineUiKey.Key)
+                return;
+
+            // Only vendors that advertise will send message after dispensing
+            if (component.ShouldSayThankYou && TryComp<AdvertiseComponent>(uid, out var advertise))
+            {
+                _advertise.SayThankYou(uid, advertise);
+                component.ShouldSayThankYou = false;
+            }
         }
 
         private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
@@ -495,6 +513,8 @@ namespace Content.Server.VendingMachines
                 var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
                 _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
             }
+
+            vendComponent.ShouldSayThankYou = true;
 
             vendComponent.NextItemToEject = null;
             vendComponent.ThrowNextItem = false;

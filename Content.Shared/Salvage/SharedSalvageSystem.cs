@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Salvage;
 
-public abstract class SharedSalvageSystem : EntitySystem
+public abstract partial class SharedSalvageSystem : EntitySystem
 {
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
