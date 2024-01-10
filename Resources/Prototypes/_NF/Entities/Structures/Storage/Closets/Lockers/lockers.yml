@@ -25,3 +25,29 @@
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
+
+# Janitor
+- type: entity
+  id: LockerJanitor
+  parent: LockerBaseSecure
+  name: janitor locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: janitor
+    stateDoorOpen: janitor_open
+    stateDoorClosed: janitor_door
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.StorageVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
