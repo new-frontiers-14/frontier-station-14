@@ -24,6 +24,16 @@
     - type: Transform
 
 - type: entity
+  id: SecurityFrontierOutpost
+  parent:
+    - StandardFrontierOutpost  # Parent off of above
+    - BaseStationRecords  # Add station records functionality
+    - BaseStationJobsSpawning
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierVessel
   parent:
     - BaseStation
