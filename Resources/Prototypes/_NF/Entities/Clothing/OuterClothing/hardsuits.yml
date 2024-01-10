@@ -59,3 +59,31 @@
     sprintModifier: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+
+#Pilot Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitPilot
+  name: pilot hardsuit
+  description: A hardsuit exceptionally suited for someone who spends majority of his time strapped to a chair.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPilot
+  - type: StaticPrice
+    price: 135
