@@ -19,6 +19,7 @@ public sealed class InteractionPopupSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -82,9 +83,9 @@ public sealed class InteractionPopupSystem : EntitySystem
         if (component.MessagePerceivedByOthers != null)
         {
             var msgOthers = Loc.GetString(component.MessagePerceivedByOthers,
-                ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(uid, EntityManager)));
-            _popupSystem.PopupEntity(msg, uid, args.User);
-            _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(uid, EntityManager)));
+            _popupSystem.PopupEntity(msg, uid, user);
+            _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(user, entityManager: EntityManager), true);
         }
         else
             _popupSystem.PopupEntity(msg, uid, user); //play only for the initiating entity.
@@ -92,9 +93,9 @@ public sealed class InteractionPopupSystem : EntitySystem
         if (sfx is not null) //not all cases will have sound.
         {
             if (component.SoundPerceivedByOthers)
-                _audio.PlayPvs(sfx, args.Target); //play for everyone in range
+                _audio.PlayPvs(sfx, uid); //play for everyone in range
             else
-                _audio.PlayEntity(sfx, Filter.Entities(args.User, args.Target), args.Target, true); //play only for the initiating entity and its target.
+                _audio.PlayEntity(sfx, Filter.Entities(user, uid), uid, true); //play only for the initiating entity and its target.
         }
 
         component.LastInteractTime = curTime;

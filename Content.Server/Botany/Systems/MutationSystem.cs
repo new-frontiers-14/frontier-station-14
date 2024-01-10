@@ -238,7 +238,7 @@ public sealed class MutationSystem : EntitySystem
           Gas.Nitrogen,
           Gas.CarbonDioxide,
           Gas.NitrousOxide,
-          Gas.Miasma,
+          Gas.Ammonia,
           Gas.Plasma,
           Gas.Tritium,
           Gas.WaterVapor,

@@ -130,7 +130,7 @@ namespace Content.Client.VendingMachines.UI
 
                 if (prototype != null && prototype.TryGetComponent<SolutionContainerManagerComponent>(out var priceSolutions))
                 {
-                    foreach (var solution in priceSolutions.Solutions.Values)
+                    foreach (var solution in priceSolutions.Solutions!.Values)
                     {
                         foreach (var (reagent, quantity) in solution.Contents)
                         {

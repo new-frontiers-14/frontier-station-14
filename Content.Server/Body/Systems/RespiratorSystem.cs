@@ -21,6 +21,7 @@ using Content.Shared.Respirator;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -237,7 +238,6 @@ namespace Content.Server.Body.Systems
 
         private void OnDoAfter(EntityUid uid, RespiratorComponent component, DoAfterEvent args)
         {
-            component.CPRPlayingStream?.Stop();
             component.IsReceivingCPR = false;
 
             if (args.Handled || args.Cancelled)
@@ -292,7 +292,7 @@ namespace Content.Server.Body.Systems
             _popupSystem.PopupEntity(Loc.GetString("cpr-start-second-person-patient", ("user", Identity.Entity(user, EntityManager))), uid, uid, Shared.Popups.PopupType.Medium);
 
             component.IsReceivingCPR = true;
-            component.CPRPlayingStream = _audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
+            //_audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
 
             var args = new DoAfterArgs(EntityManager, user, Math.Min(component.CycleDelay * 2, 6f), new CPRDoAfterEvent(), uid, target: uid)
             {

@@ -230,7 +230,7 @@ public sealed partial class SalvageSystem
 
         while (children.MoveNext(out var child))
         {
-            MiningTax(entities, child.Value, mining, xformQuery);
+            MiningTax(entities, child, mining, xformQuery);
         }
     }
 

@@ -1,6 +1,6 @@
 using Robust.Client.GameObjects;
-using Content.Client.Chemistry.Visualizers;
 using Content.Client.Kitchen.Components;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Kitchen.Components;
 
 namespace Content.Client.Kitchen.Visualizers

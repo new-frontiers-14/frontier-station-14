@@ -989,19 +989,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         }
     }
 
-    /// <summary>
-    /// Display a greeting message and play a sound for a nukie
-    /// </summary>
-    private void NotifyNukie(ICommonSession session, NukeOperativeComponent nukeop, NukeopsRuleComponent nukeopsRule)
-    {
-        if (nukeopsRule.TargetStation is not { } station)
-            return;
-
-        _chatManager.DispatchServerMessage(session, Loc.GetString("nukeops-welcome", ("station", station), ("name", nukeopsRule.OperationName)));
-        _audio.PlayGlobal(nukeop.GreetSoundNotification, session);
-    }
-
-
     private void SpawnOperativesForGhostRoles(EntityUid uid, NukeopsRuleComponent? component = null)
     {
         if (!Resolve(uid, ref component))

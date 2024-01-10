@@ -10,10 +10,11 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
-using Content.Server.Atmos.Miasma;
+using Content.Server.Atmos.Rotting;
 using Content.Server.Audio;
 using Content.Server.Body.Components;
 using Content.Server.Cargo.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction;
@@ -33,7 +34,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.UserInterface;
-using Content.Shared.Atmos.Miasma;
+using Content.Shared.Atmos.Rotting;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -64,7 +65,7 @@ using FastAccessors;
 using Content.Shared.NPC;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction;
-//using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -136,6 +137,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             base.Update(frameTime);
 
+
             foreach (var component in EntityManager.EntityQuery<DeepFryerComponent>())
             {
                 var uid = component.Owner;
@@ -148,8 +150,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 UpdateNextFryTime(uid, component);
 
+
                 // Heat the vat solution and contained entities.
-                _solutionContainerSystem.SetTemperature(uid, component.Solution, component.PoweredTemperature);
+                _solutionContainerSystem.SetTemperature(component.Solution, component.PoweredTemperature);
 
                 foreach (var item in component.Storage.ContainedEntities)
                     CookItem(uid, component, item);
