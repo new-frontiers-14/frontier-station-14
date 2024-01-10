@@ -45,11 +45,6 @@ public sealed class FaxSendMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
-public sealed class FaxCopyMessage : BoundUserInterfaceMessage
-{
-}
-
-[Serializable, NetSerializable]
 public sealed class FaxRefreshMessage : BoundUserInterfaceMessage
 {
 }
