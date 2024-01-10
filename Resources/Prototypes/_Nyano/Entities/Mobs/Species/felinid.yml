@@ -4,6 +4,8 @@
   id: MobFelinidBase
   abstract: true
   components:
+  - type: Inventory
+    speciesId: felinds
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance
@@ -58,6 +60,12 @@
     factions:
     - NanoTrasen
     - Felinid
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - HidesTail
 
 - type: entity
   save: false

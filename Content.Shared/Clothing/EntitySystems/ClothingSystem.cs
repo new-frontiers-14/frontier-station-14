@@ -42,7 +42,7 @@ public abstract class ClothingSystem : EntitySystem
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, false); // Frontier
 
-        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag)) // Frontier
+        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag) && _tagSystem.HasTag(args.Equipee, TailTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, false); // Frontier
     }
 
@@ -58,7 +58,7 @@ public abstract class ClothingSystem : EntitySystem
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, true); // Frontier
 
-        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag)) // Frontier
+        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag) && _tagSystem.HasTag(args.Equipee, TailTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, true); // Frontier
     }
 
