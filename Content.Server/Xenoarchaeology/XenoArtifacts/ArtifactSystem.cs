@@ -151,12 +151,12 @@ public sealed partial class ArtifactSystem : EntitySystem
             return false;
 
         // Frontier - check if artifact on a protected grid
-        var xform = Transform(uid);
+        /*var xform = Transform(uid);
         if (xform.GridUid != null)
         {
             if (HasComp<ProtectedGridComponent>(xform.GridUid.Value))
                 return false;
-        }
+        }*/
 
         // check if artifact isn't under cooldown
         var timeDif = _gameTiming.CurTime - component.LastActivationTime;

@@ -1,18 +1,16 @@
-<p align="center"> <img alt="Frontier Station 14" width="880" height="300" src="https://github.com/new-frontiers-14/frontier-station-14/blob/30cdc70d8fcbf52f949337150bf42338ececbd80/Resources/Textures/Logo/logo.png?raw=true" /></p>
+<p align="center"> <img alt="Logo" src="./Resources/Textures/Logo/logo.png" /></p>
 
-Frontier Station 14 is a fork of [Space Station 14](https://github.com/space-wizards) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
+[Pax Astralis](https://github.com/Pax-Astralis-Dev/pax-astralis-station) is a fork of [Frontier Station 14](https://github.com/new-frontiers-14/frontier-station-14) which is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
 
-This is the primary repo for Frontier Station 14.
-
-If you want to host or create content for FS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
+If you want to host or create content for SS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
 
 ## Links
 
-[Discord](https://discord.gg/tpuAT7d3zm/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
+[Website](https://spacestation14.io/) | [SS14 Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
 
 ## Documentation/Wiki
 
-Our [wiki](https://frontierstation14.com/) has documentation on FS14s content.
+The [wiki](https://docs.spacestation14.com/) has documentation on FS14s content.
 
 ## Contributing
 
@@ -22,11 +20,23 @@ We are not currently accepting translations of the game on our main repository. 
 
 ## Building
 
+0. Download dotnet
+   ```sh
+   # arch
+   pacman -Syu dotnet-runtime dotnet-sdk dotnet-runtime-7.0 dotnet-sdk-7.0
+   ```
 1. Clone this repo.
+   ```sh
+   git clone --recursive https://github.com/Pax-Astralis-Dev/pax-astralis-station
+   ```
 2. Run `RUN_THIS.py` to init submodules and download the engine.
 3. Compile the solution.
+   ```sh
+   dotnet run --project Content.Server
+   dotnet run --project Content.Client
+   ```
 
-[More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
+[More detailed instructions on building the project.](https://docs.spacestation14.com/)
 
 ## License
 

@@ -164,8 +164,8 @@ public sealed class RCDSystem : EntitySystem
         var gridUid = mapGrid.Owner;
         var ev = new FloorTileAttemptEvent();
 
-        if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) // Frontier - Remove all RCD use on outpost.
-            return;
+        //if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) // Frontier - Remove all RCD use on outpost.
+        //    return;
 
         switch (comp.Mode)
         {
