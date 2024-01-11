@@ -26,7 +26,10 @@ public sealed class ShoesRequiredStepTriggerSystem : EntitySystem
         }
 
         if (HasComp<ShoesRequiredStepTriggerImmuneComponent>(args.Tripper)) // Frontier
+        {
+            args.Cancelled = true;
             return;
+        }
 
         if (!TryComp<InventoryComponent>(args.Tripper, out var inventory))
             return;
