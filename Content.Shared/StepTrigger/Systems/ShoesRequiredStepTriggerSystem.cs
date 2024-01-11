@@ -1,4 +1,4 @@
-﻿using Content.Shared.Examine;
+using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.Tag;
@@ -24,6 +24,9 @@ public sealed class ShoesRequiredStepTriggerSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        if (HasComp<ShoesRequiredStepTriggerImmuneComponent>(args.Tripper)) // Frontier
+            return;
 
         if (!TryComp<InventoryComponent>(args.Tripper, out var inventory))
             return;
