@@ -42,8 +42,17 @@ public abstract class ClothingSystem : EntitySystem
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, false); // Frontier
 
-        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag) && _tagSystem.HasTag(args.Equipee, TailTag)) // Frontier
-            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, false); // Frontier
+        if (TryComp<HumanoidAppearanceComponent>(args.Equipee, out var specie)) // Frontier
+        {
+            string[] speciesToProcess = { "Vulpkanin", "Reptilian", "Felinid" };
+
+            // Check if the current species is in the list
+            if (Array.Exists(speciesToProcess, s => s.Equals(specie?.Species, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag))
+                    _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, false);
+            }
+        }
     }
 
     protected virtual void OnGotUnequipped(EntityUid uid, ClothingComponent component, GotUnequippedEvent args)
@@ -58,8 +67,17 @@ public abstract class ClothingSystem : EntitySystem
         if (args.Slot == "head" && _tagSystem.HasTag(args.Equipment, SnoutTag)) // Frontier
             _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Snout, true); // Frontier
 
-        if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag) && _tagSystem.HasTag(args.Equipee, TailTag)) // Frontier
-            _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, true); // Frontier
+        if (TryComp<HumanoidAppearanceComponent>(args.Equipee, out var specie)) // Frontier
+        {
+            string[] speciesToProcess = { "Vulpkanin", "Reptilian", "Felinid" };
+
+            // Check if the current species is in the list
+            if (Array.Exists(speciesToProcess, s => s.Equals(specie?.Species, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (args.Slot == "outerClothing" && _tagSystem.HasTag(args.Equipment, TailTag))
+                    _humanoidSystem.SetLayerVisibility(args.Equipee, HumanoidVisualLayers.Tail, false);
+            }
+        }
     }
 
     private void OnGetState(EntityUid uid, ClothingComponent component, ref ComponentGetState args)
