@@ -111,8 +111,14 @@ namespace Content.Client.VendingMachines.UI
                 {
                     if (priceComponent.Price != 0)
                     {
-                    var price = (float)priceComponent.Price;
-                    cost = (int) (price * priceModifier);
+                        var price = (float) priceComponent.Price;
+
+                        // Frontier - This block exists to allow the vending price to up itself without a change to static.
+                        if (priceComponent.VendingMod == null)
+                            price = price * priceComponent.VendingMod;
+                        // Frontier - This block exists to allow the vending price to up itself without a change to static.
+
+                        cost = (int) (price * priceModifier);
                     }
                     else
                     {
