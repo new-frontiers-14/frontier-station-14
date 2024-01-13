@@ -6950,14 +6950,6 @@ entities:
     - links:
       - 2734
       type: DeviceLinkSink
-- proto: BlockGameArcade
-  entities:
-  - uid: 545
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 4.5,13.5
-      parent: 2173
-      type: Transform
 - proto: BodyBag_Folded
   entities:
   - uid: 2388
@@ -36462,6 +36454,13 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: 4.5,51.5
+      parent: 2173
+      type: Transform
+- proto: VendingMachineAutoTuneVend
+  entities:
+  - uid: 545
+    components:
+    - pos: 4.5,13.5
       parent: 2173
       type: Transform
 - proto: VendingMachineCart
