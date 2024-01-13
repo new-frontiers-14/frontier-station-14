@@ -2824,7 +2824,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 703
+    - parent: 1081
       type: Transform
     - canCollide: False
       type: Physics
@@ -2865,6 +2865,33 @@ entities:
   - uid: 192
     components:
     - pos: -5.8251452,6.872705
+      parent: 1
+      type: Transform
+- proto: ClothingHeadHatMcCrown
+  entities:
+  - uid: 128
+    components:
+    - pos: 4.4425836,2.6006465
+      parent: 1
+      type: Transform
+  - uid: 705
+    components:
+    - pos: 4.61538,2.741904
+      parent: 1
+      type: Transform
+  - uid: 708
+    components:
+    - pos: 4.220203,2.741904
+      parent: 1
+      type: Transform
+  - uid: 1079
+    components:
+    - pos: 4.6165376,2.4320714
+      parent: 1
+      type: Transform
+  - uid: 1080
+    components:
+    - pos: 4.213417,2.4443965
       parent: 1
       type: Transform
 - proto: ComputerTabletopShuttle
@@ -3323,14 +3350,106 @@ entities:
     - pos: -7.361967,1.8492602
       parent: 1
       type: Transform
-- proto: DrinkSodaWaterCan
-  entities:
-  - uid: 705
+  - uid: 1083
     components:
     - flags: InContainer
+      desc: A sweet, carbonated soft drink. Caffeine free.
+      name: cola glass
       type: MetaData
-    - parent: 703
+    - parent: 1081
       type: Transform
+    - solutions:
+        drink:
+          temperature: 293.15
+          canMix: False
+          canReact: True
+          maxVol: 30
+          reagents:
+          - data: null
+            ReagentId: Cola
+            Quantity: 30
+      type: SolutionContainerManager
+    - transformed: True
+      currentReagent:
+        metamorphicSprite: null
+        footstepSound: !type:SoundCollectionSpecifier
+          params:
+            variation: null
+            playoffset: 0
+            loop: False
+            referenceDistance: 1
+            rolloffFactor: 1
+            maxdistance: 25
+            busname: Master
+            pitchscale: 1
+            volume: 0
+            attenuation: Default
+          collection: FootstepWater
+        flavor: soda
+        flavorMinimum: 0.1
+        slippery: True
+        viscosity: 0
+        metabolisms:
+          Drink:
+            effects:
+            - !type:SatiateThirst
+              shouldLog: False
+              logImpact: Low
+              factor: 2
+              probability: 1
+              conditions: null
+            metabolismRate: 0.5
+        reactiveEffects:
+          Extinguish:
+            effects:
+            - !type:ExtinguishReaction
+              shouldLog: False
+              logImpact: Low
+              probability: 1
+              conditions: null
+            methods:
+            - Touch
+        tileReactions:
+        - !type:ExtinguishTileReaction
+          coolingTemperature: 2
+        - !type:SpillIfPuddlePresentTileReaction {}
+        plantMetabolism:
+        - !type:PlantAdjustNutrition
+          shouldLog: False
+          logImpact: Low
+          prob: 1
+          amount: 0.1
+          probability: 1
+          conditions: null
+        - !type:PlantAdjustWater
+          shouldLog: False
+          logImpact: Low
+          prob: 1
+          amount: 0.1
+          probability: 1
+          conditions: null
+        - !type:PlantAdjustHealth
+          shouldLog: False
+          logImpact: Low
+          prob: 1
+          amount: -0.1
+          probability: 1
+          conditions: null
+        pricePerUnit: 0
+        id: Cola
+        meltingPoint: null
+        name: reagent-name-cola
+        group: Drinks
+        parent:
+        - BaseSoda
+        abstract: False
+        desc: reagent-desc-cola
+        physicalDesc: reagent-physical-desc-fizzy
+        color: '#422912FF'
+        specificHeat: 1
+        boilingPoint: null
+        recognizable: True
+      type: TransformableContainer
     - canCollide: False
       type: Physics
 - proto: EmergencyLight
@@ -3676,7 +3795,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 703
+    - parent: 1081
       type: Transform
     - canCollide: False
       type: Physics
@@ -3707,7 +3826,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 703
+    - parent: 1081
       type: Transform
     - canCollide: False
       type: Physics
@@ -3765,6 +3884,21 @@ entities:
     - pos: -0.10305256,2.6391692
       parent: 1
       type: Transform
+- proto: FoodMealFries
+  entities:
+  - uid: 1082
+    components:
+    - flags: InContainer
+      name: crispy space fries
+      type: MetaData
+    - parent: 1081
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: FriedTrait
+    - type: Appearance
+    - originalName: space fries
+      type: DeepFried
 - proto: FoodPlatePlastic
   entities:
   - uid: 89
@@ -4663,59 +4797,56 @@ entities:
     - pos: -5.5050435,7.2214174
       parent: 1
       type: Transform
-- proto: HappyHonk
+- proto: HappyHonkCargo
   entities:
-  - uid: 128
-    components:
-    - pos: 0.70903397,4.7924657
-      parent: 1
-      type: Transform
   - uid: 129
     components:
-    - pos: 0.36528397,4.938299
+    - pos: 0.362599,4.8363476
       parent: 1
       type: Transform
   - uid: 130
     components:
-    - pos: 0.70903397,4.9487157
+    - pos: 0.38343233,4.9509306
       parent: 1
       type: Transform
   - uid: 136
     components:
-    - pos: 0.35486734,4.8028827
+    - pos: 0.6959323,4.9509306
       parent: 1
       type: Transform
   - uid: 137
     components:
-    - pos: 0.33403397,4.657049
+    - pos: 0.7271823,4.815514
       parent: 1
       type: Transform
   - uid: 176
     components:
-    - pos: 0.69861734,4.657049
+    - pos: 0.33134896,4.7321806
       parent: 1
       type: Transform
   - uid: 703
     components:
-    - name: McMeal
-      type: MetaData
-    - pos: -1.5032101,3.626013
+    - pos: 0.74801564,4.721764
       parent: 1
       type: Transform
-    - storageUsed: 21
+  - uid: 1081
+    components:
+    - pos: -1.4765244,3.7052913
+      parent: 1
+      type: Transform
+    - storageUsed: 25
       type: Storage
     - containers:
         storagebase: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 704
-          - 705
-          - 706
           - 707
-          - 708
+          - 706
+          - 704
+          - 1083
+          - 1082
       type: ContainerContainer
-    - type: Label
 - proto: hydroponicsTrayAnchored
   entities:
   - uid: 62
@@ -4796,14 +4927,6 @@ entities:
       type: Transform
 - proto: Lighter
   entities:
-  - uid: 708
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 703
-      type: Transform
-    - canCollide: False
-      type: Physics
   - uid: 828
     components:
     - pos: -6.071316,7.3206215
