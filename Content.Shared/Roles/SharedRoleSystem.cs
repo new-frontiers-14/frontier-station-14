@@ -1,5 +1,7 @@
-﻿using Content.Shared.Administration.Logs;
+﻿using Content.Shared.Access.Systems;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Prototypes;
@@ -11,18 +13,46 @@ public abstract class SharedRoleSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
+    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
 
     // TODO please lord make role entities
     private readonly HashSet<Type> _antagTypes = new();
+    private readonly Dictionary<string, JobPrototype> _reverseJobMap = new(); // Frontier: maps localized job titles to their respective prototypes
 
     public override void Initialize()
     {
         // TODO make roles entities
         SubscribeLocalEvent<JobComponent, MindGetAllRolesEvent>(OnJobGetAllRoles);
+        SubscribeLocalEvent<RoundStartedEvent>(RefreshRoleMap); // Frontier
+    }
+
+    // Frontier
+    private void RefreshRoleMap(RoundStartedEvent ev)
+    {
+        _reverseJobMap.Clear();
+        foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
+        {
+            var title = Loc.GetString(job.Name).ToLower(); // Yes... we compare by localized names and pray it works. Better than losing all the job-specific playtime tho.
+            _reverseJobMap.Add(title, job);
+        }
     }
 
     private void OnJobGetAllRoles(EntityUid uid, JobComponent component, ref MindGetAllRolesEvent args)
     {
+        // Frontier: try to resolve the role based on the ID held by the entity possessed by this Mind
+        // Since JobComponent is only applied to player minds, [uid] here is the mind of the player whose roles are to be collected
+        // If it does not have an entity, or that entity does not have an ID card, then resort to the default role assigned at round-start or late-join
+        if (TryComp<MindComponent>(uid, out var mind) && mind.CurrentEntity is { Valid: true } entity && _idCard.TryFindIdCard(entity, out var id))
+        {
+            var title = id.Comp.JobTitle?.ToLower() ?? "";
+            if (_reverseJobMap.TryGetValue(title, out var guessedJob))
+            {
+                args.Roles.Add(new RoleInfo(component, title, false, guessedJob.PlayTimeTracker));
+
+                return; // Otherwise we will add more playtime to the Passenger tracker even if the player was promoted to a deputy or such.
+            }
+        }
+
         var name = "game-ticker-unknown-role";
         string? playTimeTracker = null;
         if (component.PrototypeId != null && _prototypes.TryIndex(component.PrototypeId, out JobPrototype? job))

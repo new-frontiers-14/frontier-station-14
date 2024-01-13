@@ -147,11 +147,12 @@ public sealed partial class PlayTimeTrackingManager
         _playersDirty.Clear();
     }
 
-    private void RefreshSingleTracker(ICommonSession dirty, PlayTimeData data, TimeSpan time)
+    private void RefreshSingleTracker(ICommonSession dirty, PlayTimeData data, TimeSpan time, bool autoFlush = true) // Frontier: added the autoflush parameter
     {
         DebugTools.Assert(data.Initialized);
 
-        FlushSingleTracker(data, time);
+        if (autoFlush)
+            FlushSingleTracker(data, time);
 
         data.NeedRefreshTackers = false;
 
@@ -267,6 +268,9 @@ public sealed partial class PlayTimeTrackingManager
 
         foreach (var (player, data) in _playTimeData)
         {
+            // Frontier: refresh trackers on all players before saving them, but without flushing
+            RefreshSingleTracker(player, data, _timing.RealTime, autoFlush: false);
+
             foreach (var tracker in data.DbTrackersDirty)
             {
                 log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
