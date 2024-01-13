@@ -355,10 +355,10 @@ namespace Content.Server.VendingMachines
             if (price == 0)
                 price = 20;
 
-            //var price = _pricing.GetVendingMod(proto);
             // This block exists to allow the VendPrice flag to set a vending machine item price.
-            //if (priceVend != null && totalPrice <= (int) priceVend)
-            //    totalPrice = (int) priceVend;
+            var priceVend = _pricing.GetStaticVendingPriceMod(proto);
+            if (priceVend != 0)
+                price *= priceVend;
             // This block exists to allow the VendPrice flag to set a vending machine item price.
 
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))

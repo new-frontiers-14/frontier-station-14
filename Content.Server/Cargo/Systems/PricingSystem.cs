@@ -335,7 +335,7 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
-    private double GetStaticVendingPriceMod(EntityPrototype prototype)
+    public double GetStaticVendingPriceMod(EntityPrototype prototype)
     {
         var vendingPriceMod = 0.0;
 
