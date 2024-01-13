@@ -20,8 +20,9 @@
     layers:
       - state: box
       - state: syringe
-  - type: VendPrice
-    price: 200 # Single Implant Box (5 are 1000)
+  - type: StaticPrice
+    price: 20 # Single Implant Box (5 are 1000)
+    vendingPriceMod: 1 # Frontier - 20x1x10=200 - This is here for testing.
 
 - type: entity
   name: Wet floor sign box
@@ -105,5 +106,6 @@
   - type: Sprite
     layers:
       - state: box
-  - type: VendPrice
-    price: 1200
+  - type: StaticPrice
+    price: 20
+    vendingPriceMod: 12 # Frontier - 20x12x5=1200
