@@ -29,7 +29,7 @@
         - TabletopMachineMask
 
 - type: entity
-  parent: [ BaseComputerTabletop, BaseComputerShuttle ] # Shuttle
+  parent: [ BaseComputerShuttle, BaseComputerTabletop ] # Shuttle
   id: BaseComputerTabletopShuttle
   abstract: true
   components:
@@ -140,7 +140,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [ BaseComputerTabletopShuttle, ComputerShuttle ] # Shuttle
+  parent: [ ComputerShuttle, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttle
   components:
   - type: Sprite
@@ -159,7 +159,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [ BaseComputerTabletopShuttle, ComputerShuttleSyndie ] # Shuttle
+  parent: [ ComputerShuttleSyndie, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSyndie
   components:
   - type: Sprite
@@ -178,7 +178,7 @@
       state: syndie_key
 
 - type: entity
-  parent: [ BaseComputerTabletopShuttle, ComputerShuttleCargo ] # Shuttle
+  parent: [ ComputerShuttleCargo, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleCargo
   components:
   - type: Sprite
@@ -197,7 +197,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [ BaseComputerTabletopShuttle, ComputerShuttleSalvage ] # Shuttle
+  parent: [ ComputerShuttleSalvage, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSalvage
   components:
   - type: Sprite
@@ -235,8 +235,9 @@
       state: generic_keys
 
 - type: entity
-  parent: ComputerTabletopIFF
+  parent: [ ComputerIFFSyndicate, ComputerTabletopIFF ]
   id: ComputerTabletopIFFSyndicate
+  suffix: Syndicate, Tabletop
   components:
   - type: Sprite
     layers:

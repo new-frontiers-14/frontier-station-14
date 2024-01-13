@@ -114,7 +114,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var tinnia = "/Maps/_NF/POI/tinnia.yml";
         var caseys = "/Maps/_NF/POI/caseyscasino.yml";
         var lpbravo = "/Maps/_NF/POI/lpbravo.yml";
-        var northpole = "/Maps/_NF/POI/northpole.yml";
+        // var northpole = "/Maps/_NF/POI/northpole.yml";
         var arena = "/Maps/_NF/POI/arena.yml";
         var cove = "/Maps/_NF/POI/cove.yml";
         var courthouse = "/Maps/_NF/POI/courthouse.yml";
@@ -181,15 +181,15 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
-        if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2150f, 3900f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
-            _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
-            _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
-        }
+        // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
+        //     {
+        //         Offset = _random.NextVector2(2150f, 3900f)
+        //     }))
+        // {
+        //     var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
+        //     _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
+        //     _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
+        // }
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
