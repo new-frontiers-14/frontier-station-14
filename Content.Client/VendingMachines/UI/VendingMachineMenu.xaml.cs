@@ -112,8 +112,8 @@ namespace Content.Client.VendingMachines.UI
                     {
                         var price = (float) priceComponent.Price;
 
-                        if (priceComponent.VendingPriceMod != 0)
-                            price = (float) priceComponent.Price * priceComponent.VendingPriceMod;
+                        if (priceComponent.VendingPriceModReplacer != 0 && priceModifier < priceComponent.VendingPriceModReplacer)
+                            priceModifier = priceComponent.VendingPriceModReplacer;
 
                         cost = (int) (price * priceModifier);
                     }

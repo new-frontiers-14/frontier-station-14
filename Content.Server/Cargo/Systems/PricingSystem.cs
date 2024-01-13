@@ -337,15 +337,15 @@ public sealed class PricingSystem : EntitySystem
 
     public double GetStaticVendingPriceMod(EntityPrototype prototype)
     {
-        var vendingPriceMod = 0.0;
+        var vendingPriceModReplacer = 0.0;
 
         if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
         {
             var staticPrice = (StaticPriceComponent) staticProto.Component;
-            vendingPriceMod += staticPrice.VendingPriceMod;
+            vendingPriceModReplacer += staticPrice.VendingPriceModReplacer;
         }
 
-        return vendingPriceMod;
+        return vendingPriceModReplacer;
     }
 
     /// <summary>

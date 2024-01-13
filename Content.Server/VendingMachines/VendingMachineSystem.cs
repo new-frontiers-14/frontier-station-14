@@ -355,14 +355,14 @@ namespace Content.Server.VendingMachines
             if (price == 0)
                 price = 20;
 
-            // Frontier - This block exists to allow the StaticVendingPriceMod to set a vending machine item price mod.
-            var priceVend = _pricing.GetStaticVendingPriceMod(proto);
-            if (priceVend != 0)
-                price *= priceVend;
-            // Frontier - This block exists to allow the StaticVendingPriceMod to set a vending machine item price mod.
-
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
-                price *= modifier.Mod;
+            {
+                var vendingPriceModReplacer = _pricing.GetStaticVendingPriceMod(proto);
+                if (vendingPriceModReplacer != 0 && modifier.Mod < vendingPriceModReplacer)
+                    price *= vendingPriceModReplacer;
+                else
+                    price *= modifier.Mod;
+            }
 
             var totalPrice = (int) price;
 

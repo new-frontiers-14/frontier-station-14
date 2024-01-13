@@ -13,8 +13,8 @@ public sealed partial class StaticPriceComponent : Component
     public double Price;
 
     /// <summary>
-    /// Frontier - An extra mod price for the object, added before the vending machine mod to allow a lower selling price compared to the vending machine price.
+    /// Frontier - Edit the vending machine mod to use a diffrent mod, can only be used to add a higher mod then the existing one of the vending machine.
     /// </summary>
-    [DataField("vendingPriceMod", required: false)]
-    public float VendingPriceMod;
+    [DataField("vendingPriceModReplacer", required: false)]
+    public float VendingPriceModReplacer;
 }
