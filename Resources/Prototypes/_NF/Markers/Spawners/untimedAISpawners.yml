@@ -1,0 +1,86 @@
+- type: entity
+  name: NPC Xeno Spawner
+  suffix: Easy
+  id: XenoAISpawnerEasy
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Mobs/Aliens/Xenos/drone.rsi
+          state: crit
+        - state: ai
+    - type: RandomSpawner
+      prototypes:
+        - MobXeno
+        - MobXenoDroneNPC
+      rarePrototypes:
+        - MobXenoPraetorianNPC
+        - MobXenoRunnerNPC
+        - MobXenoSpitterNPC
+      rareChance: 0.10
+
+- type: entity
+  name: NPC Xeno Spawner
+  suffix: Medium
+  id: XenoAISpawnerMedium
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Mobs/Aliens/Xenos/praetorian.rsi
+          state: crit
+        - state: ai
+    - type: RandomSpawner
+      prototypes:
+        - MobXeno
+        - MobXenoPraetorianNPC
+        - MobXenoDroneNPC
+        - MobXenoRunnerNPC
+        - MobXenoSpitterNPC
+      rarePrototypes:
+        - MobXenoRavagerNPC
+        - MobXenoRounyNPC
+      rareChance: 0.10
+
+- type: entity
+  name: NPC Xeno Spawner
+  suffix: Hard
+  id: XenoAISpawnerHard
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Mobs/Aliens/Xenos/ravager.rsi
+          state: crit
+        - state: ai
+    - type: RandomSpawner
+      prototypes:
+        - MobXenoPraetorianNPC
+        - MobXenoRunnerNPC
+        - MobXenoSpitterNPC
+        - MobXenoRavagerNPC
+      rarePrototypes:
+        - MobXenoQueen
+        - MobXenoRounyNPC
+        - MobXenoDroneNPC
+        - MobXeno
+      rareChance: 0.10
+
+- type: entity
+  name: NPC Xeno Spawner
+  suffix: Queen
+  id: XenoAISpawnerQueen
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Mobs/Aliens/Xenos/queen.rsi
+          state: crit
+        - state: ai
+    - type: RandomSpawner
+      prototypes:
+        - MobXenoQueen
