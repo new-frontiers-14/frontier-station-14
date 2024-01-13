@@ -335,6 +335,19 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
+    private double GetStaticVendingPriceMod(EntityPrototype prototype)
+    {
+        var vendingPriceMod = 0.0;
+
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
+        {
+            var staticPrice = (StaticPriceComponent) staticProto.Component;
+            vendingPriceMod += staticPrice.VendingPriceMod;
+        }
+
+        return vendingPriceMod;
+    }
+
     /// <summary>
     /// Appraises a grid, this is mainly meant to be used by yarrs.
     /// </summary>
