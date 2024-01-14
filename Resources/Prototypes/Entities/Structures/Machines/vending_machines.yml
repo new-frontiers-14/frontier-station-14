@@ -124,9 +124,12 @@
           !type:PhysShapeAabb
           bounds: "-0.3,-0.16,0.3,0.40"
         mask:
-        - MachineMask
-        layer:
-        - MachineLayer
+        - Impassable # Frontier
+#        - MidImpassable # Frontier - Do not add this, it will block shutters from closing on it.
+        - LowImpassable # Frontier
+#        - MachineMask # Frontier
+#        layer: # Frontier
+#        - MachineLayer # Frontier
         density: 190
   - type: Advertise
     pack: CondimentVendAds

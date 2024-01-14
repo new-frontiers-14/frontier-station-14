@@ -47,9 +47,13 @@ chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){$senderName}:[/bold] {$
 chat-manager-dead-channel-name = DEAD
 chat-manager-admin-channel-name = ADMIN
 
+# DeltaV telepathic, move to its own file later.
 chat-manager-send-telepathic-chat-wrap-message = {$telepathicChannelName}: {$message}
 chat-manager-send-telepathic-chat-wrap-message-admin = {$source} (Ψ): {$message}
 chat-manager-telepathic-channel-name = TELEPATHIC
+
+chat-manager-rate-limited = You are sending messages too quickly!
+chat-manager-rate-limit-admin-announcement = Player { $player } breached chat rate limits. Watch them if this is a regular occurence.
 
 ## Speech verbs for chat
 

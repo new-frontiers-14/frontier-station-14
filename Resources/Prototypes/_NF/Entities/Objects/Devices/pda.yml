@@ -2,25 +2,38 @@
   parent: BasePDA
   id: MercenaryPDA
   name: mercenary PDA
-  description: Why isn't it green?
+  description: This PDA smells of war.
   components:
   - type: Pda
     id: MercenaryIDCard
-    state: pda
+    state: pda-mercenary
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#A32D26"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda
-    
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-mercenary
+
 - type: entity
   parent: BasePDA
-  id: STCPDA
+  id: StcPDA
   name: station traffic controller PDA
   description: Declare emergencies in style!
   components:
   - type: Pda
-    id: STCIDCard
+    id: StcIDCard
     state: pda
   - type: PdaBorderColor
     borderColor: "#717059"

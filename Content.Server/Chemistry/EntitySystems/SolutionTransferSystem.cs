@@ -20,6 +20,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         /// <summary>
         ///     Default transfer amounts for the set-transfer verb.
@@ -139,6 +140,9 @@ namespace Content.Server.Chemistry.EntitySystems
                     var message = Loc.GetString("comp-solution-transfer-transfer-solution", ("amount", transferred), ("target", target));
                     _popupSystem.PopupEntity(message, uid, args.User);
 
+                    if (component.PlayTransferSound) // Frontier
+                        EmitSoundOnTransfer(uid, component); // Frontier
+
                     args.Handled = true;
                 }
             }
@@ -194,6 +198,14 @@ namespace Content.Server.Chemistry.EntitySystems
                 $"{EntityManager.ToPrettyString(user):player} transferred {string.Join(", ", solution.Contents)} to {EntityManager.ToPrettyString(targetEntity):entity}, which now contains {string.Join(", ", target.Contents)}");
 
             return actualAmount;
+        }
+
+        /// <summary>
+        /// Frontier - Play sound on solution transfer.
+        /// </summary>
+        private void EmitSoundOnTransfer(EntityUid uid, SolutionTransferComponent component)
+        {
+            _audio.PlayPvs(_audio.GetSound(component.TransferSound), uid);
         }
     }
 

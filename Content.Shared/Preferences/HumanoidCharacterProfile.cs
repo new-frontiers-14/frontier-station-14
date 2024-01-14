@@ -27,6 +27,8 @@ namespace Content.Shared.Preferences
         public const int MaxNameLength = 32;
         public const int MaxDescLength = 512;
 
+        public const int DefaultBalance = 25000;
+
         private readonly Dictionary<string, JobPriority> _jobPriorities;
         private readonly List<string> _antagPreferences;
         private readonly List<string> _traitPreferences;
@@ -112,7 +114,7 @@ namespace Content.Shared.Preferences
                 18,
                 Sex.Male,
                 Gender.Male,
-                25000,
+                DefaultBalance,
                 new HumanoidCharacterAppearance(),
                 ClothingPreference.Jumpsuit,
                 BackpackPreference.Backpack,
@@ -140,7 +142,7 @@ namespace Content.Shared.Preferences
                 18,
                 Sex.Male,
                 Gender.Male,
-                25000,
+                DefaultBalance,
                 HumanoidCharacterAppearance.DefaultWithSpecies(species),
                 ClothingPreference.Jumpsuit,
                 BackpackPreference.Backpack,
@@ -154,7 +156,7 @@ namespace Content.Shared.Preferences
         }
 
         // TODO: This should eventually not be a visual change only.
-        public static HumanoidCharacterProfile Random(HashSet<string>? ignoredSpecies = null)
+        public static HumanoidCharacterProfile Random(HashSet<string>? ignoredSpecies = null, int balance = DefaultBalance)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
@@ -165,17 +167,16 @@ namespace Content.Shared.Preferences
                 .ToArray()
             ).ID;
 
-            return RandomWithSpecies(species);
+            return RandomWithSpecies(species: species, balance: balance);
         }
 
-        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies)
+        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies, int balance = DefaultBalance)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
             var sex = Sex.Unsexed;
             var age = 18;
-            var balance = 25000;
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
