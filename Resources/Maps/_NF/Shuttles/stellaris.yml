@@ -279,7 +279,8 @@ entities:
           -2,2:
             0: 8
           -1,1:
-            0: 65535
+            0: 65533
+            1: 2
           -1,2:
             0: 61439
           -1,3:
@@ -575,6 +576,14 @@ entities:
       pos: 0.5,9.5
       parent: 1
       type: Transform
+- proto: AirlockEngineering
+  entities:
+  - uid: 446
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -3.5,-4.5
+      parent: 1
+      type: Transform
 - proto: AirlockFreezer
   entities:
   - uid: 191
@@ -627,14 +636,6 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: 8.5,-1.5
-      parent: 1
-      type: Transform
-- proto: AirlockMaint
-  entities:
-  - uid: 190
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -3.5,-4.5
       parent: 1
       type: Transform
 - proto: AirSensor
@@ -1226,31 +1227,6 @@ entities:
     - pos: 2.5,10.5
       parent: 1
       type: Transform
-  - uid: 446
-    components:
-    - pos: 3.5,10.5
-      parent: 1
-      type: Transform
-  - uid: 447
-    components:
-    - pos: 4.5,10.5
-      parent: 1
-      type: Transform
-  - uid: 448
-    components:
-    - pos: 4.5,9.5
-      parent: 1
-      type: Transform
-  - uid: 449
-    components:
-    - pos: -3.5,10.5
-      parent: 1
-      type: Transform
-  - uid: 450
-    components:
-    - pos: -3.5,9.5
-      parent: 1
-      type: Transform
 - proto: CableHV
   entities:
   - uid: 256
@@ -1807,17 +1783,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 398
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
 - proto: CrateServiceTheatre
   entities:
   - uid: 435
@@ -1825,25 +1790,24 @@ entities:
     - pos: -2.5,4.5
       parent: 1
       type: Transform
-- proto: CrayonBox
-  entities:
-  - uid: 398
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 404
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: DawInstrumentMachineCircuitboard
-  entities:
-  - uid: 422
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -0.41135812,4.4656
-      parent: 1
-      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: DrinkCoffee
   entities:
   - uid: 387
@@ -3203,6 +3167,20 @@ entities:
     - pos: 1.8106693,4.6069775
       parent: 1
       type: Transform
+- proto: HospitalCurtainsOpen
+  entities:
+  - uid: 398
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 5.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 422
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,2.5
+      parent: 1
+      type: Transform
 - proto: KitchenDeepFryer
   entities:
   - uid: 200
@@ -3259,14 +3237,30 @@ entities:
   entities:
   - uid: 232
     components:
-    - pos: -3.5,-8.5
+    - anchored: True
+      pos: -3.5,-8.5
       parent: 1
       type: Transform
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
   - uid: 452
     components:
-    - pos: -3.5,-7.5
+    - anchored: True
+      pos: -3.5,-7.5
       parent: 1
       type: Transform
+    - storage:
+        Plasma: 1500
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
 - proto: PottedPlantRandom
   entities:
   - uid: 626
@@ -3533,13 +3527,6 @@ entities:
       pos: 0.010416657,4.4778275
       parent: 1
       type: Transform
-- proto: SheetPlasma
-  entities:
-  - uid: 406
-    components:
-    - pos: -4.6123443,-7.540342
-      parent: 1
-      type: Transform
 - proto: ShuttersNormalOpen
   entities:
   - uid: 613
@@ -3751,6 +3738,14 @@ entities:
         619:
         - Pressed: Toggle
       type: DeviceLinkSource
+- proto: SignDirectionalWash
+  entities:
+  - uid: 190
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 4.5,-4.5
+      parent: 1
+      type: Transform
 - proto: Sink
   entities:
   - uid: 408
@@ -4148,6 +4143,14 @@ entities:
   - uid: 209
     components:
     - pos: 2.5,-8.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineCondiments
+  entities:
+  - uid: 406
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -1.5,-5.5
       parent: 1
       type: Transform
 - proto: VendingMachineTheater
@@ -4726,13 +4729,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 6.5,-1.5
-      parent: 1
-      type: Transform
-- proto: Wrench
-  entities:
-  - uid: 451
-    components:
-    - pos: -4.4092193,-8.399717
       parent: 1
       type: Transform
 ...
