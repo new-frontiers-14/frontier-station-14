@@ -187,10 +187,11 @@ public sealed class PseudoItemSystem : EntitySystem
         args.Cancel();
     }
 
-    // Frontier
+    // Frontier - show a popup when a pseudo-item falls asleep inside a bag.
     private void OnTrySleeping(EntityUid uid, PseudoItemComponent component, TryingToSleepEvent args)
     {
-        if (!HasComp<SleepingComponent>(uid))
+        var parent = Transform(uid).ParentUid;
+        if (!HasComp<SleepingComponent>(uid) && parent is { Valid: true } && HasComp<AllowsSleepInsideComponent>(parent))
             _popup.PopupEntity(Loc.GetString("popup-sleep-in-bag", ("entity", uid)), uid);
     }
 }
