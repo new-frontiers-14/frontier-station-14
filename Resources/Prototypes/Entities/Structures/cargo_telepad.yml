@@ -47,8 +47,10 @@
     board: CargoTelepadMachineCircuitboard
   - type: Appearance
   - type: CollideOnAnchor
-  - type: Destructible
+  - type: Destructible # Frontier
     thresholds:
     - trigger:
         !type:DamageTrigger
         damage: 0
+  - type: Anchorable # Frontier
+    delay: 999999
