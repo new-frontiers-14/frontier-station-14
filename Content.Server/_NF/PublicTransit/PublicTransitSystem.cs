@@ -59,6 +59,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
     public void OnRoundStart(RoundStartedEvent args)
     {
+        Counter = 0;
         if (Enabled)
             SetupPublicTransit();
     }
@@ -136,7 +137,8 @@ public sealed class PublicTransitSystem : EntitySystem
 
                 _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-arrival",
                         ("destination", destinationString), ("waittime", _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime))),
-                    InGameICChatType.Speak, true);
+                    InGameICChatType.Speak, ChatTransmitRange.HideChat, hideLog: true, checkRadioPrefix: false,
+                    ignoreActionBlocker: true);
             }
         }
     }
@@ -195,7 +197,8 @@ public sealed class PublicTransitSystem : EntitySystem
 
                     _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-departure",
                         ("destination", destinationString), ("flytime", FlyTime)),
-                        InGameICChatType.Speak, true);
+                        InGameICChatType.Speak, ChatTransmitRange.HideChat, hideLog: true, checkRadioPrefix: false,
+                        ignoreActionBlocker: true);
                 }
             }
             _shuttles.FTLTravel(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, dock: true);
