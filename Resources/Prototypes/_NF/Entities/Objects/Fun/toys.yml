@@ -23,3 +23,68 @@
       path: /Audio/_NF/Items/Toys/wehhelp.ogg
 #  - type: MarketPrice # TODO fix price
 #    price: 1000 # TODO fix price
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVulp
+  name: vulpkanin plushie
+  description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_vulp
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+
+- type: entity
+  parent: BaseItem
+  id: PlushieSlips
+  name: janitor plushie
+  description: The silent cleaner, the one that you dont hear say "Weh"!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_slips
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: PlushieVulp
+  id: PlushieTrystan
+  name: office vulp plushie
+  description: The ones who yeeps!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_trystan
+
+- type: entity
+  parent: ToySword
+  id: DBToySword
+  name: toy double-esword
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword_double.rsi
+    layers:
+      - state: e_sword_double
+      - state: e_sword_double_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    size: 5
+    sprite: Objects/Weapons/Melee/e_sword_double.rsi

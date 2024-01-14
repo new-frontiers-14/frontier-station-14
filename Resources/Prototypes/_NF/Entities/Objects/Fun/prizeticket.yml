@@ -1,0 +1,93 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: PrizeTicketBase
+  description: A prize ticket, ready to be redeemed at a prize counter.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/prizeticket.rsi
+  - type: Item
+    sprite: _NF/Objects/Fun/prizeticket.rsi
+    size: 1
+  - type: StaticPrice
+    price: 0
+  - type: Tag
+    tags:
+    - Sheet
+    - PrizeTicket
+
+- type: entity
+  parent: PrizeTicketBase
+  id: PrizeTicket
+  name: prize ticket
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      PrizeTicket: 1
+  - type: Stack
+    count: 100
+    stackType: PrizeTicket
+    baseLayer: base
+    layerStates:
+    - ticket
+    - ticket_2
+    - ticket_3
+    - ticket_4
+  - type: Sprite
+    state: ticket_4
+    layers:
+    - state: ticket_4
+      map: ["base"]
+  - type: Item
+    heldPrefix: prize ticket
+  - type: Appearance
+
+- type: entity
+  parent: PrizeTicket
+  id: PrizeTicket10
+  name: prize ticket
+  suffix: 10
+  components:
+  - type: Sprite
+    state: ticket
+  - type: Stack
+    stackType: PrizeTicket
+    count: 10
+
+- type: entity
+  parent: PrizeTicket
+  id: PrizeTicket30
+  name: prize ticket
+  suffix: 30
+  components:
+  - type: Sprite
+    state: ticket
+  - type: Stack
+    stackType: PrizeTicket
+    count: 30
+
+- type: entity
+  parent: PrizeTicket
+  id: PrizeTicket60
+  name: prize ticket
+  suffix: 60
+  components:
+  - type: Sprite
+    state: ticket
+  - type: Stack
+    stackType: PrizeTicket
+    count: 60
+
+- type: entity
+  parent: PrizeTicket
+  id: PrizeTicket1
+  name: prize ticket
+  suffix: Single
+  components:
+  - type: Sprite
+    state: ticket
+  - type: Stack
+    stackType: PrizeTicket
+    count: 1
