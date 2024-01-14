@@ -48,7 +48,7 @@ anomaly-sync-connect-verb-text = Attach anomaly
 anomaly-sync-connect-verb-message = Attach a nearby anomaly to {THE($machine)}.
 
 anomaly-generator-ui-title = Anomaly Generator
-anomaly-generator-fuel-display = Fuel:
+anomaly-generator-fuel-display = Bananium:
 anomaly-generator-cooldown = Cooldown: [color=gray]{$time}[/color]
 anomaly-generator-no-cooldown = Cooldown: [color=gray]Complete[/color]
 anomaly-generator-yes-fire = Status: [color=forestgreen]Ready[/color]
