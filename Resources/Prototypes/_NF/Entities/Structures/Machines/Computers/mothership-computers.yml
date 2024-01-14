@@ -28,16 +28,16 @@
   parent: BaseMothershipComputer
   components:
   - type: Sprite
-    sprite: Structures/Machines/computers.rsi
+    sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer
+      state: computer_medical
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: medcomp
+      state: shipyard_medical
     - map: ["computerLayerKeys"]
-      state: med_key
+      state: telesci_key
   - type: ShipyardListing
     shuttles:
     - Pulse
