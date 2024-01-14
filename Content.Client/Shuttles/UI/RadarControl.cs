@@ -46,6 +46,11 @@ public sealed class RadarControl : MapGridControl
     public bool ShowDocks { get; set; } = true;
 
     /// <summary>
+    ///   If present, called for every IFF. Must determine if it should or should not be shown.
+    /// </summary>
+    public Func<EntityUid, MapGridComponent, IFFComponent?, bool>? IFFFilter { get; set; } = null;
+
+    /// <summary>
     /// Currently hovered docked to show on the map.
     /// </summary>
     public EntityUid? HighlightedDock;
@@ -286,19 +291,11 @@ public sealed class RadarControl : MapGridControl
                     uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
                 }
 
-                if (!ShowIFFShuttles)
-                {
-                    if (iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0)
-                    {
-                        label.Visible = false;
-                    }
-                    else
-                        label.Visible = true;
-                }
-                else
-                {
-                    label.Visible = true;
-                }
+                label.Visible = ShowIFFShuttles
+                                || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+
+                if (IFFFilter != null)
+                    label.Visible &= IFFFilter(gUid, grid.Comp, iff);
 
                 label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
                 LayoutContainer.SetPosition(label, uiPosition);

@@ -45,7 +45,7 @@
   suffix: Mercenary, Locked
   components:
   - type: AccessReader
-    access: [["Mercenary"]]
+    access: [["Captain"], ["Mercenary"]]
   - type: Wires
     layoutId: AirlockMercenary
 
@@ -55,4 +55,12 @@
   suffix: Mercenary, Locked
   components:
   - type: AccessReader
-    access: [["Mercenary"]]
+    access: [["Captain"], ["Mercenary"]]
+    
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransit
+  suffix: External, PubTrans, Glass, Docking
+  components:
+    - type: PriorityDock
+      tag: DockTransit

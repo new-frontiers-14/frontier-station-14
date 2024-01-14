@@ -21,3 +21,28 @@
     ammoSlots: [ null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
+
+- type: entity
+  parent: WeaponRevolverArgenti
+  id: WeaponRevolverArgentiNonlethal
+  suffix: Non-lethal
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRifle
+    proto: CartridgeRifleRubber
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+
+- type: entity
+  parent: WeaponRevolverDeckard
+  id: WeaponRevolverDeckardNonlethal
+  suffix: Non-lethal
+  components:
+  - type: RevolverAmmoProvider
+    capacity: 5
+    proto: CartridgeMagnumRubber
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]

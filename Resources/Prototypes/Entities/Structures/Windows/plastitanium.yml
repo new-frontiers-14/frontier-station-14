@@ -1,13 +1,14 @@
 - type: entity
   id: PlastitaniumWindow
   name: plastitanium window
-  parent: Window
+  parent: PlastitaniumWindowIndestructible # Frontier - Change to ReinforcedWindow
+  suffix: "" # Frontier
   components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/plastitanium_window.rsi
-  - type: Icon
-    sprite: Structures/Windows/plastitanium_window.rsi
+  # - type: Sprite
+    # drawdepth: WallTops
+    # sprite: Structures/Windows/plastitanium_window.rsi
+  # - type: Icon
+    # sprite: Structures/Windows/plastitanium_window.rsi
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: RGlass
@@ -33,14 +34,25 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: IconSmooth
-    base: plwindow
-  - type: Appearance
+  # - type: IconSmooth
+    # base: plwindow
+  # - type: Appearance
   - type: DamageVisuals
     thresholds: [4, 8, 12]
     damageDivisor: 36
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: StaticPrice
-    price: 65
+  # - type: StaticPrice
+    # price: 65
+  - type: Construction # Frontier
+    graph: Plastitanium
+    node: plastitaniumWindow
+  - type: Repairable
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Effects/glass_hit.ogg"

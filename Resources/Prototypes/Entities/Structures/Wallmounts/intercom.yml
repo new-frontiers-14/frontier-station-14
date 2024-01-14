@@ -130,16 +130,18 @@
   - type: Intercom
     supportedChannels:
     - Common
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomCommand
   parent: Intercom
-  suffix: Command
+  suffix: Command, DO NOT MAP # Frontier - Added DO NOT MAP
   components:
   - type: Intercom
     supportedChannels:
     - Common
     - Command
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomEngineering
@@ -150,6 +152,7 @@
     supportedChannels:
     - Common
     - Engineering
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomMedical
@@ -160,6 +163,7 @@
     supportedChannels:
     - Common
     - Medical
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomScience
@@ -170,16 +174,18 @@
     supportedChannels:
     - Common
     - Science
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomSecurity
   parent: Intercom
-  suffix: Security
+  suffix: Security # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
   components:
   - type: Intercom
     supportedChannels:
     - Common
     - Security
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomService
@@ -190,6 +196,7 @@
     supportedChannels:
     - Common
     - Service
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomSupply
@@ -200,11 +207,12 @@
     supportedChannels:
     - Common
     - Supply
+    - Traffic # Frontier - Add Traffic channel
 
 - type: entity
   id: IntercomAll
   parent: Intercom
-  suffix: All
+  suffix: All, DO NOT MAP # Frontier - Added DO NOT MAP
   components:
   - type: Intercom
     supportedChannels:
@@ -216,3 +224,4 @@
     - Security
     - Service
     - Supply
+    - Traffic # Frontier - Add Traffic channel
