@@ -51,3 +51,31 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+
+# Pilot
+- type: entity
+  id: LockerPilot
+  parent: LockerBaseSecure
+  name: pilot's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: pilot
+    stateDoorOpen: pilot_open
+    stateDoorClosed: pilot_door
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.StorageVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AccessReader
+    access: [["Captain"], ["Pilot"]]
