@@ -84,6 +84,37 @@
             acts: ["Destruction"]
 
 - type: entity
+  id: SmallThruster
+  parent: Thruster
+  suffix: Small
+  components:
+  - type: Thruster
+    baseThrust: 33
+    thrust: 33
+    damage:
+      types:
+        Heat: 40
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: Structures/Shuttles/thruster.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: StaticPrice
+    price: 100
+
+- type: entity
   id: GyroscopeSecurity
   parent: Gyroscope
   suffix: Security
@@ -201,3 +232,5 @@
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
+  - type: StaticPrice
+    price: 250
