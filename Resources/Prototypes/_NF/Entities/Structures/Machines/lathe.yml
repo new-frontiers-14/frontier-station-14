@@ -4,6 +4,8 @@
   name: prize counter
   description: Claim your prize and win some toys and cute plushies!
   components:
+  - type: Anchorable
+    delay: 999999
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -35,7 +37,6 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Lathe
-    producingSound: /Audio/Machines/uniformprinter.ogg
     idleState: icon
     runningState: icon
     staticRecipes:
