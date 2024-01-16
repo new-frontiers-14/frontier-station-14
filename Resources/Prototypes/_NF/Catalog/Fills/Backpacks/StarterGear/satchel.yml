@@ -39,3 +39,25 @@
     contents:
       - id: BoxSurvival
       - id: RubberStampLawyer
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelStcFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      - id: RubberStampStc
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelPilot
+  id: ClothingBackpackSatchelPilotFilled
+  components:
+    - type: StorageFill
+      contents:
+      - id: BoxSurvival
+      - id: Lighter
+      - id: CigPackGreen
+      - id: ExtendedEmergencyOxygenTank

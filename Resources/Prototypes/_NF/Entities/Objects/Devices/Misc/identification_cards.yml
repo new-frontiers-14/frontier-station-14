@@ -17,14 +17,36 @@
 
 - type: entity
   parent: IDCardStandard
-  id: STCIDCard
+  id: PilotIDCard
+  name: pilot ID card
+  components:
+  - type: PresetIdCard
+    job: Pilot
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idpilot
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: IDCardStandard
+  id: StcIDCard
   name: station traffic controller ID card
   components:
-  - type: Sprite
-    layers:
-    - state: silver
-    - state: idheadofpersonnel
-  - type: Item
-    heldPrefix: silver
   - type: PresetIdCard
     job: StationTrafficController
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idstationtrafficcontroller
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: silver

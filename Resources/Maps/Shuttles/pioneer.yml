@@ -79,6 +79,7 @@ entities:
           decals:
             17: 0,3
             29: -1,0
+            35: -1,1
         - node:
             color: '#FFFFFFFF'
             id: BoxGreyscale
@@ -165,21 +166,37 @@ entities:
           0,-1:
             0: 65535
           0,1:
-            0: 15
+            0: 1
+            1: 14
           -1,1:
             0: 12
           0,-2:
-            0: 12288
+            1: 12288
           -1,-1:
             0: 52428
           -1,-2:
-            0: 32768
+            1: 32768
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -205,15 +222,18 @@ entities:
       parent: 1
       type: Transform
     - ShutdownSubscribers:
-      - 35
-      - 37
-      - 105
+      - 58
+      - 130
+      - 133
       type: DeviceNetwork
     - devices:
-      - 35
-      - 37
-      - 105
+      - 58
+      - 130
+      - 133
       type: DeviceList
+    - enabled: False
+      type: AccessReader
+    - type: Emagged
 - proto: AirCanister
   entities:
   - uid: 27
@@ -237,10 +257,10 @@ entities:
       type: Transform
 - proto: AirSensor
   entities:
-  - uid: 105
+  - uid: 133
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
+    - rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
       parent: 1
       type: Transform
     - ShutdownSubscribers:
@@ -289,11 +309,43 @@ entities:
       pos: 3.5,0.5
       parent: 1
       type: Transform
-- proto: BoxFolderBase
+- proto: AtmosFixBlockerMarker
   entities:
-  - uid: 102
+  - uid: 37
     components:
-    - pos: -0.6998043,3.1389787
+    - pos: 1.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 63
+    components:
+    - pos: -0.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 128
+    components:
+    - pos: 0.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 131
+    components:
+    - pos: 2.5,4.5
+      parent: 1
+      type: Transform
+  - uid: 132
+    components:
+    - pos: 1.5,4.5
+      parent: 1
+      type: Transform
+  - uid: 136
+    components:
+    - pos: 3.5,4.5
+      parent: 1
+      type: Transform
+- proto: BoxFolderRed
+  entities:
+  - uid: 56
+    components:
+    - pos: -0.69521284,3.076761
       parent: 1
       type: Transform
 - proto: BoxMedicalTrackingImplants
@@ -546,6 +598,16 @@ entities:
       pos: -0.5,0.5
       parent: 1
       type: Transform
+- proto: ExteriorLightTube
+  entities:
+  - uid: 135
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 129
+      type: Transform
+    - canCollide: False
+      type: Physics
 - proto: FaxMachineShip
   entities:
   - uid: 45
@@ -583,10 +645,10 @@ entities:
       type: AtmosPipeColor
 - proto: GasPipeBend
   entities:
-  - uid: 128
+  - uid: 35
     components:
     - rot: -1.5707963267948966 rad
-      pos: 1.5,0.5
+      pos: 1.5,1.5
       parent: 1
       type: Transform
     - color: '#990000FF'
@@ -600,9 +662,9 @@ entities:
       type: Transform
     - color: '#990000FF'
       type: AtmosPipeColor
-  - uid: 63
+  - uid: 59
     components:
-    - pos: 1.5,1.5
+    - pos: 1.5,2.5
       parent: 1
       type: Transform
     - color: '#990000FF'
@@ -617,34 +679,12 @@ entities:
       type: Transform
     - color: '#03FCD3FF'
       type: AtmosPipeColor
-- proto: GasPressurePump
-  entities:
-  - uid: 56
-    components:
-    - name: waste loop pump
-      type: MetaData
-    - rot: 3.141592653589793 rad
-      pos: 1.5,2.5
-      parent: 1
-      type: Transform
-    - color: '#990000FF'
-      type: AtmosPipeColor
-  - uid: 59
-    components:
-    - name: distribution loop pump
-      type: MetaData
-    - rot: 1.5707963267948966 rad
-      pos: 0.5,-0.5
-      parent: 1
-      type: Transform
-    - color: '#03FCD3FF'
-      type: AtmosPipeColor
 - proto: GasVentPump
   entities:
-  - uid: 35
+  - uid: 130
     components:
     - rot: -1.5707963267948966 rad
-      pos: 1.5,-0.5
+      pos: 0.5,-0.5
       parent: 1
       type: Transform
     - ShutdownSubscribers:
@@ -654,10 +694,10 @@ entities:
       type: AtmosPipeColor
 - proto: GasVentScrubber
   entities:
-  - uid: 37
+  - uid: 58
     components:
     - rot: 1.5707963267948966 rad
-      pos: 0.5,0.5
+      pos: 0.5,1.5
       parent: 1
       type: Transform
     - ShutdownSubscribers:
@@ -727,27 +767,33 @@ entities:
     - pos: 2.5,-2.5
       parent: 1
       type: Transform
-- proto: LockerSalvageSpecialistFilledHardsuit
+- proto: LockerSalvageSpecialistFilled
   entities:
-  - uid: 60
-    components:
-    - pos: -0.5,0.5
-      parent: 1
-      type: Transform
-- proto: OreProcessor
-  entities:
-  - uid: 58
+  - uid: 102
     components:
     - pos: -0.5,1.5
       parent: 1
       type: Transform
+- proto: OreBox
+  entities:
+  - uid: 124
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 1.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 134
+    components:
+    - pos: 2.5,1.5
+      parent: 1
+      type: Transform
 - proto: Paper
   entities:
-  - uid: 129
+  - uid: 60
     components:
     - name: preflight checklist
       type: MetaData
-    - pos: 0.23835814,-2.0712306
+    - pos: 0.148952,-2.1063693
       parent: 1
       type: Transform
     - stampState: paper_stamp-ce
@@ -759,15 +805,26 @@ entities:
         stampedColor: '#00BE00FF'
         stampedName: stamp-component-stamped-name-approved
       content: >-
-        [head=1]==========================[/head]
+        [color=#1b67a5]█░░█░███[/color][color=#5b97bc]░███░█░█░█░██░░█░█░██░░██░░██░[/color]
 
-        [head=1]Pioneer-class salvage ship[/head]
+        [color=#1b67a5]██░█░░█░[/color][color=#5b97bc]██░░░█░█░█░█░█░█░█░█░█░█░█░█░█[/color]
+
+        [color=#1b67a5]█░██░░█░[/color][color=#5b97bc]░░██░███░█░██░░░█░░███░██░░█░█[/color]
+
+        [color=#1b67a5]█░░█░░█░[/color][color=#5b97bc]███░░█░█░█░█░░░░█░░█░█░█░█░██░[/color]
+
+
+        [head=1]=========================[/head]
+
+        [head=1]    Pioneer-class salvage ship[/head]
 
         [head=1] [/head]
 
-        [head=1]     PREFLIGHT CHECKLIST[/head]
+        [head=1]       PREFLIGHT CHECKLIST[/head]
 
-        [head=1]==========================[/head]
+        [head=1] [/head]
+
+        [head=1]=========================[/head]
 
 
         [head=2]1. Power supply.[/head]
@@ -780,17 +837,17 @@ entities:
 
         [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
 
-        [head=3]1.2. P.A.C.K.M.A.N. generator unit.[/head]
+        [head=3]1.2. P.A.C.M.A.N. generator unit.[/head]
 
-        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit is anchored to the floor.
+        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
 
-        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight. Note that [bold]raw plasma ore[/bold] can be used as fuel[bold]**[/bold].
 
-        [bullet/][ ] Check if the P.A.C.K.M.A.N. generator unit is set to HV output.
+        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is set to HV output.
 
-        [bullet/][ ] Set Target Power for 10-11[bold]**[/bold] [bold]k[/bold]W.
+        [bullet/][ ] Set Target Power for 10-11[bold]***[/bold] [bold]k[/bold]W.
 
-        [bullet/][ ] Start the P.A.C.K.M.A.N. generator unit.
+        [bullet/][ ] Start the P.A.C.M.A.N. generator unit.
 
 
         [head=2]2. Atmospherics.[/head]
@@ -798,14 +855,6 @@ entities:
         [head=3]2.1. Distribution Loop.[/head]
 
         [bullet/][ ] Check if the air canister is anchored to connector port.
-
-        [bullet/][ ] Check if the distribution pump is set to normal pressure.
-
-        [bullet/][ ] Enable distribution pump.
-
-        [head=3]2.2. Waste Loop.[/head]
-
-        [bullet/][ ] Enable waste loop pump.
 
 
         [head=2]3. Other checks.[/head]
@@ -819,12 +868,13 @@ entities:
 
         __________________________________________________________________
 
-        [bold]*[/bold] - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the P.A.C.K.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.K.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+        [bold]*[/bold] - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
 
-        [bold]**[/bold] - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.K.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
+        [bold]**[/bold] - While the ship is not equipped with Ore Processing unit the power generation is sustainable due to the the ability of P.A.C.M.A.N. generator units accept [bold]raw plasma ore[/bold] as a fuel. Do note however that 1 unit of raw plasma ore equals to 5 solid plasma sheets, so in order to fully fill generator's fuel tank you only need 6 units of raw plasma ore.
 
-        [bold]Note:[/bold] Without a working generator, fully charged battery units (SMES and substation) in unmodified Pioneer-class salvage ships can provide power for approximately 10 minutes before fully depleting their charge.
+        [bold]***[/bold] - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
       type: Paper
+    - type: ActiveUserInterface
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 126
@@ -847,14 +897,24 @@ entities:
     - bodyType: Static
       type: Physics
     - type: InsertingMaterialStorage
-- proto: PoweredlightLED
+- proto: PoweredlightEmpty
   entities:
-  - uid: 106
+  - uid: 129
     components:
     - rot: 3.141592653589793 rad
       pos: 3.5,4.5
       parent: 1
       type: Transform
+    - containers:
+        light_bulb: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 135
+      type: ContainerContainer
+    - powerLoad: 100
+      type: ApcPowerReceiver
+- proto: PoweredlightLED
+  entities:
   - uid: 107
     components:
     - rot: -1.5707963267948966 rad
@@ -943,7 +1003,7 @@ entities:
       parent: 1
       type: Transform
     - links:
-      - 124
+      - 113
       type: DeviceLinkSink
 - proto: SignalButtonDirectional
   entities:
@@ -959,6 +1019,18 @@ entities:
         97:
         - Pressed: Toggle
       type: DeviceLinkSource
+  - uid: 113
+    components:
+    - name: starboard shutters switch
+      type: MetaData
+    - rot: -1.5707963267948966 rad
+      pos: 3.5003784,2.2201123
+      parent: 1
+      type: Transform
+    - linkedPorts:
+        120:
+        - Pressed: Toggle
+      type: DeviceLinkSource
   - uid: 123
     components:
     - name: bow shutters switch
@@ -971,18 +1043,6 @@ entities:
         5:
         - Pressed: Toggle
         29:
-        - Pressed: Toggle
-      type: DeviceLinkSource
-  - uid: 124
-    components:
-    - name: starboard shutters switch
-      type: MetaData
-    - rot: -1.5707963267948966 rad
-      pos: 3.5,1.5
-      parent: 1
-      type: Transform
-    - linkedPorts:
-        120:
         - Pressed: Toggle
       type: DeviceLinkSource
 - proto: SignElectricalMed
@@ -1029,6 +1089,13 @@ entities:
   - uid: 86
     components:
     - pos: -0.5,-1.5
+      parent: 1
+      type: Transform
+- proto: SuitStorageSalv
+  entities:
+  - uid: 106
+    components:
+    - pos: -0.5,0.5
       parent: 1
       type: Transform
 - proto: Table
@@ -1182,9 +1249,9 @@ entities:
       type: Transform
 - proto: WeaponGrapplingGun
   entities:
-  - uid: 113
+  - uid: 105
     components:
-    - pos: -0.4379738,1.6295469
+    - pos: -0.24837583,3.1588619
       parent: 1
       type: Transform
 - proto: WindowReinforcedDirectional
