@@ -1,0 +1,36 @@
+- type: entity
+  name: plasteel broadsword
+  parent: BaseItem
+  id: PlasteelBroadsword
+  description: An ancient design manufactured with modern materials and machines for a very specific target demographic.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/broadsword.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 15
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    enabled: true
+    reflectProb: .1
+    spread: 90
+  - type: Item
+    size: 15
+    sprite: _NF/Objects/Weapons/Melee/broadsword.rsi
+  - type: Tag
+    tags:
+    - Sword
+    - WeaponMelee
+  - type: DisarmMalus
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+    - belt
