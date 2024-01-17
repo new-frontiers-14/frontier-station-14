@@ -165,7 +165,7 @@ namespace Content.Server.Hands.Systems
             if (playerSession == null)
                 return false;
 
-            if (playerSession.AttachedEntity is not { Valid: true } player ||
+            if (playerSession.AttachedEntity is not {Valid: true} player ||
                 !Exists(player) ||
                 ContainerSystem.IsEntityInContainer(player) ||
                 !TryComp(player, out HandsComponent? hands) ||
