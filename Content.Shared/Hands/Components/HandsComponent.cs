@@ -57,6 +57,12 @@ public sealed partial class HandsComponent : Component
     ///     Used by the client.
     /// </summary>
     public readonly Dictionary<HandLocation, HashSet<string>> RevealedLayers = new();
+
+    // Frontier
+    /// <summary>
+    ///     The moment in time until which another item cannot be thrown.
+    /// </summary>
+    public TimeSpan NextThrowAfter;
 }
 
 [Serializable, NetSerializable]
