@@ -17,3 +17,19 @@
         Slash: 0.80
         Piercing: 0.90
         Heat: 0.90
+
+- type: entity
+  parent: ClothingMaskBase
+  id: FaceHuggerPlushie
+  name: facehugger plushie
+  description: The perfect plushie to scare your friends with aliens!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/facehuggerplushie.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/facehuggerplushie.rsi
+  - type: IdentityBlocker
+  - type: IngestionBlocker
+  - type: AddAccentClothing
+    accent: ReplacementAccent
+    replacement: mumble
