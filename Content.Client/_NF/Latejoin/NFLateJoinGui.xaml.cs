@@ -11,7 +11,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.NewFrontier.Latejoin;
+namespace Content.Client._NF.Latejoin;
 
 [GenerateTypedNameReferences]
 public sealed partial class NFLateJoinGui : FancyWindow
