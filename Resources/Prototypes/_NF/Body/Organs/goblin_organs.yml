@@ -82,7 +82,7 @@
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
-    metabolizerTypes: [ Human ]
+    metabolizerTypes: [ Animal ]
     groups:
     - id: Gas
       rateModifier: 100.0
@@ -112,7 +112,7 @@
     state: heart-on
 
 - type: entity
-  parent: OrganHumanStomach
+  parent: OrganAnimalStomach
   id: OrganGoblinStomach
   name: stomach
   suffix: Goblin
@@ -133,7 +133,7 @@
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
-    metabolizerTypes: [Human]
+    metabolizerTypes: [ Animal ]
     groups:
     - id: Food
     - id: Drink
@@ -149,7 +149,7 @@
     state: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
-    metabolizerTypes: [Human]
+    metabolizerTypes: [ Animal ]
     groups:
     - id: Alcohol
       rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
@@ -168,5 +168,5 @@
   # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Metabolizer
     maxReagents: 5
-    metabolizerTypes: [Human]
+    metabolizerTypes: [ Animal ]
     removeEmpty: true

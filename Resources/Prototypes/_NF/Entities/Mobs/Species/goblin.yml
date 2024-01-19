@@ -1,4 +1,5 @@
 - type: entity
+  save: false
   parent: BaseMobSpeciesOrganic
   name: Urist McGoblin
   id: MobGoblinBase
@@ -47,15 +48,16 @@
         - MobLayer
   - type: Body
     prototype: Goblin
+    requiredLegs: 2
   - type: Damageable
     damageModifierSet: Goblin
   - type: MeleeWeapon
     soundHit:
       collection: Punch
-    animation: WeaponArcFist
+    animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 5
+        Slash: 4
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1
@@ -81,9 +83,10 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-#    - Goblin
+    - Goblin
   - type: Tag
     tags:
+    - CanPilot
     - GoblinMobTag
     - DoorBumpOpener
 
