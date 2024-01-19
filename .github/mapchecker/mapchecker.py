@@ -120,6 +120,7 @@ if __name__ == "__main__":
     # Collect all prototypes and sort into the collectors.
     for proto_file in proto_paths:
         with open(proto_file, "r") as proto:
+            logger.debug(f"Reading prototype file '{proto_file}'.")
             file_data = yaml.load(proto, Loader=YamlLoaderIgnoringTags)
             if file_data is None:
                 continue
@@ -146,7 +147,6 @@ if __name__ == "__main__":
         for item in conditionally_illegal_prototypes[key]:
             logger.debug(f" - {item}")
 
-
     # ==================================================================================================================
     # PHASE 2: Check all maps in map_proto_paths for illegal prototypes.
 
@@ -164,6 +164,9 @@ if __name__ == "__main__":
             map_name = map_proto  # The map name that will be reported over output.
             map_file_location = None
             shipyard_group = None  # Shipyard group of this map, if it's a shuttle.
+            # Shipyard override of this map, in the case it's a custom shipyard shuttle but needs to be treated as a
+            # specific group.
+            shipyard_override = None
 
             for item in file_data:
                 if item["type"] == "gameMap":
@@ -174,6 +177,7 @@ if __name__ == "__main__":
                 if item["type"] == "vessel":
                     # This yaml entry is a vessel descriptor!
                     shipyard_group = item["group"] if "group" in item.keys() else None
+                    shipyard_override = item["mapchecker_group_override"] if "mapchecker_group_override" in item.keys() else None
 
             if map_file_location is None:
                 # Silently skip. If the map doesn't have a mapPath, it won't appear in game anyways.
@@ -184,6 +188,14 @@ if __name__ == "__main__":
             if map_name in whitelisted_maps:
                 logger.warning(f"Map '{map_name}' (from prototype '{map_proto}') was blanket-whitelisted. Skipping it.")
                 continue
+
+            if shipyard_override is not None:
+                # Log a warning, indicating the override and the normal group this shuttle belongs to, then set
+                # shipyard_group to the override.
+                logger.warning(f"Map '{map_name}' (from prototype '{map_proto}') is using mapchecker_group_override. "
+                               f"This map will be treated as a '{shipyard_override}' shuttle. (Normally: "
+                               f"'{shipyard_group}'))")
+                shipyard_group = shipyard_override
 
             logger.debug(f"Starting checks for '{map_name}' (Path: '{map_file_location}' | Shipyard: '{shipyard_group}')")
 
