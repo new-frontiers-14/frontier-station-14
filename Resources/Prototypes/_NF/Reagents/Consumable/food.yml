@@ -31,3 +31,43 @@
   - !type:PlantAdjustHealth
     amount: 0.5
   pricePerUnit: 10
+
+- type: reagent
+  id: ToxinGoblinSave
+  name: reagent-name-toxin
+  group: Toxins
+  desc: reagent-desc-toxin
+  flavor: bitter
+  color: "#cf3600"
+  physicalDesc: reagent-physical-desc-opaque
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  - !type:PlantAdjustHealth
+    amount: -5
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+        damage:
+          types:
+            Poison: 4
+# goblins heal a marginal amount of toxin and brute by eating rotten meat foods
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        damage:
+          types:
+            Poison: -1
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Goblin
+        damage:
+          groups:
+            Brute: -1

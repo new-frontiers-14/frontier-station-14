@@ -116,7 +116,7 @@
   id: OrganGoblinStomach
   name: stomach
   suffix: Goblin
-  description: "'Shrooms go in here."
+  description: "Shrooms go in here."
   components:
   - type: Sprite
     sprite: _NF/Mobs/Species/Goblin/organs.rsi
@@ -131,9 +131,16 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
+#    specialDigestible:
+#      tags:
+#      - Meat
+#      - Pill
+#      - Crayon
+#      - Egg
+#      - Raw
   - type: Metabolizer
     maxReagents: 3
-    metabolizerTypes: [ Animal ]
+    metabolizerTypes: [ Goblin ]
     groups:
     - id: Food
     - id: Drink
@@ -149,7 +156,7 @@
     state: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
-    metabolizerTypes: [ Animal ]
+    metabolizerTypes: [ Goblin ]
     groups:
     - id: Alcohol
       rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
