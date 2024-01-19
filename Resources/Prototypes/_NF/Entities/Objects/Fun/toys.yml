@@ -23,3 +23,362 @@
       path: /Audio/_NF/Items/Toys/wehhelp.ogg
 #  - type: MarketPrice # TODO fix price
 #    price: 1000 # TODO fix price
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVulp
+  name: vulpkanin plushie
+  description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_vulp
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+
+- type: entity
+  parent: BaseItem
+  id: PlushieSlips
+  name: janitor plushie
+  description: The silent cleaner, the one that you dont hear say "Weh"!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_slips
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: PlushieVulp
+  id: PlushieTrystan
+  name: office vulp plushie
+  description: The ones who yeeps!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_trystan
+
+- type: entity
+  parent: ToySword
+  id: DBToySword
+  name: toy double-esword
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword_double.rsi
+    layers:
+      - state: e_sword_double
+      - state: e_sword_double_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    size: 5
+    sprite: Objects/Weapons/Melee/e_sword_double.rsi
+
+- type: entity
+  parent: BaseItem
+  id: PetRock
+  name: pet rock
+  description: Your new and only best friend!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/petrock.rsi
+    state: rock
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: BaseItem
+  id: PetRockFred
+  name: fred
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/petrock.rsi
+    state: fred
+
+- type: entity
+  parent: BaseItem
+  id: PetRockRoxie
+  name: roxie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/petrock.rsi
+    state: roxie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieGnome
+  name: gnome plushie
+  description: A stuffed toy that resembles a gnome! or a drawf...
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: gnome
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLoveable
+  name: loveable plushie
+  description: A stuffed toy that resembles... a creature.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: loveable
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDeer
+  name: deer plushie
+  description: A stuffed toy that resembles a deer!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: deer
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieIpc
+  name: ipc plushie
+  description: A stuffed toy that resembles a ipc!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: ipc
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieGrey
+  name: grey plushie
+  description: A stuffed toy that resembles a grey!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: grey
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAbductor
+  name: abductor plushie
+  description: A stuffed toy that resembles an abductor!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: abductor
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAbductorAgent
+  name: abductor agent plushie
+  description: A stuffed toy that resembles an abductor agent!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: abductor_agent
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieRedFox
+  name: red fox plushie
+  description: A cute plushie that look like a red foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: red
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePurpleFox
+  name: purple fox plushie
+  description: A cute plushie that look like a purple foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: purple
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePinkFox
+  name: pink fox plushie
+  description: A cute plushie that look like a pink foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: pink
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieOrangeFox
+  name: orange fox plushie
+  description: A cute plushie that look like a orange foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: orange
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMarbleFox
+  name: marble fox plushie
+  description: A cute plushie that look like a marble foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: marble
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCrimsonFox
+  name: crimson fox plushie
+  description: A cute plushie that look like a crimson foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: crimson
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCoffeeFox
+  name: coffee fox plushie
+  description: A cute plushie that look like a coffee foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: coffee
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBlueFox
+  name: blue fox plushie
+  description: A cute plushie that look like a blue foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: blue
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBlackFox
+  name: black fox plushie
+  description: A cute plushie that look like a black foxxo!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: black
+
+- type: entity
+  parent: PlushieVulp
+  id: PlushieCorgi
+  name: corgi plushie
+  description: The ian plushie edition!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: corgi
+
+- type: entity
+  parent: PlushieVulp
+  id: PlushieGirlyCorgi
+  name: girly corgi plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: girlycorgi
+
+- type: entity
+  parent: PlushieVulp
+  id: PlushieRobotCorgi
+  name: robot corgi plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/corgiplushie.rsi
+    state: robotcorgi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCatBlack
+  name: black cat plushie
+  description: A stuffed toy that resembles a cute kitty!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: black
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatGrey
+  name: grey cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: grey
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatOrange
+  name: orange cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: orange
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatSiames
+  name: siames cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: siames
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatTabby
+  name: tabby cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: tabby
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatTuxedo
+  name: tuxedo cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: tuxedo
+
+- type: entity
+  parent: PlushieCatBlack
+  id: PlushieCatWhite
+  name: white cat plushie
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: white
