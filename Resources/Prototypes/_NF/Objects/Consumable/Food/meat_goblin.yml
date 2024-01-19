@@ -1,0 +1,20 @@
+- type: entity
+  parent: FoodMeatRawBase
+  id: FoodMeatGoblin
+  name: raw goblin meat
+  description: Just look at that marbling. Gross.
+  components:
+  - type: Sprite
+    state: plain
+    color: lime
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: CarpoToxin
+          Quantity: 5
+  - type: SliceableFood
+    count: 3
+    slice: FoodMeatCutlet

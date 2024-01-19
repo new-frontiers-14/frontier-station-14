@@ -1,0 +1,99 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  name: Urist McGoblin
+  id: MobGoblinBase
+  abstract: true
+  components:
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.1
+        Bloodloss: 0.1
+  - type: Thirst
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Stamina
+  - type: PseudoItem
+  - type: Perishable
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatGoblin
+      amount: 3
+  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+    sprite: _NF/Mobs/Species/Goblin/parts.rsi
+    state: full
+  - type: Sprite
+    scale: 0.8, 0.7
+  - type: HumanoidAppearance
+    species: Goblin
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 135
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Goblin
+  - type: Damageable
+    damageModifierSet: Goblin
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 5
+  - type: Thieving
+    stealthy: true
+    stripTimeReduction: 1
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 1
+  - type: SizeAttributeWhitelist
+    tall: true
+    tallscale: 1
+    tallDensity: 185
+  - type: Vocal
+    wilhelm: "/Audio/_NF/Voice/Goblin/goblin-cackle-05.ogg"
+    sounds:
+      Male: MaleGoblin
+      Female: FemaleGoblin
+      Unsexed: MaleGoblin
+  - type: ReplacementAccent
+    accent: goblin_accent
+#  - type: Goblin
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+#    - Goblin
+  - type: Tag
+    tags:
+    - GoblinMobTag
+    - DoorBumpOpener
+
+- type: entity
+  save: false
+  name: Urist McGoblin
+  parent: MobHumanDummy
+  id: MobGoblinDummy
+  noSpawn: true
+  description: A dummy goblin meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Goblin
