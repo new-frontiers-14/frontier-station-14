@@ -119,7 +119,10 @@ public sealed class PseudoItemSystem : EntitySystem
 
         // Frontier: prevent people from pushing each other from a bag
         if (HasComp<ItemComponent>(args.User))
+        {
+            args.Cancel();
             return;
+        }
 
         // Frontier: try to carry the person when taking them out of a bag.
         if (_carrying.TryCarry(args.User, uid))
