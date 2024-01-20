@@ -6,6 +6,7 @@ using Content.Server.Hands.Systems;
 using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Contests;
+using Content.Server.Item.PseudoItem;
 using Content.Shared.Climbing; // Shared instead of Server
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
@@ -23,11 +24,14 @@ using Content.Shared.Pulling;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Item;
+using Content.Shared.Item.PseudoItem;
 using Content.Shared.Mind.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Physics.Pull;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Carrying
@@ -45,7 +49,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-        [Dependency] private readonly RespiratorSystem _respirator = default!;
+        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
 
         public override void Initialize()
         {
@@ -64,6 +68,7 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, StartClimbEvent>(OnStartClimb);
             SubscribeLocalEvent<BeingCarriedComponent, BuckleChangeEvent>(OnBuckleChange);
             SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<CarryingComponent, GetVerbsEvent<InnateVerb>>(AddInsertCarriedVerb); // Frontier
         }
 
 
@@ -217,13 +222,7 @@ namespace Content.Server.Carrying
 
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
-            TimeSpan length = TimeSpan.FromSeconds(3);
-
-            var mod = _contests.MassContest(carrier, carried);
-
-            if (mod != 0)
-                length /= mod;
-
+            var length = GetPickupDuration(carrier, carried); // Frontier: instead of in-line calculation, use a separate function
             if (length >= TimeSpan.FromSeconds(9))
             {
                 _popupSystem.PopupEntity(Loc.GetString("carry-too-heavy"), carried, carrier, Shared.Popups.PopupType.SmallCaution);
@@ -343,6 +342,59 @@ namespace Content.Server.Carrying
                 }
             }
             query.Dispose();
+        }
+
+        public TimeSpan GetPickupDuration(EntityUid carrier, EntityUid carried)
+        {
+            TimeSpan length = TimeSpan.FromSeconds(3);
+
+            var mod = _contests.MassContest(carrier, carried);
+            if (mod != 0)
+                length /= mod;
+
+            return length;
+        }
+
+        public bool TryCarry(EntityUid carrier, EntityUid toCarry, CarriableComponent? carriedComp = null)
+        {
+            if (!Resolve(toCarry, ref carriedComp, false))
+                return false;
+
+            if (!CanCarry(carrier, toCarry, carriedComp))
+                return false;
+
+            // The second one means that carrier *is also* inside a bag.
+            if (HasComp<BeingCarriedComponent>(carrier) || HasComp<ItemComponent>(carrier))
+                return false;
+
+            if (GetPickupDuration(carrier, toCarry) > TimeSpan.FromSeconds(9))
+                return false;
+
+            Carry(carrier, toCarry);
+
+            return true;
+        }
+
+        private void AddInsertCarriedVerb(EntityUid uid, CarryingComponent component, GetVerbsEvent<InnateVerb> args)
+        {
+            var toInsert = args.Using;
+            if (toInsert is not { Valid: true } || !args.CanAccess || !TryComp<PseudoItemComponent>(toInsert, out var pseudoItem))
+                return;
+
+            if (!TryComp<StorageComponent>(args.Target, out var storage) || storage.StorageUsed + pseudoItem.Size > storage.StorageCapacityMax)
+                return;
+
+            InnateVerb verb = new()
+            {
+                Act = () =>
+                {
+                    DropCarried(uid, toInsert.Value);
+                    _pseudoItem.TryInsert(args.Target, toInsert.Value, pseudoItem, storage);
+                },
+                Text = Loc.GetString("action-name-insert-other", ("target", toInsert)),
+                Priority = 2
+            };
+            args.Verbs.Add(verb);
         }
     }
 }
