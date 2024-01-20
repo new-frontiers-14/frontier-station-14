@@ -5,19 +5,19 @@
   price: 50000
   category: Medium
   group: Scrap
-  shuttlePath: /Maps/Shuttles/mayflower.yml
+  shuttlePath: /Maps/_NF/Shuttles/mayflower.yml
 
 - type: gameMap
   id: Mayflower
   mapName: 'USS Mayflower'
-  mapPath: /Maps/Shuttles/mayflower.yml
+  mapPath: /Maps/_NF/Shuttles/mayflower.yml
   minPlayers: 0
   stations:
     Mayflower:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'USS Mayflower {1}'
+          mapNameTemplate: 'Mayflower {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

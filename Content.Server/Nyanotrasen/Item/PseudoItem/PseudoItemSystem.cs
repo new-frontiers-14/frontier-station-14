@@ -1,6 +1,10 @@
+using Content.Server.Actions;
+using Content.Server.Bed.Sleep;
 using Content.Server.Carrying;
 using Content.Server.DoAfter;
+using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
@@ -19,7 +23,9 @@ public sealed class PseudoItemSystem : EntitySystem
     [Dependency] private readonly ItemSystem _itemSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly CarryingSystem _carrying = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!; // Frontier
+    [Dependency] private readonly ActionsSystem _actions = default!; // Frontier
+    [Dependency] private readonly PopupSystem _popup = default!; // Frontier
 
     [ValidatePrototypeId<TagPrototype>]
     private const string PreventTag = "PreventLabel";
@@ -34,6 +40,7 @@ public sealed class PseudoItemSystem : EntitySystem
         SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<PseudoItemComponent, PseudoItemInsertDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PseudoItemComponent, ContainerGettingInsertedAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, TryingToSleepEvent>(OnTrySleeping); // Frontier
     }
 
     private void AddInsertVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<InnateVerb> args)
@@ -98,6 +105,10 @@ public sealed class PseudoItemSystem : EntitySystem
 
         RemComp<ItemComponent>(uid);
         component.Active = false;
+
+        // Frontier
+        if (component.SleepAction is { Valid: true })
+            _actions.RemoveAction(uid, component.SleepAction);
     }
 
     private void OnGettingPickedUpAttempt(EntityUid uid, PseudoItemComponent component,
@@ -155,6 +166,10 @@ public sealed class PseudoItemSystem : EntitySystem
             return false;
         }
 
+        // Frontier
+        if (HasComp<AllowsSleepInsideComponent>(storageUid))
+            _actions.AddAction(toInsert, ref component.SleepAction, SleepingSystem.SleepActionId, toInsert);
+
         component.Active = true;
         return true;
     }
@@ -183,5 +198,13 @@ public sealed class PseudoItemSystem : EntitySystem
             return;
         // This hopefully shouldn't trigger, but this is a failsafe just in case so we dont bluespace them cats
         args.Cancel();
+    }
+
+    // Frontier - show a popup when a pseudo-item falls asleep inside a bag.
+    private void OnTrySleeping(EntityUid uid, PseudoItemComponent component, TryingToSleepEvent args)
+    {
+        var parent = Transform(uid).ParentUid;
+        if (!HasComp<SleepingComponent>(uid) && parent is { Valid: true } && HasComp<AllowsSleepInsideComponent>(parent))
+            _popup.PopupEntity(Loc.GetString("popup-sleep-in-bag", ("entity", uid)), uid);
     }
 }

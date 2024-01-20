@@ -12,4 +12,7 @@ public sealed partial class PseudoItemComponent : Component, ITransferredByCloni
     public int Size = 120;
 
     public bool Active = false;
+
+    [DataField]
+    public EntityUid? SleepAction;
 }

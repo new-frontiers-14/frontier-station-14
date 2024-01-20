@@ -1,8 +1,10 @@
 using Content.Server._NF.PublicTransit.Components;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.GameTicking;
 using Content.Shared.NF14.CCVar;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
@@ -25,6 +27,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
@@ -42,7 +45,9 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<StationTransitComponent, ComponentShutdown>(OnStationShutdown);
         SubscribeLocalEvent<TransitShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<TransitShuttleComponent, EntityUnpausedEvent>(OnShuttleUnpaused);
+        SubscribeLocalEvent<TransitShuttleComponent, FTLCompletedEvent>(OnShuttleArrival);
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
 
         Enabled = _cfgManager.GetCVar(NF14CVars.PublicTransit);
         FlyTime = _cfgManager.GetCVar(NF14CVars.PublicTransitFlyTime);
@@ -51,6 +56,21 @@ public sealed class PublicTransitSystem : EntitySystem
         _cfgManager.OnValueChanged(NF14CVars.PublicTransit, SetTransit);
         _cfgManager.OnValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
     }
+
+    public void OnRoundStart(RoundStartedEvent args)
+    {
+        Counter = 0;
+        if (Enabled)
+            SetupPublicTransit();
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
+        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransit, SetTransit);
+    }
+
 
     /// <summary>
     /// Hardcoded snippit to intercept FTL events. It catches the transit shuttle and ensures its looking for the "DockTransit" priority dock.
@@ -65,13 +85,6 @@ public sealed class PublicTransitSystem : EntitySystem
         args.Tag = "DockTransit";
     }
 
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
-        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransit, SetTransit);
-    }
-
     /// <summary>
     /// Checks to make sure the grid is on the appropriate playfield, i.e., not in mapping space being worked on.
     /// If so, adds the grid to the list of bus stops, but only if its not already there
@@ -82,8 +95,6 @@ public sealed class PublicTransitSystem : EntitySystem
         {
             if (!StationList.Contains(uid)) //if the grid isnt already in
                 StationList.Add(uid); //add it to the list
-            if (Enabled) //and just in case this has been added dynamically mid-round, lets do a setup check
-                SetupPublicTransit();
         }
     }
 
@@ -112,6 +123,24 @@ public sealed class PublicTransitSystem : EntitySystem
     private void OnShuttleUnpaused(EntityUid uid, TransitShuttleComponent component, ref EntityUnpausedEvent args)
     {
         component.NextTransfer += args.PausedTime;
+    }
+
+    private void OnShuttleArrival(EntityUid uid, TransitShuttleComponent comp, ref FTLCompletedEvent args)
+    {
+        var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent>();
+
+        while (consoleQuery.MoveNext(out var consoleUid, out _))
+        {
+            if (Transform(consoleUid).GridUid == uid)
+            {
+                var destinationString = MetaData(comp.NextStation).EntityName;
+
+                _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-arrival",
+                        ("destination", destinationString), ("waittime", _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime))),
+                    InGameICChatType.Speak, ChatTransmitRange.HideChat, hideLog: true, checkRadioPrefix: false,
+                    ignoreActionBlocker: true);
+            }
+        }
     }
 
     /// <summary>
@@ -158,6 +187,20 @@ public sealed class PublicTransitSystem : EntitySystem
             if (comp.NextTransfer > curTime)
                 continue;
 
+            var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent>();
+
+            while (consoleQuery.MoveNext(out var consoleUid, out _))
+            {
+                if (Transform(consoleUid).GridUid == uid)
+                {
+                    var destinationString = MetaData(comp.NextStation).EntityName;
+
+                    _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-departure",
+                        ("destination", destinationString), ("flytime", FlyTime)),
+                        InGameICChatType.Speak, ChatTransmitRange.HideChat, hideLog: true, checkRadioPrefix: false,
+                        ignoreActionBlocker: true);
+                }
+            }
             _shuttles.FTLTravel(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, dock: true);
 
             if (TryGetNextStation(out var nextStation) && nextStation is {Valid : true} destination)

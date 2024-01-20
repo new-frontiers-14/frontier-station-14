@@ -77,8 +77,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: AstroVendAds
+#  - type: Advertise
+#    pack: CircuitVendAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/circuitvend.rsi
     layers:
@@ -150,8 +150,8 @@
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: AstroVendAds
+#  - type: Advertise
+#    pack: BountyVendAds
   - type: Sprite
     sprite: _NF/Structures/bountyvend.rsi
     layers:
@@ -232,3 +232,56 @@
       radius: 1.5
       energy: 1.6
       color: "#ff033e"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineAutoTuneVend
+  name: AutoTune
+  description: feeling BASSed? time to TUNE into AutoVend! Take NOTES and let your audience TREBLE
+  components:
+  - type: Anchorable
+    delay: 999999
+  - type: VendingMachine
+    pack: AutoTuneVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+#  - type: Advertise
+#    pack: AutoTuneVendAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/autotunevend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: MarketModifier
+    mod: 10
+#Interface
+  - type: UserInterface
+    interfaces:
+    - key: enum.VendingMachineUiKey.Key
+      type: VendingMachineBoundUserInterface
+    - key: enum.WiresUiKey.Key
+      type: WiresBoundUserInterface
+    - key: enum.InstrumentUiKey.Key # Added
+      type: InstrumentBoundUserInterface # Added
+#Music
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    handheld: false
+#Ghost
+  # - type: GhostRole
+    # makeSentient: true
+    # allowSpeech: true
+  # - type: GhostTakeoverAvailable
