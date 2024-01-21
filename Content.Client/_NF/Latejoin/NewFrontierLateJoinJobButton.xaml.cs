@@ -8,7 +8,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.NewFrontier.Latejoin;
+namespace Content.Client._NF.Latejoin;
 
 [GenerateTypedNameReferences]
 public sealed partial class NewFrontierLateJoinJobButton : Button
