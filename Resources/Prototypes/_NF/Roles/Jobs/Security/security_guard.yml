@@ -1,14 +1,14 @@
 - type: job
-  id: BlueShield
-  name: job-name-security
-  description: job-description-security
-  playTimeTracker: JobBlueShield
+  id: SecurityGuard
+  name: job-name-security-guard
+  description: job-description-security-guard
+  playTimeTracker: JobSecurityGuard
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 21600
-  startingGear: BlueShieldGear
-  icon: "JobIconBlueShield"
-  supervisors: job-supervisors-hos
+  startingGear: SecurityGuardGear
+  icon: "JobIconSecurityGuard"
+  supervisors: job-supervisors-hop
   canBeAntag: false
   access:
   - Security
@@ -23,7 +23,7 @@
     implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
-  id: BlueShieldGear
+  id: SecurityGuardGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
     back: ClothingBackpackSecurityFilled
