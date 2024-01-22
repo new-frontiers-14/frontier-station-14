@@ -39,7 +39,7 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
 
     private void OnMagnetMapInit(EntityUid uid, MaterialReclaimerMagnetPickupComponent component, MapInitEvent args)
     {
-        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
+        component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1); // Need to add 1 sec to fix a weird time bug with it that make it never start the magnet
     }
 
     // Frontier, used to add the magnet toggle to the context menu
@@ -82,7 +82,6 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
 
         return comp.MagnetEnabled;
     }
-
 
     public override void Update(float frameTime)
     {
