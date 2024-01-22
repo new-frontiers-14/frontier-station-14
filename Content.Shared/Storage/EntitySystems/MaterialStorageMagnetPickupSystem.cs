@@ -2,6 +2,10 @@ using Content.Server.Storage.Components;
 using Content.Shared.Materials;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Examine;   // Frontier
+using Content.Shared.Hands.Components;  // Frontier
+using Content.Shared.Verbs;     // Frontier
+using Robust.Shared.Utility;    // Frontier
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -24,6 +28,8 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
         SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, EntityUnpausedEvent>(OnMagnetUnpaused);
+        SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, ExaminedEvent>(OnExamined);  // Frontier
+        SubscribeLocalEvent<MaterialStorageMagnetPickupComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleMagnetVerb);    // Frontier
     }
 
     private void OnMagnetUnpaused(EntityUid uid, MaterialStorageMagnetPickupComponent component, ref EntityUnpausedEvent args)
@@ -36,6 +42,47 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
         component.NextScan = _timing.CurTime + TimeSpan.FromSeconds(1f);
     }
 
+    // Frontier, used to add the magnet toggle to the context menu
+    private void AddToggleMagnetVerb(EntityUid uid, MaterialStorageMagnetPickupComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        if (!HasComp<HandsComponent>(args.User))
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Act = () =>
+            {
+                ToggleMagnet(uid, component);
+            },
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
+            Text = Loc.GetString("magnet-pickup-component-toggle-verb"),
+            Priority = 3
+        };
+
+        args.Verbs.Add(verb);
+    }
+
+    // Frontier, used to show the magnet state on examination
+    private void OnExamined(EntityUid uid, MaterialStorageMagnetPickupComponent component, ExaminedEvent args)
+    {
+        args.PushMarkup(Loc.GetString("magnet-pickup-component-on-examine-main",
+                        ("stateText", Loc.GetString(component.MagnetEnabled
+                        ? "magnet-pickup-component-magnet-on"
+                        : "magnet-pickup-component-magnet-off"))));
+    }
+
+    // Frontier, used to toggle the magnet on the ore bag/box
+    public bool ToggleMagnet(EntityUid uid, MaterialStorageMagnetPickupComponent comp)
+    {
+        var query = EntityQueryEnumerator<MaterialStorageMagnetPickupComponent>();
+        comp.MagnetEnabled = !comp.MagnetEnabled;
+
+        return comp.MagnetEnabled;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -45,6 +92,10 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
             if (comp.NextScan < currentTime)
+                continue;
+
+            // Frontier - magnet disabled
+            if (!comp.MagnetEnabled)
                 continue;
 
             comp.NextScan += ScanDelay;
