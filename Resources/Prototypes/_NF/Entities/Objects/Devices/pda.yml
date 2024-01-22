@@ -28,6 +28,34 @@
 
 - type: entity
   parent: BasePDA
+  id: PilotPDA
+  name: pilot PDA
+  description: This PDA smells like thruster exhaust fumes.
+  components:
+  - type: Pda
+    id: PilotIDCard
+    state: pda-pilot
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#A32D26"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-pilot
+
+- type: entity
+  parent: BasePDA
   id: StcPDA
   name: station traffic controller PDA
   description: Declare emergencies in style!
