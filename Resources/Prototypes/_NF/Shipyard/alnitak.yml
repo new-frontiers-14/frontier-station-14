@@ -1,0 +1,29 @@
+- type: vessel
+  id: Alnitak
+  name: ECS Alnitak
+  description: The first armed spaceship to enter the Frontier Blackmarket Shipyard. Has a cannon, basic atmos and a chemistry lab. Cheap price because of outdated cannon. Ignition chamber can be used to manufacture tritium.
+  price: 74000
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/Shuttles/alnitak.yml
+
+- type: gameMap
+  id: Alnitak
+  mapName: 'ECS Alnitak'
+  mapPath: /Maps/Shuttles/alnitak.yml
+  minPlayers: 0
+  stations:
+    Alnitak:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Alnitak {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Mercenary: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            Chemist: [ 0, 0 ]
