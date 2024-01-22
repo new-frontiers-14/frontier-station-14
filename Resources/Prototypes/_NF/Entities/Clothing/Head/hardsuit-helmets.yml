@@ -52,3 +52,21 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#Pilot Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitPilot
+  noSpawn: true
+  name: pilot hardsuit helmet
+  description: Light hardsuit helmet for pilots.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/pilot_helmet.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/pilot_helmet.rsi
+  - type: PointLight
+    color: "#ffdbad"
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
