@@ -94,11 +94,11 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
             if (comp.NextScan < currentTime)
                 continue;
 
+            comp.NextScan += ScanDelay;
+
             // Frontier - magnet disabled
             if (!comp.MagnetEnabled)
                 continue;
-
-            comp.NextScan += ScanDelay;
 
             var parentUid = xform.ParentUid;
 
