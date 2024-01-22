@@ -1,0 +1,37 @@
+- type: job
+  id: Pilot
+  name: job-name-pilot
+  description: job-description-pilot
+  playTimeTracker: JobPilot
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 120
+  startingGear: PilotGear
+  canBeAntag: true
+  icon: "JobIconPilot" 
+  supervisors: job-supervisors-captain
+  setPreference: true
+  access:
+  - Maintenance
+  - External
+  - Pilot
+
+- type: startingGear
+  id: PilotGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPilot
+    back: ClothingBackpackPilotFilled
+    shoes: ClothingShoesBootsPilot
+#    mask: ClothingMaskGasPilot # Doesn't exist yet
+    neck: ClothingNeckScarfPilot
+    eyes: ClothingEyesGlassesPilot
+    gloves: ClothingHandsGlovesPilot
+    head: ClothingHeadHatPilot
+    outerClothing: ClothingOuterCoatBomber
+    id: PilotPDA
+    ears: ClothingHeadsetAltPilot
+#    belt: ClothingBeltSalvageWebbing
+    pocket1: CrowbarRed
+#  innerClothingSkirt: ClothingUniformJumpskirtPilot # Doesn't exist yet
+  satchel: ClothingBackpackSatchelPilotFilled
+  duffelbag: ClothingBackpackDuffelPilotFilled
