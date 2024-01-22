@@ -61,8 +61,8 @@ entities:
             color: '#FFFFFFFF'
             id: Arrows
           decals:
-            19: 2,-1
-            20: 2,-2
+            18: 2,-1
+            19: 2,-2
         - node:
             color: '#FFFFFFFF'
             id: Bot
@@ -73,17 +73,17 @@ entities:
             color: '#FFFFFFFF'
             id: Bot
           decals:
-            33: 1,1
+            31: 1,1
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
           decals:
-            35: -1,1
+            33: -1,1
         - node:
             color: '#FFFFFFFF'
             id: BoxGreyscale
           decals:
-            18: 0,2
+            17: 0,2
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineW
@@ -94,7 +94,7 @@ entities:
             color: '#FFFFFFFF'
             id: LoadingArea
           decals:
-            34: 1,0
+            32: 1,0
         - node:
             color: '#FFFFFFFF'
             id: StandClear
@@ -107,9 +107,9 @@ entities:
             color: '#FFFFFFFF'
             id: StandClear
           decals:
-            26: 3,-1
-            27: 3,-2
-            32: 3,0
+            25: 3,-1
+            26: 3,-2
+            30: 3,0
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSmallSE
@@ -125,9 +125,9 @@ entities:
             id: WarnLineE
           decals:
             5: 0,-3
-            24: 3,-1
-            25: 3,-2
-            31: 3,0
+            23: 3,-1
+            24: 3,-2
+            29: 3,0
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -136,17 +136,17 @@ entities:
             7: 1,3
             8: 2,3
             12: 0,-4
-            21: 2,-2
-            28: -1,-1
+            20: 2,-2
+            27: -1,-1
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
           decals:
             1: 0,-2
             6: 0,-3
-            22: 3,-2
-            23: 3,-1
-            30: 3,0
+            21: 3,-2
+            22: 3,-1
+            28: 3,0
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
@@ -564,6 +564,14 @@ entities:
     - links:
       - 125
       type: DeviceLinkSink
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 140
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,1.5
+      parent: 1
+      type: Transform
 - proto: DrinkMugMetal
   entities:
   - uid: 110
@@ -618,6 +626,14 @@ entities:
       type: Transform
     - canCollide: False
       type: Physics
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 139
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -1.5,-0.5
+      parent: 1
+      type: Transform
 - proto: FaxMachineShip
   entities:
   - uid: 45
