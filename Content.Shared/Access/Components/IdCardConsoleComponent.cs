@@ -50,6 +50,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
+        "Pilot", // Frontier
         "Quartermaster",
         "Research",
         "ResearchDirector",
