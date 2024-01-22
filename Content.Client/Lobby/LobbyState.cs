@@ -1,4 +1,4 @@
-using Content.Client.NewFrontier.Latejoin;
+using Content.Client._NF.Latejoin;
 using Content.Client.Chat.Managers;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
