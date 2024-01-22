@@ -1,0 +1,153 @@
+- type: entity
+  parent: BaseLathe
+  id: PrizeCounter
+  name: prize counter
+  description: Claim your prize and win some toys and cute plushies!
+  components:
+  - type: Anchorable
+    delay: 999999
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+    priority: Low
+  - type: Advertise
+    pack: CuddlyCritterAds
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _NF/Structures/Machines/prizecounter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - PrizeBallRecipe
+      - PlushieHampterRecipe
+      - PlushieVulpRecipe
+      - PlushieBeeRecipe
+      - PlushieLizardRecipe
+      - PlushieSpaceLizardRecipe
+      - PlushieVoxRecipe
+      - PlushieMoffRecipe
+      - PlushieMoffsicianRecipe
+      - PlushieMoffbarRecipe
+      - PlushieDionaRecipe
+      - PlushieSharkGreyRecipe
+      - PlushieSharkBlueRecipe
+      - PlushieSharkPinkRecipe
+      - PlushieRatvarRecipe
+      - PlushieNarRecipe
+      - PlushieSlimeRecipe
+      - PlushieSnakeRecipe
+      - PlushieCarpRecipe
+      - PlasticBananaRecipe
+      - BeachBallRecipe
+      - BasketballRecipe
+      - FootballRecipe
+      - ToyHammerRecipe
+      - WhoopieCushionRecipe
+      - ClownRecorderRecipe
+      - PonderingOrbRecipe
+      - CrayonBoxRecipe
+      - CrayonRainbowRecipe
+      - PlushieLampRecipe
+      - ToySwordRecipe
+      - PlushieAtmosianRecipe
+      - PlushieRounyRecipe
+      - PlushieXenoRecipe
+      - FoamCrossbowRecipe
+      - BoxDonkSoftBoxRecipe
+      - RevolverCapGunRecipe
+      - BoxCartridgeCapRecipe
+      - HarmonicaInstrumentRecipe
+      - OcarinaInstrumentRecipe
+      - RecorderInstrumentRecipe
+      - GunpetInstrumentRecipe
+      - BirdToyInstrumentRecipe
+      - ToyAmongPequenoRecipe
+      - FoamCutlassRecipe
+      - CrazyGlueRecipe
+      - SingularityToyRecipe
+      - FoamBladeRecipe
+      - ToyRubberDuckRecipe
+      - PlushieGhostRecipe
+      - ToyMouseRecipe
+      - ToyAiRecipe
+      - ToyGriffinRecipe
+      - ToyHonkRecipe
+      - ToyIanRecipe
+      - ToyMarauderRecipe
+      - ToyGygaxRecipe
+      - ToyOdysseusRecipe
+      - ToyOwlmanRecipe
+      - ToyPhazonRecipe
+      - ToyFireRipleyRecipe
+      - ToyReticenceRecipe
+      - ToyRipleyRecipe
+      - ToySeraphRecipe
+      - ToyDurandRecipe
+      - ToySkeletonRecipe
+      - FaceHuggerPlushieRecipe
+      - PetRockRecipe
+      - PetRockFredRecipe
+      - PetRockRoxieRecipe
+      - PlushieGnomeRecipe
+      - PlushieLoveableRecipe
+      - PlushieDeerRecipe
+      - PlushieIpcRecipe
+      - PlushieGreyRecipe
+      - PlushieRedFoxRecipe
+      - PlushiePurpleFoxRecipe
+      - PlushiePinkFoxRecipe
+      - PlushieOrangeFoxRecipe
+      - PlushieMarbleFoxRecipe
+      - PlushieCrimsonFoxRecipe
+      - PlushieCoffeeFoxRecipe
+      - PlushieBlueFoxRecipe
+      - PlushieBlackFoxRecipe
+      - PlushieCorgiRecipe
+      - PlushieGirlyCorgiRecipe
+      - PlushieRobotCorgiRecipe
+      - PlushieCatBlackRecipe
+      - PlushieCatOrangeRecipe
+      - PlushieCatSiamesRecipe
+      - PlushieCatTabbyRecipe
+      - PlushieCatTuxedoRecipe
+      - PlushieCatWhiteRecipe
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - PlushieJesterRecipe
+      - PlushieTrystanRecipe
+      - PlushieSlipsRecipe
+      - PlushieNukeRecipe
+      - PlushieRGBeeRecipe
+      - BalloonCorgiRecipe
+      - DBToySwordRecipe
+      - BalloonSynRecipe
+      - ToyNukeRecipe
+      - ToyMaulerRecipe
+      - PlushieAbductorRecipe
+      - PlushieAbductorAgentRecipe
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - PrizeTicket
