@@ -59,3 +59,33 @@
     sprintModifier: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+
+# Pilot Hardsuit - Spationaut stats
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitPilot
+  name: pilot hardsuit
+  description: A hardsuit tailored for someone who spends the majority of their time buckled to a chair.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.7
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Radiation: 0.3
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPilot
+  - type: StaticPrice
+    price: 195
