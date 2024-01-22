@@ -56,3 +56,11 @@
   components:
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
+    
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransit
+  suffix: External, PubTrans, Glass, Docking
+  components:
+    - type: PriorityDock
+      tag: DockTransit
