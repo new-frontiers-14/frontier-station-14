@@ -1860,12 +1860,12 @@ entities:
       type: Transform
   - uid: 379
     components:
-    - pos: 8.5,-5.5
+    - pos: -5.5,-11.5
       parent: 1
       type: Transform
   - uid: 381
     components:
-    - pos: 8.5,-6.5
+    - pos: -5.5,-12.5
       parent: 1
       type: Transform
   - uid: 577
@@ -1908,24 +1908,9 @@ entities:
     - pos: -7.5,13.5
       parent: 1
       type: Transform
-  - uid: 625
-    components:
-    - pos: -8.5,13.5
-      parent: 1
-      type: Transform
   - uid: 626
     components:
     - pos: -5.5,13.5
-      parent: 1
-      type: Transform
-  - uid: 627
-    components:
-    - pos: -5.5,14.5
-      parent: 1
-      type: Transform
-  - uid: 628
-    components:
-    - pos: -5.5,15.5
       parent: 1
       type: Transform
   - uid: 629
@@ -2036,11 +2021,6 @@ entities:
   - uid: 651
     components:
     - pos: -1.5,-7.5
-      parent: 1
-      type: Transform
-  - uid: 652
-    components:
-    - pos: -6.5,-10.5
       parent: 1
       type: Transform
   - uid: 653
@@ -2218,11 +2198,6 @@ entities:
     - pos: -5.5,4.5
       parent: 1
       type: Transform
-  - uid: 688
-    components:
-    - pos: -6.5,1.5
-      parent: 1
-      type: Transform
   - uid: 689
     components:
     - pos: -6.5,4.5
@@ -2233,11 +2208,6 @@ entities:
     - pos: -5.5,-1.5
       parent: 1
       type: Transform
-  - uid: 691
-    components:
-    - pos: -6.5,-1.5
-      parent: 1
-      type: Transform
   - uid: 692
     components:
     - pos: -3.5,4.5
@@ -2246,11 +2216,6 @@ entities:
   - uid: 693
     components:
     - pos: -2.5,4.5
-      parent: 1
-      type: Transform
-  - uid: 694
-    components:
-    - pos: -7.5,-1.5
       parent: 1
       type: Transform
   - uid: 695
@@ -2593,16 +2558,6 @@ entities:
     - pos: 0.5,11.5
       parent: 1
       type: Transform
-  - uid: 782
-    components:
-    - pos: 2.5,-14.5
-      parent: 1
-      type: Transform
-  - uid: 783
-    components:
-    - pos: 3.5,-14.5
-      parent: 1
-      type: Transform
   - uid: 784
     components:
     - pos: 4.5,-14.5
@@ -2636,36 +2591,6 @@ entities:
   - uid: 790
     components:
     - pos: 4.5,-11.5
-      parent: 1
-      type: Transform
-  - uid: 791
-    components:
-    - pos: -7.5,-12.5
-      parent: 1
-      type: Transform
-  - uid: 792
-    components:
-    - pos: -6.5,-12.5
-      parent: 1
-      type: Transform
-  - uid: 793
-    components:
-    - pos: -6.5,-13.5
-      parent: 1
-      type: Transform
-  - uid: 794
-    components:
-    - pos: -5.5,-13.5
-      parent: 1
-      type: Transform
-  - uid: 795
-    components:
-    - pos: -5.5,-14.5
-      parent: 1
-      type: Transform
-  - uid: 796
-    components:
-    - pos: -6.5,-11.5
       parent: 1
       type: Transform
   - uid: 797
@@ -2723,11 +2648,6 @@ entities:
     - pos: 5.5,11.5
       parent: 1
       type: Transform
-  - uid: 808
-    components:
-    - pos: -4.5,15.5
-      parent: 1
-      type: Transform
   - uid: 809
     components:
     - pos: 5.5,-7.5
@@ -2766,11 +2686,6 @@ entities:
   - uid: 1022
     components:
     - pos: 6.5,8.5
-      parent: 1
-      type: Transform
-  - uid: 1023
-    components:
-    - pos: 7.5,8.5
       parent: 1
       type: Transform
   - uid: 1038
@@ -3849,6 +3764,24 @@ entities:
       type: Transform
     - fixtures: {}
       type: Fixtures
+- proto: GasbenderMothershipComputer
+  entities:
+  - uid: 403
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -6.5,-10.5
+      parent: 1
+      type: Transform
+    - containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+      type: ContainerContainer
 - proto: GasMixer
   entities:
   - uid: 271
@@ -7316,13 +7249,6 @@ entities:
         - Right: Reverse
         - Middle: Off
       type: DeviceLinkSource
-- proto: VendingMachineAtmosDrobe
-  entities:
-  - uid: 390
-    components:
-    - pos: -5.5,-11.5
-      parent: 1
-      type: Transform
 - proto: VendingMachineCigs
   entities:
   - uid: 505
@@ -7332,9 +7258,9 @@ entities:
       type: Transform
 - proto: VendingMachineEngiDrobe
   entities:
-  - uid: 403
+  - uid: 625
     components:
-    - pos: -6.5,-10.5
+    - pos: -5.5,-11.5
       parent: 1
       type: Transform
 - proto: VendingMachineEngivend
@@ -8105,6 +8031,12 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -4.5,8.5
+      parent: 1
+      type: Transform
+  - uid: 390
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-10.5
       parent: 1
       type: Transform
 - proto: WindowReinforcedDirectional
