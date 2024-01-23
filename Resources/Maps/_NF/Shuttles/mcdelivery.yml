@@ -64,47 +64,56 @@ entities:
           decals:
             10: 1,1
         - node:
-            angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
-            id: LoadingArea
+            id: StandClear
           decals:
-            0: 0,0
+            21: 0,0
         - node:
-            color: '#A4610696'
-            id: WarnCornerNE
-          decals:
-            8: 2,4
-        - node:
-            color: '#A4610696'
+            color: '#A46106FF'
             id: WarnCornerNW
           decals:
-            4: 0,4
+            19: 0,4
         - node:
-            color: '#A4610696'
+            color: '#A46106FF'
             id: WarnCornerSmallNE
           decals:
-            6: 1,4
+            16: 1,4
         - node:
-            color: '#A4610696'
+            color: '#A46106FF'
             id: WarnCornerSmallNW
           decals:
-            7: 1,4
-            9: 0,2
+            18: 1,4
+            20: 0,2
         - node:
-            color: '#A4610696'
+            color: '#A46106FF'
+            id: WarnCornerSmallSE
+          decals:
+            15: 1,4
+        - node:
+            color: '#A46106FF'
+            id: WarnEndE
+          decals:
+            13: 2,4
+        - node:
+            color: '#A46106FF'
             id: WarnEndN
           decals:
-            5: 1,5
+            17: 1,5
+        - node:
+            color: '#A46106FF'
+            id: WarnLineE
+          decals:
+            14: 1,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
           decals:
             2: 0,-1
         - node:
-            color: '#A4610696'
+            color: '#A46106FF'
             id: WarnLineS
           decals:
-            3: 0,3
+            12: 0,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
@@ -115,27 +124,59 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30583
-            1: 34952
+            0: 22389
+            1: 2
+            2: 8192
+            3: 34952
           0,-1:
             0: 28672
-            1: 32768
+            3: 32768
           -1,0:
             0: 34952
           -1,-1:
             0: 32768
           0,1:
             0: 2047
-            1: 2048
+            3: 2048
           -1,1:
             0: 136
-            1: 2048
+            3: 2048
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.813705
+          - 82.06108
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
           - 0
           - 0
           - 0
@@ -393,8 +434,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -412,8 +453,9 @@ entities:
           occludes: True
           ents:
           - 91
-          - 89
+          - 108
           - 67
+          - 89
       type: ContainerContainer
   - uid: 71
     components:
@@ -426,8 +468,8 @@ entities:
         immutable: False
         temperature: 293.1496
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -501,14 +543,6 @@ entities:
       pos: 1.5,2.5
       parent: 1
       type: Transform
-- proto: ExtinguisherCabinetFilled
-  entities:
-  - uid: 108
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -0.5,0.5
-      parent: 1
-      type: Transform
 - proto: FaxMachineShip
   entities:
   - uid: 55
@@ -516,6 +550,17 @@ entities:
     - pos: 0.5,4.5
       parent: 1
       type: Transform
+- proto: FireExtinguisher
+  entities:
+  - uid: 108
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 23
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: FirelockGlass
   entities:
   - uid: 9
