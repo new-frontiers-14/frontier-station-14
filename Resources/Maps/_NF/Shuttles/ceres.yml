@@ -784,9 +784,6 @@ entities:
     - pos: 0.5,-7.5
       parent: 2
       type: Transform
-    - secondsUntilStateChange: -5939.5913
-      state: Opening
-      type: Door
 - proto: AirlockGlassShuttle
   entities:
   - uid: 107
@@ -1879,18 +1876,6 @@ entities:
   - uid: 662
     components:
     - pos: 3.5,-19.5
-      parent: 2
-      type: Transform
-- proto: ClosetWallEmergencyFilledRandom
-  entities:
-  - uid: 458
-    components:
-    - pos: 2.5,-9.5
-      parent: 2
-      type: Transform
-  - uid: 707
-    components:
-    - pos: 3.5,-9.5
       parent: 2
       type: Transform
 - proto: ComputerShuttle
@@ -4690,6 +4675,20 @@ entities:
     - pos: 4.5,-14.5
       parent: 2
       type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 589
+    components:
+    - pos: 1.5,-10.5
+      parent: 2
+      type: Transform
+- proto: SpawnPointPilot
+  entities:
+  - uid: 650
+    components:
+    - pos: 7.5,-9.5
+      parent: 2
+      type: Transform
 - proto: SpawnPointServiceWorker
   entities:
   - uid: 412
@@ -4710,6 +4709,18 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: -1.5,-12.5
+      parent: 2
+      type: Transform
+- proto: SuitStorageWallmountEVAEmergency
+  entities:
+  - uid: 1
+    components:
+    - pos: 3.5,-9.5
+      parent: 2
+      type: Transform
+  - uid: 458
+    components:
+    - pos: 2.5,-9.5
       parent: 2
       type: Transform
 - proto: Table
@@ -5493,7 +5504,7 @@ entities:
       type: Transform
 - proto: WarpPointShip
   entities:
-  - uid: 1
+  - uid: 584
     components:
     - pos: 0.5,-11.5
       parent: 2
