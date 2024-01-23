@@ -9,3 +9,6 @@ station-event-bluespace-asteroid-end-announcement = In compliance with NanoTrase
 
 station-event-bluespace-ship-start-announcement = We have detected an unusual FTL signature - long range scans indicate an unknown ship. NanoTrasen cannot confirm safety for prospectors within its vicinity, be advised.
 station-event-bluespace-ship-end-announcement = In compliance with NanoTrasen FTL traffic patterns, the unknown ship has been dissipated to ensure non-collision.
+
+station-event-bluespace-ArcIndDataCarrier-start-announcement = Unregisterred shuttle belonging to Arcadia Industries has been detected FTL-ing to nearby starspace. NanoTrasen requests security forces and prospectors locate the shuttle and hinder any activity from the shuttle.
+station-event-bluespace-ArcIndDataCarrier-end-announcement = Shuttle has been dedected FTL-ing out of local star space. Nanotrasen thanks all personnel who participated in the act of sabotaging the shuttle.
