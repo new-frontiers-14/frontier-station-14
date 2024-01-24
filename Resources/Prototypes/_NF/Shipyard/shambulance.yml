@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Shambulance
+  name: MV Shambulance
+  description: MISSING.
+  price: 1000 # Temp price
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/shambulance.yml
+
+- type: gameMap
+  id: Shambulance
+  mapName: 'MV Shambulance'
+  mapPath: /Maps/_NF/Shuttles/shambulance.yml
+  minPlayers: 0
+  stations:
+    Shambulance:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Shambulance {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+#            Paramedic: [ 0, 0 ]
+#            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+#            Chemist: [ 0, 0 ]

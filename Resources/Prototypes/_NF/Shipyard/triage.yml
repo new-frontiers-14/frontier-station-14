@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Triage
+  name: MV Triage
+  description: MISSING.
+  price: 1000 # Temp price
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/triage.yml
+
+- type: gameMap
+  id: Triage
+  mapName: 'MV Triage'
+  mapPath: /Maps/_NF/Shuttles/triage.yml
+  minPlayers: 0
+  stations:
+    Triage:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Triage {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+#            Paramedic: [ 0, 0 ]
+#            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+#            Chemist: [ 0, 0 ]
