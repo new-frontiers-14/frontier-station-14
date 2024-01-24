@@ -6,7 +6,10 @@
   startingGear: StcGear
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 72000 # 20 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs as sec
   canBeAntag: false
   icon: "JobIconStc" 
   supervisors: job-supervisors-hop
