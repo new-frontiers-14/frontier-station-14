@@ -1,11 +1,11 @@
 ﻿- type: entity
-  id: OreBox
-  name: ore box
-  description: A large storage container for collecting and holding unprocessed ores and fragments. # Frontier - was: A large storage container for holding unprocessed ores.
+  id: PlantBox
+  name: plant box
+  description: A large storage container for holding plants and seeds.
   parent: BaseStructureDynamic
   components:
   - type: StaticPrice
-    price: 625  # Frontier - 500<625
+    price: 625
   - type: Anchorable
   - type: InteractionOutline
   - type: Damageable
@@ -15,13 +15,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 450 # Frontier - 150<450
+        damage: 450
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 300 # Frontier 100<300
+        damage: 300
       behaviors:
       - !type:EmptyAllContainersBehaviour
       - !type:SpawnEntitiesBehavior
@@ -33,13 +33,13 @@
         acts: [ "Destruction" ]
   - type: Climbable
 
-  # orebox-specific
+  # plantbox-specific
   - type: Sprite
     noRot: true
-    sprite: /Textures/Structures/Storage/orebox.rsi
+    sprite: _NF/Structures/Storage/plantbox.rsi
     layers:
-    - state: orebox
-    - state: orebox-top
+    - state: plantbox
+    - state: plantbox-top
       map: [ top ]
       visible: true
   - type: Appearance
@@ -50,13 +50,13 @@
           True: { visible: false }
           False: { visible: true }
   - type: Storage
-    capacity: 900 # Frontier - 525<900
+    capacity: 900
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
-      tags:
-      - Ore
-      - ArtifactFragment # Frontier 
+      components:
+        - Produce
+        - Seed
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
@@ -65,9 +65,9 @@
     containers:
       storagebase: !type:Container
         ents: [ ]
-  - type: Dumpable # Frontier
-  - type: MagnetPickup # Frontier
-    range: 1.5 # Ore bag has a range of 1.0
+  - type: Dumpable
+  - type: MagnetPickup
+    range: 1.5  # plant bag has a range of 1.0
   - type: Fixtures
     fixtures:
       fix1:
@@ -77,7 +77,6 @@
         # very not dense to make it easy to pull
         density: 20
         mask:
-        #- MachineMask
-        - SmallMobMask  # Frontier
+        - SmallMobMask
         layer:
         - MachineLayer
