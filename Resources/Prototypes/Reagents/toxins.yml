@@ -90,6 +90,9 @@
     Poison:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Human
         damage:
           types:
             Poison: 1
