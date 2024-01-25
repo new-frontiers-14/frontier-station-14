@@ -32,6 +32,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Server.Medical;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -56,6 +57,7 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
+    [Dependency] private readonly VomitSystem _vomitSystem = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -277,6 +279,7 @@ public sealed class FoodSystem : EntitySystem
 
         string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid" };
         var healingRegent = "Stimulants";
+        var damagingRegent = "Toxin";
         _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
 
         switch (component.Quality)
@@ -297,7 +300,10 @@ public sealed class FoodSystem : EntitySystem
             case Quality.Normal:
                 if (reverseFoodQuality)
                 {
-
+                    foreach (var reagent in toxinsRegent)
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
+                    if (transferAmount >= 5)
+                        _solutionContainer.TryAddReagent(uid, solution, healingRegent, 1, out _);
                 }
                 else
                 {
@@ -317,7 +323,8 @@ public sealed class FoodSystem : EntitySystem
             case Quality.Nasty:
                 if (reverseFoodQuality)
                 {
-
+                    if (transferAmount >= 5)
+                        _solutionContainer.TryAddReagent(uid, solution, damagingRegent, 1, out _);
                 }
                 else
                 {
@@ -327,7 +334,9 @@ public sealed class FoodSystem : EntitySystem
             case Quality.Toxin:
                 if (reverseFoodQuality)
                 {
-
+                    if (transferAmount >= 5)
+                        _solutionContainer.TryAddReagent(uid, solution, damagingRegent, 2, out _);
+                    _vomitSystem.Vomit(stomachToUse.Owner, -1000, -1000); // You feel hollow!
                 }
                 else
                 {
