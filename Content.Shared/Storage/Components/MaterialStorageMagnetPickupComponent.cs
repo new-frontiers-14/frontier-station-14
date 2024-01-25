@@ -16,5 +16,5 @@ public sealed partial class MaterialStorageMagnetPickupComponent : Component
     /// Frontier - Is the magnet currently enabled?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
-    public bool MagnetEnabled = true;
+    public bool MagnetEnabled = false;
 }
