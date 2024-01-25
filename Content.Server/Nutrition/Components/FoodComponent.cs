@@ -6,6 +6,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.Components;
 
+public enum Quality : byte // Frontier 
+{
+    High,
+    Normal,
+    Junk,
+    Nasty,
+    Toxin
+}
+
 [RegisterComponent, Access(typeof(FoodSystem))]
 public sealed partial class FoodComponent : Component
 {
@@ -67,4 +76,11 @@ public sealed partial class FoodComponent : Component
     /// </summary>
     [DataField]
     public float ForceFeedDelay = 3;
+
+    /// <summary>
+    ///     Frontier - Nasty food, used for goblins to know if they can eat it or not
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("quality")] // Frontier 
+    [AutoNetworkedField]
+    public Quality Quality = Quality.Normal;
 }

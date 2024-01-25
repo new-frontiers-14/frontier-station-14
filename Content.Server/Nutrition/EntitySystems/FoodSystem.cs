@@ -29,6 +29,10 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Chemistry.Components.SolutionManager;
+
 namespace Content.Server.Nutrition.EntitySystems;
 
 /// <summary>
@@ -228,6 +232,7 @@ public sealed class FoodSystem : EntitySystem
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;
         StomachComponent? stomachToUse = null;
+        var reverseFoodQuality = false; // Frontier
         foreach (var (stomach, _) in stomachs)
         {
             var owner = stomach.Owner;
@@ -243,6 +248,7 @@ public sealed class FoodSystem : EntitySystem
 
             stomachToUse = stomach;
             highestAvailable = stomachSol.AvailableVolume;
+            reverseFoodQuality = stomachToUse.ReverseFoodQuality; // Frontier
         }
 
         // No stomach so just popup a message that they can't eat.
@@ -253,8 +259,92 @@ public sealed class FoodSystem : EntitySystem
             return;
         }
 
+        /// Frontier - Goblin food system
+        if (reverseFoodQuality)
+        {
+            if (component.Quality == Quality.High)
+                component.Quality = Quality.Toxin;
+            else if (component.Quality == Quality.Normal)
+                component.Quality = Quality.Nasty;
+            else if (component.Quality == Quality.Nasty)
+                component.Quality = Quality.Normal;
+            else if (component.Quality == Quality.Toxin)
+                component.Quality = Quality.High;
+        }
+
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
+
+        switch (component.Quality)
+        {
+            case Quality.High:
+                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
+                if (reverseFoodQuality)
+                {
+                    string[] toxins = { "Toxin", "CarpoToxin", "Mold" };
+
+                    var prototypeMan = IoCManager.Resolve<IPrototypeManager>();
+                    foreach (var reagent in toxins)
+                    {
+                        _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachSol);
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachSol, reagent, transferAmount);
+                        //_solutionContainer.TryAddReagent(uid, solution, reagent, -transferAmount, out _);
+
+
+                    }
+                }
+                else
+                {
+
+                }
+                break;
+            case Quality.Normal:
+                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
+                if (reverseFoodQuality)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            case Quality.Junk:
+                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
+                if (reverseFoodQuality)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            case Quality.Nasty:
+                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
+                if (reverseFoodQuality)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            case Quality.Toxin:
+                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
+                if (reverseFoodQuality)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {component.Quality}!");
+        } /// Frontier
 
         var flavors = args.FlavorMessage;
 
