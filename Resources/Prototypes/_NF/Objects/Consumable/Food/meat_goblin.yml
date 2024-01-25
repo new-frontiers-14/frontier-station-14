@@ -1,20 +1,11 @@
 - type: entity
-  parent: FoodMeatRawBase
+  parent: FoodMeatRotten
   id: FoodMeatGoblin
   name: raw goblin meat
   description: Just look at that marbling. Gross.
   components:
   - type: Sprite
-    state: plain
+    state: rotten
     color: lime
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 9
-        - ReagentId: ToxinGoblinSafe
-          Quantity: 5
-  - type: SliceableFood
-    count: 3
-    slice: FoodMeatCutlet
+  - type: Food # Frontier, New Food Quality System
+    quality: Toxin # Frontier, New Food Quality System
