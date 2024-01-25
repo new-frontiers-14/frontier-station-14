@@ -275,23 +275,19 @@ public sealed class FoodSystem : EntitySystem
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
 
+        string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin" };
+        var healingRegent = "Stimulants";
+        _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
+
         switch (component.Quality)
         {
             case Quality.High:
-                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
                 if (reverseFoodQuality)
                 {
-                    string[] toxins = { "Toxin", "CarpoToxin", "Mold" };
-
-                    var prototypeMan = IoCManager.Resolve<IPrototypeManager>();
-                    foreach (var reagent in toxins)
-                    {
-                        _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachSol);
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachSol, reagent, transferAmount);
-                        //_solutionContainer.TryAddReagent(uid, solution, reagent, -transferAmount, out _);
-
-
-                    }
+                    foreach (var reagent in toxinsRegent)
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
+                    //if (transferAmount >= 5)
+                    //    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer, healingRegent, 1, out _);
                 }
                 else
                 {
@@ -299,7 +295,6 @@ public sealed class FoodSystem : EntitySystem
                 }
                 break;
             case Quality.Normal:
-                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
                 if (reverseFoodQuality)
                 {
 
@@ -310,7 +305,6 @@ public sealed class FoodSystem : EntitySystem
                 }
                 break;
             case Quality.Junk:
-                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
                 if (reverseFoodQuality)
                 {
 
@@ -321,7 +315,6 @@ public sealed class FoodSystem : EntitySystem
                 }
                 break;
             case Quality.Nasty:
-                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
                 if (reverseFoodQuality)
                 {
 
@@ -332,7 +325,6 @@ public sealed class FoodSystem : EntitySystem
                 }
                 break;
             case Quality.Toxin:
-                //_popup.PopupEntity(Loc.GetString("food-system-food-quality-user", ("quality", component.Quality)), args.User, args.User);
                 if (reverseFoodQuality)
                 {
 
