@@ -275,7 +275,7 @@ public sealed class FoodSystem : EntitySystem
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
 
-        string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin" };
+        string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid" };
         var healingRegent = "Stimulants";
         _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
 
@@ -286,8 +286,8 @@ public sealed class FoodSystem : EntitySystem
                 {
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
-                    //if (transferAmount >= 5)
-                    //    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer, healingRegent, 1, out _);
+                    if (transferAmount >= 5)
+                        _solutionContainer.TryAddReagent(uid, solution, healingRegent, 1, out _);
                 }
                 else
                 {
