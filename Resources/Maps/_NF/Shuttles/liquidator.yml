@@ -1270,6 +1270,13 @@ entities:
     - pos: 5.2959647,-1.1305447
       parent: 1
       type: Transform
+- proto: ClosetRadiationSuitFilled
+  entities:
+  - uid: 273
+    components:
+    - pos: 1.5,-2.5
+      parent: 1
+      type: Transform
 - proto: ClothingBeltUtilityEngineering
   entities:
   - uid: 308
@@ -1291,25 +1298,11 @@ entities:
     - pos: 0.54084945,0.600981
       parent: 1
       type: Transform
-- proto: ClothingHeadHatHoodRad
-  entities:
-  - uid: 458
-    components:
-    - pos: 2.3156083,-4.526062
-      parent: 1
-      type: Transform
 - proto: ClothingOuterCoatLabChem
   entities:
   - uid: 13
     components:
     - pos: 4.5874624,-1.5838027
-      parent: 1
-      type: Transform
-- proto: ClothingOuterSuitRad
-  entities:
-  - uid: 372
-    components:
-    - pos: 2.7446132,-4.4060936
       parent: 1
       type: Transform
 - proto: ClothingShoesBootsMag
@@ -1361,6 +1354,13 @@ entities:
         bank-ATM-cashSlot: !type:ContainerSlot {}
       type: ContainerContainer
     - type: ItemSlots
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 406
+    components:
+    - pos: 5.5,-0.5
+      parent: 1
+      type: Transform
 - proto: DisposalBend
   entities:
   - uid: 206
@@ -1670,6 +1670,13 @@ entities:
       type: Transform
     - fixtures: {}
       type: Fixtures
+- proto: GasAnalyzer
+  entities:
+  - uid: 26
+    components:
+    - pos: 0.35859585,0.46067148
+      parent: 1
+      type: Transform
 - proto: GasMixer
   entities:
   - uid: 224
@@ -2178,16 +2185,6 @@ entities:
       type: Transform
     - color: '#0000CCFF'
       type: AtmosPipeColor
-- proto: GeigerCounter
-  entities:
-  - uid: 406
-    components:
-    - pos: 2.8946674,-5.1717024
-      parent: 1
-      type: Transform
-    - isEnabled: True
-      type: Geiger
-    - type: RadiationReceiver
 - proto: GravityGeneratorMini
   entities:
   - uid: 319
@@ -2389,23 +2386,9 @@ entities:
     - pos: 5.2817945,-1.2155304
       parent: 1
       type: Transform
-- proto: LockerAtmosphericsFilledHardsuit
-  entities:
-  - uid: 208
-    components:
-    - pos: 1.5,-2.5
-      parent: 1
-      type: Transform
-- proto: LockerCaptainFilledHardsuit
-  entities:
-  - uid: 360
-    components:
-    - pos: -1.5,0.5
-      parent: 1
-      type: Transform
 - proto: LockerJanitorFilled
   entities:
-  - uid: 53
+  - uid: 208
     components:
     - pos: 2.5,2.5
       parent: 1
@@ -2582,11 +2565,12 @@ entities:
       parent: 1
       type: Transform
     - storage:
-        Uranium: 1500
+        Uranium: 3000
       type: MaterialStorage
     - bodyType: Static
       type: Physics
-    - type: InsertingMaterialStorage
+    - endTime: 0
+      type: InsertingMaterialStorage
 - proto: PortableScrubber
   entities:
   - uid: 5
@@ -2935,24 +2919,11 @@ entities:
   entities:
   - uid: 329
     components:
-    - pos: 2.507905,-5.516142
+    - pos: 2.5721993,-5.4875746
       parent: 1
       type: Transform
-    - count: 15
-      type: Stack
-    - size: 15
-      type: Item
 - proto: ShuttersRadiationOpen
   entities:
-  - uid: 26
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 4.5,-5.5
-      parent: 1
-      type: Transform
-    - links:
-      - 109
-      type: DeviceLinkSink
   - uid: 100
     components:
     - pos: 1.5,-6.5
@@ -2993,10 +2964,17 @@ entities:
     - links:
       - 109
       type: DeviceLinkSink
-  - uid: 273
+  - uid: 360
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 4.5,-4.5
+    - pos: 4.5,-4.5
+      parent: 1
+      type: Transform
+    - links:
+      - 109
+      type: DeviceLinkSink
+  - uid: 372
+    components:
+    - pos: 4.5,-5.5
       parent: 1
       type: Transform
     - links:
@@ -3047,9 +3025,9 @@ entities:
         - Pressed: Toggle
         193:
         - Pressed: Toggle
-        273:
+        372:
         - Pressed: Toggle
-        26:
+        360:
         - Pressed: Toggle
         250:
         - Pressed: Toggle
@@ -3179,6 +3157,13 @@ entities:
   - uid: 43
     components:
     - pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+- proto: SuitStorageEVAAlternate
+  entities:
+  - uid: 53
+    components:
+    - pos: -1.5,0.5
       parent: 1
       type: Transform
 - proto: Table
