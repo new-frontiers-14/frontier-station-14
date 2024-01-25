@@ -1,4 +1,4 @@
-﻿- type: reagent
+﻿﻿- type: reagent
   id: Flavorol #something magical a chef adds to a dish to make it better tm. Again, not doing a super in depth simulator just adding this to some of the higher end cooked meals to make it 'worth it' to seek out a chef.
   name: reagent-name-Flavorol
   group: Foods
@@ -18,23 +18,11 @@
         conditions:
         - !type:ReagentThreshold
           min: 10
-        - !type:OrganType
-          type: Goblin
-          shouldHave: false
         damage:
           types:
             Poison: -0.1
             Radiation: -0.1
             Cold: -0.2
-      - !type:HealthChange #goblins don't benefit from that 'healthy'-vitamins-complete-and-balanced-diet nonsense
-        conditions:
-        - !type:OrganType
-          type: Goblin
-        damage:
-          types:
-            Poison: 0.2
-            Radiation: 0.1
-            Cold: 0.1
       - !type:ModifyBloodLevel
         amount: .5
   plantMetabolism:
