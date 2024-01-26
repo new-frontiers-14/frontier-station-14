@@ -1,0 +1,42 @@
+- type: job
+  id: SecurityGuard
+  name: job-name-security-guard
+  description: job-description-security-guard
+  playTimeTracker: JobSecurityGuard
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # Frontier - 10 hrs
+  startingGear: SecurityGuardGear
+  icon: "JobIconSecurityGuard"
+  supervisors: job-supervisors-hop # not hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+  - Frontier # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: SecurityGuardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGuard
+    back: ClothingBackpackSecurityFilled
+    shoes: ClothingShoesLeather #ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
+    head: ClothingHeadHatBeretSecurity #ClothingHeadHelmetBasic
+    outerClothing: ClothingOuterArmorBasic
+    id: SecurityGuardPDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolMk58Nonlethal
+    gloves: ClothingHandsGlovesCombat # Frontier
+  innerClothingSkirt: ClothingUniformJumpskirtSecGuard
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled
