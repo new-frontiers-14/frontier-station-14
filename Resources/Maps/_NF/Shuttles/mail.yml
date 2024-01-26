@@ -324,6 +324,11 @@ entities:
     - pos: 0.5,3.5
       parent: 103
       type: Transform
+  - uid: 77
+    components:
+    - pos: 1.5,-0.5
+      parent: 103
+      type: Transform
   - uid: 79
     components:
     - pos: -0.5,1.5
@@ -575,14 +580,6 @@ entities:
       pos: 0.5,4.5
       parent: 103
       type: Transform
-- proto: Gyroscope
-  entities:
-  - uid: 26
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 1.5,-2.5
-      parent: 103
-      type: Transform
 - proto: IntercomService
   entities:
   - uid: 87
@@ -721,6 +718,13 @@ entities:
   - uid: 55
     components:
     - pos: -2.5,2.5
+      parent: 103
+      type: Transform
+- proto: SmallGyroscope
+  entities:
+  - uid: 26
+    components:
+    - pos: 1.5,-2.5
       parent: 103
       type: Transform
 - proto: SpawnPointLatejoin
