@@ -28,11 +28,11 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Medical;
+using Content.Shared.Chemistry.Components;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -57,7 +57,7 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
-    [Dependency] private readonly VomitSystem _vomitSystem = default!;
+    [Dependency] private readonly VomitSystem _vomit = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -262,16 +262,25 @@ public sealed class FoodSystem : EntitySystem
         }
 
         /// Frontier - Goblin food system
+        if (component.Quality == Quality.High)
+            component.FinalQuality = FinalQuality.High;
+        else if (component.Quality == Quality.Normal)
+            component.FinalQuality = FinalQuality.Normal;
+        else if (component.Quality == Quality.Nasty)
+            component.FinalQuality = FinalQuality.Nasty;
+        else if (component.Quality == Quality.Toxin)
+            component.FinalQuality = FinalQuality.Toxin;
+
         if (reverseFoodQuality)
         {
             if (component.Quality == Quality.High)
-                component.Quality = Quality.Toxin;
+                component.FinalQuality = FinalQuality.Toxin;
             else if (component.Quality == Quality.Normal)
-                component.Quality = Quality.Nasty;
+                component.FinalQuality = FinalQuality.Nasty;
             else if (component.Quality == Quality.Nasty)
-                component.Quality = Quality.Normal;
+                component.FinalQuality = FinalQuality.Normal;
             else if (component.Quality == Quality.Toxin)
-                component.Quality = Quality.High;
+                component.FinalQuality = FinalQuality.High;
         }
 
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
@@ -282,35 +291,35 @@ public sealed class FoodSystem : EntitySystem
         var damagingRegent = "Toxin";
         _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
 
-        switch (component.Quality)
+        switch (component.FinalQuality)
         {
-            case Quality.High:
+            case FinalQuality.High:
                 if (reverseFoodQuality)
                 {
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
-                    if (transferAmount >= 5)
-                        _solutionContainer.TryAddReagent(uid, solution, healingRegent, 1, out _);
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
+                    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer!, healingRegent, transferAmount / 5, out var accepted);
                 }
                 else
                 {
 
                 }
                 break;
-            case Quality.Normal:
+            case FinalQuality.Normal:
                 if (reverseFoodQuality)
                 {
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
-                    if (transferAmount >= 5)
-                        _solutionContainer.TryAddReagent(uid, solution, healingRegent, 1, out _);
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
+                    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer!, healingRegent, transferAmount / 5, out var accepted);
                 }
                 else
                 {
 
                 }
                 break;
-            case Quality.Junk:
+            case FinalQuality.Junk:
                 if (reverseFoodQuality)
                 {
 
@@ -320,23 +329,23 @@ public sealed class FoodSystem : EntitySystem
 
                 }
                 break;
-            case Quality.Nasty:
+            case FinalQuality.Nasty:
                 if (reverseFoodQuality)
                 {
-                    if (transferAmount >= 5)
-                        _solutionContainer.TryAddReagent(uid, solution, damagingRegent, 1, out _);
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
+                    //_solutionContainer.TryAddReagent(body.Owner, stomachToUse, damagingRegent, transferAmount / 5, out _);
                 }
                 else
                 {
 
                 }
                 break;
-            case Quality.Toxin:
+            case FinalQuality.Toxin:
                 if (reverseFoodQuality)
                 {
-                    if (transferAmount >= 5)
-                        _solutionContainer.TryAddReagent(uid, solution, damagingRegent, 2, out _);
-                    _vomitSystem.Vomit(stomachToUse.Owner, -1000, -1000); // You feel hollow!
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
+                    //_solutionContainer.TryAddReagent(body.Owner, stomachToUse, damagingRegent, transferAmount / 5, out _);
+                    //_vomitSystem.Vomit(stomachToUse.Owner, -1000, -1000); // You feel hollow!
                 }
                 else
                 {
