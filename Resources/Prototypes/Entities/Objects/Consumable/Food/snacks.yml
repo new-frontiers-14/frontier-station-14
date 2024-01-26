@@ -6,6 +6,7 @@
   abstract: true
   components:
   - type: Food
+    quality: Junk # Frontier, New Food Quality System
   - type: Tag
     tags:
       - FoodSnack
@@ -475,6 +476,18 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 1
+  - type: FlavorProfile # Frontier
+    flavors: # Frontier
+      - funny # Frontier
+  - type: Food # Frontier, New Food Quality System
+    quality: Toxin # Frontier, New Food Quality System
+  - type: SolutionContainerManager # Frontier
+    solutions: # Frontier
+      food: # Frontier
+        maxVol: 15 # Frontier
+        reagents: # Frontier
+        - ReagentId: Toxin # Frontier
+          Quantity: 10 # Frontier
 
 - type: entity
   noSpawn: true
