@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: harbormaster
+  name: NC Harbormaster
+  description: A small tugboat.
+  price: 29500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
+
+- type: gameMap
+  id: harbormaster
+  mapName: 'Harbormaster'
+  mapPath: /Maps/_NF/Shuttles/harbormaster.yml
+  minPlayers: 0
+  stations: 
+    harbormaster:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Harbormaster {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
