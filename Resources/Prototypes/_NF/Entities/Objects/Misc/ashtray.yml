@@ -1,0 +1,48 @@
+- type: entity
+  name: ashtray
+  id: Ashtray
+  parent: BaseStorageItem
+  components:
+  - type: Sprite
+    scale: 0.5, 0.5
+    sprite: _NF/Objects/Misc/ashtray.rsi
+    layers:
+      - state: icon-0
+        map: ["enum.StorageFillLayers.Fill"]
+  - type: Storage
+    capacity: 12
+    quickInsert: true
+    areaInsert: true
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+        - Cigar
+        - Cigarette
+        - Ash
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 4
+    fillBaseName: icon
+  - type: Dumpable
+  - type: Item
+    size: 12
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+#        triggersOnce: false
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
