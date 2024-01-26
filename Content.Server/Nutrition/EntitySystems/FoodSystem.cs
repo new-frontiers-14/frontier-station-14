@@ -28,11 +28,9 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Server.Medical;
-using Content.Shared.Chemistry.Components;
+using Content.Shared.Speech.EntitySystems;
+using Robust.Shared.Random;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -58,6 +56,8 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
     [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
+    [Dependency] protected readonly IRobustRandom RobustRandom = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -266,6 +266,8 @@ public sealed class FoodSystem : EntitySystem
             component.FinalQuality = FinalQuality.High;
         else if (component.Quality == Quality.Normal)
             component.FinalQuality = FinalQuality.Normal;
+        else if (component.Quality == Quality.Junk)
+            component.FinalQuality = FinalQuality.Junk;
         else if (component.Quality == Quality.Nasty)
             component.FinalQuality = FinalQuality.Nasty;
         else if (component.Quality == Quality.Toxin)
@@ -287,9 +289,11 @@ public sealed class FoodSystem : EntitySystem
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
 
         string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid" };
-        var healingRegent = "Stimulants";
+        var speedRegent = "Stimulants";
         var damagingRegent = "Toxin";
         _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
+        _solutionContainer.TryGetSolution(args.Target.Value, StomachSystem.DefaultSolutionName, out var stomachSol1);
+        TryComp<BloodstreamComponent>(args.Target.Value, out var blood);
 
         switch (component.FinalQuality)
         {
@@ -297,9 +301,9 @@ public sealed class FoodSystem : EntitySystem
                 if (reverseFoodQuality)
                 {
                     foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
-                    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer!, healingRegent, transferAmount / 5, out var accepted);
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 3, out var accepted); // Add to blood
                 }
                 else
                 {
@@ -310,9 +314,9 @@ public sealed class FoodSystem : EntitySystem
                 if (reverseFoodQuality)
                 {
                     foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2);
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
-                    _solutionContainer.TryAddReagent(stomachToUse.Owner, stomachContainer!, healingRegent, transferAmount / 5, out var accepted);
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 5, out var accepted); // Add to blood
                 }
                 else
                 {
@@ -332,8 +336,8 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Nasty:
                 if (reverseFoodQuality)
                 {
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
-                    //_solutionContainer.TryAddReagent(body.Owner, stomachToUse, damagingRegent, transferAmount / 5, out _);
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 5, out var accepted); // Add to blood
                 }
                 else
                 {
@@ -343,9 +347,11 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Toxin:
                 if (reverseFoodQuality)
                 {
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2);
-                    //_solutionContainer.TryAddReagent(body.Owner, stomachToUse, damagingRegent, transferAmount / 5, out _);
-                    //_vomitSystem.Vomit(stomachToUse.Owner, -1000, -1000); // You feel hollow!
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 3, out var accepted); // Add to blood
+                    _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
+                    if (RobustRandom.Prob(.05f)) // 5% to puke
+                        _vomit.Vomit(args.Target.Value);
                 }
                 else
                 {
