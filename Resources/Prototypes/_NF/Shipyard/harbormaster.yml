@@ -7,33 +7,32 @@
 # Discord: erhardsteinhauer
 
 # Shuttle Notes:
-#
+# 
+
 - type: vessel
-  id: Searchlight
-  name: NM Searchlight
-  description: A small vessel outfitted for the search and recovery of wounded NT personnel. Primarily for recovery. Search though? Well. You got that medical tracker implanted, right?
+  id: harbormaster
+  name: NC Harbormaster
+  description: A small tugboat.
   price: 29500
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/searchlight.yml
+  shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
 
 - type: gameMap
-  id: Searchlight
-  mapName: 'NM Searchlight'
-  mapPath: /Maps/_NF/Shuttles/searchlight.yml
+  id: harbormaster
+  mapName: 'Harbormaster'
+  mapPath: /Maps/_NF/Shuttles/harbormaster.yml
   minPlayers: 0
-  stations:
-    Searchlight:
+  stations: 
+    harbormaster:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Searchlight {1}'
+          mapNameTemplate: 'Harbormaster {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Paramedic: [ 0, 0 ]
             Pilot: [ 0, 0 ]
-            StationEngineer: [ 0, 0 ]
