@@ -1,16 +1,26 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
 - type: vessel
   id: pioneer
   name: NC Pioneer
   description: A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet.
-  price: 15950
+  price: 16500
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/pioneer.yml
+  shuttlePath: /Maps/_NF/Shuttles/pioneer.yml
 
 - type: gameMap
   id: pioneer
   mapName: 'NC Pioneer'
-  mapPath: /Maps/Shuttles/pioneer.yml
+  mapPath: /Maps/_NF/Shuttles/pioneer.yml
   minPlayers: 0
   stations:
     pioneer:
@@ -24,4 +34,5 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
+            Pilot: [ 0, 0 ]
             SalvageSpecialist: [ 0, 0 ]
