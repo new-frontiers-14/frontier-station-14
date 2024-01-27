@@ -42,12 +42,12 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
     }
 
-    private void Populate(byte uiKey)
+    private void Populate(List<string> prototypes, string name)
     {
         if (_menu == null)
             return;
 
-        _menu.PopulateProducts((ShipyardConsoleUiKey) uiKey);
+        _menu.PopulateProducts(prototypes, name);
         _menu.PopulateCategories();
     }
 
@@ -61,7 +61,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         Balance = cState.Balance;
         ShipSellValue = cState.ShipSellValue;
         var castState = (ShipyardConsoleInterfaceState) state;
-        Populate(castState.UiKey);
+        Populate(castState.ShipyardPrototypes, castState.ShipyardName);
         _menu?.UpdateState(castState);
     }
 

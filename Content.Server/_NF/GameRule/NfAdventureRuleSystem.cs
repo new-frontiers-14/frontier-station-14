@@ -110,18 +110,18 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private void OnStartup(RoundStartingEvent ev)
     {
-        var depotMap = "/Maps/cargodepot.yml";
-        var tinnia = "/Maps/tinnia.yml";
-        var caseys = "/Maps/caseyscasino.yml";
-        var lpbravo = "/Maps/lpbravo.yml";
-        var northpole = "/Maps/northpole.yml";
-        var arena = "/Maps/arena.yml";
-        var cove = "/Maps/cove.yml";
-        var courthouse = "/Maps/courthouse.yml";
-        var lodge = "/Maps/lodge.yml";
-        var lab = "/Maps/anomalouslab.yml";
-        var church = "Maps/beacon.yml";
-        var grifty = "Maps/grifty.yml";
+        var depotMap = "/Maps/_NF/POI/cargodepot.yml";
+        var tinnia = "/Maps/_NF/POI/tinnia.yml";
+        var caseys = "/Maps/_NF/POI/caseyscasino.yml";
+        var lpbravo = "/Maps/_NF/POI/lpbravo.yml";
+        // var northpole = "/Maps/_NF/POI/northpole.yml";
+        var arena = "/Maps/_NF/POI/arena.yml";
+        var cove = "/Maps/_NF/POI/cove.yml";
+        var courthouse = "/Maps/_NF/POI/courthouse.yml";
+        var lodge = "/Maps/_NF/POI/lodge.yml";
+        var lab = "/Maps/_NF/POI/anomalouslab.yml";
+        var church = "Maps/_NF/POI/beacon.yml";
+        var grifty = "Maps/_NF/POI/grifty.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -181,15 +181,15 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
-        if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2150f, 3900f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
-            _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
-            _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
-        }
+        // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
+        //     {
+        //         Offset = _random.NextVector2(2150f, 3900f)
+        //     }))
+        // {
+        //     var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
+        //     _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
+        //     _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
+        // }
 
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
