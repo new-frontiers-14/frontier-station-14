@@ -1,19 +1,19 @@
 - type: vessel
-  id: svpoint
+  id: Point
   name: SV Point
   description: Two wrecks welded together that are somehow capable of research. 
   price: 16000
   category: Small
   group: Scrap
-  shuttlePath: /Maps/Shuttles/svpoint.yml
+  shuttlePath: /Maps/_NF/Shuttles/point.yml
 
 - type: gameMap
-  id: svpoint
+  id: Point
   mapName: 'SV Point'
-  mapPath: /Maps/Shuttles/svpoint.yml
+  mapPath: /Maps/_NF/Shuttles/point.yml
   minPlayers: 0
   stations:
-    svpoint:
+    Point:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -23,6 +23,4 @@
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs:
-            Passenger: [ 1, 1 ]
-            Scientist: [ 1, 1 ]
+          availableJobs: {}
