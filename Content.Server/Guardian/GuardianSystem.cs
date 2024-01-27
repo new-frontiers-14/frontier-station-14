@@ -314,13 +314,10 @@ namespace Content.Server.Guardian
                 return;
             }
 
-            if (!(guardianComponent.Ai))
+            if (!guardianComponent.Ai && !CanRelease(guardian))
             {
-                if (!CanRelease(guardian))
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("guardian-no-soul"), host, host);
-                    return;
-                }
+                _popupSystem.PopupEntity(Loc.GetString("guardian-no-soul"), host, host);
+                return;
             }
 
             DebugTools.Assert(hostComponent.GuardianContainer.Contains(guardian));
