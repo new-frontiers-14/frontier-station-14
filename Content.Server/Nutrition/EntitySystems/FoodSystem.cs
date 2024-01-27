@@ -31,6 +31,8 @@ using Robust.Shared.Utility;
 using Content.Server.Medical;
 using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
+using Content.Shared.Jittering;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -58,6 +60,8 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
     [Dependency] protected readonly IRobustRandom RobustRandom = default!;
+    [Dependency] private readonly SharedJitteringSystem _jittering = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -285,12 +289,16 @@ public sealed class FoodSystem : EntitySystem
                 component.FinalQuality = FinalQuality.High;
         }
 
+        // TODO: Add detection for fried food on nasty to update it to toxin for goblins.
+        // TODO: Add inspect food but only for goblin eyes to see, goblins can tell food quality.
+
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
 
         string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid" };
         var speedRegent = "Stimulants";
         var damagingRegent = "Toxin";
+        var emoteId = "Laugh";
         _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
         _solutionContainer.TryGetSolution(args.Target.Value, StomachSystem.DefaultSolutionName, out var stomachSol1);
         TryComp<BloodstreamComponent>(args.Target.Value, out var blood);
@@ -326,7 +334,10 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Junk:
                 if (reverseFoodQuality)
                 {
-
+                    foreach (var reagent in toxinsRegent)
+                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 7, out var accepted); // Add to blood
                 }
                 else
                 {
@@ -338,6 +349,8 @@ public sealed class FoodSystem : EntitySystem
                 {
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
                     _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 5, out var accepted); // Add to blood
+                    _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
+                    _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
                 }
                 else
                 {
@@ -350,6 +363,9 @@ public sealed class FoodSystem : EntitySystem
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
                     _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 3, out var accepted); // Add to blood
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
+                    _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 80f, 8f, true, null);
+                    _chat.TryEmoteWithoutChat(args.Target.Value, emoteId);
+
                     if (RobustRandom.Prob(.05f)) // 5% to puke
                         _vomit.Vomit(args.Target.Value);
                 }
