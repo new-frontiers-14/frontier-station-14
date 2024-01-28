@@ -1037,11 +1037,14 @@ entities:
           -3,-2:
             0: 65535
           -3,-1:
-            1: 65
-            8: 32768
-            0: 30494
+            1: 1
+            8: 64
+            9: 32768
+            0: 30486
+            10: 8
             4: 32
-            7: 2176
+            11: 128
+            7: 2048
           -3,-3:
             0: 60416
           -2,-3:
@@ -1069,7 +1072,7 @@ entities:
           3,-2:
             0: 12287
             4: 4096
-            9: 16384
+            12: 16384
             6: 32768
           3,-1:
             0: 65535
@@ -1305,8 +1308,53 @@ entities:
         - volume: 2500
           temperature: 293.14993
           moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14993
+          moles:
           - 18.472576
           - 69.49208
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 21.6852
+          - 81.57766
           - 0
           - 0
           - 0
@@ -1336,14 +1384,6 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: ActionToggleLight
-  entities:
-  - uid: 1435
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 1434
-      type: Transform
 - proto: AirlockArmoryLocked
   entities:
   - uid: 129
@@ -6670,7 +6710,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 723
+    - parent: 727
       type: Transform
     - canCollide: False
       type: Physics
@@ -6679,7 +6719,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 723
+    - parent: 727
       type: Transform
     - canCollide: False
       type: Physics
@@ -6688,7 +6728,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 723
+    - parent: 727
       type: Transform
     - canCollide: False
       type: Physics
@@ -7032,6 +7072,44 @@ entities:
         - 0
         - 0
       type: EntityStorage
+- proto: CrateEngineering
+  entities:
+  - uid: 727
+    components:
+    - pos: -9.5,-2.5
+      parent: 1
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14957
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 670
+          - 671
+          - 607
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: CrateEngineeringAMEJar
   entities:
   - uid: 203
@@ -7082,44 +7160,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: CrateEngineeringToolbox
-  entities:
-  - uid: 723
-    components:
-    - pos: -9.5,-2.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1497
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 671
-          - 670
-          - 607
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
 - proto: CrateFoodCooking
   entities:
   - uid: 577
@@ -7345,6 +7385,45 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
+- proto: CrateMaterialSteel
+  entities:
+  - uid: 756
+    components:
+    - pos: -8.5,-2.5
+      parent: 1
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.8856695
+        - 7.0937095
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 757
+          - 758
+          - 759
+          - 760
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: CrateMedicalSupplies
   entities:
   - uid: 2646
@@ -7503,47 +7582,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: CrateTrashCart
-  entities:
-  - uid: 727
-    components:
-    - pos: -8.5,-2.5
-      parent: 1
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 761
-          - 760
-          - 759
-          - 756
-          - 758
-          - 757
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
 - proto: CrateWeaponSecure
   entities:
   - uid: 113
@@ -12121,40 +12159,23 @@ entities:
     - pos: 35.5,8.5
       parent: 1
       type: Transform
-- proto: LampBanana
-  entities:
-  - uid: 1434
-    components:
-    - pos: -3.2778687,6.908551
-      parent: 1
-      type: Transform
-    - toggleActionEntity: 1435
-      type: HandheldLight
-    - containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ProvidedActionContainer: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1435
-      type: ContainerContainer
-    - canCollide: True
-      type: Physics
-  - uid: 2033
-    components:
-    - pos: 4.235004,10.953442
-      parent: 1
-      type: Transform
-  - uid: 2034
-    components:
-    - pos: 8.235004,10.969067
-      parent: 1
-      type: Transform
 - proto: LampGold
   entities:
+  - uid: 723
+    components:
+    - pos: -3.291666,6.9406414
+      parent: 1
+      type: Transform
+  - uid: 761
+    components:
+    - pos: 8.330059,10.788727
+      parent: 1
+      type: Transform
+  - uid: 774
+    components:
+    - pos: 4.330059,10.788727
+      parent: 1
+      type: Transform
   - uid: 1151
     components:
     - rot: 1.5707963267948966 rad
@@ -14106,7 +14127,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 727
+    - parent: 756
       type: Transform
     - canCollide: False
       type: Physics
@@ -14115,7 +14136,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 727
+    - parent: 756
       type: Transform
     - canCollide: False
       type: Physics
@@ -14126,7 +14147,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 727
+    - parent: 756
       type: Transform
     - canCollide: False
       type: Physics
@@ -14135,27 +14156,7 @@ entities:
     components:
     - flags: InContainer
       type: MetaData
-    - parent: 727
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: SheetSteel
-  entities:
-  - uid: 756
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 727
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 761
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 727
+    - parent: 756
       type: Transform
     - canCollide: False
       type: Physics
