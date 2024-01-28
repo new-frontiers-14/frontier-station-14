@@ -1,16 +1,26 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
 - type: vessel
   id: liquidator
   name: NT Liquidator
   description: A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included).
-  price: 30500
+  price: 31600 # 27480+4120 from 15% markup
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/liquidator.yml
+  shuttlePath: /Maps/_NF/Shuttles/liquidator.yml
 
 - type: gameMap
   id: liquidator
-  mapName: 'NT Liquidator'
-  mapPath: /Maps/Shuttles/liquidator.yml
+  mapName: 'NC Liquidator'
+  mapPath: /Maps/_NF/Shuttles/liquidator.yml
   minPlayers: 0
   stations:
     liquidator:
@@ -24,6 +34,7 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
+            Pilot: [ 0, 0 ]
             Janitor: [ 0, 0 ]
             AtmosphericTechnician: [ 0, 0 ]
             Chemist: [ 0, 0 ]
