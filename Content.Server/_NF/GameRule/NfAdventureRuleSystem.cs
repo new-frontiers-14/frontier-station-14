@@ -122,6 +122,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lab = "/Maps/_NF/POI/anomalouslab.yml";
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
+        var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -148,6 +149,23 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
             _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
+        }
+
+        if (_map.TryLoad(mapId, nfsdStation, out var nfsdUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(500f, 700f)
+            }))
+        {
+            // We should figure out if it is possible to add this grid to the latejoin listing.
+            // Hey turns out we can! (This is kinda copypasted from the lodge with some values filled in.)
+            if (_prototypeManager.TryIndex<GameMapPrototype>("nfsd", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["nfsd"], nfsdUids);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
+            _meta.SetEntityName(nfsdUids[0], "NFSD Outpost", meta);
+            _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
