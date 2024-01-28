@@ -287,6 +287,13 @@ entities:
     - pos: -1.5,-2.5
       parent: 103
       type: Transform
+- proto: BoxPaperOffice
+  entities:
+  - uid: 72
+    components:
+    - pos: 0.5136911,0.57866454
+      parent: 103
+      type: Transform
 - proto: CableApcExtension
   entities:
   - uid: 68
@@ -417,10 +424,9 @@ entities:
       type: Transform
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 72
+  - uid: 1
     components:
-    - rot: 1.5707963267948966 rad
-      pos: -1.5,3.5
+    - pos: -1.5,2.5
       parent: 103
       type: Transform
 - proto: EmergencyLight
@@ -580,14 +586,6 @@ entities:
       pos: 0.5,4.5
       parent: 103
       type: Transform
-- proto: IntercomService
-  entities:
-  - uid: 87
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -1.5,2.5
-      parent: 103
-      type: Transform
 - proto: MailBag
   entities:
   - uid: 95
@@ -618,13 +616,12 @@ entities:
     - type: InsertingMaterialStorage
 - proto: Poweredlight
   entities:
-  - uid: 88
+  - uid: 6
     components:
-    - pos: 2.5,2.5
+    - rot: 1.5707963267948966 rad
+      pos: 2.5,3.5
       parent: 103
       type: Transform
-    - powerLoad: 0
-      type: ApcPowerReceiver
   - uid: 89
     components:
     - rot: 3.141592653589793 rad
@@ -872,18 +869,6 @@ entities:
       type: Transform
 - proto: WallShuttleDiagonal
   entities:
-  - uid: 1
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 2.5,1.5
-      parent: 103
-      type: Transform
-  - uid: 6
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 2.5,3.5
-      parent: 103
-      type: Transform
   - uid: 7
     components:
     - rot: -1.5707963267948966 rad
