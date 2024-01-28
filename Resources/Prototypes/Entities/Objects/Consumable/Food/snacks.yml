@@ -476,18 +476,19 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 1
-  - type: FlavorProfile # Frontier
-    flavors: # Frontier
-      - funny # Frontier
-  - type: Food # Frontier, New Food Quality System
+  - type: FlavorProfile # Frontier, Goblins
+    flavors: # Frontier, Goblins
+      - funny # Frontier, Goblins
+  - type: Food # Frontier, Goblins
     quality: Toxin # Frontier, New Food Quality System
+#    requiresSpecialDigestion: true # Frontier, Goblins
   - type: SolutionContainerManager # Frontier
     solutions: # Frontier
       food: # Frontier
-        maxVol: 15 # Frontier
+        maxVol: 1 # Frontier
         reagents: # Frontier
-        - ReagentId: Toxin # Frontier
-          Quantity: 10 # Frontier
+        - ReagentId: TrashJuice # Frontier
+          Quantity: 1 # Frontier
 
 - type: entity
   noSpawn: true

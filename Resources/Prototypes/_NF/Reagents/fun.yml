@@ -1,0 +1,14 @@
+- type: reagent
+  id: TrashJuice
+  name: reagent-name-trashjuice
+  desc: reagent-desc-trashjuice
+  physicalDesc: reagent-physical-desc-trashjuice
+  flavor: trashjuice
+  color: "#767C00"
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        conditions:
+        - !type:OrganType
+          type: Goblin
