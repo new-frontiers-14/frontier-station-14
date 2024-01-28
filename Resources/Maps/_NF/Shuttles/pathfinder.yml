@@ -1406,6 +1406,37 @@ entities:
     - pos: 10.542477,-6.408145
       parent: 1
       type: Transform
+- proto: EmergencyLight
+  entities:
+  - uid: 262
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -4.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 265
+    components:
+    - pos: 5.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 274
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -0.5,0.5
+      parent: 1
+      type: Transform
+  - uid: 275
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -1.5,-4.5
+      parent: 1
+      type: Transform
+  - uid: 277
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 1.5,0.5
+      parent: 1
+      type: Transform
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 52
@@ -2406,6 +2437,30 @@ entities:
       type: Stamp
 - proto: PoweredSmallLight
   entities:
+  - uid: 263
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -8.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 264
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 9.5,-6.5
+      parent: 1
+      type: Transform
+  - uid: 266
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -3.5,-7.5
+      parent: 1
+      type: Transform
+  - uid: 270
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 4.5,-7.5
+      parent: 1
+      type: Transform
   - uid: 293
     components:
     - rot: 1.5707963267948966 rad
@@ -2415,56 +2470,10 @@ entities:
     - links:
       - 522
       type: DeviceLinkSink
-  - uid: 294
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -4.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 295
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -9.5,-6.5
-      parent: 1
-      type: Transform
-  - uid: 296
-    components:
-    - pos: -9.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 297
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -4.5,-7.5
-      parent: 1
-      type: Transform
-  - uid: 298
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -1.5,-7.5
-      parent: 1
-      type: Transform
-  - uid: 299
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 2.5,-7.5
-      parent: 1
-      type: Transform
-  - uid: 300
-    components:
-    - pos: 5.5,-4.5
-      parent: 1
-      type: Transform
   - uid: 301
     components:
     - rot: -1.5707963267948966 rad
       pos: 8.5,-2.5
-      parent: 1
-      type: Transform
-  - uid: 302
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 8.5,-4.5
       parent: 1
       type: Transform
   - uid: 303
@@ -2479,12 +2488,6 @@ entities:
       pos: -1.5,-0.5
       parent: 1
       type: Transform
-  - uid: 305
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -0.5,1.5
-      parent: 1
-      type: Transform
   - uid: 306
     components:
     - pos: 0.5,-9.5
@@ -2492,12 +2495,7 @@ entities:
       type: Transform
 - proto: Railing
   entities:
-  - uid: 307
-    components:
-    - pos: -2.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 308
+  - uid: 280
     components:
     - rot: -1.5707963267948966 rad
       pos: -1.5,-2.5
@@ -2507,25 +2505,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -1.5,-4.5
-      parent: 1
-      type: Transform
-  - uid: 310
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -2.5,-3.5
-      parent: 1
-      type: Transform
-- proto: RailingCornerSmall
-  entities:
-  - uid: 311
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -1.5,-3.5
-      parent: 1
-      type: Transform
-  - uid: 312
-    components:
-    - pos: -1.5,-3.5
       parent: 1
       type: Transform
 - proto: RandomPosterLegit
@@ -2921,6 +2900,18 @@ entities:
     - pos: 4.5,-3.5
       parent: 1
       type: Transform
+- proto: SuitStorageEVAAlternate
+  entities:
+  - uid: 226
+    components:
+    - pos: 3.5,-8.5
+      parent: 1
+      type: Transform
+  - uid: 227
+    components:
+    - pos: -2.5,-8.5
+      parent: 1
+      type: Transform
 - proto: SuitStorageQuartermaster
   entities:
   - uid: 116
@@ -2933,20 +2924,6 @@ entities:
   - uid: 40
     components:
     - pos: -1.5,-2.5
-      parent: 1
-      type: Transform
-- proto: SuitStorageWallmountEVAAlternate
-  entities:
-  - uid: 226
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -3.5,-8.5
-      parent: 1
-      type: Transform
-  - uid: 227
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 4.5,-8.5
       parent: 1
       type: Transform
 - proto: Table
