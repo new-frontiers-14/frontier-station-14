@@ -9,7 +9,7 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: menace
+  id: Menace
   name: Menace
   description: 'Mail is no longer an option: you either receive it or you die.'
   price: 76000
@@ -18,12 +18,12 @@
   shuttlePath: /Maps/_NF/Shuttles/menace.yml
 
 - type: gameMap
-  id: menace
+  id: Menace
   mapName: 'Menace'
   mapPath: /Maps/_NF/Shuttles/menace.yml
   minPlayers: 0
   stations:
-    menace:
+    Menace:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -33,7 +33,4 @@
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs:
-            MailCarrier: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
+          availableJobs: {}
