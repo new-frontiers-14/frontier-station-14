@@ -88,7 +88,6 @@ public sealed class MagnetPickupSystem : EntitySystem
         return comp.MagnetEnabled;
     }
 
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
