@@ -106,6 +106,7 @@
 # From the uplink injector
 - type: entity
   name: Holoparasite
+  suffix: Ghost # Frontier
   id: MobHoloparasiteGuardian
   parent: MobGuardianBase
   description: A mesmerising whirl of hard-light patterns weaves a marvelous, yet oddly familiar visage. It stands proud, tuning into its owner's life to sustain itself.
@@ -129,16 +130,17 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#40a7d7"
           shader: unshaded
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
+    # - type: NpcFactionMember
+      # factions:
+        # - Syndicate
+    # - type: HTN # Frontier
+      # rootTask:
+        # task: SimpleHumanoidHostileCompound
 
 # From Wizard deck of cards
 - type: entity
   name: Ifrit
+  suffix: Ghost # Frontier
   parent: MobGuardianBase
   id: MobIfritGuardian
   description: A corrupted jinn, ripped from fitra to serve the wizard's petty needs. It stands wicked, tuning into it's owner's life to sustain itself.
@@ -165,6 +167,7 @@
 
 - type: entity
   name: HoloClown
+  suffix: Ghost # Frontier
   id: MobHoloClownGuardian
   parent: MobGuardianBase
   description: A mesmerising whirl of hard-light patterns weaves a blue colored clown of dubious origin.
@@ -236,12 +239,12 @@
     - type: RandomMetadata
       nameSegments:
       - names_clown
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
+    # - type: NpcFactionMember
+      # factions:
+        # - Syndicate
+    # - type: HTN # Frontier
+      # rootTask:
+        # task: SimpleHumanoidHostileCompound
 
 - type: entity
   id: ActionToggleGuardian
