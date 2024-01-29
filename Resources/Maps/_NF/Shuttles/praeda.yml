@@ -6808,7 +6808,8 @@ entities:
   entities:
   - uid: 1021
     components:
-    - pos: -4.5,1.5
+    - rot: -3.141592653589793 rad
+      pos: -4.5,1.5
       parent: 1
       type: Transform
     - links:
@@ -7142,8 +7143,7 @@ entities:
       type: DeviceLinkSink
   - uid: 1105
     components:
-    - rot: 3.141592653589793 rad
-      pos: 5.5,1.5
+    - pos: 5.5,1.5
       parent: 1
       type: Transform
     - links:
@@ -11917,7 +11917,7 @@ entities:
     - pos: -3.5,-28.5
       parent: 1
       type: Transform
-    - secondsUntilStateChange: -4121.836
+    - secondsUntilStateChange: -4300.646
       state: Opening
       type: Door
   - uid: 1717
@@ -14746,6 +14746,24 @@ entities:
       type: Transform
 - proto: Thruster
   entities:
+  - uid: 1799
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -12.5,-31.5
+      parent: 1
+      type: Transform
+  - uid: 1800
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -12.5,-30.5
+      parent: 1
+      type: Transform
+  - uid: 1801
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -12.5,-29.5
+      parent: 1
+      type: Transform
   - uid: 2112
     components:
     - rot: 3.141592653589793 rad
@@ -14810,26 +14828,6 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: -11.5,-32.5
-      parent: 1
-      type: Transform
-  - uid: 2123
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -12.5,-31.5
-      parent: 1
-      type: Transform
-    - enabled: False
-      type: Thruster
-  - uid: 2124
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -12.5,-30.5
-      parent: 1
-      type: Transform
-  - uid: 2125
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -12.5,-29.5
       parent: 1
       type: Transform
   - uid: 2126
