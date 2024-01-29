@@ -9184,7 +9184,7 @@ entities:
       type: Transform
   - uid: 1056
     components:
-    - pos: 5.5,18.5
+    - pos: 3.5,18.5
       parent: 1
       type: Transform
 - proto: DrinkGlass
@@ -19144,9 +19144,11 @@ entities:
   - uid: 2454
     components:
     - rot: 3.141592653589793 rad
-      pos: 3.5,17.5
+      pos: 5.5,17.5
       parent: 1
       type: Transform
+    - canCollide: False
+      type: Physics
 - proto: SuitStorageWallmountMercenary
   entities:
   - uid: 2471
@@ -19155,6 +19157,8 @@ entities:
       pos: -10.5,4.5
       parent: 1
       type: Transform
+    - canCollide: False
+      type: Physics
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 2681
