@@ -24,9 +24,14 @@
   - type: Fixtures
     fixtures:
       fix1:
-        density: 500
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 300
         mask:
         - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
 
 - type: entity
   parent: [ BaseComputerShuttle, BaseComputerTabletop ] # Shuttle
@@ -673,7 +678,7 @@
       state: service_keys
 
 - type: entity
-  parent: [ BaseComputerTabletop,  ]
+  parent: [ BaseComputerTabletop, ComputerSensorMonitoring ]
   id: ComputerTabletopSensorMonitoring
   # Putting this as "DO NOT MAP" until the performance issues are fixed.
   # And it's more fleshed out.
