@@ -1,19 +1,9 @@
 - type: entity
   id: SuitStorageWallmount
-  parent: [SuitStorageBase, BaseWallLocker]
+  parent: [BaseWallCloset, SuitStorageBase]
   name: suit wallstorage unit
-  placement:
-    mode: SnapgridCenter
   components:
-# Basic function components
-  - type: WallMount
-    arc: 360
-  - type: Transform
-    noRot: false
-# Visual properties
   - type: Sprite
-    drawdepth: WallMountedItems
-    noRot: false
     sprite: _NF/Structures/Storage/suit_storage_wall.rsi
     layers:
     - state: generic
@@ -31,11 +21,11 @@
     stateLocked: locked
     stateUnlocked: unlocked
   - type: EntityStorage
-    isCollidableWhenOpen: true
-    enteringOffset: 0, -0.75
     closeSound:
       path: /Audio/Machines/windoor_open.ogg
     openSound:
       path: /Audio/Machines/windoor_open.ogg
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
+  - type: Fixtures
+    fixtures: {}
