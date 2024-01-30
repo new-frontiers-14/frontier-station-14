@@ -74,7 +74,7 @@ namespace Content.Server.Cargo.Systems
 
                 foreach (var account in EntityQuery<StationBankAccountComponent>())
                 {
-                    account.Balance += account.IncreasePerSecond * Delay;
+                    account.Balance += account.IncreasePerSecond * Delay * 18; //18 times the original amount
                 }
 
                 var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();

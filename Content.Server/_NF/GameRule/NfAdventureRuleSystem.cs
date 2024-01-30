@@ -174,7 +174,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
+            _meta.SetEntityName(depotUid2s[0], "Robuster's Rest", meta);
             _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 

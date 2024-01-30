@@ -1,10 +1,10 @@
-bwoink-user-title = Admin Message
+bwoink-user-title = Contact Central Command
 
-bwoink-system-starmute-message-no-other-users = *System: Nobody is available to receive your message. Try pinging Game Admins on Discord.
+bwoink-system-starmute-message-no-other-users = *System: Bluespace disconnected! (Nobody is available to receive your message. Try pinging Central Command on Discord).
 
 bwoink-system-messages-being-relayed-to-discord =
-    Your messages are being relayed to the admins via Discord.
-    Issues may be handled without a response.
+    This will send SOS bluespace message to Central Command.
+    Issues may be handled directly, dispatchment of central agent or without a response.
 
 bwoink-system-typing-indicator = {$players} {$count ->
 [one] is

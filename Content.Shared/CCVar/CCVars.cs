@@ -27,7 +27,7 @@ namespace Content.Shared.CCVar
         ///     A loc string for what should be displayed as the title on the Rules window.
         /// </summary>
         public static readonly CVarDef<string> RulesHeader =
-            CVarDef.Create("server.rules_header", "Frontier Server Rules", CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("server.rules_header", "Server Rules", CVar.REPLICATED | CVar.SERVER);
 
         /*
          * Ambience
@@ -346,7 +346,7 @@ namespace Content.Shared.CCVar
         /// URL of the Discord webhook which will relay all ahelp messages.
         /// </summary>
         public static readonly CVarDef<string> DiscordAHelpWebhook =
-            CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+            CVarDef.Create("discord.ahelp_webhook", "https://discord.com/api/webhooks/1187908245319340125/hQzILm2Xj2l5vOk-ifo2kX1K3QKUCbS51bWMwvYjvclkGnTpQ94cFkBHEwlMHadjbZwj", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
@@ -1360,7 +1360,7 @@ namespace Content.Shared.CCVar
         ///     Time in minutes after round start to auto-call the shuttle. Set to zero to disable.
         /// </summary>
         public static readonly CVarDef<int> EmergencyShuttleAutoCallTime =
-            CVarDef.Create("shuttle.auto_call_time", 360, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.auto_call_time", 480, CVar.SERVERONLY);
 
         /// <summary>
         ///     Time in minutes after the round was extended (by recalling the shuttle) to call
@@ -1601,10 +1601,10 @@ namespace Content.Shared.CCVar
         /// Cooldown for successful missions.
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED);
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 60f, CVar.REPLICATED);
 
         public static readonly CVarDef<float>
-            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 600f, CVar.REPLICATED);
+            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 60f, CVar.REPLICATED);
 
         /*
          * Flavor
@@ -1748,7 +1748,7 @@ namespace Content.Shared.CCVar
         /// Link to Discord server to show in the launcher.
         /// </summary>
         public static readonly CVarDef<string> InfoLinksDiscord =
-            CVarDef.Create("infolinks.discord", "", CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("infolinks.discord", "https://discord.gg/Gps4WpZUbQ", CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Link to website to show in the launcher.
@@ -1760,7 +1760,7 @@ namespace Content.Shared.CCVar
         /// Link to GitHub page to show in the launcher.
         /// </summary>
         public static readonly CVarDef<string> InfoLinksGithub =
-            CVarDef.Create("infolinks.github", "", CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("infolinks.github", "https://github.com/Pax-Astralis-Dev/pax-astralis-station/tree/master", CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Link to website to show in the launcher.
@@ -1778,7 +1778,7 @@ namespace Content.Shared.CCVar
         /// Link to Patreon. Not shown in the launcher currently.
         /// </summary>
         public static readonly CVarDef<string> InfoLinksPatreon =
-            CVarDef.Create("infolinks.patreon", "", CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("infolinks.patreon", "patreon.com/user?u=5959322", CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
         /// Link to the bug report form.
@@ -1790,7 +1790,7 @@ namespace Content.Shared.CCVar
         /// Link to site handling ban appeals. Shown in ban disconnect messages.
         /// </summary>
         public static readonly CVarDef<string> InfoLinksAppeal =
-            CVarDef.Create("infolinks.appeal", "", CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("infolinks.appeal", "https://discord.gg/fA77cGspU2", CVar.SERVER | CVar.REPLICATED);
 
         /*
          * CONFIG
