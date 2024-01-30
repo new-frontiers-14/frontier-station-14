@@ -276,17 +276,6 @@ entities:
     - pos: -0.5,6.5
       parent: 1
       type: Transform
-- proto: BoxPaperOffice
-  entities:
-  - uid: 39
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 71
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: CableApcExtension
   entities:
   - uid: 20
@@ -425,7 +414,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 39
+          - 44
+          - 68
       type: ContainerContainer
 - proto: ComputerTabletopShuttle
   entities:
@@ -500,13 +490,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: FirelockGlass
-  entities:
-  - uid: 9
-    components:
-    - pos: 0.5,-0.5
-      parent: 1
-      type: Transform
 - proto: GasPassiveVent
   entities:
   - uid: 37
@@ -629,14 +612,22 @@ entities:
   entities:
   - uid: 44
     components:
-    - pos: 1.28125,3.0582836
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 71
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
   - uid: 68
     components:
-    - pos: 1.7083335,3.0582836
-      parent: 1
+    - flags: InContainer
+      type: MetaData
+    - parent: 71
       type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: NoticeBoardNF
   entities:
   - uid: 96
@@ -645,6 +636,34 @@ entities:
       pos: -0.5,3.5
       parent: 1
       type: Transform
+    - storageUsed: 2
+      type: Storage
+    - containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 9
+          - 39
+      type: ContainerContainer
+- proto: PaperOffice
+  entities:
+  - uid: 9
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 96
+      type: Transform
+    - canCollide: False
+      type: Physics
+  - uid: 39
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 96
+      type: Transform
+    - canCollide: False
+      type: Physics
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 52

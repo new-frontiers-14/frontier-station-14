@@ -880,6 +880,28 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
+- proto: AirAlarm
+  entities:
+  - uid: 239
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -2.5,8.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 973
+      type: DeviceNetwork
+    - devices:
+      - 8
+      - 41
+      - 407
+      - 646
+      - 171
+      - 855
+      - 974
+      - 975
+      - 973
+      type: DeviceList
 - proto: AirCanister
   entities:
   - uid: 901
@@ -1164,6 +1186,17 @@ entities:
       pos: 5.5,14.5
       parent: 1
       type: Transform
+- proto: AirSensor
+  entities:
+  - uid: 973
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -5.5,4.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 239
+      type: DeviceNetwork
 - proto: AmeController
   entities:
   - uid: 862
@@ -3025,34 +3058,16 @@ entities:
       type: Transform
 - proto: DisposalBend
   entities:
-  - uid: 274
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 6.5,2.5
-      parent: 1
-      type: Transform
   - uid: 283
     components:
     - rot: 1.5707963267948966 rad
       pos: 7.5,14.5
       parent: 1
       type: Transform
-  - uid: 310
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 7.5,1.5
-      parent: 1
-      type: Transform
   - uid: 331
     components:
     - rot: 3.141592653589793 rad
       pos: -3.5,6.5
-      parent: 1
-      type: Transform
-  - uid: 333
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 6.5,1.5
       parent: 1
       type: Transform
   - uid: 336
@@ -3094,12 +3109,6 @@ entities:
       type: Transform
 - proto: DisposalJunctionFlipped
   entities:
-  - uid: 239
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 7.5,2.5
-      parent: 1
-      type: Transform
   - uid: 275
     components:
     - rot: 3.141592653589793 rad
@@ -3155,6 +3164,12 @@ entities:
       pos: 7.5,3.5
       parent: 1
       type: Transform
+  - uid: 274
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 6.5,1.5
+      parent: 1
+      type: Transform
   - uid: 280
     components:
     - pos: 7.5,11.5
@@ -3180,6 +3195,11 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: -1.5,7.5
+      parent: 1
+      type: Transform
+  - uid: 310
+    components:
+    - pos: 7.5,2.5
       parent: 1
       type: Transform
   - uid: 370
@@ -3333,6 +3353,14 @@ entities:
   - uid: 931
     components:
     - pos: 6.5,5.5
+      parent: 1
+      type: Transform
+- proto: DisposalYJunction
+  entities:
+  - uid: 333
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 7.5,1.5
       parent: 1
       type: Transform
 - proto: DogBed
@@ -3619,55 +3647,32 @@ entities:
     - pos: 2.5,9.5
       parent: 1
       type: Transform
+    - ShutdownSubscribers:
+      - 8
+      - 41
+      - 966
+      - 972
+      - 971
+      - 970
+      - 969
+      - 968
+      - 967
+      - 471
+      type: DeviceNetwork
     - devices:
       - 39
       - 41
       - 70
       - 646
-      type: DeviceList
-  - uid: 978
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 10.5,1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 972
-      - 973
-      - 974
-      - 975
-      - 976
-      - 977
-      type: DeviceNetwork
-    - devices:
-      - 972
-      - 973
-      - 974
-      - 975
-      - 976
-      - 977
-      type: DeviceList
-  - uid: 979
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: -9.5,1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
+      - 8
       - 966
-      - 967
-      - 968
-      - 969
-      - 970
+      - 972
       - 971
-      type: DeviceNetwork
-    - devices:
-      - 966
-      - 967
-      - 968
-      - 969
       - 970
-      - 971
+      - 969
+      - 968
+      - 967
+      - 471
       type: DeviceList
 - proto: Firelock
   entities:
@@ -3677,6 +3682,9 @@ entities:
       pos: -2.5,4.5
       parent: 1
       type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
   - uid: 39
     components:
     - pos: 3.5,9.5
@@ -3687,6 +3695,9 @@ entities:
     - pos: -0.5,9.5
       parent: 1
       type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
   - uid: 70
     components:
     - rot: 1.5707963267948966 rad
@@ -3715,6 +3726,83 @@ entities:
       pos: 6.5,9.5
       parent: 1
       type: Transform
+- proto: FirelockEdge
+  entities:
+  - uid: 966
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -1.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 967
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 4.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 968
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 3.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 969
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 2.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 970
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 1.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 971
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 0.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 972
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -0.5,1.5
+      parent: 1
+      type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
+  - uid: 974
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -3.5,6.5
+      parent: 1
+      type: Transform
+  - uid: 975
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 0.5,12.5
+      parent: 1
+      type: Transform
 - proto: FirelockGlass
   entities:
   - uid: 57
@@ -3732,102 +3820,6 @@ entities:
     - pos: 7.5,4.5
       parent: 1
       type: Transform
-  - uid: 966
-    components:
-    - pos: -10.5,-0.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 967
-    components:
-    - pos: -10.5,-1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 968
-    components:
-    - pos: -10.5,-2.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 969
-    components:
-    - pos: -7.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 970
-    components:
-    - pos: -6.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 971
-    components:
-    - pos: -5.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 979
-      type: DeviceNetwork
-  - uid: 972
-    components:
-    - pos: 6.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
-  - uid: 973
-    components:
-    - pos: 7.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
-  - uid: 974
-    components:
-    - pos: 8.5,-6.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
-  - uid: 975
-    components:
-    - pos: 11.5,-2.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
-  - uid: 976
-    components:
-    - pos: 11.5,-1.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
-  - uid: 977
-    components:
-    - pos: 11.5,-0.5
-      parent: 1
-      type: Transform
-    - ShutdownSubscribers:
-      - 978
-      type: DeviceNetwork
 - proto: FloorDrain
   entities:
   - uid: 157
@@ -4472,6 +4464,9 @@ entities:
       pos: 4.5,5.5
       parent: 1
       type: Transform
+    - ShutdownSubscribers:
+      - 154
+      type: DeviceNetwork
     - color: '#0055CCFF'
       type: AtmosPipeColor
   - uid: 657
@@ -6393,9 +6388,9 @@ entities:
     - pos: -8.5,11.5
       parent: 1
       type: Transform
-- proto: SuitStorageWallmountEVAEmergency
+- proto: SuitStorageWallmountEVA
   entities:
-  - uid: 996
+  - uid: 976
     components:
     - pos: 3.5,15.5
       parent: 1
