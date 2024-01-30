@@ -128,7 +128,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         }
         if (localPlayer.UserId != message.TrueSender)
         {
-            SoundSystem.Play("/Audio/Effects/adminhelp.ogg", Filter.Local());
+            SoundSystem.Play("/Audio/Effects/centcommhelp.ogg", Filter.Local());
             _clyde.RequestWindowAttention();
         }
 
