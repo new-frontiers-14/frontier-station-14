@@ -1,34 +1,4 @@
 - type: entity
-  name: Medical insurance form
-  parent: Paper
-  id: PaperMedicalInsurance
-  description: 'Provide this papar for an insurance provider.'
-  components:
-  - type: Paper
-    contentSize: 10000
-    escapeFormatting: false
-    content: book-medical-insurance
-  - type: Sprite
-    sprite: Objects/Misc/bureaucracy.rsi
-    layers:
-      - state: paper
-        color: "#cccccc"
-      - state: paper_words
-        map: ["enum.PaperVisualLayers.Writing"]
-        color: "#cccccc" #aaaaaaaaaaaaaaaaaaaaaaa
-        visible: false
-      - state: paper_stamp-generic
-        map: ["enum.PaperVisualLayers.Stamp"]
-        visible: false
-  - type: PaperVisuals
-    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
-    contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
-    backgroundModulate: "#cccccc"
-    contentImageModulate: "#cccccc"
-    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
-    contentMargin: 16.0, 16.0, 16.0, 16.0
-
-- type: entity
   name: psychologist rubber stamp
   parent: RubberStampBase
   id: RubberStampPsychologist
