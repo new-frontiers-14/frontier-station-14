@@ -1,6 +1,6 @@
 ﻿job-supervisors-centcom = CentCom official
 job-supervisors-captain = the captain
-job-supervisors-hop = the station representative
+job-supervisors-hop = the sector administrator
 job-supervisors-hos = the sheriff
 job-supervisors-ce = the chief engineer
 job-supervisors-cmo = the chief medical officer
@@ -9,7 +9,7 @@ job-supervisors-qm = the quartermaster
 job-supervisors-service = chefs, botanists, the bartender, and the head of personnel
 job-supervisors-engineering = station engineers, atmospheric technicians, the senior engineer, and the chief engineer
 job-supervisors-medicine = medical doctors, chemists, the senior physician, and the chief medical officer
-job-supervisors-security = deputies, the bailiff, and the sheriff
+job-supervisors-security = NS-2 and higher
 job-supervisors-science = scientists, the senior researcher, and the research director
 job-supervisors-hire = whoever hires you
 job-supervisors-everyone = absolutely everyone
