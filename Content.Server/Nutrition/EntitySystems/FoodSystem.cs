@@ -33,6 +33,7 @@ using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 using Content.Shared.Jittering;
 using Content.Server.Chat.Systems;
+using Content.Shared.Tag;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -62,6 +63,7 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] protected readonly IRobustRandom RobustRandom = default!;
     [Dependency] private readonly SharedJitteringSystem _jittering = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
