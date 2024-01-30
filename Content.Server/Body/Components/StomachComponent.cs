@@ -65,5 +65,11 @@ namespace Content.Server.Body.Components
         /// </summary>
         [DataField]
         public bool ReverseFoodQuality;
+
+        /// <summary>
+        ///     Frontier - Allow eating trash
+        /// </summary>
+        [DataField]
+        public bool TrashDigestion;
     }
 }

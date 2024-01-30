@@ -276,6 +276,8 @@ public sealed class FoodSystem : EntitySystem
             component.FinalQuality = FinalQuality.Nasty;
         else if (component.Quality == Quality.Toxin)
             component.FinalQuality = FinalQuality.Toxin;
+        else if (component.Quality == Quality.Trash)
+            component.FinalQuality = FinalQuality.Trash;
 
         if (reverseFoodQuality)
         {
@@ -311,7 +313,7 @@ public sealed class FoodSystem : EntitySystem
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 3, out var accepted); // Add to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 3, out _); // Add to blood
                 }
                 else
                 {
@@ -324,7 +326,7 @@ public sealed class FoodSystem : EntitySystem
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 5, out var accepted); // Add to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 5, out _); // Add to blood
                 }
                 else
                 {
@@ -337,7 +339,7 @@ public sealed class FoodSystem : EntitySystem
                     foreach (var reagent in toxinsRegent)
                         _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 7, out var accepted); // Add to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 7, out _); // Add to blood
                 }
                 else
                 {
@@ -348,7 +350,7 @@ public sealed class FoodSystem : EntitySystem
                 if (reverseFoodQuality)
                 {
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 5, out var accepted); // Add to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 5, out _); // Add to blood
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
                 }
@@ -361,7 +363,7 @@ public sealed class FoodSystem : EntitySystem
                 if (reverseFoodQuality)
                 {
                     _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 3, out var accepted); // Add to blood
+                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 3, out _); // Add to blood
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 80f, 8f, true, null);
                     _chat.TryEmoteWithoutChat(args.Target.Value, emoteId);
@@ -373,6 +375,12 @@ public sealed class FoodSystem : EntitySystem
                 {
 
                 }
+                break;
+            case FinalQuality.Trash:
+                foreach (var reagent in toxinsRegent)
+                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
+                _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
+                _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount, out _); // Add to blood
                 break;
             default:
                 throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {component.Quality}!");
@@ -518,6 +526,11 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
+            // Frontier - Allow trash eating
+            if (!comp.TrashDigestion && component.Quality == Quality.Trash)
+                return false;
+            // Frontier - Allow trash eating
+
             // Find a stomach with a SpecialDigestible
             if (comp.SpecialDigestible == null)
                 continue;

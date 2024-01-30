@@ -12,7 +12,8 @@ public enum Quality : byte // Frontier
     Normal,
     Junk,
     Nasty,
-    Toxin
+    Toxin,
+    Trash
 }
 
 public enum FinalQuality : byte // Frontier 
@@ -21,7 +22,8 @@ public enum FinalQuality : byte // Frontier
     Normal,
     Junk,
     Nasty,
-    Toxin
+    Toxin,
+    Trash
 }
 
 [RegisterComponent, Access(typeof(FoodSystem))]
@@ -90,13 +92,10 @@ public sealed partial class FoodComponent : Component
     ///     Frontier - Nasty food, used for goblins to know if they can eat it or not
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField] // Frontier 
-    [AutoNetworkedField]
     public Quality Quality = Quality.Normal;
 
     /// <summary>
     ///     Frontier - Edited by the system to find the final quility results
     /// </summary>
-    [DataField] // Frontier 
-    [AutoNetworkedField]
     public FinalQuality FinalQuality = FinalQuality.Normal;
 }
