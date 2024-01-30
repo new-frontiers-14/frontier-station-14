@@ -35,7 +35,7 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        var mixtures = new GasMixture[10]; // Add one per added array
+        var mixtures = new GasMixture[11]; // Add one per added array
         for (var i = 0; i < mixtures.Length; i++)
             mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -75,6 +75,13 @@ public sealed partial class AtmosphereSystem
         // Frontier - 9: Plasma Shuttle (GM)
         mixtures[9].Clear();
         mixtures[9].AdjustMoles(Gas.Plasma, Atmospherics.MolesCellShuttle);
+
+        // Frontier - 10: Sauna (GM)
+        mixtures[10].Clear();
+        mixtures[10].AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
+        mixtures[10].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
+        mixtures[10].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
+        mixtures[10].Temperature = 340f; // Sauna
 
         foreach (var arg in args)
         {
