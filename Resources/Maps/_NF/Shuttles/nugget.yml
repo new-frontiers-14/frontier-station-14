@@ -404,7 +404,8 @@ entities:
             0: 2269
             1: 33794
           0,-2:
-            0: 61180
+            0: 61172
+            2: 8
             1: 4354
           0,-1:
             0: 56831
@@ -475,6 +476,21 @@ entities:
           - 0
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 340
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 82.10312
           - 0
           - 0
           - 0
@@ -697,6 +713,13 @@ entities:
     - pos: 7.5,1.5
       parent: 1
       type: Transform
+- proto: AtmosFixSaunaMarker
+  entities:
+  - uid: 92
+    components:
+    - pos: 3.5,-7.5
+      parent: 1
+      type: Transform
 - proto: Barricade
   entities:
   - uid: 8
@@ -708,13 +731,6 @@ entities:
   - uid: 9
     components:
     - pos: 7.5,1.5
-      parent: 1
-      type: Transform
-- proto: Bonfire
-  entities:
-  - uid: 10
-    components:
-    - pos: 11.5,-1.5
       parent: 1
       type: Transform
 - proto: BookBartendersManual
@@ -1121,6 +1137,13 @@ entities:
           ents: []
       type: ContainerContainer
     - type: ItemSlots
+- proto: DefibrillatorEmpty
+  entities:
+  - uid: 96
+    components:
+    - pos: 6.592401,-7.4767485
+      parent: 1
+      type: Transform
 - proto: DonkpocketBoxSpawner
   entities:
   - uid: 79
@@ -1159,6 +1182,30 @@ entities:
     - pos: 9.420936,-5.3589787
       parent: 1
       type: Transform
+- proto: FireAxeCabinetOpen
+  entities:
+  - uid: 10
+    components:
+    - pos: 11.5,-0.5
+      parent: 1
+      type: Transform
+- proto: FireExtinguisher
+  entities:
+  - uid: 90
+    components:
+    - pos: 3.0906725,-3.4890175
+      parent: 1
+      type: Transform
+    - solutions:
+        spray:
+          temperature: 293.15
+          canMix: False
+          canReact: True
+          maxVol: 100
+          reagents: []
+      type: SolutionContainerManager
+    - safety: False
+      type: FireExtinguisher
 - proto: FloorWaterEntity
   entities:
   - uid: 85
@@ -1187,80 +1234,6 @@ entities:
     - pos: 13.498348,-4.469842
       parent: 1
       type: Transform
-- proto: FoodEgg
-  entities:
-  - uid: 90
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: FoodMeatHuman
-  entities:
-  - uid: 91
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: FoodMeatRotten
-  entities:
-  - uid: 92
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 93
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 94
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 95
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 96
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 89
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 97
-    components:
-    - pos: 7.4446073,-5.6035557
-      parent: 1
-      type: Transform
 - proto: FoodPlateSmallTrash
   entities:
   - uid: 98
@@ -1272,6 +1245,13 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: 5.587425,-6.672174
+      parent: 1
+      type: Transform
+- proto: GasCanisterBrokenBase
+  entities:
+  - uid: 93
+    components:
+    - pos: 2.5,-4.5
       parent: 1
       type: Transform
 - proto: GasPassiveVent
@@ -1516,7 +1496,7 @@ entities:
   entities:
   - uid: 140
     components:
-    - pos: 11.56982,-2.4689736
+    - pos: 11.636525,-1.4774399
       parent: 1
       type: Transform
 - proto: KitchenMicrowave
@@ -1554,25 +1534,24 @@ entities:
     - pos: 15.5,-3.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
-    - containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 92
-          - 93
-          - 94
-          - 95
-          - 90
-          - 96
-          - 91
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-      type: ContainerContainer
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: MachineFrameDestroyed
   entities:
   - uid: 145
@@ -1612,6 +1591,14 @@ entities:
     - pos: 12.5,-3.5
       parent: 1
       type: Transform
+- proto: MousetrapArmed
+  entities:
+  - uid: 94
+    components:
+    - pos: 9.402631,-7.5150394
+      parent: 1
+      type: Transform
+    - type: StepTriggerActive
 - proto: PortableGeneratorPacman
   entities:
   - uid: 152
@@ -1695,9 +1682,9 @@ entities:
       type: Transform
 - proto: Rack
   entities:
-  - uid: 162
+  - uid: 95
     components:
-    - pos: 11.5,-2.5
+    - pos: 11.5,-1.5
       parent: 1
       type: Transform
   - uid: 163
@@ -1814,7 +1801,7 @@ entities:
   entities:
   - uid: 178
     components:
-    - pos: 11.318926,-2.3301299
+    - pos: 11.303192,-1.3316066
       parent: 1
       type: Transform
 - proto: SalvageSeedSpawnerLow
@@ -1855,12 +1842,6 @@ entities:
   - uid: 184
     components:
     - pos: 9.501994,-6.4503884
-      parent: 1
-      type: Transform
-  - uid: 185
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 2.5557938,-4.5167947
       parent: 1
       type: Transform
   - uid: 186
@@ -1980,6 +1961,11 @@ entities:
       type: Transform
 - proto: Spaceshroom
   entities:
+  - uid: 91
+    components:
+    - pos: 11.5,-2.5
+      parent: 1
+      type: Transform
   - uid: 201
     components:
     - pos: 7.5,-6.5
