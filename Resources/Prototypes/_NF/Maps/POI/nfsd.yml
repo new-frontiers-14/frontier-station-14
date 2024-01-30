@@ -1,6 +1,6 @@
 - type: gameMap
   id: nfsd
-  mapName: 'NFSD Outpost'
+  mapName: 'Pax Security Station'
   mapPath: /Maps/_NF/POI/nfsd.yml
   minPlayers: 0
   stations:
@@ -8,16 +8,16 @@
       stationProto: SecurityFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NFSD Outpost'
+          mapNameTemplate: 'Pax Security Station'
         - type: StationJobs
           overflowJobs: []
           availableJobs:
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 0, 0 ]
-            SeniorOfficer: [ 0, 0 ]
-            Brigmedic: [ 0, 0 ]
-            Detective: [ 0, 0 ]
-            SecurityOfficer: [ 0, 0 ]
-            SecurityCadet: [ 0, 0 ]
+            Warden: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
+            SecurityOfficer: [ 1, 1 ]
+            SecurityCadet: [ 1, 1 ]
             # Others:
-            Lawyer: [ 0, 0 ]
+            Lawyer: [ 1, 1 ]

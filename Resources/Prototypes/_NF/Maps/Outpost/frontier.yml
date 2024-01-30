@@ -1,6 +1,6 @@
 - type: gameMap
   id: Frontier
-  mapName: 'Frontier Outpost'
+  mapName: 'Pax Astralis Border Station'
   mapPath: /Maps/_NF/Outpost/frontier.yml
   minPlayers: 0
   maxPlayers: 100
@@ -9,7 +9,7 @@
       stationProto: StandardFrontierStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Frontier Outpost'
+          mapNameTemplate: 'Pax Astralis Border Station'
 #          nameGenerator:
 #            !type:NanotrasenNameGenerator
 #            prefixCreator: '14'
@@ -19,12 +19,19 @@
           availableJobs:
             Passenger: [ -1, -1 ]
             HeadOfPersonnel: [ 1, 1 ]
-            SecurityGuard: [ 1, 1 ]
+            HeadOfSecurity: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
+            SecurityOfficer: [ 1, 1 ]
+            SecurityCadet: [ 1, 1 ]
             StationTrafficController: [ 1, 1 ]
             Valet: [ 1, 1 ]
             Janitor: [ 1, 1 ]
             MailCarrier: [ 1, 1 ]
 # Others:
-            Borg: [ 0, 0 ]
-            Chaplain: [ 0, 0 ]
-            Psychologist: [ 0, 0 ]
+            Borg: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Reporter: [ 1, 1 ]
+            Psychologist: [ 1, 1 ]
