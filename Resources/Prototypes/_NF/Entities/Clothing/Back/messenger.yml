@@ -162,3 +162,19 @@
   components:
     - type: Sprite
       sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+
+- type: entity
+  parent: ClothingBackpackMessenger
+  id: ClothingBackpackMessengerHolding
+  name: messenger bag of holding
+  description: A messenger bag that opens into a localized pocket of bluespace.
+  components:
+    - type: Sprite
+      sprite: _NF/Clothing/Back/Messenger/holding.rsi
+      state: icon
+      layers:
+        - state: icon
+        - state: icon-unlit
+          shader: unshaded
+    - type: Storage
+      capacity: 9999
