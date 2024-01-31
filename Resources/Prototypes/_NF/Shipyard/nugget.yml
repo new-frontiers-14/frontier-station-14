@@ -1,19 +1,29 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
-  id: svnugget
+  id: Nugget
   name: SV Nugget
   description: A flying hunk of wood and metal disguised as a kitchen shuttle. Not FDA approved.
-  price: 12985
+  price: 15950 # +1450 from 10% Markup
   category: Small
   group: Scrap
-  shuttlePath: /Maps/Shuttles/svnugget.yml
+  shuttlePath: /Maps/_NF/Shuttles/nugget.yml
 
 - type: gameMap
-  id: svnugget
+  id: Nugget
   mapName: 'SV Nugget'
-  mapPath: /Maps/Shuttles/svnugget.yml
+  mapPath: /Maps/_NF/Shuttles/nugget.yml
   minPlayers: 0
   stations:
-    svnugget:
+    Nugget:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -23,5 +33,4 @@
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs:
-            Passenger: [ 0, 0 ]
+          availableJobs: {}

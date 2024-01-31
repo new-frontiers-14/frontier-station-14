@@ -30,5 +30,10 @@ namespace Content.Server.Guardian
         [DataField]
         public bool GuardianLoose;
 
+        /// <summary>
+        /// If the guardian can be AI based
+        /// </summary>
+        [DataField("ai")]
+        public bool Ai;
     }
 }
