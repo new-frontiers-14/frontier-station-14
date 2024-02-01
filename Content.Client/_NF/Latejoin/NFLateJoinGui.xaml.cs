@@ -41,6 +41,8 @@ public sealed partial class NFLateJoinGui : FancyWindow
             EntitySystem.Get<CrewManifestSystem>().RequestCrewManifest(_lastSelection);
         };
 
+        _lastSelection = _gameTicker.JobsAvailable.Keys.FirstOrNull() ?? NetEntity.Invalid;
+
         UpdateUi(_gameTicker.JobsAvailable);
     }
 
@@ -48,11 +50,6 @@ public sealed partial class NFLateJoinGui : FancyWindow
     {
         base.Dispose(disposing);
         _gameTicker.LobbyJobsAvailableUpdated -= UpdateUi;
-    }
-
-    public void UpdateUi()
-    {
-        UpdateUi(_gameTicker.JobsAvailable);
     }
 
     public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
