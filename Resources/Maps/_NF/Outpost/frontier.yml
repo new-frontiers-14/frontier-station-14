@@ -5363,6 +5363,11 @@ entities:
     - pos: 49.5,12.5
       parent: 2173
       type: Transform
+  - uid: 4926
+    components:
+    - pos: 46.5,14.5
+      parent: 2173
+      type: Transform
 - proto: AirlockMaintEngiLocked
   entities:
   - uid: 4131
@@ -16011,9 +16016,9 @@ entities:
       type: Transform
 - proto: ClosetL3JanitorFilled
   entities:
-  - uid: 2142
+  - uid: 3062
     components:
-    - pos: -3.5,21.5
+    - pos: -3.5,20.5
       parent: 2173
       type: Transform
 - proto: ClosetMaintenanceFilledRandom
@@ -16467,10 +16472,9 @@ entities:
       type: Transform
 - proto: ComputerWallmountBankATM
   entities:
-  - uid: 6007
+  - uid: 2136
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 3.5,29.5
+    - pos: 3.5,29.5
       parent: 2173
       type: Transform
     - containers:
@@ -16483,10 +16487,9 @@ entities:
           occludes: True
           ents: []
       type: ContainerContainer
-  - uid: 6008
+  - uid: 2140
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 51.5,27.5
+    - pos: 51.5,27.5
       parent: 2173
       type: Transform
     - containers:
@@ -16499,10 +16502,9 @@ entities:
           occludes: True
           ents: []
       type: ContainerContainer
-  - uid: 6009
+  - uid: 2141
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 51.5,4.5
+    - pos: 51.5,4.5
       parent: 2173
       type: Transform
     - containers:
@@ -16515,10 +16517,9 @@ entities:
           occludes: True
           ents: []
       type: ContainerContainer
-  - uid: 6012
+  - uid: 2142
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 17.5,27.5
+    - pos: 17.5,27.5
       parent: 2173
       type: Transform
     - containers:
@@ -16830,13 +16831,6 @@ entities:
     - links:
       - 6145
       type: DeviceLinkSink
-- proto: CrateServiceJanitorialSupplies
-  entities:
-  - uid: 2140
-    components:
-    - pos: -3.5,24.5
-      parent: 2173
-      type: Transform
 - proto: CrewMonitoringServer
   entities:
   - uid: 3059
@@ -20511,25 +20505,11 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: FoodDonutChocolate
-  entities:
-  - uid: 3062
-    components:
-    - pos: 35.340572,9.907843
-      parent: 2173
-      type: Transform
 - proto: FoodDonutJellySpaceman
   entities:
   - uid: 4289
     components:
     - pos: 20.420221,10.579422
-      parent: 2173
-      type: Transform
-- proto: FoodDonutPink
-  entities:
-  - uid: 2136
-    components:
-    - pos: 35.585506,9.649889
       parent: 2173
       type: Transform
 - proto: FoodPizzaMoldySlice
@@ -30226,10 +30206,9 @@ entities:
       type: Transform
 - proto: JanitorialTrolley
   entities:
-  - uid: 2141
+  - uid: 4925
     components:
-    - rot: 3.141592653589793 rad
-      pos: -3.5,20.5
+    - pos: -3.5,22.5
       parent: 2173
       type: Transform
 - proto: LampGold
@@ -36029,11 +36008,6 @@ entities:
     - pos: -5.5,13.5
       parent: 2173
       type: Transform
-  - uid: 3054
-    components:
-    - pos: 46.5,15.5
-      parent: 2173
-      type: Transform
 - proto: VendingMachineCuraDrobe
   entities:
   - uid: 4249
@@ -36054,9 +36028,7 @@ entities:
   entities:
   - uid: 2143
     components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -3.5,22.5
+    - pos: -3.5,24.5
       parent: 2173
       type: Transform
 - proto: VendingMachineLawDrobe
@@ -39030,12 +39002,6 @@ entities:
       pos: -2.5,28.5
       parent: 2173
       type: Transform
-  - uid: 761
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 46.5,14.5
-      parent: 2173
-      type: Transform
   - uid: 798
     components:
     - pos: 35.5,22.5
@@ -39845,6 +39811,18 @@ entities:
       pos: -46.5,15.5
       parent: 2173
       type: Transform
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 761
+    components:
+    - pos: -28.5,13.5
+      parent: 2173
+      type: Transform
+  - uid: 3054
+    components:
+    - pos: 9.5,22.5
+      parent: 2173
+      type: Transform
 - proto: WardrobeGreyFilled
   entities:
   - uid: 2435
@@ -39886,6 +39864,13 @@ entities:
   - uid: 4183
     components:
     - pos: -5.5,20.5
+      parent: 2173
+      type: Transform
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 4924
+    components:
+    - pos: 35.5,9.5
       parent: 2173
       type: Transform
 - proto: WeaponPistolMk58
