@@ -52,8 +52,9 @@ public sealed class PseudoItemSystem : EntitySystem
         if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
             return;
 
-        if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
+        if (!_storageSystem.CanInsert(args.Target, uid, out _))
             return;
+
 
         if (Transform(args.Target).ParentUid == uid)
             return;
@@ -139,7 +140,7 @@ public sealed class PseudoItemSystem : EntitySystem
         if (!Resolve(storageUid, ref storage))
             return false;
 
-        if (component.Size > storage.StorageCapacityMax - storage.StorageUsed)
+        if (!_storageSystem.CanInsert(storageUid, toInsert, out _))
             return false;
 
         var item = EnsureComp<ItemComponent>(toInsert);
