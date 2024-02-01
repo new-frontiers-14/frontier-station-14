@@ -27,7 +27,6 @@ public sealed partial class DungeonJob : Job<Dungeon>
     private readonly DecalSystem _decals;
     private readonly DungeonSystem _dungeon;
     private readonly EntityLookupSystem _lookup;
-    private readonly SharedMapSystem _maps;
     private readonly SharedTransformSystem _transform;
     private EntityQuery<TagComponent> _tagQuery;
 
@@ -69,7 +68,6 @@ public sealed partial class DungeonJob : Job<Dungeon>
         _decals = decals;
         _dungeon = dungeon;
         _lookup = lookup;
-        _maps = _entManager.System<SharedMapSystem>();
         _transform = transform;
         _tagQuery = _entManager.GetEntityQuery<TagComponent>();
 
@@ -88,18 +86,15 @@ public sealed partial class DungeonJob : Job<Dungeon>
 
         switch (_gen.Generator)
         {
-            case NoiseDunGen noise:
-                dungeon = await GenerateNoiseDungeon(noise, _gridUid, _grid, _seed);
-                break;
             case PrefabDunGen prefab:
                 dungeon = await GeneratePrefabDungeon(prefab, _gridUid, _grid, _seed);
-                DebugTools.Assert(dungeon.RoomExteriorTiles.Count > 0);
                 break;
             default:
                 throw new NotImplementedException();
         }
 
         DebugTools.Assert(dungeon.RoomTiles.Count > 0);
+        DebugTools.Assert(dungeon.RoomExteriorTiles.Count > 0);
 
         // To make it slightly more deterministic treat this RNG as separate ig.
         var random = new Random(_seed);
@@ -112,9 +107,6 @@ public sealed partial class DungeonJob : Job<Dungeon>
             {
                 case AutoCablingPostGen cabling:
                     await PostGen(cabling, dungeon, _gridUid, _grid, random);
-                    break;
-                case BiomePostGen biome:
-                    await PostGen(biome, dungeon, _gridUid, _grid, random);
                     break;
                 case BoundaryWallPostGen boundary:
                     await PostGen(boundary, dungeon, _gridUid, _grid, random);
@@ -146,9 +138,6 @@ public sealed partial class DungeonJob : Job<Dungeon>
                 case InternalWindowPostGen internalWindow:
                     await PostGen(internalWindow, dungeon, _gridUid, _grid, random);
                     break;
-                case BiomeMarkerLayerPostGen markerPost:
-                    await PostGen(markerPost, dungeon, _gridUid, _grid, random);
-                    break;
                 case RoomEntrancePostGen rEntrance:
                     await PostGen(rEntrance, dungeon, _gridUid, _grid, random);
                     break;
@@ -165,7 +154,6 @@ public sealed partial class DungeonJob : Job<Dungeon>
                 break;
         }
 
-        // Defer splitting so they don't get spammed and so we don't have to worry about tracking the grid along the way.
         _grid.CanSplit = true;
         _entManager.System<GridFixtureSystem>().CheckSplits(_gridUid);
         return dungeon;
