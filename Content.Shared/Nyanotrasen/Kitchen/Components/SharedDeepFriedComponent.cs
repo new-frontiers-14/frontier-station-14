@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Kitchen.Components
+namespace Content.Shared.Nyanotrasen.Kitchen.Components
 {
     [NetworkedComponent]
     public abstract partial class SharedDeepFriedComponent : Component

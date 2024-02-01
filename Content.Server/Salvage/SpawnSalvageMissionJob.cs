@@ -242,11 +242,13 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             {
                 case BiomeMarkerLoot biomeLoot:
                     {
-                        if (_entManager.TryGetComponent<BiomeComponent>(gridUid, out var biome) &&
-                            biomeLoot.Prototype.TryGetValue(biomeMod.ID, out var mod))
-                        {
-                            _biome.AddMarkerLayer(gridUid, biome, biomeMod.ID);
-                        }
+                        //Frontier
+                        //TODO:fix this proper
+                        //if (_entManager.TryGetComponent<BiomeComponent>(gridUid, out var biome) &&
+                        //    biomeLoot.Prototype.TryGetValue(biomeMod.ID, out var mod))
+                        //{
+                         //   _biome.AddMarkerLayer(gridUid, biome, biomeMod.ID);
+                        //}
                     }
                     break;
                 case BiomeTemplateLoot biomeLoot:
