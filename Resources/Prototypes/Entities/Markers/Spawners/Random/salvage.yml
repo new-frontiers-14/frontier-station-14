@@ -73,10 +73,10 @@
         - sprite: Objects/Misc/stock_parts.rsi
           state: advanced_matter_bin
     - type: RandomSpawner
-      prototypes:
-        - AdvancedCapacitorStockPart
-        - NanoManipulatorStockPart
-        - AdvancedMatterBinStockPart
+      prototypes: #Frontier TODO: bring these back to the actual good parts
+        - CapacitorStockPart
+        - MicroManipulatorStockPart
+        - MatterBinStockPart
       offset: 0.0
 
 - type: entity
@@ -89,15 +89,10 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: super_matter_bin
   - type: RandomSpawner
-    rarePrototypes:
-    - QuadraticCapacitorStockPart
-    - FemtoManipulatorStockPart
-    - BluespaceMatterBinStockPart
-    rareChance: 0.05
-    prototypes:
-    - SuperCapacitorStockPart
-    - PicoManipulatorStockPart
-    - SuperMatterBinStockPart
+    prototypes: #Frontier TODO: bring these back to the actual good parts
+    - CapacitorStockPart
+    - MicroManipulatorStockPart
+    - MatterBinStockPart
     chance: 0.95
     offset: 0.0
 
@@ -112,10 +107,10 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: super_matter_bin
   - type: RandomSpawner
-    prototypes:
-    - SuperCapacitorStockPart
-    - PicoManipulatorStockPart
-    - SuperMatterBinStockPart
+    prototypes: #Frontier TODO: bring these back to the actual good parts
+    - CapacitorStockPart
+    - MicroManipulatorStockPart
+    - MatterBinStockPart
     offset: 0.0
 
 - type: entity
@@ -129,10 +124,10 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: bluespace_matter_bin
   - type: RandomSpawner
-    prototypes:
-    - QuadraticCapacitorStockPart
-    - FemtoManipulatorStockPart #Frontier - Fixed this from tier 3 part to tier 4
-    - BluespaceMatterBinStockPart
+    prototypes: #Frontier TODO: bring these back to the actual good parts
+    - CapacitorStockPart
+    - MicroManipulatorStockPart
+    - MatterBinStockPart
     offset: 0.0
 
 - type: entity
