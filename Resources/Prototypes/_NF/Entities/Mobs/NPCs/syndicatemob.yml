@@ -1,0 +1,205 @@
+# Humans
+- type: entity
+  name: Syndicate Captain
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobSyndicateNavalCaptain
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnumAP
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+
+- type: entity
+  name: Syndicate Engineer
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobSyndicateNavalEngineer
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+    - type: BasicEntityAmmoProvider
+      proto: PelletShotgun
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+
+- type: entity
+  name: Syndicate Medic
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobSyndicateNavalMedic
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 4
+    - type: BasicEntityAmmoProvider
+      proto: DartSindicateTranquilizer
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 4
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+
+- type: entity
+  name: Syndicate Deckhand
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobSyndicateNavalDeckhand
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: HitscanBatteryAmmoProvider
+      proto: RedMediumLaser
+      fireCost: 100
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 600
+      startingCharge: 600
+    - type: Gun
+      fireRate: 1
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+
+- type: entity
+  name: Syndicate Operator
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobSyndicateNavalOperator
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.5
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 10
+      count: 10
+    - type: Gun
+      useKey: false
+      minAngle: 2
+      maxAngle: 16
+      fireRate: 10
+      angleIncrease: 3
+      angleDecay: 16
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+
+- type: entity
+  name: Victim of Experimentation
+  suffix: AI
+#  parent: BaseMobHuman
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseMobSpecies
+  id: MobExperimentationVictim
+  components:
+    - type: NameIdentifier
+      group: Monkey
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Loadout
+      prototypes:
+        - SyndicateVictimInsaneGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
