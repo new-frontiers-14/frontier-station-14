@@ -1,0 +1,28 @@
+- type: entity
+  id: BaseStructureUnanchorable
+  abstract: true
+  components:
+  - type: Anchorable
+    delay: 999999
+
+- type: entity
+  id: BaseStructureIndestructible
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
+
+- type: entity
+  id: BaseStructureWallmount
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360 # TODO: 180 after ATM fixes
+  - type: Fixtures
+    fixtures: {}

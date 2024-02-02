@@ -39,16 +39,6 @@
     sound:
       collection: Keyboard
   - type: Appearance
-  - type: Anchorable
-    delay: 999999
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
 
 - type: entity
   name: bank atm
@@ -99,7 +89,7 @@
         type: WithdrawBankATMMenuBoundUserInterface
 
 - type: entity
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerBankATM
   components:
   - type: Sprite
@@ -113,8 +103,52 @@
       state: unshaded
 
 - type: entity
+  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureUnanchorable, BaseStructureComputer]
+  id: ComputerWithdrawBankATM
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+
+- type: entity
+  suffix: Wallmount
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureWallmount, BaseStructureComputer]
+  id: ComputerWallmountBankATM
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: false
+    sprite: _NF/Structures/wall_atm.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: icon
+      - map: ["computerLayerScreen"]
+        state: unshaded
+
+- type: entity
+  suffix: Wallmount
+  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
+  id: ComputerWallmountWithdrawBankATM
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: false
+    sprite: _NF/Structures/wall_atm.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: icon
+      - map: ["computerLayerScreen"]
+        state: unshaded
+
+- type: entity
   suffix: BlackMarket
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureComputer]
   id: ComputerBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
@@ -133,84 +167,10 @@
     interfaces:
       - key: enum.BankATMMenuUiKey.BlackMarket
         type: BankATMMenuBoundUserInterface
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-- type: entity
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMWithdraw]
-  id: ComputerWithdrawBankATM
-  components:
-  - type: Sprite
-    netsync: false
-    noRot: true
-    sprite: _NF/Structures/atm.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: icon
-    - map: ["computerLayerScreen"]
-      state: unshaded
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-- type: entity
-  suffix: Wallmount
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
-  id: ComputerWallmountBankATM
-  components:
-  - type: Sprite
-    netsync: false
-    noRot: false
-    sprite: _NF/Structures/wall_atm.rsi
-    layers:
-      - map: ["computerLayerBody"]
-        state: icon
-      - map: ["computerLayerScreen"]
-        state: unshaded
-  - type: WallMount
-    arc: 360 # TODO: 180
-  - type: Fixtures
-    fixtures: {}
-
-- type: entity
-  suffix: Wallmount
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMWithdraw]
-  id: ComputerWallmountWithdrawBankATM
-  components:
-  - type: Sprite
-    netsync: false
-    noRot: false
-    sprite: _NF/Structures/wall_atm.rsi
-    layers:
-      - map: ["computerLayerBody"]
-        state: icon
-      - map: ["computerLayerScreen"]
-        state: unshaded
-  - type: WallMount
-    arc: 360 # TODO: 180
-  - type: Fixtures
-    fixtures: {}
 
 - type: entity
   name: station administration console
-  parent: [ComputerBankATMBase, BaseStructureComputer]
+  parent: [ComputerBankATMBase, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
   id: StationAdminBankATM
   description: Used to pay out from the station's bank account
   components:
