@@ -1,17 +1,30 @@
-# Humans
+# Base
 - type: entity
-  name: Syndicate Captain
+  name: Syndicate Naval Agent
   suffix: AI
+  abstract: true
 #  parent: BaseMobHuman
   parent:
   - MobBloodstream
   - MobFlammable
   - BaseMobSpecies
-  id: MobSyndicateNavalCaptain
+  id: MobSyndicateNavalBase
   components:
     - type: NpcFactionMember
       factions:
         - Syndicate
+    - type: AutoImplant
+      implants:
+      - DeathRattleImplant
+      - MicroBombImplant
+
+# Humans
+- type: entity
+  name: Syndicate Captain
+  suffix: AI
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalCaptain
+  components:
     - type: Loadout
       prototypes:
         - SyndicateNavalCaptainGear
@@ -37,16 +50,9 @@
 - type: entity
   name: Syndicate Engineer
   suffix: AI
-#  parent: BaseMobHuman
-  parent:
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  parent: MobSyndicateNavalBase
   id: MobSyndicateNavalEngineer
   components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: Loadout
       prototypes:
         - SyndicateNavalEngineerGear
@@ -72,16 +78,9 @@
 - type: entity
   name: Syndicate Medic
   suffix: AI
-#  parent: BaseMobHuman
-  parent:
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  parent: MobSyndicateNavalBase
   id: MobSyndicateNavalMedic
   components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: Loadout
       prototypes:
         - SyndicateNavalMedicGear
@@ -106,16 +105,9 @@
 - type: entity
   name: Syndicate Deckhand
   suffix: AI
-#  parent: BaseMobHuman
-  parent:
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  parent: MobSyndicateNavalBase
   id: MobSyndicateNavalDeckhand
   components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: Loadout
       prototypes:
         - SyndicateNavalDeckhandGear
@@ -144,16 +136,9 @@
 - type: entity
   name: Syndicate Operator
   suffix: AI
-#  parent: BaseMobHuman
-  parent:
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  parent: MobSyndicateNavalBase
   id: MobSyndicateNavalOperator
   components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: Loadout
       prototypes:
         - SyndicateNavalOperatorGear
@@ -183,7 +168,6 @@
 - type: entity
   name: Victim of Experimentation
   suffix: AI
-#  parent: BaseMobHuman
   parent:
   - MobBloodstream
   - MobFlammable
