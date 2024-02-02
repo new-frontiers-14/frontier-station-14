@@ -51,6 +51,7 @@
         damage: 0
 
 - type: entity
+  name: bank atm
   id: ComputerBankATMDeposit
   abstract: true
   components:
@@ -76,7 +77,7 @@
       bank-ATM-cashSlot: !type:ContainerSlot {}
 
 - type: entity
-  name: withdraw-only bank atm
+  name: bank atm withdraw-only
   id: ComputerBankATMWithdraw
   abstract: true
   components:
@@ -96,7 +97,6 @@
         type: WithdrawBankATMMenuBoundUserInterface
 
 - type: entity
-  name: bank atm
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
   id: ComputerBankATM
   description: Used to deposit and withdraw funds from a personal bank account
@@ -112,8 +112,8 @@
       state: unshaded
 
 - type: entity
-  name: black market atm
-  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMWithdraw]
+  suffix: BlackMarket
+  parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
   id: ComputerBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
