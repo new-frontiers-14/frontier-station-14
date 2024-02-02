@@ -31,7 +31,7 @@
 
 # Computers: Base Game
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerAlert ]
+  parent: [BaseStructureComputerTabletop, ComputerAlert]
   id: ComputerTabletopAlert
   components:
   - type: Sprite
@@ -52,11 +52,13 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerEmergencyShuttle]
   id: ComputerTabletopEmergencyShuttle
+  noSpawn: true
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
     layers:
     - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard_tabletop
