@@ -64,6 +64,32 @@
       - MobSyndicateNavalOperator
 
 - type: entity
+  name: Syndicate Naval Grenadier Spawner
+  id: SpawnMobSyndicateNavalGrenadier
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalGrenadier
+
+- type: entity
+  name: Syndicate Naval Saboteur Spawner
+  id: SpawnMobSyndicateNavalSaboteur
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalSaboteur
+
+- type: entity
   name: Victim of Experimentation Spawner
   id: SpawnMobExperimentationVictim
   parent: MarkerBase

@@ -10,13 +10,14 @@
   - BaseMobSpecies
   id: MobSyndicateNavalBase
   components:
+    - type: ShoesRequiredStepTriggerImmune
     - type: NpcFactionMember
       factions:
         - Syndicate
     - type: AutoImplant
       implants:
       - DeathRattleImplant
-      - MicroBombImplant
+#      - MicroBombImplant
 
 # Humans
 - type: entity
@@ -32,7 +33,7 @@
     - type: MobMover
     - type: HTN
       rootTask:
-        task: SimpleRangedHostileCompound
+        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
     - type: BasicEntityAmmoProvider
@@ -164,6 +165,63 @@
       availableModes:
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+
+- type: entity
+  name: Syndicate Grenadier
+  suffix: AI
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalGrenadier
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 5
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeFrag
+      capacity: 1
+      count: 1
+    - type: Gun
+      useKey: false
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  name: Syndicate Saboteur
+  suffix: AI
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalSaboteur
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistolEmp
+      capacity: 4
+      count: 4
+    - type: Gun
+      fireRate: 6
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
   name: Victim of Experimentation
