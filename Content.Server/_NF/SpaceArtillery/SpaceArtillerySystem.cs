@@ -31,6 +31,7 @@ using Robust.Shared.Random;
 using Content.Server.DeviceLinking.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -48,6 +49,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
 	[Dependency] private readonly IRobustRandom _random = default!;
 	[Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
+	[Dependency] private readonly IGameTiming _gameTiming = default!; //var variable = _gameTiming.CurTime; - to set with current time
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -72,8 +74,16 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, ExaminedEvent>(OnExamine);
 		SubscribeLocalEvent<SpaceArtilleryComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SpaceArtilleryComponent, ComponentRemove>(OnComponentRemove);
+		
+		SubscribeLocalEvent<SpaceArtilleryGridComponent, MapInitEvent>(OnMapInit);
 	}
-	//TODO detect and handle when weapon fires from gun system and when it does not
+	
+	private void OnMapInit(EntityUid uid, SpaceArtilleryGridComponent componentGrid, MapInitEvent args)
+	{
+		componentGrid.LastActivationTime = _gameTiming.CurTime;
+		componentGrid.CooldownEndTime = componentGrid.LastActivationTime + componentGrid.CooldownDuration;
+	}
+	
 
     private void OnComponentInit(EntityUid uid, SpaceArtilleryComponent component, ComponentInit args)
     {
