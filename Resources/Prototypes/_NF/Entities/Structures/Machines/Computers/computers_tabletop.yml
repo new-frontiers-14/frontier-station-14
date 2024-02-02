@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -27,9 +28,11 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 60
         mask:
-        - TabletopMachineMask
-        layer:
-        - TabletopMachineLayer
+        - Impassable
+        - LowImpassable
+#        - TabletopMachineMask
+#        layer:
+#        - TabletopMachineLayer
 
 # Computers: Base Game
 - type: entity
