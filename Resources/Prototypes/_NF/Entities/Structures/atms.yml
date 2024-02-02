@@ -79,6 +79,7 @@
 - type: entity
   name: bank atm withdraw-only
   id: ComputerBankATMWithdraw
+  description: Used to withdraw funds from a personal bank account. unable to deposit.
   abstract: true
   components:
   - type: BankATM
@@ -99,7 +100,7 @@
 - type: entity
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
   id: ComputerBankATM
-  description: Used to deposit and withdraw funds from a personal bank account
+  description: Used to deposit and withdraw funds from a personal bank account.
   components:
   - type: Sprite
     netsync: false
@@ -147,7 +148,6 @@
 - type: entity
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMWithdraw]
   id: ComputerWithdrawBankATM
-  description: Used to withdraw funds from a personal bank account. Unable to deposit.
   components:
   - type: Sprite
     netsync: false
@@ -174,7 +174,6 @@
   suffix: Wallmount
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
   id: ComputerWallmountBankATM
-  description: Used to deposit and withdraw funds from a personal bank account, it now comes in a more compact design!
   components:
   - type: Sprite
     netsync: false
@@ -194,7 +193,6 @@
   suffix: Wallmount
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMWithdraw]
   id: ComputerWallmountWithdrawBankATM
-  description: Used to withdraw funds from a personal bank account. Unable to deposit. It now comes in a more compact design!
   components:
   - type: Sprite
     netsync: false
