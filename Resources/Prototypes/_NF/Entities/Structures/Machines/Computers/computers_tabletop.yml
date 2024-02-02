@@ -8,8 +8,10 @@
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
     layers:
     - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
     - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: generic_keyboard_tabletop
     - map: ["computerLayerScreen"]
       sprite: Structures/Machines/computers.rsi
@@ -567,25 +569,6 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPalletConsole]
-  id: ComputerTabletopPalletConsole
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: request
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: tech_key
-
-- type: entity
   parent: [BaseStructureComputerTabletop, ComputerMassMedia]
   id: ComputerTabletopMassMedia
   components:
@@ -783,7 +766,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerTabletopPalletConsoleNFLowMarket]
+  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFLowMarket]
   id: ComputerTabletopPalletConsoleNFLowMarket
   suffix: Low, Tabletop
   components:
@@ -803,7 +786,7 @@
       state: tech_key
  
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerTabletopPalletConsoleNFVeryLowMarket]
+  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFVeryLowMarket]
   id: ComputerTabletopPalletConsoleNFVeryLowMarket
   suffix: VeryLow, Tabletop
   components:
