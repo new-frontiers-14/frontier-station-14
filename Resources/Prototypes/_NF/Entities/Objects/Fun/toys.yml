@@ -21,6 +21,7 @@
   - type: MeleeWeapon
     soundHit:
       path: /Audio/_NF/Items/Toys/wehhelp.ogg
+  - type: StinkyTrait
 
 - type: entity
   parent: [Soap, BasePlushie]
@@ -32,19 +33,23 @@
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_slips
   - type: EmitSoundOnUse
-    sound: {}
+    sound:
+      path: /Audio/Weapons/tap.ogg
   - type: EmitSoundOnLand
-    sound: {}
+    sound:
+      path: /Audio/Weapons/tap.ogg
   - type: EmitSoundOnActivate
-    sound: {}
+    sound:
+      path: /Audio/Weapons/tap.ogg
   - type: MeleeWeapon
-    soundHit: {}
+    soundHit:
+      path: /Audio/Weapons/tap.ogg
 
-# This is just giving security more items to have to beat you up for.
 - type: entity
   parent: ToySword
   id: DBToySword
   name: toy double-esword
+  noSpawn: true # This is just giving security more items to have to beat you up for.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
@@ -59,7 +64,31 @@
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
 
 - type: entity
-  parent: BaseItem
+  id: PetRockCarrier
+  parent: HappyHonk
+  name: pet rock carrier
+  description: Your new and only best friend home!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Happyhonk/rock_carrier.rsi
+    state: box
+  - type: Item
+    sprite: _NF/Objects/Storage/Happyhonk/rock_carrier.rsi
+    heldPrefix: box
+  - type: StorageFill
+    contents:
+      - id: PetRock
+        prob: 0.8
+        orGroup: Rock
+      - id: PetRockFred
+        prob: 0.1
+        orGroup: Rock
+      - id: PetRockRoxie
+        prob: 0.1
+        orGroup: Rock
+
+- type: entity
+  parent: [BaseItem, MrChips]
   id: BasePetRock
   name: pet rock
   description: Your new and only best friend!
@@ -67,6 +96,45 @@
   components:
   - type: StaticPrice
     price: 5
+  - type: VentriloquistPuppet # Frontier
+    removeHand:
+      - ventriloquist-rock-release-hand
+    removedHand:
+      - ventriloquist-rock-released-hand
+    insertHand:
+      - ventriloquist-rock-grasp-hand
+    insertedHand:
+      - ventriloquist-rock-grasped-hand
+    puppetRoleName:
+      - ventriloquist-rock-role-name
+    puppetRoleDescription:
+      - ventriloquist-rock-role-description
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 1
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: BasePetRock
@@ -74,7 +142,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/petrock.rsi
-    state: rock
+    layers:
+    - state: rock
 
 - type: entity
   parent: BasePetRock
@@ -83,7 +152,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/petrock.rsi
-    state: fred
+    layers:
+    - state: fred
 
 - type: entity
   parent: BasePetRock
@@ -92,7 +162,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/petrock.rsi
-    state: roxie
+    layers:
+    - state: roxie
 
 - type: entity
   parent: BasePlushie
