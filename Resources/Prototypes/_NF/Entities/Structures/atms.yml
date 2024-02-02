@@ -53,6 +53,7 @@
 - type: entity
   name: bank atm
   id: ComputerBankATMDeposit
+  description: Used to deposit and withdraw funds from a personal bank account.
   abstract: true
   components:
   - type: BankATM
@@ -100,7 +101,6 @@
 - type: entity
   parent: [ComputerBankATMBase, BaseStructureComputer, ComputerBankATMDeposit]
   id: ComputerBankATM
-  description: Used to deposit and withdraw funds from a personal bank account.
   components:
   - type: Sprite
     netsync: false
