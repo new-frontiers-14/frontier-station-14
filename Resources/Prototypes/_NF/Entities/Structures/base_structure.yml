@@ -38,7 +38,12 @@
   id: BaseStructureWallmount
   abstract: true
   components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: false
   - type: WallMount
-    arc: 360 # TODO: 180 after ATM fixes
+    arc: 180
+  - type: Transform
+    noRot: false
   - type: Fixtures
     fixtures: {}
