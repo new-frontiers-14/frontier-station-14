@@ -21,33 +21,9 @@
   - type: MeleeWeapon
     soundHit:
       path: /Audio/_NF/Items/Toys/wehhelp.ogg
-#  - type: MarketPrice # TODO fix price
-#    price: 1000 # TODO fix price
 
 - type: entity
-  parent: BasePlushie
-  id: PlushieVulp
-  name: vulpkanin plushie
-  description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
-    state: plushie_vulp
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_NF/Vulpikanin/bark.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_NF/Vulpikanin/bark.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_NF/Vulpikanin/bark.ogg
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/_NF/Vulpikanin/bark.ogg
-
-- type: entity
-  parent: BaseItem
+  parent: [Soap, BasePlushie]
   id: PlushieSlips
   name: janitor plushie
   description: The silent cleaner, the one that you dont hear say "Weh"!
@@ -55,22 +31,16 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_slips
-  - type: PhysicalComposition
-    materialComposition:
-      Cloth: 100
-  - type: StaticPrice
-    price: 5
+  - type: EmitSoundOnUse
+    sound: {}
+  - type: EmitSoundOnLand
+    sound: {}
+  - type: EmitSoundOnActivate
+    sound: {}
+  - type: MeleeWeapon
+    soundHit: {}
 
-- type: entity
-  parent: PlushieVulp
-  id: PlushieTrystan
-  name: office vulp plushie
-  description: The ones who yeeps!
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
-    state: plushie_trystan
-
+# This is just giving security more items to have to beat you up for.
 - type: entity
   parent: ToySword
   id: DBToySword
@@ -86,23 +56,28 @@
         shader: unshaded
         map: [ "blade" ]
   - type: Item
-    size: 5
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
 
 - type: entity
   parent: BaseItem
-  id: PetRock
+  id: BasePetRock
   name: pet rock
   description: Your new and only best friend!
+  abstract: true
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/petrock.rsi
-    state: rock
   - type: StaticPrice
     price: 5
 
 - type: entity
-  parent: BaseItem
+  parent: BasePetRock
+  id: PetRock
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/petrock.rsi
+    state: rock
+
+- type: entity
+  parent: BasePetRock
   id: PetRockFred
   name: fred
   components:
@@ -111,7 +86,7 @@
     state: fred
 
 - type: entity
-  parent: BaseItem
+  parent: BasePetRock
   id: PetRockRoxie
   name: roxie
   components:
@@ -280,7 +255,45 @@
     state: black
 
 - type: entity
-  parent: PlushieVulp
+  parent: BasePlushie
+  id: BasePlushieVulp
+  name: vulpkanin plushie
+  description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_NF/Vulpikanin/bark.ogg
+
+- type: entity
+  parent: BasePlushieVulp
+  id: PlushieVulp
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_vulp
+
+- type: entity
+  parent: BasePlushieVulp
+  id: PlushieTrystan
+  name: office vulp plushie
+  description: The ones who yeeps!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_trystan
+
+- type: entity
+  parent: BasePlushieVulp
   id: PlushieCorgi
   name: corgi plushie
   description: The ian plushie edition!
@@ -290,7 +303,7 @@
     state: corgi
 
 - type: entity
-  parent: PlushieVulp
+  parent: BasePlushieVulp
   id: PlushieGirlyCorgi
   name: girly corgi plushie
   components:
@@ -299,7 +312,7 @@
     state: girlycorgi
 
 - type: entity
-  parent: PlushieVulp
+  parent: BasePlushieVulp
   id: PlushieRobotCorgi
   name: robot corgi plushie
   components:
@@ -309,13 +322,9 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieCatBlack
-  name: black cat plushie
-  description: A stuffed toy that resembles a cute kitty!
+  id: BasePlushieCat
+  abstract: true
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/catplushie.rsi
-    state: black
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
@@ -330,7 +339,17 @@
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
+  id: PlushieCatBlack
+  name: black cat plushie
+  description: A stuffed toy that resembles a cute kitty!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/catplushie.rsi
+    state: black
+
+- type: entity
+  parent: BasePlushieCat
   id: PlushieCatGrey
   name: grey cat plushie
   components:
@@ -339,7 +358,7 @@
     state: grey
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
   id: PlushieCatOrange
   name: orange cat plushie
   components:
@@ -348,7 +367,7 @@
     state: orange
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
   id: PlushieCatSiames
   name: siames cat plushie
   components:
@@ -357,7 +376,7 @@
     state: siames
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
   id: PlushieCatTabby
   name: tabby cat plushie
   components:
@@ -366,7 +385,7 @@
     state: tabby
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
   id: PlushieCatTuxedo
   name: tuxedo cat plushie
   components:
@@ -375,7 +394,7 @@
     state: tuxedo
 
 - type: entity
-  parent: PlushieCatBlack
+  parent: BasePlushieCat
   id: PlushieCatWhite
   name: white cat plushie
   components:
