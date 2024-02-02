@@ -29,45 +29,6 @@
         layer:
         - TabletopMachineLayer
 
-- type: entity
-  parent: [ComputerTabletopShipyard, BaseMothershipComputer]
-  id: BaseMothershipComputerTabletop
-  abstract: true
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard
-    - map: ["computerLayerKeys"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: telesci_key
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyard] # Shuttle
-  id: ComputerTabletopShipyard
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard
-    - map: ["computerLayerKeys"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: telesci_key
-
 # Computers: Base Game
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerAlert ]
@@ -147,6 +108,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerShuttleCargo] # Shuttle
   id: ComputerTabletopShuttleCargo
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -166,6 +128,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerShuttleSalvage] # Shuttle
   id: ComputerTabletopShuttleSalvage
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -470,6 +433,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerCargoShuttle]
   id: ComputerTabletopCargoShuttle
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -642,6 +606,7 @@
   parent: [BaseStructureComputerTabletop, ComputerSensorMonitoring]
   id: ComputerTabletopSensorMonitoring
   suffix: Tabletop, TESTING, DO NOT MAP
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -659,6 +624,45 @@
       state: atmos_key
 
 # Computers: Frontier
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShipyard]
+  id: ComputerTabletopShipyard
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, BaseMothershipComputer]
+  id: BaseMothershipComputerTabletop
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
 
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerShipyardSecurity]
