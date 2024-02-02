@@ -73,10 +73,10 @@
         - sprite: Objects/Misc/stock_parts.rsi
           state: advanced_matter_bin
     - type: RandomSpawner
-      prototypes: #Frontier TODO: bring these back to the actual good parts
-        - CapacitorStockPart
-        - MicroManipulatorStockPart
-        - MatterBinStockPart
+      prototypes:
+        - AdvancedCapacitorStockPart
+        - NanoManipulatorStockPart
+        - AdvancedMatterBinStockPart
       offset: 0.0
 
 - type: entity
@@ -89,10 +89,15 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: super_matter_bin
   - type: RandomSpawner
-    prototypes: #Frontier TODO: bring these back to the actual good parts
-    - CapacitorStockPart
-    - MicroManipulatorStockPart
-    - MatterBinStockPart
+    rarePrototypes:
+    - QuadraticCapacitorStockPart
+    - FemtoManipulatorStockPart
+    - BluespaceMatterBinStockPart
+    rareChance: 0.05
+    prototypes:
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
     chance: 0.95
     offset: 0.0
 
@@ -107,10 +112,10 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: super_matter_bin
   - type: RandomSpawner
-    prototypes: #Frontier TODO: bring these back to the actual good parts
-    - CapacitorStockPart
-    - MicroManipulatorStockPart
-    - MatterBinStockPart
+    prototypes:
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
     offset: 0.0
 
 - type: entity
@@ -124,10 +129,10 @@
     - sprite: Objects/Misc/stock_parts.rsi
       state: bluespace_matter_bin
   - type: RandomSpawner
-    prototypes: #Frontier TODO: bring these back to the actual good parts
-    - CapacitorStockPart
-    - MicroManipulatorStockPart
-    - MatterBinStockPart
+    prototypes:
+    - QuadraticCapacitorStockPart
+    - PicoManipulatorStockPart
+    - BluespaceMatterBinStockPart
     offset: 0.0
 
 - type: entity
