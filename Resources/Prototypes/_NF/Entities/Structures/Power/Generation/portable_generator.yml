@@ -1,0 +1,81 @@
+﻿#
+# You can use this Desmos sheet to calculate fuel burn rate values:
+# https://www.desmos.com/calculator/qcektq5dqs
+#
+
+- type: entity
+  parent: PortableGeneratorPacman
+  id: PortableGeneratorPacmanShuttle
+  suffix: Plasma, 15 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+      minTargetPower: 1000
+      maxTargetPower: 25000
+      targetPower: 15000
+      optimalPower: 15000
+      # 45 minutes at max output
+      optimalBurnRate: 0.011111
+      # a decent curve
+      fuelEfficiencyConstant: 0.95
+    - type: Transform
+      anchored: true
+    - type: MaterialStorage
+      storageLimit: 3000
+      materialWhiteList: [Plasma]
+      storage:
+        Plasma: 3000
+    - type: PortableGenerator
+      startOnMapInit: true
+
+- type: entity
+  parent: PortableGeneratorSuperPacman
+  id: PortableGeneratorSuperPacmanShuttle
+  suffix: Uranium, 30 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+      minTargetPower: 5000
+      maxTargetPower: 50000
+      targetPower: 30000
+      optimalPower: 30000
+      # 45 minutes at full power
+      optimalBurnRate: 0.0111111
+      # still decent power curve
+      fuelEfficiencyConstant: 0.75
+    - type: Transform
+      anchored: true
+    - type: MaterialStorage
+      storageLimit: 3000
+      materialWhiteList: [Uranium]
+      storage:
+        Uranium: 3000
+    - type: PortableGenerator
+      startOnMapInit: true
+
+- type: entity
+  parent: PortableGeneratorJrPacman
+  id: PortableGeneratorJrPacmanShuttle
+  suffix: Welding Fuel, 5 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+      targetPower: 2000
+      minTargetPower: 1000
+      optimalPower: 5000
+      maxTargetPower: 15000
+      # 7.5 minutes at full tank.
+      optimalBurnRate: 0.11111111
+      # Shallow curve
+      fuelEfficiencyConstant: 0.5
+    - type: Transform
+      anchored: true
+    - type: SolutionContainerManager
+      solutions:
+        tank:
+          maxVol: 50
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 50
+    - type: PortableGenerator
+      startOnMapInit: true

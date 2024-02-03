@@ -1,0 +1,49 @@
+- type: entity
+  id: BaseStructureUnanchorable
+  abstract: true
+  components:
+  - type: Anchorable
+    delay: 999999
+
+- type: entity
+  id: BaseStructureDestructible
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: BaseStructureIndestructible
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 0
+
+- type: entity
+  id: BaseStructureWallmount
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: false
+  - type: WallMount
+    arc: 180
+  - type: Transform
+    noRot: false
+  - type: Fixtures
+    fixtures: {}
