@@ -272,7 +272,7 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 2000
+      targetPower: 4000 # Frontier - 2000<4000
       minTargetPower: 1000
       optimalPower: 5000
       maxTargetPower: 15000
@@ -286,7 +286,7 @@
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 50
+          maxVol: 100 # Frontier - 50<100
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator

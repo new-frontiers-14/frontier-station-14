@@ -685,7 +685,7 @@
 
 - type: entity
   id: ComputerCargoOrders
-  parent: BaseStructureComputer
+  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer] # Frontier
   name: cargo request computer
   description: Used to order supplies and approve requests.
   placement:
@@ -745,13 +745,6 @@
   - type: GuideHelp
     guides:
     - Cargo
-  - type: Anchorable # Frontier
-    delay: 999999
-  - type: Destructible  # Frontier
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
 
 - type: entity
   id: ComputerCargoBounty
