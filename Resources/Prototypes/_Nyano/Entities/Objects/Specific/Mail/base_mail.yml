@@ -4,11 +4,15 @@
   id: BaseMail
   name: mail-item-name-unaddressed
   components:
+  - type: Tag # Frontier
+    tags: # Frontier
+    - MailTag # Frontier
   - type: Item
     size: 20
   - type: Mail
   - type: AccessReader
   - type: Sprite
+    scale: 0.7, 0.7 # Frontier
     sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
     layers:
     - state: icon
@@ -91,7 +95,7 @@
   - type: DamageOnLand
     damage:
       types:
-        Blunt: 10
+        Blunt: 5 # Frontier halved the damage
   - type: CargoSellBlacklist
   - type: Food # Frontier - Moth food
     requiresSpecialDigestion: true
