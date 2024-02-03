@@ -215,7 +215,7 @@ namespace Content.Shared.CCVar
         ///     Whether a random position offset will be applied to the station on roundstart.
         /// </summary>
         public static readonly CVarDef<bool> StationOffset =
-            CVarDef.Create("game.station_offset", true);
+            CVarDef.Create("game.station_offset", false);
 
         /// <summary>
         /// When the default blueprint is loaded what is the maximum amount it can be offset from 0,0.
