@@ -27,6 +27,8 @@
   components:
     - type: ComputerBoard
       prototype: ComputerAlert
+    - type: ComputerTabletopBoard # Frontier
+      prototype: ComputerTabletopAlert # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -38,6 +40,8 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerPowerMonitoring
+    - type: ComputerTabletopBoard # Frontier
+      prototype: ComputerTabletopPowerMonitoring # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -49,6 +53,8 @@
       state: cpu_medical
     - type: ComputerBoard
       prototype: ComputerMedicalRecords
+    - type: ComputerTabletopBoard # Frontier
+      prototype: ComputerTabletopMedicalRecords # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
