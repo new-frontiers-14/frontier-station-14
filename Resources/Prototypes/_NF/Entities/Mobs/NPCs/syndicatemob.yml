@@ -5,12 +5,38 @@
   abstract: true
 #  parent: BaseMobHuman
   parent:
+  - BaseMob
   - MobBloodstream
   - MobFlammable
   - BaseMobSpecies
   id: MobSyndicateNavalBase
   components:
-    - type: ShoesRequiredStepTriggerImmune
+    - type: NoSlip
+    - type: RandomHumanoidAppearance
+      randomizeName: true      
+    - type: Internals
+    - type: ThermalRegulator
+      metabolismHeat: 800
+      radiatedHeat: 100
+      implicitHeatRegulation: 500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 310.15
+      thermalRegulationTemperatureThreshold: 25
+    - type: MovedByPressure
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+#        task: SimpleRangedHostileCompound # Alternative version
+      blackboard:
+        NavClimb: !type:Bool # They use this option too much for my liking
+          true
+        NavInteract: !type:Bool
+          true
+        NavPry: !type:Bool
+          true
+#        NavSmash: !type:Bool # They use this option too much for my liking
+#          true
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -18,6 +44,10 @@
       implants:
       - DeathRattleImplant
 #      - MicroBombImplant
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - ShoesRequiredStepTriggerImmune
 
 # Humans
 - type: entity
@@ -29,11 +59,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCaptainGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
     - type: BasicEntityAmmoProvider
@@ -57,11 +82,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalEngineerGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
     - type: BasicEntityAmmoProvider
@@ -85,11 +105,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalMedicGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 4
     - type: BasicEntityAmmoProvider
@@ -102,6 +117,8 @@
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
+      soundGunshot:
+        collection: BulletMiss
 
 - type: entity
   name: Syndicate Deckhand
@@ -112,11 +129,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalDeckhandGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: HitscanBatteryAmmoProvider
       proto: RedMediumLaser
       fireCost: 100
@@ -143,11 +155,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalOperatorGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.5
     - type: BasicEntityAmmoProvider
@@ -175,11 +182,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalGrenadierGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 5
     - type: BasicEntityAmmoProvider
@@ -203,11 +205,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalSaboteurGear
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleRangedHostileCompound
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1
     - type: BasicEntityAmmoProvider
@@ -233,7 +230,7 @@
   id: MobExperimentationVictim
   components:
     - type: NameIdentifier
-      group: Monkey
+      group: GenericNumber
     - type: NpcFactionMember
       factions:
         - SimpleHostile

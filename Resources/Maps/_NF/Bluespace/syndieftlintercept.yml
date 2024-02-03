@@ -284,10 +284,12 @@ entities:
             0: 13111
           2,1:
             0: 51
+            1: 4
           -4,0:
             0: 65535
           -4,1:
             0: 2188
+            1: 32768
           -3,0:
             0: 65535
           -3,1:
@@ -307,8 +309,10 @@ entities:
             0: 65535
           1,-3:
             0: 61440
+            1: 256
           2,-3:
             0: 29696
+            1: 32768
           2,-2:
             1: 13107
           2,-1:
@@ -334,6 +338,7 @@ entities:
             1: 102
           -5,-2:
             0: 64512
+            1: 128
           -5,-1:
             1: 26214
             0: 34952
@@ -341,6 +346,14 @@ entities:
             1: 8
           0,-3:
             0: 32768
+          1,2:
+            1: 1
+          -1,-3:
+            1: 4096
+          -6,0:
+            1: 2048
+          -6,-2:
+            1: 32768
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -434,6 +447,9 @@ entities:
       pos: -9.5,3.5
       parent: 1
       type: Transform
+    - secondsUntilStateChange: -221.71353
+      state: Opening
+      type: Door
   - uid: 421
     components:
     - rot: -1.5707963267948966 rad
@@ -4406,6 +4422,23 @@ entities:
       pos: 1.7204862,1.6527625
       parent: 1
       type: Transform
+- proto: SpawnMobCleanBot
+  entities:
+  - uid: 895
+    components:
+    - pos: 2.5,1.5
+      parent: 1
+      type: Transform
+  - uid: 896
+    components:
+    - pos: -6.5,-3.5
+      parent: 1
+      type: Transform
+  - uid: 897
+    components:
+    - pos: -13.5,-2.5
+      parent: 1
+      type: Transform
 - proto: SpawnMobExperimentationVictim
   entities:
   - uid: 58
@@ -5707,6 +5740,15 @@ entities:
     components:
     - rot: 3.141592653589793 rad
       pos: 2.5,-7.5
+      parent: 1
+      type: Transform
+- proto: WarpPointShip
+  entities:
+  - uid: 894
+    components:
+    - name: Intercepted Syndicate Ship
+      type: MetaData
+    - pos: -0.5,0.5
       parent: 1
       type: Transform
 - proto: WaterCooler
