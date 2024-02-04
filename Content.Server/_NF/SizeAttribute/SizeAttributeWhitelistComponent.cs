@@ -19,7 +19,7 @@ namespace Content.Server.SizeAttribute
         public bool ShortPseudoItem = false;
 
         [DataField("shortCosmeticOnly")]
-        public bool ShortCosmeticOnly = false;
+        public bool ShortCosmeticOnly = true;
 
         // Tall
         [DataField("tall")]
@@ -35,6 +35,6 @@ namespace Content.Server.SizeAttribute
         public bool TallPseudoItem = false;
 
         [DataField("tallCosmeticOnly")]
-        public bool TallCosmeticOnly = false;
+        public bool TallCosmeticOnly = true;
     }
 }
