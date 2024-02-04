@@ -10,7 +10,7 @@
     stateDoorOpen: cabinet_open
     stateDoorClosed: cabinet_door
   - type: AccessReader
-#    access: [["Bar"]]
+#    access: [["Bar"]] # Frontier
   - type: EntityStorage
     closeSound:
       path: /Audio/Effects/woodenclosetclose.ogg
@@ -29,7 +29,7 @@
     stateDoorOpen: qm_open
     stateDoorClosed: qm_door
   - type: AccessReader
-#    access: [["Quartermaster"]]
+#    access: [["Quartermaster"]] # Frontier
 
 - type: entity
   id: LockerSalvageSpecialist
@@ -43,7 +43,7 @@
     stateDoorOpen: mining_open
     stateDoorClosed: mining_door
   - type: AccessReader
-#    access: [["Salvage"]]
+#    access: [["Salvage"]] # Frontier
 
 # Command
 - type: entity
@@ -84,7 +84,7 @@
     stateDoorOpen: ce_open
     stateDoorClosed: ce_door
   - type: AccessReader
-#    access: [ [ "ChiefEngineer" ] ]
+#    access: [ [ "ChiefEngineer" ] ] # Frontier
 
 # Electrical supplies
 - type: entity
@@ -98,7 +98,7 @@
     stateDoorOpen: eng_open
     stateDoorClosed: eng_elec_door
   - type: AccessReader
-#    access: [ [ "Engineering" ] ]
+#    access: [ [ "Engineering" ] ] # Frontier
 
 # Welding supplies
 - type: entity
@@ -112,7 +112,7 @@
     stateDoorOpen: eng_open
     stateDoorClosed: eng_weld_door
   - type: AccessReader
-#    access: [ [ "Engineering" ] ]
+#    access: [ [ "Engineering" ] ] # Frontier
 
 # Atmos tech
 - type: entity
@@ -126,7 +126,7 @@
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
   - type: AccessReader
-#    access: [ [ "Atmospherics" ] ]
+#    access: [ [ "Atmospherics" ] ] # Frontier
 
 # Engineer
 - type: entity
@@ -140,7 +140,7 @@
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
   - type: AccessReader
-#    access: [ [ "Engineering" ] ]
+#    access: [ [ "Engineering" ] ] # Frontier
 
 # Freezer
 - type: entity
@@ -165,7 +165,7 @@
   suffix: Kitchen, Locked
   components:
   - type: AccessReader
-#    access: [ [ "Kitchen" ] ]
+#    access: [ [ "Kitchen" ] ] # Frontier
 
 # Botanist
 - type: entity
@@ -179,7 +179,7 @@
     stateDoorOpen: hydro_open
     stateDoorClosed: hydro_door
   - type: AccessReader
-#    access: [ [ "Hydroponics" ] ]
+#    access: [ [ "Hydroponics" ] ] # Frontier
 
 # Medicine
 - type: entity
@@ -194,7 +194,7 @@
     stateDoorOpen: med_open
     stateDoorClosed: med_door
   - type: AccessReader
-#    access: [ [ "Medical" ] ]
+#    access: [ [ "Medical" ] ] # Frontier
 
 # Medical doctor
 - type: entity
@@ -208,7 +208,7 @@
     stateDoorOpen: med_secure_open
     stateDoorClosed: med_secure_door
   - type: AccessReader
-#    access: [ [ "Medical" ] ]
+#    access: [ [ "Medical" ] ] # Frontier
 
 # Paramedic
 - type: entity
@@ -222,7 +222,7 @@
     stateDoorOpen: paramed_open
     stateDoorClosed: paramed_door
   - type: AccessReader
-#    access: [ [ "Medical" ] ]
+#    access: [ [ "Medical" ] ] # Frontier
 
 
 # Chemical
@@ -237,7 +237,7 @@
     stateDoorOpen: med_open
     stateDoorClosed: chemical_door
   - type: AccessReader
-#    access: [ [ "Chemistry" ] ]
+#    access: [ [ "Chemistry" ] ] # Frontier
 
 # CMO
 - type: entity
@@ -251,7 +251,7 @@
     stateDoorOpen: cmo_open
     stateDoorClosed: cmo_door
   - type: AccessReader
-#    access: [ [ "ChiefMedicalOfficer" ] ]
+#    access: [ [ "ChiefMedicalOfficer" ] ] # Frontier
 
 # Science
 - type: entity
@@ -265,7 +265,7 @@
     stateDoorOpen: rd_open
     stateDoorClosed: rd_door
   - type: AccessReader
-#    access: [ [ "ResearchDirector" ] ]
+#    access: [ [ "ResearchDirector" ] ] # Frontier
 
 - type: entity
   id: LockerScientist
@@ -278,7 +278,7 @@
     stateDoorOpen: science_open
     stateDoorClosed: science_door
   - type: AccessReader
-#    access: [ [ "Research" ] ]
+#    access: [ [ "Research" ] ] # Frontier
 
 # HoS
 - type: entity
@@ -415,7 +415,7 @@
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Theatre"]]
+#    access: [["Theatre"]] # Frontier
   - type: EntityStorageVisuals
     stateBaseClosed: clown
     stateDoorOpen: clown_open
@@ -429,7 +429,7 @@
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Theatre"]]
+#    access: [["Theatre"]] # Frontier
   - type: EntityStorageVisuals
     stateBaseClosed: mime
     stateDoorOpen: mime_open
@@ -443,7 +443,8 @@
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Command"]]
+#    access: [["Command"]]
+    access: [["HeadOfPersonnel"]] # Frontier
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
