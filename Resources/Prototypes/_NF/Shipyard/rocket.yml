@@ -1,27 +1,26 @@
 - type: vessel
-  id: rocket
+  id: Rocket
   name: SV Rocket
-  description: (pun intended)
+  description: An incredibly cheap rock that is perfect for those who don't mind severe budget cuts!
   price: 7000
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/rocket.yml
+  shuttlePath: /Maps/_NF/Shuttles/rocket.yml
 
 - type: gameMap
-  id: rocket
+  id: Rocket
   mapName: 'SV Rocket'
-  mapPath: /Maps/Shuttles/rocket.yml
+  mapPath: /Maps/_NF/Shuttles/rocket.yml
   minPlayers: 0
   stations:
-    rocket:
+    Rocket:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'SV14 Rocket {1}'
+          mapNameTemplate: 'Rocket {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs:
-            Passenger: [ 0, 0 ]
+          availableJobs: {}
