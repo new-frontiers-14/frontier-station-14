@@ -71,6 +71,9 @@ namespace Content.Server.SizeAttribute
             {
                 foreach (var (id, fixture) in manager.Fixtures)
                 {
+                    if (!fixture.Hard || fixture.Density <= 1f)
+                        continue; // This will skip the flammable fixture and any other fixture that is not supposed to contribute to mass
+
                     switch (fixture.Shape)
                     {
                         case PhysShapeCircle circle:
