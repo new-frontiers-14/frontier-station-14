@@ -399,14 +399,28 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 					var oldLinearVelocity = gridPhysicsComponent.LinearVelocity;
 					var oldAngularVelocity = gridPhysicsComponent.AngularVelocity;
 					
-					if(oldLinearVelocity.X >= linearVelocityLimitGrid || oldLinearVelocity.Y >= linearVelocityLimitGrid)
+					var oldLinearRelativeVelocity = (float) Math.Sqrt((oldLinearVelocity.X * oldLinearVelocity.X) + (oldLinearVelocity.Y * oldLinearVelocity.Y));
+					
+					//Check if grid isn't flying faster already than the velocity limit
+					if(oldLinearRelativeVelocity >= linearVelocityLimitGrid)
 						return;
 					
 					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilGrid * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilGrid * (float) Math.Cos(worldRot));
 					var recoilX = (worldPosX - targetSpotRecoil.X);
 					var recoilY = (worldPosY - targetSpotRecoil.Y);
-					//TODO fix the velocity limit to work more accuretly
-					var newLinearVelocity = new Vector2(MathF.Min(oldLinearVelocity.X + (recoilX/gridMass),linearVelocityLimitGrid), MathF.Min(oldLinearVelocity.Y + (recoilY/gridMass),linearVelocityLimitGrid));
+					
+					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/gridMass), oldLinearVelocity.Y + (recoilY/gridMass));
+					
+					
+					var newLinearRelativeVelocity = (float) Math.Sqrt((newLinearVelocity.X * newLinearVelocity.X) + (newLinearVelocity.Y * newLinearVelocity.Y));
+					
+					//Check if new velocity isn't faster than the limit
+					if(newLinearRelativeVelocity > linearVelocityLimitGrid)
+					{
+						//Decrease X and Y velocity so that relative velocity matches the limit
+						newLinearVelocity.X = newLinearVelocity.X * linearVelocityLimitGrid / newLinearRelativeVelocity;
+						newLinearVelocity.Y = newLinearVelocity.Y * linearVelocityLimitGrid / newLinearRelativeVelocity;
+					}
 					
 					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityGrid, (int) component.AngularInstabilityGrid);
 					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/gridMass);
@@ -417,6 +431,8 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 					
 					Sawmill.Info($"Space Artillery recoil. RecoilX: {recoilX}  RecoilY: {recoilY}  Instability: {randomAngularInstability}");
 					Sawmill.Info($"Space Artillery recoil. LinearVelocityX: {newLinearVelocity.X}/{oldLinearVelocity.X}  LinearVelocityY: {newLinearVelocity.Y}/{oldLinearVelocity.Y}  AngularInstability: {newAngularVelocity}/{oldAngularVelocity}");
+					
+					//(float) Math.Sqrt(GetSeverityModifier());
 				}
 			} 
 			else
@@ -428,13 +444,28 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 					var oldLinearVelocity = weaponPhysicsComponent.LinearVelocity;
 					var oldAngularVelocity = weaponPhysicsComponent.AngularVelocity;
 					
-					if(oldLinearVelocity.X >= linearVelocityLimitWeapon || oldLinearVelocity.Y >= linearVelocityLimitWeapon)
+					var oldLinearRelativeVelocity = (float) Math.Sqrt((oldLinearVelocity.X * oldLinearVelocity.X) + (oldLinearVelocity.Y * oldLinearVelocity.Y));
+					
+					//Check if weapon isn't flying faster already than the velocity limit
+					if(oldLinearRelativeVelocity >= linearVelocityLimitWeapon)
 						return;
 					
 					var targetSpotRecoil = new Vector2(worldPosX - component.LinearRecoilWeapon * (float) Math.Sin(worldRot), worldPosY + component.LinearRecoilWeapon * (float) Math.Cos(worldRot));
 					var recoilX = (worldPosX - targetSpotRecoil.X);
 					var recoilY = (worldPosY - targetSpotRecoil.Y);
-					var newLinearVelocity = new Vector2(MathF.Min(oldLinearVelocity.X + (recoilX/weaponMass),linearVelocityLimitWeapon), MathF.Min(oldLinearVelocity.Y + (recoilY/weaponMass),linearVelocityLimitWeapon));
+					
+					var newLinearVelocity = new Vector2(oldLinearVelocity.X + (recoilX/weaponMass), oldLinearVelocity.Y + (recoilY/weaponMass));
+					
+					
+					var newLinearRelativeVelocity = (float) Math.Sqrt((newLinearVelocity.X * newLinearVelocity.X) + (newLinearVelocity.Y * newLinearVelocity.Y));
+					
+					//Check if new velocity isn't faster than the limit
+					if(newLinearRelativeVelocity > linearVelocityLimitWeapon)
+					{
+						//Decrease X and Y velocity so that relative velocity matches the limit
+						newLinearVelocity.X = newLinearVelocity.X * linearVelocityLimitWeapon / newLinearRelativeVelocity;
+						newLinearVelocity.Y = newLinearVelocity.Y * linearVelocityLimitWeapon / newLinearRelativeVelocity;
+					}
 					
 					var randomAngularInstability = _random.Next((int) -component.AngularInstabilityWeapon, (int) component.AngularInstabilityWeapon);
 					var newAngularVelocity = oldAngularVelocity + (randomAngularInstability/weaponMass);
@@ -442,6 +473,8 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 					
 					_physicsSystem.SetLinearVelocity(uid, newLinearVelocity);
 					_physicsSystem.SetAngularVelocity(uid, newAngularVelocity);
+					
+					//(float) Math.Sqrt(GetSeverityModifier());
 				}
 			}
 		}
