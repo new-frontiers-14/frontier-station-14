@@ -1,9 +1,30 @@
 - type: reagent
+  id: Soju
+  name: reagent-name-soju
+  parent: BaseAlcohol
+  desc: reagent-desc-soju
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: soju
+  color: "#DDDDDD"
+  metamorphicSprite:
+    sprite: Nyanotrasen/Objects/Consumable/Drinks/sojuglass.rsi
+    state: icon
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+
+- type: reagent
   id: OrangeCreamice
   name: reagent-name-orange-creamcicle
   parent: BaseAlcohol
   desc: reagent-desc-orange-creamcicle
   physicalDesc: reagent-physical-desc-creamy
+  flavor: orangecreamcicle
   color: "#efaa16"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/orangecreamcicle.rsi
@@ -23,6 +44,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-silverjack
   physicalDesc: reagent-physical-desc-translucent
+  flavor: silverjack
   color: "#978647"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/silverjack.rsi
@@ -42,6 +64,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-brainbomb
   physicalDesc: reagent-physical-desc-abrasive
+  flavor: brainbomb
   color: "#6f7a2c"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/brainbomb.rsi
@@ -62,7 +85,7 @@
         reagent: Ethanol
         amount: 0.085
       - !type:AdjustReagent
-        reagent: THCOil
+        reagent: THC
         amount: 0.33
       - !type:AdjustReagent
         reagent: SpaceDrugs
@@ -94,7 +117,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-circusjuice
   physicalDesc: reagent-physical-desc-glittery
-  flavor: funny
+  flavor: circusjuice
   color: "#c47872"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/circusjuice.rsi
@@ -117,6 +140,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-sapopicante
   physicalDesc: reagent-physical-desc-oily
+  flavor: sapopicante
   color: "#c0501a"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/sapopicante.rsi
@@ -138,6 +162,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-graveyard
   physicalDesc: reagent-physical-desc-dark-red
+  flavor: graveyard
   color: "#4f1b1b"
   metamorphicSprite:
     sprite: Nyanotrasen/Objects/Consumable/Drinks/graveyard.rsi
