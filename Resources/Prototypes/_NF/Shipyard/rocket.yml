@@ -1,0 +1,27 @@
+- type: vessel
+  id: rocket
+  name: SV Rocket
+  description: (pun intended)
+  price: 7000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/rocket.yml
+
+- type: gameMap
+  id: rocket
+  mapName: 'SV Rocket'
+  mapPath: /Maps/Shuttles/rocket.yml
+  minPlayers: 0
+  stations:
+    rocket:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'SV14 Rocket {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
