@@ -10,7 +10,7 @@ namespace Content.Shared.Item.PseudoItem;
 public sealed partial class PseudoItemComponent : Component, ITransferredByCloning
 {
     [DataField("size", customTypeSerializer: typeof(PrototypeIdSerializer<ItemSizePrototype>))]
-    public string Size = "Large";
+    public string Size = "Huge";
 
     public bool Active = false;
 
