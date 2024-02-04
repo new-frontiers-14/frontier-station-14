@@ -4,8 +4,6 @@
   id: MailCapsulePrimed
   parent: BaseItem
   components:
-  - type: Item
-    size: 5
   - type: ThrowingAngle
     angle: 180
   - type: EmbeddableProjectile
@@ -14,6 +12,7 @@
   - type: Tag
     tags:
     - MailCapsuleTag
+    - Trash
   - type: Sprite
     sprite: _NF/Objects/Misc/mail_capsule.rsi
     layers:
@@ -26,9 +25,34 @@
         name: Mail
         startingItem: null
         whitelist:
-          tags:
+          tag:
+          - Book
           - Document
           - MailTag
+          components:
+          - Mail
+          - Paper
+          - HyperlinkBook
+        insertOnInteract: true
+        priority: 3
+      food_slot:
+        insertVerbText: Put in Food
+        ejectVerbText: Take out Food
+        name: Food
+        startingItem: null
+        whitelist:
+          components:
+          - Food
+        insertOnInteract: true
+        priority: 2
+      cash_slot:
+        insertVerbText: Put in Cash
+        ejectVerbText: Take out Cash
+        name: Cash
+        startingItem: null
+        whitelist:
+          components:
+          - Currency
         insertOnInteract: true
         priority: 1
   - type: ContainerContainer
@@ -39,11 +63,24 @@
   - type: Appearance
   - type: ItemMapper
     mapLayers:
+      icon-food:
+        whitelist:
+          components:
+          - Food
+      icon-cash:
+        whitelist:
+          components:
+          - Currency
       icon-mail:
         whitelist:
-          tags:
+          tag:
+          - Book
           - Document
           - MailTag
+          components:
+          - Mail
+          - Paper
+          - HyperlinkBook
     sprite: _NF/Objects/Misc/mail_capsule.rsi
   - type: Dumpable
   - type: Damageable
@@ -81,11 +118,6 @@
     contents:
       - id: MailCapsulePrimed
         amount: 6
-  - type: Storage
-    capacity: 30
-    whitelist:
-      tags:
-        - MailCapsuleTag
   - type: Sprite
     layers:
       - state: box
