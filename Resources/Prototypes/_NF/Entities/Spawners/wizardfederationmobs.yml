@@ -1,0 +1,58 @@
+# Random Spawners
+- type: entity
+  name: Random Wizard Spawner
+  id: SpawnMobWizFedWizard
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobWizFedWizardBlue
+    - MobWizFedWizardRed
+    - MobWizFedWizardViolet
+    rarePrototypes:
+    - MobXenoPraetorianNPC
+    rareChance: 0.05
+
+# Fixed Spawners
+- type: entity
+  name: Hardsuit Wizard Spawner
+  id: SpawnMobWizFedWizardVioletHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardVioletHardsuit
+
+- type: entity
+  name: Blue Wizard Spawner
+  id: SpawnMobWizFedWizardBlue
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBlue
+
+- type: entity
+  name: Soap Wizard Spawner
+  id: SpawnMobWizFedWizardSoap
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardSoap

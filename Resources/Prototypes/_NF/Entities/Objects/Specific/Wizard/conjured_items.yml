@@ -1,0 +1,20 @@
+- type: entity
+  id: ConjuredObject10
+  suffix: Conjured
+  abstract: true
+  description: A magically created object, that'll vanish from existance eventually.
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  name: soap
+  id: SoapConjured
+  parent:
+  - Soap
+  - ConjuredObject10
+  components:
+  - type: Sprite
+    state: deluxe
+  - type: Item
+    heldPrefix: deluxe

@@ -1,0 +1,122 @@
+- type: entity
+  name: Wizard
+  suffix: AI
+  abstract: true
+  parent:
+  - MobHumanoidHostileBase
+  id: MobWizFedlBase
+  components:
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - WizFedFaction
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.25
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+
+# Humans
+- type: entity
+  name: Blue Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardBlue
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBlueGear
+  - type: BasicEntityAmmoProvider
+    proto: WaterElementalConjured
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 40
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+
+- type: entity
+  name: Red Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardRed
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardRedGear
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileFireball
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 0.25
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+
+- type: entity
+  name: Violet Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardViolet
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardVioletGear
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileFireball
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 0.25
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+
+- type: entity
+  name: Violet Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedlBase
+  id: MobWizFedWizardVioletHardsuit
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardHardsuitGear
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileFireball
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 0.25
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+
+- type: entity
+  name: Soap Wizard
+  suffix: AI
+  parent: MobWizFedlBase
+  id: MobWizFedWizardSoap
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardSoapGear
+  - type: BasicEntityAmmoProvider
+    proto: SoapConjured
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 0.25
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+
+# Conjured Creatures
+- type: entity
+  name: Water Elemental
+  suffix: AI
+  parent: ReagentSlime
+  id: WaterElementalConjured
+  components:
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - WizFedFaction
+  - type: TimedDespawn
+    lifetime: 30

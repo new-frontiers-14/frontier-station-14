@@ -1,42 +1,11 @@
-# Base
 - type: entity
   name: Syndicate Naval Agent
-  suffix: AI
   abstract: true
 #  parent: BaseMobHuman
-  parent:
-  - BaseMob
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
     - type: NoSlip
-    - type: RandomHumanoidAppearance
-      randomizeName: true      
-    - type: Internals
-    - type: ThermalRegulator
-      metabolismHeat: 800
-      radiatedHeat: 100
-      implicitHeatRegulation: 500
-      sweatHeatRegulation: 2000
-      shiveringHeatRegulation: 2000
-      normalBodyTemperature: 310.15
-      thermalRegulationTemperatureThreshold: 25
-    - type: MovedByPressure
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-#        task: SimpleRangedHostileCompound # Alternative version
-      blackboard:
-        NavClimb: !type:Bool # They use this option too much for my liking
-          true
-        NavInteract: !type:Bool
-          true
-        NavPry: !type:Bool
-          true
-#        NavSmash: !type:Bool # They use this option too much for my liking
-#          true
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -44,15 +13,14 @@
       implants:
       - DeathRattleImplant
 #      - MicroBombImplant
-    - type: Tag
-      tags:
-      - DoorBumpOpener
-      - ShoesRequiredStepTriggerImmune
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
 
 # Humans
 - type: entity
   name: Syndicate Captain
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalCaptain
   components:
@@ -61,6 +29,8 @@
         - SyndicateNavalCaptainGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: BulletMagnumAP
       capacity: 1
@@ -75,7 +45,6 @@
 
 - type: entity
   name: Syndicate Engineer
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalEngineer
   components:
@@ -84,6 +53,8 @@
         - SyndicateNavalEngineerGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: PelletShotgun
       capacity: 1
@@ -98,7 +69,6 @@
 
 - type: entity
   name: Syndicate Medic
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalMedic
   components:
@@ -107,6 +77,8 @@
         - SyndicateNavalMedicGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 4
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: DartSindicateTranquilizer
       capacity: 1
@@ -122,7 +94,6 @@
 
 - type: entity
   name: Syndicate Deckhand
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalDeckhand
   components:
@@ -148,7 +119,6 @@
 
 - type: entity
   name: Syndicate Operator
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalOperator
   components:
@@ -157,6 +127,8 @@
         - SyndicateNavalOperatorGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.5
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: BulletPistol
       capacity: 10
@@ -175,7 +147,6 @@
 
 - type: entity
   name: Syndicate Grenadier
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalGrenadier
   components:
@@ -184,6 +155,8 @@
         - SyndicateNavalGrenadierGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 5
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: GrenadeFrag
       capacity: 1
@@ -198,7 +171,6 @@
 
 - type: entity
   name: Syndicate Saboteur
-  suffix: AI
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalSaboteur
   components:
@@ -207,6 +179,8 @@
         - SyndicateNavalSaboteurGear
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
     - type: BasicEntityAmmoProvider
       proto: BulletPistolEmp
       capacity: 4
@@ -221,12 +195,11 @@
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
-  name: Victim of Experimentation
-  suffix: AI
-  parent:
-  - MobBloodstream
-  - MobFlammable
-  - BaseMobSpecies
+  name: Captive #Victim of Experimentation
+  parent: MobHumanoidHostileBase
+#  - MobBloodstream
+#  - MobFlammable
+#  - BaseMobSpecies
   id: MobExperimentationVictim
   components:
     - type: NameIdentifier
