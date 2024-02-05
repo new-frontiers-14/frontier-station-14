@@ -1,11 +1,9 @@
 - type: entity
-  parent: BaseLathe
+  parent: [BaseStructureUnanchorable, BaseLathe]
   id: PrizeCounter
   name: prize counter
   description: Claim your prize and win some toys and cute plushies!
   components:
-  - type: Anchorable
-    delay: 999999
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9

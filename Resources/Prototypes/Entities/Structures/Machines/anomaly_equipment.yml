@@ -219,7 +219,7 @@
 
 - type: entity
   id: MachineAnomalyGenerator
-  parent: BaseMachinePowered
+  parent: [BaseStructureUnanchorable, BaseMachinePowered] # Frontier - BaseStructureUnanchorable
   name: anomaly generator
   description: The peak of pseudoscientific technology.
   placement:
@@ -323,5 +323,3 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
-  - type: Anchorable
-    delay: 999999

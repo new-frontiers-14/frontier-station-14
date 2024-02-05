@@ -179,14 +179,12 @@
     supplyRate: 3000
 
 - type: entity
-  parent: BaseGenerator
+  parent: [BaseStructureUnanchorable, BaseGenerator] # Frontier - BaseStructureUnanchorable
   id: GeneratorBasic15kW
   suffix: Basic, 15kW, Anchored
   components:
     - type: PowerSupplier
       supplyRate: 15000
-    - type: Anchorable
-      delay: 999999
 
 - type: entity
   parent: BaseGeneratorWallmount
