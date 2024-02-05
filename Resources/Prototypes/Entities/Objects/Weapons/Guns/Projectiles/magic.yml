@@ -153,3 +153,46 @@
     whitelist:
       components:
       - Body
+
+# Frontier projectiles
+# The game wont allow them to sit under _NF.
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletFireBolt
+  name: fire bolt
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 2
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: infernoshot
+  - type: Ammo
+    muzzleFlash: null
+  - type: IgniteOnCollide
+    fireStacks: 2
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletMagicBolt
+  name: magic bolt
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Bloodloss: 2
+        Asphyxiation: 3
+        Slash: 1
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: arcane_barrage
+  - type: Ammo
+    muzzleFlash: null

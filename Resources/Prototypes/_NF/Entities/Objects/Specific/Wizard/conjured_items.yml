@@ -1,3 +1,4 @@
+# Limited life times
 - type: entity
   id: ConjuredObject10
   suffix: Conjured
@@ -7,6 +8,7 @@
   - type: TimedDespawn
     lifetime: 10
 
+# Conjured objects
 - type: entity
   name: soap
   id: SoapConjured
@@ -15,6 +17,9 @@
   - ConjuredObject10
   components:
   - type: Sprite
-    state: deluxe
+    sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
+    state: soap
   - type: Item
-    heldPrefix: deluxe
+    heldPrefix: conjured
+  - type: Ammo
+    muzzleFlash: null

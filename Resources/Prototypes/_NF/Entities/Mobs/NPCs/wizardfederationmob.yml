@@ -14,6 +14,12 @@
     rechargeCooldown: 0.25
     rechargeSound:
       path: /Audio/Weapons/tap.ogg
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage: #per second, scales with number of fire 'stacks'
+      types:
+        Heat: 0
 
 # Humans
 - type: entity
@@ -45,12 +51,31 @@
   - type: Loadout
     prototypes:
     - NPCWizardRedGear
+#  - type: SolutionContainerManager
+#    solutions:
+#      chamber:
+#        maxVol: 2000 #100 shots
+#        reagents:
+#        - ReagentId: Phlogiston
+#          Quantity: 40
+#        - ReagentId: ChlorineTrifluoride
+#          Quantity: 40
+#        - ReagentId: Napalm
+#          Quantity: 1920
+#  - type: SolutionAmmoProvider
+#    solutionId: chamber
+#    proto: BulletWaterShot
+#  - type: SolutionTransfer
+#    transferAmount: 20
+#    maxTransferAmount: 50
+#    minTransferAmount: 20
+#    canChangeTransferAmount: false
   - type: BasicEntityAmmoProvider
-    proto: ProjectileFireball
-    capacity: 2
-    count: 2
+    proto: BulletFireBolt
+    capacity: 1
+    count: 1
   - type: Gun
-    fireRate: 0.25
+    fireRate: 1
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
 
@@ -63,31 +88,17 @@
     prototypes:
     - NPCWizardVioletGear
   - type: BasicEntityAmmoProvider
-    proto: ProjectileFireball
-    capacity: 2
-    count: 2
+    proto: BulletMagicBolt
+    capacity: 8
+    count: 8
   - type: Gun
-    fireRate: 0.25
+    fireRate: 6
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
-
-- type: entity
-  name: Violet Wizard
-  suffix: AI, Hardsuit
-  parent: MobWizFedlBase
-  id: MobWizFedWizardVioletHardsuit
-  components:
-  - type: Loadout
-    prototypes:
-    - NPCWizardHardsuitGear
-  - type: BasicEntityAmmoProvider
-    proto: ProjectileFireball
-    capacity: 2
-    count: 2
-  - type: Gun
-    fireRate: 0.25
-    soundGunshot:
-      path: /Audio/Magic/fireball.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
 
 - type: entity
   name: Soap Wizard
@@ -100,12 +111,44 @@
     - NPCWizardSoapGear
   - type: BasicEntityAmmoProvider
     proto: SoapConjured
-    capacity: 2
-    count: 2
+    capacity: 1
+    count: 1
   - type: Gun
     fireRate: 0.25
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
+
+# Wizards in hardsuits
+- type: entity
+  name: Blue Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardBlue
+  id: MobWizFedWizardBlueHardsuit
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBlueHardsuitGear
+
+- type: entity
+  name: Red Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardRed
+  id: MobWizFedWizardRedHardsuit
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardRedHardsuitGear
+
+- type: entity
+  name: Violet Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardViolet
+  id: MobWizFedWizardVioletHardsuit
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardVioletHardsuitGear
+
 
 # Conjured Creatures
 - type: entity
@@ -120,3 +163,5 @@
     - WizFedFaction
   - type: TimedDespawn
     lifetime: 30
+  - type: Ammo
+    muzzleFlash: null

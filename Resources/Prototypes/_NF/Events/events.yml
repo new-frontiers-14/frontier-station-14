@@ -153,10 +153,28 @@
     endAnnouncement: station-event-bluespace-syndicate-ftl-interception-end-announcement
     earliestStart: 200
     minimumPlayers: 15
-    weight: 3
+    weight: 10
     startDelay: 10
     duration: 1800
     maxDuration: 2400
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/syndieftlintercept.yml
-    rewardFactor: 2
+
+- type: entity
+  id: BluespaceWizardFederationScout
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-wizardfederation-scout-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-wizardfederation-scout-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 10
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/wizardprobe.yml
