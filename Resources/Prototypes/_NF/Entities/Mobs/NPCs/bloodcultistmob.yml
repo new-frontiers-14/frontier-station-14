@@ -1,0 +1,68 @@
+- type: entity
+  name: Blood Cultist
+  abstract: true
+  parent: MobHumanoidHostileBase
+  id: MobBloodCultistBase
+  components:
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+      - BloodCultNF
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+  - type: Advertise
+    pack: bloodcultisthumanoidchatter
+
+# Humans
+- type: entity
+  name: Blood Cult Priest
+  parent: MobBloodCultistBase
+  id: MobBloodCultistPriest
+  components:
+    - type: Loadout
+      prototypes:
+        - BloodCultistPriestGear
+
+- type: entity
+  name: Blood Cult Acolyte
+  parent: MobBloodCultistBase
+  id: MobBloodCultistAcolyte
+  components:
+    - type: Loadout
+      prototypes:
+        - BloodCultistAcolyteGear
+
+- type: entity
+  name: Blood Cult Zealot
+  parent: MobBloodCultistBase
+  id: MobBloodCultistZealotMelee
+  components:
+    - type: Loadout
+      prototypes:
+        - BloodCultistZealotMeleeGear
+
+- type: entity
+  name: Blood Cult Zealot
+  parent: MobBloodCultistBase
+  id: MobBloodCultistZealotRanged
+  components:
+    - type: Loadout
+      prototypes:
+        - BloodCultistZealotRangedGear
+    - type: RechargeBasicEntityAmmo
+      rechargeSound:
+        path: /Audio/Items/bow_pull.ogg
+    - type: BasicEntityAmmoProvider
+      proto: CrossbowBoltUraniumGlassShard
+      capacity: 1
+      count: 1
+    - type: Gun
+      useKey: false
+      fireRate: 0.5
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        collection: BulletMiss

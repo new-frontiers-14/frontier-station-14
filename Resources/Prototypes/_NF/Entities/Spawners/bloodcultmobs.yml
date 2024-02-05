@@ -1,0 +1,53 @@
+- type: entity
+  name: Blood Cult Priest Spawner
+  id: SpawnMobBloodCultistPriest
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistPriest
+
+- type: entity
+  name: Blood Cult Acolyte
+  id: SpawnMobBloodCultistAcolyte
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistAcolyte
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: Melee
+  id: SpawnMobBloodCultistZealotMelee
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistZealotMelee
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: Ranged
+  id: SpawnMobBloodCultistZealotRanged
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistZealotRanged

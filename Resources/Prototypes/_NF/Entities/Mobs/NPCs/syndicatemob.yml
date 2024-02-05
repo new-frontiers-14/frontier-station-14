@@ -5,18 +5,20 @@
   parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
-    - type: NoSlip
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: AutoImplant
-      implants:
-      - DeathRattleImplant
-#      - MicroBombImplant
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1
-      rechargeSound:
-        path: /Audio/Weapons/tap.ogg
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: AutoImplant
+    implants:
+    - DeathRattleImplant
+#    - MicroBombImplant
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+  - type: Advertise
+    pack: syndicatehumanoidchatter
 
 # Humans
 - type: entity
