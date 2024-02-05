@@ -54,8 +54,8 @@ entities:
       type: MapGrid
     - type: Broadphase
     - bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
+      angularDamping: 999999
+      linearDamping: 999999
       fixedRotation: False
       bodyType: Dynamic
       type: Physics
@@ -63,9 +63,9 @@ entities:
       type: Fixtures
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - angularDamping: 999999
       linearDamping: 999999
-      angularDamping: 999999
+      type: Shuttle
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -429,6 +429,11 @@ entities:
       type: Transform
 - proto: AirlockExternalSyndicateLocked
   entities:
+  - uid: 79
+    components:
+    - pos: -9.5,3.5
+      parent: 1
+      type: Transform
   - uid: 230
     components:
     - rot: -1.5707963267948966 rad
@@ -441,15 +446,6 @@ entities:
       pos: -1.5,-4.5
       parent: 1
       type: Transform
-  - uid: 343
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -9.5,3.5
-      parent: 1
-      type: Transform
-    - secondsUntilStateChange: -221.71353
-      state: Opening
-      type: Door
   - uid: 421
     components:
     - rot: -1.5707963267948966 rad
@@ -511,12 +507,23 @@ entities:
     - linkedPorts:
         35:
         - DoorStatus: InputA
+        881:
+        - DoorStatus: InputB
+        109:
+        - DoorStatus: DoorBolt
       type: DeviceLinkSource
   - uid: 109
     components:
     - pos: -2.5,-3.5
       parent: 1
       type: Transform
+    - links:
+      - 41
+      type: DeviceLinkSink
+    - linkedPorts:
+        881:
+        - DoorStatus: InputA
+      type: DeviceLinkSource
   - uid: 280
     components:
     - rot: -1.5707963267948966 rad
@@ -990,23 +997,10 @@ entities:
       type: Physics
 - proto: Bloodpack10Lingering
   entities:
-  - uid: 79
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -15.34415,-0.40293455
-      parent: 1
-      type: Transform
   - uid: 82
     components:
     - rot: -1.5707963267948966 rad
       pos: -15.531651,-0.63730955
-      parent: 1
-      type: Transform
-- proto: BoxBodyBag
-  entities:
-  - uid: 776
-    components:
-    - pos: -15.661636,-0.34883785
       parent: 1
       type: Transform
 - proto: BoxFolderRed
@@ -3538,6 +3532,16 @@ entities:
     - pos: -2.5,4.5
       parent: 1
       type: Transform
+- proto: Igniter
+  entities:
+  - uid: 898
+    components:
+    - pos: 0.89551896,-2.250243
+      parent: 1
+      type: Transform
+    - links:
+      - 881
+      type: DeviceLinkSink
 - proto: InflatableWall
   entities:
   - uid: 180
@@ -3624,6 +3628,23 @@ entities:
         - Output: Open
         155:
         - Output: Open
+      type: DeviceLinkSource
+    - canCollide: False
+      bodyType: Static
+      type: Physics
+  - uid: 881
+    components:
+    - anchored: True
+      pos: 0.5,-3.5
+      parent: 1
+      type: Transform
+    - links:
+      - 109
+      - 41
+      type: DeviceLinkSink
+    - linkedPorts:
+        898:
+        - Output: Trigger
       type: DeviceLinkSource
     - canCollide: False
       bodyType: Static
@@ -4358,68 +4379,80 @@ entities:
       type: Transform
 - proto: SpaceCash10000
   entities:
-  - uid: 871
+  - uid: 277
     components:
-    - rot: 3.141592653589793 rad
-      pos: 0.032986104,1.3680403
+    - rot: 1.5707963267948966 rad
+      pos: -15.329699,-0.32579374
       parent: 1
       type: Transform
-  - uid: 872
+  - uid: 343
+    components:
+    - pos: -15.298449,-0.21641874
+      parent: 1
+      type: Transform
+  - uid: 776
     components:
     - rot: 3.141592653589793 rad
-      pos: 0.032986104,1.597207
+      pos: 0.5020578,1.4059272
+      parent: 1
+      type: Transform
+  - uid: 871
+    components:
+    - pos: 8.370866,3.1107614
       parent: 1
       type: Transform
   - uid: 873
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.35243055,1.6805403
-      parent: 1
-      type: Transform
-  - uid: 874
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.6302083,1.6180403
+    - rot: -1.5707963267948966 rad
+      pos: -1.5446186,6.2740526
       parent: 1
       type: Transform
   - uid: 875
     components:
-    - pos: 0.984375,1.5694292
-      parent: 1
-      type: Transform
-  - uid: 876
-    components:
-    - pos: 1.1788194,1.8124847
+    - rot: 1.5707963267948966 rad
+      pos: 2.963622,-6.613129
       parent: 1
       type: Transform
   - uid: 877
     components:
-    - rot: -1.5707963267948966 rad
-      pos: 1.6024306,1.6249847
+    - pos: 8.323991,3.2826364
       parent: 1
       type: Transform
   - uid: 878
     components:
-    - rot: -1.5707963267948966 rad
-      pos: -0.23090279,1.5416514
+    - rot: 3.141592653589793 rad
+      pos: 0.6270578,1.6246772
       parent: 1
       type: Transform
   - uid: 879
     components:
+    - rot: -1.5707963267948966 rad
+      pos: 0.4608125,1.5170114
+      parent: 1
+      type: Transform
+- proto: SpaceCash5000
+  entities:
+  - uid: 872
+    components:
+    - pos: -1.4448197,6.456311
+      parent: 1
+      type: Transform
+  - uid: 874
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 8.249184,3.093674
+      parent: 1
+      type: Transform
+  - uid: 876
+    components:
     - rot: 3.141592653589793 rad
-      pos: -0.6684028,1.5833181
+      pos: 3.0560155,-6.427967
       parent: 1
       type: Transform
   - uid: 880
     components:
     - rot: 3.141592653589793 rad
-      pos: -0.6753472,1.3263736
-      parent: 1
-      type: Transform
-  - uid: 881
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 1.7204862,1.6527625
+      pos: -15.553066,-0.10241544
       parent: 1
       type: Transform
 - proto: SpawnMobCleanBot
@@ -5839,30 +5872,6 @@ entities:
     - pos: -16.5,-6.5
       parent: 1
       type: Transform
-- proto: WelderIndustrialAdvanced
-  entities:
-  - uid: 277
-    components:
-    - pos: 0.89567816,-2.3128734
-      parent: 1
-      type: Transform
-    - solutions:
-        Welder:
-          temperature: 293.15
-          canMix: False
-          canReact: True
-          maxVol: 250
-          reagents:
-          - data: null
-            ReagentId: WeldingFuel
-            Quantity: 121.61
-      type: SolutionContainerManager
-    - enabled: True
-      type: PointLight
-    - toggled: True
-      type: RequiresEyeProtection
-    - ignited: True
-      type: IgnitionSource
 - proto: WindoorSecure
   entities:
   - uid: 883
