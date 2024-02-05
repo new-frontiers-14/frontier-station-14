@@ -37,8 +37,8 @@ entities:
       type: MapGrid
     - type: Broadphase
     - bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
+      angularDamping: 999999
+      linearDamping: 999999
       fixedRotation: False
       bodyType: Dynamic
       type: Physics
@@ -46,9 +46,9 @@ entities:
       type: Fixtures
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - angularDamping: 999999
       linearDamping: 999999
-      angularDamping: 999999
+      type: Shuttle
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -766,19 +766,6 @@ entities:
       pos: 4.758345,2.0018203
       parent: 1
       type: Transform
-- proto: PlasteelArmingSword
-  entities:
-  - uid: 34
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 4.4860215,0.37494642
-      parent: 1
-      type: Transform
-  - uid: 121
-    components:
-    - pos: 2.3298335,3.9269488
-      parent: 1
-      type: Transform
 - proto: PonderingOrb
   entities:
   - uid: 196
@@ -1130,9 +1117,9 @@ entities:
     - pos: 4.5,-0.5
       parent: 1
       type: Transform
-- proto: SpawnMobWizFedWizardBlue
+- proto: SpawnMobWizFedWizardBlueHardsuit
   entities:
-  - uid: 122
+  - uid: 34
     components:
     - pos: 2.5,4.5
       parent: 1
