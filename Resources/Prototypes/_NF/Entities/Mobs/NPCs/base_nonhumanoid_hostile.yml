@@ -1,28 +1,19 @@
-# Human NPC, uses equipment, immune to vacuum/low pressure
-# but otherwise should be the same as base line human mob
-# Going to use this prototype later for other mobs
+# Non-Human NPC base immune to vacuum/low pressure
 - type: entity
-  name: Human NPC
+  name: Mob NPC
   suffix: AI
   abstract: true
   parent:
-  - MobBloodstream
-  - MobFlammable  
-  - MobDamageable
-  - BaseMobSpecies
-  id: MobHumanoidHostileBase
+  - SimpleSpaceMobBase
+  - MobElementalBase
+  id: MobNonHumanHostileBase
   components:
-  - type: RandomHumanoidAppearance
-    randomizeName: true
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      180: Dead
+      150: Dead
   - type: Stamina
-    critThreshold: 130
-  - type: Internals
-  - type: MovedByPressure
+    critThreshold: 200
   - type: HTN
     rootTask:
        task: SimpleHumanoidHostileCompound
@@ -41,8 +32,17 @@
   - type: NpcFactionMember
     factions:
       - SimpleHostile
-  - type: Advertise
-    pack: syndicatehumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 10:20:30
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ascended_cultist
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ascended_cultist
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead

@@ -38,8 +38,8 @@
       - MobSyndicateNavalMedic
 
 - type: entity
-  name: Syndicate Naval Deckhand Spawner
-  id: SpawnMobSyndicateNavalDeckhand
+  name: Syndicate Naval Second Officer Spawner
+  id: SpawnMobSyndicateNavalSecondOfficer
   parent: MarkerBase
   components:
   - type: Sprite
@@ -48,7 +48,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSyndicateNavalDeckhand
+      - MobSyndicateNavalSecondOfficer
 
 - type: entity
   name: Syndicate Naval Operator Spawner
@@ -101,3 +101,29 @@
   - type: ConditionalSpawner
     prototypes:
       - MobExperimentationVictim
+
+- type: entity
+  name: Syndicate Naval Commander Spawner
+  id: SpawnMobSyndicateNavalCommander
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalCommander
+
+- type: entity
+  name: Syndicate Naval Deckhand Spawner
+  id: SpawnMobSyndicateNavalDeckhand
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalDeckhand

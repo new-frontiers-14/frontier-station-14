@@ -11,10 +11,11 @@
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
     state: nothing
   - type: MeleeWeapon
+    attackRate: 1.1
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 15
+        Blunt: 12
     angle: 0
     animation: WeaponArcThrust
   - type: Tag
@@ -50,3 +51,20 @@
     heldPrefix: healing
   - type: Sprite
     state: healing
+
+# Blood Cult
+- type: entity
+  name: blood cult staff
+  parent: WizardStaffMeleeRed
+  id: WizardStaffMeleeBlood
+  components:
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 13
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Effects/bite.ogg

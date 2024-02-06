@@ -21,48 +21,169 @@
   parent: MobBloodCultistBase
   id: MobBloodCultistPriest
   components:
-    - type: Loadout
-      prototypes:
-        - BloodCultistPriestGear
+  - type: Loadout
+    prototypes:
+      - BloodCultistPriestGear
 
 - type: entity
   name: Blood Cult Acolyte
   parent: MobBloodCultistBase
   id: MobBloodCultistAcolyte
   components:
-    - type: Loadout
-      prototypes:
-        - BloodCultistAcolyteGear
+  - type: Loadout
+    prototypes:
+      - BloodCultistAcolyteGear
 
 - type: entity
   name: Blood Cult Zealot
   parent: MobBloodCultistBase
   id: MobBloodCultistZealotMelee
   components:
-    - type: Loadout
-      prototypes:
-        - BloodCultistZealotMeleeGear
+  - type: Loadout
+    prototypes:
+      - BloodCultistZealotMeleeGear
 
 - type: entity
   name: Blood Cult Zealot
+  suffix: Crossbow
   parent: MobBloodCultistBase
   id: MobBloodCultistZealotRanged
   components:
-    - type: Loadout
-      prototypes:
-        - BloodCultistZealotRangedGear
-    - type: RechargeBasicEntityAmmo
-      rechargeSound:
-        path: /Audio/Items/bow_pull.ogg
-    - type: BasicEntityAmmoProvider
-      proto: CrossbowBoltBloodDrinker
-      capacity: 1
-      count: 1
+  - type: Loadout
+    prototypes:
+      - BloodCultistZealotRangedGear
+  - type: RechargeBasicEntityAmmo
+    rechargeSound:
+      path: /Audio/Items/bow_pull.ogg
+  - type: BasicEntityAmmoProvider
+    proto: CrossbowBoltBloodDrinker
+    capacity: 1
+    count: 1
+  - type: Gun
+    useKey: false
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: Caster
+  parent: MobBloodCultistBase
+  id: MobBloodCultistCaster
+  components:
+  - type: Loadout
+    prototypes:
+      - BloodCultistCasterGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    capacity: 8
+    count: 8
+  - type: Gun
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Effects/demon_consume.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+
+# Non-human mobs
+- type: entity
+  name: Ascended Cultist
+  suffix: Caster
+  parent:
+  - MobNonHumanHostileBase
+  - FlyingMobBase
+  id: MobBloodCultistAscended
+  components:
+  - type: NpcFactionMember
+    factions:
+      - BloodCultNF
+  - type: Advertise
+    pack: bloodcultisthumanoidchatter
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ascended_cultist
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ascended_cultist
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 12
+    animation: WeaponArcClaw
+  - type: HitscanBatteryAmmoProvider
+    proto: BloodCultLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Effects/demon_consume.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/tap.ogg
+
+
+# Turrets
+- type: entity
+  parent: BaseWeaponTurret
+  id: BloodCultTurret
+  name: blood pylon
+  components:
+    - type: NpcFactionMember
+      factions:
+        - BloodCultNF
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      drawdepth: Mobs
+      layers:
+        - state: syndie_lethal
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
     - type: Gun
-      useKey: false
-      fireRate: 0.5
-      selectedMode: SemiAuto
+      fireRate: 6
+      selectedMode: FullAuto
       availableModes:
-        - SemiAuto
-      soundGunshot:
-        collection: BulletMiss
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Weapons/tap.ogg
+    - type: BallisticAmmoProvider
+      proto: CartridgeCaselessRifle
+      capacity: 10
+      count: 10
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        RotateSpeed: !type:Single
+          3.141
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/Effects/double_beep.ogg

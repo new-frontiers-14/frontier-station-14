@@ -4,20 +4,14 @@
   equipment:
     head: ClothingHeadHatSyndieMAA
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
-#    back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
-#    eyes: ClothingEyesGlassesSunglasses
-    belt: ClothingBeltSyndieHolster
-    ears: ClothingHeadsetAltSyndicate
     neck: ClothingNeckScarfStripedSyndieRed
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterCoatSyndieCapArmored
     pocket1: WeaponRevolverPythonAP
   inhand:
     - CaptainSabre
-#    - WeaponRevolverPythonAP
 
 # Engineer
 - type: startingGear
@@ -28,16 +22,13 @@
     back: ClothingBackpackDuffelSyndicateAmmo
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     belt: ClothingBeltUtility
-    ears: ClothingHeadsetAltSyndicate
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterArmorBasic
     pocket1: MagazineShotgun
     pocket2: MagazineShotgun
   inhand:
     - WeaponShotgunBulldog
-#    - ToolboxSyndicate
 
 # Medic
 - type: startingGear
@@ -48,34 +39,28 @@
     back: ClothingBackpackDuffelSyndicateMedical
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     belt: ClothingBeltMedical
-    ears: ClothingHeadsetAltSyndicate
     neck: ClothingNeckStethoscope
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterCoatAMG
   inhand:
-#    - DartSindicateTranquilizer
     - SawAdvanced
 
-# Syndicate Deckhand
+# Syndicate Second Officer
 - type: startingGear
-  id: SyndicateNavalDeckhandGear
+  id: SyndicateNavalSecondOfficerGear
   equipment:
     head: ClothingHeadHatSyndie
     jumpsuit: ClothingUniformJumpsuitRecruitSyndie
     back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     eyes: ClothingEyesGlassesSunglasses
     belt: ClothingBeltMilitaryWebbing
-    ears: ClothingHeadsetAltSyndicate
     mask: ClothingMaskNeckGaiter
     outerClothing: ClothingOuterArmorBasic
   inhand:
     - WeaponAdvancedLaser
-#    - KukriKnife
 
 # Syndicate Security Operative
 - type: startingGear
@@ -86,15 +71,11 @@
     back: WeaponSubMachineGunAtreides
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     belt: ClothingBeltMilitaryWebbing
-    ears: ClothingHeadsetAltSyndicate
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterArmorBulletproof
   inhand:
     - KukriKnife
-#    - WeaponSubMachineGunAtreides
-#    - RiotShield
 
 # Syndicate Grenadier
 - type: startingGear
@@ -104,17 +85,13 @@
     jumpsuit: ClothingUniformJumpsuitRecruitSyndie
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     belt: ClothingBeltMilitaryWebbing
-    ears: ClothingHeadsetAltSyndicate
     mask: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterSuitBomb
     pocket1: GrenadeFrag
     pocket2: GrenadeFrag
   inhand:
     - WeaponLauncherChinaLake
-#    - WeaponSubMachineGunAtreides
-#    - RiotShield
 
 # Syndicate Saboteur
 - type: startingGear
@@ -125,9 +102,7 @@
     jumpsuit: ClothingUniformJumpsuitOperative
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesCombat
-#    id: SyndiPDA # Shouldn't spawn it
     eyes: ClothingEyesGlassesSunglasses
-    ears: ClothingHeadsetAltSyndicate
     mask: ClothingMaskNeckGaiter
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolViper
@@ -143,4 +118,31 @@
     neck: ClothingNeckHeadphones
   inhand:
     - ReinforcedShiv
-#    - ReinforcedShiv
+
+# Commander (Megafauna for dungeons)
+- type: startingGear
+  id: SyndicateNavalCommanderGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    neck: BedsheetSyndie
+    jumpsuit: ClothingUniformJumpsuitSyndieFormal
+    outerClothing: ClothingOuterHardsuitSyndieElite
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsMagSyndie
+    back: WeaponRifleAk
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  inhand:
+    - CaptainSabre
+    
+# Syndicate Deckhand
+- type: startingGear
+  id: SyndicateNavalDeckhandGear
+  equipment:
+    head: ClothingHeadHatSyndie
+    jumpsuit: ClothingUniformJumpsuitRecruitSyndie
+    shoes: ClothingShoesBootsWork
+    outerClothing: ClothingOuterArmorBasic
+    pocket1: WeaponPistolViper
+  inhand:
+    - CombatKnife

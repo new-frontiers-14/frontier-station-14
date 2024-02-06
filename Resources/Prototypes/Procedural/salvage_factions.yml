@@ -64,3 +64,44 @@
     DefenseStructure: CarpStatue
     Mining: Carps
     Megafauna: MobDragonDungeon
+
+# Frontier
+- type: salvageFaction
+  id: Syndicate
+  groups:
+  - entries:
+    - id: MobSyndicateDeckhand
+      amount: 2
+      maxAmount: 3
+    - id: MobSyndicateNavalEngineer
+      amount: 1
+  - entries:
+    - id: MobSyndicateNavalSaboteur
+      amount: 0
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: MobSyndicateNavalMedic
+      amount: 0
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: WeaponTurretSyndicate
+      amount: 1
+    prob: 0.25
+  - entries:
+      - id: MobSyndicateNavalOperator
+        amount: 1
+    prob: 0.25
+  - entries:
+    - id: MobSyndicateNavalCaptain
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobSyndicateNavalGrenadier
+      amount: 1
+    prob: 0.001
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Mining: Xenos # No idea what this thing does or where to look for it
+    Megafauna: MobSyndicateNavalCommander

@@ -1,0 +1,57 @@
+- type: entity
+  parent: CybersunDataMiner
+  id: BloodCollector
+  name: blood collector
+  description: Data collecting and processing machine produced by Cybersun.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/bloodcollector.rsi
+    layers:
+    - state: blood_collector
+    - state: unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+    castShadows: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Blood
+          Quantity: 1000
