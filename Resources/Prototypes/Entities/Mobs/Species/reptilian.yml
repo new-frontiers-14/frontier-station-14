@@ -23,6 +23,8 @@
     prototype: Reptilian
     requiredLegs: 2
   - type: Perishable
+  - type: Inventory
+    speciesId: reptilian
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -42,12 +44,13 @@
     damageModifierSet: Scale
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Weapons/pierce.ogg
+      path: /Audio/Weapons/slash.ogg
     angle: 30
-    animation: WeaponArcPunch
+    animation: WeaponArcClaw
     damage:
       types:
-        Piercing: 5
+        Slash: 4
+        Blunt: 1
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 285
@@ -59,6 +62,9 @@
     heatDamage:
       types:
         Heat : 0.1 #per second, scales with temperature & other constants
+  - type: SizeAttributeWhitelist # Frontier
+    tall: true
+    tallscale: 1.2
 
 - type: entity
   parent: BaseSpeciesDummy

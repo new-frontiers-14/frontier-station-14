@@ -13,3 +13,33 @@
     sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/security.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltMercenary
+  name: mercenary over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltPilot
+  name: pilot over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyTraffic
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/pilot.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/pilot.rsi

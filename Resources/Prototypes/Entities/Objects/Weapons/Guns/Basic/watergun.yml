@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: WeaponWaterGunBase
   abstract: true
   parent: BaseItem
@@ -45,10 +45,15 @@
   - type: ExaminableSolution
     solution: chamber
   - type: StaticPrice
-    price: 100
+    price: 30 # Frontier 100<30
   - type: PhysicalComposition
     materialComposition:
       Plastic: 150
+  - type: Tag # Frontier
+    tags: # Frontier
+    - WeaponRanged # Frontier
+    - WeaponShortArms # Frontier
+    - Sidearm # Frontier
 
 - type: entity
   id: WeaponWaterPistol

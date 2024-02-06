@@ -23,7 +23,7 @@
     heldPrefix: packet
     size: 3
   - type: StaticPrice
-    price: 7.5
+    price: 1
 # Snacks
 
 # "Snacks" means food in a packet. Down the line this stuff can have multiple
@@ -114,7 +114,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7.5
+    price: 21
 
 - type: entity
   name: chocolate bar
@@ -375,7 +375,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
+    price: 50
 
 - type: entity
   id: FoodSnackNutribrickOpen
@@ -390,6 +390,12 @@
     size: 10
   - type: Sprite
     state: nutribrick-open
+  - type: Tag
+    tags:
+      - FoodSnack
+      - MothFood
+      - BloodFood
+      - Meat
   - type: Food
   - type: SolutionContainerManager
     solutions:
@@ -411,6 +417,9 @@
   - type: Tag
     tags:
       - FoodSnack
+      - MothFood
+      - BloodFood
+      - Meat
   - type: SpawnItemsOnUse
     items:
       - id: FoodPacketMRETrash
@@ -418,7 +427,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
+    price: 21
 
 
 - type: entity

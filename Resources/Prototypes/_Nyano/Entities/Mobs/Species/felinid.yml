@@ -30,8 +30,8 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 1
-        Slash: 5
+        Blunt: 3
+        Slash: 2
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1
@@ -53,7 +53,10 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-    - Felinid
+    - Felinid # Frontier
+  - type: SizeAttributeWhitelist # Frontier
+    tall: true
+    tallscale: 1
 
 - type: entity
   save: false

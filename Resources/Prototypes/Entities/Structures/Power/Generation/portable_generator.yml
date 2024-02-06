@@ -170,6 +170,8 @@
       gasType: CarbonDioxide
       # 0.5 moles of gas for every sheet of plasma.
       moleRatio: 0.5
+    - type: MaterialStorageMagnetPickup # Frontier
+      range: 0.30
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -219,6 +221,8 @@
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
       scaling: Exponential
+    - type: MaterialStorageMagnetPickup # Frontier
+      range: 0.30
 
 - type: entity
   name: J.R.P.A.C.M.A.N.-type portable generator
@@ -268,7 +272,7 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 2000
+      targetPower: 4000 # Frontier - 2000<4000
       minTargetPower: 1000
       optimalPower: 5000
       maxTargetPower: 15000
@@ -282,7 +286,7 @@
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 50
+          maxVol: 100 # Frontier - 50<100
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
