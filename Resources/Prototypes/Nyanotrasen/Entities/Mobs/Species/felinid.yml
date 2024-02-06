@@ -40,10 +40,6 @@
         Blunt: 1
   - type: Stamina
   - type: PseudoItem
-  - type: SizeAttributeWhitelist
-    tall: true
-    tallscale: 1
-    tallDensity: 185
   - type: Vocal
     wilhelm: "/Audio/Nyanotrasen/Voice/Felinid/cat_wilhelm.ogg"
     sounds:
@@ -54,7 +50,10 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-    - Felinid
+    - Felinid # Frontier
+  - type: SizeAttributeWhitelist # Frontier
+    tall: true
+    tallscale: 1
 
 - type: entity
   save: false
