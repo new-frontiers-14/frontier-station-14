@@ -1,6 +1,6 @@
 - type: entity
   name: shipyard console
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerShipyard
   description: Used to purchase and sell shuttles
   placement:
@@ -77,7 +77,7 @@
 # Custom console
 - type: entity
   id: BaseMothershipComputer
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: mothership console
   description: Used on motherships to purchase and sell ships without returning to a station.
   components:
@@ -92,7 +92,7 @@
 # Hardcoded consoles
 - type: entity
   id: ComputerShipyardSecurity
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: security shipyard console
   description: Used to enlist into Nanotrasen Security Forces
   components:
@@ -116,7 +116,7 @@
 
 - type: entity
   id: ComputerShipyardBlackMarket
-  parent: [BaseStructureUnanchorable, BaseStructureDestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
   name: black market shipyard console
   description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
   components:
@@ -140,7 +140,7 @@
 
 - type: entity
   id: ComputerShipyardExpedition
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: expedition shipyard console
   description: Used to buy ships outfitted for planetary expeditions
   components:
@@ -164,7 +164,7 @@
 
 - type: entity
   id: ComputerShipyardScrap
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: scrapyard console
   description: Used to purchase and sell "shuttles"
   components:
@@ -189,7 +189,7 @@
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerPalletConsoleNFNormalMarket
   description: Used to sell goods loaded onto cargo pallets
   placement:
