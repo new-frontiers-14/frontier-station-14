@@ -393,7 +393,7 @@ public sealed partial class ShuttleSystem
                     comp.Accumulator += FTLCooldown;
                     _console.RefreshShuttleConsoles(uid);
                     _mapManager.SetMapPaused(mapId, false);
-                    Smimsh(uid, xform: xform);
+                    //Smimsh(uid, xform: xform); // Frontier - TODO: Move this to expo FTL only.
 
                     var ftlEvent = new FTLCompletedEvent(uid, _mapManager.GetMapEntityId(mapId));
                     RaiseLocalEvent(uid, ref ftlEvent, true);
