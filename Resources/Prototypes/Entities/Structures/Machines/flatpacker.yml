@@ -33,9 +33,13 @@
   - type: FlatpackCreator
     baseMachineCost:
       Steel: 750
+      Silver: 100
+      Gold: 50
     baseComputerCost:
       Steel: 500
       Glass: 250
+      Silver: 100
+      Gold: 50
   - type: Machine
     board: FlatpackerMachineCircuitboard
   - type: MaterialStorage
@@ -81,8 +85,8 @@
     - machine_parts
     - machine_board
     - board_slot
-  - type: StaticPrice
-    price: 2000
+#  - type: StaticPrice # Frontier
+#    price: 2000
 
 - type: entity
   id: FlatpackerNoBoardEffect
