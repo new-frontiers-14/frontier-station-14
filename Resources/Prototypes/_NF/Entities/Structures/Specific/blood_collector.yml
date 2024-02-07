@@ -2,7 +2,7 @@
   parent: CybersunDataMiner
   id: BloodCollector
   name: blood collector
-  description: Data collecting and processing machine produced by Cybersun.
+  description: A vile chamber filled with blood. Seems to hold more than it's volume.
   components:
   - type: Sprite
     sprite: _NF/Structures/Specific/bloodcollector.rsi
@@ -15,6 +15,11 @@
     energy: 1.2
     color: "#ff0000"
     castShadows: false
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/anomaly_generator.ogg
   - type: Destructible
     thresholds:
     - trigger:

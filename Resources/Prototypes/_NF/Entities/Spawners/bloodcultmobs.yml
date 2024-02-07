@@ -51,3 +51,45 @@
   - type: ConditionalSpawner
     prototypes:
       - MobBloodCultistZealotRanged
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: Caster
+  id: SpawnMobBloodCultistCaster
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistCaster
+
+- type: entity
+  name: Blood Cult Leech
+  suffix: Melee
+  id: SpawnMobBloodCultLeech
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultLeech
+
+- type: entity
+  name: Ascended Cultist
+  suffix: Caster, Megafauna
+  id: SpawnMobBloodCultistAscended
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistAscended

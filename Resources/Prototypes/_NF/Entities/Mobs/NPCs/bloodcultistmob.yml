@@ -92,7 +92,7 @@
 
 # Non-human mobs
 - type: entity
-  name: Ascended Cultist
+  name: Ascended Cultist # Megafauna
   suffix: Caster
   parent:
   - MobNonHumanHostileBase
@@ -115,9 +115,16 @@
       Alive:
         Base: ascended_cultist
       Critical:
-        Base: dead
+        Base: crit
       Dead:
         Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      400: Dead
+  - type: Stamina
+    critThreshold: 400
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -130,19 +137,75 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 100
   - type: Battery
     maxCharge: 600
     startingCharge: 600
   - type: Gun
-    fireRate: 3
+    fireRate: 2
     soundGunshot:
-      path: /Audio/Effects/demon_consume.ogg
+      path: /Audio/Effects/Lightning/lightningshock.ogg
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.5
     rechargeSound:
       path: /Audio/Weapons/tap.ogg
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+    castShadows: false
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/_NF/Effects/bloodcult/whispers.ogg
 
+- type: entity
+  name: Blood Leech
+  suffix: Melee
+  parent: MobNonHumanHostileBase
+  id: MobBloodCultLeech
+  components:
+  - type: NpcFactionMember
+    factions:
+      - BloodCultNF
+  - type: Advertise
+    pack: bloodcultisthumanoidchatter
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/bloodcultleech.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: leech
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: leech
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      130: Dead
+  - type: Stamina
+    critThreshold: 100
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 12
+    animation: WeaponArcBite
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - FootstepSound
 
 # Turrets
 - type: entity
@@ -154,31 +217,32 @@
       factions:
         - BloodCultNF
     - type: Sprite
-      sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      sprite: _NF/Structures/Specific/bloodcultpylon.rsi
       drawdepth: Mobs
       layers:
-        - state: syndie_lethal
+        - state: pylon
     - type: InteractionPopup
       interactDelay: 0.2
       successChance: 0.8
       interactSuccessString: petting-success-generic
       interactFailureString: petting-failure-generic
       interactSuccessSound:
-        path: /Audio/Effects/double_beep.ogg
+        path: /Audio/_NF/Effects/bloodcult/ghost-scream.ogg
     - type: Gun
       fireRate: 6
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+        collection: RadiationPulse
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1
       rechargeSound:
         path: /Audio/Weapons/tap.ogg
     - type: BallisticAmmoProvider
-      proto: CartridgeCaselessRifle
-      capacity: 10
-      count: 10
+      proto: BulletBloodCultDarkBolt
+#      capacity: 1000
+#      count: 1000
     - type: HTN
       rootTask:
         task: TurretCompound
@@ -186,4 +250,14 @@
         RotateSpeed: !type:Single
           3.141
         SoundTargetInLOS: !type:SoundPathSpecifier
-          path: /Audio/Effects/double_beep.ogg
+          path: /Audio/_NF/Effects/bloodcult/ghost-scream.ogg
+    - type: PointLight
+      radius: 1.4
+      energy: 1.2
+      color: "#ff0000"
+      castShadows: false
+    - type: AmbientSound
+      volume: -4
+      range: 5
+      sound:
+        path: /Audio/Effects/shuttle_thruster.ogg

@@ -8,12 +8,19 @@
   - MobElementalBase
   id: MobNonHumanHostileBase
   components:
+  - type: Hands
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
+      100: Critical
       150: Dead
   - type: Stamina
-    critThreshold: 200
+    critThreshold: 100
   - type: HTN
     rootTask:
        task: SimpleHumanoidHostileCompound
@@ -43,6 +50,6 @@
       Alive:
         Base: ascended_cultist
       Critical:
-        Base: dead
+        Base: crit
       Dead:
         Base: dead
