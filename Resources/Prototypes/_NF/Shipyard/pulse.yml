@@ -1,23 +1,33 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
   id: Pulse
   name: NM Pulse
   description: A small rapid response medical ship
-  price: 17765
+  price: 20500
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/pulse.yml
+  shuttlePath: /Maps/_NF/Shuttles/pulse.yml
 
 - type: gameMap
   id: Pulse
   mapName: 'NM Pulse'
-  mapPath: /Maps/Shuttles/pulse.yml
+  mapPath: /Maps/_NF/Shuttles/pulse.yml
   minPlayers: 0
   stations:
     Pulse:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Pulse {1}'
+          mapNameTemplate: 'Pulse {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
@@ -25,3 +35,4 @@
           overflowJobs: []
           availableJobs:
             Paramedic: [ 0, 0 ]
+            Pilot: [ 0, 0 ]

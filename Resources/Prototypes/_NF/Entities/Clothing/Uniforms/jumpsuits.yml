@@ -5,6 +5,62 @@
   description: A jumpsuit produced by Arcadia Industries. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Uniforms/Jumpsuit/arcadia-jumpsuit.rsi
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/arcadia.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Uniforms/Jumpsuit/arcadia-jumpsuit.rsi
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/arcadia.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitValet
+  name: valet's uniform
+  description: A nice and tidy uniform.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/bartender.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/bartender.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitDetective
+  id: ClothingUniformJumpsuitBH
+  name: hard-worn suit
+  description: Someone who wears this means business.
+
+- type: entity
+  parent: ClothingUniformJumpsuitDetectiveGrey
+  id: ClothingUniformJumpsuitBHGrey
+  name: noir suit
+  description: A grey suit, complete with tie clip.
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitChaplainPilgrimVest
+  name: pilgrim jumpsuit
+  description: Knock-knock. Would you care to have a word about our Lord-n-Savior Nar-Sss.. Err.. Space Jeebus?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/chaplain-pilgrim.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/chaplain-pilgrim.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecGuard
+  name: security guard jumpsuit
+  description: A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/security_guard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/security_guard.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPilot
+  name: pilot jumpsuit
+  description: You too think there should be a pocket for your fav smokes?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/pilot.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/pilot.rsi

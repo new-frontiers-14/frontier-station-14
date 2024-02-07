@@ -5,19 +5,19 @@
   price: 170200
   category: Large
   group: Security
-  shuttlePath: /Maps/Shuttles/empress.yml
+  shuttlePath: /Maps/_NF/Shuttles/empress.yml
 
 - type: gameMap
   id: Empress
   mapName: 'NSF Empress'
-  mapPath: /Maps/Shuttles/empress.yml
+  mapPath: /Maps/_NF/Shuttles/empress.yml
   minPlayers: 0
   stations:
     Empress:
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NSF14 Empress {1}'
+          mapNameTemplate: 'Empress {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

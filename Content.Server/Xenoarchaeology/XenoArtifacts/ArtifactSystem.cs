@@ -7,6 +7,7 @@ using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
 using Content.Shared.CCVar;
+using Content.Shared.Tiles;
 using Content.Shared.Xenoarchaeology.XenoArtifacts;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
@@ -148,6 +149,14 @@ public sealed partial class ArtifactSystem : EntitySystem
         // check if artifact is under suppression field
         if (component.IsSuppressed)
             return false;
+
+        // Frontier - check if artifact on a protected grid
+        var xform = Transform(uid);
+        if (xform.GridUid != null)
+        {
+            if (HasComp<ProtectedGridComponent>(xform.GridUid.Value))
+                return false;
+        }
 
         // check if artifact isn't under cooldown
         var timeDif = _gameTiming.CurTime - component.LastActivationTime;

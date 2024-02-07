@@ -26,6 +26,7 @@
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
+  - type: AllowsSleepInside
 
 - type: entity
   parent: ClothingBackpack
@@ -179,8 +180,8 @@
 
 - type: entity
   parent: ClothingBackpack
-  id: ClothingBackpackMerc
-  name: mercenary bag
+  id: ClothingBackpackMercenary # Frontier - Merc to Mercenary
+  name: mercenary backpack
   description: A backpack that has been in many dangerous places, a reliable combat backpack.
   components:
     - type: Sprite

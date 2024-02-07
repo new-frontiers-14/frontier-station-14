@@ -35,14 +35,26 @@ namespace Content.Shared.VendingMachines
         /// <summary>
         /// Used by the server to determine how many items the machine allowed to eject from random triggers.
         /// </summary>
-        [DataField("ejectRandomMax")]
-        public float EjectRandomMax = 3f;
+        [DataField("ejectRandomMax"), ViewVariables(VVAccess.ReadWrite)]
+        public float EjectRandomMax = 2;
 
         /// <summary>
         /// Used by the server to determine how many items the machine ejected from random triggers.
         /// </summary>
-        [DataField("ejectRandomCounter")]
-        public float EjectRandomCounter = 0f;
+        [DataField("ejectRandomCounter"), ViewVariables(VVAccess.ReadWrite)]
+        public float EjectRandomCounter = 2;
+
+        /// <summary>
+        /// The time it takes to regain a single charge
+        /// </summary>
+        [DataField("rechargeDuration"), ViewVariables(VVAccess.ReadWrite)]
+        public TimeSpan RechargeDuration = TimeSpan.FromSeconds(3600);
+
+        /// <summary>
+        /// The time when the next charge will be added
+        /// </summary>
+        [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan NextChargeTime;
 
         [ViewVariables]
         public Dictionary<string, VendingMachineInventoryEntry> Inventory = new();

@@ -49,6 +49,8 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
+  - type: MaterialStorageMagnetPickup # Frontier
+    range: 0.30
 
 - type: entity
   id: Autolathe
@@ -383,6 +385,8 @@
       - StationMapElectronics
       - DeepFryerMachineCircuitboard
     # End Nyano additions
+      - SmallThrusterMachineCircuitboard # Frontier
+      - SmallGyroscopeMachineCircuitboard # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -795,6 +799,8 @@
       - ClothingUniformJumpskirtBrigmedic
       - ClothingUniformJumpsuitWarden
       - ClothingUniformJumpskirtWarden
+      - ClothingUniformJumpsuitSecGuard #Frontier
+      - ClothingUniformJumpskirtSecGuard #Frontier
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
       - ClothingOuterWinterCMO
@@ -878,8 +884,6 @@
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
-    - type: MaterialStorageMagnetPickup # Frontier
-      range: 0.30
 
 - type: entity
   parent: BaseLathe
