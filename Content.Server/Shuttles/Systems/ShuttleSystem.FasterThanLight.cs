@@ -75,7 +75,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Minimum mass for an FTL destination
     /// </summary>
-    public const float FTLDestinationMass = 1000f;
+    public const float FTLDestinationMass = 1200f;
 
     private HashSet<EntityUid> _lookupEnts = new();
 
@@ -393,7 +393,7 @@ public sealed partial class ShuttleSystem
                     comp.Accumulator += FTLCooldown;
                     _console.RefreshShuttleConsoles(uid);
                     _mapManager.SetMapPaused(mapId, false);
-                    //Smimsh(uid, xform: xform); // Frontier - TODO: Move this to expo FTL only.
+                    Smimsh(uid, xform: xform);
 
                     var ftlEvent = new FTLCompletedEvent(uid, _mapManager.GetMapEntityId(mapId));
                     RaiseLocalEvent(uid, ref ftlEvent, true);
@@ -707,6 +707,9 @@ public sealed partial class ShuttleSystem
 
         foreach (var fixture in manager.Fixtures.Values)
         {
+            if (xform.MapID == _ticker.DefaultMap)
+                break; //Frontier - FTL is too buggy to let it just fucking gib people wtf - so we disable for frontier's z-level
+
             if (!fixture.Hard)
                 continue;
 

@@ -1,5 +1,6 @@
 using Content.Server.Body.Systems;
 using Content.Server.Doors.Systems;
+using Content.Server.GameTicking;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Systems;
@@ -48,6 +49,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly GameTicker _ticker = default!; //frontier edit to get the main map in FTL
 
     public const float TileMassMultiplier = 0.5f;
 
