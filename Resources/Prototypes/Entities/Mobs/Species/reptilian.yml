@@ -42,10 +42,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
-  - type: SizeAttributeWhitelist
-    tall: true
-    tallscale: 1.2
-    tallDensity: 220
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/slash.ogg
@@ -66,6 +62,9 @@
     heatDamage:
       types:
         Heat : 0.1 #per second, scales with temperature & other constants
+  - type: SizeAttributeWhitelist # Frontier
+    tall: true
+    tallscale: 1.2
 
 - type: entity
   parent: BaseSpeciesDummy
