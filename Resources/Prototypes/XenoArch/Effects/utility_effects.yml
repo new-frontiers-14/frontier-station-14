@@ -18,12 +18,13 @@
     requiresPower: false
     supportedChannels:
     - Common
-    - CentCom
-    - Command
+    - Traffic # Frontier
+#    - CentCom # Frontier
+#    - Command # Frontier
     - Engineering
     - Medical
     - Science
-    - Security
+#    - Security # Frontier
     - Service
     - Supply
 
@@ -190,6 +191,8 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
+    requirements:
+    - !type:WhitelistRequirement
     name: sentient artifact
     description: |
       Enact your eldritch whims.
