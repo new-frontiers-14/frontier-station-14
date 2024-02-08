@@ -24,7 +24,7 @@
   - type: StinkyTrait
 
 - type: entity
-  parent: [Soap, BasePlushie]
+  parent: BasePlushie
   id: PlushieSlips
   name: janitor plushie
   description: The silent cleaner, the one that you dont hear say "Weh"!
@@ -44,6 +44,34 @@
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/tap.ogg
+  - type: Tag
+    tags:
+    - Soap
+  - type: Slippery
+    paralyzeTime: 0.7
+    launchForwardsMultiplier: 0.5
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        layer:
+        - SlipLayer
+        hard: false
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 10
+        mask:
+        - ItemMask
 
 - type: entity
   parent: ToySword
@@ -60,8 +88,6 @@
         visible: false
         shader: unshaded
         map: [ "blade" ]
-  - type: Item
-    sprite: Objects/Weapons/Melee/e_sword_double.rsi
 
 - type: entity
   id: PetRockCarrier

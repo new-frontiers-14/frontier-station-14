@@ -7,6 +7,8 @@
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
+    requirements:
+    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
@@ -38,6 +40,8 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
+    requirements:
+    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -47,21 +51,6 @@
   - type: AutoImplant
     implants:
     - DeathRattleImplant
-
-- type: entity
-  name: Crispy
-  parent: MobCatGhost
-  id: MobCatCrispy
-  description: Mistakes were made.
-  components:
-  - type: GhostRole
-    name: ghost-role-information-crispy-name
-    description: ghost-role-information-crispy-description
-  - type: Loadout
-    prototypes: [ MobCrispyGear ]
-  - type: RandomMetadata
-    nameSegments: [names_cat_crispy] # Its needed to fix the names since it was using the MobCatGhost list.
-  - type: FriedTrait
 
 - type: entity
   name: Mistake

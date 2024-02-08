@@ -84,84 +84,84 @@
         # CrateVendingMachineRestockVendomat: 1
         # CrateVendingMachineRestockGetmoreChocolateCorp: 1
 
-- type: entity
-  id: GiftsJanitor
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: StationEvent
-      weight: 8
-      startDelay: 10
-      duration: 120
-      minimumPlayers: 70
-      earliestStart: 20
-    - type: CargoGiftsRule
-      description: cargo-gift-cleaning
-      sender: cargo-gift-default-sender
-      dest: cargo-gift-dest-janitor
-      gifts:
-        ServiceJanitorial: 2
-        ServiceLightsReplacement: 2
-        ServiceJanitorBiosuit: 1
+# - type: entity
+  # id: GiftsJanitor
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # weight: 8
+      # startDelay: 10
+      # duration: 120
+      # minimumPlayers: 70
+      # earliestStart: 20
+    # - type: CargoGiftsRule
+      # description: cargo-gift-cleaning
+      # sender: cargo-gift-default-sender
+      # dest: cargo-gift-dest-janitor
+      # gifts:
+        # ServiceJanitorial: 2
+        # ServiceLightsReplacement: 2
+        # ServiceJanitorBiosuit: 1
 
-- type: entity
-  id: GiftsMedical
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: StationEvent
-      weight: 8
-      startDelay: 10
-      duration: 120
-      earliestStart: 20
-      minimumPlayers: 80
-    - type: CargoGiftsRule
-      description: cargo-gift-medical-supply
-      sender: cargo-gift-default-sender
-      dest: cargo-gift-dest-med
-      gifts:
-        MedicalSupplies: 1
-        MedicalChemistrySupplies: 1
-        MedicalBiosuit: 1
+# - type: entity
+  # id: GiftsMedical
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # weight: 8
+      # startDelay: 10
+      # duration: 120
+      # earliestStart: 20
+      # minimumPlayers: 80
+    # - type: CargoGiftsRule
+      # description: cargo-gift-medical-supply
+      # sender: cargo-gift-default-sender
+      # dest: cargo-gift-dest-med
+      # gifts:
+        # MedicalSupplies: 1
+        # MedicalChemistrySupplies: 1
+        # MedicalBiosuit: 1
 
-- type: entity
-  id: GiftsSpacingSupplies
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: StationEvent
-      weight: 6
-      startDelay: 10
-      duration: 120
-      earliestStart: 10
-      minimumPlayers: 70
-    - type: CargoGiftsRule
-      description: cargo-gift-space-protection
-      sender: cargo-gift-default-sender
-      dest: cargo-gift-dest-supp
-      gifts:
-        EmergencyInternalsLarge: 2
-        EmergencyInflatablewall: 1
-        MedicalBiosuit: 1
-        EmergencyO2Kit: 1
+# - type: entity
+  # id: GiftsSpacingSupplies
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # weight: 6
+      # startDelay: 10
+      # duration: 120
+      # earliestStart: 10
+      # minimumPlayers: 70
+    # - type: CargoGiftsRule
+      # description: cargo-gift-space-protection
+      # sender: cargo-gift-default-sender
+      # dest: cargo-gift-dest-supp
+      # gifts:
+        # EmergencyInternalsLarge: 2
+        # EmergencyInflatablewall: 1
+        # MedicalBiosuit: 1
+        # EmergencyO2Kit: 1
 
-- type: entity
-  id: GiftsFireProtection
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: StationEvent
-      weight: 3
-      startDelay: 10
-      duration: 120
-      earliestStart: 20
-      minimumPlayers: 70
-    - type: CargoGiftsRule
-      description: cargo-gift-fire-protection
-      sender: cargo-gift-default-sender
-      dest: cargo-gift-dest-supp
-      gifts:
-        EmergencyFire: 2
+# - type: entity
+  # id: GiftsFireProtection
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # weight: 3
+      # startDelay: 10
+      # duration: 120
+      # earliestStart: 20
+      # minimumPlayers: 70
+    # - type: CargoGiftsRule
+      # description: cargo-gift-fire-protection
+      # sender: cargo-gift-default-sender
+      # dest: cargo-gift-dest-supp
+      # gifts:
+        # EmergencyFire: 2
 
 # - type: entity
   # id: GiftsSecurityGuns
