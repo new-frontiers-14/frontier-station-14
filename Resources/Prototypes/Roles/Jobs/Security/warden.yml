@@ -8,17 +8,17 @@
       time: 21600 # Frontier - 6 hours
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 21600 # Frontier - 6 hours
+      time: 36000 # Frontier - 10 hrs
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
   - Security
+  - Brig
   - Armory
   - Maintenance
   - Service
-  - Brig
   - External
   - Detective
   - Mercenary # Frontier
@@ -34,7 +34,7 @@
     jumpsuit: ClothingUniformJumpsuitWarden
     back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
     ears: ClothingHeadsetAltSecurityWarden # Frontier

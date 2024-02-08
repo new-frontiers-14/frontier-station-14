@@ -1,22 +1,10 @@
 - type: entity
   name: hydroponics tray
-  parent: [ hydroponicsSoil ]
+  parent: [BaseStructureDisableToolUse, hydroponicsTray]
   id: hydroponicsTrayAnchored
   suffix: anchored
   description: An anchored interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Stronger than your average hydroponics tray but can still be broken with force.
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.1"
-        density: 190
-        hard: true
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
   - type: Sprite
     layers:
       - sprite: _NF/Structures/Hydroponics/containers.rsi
@@ -41,44 +29,3 @@
         state: harvest3
         map: [ "harvest_alert" ]
         visible: false
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PlantHolderVisuals.HealthLight:
-        health_alert:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PlantHolderVisuals.WaterLight:
-        water_alert:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PlantHolderVisuals.NutritionLight:
-        nutri_alert:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PlantHolderVisuals.AlertLight:
-        undefined_alert:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PlantHolderVisuals.HarvestLight:
-        harvest_alert:
-          True: { visible: true }
-          False: { visible: false }
-  - type: PlantHolder
-    drawWarnings: true
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: AmbientSound
-    volume: -9
-    range: 5
-    sound:
-      path: /Audio/Ambience/Objects/flowing_water_open.ogg
-  - type: Climbable
