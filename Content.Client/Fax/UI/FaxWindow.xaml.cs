@@ -9,8 +9,8 @@ namespace Content.Client.Fax.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FaxWindow : DefaultWindow
 {
-    public event Action? SendButtonPressed;
     public event Action? CopyButtonPressed;
+    public event Action? SendButtonPressed;
     public event Action? RefreshButtonPressed;
     public event Action<string>? PeerSelected;
 
@@ -18,8 +18,8 @@ public sealed partial class FaxWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
 
-        SendButton.OnPressed += _ => SendButtonPressed?.Invoke();
         CopyButton.OnPressed += _ => CopyButtonPressed?.Invoke();
+        SendButton.OnPressed += _ => SendButtonPressed?.Invoke();
         RefreshButton.OnPressed += _ => RefreshButtonPressed?.Invoke();
         PeerSelector.OnItemSelected += args =>
             PeerSelected?.Invoke((string) args.Button.GetItemMetadata(args.Id)!);
@@ -27,8 +27,8 @@ public sealed partial class FaxWindow : DefaultWindow
 
     public void UpdateState(FaxUiState state)
     {
-        SendButton.Disabled = !state.CanSend;
         CopyButton.Disabled = !state.CanCopy;
+        SendButton.Disabled = !state.CanSend;
         FromLabel.Text = state.DeviceName;
 
         if (state.IsPaperInserted)
