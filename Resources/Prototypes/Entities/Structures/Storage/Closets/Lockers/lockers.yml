@@ -61,7 +61,7 @@
 
 - type: entity
   id: LockerHeadOfPersonnel
-  parent: LockerBaseSecure
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, LockerBaseSecure] # Frontier
   name: station representative's locker
   components:
   - type: Appearance
@@ -283,7 +283,7 @@
 # HoS
 - type: entity
   id: LockerHeadOfSecurity
-  parent: LockerBaseSecure
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, LockerBaseSecure] # Frontier
   name: sheriff's locker
   components:
   - type: Appearance
@@ -297,7 +297,7 @@
 # Warden
 - type: entity
   id: LockerWarden
-  parent: LockerBaseSecure
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, LockerBaseSecure] # Frontier
   name: bailiff's locker
   components:
   - type: Appearance

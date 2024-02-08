@@ -9,6 +9,8 @@
   id: BaseStructureUnanchorable
   abstract: true
   components:
+  - type: Transform
+    anchored: true
   - type: Anchorable
     delay: 999999
 
@@ -54,3 +56,17 @@
     noRot: false
   - type: Fixtures
     fixtures: {}
+
+- type: entity
+  id: BaseStructureLockImmuneToEmag
+  abstract: true
+  components:
+  - type: Lock
+    immuneToEmag: true
+
+- type: entity
+  id: BaseStructureAccessReaderImmuneToEmag
+  abstract: true
+  components:
+  - type: AccessReader
+    immuneToEmag: true
