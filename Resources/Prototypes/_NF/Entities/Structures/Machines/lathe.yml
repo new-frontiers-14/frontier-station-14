@@ -1,11 +1,9 @@
 - type: entity
-  parent: BaseLathe
+  parent: [BaseStructureDisableToolUse, BaseLathe]
   id: PrizeCounter
   name: prize counter
   description: Claim your prize and win some toys and cute plushies!
   components:
-  - type: Anchorable
-    delay: 999999
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -70,7 +68,6 @@
       - CrayonBoxRecipe
       - CrayonRainbowRecipe
       - PlushieLampRecipe
-      - ToySwordRecipe
       - PlushieAtmosianRecipe
       - PlushieRounyRecipe
       - PlushieXenoRecipe
@@ -78,18 +75,10 @@
       - BoxDonkSoftBoxRecipe
       - RevolverCapGunRecipe
       - BoxCartridgeCapRecipe
-      - HarmonicaInstrumentRecipe
-      - OcarinaInstrumentRecipe
-      - RecorderInstrumentRecipe
-      - GunpetInstrumentRecipe
-      - BirdToyInstrumentRecipe
       - ToyAmongPequenoRecipe
       - FoamCutlassRecipe
-      - CrazyGlueRecipe
-      - SingularityToyRecipe
       - FoamBladeRecipe
       - ToyRubberDuckRecipe
-      - PlushieGhostRecipe
       - ToyMouseRecipe
       - ToyAiRecipe
       - ToyGriffinRecipe
@@ -107,9 +96,7 @@
       - ToyDurandRecipe
       - ToySkeletonRecipe
       - FaceHuggerPlushieRecipe
-      - PetRockRecipe
-      - PetRockFredRecipe
-      - PetRockRoxieRecipe
+      - PetRockCarrierkRecipe
       - PlushieGnomeRecipe
       - PlushieLoveableRecipe
       - PlushieDeerRecipe
@@ -141,7 +128,6 @@
       - PlushieNukeRecipe
       - PlushieRGBeeRecipe
       - BalloonCorgiRecipe
-      - DBToySwordRecipe
       - BalloonSynRecipe
       - ToyNukeRecipe
       - ToyMaulerRecipe

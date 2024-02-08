@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: Windoor
   parent: BaseWindoor
   name: windoor
@@ -150,6 +150,14 @@
 
 - type: entity
   parent: WindoorSecure
+  id: WindoorSecureCentralCommandLocked
+  suffix: Central Command, Locked
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  parent: WindoorSecure
   id: WindoorSecureCommandLocked
   suffix: Command, Locked
   noSpawn: true # Frontier
@@ -192,6 +200,14 @@
   components:
   - type: AccessReader
     access: [["Kitchen"]]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorSecureSecurityLawyerLocked
+  suffix: Security/Lawyer, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["Lawyer"]]
 
 - type: entity
   parent: WindoorSecure
@@ -244,12 +260,3 @@
   components:
   - type: AccessReader
     access: [["Atmospherics"]]
-
-- type: entity
-  parent: WindoorSecure
-  id: WindoorSecureParamedicLocked
-  suffix: Paramedic, Locked
-  noSpawn: true # Frontier
-  components:
-  - type: AccessReader
-    access: [["Paramedic"]]

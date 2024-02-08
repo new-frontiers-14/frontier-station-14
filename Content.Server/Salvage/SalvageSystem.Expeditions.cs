@@ -104,7 +104,7 @@ public sealed partial class SalvageSystem
 
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
     {
-        component.Stream?.Stop();
+        component.Stream = _audio.Stop(component.Stream);
 
         foreach (var (job, cancelToken) in _salvageJobs.ToArray())
         {
@@ -230,7 +230,7 @@ public sealed partial class SalvageSystem
 
         while (children.MoveNext(out var child))
         {
-            MiningTax(entities, child.Value, mining, xformQuery);
+            MiningTax(entities, child, mining, xformQuery);
         }
     }
 

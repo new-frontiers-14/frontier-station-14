@@ -18,14 +18,14 @@
     - trigger:
         !type:DamageTrigger
         # damage: 150
-        damage: 450     # Frontier 
+        damage: 450     # Frontier
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         # damage: 100
-        damage: 300     # Frontier 
+        damage: 300     # Frontier
       behaviors:
       - !type:EmptyAllContainersBehaviour
       - !type:SpawnEntitiesBehavior
@@ -54,14 +54,15 @@
           True: { visible: false }
           False: { visible: true }
   - type: Storage
-    # capacity: 525
-    capacity: 900     # Frontier 
+    grid:
+    - 0,0,9,5
+    maxItemSize: Normal
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
       - Ore
-      - ArtifactFragment  # Frontier 
+      - ArtifactFragment  # Frontier
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
