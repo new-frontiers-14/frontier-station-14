@@ -63,7 +63,7 @@
   effectHint: artifact-effect-hint-creation
   components:
   - type: SpawnArtifact
-    maxSpawns: 10
+    maxSpawns: 5 # Frontier 10<5
     spawns:
     - id: FoodPacketSyndiTrash
       prob: 0.1
@@ -124,8 +124,8 @@
     maxSpawns: 20
     spawns:
     - id: FoodBanana
-      amount: 3
-      maxAmount: 6
+      amount: 2 # Frontier 3<2
+      maxAmount: 4 # Frontier 6<4
   - type: ChemicalPuddleArtifact
     chemicalSolution:
       maxVol: 100
@@ -222,7 +222,7 @@
   effectHint: artifact-effect-hint-creation
   components:
   - type: SpawnArtifact
-    maxSpawns: 5
+    maxSpawns: 3 # Frontier 5<3
     spawns:
     - id: RandomInstruments
 
@@ -384,10 +384,10 @@
     - id: MobMothroach
       orGroup: fauna
       maxAmount: 2
-    - id: MobMonkeySyndicateAgent #so lucky
-      orGroup: fauna
-      maxAmount: 1
-      prob: 0.03
+    # - id: MobMonkeySyndicateAgent #so lucky # Frontier
+      # orGroup: fauna
+      # maxAmount: 1
+      # prob: 0.03
     - id: MobMouse 
       orGroup: fauna 
     - id: MobParrot
@@ -674,12 +674,12 @@
   components:
   - type: PortalArtifact
 
-- type: artifactEffect
-  id: EffectSingulo
-  targetDepth: 10
-  effectHint: artifact-effect-hint-destruction
-  components:
-  - type: SpawnArtifact
-    maxSpawns: 1
-    spawns:
-    - id: Singularity
+# - type: artifactEffect
+  # id: EffectSingulo
+  # targetDepth: 10
+  # effectHint: artifact-effect-hint-destruction
+  # components:
+  # - type: SpawnArtifact
+    # maxSpawns: 1
+    # spawns:
+    # - id: Singularity
