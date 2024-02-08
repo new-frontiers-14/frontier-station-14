@@ -53,21 +53,6 @@
     - DeathRattleImplant
 
 - type: entity
-  name: Crispy
-  parent: MobCatGhost
-  id: MobCatCrispy
-  description: Mistakes were made.
-  components:
-  - type: GhostRole
-    name: ghost-role-information-crispy-name
-    description: ghost-role-information-crispy-description
-  - type: Loadout
-    prototypes: [ MobCrispyGear ]
-  - type: RandomMetadata
-    nameSegments: [names_cat_crispy] # Its needed to fix the names since it was using the MobCatGhost list.
-  - type: FriedTrait
-
-- type: entity
   name: Mistake
   parent: MobCatGhost
   id: MobCatMistake
