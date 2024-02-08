@@ -41,3 +41,15 @@
       Glass: 2
   - type: StaticPrice
     price: 12.5
+
+- type: entity
+  id: ThrusterSecurityMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: security thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterSecurity
+    requirements:
+      Capacitor: 3
+    materialRequirements:
+      Steel: 5
