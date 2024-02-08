@@ -89,7 +89,7 @@
         type: WithdrawBankATMMenuBoundUserInterface
 
 - type: entity
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerBankATM
   components:
   - type: Sprite
@@ -103,7 +103,7 @@
       state: unshaded
 
 - type: entity
-  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerWithdrawBankATM
   components:
   - type: Sprite
@@ -118,7 +118,7 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
   id: ComputerWallmountBankATM
   components:
   - type: Sprite
@@ -133,7 +133,7 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
+  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
   id: ComputerWallmountWithdrawBankATM
   components:
   - type: Sprite
@@ -148,7 +148,7 @@
 
 - type: entity
   suffix: BlackMarket
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureUnanchorable, BaseStructureDestructible, BaseStructureComputer]
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputer]
   id: ComputerBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
@@ -170,7 +170,7 @@
 
 - type: entity
   name: station administration console
-  parent: [ComputerBankATMBase, BaseStructureUnanchorable, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [ComputerBankATMBase, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseStructureComputer]
   id: StationAdminBankATM
   description: Used to pay out from the station's bank account
   components:
