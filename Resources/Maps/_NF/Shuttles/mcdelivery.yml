@@ -176,8 +176,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.6852
-          - 81.57766
+          - 23.57087
+          - 88.67137
           - 0
           - 0
           - 0
@@ -384,41 +384,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 89
           - 108
           - 67
-          - 89
-  - uid: 71
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,3.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 68
-          - 44
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 13
@@ -475,7 +443,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
+      pos: 1.5,3.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -495,6 +463,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: FuelDispenser
+  entities:
+  - uid: 18
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,3.5
+      parent: 1
 - proto: GasPassiveVent
   entities:
   - uid: 37
@@ -623,24 +599,11 @@ entities:
       parent: 1
 - proto: JugWeldingFuel
   entities:
-  - uid: 44
-    components:
-    - type: MetaData
-      flags: InContainer
-    - type: Transform
-      parent: 71
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 68
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
-      parent: 71
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
+      pos: 1.4952204,3.0674624
+      parent: 1
 - proto: NoticeBoardNF
   entities:
   - uid: 96
@@ -702,13 +665,13 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
-  - uid: 18
+  - uid: 44
     components:
     - type: MetaData
       flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      pos: 1.5,2.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
