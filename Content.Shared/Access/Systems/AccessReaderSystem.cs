@@ -77,7 +77,7 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
-        if (HasComp<TradeCrateComponent>(uid))
+        if (reader.ImmuneToEmag)
             return;
 
         args.Handled = true;

@@ -50,6 +50,12 @@ public sealed partial class LockComponent : Component
     [DataField("breakOnEmag")]
     [AutoNetworkedField]
     public bool BreakOnEmag = true;
+
+    /// <summary>
+    /// Frontier - Whether or not its emag immune.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool ImmuneToEmag;
 }
 
 /// <summary>
