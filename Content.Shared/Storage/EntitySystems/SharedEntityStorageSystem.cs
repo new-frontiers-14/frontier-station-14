@@ -406,7 +406,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         // Seriously, it is insanely hacky and weird to get someone out of a backpack once they end up in there.
         // And to be clear, they should NOT be in there.
         // For the record, what you need to do is empty the backpack onto a PlacableSurface (table, rack)
-        if (targetIsMob)
+        if (targetIsMob && !component.ForceWhitelist) // Frontier - Added `&& !component.ForceWhitelist` for forcing whitelist
         {
             if (!storageIsItem)
                 allowedToEat = true;

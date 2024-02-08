@@ -120,6 +120,12 @@ public abstract partial class SharedEntityStorageComponent : Component
     public EntityWhitelist? Whitelist;
 
     /// <summary>
+    ///     Frontier - Force whitelist to consider mobs, normally the whitelist will still allow all mobs to still enter.
+    /// </summary>
+    [DataField]
+    public bool ForceWhitelist;
+
+    /// <summary>
     /// The contents of the storage
     /// </summary>
     [ViewVariables]
