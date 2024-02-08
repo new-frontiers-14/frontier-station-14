@@ -51,7 +51,7 @@ public sealed class ComputerConstruction : InteractionTest
             Screw,
             Pry,
             Wrench,
-            Screw);
+            Weld);
 
         // construction finished, entity no longer exists.
         AssertDeleted();

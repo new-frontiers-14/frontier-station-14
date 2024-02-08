@@ -20,7 +20,7 @@ namespace Content.Shared.Construction.Steps
 
         public override void DoExamine(ExaminedEvent examinedEvent)
         {
-            examinedEvent.PushMarkup(string.IsNullOrEmpty(Name)
+            examinedEvent.Message.AddMarkup(string.IsNullOrEmpty(Name)
                 ? Loc.GetString(
                     "construction-insert-entity-with-component",
                     ("componentName", Component))// Terrible.

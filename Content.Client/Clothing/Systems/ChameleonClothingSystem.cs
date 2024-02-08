@@ -29,13 +29,18 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         SubscribeLocalEvent<ChameleonClothingComponent, AfterAutoHandleStateEvent>(HandleState);
 
         PrepareAllVariants();
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReloaded);
+        _proto.PrototypesReloaded += OnProtoReloaded;
     }
 
-    private void OnProtoReloaded(PrototypesReloadedEventArgs args)
+    public override void Shutdown()
     {
-        if (args.WasModified<EntityPrototype>())
-            PrepareAllVariants();
+        base.Shutdown();
+        _proto.PrototypesReloaded -= OnProtoReloaded;
+    }
+
+    private void OnProtoReloaded(PrototypesReloadedEventArgs _)
+    {
+        PrepareAllVariants();
     }
 
     private void HandleState(EntityUid uid, ChameleonClothingComponent component, ref AfterAutoHandleStateEvent args)

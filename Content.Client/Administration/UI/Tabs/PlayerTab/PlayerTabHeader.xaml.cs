@@ -7,7 +7,7 @@ using Robust.Shared.Input;
 namespace Content.Client.Administration.UI.Tabs.PlayerTab;
 
 [GenerateTypedNameReferences]
-public sealed partial class PlayerTabHeader : Control
+public sealed partial class PlayerTabHeader : ContainerButton
 {
     public event Action<Header>? OnHeaderClicked;
 

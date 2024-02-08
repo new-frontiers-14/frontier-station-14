@@ -13,6 +13,6 @@ public sealed partial class RandomEntityStorageSpawnRuleComponent : Component
     /// <summary>
     /// The entity to be spawned.
     /// </summary>
-    [DataField(required: true)]
-    public EntProtoId Prototype;
+    [DataField("prototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string Prototype = string.Empty;
 }

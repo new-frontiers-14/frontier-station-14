@@ -74,26 +74,22 @@ public sealed class ThrusterSystem : EntitySystem
         // Powered is already handled by other power components
         var enabled = Loc.GetString(component.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
 
-        using (args.PushGroup(nameof(ThrusterComponent)))
+        args.PushMarkup(enabled);
+
+        if (component.Type == ThrusterType.Linear &&
+            EntityManager.TryGetComponent(uid, out TransformComponent? xform) &&
+            xform.Anchored)
         {
-            args.PushMarkup(enabled);
+            var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
+                ("direction", xform.LocalRotation.Opposite().ToWorldVec().GetDir().ToString().ToLowerInvariant()));
 
-            if (component.Type == ThrusterType.Linear &&
-                EntityManager.TryGetComponent(uid, out TransformComponent? xform) &&
-                xform.Anchored)
-            {
-                var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
-                    ("direction", xform.LocalRotation.Opposite().ToWorldVec().GetDir().ToString().ToLowerInvariant()));
+            args.PushMarkup(nozzleDir);
 
-                args.PushMarkup(nozzleDir);
+            var exposed = NozzleExposed(xform);
 
-                var exposed = NozzleExposed(xform);
+            var nozzleText = Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
 
-                var nozzleText =
-                    Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
-
-                args.PushMarkup(nozzleText);
-            }
+            args.PushMarkup(nozzleText);
         }
     }
 

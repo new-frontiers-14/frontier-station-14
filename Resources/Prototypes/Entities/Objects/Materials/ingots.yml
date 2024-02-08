@@ -8,7 +8,7 @@
     sprite: Objects/Materials/ingots.rsi
   - type: Item
     sprite: Objects/Materials/ingots.rsi
-    size: Normal
+    size: 30
   - type: StaticPrice
     price: 0
   - type: Tag
@@ -51,15 +51,7 @@
   - type: Item
     heldPrefix: gold
   - type: Appearance
-  - type: Extractable
-    grindableSolutionName: gold
-  - type: SolutionContainerManager
-    solutions:
-      gold:
-        reagents:
-        - ReagentId: Gold
-          Quantity: 10
-          
+
 - type: entity
   parent: IngotGold
   id: IngotGold1
@@ -70,6 +62,8 @@
     state: gold
   - type: Stack
     count: 1
+  - type: Item
+    size: 1
 
 - type: entity
   parent: IngotBase
@@ -96,14 +90,6 @@
   - type: Item
     heldPrefix: silver
   - type: Appearance
-  - type: Extractable
-    grindableSolutionName: gold
-  - type: SolutionContainerManager
-    solutions:
-      gold:
-        reagents:
-        - ReagentId: Silver
-          Quantity: 10
 
 - type: entity
   parent: IngotSilver
@@ -113,3 +99,7 @@
   components:
   - type: Sprite
     state: silver
+  - type: Stack
+    count: 1
+  - type: Item
+    size: 1

@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Body.Components;
@@ -15,8 +15,6 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -258,12 +256,12 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
         if (component.Open)
         {
-            TransformSystem.DropNextTo(toInsert, container);
+            TransformSystem.SetWorldPosition(toInsert, TransformSystem.GetWorldPosition(container));
             return true;
         }
 
         _joints.RecursiveClearJoints(toInsert);
-        if (!_container.Insert(toInsert, component.Contents))
+        if (!component.Contents.Insert(toInsert, EntityManager))
             return false;
 
         var inside = EnsureComp<InsideEntityStorageComponent>(toInsert);
@@ -280,7 +278,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
             return false;
 
         RemComp<InsideEntityStorageComponent>(toRemove);
-        _container.Remove(toRemove, component.Contents);
+        component.Contents.Remove(toRemove, EntityManager);
         var pos = TransformSystem.GetWorldPosition(xform) + TransformSystem.GetWorldRotation(xform).RotateVec(component.EnteringOffset);
         TransformSystem.SetWorldPosition(toRemove, pos);
         return true;
@@ -370,9 +368,13 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (toAdd == container)
             return false;
 
-        var aabb = _lookup.GetAABBNoContainer(toAdd, Vector2.Zero, 0);
-        if (component.MaxSize < aabb.Size.X || component.MaxSize < aabb.Size.Y)
-            return false;
+        if (TryComp<PhysicsComponent>(toAdd, out var phys))
+        {
+            var aabb = _physics.GetWorldAABB(toAdd, body: phys);
+
+            if (component.MaxSize < aabb.Size.X || component.MaxSize < aabb.Size.Y)
+                return false;
+        }
 
         return Insert(toAdd, container, component);
     }
@@ -406,7 +408,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         // Seriously, it is insanely hacky and weird to get someone out of a backpack once they end up in there.
         // And to be clear, they should NOT be in there.
         // For the record, what you need to do is empty the backpack onto a PlacableSurface (table, rack)
-        if (targetIsMob && !component.ForceWhitelist) // Frontier - Added `&& !component.ForceWhitelist` for forcing whitelist
+        if (targetIsMob)
         {
             if (!storageIsItem)
                 allowedToEat = true;
@@ -415,9 +417,6 @@ public abstract class SharedEntityStorageSystem : EntitySystem
                 var storeEv = new StoreMobInItemContainerAttemptEvent();
                 RaiseLocalEvent(container, ref storeEv);
                 allowedToEat = storeEv is { Handled: true, Cancelled: false };
-
-                if (component.ItemCanStoreMobs)
-                    allowedToEat = true;
             }
         }
 

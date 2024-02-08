@@ -57,8 +57,7 @@ namespace Content.Shared.Chat
         public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
         {
             var length = buffer.ReadVariableInt32();
-            using var stream = new MemoryStream(length);
-            buffer.ReadAlignedMemory(stream, length);
+            using var stream = buffer.ReadAlignedMemory(length);
             serializer.DeserializeDirect(stream, out Message);
         }
 

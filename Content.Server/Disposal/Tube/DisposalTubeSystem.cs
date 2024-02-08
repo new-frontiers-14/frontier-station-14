@@ -13,7 +13,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Movement.Events;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -45,6 +44,7 @@ namespace Content.Server.Disposal.Tube
             SubscribeLocalEvent<DisposalTubeComponent, ComponentRemove>(OnComponentRemove);
 
             SubscribeLocalEvent<DisposalTubeComponent, AnchorStateChangedEvent>(OnAnchorChange);
+            SubscribeLocalEvent<DisposalTubeComponent, ContainerRelayMovementEntityEvent>(OnRelayMovement);
             SubscribeLocalEvent<DisposalTubeComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<DisposalTubeComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<DisposalTubeComponent, ConstructionBeforeDeleteEvent>(OnDeconstruct);
@@ -276,6 +276,17 @@ namespace Content.Server.Disposal.Tube
         private void OnStartup(EntityUid uid, DisposalTubeComponent component, ComponentStartup args)
         {
             UpdateAnchored(uid, component, Transform(uid).Anchored);
+        }
+
+        private void OnRelayMovement(EntityUid uid, DisposalTubeComponent component, ref ContainerRelayMovementEntityEvent args)
+        {
+            if (_gameTiming.CurTime < component.LastClang + DisposalTubeComponent.ClangDelay)
+            {
+                return;
+            }
+
+            component.LastClang = _gameTiming.CurTime;
+            _audioSystem.PlayPvs(component.ClangSound, uid);
         }
 
         private void OnBreak(EntityUid uid, DisposalTubeComponent component, BreakageEventArgs args)

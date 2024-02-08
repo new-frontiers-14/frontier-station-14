@@ -16,14 +16,6 @@ public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContain
 {
     protected readonly Dictionary<string, T> Buttons = new();
 
-    private int? _maxColumns;
-
-    public int? MaxColumns
-    {
-        get => _maxColumns;
-        set => _maxColumns = value;
-    }
-
     public virtual bool TryAddButton(T newButton, out T button)
     {
         var tempButton = AddButton(newButton);
@@ -76,7 +68,6 @@ public abstract class ItemSlotUIContainer<T> : GridContainer, IItemslotUIContain
     {
         if (!Children.Contains(newButton) && newButton.Parent == null && newButton.SlotName != "")
             AddChild(newButton);
-        Columns = _maxColumns ?? ChildCount;
         return AddButtonToDict(newButton);
     }
 

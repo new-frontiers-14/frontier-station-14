@@ -36,8 +36,7 @@ public partial class MobStateSystem
     }
 
     /// <summary>
-    /// Change the MobState without triggering UpdateMobState events.
-    /// WARNING: use this sparingly when you need to override other systems (MobThresholds)
+    /// Change the MobState and trigger MobState update events
     /// </summary>
     /// <param name="entity">Target Entity we want to change the MobState of</param>
     /// <param name="mobState">The new MobState we want to set</param>
@@ -49,7 +48,9 @@ public partial class MobStateSystem
         if (!Resolve(entity, ref component))
             return;
 
-        ChangeState(entity, component, mobState, origin: origin);
+        var ev = new UpdateMobStateEvent {Target = entity, Component = component, Origin = origin, State = mobState};
+        RaiseLocalEvent(entity, ref ev);
+        ChangeState(entity, component, ev.State);
     }
 
     #endregion

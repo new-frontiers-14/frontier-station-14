@@ -7,7 +7,7 @@
   components:
   - type: Sprite
   - type: StaticPrice
-    price: 20
+    price: 60
 
 # Cautery
 
@@ -22,7 +22,7 @@
     state: cautery
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
-    storedRotation: 90
+  - type: ItemCooldown
   - type: MeleeWeapon
     damage:
        types:
@@ -43,17 +43,13 @@
     state: drill
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/drill.rsi
-    shape:
-    - 0,0,1,0
-    - 1,1,1,1
+  - type: ItemCooldown
   - type: MeleeWeapon
     damage:
       types:
         Piercing: 10
     soundHit:
       path: /Audio/Items/drill_hit.ogg
-  - type: StaticPrice
-    price: 40
 
 # Scalpel
 
@@ -73,7 +69,7 @@
     state: scalpel
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
-    storedRotation: 90
+  - type: ItemCooldown
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -132,7 +128,7 @@
     state: retractor
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
-    storedRotation: 90
+  - type: ItemCooldown
 
 - type: entity
   name: hemostat
@@ -144,7 +140,6 @@
     state: hemostat
   - type: Item
     heldPrefix: hemostat
-    storedRotation: 90
 
   # - type: entity
   #   name: bone setter
@@ -169,7 +164,7 @@
     state: saw
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/saw.rsi
-    storedRotation: 90
+  - type: ItemCooldown
   - type: Tool
     qualities:
       - Sawing
@@ -207,7 +202,6 @@
     state: electric
   - type: Item
     heldPrefix: electric
-    storedRotation: 90
   - type: MeleeWeapon
     damage:
       groups:
@@ -229,7 +223,6 @@
     state: advanced
   - type: Item
     heldPrefix: advanced
-    storedRotation: 90
   - type: MeleeWeapon
     attackRate: 1.5
     damage:

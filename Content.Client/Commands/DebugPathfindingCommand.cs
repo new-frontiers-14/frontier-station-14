@@ -1,61 +1,61 @@
+using System.Linq;
 using Content.Client.NPC;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
-using System.Linq;
 
-namespace Content.Client.Commands;
-
-[UsedImplicitly]
-public sealed class DebugPathfindingCommand : LocalizedCommands
+namespace Content.Client.Commands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-
-    public override string Command => "pathfinder";
-
-    public override string Help => LocalizationManager.GetString($"cmd-{Command}-help", ("command", Command));
-
-    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    [UsedImplicitly]
+    public sealed class DebugPathfindingCommand : IConsoleCommand
     {
-        var system = _entitySystemManager.GetEntitySystem<PathfindingSystem>();
+        // ReSharper disable once StringLiteralTypo
+        public string Command => "pathfinder";
+        public string Description => "Toggles visibility of pathfinding debuggers.";
+        public string Help => "pathfinder [options]";
 
-        if (args.Length == 0)
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            system.Modes = PathfindingDebugMode.None;
-            return;
-        }
+            var system = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<PathfindingSystem>();
 
-        foreach (var arg in args)
-        {
-            if (!Enum.TryParse<PathfindingDebugMode>(arg, out var mode))
+            if (args.Length == 0)
             {
-                shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error", ("arg", arg)));
-                continue;
+                system.Modes = PathfindingDebugMode.None;
+                return;
             }
 
-            system.Modes ^= mode;
-            shell.WriteLine(LocalizationManager.GetString($"cmd-{Command}-notify", ("arg", arg), ("newMode", (system.Modes & mode) != 0x0)));
-        }
-    }
+            foreach (var arg in args)
+            {
+                if (!Enum.TryParse<PathfindingDebugMode>(arg, out var mode))
+                {
+                    shell.WriteError($"Unrecognised pathfinder args {arg}");
+                    continue;
+                }
 
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        if (args.Length > 1)
+                system.Modes ^= mode;
+                shell.WriteLine($"Toggled {arg} to {(system.Modes & mode) != 0x0}");
+            }
+        }
+
+        public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
-            return CompletionResult.Empty;
+            if (args.Length > 1)
+            {
+                return CompletionResult.Empty;
+            }
+
+            var values = Enum.GetValues<PathfindingDebugMode>().ToList();
+            var options = new List<CompletionOption>();
+
+            foreach (var val in values)
+            {
+                if (val == PathfindingDebugMode.None)
+                    continue;
+
+                options.Add(new CompletionOption(val.ToString()));
+            }
+
+            return CompletionResult.FromOptions(options);
         }
-
-        var values = Enum.GetValues<PathfindingDebugMode>().ToList();
-        var options = new List<CompletionOption>();
-
-        foreach (var val in values)
-        {
-            if (val == PathfindingDebugMode.None)
-                continue;
-
-            options.Add(new CompletionOption(val.ToString()));
-        }
-
-        return CompletionResult.FromOptions(options);
     }
 }

@@ -20,7 +20,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IConfigurationManager _configManager = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
 
             var message = new AtmosDebugOverlayDisableMessage();
-            RaiseNetworkEvent(message, observer.Channel);
+            RaiseNetworkEvent(message, observer.ConnectedClient);
 
             return true;
         }
@@ -84,9 +84,11 @@ namespace Content.Server.Atmos.EntitySystems
                 RemoveObserver(observer);
                 return false;
             }
-
-            AddObserver(observer);
-            return true;
+            else
+            {
+                AddObserver(observer);
+                return true;
+            }
         }
 
         private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
@@ -97,22 +99,19 @@ namespace Content.Server.Atmos.EntitySystems
             }
         }
 
-        private AtmosDebugOverlayData ConvertTileToData(TileAtmosphere? tile)
+        private AtmosDebugOverlayData ConvertTileToData(TileAtmosphere? tile, bool mapIsSpace)
         {
-            if (tile == null)
-                return default;
+            var gases = new float[Atmospherics.AdjustedNumberOfGases];
 
-            return new AtmosDebugOverlayData(
-                tile.GridIndices,
-                tile.Air?.Temperature ?? default,
-                tile.Air?.Moles,
-                tile.PressureDirection,
-                tile.LastPressureDirection,
-                tile.BlockedAirflow,
-                tile.ExcitedGroup?.GetHashCode(),
-                tile.Space,
-                false,
-                false);
+            if (tile?.Air == null)
+            {
+                return new AtmosDebugOverlayData(Atmospherics.TCMB, gases, AtmosDirection.Invalid, tile?.LastPressureDirection ?? AtmosDirection.Invalid, 0, tile?.BlockedAirflow ?? AtmosDirection.Invalid, tile?.Space ?? mapIsSpace);
+            }
+            else
+            {
+                NumericsHelpers.Add(gases, tile.Air.Moles);
+                return new AtmosDebugOverlayData(tile.Air.Temperature, gases, tile.PressureDirection, tile.LastPressureDirection, tile.ExcitedGroup?.GetHashCode() ?? 0, tile.BlockedAirflow, tile.Space);
+            }
         }
 
         public override void Update(float frameTime)
@@ -136,9 +135,12 @@ namespace Content.Server.Atmos.EntitySystems
                 if (session.AttachedEntity is not {Valid: true} entity)
                     continue;
 
-                var transform = Transform(entity);
-                var pos = _transform.GetWorldPosition(transform);
-                var worldBounds = Box2.CenteredAround(pos,
+                var transform = EntityManager.GetComponent<TransformComponent>(entity);
+                var mapUid = transform.MapUid;
+
+                var mapIsSpace = _atmosphereSystem.IsTileSpace(null, mapUid, Vector2i.Zero);
+
+                var worldBounds = Box2.CenteredAround(transform.WorldPosition,
                     new Vector2(LocalViewRange, LocalViewRange));
 
                 _grids.Clear();
@@ -155,8 +157,8 @@ namespace Content.Server.Atmos.EntitySystems
                         continue;
 
                     var entityTile = _mapSystem.GetTileRef(grid, grid, transform.Coordinates).GridIndices;
-                    var baseTile = new Vector2i(entityTile.X - LocalViewRange / 2, entityTile.Y - LocalViewRange / 2);
-                    var debugOverlayContent = new AtmosDebugOverlayData?[LocalViewRange * LocalViewRange];
+                    var baseTile = new Vector2i(entityTile.X - (LocalViewRange / 2), entityTile.Y - (LocalViewRange / 2));
+                    var debugOverlayContent = new AtmosDebugOverlayData[LocalViewRange * LocalViewRange];
 
                     var index = 0;
                     for (var y = 0; y < LocalViewRange; y++)
@@ -164,13 +166,11 @@ namespace Content.Server.Atmos.EntitySystems
                         for (var x = 0; x < LocalViewRange; x++)
                         {
                             var vector = new Vector2i(baseTile.X + x, baseTile.Y + y);
-                            gridAtmos.Tiles.TryGetValue(vector, out var tile);
-                            debugOverlayContent[index++] = tile == null ? null : ConvertTileToData(tile);
+                            debugOverlayContent[index++] = ConvertTileToData(gridAtmos.Tiles.TryGetValue(vector, out var tile) ? tile : null, mapIsSpace);
                         }
                     }
 
-                    var msg = new AtmosDebugOverlayMessage(GetNetEntity(grid), baseTile, debugOverlayContent);
-                    RaiseNetworkEvent(msg, session.Channel);
+                    RaiseNetworkEvent(new AtmosDebugOverlayMessage(GetNetEntity(grid), baseTile, debugOverlayContent), session.ConnectedClient);
                 }
             }
         }

@@ -12,7 +12,7 @@
         map: ["base"]
     - type: Item
       sprite: Objects/Weapons/Bombs/hot_potato.rsi
-      size: Small
+      size: 5
     - type: AmbientSound
       enabled: false
       range: 8
@@ -83,23 +83,11 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 3.4
-    intensitySlope: 3
-    totalIntensity: 20
+    maxIntensity: 2
+    totalIntensity: 10
     canCreateVacuum: false
   - type: DeleteOnTrigger
   - type: AnimationPlayer
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
-      - !type:TriggerBehavior
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
 
 - type: entity
   parent: BaseItem

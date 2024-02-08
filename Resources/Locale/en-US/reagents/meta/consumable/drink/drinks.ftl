@@ -46,9 +46,6 @@ reagent-desc-nothing = Absolutely nothing.
 reagent-name-nuclear-cola = nuclear cola
 reagent-desc-nuclear-cola = Cola, cola never changes.
 
-reagent-name-hot-cocoa = hot cocoa
-reagent-desc-hot-cocoa = Smells like the holidays!
-
 reagent-name-soda-water = soda water
 reagent-desc-soda-water = A container of club soda. Why not make a scotch and soda?
 
@@ -84,6 +81,3 @@ reagent-desc-the-martinez = The edgerunner legend. Remembered by a drink, forgot
 
 reagent-name-white-gilgamesh = white gilgamesh
 reagent-desc-white-gilgamesh = A sickening mixture of milk and beer. Makes you feel like you're made of wood.
-
-reagent-name-mopwata = mopwata
-reagent-desc-mopwata = Dirty, stagnant mop water.

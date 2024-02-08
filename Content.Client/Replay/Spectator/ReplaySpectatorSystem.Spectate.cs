@@ -3,7 +3,6 @@ using Content.Client.Replay.UI;
 using Content.Shared.Verbs;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Replay.Spectator;
@@ -16,13 +15,19 @@ public sealed partial class ReplaySpectatorSystem
         if (_replayPlayback.Replay == null)
             return;
 
-        ev.Verbs.Add(new AlternativeVerb
+        var verb = new AlternativeVerb
         {
             Priority = 100,
-            Act = () => SpectateEntity(ev.Target),
+            Act = () =>
+            {
+                SpectateEntity(ev.Target);
+            },
+
             Text = Loc.GetString("replay-verb-spectate"),
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/vv.svg.192dpi.png"))
-        });
+        };
+
+        ev.Verbs.Add(verb);
     }
 
     public void SpectateEntity(EntityUid target)
@@ -30,7 +35,7 @@ public sealed partial class ReplaySpectatorSystem
         if (_player.LocalSession == null)
             return;
 
-        var old = _player.LocalEntity;
+        var old = _player.LocalSession.AttachedEntity;
 
         if (old == target)
         {
@@ -39,11 +44,8 @@ public sealed partial class ReplaySpectatorSystem
             return;
         }
 
+        _player.SetAttachedEntity(_player.LocalSession, target);
         EnsureComp<ReplaySpectatorComponent>(target);
-        if (TryComp(target, out ActorComponent? actor))
-            _player.SetLocalSession(actor.PlayerSession);
-        else
-            _player.SetAttachedEntity(_player.LocalSession, target);
 
         _stateMan.RequestStateChange<ReplaySpectateEntityState>();
         if (old == null)
@@ -57,9 +59,10 @@ public sealed partial class ReplaySpectatorSystem
 
     public TransformComponent SpawnSpectatorGhost(EntityCoordinates coords, bool gridAttach)
     {
-        var old = _player.LocalEntity;
-        var session = _player.GetSessionById(DefaultUser);
-        _player.SetLocalSession(session);
+        if (_player.LocalSession == null)
+            throw new InvalidOperationException();
+
+        var old = _player.LocalSession.AttachedEntity;
 
         var ent = Spawn("ReplayObserver", coords);
         _eye.SetMaxZoom(ent, Vector2.One * 5);
@@ -70,7 +73,7 @@ public sealed partial class ReplaySpectatorSystem
         if (gridAttach)
             _transform.AttachToGridOrMap(ent);
 
-        _player.SetAttachedEntity(session, ent);
+        _player.SetAttachedEntity(_player.LocalSession, ent);
 
         if (old != null)
         {

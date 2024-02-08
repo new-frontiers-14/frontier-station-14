@@ -9,9 +9,6 @@
     slots: [gloves]
   - type: Food
     requiresSpecialDigestion: true
-  - type: Item
-    size: Small
-    storedRotation: -90
   - type: SolutionContainerManager
     solutions:
       food:
@@ -23,14 +20,3 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-
-- type: entity
-  abstract: true
-  parent: ClothingHandsBase
-  id: ClothingHandsButcherable
-  components:
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
-    - id: MaterialCloth1
-      amount: 1

@@ -33,6 +33,9 @@
           steps:
             - material: Cable
         - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1

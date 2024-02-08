@@ -20,6 +20,7 @@ public sealed partial class AnomalySystem
     {
         SubscribeLocalEvent<AnomalyVesselComponent, ComponentShutdown>(OnVesselShutdown);
         SubscribeLocalEvent<AnomalyVesselComponent, MapInitEvent>(OnVesselMapInit);
+        SubscribeLocalEvent<AnomalyVesselComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<AnomalyVesselComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
@@ -67,6 +68,12 @@ public sealed partial class AnomalySystem
         UpdateVesselAppearance(uid,  component);
     }
 
+    private void OnRefreshParts(EntityUid uid, AnomalyVesselComponent component, RefreshPartsEvent args)
+    {
+        var modifierRating = args.PartRatings[component.MachinePartPointModifier] - 1;
+        component.PointMultiplier = MathF.Pow(component.PartRatingPointModifier, modifierRating);
+    }
+
     private void OnUpgradeExamine(EntityUid uid, AnomalyVesselComponent component, UpgradeExamineEvent args)
     {
         args.AddPercentageUpgrade("anomaly-vessel-component-upgrade-output", component.PointMultiplier);
@@ -86,7 +93,6 @@ public sealed partial class AnomalySystem
 
         component.Anomaly = scanner.ScannedAnomaly;
         anomalyComponent.ConnectedVessel = uid;
-        _radiation.SetSourceEnabled(uid, true);
         UpdateVesselAppearance(uid,  component);
         Popup.PopupEntity(Loc.GetString("anomaly-vessel-component-anomaly-assigned"), uid);
     }
@@ -114,7 +120,6 @@ public sealed partial class AnomalySystem
 
             component.Anomaly = null;
             UpdateVesselAppearance(ent,  component);
-            _radiation.SetSourceEnabled(ent, false);
 
             if (!args.Supercritical)
                 continue;

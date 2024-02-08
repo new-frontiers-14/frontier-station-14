@@ -4,7 +4,7 @@ public sealed class RefreshEquipmentHudEvent<T> : EntityEventArgs, IInventoryRel
 {
     public SlotFlags TargetSlots { get; init; }
     public bool Active = false;
-    public List<T> Components = new();
+    public object? ExtraData;
 
     public RefreshEquipmentHudEvent(SlotFlags targetSlots)
     {

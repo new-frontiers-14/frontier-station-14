@@ -1,73 +1,60 @@
-using Content.Server.Atmos.Components;
-
-namespace Content.Server.Atmos.Piping.Components;
-
-/// <summary>
-///     Component for atmos devices which are updated in line with atmos, as part of a <see cref="GridAtmosphereComponent"/>
-/// </summary>
-[RegisterComponent]
-public sealed partial class AtmosDeviceComponent : Component
+namespace Content.Server.Atmos.Piping.Components
 {
     /// <summary>
-    ///     If true, this device must be anchored before it will receive any AtmosDeviceUpdateEvents.
+    ///     Adds itself to a <see cref="IAtmosphereComponent"/> to be updated by.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField]
-    public bool RequireAnchored = true;
-
-    /// <summary>
-    ///     If true, update even when there is no grid atmosphere. Normally, atmos devices only
-    ///     update when inside a grid atmosphere, because they work with gases in the environment
-    ///     and won't do anything useful if there is no environment. This is useful for devices
-    ///     like gas canisters whose contents can still react if the canister itself is not inside
-    ///     a grid atmosphere.
-    /// </summary>
-    [DataField]
-    public bool JoinSystem = false;
-
-    /// <summary>
-    ///     If non-null, the grid that this device is part of.
-    /// </summary>
-    [DataField]
-    public EntityUid? JoinedGrid = null;
-
-    /// <summary>
-    ///     Indicates that a device is not on a grid atmosphere but still being updated.
-    /// </summary>
-    [ViewVariables]
-    public bool JoinedSystem = false;
-
-    [ViewVariables]
-    public TimeSpan LastProcess = TimeSpan.Zero;
-}
-
-/// <summary>
-/// Raised directed on an atmos device as part of the atmos update loop when the device should do processing.
-/// Use this for atmos devices instead of <see cref="EntitySystem.Update"/>.
-/// </summary>
-[ByRefEvent]
-public readonly struct AtmosDeviceUpdateEvent
-{
-    /// <summary>
-    /// Time elapsed since last update, in seconds. Multiply values used in the update handler
-    /// by this number to make them tickrate-invariant. Use this number instead of AtmosphereSystem.AtmosTime.
-    /// </summary>
-    public readonly float dt;
-
-    public AtmosDeviceUpdateEvent(float dt)
+    [RegisterComponent]
+    public sealed partial class AtmosDeviceComponent : Component
     {
-        this.dt = dt;
+        /// <summary>
+        ///     If true, this device must be anchored before it will receive any AtmosDeviceUpdateEvents.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("requireAnchored")]
+        public bool RequireAnchored { get; private set; } = true;
+
+        /// <summary>
+        ///     If true, update even when there is no grid atmosphere. Normally, atmos devices only
+        ///     update when inside a grid atmosphere, because they work with gases in the environment
+        ///     and won't do anything useful if there is no environment. This is useful for devices
+        ///     like gas canisters whose contents can still react if the canister itself is not inside
+        ///     a grid atmosphere.
+        /// </summary>
+        [DataField("joinSystem")]
+        public bool JoinSystem { get; private set; } = false;
+
+        /// <summary>
+        ///     If non-null, the grid that this device is part of.
+        /// </summary>
+        public EntityUid? JoinedGrid { get; set; }
+
+        /// <summary>
+        ///     Indicates that a device is not on a grid atmosphere but still being updated.
+        /// </summary>
+        [ViewVariables]
+        public bool JoinedSystem { get; set; } = false;
+
+        [ViewVariables]
+        public TimeSpan LastProcess { get; set; } = TimeSpan.Zero;
     }
+
+    public sealed class AtmosDeviceUpdateEvent : EntityEventArgs
+    {
+        /// <summary>
+        /// Time elapsed since last update, in seconds. Multiply values used in the update handler
+        /// by this number to make them tickrate-invariant. Use this number instead of AtmosphereSystem.AtmosTime.
+        /// </summary>
+        public float dt;
+
+        public AtmosDeviceUpdateEvent(float dt)
+        {
+            this.dt = dt;
+        }
+    }
+
+    public sealed class AtmosDeviceEnabledEvent : EntityEventArgs
+    {}
+
+    public sealed class AtmosDeviceDisabledEvent : EntityEventArgs
+    {}
 }
-
-/// <summary>
-///     Raised directed on an atmos device when it is enabled.
-/// </summary>
-[ByRefEvent]
-public record struct AtmosDeviceEnabledEvent;
-
-/// <summary>
-///     Raised directed on an atmos device when it is enabled.
-/// </summary>
-[ByRefEvent]
-public record struct AtmosDeviceDisabledEvent;

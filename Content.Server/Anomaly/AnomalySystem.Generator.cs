@@ -11,9 +11,6 @@ using Content.Shared.Physics;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Map;
-using System.Numerics;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Anomaly;
 
@@ -24,9 +21,6 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem
 {
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-
     private void InitializeGenerator()
     {
         SubscribeLocalEvent<AnomalyGeneratorComponent, BoundUIOpenedEvent>(OnGeneratorBUIOpened);
@@ -87,7 +81,7 @@ public sealed partial class AnomalySystem
 
         var generating = EnsureComp<GeneratingAnomalyGeneratorComponent>(uid);
         generating.EndTime = Timing.CurTime + component.GenerationLength;
-        generating.AudioStream = Audio.PlayPvs(component.GeneratingSound, uid, AudioParams.Default.WithLoop(true))?.Entity;
+        generating.AudioStream = Audio.PlayPvs(component.GeneratingSound, uid, AudioParams.Default.WithLoop(true));
         component.CooldownEndTime = Timing.CurTime + component.CooldownLength;
         UpdateGeneratorUi(uid, component);
     }
@@ -134,28 +128,7 @@ public sealed partial class AnomalySystem
             if (!valid)
                 continue;
 
-            var pos = _mapSystem.GridTileToLocal(grid, gridComp, tile);
-            var mapPos = pos.ToMap(EntityManager, _transform);
-            // don't spawn in AntiAnomalyZones
-            var antiAnomalyZonesQueue = AllEntityQuery<AntiAnomalyZoneComponent, TransformComponent>();
-            while (antiAnomalyZonesQueue.MoveNext(out var uid, out var zone, out var antiXform))
-            {
-                if (antiXform.MapID != mapPos.MapId)
-                    continue;
-
-                var antiCoordinates = _transform.GetMapCoordinates(antiXform);
-
-                var delta = antiCoordinates.Position - mapPos.Position;
-                if (delta.LengthSquared() < zone.ZoneRadius * zone.ZoneRadius)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-            if (!valid)
-                continue;
-
-            targetCoords = pos;
+            targetCoords = gridComp.GridTileToLocal(tile);
             break;
         }
 
@@ -195,8 +168,7 @@ public sealed partial class AnomalySystem
         {
             if (Timing.CurTime < active.EndTime)
                 continue;
-
-            active.AudioStream = _audio.Stop(active.AudioStream);
+            active.AudioStream?.Stop();
             OnGeneratingFinished(ent, gen);
         }
     }

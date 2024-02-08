@@ -1,9 +1,11 @@
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineCuddlyCritterVend
   name: CuddlyCritterVend
   description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: CuddlyCritterVendInventory
     offState: off
@@ -27,14 +29,16 @@
     energy: 1.6
     color: "#4b93ad"
   - type: MarketModifier
-    mod: 15
+    mod: 10
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineAstroVend
   name: AstroVend
   description: Essential gear for the space-men on the go
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: AstroVendInventory
     offState: off
@@ -59,11 +63,13 @@
     color: "#4b93ad"
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineCircuitVend
   name: CircuitVend
   description: Essential tech for the space-men on the go
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: CircuitVendInventory
     offState: off
@@ -87,11 +93,9 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: MarketModifier
-    mod: 25
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
@@ -109,6 +113,9 @@
     ejectDelay: 3
   - type: Advertise
     pack: SyndieDrobeAds
+  - type: Speech
+  - type: Anchorable
+    delay: 999999
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/syndicateArmor.rsi
     layers:
@@ -130,11 +137,13 @@
     mod: 50
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineBountyVend
   name: BountyVend
   description: Essential gear for the space-men on the go
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: BountyVendInventory
     offState: off
@@ -225,11 +234,13 @@
       color: "#ff033e"
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineAutoTuneVend
   name: AutoTune
   description: feeling BASSed? time to TUNE into AutoVend! Take NOTES and let your audience TREBLE
   components:
+  - type: Anchorable
+    delay: 999999
   - type: VendingMachine
     pack: AutoTuneVendInventory
     offState: off

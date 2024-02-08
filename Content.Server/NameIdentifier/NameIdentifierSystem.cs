@@ -28,9 +28,9 @@ public sealed class NameIdentifierSystem : EntitySystem
         SubscribeLocalEvent<NameIdentifierComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<NameIdentifierComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(CleanupIds);
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnReloadPrototypes);
 
         InitialSetupPrototypes();
+        _prototypeManager.PrototypesReloaded += OnReloadPrototypes;
     }
 
     private void OnComponentShutdown(EntityUid uid, NameIdentifierComponent component, ComponentShutdown args)
@@ -46,13 +46,11 @@ public sealed class NameIdentifierSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    ///     Generates a new unique name/suffix for a given entity and adds it to <see cref="CurrentIds"/>
-    ///     but does not set the entity's name.
-    /// </summary>
-    public string GenerateUniqueName(EntityUid uid, ProtoId<NameIdentifierGroupPrototype> proto, out int randomVal)
+    public override void Shutdown()
     {
-        return GenerateUniqueName(uid, _prototypeManager.Index(proto), out randomVal);
+        base.Shutdown();
+
+        _prototypeManager.PrototypesReloaded -= OnReloadPrototypes;
     }
 
     /// <summary>

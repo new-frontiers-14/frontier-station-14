@@ -1,12 +1,9 @@
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
-using Robust.Shared.Audio.Systems;
+using Content.Shared.Cluwne;
 
 namespace Content.Server.Weapons.Melee.WeaponRandom;
 
-/// <summary>
-/// This adds a random damage bonus to melee attacks based on damage bonus amount and probability.
-/// </summary>
 public sealed class WeaponRandomSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -18,15 +15,22 @@ public sealed class WeaponRandomSystem : EntitySystem
 
         SubscribeLocalEvent<WeaponRandomComponent, MeleeHitEvent>(OnMeleeHit);
     }
-    /// <summary>
-    /// On Melee hit there is a possible chance of additional bonus damage occuring.
-    /// </summary>
+
     private void OnMeleeHit(EntityUid uid, WeaponRandomComponent component, MeleeHitEvent args)
     {
-        if (_random.Prob(component.RandomDamageChance))
+        foreach (var entity in args.HitEntities)
         {
-            _audio.PlayPvs(component.DamageSound, uid);
-            args.BonusDamage = component.DamageBonus;
+            if (HasComp<CluwneComponent>(entity) && component.AntiCluwne)
+            {
+                _audio.PlayPvs(component.DamageSound, uid);
+                args.BonusDamage = component.DamageBonus;
+            }
+
+            else if (_random.Prob(component.RandomDamageChance) && component.RandomDamage)
+            {
+                _audio.PlayPvs(component.DamageSound, uid);
+                args.BonusDamage = component.DamageBonus;
+            }
         }
     }
 }

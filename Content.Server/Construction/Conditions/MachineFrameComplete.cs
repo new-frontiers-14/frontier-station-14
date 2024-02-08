@@ -46,7 +46,7 @@ namespace Content.Server.Construction.Conditions
             if (entityManager.EntitySysManager.GetEntitySystem<MachineFrameSystem>().IsComplete(machineFrame))
                 return false;
 
-            args.PushMarkup(Loc.GetString("construction-condition-machine-frame-requirement-label"));
+            args.Message.AddMarkup(Loc.GetString("construction-condition-machine-frame-requirement-label") + "\n");
             foreach (var (part, required) in machineFrame.Requirements)
             {
                 var amount = required - machineFrame.Progress[part];
@@ -54,9 +54,10 @@ namespace Content.Server.Construction.Conditions
                 if(amount == 0)
                     continue;
 
-                args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
+                args.Message.AddMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
                                            ("amount", amount),
-                                           ("elementName", Loc.GetString(part))));
+                                           ("elementName", Loc.GetString(part)))
+                                       + "\n");
             }
 
             foreach (var (material, required) in machineFrame.MaterialRequirements)
@@ -66,9 +67,10 @@ namespace Content.Server.Construction.Conditions
                 if(amount == 0)
                     continue;
 
-                args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
+                args.Message.AddMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
                                            ("amount", amount),
-                                           ("elementName", Loc.GetString(material))));
+                                           ("elementName", Loc.GetString(material)))
+                                       + "\n");
             }
 
             foreach (var (compName, info) in machineFrame.ComponentRequirements)
@@ -78,9 +80,10 @@ namespace Content.Server.Construction.Conditions
                 if(amount == 0)
                     continue;
 
-                args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
+                args.Message.AddMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
                                                 ("amount", info.Amount),
-                                                ("elementName", Loc.GetString(info.ExamineName))));
+                                                ("elementName", Loc.GetString(info.ExamineName)))
+                                  + "\n");
             }
 
             foreach (var (tagName, info) in machineFrame.TagRequirements)
@@ -90,10 +93,10 @@ namespace Content.Server.Construction.Conditions
                 if(amount == 0)
                     continue;
 
-                args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
-                                    ("amount", info.Amount),
-                                    ("elementName", Loc.GetString(info.ExamineName)))
-                                + "\n");
+                args.Message.AddMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
+                                           ("amount", info.Amount),
+                                           ("elementName", Loc.GetString(info.ExamineName)))
+                                       + "\n");
             }
 
             return true;

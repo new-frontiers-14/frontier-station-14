@@ -11,16 +11,11 @@ public sealed partial class PuddleSystem
     private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
 
     [ValidatePrototypeId<ReagentPrototype>]
-    private const string Water = "Water";
+    public const string EvaporationReagent = "Water";
 
-    [ValidatePrototypeId<ReagentPrototype>]
-    private const string SoapyWater = "SoapyWater";
-
-    public static string[] EvaporationReagents = new[] { Water, SoapyWater };
-
-    private void OnEvaporationMapInit(Entity<EvaporationComponent> entity, ref MapInitEvent args)
+    private void OnEvaporationMapInit(EntityUid uid, EvaporationComponent component, MapInitEvent args)
     {
-        entity.Comp.NextTick = _timing.CurTime + EvaporationCooldown;
+        component.NextTick = _timing.CurTime + EvaporationCooldown;
     }
 
     private void UpdateEvaporation(EntityUid uid, Solution solution)
@@ -30,7 +25,7 @@ public sealed partial class PuddleSystem
             return;
         }
 
-        if (solution.GetTotalPrototypeQuantity(EvaporationReagents) > FixedPoint2.Zero)
+        if (solution.ContainsPrototype(EvaporationReagent))
         {
             var evaporation = AddComp<EvaporationComponent>(uid);
             evaporation.NextTick = _timing.CurTime + EvaporationCooldown;
@@ -52,11 +47,11 @@ public sealed partial class PuddleSystem
 
             evaporation.NextTick += EvaporationCooldown;
 
-            if (!_solutionContainerSystem.ResolveSolution(uid, puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
+            if (!_solutionContainerSystem.TryGetSolution(uid, puddle.SolutionName, out var puddleSolution))
                 continue;
 
             var reagentTick = evaporation.EvaporationAmount * EvaporationCooldown.TotalSeconds;
-            puddleSolution.SplitSolutionWithOnly(reagentTick, EvaporationReagents);
+            _solutionContainerSystem.RemoveReagent(uid, puddleSolution, EvaporationReagent, reagentTick);
 
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
@@ -70,6 +65,6 @@ public sealed partial class PuddleSystem
 
     public bool CanFullyEvaporate(Solution solution)
     {
-        return solution.GetTotalPrototypeQuantity(EvaporationReagents) == solution.Volume;
+        return solution.Contents.Count == 1 && solution.ContainsPrototype(EvaporationReagent);
     }
 }

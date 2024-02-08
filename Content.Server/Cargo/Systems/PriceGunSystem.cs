@@ -4,6 +4,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using Robust.Shared.Player;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -15,7 +16,6 @@ public sealed class PriceGunSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly CargoSystem _bountySystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -26,10 +26,11 @@ public sealed class PriceGunSystem : EntitySystem
 
     private void OnUtilityVerb(EntityUid uid, PriceGunComponent component, GetVerbsEvent<UtilityVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || args.Using == null)
+
+        if (!args.CanAccess || !args.CanInteract)
             return;
 
-        if (!TryComp(uid, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((uid, useDelay)))
+        if (TryComp(args.Using, out UseDelayComponent? useDelay) && useDelay.ActiveDelay)
             return;
 
         var price = _pricingSystem.GetPrice(args.Target);
@@ -39,7 +40,7 @@ public sealed class PriceGunSystem : EntitySystem
             Act = () =>
             {
                 _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
-                _useDelay.TryResetDelay((uid, useDelay));
+                _useDelay.BeginDelay(uid, useDelay);
             },
             Text = Loc.GetString("price-gun-verb-text"),
             Message = Loc.GetString("price-gun-verb-message", ("object", Identity.Entity(args.Target, EntityManager)))
@@ -47,27 +48,18 @@ public sealed class PriceGunSystem : EntitySystem
 
         args.Verbs.Add(verb);
     }
-
     private void OnAfterInteract(EntityUid uid, PriceGunComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach || args.Target == null || args.Handled)
             return;
 
-        if (!TryComp(uid, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((uid, useDelay)))
+        if (TryComp(args.Used, out UseDelayComponent? useDelay) && useDelay.ActiveDelay)
             return;
 
-        // Check if we're scanning a bounty crate
-        if (_bountySystem.IsBountyComplete(args.Target.Value, (EntityUid?) null, out _))
-        {
-            _popupSystem.PopupEntity(Loc.GetString("price-gun-bounty-complete"), args.User, args.User);
-        }
-        else // Otherwise appraise the price
-        {
-            double price = _pricingSystem.GetPrice(args.Target.Value);
-            _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
-        }
+        var price = _pricingSystem.GetPrice(args.Target.Value);
 
-        _useDelay.TryResetDelay((uid, useDelay));
+        _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
+        _useDelay.BeginDelay(uid, useDelay);
         args.Handled = true;
     }
 }

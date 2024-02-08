@@ -10,8 +10,6 @@ namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-
     private const float ShuttleFTLMassThreshold = 50f;
     private const float ShuttleFTLRange = 150f;
 

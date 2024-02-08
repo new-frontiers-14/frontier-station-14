@@ -2,8 +2,6 @@ using Content.Shared.Light;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Client.Light.Visualizers;
@@ -29,9 +27,6 @@ public sealed class PoweredLightVisualizerSystem : VisualizerSystem<PoweredLight
 
         if (comp.SpriteStateMap.TryGetValue(state, out var spriteState))
             args.Sprite.LayerSetState(PoweredLightLayers.Base, spriteState);
-
-        if (args.Sprite.LayerExists(PoweredLightLayers.Glow))
-            args.Sprite.LayerSetVisible(PoweredLightLayers.Glow, state == PoweredLightState.On);
 
         SetBlinkingAnimation(
             uid,

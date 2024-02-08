@@ -1,7 +1,9 @@
 using Content.Server.Emp;
 using Content.Server.Ninja.Events;
+using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.PowerCell;
+using Content.Shared.Actions;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Ninja.Components;
@@ -20,6 +22,7 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
     [Dependency] private readonly EmpSystem _emp = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SpaceNinjaSystem _ninja = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
@@ -91,16 +94,9 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         // need 1 second of charge to turn on stealth
         var chargeNeeded = SuitWattage(uid, comp);
         // being attacked while cloaked gives no power message since it overloads the power supply or something
-        if (!_ninja.GetNinjaBattery(user, out _, out var battery) || battery.CurrentCharge < chargeNeeded)
+        if (!_ninja.GetNinjaBattery(user, out var _, out var battery) || battery.CurrentCharge < chargeNeeded || UseDelay.ActiveDelay(user))
         {
-            Popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
-            args.Cancel();
-            return;
-        }
-
-        if (comp.DisableCooldown > GameTiming.CurTime)
-        {
-            Popup.PopupEntity(Loc.GetString("ninja-suit-cooldown"), user, user, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
             args.Cancel();
             return;
         }
@@ -112,15 +108,9 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
     {
         args.Handled = true;
         var user = args.Performer;
-        if (!_ninja.TryUseCharge(user, comp.ThrowingStarCharge))
+        if (!_ninja.TryUseCharge(user, comp.ThrowingStarCharge) || UseDelay.ActiveDelay(user))
         {
-            Popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
-            return;
-        }
-
-        if (comp.DisableCooldown > GameTiming.CurTime)
-        {
-            Popup.PopupEntity(Loc.GetString("ninja-suit-cooldown"), user, user, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
             return;
         }
 
@@ -139,16 +129,10 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         var katana = ninja.Katana.Value;
         var coords = _transform.GetWorldPosition(katana);
         var distance = (_transform.GetWorldPosition(user) - coords).Length();
-        var chargeNeeded = distance * comp.RecallCharge;
-        if (!_ninja.TryUseCharge(user, chargeNeeded))
+        var chargeNeeded = (float) distance * comp.RecallCharge;
+        if (!_ninja.TryUseCharge(user, chargeNeeded) || UseDelay.ActiveDelay(user))
         {
-            Popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
-            return;
-        }
-
-        if (comp.DisableCooldown > GameTiming.CurTime)
-        {
-            Popup.PopupEntity(Loc.GetString("ninja-suit-cooldown"), user, user, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
             return;
         }
 
@@ -156,27 +140,21 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
         var message = _hands.TryPickupAnyHand(user, katana)
             ? "ninja-katana-recalled"
             : "ninja-hands-full";
-        Popup.PopupEntity(Loc.GetString(message), user, user);
+        _popup.PopupEntity(Loc.GetString(message), user, user);
     }
 
     private void OnEmp(EntityUid uid, NinjaSuitComponent comp, NinjaEmpEvent args)
     {
         args.Handled = true;
         var user = args.Performer;
-        if (!_ninja.TryUseCharge(user, comp.EmpCharge))
+        if (!_ninja.TryUseCharge(user, comp.EmpCharge) || UseDelay.ActiveDelay(user))
         {
-            Popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
-            return;
-        }
-
-        if (comp.DisableCooldown > GameTiming.CurTime)
-        {
-            Popup.PopupEntity(Loc.GetString("ninja-suit-cooldown"), user, user, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("ninja-no-power"), user, user);
             return;
         }
 
         // I don't think this affects the suit battery, but if it ever does in the future add a blacklist for it
-        var coords = _transform.GetMapCoordinates(user);
+        var coords = Transform(user).MapPosition;
         _emp.EmpPulse(coords, comp.EmpRange, comp.EmpConsumption, comp.EmpDuration);
     }
 }

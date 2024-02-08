@@ -30,18 +30,14 @@ public sealed class ContentEyeSystem : SharedContentEyeSystem
     public void RequestToggleFov(EntityUid uid, EyeComponent? eye = null)
     {
         if (Resolve(uid, ref eye, false))
-            RequestEye(!eye.DrawFov, eye.DrawLight);
+            RequestFov(!eye.DrawFov);
     }
 
-    public void RequestToggleLight(EntityUid uid, EyeComponent? eye = null)
+    public void RequestFov(bool value)
     {
-        if (Resolve(uid, ref eye, false))
-            RequestEye(eye.DrawFov, !eye.DrawLight);
-    }
-
-
-    public void RequestEye(bool drawFov, bool drawLight)
-    {
-        RaisePredictiveEvent(new RequestEyeEvent(drawFov, drawLight));
+        RaisePredictiveEvent(new RequestFovEvent()
+        {
+            Fov = value,
+        });
     }
 }

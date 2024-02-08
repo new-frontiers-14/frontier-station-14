@@ -11,24 +11,6 @@
       map: [ "enum.ToggleVisuals.Layer" ]
   - type: Stunbaton
     energyPerUse: 50
-  - type: ItemToggle
-    predictable: false
-    soundActivate:
-      collection: sparks
-      params:
-        variation: 0.250
-    soundDeactivate:
-      collection: sparks
-      params:
-        variation: 0.250
-    soundFailToActivate:
-      path: /Audio/Machines/button.ogg
-      params:
-        variation: 0.250
-  - type: ItemToggleMeleeWeapon
-    activatedDamage:
-      types:
-        Blunt: 0
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -46,10 +28,10 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: UseDelay
+  - type: ItemCooldown
   - type: Item
     heldPrefix: off
-    size: Normal
+    size: 20
   - type: Clothing
     sprite: Objects/Weapons/Melee/stunbaton.rsi
     quickEquip: false
@@ -65,7 +47,7 @@
           True: {state: stunbaton_on}
           False: {state: stunbaton_off}
   - type: StaticPrice
-    price: 80
+    price: 100
   - type: Riggable
   - type: SolutionContainerManager
     solutions:
@@ -102,7 +84,7 @@
         Blunt: 20
     bluntStaminaDamageFactor: 1.5
   - type: Item
-    size: Normal
+    size: 20
   - type: Clothing
     sprite: Objects\Weapons\Melee\truncheon.rsi
     quickEquip: false
@@ -112,7 +94,7 @@
     malus: 0.225
   - type: Appearance
   - type: StaticPrice
-    price: 80
+    price: 100
   - type: GuideHelp
     guides:
     - Security
@@ -146,9 +128,9 @@
           Blunt: 0 # melee weapon to allow flashing individual targets
       angle: 10
     - type: Item
-      size: Small
+      size: 5
       sprite: Objects/Weapons/Melee/flash.rsi
-    - type: UseDelay
+    - type: ItemCooldown
     - type: StaticPrice
       price: 40
     - type: Appearance

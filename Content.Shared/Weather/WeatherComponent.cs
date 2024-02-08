@@ -24,7 +24,7 @@ public sealed partial class WeatherData
 {
     // Client audio stream.
     [NonSerialized]
-    public EntityUid? Stream;
+    public IPlayingAudioStream? Stream;
 
     /// <summary>
     /// When the weather started if relevant.
@@ -43,6 +43,12 @@ public sealed partial class WeatherData
 
     [DataField("state")]
     public WeatherState State = WeatherState.Invalid;
+
+    [ViewVariables, NonSerialized]
+    public float LastAlpha;
+
+    [ViewVariables, NonSerialized]
+    public float LastOcclusion;
 }
 
 public enum WeatherState : byte

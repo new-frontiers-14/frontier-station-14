@@ -53,8 +53,7 @@ public sealed class DecalPlacerUIController : UIController, IOnStateExited<Gamep
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
     {
-        if (obj.WasModified<DecalPrototype>())
-            ReloadPrototypes();
+        ReloadPrototypes();
     }
 
     private void ReloadPrototypes()

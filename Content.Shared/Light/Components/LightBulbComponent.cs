@@ -71,7 +71,7 @@ public sealed partial class LightBulbComponent : Component
     /// </summary>
     [DataField("breakSound")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier BreakSound = new SoundCollectionSpecifier("GlassBreak", AudioParams.Default.WithVolume(-6f));
+    public SoundSpecifier BreakSound = new SoundCollectionSpecifier("GlassBreak");
 
     #region Appearance
 

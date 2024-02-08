@@ -10,9 +10,9 @@ namespace Content.Server.Atmos.Reactions;
 [UsedImplicitly]
 public sealed partial class FrezonCoolantReaction : IGasReactionEffect
 {
-    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
+    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem)
     {
-        var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
+        var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture);
         var temperature = mixture.Temperature;
 
         var energyModifier = 1f;
@@ -45,11 +45,10 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
             energyReleased = burnRate * Atmospherics.FrezonCoolEnergyReleased * energyModifier;
         }
 
-        energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
         if (energyReleased >= 0f)
             return ReactionResult.NoReaction;
 
-        var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
+        var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture);
         if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = (temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
 

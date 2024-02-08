@@ -1,7 +1,5 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Content.Server.Discord;
@@ -68,7 +66,7 @@ public sealed class DiscordWebhook : IPostInjectInit
     public async Task<HttpResponseMessage> CreateMessage(WebhookIdentifier identifier, WebhookPayload payload)
     {
         var url = $"{GetUrl(identifier)}?wait=true";
-        return await _http.PostAsJsonAsync(url, payload, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+        return await _http.PostAsJsonAsync(url, payload);
     }
 
     /// <summary>
@@ -93,7 +91,7 @@ public sealed class DiscordWebhook : IPostInjectInit
     public async Task<HttpResponseMessage> EditMessage(WebhookIdentifier identifier, ulong messageId, WebhookPayload payload)
     {
         var url = $"{GetUrl(identifier)}/messages/{messageId}";
-        return await _http.PatchAsJsonAsync(url, payload, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+        return await _http.PatchAsJsonAsync(url, payload);
     }
 
     void IPostInjectInit.PostInject()

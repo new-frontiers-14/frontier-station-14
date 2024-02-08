@@ -10,8 +10,6 @@ using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Wall;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -78,7 +76,7 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        _container.Remove(toRemove, component.ItemContainer);
+        component.ItemContainer.Remove(toRemove);
         var mechxform = Transform(mech);
         var xform = Transform(toRemove);
         _transform.AttachToGridOrMap(toRemove, xform);
@@ -151,7 +149,7 @@ public sealed class MechGrabberSystem : EntitySystem
             return;
 
         args.Handled = true;
-        component.AudioStream = _audio.PlayPvs(component.GrabSound, uid).Value.Entity;
+        component.AudioStream = _audio.PlayPvs(component.GrabSound, uid);
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new GrabberDoAfterEvent(), uid, target: target, used: uid)
         {
             BreakOnTargetMove = true,
@@ -163,7 +161,7 @@ public sealed class MechGrabberSystem : EntitySystem
     {
         if (args.Cancelled)
         {
-            component.AudioStream = _audio.Stop(component.AudioStream);
+            component.AudioStream?.Stop();
             return;
         }
 
@@ -175,7 +173,7 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        _container.Insert(args.Args.Target.Value, component.ItemContainer);
+        component.ItemContainer.Insert(args.Args.Target.Value);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
 
         args.Handled = true;

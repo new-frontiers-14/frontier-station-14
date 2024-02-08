@@ -24,17 +24,16 @@ namespace Content.Shared.Verbs
             if (user == null)
                 return;
 
-            if (!TryGetEntity(args.Target, out var target))
-                return;
+            var target = GetEntity(args.Target);
 
             // It is possible that client-side prediction can cause this event to be raised after the target entity has
             // been deleted. So we need to check that the entity still exists.
-            if (Deleted(user))
+            if (Deleted(target) || Deleted(user))
                 return;
 
             // Get the list of verbs. This effectively also checks that the requested verb is in fact a valid verb that
             // the user can perform.
-            var verbs = GetLocalVerbs(target.Value, user.Value, args.RequestedVerb.GetType());
+            var verbs = GetLocalVerbs(target, user.Value, args.RequestedVerb.GetType());
 
             // Note that GetLocalVerbs might waste time checking & preparing unrelated verbs even though we know
             // precisely which one we want to run. However, MOST entities will only have 1 or 2 verbs of a given type.
@@ -42,7 +41,7 @@ namespace Content.Shared.Verbs
 
             // Find the requested verb.
             if (verbs.TryGetValue(args.RequestedVerb, out var verb))
-                ExecuteVerb(verb, user.Value, target.Value);
+                ExecuteVerb(verb, user.Value, target);
         }
 
         /// <summary>

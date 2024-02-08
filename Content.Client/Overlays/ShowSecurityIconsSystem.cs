@@ -1,6 +1,5 @@
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Mindshield.Components;
 using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
@@ -8,7 +7,6 @@ using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Overlays;
-
 public sealed class ShowSecurityIconsSystem : EquipmentHudSystem<ShowSecurityIconsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeMan = default!;
@@ -31,9 +29,9 @@ public sealed class ShowSecurityIconsSystem : EquipmentHudSystem<ShowSecurityIco
             return;
         }
 
-        var securityIcons = DecideSecurityIcon(uid);
+        var healthIcons = DecideSecurityIcon(uid);
 
-        @event.StatusIcons.AddRange(securityIcons);
+        @event.StatusIcons.AddRange(healthIcons);
     }
 
     private IReadOnlyList<StatusIconPrototype> DecideSecurityIcon(EntityUid uid)
@@ -67,12 +65,6 @@ public sealed class ShowSecurityIconsSystem : EquipmentHudSystem<ShowSecurityIco
             result.Add(jobIcon);
         else
             Log.Error($"Invalid job icon prototype: {jobIcon}");
-
-        if (TryComp<MindShieldComponent>(uid, out var comp))
-        {
-            if (_prototypeMan.TryIndex<StatusIconPrototype>(comp.MindShieldStatusIcon.Id, out var icon))
-                result.Add(icon);
-        }
 
         // Add arrest icons here, WYCI.
 

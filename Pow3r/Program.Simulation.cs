@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Content.Server.Power.Pow3r;
-using Robust.Shared.Threading;
-using Robust.UnitTesting;
 using static Content.Server.Power.Pow3r.PowerState;
 
 
@@ -34,8 +32,6 @@ namespace Pow3r
         private readonly Queue<object> _remQueue = new();
         private readonly Stopwatch _simStopwatch = new Stopwatch();
 
-        private IParallelManager _parallel = new TestingParallelManager();
-
         private void Tick(float frameTime)
         {
             if (_paused)
@@ -49,7 +45,7 @@ namespace Pow3r
             _simStopwatch.Restart();
             _tickDataIdx = (_tickDataIdx + 1) % MaxTickData;
 
-            _solvers[_currentSolver].Tick(frameTime, _state, _parallel);
+            _solvers[_currentSolver].Tick(frameTime, _state, 1);
 
             // Update tick history.
             foreach (var load in _state.Loads.Values)

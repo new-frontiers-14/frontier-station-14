@@ -67,13 +67,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         bool permanent = false,
         HumanoidAppearanceComponent? humanoid = null)
     {
-        if (!Resolve(uid, ref humanoid, false))
+        if (!Resolve(uid, ref humanoid))
             return;
 
         var dirty = false;
         SetLayerVisibility(uid, humanoid, layer, visible, permanent, ref dirty);
         if (dirty)
-            Dirty(uid, humanoid);
+            Dirty(humanoid);
     }
 
     /// <summary>

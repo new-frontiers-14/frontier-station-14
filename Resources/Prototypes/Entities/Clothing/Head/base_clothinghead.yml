@@ -8,9 +8,6 @@
     - HEAD
   - type: Sprite
     state: icon
-  - type: Item
-    size: Small
-    storedRotation: -90
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -72,12 +69,11 @@
     equippedPrefix: off
   - type: Item
     heldPrefix: off
-    size: Normal
   - type: ToggleableLightVisuals
   - type: PointLight
     enabled: false
     radius: 3
-    energy: 1
+    energy: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -121,7 +117,7 @@
   name: base space helmet
   components:
   - type: Item
-    size: Normal
+    size: 10
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000

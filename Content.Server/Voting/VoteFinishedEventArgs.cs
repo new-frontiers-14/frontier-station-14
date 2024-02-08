@@ -15,16 +15,10 @@ namespace Content.Server.Voting
         /// </summary>
         public readonly ImmutableArray<object> Winners;
 
-        /// <summary>
-        ///     Stores all the votes in a string, for webhooks. 
-        /// </summary>
-        public readonly List<int> Votes;
-
-        public VoteFinishedEventArgs(object? winner, ImmutableArray<object> winners, List<int> votes)
+        public VoteFinishedEventArgs(object? winner, ImmutableArray<object> winners)
         {
             Winner = winner;
             Winners = winners;
-            Votes = votes;
         }
     }
 }

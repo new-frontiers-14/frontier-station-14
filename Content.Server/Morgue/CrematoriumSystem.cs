@@ -17,9 +17,6 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 
@@ -34,7 +31,6 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
     [Dependency] private readonly SharedMindSystem _mind = default!; // frontier
 
@@ -53,24 +49,17 @@ public sealed class CrematoriumSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        using (args.PushGroup(nameof(CrematoriumComponent)))
+        if (_appearance.TryGetData<bool>(uid, CrematoriumVisuals.Burning, out var isBurning, appearance) && isBurning)
         {
-            if (_appearance.TryGetData<bool>(uid, CrematoriumVisuals.Burning, out var isBurning, appearance) &&
-                isBurning)
-            {
-                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-is-burning",
-                    ("owner", uid)));
-            }
-
-            if (_appearance.TryGetData<bool>(uid, StorageVisuals.HasContents, out var hasContents, appearance) &&
-                hasContents)
-            {
-                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-has-contents"));
-            }
-            else
-            {
-                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-empty"));
-            }
+            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-is-burning", ("owner", uid)));
+        }
+        if (_appearance.TryGetData<bool>(uid, StorageVisuals.HasContents, out var hasContents, appearance) && hasContents)
+        {
+            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-has-contents"));
+        }
+        else
+        {
+            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-empty"));
         }
     }
 
@@ -150,11 +139,11 @@ public sealed class CrematoriumSystem : EntitySystem
             for (var i = storage.Contents.ContainedEntities.Count - 1; i >= 0; i--)
             {
                 var item = storage.Contents.ContainedEntities[i];
-                _containers.Remove(item, storage.Contents);
+                storage.Contents.Remove(item);
                 EntityManager.DeleteEntity(item);
             }
             var ash = Spawn("Ash", Transform(uid).Coordinates);
-            _containers.Insert(ash, storage.Contents);
+            storage.Contents.Insert(ash);
         }
 
         _entityStorage.OpenStorage(uid, storage);

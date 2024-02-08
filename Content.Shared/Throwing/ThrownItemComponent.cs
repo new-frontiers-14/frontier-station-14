@@ -4,51 +4,48 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class ThrownItemComponent : Component
     {
         /// <summary>
         ///     The entity that threw this entity.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public EntityUid? Thrower;
+        [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public EntityUid? Thrower { get; set; }
 
         /// <summary>
         ///     The <see cref="IGameTiming.CurTime"/> timestamp at which this entity was thrown.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan? ThrownTime;
+        [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public TimeSpan? ThrownTime { get; set; }
 
         /// <summary>
         ///     Compared to <see cref="IGameTiming.CurTime"/> to land this entity, if any.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan? LandTime;
+        [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public TimeSpan? LandTime { get; set; }
 
         /// <summary>
         ///     Whether or not this entity was already landed.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public bool Landed;
+        [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public bool Landed { get; set; }
 
         /// <summary>
         ///     Whether or not to play a sound when the entity lands.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public bool PlayLandSound;
+        [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public bool PlayLandSound { get; set; }
     }
 
     [Serializable, NetSerializable]
     public sealed class ThrownItemComponentState : ComponentState
     {
-        public NetEntity? Thrower;
+        public NetEntity? Thrower { get; }
 
-        public TimeSpan? ThrownTime;
-
-        public TimeSpan? LandTime;
-
-        public bool Landed;
-
-        public bool PlayLandSound;
+        public ThrownItemComponentState(NetEntity? thrower)
+        {
+            Thrower = thrower;
+        }
     }
 }

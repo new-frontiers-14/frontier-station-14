@@ -14,8 +14,6 @@
   # These are roundstart but not replenishable for salvage
   - WeaponCrusher
   - WeaponCrusherDagger
-  # This is not roundstart since its a direct upgrade
-  - WeaponCrusherGlaive
 
 - type: technology
   id: DraconicMunitions
@@ -88,24 +86,22 @@
   - MagazineBoxRifleRubber
 
 - type: technology
-  id: UraniumMunitions
-  name: research-technology-uranium-munitions
+  id: PracticeAmmunition
+  name: research-technology-practice-ammunition
   icon:
-    sprite: Objects/Materials/Sheets/other.rsi
-    state: uranium
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: practice
   discipline: Arsenal
   tier: 1
-  cost: 7500
+  cost: 2000
   recipeUnlocks:
-  - ShellShotgunUranium
-  - CartridgePistolUranium
-  - CartridgeMagnumUranium
-  - CartridgeLightRifleUranium
-  - CartridgeRifleUranium
-  - MagazineBoxPistolUranium
-  - MagazineBoxMagnumUranium
-  - MagazineBoxLightRifleUranium
-  - MagazineBoxRifleUranium
+  - ShellShotgunPractice
+  - MagazineBoxPistolPractice
+  - MagazineBoxMagnumPractice
+  - MagazineBoxLightRiflePractice
+  - MagazineBoxRiflePractice
+  - WeaponLaserCarbinePractice
+  - WeaponDisablerPractice
 
 # Tier 2
 
@@ -143,13 +139,23 @@
   tier: 2
   cost: 8000
   recipeUnlocks:
-  - ClothingEyesGlassesSecurity
   - Truncheon
   - TelescopicShield
   - HoloprojectorSecurity
-#  - WeaponDisablerSMG # Frontier - Enable when we can confrim its only used by sec, or move it to sec feb later
 
 # Tier 3
+
+# - type: technology
+#   id: HandheldElectricalPropulsion
+#   name: research-technology-handheld-electrical-propulsion
+#   icon:
+#     sprite: Objects/Weapons/Guns/Battery/taser.rsi
+#     state: icon
+#   discipline: Arsenal
+#   tier: 3
+#   cost: 15000
+#   recipeUnlocks:
+#   - WeaponTaser
 
 - type: technology
   id: PortableMicrofusionWeaponry
@@ -162,15 +168,3 @@
   cost: 15000
   recipeUnlocks:
   - WeaponAdvancedLaser
-
-# - type: technology # Frontier - OP
-  # id: ExperimentalBatteryAmmo
-  # name: research-technology-experimental-battery-ammo
-  # icon:
-    # sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-    # state: icon
-  # discipline: Arsenal
-  # tier: 3
-  # cost: 15000
-  # recipeUnlocks:
-  # - WeaponLaserSvalinn

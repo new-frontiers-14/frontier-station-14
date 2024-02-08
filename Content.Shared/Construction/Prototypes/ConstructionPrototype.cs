@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Construction.Conditions;
-using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
@@ -7,7 +6,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Construction.Prototypes;
 
 [Prototype("construction")]
-public sealed partial class ConstructionPrototype : IPrototype
+public sealed class ConstructionPrototype : IPrototype
 {
     [DataField("conditions")] private List<IConstructionCondition> _conditions = new();
 
@@ -21,7 +20,7 @@ public sealed partial class ConstructionPrototype : IPrototype
     ///     Friendly name displayed in the construction GUI.
     /// </summary>
     [DataField("name")]
-    public string Name = string.Empty;
+    public string Name= string.Empty;
 
     /// <summary>
     ///     "Useful" description displayed in the construction GUI.
@@ -32,7 +31,7 @@ public sealed partial class ConstructionPrototype : IPrototype
     /// <summary>
     ///     The <see cref="ConstructionGraphPrototype"/> this construction will be using.
     /// </summary>
-    [DataField("graph", customTypeSerializer: typeof(PrototypeIdSerializer<ConstructionGraphPrototype>), required: true)]
+    [DataField("graph", customTypeSerializer:typeof(PrototypeIdSerializer<ConstructionGraphPrototype>), required: true)]
     public string Graph = string.Empty;
 
     /// <summary>
@@ -65,13 +64,6 @@ public sealed partial class ConstructionPrototype : IPrototype
     [DataField("canBuildInImpassable")]
     public bool CanBuildInImpassable { get; private set; }
 
-    /// <summary>
-    /// If not null, then this is used to check if the entity trying to construct this is whitelisted.
-    /// If they're not whitelisted, hide the item.
-    /// </summary>
-    [DataField("entityWhitelist")]
-    public EntityWhitelist? EntityWhitelist = null;
-
     [DataField("category")] public string Category { get; private set; } = "";
 
     [DataField("objectType")] public ConstructionType Type { get; private set; } = ConstructionType.Structure;
@@ -92,11 +84,11 @@ public sealed partial class ConstructionPrototype : IPrototype
     /// <summary>
     ///     Construction to replace this construction with when the current one is 'flipped'
     /// </summary>
-    [DataField("mirror", customTypeSerializer: typeof(PrototypeIdSerializer<ConstructionPrototype>))]
+    [DataField("mirror", customTypeSerializer:typeof(PrototypeIdSerializer<ConstructionPrototype>))]
     public string? Mirror;
 
     public IReadOnlyList<IConstructionCondition> Conditions => _conditions;
-    public IReadOnlyList<SpriteSpecifier> Layers => _layers ?? new List<SpriteSpecifier> { Icon };
+    public IReadOnlyList<SpriteSpecifier> Layers => _layers ?? new List<SpriteSpecifier>{Icon};
 }
 
 public enum ConstructionType

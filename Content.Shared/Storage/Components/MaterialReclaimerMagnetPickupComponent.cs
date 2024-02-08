@@ -11,10 +11,4 @@ public sealed partial class MaterialReclaimerMagnetPickupComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]
     public float Range = 1f;
-
-    /// <summary>
-    /// Frontier - Is the magnet currently enabled?
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
-    public bool MagnetEnabled = false;
 }

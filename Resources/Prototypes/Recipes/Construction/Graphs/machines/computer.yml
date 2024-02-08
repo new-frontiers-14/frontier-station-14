@@ -11,7 +11,6 @@
           steps:
             - material: Steel
               amount: 5
-              doAfter: 2.5
 
     - node: frameUnsecured
       actions:
@@ -30,13 +29,16 @@
                 state: "id_mod"
 
         - to: start
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
               amount: 5
             - !type:DeleteEntity {}
           steps:
-            - tool: Screwing
+            - tool: Welding
               doAfter: 2
 
     - node: boardUnsecured

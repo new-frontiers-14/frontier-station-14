@@ -44,4 +44,9 @@ namespace Content.Server.Construction.Components
         [ViewVariables]
         public Container PartContainer = default!;
     }
+
+    [DataDefinition]
+    public sealed partial class MachineDeconstructedEvent : EntityEventArgs
+    {
+    }
 }

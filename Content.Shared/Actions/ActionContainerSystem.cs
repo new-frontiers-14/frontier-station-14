@@ -1,8 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Ghost;
-using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -20,7 +17,6 @@ public sealed class ActionContainerSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -30,25 +26,6 @@ public sealed class ActionContainerSystem : EntitySystem
         SubscribeLocalEvent<ActionsContainerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ActionsContainerComponent, EntRemovedFromContainerMessage>(OnEntityRemoved);
         SubscribeLocalEvent<ActionsContainerComponent, EntInsertedIntoContainerMessage>(OnEntityInserted);
-        SubscribeLocalEvent<ActionsContainerComponent, MindAddedMessage>(OnMindAdded);
-        SubscribeLocalEvent<ActionsContainerComponent, MindRemovedMessage>(OnMindRemoved);
-    }
-
-    private void OnMindAdded(EntityUid uid, ActionsContainerComponent component, MindAddedMessage args)
-    {
-        if(!_mind.TryGetMind(uid, out var mindId, out _))
-            return;
-
-        if (!TryComp<ActionsContainerComponent>(mindId, out var mindActionContainerComp))
-            return;
-
-        if (!HasComp<GhostComponent>(uid) && mindActionContainerComp.Container.ContainedEntities.Count > 0 )
-            _actions.GrantContainedActions(uid, mindId);
-    }
-
-    private void OnMindRemoved(EntityUid uid, ActionsContainerComponent component, MindRemovedMessage args)
-    {
-        _actions.RemoveProvidedActions(uid, args.Mind);
     }
 
     /// <summary>
@@ -187,7 +164,7 @@ public sealed class ActionContainerSystem : EntitySystem
 
         DebugTools.AssertOwner(uid, comp);
         comp ??= EnsureComp<ActionsContainerComponent>(uid);
-        if (!_container.Insert(actionId, comp.Container))
+        if (!comp.Container.Insert(actionId))
         {
             Log.Error($"Failed to insert action {ToPrettyString(actionId)} into {ToPrettyString(uid)}");
             return false;
@@ -239,7 +216,7 @@ public sealed class ActionContainerSystem : EntitySystem
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return; // The game state should handle the container removal & action deletion.
 
-        _container.ShutdownContainer(component.Container);
+        component.Container.Shutdown();
     }
 
     private void OnEntityInserted(EntityUid uid, ActionsContainerComponent component, EntInsertedIntoContainerMessage args)

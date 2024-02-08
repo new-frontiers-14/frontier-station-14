@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Shared.Physics;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -65,12 +65,6 @@ public abstract partial class SharedEntityStorageComponent : Component
     public float EnteringRange = 0.18f;
 
     /// <summary>
-    /// If true, there may be mobs inside the container, even if the container is an Item
-    /// </summary>
-    [DataField]
-    public bool ItemCanStoreMobs = false;
-
-    /// <summary>
     /// Whether or not to show the contents when the storage is closed
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
@@ -118,12 +112,6 @@ public abstract partial class SharedEntityStorageComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Whitelist;
-
-    /// <summary>
-    ///     Frontier - Force whitelist to consider mobs, normally the whitelist will still allow all mobs to still enter.
-    /// </summary>
-    [DataField]
-    public bool ForceWhitelist;
 
     /// <summary>
     /// The contents of the storage

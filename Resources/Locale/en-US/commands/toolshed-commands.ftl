@@ -40,8 +40,6 @@ command-description-stations-rename =
     Renames the given station.
 command-description-stations-largestgrid =
     Returns the largest grid the given station has, if any.
-command-description-stations-rerollBounties =
-    Clears all the current bounties for the station and gets a new selection.
 command-description-stationevent-lsprob =
     Lists the probability of different station events occuring out of the entire pool.
 command-description-stationevent-lsprobtime =
@@ -78,5 +76,3 @@ command-description-mind-get =
     Grabs the mind from the entity, if any.
 command-description-mind-control =
     Assumes control of an entity with the given player.
-command-description-addaccesslog =
-    Adds an access log to this entity. Do note that this bypasses the log's default limit and pause check.

@@ -1,10 +1,7 @@
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
-using Content.Shared.Explosion;
 using Content.Shared.Ghost;
 using Content.Shared.Hands;
-using Content.Shared.Input;
-using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
@@ -12,8 +9,6 @@ using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -25,24 +20,15 @@ public sealed partial class StorageSystem : SharedStorageSystem
 {
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<ActivationVerb>>(AddUiVerb);
         SubscribeLocalEvent<StorageComponent, BoundUIClosedEvent>(OnBoundUIClosed);
-        SubscribeLocalEvent<StorageComponent, BeforeExplodeEvent>(OnExploded);
 
         SubscribeLocalEvent<StorageFillComponent, MapInitEvent>(OnStorageFillMapInit);
-
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.OpenBackpack, InputCmdHandler.FromDelegate(HandleOpenBackpack))
-            .Bind(ContentKeyFunctions.OpenBelt, InputCmdHandler.FromDelegate(HandleOpenBelt))
-            .Register<StorageSystem>();
     }
 
     private void AddUiVerb(EntityUid uid, StorageComponent component, GetVerbsEvent<ActivationVerb> args)
@@ -104,16 +90,11 @@ public sealed partial class StorageSystem : SharedStorageSystem
         if (!_uiSystem.IsUiOpen(uid, args.UiKey))
         {
             storageComp.IsUiOpen = false;
-            UpdateAppearance((uid, storageComp, null));
+            UpdateStorageVisualization(uid, storageComp);
 
             if (storageComp.StorageCloseSound is not null)
-                Audio.PlayEntity(storageComp.StorageCloseSound, Filter.Pvs(uid, entityManager: EntityManager), uid, true, storageComp.StorageCloseSound.Params);
+                Audio.Play(storageComp.StorageCloseSound, Filter.Pvs(uid, entityManager: EntityManager), uid, true, storageComp.StorageCloseSound.Params);
         }
-    }
-
-    private void OnExploded(Entity<StorageComponent> ent, ref BeforeExplodeEvent args)
-    {
-        args.Contents.AddRange(ent.Comp.Container.ContainedEntities);
     }
 
     /// <summary>
@@ -122,25 +103,23 @@ public sealed partial class StorageSystem : SharedStorageSystem
     /// <param name="entity">The entity to open the UI for</param>
     public override void OpenStorageUI(EntityUid uid, EntityUid entity, StorageComponent? storageComp = null, bool silent = false)
     {
-        if (!Resolve(uid, ref storageComp, false) || !TryComp(entity, out ActorComponent? player))
+        if (!Resolve(uid, ref storageComp) || !TryComp(entity, out ActorComponent? player))
             return;
 
         // prevent spamming bag open / honkerton honk sound
-        silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && _useDelay.IsDelayed((uid, useDelay));
+        silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.ActiveDelay(uid, useDelay);
         if (!silent)
         {
-            _audio.PlayPvs(storageComp.StorageOpenSound, uid);
+            Audio.PlayPvs(storageComp.StorageOpenSound, uid);
             if (useDelay != null)
-                _useDelay.TryResetDelay((uid, useDelay));
+                UseDelay.BeginDelay(uid, useDelay);
         }
 
         Log.Debug($"Storage (UID {uid}) \"used\" by player session (UID {player.PlayerSession.AttachedEntity}).");
 
         var bui = _uiSystem.GetUiOrNull(uid, StorageComponent.StorageUiKey.Key);
-        if (bui == null)
-            return;
-        _uiSystem.OpenUi(bui, player.PlayerSession);
-        _uiSystem.SendUiMessage(bui, new StorageModifyWindowMessage());
+        if (bui != null)
+            _uiSystem.OpenUi(bui, player.PlayerSession);
     }
 
     /// <inheritdoc />
@@ -175,32 +154,5 @@ public sealed partial class StorageSystem : SharedStorageSystem
                 _uiSystem.TryClose(entity, bui.UiKey, session, ui);
             }
         }
-    }
-
-    private void HandleOpenBackpack(ICommonSession? session)
-    {
-        HandleOpenSlotUI(session, "back");
-    }
-
-    private void HandleOpenBelt(ICommonSession? session)
-    {
-        HandleOpenSlotUI(session, "belt");
-    }
-
-    private void HandleOpenSlotUI(ICommonSession? session, string slot)
-    {
-        if (session is not { } playerSession)
-            return;
-
-        if (playerSession.AttachedEntity is not {Valid: true} playerEnt || !Exists(playerEnt))
-            return;
-
-        if (!_inventory.TryGetSlotEntity(playerEnt, slot, out var storageEnt))
-            return;
-
-        if (!ActionBlocker.CanInteract(playerEnt, storageEnt))
-            return;
-
-        OpenStorageUI(storageEnt.Value, playerEnt);
     }
 }

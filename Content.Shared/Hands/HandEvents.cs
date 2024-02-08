@@ -319,15 +319,4 @@ namespace Content.Shared.Hands
 
         public EntityUid Sender { get; }
     }
-
-    [ByRefEvent]
-    public sealed class HeldRelayedEvent<TEvent> : EntityEventArgs
-    {
-        public TEvent Args;
-
-        public HeldRelayedEvent(TEvent args)
-        {
-            Args = args;
-        }
-    }
 }

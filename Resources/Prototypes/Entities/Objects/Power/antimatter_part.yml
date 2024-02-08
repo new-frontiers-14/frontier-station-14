@@ -1,17 +1,16 @@
 - type: entity
   parent: BaseItem
   id: AmePart
-  name: AME flatpack
-  description: A flatpack used for constructing an antimatter engine reactor.
+  name: AME part
+  description: A flatpack used for constructing an antimatter engine reactor. Use a multitool to unpack it.
   components:
   - type: Item
-    size: Normal
+    size: 5
     sprite: Objects/Power/AME/ame_part.rsi
   - type: Sprite
     sprite: Objects/Power/AME/ame_part.rsi
     state: box
-  - type: Flatpack
-    entity: AmeShielding
+  - type: AmePart
   - type: StaticPrice
     price: 400
   - type: GuideHelp
@@ -19,5 +18,3 @@
   - type: Tag
     tags:
       - DroneUsable
-  - type: StealTarget
-    stealGroup: AmePart

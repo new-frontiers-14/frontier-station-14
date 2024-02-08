@@ -28,7 +28,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ContentEyeComponent, ComponentStartup>(OnContentEyeStartup);
         SubscribeAllEvent<RequestTargetZoomEvent>(OnContentZoomRequest);
-        SubscribeAllEvent<RequestEyeEvent>(OnRequestEye);
+        SubscribeAllEvent<RequestFovEvent>(OnRequestFov);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ZoomIn, InputCmdHandler.FromDelegate(ZoomIn, handle:false))
@@ -89,7 +89,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
             SetZoom(args.SenderSession.AttachedEntity.Value, msg.TargetZoom, ignoreLimit, eye: content);
     }
 
-    private void OnRequestEye(RequestEyeEvent msg, EntitySessionEventArgs args)
+    private void OnRequestFov(RequestFovEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } player)
             return;
@@ -99,8 +99,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
 
         if (TryComp<EyeComponent>(player, out var eyeComp))
         {
-            _eye.SetDrawFov(player, msg.DrawFov, eyeComp);
-            _eye.SetDrawLight((player, eyeComp), msg.DrawLight);
+            _eye.SetDrawFov(player, msg.Fov, eyeComp);
         }
     }
 
@@ -109,7 +108,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
         if (!TryComp<EyeComponent>(uid, out var eyeComp))
             return;
 
-        _eye.SetZoom(uid, component.TargetZoom, eyeComp);
+        component.TargetZoom = eyeComp.Zoom;
         Dirty(uid, component);
     }
 
@@ -142,15 +141,8 @@ public abstract class SharedContentEyeSystem : EntitySystem
     /// Sendable from client to server to request changing fov.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class RequestEyeEvent : EntityEventArgs
+    public sealed class RequestFovEvent : EntityEventArgs
     {
-        public readonly bool DrawFov;
-        public readonly bool DrawLight;
-
-        public RequestEyeEvent(bool drawFov, bool drawLight)
-        {
-            DrawFov = drawFov;
-            DrawLight = drawLight;
-        }
+        public bool Fov;
     }
 }

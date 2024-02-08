@@ -3,6 +3,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -88,19 +89,18 @@ public sealed partial class BorgSystem
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp))
             return;
 
-        var selected = chassisComp.SelectedModule;
-
         args.Handled = true;
-        UnselectModule(chassis, chassisComp);
-
-        if (selected != uid)
+        if (chassisComp.SelectedModule == uid)
         {
-            SelectModule(chassis, uid, chassisComp, component);
+            UnselectModule(chassis, chassisComp);
+            return;
         }
+
+        SelectModule(chassis, uid, chassisComp, component);
     }
 
     /// <summary>
-    /// Selects a module, enabling the borg to use its provided abilities.
+    /// Selects a module, enablind the borg to use its provided abilities.
     /// </summary>
     public void SelectModule(EntityUid chassis,
         EntityUid moduleUid,
@@ -201,7 +201,7 @@ public sealed partial class BorgSystem
                     continue;
                 }
 
-                _container.Remove(item, component.ProvidedContainer, force: true);
+                component.ProvidedContainer.Remove(item, EntityManager, force: true);
             }
 
             if (!item.IsValid())
@@ -245,7 +245,7 @@ public sealed partial class BorgSystem
             if (LifeStage(item) <= EntityLifeStage.MapInitialized)
             {
                 RemComp<UnremoveableComponent>(item);
-                _container.Insert(item, component.ProvidedContainer);
+                component.ProvidedContainer.Insert(item, EntityManager);
             }
             _hands.RemoveHand(chassis, handId, hands);
         }

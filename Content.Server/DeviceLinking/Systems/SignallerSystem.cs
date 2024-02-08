@@ -39,11 +39,14 @@ public sealed class SignallerSystem : EntitySystem
 
     private void OnTrigger(EntityUid uid, SignallerComponent component, TriggerEvent args)
     {
-        if (!TryComp(uid, out UseDelayComponent? useDelay)
-            // if on cooldown, do nothing
-            // and set cooldown to prevent clocks
-            || !_useDelay.TryResetDelay((uid, useDelay), true))
+        // if on cooldown, do nothing
+        var hasUseDelay = TryComp<UseDelayComponent>(uid, out var useDelay);
+        if (hasUseDelay && _useDelay.ActiveDelay(uid, useDelay))
             return;
+
+        // set cooldown to prevent clocks
+        if (hasUseDelay)
+            _useDelay.BeginDelay(uid, useDelay);
 
         _link.InvokePort(uid, component.Port);
         args.Handled = true;

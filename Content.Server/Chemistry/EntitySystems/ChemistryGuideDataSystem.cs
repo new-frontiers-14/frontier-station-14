@@ -17,7 +17,8 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(PrototypeManagerReload);
+        PrototypeManager.PrototypesReloaded += PrototypeManagerReload;
+
         _player.PlayerStatusChanged += OnPlayerStatusChanged;
 
         InitializeServerRegistry();

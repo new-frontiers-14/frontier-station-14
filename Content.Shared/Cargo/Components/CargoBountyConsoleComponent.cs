@@ -48,9 +48,9 @@ public sealed class CargoBountyConsoleState : BoundUserInterfaceState
 [Serializable, NetSerializable]
 public sealed class BountyPrintLabelMessage : BoundUserInterfaceMessage
 {
-    public string BountyId;
+    public int BountyId;
 
-    public BountyPrintLabelMessage(string bountyId)
+    public BountyPrintLabelMessage(int bountyId)
     {
         BountyId = bountyId;
     }

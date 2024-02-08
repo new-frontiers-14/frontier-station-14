@@ -10,8 +10,6 @@ using Content.Shared.Storage;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using Content.Shared.Wires;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 
 namespace Content.Server.Construction;
@@ -36,7 +34,7 @@ public sealed class PartExchangerSystem : EntitySystem
     {
         if (args.Cancelled)
         {
-            component.AudioStream = _audio.Stop(component.AudioStream);
+            component.AudioStream?.Stop();
             return;
         }
 
@@ -91,7 +89,7 @@ public sealed class PartExchangerSystem : EntitySystem
         }
         foreach (var part in updatedParts)
         {
-            _container.Insert(part.part, machine.PartContainer);
+            machine.PartContainer.Insert(part.part, EntityManager);
             machineParts.Remove(part);
         }
 
@@ -140,7 +138,7 @@ public sealed class PartExchangerSystem : EntitySystem
             if (!machine.Requirements.ContainsKey(part.PartType))
                 continue;
 
-            _container.Insert(partEnt, machine.PartContainer);
+            machine.PartContainer.Insert(partEnt, EntityManager);
             machine.Progress[part.PartType]++;
             machineParts.Remove(pair);
         }
@@ -170,7 +168,7 @@ public sealed class PartExchangerSystem : EntitySystem
             return;
         }
 
-        component.AudioStream = _audio.PlayPvs(component.ExchangeSound, uid).Value.Entity;
+        component.AudioStream = _audio.PlayPvs(component.ExchangeSound, uid);
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.ExchangeDuration, new ExchangerDoAfterEvent(), uid, target: args.Target, used: uid)
         {

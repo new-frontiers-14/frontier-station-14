@@ -1,4 +1,4 @@
-job-supervisors-centcom = CentCom official
+﻿job-supervisors-centcom = CentCom official
 job-supervisors-captain = the captain
 job-supervisors-hop = the station representative
 job-supervisors-hos = the sheriff

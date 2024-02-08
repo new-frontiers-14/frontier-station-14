@@ -469,13 +469,12 @@ public sealed partial class NPCSteeringSystem
     {
         var objectRadius = 0.15f;
         var detectionRadius = MathF.Max(0.35f, agentRadius + objectRadius);
-        var ents = _entSetPool.Get();
-        _lookup.GetEntitiesInRange(uid, detectionRadius, ents, LookupFlags.Static);
 
-        foreach (var ent in ents)
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, detectionRadius, LookupFlags.Static))
         {
             // TODO: If we can access the door or smth.
-            if (!_physicsQuery.TryGetComponent(ent, out var otherBody) ||
+            if (ent == uid ||
+                !_physicsQuery.TryGetComponent(ent, out var otherBody) ||
                 !otherBody.Hard ||
                 !otherBody.CanCollide ||
                 (mask & otherBody.CollisionLayer) == 0x0 &&
@@ -522,7 +521,6 @@ public sealed partial class NPCSteeringSystem
             }
         }
 
-        _entSetPool.Return(ents);
     }
 
     #endregion
@@ -547,13 +545,12 @@ public sealed partial class NPCSteeringSystem
         var detectionRadius = MathF.Max(0.35f, agentRadius + objectRadius);
         var ourVelocity = body.LinearVelocity;
         _factionQuery.TryGetComponent(uid, out var ourFaction);
-        var ents = _entSetPool.Get();
-        _lookup.GetEntitiesInRange(uid, detectionRadius, ents, LookupFlags.Dynamic);
 
-        foreach (var ent in ents)
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, detectionRadius, LookupFlags.Dynamic))
         {
             // TODO: If we can access the door or smth.
-            if (!_physicsQuery.TryGetComponent(ent, out var otherBody) ||
+            if (ent == uid ||
+                !_physicsQuery.TryGetComponent(ent, out var otherBody) ||
                 !otherBody.Hard ||
                 !otherBody.CanCollide ||
                 (mask & otherBody.CollisionLayer) == 0x0 &&
@@ -605,8 +602,6 @@ public sealed partial class NPCSteeringSystem
                 danger[i] = MathF.Max(dot * weight, danger[i]);
             }
         }
-
-        _entSetPool.Return(ents);
     }
 
     #endregion

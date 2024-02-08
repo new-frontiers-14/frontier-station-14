@@ -1,3 +1,4 @@
+# TODO: Add description (1)
 - type: entity
   parent: BaseItem
   name: mop
@@ -19,7 +20,7 @@
       types:
         Blunt: 5
   - type: Item
-    size: Large
+    size: 15
     sprite: Objects/Specific/Janitorial/mop.rsi
   - type: Absorbent
   - type: SolutionContainerManager
@@ -58,7 +59,7 @@
         types:
           Blunt: 5
     - type: Item
-      size: Large
+      size: 15
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
@@ -139,7 +140,7 @@
   - type: ItemSlots
     slots:
       shark_slot:
-        name: mop-bucket-slot-component-slot-name-shark
+        name: Shark
         whitelist:
           tags:
             - PlushieSharkBlue
@@ -202,7 +203,7 @@
     sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
   - type: Item
     sprite: Objects/Specific/Janitorial/wet_floor_sign.rsi
-    size: Normal
+    size: 15
   - type: Armor
     modifiers:
       coefficients:
@@ -289,64 +290,21 @@
     - type: ItemSlots
       slots:
         mop_slot:
-          name: janitorial-trolley-slot-component-slot-name-mop
+          name: Mop
           whitelist:
             tags:
               - Mop
           insertOnInteract: false # or it conflicts with bucket logic
-          priority: 9 # Higher than bucket slot
-        plunger_slot:
-          name: janitorial-trolley-slot-component-slot-name-plunger
-          whitelist:
-            tags:
-              - Plunger
-          priority: 8
-        wetfloorsign_slot4:
-          name: janitorial-trolley-slot-component-slot-name-sign
-          whitelist:
-            tags:
-              - WetFloorSign
-          priority: 7
-        wetfloorsign_slot3:
-          name: janitorial-trolley-slot-component-slot-name-sign
-          whitelist:
-            tags:
-              - WetFloorSign
-          priority: 7
-        wetfloorsign_slot2:
-          name: janitorial-trolley-slot-component-slot-name-sign
-          whitelist:
-            tags:
-              - WetFloorSign
-          priority: 7
-        wetfloorsign_slot1:
-          name: janitorial-trolley-slot-component-slot-name-sign
-          whitelist:
-            tags:
-              - WetFloorSign
-          priority: 7
-        lightreplacer_slot:
-          name: janitorial-trolley-slot-component-slot-name-lightreplacer
-          whitelist:
-            tags:
-              - LightReplacer
-          priority: 6
-        spraybottle_slot:
-          name: janitorial-trolley-slot-component-slot-name-spray
-          whitelist:
-            tags:
-              - Spray
-          insertOnInteract: false # or it conflicts with bucket logic
           priority: 5 # Higher than bucket slot
         bucket_slot:
-          name: janitorial-trolley-slot-component-slot-name-bucket
+          name: Bucket
           whitelist:
             tags:
               - Bucket
           insertOnInteract: false # or it also conflicts with bucket logic
           priority: 4 # Higher than trash bag slot
         trashbag_slot:
-          name: janitorial-trolley-slot-component-slot-name-trashbag
+          name: Bag
           whitelist:
             tags:
               - TrashBag
@@ -470,13 +428,6 @@
         mop_slot: !type:ContainerSlot {}
         trashbag_slot: !type:ContainerSlot {}
         bucket_slot: !type:ContainerSlot {}
-        plunger_slot: !type:ContainerSlot {}
-        wetfloorsign_slot4: !type:ContainerSlot {}
-        wetfloorsign_slot3: !type:ContainerSlot {}
-        wetfloorsign_slot2: !type:ContainerSlot {}
-        wetfloorsign_slot1: !type:ContainerSlot {}
-        lightreplacer_slot: !type:ContainerSlot {}
-        spraybottle_slot:  !type:ContainerSlot {}
     - type: GuideHelp
       guides:
       - Janitorial
@@ -552,58 +503,28 @@
   parent: BaseItem
   description: A plunger with a red plastic suction-cup and a wooden handle. Used to unclog drains.
   components:
-  - type: Tag
-    tags:
-       - Plunger
-       - WhitelistChameleon
-  - type: Sprite
-    sprite: Objects/Specific/Janitorial/plunger.rsi
-    state: plunger
-  - type: Item
-    sprite: Objects/Specific/Janitorial/plunger.rsi
-    heldPrefix: plunger
-  - type: GuideHelp
-    guides:
-    - Janitorial
-  - type: Clothing
-    sprite: Objects/Specific/Janitorial/plunger.rsi
-    slots:
-      - HEAD
-    clothingVisuals:
-      head:
-        - state: equipped-HELMET
-          offset: "0, 0.15625"
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.2
-        density: 5
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.2
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,0.1,0.1"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-  - type: EmbeddableProjectile
-    sound: /Audio/Weapons/pop.ogg
-    embedOnThrow: True
-  - type: ThrowingAngle
-    angle: 0
-  - type: Ammo
-    muzzleFlash: null
-  - type: Projectile
-    deleteOnCollide: false
-    onlyCollideWhenShot: true
-    damage:
-      types:
-        Blunt: 3
+    - type: Tag
+      tags:
+        - Plunger
+        - WhitelistChameleon
+    - type: Sprite
+      sprite: Objects/Specific/Janitorial/plunger.rsi
+      state: plunger
+    - type: Item
+      sprite: Objects/Specific/Janitorial/plunger.rsi
+      heldPrefix: plunger
+    - type: ItemCooldown
+    - type: GuideHelp
+      guides:
+      - Janitorial
+    - type: Clothing
+      sprite: Objects/Specific/Janitorial/plunger.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+            offset: "0, 0.15625"
 
 - type: entity
   parent: BaseItem
@@ -623,7 +544,7 @@
         types:
           Blunt: 0
     - type: Item
-      size: Small
+      size: 10
       sprite: Objects/Specific/Janitorial/rag.rsi
     - type: Absorbent
       pickupAmount: 15
@@ -640,6 +561,3 @@
       tags:
         - DroneUsable
         - Mop
-    - type: CleansForensics
-    - type: Fiber
-      fiberColor: fibers-white

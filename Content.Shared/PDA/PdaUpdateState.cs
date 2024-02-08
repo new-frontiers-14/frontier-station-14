@@ -10,7 +10,6 @@ namespace Content.Shared.PDA
     {
         public bool FlashlightEnabled;
         public bool HasPen;
-        public bool HasPai;
         public bool HasBook;
         public PdaIdInfoText PdaOwnerInfo;
         public string? StationName;
@@ -23,7 +22,6 @@ namespace Content.Shared.PDA
             NetEntity? activeUI,
             bool flashlightEnabled,
             bool hasPen,
-            bool hasPai,
             bool hasBook,
             PdaIdInfoText pdaOwnerInfo,
             string? stationName,
@@ -34,7 +32,6 @@ namespace Content.Shared.PDA
         {
             FlashlightEnabled = flashlightEnabled;
             HasPen = hasPen;
-            HasPai = hasPai;
             HasBook = hasBook;
             PdaOwnerInfo = pdaOwnerInfo;
             HasUplink = hasUplink;

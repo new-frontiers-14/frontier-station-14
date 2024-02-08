@@ -31,7 +31,6 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly AnimationPlayerSystem _animPlayer = default!;
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
     public const string HitscanProto = "HitscanEffect";
@@ -310,14 +309,8 @@ public sealed partial class GunSystem : SharedGunSystem
         };
 
         _animPlayer.Play(ent, anim, "muzzle-flash");
-        if (!TryComp(uid, out PointLightComponent? light))
-        {
-            light = (PointLightComponent) _factory.GetComponent(typeof(PointLightComponent));
-            light.Owner = uid;
-            light.NetSyncEnabled = false;
-            AddComp(uid, light);
-        }
-
+        var light = EnsureComp<PointLightComponent>(uid);
+        light.NetSyncEnabled = false;
         Lights.SetEnabled(uid, true, light);
         Lights.SetRadius(uid, 2f, light);
         Lights.SetColor(uid, Color.FromHex("#cc8e2b"), light);

@@ -1,6 +1,6 @@
-using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Clothing;
 
-namespace Content.Server.Nutrition.Components;
+namespace Content.Server.Nutrition.EntitySystems;
 
 /// <summary>
 ///     Component that denotes a piece of clothing that blocks the mouth or otherwise prevents eating & drinking.
@@ -9,7 +9,7 @@ namespace Content.Server.Nutrition.Components;
 ///     In the event that more head-wear & mask functionality is added (like identity systems, or raising/lowering of
 ///     masks), then this component might become redundant.
 /// </remarks>
-[RegisterComponent, Access(typeof(FoodSystem), typeof(DrinkSystem), typeof(IngestionBlockerSystem))]
+[RegisterComponent, Access(typeof(FoodSystem), typeof(DrinkSystem), typeof(MaskSystem))]
 public sealed partial class IngestionBlockerComponent : Component
 {
     /// <summary>

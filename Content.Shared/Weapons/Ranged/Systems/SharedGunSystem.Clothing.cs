@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Inventory;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -32,23 +32,24 @@ public partial class SharedGunSystem
     private bool TryGetClothingSlotEntity(EntityUid uid, ClothingSlotAmmoProviderComponent component, [NotNullWhen(true)] out EntityUid? slotEntity)
     {
         slotEntity = null;
-
         if (!Containers.TryGetContainingContainer(uid, out var container))
             return false;
         var user = container.Owner;
 
-        if (!_inventory.TryGetContainerSlotEnumerator(user, out var enumerator, component.TargetSlot))
+        if (!TryComp<InventoryComponent>(user, out var inventory))
             return false;
-
-        while (enumerator.NextItem(out var item))
+        var slots = _inventory.GetSlots(user, inventory);
+        foreach (var slot in slots)
         {
-            if (component.ProviderWhitelist == null || !component.ProviderWhitelist.IsValid(item, EntityManager))
+            if (slot.SlotFlags != component.TargetSlot)
                 continue;
-
-            slotEntity = item;
-            return true;
+            if (!_inventory.TryGetSlotEntity(user, slot.Name, out var e, inventory))
+                continue;
+            if (component.ProviderWhitelist != null && !component.ProviderWhitelist.IsValid(e.Value, EntityManager))
+                continue;
+            slotEntity = e;
         }
 
-        return false;
+        return slotEntity != null;
     }
 }

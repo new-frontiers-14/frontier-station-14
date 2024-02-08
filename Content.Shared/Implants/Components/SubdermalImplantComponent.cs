@@ -80,11 +80,6 @@ public sealed partial class OpenUplinkImplantEvent : InstantActionEvent
 
 }
 
-public sealed partial class UseScramImplantEvent : InstantActionEvent
-{
-
-}
-
 public sealed partial class UseDnaScramblerImplantEvent : InstantActionEvent
 {
 

@@ -172,12 +172,10 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
             return;
         if (_sandbox.SandboxAllowed && _window.IsOpen != true)
         {
-            UIManager.ClickSound();
             _window.OpenCentered();
         }
         else
         {
-            UIManager.ClickSound();
             _window.Close();
         }
     }

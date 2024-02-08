@@ -44,7 +44,7 @@ public sealed partial class DamageForceSayComponent : Component
     ///     a force say occurs.
     /// </summary>
     [DataField]
-    public FixedPoint2 DamageThreshold = FixedPoint2.New(5);
+    public FixedPoint2 DamageThreshold = FixedPoint2.New(10);
 
     /// <summary>
     ///     A list of damage group types that are considered when checking <see cref="DamageThreshold"/>.

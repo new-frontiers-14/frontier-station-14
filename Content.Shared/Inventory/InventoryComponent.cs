@@ -1,5 +1,4 @@
-﻿using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Inventory;
@@ -12,7 +11,4 @@ public sealed partial class InventoryComponent : Component
     public string TemplateId { get; private set; } = "human";
 
     [DataField("speciesId")] public string? SpeciesId { get; set; }
-
-    public SlotDefinition[] Slots = Array.Empty<SlotDefinition>();
-    public ContainerSlot[] Containers = Array.Empty<ContainerSlot>();
 }

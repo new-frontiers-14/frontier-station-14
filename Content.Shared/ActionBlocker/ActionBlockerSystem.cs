@@ -9,7 +9,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Speech;
 using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 
@@ -146,7 +145,7 @@ namespace Content.Shared.ActionBlocker
             return !ev.Cancelled;
         }
 
-        public bool CanAttack(EntityUid uid, EntityUid? target = null, Entity<MeleeWeaponComponent>? weapon = null, bool disarm = false)
+        public bool CanAttack(EntityUid uid, EntityUid? target = null)
         {
             _container.TryGetOuterContainer(uid, Transform(uid), out var outerContainer);
             if (target != null &&  target != outerContainer?.Owner && _container.IsEntityInContainer(uid))
@@ -156,7 +155,7 @@ namespace Content.Shared.ActionBlocker
                 return containerEv.CanAttack;
             }
 
-            var ev = new AttackAttemptEvent(uid, target, weapon, disarm);
+            var ev = new AttackAttemptEvent(uid, target);
             RaiseLocalEvent(uid, ev);
 
             if (ev.Cancelled)

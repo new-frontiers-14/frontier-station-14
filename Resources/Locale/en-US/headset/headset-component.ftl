@@ -14,7 +14,6 @@ chat-radio-security = NFSD
 chat-radio-service = Service
 chat-radio-supply = Supply
 chat-radio-syndicate = Syndicate
-chat-radio-freelance = Freelance
 
 # not headset but whatever
 chat-radio-handheld = Handheld

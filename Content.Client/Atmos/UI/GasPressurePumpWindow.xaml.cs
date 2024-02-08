@@ -39,14 +39,14 @@ namespace Content.Client.Atmos.UI
 
             SetMaxPressureButton.OnPressed += _ =>
             {
-                PumpPressureOutputInput.Text = Atmospherics.MaxOutputPressure.ToString(CultureInfo.CurrentCulture);
+                PumpPressureOutputInput.Text = Atmospherics.MaxOutputPressure.ToString(CultureInfo.InvariantCulture);
                 SetOutputPressureButton.Disabled = false;
             };
         }
 
         public void SetOutputPressure(float pressure)
         {
-            PumpPressureOutputInput.Text = pressure.ToString(CultureInfo.CurrentCulture);
+            PumpPressureOutputInput.Text = pressure.ToString(CultureInfo.InvariantCulture);
         }
 
         public void SetPumpStatus(bool enabled)

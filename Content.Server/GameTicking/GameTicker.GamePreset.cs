@@ -7,12 +7,9 @@ using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 
@@ -20,8 +17,6 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-
         public const float PresetFailedCooldownIncrease = 30f;
 
         /// <summary>
@@ -107,8 +102,8 @@ namespace Content.Server.GameTicking
                 return;
 
             Preset = preset;
-            ValidateMap();
             UpdateInfoText();
+            ValidateMap();
 
             if (force)
             {
@@ -259,17 +254,7 @@ namespace Content.Server.GameTicking
 
                     //todo: what if they dont breathe lol
                     //cry deeply
-
-                    FixedPoint2 dealtDamage = 200;
-                    if (TryComp<DamageableComponent>(playerEntity, out var damageable)
-                        && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
-                    {
-                        var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                        dealtDamage = playerDeadThreshold - damageable.TotalDamage;
-                    }
-
-                    DamageSpecifier damage = new(_prototypeManager.Index<DamageTypePrototype>("Asphyxiation"), dealtDamage);
-
+                    DamageSpecifier damage = new(_prototypeManager.Index<DamageTypePrototype>("Asphyxiation"), 200);
                     _damageable.TryChangeDamage(playerEntity, damage, true);
                 }
             }
@@ -277,7 +262,7 @@ namespace Content.Server.GameTicking
             var xformQuery = GetEntityQuery<TransformComponent>();
             var coords = _transform.GetMoverCoordinates(position, xformQuery);
 
-            var ghost = Spawn(ObserverPrototypeName, coords);
+            var ghost = Spawn("MobObserver", coords);
 
             // Try setting the ghost entity name to either the character name or the player name.
             // If all else fails, it'll default to the default entity prototype name, "observer".
@@ -316,7 +301,7 @@ namespace Content.Server.GameTicking
             // This whole setup logic should be made asynchronous so we can properly wait on the DB AAAAAAAAAAAAAH
             var task = Task.Run(async () =>
             {
-                var server = await _dbEntryManager.ServerEntity;
+                var server = await _db.AddOrGetServer(serverName);
                 return await _db.AddNewRound(server, playerIds);
             });
 

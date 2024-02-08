@@ -1,15 +1,9 @@
 using Content.Server.Animals.Systems;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Animals.Components
-
-/// <summary>
-///     Lets an entity produce milk. Uses hunger if present.
-/// </summary>
 {
     [RegisterComponent, Access(typeof(UdderSystem))]
     internal sealed partial class UdderComponent : Component
@@ -17,43 +11,31 @@ namespace Content.Server.Animals.Components
         /// <summary>
         ///     The reagent to produce.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
-        public ProtoId<ReagentPrototype> ReagentId = "Milk";
-
-        /// <summary>
-        ///     The name of <see cref="Solution"/>.
-        /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
-        public string SolutionName = "udder";
+        [ViewVariables(VVAccess.ReadOnly)]
+        [DataField("reagentId", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
+        public string ReagentId = "Milk";
 
         /// <summary>
         ///     The solution to add reagent to.
         /// </summary>
-        [DataField]
-        public Entity<SolutionComponent>? Solution = null;
+        [ViewVariables(VVAccess.ReadOnly)]
+        [DataField("targetSolution")]
+        public string TargetSolutionName = "udder";
 
         /// <summary>
         ///     The amount of reagent to be generated on update.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadOnly)]
-        public FixedPoint2 QuantityPerUpdate = 25;
+        [ViewVariables(VVAccess.ReadOnly)]
+        [DataField("quantity")]
+        public FixedPoint2 QuantityPerUpdate = 1;
 
         /// <summary>
-        ///     The amount of nutrient consumed on update.
+        ///     The time between updates (in seconds).
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public float HungerUsage = 10f;
+        [ViewVariables(VVAccess.ReadOnly)]
+        [DataField("updateRate")]
+        public float UpdateRate = 5;
 
-        /// <summary>
-        ///     How long to wait before producing.
-        /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan GrowthDelay = TimeSpan.FromMinutes(1);
-
-        /// <summary>
-        ///     When to next try to produce.
-        /// </summary>
-        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-        public TimeSpan NextGrowth = TimeSpan.FromSeconds(0);
+        public float AccumulatedFrameTime;
     }
 }

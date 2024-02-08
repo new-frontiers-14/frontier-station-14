@@ -1,4 +1,4 @@
-using Content.Shared.Damage.Prototypes;
+﻿using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
@@ -12,6 +12,7 @@ namespace Content.Shared.Damage
     /// </summary>
     /// <remarks>
     /// The modifier will only ever be applied to damage that is being dealt. Healing is unmodified.
+    /// The modifier can also never convert damage into healing.
     /// </remarks>
     [DataDefinition]
     [Serializable, NetSerializable]

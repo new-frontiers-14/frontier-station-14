@@ -1,3 +1,4 @@
+using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Server.PowerCell;
 using Content.Shared.Examine;
@@ -22,6 +23,8 @@ internal sealed class ChargerSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ChargerComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ChargerComponent, RefreshPartsEvent>(OnRefreshParts);
+        SubscribeLocalEvent<ChargerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<ChargerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<ChargerComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<ChargerComponent, EntRemovedFromContainerMessage>(OnRemoved);
@@ -56,6 +59,17 @@ internal sealed class ChargerSystem : EntitySystem
                 TransferPower(uid, contained, charger, frameTime);
             }
         }
+    }
+
+    private void OnRefreshParts(EntityUid uid, ChargerComponent component, RefreshPartsEvent args)
+    {
+        var modifierRating = args.PartRatings[component.MachinePartChargeRateModifier];
+        component.ChargeRate = component.BaseChargeRate * MathF.Pow(component.PartRatingChargeRateModifier, modifierRating - 1);
+    }
+
+    private void OnUpgradeExamine(EntityUid uid, ChargerComponent component, UpgradeExamineEvent args)
+    {
+        args.AddPercentageUpgrade("charger-component-charge-rate", component.ChargeRate / component.BaseChargeRate);
     }
 
     private void OnPowerChanged(EntityUid uid, ChargerComponent component, ref PowerChangedEvent args)

@@ -9,12 +9,6 @@ public sealed partial class SpeakOperator : HTNOperator
     [DataField("speech", required: true)]
     public string Speech = string.Empty;
 
-    /// <summary>
-    /// Whether to hide message from chat window and logs.
-    /// </summary>
-    [DataField]
-    public bool Hidden;
-
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -25,7 +19,7 @@ public sealed partial class SpeakOperator : HTNOperator
     {
         var speaker = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
 
-        _chat.TrySendInGameICMessage(speaker, Loc.GetString(Speech), InGameICChatType.Speak, hideChat: Hidden, hideLog: Hidden);
+        _chat.TrySendInGameICMessage(speaker, Loc.GetString(Speech), InGameICChatType.Speak, false);
         return base.Update(blackboard, frameTime);
     }
 }

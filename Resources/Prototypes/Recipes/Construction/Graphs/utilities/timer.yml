@@ -84,9 +84,7 @@
         - !type:ContainerNotEmpty
           container: board
         completed:
-        - !type:EmptyAllContainers
-          pickup: true
-          emptyAtUser: true
+        - !type:EmptyAllContainers {}
 
     - node: screenElectronics
       edges:
@@ -103,9 +101,7 @@
         - !type:ContainerNotEmpty
           container: board
         completed:
-        - !type:EmptyAllContainers
-          pickup: true
-          emptyAtUser: true
+        - !type:EmptyAllContainers {}
 
     - node: brigElectronics
       edges:
@@ -122,9 +118,7 @@
         - !type:ContainerNotEmpty
           container: board
         completed:
-        - !type:EmptyAllContainers
-          pickup: true
-          emptyAtUser: true
+        - !type:EmptyAllContainers {}
 
     - node: screenGlass
       entity: TimerFrame

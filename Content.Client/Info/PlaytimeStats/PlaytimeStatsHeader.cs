@@ -7,7 +7,7 @@ using Robust.Shared.Input;
 namespace Content.Client.Info.PlaytimeStats;
 
 [GenerateTypedNameReferences]
-public sealed partial class PlaytimeStatsHeader : Control
+public sealed partial class PlaytimeStatsHeader : ContainerButton
 {
     public event Action<Header, SortDirection>? OnHeaderClicked;
     private SortDirection _roleDirection = SortDirection.Ascending;

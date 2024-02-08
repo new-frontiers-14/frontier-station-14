@@ -3,7 +3,6 @@ using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
@@ -21,13 +20,7 @@ namespace Content.Server.Database
         private readonly SemaphoreSlim _prefsSemaphore;
         private readonly Task _dbReadyTask;
 
-        private int _msLag;
-
-        public ServerDbPostgres(
-            DbContextOptions<PostgresServerDbContext> options,
-            IConfigurationManager cfg,
-            ISawmill opsLog)
-            : base(opsLog)
+        public ServerDbPostgres(DbContextOptions<PostgresServerDbContext> options, IConfigurationManager cfg)
         {
             var concurrency = cfg.GetCVar(CCVars.DatabasePgConcurrency);
 
@@ -46,8 +39,6 @@ namespace Content.Server.Database
                     await ctx.DisposeAsync();
                 }
             });
-
-            cfg.OnValueChanged(CCVars.DatabasePgFakeLag, v => _msLag = v, true);
         }
 
         #region Ban
@@ -472,8 +463,7 @@ namespace Content.Server.Database
             string userName,
             IPAddress address,
             ImmutableArray<byte> hwId,
-            ConnectionDenyReason? denied,
-            int serverId)
+            ConnectionDenyReason? denied)
         {
             await using var db = await GetDbImpl();
 
@@ -485,7 +475,6 @@ namespace Content.Server.Database
                 UserName = userName,
                 HWId = hwId.ToArray(),
                 Denied = denied,
-                ServerId = serverId
             };
 
             db.PgDbContext.ConnectionLog.Add(connectionLog);
@@ -531,22 +520,17 @@ WHERE to_tsvector('english'::regconfig, a.message) @@ websearch_to_tsquery('engl
             return db.AdminLog;
         }
 
-        private async Task<DbGuardImpl> GetDbImpl([CallerMemberName] string? name = null)
+        private async Task<DbGuardImpl> GetDbImpl()
         {
-            LogDbOp(name);
-
             await _dbReadyTask;
             await _prefsSemaphore.WaitAsync();
-
-            if (_msLag > 0)
-                await Task.Delay(_msLag);
 
             return new DbGuardImpl(this, new PostgresServerDbContext(_options));
         }
 
-        protected override async Task<DbGuard> GetDb([CallerMemberName] string? name = null)
+        protected override async Task<DbGuard> GetDb()
         {
-            return await GetDbImpl(name);
+            return await GetDbImpl();
         }
 
         private sealed class DbGuardImpl : DbGuard

@@ -65,22 +65,22 @@ namespace Content.Server.Atmos.Components
         public readonly HashSet<Entity<AtmosDeviceComponent>> AtmosDevices = new();
 
         [ViewVariables]
-        public readonly Queue<TileAtmosphere> CurrentRunTiles = new();
+        public Queue<TileAtmosphere> CurrentRunTiles = new();
 
         [ViewVariables]
-        public readonly Queue<ExcitedGroup> CurrentRunExcitedGroups = new();
+        public Queue<ExcitedGroup> CurrentRunExcitedGroups = new();
 
         [ViewVariables]
-        public readonly Queue<IPipeNet> CurrentRunPipeNet = new();
+        public Queue<IPipeNet> CurrentRunPipeNet = new();
 
         [ViewVariables]
-        public readonly Queue<Entity<AtmosDeviceComponent>> CurrentRunAtmosDevices = new();
+        public Queue<Entity<AtmosDeviceComponent>> CurrentRunAtmosDevices = new();
 
         [ViewVariables]
         public readonly HashSet<Vector2i> InvalidatedCoords = new(1000);
 
         [ViewVariables]
-        public readonly Queue<Vector2i> CurrentRunInvalidatedCoordinates = new();
+        public Queue<Vector2i> CurrentRunInvalidatedCoordinates = new();
 
         [ViewVariables]
         public int InvalidatedCoordsCount => InvalidatedCoords.Count;

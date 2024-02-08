@@ -42,6 +42,8 @@
   - type: Clickable
   - type: InteractionOutline
   - type: FireAlarm
+  - type: AccessReader
+    access: [ [ "Atmospherics" ] ]
   - type: ContainerFill
     containers:
       board: [ FireAlarmElectronics ]
@@ -100,8 +102,6 @@
           - !type:PlaySoundBehavior
             sound:
               path: /Audio/Effects/metalbreak.ogg
-              params:
-                volume: -4
   placement:
     mode: SnapgridCenter
     snap:

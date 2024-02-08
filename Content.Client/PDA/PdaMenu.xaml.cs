@@ -15,7 +15,6 @@ namespace Content.Client.PDA
     [GenerateTypedNameReferences]
     public sealed partial class PdaMenu : PdaWindow
     {
-        [Dependency] private readonly IClipboardManager _clipboard = null!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         private readonly ClientGameTicker _gameTicker;
@@ -24,15 +23,6 @@ namespace Content.Client.PDA
         public const int ProgramListView = 1;
         public const int SettingsView = 2;
         public const int ProgramContentView = 3;
-
-
-        private string _pdaOwner = Loc.GetString("comp-pda-ui-unknown");
-        private string _owner = Loc.GetString("comp-pda-ui-unknown");
-        private string _jobTitle = Loc.GetString("comp-pda-ui-unassigned");
-        private string _stationName = Loc.GetString("comp-pda-ui-unknown");
-        private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
-        private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        
 
         private int _currentView;
 
@@ -52,7 +42,6 @@ namespace Content.Client.PDA
             EjectPenButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/pencil.png"));
             EjectBookButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.png"));
             EjectIdButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/eject.png"));
-            EjectPaiButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/pai.png"));
             ProgramCloseButton.IconTexture = new SpriteSpecifier.Texture(new("/Textures/Interface/Nano/cross.svg.png"));
 
 
@@ -95,39 +84,6 @@ namespace Content.Client.PDA
                 ToHomeScreen();
             };
 
-            PdaOwnerButton.OnPressed += _ =>
-            {
-                _clipboard.SetText(_pdaOwner);
-            };
-
-            IdInfoButton.OnPressed += _ =>
-            {
-                _clipboard.SetText(_owner + ", " + _jobTitle);
-            };
-
-            StationNameButton.OnPressed += _ =>
-            {
-                _clipboard.SetText(_stationName);
-            };
-
-            StationAlertLevelButton.OnPressed += _ =>
-            {
-                _clipboard.SetText(_alertLevel);
-            };
-
-            StationTimeButton.OnPressed += _ =>
-            {
-                var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _clipboard.SetText((stationTime.ToString("hh\\:mm\\:ss")));
-            };
-
-            StationAlertLevelInstructionsButton.OnPressed += _ =>
-            {
-                _clipboard.SetText(_instructions);
-            };
-
-            
-
 
             HideAllViews();
             ToHomeScreen();
@@ -139,29 +95,24 @@ namespace Content.Client.PDA
 
             if (state.PdaOwnerInfo.ActualOwnerName != null)
             {
-                _pdaOwner = state.PdaOwnerInfo.ActualOwnerName;
                 PdaOwnerLabel.SetMarkup(Loc.GetString("comp-pda-ui-owner",
-                    ("actualOwnerName", _pdaOwner)));
+                    ("actualOwnerName", state.PdaOwnerInfo.ActualOwnerName)));
             }
 
 
             if (state.PdaOwnerInfo.IdOwner != null || state.PdaOwnerInfo.JobTitle != null)
             {
-                _owner = state.PdaOwnerInfo.IdOwner ?? Loc.GetString("comp-pda-ui-unknown");
-                _jobTitle = state.PdaOwnerInfo.JobTitle ?? Loc.GetString("comp-pda-ui-unassigned");
                 IdInfoLabel.SetMarkup(Loc.GetString("comp-pda-ui",
-                    ("owner", _owner),
-                    ("jobTitle", _jobTitle)));
+                    ("owner", state.PdaOwnerInfo.IdOwner ?? Loc.GetString("comp-pda-ui-unknown")),
+                    ("jobTitle", state.PdaOwnerInfo.JobTitle ?? Loc.GetString("comp-pda-ui-unassigned"))));
             }
             else
             {
                 IdInfoLabel.SetMarkup(Loc.GetString("comp-pda-ui-blank"));
             }
 
-            _stationName = state.StationName ?? Loc.GetString("comp-pda-ui-unknown");
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
-                ("station", _stationName)));
-            
+                ("station", state.StationName ?? Loc.GetString("comp-pda-ui-unknown"))));
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
@@ -171,24 +122,22 @@ namespace Content.Client.PDA
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
             var alertLevelKey = alertLevel != null ? $"alert-level-{alertLevel}" : "alert-level-unknown";
-            _alertLevel = Loc.GetString(alertLevelKey);
 
             StationAlertLevelLabel.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level",
                 ("color", alertColor),
-                ("level", _alertLevel)
+                ("level", Loc.GetString(alertLevelKey))
             ));
-            _instructions = Loc.GetString($"{alertLevelKey}-instructions");
+
             StationAlertLevelInstructions.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level-instructions",
-                ("instructions", _instructions))
+                ("instructions", Loc.GetString($"{alertLevelKey}-instructions")))
             );
 
             AddressLabel.Text = state.Address?.ToUpper() ?? " - ";
 
             EjectIdButton.IsActive = state.PdaOwnerInfo.IdOwner != null || state.PdaOwnerInfo.JobTitle != null;
             EjectPenButton.IsActive = state.HasPen;
-            EjectPaiButton.IsActive = state.HasPai;
             ActivateMusicButton.Visible = state.CanPlayMusic;
             ShowUplinkButton.Visible = state.HasUplink;
             LockUplinkButton.Visible = state.HasUplink;

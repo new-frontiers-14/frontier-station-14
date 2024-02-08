@@ -1,4 +1,3 @@
-# When adding new food also add to the appropriate random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\
 # Base
 
 - type: entity
@@ -17,7 +16,7 @@
         - ReagentId: Nutriment
           Quantity: 5
   - type: Item
-    size: Tiny
+    size: 1
 
 # Muffins/Buns
 
@@ -185,8 +184,11 @@
     available:
       - enum.DamageStateVisualLayers.Base:
           tendie: ""
+      - enum.DamageStateVisualLayers.Base:
           lizard: ""
+      - enum.DamageStateVisualLayers.Base:
           star: ""
+      - enum.DamageStateVisualLayers.Base:
           corgi: ""
   - type: SolutionContainerManager
     solutions:
@@ -616,7 +618,7 @@
     - type: SolutionContainerManager
       solutions:
         food:
-          maxVol: 4
+          maxVol: 1
           reagents:
           - ReagentId: Nutriment
             Quantity: 1

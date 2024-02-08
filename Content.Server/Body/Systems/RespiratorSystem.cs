@@ -2,7 +2,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Abilities;
@@ -21,7 +20,6 @@ using Content.Shared.Respirator;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -47,7 +45,6 @@ namespace Content.Server.Body.Systems
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
 
         public override void Initialize()
         {
@@ -172,9 +169,7 @@ namespace Content.Server.Body.Systems
             {
                 _atmosSys.Merge(outGas, lung.Air);
                 lung.Air.Clear();
-
-                if (_solutionContainerSystem.ResolveSolution(lung.Owner, lung.SolutionName, ref lung.Solution))
-                    _solutionContainerSystem.RemoveAllSolution(lung.Solution.Value);
+                lung.LungSolution.RemoveAllSolution();
             }
 
             _atmosSys.Merge(ev.Gas, outGas);
@@ -190,7 +185,7 @@ namespace Content.Server.Body.Systems
                 _alertsSystem.ShowAlert(uid, AlertType.LowOxygen);
             }
 
-            _damageableSys.TryChangeDamage(uid, respirator.Damage, false, false);
+            _damageableSys.TryChangeDamage(uid, respirator.Damage, true, false);
         }
 
         private void StopSuffocation(EntityUid uid, RespiratorComponent respirator)
@@ -200,7 +195,7 @@ namespace Content.Server.Body.Systems
 
             _alertsSystem.ClearAlert(uid, AlertType.LowOxygen);
 
-            _damageableSys.TryChangeDamage(uid, respirator.DamageRecovery);
+            _damageableSys.TryChangeDamage(uid, respirator.DamageRecovery, true);
         }
 
         public void UpdateSaturation(EntityUid uid, float amount,
@@ -238,6 +233,7 @@ namespace Content.Server.Body.Systems
 
         private void OnDoAfter(EntityUid uid, RespiratorComponent component, DoAfterEvent args)
         {
+            component.CPRPlayingStream?.Stop();
             component.IsReceivingCPR = false;
 
             if (args.Handled || args.Cancelled)
@@ -292,7 +288,7 @@ namespace Content.Server.Body.Systems
             _popupSystem.PopupEntity(Loc.GetString("cpr-start-second-person-patient", ("user", Identity.Entity(user, EntityManager))), uid, uid, Shared.Popups.PopupType.Medium);
 
             component.IsReceivingCPR = true;
-            //_audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
+            component.CPRPlayingStream = _audio.PlayPvs(component.CPRSound, uid, audioParams: AudioParams.Default.WithVolume(-3f));
 
             var args = new DoAfterArgs(EntityManager, user, Math.Min(component.CycleDelay * 2, 6f), new CPRDoAfterEvent(), uid, target: uid)
             {

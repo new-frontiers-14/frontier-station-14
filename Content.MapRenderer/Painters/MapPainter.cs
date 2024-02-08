@@ -1,10 +1,9 @@
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.IntegrationTests;
-using Content.Server.GameTicking;
-using Content.Server.Maps;
 using Robust.Client.GameObjects;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -12,11 +11,11 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using SpriteComponent = Robust.Client.GameObjects.SpriteComponent;
 
 namespace Content.MapRenderer.Painters
 {
@@ -32,8 +31,7 @@ namespace Content.MapRenderer.Painters
                 DummyTicker = false,
                 Connected = true,
                 Fresh = true,
-                // Seriously whoever made MapPainter use GameMapPrototype I wish you step on a lego one time.
-                Map = map,
+                Map = map
             });
 
             var server = pair.Server;
@@ -48,7 +46,7 @@ namespace Content.MapRenderer.Painters
 
             await client.WaitPost(() =>
             {
-                if (cEntityManager.TryGetComponent(cPlayerManager.LocalEntity, out SpriteComponent? sprite))
+                if (cEntityManager.TryGetComponent(cPlayerManager.LocalPlayer!.ControlledEntity!, out SpriteComponent? sprite))
                 {
                     sprite.Visible = false;
                 }
@@ -64,7 +62,7 @@ namespace Content.MapRenderer.Painters
 
             var tilePainter = new TilePainter(client, server);
             var entityPainter = new GridPainter(client, server);
-            Entity<MapGridComponent>[] grids = null!;
+            (EntityUid Uid, MapGridComponent Grid)[] grids = null!;
             var xformQuery = sEntityManager.GetEntityQuery<TransformComponent>();
             var xformSystem = sEntityManager.System<SharedTransformSystem>();
 
@@ -77,8 +75,8 @@ namespace Content.MapRenderer.Painters
                     sEntityManager.DeleteEntity(playerEntity.Value);
                 }
 
-                var mapId = sEntityManager.System<GameTicker>().DefaultMap;
-                grids = sMapManager.GetAllGrids(mapId).ToArray();
+                var mapId = sMapManager.GetAllMapIds().Last();
+                grids = sMapManager.GetAllMapGrids(mapId).Select(o => (o.Owner, o)).ToArray();
 
                 foreach (var (uid, _) in grids)
                 {

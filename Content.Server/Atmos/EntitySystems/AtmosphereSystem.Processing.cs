@@ -4,7 +4,6 @@ using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -42,12 +41,7 @@ namespace Content.Server.Atmos.EntitySystems
             var (owner, atmosphere) = ent;
             if (!atmosphere.ProcessingPaused)
             {
-                atmosphere.CurrentRunInvalidatedCoordinates.Clear();
-                atmosphere.CurrentRunInvalidatedCoordinates.EnsureCapacity(atmosphere.InvalidatedCoords.Count);
-                foreach (var tile in atmosphere.InvalidatedCoords)
-                {
-                    atmosphere.CurrentRunInvalidatedCoordinates.Enqueue(tile);
-                }
+                atmosphere.CurrentRunInvalidatedCoordinates = new Queue<Vector2i>(atmosphere.InvalidatedCoords);
                 atmosphere.InvalidatedCoords.Clear();
             }
 
@@ -157,24 +151,11 @@ namespace Content.Server.Atmos.EntitySystems
             return true;
         }
 
-        private void QueueRunTiles(
-            Queue<TileAtmosphere> queue,
-            HashSet<TileAtmosphere> tiles)
-        {
-
-            queue.Clear();
-            queue.EnsureCapacity(tiles.Count);
-            foreach (var tile in tiles)
-            {
-                queue.Enqueue(tile);
-            }
-        }
-
         private bool ProcessTileEqualize(Entity<GridAtmosphereComponent> ent, GasTileOverlayComponent? visuals)
         {
             var (uid, atmosphere) = ent;
             if (!atmosphere.ProcessingPaused)
-                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.ActiveTiles);
+                atmosphere.CurrentRunTiles = new Queue<TileAtmosphere>(atmosphere.ActiveTiles);
 
             if (!TryComp(uid, out MapGridComponent? mapGridComp))
                 throw new Exception("Tried to process a grid atmosphere on an entity that isn't a grid!");
@@ -201,7 +182,7 @@ namespace Content.Server.Atmos.EntitySystems
         private bool ProcessActiveTiles(GridAtmosphereComponent atmosphere, GasTileOverlayComponent? visuals)
         {
             if(!atmosphere.ProcessingPaused)
-                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.ActiveTiles);
+                atmosphere.CurrentRunTiles = new Queue<TileAtmosphere>(atmosphere.ActiveTiles);
 
             var number = 0;
             while (atmosphere.CurrentRunTiles.TryDequeue(out var tile))
@@ -224,15 +205,8 @@ namespace Content.Server.Atmos.EntitySystems
 
         private bool ProcessExcitedGroups(GridAtmosphereComponent gridAtmosphere)
         {
-            if (!gridAtmosphere.ProcessingPaused)
-            {
-                gridAtmosphere.CurrentRunExcitedGroups.Clear();
-                gridAtmosphere.CurrentRunExcitedGroups.EnsureCapacity(gridAtmosphere.ExcitedGroups.Count);
-                foreach (var group in gridAtmosphere.ExcitedGroups)
-                {
-                    gridAtmosphere.CurrentRunExcitedGroups.Enqueue(group);
-                }
-            }
+            if(!gridAtmosphere.ProcessingPaused)
+                gridAtmosphere.CurrentRunExcitedGroups = new Queue<ExcitedGroup>(gridAtmosphere.ExcitedGroups);
 
             var number = 0;
             while (gridAtmosphere.CurrentRunExcitedGroups.TryDequeue(out var excitedGroup))
@@ -264,7 +238,7 @@ namespace Content.Server.Atmos.EntitySystems
         {
             var atmosphere = ent.Comp;
             if (!atmosphere.ProcessingPaused)
-                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.HighPressureDelta);
+                atmosphere.CurrentRunTiles = new Queue<TileAtmosphere>(atmosphere.HighPressureDelta);
 
             // Note: This is still processed even if space wind is turned off since this handles playing the sounds.
 
@@ -299,7 +273,7 @@ namespace Content.Server.Atmos.EntitySystems
         private bool ProcessHotspots(GridAtmosphereComponent atmosphere)
         {
             if(!atmosphere.ProcessingPaused)
-                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.HotspotTiles);
+                atmosphere.CurrentRunTiles = new Queue<TileAtmosphere>(atmosphere.HotspotTiles);
 
             var number = 0;
             while (atmosphere.CurrentRunTiles.TryDequeue(out var hotspot))
@@ -323,7 +297,7 @@ namespace Content.Server.Atmos.EntitySystems
         private bool ProcessSuperconductivity(GridAtmosphereComponent atmosphere)
         {
             if(!atmosphere.ProcessingPaused)
-                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.SuperconductivityTiles);
+                atmosphere.CurrentRunTiles = new Queue<TileAtmosphere>(atmosphere.SuperconductivityTiles);
 
             var number = 0;
             while (atmosphere.CurrentRunTiles.TryDequeue(out var superconductivity))
@@ -346,15 +320,8 @@ namespace Content.Server.Atmos.EntitySystems
 
         private bool ProcessPipeNets(GridAtmosphereComponent atmosphere)
         {
-            if (!atmosphere.ProcessingPaused)
-            {
-                atmosphere.CurrentRunPipeNet.Clear();
-                atmosphere.CurrentRunPipeNet.EnsureCapacity(atmosphere.PipeNets.Count);
-                foreach (var net in atmosphere.PipeNets)
-                {
-                    atmosphere.CurrentRunPipeNet.Enqueue(net);
-                }
-            }
+            if(!atmosphere.ProcessingPaused)
+                atmosphere.CurrentRunPipeNet = new Queue<IPipeNet>(atmosphere.PipeNets);
 
             var number = 0;
             while (atmosphere.CurrentRunPipeNet.TryDequeue(out var pipenet))
@@ -395,21 +362,13 @@ namespace Content.Server.Atmos.EntitySystems
         private bool ProcessAtmosDevices(GridAtmosphereComponent atmosphere)
         {
             if (!atmosphere.ProcessingPaused)
-            {
-                atmosphere.CurrentRunAtmosDevices.Clear();
-                atmosphere.CurrentRunAtmosDevices.EnsureCapacity(atmosphere.AtmosDevices.Count);
-                foreach (var device in atmosphere.AtmosDevices)
-                {
-                    atmosphere.CurrentRunAtmosDevices.Enqueue(device);
-                }
-            }
+                atmosphere.CurrentRunAtmosDevices = new Queue<Entity<AtmosDeviceComponent>>(atmosphere.AtmosDevices);
 
             var time = _gameTiming.CurTime;
             var number = 0;
-            var ev = new AtmosDeviceUpdateEvent(RealAtmosTime());
             while (atmosphere.CurrentRunAtmosDevices.TryDequeue(out var device))
             {
-                RaiseLocalEvent(device, ref ev);
+                RaiseLocalEvent(device, new AtmosDeviceUpdateEvent(RealAtmosTime()));
                 device.Comp.LastProcess = time;
 
                 if (number++ < LagCheckIterations)
@@ -450,15 +409,6 @@ namespace Content.Server.Atmos.EntitySystems
                 var ent = _currentRunAtmosphere[_currentRunAtmosphereIndex];
                 var (owner, atmosphere) = ent;
                 TryComp(owner, out GasTileOverlayComponent? visuals);
-
-                if (!TryComp(owner, out TransformComponent? x)
-                    || x.MapUid == null
-                    || TerminatingOrDeleted(x.MapUid.Value)
-                    || x.MapID == MapId.Nullspace)
-                {
-                    Log.Error($"Attempted to process atmos without a map? Entity: {ToPrettyString(owner)}. Map: {ToPrettyString(x?.MapUid)}. MapId: {x?.MapID}");
-                    continue;
-                }
 
                 if (atmosphere.LifeStage >= ComponentLifeStage.Stopping || Paused(owner) || !atmosphere.Simulated)
                     continue;

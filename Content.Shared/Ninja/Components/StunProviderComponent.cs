@@ -1,4 +1,3 @@
-using Content.Shared.Damage;
 using Content.Shared.Ninja.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -18,55 +17,49 @@ public sealed partial class StunProviderComponent : Component
     /// The powercell entity to take power from.
     /// Determines whether stunning is possible.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField("batteryUid"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public EntityUid? BatteryUid;
 
     /// <summary>
     /// Sound played when stunning someone.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField("sound"), ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier Sound = new SoundCollectionSpecifier("sparks");
 
     /// <summary>
     /// Joules required in the battery to stun someone. Defaults to 10 uses on a small battery.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float StunCharge = 36f;
+    [DataField("stunCharge"), ViewVariables(VVAccess.ReadWrite)]
+    public float StunCharge = 36.0f;
 
     /// <summary>
-    /// Damage dealt when stunning someone
+    /// Shock damage dealt when stunning someone
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public DamageSpecifier StunDamage = new()
-    {
-        DamageDict = new()
-        {
-            { "Shock", 5 }
-        }
-    };
+    [DataField("stunDamage"), ViewVariables(VVAccess.ReadWrite)]
+    public int StunDamage = 5;
 
     /// <summary>
     /// Time that someone is stunned for, stacks if done multiple times.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField("stunTime"), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan StunTime = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// How long stunning is disabled after stunning something.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField("cooldown"), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Locale string to popup when there is no power
     /// </summary>
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("noPowerPopup", required: true), ViewVariables(VVAccess.ReadWrite)]
     public string NoPowerPopup = string.Empty;
 
     /// <summary>
     /// Whitelist for what counts as a mob.
     /// </summary>
-    [DataField]
+    [DataField("whitelist")]
     public EntityWhitelist Whitelist = new()
     {
         Components = new[] {"Stamina"}
@@ -76,6 +69,6 @@ public sealed partial class StunProviderComponent : Component
     /// When someone can next be stunned.
     /// Essentially a UseDelay unique to this component.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("nextStun", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextStun = TimeSpan.Zero;
 }

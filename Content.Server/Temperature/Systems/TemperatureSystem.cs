@@ -149,11 +149,14 @@ public sealed class TemperatureSystem : EntitySystem
         if (transform.MapUid == null)
             return;
 
+        var position = _transform.GetGridOrMapTilePosition(uid, transform);
+
         var temperatureDelta = args.GasMixture.Temperature - temperature.CurrentTemperature;
-        var airHeatCapacity = _atmosphere.GetHeatCapacity(args.GasMixture, false);
+        var tileHeatCapacity =
+            _atmosphere.GetTileHeatCapacity(transform.GridUid, transform.MapUid.Value, position);
         var heatCapacity = GetHeatCapacity(uid, temperature);
-        var heat = temperatureDelta * (airHeatCapacity * heatCapacity /
-                                       (airHeatCapacity + heatCapacity));
+        var heat = temperatureDelta * (tileHeatCapacity * heatCapacity /
+                                       (tileHeatCapacity + heatCapacity));
         ChangeHeat(uid, heat * temperature.AtmosTemperatureTransferEfficiency, temperature: temperature);
     }
 
@@ -341,8 +344,7 @@ public sealed class TemperatureSystem : EntitySystem
     {
         RecalculateAndApplyParentThresholds(root, temperatureQuery, transformQuery, tempThresholdsQuery);
 
-        var enumerator = Transform(root).ChildEnumerator;
-        while (enumerator.MoveNext(out var child))
+        foreach (var child in Transform(root).ChildEntities)
         {
             RecursiveThresholdUpdate(child, temperatureQuery, transformQuery, tempThresholdsQuery);
         }

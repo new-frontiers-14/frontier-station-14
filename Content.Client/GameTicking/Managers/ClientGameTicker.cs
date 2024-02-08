@@ -7,8 +7,6 @@ using Content.Shared.GameWindow;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.State;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -35,6 +33,7 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
         [ViewVariables] public string? LobbySong { get; private set; }
+        [ViewVariables] public string? RestartSound { get; private set; }
         [ViewVariables] public string? LobbyBackground { get; private set; }
         [ViewVariables] public bool DisallowedLateJoin { get; private set; }
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
@@ -57,7 +56,6 @@ namespace Content.Client.GameTicking.Managers
 
             SubscribeNetworkEvent<TickerJoinLobbyEvent>(JoinLobby);
             SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
-            SubscribeNetworkEvent<TickerConnectionStatusEvent>(ConnectionStatus);
             SubscribeNetworkEvent<TickerLobbyStatusEvent>(LobbyStatus);
             SubscribeNetworkEvent<TickerLobbyInfoEvent>(LobbyInfo);
             SubscribeNetworkEvent<TickerLobbyCountdownEvent>(LobbyCountdown);
@@ -68,6 +66,7 @@ namespace Content.Client.GameTicking.Managers
             });
             SubscribeNetworkEvent<TickerLateJoinStatusEvent>(LateJoinStatus);
             SubscribeNetworkEvent<TickerJobsAvailableEvent>(UpdateJobsAvailable);
+            SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
 
             _initialized = true;
         }
@@ -111,11 +110,6 @@ namespace Content.Client.GameTicking.Managers
             _stateManager.RequestStateChange<LobbyState>();
         }
 
-        private void ConnectionStatus(TickerConnectionStatusEvent message)
-        {
-            RoundStartTimeSpan = message.RoundStartTimeSpan;
-        }
-
         private void LobbyStatus(TickerLobbyStatusEvent message)
         {
             StartTime = message.StartTime;
@@ -151,6 +145,7 @@ namespace Content.Client.GameTicking.Managers
         {
             // Force an update in the event of this song being the same as the last.
             SetLobbySong(message.LobbySong, true);
+            RestartSound = message.RestartSound;
 
             // Don't open duplicate windows (mainly for replays).
             if (_window?.RoundId == message.RoundId)
@@ -158,6 +153,23 @@ namespace Content.Client.GameTicking.Managers
 
             //This is not ideal at all, but I don't see an immediately better fit anywhere else.
             _window = new RoundEndSummaryWindow(message.GamemodeTitle, message.RoundEndText, message.RoundDuration, message.RoundId, message.AllPlayersEndInfo, _entityManager);
+        }
+
+        private void RoundRestartCleanup(RoundRestartCleanupEvent ev)
+        {
+            if (string.IsNullOrEmpty(RestartSound))
+                return;
+
+            if (!_configManager.GetCVar(CCVars.RestartSoundsEnabled))
+            {
+                RestartSound = null;
+                return;
+            }
+
+            _audio.PlayGlobal(RestartSound, Filter.Local(), false);
+
+            // Cleanup the sound, we only want it to play when the round restarts after it ends normally.
+            RestartSound = null;
         }
     }
 }

@@ -17,12 +17,5 @@ public sealed partial class BlurryVisionComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("magnitude"), AutoNetworkedField]
     public float Magnitude;
 
-    /// <summary>
-    ///     Exponent that controls the magnitude of the effect.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("correctionPower"), AutoNetworkedField]
-    public float CorrectionPower;
-
-    public const float MaxMagnitude = 6;
-    public const float DefaultCorrectionPower = 2f;
+    public const float MaxMagnitude = 10;
 }

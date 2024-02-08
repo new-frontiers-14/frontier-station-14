@@ -15,7 +15,6 @@ public sealed class UseDelayOnShootSystem : EntitySystem
 
     private void OnUseShoot(EntityUid uid, UseDelayOnShootComponent component, ref GunShotEvent args)
     {
-        if (TryComp(uid, out UseDelayComponent? useDelay))
-            _delay.TryResetDelay((uid, useDelay));
+        _delay.BeginDelay(uid);
     }
 }

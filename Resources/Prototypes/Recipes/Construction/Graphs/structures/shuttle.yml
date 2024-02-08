@@ -54,9 +54,7 @@
         doAfter: 2.5
     - to: assembly
       completed:
-      - !type:EmptyAllContainers
-        pickup: true
-        emptyAtUser: true
+      - !type:EmptyAllContainers {}
       steps:
       - tool: Prying
         doAfter: 1

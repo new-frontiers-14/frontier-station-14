@@ -8,7 +8,6 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
-using Robust.Shared.Player;
 
 namespace Content.Client.UserInterface.Systems.DamageOverlays;
 

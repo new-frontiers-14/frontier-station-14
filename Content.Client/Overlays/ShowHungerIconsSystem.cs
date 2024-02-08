@@ -22,9 +22,9 @@ public sealed class ShowHungerIconsSystem : EquipmentHudSystem<ShowHungerIconsCo
         if (!IsActive || args.InContainer)
             return;
 
-        var hungerIcons = DecideHungerIcon(uid, hungerComponent);
+        var healthIcons = DecideHungerIcon(uid, hungerComponent);
 
-        args.StatusIcons.AddRange(hungerIcons);
+        args.StatusIcons.AddRange(healthIcons);
     }
 
     private IReadOnlyList<StatusIconPrototype> DecideHungerIcon(EntityUid uid, HungerComponent hungerComponent)

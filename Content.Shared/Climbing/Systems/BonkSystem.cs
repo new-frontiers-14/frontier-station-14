@@ -3,14 +3,11 @@ using Content.Shared.Climbing.Components;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -77,7 +74,7 @@ public sealed partial class BonkSystem : EntitySystem
 
     private void OnDragDrop(EntityUid uid, Components.BonkableComponent component, ref DragDropTargetEvent args)
     {
-        if (args.Handled || !HasComp<ClumsyComponent>(args.Dragged) || !HasComp<HandsComponent>(args.User))
+        if (args.Handled || !HasComp<ClumsyComponent>(args.Dragged))
             return;
 
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Dragged, component.BonkDelay, new BonkDoAfterEvent(), uid, target: uid)

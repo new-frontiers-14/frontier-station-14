@@ -71,7 +71,6 @@ namespace Content.Shared.Chemistry.Components
         /// <summary>
         ///     The name of this solution, if it is contained in some <see cref="SolutionContainerManagerComponent"/>
         /// </summary>
-        [DataField]
         public string? Name;
 
         /// <summary>
@@ -101,7 +100,7 @@ namespace Content.Shared.Chemistry.Components
             foreach (var (reagent, quantity) in Contents)
             {
                 _heatCapacity += (float) quantity *
-                                    protoMan.Index<ReagentPrototype>(reagent.Prototype).SpecificHeat;
+                                 protoMan.Index<ReagentPrototype>(reagent.Prototype).SpecificHeat;
             }
         }
 
@@ -159,12 +158,10 @@ namespace Content.Shared.Chemistry.Components
 
         public Solution(Solution solution)
         {
-            Contents = solution.Contents.ShallowClone();
             Volume = solution.Volume;
-            MaxVolume = solution.MaxVolume;
-            Temperature = solution.Temperature;
             _heatCapacity = solution._heatCapacity;
             _heatCapacityDirty = solution._heatCapacityDirty;
+            Contents = solution.Contents.ShallowClone();
             ValidateSolution();
         }
 
@@ -177,7 +174,7 @@ namespace Content.Shared.Chemistry.Components
         public void ValidateSolution()
         {
             // sandbox forbids: [Conditional("DEBUG")]
-    #if DEBUG
+#if DEBUG
             // Correct volume
             DebugTools.Assert(Contents.Select(x => x.Quantity).Sum() == Volume);
 
@@ -195,7 +192,7 @@ namespace Content.Shared.Chemistry.Components
                 UpdateHeatCapacity(null);
                 DebugTools.Assert(MathHelper.CloseTo(_heatCapacity, cur));
             }
-    #endif
+#endif
         }
 
         void ISerializationHooks.AfterDeserialization()
@@ -292,24 +289,12 @@ namespace Content.Shared.Chemistry.Components
         /// If you only want the volume of a single reagent, use <see cref="GetReagentQuantity"/>
         /// </summary>
         [Pure]
-        public FixedPoint2 GetTotalPrototypeQuantity(params string[] prototypes)
+        public FixedPoint2 GetTotalPrototypeQuantity(string prototype)
         {
             var total = FixedPoint2.Zero;
             foreach (var (reagent, quantity) in Contents)
             {
-                if (prototypes.Contains(reagent.Prototype))
-                    total += quantity;
-            }
-
-            return total;
-        }
-
-        public FixedPoint2 GetTotalPrototypeQuantity(string id)
-        {
-            var total = FixedPoint2.Zero;
-            foreach (var (reagent, quantity) in Contents)
-            {
-                if (id == reagent.Prototype)
+                if (reagent.Prototype == prototype)
                     total += quantity;
             }
 
@@ -466,7 +451,7 @@ namespace Content.Shared.Chemistry.Components
         /// </summary>
         /// <param name="toRemove">The reagent to be removed.</param>
         /// <returns>How much reagent was actually removed. Zero if the reagent is not present on the solution.</returns>
-        public FixedPoint2 RemoveReagent(ReagentQuantity toRemove, bool preserveOrder = false)
+        public FixedPoint2 RemoveReagent(ReagentQuantity toRemove)
         {
             if (toRemove.Quantity <= FixedPoint2.Zero)
                 return FixedPoint2.Zero;
@@ -483,11 +468,7 @@ namespace Content.Shared.Chemistry.Components
 
                 if (newQuantity <= 0)
                 {
-                    if (!preserveOrder)
-                        Contents.RemoveSwap(i);
-                    else
-                        Contents.RemoveAt(i);
-
+                    Contents.RemoveSwap(i);
                     Volume -= curQuantity;
                     ValidateSolution();
                     return curQuantity;
@@ -520,9 +501,9 @@ namespace Content.Shared.Chemistry.Components
         /// <param name="reagentId">The reagent to be removed.</param>
         /// <param name="quantity">The amount of reagent to remove.</param>
         /// <returns>How much reagent was actually removed. Zero if the reagent is not present on the solution.</returns>
-        public FixedPoint2 RemoveReagent(ReagentId reagentId, FixedPoint2 quantity, bool preserveOrder = false)
+        public FixedPoint2 RemoveReagent(ReagentId reagentId, FixedPoint2 quantity)
         {
-            return RemoveReagent(new ReagentQuantity(reagentId, quantity), preserveOrder);
+            return RemoveReagent(new ReagentQuantity(reagentId, quantity));
         }
 
         public void RemoveAllSolution()
@@ -551,34 +532,6 @@ namespace Content.Shared.Chemistry.Components
                     RemoveReagent(tuple);
                     break;
                 }
-            }
-
-            // Then split the solution
-            var sol = SplitSolution(toTake);
-
-            // Then re-add the excluded reagents to the original solution.
-            foreach (var reagent in excluded)
-            {
-                AddReagent(reagent);
-            }
-
-            return sol;
-        }
-
-        /// <summary>
-        /// Splits a solution without the specified reagent prototypes.
-        /// </summary>
-        public Solution SplitSolutionWithOnly(FixedPoint2 toTake, params string[] includedPrototypes)
-        {
-            // First remove the non-included prototypes
-            List<ReagentQuantity> excluded = new();
-            for (var i = Contents.Count - 1; i >= 0; i--)
-            {
-                if (includedPrototypes.Contains(Contents[i].Reagent.Prototype))
-                    continue;
-
-                excluded.Add(Contents[i]);
-                RemoveReagent(Contents[i]);
             }
 
             // Then split the solution
@@ -801,44 +754,6 @@ namespace Content.Shared.Chemistry.Components
         public Color GetColor(IPrototypeManager? protoMan)
         {
             return GetColorWithout(protoMan);
-        }
-
-        public Color GetColorWithOnly(IPrototypeManager? protoMan, params string[] included)
-        {
-            if (Volume == FixedPoint2.Zero)
-            {
-                return Color.Transparent;
-            }
-
-            IoCManager.Resolve(ref protoMan);
-
-            Color mixColor = default;
-            var runningTotalQuantity = FixedPoint2.New(0);
-            bool first = true;
-
-            foreach (var (reagent, quantity) in Contents)
-            {
-                if (!included.Contains(reagent.Prototype))
-                    continue;
-
-                runningTotalQuantity += quantity;
-
-                if (!protoMan.TryIndex(reagent.Prototype, out ReagentPrototype? proto))
-                {
-                    continue;
-                }
-
-                if (first)
-                {
-                    first = false;
-                    mixColor = proto.SubstanceColor;
-                    continue;
-                }
-
-                var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
-            }
-            return mixColor;
         }
 
         #region Enumeration

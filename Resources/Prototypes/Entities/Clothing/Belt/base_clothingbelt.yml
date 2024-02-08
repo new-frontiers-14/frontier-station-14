@@ -6,7 +6,7 @@
   - type: Sprite
     state: icon
   - type: Item
-    size: Normal
+    size: 50
   - type: Clothing
     slots: [belt]
     quickEquip: false
@@ -22,12 +22,7 @@
   id: ClothingBeltStorageBase
   components:
   - type: Storage
-    maxItemSize: Normal
-    defaultStorageOrientation: Vertical
-    grid:
-    - 0,0,7,1
-  - type: Item
-    size: Ginormous
+    capacity: 45
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -36,17 +31,3 @@
     interfaces:
     - key: enum.StorageUiKey.Key
       type: StorageBoundUserInterface
-
-- type: entity
-  abstract: true
-  parent: ClothingBeltBase
-  id: ClothingBeltAmmoProviderBase
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-  - type: Item
-    size: Ginormous
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-

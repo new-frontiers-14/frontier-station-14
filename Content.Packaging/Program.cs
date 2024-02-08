@@ -1,44 +1,68 @@
-﻿using Content.Packaging;
+﻿using System.Diagnostics;
+using System.IO.Compression;
+using Content.Packaging;
 using Robust.Packaging;
+using Robust.Packaging.AssetProcessing.Passes;
+using Robust.Packaging.Utility;
+using Robust.Shared.Timing;
 
 IPackageLogger logger = new PackageLoggerConsole();
 
-if (!CommandLineArgs.TryParse(args, out var parsed))
-{
-    logger.Error("Unable to parse args, aborting.");
-    return;
-}
+logger.Info("Clearing release/ directory");
+Directory.CreateDirectory("release");
 
-if (parsed.WipeRelease)
-    WipeRelease();
+var skipBuild = args.Contains("--skip-build");
 
-if (!parsed.SkipBuild)
+if (!skipBuild)
     WipeBin();
 
-if (parsed.Client)
+await Build(skipBuild);
+
+async Task Build(bool skipBuild)
 {
-    await ClientPackaging.PackageClient(parsed.SkipBuild, logger);
+    logger.Info("Building project...");
+
+    if (!skipBuild)
+    {
+        await ProcessHelpers.RunCheck(new ProcessStartInfo
+        {
+            FileName = "dotnet",
+            ArgumentList =
+            {
+                "build",
+                Path.Combine("Content.Client", "Content.Client.csproj"),
+                "-c", "Release",
+                "--nologo",
+                "/v:m",
+                "/t:Rebuild",
+                "/p:FullRelease=true",
+                "/m"
+            }
+        });
+    }
+
+    logger.Info("Packaging client...");
+
+    var sw = RStopwatch.StartNew();
+
+    {
+        using var zipFile =
+            File.Open(Path.Combine("release", "SS14.Client.zip"), FileMode.Create, FileAccess.ReadWrite);
+        using var zip = new ZipArchive(zipFile, ZipArchiveMode.Update);
+        var writer = new AssetPassZipWriter(zip);
+
+        await ContentPackaging.WriteResources("", writer, logger, default);
+
+        await writer.FinishedTask;
+    }
+
+    logger.Info($"Finished packaging in {sw.Elapsed}");
 }
-else
-{
-    await ServerPackaging.PackageServer(parsed.SkipBuild, parsed.HybridAcz, logger, parsed.Platforms);
-}
+
 
 void WipeBin()
 {
     logger.Info("Clearing old build artifacts (if any)...");
 
-    if (Directory.Exists("bin"))
-        Directory.Delete("bin", recursive: true);
-}
-
-void WipeRelease()
-{
-    if (Directory.Exists("release"))
-    {
-        logger.Info("Cleaning old release packages (release/)...");
-        Directory.Delete("release", recursive: true);
-    }
-
-    Directory.CreateDirectory("release");
+    Directory.Delete("bin", recursive: true);
 }

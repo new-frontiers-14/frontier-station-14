@@ -30,7 +30,6 @@ guide-entry-medical = Medical
 guide-entry-medicaldoctor = Medical Doctor
 guide-entry-chemist = Chemist
 guide-entry-medicine = Medicine
-guide-entry-brute = Advanced Brute Medication
 guide-entry-botanicals = Botanicals
 guide-entry-cloning = Cloning
 guide-entry-cryogenics = Cryogenics
@@ -44,9 +43,8 @@ guide-entry-artifact-reports = Artifact Reports
 guide-entry-traversal-distorter = Traversal Distorter
 guide-entry-machine-upgrading = Machine Upgrading
 guide-entry-robotics = Robotics
-guide-entry-cyborgs = Cyborgs
 guide-entry-security = Security
-guide-entry-forensics = Forensics
+guide-entry-dna = DNA
 guide-entry-defusal = Large Bomb Defusal
 
 guide-entry-antagonists = Antagonists
@@ -58,4 +56,3 @@ guide-entry-minor-antagonists = Minor Antagonists
 guide-entry-space-ninja = Space Ninja
 
 guide-entry-writing = Writing
-guide-entry-glossary = Glossary

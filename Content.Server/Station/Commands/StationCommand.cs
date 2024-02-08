@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Cargo.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -16,7 +15,6 @@ namespace Content.Server.Station.Commands;
 public sealed class StationsCommand : ToolshedCommand
 {
     private StationSystem? _station;
-    private CargoSystem? _cargo;
 
     [CommandImplementation("list")]
     public IEnumerable<EntityUid> List()
@@ -112,15 +110,6 @@ public sealed class StationsCommand : ToolshedCommand
         _station ??= GetSys<StationSystem>();
 
         _station.RenameStation(input, name.Evaluate(ctx)!);
-    }
-
-    [CommandImplementation("rerollBounties")]
-    public void RerollBounties([CommandInvocationContext] IInvocationContext ctx,
-        [PipedArgument] EntityUid input)
-    {
-        _cargo ??= GetSys<CargoSystem>();
-
-        _cargo.RerollBountyDatabase(input);
     }
 }
 

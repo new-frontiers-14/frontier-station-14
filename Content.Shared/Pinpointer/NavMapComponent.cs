@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Pinpointer;
 

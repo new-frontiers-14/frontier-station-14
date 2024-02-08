@@ -18,7 +18,7 @@ namespace Content.Server.Atmos.Reactions
     }
 
     [Prototype("gasReaction")]
-    public sealed partial class GasReactionPrototype : IPrototype
+    public sealed class GasReactionPrototype : IPrototype
     {
         [ViewVariables]
         [IdDataField]
@@ -60,20 +60,13 @@ namespace Content.Server.Atmos.Reactions
         /// </summary>
         [DataField("effects")] private List<IGasReactionEffect> _effects = new();
 
-        /// <summary>
-        /// Process all reaction effects.
-        /// </summary>
-        /// <param name="mixture">The gas mixture to react</param>
-        /// <param name="holder">The container of this gas mixture</param>
-        /// <param name="atmosphereSystem">The atmosphere system</param>
-        /// <param name="heatScale">Scaling factor that should be applied to all heat input or outputs.</param>
-        public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
+        public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem)
         {
             var result = ReactionResult.NoReaction;
 
             foreach (var effect in _effects)
             {
-                result |= effect.React(mixture, holder, atmosphereSystem, heatScale);
+                result |= effect.React(mixture, holder, atmosphereSystem);
             }
 
             return result;

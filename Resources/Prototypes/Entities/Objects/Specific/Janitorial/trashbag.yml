@@ -9,9 +9,7 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,7,5
+    capacity: 125
     quickInsert: true
     areaInsert: true
     storageOpenSound:
@@ -35,7 +33,7 @@
     slots: [belt]
     sprite: Objects/Specific/Janitorial/trashbag.rsi
   - type: Item
-    size: Normal
+    size: 125
   - type: MagnetPickup # Frontier
 
 - type: entity
@@ -58,9 +56,7 @@
   parent: TrashBagBlue
   components:
   - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,19,9
+    capacity: 125000
     quickInsert: true
     areaInsert: true
-    areaInsertRadius: 5
+    areaInsertRadius: 1000

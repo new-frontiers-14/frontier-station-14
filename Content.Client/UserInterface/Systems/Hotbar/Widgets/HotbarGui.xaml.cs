@@ -13,7 +13,7 @@ public sealed partial class HotbarGui : UIWidget
         StatusPanel.Update(null);
         var hotbarController = UserInterfaceManager.GetUIController<HotbarUIController>();
 
-        hotbarController.Setup(HandContainer, StatusPanel, StoragePanel);
+        hotbarController.Setup(HandContainer, InventoryHotbar, StatusPanel);
         LayoutContainer.SetGrowVertical(this, LayoutContainer.GrowDirection.Begin);
     }
 

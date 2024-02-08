@@ -11,25 +11,30 @@ public sealed partial class StationCargoBountyDatabaseComponent : Component
     /// <summary>
     /// Maximum amount of bounties a station can have.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int MaxBounties = 5;
+    [DataField("maxBounties"), ViewVariables(VVAccess.ReadWrite)]
+    public int MaxBounties = 3;
 
     /// <summary>
     /// A list of all the bounties currently active for a station.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField("bounties"), ViewVariables(VVAccess.ReadWrite)]
     public List<CargoBountyData> Bounties = new();
 
     /// <summary>
     /// Used to determine unique order IDs
     /// </summary>
-    [DataField]
+    [DataField("totalBounties")]
     public int TotalBounties;
 
     /// <summary>
-    /// A list of bounty IDs that have been checked this tick.
-    /// Used to prevent multiplying bounty prices.
+    /// The minimum amount of time the bounty lasts before being removed.
     /// </summary>
-    [DataField]
-    public HashSet<string> CheckedBounties = new();
+    [DataField("minBountyTime"), ViewVariables(VVAccess.ReadWrite)]
+    public float MinBountyTime = 600f;
+
+    /// <summary>
+    /// The maxmium amount of time the bounty lasts before being removed.
+    /// </summary>
+    [DataField("maxBountyTime"), ViewVariables(VVAccess.ReadWrite)]
+    public float MaxBountyTime = 905f;
 }

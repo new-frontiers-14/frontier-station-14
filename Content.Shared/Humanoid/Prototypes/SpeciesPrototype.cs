@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Humanoid.Prototypes;
 
 [Prototype("species")]
-public sealed partial class SpeciesPrototype : IPrototype
+public sealed class SpeciesPrototype : IPrototype
 {
     /// <summary>
     /// Prototype ID of the species.

@@ -56,13 +56,12 @@ namespace Content.IntegrationTests.Tests
             "CentComm",
             "Box",
             "Europa",
+            "Barratry",
             "Saltern",
             "Core",
             "Marathon",
-            "Gemini",
-            "MeteorArena",
-            "Atlas",
-            "Reach"    
+            "Kettle",
+            "MeteorArena"
         };
 
         /// <summary>

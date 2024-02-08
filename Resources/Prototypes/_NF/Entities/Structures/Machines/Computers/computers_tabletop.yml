@@ -1,18 +1,19 @@
 # Base structures
 - type: entity
-  id: BaseStructureComputerTabletop
+  parent: BaseStructureComputer
+  id: BaseComputerTabletop
   suffix: Tabletop
   abstract: true
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _NF/Structures/Machines/computer_tabletop.rsi
     drawdepth: SmallObjects
+    sprite: _NF/Structures/Machines/computer_tabletop.rsi
     layers:
     - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
     - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: generic_keyboard_tabletop
     - map: ["computerLayerScreen"]
       sprite: Structures/Machines/computers.rsi
@@ -23,20 +24,85 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
+        density: 500
         mask:
-        - Impassable
-        - LowImpassable
-#        - TabletopMachineMask
-#        layer:
-#        - TabletopMachineLayer
+        - TabletopMachineMask
+
+- type: entity
+  parent: [ BaseComputerShuttle, BaseComputerTabletop ] # Shuttle
+  id: BaseComputerTabletopShuttle
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerShipyard ] # Shuttle
+  id: ComputerTabletopShipyard
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 500
+        mask:
+        - TabletopMachineMask
+
+- type: entity
+  parent: [ BaseMothershipComputer, ComputerTabletopShipyard ]
+  id: BaseMothershipComputerTabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 500
+        mask:
+        - TabletopMachineMask
 
 # Computers: Base Game
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerAlert]
+  parent: [ BaseComputerTabletop, ComputerAlert ]
   id: ComputerTabletopAlert
   components:
   - type: Sprite
@@ -55,15 +121,14 @@
       state: atmos_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerEmergencyShuttle]
+  parent: [ BaseComputerTabletop, ComputerEmergencyShuttle ]
   id: ComputerTabletopEmergencyShuttle
-  noSpawn: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
     layers:
     - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
       state: computer_tabletop
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard_tabletop
@@ -75,7 +140,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttle] # Shuttle
+  parent: [ ComputerShuttle, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttle
   components:
   - type: Sprite
@@ -94,7 +159,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleSyndie] # Shuttle
+  parent: [ ComputerShuttleSyndie, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSyndie
   components:
   - type: Sprite
@@ -113,9 +178,8 @@
       state: syndie_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleCargo] # Shuttle
+  parent: [ ComputerShuttleCargo, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleCargo
-  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -133,9 +197,8 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleSalvage] # Shuttle
+  parent: [ ComputerShuttleSalvage, BaseComputerTabletopShuttle ] # Shuttle
   id: ComputerTabletopShuttleSalvage
-  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -153,7 +216,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerIFF]
+  parent: [ BaseComputerTabletop, ComputerIFF ]
   id: ComputerTabletopIFF
   components:
   - type: Sprite
@@ -172,7 +235,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerIFFSyndicate]
+  parent: [ ComputerIFFSyndicate, ComputerTabletopIFF ]
   id: ComputerTabletopIFFSyndicate
   suffix: Syndicate, Tabletop
   components:
@@ -192,7 +255,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPowerMonitoring]
+  parent: [ BaseComputerTabletop, ComputerPowerMonitoring ]
   id: ComputerTabletopPowerMonitoring
   components:
   - type: Sprite
@@ -211,7 +274,7 @@
       state: power_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerMedicalRecords]
+  parent: [ BaseComputerTabletop, ComputerMedicalRecords ]
   id: ComputerTabletopMedicalRecords
   components:
   - type: Sprite
@@ -230,7 +293,7 @@
       state: med_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCriminalRecords]
+  parent: [ BaseComputerTabletop, ComputerCriminalRecords ]
   id: ComputerTabletopCriminalRecords
   components:
   - type: Sprite
@@ -249,7 +312,7 @@
       state: security_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerStationRecords]
+  parent: [ BaseComputerTabletop, ComputerStationRecords ]
   id: ComputerTabletopStationRecords
   components:
   - type: Sprite
@@ -268,7 +331,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCrewMonitoring]
+  parent: [ BaseComputerTabletop, ComputerCrewMonitoring ]
   id: ComputerTabletopCrewMonitoring
   components:
   - type: Sprite
@@ -287,7 +350,7 @@
       state: med_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerResearchAndDevelopment]
+  parent: [ BaseComputerTabletop, ComputerResearchAndDevelopment ]
   id: ComputerTabletopResearchAndDevelopment
   components:
   - type: Sprite
@@ -306,7 +369,7 @@
       state: rd_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerAnalysisConsole]
+  parent: [ BaseComputerTabletop, ComputerAnalysisConsole ]
   id: ComputerTabletopAnalysisConsole
   components:
   - type: Sprite
@@ -325,7 +388,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerId]
+  parent: [ BaseComputerTabletop, ComputerId ]
   id: ComputerTabletopId
   components:
   - type: Sprite
@@ -344,10 +407,11 @@
       state: id_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, computerBodyScanner]
+  parent: [ BaseComputerTabletop, computerBodyScanner ]
   id: ComputerTabletopBodyScanner
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -362,7 +426,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerComms]
+  parent: [ BaseComputerTabletop, ComputerComms ]
   id: ComputerTabletopComms
   components:
   - type: Sprite
@@ -381,7 +445,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, SyndicateComputerComms]
+  parent: ComputerTabletopComms
   id: SyndicateComputerTabletopComms
   components:
   - type: Sprite
@@ -400,7 +464,7 @@
       state: syndie_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerSolarControl]
+  parent: [ BaseComputerTabletop, ComputerSolarControl ]
   id: ComputerTabletopSolarControl
   components:
   - type: Sprite
@@ -419,7 +483,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerRadar]
+  parent: [ BaseComputerTabletop, ComputerRadar ]
   id: ComputerTabletopRadar
   components:
   - type: Sprite
@@ -438,9 +502,8 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCargoShuttle]
+  parent: [ BaseComputerTabletop, ComputerCargoShuttle ]
   id: ComputerTabletopCargoShuttle
-  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -458,7 +521,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCargoOrders]
+  parent: [ BaseComputerTabletop, ComputerCargoOrders ]
   id: ComputerTabletopCargoOrders
   components:
   - type: Sprite
@@ -477,7 +540,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCargoBounty]
+  parent: [ BaseComputerTabletop, ComputerCargoBounty ]
   id: ComputerTabletopCargoBounty
   components:
   - type: Sprite
@@ -496,7 +559,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCloningConsole]
+  parent: [ BaseComputerTabletop, ComputerCloningConsole ]
   id: ComputerTabletopCloningConsole
   components:
   - type: Sprite
@@ -515,7 +578,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerSalvageExpedition]
+  parent: [ BaseComputerTabletop, ComputerSalvageExpedition ]
   id: ComputerTabletopSalvageExpedition
   components:
   - type: Sprite
@@ -534,7 +597,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerSurveillanceCameraMonitor]
+  parent: [ BaseComputerTabletop, ComputerSurveillanceCameraMonitor ]
   id: ComputerTabletopSurveillanceCameraMonitor
   components:
   - type: Sprite
@@ -553,7 +616,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerSurveillanceWirelessCameraMonitor]
+  parent: [ BaseComputerTabletop, ComputerSurveillanceWirelessCameraMonitor ]
   id: ComputerTabletopSurveillanceWirelessCameraMonitor
   components:
   - type: Sprite
@@ -572,7 +635,26 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerMassMedia]
+  parent: [ BaseComputerTabletop, ComputerPalletConsole ]
+  id: ComputerTabletopPalletConsole
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: tech_key
+
+- type: entity
+  parent: [ BaseComputerTabletop, ComputerMassMedia ]
   id: ComputerTabletopMassMedia
   components:
   - type: Sprite
@@ -591,10 +673,11 @@
       state: service_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerSensorMonitoring]
+  parent: [ BaseComputerTabletop,  ]
   id: ComputerTabletopSensorMonitoring
+  # Putting this as "DO NOT MAP" until the performance issues are fixed.
+  # And it's more fleshed out.
   suffix: Tabletop, TESTING, DO NOT MAP
-  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -614,46 +697,7 @@
 # Computers: Frontier
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyard]
-  id: ComputerTabletopShipyard
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard
-    - map: ["computerLayerKeys"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: telesci_key
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, BaseMothershipComputer]
-  id: BaseMothershipComputerTabletop
-  abstract: true
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: shipyard
-    - map: ["computerLayerKeys"]
-      sprite: _NF/Structures/Machines/computers.rsi
-      state: telesci_key
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardSecurity]
+  parent: [ ComputerShipyardSecurity, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardSecurity
   components:
   - type: Sprite
@@ -672,7 +716,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardBlackMarket]
+  parent: [ ComputerShipyardBlackMarket, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardBlackMarket
   components:
   - type: Sprite
@@ -691,7 +735,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardExpedition]
+  parent: [ ComputerShipyardExpedition, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardExpedition
   components:
   - type: Sprite
@@ -710,7 +754,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardScrap]
+  parent: [ ComputerShipyardScrap, ComputerTabletopShipyard ]
   id: ComputerTabletopShipyardScrap
   components:
   - type: Sprite
@@ -729,27 +773,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFHighMarket]
-  id: ComputerTabletopPalletConsoleNFHighMarket
-  suffix: High, Tabletop
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: request
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: tech_key
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFNormalMarket]
+  parent: [ ComputerPalletConsoleNFNormalMarket, BaseComputerTabletop ]
   id: ComputerTabletopPalletConsoleNFNormalMarket
   suffix: Normal, Tabletop
   components:
@@ -769,42 +793,16 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFLowMarket]
+  parent: [ ComputerPalletConsoleNFHighMarket, ComputerTabletopPalletConsoleNFNormalMarket ]
+  id: ComputerTabletopPalletConsoleNFHighMarket
+  suffix: High, Tabletop
+
+- type: entity
+  parent: [ ComputerPalletConsoleNFLowMarket, ComputerTabletopPalletConsoleNFNormalMarket ]
   id: ComputerTabletopPalletConsoleNFLowMarket
   suffix: Low, Tabletop
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: request
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: tech_key
- 
+
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerPalletConsoleNFVeryLowMarket]
+  parent: [ ComputerPalletConsoleNFVeryLowMarket, ComputerTabletopPalletConsoleNFNormalMarket ]
   id: ComputerTabletopPalletConsoleNFVeryLowMarket
   suffix: VeryLow, Tabletop
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: request
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: tech_key
- 

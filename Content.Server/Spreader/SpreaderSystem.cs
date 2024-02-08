@@ -30,7 +30,6 @@ public sealed class SpreaderSystem : EntitySystem
     /// <summary>
     /// Remaining number of updates per grid & prototype.
     /// </summary>
-    // TODO PERFORMANCE Assign each prototype to an index and convert dictionary to array
     private Dictionary<EntityUid, Dictionary<string, int>> _gridUpdates = new();
 
     public const float SpreadCooldownSeconds = 1;
@@ -43,16 +42,24 @@ public sealed class SpreaderSystem : EntitySystem
     {
         SubscribeLocalEvent<AirtightChanged>(OnAirtightChanged);
         SubscribeLocalEvent<GridInitializeEvent>(OnGridInit);
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
 
         SubscribeLocalEvent<EdgeSpreaderComponent, EntityTerminatingEvent>(OnTerminating);
         SetupPrototypes();
+        _prototype.PrototypesReloaded += OnPrototypeReload;
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _prototype.PrototypesReloaded -= OnPrototypeReload;
     }
 
     private void OnPrototypeReload(PrototypesReloadedEventArgs obj)
     {
-        if (obj.WasModified<EdgeSpreaderPrototype>())
-            SetupPrototypes();
+        if (!obj.ByType.ContainsKey(typeof(EdgeSpreaderPrototype)))
+            return;
+
+        SetupPrototypes();
     }
 
     private void SetupPrototypes()
@@ -70,8 +77,7 @@ public sealed class SpreaderSystem : EntitySystem
 
         foreach (var neighbor in neighbors)
         {
-            if (!TerminatingOrDeleted(neighbor))
-                EnsureComp<ActiveEdgeSpreaderComponent>(neighbor);
+            EnsureComp<ActiveEdgeSpreaderComponent>(neighbor);
         }
     }
 
@@ -313,7 +319,7 @@ public sealed class SpreaderSystem : EntitySystem
         if (position == null)
         {
             var transform = Transform(uid);
-            if (!_mapManager.TryGetGrid(transform.GridUid, out grid) || TerminatingOrDeleted(transform.GridUid.Value))
+            if (!_mapManager.TryGetGrid(transform.GridUid, out grid))
                 return neighbors;
             tile = grid.TileIndicesFor(transform.Coordinates);
         }
@@ -338,7 +344,7 @@ public sealed class SpreaderSystem : EntitySystem
             while (directionEnumerator.MoveNext(out var ent))
             {
                 DebugTools.Assert(Transform(ent.Value).Anchored);
-                if (spreaderQuery.HasComponent(ent) && !TerminatingOrDeleted(ent.Value))
+                if (spreaderQuery.HasComponent(ent))
                     neighbors.Add(ent.Value);
             }
         }

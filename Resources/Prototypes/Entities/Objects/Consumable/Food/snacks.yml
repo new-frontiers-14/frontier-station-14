@@ -1,8 +1,7 @@
-# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_snack.yml
 # Base
 
 - type: entity
-  parent: [VendPriceFoodBase200, FoodBase] #  Frontier - VendPriceFoodBase100
+  parent: FoodBase
   id: FoodSnackBase
   abstract: true
   components:
@@ -22,7 +21,7 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: Tiny
+    size: 3
   - type: StaticPrice
     price: 1
 # Snacks
@@ -104,7 +103,7 @@
     state: chocolatebar
   - type: Item
     heldPrefix: chocolatebar
-    size: Tiny
+    size: 3
   - type: Tag
     tags:
       - FoodSnack
@@ -351,7 +350,7 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: Tiny
+    size: 1
   - type: Food
     trash: FoodCookieFortune
 
@@ -362,7 +361,7 @@
   description: A carefully synthesized brick designed to contain the highest ratio of nutriment to volume. Tastes like shit.
   components:
   - type: Item
-    size: Small
+    size: 10
   - type: Tag
     tags:
       - FoodSnack
@@ -388,7 +387,7 @@
     flavors:
       - nutribrick
   - type: Item
-    size: Small
+    size: 10
   - type: Sprite
     state: nutribrick-open
   - type: Tag
@@ -461,7 +460,6 @@
   parent: BaseItem
   id: FoodPacketTrash
   description: This is rubbish.
-  abstract: true
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi

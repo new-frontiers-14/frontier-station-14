@@ -113,17 +113,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatBeretSeniorPhysician
-  name: physician beret
-  description: Donning the colours of medical and chemistry, physicians are the pride of this department!
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/beret_physician.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/beret_physician.rsi
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatBeretBrigmedic
   name: medical beret
   description: White beret, looks like a cream pie on the head.
@@ -208,8 +197,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/chefhat.rsi
   - type: Storage
-    grid:
-    - 0,0,0,0
+    capacity: 5
   - type: UserInterface
     interfaces:
       - key: enum.StorageUiKey.Key
@@ -222,7 +210,6 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
-    - CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadBase
@@ -337,11 +324,6 @@
     sprite: Clothing/Head/Hats/pirate.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/pirate.rsi
-  - type: Tag # Frontier
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -477,8 +459,6 @@
     sprite: Clothing/Head/Hats/warden.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/warden.rsi
-  - type: StealTarget
-    stealGroup: ClothingHeadHatWarden
 
 - type: entity
   parent: ClothingHeadBase
@@ -771,11 +751,10 @@
         offset: "0, 0.12"
     sprite: Clothing/Head/Hats/magician.rsi
   - type: Item
-    size: Small
+    size: 10
     sprite: Clothing/Head/Hats/magician.rsi
   - type: Storage
-    grid:
-    - 0,0,0,0
+    capacity: 10
   - type: UserInterface
     interfaces:
       - key: enum.StorageUiKey.Key
@@ -803,22 +782,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatCentcomcap
-  name: CentCom cap
-  description: An extravagant, fancy Central Commander cap.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/comcap.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/comcap.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - HamsterWearable
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatGladiator
   name: Gladiator helmet
   description: Protects the head from harsh ash winds and toy spears.
@@ -827,49 +790,3 @@
     sprite: Clothing/Head/Hats/gladiator.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/gladiator.rsi
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatPartyRed
-  name: red party hat
-  description: Spread a joy!
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/party_red.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/party_red.rsi
-  - type: Tag
-    tags:
-      - DroneUsable
-      - WhitelistChameleon
-      - HamsterWearable
-
-- type: entity
-  parent: ClothingHeadHatPartyRed
-  id: ClothingHeadHatPartyYellow
-  name: yellow party hat
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/party_yellow.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/party_yellow.rsi
-
-- type: entity
-  parent: ClothingHeadHatPartyRed
-  id: ClothingHeadHatPartyGreen
-  name: green party hat
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/party_green.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/party_green.rsi
-
-- type: entity
-  parent: ClothingHeadHatPartyRed
-  id: ClothingHeadHatPartyBlue
-  name: blue party hat
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hats/party_blue.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hats/party_blue.rsi

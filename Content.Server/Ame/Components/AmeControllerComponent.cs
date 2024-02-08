@@ -2,7 +2,6 @@ using Content.Server.Ame.EntitySystems;
 using Content.Shared.Ame;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Ame.Components;
 
@@ -90,16 +89,4 @@ public sealed partial class AmeControllerComponent : SharedAmeControllerComponen
     /// </summary>
     [ViewVariables]
     public TimeSpan UpdateUIPeriod = TimeSpan.FromSeconds(3.0);
-
-    /// <summary>
-    /// Time at which the admin alarm sound effect can next be played.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan EffectCooldown;
-
-    /// <summary>
-    /// Time between admin alarm sound effects. Prevents spam
-    /// </summary>
-    [DataField]
-    public TimeSpan CooldownDuration = TimeSpan.FromSeconds(10f);
 }

@@ -9,7 +9,7 @@ namespace Content.Client.Cargo.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CargoBountyMenu : FancyWindow
 {
-    public Action<string>? OnLabelButtonPressed;
+    public Action<int>? OnLabelButtonPressed;
 
     public CargoBountyMenu()
     {

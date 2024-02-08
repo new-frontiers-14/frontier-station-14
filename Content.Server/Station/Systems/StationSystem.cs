@@ -331,7 +331,7 @@ public sealed class StationSystem : EntitySystem
         if (!string.IsNullOrEmpty(name))
             _metaData.SetEntityName(mapGrid, name);
 
-        var stationMember = EnsureComp<StationMemberComponent>(mapGrid);
+        var stationMember = AddComp<StationMemberComponent>(mapGrid);
         stationMember.Station = station;
         stationData.Grids.Add(mapGrid);
 
@@ -399,14 +399,6 @@ public sealed class StationSystem : EntitySystem
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
         QueueDel(station);
-    }
-
-    public EntityUid? GetOwningStation(EntityUid? entity, TransformComponent? xform = null)
-    {
-        if (entity == null)
-            return null;
-
-        return GetOwningStation(entity.Value, xform);
     }
 
     /// <summary>

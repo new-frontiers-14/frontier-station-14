@@ -24,8 +24,6 @@ namespace Content.Server.StationEvents.Events
             if (!TryGetRandomStation(out var chosenStation))
                 return;
 
-            component.AffectedStation = chosenStation.Value;
-
             var query = AllEntityQuery<ApcComponent, TransformComponent>();
             while (query.MoveNext(out var apcUid ,out var apc, out var transform))
             {

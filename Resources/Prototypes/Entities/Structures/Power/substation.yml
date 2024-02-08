@@ -40,13 +40,6 @@
       output:
         !type:CableDeviceNode
         nodeGroupID: MVPower
-  - type: PowerMonitoringDevice
-    group: Substation
-    sourceNode: input
-    loadNode: output
-    collectionName: substation
-    sprite: Structures/Power/substation.rsi
-    state: substation_static
   - type: BatteryCharger
     voltage: High
   - type: BatteryDischarger
@@ -59,7 +52,6 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: StrongMetallic
-  - type: PacifismDangerousAttack
   - type: Destructible
     thresholds:
     - trigger:
@@ -174,12 +166,6 @@
       output:
         !type:CableDeviceNode
         nodeGroupID: MVPower
-  - type: PowerMonitoringDevice
-    group: Substation
-    sourceNode: input
-    loadNode: output
-    sprite: Structures/Power/substation.rsi
-    state: substation_wall_static
   - type: BatteryCharger
     voltage: High
   - type: BatteryDischarger
@@ -192,7 +178,6 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
-  - type: PacifismDangerousAttack
   - type: Destructible
     thresholds:
     - trigger:
