@@ -13,13 +13,16 @@ using Content.Server.Nutrition.EntitySystems;
 using Robust.Shared.Player;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Body.Systems;
+using Content.Server.Nutrition.Components;
 using Content.Shared.Database;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.ArachnidChaos
 {
     public sealed class ArachnidChaosSystem : EntitySystem
     {
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly HungerSystem _hunger = default!;
@@ -89,7 +92,7 @@ namespace Content.Server.ArachnidChaos
                 return;
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -5, bloodstream);
-            SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(args.Args.User), args.Args.User, AudioHelpers.WithVariation(0.15f));
+            _audio.PlayPvs("/Audio/Items/drink.ogg", args.Args.User, AudioHelpers.WithVariation(0.15f));
             _hunger.ModifyHunger(args.Args.User, 5, hunger);
 
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.Args.User):actor} drank blood from {ToPrettyString(args.Args.Target.Value):actor}");

@@ -30,13 +30,19 @@ public sealed partial class LockComponent : Component
     /// The sound played when unlocked.
     /// </summary>
     [DataField("unlockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg");
+    public SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(-5f),
+    };
 
     /// <summary>
     /// The sound played when locked.
     /// </summary>
     [DataField("lockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg");
+    public SoundSpecifier LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(-5f)
+    };
 
     /// <summary>
     /// Whether or not an emag disables it.
@@ -44,6 +50,12 @@ public sealed partial class LockComponent : Component
     [DataField("breakOnEmag")]
     [AutoNetworkedField]
     public bool BreakOnEmag = true;
+
+    /// <summary>
+    /// Frontier - Whether or not its emag immune.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool ImmuneToEmag;
 }
 
 /// <summary>
