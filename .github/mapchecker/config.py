@@ -15,6 +15,8 @@ ILLEGAL_MATCHES = [
 	"PDA",
 	"SpawnPointPassenger",
 	"Python",
+	"SalvageShuttleMarker",
+	"FTLPoint",
 ]
 # List of matchers that are illegal to use, unless the map is a ship and the ship belongs to the keyed shipyard.
 CONDITIONALLY_ILLEGAL_MATCHES = {
