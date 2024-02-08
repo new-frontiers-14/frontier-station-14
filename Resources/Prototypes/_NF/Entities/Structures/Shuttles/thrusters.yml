@@ -1,8 +1,16 @@
 - type: entity
+  id: BaseThrusterSecurity
+  parent: BaseThruster
+  abstract: true
+
+- type: entity
   id: ThrusterSecurity
-  parent: [BaseStructureDisableToolUse, Thruster]
+  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
+  name: thruster
   suffix: Security
   components:
+  - type: Machine
+    board: ThrusterSecurityMachineCircuitboard
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:
