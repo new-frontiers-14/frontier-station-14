@@ -5,7 +5,6 @@
   parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
-  - type: NoSlip
   - type: NpcFactionMember
     factions:
       - Syndicate
@@ -19,6 +18,9 @@
       path: /Audio/Weapons/tap.ogg
   - type: Advertise
     pack: syndicatehumanoidchatter
+    minimumWait: 120 # 1 * 2
+    maximumWait: 240 # 2 * 60
+    NextAdvertisementTime: 0
 
 # Humans
 - type: entity

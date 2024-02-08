@@ -6,7 +6,6 @@
   - MobHumanoidHostileBase
   id: MobWizFedlBase
   components:
-  - type: NoSlip
   - type: NpcFactionMember
     factions:
     - WizFedFaction
@@ -14,14 +13,18 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/Weapons/tap.ogg
+# Immunity to Heat damage from being lit on fire
   - type: Flammable
     fireSpread: true
     canResistFire: true
-    damage: #per second, scales with number of fire 'stacks'
+    damage:
       types:
         Heat: 0
   - type: Advertise
     pack: wizardhumanoidchatter
+    minimumWait: 120 # 1 * 2
+    maximumWait: 240 # 2 * 60
+    NextAdvertisementTime: 0
 
 # Humans
 - type: entity
@@ -152,18 +155,46 @@
     prototypes:
     - NPCWizardVioletHardsuitGear
 
-
 # Conjured Creatures
 - type: entity
-  name: Water Elemental
+  name: Blue Curacao Elemental
   suffix: AI
-  parent: ReagentSlime
+  parent:
+  - MobNonHumanHostileBase
   id: WaterElementalConjured
   components:
   - type: NoSlip
   - type: NpcFactionMember
     factions:
     - WizFedFaction
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#75b1f0"
+  - type: PointLight
+    radius: 2.0
+    energy: 3.5
+    color: "#75b1f0" # Edited through the LiquidAnomalySystem
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Bloodstream
+    bloodReagent: BlueCuracao
+    chemicalMaxVolume: 100
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 5
   - type: TimedDespawn
     lifetime: 30
   - type: Ammo
