@@ -1,8 +1,16 @@
 - type: entity
+  id: BaseThrusterSecurity
+  parent: BaseThruster
+  abstract: true
+
+- type: entity
   id: ThrusterSecurity
-  parent: [BaseStructureUnanchorable, Thruster]
+  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
+  name: thruster
   suffix: Security
   components:
+  - type: Machine
+    board: ThrusterSecurityMachineCircuitboard
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:
@@ -56,7 +64,7 @@
 
 - type: entity
   id: DebugThrusterSecurity
-  parent: [BaseStructureUnanchorable, DebugThruster]
+  parent: [BaseStructureDisableToolUse, DebugThruster]
   name: thruster
   suffix: DEBUG, Security
   components:
@@ -128,7 +136,7 @@
 
 - type: entity
   id: GyroscopeSecurity
-  parent: [BaseStructureUnanchorable, Gyroscope]
+  parent: [BaseStructureDisableToolUse, Gyroscope]
   suffix: Security
   components:
   - type: Sprite
@@ -161,7 +169,7 @@
 
 - type: entity
   id: DebugGyroscopeSecurity
-  parent: [BaseStructureUnanchorable, DebugGyroscope]
+  parent: [BaseStructureDisableToolUse, DebugGyroscope]
   name: gyroscope
   suffix: DEBUG, Security
   components:

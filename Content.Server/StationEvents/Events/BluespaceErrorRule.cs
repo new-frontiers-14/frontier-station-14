@@ -5,6 +5,7 @@ using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Salvage;
+using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
