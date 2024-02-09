@@ -480,7 +480,6 @@ namespace Content.Shared.Preferences
                 BackpackPreference.Backpack => BackpackPreference.Backpack,
                 BackpackPreference.Satchel => BackpackPreference.Satchel,
                 BackpackPreference.Duffelbag => BackpackPreference.Duffelbag,
-                BackpackPreference.Messenger => BackpackPreference.Messenger, // Frontier
                 _ => BackpackPreference.Backpack // Invalid enum values.
             };
 

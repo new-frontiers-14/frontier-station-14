@@ -22,9 +22,6 @@ namespace Content.Shared.Roles
         public EntProtoId? Duffelbag;
 
         [DataField]
-        public EntProtoId? Messenger; // Frontier
-
-        [DataField]
         public List<EntProtoId> Inhand = new(0);
 
         [ViewVariables]
@@ -41,8 +38,6 @@ namespace Content.Shared.Roles
                     return Satchel;
                 if (slot == "back" && profile.Backpack == BackpackPreference.Duffelbag && !string.IsNullOrEmpty(Duffelbag))
                     return Duffelbag;
-                if (slot == "back" && profile.Backpack == BackpackPreference.Messenger && !string.IsNullOrEmpty(Messenger)) // Frontier
-                    return Messenger;
             }
 
             return Equipment.TryGetValue(slot, out var equipment) ? equipment : string.Empty;
