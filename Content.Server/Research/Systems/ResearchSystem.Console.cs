@@ -41,7 +41,7 @@ public sealed partial class ResearchSystem
         var message = Loc.GetString("research-console-unlock-technology-radio-broadcast",
             ("technology", Loc.GetString(technologyPrototype.Name)),
             ("amount", technologyPrototype.Cost));
-        _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+        //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier - Make the R&D computer silent
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
