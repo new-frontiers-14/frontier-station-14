@@ -89,6 +89,12 @@ public sealed partial class FoodComponent : Component
     public float ForceFeedDelay = 3;
 
     /// <summary>
+    /// For mobs that are food, requires killing them before eating.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool RequireDead = true;
+
+    /// <summary>
     ///     Frontier - Nasty food, used for goblins to know if they can eat it or not
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField] // Frontier 
