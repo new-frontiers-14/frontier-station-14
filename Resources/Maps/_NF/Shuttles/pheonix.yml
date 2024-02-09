@@ -987,10 +987,10 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          temperature: 293.14993
           moles:
-          - 21.6852
-          - 81.57766
+          - 19.950384
+          - 75.051445
           - 0
           - 0
           - 0
@@ -3134,13 +3134,6 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
-- proto: DebugSubstation
-  entities:
-  - uid: 229
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 684
@@ -4104,6 +4097,24 @@ entities:
     - type: Transform
       pos: 12.5,10.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14917
+        moles:
+        - 1.734816
+        - 6.5262127
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerResearchDirectorFilled
   entities:
   - uid: 242
@@ -4203,32 +4214,26 @@ entities:
     - type: Transform
       pos: -7.4334917,7.5717077
       parent: 1
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 225
+  - uid: 51
     components:
     - type: Transform
-      anchored: True
-      pos: 4.5,2.5
-      parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
-    - type: Physics
-      bodyType: Static
-    - type: InsertingMaterialStorage
-  - uid: 226
-    components:
-    - type: Transform
-      anchored: True
       pos: 5.5,2.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
+  - uid: 153
+    components:
+    - type: Transform
+      pos: 4.5,2.5
+      parent: 1
+    - type: FuelGenerator
+      on: False
+    - type: Physics
+      bodyType: Static
 - proto: PortableScrubber
   entities:
   - uid: 707
@@ -5153,6 +5158,13 @@ entities:
       parent: 1
     - type: AtmosDevice
       joinedGrid: 1
+- proto: SubstationBasic
+  entities:
+  - uid: 48
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
 - proto: SuitStorageEVAAlternate
   entities:
   - uid: 281
@@ -5424,35 +5436,35 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
-- proto: WallPlastitanium
+- proto: WallReinforced
   entities:
-  - uid: 48
-    components:
-    - type: MetaData
-      flags: PvsPriority
-    - type: Transform
-      pos: -1.5,9.5
-      parent: 1
-  - uid: 51
+  - uid: 154
     components:
     - type: MetaData
       flags: PvsPriority
     - type: Transform
       pos: 2.5,9.5
       parent: 1
-  - uid: 153
+  - uid: 225
     components:
     - type: MetaData
       flags: PvsPriority
     - type: Transform
-      pos: -1.5,13.5
+      pos: -1.5,9.5
       parent: 1
-  - uid: 154
+  - uid: 226
     components:
     - type: MetaData
       flags: PvsPriority
     - type: Transform
       pos: 2.5,13.5
+      parent: 1
+  - uid: 229
+    components:
+    - type: MetaData
+      flags: PvsPriority
+    - type: Transform
+      pos: -1.5,13.5
       parent: 1
 - proto: WallShuttle
   entities:
