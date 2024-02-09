@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Client.Popups;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.Construction.Steps;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
@@ -13,7 +12,6 @@ using Robust.Client.Player;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Construction
@@ -81,31 +79,24 @@ namespace Content.Client.Construction
 
         private void HandleConstructionGhostExamined(EntityUid uid, ConstructionGhostComponent component, ExaminedEvent args)
         {
-            if (component.Prototype == null)
+            if (component.Prototype == null) return;
+
+            args.PushMarkup(Loc.GetString(
+                "construction-ghost-examine-message",
+                ("name", component.Prototype.Name)));
+
+            if (!_prototypeManager.TryIndex(component.Prototype.Graph, out ConstructionGraphPrototype? graph))
                 return;
 
-            using (args.PushGroup(nameof(ConstructionGhostComponent)))
+            var startNode = graph.Nodes[component.Prototype.StartNode];
+
+            if (!graph.TryPath(component.Prototype.StartNode, component.Prototype.TargetNode, out var path) ||
+                !startNode.TryGetEdge(path[0].Name, out var edge))
             {
-                args.PushMarkup(Loc.GetString(
-                    "construction-ghost-examine-message",
-                    ("name", component.Prototype.Name)));
-
-                if (!_prototypeManager.TryIndex(component.Prototype.Graph, out ConstructionGraphPrototype? graph))
-                    return;
-
-                var startNode = graph.Nodes[component.Prototype.StartNode];
-
-                if (!graph.TryPath(component.Prototype.StartNode, component.Prototype.TargetNode, out var path) ||
-                    !startNode.TryGetEdge(path[0].Name, out var edge))
-                {
-                    return;
-                }
-
-                foreach (var step in edge.Steps)
-                {
-                    step.DoExamine(args);
-                }
+                return;
             }
+
+            edge.Steps[0].DoExamine(args);
         }
 
         public event EventHandler<CraftingAvailabilityChangedArgs>? CraftingAvailabilityChanged;
@@ -206,7 +197,7 @@ namespace Content.Client.Construction
             var comp = EntityManager.GetComponent<ConstructionGhostComponent>(ghost.Value);
             comp.Prototype = prototype;
             EntityManager.GetComponent<TransformComponent>(ghost.Value).LocalRotation = dir.ToAngle();
-            _ghosts.Add(ghost.GetHashCode(), ghost.Value);
+            _ghosts.Add(ghost.Value.Id, ghost.Value);
             var sprite = EntityManager.GetComponent<SpriteComponent>(ghost.Value);
             sprite.Color = new Color(48, 255, 48, 128);
 
@@ -273,7 +264,7 @@ namespace Content.Client.Construction
             }
 
             var transform = EntityManager.GetComponent<TransformComponent>(ghostId);
-            var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.GetHashCode());
+            var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.Id);
             RaiseNetworkEvent(msg);
         }
 

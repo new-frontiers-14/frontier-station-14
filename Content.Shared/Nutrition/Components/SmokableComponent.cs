@@ -13,16 +13,16 @@ namespace Content.Shared.Nutrition.Components
         /// <summary>
         ///     Solution inhale amount per second.
         /// </summary>
-        [DataField("inhaleAmount"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("inhaleAmount")]
         public FixedPoint2 InhaleAmount { get; private set; } = FixedPoint2.New(0.05f);
 
         [DataField("state")]
         public SmokableState State { get; set; } = SmokableState.Unlit;
 
-        [DataField("exposeTemperature"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("exposeTemperature")]
         public float ExposeTemperature { get; set; } = 0;
 
-        [DataField("exposeVolume"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("exposeVolume")]
         public float ExposeVolume { get; set; } = 1f;
 
         // clothing prefixes

@@ -22,14 +22,19 @@ public abstract class SharedJobSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
+        _protoManager.PrototypesReloaded += OnProtoReload;
         SetupTrackerLookup();
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _protoManager.PrototypesReloaded -= OnProtoReload;
     }
 
     private void OnProtoReload(PrototypesReloadedEventArgs obj)
     {
-        if (obj.WasModified<JobPrototype>())
-            SetupTrackerLookup();
+        SetupTrackerLookup();
     }
 
     private void SetupTrackerLookup()
@@ -78,7 +83,7 @@ public abstract class SharedJobSystem : EntitySystem
 
     public bool MindHasJobWithId(EntityUid? mindId, string prototypeId)
     {
-        return CompOrNull<JobComponent>(mindId)?.Prototype == prototypeId;
+        return CompOrNull<JobComponent>(mindId)?.PrototypeId == prototypeId;
     }
 
     public bool MindTryGetJob(
@@ -90,8 +95,8 @@ public abstract class SharedJobSystem : EntitySystem
         prototype = null;
 
         return TryComp(mindId, out comp) &&
-               comp.Prototype != null &&
-               _prototypes.TryIndex(comp.Prototype, out prototype);
+               comp.PrototypeId != null &&
+               _prototypes.TryIndex(comp.PrototypeId, out prototype);
     }
 
     /// <summary>

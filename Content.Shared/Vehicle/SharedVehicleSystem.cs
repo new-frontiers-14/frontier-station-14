@@ -12,8 +12,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Vehicle.Components;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
@@ -73,8 +71,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         {
             if (!vehicle.AutoAnimate)
                 continue;
-
-            // Why is this updating appearance data every tick, instead of when it needs to be updated???
 
             if (_mover.GetVelocityInput(mover).Sprinting == Vector2.Zero)
             {
@@ -178,7 +174,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         // TODO: Need audio refactor maybe, just some way to null it when the stream is over.
         // For now better to just not loop to keep the code much cleaner.
-        vehicle.HonkPlayingStream = _audioSystem.PlayPredicted(vehicle.HornSound, uid, uid)?.Entity;
+        vehicle.HonkPlayingStream?.Stop();
+        vehicle.HonkPlayingStream = _audioSystem.PlayPredicted(vehicle.HornSound, uid, uid);
         args.Handled = true;
     }
 

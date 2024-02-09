@@ -366,14 +366,13 @@ namespace Content.Client.Examine
             var canSeeClearly = !HasComp<BlurryVisionComponent>(playerEnt);
 
             OpenTooltip(playerEnt.Value, entity, centeredOnCursor, false, knowTarget: canSeeClearly);
-
-            // Always update tooltip info from client first.
-            // If we get it wrong, server will correct us later anyway.
-            // This will usually be correct (barring server-only components, which generally only adds, not replaces text)
-            message = GetExamineText(entity, playerEnt);
-            UpdateTooltipInfo(playerEnt.Value, entity, message);
-
-            if (!IsClientSide(entity))
+            if (IsClientSide(entity)
+                || _client.RunLevel == ClientRunLevel.SinglePlayerGame) // i.e. a replay
+            {
+                message = GetExamineText(entity, playerEnt);
+                UpdateTooltipInfo(playerEnt.Value, entity, message);
+            }
+            else
             {
                 // Ask server for extra examine info.
                 if (entity != _lastExaminedEntity)
@@ -384,6 +383,7 @@ namespace Content.Client.Examine
             }
 
             RaiseLocalEvent(entity, new ClientExaminedEvent(entity, playerEnt.Value));
+
             _lastExaminedEntity = entity;
         }
 

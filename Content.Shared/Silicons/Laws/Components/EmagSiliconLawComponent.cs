@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Audio;
 
 namespace Content.Shared.Silicons.Laws.Components;
 
@@ -49,12 +48,4 @@ public sealed partial class EmagSiliconLawComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<AntagPrototype>? AntagonistRole = "SubvertedSilicon";
-
-    /// <summary>
-    /// The sound that plays for the borg player
-    /// to let them know they've been emagged
-    /// </summary>
-    [DataField]
-    public SoundSpecifier EmaggedSound = new SoundPathSpecifier("/Audio/Ambience/Antag/emagged_borg.ogg");
-
 }

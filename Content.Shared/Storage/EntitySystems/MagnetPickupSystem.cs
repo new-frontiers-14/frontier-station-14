@@ -2,7 +2,6 @@
 using Content.Shared.Clothing.Components;    // Frontier
 using Content.Shared.Examine;   // Frontier
 using Content.Shared.Hands.Components;  // Frontier
-using Content.Server.Storage.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Verbs;     // Frontier
 using Content.Shared.Storage.Components;    // Frontier
@@ -74,7 +73,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     // Frontier, used to show the magnet state on examination
     private void OnExamined(EntityUid uid, MagnetPickupComponent component, ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("magnet-pickup-component-on-examine-main",
+        args.PushMarkup(Loc.GetString("magnet-pickup-component-on-examine-main", 
                         ("stateText", Loc.GetString(component.MagnetEnabled
                         ? "magnet-pickup-component-magnet-on"
                         : "magnet-pickup-component-magnet-off"))));
@@ -89,13 +88,14 @@ public sealed class MagnetPickupSystem : EntitySystem
         return comp.MagnetEnabled;
     }
 
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<MagnetPickupComponent, StorageComponent, TransformComponent, MetaDataComponent>();
+        var query = EntityQueryEnumerator<MagnetPickupComponent, StorageComponent, TransformComponent>();
         var currentTime = _timing.CurTime;
 
-        while (query.MoveNext(out var uid, out var comp, out var storage, out var xform, out var meta))
+        while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
             if (comp.NextScan > currentTime)
                 continue;
@@ -103,7 +103,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
 
             // No space
-            if (!_storage.HasSpace((uid, storage)))
+            if (storage.StorageUsed >= storage.StorageCapacityMax)
                 continue;
 
             // Frontier - magnet disabled

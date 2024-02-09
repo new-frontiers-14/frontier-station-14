@@ -1,7 +1,6 @@
 using Content.Shared.Drugs;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Shared.Player;
 
 namespace Content.Client.Drugs;
 

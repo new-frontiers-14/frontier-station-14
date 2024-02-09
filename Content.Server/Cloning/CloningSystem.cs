@@ -29,7 +29,6 @@ using Content.Shared.Roles.Jobs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
@@ -281,7 +280,7 @@ namespace Content.Server.Cloning
             var cloneMindReturn = EntityManager.AddComponent<BeingClonedComponent>(mob);
             cloneMindReturn.Mind = mind;
             cloneMindReturn.Parent = uid;
-            _containerSystem.Insert(mob, clonePod.BodyContainer);
+            clonePod.BodyContainer.Insert(mob);
             ClonesWaitingForMind.Add(mind, mob);
             UpdateStatus(uid, CloningPodStatus.NoMind, clonePod);
             _euiManager.OpenEui(new AcceptCloningEui(mindEnt, mind, this), client);
@@ -352,7 +351,7 @@ namespace Content.Server.Cloning
                 return;
 
             EntityManager.RemoveComponent<BeingClonedComponent>(entity);
-            _containerSystem.Remove(entity, clonePod.BodyContainer);
+            clonePod.BodyContainer.Remove(entity);
             clonePod.CloningProgress = 0f;
             clonePod.UsedBiomass = 0;
             UpdateStatus(uid, CloningPodStatus.Idle, clonePod);
@@ -365,7 +364,8 @@ namespace Content.Server.Cloning
             clonePod.CloningProgress = 0f;
             UpdateStatus(uid, CloningPodStatus.Idle, clonePod);
             var transform = Transform(uid);
-            var indices = _transformSystem.GetGridTilePositionOrDefault((uid, transform));
+            var indices = _transformSystem.GetGridOrMapTilePosition(uid);
+
             var tileMix = _atmosphereSystem.GetTileMixture(transform.GridUid, null, indices, true);
 
             if (HasComp<EmaggedComponent>(uid))
@@ -379,7 +379,7 @@ namespace Content.Server.Cloning
             var i = 0;
             while (i < 1)
             {
-                tileMix?.AdjustMoles(Gas.Ammonia, 6f);
+                tileMix?.AdjustMoles(Gas.Miasma, 6f);
                 bloodSolution.AddReagent("Blood", 50);
                 if (_robustRandom.Prob(0.2f))
                     i++;

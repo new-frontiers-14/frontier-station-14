@@ -170,26 +170,27 @@ namespace Content.Client.Verbs
         /// </summary>
         public SortedSet<Verb> GetVerbs(EntityUid target, EntityUid user, Type type, bool force = false)
         {
-            return GetVerbs(GetNetEntity(target), user, new List<Type>() { type }, force);
+            return GetVerbs(target, user, new List<Type>() { type }, force);
         }
 
         /// <summary>
         ///     Ask the server to send back a list of server-side verbs, and for now return an incomplete list of verbs
         ///     (only those defined locally).
         /// </summary>
-        public SortedSet<Verb> GetVerbs(NetEntity target, EntityUid user, List<Type> verbTypes,
+        public SortedSet<Verb> GetVerbs(EntityUid target, EntityUid user, List<Type> verbTypes,
             bool force = false)
         {
-            if (!target.IsClientSide())
-                RaiseNetworkEvent(new RequestServerVerbsEvent(target, verbTypes, adminRequest: force));
+            if (!IsClientSide(target))
+            {
+                RaiseNetworkEvent(new RequestServerVerbsEvent(GetNetEntity(target), verbTypes, adminRequest: force));
+            }
 
             // Some admin menu interactions will try get verbs for entities that have not yet been sent to the player.
-            if (!TryGetEntity(target, out var local))
+            if (!Exists(target))
                 return new();
 
-            return GetLocalVerbs(local.Value, user, verbTypes, force);
+            return GetLocalVerbs(target, user, verbTypes, force);
         }
-
 
         /// <summary>
         ///     Execute actions associated with the given verb.
@@ -199,18 +200,8 @@ namespace Content.Client.Verbs
         /// </remarks>
         public void ExecuteVerb(EntityUid target, Verb verb)
         {
-            ExecuteVerb(GetNetEntity(target), verb);
-        }
-
-        /// <summary>
-        ///     Execute actions associated with the given verb.
-        /// </summary>
-        /// <remarks>
-        ///     Unless this is a client-exclusive verb, this will also tell the server to run the same verb.
-        /// </remarks>
-        public void ExecuteVerb(NetEntity target, Verb verb)
-        {
-            if ( _playerManager.LocalEntity is not {} user)
+            var user = _playerManager.LocalPlayer?.ControlledEntity;
+            if (user == null)
                 return;
 
             // is this verb actually valid?
@@ -218,16 +209,16 @@ namespace Content.Client.Verbs
             {
                 // maybe send an informative pop-up message.
                 if (!string.IsNullOrWhiteSpace(verb.Message))
-                    _popupSystem.PopupEntity(verb.Message, user);
+                    _popupSystem.PopupEntity(verb.Message, user.Value);
 
                 return;
             }
 
-            if (verb.ClientExclusive || target.IsClientSide())
+            if (verb.ClientExclusive || IsClientSide(target))
                 // is this a client exclusive (gui) verb?
-                ExecuteVerb(verb, user, GetEntity(target));
+                ExecuteVerb(verb, user.Value, target);
             else
-                EntityManager.RaisePredictiveEvent(new ExecuteVerbEvent(target, verb));
+                EntityManager.RaisePredictiveEvent(new ExecuteVerbEvent(GetNetEntity(target), verb));
         }
 
         private void HandleVerbResponse(VerbsResponseEvent msg)

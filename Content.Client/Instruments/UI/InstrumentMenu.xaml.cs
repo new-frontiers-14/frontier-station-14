@@ -18,8 +18,6 @@ namespace Content.Client.Instruments.UI
     {
         private readonly InstrumentBoundUserInterface _owner;
 
-        private bool _isMidiFileDialogueWindowOpen;
-
         public InstrumentMenu(InstrumentBoundUserInterface owner)
         {
             RobustXamlLoader.Load(this);
@@ -97,20 +95,10 @@ namespace Content.Client.Instruments.UI
 
         private async void MidiFileButtonOnOnPressed(ButtonEventArgs obj)
         {
-            if (_isMidiFileDialogueWindowOpen)
-                return;
-
             _owner.CloseBandMenu();
 
             var filters = new FileDialogFilters(new FileDialogFilters.Group("mid", "midi"));
-
-            // TODO: Once the file dialogue manager can handle focusing or closing windows, improve this logic to close
-            // or focus the previously-opened window.
-            _isMidiFileDialogueWindowOpen = true;
-
             await using var file = await _owner.FileDialogManager.OpenFile(filters);
-
-            _isMidiFileDialogueWindowOpen = false;
 
             // did the instrument menu get closed while waiting for the user to select a file?
             if (Disposed)
@@ -122,12 +110,20 @@ namespace Content.Client.Instruments.UI
             if (file == null)
                 return;
 
+            /*if (!_midiManager.IsMidiFile(filename))
+            {
+                Logger.Warning($"Not a midi file! Chosen file: {filename}");
+                return;
+            }*/
+
             if (!PlayCheck())
                 return;
 
+            MidiStopButtonOnPressed(null);
             await using var memStream = new MemoryStream((int) file.Length);
-
-            await file.CopyToAsync(memStream);
+            // 100ms delay is due to a race condition or something idk.
+            // While we're waiting, load it into memory.
+            await Task.WhenAll(Timer.Delay(100), file.CopyToAsync(memStream));
 
             if (_owner.Instrument is not {} instrument
                 || !_owner.Instruments.OpenMidi(_owner.Owner, memStream.GetBuffer().AsSpan(0, (int) memStream.Length), instrument))

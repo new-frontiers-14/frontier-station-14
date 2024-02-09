@@ -97,12 +97,6 @@ namespace Content.Client.Options.UI.Tabs
             _deferCommands.Add(_inputManager.SaveToUserData);
         }
 
-        private void HandleStaticStorageUI(BaseButton.ButtonToggledEventArgs args)
-        {
-            _cfg.SetCVar(CCVars.StaticStorageUI, args.Pressed);
-            _cfg.SaveToFile();
-        }
-
         public KeyRebindTab()
         {
             IoCManager.InjectDependencies(this);
@@ -181,14 +175,10 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.Drop);
             AddButton(ContentKeyFunctions.ExamineEntity);
             AddButton(ContentKeyFunctions.SwapHands);
-            AddButton(ContentKeyFunctions.MoveStoredItem);
-            AddButton(ContentKeyFunctions.RotateStoredItem);
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
-            AddButton(ContentKeyFunctions.OpenBackpack);
-            AddButton(ContentKeyFunctions.OpenBelt);
             AddButton(ContentKeyFunctions.ThrowItemInHand);
             AddButton(ContentKeyFunctions.TryPullObject);
             AddButton(ContentKeyFunctions.MovePulledObject);
@@ -231,6 +221,10 @@ namespace Content.Client.Options.UI.Tabs
 
             AddHeader("ui-options-header-hotbar");
             foreach (var boundKey in ContentKeyFunctions.GetHotbarBoundKeys())
+            {
+                AddButton(boundKey);
+            }
+            foreach (var boundKey in ContentKeyFunctions.GetLoadoutBoundKeys())
             {
                 AddButton(boundKey);
             }

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Construction.Prototypes;
+﻿using Content.Shared.Chemistry.Components;
+using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -84,6 +85,12 @@ public sealed partial class MaterialReclaimerComponent : Component
     public string SolutionContainerId = "output";
 
     /// <summary>
+    /// The solution itself.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Solution OutputSolution = default!;
+
+    /// <summary>
     /// a whitelist for what entities can be inserted into this reclaimer
     /// </summary>
     [DataField]
@@ -119,7 +126,7 @@ public sealed partial class MaterialReclaimerComponent : Component
     [DataField]
     public TimeSpan SoundCooldown = TimeSpan.FromSeconds(0.8f);
 
-    public EntityUid? Stream;
+    public IPlayingAudioStream? Stream;
 
     /// <summary>
     /// A counter of how many items have been processed

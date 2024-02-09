@@ -1,4 +1,3 @@
-# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_single.yml
 # Base
 
 - type: entity
@@ -20,7 +19,7 @@
         - ReagentId: Flavorol
           Quantity: 10
   - type: Item
-    size: Small
+    size: 5
 
 # Kebabs
 
@@ -47,7 +46,6 @@
   - type: Tag
     tags:
     - Trash
-    - Skewer
 
 # Custom Kebab Example
 
@@ -109,7 +107,7 @@
 
 - type: entity
   name: rat kebab
-  parent: FoodMeatKebab
+  parent: FoodSkewerBase
   id: FoodMeatRatKebab
   description: Not so delicious rat meat, on a stick.
   components:
@@ -130,7 +128,7 @@
 
 - type: entity
   name: double rat kebab
-  parent: FoodMeatKebab
+  parent: FoodSkewerBase
   id: FoodMeatRatdoubleKebab
   description: A double serving of not so delicious rat meat, on a stick.
   components:

@@ -113,9 +113,7 @@
       - !type:WirePanel {}
       - !type:AllWiresCut
       completed:
-      - !type:EmptyAllContainers
-        pickup: true
-        emptyAtUser: true
+      - !type:EmptyAllContainers {}
       steps:
       - tool: Anchoring
         doAfter: 1
@@ -205,17 +203,17 @@
   - node: windoorSecure
     entity: WindoorSecure
     edges:
-    - to: wiredSecure
+    - to: wired
       conditions:
       - !type:EntityAnchored {}
       - !type:DoorBolted
         value: false
       - !type:WirePanel {}
+      - !type:ContainerNotEmpty # TODO ShadowCommander: Remove when map gets updated
+        container: board
       - !type:AllWiresCut
       completed:
-      - !type:EmptyAllContainers
-        pickup: true
-        emptyAtUser: true
+      - !type:EmptyAllContainers {}
       steps:
       - tool: Anchoring
         doAfter: 4

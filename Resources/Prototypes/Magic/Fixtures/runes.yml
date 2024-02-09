@@ -90,21 +90,10 @@
   name: "ignite rune"
   components:
     - type: TriggerOnCollide
-      fixtureID: ignition
-    - type: Fixtures
-      fixtures:
-        ignition:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.4,-0.4,0.4,0.4"
-          hard: false
-          mask:
-          - ItemMask
-          layer:
-          - SlipLayer
+      fixtureID: rune
     - type: DeleteOnTrigger
     - type: IgniteOnCollide
-      fireStacks: 5
+      fireStacks: 10
     - type: Sprite
       sprite: Structures/Magic/Cult/trap.rsi
       layers:

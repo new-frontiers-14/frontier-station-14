@@ -1,22 +1,15 @@
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-
 namespace Content.Shared.Movement.Events;
 
 /// <summary>
-/// Raised on an entity whenever it has a movement input change.
+/// Raised on an entity whenever it has a movement input.
 /// </summary>
 [ByRefEvent]
 public readonly struct MoveInputEvent
 {
     public readonly EntityUid Entity;
-    public readonly InputMoverComponent Component;
-    public readonly MoveButtons OldMovement;
 
-    public MoveInputEvent(EntityUid entity, InputMoverComponent component, MoveButtons oldMovement)
+    public MoveInputEvent(EntityUid entity)
     {
         Entity = entity;
-        Component = component;
-        OldMovement = oldMovement;
     }
 }

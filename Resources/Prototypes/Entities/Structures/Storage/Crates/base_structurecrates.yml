@@ -38,7 +38,7 @@
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
@@ -101,8 +101,8 @@
       map: ["enum.StorageVisualLayers.Lock"]
       shader: unshaded
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:
     - trigger:

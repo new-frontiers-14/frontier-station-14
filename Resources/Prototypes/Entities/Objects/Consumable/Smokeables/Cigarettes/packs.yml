@@ -42,17 +42,14 @@
     materialComposition:
       Steel: 50
   - type: SpaceGarbage
-  - type: Item
-    size: Tiny
-    shape: # Yes, this is cursed, but it breaks otherwise, dont question it.
-    - 0,0,0,1
   - type: Storage
-    grid:
-    - 0,0,4,1
+    capacity: 5
+  - type: Item
+    size: 5
   - type: StorageFill
     contents:
     - id: Cigarette
-      amount: 10
+      amount: 5
   - type: ItemCounter
     count:
       tags: [Cigarette]
@@ -110,13 +107,10 @@
     materialComposition:
       Steel: 50
   - type: SpaceGarbage
-  - type: Item
-    size: Tiny
-    shape: # Yes, this is cursed, but it breaks otherwise, dont question it.
-    - 0,0,0,1
   - type: Storage
-    grid:
-    - 0,0,4,1
+    capacity: 10
+  - type: Item
+    size: 10
   - type: StorageFill
     contents:
     - id: CigaretteRandom
@@ -197,7 +191,6 @@
   id: CigPackMixedMedical
   parent: CigPackMixedBase
   name: Dan's soaked smokes
-  suffix: Medical
   description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
   components:
   - type: Sprite
@@ -225,7 +218,6 @@
   id: CigPackMixed
   parent: CigPackMixedBase
   name: Dan's soaked smokes
-  suffix: Mixed
   description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
   components:
   - type: Sprite
@@ -259,7 +251,6 @@
   id: CigPackMixedNasty
   parent: CigPackMixedBase
   name: Dan's soaked smokes
-  suffix: Nasty
   description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
   components:
   - type: Sprite

@@ -52,10 +52,10 @@
         Oxygen: stationOxygen
         Nitrogen: ignore
         CarbonDioxide: stationCO2
-        Plasma: stationPlasma # everything below is usually bad
+        Plasma: danger # everything below is usually bad
         Tritium: danger
         WaterVapor: stationWaterVapor
-        Ammonia: stationAmmonia
+        Miasma: stationMiasma
         NitrousOxide: stationNO
         Frezon: danger
     - type: Tag
@@ -87,7 +87,7 @@
   description: Air sensor assembly. An assembly of air sensors?
   components:
     - type: Item
-      size: Small
+      size: 10
     - type: Anchorable
     - type: Construction
       graph: AirSensor

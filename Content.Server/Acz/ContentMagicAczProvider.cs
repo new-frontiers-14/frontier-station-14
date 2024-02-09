@@ -20,6 +20,6 @@ public sealed class ContentMagicAczProvider : IMagicAczProvider
     {
         var contentDir = DefaultMagicAczProvider.FindContentRootPath(_deps);
 
-        await ClientPackaging.WriteResources(contentDir, pass, logger, cancel);
+        await ContentPackaging.WriteResources(contentDir, pass, logger, cancel);
     }
 }

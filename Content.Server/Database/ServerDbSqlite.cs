@@ -2,7 +2,6 @@ using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
@@ -29,13 +28,9 @@ namespace Content.Server.Database
 
         private int _msDelay;
 
-        public ServerDbSqlite(
-            Func<DbContextOptions<SqliteServerDbContext>> options,
+        public ServerDbSqlite(Func<DbContextOptions<SqliteServerDbContext>> options,
             bool inMemory,
-            IConfigurationManager cfg,
-            bool synchronous,
-            ISawmill opsLog)
-            : base(opsLog)
+            IConfigurationManager cfg, bool synchronous)
         {
             _options = options;
 
@@ -418,13 +413,12 @@ namespace Content.Server.Database
                 DateTime.SpecifyKind(unban.UnbanTime, DateTimeKind.Utc));
         }
 
-        public override async Task<int> AddConnectionLogAsync(
+        public override async Task<int>  AddConnectionLogAsync(
             NetUserId userId,
             string userName,
             IPAddress address,
             ImmutableArray<byte> hwId,
-            ConnectionDenyReason? denied,
-            int serverId)
+            ConnectionDenyReason? denied)
         {
             await using var db = await GetDbImpl();
 
@@ -435,8 +429,7 @@ namespace Content.Server.Database
                 UserId = userId.UserId,
                 UserName = userName,
                 HWId = hwId.ToArray(),
-                Denied = denied,
-                ServerId = serverId
+                Denied = denied
             };
 
             db.SqliteDbContext.ConnectionLog.Add(connectionLog);
@@ -546,9 +539,8 @@ namespace Content.Server.Database
             return await base.AddAdminMessage(message);
         }
 
-        private async Task<DbGuardImpl> GetDbImpl([CallerMemberName] string? name = null)
+        private async Task<DbGuardImpl> GetDbImpl()
         {
-            LogDbOp(name);
             await _dbReadyTask;
             if (_msDelay > 0)
                 await Task.Delay(_msDelay);
@@ -560,9 +552,9 @@ namespace Content.Server.Database
             return new DbGuardImpl(this, dbContext);
         }
 
-        protected override async Task<DbGuard> GetDb([CallerMemberName] string? name = null)
+        protected override async Task<DbGuard> GetDb()
         {
-            return await GetDbImpl(name).ConfigureAwait(false);
+            return await GetDbImpl().ConfigureAwait(false);
         }
 
         private sealed class DbGuardImpl : DbGuard

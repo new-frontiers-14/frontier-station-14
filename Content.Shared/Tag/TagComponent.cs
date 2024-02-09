@@ -1,9 +1,8 @@
-﻿using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
+﻿using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Shared.Tag
 {
-    [RegisterComponent, NetworkedComponent, Access(typeof(TagSystem))]
+    [RegisterComponent, Access(typeof(TagSystem))]
     public sealed partial class TagComponent : Component
     {
         [DataField("tags", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<TagPrototype>))]

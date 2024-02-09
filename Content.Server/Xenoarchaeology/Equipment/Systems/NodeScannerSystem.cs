@@ -3,6 +3,7 @@ using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
+using Robust.Shared.Player;
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
@@ -30,11 +31,7 @@ public sealed class NodeScannerSystem : EntitySystem
         args.Handled = true;
 
         var target = args.Target.Value;
-
-        if (TryComp(uid, out UseDelayComponent? useDelay)
-            && !_useDelay.TryResetDelay((uid, useDelay), true))
-            return;
-
+        _useDelay.BeginDelay(uid);
         _popupSystem.PopupEntity(Loc.GetString("node-scan-popup",
             ("id", $"{artifact.CurrentNodeId}")), target);
     }

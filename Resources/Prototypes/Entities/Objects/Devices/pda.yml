@@ -23,11 +23,6 @@
     state: pda
   - type: Pda
     state: pda
-    paiSlot:
-      priority: -2
-      whitelist:
-        components:
-        - PAI
     penSlot:
       startingItem: Pen
       priority: -1
@@ -43,17 +38,16 @@
     idSlot:
       name: ID Card
       ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       whitelist:
         components:
         - IdCard
   - type: Item
-    size: Small
+    size: 10
   - type: ContainerContainer
     containers:
       PDA-id: !type:ContainerSlot {}
       PDA-pen: !type:ContainerSlot {}
-      PDA-pai: !type:ContainerSlot {}
       PDA-book: !type:ContainerSlot {} # Frontier
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
@@ -87,7 +81,7 @@
       priority: -1
       name: Cartridge
       ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       whitelist:
         components:
           - Cartridge
@@ -120,15 +114,6 @@
 
 - type: entity
   parent: BasePDA
-  id: BaseMedicalPDA
-  components:
-  - type: HealthAnalyzer
-    scanDelay: 1
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
-
-- type: entity
-  parent: BasePDA
   id: PassengerPDA
   name: passenger PDA
   description: Why isn't it gray?
@@ -155,7 +140,7 @@
     state: pda-interntech
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: MedicalInternPDA
   name: medical intern PDA
   description: Why isn't it white? Has a built-in health analyzer.
@@ -168,6 +153,10 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-internmed
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
   - type: GuideHelp
     guides:
     - Medical Doctor
@@ -301,7 +290,7 @@
   - type: Pda
     id: MimeIDCard
     state: pda-mime
-    idSlot: #  rewrite without sound because mime
+    idSlot:
       name: ID Card
       whitelist:
         components:
@@ -393,12 +382,6 @@
   - type: Pda
     id: LibrarianIDCard
     state: pda-library
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: PdaBorderColor
     borderColor: "#858585"
   - type: Icon
@@ -413,12 +396,6 @@
   - type: Pda
     id: LawyerIDCard
     state: pda-lawyer
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: PdaBorderColor
     borderColor: "#6f6192"
   - type: Icon
@@ -510,7 +487,7 @@
     state: pda-engineer
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: CMOPDA
   name: chief medical officer PDA
   description: Extraordinarily shiny and sterile. Has a built-in health analyzer.
@@ -524,9 +501,13 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-cmo
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: MedicalPDA
   name: medical PDA
   description: Shiny and sterile. Has a built-in health analyzer.
@@ -539,12 +520,16 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-medical
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
   - type: GuideHelp
     guides:
     - Medical Doctor
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: ParamedicPDA
   name: paramedic PDA
   description: Shiny and sterile. Has a built-in rapid health analyzer.
@@ -557,9 +542,13 @@
     accentVColor: "#2a4b5b"
   - type: Icon
     state: pda-paramedic
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: ChemistryPDA
   name: chemistry PDA
   description: It has a few discolored blotches here and there.
@@ -572,6 +561,10 @@
     accentVColor: "#B34200"
   - type: Icon
     state: pda-chemistry
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
   parent: BasePDA
@@ -752,7 +745,7 @@
       priority: -1
       name: Cartridge
       ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       whitelist:
         components:
           - Cartridge
@@ -761,7 +754,6 @@
   parent: BasePDA
   id: ERTLeaderPDA
   name: ERT PDA
-  suffix: Leader
   description: Red for firepower.
   components:
   - type: Pda
@@ -776,53 +768,13 @@
 
 - type: entity
   parent: ERTLeaderPDA
-  id: ERTChaplainPDA
-  name: ERT PDA
-  suffix: Chaplain
-  components:
-  - type: Pda
-    id: ERTChaplainIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTEngineerPDA
-  suffix: Engineer
-  components:
-  - type: Pda
-    id: ERTEngineerIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTJanitorPDA
-  suffix: Janitor
-  components:
-  - type: Pda
-    id: ERTJanitorIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTMedicPDA
-  suffix: Medic
-  components:
-  - type: Pda
-    id: ERTMedicIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
-  id: ERTSecurityPDA
-  suffix: Security
-  components:
-  - type: Pda
-    id: ERTSecurityIDCard
-
-- type: entity
-  parent: ERTLeaderPDA
   id: CBURNPDA
   name: CBURN PDA
   description: Smells like rotten flesh.
   components:
   - type: Pda
     id: CBURNIDcard
+    state: pda-ert
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
@@ -852,12 +804,6 @@
   - type: Pda
     id: ReporterIDCard
     state: pda-reporter
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: PdaBorderColor
     borderColor: "#3f3f74"
   - type: Icon
@@ -907,7 +853,7 @@
     state: pda-detective
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: BrigmedicPDA
   name: brigmedic PDA
   description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
@@ -921,6 +867,10 @@
     accentVColor: "#d7d7d0"
   - type: Icon
     state: pda-brigmedic
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
   parent: ClownPDA
@@ -977,7 +927,7 @@
     state: pda-seniorresearcher
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BasePDA
   id: SeniorPhysicianPDA
   name: senior physician PDA
   description: Smells faintly like iron and chemicals. Has a built-in health analyzer.
@@ -991,6 +941,10 @@
     accentVColor: "#B34200"
   - type: Icon
     state: pda-seniorphysician
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
   parent: BasePDA
@@ -1006,41 +960,3 @@
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
-
-- type: entity
-  parent: SyndiPDA
-  id: PiratePDA
-  name: pirate PDA
-  description: Yargh!
-  components:
-  - type: Pda
-    id: PirateIDCard
-    state: pda-pirate
-  - type: Icon
-    state: pda-pirate
-
-- type: entity
-  parent: BaseMedicalPDA
-  id: SyndiAgentPDA
-  name: syndicate agent PDA
-  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
-  components:
-  - type: Pda
-    id: SyndicateIDCard
-    state: pda-syndi-agent
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-agent
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-    cartridgeSlot:
-      priority: -1
-      name: Cartridge
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
-      whitelist:
-        components:
-          - Cartridge

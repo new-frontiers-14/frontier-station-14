@@ -30,7 +30,7 @@ public sealed partial class CommsHackerComponent : Component
 /// You wouldn't do that, right?
 /// </summary>
 [Prototype("ninjaHackingThreat")]
-public sealed partial class NinjaHackingThreatPrototype : IPrototype
+public sealed class NinjaHackingThreatPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

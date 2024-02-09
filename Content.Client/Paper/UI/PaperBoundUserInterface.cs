@@ -1,5 +1,6 @@
 using Content.Shared.Paper;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
@@ -49,12 +50,15 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
 
     private void Input_OnTextEntered(string text)
     {
-        SendMessage(new PaperInputTextMessage(text));
-
-        if (_window != null)
+        if (!string.IsNullOrEmpty(text))
         {
-            _window.Input.TextRope = Rope.Leaf.Empty;
-            _window.Input.CursorPosition = new TextEdit.CursorPos(0, TextEdit.LineBreakBias.Top);
+            SendMessage(new PaperInputTextMessage(text));
+
+            if (_window != null)
+            {
+                _window.Input.TextRope = Rope.Leaf.Empty;
+                _window.Input.CursorPosition = new TextEdit.CursorPos(0, TextEdit.LineBreakBias.Top);
+            }
         }
     }
 

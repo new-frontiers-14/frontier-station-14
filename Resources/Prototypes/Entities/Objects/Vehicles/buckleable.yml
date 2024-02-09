@@ -72,7 +72,7 @@
   - type: ItemSlots
     slots:
       key_slot: #this slot name is important
-        name: vehicle-slot-component-slot-name-keys
+        name: Keys
         whitelist:
           requireAll: true
           tags:
@@ -82,7 +82,7 @@
           params:
             volume: -3
   - type: StaticPrice
-    price: 200 # Grand Theft Auto. # Frontier 750<200
+    price: 750 # Grand Theft Auto.
 
 - type: entity
   id: VehicleJanicart
@@ -135,7 +135,7 @@
   - type: ItemSlots
     slots:
       key_slot:
-        name: vehicle-slot-component-slot-name-keys
+        name: Keys
         whitelist:
           requireAll: true
           tags:
@@ -146,7 +146,7 @@
           params:
             volume: -3
       trashbag_slot:
-        name: janitorial-trolley-slot-component-slot-name-trashbag
+        name: Bag
         whitelist:
           tags:
             - TrashBag
@@ -205,7 +205,7 @@
   - type: ItemSlots
     slots:
       key_slot:
-        name: vehicle-slot-component-slot-name-keys
+        name: Keys
         whitelist:
           requireAll: true
           tags:
@@ -215,8 +215,6 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
-  - type: StealTarget
-    stealGroup: VehicleSecway
 
 - type: entity
   parent: BaseVehicleRideable
@@ -255,7 +253,7 @@
   - type: ItemSlots
     slots:
       key_slot:
-        name: vehicle-slot-component-slot-name-keys
+        name: Keys
         whitelist:
           requireAll: true
           tags:
@@ -298,7 +296,7 @@
     - type: ItemSlots
       slots:
         key_slot:
-          name: vehicle-slot-component-slot-name-keys
+          name: Keys
           whitelist:
             requireAll: true
             tags:
@@ -344,7 +342,7 @@
     - type: ItemSlots
       slots:
         key_slot:
-          name: vehicle-slot-component-slot-name-keys
+          name: Keys
           whitelist:
             requireAll: true
             tags:

@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Humanoid.Prototypes;
 
 [Prototype("humanoidProfile")]
-public sealed partial class HumanoidProfilePrototype : IPrototype
+public sealed class HumanoidProfilePrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

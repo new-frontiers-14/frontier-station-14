@@ -24,13 +24,13 @@
     solution: spray
   - type: SolutionTransfer
     canChangeTransferAmount: true
-  - type: UseDelay
+  - type: ItemCooldown
   - type: Spray
     transferAmount: 10
     sprayVelocity: 2
     spraySound:
       path: /Audio/Effects/spray2.ogg
-  - type: TrashOnSolutionEmpty
+  - type: TrashOnEmpty
     solution: spray
 
 - type: entity

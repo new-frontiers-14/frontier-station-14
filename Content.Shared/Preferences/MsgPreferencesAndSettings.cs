@@ -18,17 +18,14 @@ namespace Content.Shared.Preferences
         public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
         {
             var length = buffer.ReadVariableInt32();
-
-            using (var stream = new MemoryStream())
+            using (var stream = buffer.ReadAlignedMemory(length))
             {
-                buffer.ReadAlignedMemory(stream, length);
                 serializer.DeserializeDirect(stream, out Preferences);
             }
 
             length = buffer.ReadVariableInt32();
-            using (var stream = new MemoryStream())
+            using (var stream = buffer.ReadAlignedMemory(length))
             {
-                buffer.ReadAlignedMemory(stream, length);
                 serializer.DeserializeDirect(stream, out Settings);
             }
         }

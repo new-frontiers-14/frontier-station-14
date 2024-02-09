@@ -8,7 +8,7 @@
     sprite: Objects/Materials/ore.rsi
   - type: Item
     sprite: Objects/Materials/ore.rsi
-    size: Normal
+    size: 60
   - type: Tag
     tags:
     - Ore
@@ -48,7 +48,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawGold: 500
+      Gold: 500
 
 - type: entity
   parent: GoldOre
@@ -57,11 +57,13 @@
   components:
   - type: Stack
     count: 1
+  - type: Item
+    size: 2
 
 - type: entity
   parent: OreBase
   id: SteelOre
-  name: iron ore
+  name: steel ore
   suffix: Full
   components:
   - type: Stack
@@ -71,7 +73,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawIron: 500
+      Steel: 500
 
 - type: entity
   id: SteelOre1
@@ -80,6 +82,8 @@
   components:
     - type: Stack
       count: 1
+    - type: Item
+      size: 2
 
 - type: entity
   parent: OreBase
@@ -94,12 +98,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawPlasma: 500
-  - type: PointLight
-    radius: 1.2
-    energy: 0.6
-    castShadows: false
-    color: "#e592e7"
+      Plasma: 500
 
 - type: entity
   parent: PlasmaOre
@@ -108,6 +107,8 @@
   components:
     - type: Stack
       count: 1
+    - type: Item
+      size: 2
 
 - type: entity
   parent: OreBase
@@ -122,7 +123,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawSilver: 500
+      Silver: 500
 
 - type: entity
   parent: SilverOre
@@ -131,6 +132,8 @@
   components:
   - type: Stack
     count: 1
+  - type: Item
+    size: 2
 
 - type: entity
   parent: OreBase
@@ -145,7 +148,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawQuartz: 500
+      Glass: 500
 
 - type: entity
   parent: SpaceQuartz
@@ -154,6 +157,8 @@
   components:
   - type: Stack
     count: 1
+  - type: Item
+    size: 2
 
 - type: entity
   parent: OreBase
@@ -168,12 +173,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawUranium: 500
-  - type: PointLight
-    radius: 1.2
-    energy: 0.8
-    castShadows: false
-    color: "#9be792"
+      Uranium: 500
 
 - type: entity
   parent: UraniumOre
@@ -182,6 +182,9 @@
   components:
   - type: Stack
     count: 1
+  - type: Item
+    size: 2
+
 
 - type: entity
   parent: OreBase
@@ -196,12 +199,7 @@
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      RawBananium: 500
-  - type: PointLight
-    radius: 1.2
-    energy: 1
-    castShadows: false
-    color: "#eef066"
+      Bananium: 500
 
 - type: entity
   parent: BananiumOre
@@ -210,42 +208,5 @@
   components:
   - type: Stack
     count: 1
-
-- type: entity
-  parent: OreBase
-  id: Coal
-  name: coal
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: Coal
-  - type: Sprite
-    state: coal
-  - type: Material
-  - type: Extractable
-    grindableSolutionName: coal
-  - type: SolutionContainerManager
-    solutions:
-      coal:
-        reagents:
-        - ReagentId: Carbon
-          Quantity: 8.4
-        - ReagentId: Ammonia
-          Quantity: 0.8
-        - ReagentId: Hydrogen
-          Quantity: 0.5
-        - ReagentId: Sulfur
-          Quantity: 0.2
-        - ReagentId: Mercury
-          Quantity: 0.1
-  - type: PhysicalComposition
-    materialComposition:
-      Coal: 500
-
-- type: entity
-  parent: Coal
-  id: Coal1
-  suffix: Single
-  components:
-  - type: Stack
-    count: 1
+  - type: Item
+    size: 2

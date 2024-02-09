@@ -1,16 +1,14 @@
 - type: entity
   parent: BaseItem
   id: SolarAssemblyPart
-  name: solar assembly flatpack
-  description: A flatpack used for constructing a solar assembly.
+  name: solar assembly part
   components:
   - type: Item
-    size: Normal
-  - type: Flatpack
-    entity: SolarAssembly
+    size: 10
   - type: Sprite
     sprite: Objects/Power/solar_parts.rsi
     state: solar_assembly_parts
   - type: Tag
     tags:
-    - DroneUsable
+      - SolarAssemblyPart
+      - DroneUsable

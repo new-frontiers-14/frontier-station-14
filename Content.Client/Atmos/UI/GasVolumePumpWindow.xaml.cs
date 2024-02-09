@@ -39,14 +39,14 @@ namespace Content.Client.Atmos.UI
 
             SetMaxRateButton.OnPressed += _ =>
             {
-                PumpTransferRateInput.Text = Atmospherics.MaxTransferRate.ToString(CultureInfo.CurrentCulture);
+                PumpTransferRateInput.Text = Atmospherics.MaxTransferRate.ToString(CultureInfo.InvariantCulture);
                 SetTransferRateButton.Disabled = false;
             };
         }
 
         public void SetTransferRate(float rate)
         {
-            PumpTransferRateInput.Text = rate.ToString(CultureInfo.CurrentCulture);
+            PumpTransferRateInput.Text = rate.ToString(CultureInfo.InvariantCulture);
         }
 
         public void SetPumpStatus(bool enabled)

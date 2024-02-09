@@ -62,8 +62,8 @@
   - type: RadiationBlocker
     resistance: 2
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StrongMetallic
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -136,8 +136,6 @@
     node: ShuttersRadiation
     containers:
     - board
-  - type: RadiationBlocker
-    resistance: 4
 
 - type: entity
   id: ShuttersRadiationOpen
@@ -171,8 +169,6 @@
     node: ShuttersWindow
     containers:
     - board
-  - type: RadiationBlocker
-    resistance: 1
 
 - type: entity
   id: ShuttersWindowOpen

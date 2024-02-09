@@ -7,15 +7,12 @@ using Content.Shared.Inventory;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Server.Body.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical;
-using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.Components;
 using Content.Server.Popups;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
@@ -27,7 +24,6 @@ namespace Content.Server.Abilities.Felinid
     public sealed class FelinidSystem : EntitySystem
     {
 
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly VomitSystem _vomitSystem = default!;
         [Dependency] private readonly HungerSystem _hunger = default!;
@@ -112,7 +108,7 @@ namespace Content.Server.Abilities.Felinid
             }
 
             _popupSystem.PopupEntity(Loc.GetString("hairball-cough", ("name", Identity.Entity(uid, EntityManager))), uid);
-            _audio.PlayPvs("/Audio/Nyanotrasen/Voice/Felinid/hairball.ogg", uid, AudioHelpers.WithVariation(0.15f));
+            SoundSystem.Play("/Audio/Nyanotrasen/Voice/Felinid/hairball.ogg", Filter.Pvs(uid), uid, AudioHelpers.WithVariation(0.15f));
 
             EnsureComp<CoughingUpHairballComponent>(uid);
             args.Handled = true;
@@ -149,7 +145,7 @@ namespace Content.Server.Abilities.Felinid
             Del(component.PotentialTarget.Value);
             component.PotentialTarget = null;
 
-            _audio.PlayPvs("/Audio/Items/eatfood.ogg", uid, AudioHelpers.WithVariation(0.15f));
+            SoundSystem.Play("/Audio/Items/eatfood.ogg", Filter.Pvs(uid), uid, AudioHelpers.WithVariation(0.15f));
 
             _hunger.ModifyHunger(uid, 70f, hunger);
             _actionsSystem.RemoveAction(uid, component.EatMouseAction);
@@ -160,14 +156,13 @@ namespace Content.Server.Abilities.Felinid
             var hairball = EntityManager.SpawnEntity(component.HairballPrototype, Transform(uid).Coordinates);
             var hairballComp = Comp<HairballComponent>(hairball);
 
-            if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.ChemicalSolution is Entity<SolutionComponent> bloodSol)
+            if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
             {
-                var tempSol = _solutionSystem.SplitSolution(bloodSol, 20);
+                var temp = bloodstream.ChemicalSolution.SplitSolution(20);
 
-                if (_solutionSystem.TryGetSolution(hairball, hairballComp.SolutionName, out var hairballSolution)
-                    && hairballSolution is Entity<SolutionComponent> solution)
+                if (_solutionSystem.TryGetSolution(hairball, hairballComp.SolutionName, out var hairballSolution))
                 {
-                    _solutionSystem.TryAddSolution(solution, tempSol);
+                    _solutionSystem.TryAddSolution(hairball, hairballSolution, temp);
                 }
             }
         }

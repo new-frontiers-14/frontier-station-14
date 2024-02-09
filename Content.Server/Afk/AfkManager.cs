@@ -33,8 +33,9 @@ namespace Content.Server.Afk
     }
 
     [UsedImplicitly]
-    public sealed class AfkManager : IAfkManager
+    public sealed class AfkManager : IAfkManager, IEntityEventSubscriber
     {
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -48,6 +49,11 @@ namespace Content.Server.Afk
 
             _playerManager.PlayerStatusChanged += PlayerStatusChanged;
             _consoleHost.AnyCommandExecuted += ConsoleHostOnAnyCommandExecuted;
+
+            _entityManager.EventBus.SubscribeSessionEvent<FullInputCmdMessage>(
+                EventSource.Network,
+                this,
+                HandleInputCmd);
         }
 
         public void PlayerDidAction(ICommonSession player)

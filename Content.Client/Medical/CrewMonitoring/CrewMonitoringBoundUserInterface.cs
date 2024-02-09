@@ -1,56 +1,53 @@
 using Content.Shared.Medical.CrewMonitoring;
+using Robust.Client.GameObjects;
 
-namespace Content.Client.Medical.CrewMonitoring;
-
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+namespace Content.Client.Medical.CrewMonitoring
 {
-    [ViewVariables]
-    private CrewMonitoringWindow? _menu;
-
-    public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
     {
-    }
+        [ViewVariables]
+        private CrewMonitoringWindow? _menu;
 
-    protected override void Open()
-    {
-        EntityUid? gridUid = null;
-        string stationName = string.Empty;
-
-        if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
+        public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            gridUid = xform.GridUid;
+        }
 
-            if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
+        protected override void Open()
+        {
+            EntityUid? gridUid = null;
+
+            if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
             {
-                stationName = metaData.EntityName;
+                gridUid = xform.GridUid;
+            }
+
+            _menu = new CrewMonitoringWindow(gridUid);
+
+            _menu.OpenCentered();
+            _menu.OnClose += Close;
+        }
+
+        protected override void UpdateState(BoundUserInterfaceState state)
+        {
+            base.UpdateState(state);
+
+            switch (state)
+            {
+                case CrewMonitoringState st:
+                    EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
+
+                    _menu?.ShowSensors(st.Sensors, xform?.Coordinates, st.Snap, st.Precision);
+                    break;
             }
         }
 
-        _menu = new CrewMonitoringWindow(stationName, gridUid);
-
-        _menu.OpenCentered();
-        _menu.OnClose += Close;
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
-    {
-        base.UpdateState(state);
-
-        switch (state)
+        protected override void Dispose(bool disposing)
         {
-            case CrewMonitoringState st:
-                EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
-                _menu?.ShowSensors(st.Sensors, Owner, xform?.Coordinates);
-                break;
+            base.Dispose(disposing);
+            if (!disposing)
+                return;
+
+            _menu?.Dispose();
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (!disposing)
-            return;
-
-        _menu?.Dispose();
     }
 }

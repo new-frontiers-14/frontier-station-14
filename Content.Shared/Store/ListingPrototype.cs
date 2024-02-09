@@ -18,10 +18,6 @@ namespace Content.Shared.Store;
 [Virtual, DataDefinition]
 public partial class ListingData : IEquatable<ListingData>, ICloneable
 {
-    [ViewVariables]
-    [IdDataField]
-    public string ID { get; private set; } = default!;
-
     /// <summary>
     /// The name of the listing. If empty, uses the entity's name (if present)
     /// </summary>
@@ -135,7 +131,6 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     {
         return new ListingData
         {
-            ID = ID,
             Name = Name,
             Description = Description,
             Categories = Categories,
@@ -161,5 +156,7 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
 [DataDefinition]
 public sealed partial class ListingPrototype : ListingData, IPrototype
 {
-
+    [ViewVariables]
+    [IdDataField]
+    public string ID { get; private set; } = default!;
 }

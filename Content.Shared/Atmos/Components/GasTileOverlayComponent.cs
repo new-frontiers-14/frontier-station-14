@@ -39,7 +39,7 @@ public sealed class GasTileOverlayState : ComponentState, IComponentDeltaState
         Chunks = chunks;
     }
 
-    public void ApplyToFullState(IComponentState fullState)
+    public void ApplyToFullState(ComponentState fullState)
     {
         DebugTools.Assert(!FullState);
         var state = (GasTileOverlayState) fullState;
@@ -57,7 +57,7 @@ public sealed class GasTileOverlayState : ComponentState, IComponentDeltaState
         }
     }
 
-    public IComponentState CreateNewFullState(IComponentState fullState)
+    public ComponentState CreateNewFullState(ComponentState fullState)
     {
         DebugTools.Assert(!FullState);
         var state = (GasTileOverlayState) fullState;

@@ -50,18 +50,12 @@
       input:
         !type:CableDeviceNode
         nodeGroupID: HVPower
-  - type: PowerMonitoringDevice
-    group: Generator
-    loadNode: input
-    collectionName: radiationCollector
-    sprite: Structures/Power/Generation/Singularity/collector.rsi
-    state: static
   - type: RadiationCollector
     chargeModifier: 7500
     radiationReactiveGases:
       - reactantPrototype: Plasma
         powerGenerationEfficiency: 1
-        reactantBreakdownRate: 0.0001
+        reactantBreakdownRate: 0.0002
     # Note that this doesn't matter too much (see next comment)
     # However it does act as a cap on power receivable via the collector.
   - type: Battery
@@ -81,16 +75,14 @@
     guides: [ Singularity, Power ]
   - type: ContainerContainer
     containers:
-      gas_tank: !type:ContainerSlot {}
+      GasTank: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
-      gas_tank:
+      GasTank:
         startingItem: PlasmaTank
         whitelist:
           components:
           - GasTank
-  - type: UseDelay
-    delay: 1
 
 - type: entity
   id: RadiationCollectorNoTank
@@ -99,11 +91,11 @@
   components:
   - type: ItemSlots
     slots:
-      gas_tank:
+      GasTank:
         whitelist:
           components:
           - GasTank
-
+        
 - type: entity
   id: RadiationCollectorFullTank
   suffix: Filled tank
@@ -111,7 +103,7 @@
   components:
   - type: ItemSlots
     slots:
-      gas_tank:
+      GasTank:
         startingItem: PlasmaTankFilled
         whitelist:
           components:

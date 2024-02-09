@@ -215,7 +215,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
             var target_container = outerContainer;
             while (target_container != null)
             {
-                if (_containerSystem.Insert(entity, target_container))
+                if (target_container.Insert(entity))
                     break;
 
                 _containerSystem.TryGetContainingContainer(target_container.Owner, out target_container);
@@ -325,10 +325,8 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         if (!Resolve(uid, ref xform, ref eventHorizon))
             return;
 
-        if (eventHorizon.ConsumeEntities)
-            ConsumeEntitiesInRange(uid, range, xform, eventHorizon);
-        if (eventHorizon.ConsumeTiles)
-            ConsumeTilesInRange(uid, range, xform, eventHorizon);
+        ConsumeEntitiesInRange(uid, range, xform, eventHorizon);
+        ConsumeTilesInRange(uid, range, xform, eventHorizon);
     }
 
     #endregion Consume

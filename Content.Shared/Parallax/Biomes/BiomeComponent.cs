@@ -2,7 +2,6 @@ using Content.Shared.Parallax.Biomes.Layers;
 using Content.Shared.Parallax.Biomes.Markers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Noise;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
@@ -12,11 +11,7 @@ namespace Content.Shared.Parallax.Biomes;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedBiomeSystem))]
 public sealed partial class BiomeComponent : Component
 {
-    /// <summary>
-    /// Do we load / deload.
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite), Access(Other = AccessPermissions.ReadWriteExecute)]
-    public bool Enabled = true;
+    public FastNoiseLite Noise = new();
 
     [ViewVariables(VVAccess.ReadWrite), DataField("seed")]
     [AutoNetworkedField]
@@ -75,14 +70,8 @@ public sealed partial class BiomeComponent : Component
     [DataField("loadedMarkers", customTypeSerializer:typeof(PrototypeIdDictionarySerializer<HashSet<Vector2i>, BiomeMarkerLayerPrototype>))]
     public Dictionary<string, HashSet<Vector2i>> LoadedMarkers = new();
 
-    [DataField]
-    public HashSet<ProtoId<BiomeMarkerLayerPrototype>> MarkerLayers = new();
-
-    /// <summary>
-    /// One-tick forcing of marker layers to bulldoze any entities in the way.
-    /// </summary>
-    [DataField]
-    public HashSet<ProtoId<BiomeMarkerLayerPrototype>> ForcedMarkerLayers = new();
+    [DataField("markerLayers", customTypeSerializer: typeof(PrototypeIdListSerializer<BiomeMarkerLayerPrototype>))]
+    public List<string> MarkerLayers = new();
 
     #endregion
 }

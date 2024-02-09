@@ -73,8 +73,7 @@ public sealed class TraversalDistorterSystem : EntitySystem
                 examine = Loc.GetString("traversal-distorter-desc-out");
                 break;
         }
-        
-        args.PushMarkup(examine);
+        args.Message.AddMarkup(examine);
     }
 
     private void OnRefreshParts(EntityUid uid, TraversalDistorterComponent component, RefreshPartsEvent args)

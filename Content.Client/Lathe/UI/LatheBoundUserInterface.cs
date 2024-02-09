@@ -1,6 +1,7 @@
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 
 namespace Content.Client.Lathe.UI
 {
@@ -31,6 +32,11 @@ namespace Content.Client.Lathe.UI
                 SendMessage(new LatheQueueRecipeMessage(recipe, amount));
             };
 
+            _menu.OnEjectPressed += (material, sheetsToExtract) =>
+            {
+                SendMessage(new LatheEjectMaterialMessage(material, sheetsToExtract));
+            };
+
             _menu.OpenCentered();
         }
 
@@ -44,6 +50,7 @@ namespace Content.Client.Lathe.UI
                     if (_menu != null)
                         _menu.Recipes = msg.Recipes;
                     _menu?.PopulateRecipes(Owner);
+                    _menu?.PopulateMaterials(Owner);
                     _menu?.PopulateQueueList(msg.Queue);
                     _menu?.SetQueueInfo(msg.CurrentlyProducing);
                     break;
@@ -56,6 +63,7 @@ namespace Content.Client.Lathe.UI
             if (!disposing)
                 return;
             _menu?.Dispose();
+            //thom _materialsEjectionMenu?.Dispose();
         }
     }
 }

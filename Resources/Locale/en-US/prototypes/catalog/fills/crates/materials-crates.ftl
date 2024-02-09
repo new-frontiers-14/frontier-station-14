@@ -21,6 +21,3 @@ ent-CrateMaterialPlasma = Solid plasma crate
 
 ent-CrateMaterialCardboard = Cardboard crate
     .desc = 60 pieces of cardboard.
-
-ent-CrateMaterialPaper = Paper crate
-    .desc = 90 sheets of paper.

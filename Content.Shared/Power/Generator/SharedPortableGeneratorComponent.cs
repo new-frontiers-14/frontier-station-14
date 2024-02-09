@@ -1,4 +1,4 @@
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Power.Generator;
@@ -42,12 +42,6 @@ public sealed partial class PortableGeneratorComponent : Component
     [DataField("startSoundEmpty")]
     [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? StartSoundEmpty { get; set; }
-
-    /// <summary>
-    /// Frontier - Start the generator with the map.
-    /// </summary>
-    [DataField("startOnMapInit")]
-    public bool StartOnMapInit { get; set; } = false;
 }
 
 /// <summary>

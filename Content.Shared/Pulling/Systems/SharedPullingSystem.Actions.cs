@@ -12,8 +12,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Pulling
 {
@@ -25,7 +23,6 @@ namespace Content.Shared.Pulling
         [Dependency] private readonly SharedInteractionSystem _interaction = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
 
         public bool CanPull(EntityUid puller, EntityUid pulled)
         {
@@ -93,9 +90,6 @@ namespace Content.Shared.Pulling
 
         public bool TryStopPull(SharedPullableComponent pullable, EntityUid? user = null)
         {
-            if (_timing.ApplyingState)
-                return false;
-
             if (!pullable.BeingPulled)
             {
                 return false;
@@ -133,9 +127,6 @@ namespace Content.Shared.Pulling
         // The main "start pulling" function.
         public bool TryStartPull(SharedPullerComponent puller, SharedPullableComponent pullable)
         {
-            if (_timing.ApplyingState)
-                return false;
-
             if (puller.Pulling == pullable.Owner)
                 return true;
 

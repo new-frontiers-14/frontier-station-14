@@ -1,12 +1,11 @@
 using System.Threading;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.UserInterface;
 using Content.Shared.Access;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
@@ -91,6 +90,7 @@ public sealed partial class EmergencyShuttleSystem
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealMessage>(OnEmergencyRepeal);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealAllMessage>(OnEmergencyRepealAll);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, ActivatableUIOpenAttemptEvent>(OnEmergencyOpenAttempt);
+        SubscribeLocalEvent<EmergencyShuttleConsoleComponent, GotEmaggedEvent>(OnEmagged);
 
         SubscribeLocalEvent<EscapePodComponent, EntityUnpausedEvent>(OnEscapeUnpaused);
     }
@@ -103,6 +103,12 @@ public sealed partial class EmergencyShuttleSystem
             args.Cancel();
             _popup.PopupEntity(Loc.GetString("emergency-shuttle-console-no-early-launches"), uid, args.User);
         }
+    }
+
+    private void OnEmagged(EntityUid uid, EmergencyShuttleConsoleComponent component, ref GotEmaggedEvent args)
+    {
+        _logger.Add(LogType.EmergencyShuttle, LogImpact.Extreme, $"{ToPrettyString(args.UserUid):player} emagged shuttle console for early launch");
+        EarlyLaunch();
     }
 
     private void SetAuthorizeTime(float obj)
@@ -168,19 +174,18 @@ public sealed partial class EmergencyShuttleSystem
                     continue;
                 }
 
-                if (!Deleted(centcomm.Entity))
-                {
-                    _shuttle.FTLTravel(comp.EmergencyShuttle.Value, shuttle,
-                        centcomm.Entity.Value, _consoleAccumulator, TransitTime, true);
-                    continue;
-                }
-
-                if (!Deleted(centcomm.MapEntity))
+                if (Deleted(centcomm.Entity))
                 {
                     // TODO: Need to get non-overlapping positions.
                     _shuttle.FTLTravel(comp.EmergencyShuttle.Value, shuttle,
-                        new EntityCoordinates(centcomm.MapEntity.Value,
+                        new EntityCoordinates(
+                            _mapManager.GetMapEntityId(centcomm.MapId),
                             _random.NextVector2(1000f)), _consoleAccumulator, TransitTime);
+                }
+                else
+                {
+                    _shuttle.FTLTravel(comp.EmergencyShuttle.Value, shuttle,
+                        centcomm.Entity, _consoleAccumulator, TransitTime, true);
                 }
             }
 
@@ -208,7 +213,7 @@ public sealed partial class EmergencyShuttleSystem
             }
 
             // Don't dock them. If you do end up doing this then stagger launch.
-            _shuttle.FTLTravel(uid, shuttle, centcomm.Entity.Value, hyperspaceTime: TransitTime);
+            _shuttle.FTLTravel(uid, shuttle, centcomm.Entity, hyperspaceTime: TransitTime);
             RemCompDeferred<EscapePodComponent>(uid);
         }
 
@@ -232,7 +237,7 @@ public sealed partial class EmergencyShuttleSystem
                 if (Deleted(comp.Entity))
                     continue;
 
-                _shuttle.AddFTLDestination(comp.Entity.Value, true);
+                _shuttle.AddFTLDestination(comp.Entity, true);
             }
         }
     }
@@ -376,24 +381,6 @@ public sealed partial class EmergencyShuttleSystem
         RaiseLocalEvent(new EmergencyShuttleAuthorizedEvent());
         AnnounceLaunch();
         UpdateAllEmergencyConsoles();
-
-        var time = TimeSpan.FromSeconds(_authorizeTime);
-        var shuttle = GetShuttle();
-        if (shuttle != null && TryComp<DeviceNetworkComponent>(shuttle, out var net))
-        {
-            var payload = new NetworkPayload
-            {
-                [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                [ShuttleTimerMasks.SourceMap] = _roundEnd.GetStation(),
-                [ShuttleTimerMasks.DestMap] = _roundEnd.GetCentcomm(),
-                [ShuttleTimerMasks.ShuttleTime] = time,
-                [ShuttleTimerMasks.SourceTime] = time,
-                [ShuttleTimerMasks.DestTime] = time + TimeSpan.FromSeconds(TransitTime),
-                [ShuttleTimerMasks.Docked] = true
-            };
-            _deviceNetworkSystem.QueuePacket(shuttle.Value, null, payload, net.TransmitFrequency);
-        }
-
         return true;
     }
 

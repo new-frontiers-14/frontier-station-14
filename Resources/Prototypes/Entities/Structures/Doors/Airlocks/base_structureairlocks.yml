@@ -107,8 +107,8 @@
     resistance: 3
   - type: Occluder
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StrongMetallic
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -129,8 +129,6 @@
   - type: AccessReader
   - type: StaticPrice
     price: 150
-  - type: LightningTarget
-    priority: 1
   - type: Tag
     tags:
       - Airlock
@@ -138,5 +136,4 @@
   - type: PryUnpowered
   placement:
     mode: SnapgridCenter
-
 

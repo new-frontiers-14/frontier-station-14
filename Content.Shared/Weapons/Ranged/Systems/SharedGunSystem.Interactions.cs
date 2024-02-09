@@ -14,13 +14,8 @@ public abstract partial class SharedGunSystem
         if (!args.IsInDetailsRange || !component.ShowExamineText)
             return;
 
-        using (args.PushGroup(nameof(GunComponent)))
-        {
-            args.PushMarkup(Loc.GetString("gun-selected-mode-examine", ("color", ModeExamineColor),
-                ("mode", GetLocSelector(component.SelectedMode))));
-            args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor),
-                ("fireRate", $"{component.FireRate:0.0}")));
-        }
+        args.PushMarkup(Loc.GetString("gun-selected-mode-examine", ("color", ModeExamineColor), ("mode", GetLocSelector(component.SelectedMode))));
+        args.PushMarkup(Loc.GetString("gun-fire-rate-examine", ("color", FireRateExamineColor), ("fireRate", $"{component.FireRate:0.0}")));
     }
 
     private string GetLocSelector(SelectiveFire mode)

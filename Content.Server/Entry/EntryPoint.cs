@@ -64,7 +64,10 @@ namespace Content.Server.Entry
             factory.DoAutoRegistrations();
             factory.IgnoreMissingComponents("Visuals");
 
-            factory.RegisterIgnore(IgnoredComponents.List);
+            foreach (var ignoreName in IgnoredComponents.List)
+            {
+                factory.RegisterIgnore(ignoreName);
+            }
 
             prototypes.RegisterIgnore("parallax");
             prototypes.RegisterIgnore("guideEntry");

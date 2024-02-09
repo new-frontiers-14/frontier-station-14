@@ -1,5 +1,3 @@
-hand-labeler-ui-header = Hand Labeler
-
 # The content of the label in the UI above the text entry input.
 hand-labeler-current-text-label = Label:
 

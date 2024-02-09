@@ -1,4 +1,3 @@
-# When adding new drinks also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\drinks_soda.yml
 - type: entity
   parent: BaseItem
   id: DrinkCanBaseFull
@@ -53,15 +52,13 @@
     qualities:
     - Rolling
     speed: 0.25 # its small so takes longer to roll the entire dough flat
+  - type: ItemCooldown
   - type: SpaceGarbage
-  - type: TrashOnSolutionEmpty
+  - type: TrashOnEmpty
     solution: drink
   - type: PhysicalComposition
     materialComposition:
       Steel: 50 #reduce, reuse, recycle
-  - type: Tag
-    tags:
-    - DrinkCan
   - type: StaticPrice
     price: 5.5
 
@@ -81,37 +78,11 @@
   - type: Tag
     tags:
     - Cola
-    - DrinkCan
     - Recyclable
   - type: Sprite
     sprite: Objects/Consumable/Drinks/cola.rsi
   - type: Item
     sprite: Objects/Consumable/Drinks/cola.rsi
-
-# created when taking apart an ied
-- type: entity
-  parent: DrinkColaCan
-  id: DrinkColaCanEmpty
-  suffix: empty
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-  - type: Openable
-    opened: true
-  - type: Sprite
-    sprite: Objects/Consumable/Drinks/cola.rsi
-    layers:
-    - state: icon_open
-  - type: Item
-    sprite: Objects/Consumable/Drinks/cola.rsi
-  - type: Tag
-    tags:
-    - Cola
-    - DrinkCan
-    - Recyclable
-    - Trash
 
 - type: entity
   parent: DrinkCanBaseFull
@@ -348,7 +319,6 @@
           Quantity: 5
   - type: Tag
     tags:
-    - DrinkCan
     - Recyclable
   - type: Sprite
     sprite: Objects/Consumable/Drinks/robustnukie.rsi
@@ -402,10 +372,9 @@
         map: ["6pack6"]
         visible: false
   - type: Item
-    size: Normal
+    size: 6
   - type: Storage
-    grid:
-    - 0,0,2,3
+    capacity: 30
     whitelist:
       tags:
         - Cola

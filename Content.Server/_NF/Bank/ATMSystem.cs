@@ -14,7 +14,6 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Cargo.Components;
 using Content.Shared.Database;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Bank;
 

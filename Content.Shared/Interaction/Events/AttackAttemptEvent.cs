@@ -1,5 +1,3 @@
-using Content.Shared.Weapons.Melee;
-
 namespace Content.Shared.Interaction.Events
 {
     /// <summary>
@@ -14,19 +12,10 @@ namespace Content.Shared.Interaction.Events
         public EntityUid Uid { get; }
         public EntityUid? Target { get; }
 
-        public Entity<MeleeWeaponComponent>? Weapon { get; }
-
-        /// <summary>
-        ///     If this attempt is a disarm as opposed to an actual attack, for things that care about the difference.
-        /// </summary>
-        public bool Disarm { get; }
-
-        public AttackAttemptEvent(EntityUid uid, EntityUid? target = null, Entity<MeleeWeaponComponent>? weapon = null, bool disarm = false)
+        public AttackAttemptEvent(EntityUid uid, EntityUid? target = null)
         {
             Uid = uid;
             Target = target;
-            Weapon = weapon;
-            Disarm = disarm;
         }
     }
 

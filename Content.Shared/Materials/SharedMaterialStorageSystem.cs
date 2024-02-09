@@ -18,11 +18,6 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    /// <summary>
-    /// Default volume for a sheet if the material's entity prototype has no material composition.
-    /// </summary>
-    private const int DefaultSheetVolume = 100;
-
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -81,7 +76,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return 0; //you have nothing
-        return component.Storage.GetValueOrDefault(material, 0);
+        return !component.Storage.TryGetValue(material, out var amount) ? 0 : amount;
     }
 
     /// <summary>
@@ -123,35 +118,9 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return false;
-
-        if (!CanTakeVolume(uid, volume, component))
-            return false;
-
-        if (component.MaterialWhiteList != null && !component.MaterialWhiteList.Contains(materialId))
-            return false;
-
-        var amount = component.Storage.GetValueOrDefault(materialId);
-        return amount + volume >= 0;
-    }
-
-    /// <summary>
-    /// Checks if the specified materials can be changed by the specified volumes.
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <param name="materials"></param>
-    /// <returns>If the amount can be changed</returns>
-    public bool CanChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
-
-        foreach (var (material, amount) in materials)
-        {
-            if (!CanChangeMaterialAmount(entity, material, amount, entity.Comp))
-                return false;
-        }
-
-        return true;
+        return CanTakeVolume(uid, volume, component) &&
+               (component.MaterialWhiteList == null || component.MaterialWhiteList.Contains(materialId)) &&
+               (!component.Storage.TryGetValue(materialId, out var amount) || amount + volume >= 0);
     }
 
     /// <summary>
@@ -162,47 +131,20 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     /// <param name="materialId"></param>
     /// <param name="volume"></param>
     /// <param name="component"></param>
-    /// <param name="dirty"></param>
     /// <returns>If it was successful</returns>
-    public bool TryChangeMaterialAmount(EntityUid uid, string materialId, int volume, MaterialStorageComponent? component = null, bool dirty = true)
+    public bool TryChangeMaterialAmount(EntityUid uid, string materialId, int volume, MaterialStorageComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
         if (!CanChangeMaterialAmount(uid, materialId, volume, component))
             return false;
-        component.Storage.TryAdd(materialId, 0);
+        if (!component.Storage.ContainsKey(materialId))
+            component.Storage.Add(materialId, 0);
         component.Storage[materialId] += volume;
 
         var ev = new MaterialAmountChangedEvent();
         RaiseLocalEvent(uid, ref ev);
-
-        if (dirty)
-            Dirty(uid, component);
-        return true;
-    }
-
-    /// <summary>
-    /// Changes the amount of a specific material in the storage.
-    /// Still respects the filters in place.
-    /// </summary>
-    /// <param name="entity"></param>
-    /// <param name="materials"></param>
-    /// <returns>If the amount can be changed</returns>
-    public bool TryChangeMaterialAmount(Entity<MaterialStorageComponent?> entity, Dictionary<string,int> materials)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
-
-        if (!CanChangeMaterialAmount(entity, materials))
-            return false;
-
-        foreach (var (material, amount) in materials)
-        {
-            if (!TryChangeMaterialAmount(entity, material, amount, entity.Comp, false))
-                return false;
-        }
-
-        Dirty(entity, entity.Comp);
+        Dirty(component);
         return true;
     }
 
@@ -278,7 +220,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             insertingComp.MaterialColor = lastMat?.Color;
         }
         _appearance.SetData(receiver, MaterialStorageVisuals.Inserting, true);
-        Dirty(receiver, insertingComp);
+        Dirty(insertingComp);
 
         var ev = new MaterialEntityInsertedEvent(material);
         RaiseLocalEvent(receiver, ref ev);
@@ -298,7 +240,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         var ev = new GetMaterialWhitelistEvent(uid);
         RaiseLocalEvent(uid, ref ev);
         component.MaterialWhiteList = ev.Whitelist;
-        Dirty(uid, component);
+        Dirty(component);
     }
 
     private void OnInteractUsing(EntityUid uid, MaterialStorageComponent component, InteractUsingEvent args)
@@ -306,18 +248,5 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         if (args.Handled || !component.InsertOnInteract)
             return;
         args.Handled = TryInsertMaterialEntity(args.User, args.Used, uid, component);
-    }
-
-    public int GetSheetVolume(MaterialPrototype material)
-    {
-        if (material.StackEntity == null)
-            return DefaultSheetVolume;
-
-        var proto = _prototype.Index<EntityPrototype>(material.StackEntity);
-
-        if (!proto.TryGetComponent<PhysicalCompositionComponent>(out var composition))
-            return DefaultSheetVolume;
-
-        return composition.MaterialComposition.FirstOrDefault(kvp => kvp.Key == material.ID).Value;
     }
 }

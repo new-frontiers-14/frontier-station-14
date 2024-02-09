@@ -14,15 +14,12 @@
     sprite: Objects/Weapons/Melee/chainsaw.rsi
     state: icon
   - type: MeleeWeapon
-    autoAttack: true
-    angle: 0
     wideAnimationRotation: -135
-    attackRate: 4
     damage:
       types:
-        Slash: 2
-        Blunt: 2
-        Structural: 4
+        Slash: 5
+        Blunt: 5
+        Structural: 10
     soundHit:
       path: /Audio/Weapons/chainsaw.ogg
       params:
@@ -30,10 +27,11 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Slash: 4
-        Structural: 4
+        Slash: 5
+        Blunt: 5
+        Structural: 20
   - type: Item
-    size: Normal
+    size: 50
     sprite: Objects/Weapons/Melee/chainsaw.rsi
   - type: DisarmMalus
   - type: RefillableSolution

@@ -1,4 +1,4 @@
-using Content.Server.ParticleAccelerator.Components;
+﻿using Content.Server.ParticleAccelerator.Components;
 using Content.Server.Singularity.Components;
 using Content.Shared.Singularity.Components;
 using Robust.Shared.Physics.Events;

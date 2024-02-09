@@ -27,8 +27,9 @@ public sealed class PlanetCommand : IConsoleCommand
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
-    public string Command => "planet";
+    public string Command => $"planet";
     public string Description => Loc.GetString("cmd-planet-desc");
     public string Help => Loc.GetString("cmd-planet-help", ("command", Command));
     public void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -59,10 +60,46 @@ public sealed class PlanetCommand : IConsoleCommand
             return;
         }
 
-        var biomeSystem = _entManager.System<BiomeSystem>();
         var mapUid = _mapManager.GetMapEntityId(mapId);
-        biomeSystem.EnsurePlanet(mapUid, biomeTemplate);
+        MetaDataComponent? metadata = null;
 
+        var biome = _entManager.EnsureComponent<BiomeComponent>(mapUid);
+        var biomeSystem = _entManager.System<BiomeSystem>();
+        biomeSystem.SetSeed(biome, _random.Next());
+        biomeSystem.SetTemplate(biome, biomeTemplate);
+        _entManager.Dirty(biome);
+
+        var gravity = _entManager.EnsureComponent<GravityComponent>(mapUid);
+        gravity.Enabled = true;
+        gravity.Inherent = true;
+        _entManager.Dirty(gravity, metadata);
+
+        // Day lighting
+        // Daylight: #D8B059
+        // Midday: #E6CB8B
+        // Moonlight: #2b3143
+        // Lava: #A34931
+
+        var light = _entManager.EnsureComponent<MapLightComponent>(mapUid);
+        light.AmbientLightColor = Color.FromHex("#D8B059");
+        _entManager.Dirty(light, metadata);
+
+        // Atmos
+        var atmos = _entManager.EnsureComponent<MapAtmosphereComponent>(mapUid);
+
+        var moles = new float[Atmospherics.AdjustedNumberOfGases];
+        moles[(int) Gas.Oxygen] = 21.824779f;
+        moles[(int) Gas.Nitrogen] = 82.10312f;
+
+        var mixture = new GasMixture(2500)
+        {
+            Temperature = 293.15f,
+            Moles = moles,
+        };
+
+        _entManager.System<AtmosphereSystem>().SetMapAtmosphere(mapUid, false, mixture, atmos);
+
+        _entManager.EnsureComponent<MapGridComponent>(mapUid);
         shell.WriteLine(Loc.GetString("cmd-planet-success", ("mapId", mapId)));
     }
 

@@ -5,7 +5,6 @@ using Content.Client.Kitchen.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands;
 using Content.Shared.Kitchen.Components;
-using Content.Shared.Nyanotrasen.Kitchen.Components;
 
 namespace Content.Client.Kitchen.Visualizers
 {

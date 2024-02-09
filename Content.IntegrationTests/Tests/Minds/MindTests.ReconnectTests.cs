@@ -124,7 +124,7 @@ public sealed partial class MindTests
     [Test]
     public async Task TestVisitingReconnect()
     {
-        await using var pair = await SetupPair(true);
+        await using var pair = await SetupPair();
         var entMan = pair.Server.ResolveDependency<IEntityManager>();
         var mindSys = entMan.System<SharedMindSystem>();
         var mind = GetMind(pair);

@@ -40,11 +40,6 @@
       output:
         !type:CableDeviceNode
         nodeGroupID: HVPower
-  - type: PowerMonitoringDevice
-    group: Generator
-    loadNode: output
-    sprite: Structures/Power/power.rsi
-    state: generator
   - type: PowerSupplier
     supplyRate: 3000
     supplyRampRate: 500
@@ -54,7 +49,6 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
-  - type: PacifismDangerousAttack
   - type: Destructible
     thresholds:
     - trigger:
@@ -130,11 +124,6 @@
       output:
         !type:CableDeviceNode
         nodeGroupID: HVPower
-  - type: PowerMonitoringDevice
-    group: Generator
-    loadNode: output
-    sprite: Structures/Power/Generation/wallmount_generator.rsi
-    state: static
   - type: PowerSupplier
     supplyRate: 3000
     supplyRampRate: 500
@@ -179,12 +168,14 @@
     supplyRate: 3000
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseGenerator] # Frontier - BaseStructureDisableToolUse
+  parent: BaseGenerator
   id: GeneratorBasic15kW
   suffix: Basic, 15kW, Anchored
   components:
     - type: PowerSupplier
       supplyRate: 15000
+    - type: Anchorable
+      delay: 999999
 
 - type: entity
   parent: BaseGeneratorWallmount
@@ -240,9 +231,6 @@
   - type: Sprite
     sprite: Structures/Power/Generation/rtg.rsi
     state: rtg
-  - type: PowerMonitoringDevice
-    sprite: Structures/Power/Generation/rtg.rsi
-    state: rtg
   - type: AmbientSound
     range: 5
     sound:
@@ -286,9 +274,6 @@
     layers:
       - state: rtg_damaged
       - state: rtg_glow
-  - type: PowerMonitoringDevice
-    sprite: Structures/Power/Generation/rtg.rsi
-    state: rtg_damaged
   - type: RadiationSource # ideally only when opened.
     intensity: 2
   - type: Destructible

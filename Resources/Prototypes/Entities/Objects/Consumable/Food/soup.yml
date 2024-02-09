@@ -1,5 +1,3 @@
-# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_meal.yml
-
 - type: entity
   parent: FoodBase
   id: FoodBowlBase
@@ -50,8 +48,6 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
-          params:
-            volume: -8
       - !type:SpillBehavior { }
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -85,7 +81,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 8
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Flavorol

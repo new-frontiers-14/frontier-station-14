@@ -1,11 +1,9 @@
 ﻿using System.Linq;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Construction;
 using Content.Shared.Destructible;
 using Content.Shared.DragDrop;
 using Content.Shared.Foldable;
 using Content.Shared.Interaction;
-using Content.Shared.Rotation;
 using Content.Shared.Storage;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -14,8 +12,6 @@ namespace Content.Shared.Buckle;
 
 public abstract partial class SharedBuckleSystem
 {
-    [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
-
     private void InitializeStrap()
     {
         SubscribeLocalEvent<StrapComponent, ComponentStartup>(OnStrapStartup);
@@ -35,7 +31,6 @@ public abstract partial class SharedBuckleSystem
         SubscribeLocalEvent<StrapComponent, FoldAttemptEvent>(OnAttemptFold);
 
         SubscribeLocalEvent<StrapComponent, MoveEvent>(OnStrapMoveEvent);
-        SubscribeLocalEvent<StrapComponent, MachineDeconstructedEvent>((_, c, _) => StrapRemoveAll(c));
     }
 
     private void OnStrapStartup(EntityUid uid, StrapComponent component, ComponentStartup args)
@@ -294,6 +289,8 @@ public abstract partial class SharedBuckleSystem
             return false;
 
         strapComp.OccupiedSize += buckleComp.Size;
+
+        Appearance.SetData(buckleUid, StrapVisuals.RotationAngle, strapComp.Rotation);
 
         Appearance.SetData(strapUid, StrapVisuals.State, true);
 

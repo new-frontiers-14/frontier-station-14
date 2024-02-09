@@ -156,9 +156,7 @@ public abstract partial class InteractionTest
 
     protected EntitySpecifierCollection ToEntityCollection(IEnumerable<EntityUid> entities)
     {
-        var collection = new EntitySpecifierCollection(entities
-            .Select(ToEntitySpecifier)
-            .OfType<EntitySpecifier>());
+        var collection = new EntitySpecifierCollection(entities.Select(uid => ToEntitySpecifier(uid)));
         Assert.That(collection.Converted);
         return collection;
     }

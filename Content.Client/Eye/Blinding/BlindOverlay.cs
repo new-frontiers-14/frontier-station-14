@@ -1,12 +1,9 @@
-using Content.Client.Movement.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 
 namespace Content.Client.Eye.Blinding
 {
@@ -14,8 +11,9 @@ namespace Content.Client.Eye.Blinding
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly ILightManager _lightManager = default!;
+        [Dependency] IEntityManager _entityManager = default!;
+        [Dependency] ILightManager _lightManager = default!;
+
 
         public override bool RequestScreenTexture => true;
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -32,13 +30,13 @@ namespace Content.Client.Eye.Blinding
         }
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
+            if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out EyeComponent? eyeComp))
                 return false;
 
             if (args.Viewport.Eye != eyeComp.Eye)
                 return false;
 
-            var playerEntity = _playerManager.LocalSession?.AttachedEntity;
+            var playerEntity = _playerManager.LocalPlayer?.ControlledEntity;
 
             if (playerEntity == null)
                 return false;
@@ -66,11 +64,6 @@ namespace Content.Client.Eye.Blinding
             if (ScreenTexture == null)
                 return;
 
-            var playerEntity = _playerManager.LocalSession?.AttachedEntity;
-
-            if (playerEntity == null)
-                return;
-
             if (!_blindableComponent.GraceFrame)
             {
                 _blindableComponent.LightSetup = true; // Ok we touched the lights
@@ -78,11 +71,6 @@ namespace Content.Client.Eye.Blinding
             } else
             {
                 _blindableComponent.GraceFrame = false;
-            }
-
-            if (_entityManager.TryGetComponent<EyeComponent>(playerEntity, out var content))
-            {
-                _circleMaskShader?.SetParameter("Zoom", content.Zoom.X);
             }
 
             _greyscaleShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);

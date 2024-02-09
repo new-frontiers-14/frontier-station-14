@@ -7,7 +7,6 @@ using Content.Server.Station.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Doors.Components;
-using Content.Shared.Ghost;
 using Content.Shared.Maps;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
@@ -15,7 +14,6 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -75,13 +73,10 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Minimum mass for an FTL destination
     /// </summary>
-    public const float FTLDestinationMass = 1200f;
-
-    private HashSet<EntityUid> _lookupEnts = new();
+    public const float FTLDestinationMass = 1000f;
 
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<BuckleComponent> _buckleQuery;
-    private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -90,7 +85,6 @@ public sealed partial class ShuttleSystem
     {
         _bodyQuery = GetEntityQuery<BodyComponent>();
         _buckleQuery = GetEntityQuery<BuckleComponent>();
-        _ghostQuery = GetEntityQuery<GhostComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
@@ -216,7 +210,7 @@ public sealed partial class ShuttleSystem
 
         if (HasComp<FTLComponent>(uid))
         {
-            Log.Warning($"Tried queuing {ToPrettyString(uid)} which already has HyperspaceComponent?");
+            _sawmill.Warning($"Tried queuing {ToPrettyString(uid)} which already has HyperspaceComponent?");
             return false;
         }
 
@@ -233,8 +227,8 @@ public sealed partial class ShuttleSystem
 
         component = AddComp<FTLComponent>(uid);
         component.State = FTLState.Starting;
-        var audio = _audio.PlayPvs(_startupSound, uid);
-        audio.Value.Component.Flags |= AudioFlags.GridAudio;
+        // TODO: Need BroadcastGrid to not be bad.
+        SoundSystem.Play(_startupSound.GetSound(), Filter.Empty().AddInRange(Transform(uid).MapPosition, GetSoundRange(uid)), _startupSound.Params);
         // Make sure the map is setup before we leave to avoid pop-in (e.g. parallax).
         SetupHyperspace();
         return true;
@@ -276,7 +270,7 @@ public sealed partial class ShuttleSystem
                     if (TryComp(uid, out body))
                     {
                         if (shuttle != null)
-                            Enable(uid, component: body, shuttle: shuttle);
+                            Enable(uid, body, shuttle);
                         _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
                         _physics.SetAngularVelocity(uid, 0f, body: body);
                         _physics.SetLinearDamping(body, 0f);
@@ -290,11 +284,11 @@ public sealed partial class ShuttleSystem
                     var ev = new FTLStartedEvent(uid, target, fromMapUid, fromMatrix, fromRotation);
                     RaiseLocalEvent(uid, ref ev, true);
 
-                    var wowdio = _audio.PlayPvs(comp.TravelSound, uid);
-                    comp.TravelStream = wowdio?.Entity;
-                    if (wowdio?.Component != null)
-                        wowdio.Value.Component.Flags |= AudioFlags.GridAudio;
-
+                    if (comp.TravelSound != null)
+                    {
+                        comp.TravelStream = SoundSystem.Play(comp.TravelSound.GetSound(),
+                            Filter.Pvs(uid, 4f, entityManager: EntityManager), comp.TravelSound.Params);
+                    }
                     break;
                 // Arriving, play effects
                 case FTLState.Travelling:
@@ -367,11 +361,11 @@ public sealed partial class ShuttleSystem
                         // to event ordering and awake body shenanigans (at least for now).
                         if (HasComp<MapGridComponent>(xform.MapUid))
                         {
-                            Disable(uid, component: body);
+                            Disable(uid, body);
                         }
                         else if (shuttle != null)
                         {
-                            Enable(uid, component: body, shuttle: shuttle);
+                            Enable(uid, body, shuttle);
                         }
                     }
 
@@ -380,9 +374,13 @@ public sealed partial class ShuttleSystem
                         _thruster.DisableLinearThrusters(shuttle);
                     }
 
-                    comp.TravelStream = _audio.Stop(comp.TravelStream);
-                    var audio = _audio.PlayPvs(_arrivalSound, uid);
-                    audio.Value.Component.Flags |= AudioFlags.GridAudio;
+                    if (comp.TravelStream != null)
+                    {
+                        comp.TravelStream?.Stop();
+                        comp.TravelStream = null;
+                    }
+
+                    _audio.PlayGlobal(_arrivalSound, Filter.Empty().AddInRange(Transform(uid).MapPosition, GetSoundRange(uid)), true);
 
                     if (TryComp<FTLDestinationComponent>(uid, out var dest))
                     {
@@ -403,7 +401,7 @@ public sealed partial class ShuttleSystem
                     _console.RefreshShuttleConsoles(uid);
                     break;
                 default:
-                    Log.Error($"Found invalid FTL state {comp.State} for {uid}");
+                    _sawmill.Error($"Found invalid FTL state {comp.State} for {uid}");
                     RemComp<FTLComponent>(uid);
                     break;
             }
@@ -452,8 +450,7 @@ public sealed partial class ShuttleSystem
             return;
 
         _hyperSpaceMap = _mapManager.CreateMap();
-        _metadata.SetEntityName(_mapManager.GetMapEntityId(_hyperSpaceMap.Value), "FTL");
-        Log.Debug($"Setup hyperspace map at {_hyperSpaceMap.Value}");
+        _sawmill.Info($"Setup hyperspace map at {_hyperSpaceMap.Value}");
         DebugTools.Assert(!_mapManager.IsMapPaused(_hyperSpaceMap.Value));
         var parallax = EnsureComp<ParallaxComponent>(_mapManager.GetMapEntityId(_hyperSpaceMap.Value));
         parallax.Parallax = "FastSpace";
@@ -503,10 +500,10 @@ public sealed partial class ShuttleSystem
         var childEnumerator = xform.ChildEnumerator;
         while (childEnumerator.MoveNext(out var child))
         {
-            if (!_buckleQuery.TryGetComponent(child, out var buckle) || buckle.Buckled)
+            if (!_buckleQuery.TryGetComponent(child.Value, out var buckle) || buckle.Buckled)
                 continue;
 
-            toKnock.Add(child);
+            toKnock.Add(child.Value);
         }
     }
 
@@ -703,13 +700,9 @@ public sealed partial class ShuttleSystem
         var transform = _physics.GetPhysicsTransform(uid, xform, _xformQuery);
         var aabbs = new List<Box2>(manager.Fixtures.Count);
         var immune = new HashSet<EntityUid>();
-        var tileSet = new List<(Vector2i, Tile)>();
 
         foreach (var fixture in manager.Fixtures.Values)
         {
-            if (xform.MapID == _ticker.DefaultMap)
-                break; //Frontier - FTL is too buggy to let it just fucking gib people wtf - so we disable for frontier's z-level
-
             if (!fixture.Hard)
                 continue;
 
@@ -718,20 +711,9 @@ public sealed partial class ShuttleSystem
             aabb = aabb.Enlarged(0.2f);
             aabbs.Add(aabb);
 
-            // Handle clearing biome stuff as relevant.
-            tileSet.Clear();
-            _biomes.ReserveTiles(xform.MapUid.Value, aabb, tileSet);
-            _lookupEnts.Clear();
-            _lookup.GetEntitiesIntersecting(xform.MapUid.Value, aabb, _lookupEnts, LookupFlags.Uncontained);
-
-            foreach (var ent in _lookupEnts)
+            foreach (var ent in _lookup.GetEntitiesIntersecting(xform.MapUid.Value, aabb, LookupFlags.Uncontained))
             {
                 if (ent == uid || immune.Contains(ent))
-                {
-                    continue;
-                }
-
-                if (_ghostQuery.HasComponent(ent))
                 {
                     continue;
                 }

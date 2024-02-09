@@ -1,9 +1,10 @@
 - type: entity
-  parent: [BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, CrateBaseWeldable]
+  parent: CrateBaseWeldable
   id: CrateTradeBaseSecure
   noSpawn: true
   components:
   - type: TradeCrate
+  - type: Lock
   - type: AccessReader
     access: [[""]]
   - type: Icon

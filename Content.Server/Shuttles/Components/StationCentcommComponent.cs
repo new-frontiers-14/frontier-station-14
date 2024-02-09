@@ -12,18 +12,17 @@ public sealed partial class StationCentcommComponent : Component
     /// <summary>
     /// Crude shuttle offset spawning.
     /// </summary>
-    [DataField]
+    [DataField("shuttleIndex")]
     public float ShuttleIndex;
 
-    [DataField]
+    [DataField("map")]
     public ResPath Map = new("/Maps/centcomm.yml");
 
     /// <summary>
     /// Centcomm entity that was loaded.
     /// </summary>
-    [DataField]
-    public EntityUid? Entity;
+    [DataField("entity")]
+    public EntityUid Entity = EntityUid.Invalid;
 
-    [DataField]
-    public EntityUid? MapEntity;
+    public MapId MapId = MapId.Nullspace;
 }

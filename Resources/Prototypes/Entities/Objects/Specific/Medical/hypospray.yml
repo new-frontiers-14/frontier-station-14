@@ -26,8 +26,6 @@
   - type: Tag
     tags:
     - HighRiskItem
-  - type: StealTarget
-    stealGroup: Hypospray
 
 - type: entity
   name: gorlex hypospray
@@ -99,11 +97,11 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: firstaid
+    - state: medipen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: Objects/Specific/Medical/medipen.rsi
-    size: Tiny
+    size: 3
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -117,7 +115,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: firstaid_empty
+    emptySpriteName: medipen_empty
   - type: Tag
     tags:
     - Trash
@@ -127,24 +125,15 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 35 # These are limited supply items.
-  - type: TrashOnSolutionEmpty
+  - type: TrashOnEmpty
     solution: pen
 
 - type: entity
   name: emergency medipen
   parent: ChemicalMedipen
   id: EmergencyMedipen
-  description: A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Beware, as it's easy to overdose on epinephrine and tranexamic acid.
+  description: A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Beware, as it's easy to overdose on epinephrine and tranexmic acid.
   components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
-    layers:
-    - state: medipen
-      map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: medipen_empty
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -168,10 +157,6 @@
     layers:
     - state: penacid
       map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: penacid_empty
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -195,10 +180,6 @@
     layers:
     - state: bicpen
       map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: bicpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -225,10 +206,6 @@
     layers:
     - state: dermpen
       map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: dermpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -248,17 +225,13 @@
   name: rad auto-injector
   parent: ChemicalMedipen
   id: RadAutoInjector
-  description: A rapid dose of anti-radiation. Contains arithrazine and bicaridine.
+  description: A rapid dose of anti-radiation. Contains arithrazine and bicardine.
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     layers:
     - state: arithpen
       map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: arithpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 20
@@ -316,6 +289,9 @@
     layers:
     - state: stimpen
       map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+    size: 10
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -323,10 +299,6 @@
         reagents:
         - ReagentId: Stimulants
           Quantity: 30
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: stimpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 30
@@ -344,8 +316,11 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: microstimpen
+    - state: stimpen
       map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+    size: 5
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -353,10 +328,6 @@
         reagents:
         - ReagentId: Stimulants
           Quantity: 15
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: microstimpen_empty
   - type: StaticPrice
     price: 100
   - type: Tag
@@ -373,10 +344,9 @@
     layers:
     - state: morphen
       map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: morphen_empty
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+    size: 5
   - type: SolutionContainerManager
     solutions:
       pen:
@@ -422,8 +392,6 @@
   name: hypopen box
   description: A small box containing a hypopen. Packaging disintegrates when opened, leaving no evidence behind.
   components:
-  - type: Item
-    size: Tiny
   - type: Sprite
     sprite: Objects/Storage/penbox.rsi
     state: hypopen

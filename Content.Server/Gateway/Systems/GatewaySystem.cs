@@ -1,6 +1,4 @@
 using Content.Server.Gateway.Components;
-using Content.Server.Station.Systems;
-using Content.Server.UserInterface;
 using Content.Shared.Access.Systems;
 using Content.Shared.Gateway;
 using Content.Shared.Popups;
@@ -9,10 +7,8 @@ using Content.Shared.Teleportation.Systems;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Gateway.Systems;
 
@@ -23,8 +19,6 @@ public sealed class GatewaySystem : EntitySystem
     [Dependency] private readonly LinkedEntitySystem _linkedEntity = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly StationSystem _stations = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
@@ -32,37 +26,41 @@ public sealed class GatewaySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GatewayComponent, EntityUnpausedEvent>(OnGatewayUnpaused);
         SubscribeLocalEvent<GatewayComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<GatewayComponent, ActivatableUIOpenAttemptEvent>(OnGatewayOpenAttempt);
         SubscribeLocalEvent<GatewayComponent, BoundUIOpenedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GatewayComponent, GatewayOpenPortalMessage>(OnOpenPortal);
+
+        SubscribeLocalEvent<GatewayDestinationComponent, ComponentStartup>(OnDestinationStartup);
+        SubscribeLocalEvent<GatewayDestinationComponent, ComponentShutdown>(OnDestinationShutdown);
+        SubscribeLocalEvent<GatewayDestinationComponent, GetVerbsEvent<AlternativeVerb>>(OnDestinationGetVerbs);
     }
 
-    public void SetEnabled(EntityUid uid, bool value, GatewayComponent? component = null)
+    public override void Update(float frameTime)
     {
-        if (!Resolve(uid, ref component) || component.Enabled == value)
-            return;
+        base.Update(frameTime);
 
-        component.Enabled = value;
-        UpdateAllGateways();
-    }
+        // close portals after theyve been open long enough
+        var query = EntityQueryEnumerator<GatewayComponent, PortalComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var _))
+        {
+            if (_timing.CurTime < comp.NextClose)
+                continue;
 
-    private void OnGatewayUnpaused(EntityUid uid, GatewayComponent component, ref EntityUnpausedEvent args)
-    {
-        component.NextReady += args.PausedTime;
+            ClosePortal(uid, comp);
+        }
     }
 
     private void OnStartup(EntityUid uid, GatewayComponent comp, ComponentStartup args)
     {
+        // add existing destinations
+        var query = EntityQueryEnumerator<GatewayDestinationComponent>();
+        while (query.MoveNext(out var dest, out _))
+        {
+            comp.Destinations.Add(dest);
+        }
+
         // no need to update ui since its just been created, just do portal
         UpdateAppearance(uid);
-    }
-
-    private void OnGatewayOpenAttempt(EntityUid uid, GatewayComponent component, ref ActivatableUIOpenAttemptEvent args)
-    {
-        if (!component.Enabled || !component.Interactable)
-            args.Cancel();
     }
 
     private void UpdateUserInterface<T>(EntityUid uid, GatewayComponent comp, T args)
@@ -70,71 +68,20 @@ public sealed class GatewaySystem : EntitySystem
         UpdateUserInterface(uid, comp);
     }
 
-    public void UpdateAllGateways()
+    private void UpdateUserInterface(EntityUid uid, GatewayComponent comp)
     {
-        var query = AllEntityQuery<GatewayComponent, TransformComponent>();
-
-        while (query.MoveNext(out var uid, out var comp, out var xform))
+        var destinations = new List<(NetEntity, string, TimeSpan, bool)>();
+        foreach (var destUid in comp.Destinations)
         {
-            UpdateUserInterface(uid, comp, xform);
-        }
-    }
-
-    private void UpdateUserInterface(EntityUid uid, GatewayComponent comp, TransformComponent? xform = null)
-    {
-        if (!Resolve(uid, ref xform))
-            return;
-
-        var destinations = new List<GatewayDestinationData>();
-        var query = AllEntityQuery<GatewayComponent, TransformComponent>();
-
-        var nextUnlock = TimeSpan.Zero;
-        var unlockTime = TimeSpan.Zero;
-
-        // Next unlock is based off of:
-        // - Our station's unlock timer (if we have a station)
-        // - If our map is a generated destination then use the generator that made it
-
-        if (TryComp(_stations.GetOwningStation(uid), out GatewayGeneratorComponent? generatorComp) ||
-            (TryComp(xform.MapUid, out GatewayGeneratorDestinationComponent? generatorDestination) &&
-             TryComp(generatorDestination.Generator, out generatorComp)))
-        {
-            nextUnlock = generatorComp.NextUnlock;
-            unlockTime = generatorComp.UnlockCooldown;
-        }
-
-        while (query.MoveNext(out var destUid, out var dest, out var destXform))
-        {
-            if (!dest.Enabled || destUid == uid)
+            var dest = Comp<GatewayDestinationComponent>(destUid);
+            if (!dest.Enabled)
                 continue;
 
-            // Show destination if either no destination comp on the map or it's ours.
-            TryComp<GatewayGeneratorDestinationComponent>(destXform.MapUid, out var gatewayDestination);
-
-            destinations.Add(new GatewayDestinationData()
-            {
-                Entity = GetNetEntity(destUid),
-                // Fallback to grid's ID if applicable.
-                Name = dest.Name.IsEmpty && destXform.GridUid != null ? FormattedMessage.FromUnformatted(MetaData(destXform.GridUid.Value).EntityName) : dest.Name ,
-                Portal = HasComp<PortalComponent>(destUid),
-                // If NextUnlock < CurTime it's unlocked, however
-                // we'll always send the client if it's locked
-                // It can just infer unlock times locally and not have to worry about it here.
-                Locked = gatewayDestination != null && gatewayDestination.Locked
-            });
+            destinations.Add((GetNetEntity(destUid), dest.Name, dest.NextReady, HasComp<PortalComponent>(destUid)));
         }
 
         _linkedEntity.GetLink(uid, out var current);
-
-        var state = new GatewayBoundUserInterfaceState(
-            destinations,
-            GetNetEntity(current),
-            comp.NextReady,
-            comp.Cooldown,
-            nextUnlock,
-            unlockTime
-        );
-
+        var state = new GatewayBoundUserInterfaceState(destinations, GetNetEntity(current), comp.NextClose, comp.LastOpen);
         _ui.TrySetUiState(uid, GatewayUiKey.Key, state);
     }
 
@@ -145,58 +92,38 @@ public sealed class GatewaySystem : EntitySystem
 
     private void OnOpenPortal(EntityUid uid, GatewayComponent comp, GatewayOpenPortalMessage args)
     {
-        if (args.Session.AttachedEntity == null || GetNetEntity(uid) == args.Destination ||
-            !comp.Enabled || !comp.Interactable)
+        if (args.Session.AttachedEntity == null)
             return;
 
         // if the gateway has an access reader check it before allowing opening
         var user = args.Session.AttachedEntity.Value;
-        if (CheckAccess(user, uid, comp))
+        if (CheckAccess(user, uid))
             return;
 
         // can't link if portal is already open on either side, the destination is invalid or on cooldown
         var desto = GetEntity(args.Destination);
 
-        // If it's already open / not enabled / we're not ready DENY.
-        if (!TryComp<GatewayComponent>(desto, out var dest) ||
+        if (HasComp<PortalComponent>(uid) ||
+            HasComp<PortalComponent>(desto) ||
+            !TryComp<GatewayDestinationComponent>(desto, out var dest) ||
             !dest.Enabled ||
-            _timing.CurTime < _metadata.GetPauseTime(uid) + comp.NextReady)
-        {
+            _timing.CurTime < dest.NextReady)
             return;
-        }
 
         // TODO: admin log???
-        ClosePortal(uid, comp, false);
         OpenPortal(uid, comp, desto, dest);
     }
 
-    private void OpenPortal(EntityUid uid, GatewayComponent comp, EntityUid dest, GatewayComponent destComp, TransformComponent? destXform = null)
+    private void OpenPortal(EntityUid uid, GatewayComponent comp, EntityUid dest, GatewayDestinationComponent destComp)
     {
-        if (!Resolve(dest, ref destXform) || destXform.MapUid == null)
-            return;
-
-        var ev = new AttemptGatewayOpenEvent(destXform.MapUid.Value, dest);
-        RaiseLocalEvent(destXform.MapUid.Value, ref ev);
-
-        if (ev.Cancelled)
-            return;
-
-        _linkedEntity.OneWayLink(uid, dest);
-
-        var sourcePortal = EnsureComp<PortalComponent>(uid);
-        var targetPortal = EnsureComp<PortalComponent>(dest);
-
-        sourcePortal.CanTeleportToOtherMaps = true;
-        targetPortal.CanTeleportToOtherMaps = true;
-
-        sourcePortal.RandomTeleport = false;
-        targetPortal.RandomTeleport = false;
-
-        var openEv = new GatewayOpenEvent(destXform.MapUid.Value, dest);
-        RaiseLocalEvent(destXform.MapUid.Value, ref openEv);
+        _linkedEntity.TryLink(uid, dest);
+        EnsureComp<PortalComponent>(uid).CanTeleportToOtherMaps = true;
+        EnsureComp<PortalComponent>(dest).CanTeleportToOtherMaps = true;
 
         // for ui
-        comp.NextReady = _timing.CurTime + comp.Cooldown;
+        comp.LastOpen = _timing.CurTime;
+        // close automatically after time is up
+        comp.NextClose = comp.LastOpen + destComp.OpenTime;
 
         _audio.PlayPvs(comp.OpenSound, uid);
         _audio.PlayPvs(comp.OpenSound, dest);
@@ -206,7 +133,7 @@ public sealed class GatewaySystem : EntitySystem
         UpdateAppearance(dest);
     }
 
-    private void ClosePortal(EntityUid uid, GatewayComponent? comp = null, bool update = true)
+    private void ClosePortal(EntityUid uid, GatewayComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -215,7 +142,7 @@ public sealed class GatewaySystem : EntitySystem
         if (!_linkedEntity.GetLink(uid, out var dest))
             return;
 
-        if (TryComp<GatewayComponent>(dest, out var destComp))
+        if (TryComp<GatewayDestinationComponent>(dest, out var destComp))
         {
             // portals closed, put it on cooldown and let it eventually be opened again
             destComp.NextReady = _timing.CurTime + destComp.Cooldown;
@@ -226,33 +153,44 @@ public sealed class GatewaySystem : EntitySystem
 
         _linkedEntity.TryUnlink(uid, dest.Value);
         RemComp<PortalComponent>(dest.Value);
-
-        if (update)
-        {
-            UpdateUserInterface(uid, comp);
-            UpdateAppearance(uid);
-            UpdateAppearance(dest.Value);
-        }
+        UpdateUserInterface(uid, comp);
+        UpdateAppearance(uid);
+        UpdateAppearance(dest.Value);
     }
 
-    private void OnDestinationStartup(EntityUid uid, GatewayComponent comp, ComponentStartup args)
+    private void OnDestinationStartup(EntityUid uid, GatewayDestinationComponent comp, ComponentStartup args)
     {
-        var query = AllEntityQuery<GatewayComponent>();
+        var query = EntityQueryEnumerator<GatewayComponent>();
         while (query.MoveNext(out var gatewayUid, out var gateway))
         {
+            gateway.Destinations.Add(uid);
             UpdateUserInterface(gatewayUid, gateway);
         }
 
         UpdateAppearance(uid);
     }
 
-    private void OnDestinationShutdown(EntityUid uid, GatewayComponent comp, ComponentShutdown args)
+    private void OnDestinationShutdown(EntityUid uid, GatewayDestinationComponent comp, ComponentShutdown args)
     {
-        var query = AllEntityQuery<GatewayComponent>();
+        var query = EntityQueryEnumerator<GatewayComponent>();
         while (query.MoveNext(out var gatewayUid, out var gateway))
         {
+            gateway.Destinations.Remove(uid);
             UpdateUserInterface(gatewayUid, gateway);
         }
+    }
+
+    private void OnDestinationGetVerbs(EntityUid uid, GatewayDestinationComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!comp.Closeable || !args.CanInteract || !args.CanAccess)
+            return;
+
+        // a portal is open so add verb to close it
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => TryClose(uid, args.User),
+            Text = Loc.GetString("gateway-close-portal")
+        });
     }
 
     private void TryClose(EntityUid uid, EntityUid user)
@@ -284,30 +222,4 @@ public sealed class GatewaySystem : EntitySystem
         _audio.PlayPvs(comp.AccessDeniedSound, uid);
         return true;
     }
-
-    public void SetDestinationName(EntityUid gatewayUid, FormattedMessage gatewayName, GatewayComponent? gatewayComp = null)
-    {
-        if (!Resolve(gatewayUid, ref gatewayComp))
-            return;
-
-        gatewayComp.Name = gatewayName;
-    }
 }
-
-/// <summary>
-/// Raised directed on the target map when a GatewayDestination is attempted to be opened.
-/// </summary>
-[ByRefEvent]
-public record struct AttemptGatewayOpenEvent(EntityUid MapUid, EntityUid GatewayDestinationUid)
-{
-    public readonly EntityUid MapUid = MapUid;
-    public readonly EntityUid GatewayDestinationUid = GatewayDestinationUid;
-
-    public bool Cancelled = false;
-}
-
-/// <summary>
-/// Raised directed on the target map when a gateway is opened.
-/// </summary>
-[ByRefEvent]
-public readonly record struct GatewayOpenEvent(EntityUid MapUid, EntityUid GatewayDestinationUid);

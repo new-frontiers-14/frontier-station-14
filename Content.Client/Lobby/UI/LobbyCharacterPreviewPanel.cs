@@ -128,7 +128,7 @@ namespace Content.Client.Lobby.UI
                         OverrideDirection = Direction.South,
                         Scale = new Vector2(4f, 4f),
                         MaxSize = new Vector2(112, 112),
-                        Stretch = SpriteView.StretchMode.Fill,
+                        Stretch = SpriteView.StretchMode.None,
                     };
                     spriteView.SetEntity(_previewDummy.Value);
                     _viewBox.AddChild(spriteView);
@@ -158,8 +158,7 @@ namespace Content.Client.Lobby.UI
                 foreach (var slot in slots)
                 {
                     var itemType = gear.GetGear(slot.Name, profile);
-
-                    if (invSystem.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                    if (invSystem.TryUnequip(dummy, slot.Name, out var unequippedItem, true, true))
                     {
                         entMan.DeleteEntity(unequippedItem.Value);
                     }

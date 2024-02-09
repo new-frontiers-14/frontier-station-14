@@ -4,49 +4,29 @@ using Content.Server.Disposal.Tube;
 using Content.Server.Disposal.Tube.Components;
 using Content.Server.Disposal.Unit.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Damage;
+using Content.Shared.Disposal.Components;
 using Content.Shared.Item;
-using Content.Shared.Throwing;
-using Robust.Shared.Audio.Systems;
+using JetBrains.Annotations;
 using Robust.Shared.Containers;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Random;
 
 namespace Content.Server.Disposal.Unit.EntitySystems
 {
     public sealed class DisposableSystem : EntitySystem
     {
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly DisposalUnitSystem _disposalUnitSystem = default!;
         [Dependency] private readonly DisposalTubeSystem _disposalTubeSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedMapSystem _maps = default!;
+        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
+        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
         [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-
-        private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
-        private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;
-        private EntityQuery<MetaDataComponent> _metaQuery;
-        private EntityQuery<PhysicsComponent> _physicsQuery;
-        private EntityQuery<TransformComponent> _xformQuery;
-
-        private List<EntityUid> _entList = new();
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _disposalTubeQuery = GetEntityQuery<DisposalTubeComponent>();
-            _disposalUnitQuery = GetEntityQuery<DisposalUnitComponent>();
-            _metaQuery = GetEntityQuery<MetaDataComponent>();
-            _physicsQuery = GetEntityQuery<PhysicsComponent>();
-            _xformQuery = GetEntityQuery<TransformComponent>();
 
             SubscribeLocalEvent<DisposalHolderComponent, ComponentStartup>(OnComponentStartup);
         }
@@ -63,10 +43,10 @@ namespace Content.Server.Disposal.Unit.EntitySystems
             if (!CanInsert(uid, toInsert, holder))
                 return false;
 
-            if (!_containerSystem.Insert(toInsert, holder.Container))
+            if (!holder.Container.Insert(toInsert, EntityManager))
                 return false;
 
-            if (_physicsQuery.TryGetComponent(toInsert, out var physBody))
+            if (TryComp<PhysicsComponent>(toInsert, out var physBody))
                 _physicsSystem.SetCanCollide(toInsert, false, body: physBody);
 
             return true;
@@ -106,12 +86,11 @@ namespace Content.Server.Disposal.Unit.EntitySystems
 
             EntityUid? disposalId = null;
             DisposalUnitComponent? duc = null;
-            var gridUid = holderTransform.GridUid;
-            if (TryComp<MapGridComponent>(gridUid, out var grid))
+            if (_mapManager.TryGetGrid(holderTransform.GridUid, out var grid))
             {
-                foreach (var contentUid in _maps.GetLocal(gridUid.Value, grid, holderTransform.Coordinates))
+                foreach (var contentUid in grid.GetLocal(holderTransform.Coordinates))
                 {
-                    if (_disposalUnitQuery.TryGetComponent(contentUid, out duc))
+                    if (EntityManager.TryGetComponent(contentUid, out duc))
                     {
                         disposalId = contentUid;
                         break;
@@ -119,32 +98,25 @@ namespace Content.Server.Disposal.Unit.EntitySystems
                 }
             }
 
-            _entList.Clear();
-            _entList.AddRange(holder.Container.ContainedEntities);
-
-            foreach (var entity in _entList)
+            foreach (var entity in holder.Container.ContainedEntities.ToArray())
             {
                 RemComp<BeingDisposedComponent>(entity);
 
-                var meta = _metaQuery.GetComponent(entity);
-                _containerSystem.Remove((entity, null, meta), holder.Container, reparent: false, force: true);
+                var meta = MetaData(entity);
+                holder.Container.Remove(entity, EntityManager, meta: meta, reparent: false, force: true);
 
-                var xform = _xformQuery.GetComponent(entity);
+                var xform = Transform(entity);
                 if (xform.ParentUid != uid)
                     continue;
 
                 if (duc != null)
-                    _containerSystem.Insert((entity, xform, meta), duc.Container);
+                    duc.Container.Insert(entity, EntityManager, xform, meta: meta);
                 else
-                {
                     _xformSystem.AttachToGridOrMap(entity, xform);
 
-                    if (holder.PreviousDirection != Direction.Invalid && _xformQuery.TryGetComponent(xform.ParentUid, out var parentXform))
-                    {
-                        var direction = holder.PreviousDirection.ToAngle();
-                        direction += _xformSystem.GetWorldRotation(parentXform);
-                        _throwing.TryThrow(entity, direction.ToWorldVec() * 3f, 10f);
-                    }
+                if (EntityManager.TryGetComponent(entity, out PhysicsComponent? physics))
+                {
+                    _physicsSystem.WakeBody(entity, body: physics);
                 }
             }
 
@@ -185,7 +157,7 @@ namespace Content.Server.Disposal.Unit.EntitySystems
             }
 
             // Insert into next tube
-            if (!_containerSystem.Insert(holderUid, to.Contents))
+            if (!to.Contents.Insert(holderUid))
             {
                 ExitDisposals(holderUid, holder, holderTransform);
                 return false;
@@ -210,17 +182,6 @@ namespace Content.Server.Disposal.Unit.EntitySystems
                 ExitDisposals(holderUid, holder, holderTransform);
                 return false;
             }
-
-            // damage entities on turns and play sound
-            if (holder.CurrentDirection != holder.PreviousDirection)
-            {
-                foreach (var ent in holder.Container.ContainedEntities)
-                {
-                    _damageable.TryChangeDamage(ent, to.DamageOnTurn);
-                }
-                _audio.PlayPvs(to.ClangSound, toUid);
-            }
-
             return true;
         }
 
@@ -256,7 +217,7 @@ namespace Content.Server.Disposal.Unit.EntitySystems
                 if (holder.TimeLeft > 0)
                 {
                     var progress = 1 - holder.TimeLeft / holder.StartingTime;
-                    var origin = _xformQuery.GetComponent(currentTube).Coordinates;
+                    var origin = Transform(currentTube).Coordinates;
                     var destination = holder.CurrentDirection.ToVec();
                     var newPosition = destination * progress;
 
@@ -267,7 +228,7 @@ namespace Content.Server.Disposal.Unit.EntitySystems
 
                 // Past this point, we are performing inter-tube transfer!
                 // Remove current tube content
-                _containerSystem.Remove(uid, _disposalTubeQuery.GetComponent(currentTube).Contents, reparent: false, force: true);
+                Comp<DisposalTubeComponent>(currentTube).Contents.Remove(uid, reparent: false, force: true);
 
                 // Find next tube
                 var nextTube = _disposalTubeSystem.NextTubeFor(currentTube, holder.CurrentDirection);

@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Body.Systems;
 using Content.Server.Cargo.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
@@ -34,7 +33,6 @@ public sealed class PricingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
 
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
@@ -113,36 +111,13 @@ public sealed class PricingSystem : EntitySystem
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (!_tagSystem.HasTag(uid, "LabGrown") ? 1.0 : component.LabGrownPenalty);
     }
 
-    private double GetSolutionPrice(Entity<SolutionContainerManagerComponent> entity)
-    {
-        if (Comp<MetaDataComponent>(entity).EntityLifeStage < EntityLifeStage.MapInitialized)
-            return GetSolutionPrice(entity.Comp);
-
-        var price = 0.0;
-
-        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity.Owner, entity.Comp)))
-        {
-            var solution = soln.Comp.Solution;
-            foreach (var (reagent, quantity) in solution.Contents)
-            {
-                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
-                    continue;
-
-                // TODO check ReagentData for price information?
-                price += (float) quantity * reagentProto.PricePerUnit;
-            }
-        }
-
-        return price;
-    }
-
     private double GetSolutionPrice(SolutionContainerManagerComponent component)
     {
         var price = 0.0;
 
-        foreach (var (_, prototype) in _solutionContainerSystem.EnumerateSolutions(component))
+        foreach (var solution in component.Solutions.Values)
         {
-            foreach (var (reagent, quantity) in prototype.Contents)
+            foreach (var (reagent, quantity) in solution.Contents)
             {
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
                     continue;
@@ -310,7 +285,7 @@ public sealed class PricingSystem : EntitySystem
 
         if (TryComp<SolutionContainerManagerComponent>(uid, out var solComp))
         {
-            price += GetSolutionPrice((uid, solComp));
+            price += GetSolutionPrice(solComp);
         }
 
         return price;
@@ -408,8 +383,8 @@ public sealed class PricingSystem : EntitySystem
     {
         var xform = Transform(grid);
         var price = 0.0;
-        var enumerator = xform.ChildEnumerator;
-        while (enumerator.MoveNext(out var child))
+
+        foreach (var child in xform.ChildEntities)
         {
             if (predicate is null || predicate(child))
             {

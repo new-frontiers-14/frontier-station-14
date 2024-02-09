@@ -3,10 +3,9 @@ using Content.Server.DeviceNetwork;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Tools;
 using Content.Shared.Popups;
-using Content.Shared.Timing;
-using Content.Shared.Tools.Systems;
-using Robust.Shared.Audio.Systems;
+using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 using SignalReceivedEvent = Content.Server.DeviceLinking.Events.SignalReceivedEvent;
 
 namespace Content.Server.DeviceLinking.Systems;
@@ -18,7 +17,6 @@ public sealed class LogicGateSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
 
     private readonly int GateCount = Enum.GetValues(typeof(LogicGate)).Length;
 
@@ -69,11 +67,6 @@ public sealed class LogicGateSystem : EntitySystem
     private void OnInteractUsing(EntityUid uid, LogicGateComponent comp, InteractUsingEvent args)
     {
         if (args.Handled || !_tool.HasQuality(args.Used, comp.CycleQuality))
-            return;
-
-        // no sound spamming
-        if (TryComp<UseDelayComponent>(uid, out var useDelay)
-            && !_useDelay.TryResetDelay((uid, useDelay), true))
             return;
 
         // cycle through possible gates

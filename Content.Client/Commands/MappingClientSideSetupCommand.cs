@@ -1,28 +1,33 @@
-using Content.Client.Markers;
 using JetBrains.Annotations;
+using System;
+using Content.Client.Markers;
 using Robust.Client.Graphics;
 using Robust.Shared.Console;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Commands;
 
+/// <summary>
+/// Sent by mapping command to client.
+/// This is because the debug commands for some of these options are on toggles.
+/// </summary>
 [UsedImplicitly]
-internal sealed class MappingClientSideSetupCommand : LocalizedCommands
+internal sealed class MappingClientSideSetupCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly ILightManager _lightManager = default!;
+    // ReSharper disable once StringLiteralTypo
+    public string Command => "mappingclientsidesetup";
+    public string Description => "Sets up the lighting control and such settings client-side. Sent by 'mapping' to client.";
+    public string Help => "";
 
-    public override string Command => "mappingclientsidesetup";
-
-    public override string Help => LocalizationManager.GetString($"cmd-{Command}-help", ("command", Command));
-
-    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_lightManager.LockConsoleAccess)
+        var mgr = IoCManager.Resolve<ILightManager>();
+        if (!mgr.LockConsoleAccess)
         {
-            _entitySystemManager.GetEntitySystem<MarkerSystem>().MarkersVisible = true;
-            _lightManager.Enabled = false;
-            shell.ExecuteCommand(ShowSubFloorForever.CommandName);
-            shell.ExecuteCommand(LoadMappingActionsCommand.CommandName);
+            EntitySystem.Get<MarkerSystem>().MarkersVisible = true;
+            mgr.Enabled = false;
+            shell.ExecuteCommand("showsubfloorforever");
+            shell.ExecuteCommand("loadmapacts");
         }
     }
 }

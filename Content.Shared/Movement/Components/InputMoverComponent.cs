@@ -1,13 +1,12 @@
 using System.Numerics;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Movement.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
     public sealed partial class InputMoverComponent : Component
     {
         // This class has to be able to handle server TPS being lower than client FPS.
@@ -41,30 +40,32 @@ namespace Content.Shared.Movement.Components
         public Vector2 CurTickWalkMovement;
         public Vector2 CurTickSprintMovement;
 
+        [AutoNetworkedField]
         public MoveButtons HeldMoveButtons = MoveButtons.None;
 
         /// <summary>
         /// Entity our movement is relative to.
         /// </summary>
+        [AutoNetworkedField]
         public EntityUid? RelativeEntity;
 
         /// <summary>
         /// Although our movement might be relative to a particular entity we may have an additional relative rotation
         /// e.g. if we've snapped to a different cardinal direction
         /// </summary>
-        [ViewVariables]
+        [ViewVariables, AutoNetworkedField]
         public Angle TargetRelativeRotation = Angle.Zero;
 
         /// <summary>
         /// The current relative rotation. This will lerp towards the <see cref="TargetRelativeRotation"/>.
         /// </summary>
-        [ViewVariables]
+        [ViewVariables, AutoNetworkedField]
         public Angle RelativeRotation;
 
         /// <summary>
         /// If we traverse on / off a grid then set a timer to update our relative inputs.
         /// </summary>
-        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
         public TimeSpan LerpTarget;
 
@@ -72,18 +73,7 @@ namespace Content.Shared.Movement.Components
 
         public bool Sprinting => (HeldMoveButtons & MoveButtons.Walk) == 0x0;
 
-        [ViewVariables(VVAccess.ReadWrite)]
-        public bool CanMove = true;
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class InputMoverComponentState : ComponentState
-    {
-        public MoveButtons HeldMoveButtons;
-        public NetEntity? RelativeEntity;
-        public Angle TargetRelativeRotation;
-        public Angle RelativeRotation;
-        public TimeSpan LerpTarget;
-        public bool CanMove;
+        [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        public bool CanMove { get; set; } = true;
     }
 }

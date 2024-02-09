@@ -172,13 +172,8 @@ public sealed class RadioDeviceSystem : EntitySystem
             return;
 
         var proto = _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel);
-
-        using (args.PushGroup(nameof(RadioMicrophoneComponent)))
-        {
-            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", proto.Frequency)));
-            args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine",
-                ("channel", proto.LocalizedName)));
-        }
+        args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", proto.Frequency)));
+        args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine", ("channel", proto.LocalizedName)));
     }
 
     private void OnListen(EntityUid uid, RadioMicrophoneComponent component, ListenEvent args)

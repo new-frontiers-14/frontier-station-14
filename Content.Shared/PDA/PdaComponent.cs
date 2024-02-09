@@ -11,7 +11,6 @@ namespace Content.Shared.PDA
     {
         public const string PdaIdSlotId = "PDA-id";
         public const string PdaPenSlotId = "PDA-pen";
-        public const string PdaPaiSlotId = "PDA-pai";
         public const string PdaBookSlotId = "PDA-book";
 
         /// <summary>
@@ -26,9 +25,6 @@ namespace Content.Shared.PDA
         [DataField("penSlot")]
         public ItemSlot PenSlot = new();
 
-        [DataField("paiSlot")]
-        public ItemSlot PaiSlot = new();
-
         [DataField("bookSlot")]
         public ItemSlot BookSlot = new();
 
@@ -41,7 +37,7 @@ namespace Content.Shared.PDA
         [ViewVariables] public EntityUid? ContainedId;
         [ViewVariables] public bool FlashlightOn;
 
-        [ViewVariables(VVAccess.ReadWrite)] public string? OwnerName;
+        [ViewVariables] public string? OwnerName;
         [ViewVariables] public string? StationName;
         [ViewVariables] public string? StationAlertLevel;
         [ViewVariables] public Color StationAlertColor = Color.White;

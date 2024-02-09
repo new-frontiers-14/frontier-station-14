@@ -202,15 +202,17 @@ public sealed class ClientClothingSystem : ClothingSystem
         revealedLayers.Clear();
     }
 
-    public void InitClothing(EntityUid uid, InventoryComponent component)
+    public void InitClothing(EntityUid uid, InventoryComponent? component = null, SpriteComponent? sprite = null)
     {
-        if (!TryComp(uid, out SpriteComponent? sprite))
+        if (!Resolve(uid, ref sprite, ref component) || !_inventorySystem.TryGetSlots(uid, out var slots, component))
             return;
 
-        var enumerator = _inventorySystem.GetSlotEnumerator((uid, component));
-        while (enumerator.NextItem(out var item, out var slot))
+        foreach (var slot in slots)
         {
-            RenderEquipment(uid, item, slot.Name, component, sprite);
+            if (!_inventorySystem.TryGetSlotContainer(uid, slot.Name, out var containerSlot, out _, component) ||
+                !containerSlot.ContainedEntity.HasValue) continue;
+
+            RenderEquipment(uid, containerSlot.ContainedEntity.Value, slot.Name, component, sprite);
         }
     }
 

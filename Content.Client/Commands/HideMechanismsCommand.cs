@@ -1,45 +1,46 @@
-using Content.Shared.Body.Organ;
+﻿using Content.Shared.Body.Organ;
+using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
 
-namespace Content.Client.Commands;
-
-public sealed class HideMechanismsCommand : LocalizedCommands
+namespace Content.Client.Commands
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    public override string Command => "hidemechanisms";
-
-    public override string Description => LocalizationManager.GetString($"cmd-{Command}-desc", ("showMechanismsCommand", ShowMechanismsCommand.CommandName));
-
-    public override string Help => LocalizationManager.GetString($"cmd-{Command}-help", ("command", Command));
-
-    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    public sealed class HideMechanismsCommand : IConsoleCommand
     {
-        var containerSys = _entityManager.System<SharedContainerSystem>();
-        var query = _entityManager.AllEntityQueryEnumerator<OrganComponent>();
+        public string Command => "hidemechanisms";
+        public string Description => $"Reverts the effects of {ShowMechanismsCommand.CommandName}";
+        public string Help => $"{Command}";
 
-        while (query.MoveNext(out var uid, out _))
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (!_entityManager.TryGetComponent(uid, out SpriteComponent? sprite))
-            {
-                continue;
-            }
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            var containerSys = entityManager.System<SharedContainerSystem>();
+            var query = entityManager.AllEntityQueryEnumerator<OrganComponent>();
 
-            sprite.ContainerOccluded = false;
-
-            var tempParent = uid;
-            while (containerSys.TryGetContainingContainer(tempParent, out var container))
+            while (query.MoveNext(out var uid, out _))
             {
-                if (!container.ShowContents)
+                if (!entityManager.TryGetComponent(uid, out SpriteComponent? sprite))
                 {
-                    sprite.ContainerOccluded = true;
-                    break;
+                    continue;
                 }
 
-                tempParent = container.Owner;
+                sprite.ContainerOccluded = false;
+
+                var tempParent = uid;
+                while (containerSys.TryGetContainingContainer(tempParent, out var container))
+                {
+                    if (!container.ShowContents)
+                    {
+                        sprite.ContainerOccluded = true;
+                        break;
+                    }
+
+                    tempParent = container.Owner;
+                }
             }
+
+            IoCManager.Resolve<IClientConsoleHost>().ExecuteCommand("hidecontainedcontext");
         }
     }
 }

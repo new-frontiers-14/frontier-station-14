@@ -1,4 +1,7 @@
+using Content.Shared.Maps;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Anomaly.Effects.Components;
 
@@ -33,21 +36,8 @@ public sealed partial class EntitySpawnAnomalyComponent : Component
     public float SpawnRange = 5f;
 
     /// <summary>
-    /// Whether or not anomaly spawns entities on Pulse
+    /// The tile that is spawned by the anomaly's effect
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool SpawnOnPulse = true;
-
-    /// <summary>
-    /// Whether or not anomaly spawns entities on SuperCritical
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool SpawnOnSuperCritical = true;
-
-    /// <summary>
-    /// Whether or not anomaly spawns entities on StabilityChanged
-    /// The idea was to spawn entities either on Pulse/Supercritical OR StabilityChanged
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool SpawnOnStabilityChanged = false;
+    [DataField("floorTileId", customTypeSerializer: typeof(PrototypeIdSerializer<ContentTileDefinition>)), ViewVariables(VVAccess.ReadWrite)]
+    public string FloorTileId = "FloorFlesh";
 }

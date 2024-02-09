@@ -3,7 +3,6 @@
 
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Server.Player;
@@ -112,7 +111,7 @@ namespace Content.Server.Mapping
 
             // map successfully created. run misc helpful mapping commands
             if (player.AttachedEntity is { Valid: true } playerEntity &&
-                _entities.GetComponent<MetaDataComponent>(playerEntity).EntityPrototype?.ID != GameTicker.AdminObserverPrototypeName)
+                _entities.GetComponent<MetaDataComponent>(playerEntity).EntityPrototype?.ID != "AdminObserver")
             {
                 shell.ExecuteCommand("aghost");
             }

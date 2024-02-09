@@ -156,7 +156,6 @@
     - /Audio/Ambience/ambiruin5.ogg
     - /Audio/Ambience/ambiruin6.ogg
     - /Audio/Ambience/ambiruin7.ogg
-    - /Audio/Ambience/voyage_neverending.ogg
 
 - type: soundCollection
   id: AmbienceRuins
@@ -204,13 +203,14 @@
   rules:
     - !type:AlwaysTrueRule
 
+# TODO: Need to make sure no grids nearby
 - type: rules
   id: InSpace
   rules:
     - !type:InSpaceRule
     - !type:GridInRangeRule
       inverted: true
-      range: 1
+      range: 10
 
 # TODO
 - type: rules

@@ -5,12 +5,12 @@
   price: 111550
   category: Large
   group: Security
-  shuttlePath: /Maps/_NF/Shuttles/marauder.yml
+  shuttlePath: /Maps/Shuttles/marauder.yml
 
 - type: gameMap
   id: Marauder
   mapName: 'NSF Marauder'
-  mapPath: /Maps/_NF/Shuttles/marauder.yml
+  mapPath: /Maps/Shuttles/marauder.yml
   minPlayers: 0
   stations:
     Marauder:
@@ -23,4 +23,9 @@
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs: {}
+          availableJobs:
+            Detective: [ 0, 0 ]
+            SecurityOfficer: [ 0, 0 ]
+            Warden: [ 1, 1 ]
+            Brigmedic: [ 0, 0 ]
+            Chef: [ 0, 0 ]

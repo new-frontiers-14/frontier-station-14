@@ -6,7 +6,7 @@ namespace Content.Server.Forensics
     [RegisterComponent]
     public sealed partial class FingerprintComponent : Component
     {
-        [DataField("fingerprint"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField("fingerprint")]
         public string? Fingerprint;
     }
 }

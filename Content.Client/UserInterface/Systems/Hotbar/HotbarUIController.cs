@@ -4,9 +4,6 @@ using Content.Client.UserInterface.Systems.Hands.Controls;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
 using Content.Client.UserInterface.Systems.Inventory;
 using Content.Client.UserInterface.Systems.Inventory.Controls;
-using Content.Client.UserInterface.Systems.Inventory.Widgets;
-using Content.Client.UserInterface.Systems.Storage;
-using Content.Client.UserInterface.Systems.Storage.Controls;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 
@@ -16,7 +13,6 @@ public sealed class HotbarUIController : UIController
 {
     private InventoryUIController? _inventory;
     private HandsUIController? _hands;
-    private StorageUIController? _storage;
 
     public override void Initialize()
     {
@@ -31,13 +27,12 @@ public sealed class HotbarUIController : UIController
         ReloadHotbar();
     }
 
-    public void Setup(HandsContainer handsContainer, ItemStatusPanel handStatus, StorageContainer storageContainer)
+    public void Setup(HandsContainer handsContainer, ItemSlotButtonContainer inventoryBar, ItemStatusPanel handStatus)
     {
         _inventory = UIManager.GetUIController<InventoryUIController>();
         _hands = UIManager.GetUIController<HandsUIController>();
-        _storage = UIManager.GetUIController<StorageUIController>();
         _hands.RegisterHandContainer(handsContainer);
-        _storage.RegisterStorageContainer(storageContainer);
+        _inventory.RegisterInventoryBarContainer(inventoryBar);
     }
 
     public void ReloadHotbar()
@@ -47,35 +42,25 @@ public sealed class HotbarUIController : UIController
             return;
         }
 
-        if (UIManager.ActiveScreen.GetWidget<HotbarGui>() is { } hotbar)
-        {
-            foreach (var container in GetAllItemSlotContainers(hotbar))
-            {
-                // Yes, this is dirty.
-                container.SlotGroup = container.SlotGroup;
-            }
-        }
+        var hotbar = UIManager.ActiveScreen.GetWidget<HotbarGui>();
 
-        _hands?.ReloadHands();
-        _inventory?.ReloadSlots();
-
-        //todo move this over to its own hellhole
-        var inventory = UIManager.ActiveScreen.GetWidget<InventoryGui>();
-        if (inventory == null)
+        if (hotbar == null)
         {
             return;
         }
 
-        foreach (var container in GetAllItemSlotContainers(inventory))
+        foreach (var container in GetAllItemSlotContainers(hotbar))
         {
             // Yes, this is dirty.
             container.SlotGroup = container.SlotGroup;
         }
 
-        _inventory?.RegisterInventoryBarContainer(inventory.InventoryHotbar);
+        _hands?.ReloadHands();
+        _inventory?.ReloadSlots();
+        _inventory?.RegisterInventoryBarContainer(hotbar.InventoryHotbar);
     }
 
-    private static IEnumerable<ItemSlotButtonContainer> GetAllItemSlotContainers(Control gui)
+    private IEnumerable<ItemSlotButtonContainer> GetAllItemSlotContainers(Control gui)
     {
         var result = new List<ItemSlotButtonContainer>();
 

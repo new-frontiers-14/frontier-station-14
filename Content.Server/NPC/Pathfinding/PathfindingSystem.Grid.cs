@@ -50,7 +50,7 @@ public sealed partial class PathfindingSystem
         SubscribeLocalEvent<CollisionLayerChangeEvent>(OnCollisionLayerChange);
         SubscribeLocalEvent<PhysicsBodyTypeChangedEvent>(OnBodyTypeChange);
         SubscribeLocalEvent<TileChangedEvent>(OnTileChange);
-        _transform.OnGlobalMoveEvent += OnMoveEvent;
+        SubscribeLocalEvent<MoveEvent>(OnMoveEvent);
     }
 
     private void OnTileChange(ref TileChangedEvent ev)
@@ -102,7 +102,7 @@ public sealed partial class PathfindingSystem
             // TODO: Dump all this shit and just do it live it's probably fast enough.
             if (comp.DirtyChunks.Count == 0 ||
                 curTime < comp.NextUpdate ||
-                !_gridQuery.TryGetComponent(uid, out var mapGridComp))
+                !TryComp<MapGridComponent>(uid, out var mapGridComp))
             {
                 continue;
             }
@@ -145,7 +145,15 @@ public sealed partial class PathfindingSystem
             // Without parallel this is roughly 3x slower on my desktop.
             Parallel.For(0, dirt.Length, options, i =>
             {
-                BuildBreadcrumbs(dirt[i], (uid, mapGridComp));
+                // Doing the queries per task seems faster.
+                var accessQuery = GetEntityQuery<AccessReaderComponent>();
+                var destructibleQuery = GetEntityQuery<DestructibleComponent>();
+                var doorQuery = GetEntityQuery<DoorComponent>();
+                var climbableQuery = GetEntityQuery<ClimbableComponent>();
+                var fixturesQuery = GetEntityQuery<FixturesComponent>();
+                var xformQuery = GetEntityQuery<TransformComponent>();
+                BuildBreadcrumbs(dirt[i], (uid, mapGridComp), accessQuery, destructibleQuery, doorQuery, climbableQuery,
+                    fixturesQuery, xformQuery);
             });
 
             const int Division = 4;
@@ -276,9 +284,9 @@ public sealed partial class PathfindingSystem
 
     private void OnMoveEvent(ref MoveEvent ev)
     {
-        if (!_fixturesQuery.TryGetComponent(ev.Sender, out var fixtures) ||
+        if (!TryComp<FixturesComponent>(ev.Sender, out var fixtures) ||
             !IsBodyRelevant(fixtures) ||
-            _gridQuery.HasComponent(ev.Sender))
+            HasComp<MapGridComponent>(ev.Sender))
         {
             return;
         }
@@ -400,11 +408,19 @@ public sealed partial class PathfindingSystem
 
     private Vector2i GetOrigin(EntityCoordinates coordinates, EntityUid gridUid)
     {
-        var localPos = _transform.GetInvWorldMatrix(gridUid).Transform(coordinates.ToMapPos(EntityManager, _transform));
+        var gridXform = Transform(gridUid);
+        var localPos = gridXform.InvWorldMatrix.Transform(coordinates.ToMapPos(EntityManager));
         return new Vector2i((int) Math.Floor(localPos.X / ChunkSize), (int) Math.Floor(localPos.Y / ChunkSize));
     }
 
-    private void BuildBreadcrumbs(GridPathfindingChunk chunk, Entity<MapGridComponent> grid)
+    private void BuildBreadcrumbs(GridPathfindingChunk chunk,
+        Entity<MapGridComponent> grid,
+        EntityQuery<AccessReaderComponent> accessQuery,
+        EntityQuery<DestructibleComponent> destructibleQuery,
+        EntityQuery<DoorComponent> doorQuery,
+        EntityQuery<ClimbableComponent> climbableQuery,
+        EntityQuery<FixturesComponent> fixturesQuery,
+        EntityQuery<TransformComponent> xformQuery)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -431,7 +447,7 @@ public sealed partial class PathfindingSystem
                 var tilePos = new Vector2i(x, y) + gridOrigin;
                 tilePolys.Clear();
 
-                var tile = _maps.GetTileRef(grid.Owner, grid.Comp, tilePos);
+                var tile = grid.Comp.GetTileRef(tilePos);
                 var flags = tile.Tile.IsEmpty ? PathfindingBreadcrumbFlag.Space : PathfindingBreadcrumbFlag.None;
                 // var isBorder = x < 0 || y < 0 || x == ChunkSize - 1 || y == ChunkSize - 1;
 
@@ -441,16 +457,16 @@ public sealed partial class PathfindingSystem
                 foreach (var ent in available)
                 {
                     // Irrelevant for pathfinding
-                    if (!_fixturesQuery.TryGetComponent(ent, out var fixtures) ||
+                    if (!fixturesQuery.TryGetComponent(ent, out var fixtures) ||
                         !IsBodyRelevant(fixtures))
                     {
                         continue;
                     }
 
-                    var xform = _xformQuery.GetComponent(ent);
+                    var xform = xformQuery.GetComponent(ent);
 
                     if (xform.ParentUid != grid.Owner ||
-                        _maps.LocalToTile(grid.Owner, grid.Comp, xform.Coordinates) != tilePos)
+                        grid.Comp.LocalToTile(xform.Coordinates) != tilePos)
                     {
                         continue;
                     }
@@ -473,7 +489,7 @@ public sealed partial class PathfindingSystem
 
                         foreach (var ent in tileEntities)
                         {
-                            if (!_fixturesQuery.TryGetComponent(ent, out var fixtures))
+                            if (!fixturesQuery.TryGetComponent(ent, out var fixtures))
                                 continue;
 
                             var colliding = false;
@@ -500,7 +516,7 @@ public sealed partial class PathfindingSystem
                                 }
 
                                 if (!intersects ||
-                                    !_xformQuery.TryGetComponent(ent, out var xform))
+                                    !xformQuery.TryGetComponent(ent, out var xform))
                                 {
                                     continue;
                                 }
@@ -519,22 +535,22 @@ public sealed partial class PathfindingSystem
                             if (!colliding)
                                 continue;
 
-                            if (_accessQuery.HasComponent(ent))
+                            if (accessQuery.HasComponent(ent))
                             {
                                 flags |= PathfindingBreadcrumbFlag.Access;
                             }
 
-                            if (_doorQuery.HasComponent(ent))
+                            if (doorQuery.HasComponent(ent))
                             {
                                 flags |= PathfindingBreadcrumbFlag.Door;
                             }
 
-                            if (_climbableQuery.HasComponent(ent))
+                            if (climbableQuery.HasComponent(ent))
                             {
                                 flags |= PathfindingBreadcrumbFlag.Climb;
                             }
 
-                            if (_destructibleQuery.TryGetComponent(ent, out var damageable))
+                            if (destructibleQuery.TryGetComponent(ent, out var damageable))
                             {
                                 damage += _destructible.DestroyedAt(ent, damageable).Float();
                             }

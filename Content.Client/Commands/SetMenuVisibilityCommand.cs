@@ -1,54 +1,54 @@
 using Content.Client.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
+using Robust.Shared.GameObjects;
 
-namespace Content.Client.Commands;
-
-[UsedImplicitly]
-internal sealed class SetMenuVisibilityCommand : LocalizedCommands
+namespace Content.Client.Commands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-
-    public override string Command => "menuvis";
-
-    public override string Help => LocalizationManager.GetString($"cmd-{Command}-help", ("command", Command));
-
-    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    [UsedImplicitly]
+    internal sealed class SetMenuVisibilityCommand : IConsoleCommand
     {
-        if (!TryParseArguments(shell, args, out var visibility))
-            return;
+        public const string CommandName = "menuvis";
 
-        _entitySystemManager.GetEntitySystem<VerbSystem>().Visibility = visibility;
-    }
+        public string Command => CommandName;
+        public string Description => "Set restrictions about what entities to show on the entity context menu.";
+        public string Help => $"Usage: {Command} [NoFoV] [InContainer] [Invisible] [All]";
 
-    private bool TryParseArguments(IConsoleShell shell, string[] args, out MenuVisibility visibility)
-    {
-        visibility = MenuVisibility.Default;
-
-        foreach (var arg in args)
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            switch (arg.ToLower())
-            {
-                // ReSharper disable once StringLiteralTypo
-                case "nofov":
-                    visibility |= MenuVisibility.NoFov;
-                    break;
-                // ReSharper disable once StringLiteralTypo
-                case "incontainer":
-                    visibility |= MenuVisibility.InContainer;
-                    break;
-                case "invisible":
-                    visibility |= MenuVisibility.Invisible;
-                    break;
-                case "all":
-                    visibility |= MenuVisibility.All;
-                    break;
-                default:
-                    shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error", ("arg", arg)));
-                    return false;
-            }
+            if (!TryParseArguments(shell, args, out var visibility))
+                return;
+
+            EntitySystem.Get<VerbSystem>().Visibility = visibility;
         }
 
-        return true;
+        private bool TryParseArguments(IConsoleShell shell, string[] args, out MenuVisibility visibility)
+        {
+            visibility = MenuVisibility.Default;
+
+            foreach (var arg in args)
+            {
+                switch (arg.ToLower())
+                {
+                    case "nofov":
+                        visibility |= MenuVisibility.NoFov;
+                        break;
+                    case "incontainer":
+                        visibility |= MenuVisibility.InContainer;
+                        break;
+                    case "invisible":
+                        visibility |= MenuVisibility.Invisible;
+                        break;
+                    case "all":
+                        visibility |= MenuVisibility.All;
+                        break;
+                    default:
+                        shell.WriteLine($"Unknown visibility argument '{arg}'. Only 'NoFov', 'InContainer', 'Invisible' or 'All' are valid. Provide no arguments to set to default.");
+                        return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

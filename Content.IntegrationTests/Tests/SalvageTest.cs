@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Salvage;
 using Content.Shared.CCVar;
-using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;

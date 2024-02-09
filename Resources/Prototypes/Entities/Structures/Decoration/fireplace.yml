@@ -8,23 +8,10 @@
     sprite: Structures/Decoration/fireplace.rsi
     layers:
       - state: fireplace
-      - state: fireplacefestive
-        map: ["christmas"]
-        visible: false
       - state: fireplace_fire4
         shader: unshaded
       - state: fireplace_glow
         shader: unshaded
-  - type: Appearance
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        christmas:
-          festive: { visible: true }
   - type: AmbientSound
     volume: -6
     range: 5
@@ -45,4 +32,3 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
-  - type: AlwaysHot

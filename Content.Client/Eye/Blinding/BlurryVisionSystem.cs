@@ -1,7 +1,6 @@
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Shared.Player;
 
 namespace Content.Client.Eye.Blinding;
 

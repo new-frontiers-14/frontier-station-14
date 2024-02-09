@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Components;
@@ -10,6 +9,7 @@ using NUnit.Framework;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests;
@@ -17,12 +17,6 @@ namespace Content.IntegrationTests.Tests;
 [TestFixture]
 public sealed class CargoTest
 {
-    public static HashSet<ProtoId<CargoProductPrototype>> Ignored = new ()
-    {
-        // This is ignored because it is explicitly intended to be able to sell for more than it costs.
-        new("FunCrateGambling")
-    };
-
     [Test]
     public async Task NoCargoOrderArbitrage()
     {
@@ -32,25 +26,27 @@ public sealed class CargoTest
         var testMap = await pair.CreateTestMap();
 
         var entManager = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var pricing = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<PricingSystem>();
 
         await server.WaitAssertion(() =>
         {
+            var mapId = testMap.MapId;
+
             Assert.Multiple(() =>
             {
                 foreach (var proto in protoManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
-                    if (Ignored.Contains(proto.ID))
-                        continue;
-
-                    var ent = entManager.SpawnEntity(proto.Product, testMap.MapCoords);
+                    var ent = entManager.SpawnEntity(proto.Product, new MapCoordinates(Vector2.Zero, mapId));
                     var price = pricing.GetPrice(ent);
 
                     Assert.That(price, Is.AtMost(proto.PointCost), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.PointCost} but sell is {price}!");
                     entManager.DeleteEntity(ent);
                 }
             });
+
+            mapManager.DeleteMap(mapId);
         });
 
         await pair.CleanReturnAsync();
@@ -83,7 +79,7 @@ public sealed class CargoTest
                     foreach (var bounty in bounties)
                     {
                         if (cargo.IsBountyComplete(ent, bounty))
-                            Assert.That(proto.PointCost, Is.GreaterThanOrEqualTo(bounty.Reward), $"Found arbitrage on {bounty.ID} cargo bounty! Product {proto.ID} costs {proto.PointCost} but fulfills bounty {bounty.ID} with reward {bounty.Reward}!");
+                            Assert.That(proto.PointCost, Is.GreaterThan(bounty.Reward), $"Found arbitrage on {bounty.ID} cargo bounty! Product {proto.ID} costs {proto.PointCost} but fulfills bounty {bounty.ID} with reward {bounty.Reward}!");
                     }
 
                     entManager.DeleteEntity(ent);

@@ -19,10 +19,10 @@ public sealed partial class ThirstComponent : Component
     [AutoNetworkedField]
     public float ActualDecayRate;
 
-    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
     public ThirstThreshold CurrentThirstThreshold;
 
-    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
     public ThirstThreshold LastThirstThreshold;
 
     [ViewVariables(VVAccess.ReadWrite)]

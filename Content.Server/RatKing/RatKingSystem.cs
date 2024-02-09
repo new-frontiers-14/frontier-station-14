@@ -67,7 +67,7 @@ namespace Content.Server.RatKing
         }
 
         /// <summary>
-        /// uses hunger to release a specific amount of ammonia into the air. This heals the rat king
+        /// uses hunger to release a specific amount of miasma into the air. This heals the rat king
         /// and his servants through a specific metabolism.
         /// </summary>
         private void OnDomain(EntityUid uid, RatKingComponent component, RatKingDomainActionEvent args)
@@ -88,8 +88,11 @@ namespace Content.Server.RatKing
             _hunger.ModifyHunger(uid, -component.HungerPerDomainUse, hunger);
 
             _popup.PopupEntity(Loc.GetString("rat-king-domain-popup"), uid);
-            var tileMix = _atmos.GetTileMixture(uid, excite: true);
-            tileMix?.AdjustMoles(Gas.Ammonia, component.MolesAmmoniaPerDomain);
+
+            var transform = Transform(uid);
+            var indices = _xform.GetGridOrMapTilePosition(uid, transform);
+            var tileMix = _atmos.GetTileMixture(transform.GridUid, transform.MapUid, indices, true);
+            tileMix?.AdjustMoles(Gas.Miasma, component.MolesMiasmaPerDomain);
         }
 
         private void OnPointedAt(EntityUid uid, RatKingComponent component, ref AfterPointedAtEvent args)

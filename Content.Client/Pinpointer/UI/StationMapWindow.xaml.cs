@@ -21,7 +21,5 @@ public sealed partial class StationMapWindow : FancyWindow
         {
             Title = metadata.EntityName;
         }
-
-        NavMapScreen.ForceNavMapUpdate();
     }
 }

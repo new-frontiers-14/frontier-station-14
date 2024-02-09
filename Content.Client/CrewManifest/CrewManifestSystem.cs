@@ -1,3 +1,4 @@
+using Content.Client.GameTicking.Managers;
 using Content.Shared.CrewManifest;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
@@ -18,7 +19,12 @@ public sealed class CrewManifestSystem : EntitySystem
         base.Initialize();
 
         BuildDepartmentLookup();
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReload);
+        _prototypeManager.PrototypesReloaded += OnPrototypesReload;
+    }
+
+    public override void Shutdown()
+    {
+        _prototypeManager.PrototypesReloaded -= OnPrototypesReload;
     }
 
     /// <summary>
@@ -30,16 +36,16 @@ public sealed class CrewManifestSystem : EntitySystem
         RaiseNetworkEvent(new RequestCrewManifestMessage(netEntity));
     }
 
-    private void OnPrototypesReload(PrototypesReloadedEventArgs args)
+    private void OnPrototypesReload(PrototypesReloadedEventArgs _)
     {
-        if (args.WasModified<DepartmentPrototype>())
-            BuildDepartmentLookup();
+        _jobDepartmentLookup.Clear();
+        _departments.Clear();
+
+        BuildDepartmentLookup();
     }
 
     private void BuildDepartmentLookup()
     {
-        _jobDepartmentLookup.Clear();
-        _departments.Clear();
         foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
         {
             _departments.Add(department.ID);

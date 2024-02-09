@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.TextScreen;
 using Robust.Client.Graphics;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Client.TextScreen;
 
@@ -15,63 +16,52 @@ public sealed partial class TextScreenVisualsComponent : Component
     /// <summary>
     ///     The color of the text drawn.
     /// </summary>
-    /// <remarks>
-    ///     15,151,251 is the old ss13 color, from tg
-    /// </remarks>
-    [DataField("color"), ViewVariables(VVAccess.ReadWrite)]
-    public Color Color = new Color(15, 151, 251);
+    [DataField("color")]
+    public Color Color { get; set; } = Color.FloralWhite;
 
     /// <summary>
-    ///     Offset for centering the text.
+    ///     Whether the screen is on.
+    /// </summary>
+    [DataField("activated")]
+    public bool Activated;
+
+    /// <summary>
+    ///     The current mode of the screen - is it showing text, or currently counting?
+    /// </summary>
+    [DataField("currentMode")]
+    public TextScreenMode CurrentMode = TextScreenMode.Text;
+
+    /// <summary>
+    ///     The time it is counting to or from.
+    /// </summary>
+    [DataField("targetTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan TargetTime = TimeSpan.Zero;
+
+    /// <summary>
+    ///     Offset for drawing the text. <br/>
+    ///     (0, 8) pixels is the default for the Structures\Wallmounts\textscreen.rsi
     /// </summary>
     [DataField("textOffset"), ViewVariables(VVAccess.ReadWrite)]
-    public Vector2 TextOffset = Vector2.Zero;
+    public Vector2 TextOffset = new(0f, 8f * PixelSize);
 
     /// <summary>
-    ///    Offset for centering the timer.
+    ///     The amount of characters this component can show.
     /// </summary>
-    [DataField("timerOffset"), ViewVariables(VVAccess.ReadWrite)]
-    public Vector2 TimerOffset = Vector2.Zero;
+    [DataField("textLength")]
+    public int TextLength = 5;
 
     /// <summary>
-    ///     Number of rows of text this screen can render.
-    /// </summary>
-    [DataField("rows")]
-    public int Rows = 1;
-
-    /// <summary>
-    ///     Spacing between each text row
-    /// </summary>
-    [DataField("rowOffset")]
-    public int RowOffset = 7;
-
-    /// <summary>
-    ///     The amount of characters this component can show per row.
-    /// </summary>
-    [DataField("rowLength")]
-    public int RowLength = 5;
-
-    /// <summary>
-    ///     Text the screen should show when it finishes a timer.
+    ///     Text the screen should show when it's not counting.
     /// </summary>
     [DataField("text"), ViewVariables(VVAccess.ReadWrite)]
-    public string?[] Text = new string?[2];
+    public string Text = "";
+
+    public string TextToDraw = "";
 
     /// <summary>
-    ///     Text the screen will draw whenever appearance is updated.
-    /// </summary>
-    public string?[] TextToDraw = new string?[2];
-
-    /// <summary>
-    ///     Per-character layers, for mapping into the sprite component.
+    ///     The different layers for each character - this is the currently drawn states.
     /// </summary>
     [DataField("layerStatesToDraw")]
     public Dictionary<string, string?> LayerStatesToDraw = new();
-
-    [DataField("hourFormat")]
-    public string HourFormat = "D2";
-    [DataField("minuteFormat")]
-    public string MinuteFormat = "D2";
-    [DataField("secondFormat")]
-    public string SecondFormat = "D2";
 }
+

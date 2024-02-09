@@ -111,8 +111,8 @@ namespace Content.Client.VendingMachines.UI
                 {
                     if (priceComponent.Price != 0)
                     {
-                        var price = (float)priceComponent.Price;
-                        cost = (int) (price * priceModifier);
+                    var price = (float)priceComponent.Price;
+                    cost = (int) (price * priceModifier);
                     }
                     else
                     {
@@ -130,20 +130,16 @@ namespace Content.Client.VendingMachines.UI
 
                 if (prototype != null && prototype.TryGetComponent<SolutionContainerManagerComponent>(out var priceSolutions))
                 {
-                    if (priceSolutions.Solutions != null)
+                    foreach (var solution in priceSolutions.Solutions.Values)
                     {
-                        foreach (var solution in priceSolutions.Solutions.Values)
+                        foreach (var (reagent, quantity) in solution.Contents)
                         {
-                            foreach (var (reagent, quantity) in solution.Contents)
-                            {
-                                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype,
-                                        out var reagentProto))
-                                    continue;
+                            if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
+                                continue;
 
-                                // TODO check ReagentData for price information?
-                                var costReagent = (float) quantity * reagentProto.PricePerUnit;
-                                cost += (int) (costReagent * priceModifier);
-                            }
+                            // TODO check ReagentData for price information?
+                            var costReagent = (float) quantity * reagentProto.PricePerUnit;
+                            cost += (int) (costReagent * priceModifier);
                         }
                     }
                 }
@@ -163,7 +159,6 @@ namespace Content.Client.VendingMachines.UI
 
             SetSizeAfterUpdate(longestEntry.Length, inventory.Count);
         }
-
         public void UpdateBalance(int balance)
         {
             BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance.ToString()));

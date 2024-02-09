@@ -83,9 +83,6 @@ namespace Content.Shared.Entry
 
         private void PrototypeReload(PrototypesReloadedEventArgs obj)
         {
-            if (!obj.WasModified<ContentTileDefinition>())
-                return;
-
             // Need to re-allocate tiledefs due to how prototype reloads work
             foreach (var def in _prototypeManager.EnumeratePrototypes<ContentTileDefinition>())
             {

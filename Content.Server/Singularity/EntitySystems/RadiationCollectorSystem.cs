@@ -1,19 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
+using Content.Server.Singularity.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Singularity.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Singularity.Components;
-using Content.Shared.Atmos;
-using Content.Shared.Examine;
-using Content.Shared.Interaction;
 using Content.Shared.Radiation.Events;
-using Content.Shared.Singularity.Components;
-using Content.Shared.Timing;
-using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Containers;
+using Content.Server.Atmos.Components;
+using Content.Shared.Examine;
+using Content.Server.Atmos;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Atmos;
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -23,10 +20,6 @@ public sealed class RadiationCollectorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly BatterySystem _batterySystem = default!;
-
-    private const string GasTankContainer = "gas_tank";
 
     public override void Initialize()
     {
@@ -43,11 +36,12 @@ public sealed class RadiationCollectorSystem : EntitySystem
     private bool TryGetLoadedGasTank(EntityUid uid, [NotNullWhen(true)] out GasTankComponent? gasTankComponent)
     {
         gasTankComponent = null;
+        var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "GasTank");
 
-        if (!_containerSystem.TryGetContainer(uid, GasTankContainer, out var container) || container.ContainedEntities.Count == 0)
+        if (container.ContainedEntity == null)
             return false;
 
-        if (!EntityManager.TryGetComponent(container.ContainedEntities.First(), out gasTankComponent))
+        if (!EntityManager.TryGetComponent(container.ContainedEntity, out gasTankComponent))
             return false;
 
         return true;
@@ -67,10 +61,13 @@ public sealed class RadiationCollectorSystem : EntitySystem
 
     private void OnInteractHand(EntityUid uid, RadiationCollectorComponent component, InteractHandEvent args)
     {
-        if (TryComp(uid, out UseDelayComponent? useDelay) && !_useDelay.TryResetDelay((uid, useDelay), true))
+        var curTime = _gameTiming.CurTime;
+
+        if (curTime < component.CoolDownEnd)
             return;
 
         ToggleCollector(uid, args.User, component);
+        component.CoolDownEnd = curTime + component.Cooldown;
     }
 
     private void OnRadiation(EntityUid uid, RadiationCollectorComponent component, OnIrradiatedEvent args)
@@ -85,7 +82,7 @@ public sealed class RadiationCollectorSystem : EntitySystem
 
         foreach (var gas in component.RadiationReactiveGases)
         {
-            float reactantMol = gasTankComponent.Air.GetMoles(gas.ReactantPrototype);
+            float reactantMol = gasTankComponent.Air.GetMoles(gas.Reactant);
             float delta = args.TotalRads * reactantMol * gas.ReactantBreakdownRate;
 
             // We need to offset the huge power gains possible when using very cold gases
@@ -98,7 +95,7 @@ public sealed class RadiationCollectorSystem : EntitySystem
 
             if (delta > 0)
             {
-                gasTankComponent.Air.AdjustMoles(gas.ReactantPrototype, -Math.Min(delta, reactantMol));
+                gasTankComponent.Air.AdjustMoles(gas.Reactant, -Math.Min(delta, reactantMol));
             }
 
             if (gas.Byproduct != null)
@@ -114,7 +111,7 @@ public sealed class RadiationCollectorSystem : EntitySystem
         // This still won't stop things being potentially hilariously unbalanced though.
         if (TryComp<BatteryComponent>(uid, out var batteryComponent))
         {
-            _batterySystem.SetCharge(uid, charge, batteryComponent);
+            batteryComponent.CurrentCharge += charge;
         }
 
         // Update appearance

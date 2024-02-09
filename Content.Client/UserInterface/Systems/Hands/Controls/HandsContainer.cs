@@ -10,8 +10,6 @@ public sealed class HandsContainer : ItemSlotUIContainer<HandButton>
     public int ColumnLimit { get => _grid.Columns; set => _grid.Columns = value; }
     public int MaxButtonCount { get; set; } = 0;
 
-    public int MaxButtonsPerRow { get; set;  }= 6;
-
     /// <summary>
     ///     Indexer. This is used to reference a HandsContainer from the
     ///     controller.
@@ -38,7 +36,6 @@ public sealed class HandsContainer : ItemSlotUIContainer<HandButton>
             _grid.AddChild(newButton);
         }
 
-        _grid.Columns = Math.Min(_grid.ChildCount, MaxButtonsPerRow);
         return base.AddButton(newButton);
     }
 

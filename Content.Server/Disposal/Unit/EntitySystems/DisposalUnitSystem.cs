@@ -26,7 +26,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
-using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -46,7 +45,6 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly AtmosphereSystem _atmosSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly DisposalTubeSystem _disposalTubeSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -208,7 +206,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
         if (!ResolveDisposals(uid, ref disposal))
             return;
 
-        if (!_containerSystem.Insert(toInsert, disposal.Container))
+        if (!disposal.Container.Insert(toInsert))
             return;
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user):player} inserted {ToPrettyString(toInsert)} into {ToPrettyString(uid)}");
@@ -306,22 +304,12 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
     /// </summary>
     private void OnThrowCollide(EntityUid uid, SharedDisposalUnitComponent component, ThrowHitByEvent args)
     {
-        var canInsert = CanInsert(uid, component, args.Thrown);
-        var randDouble = _robustRandom.NextDouble();
-
-        if (!canInsert || randDouble > 0.75)
+        if (!CanInsert(uid, component, args.Thrown) ||
+            _robustRandom.NextDouble() > 0.75 ||
+            !component.Container.Insert(args.Thrown))
         {
-            _audioSystem.PlayPvs(component.MissSound, uid);
-
             _popupSystem.PopupEntity(Loc.GetString("disposal-unit-thrown-missed"), uid);
             return;
-        }
-
-        var inserted = _containerSystem.Insert(args.Thrown, component.Container);
-
-        if (!inserted)
-        {
-            throw new InvalidOperationException("Container insertion failed but CanInsert returned true");
         }
 
         if (args.Component.Thrower != null)
@@ -588,7 +576,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
     private void HandleAir(EntityUid uid, DisposalUnitComponent component, TransformComponent xform)
     {
         var air = component.Air;
-        var indices = _transformSystem.GetGridTilePositionOrDefault((uid, xform));
+        var indices = _transformSystem.GetGridOrMapTilePosition(uid, xform);
 
         if (_atmosSystem.GetTileMixture(xform.GridUid, xform.MapUid, indices, true) is { Temperature: > 0f } environment)
         {
@@ -681,7 +669,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
 
     public void Remove(EntityUid uid, SharedDisposalUnitComponent component, EntityUid toRemove)
     {
-        _containerSystem.Remove(toRemove, component.Container);
+        component.Container.Remove(toRemove);
 
         if (component.Container.ContainedEntities.Count == 0)
         {
@@ -798,9 +786,7 @@ public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
 
     public void AfterInsert(EntityUid uid, SharedDisposalUnitComponent component, EntityUid inserted, EntityUid? user = null)
     {
-        _audioSystem.PlayPvs(component.InsertSound, uid);
-
-        if (!_containerSystem.Insert(inserted, component.Container))
+        if (!component.Container.Insert(inserted))
             return;
 
         if (user != inserted && user != null)

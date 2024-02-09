@@ -56,8 +56,8 @@
     placeCentered: true
     isPlaceable: false
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -75,8 +75,6 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/metalbreak.ogg
-          params:
-            volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -87,17 +85,6 @@
     stateBaseClosed: generic
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
-
-# steel closet base (that can be constructed/deconstructed)
-- type: entity
-  id: ClosetSteelBase
-  parent: ClosetBase
-  components:
-  - type: Construction
-    graph: ClosetSteel
-    node: done
-    containers:
-    - entity_storage
 
 #Wall Closet
 - type: entity
@@ -161,8 +148,6 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/metalbreak.ogg
-          params:
-            volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -269,8 +254,6 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/metalbreak.ogg
-          params:
-            volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:

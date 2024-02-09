@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using Content.Server.Atmos.Reactions;
 using Content.Shared.Atmos;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Atmos
 {
@@ -59,9 +58,8 @@ namespace Content.Server.Atmos
             get => _temperature;
             set
             {
-                DebugTools.Assert(!float.IsNaN(_temperature));
                 if (Immutable) return;
-                _temperature = MathF.Min(MathF.Max(value, Atmospherics.TCMB), Atmospherics.Tmax);
+                _temperature = MathF.Max(value, Atmospherics.TCMB);
             }
         }
 
@@ -122,9 +120,12 @@ namespace Content.Server.Atmos
                 if (!float.IsFinite(quantity))
                     throw new ArgumentException($"Invalid quantity \"{quantity}\" specified!", nameof(quantity));
 
-                // Clamping is needed because x - x can be negative with floating point numbers. If we don't
-                // clamp here, the caller always has to call GetMoles(), clamp, then SetMoles().
-                Moles[gasId] = MathF.Max(Moles[gasId] + quantity, 0);
+                Moles[gasId] += quantity;
+
+                var moles = Moles[gasId];
+
+                if (!float.IsFinite(moles) || float.IsNegative(moles))
+                    throw new Exception($"Invalid mole quantity \"{moles}\" in gas Id {gasId} after adjusting moles with \"{quantity}\"!");
             }
         }
 

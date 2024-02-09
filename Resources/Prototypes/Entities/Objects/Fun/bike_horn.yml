@@ -9,11 +9,12 @@
     state: icon
   - type: Item
     sprite: Objects/Fun/bikehorn.rsi
-    size: Tiny
+    size: 5
   - type: Clothing
     sprite: Objects/Fun/bikehorn.rsi
     slots: [Belt]
     quickEquip: false
+  - type: ItemCooldown
   - type: EmitSoundOnUse
     sound:
       collection: BikeHorn
@@ -53,13 +54,13 @@
   name: broken bike horn
   description: A broken horn off of a bicycle.
   components:
-  - type: UseDelay
+  - type: ItemCooldown
   - type: Sprite
     sprite: Objects/Fun/cluwnehorn.rsi
     state: icon
   - type: Item
     sprite: Objects/Fun/cluwnehorn.rsi
-    size: Tiny
+    size: 5
   - type: Clothing
     sprite: Objects/Fun/cluwnehorn.rsi
     slots: [Belt]
@@ -103,7 +104,7 @@
     state: icon
   - type: Item
     sprite: Objects/Fun/goldbikehorn.rsi
-    size: Tiny
+    size: 5
   - type: Clothing
     sprite: Objects/Fun/goldbikehorn.rsi
     slots: [Belt]
@@ -122,7 +123,7 @@
     state: icon
   - type: Item
     sprite: Objects/Fun/bananiumhorn.rsi
-    size: Small
+    size: 5
   - type: Clothing
     sprite: Objects/Fun/bananiumhorn.rsi
     slots: [Belt]

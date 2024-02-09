@@ -182,25 +182,21 @@ public abstract partial class SharedHandsSystem : EntitySystem
     //TODO: Actually shows all items/clothing/etc.
     private void HandleExamined(EntityUid uid, HandsComponent handsComp, ExaminedEvent args)
     {
-        var held = EnumerateHeld(uid, handsComp)
-            .Where(x => !HasComp<HandVirtualItemComponent>(x)).ToList();
-
-        using (args.PushGroup(nameof(HandsComponent)))
+        var held = EnumerateHeld(uid, handsComp).ToList();
+        if (!held.Any())
         {
-            if (!held.Any())
-            {
-                args.PushText(Loc.GetString("comp-hands-examine-empty",
-                    ("user", Identity.Entity(uid, EntityManager))));
-                return;
-            }
-
-            var heldList = ContentLocalizationManager.FormatList(held
-                .Select(x => Loc.GetString("comp-hands-examine-wrapper",
-                    ("item", Identity.Entity(x, EntityManager)))).ToList());
-
-            args.PushMarkup(Loc.GetString("comp-hands-examine",
-                ("user", Identity.Entity(uid, EntityManager)),
-                ("items", heldList)));
+            args.PushText(Loc.GetString("comp-hands-examine-empty",
+                ("user", Identity.Entity(uid, EntityManager))));
+            return;
         }
+
+        var heldList = ContentLocalizationManager.FormatList(held
+            .Where(x => !HasComp<HandVirtualItemComponent>(x))
+            .Select(x => Loc.GetString("comp-hands-examine-wrapper",
+                ("item", Identity.Entity(x, EntityManager)))).ToList());
+
+        args.PushMarkup(Loc.GetString("comp-hands-examine",
+            ("user", Identity.Entity(uid, EntityManager)),
+            ("items", heldList)));
     }
 }

@@ -2,7 +2,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Client.Player;
-using Robust.Shared.Player;
 
 namespace Content.Client.Overlays;
 
@@ -72,7 +71,7 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
-        if (_player.LocalSession?.AttachedEntity == null)
+        if (_player.LocalPlayer?.ControlledEntity == null)
             Deactivate();
     }
 
@@ -93,18 +92,17 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
 
     protected virtual void OnRefreshEquipmentHud(EntityUid uid, T component, InventoryRelayedEvent<RefreshEquipmentHudEvent<T>> args)
     {
-        OnRefreshComponentHud(uid, component, args.Args);
+        args.Args.Active = true;
     }
 
     protected virtual void OnRefreshComponentHud(EntityUid uid, T component, RefreshEquipmentHudEvent<T> args)
     {
         args.Active = true;
-        args.Components.Add(component);
     }
 
     private void RefreshOverlay(EntityUid uid)
     {
-        if (uid != _player.LocalSession?.AttachedEntity)
+        if (uid != _player.LocalPlayer?.ControlledEntity)
             return;
 
         var ev = new RefreshEquipmentHudEvent<T>(TargetSlots);

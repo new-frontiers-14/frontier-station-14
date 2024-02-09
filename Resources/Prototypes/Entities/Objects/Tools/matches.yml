@@ -4,10 +4,9 @@
   abstract: true
   components:
   - type: Storage
-    grid:
-    - 0,0,6,1
+    capacity: 10
   - type: Item
-    size: Small
+    size: 10
   - type: StaticPrice
     price: 10
 
@@ -29,7 +28,7 @@
   - type: Item
     sprite: Objects/Tools/matches.rsi
     heldPrefix: unlit
-    size: Tiny
+    size: 1
   - type: Matchstick
     duration: 10
     igniteSound:
@@ -87,14 +86,13 @@
   - type: Item
     sprite: Objects/Tools/matches.rsi
     heldPrefix: matchbox
-    size: Small
+    size: 5
   - type: Storage
-    grid:
-    - 0,0,2,1
+    capacity: 5
   - type: StorageFill
     contents:
       - id: Matchstick
-        amount: 6
+        amount: 5
   - type: ItemCounter
     count:
       tags: [Matchstick]

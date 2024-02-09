@@ -5,12 +5,12 @@
   price: 23220
   category: Small
   group: Security
-  shuttlePath: /Maps/_NF/Shuttles/hospitaller.yml
+  shuttlePath: /Maps/Shuttles/hospitaller.yml
 
 - type: gameMap
   id: Hospitaller
-  mapName: 'NSF Hospitaller'
-  mapPath: /Maps/_NF/Shuttles/hospitaller.yml
+  mapName: 'NSF14 Hospitaller'
+  mapPath: /Maps/Shuttles/hospitaller.yml
   minPlayers: 0
   stations:
     Hospitaller:
@@ -23,4 +23,5 @@
             prefixCreator: '14'
         - type: StationJobs
           overflowJobs: []
-          availableJobs: {}
+          availableJobs:
+            Brigmedic: [ 0, 0 ]

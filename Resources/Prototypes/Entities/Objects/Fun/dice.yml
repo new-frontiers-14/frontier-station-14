@@ -4,6 +4,7 @@
   id: BaseDice
   components:
   - type: Dice
+  - type: ItemCooldown
   - type: UseDelay
   - type: Sprite
     sprite: Objects/Fun/dice.rsi
@@ -12,7 +13,7 @@
     tags:
     - Dice
   - type: Item
-    size: Tiny
+    size: 2
 
 - type: entity
   parent: BaseDice
@@ -60,10 +61,9 @@
   components:
   - type: Dice
     sides: 10
-    offset: 1
-    currentValue: 0
+    currentValue: 10
   - type: Sprite
-    state: d10_0
+    state: d10_10
 
 - type: entity
   parent: BaseDice

@@ -10,6 +10,16 @@
   - type: Clickable
   - type: Damageable
     damageContainer: Inorganic
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          1
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
   - type: InteractionOutline
   - type: Fixtures
     fixtures:
@@ -46,10 +56,11 @@
     - Piercing
     - Heat
     - Shock
-    locPrefix: silicon
   - type: MovedByPressure
   - type: Physics
     bodyType: KinematicController # Same for all inheritors
+  - type: DrawableSolution
+    solution: bloodstream
   - type: StatusEffects
     allowed:
     - Stun
@@ -75,9 +86,6 @@
     thresholds:
       0: Alive
       120: Dead
-    stateAlertDict:
-      Alive: BorgHealth
-    showOverlays: false
   - type: Stamina
     critThreshold: 120
   - type: Destructible
@@ -164,12 +172,7 @@
     graph: SupplyBot
     node: bot
   - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,9,3
-  - type: Access
-    groups:
-    - Cargo
+    capacity: 250
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
@@ -314,25 +317,13 @@
   description: No substitute for a doctor, but better than nothing.
   components:
   - type: Medibot
-    treatments:
-      Alive:
-        reagent: Tricordrazine
-        quantity: 30
-        minDamage: 0
-        maxDamage: 50
-      Critical:
-        reagent: Inaprovaline
-        quantity: 15
   - type: EmaggableMedibot
-    replacements:
-      # when you are fine, medibot will help you go sleep
-      Alive:
-        reagent: ChloralHydrate
-        quantity: 15
-      # when you are crit, medibot will help you have fun
-      Critical:
-        reagent: SpaceDrugs
-        quantity: 25
+    # when you are fine, medibot will help you go sleep
+    standardMed: ChloralHydrate
+    standardMedAmount: 15
+    # when you are crit, medibot will help you have fun
+    emergencyMed: SpaceDrugs
+    emergencyMedAmount: 25
   - type: Sprite
     sprite: Mobs/Silicon/Bots/medibot.rsi
     state: medibot
@@ -349,13 +340,7 @@
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: ShowHealthBars
-    damageContainers: 
-    - Biological
-  - type: ShowHealthIcons
-    damageContainers: 
-    - Biological
-  
+
 - type: entity
   parent: MobSiliconBase
   id: MobMimeBot
