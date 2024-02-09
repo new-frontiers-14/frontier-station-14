@@ -6,10 +6,16 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 14400 # Frontier - 4 hrs
   startingGear: PrisonGuardGear
-  icon: "JobIconWarden" 
-  supervisors: job-supervisors-hos # Frontier
+  alwaysUseSpawner: true
   canBeAntag: false
+  icon: "JobIconPrisonGuard"
+  supervisors: job-supervisors-hos # Frontier
+  setPreference: true
+#  whitelistRequired: true
   access:
   - Security
   - Brig
@@ -31,7 +37,7 @@
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadPrisonGuard
     outerClothing: ClothingOuterArmorBasic # Frontier
-    id: GuardPDA
+    id: PrisonGuardPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal # Frontier

@@ -1,12 +1,13 @@
 - type: entity
   parent: IDCardStandard
   id: MailCarrierIDCard
-  name: mail carrier ID card
+  name: courier ID card # DeltaV - Mail Carrier to Courier replacement
   components:
   - type: Sprite
     layers:
     - state: default
-    - state: idmailcarrier
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanomailcarrier
   - type: PresetIdCard
     job: MailCarrier
 
@@ -18,6 +19,8 @@
   - type: Sprite
     layers:
     - state: orange
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanoprisoner
   - type: PresetIdCard
     job: Prisoner
 
@@ -28,7 +31,9 @@
   components:
   - type: Sprite
     layers:
-    - state: orange #Placeholder?
+    - state: orange
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanogladiator
   - type: PresetIdCard
     job: Gladiator
 
@@ -46,13 +51,14 @@
 
 - type: entity
   parent: IDCardStandard
-  id: GuardIDCard
-  name: guard ID card
+  id: PrisonGuardIDCard
+  name: prison guard ID card
   components:
   - type: Sprite
     layers:
     - state: default
-    - state: idsecurityofficer
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanoprisonguard
   - type: PresetIdCard
     job: PrisonGuard
 
@@ -64,6 +70,7 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idboxer
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanomartialartist
   - type: PresetIdCard
     job: MartialArtist
