@@ -1,0 +1,48 @@
+
+- type: entity
+  name: Valentine
+  parent: BaseWeaponPistol
+  id: WeaponPistolValentine
+  description: There is S.T.A.R embedded inside the wooden and texure pistol grip, with a Silver Barrel. Chamber in .35 auto.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Valentine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Valentine.rsi
+  - type: Gun
+    fireRate: 2.5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+
+- type: entity
+  id: WeaponPistolValentineNonlethal
+  parent: WeaponPistolValentine
+  suffix: Non-lethal
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolRubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolRubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: StaticPrice
+    price: 550
