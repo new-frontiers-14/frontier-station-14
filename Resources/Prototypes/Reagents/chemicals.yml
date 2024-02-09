@@ -72,14 +72,14 @@
         damage:
           types:
             Caustic: 2
-  reactiveEffects:
-    Acidic:
-      methods: [ Touch ]
-      effects:
-      - !type:ActivateArtifact
-        conditions:
-        - !type:ReagentThreshold
-          min: 5
+  # reactiveEffects: # Frontier - Removed till a rework
+    # Acidic:
+      # methods: [ Touch ]
+      # effects:
+      # - !type:ActivateArtifact
+        # conditions:
+        # - !type:ReagentThreshold
+          # min: 5
 
 - type: reagent
   id: Benzene
