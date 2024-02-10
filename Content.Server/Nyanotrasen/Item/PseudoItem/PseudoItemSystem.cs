@@ -52,9 +52,6 @@ public sealed class PseudoItemSystem : EntitySystem
         if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
             return;
 
-        if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
-            return;
-
         if (Transform(args.Target).ParentUid == uid)
             return;
 
@@ -62,7 +59,7 @@ public sealed class PseudoItemSystem : EntitySystem
         {
             Act = () =>
             {
-                TryInsert(args.Target, uid, component, targetStorage);
+                TryInsert(args.Target, uid, args.User, component, targetStorage);
             },
             Text = Loc.GetString("action-name-insert-self"),
             Priority = 2
@@ -76,6 +73,9 @@ public sealed class PseudoItemSystem : EntitySystem
             return;
 
         if (args.User == args.Target)
+            return;
+
+        if (component.Active)
             return;
 
         if (args.Hands == null)
@@ -130,28 +130,29 @@ public sealed class PseudoItemSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Used == null)
             return;
 
-        args.Handled = TryInsert(args.Args.Used.Value, uid, component);
+        args.Handled = TryInsert(args.Args.Used.Value, uid, args.User, component);
     }
 
-    public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component,
+    public bool TryInsert(EntityUid storageUid, EntityUid toInsert, EntityUid userUid, PseudoItemComponent component,
         StorageComponent? storage = null)
     {
         if (!Resolve(storageUid, ref storage))
             return false;
 
-        if (component.Size > storage.StorageCapacityMax - storage.StorageUsed)
-            return false;
-
         var item = EnsureComp<ItemComponent>(toInsert);
         _tagSystem.TryAddTag(toInsert, PreventTag);
         _itemSystem.SetSize(toInsert, component.Size, item);
+        _itemSystem.VisualsChanged(toInsert);
 
-        if (!_storageSystem.Insert(storageUid, toInsert, out _, null, storage))
+        if (!_storageSystem.CanInsert(storageUid, toInsert, out _) ||
+            !_storageSystem.PlayerInsertEntityInWorld(storageUid, userUid, toInsert))
         {
             component.Active = false;
             RemComp<ItemComponent>(toInsert);
             return false;
         }
+        _storageSystem.UpdateUI(storageUid);
+        _storageSystem.UpdateAppearance(storageUid);
 
         // Frontier
         if (HasComp<AllowsSleepInsideComponent>(storageUid))
