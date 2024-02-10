@@ -109,8 +109,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         {
             biome = _entManager.AddComponent<BiomeComponent>(mapUid);
             var biomeSystem = _entManager.System<BiomeSystem>();
-            biomeSystem.SetTemplate(biome, _prototypeManager.Index<BiomeTemplatePrototype>(missionBiome.BiomePrototype));
-            biomeSystem.SetSeed(biome, mission.Seed);
+            biomeSystem.SetTemplate(mapUid, biome, _prototypeManager.Index<BiomeTemplatePrototype>(missionBiome.BiomePrototype));
+            biomeSystem.SetSeed(mapUid, biome, mission.Seed);
             _entManager.Dirty(biome);
 
             // Gravity
@@ -179,7 +179,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             var dungeonOffsetDistance = minDungeonOffset + (maxDungeonOffset - minDungeonOffset) * random.NextFloat();
             var dungeonOffset = new Vector2(0f, dungeonOffsetDistance);
             dungeonOffset = dungeonRotation.RotateVec(dungeonOffset);
-            var dungeonMod = _prototypeManager.Index<SalvageDungeonMod>(mission.Dungeon);
+            var dungeonMod = _prototypeManager.Index<SalvageDungeonModPrototype>(mission.Dungeon);
             var dungeonConfig = _prototypeManager.Index<DungeonConfigPrototype>(dungeonMod.Proto);
             dungeon =
                 await WaitAsyncTask(_dungeon.GenerateDungeonAsync(dungeonConfig, mapUid, grid, (Vector2i) dungeonOffset,
@@ -245,7 +245,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                         if (_entManager.TryGetComponent<BiomeComponent>(gridUid, out var biome) &&
                             biomeLoot.Prototype.TryGetValue(biomeMod.ID, out var mod))
                         {
-                            _biome.AddMarkerLayer(biome, mod);
+                            _biome.AddMarkerLayer(gridUid, biome, mod);
                         }
                     }
                     break;
@@ -253,7 +253,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                     {
                         if (_entManager.TryGetComponent<BiomeComponent>(gridUid, out var biome))
                         {
-                            _biome.AddTemplate(biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>(biomeLoot.Prototype), i);
+                            _biome.AddTemplate(gridUid, biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>(biomeLoot.Prototype), i);
                         }
                     }
                     break;
@@ -274,7 +274,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             // TODO: Better
             for (var i = 0; i < _salvage.GetDifficulty(mission.Difficulty); i++)
             {
-                _biome.AddMarkerLayer(biome, faction.Configs["Mining"]);
+                _biome.AddMarkerLayer(gridUid, biome, faction.Configs["Mining"]);
             }
         }
     }
