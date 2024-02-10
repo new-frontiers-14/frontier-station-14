@@ -4,13 +4,16 @@
   name: duffel bag
   description: A large duffel bag for holding extra things.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/duffel.rsi
-    - type: Storage
-      capacity: 120
-    - type: ClothingSpeedModifier
-      walkModifier: 1
-      sprintModifier: 0.9
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/duffel.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -160,10 +163,10 @@
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/syndicate.rsi
-    - type: Storage
-      capacity: 131
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -221,17 +224,22 @@
   name: duffelbag of holding
   description: A duffelbag that opens into a localized pocket of bluespace.
   components:
-    - type: Sprite
-      sprite: Clothing/Back/Duffels/holding.rsi
-      state: icon
-      layers:
-        - state: icon
-        - state: icon-unlit
-          shader: unshaded
-    - type: Storage
-      capacity: 9999
-    - type: ClothingSpeedModifier
-      sprintModifier: 1 # makes its stats identical to other variants of bag of holding
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/holding.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: icon-unlit
+      shader: unshaded
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: ClothingSpeedModifier
+    sprintModifier: 1 # makes its stats identical to other variants of bag of holding
+  - type: HeldSpeedModifier
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -239,8 +247,9 @@
   name: CBURN duffel bag
   description: A duffel bag containing a variety of biological containment equipment.
   components:
-    - type: Storage
-      capacity: 150
-    - type: ClothingSpeedModifier
-      walkModifier: 1
-      sprintModifier: 1
+  - type: Storage
+    maxItemSize: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier

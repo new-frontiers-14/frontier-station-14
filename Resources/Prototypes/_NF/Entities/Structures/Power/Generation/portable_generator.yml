@@ -1,0 +1,48 @@
+﻿- type: entity
+  parent: PortableGeneratorPacman
+  id: PortableGeneratorPacmanShuttle
+  suffix: Plasma, 15 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+    - type: Transform
+      anchored: true
+    - type: MaterialStorage
+      storage:
+        Plasma: 1000
+    - type: PortableGenerator
+      startOnMapInit: true
+
+- type: entity
+  parent: PortableGeneratorSuperPacman
+  id: PortableGeneratorSuperPacmanShuttle
+  suffix: Uranium, 30 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+    - type: Transform
+      anchored: true
+    - type: MaterialStorage
+      storage:
+        Uranium: 1000
+    - type: PortableGenerator
+      startOnMapInit: true
+
+- type: entity
+  parent: PortableGeneratorJrPacman
+  id: PortableGeneratorJrPacmanShuttle
+  suffix: Welding Fuel, 5 kW, Ship
+  components:
+    - type: FuelGenerator
+      on: true
+    - type: Transform
+      anchored: true
+    - type: SolutionContainerManager
+      solutions:
+        tank:
+          maxVol: 100 # Frontier - 50<100
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 35
+    - type: PortableGenerator
+      startOnMapInit: true
