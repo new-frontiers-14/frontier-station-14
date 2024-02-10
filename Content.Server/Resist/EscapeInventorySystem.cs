@@ -17,6 +17,7 @@ using Robust.Shared.Containers;
 using Content.Server.Storage.Components;
 using Content.Server.Carrying;
 using Content.Shared.Actions;
+using Content.Shared.Movement.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Resist;
@@ -57,6 +58,9 @@ public sealed class EscapeInventorySystem : EntitySystem
         if (!_containerSystem.TryGetContainingContainer(uid, out var container) || !_actionBlockerSystem.CanInteract(uid, container.Owner))
             return;
 
+        if (args.OldMovement == MoveButtons.None || args.OldMovement == MoveButtons.Walk)
+            return; // This event gets fired when the user holds down shift, which makes no sense
+
         // Contested
         if (_handsSystem.IsHolding(container.Owner, uid, out var inHand))
         {
@@ -96,7 +100,7 @@ public sealed class EscapeInventorySystem : EntitySystem
         if (!_doAfterSystem.TryStartDoAfter(doAfterEventArgs, out component.DoAfter))
             return;
 
-        Dirty(user, component);
+        //Dirty(user, component);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting"), user, user);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting-target"), container, container);
 

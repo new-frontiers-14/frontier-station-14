@@ -7,6 +7,7 @@ using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Contests;
 using Content.Server.Item.PseudoItem;
+using Content.Server.Storage.EntitySystems;
 using Content.Shared.Climbing; // Shared instead of Server
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
@@ -169,6 +170,9 @@ namespace Content.Server.Carrying
         {
             if (!TryComp<CanEscapeInventoryComponent>(uid, out var escape))
                 return;
+
+            if (args.OldMovement == MoveButtons.None || args.OldMovement == MoveButtons.Walk)
+                return; // Don't try to escape if not moving *cries*
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
@@ -381,15 +385,15 @@ namespace Content.Server.Carrying
             if (toInsert is not { Valid: true } || !args.CanAccess || !TryComp<PseudoItemComponent>(toInsert, out var pseudoItem))
                 return;
 
-            if (!TryComp<StorageComponent>(args.Target, out var storage) || storage.StorageUsed + pseudoItem.Size > storage.StorageCapacityMax)
-                return;
+            if (!HasComp<StorageComponent>(args.Target))
+                return; // Can't check if the person would actually fit here
 
             InnateVerb verb = new()
             {
                 Act = () =>
                 {
                     DropCarried(uid, toInsert.Value);
-                    _pseudoItem.TryInsert(args.Target, toInsert.Value, pseudoItem, storage);
+                    _pseudoItem.TryInsert(args.Target, toInsert.Value, args.User, pseudoItem);
                 },
                 Text = Loc.GetString("action-name-insert-other", ("target", toInsert)),
                 Priority = 2
