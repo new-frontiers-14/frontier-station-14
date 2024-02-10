@@ -1,8 +1,16 @@
 - type: entity
+  id: BaseThrusterSecurity
+  parent: BaseThruster
+  abstract: true
+
+- type: entity
   id: ThrusterSecurity
-  parent: Thruster
+  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
+  name: thruster
   suffix: Security
   components:
+  - type: Machine
+    board: ThrusterSecurityMachineCircuitboard
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
     layers:
@@ -56,7 +64,7 @@
 
 - type: entity
   id: DebugThrusterSecurity
-  parent: DebugThruster
+  parent: [BaseStructureDisableToolUse, DebugThruster]
   name: thruster
   suffix: DEBUG, Security
   components:
@@ -86,7 +94,7 @@
 - type: entity
   id: SmallThruster
   parent: Thruster
-  suffix: Small
+  name: small thruster
   components:
   - type: Thruster
     baseThrust: 33
@@ -113,10 +121,22 @@
       offset: 0, 1
   - type: StaticPrice
     price: 100
+  - type: Machine
+    board: SmallThrusterMachineCircuitboard
+
+- type: entity
+  id: SmallThrusterUnanchored
+  parent: SmallThruster
+  suffix: Unanchored
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: GyroscopeSecurity
-  parent: Gyroscope
+  parent: [BaseStructureDisableToolUse, Gyroscope]
   suffix: Security
   components:
   - type: Sprite
@@ -139,26 +159,17 @@
 
 - type: entity
   id: GyroscopeSecurityUnanchored
-  parent: GyroscopeUnanchored
+  parent: GyroscopeSecurity
+  suffix: Unanchored, Security
   components:
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    snapCardinals: true
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: DebugGyroscopeSecurity
-  parent: DebugGyroscope
+  parent: [BaseStructureDisableToolUse, DebugGyroscope]
   name: gyroscope
   suffix: DEBUG, Security
   components:
@@ -180,7 +191,8 @@
 - type: entity
   id: SmallGyroscopeSecurity
   parent: GyroscopeSecurity
-  suffix: Security, Small
+  name: small gyroscope
+  suffix: Security
   components:
   - type: Thruster
     thrusterType: Angular
@@ -204,11 +216,25 @@
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
+  - type: StaticPrice
+    price: 250
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
+
+- type: entity
+  id: SmallGyroscopeSecurityUnanchored
+  parent: SmallGyroscopeSecurity
+  suffix: Unanchored, Security
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: SmallGyroscope
   parent: Gyroscope
-  suffix: Small
+  name: small gyroscope
   components:
   - type: Thruster
     thrusterType: Angular
@@ -234,3 +260,15 @@
       visible: false
   - type: StaticPrice
     price: 250
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
+
+- type: entity
+  id: SmallGyroscopeUnanchored
+  parent: SmallGyroscope
+  suffix: Unanchored
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
