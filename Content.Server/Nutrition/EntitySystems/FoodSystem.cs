@@ -268,29 +268,29 @@ public sealed class FoodSystem : EntitySystem
         }
 
         /// Frontier - Goblin food system
-        if (component.Quality == Quality.High)
-            component.FinalQuality = FinalQuality.High;
-        else if (component.Quality == Quality.Normal)
-            component.FinalQuality = FinalQuality.Normal;
-        else if (component.Quality == Quality.Junk)
-            component.FinalQuality = FinalQuality.Junk;
-        else if (component.Quality == Quality.Nasty)
-            component.FinalQuality = FinalQuality.Nasty;
-        else if (component.Quality == Quality.Toxin)
-            component.FinalQuality = FinalQuality.Toxin;
-        else if (component.Quality == Quality.Trash)
-            component.FinalQuality = FinalQuality.Trash;
+        if (entity.Comp.Quality == Quality.High)
+            entity.Comp.FinalQuality = FinalQuality.High;
+        else if (entity.Comp.Quality == Quality.Normal)
+            entity.Comp.FinalQuality = FinalQuality.Normal;
+        else if (entity.Comp.Quality == Quality.Junk)
+            entity.Comp.FinalQuality = FinalQuality.Junk;
+        else if (entity.Comp.Quality == Quality.Nasty)
+            entity.Comp.FinalQuality = FinalQuality.Nasty;
+        else if (entity.Comp.Quality == Quality.Toxin)
+            entity.Comp.FinalQuality = FinalQuality.Toxin;
+        else if (entity.Comp.Quality == Quality.Trash)
+            entity.Comp.FinalQuality = FinalQuality.Trash;
 
         if (reverseFoodQuality)
         {
-            if (component.Quality == Quality.High)
-                component.FinalQuality = FinalQuality.Toxin;
-            else if (component.Quality == Quality.Normal)
-                component.FinalQuality = FinalQuality.Nasty;
-            else if (component.Quality == Quality.Nasty)
-                component.FinalQuality = FinalQuality.Normal;
-            else if (component.Quality == Quality.Toxin)
-                component.FinalQuality = FinalQuality.High;
+            if (entity.Comp.Quality == Quality.High)
+                entity.Comp.FinalQuality = FinalQuality.Toxin;
+            else if (entity.Comp.Quality == Quality.Normal)
+                entity.Comp.FinalQuality = FinalQuality.Nasty;
+            else if (entity.Comp.Quality == Quality.Nasty)
+                entity.Comp.FinalQuality = FinalQuality.Normal;
+            else if (entity.Comp.Quality == Quality.Toxin)
+                entity.Comp.FinalQuality = FinalQuality.High;
         }
 
         // TODO: Add detection for fried food on nasty to update it to toxin for goblins.
@@ -303,19 +303,23 @@ public sealed class FoodSystem : EntitySystem
         var speedRegent = "Stimulants";
         var damagingRegent = "Toxin";
         var emoteId = "Laugh";
-        _solutionContainer.TryGetSolution(stomachToUse.Owner, StomachSystem.DefaultSolutionName, out var stomachContainer);
-        _solutionContainer.TryGetSolution(args.Target.Value, StomachSystem.DefaultSolutionName, out var stomachSol1);
-        TryComp<BloodstreamComponent>(args.Target.Value, out var blood);
 
-        switch (component.FinalQuality)
+        switch (entity.Comp.FinalQuality)
         {
             case FinalQuality.High:
                 if (reverseFoodQuality)
                 {
-                    foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 3, out _); // Add to blood
+                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                    {
+                        foreach (var reagent in toxinsRegent)
+                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    }
+                    if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                    {
+                        if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                            _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
+                    }
                 }
                 else
                 {
@@ -325,10 +329,17 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Normal:
                 if (reverseFoodQuality)
                 {
-                    foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 5, out _); // Add to blood
+                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                    {
+                        foreach (var reagent in toxinsRegent)
+                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    }
+                    if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                    {
+                        if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                            _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
+                    }
                 }
                 else
                 {
@@ -338,10 +349,17 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Junk:
                 if (reverseFoodQuality)
                 {
-                    foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount / 7, out _); // Add to blood
+                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                    {
+                        foreach (var reagent in toxinsRegent)
+                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    }
+                    if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                    {
+                        if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                            _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
+                    }
                 }
                 else
                 {
@@ -351,8 +369,13 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Nasty:
                 if (reverseFoodQuality)
                 {
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 5, out _); // Add to blood
+                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                    {
+                        if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                            _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
+                    }
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
                 }
@@ -364,8 +387,13 @@ public sealed class FoodSystem : EntitySystem
             case FinalQuality.Toxin:
                 if (reverseFoodQuality)
                 {
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                    _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, damagingRegent, transferAmount / 3, out _); // Add to blood
+                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                    {
+                        if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                            _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
+                    }
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 80f, 8f, true, null);
                     _chat.TryEmoteWithoutChat(args.Target.Value, emoteId);
@@ -379,13 +407,20 @@ public sealed class FoodSystem : EntitySystem
                 }
                 break;
             case FinalQuality.Trash:
-                foreach (var reagent in toxinsRegent)
-                    _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, reagent, transferAmount * 2); // Remove from body before it goes to blood
-                _solutionContainer.RemoveReagent(stomachToUse.Owner, stomachContainer, "Flavorol", transferAmount * 2); // Remove from body before it goes to blood
-                _solutionContainer.TryAddReagent(args.Target.Value, blood!.ChemicalSolution, speedRegent, transferAmount, out _); // Add to blood
+                if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
+                {
+                    foreach (var reagent in toxinsRegent)
+                        _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                    _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
+                }
+                if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
+                {
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
+                }
                 break;
             default:
-                throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {component.Quality}!");
+                throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {entity.Comp.Quality}!");
         } /// Frontier
 
         var flavors = args.FlavorMessage;
