@@ -1,3 +1,4 @@
+# Salvage expedition objective
 - type: entity
   parent: CybersunDataMiner
   id: BloodCollector
@@ -60,3 +61,45 @@
         reagents:
         - ReagentId: Blood
           Quantity: 1000
+
+# Wall for POI
+- type: entity
+  parent: BaseWall
+  id: WallCultIndestructible
+  name: cult wall
+  suffix: indestructible
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _NF/Structures/Specific/bloodcultwall.rsi
+  - type: Icon
+    sprite: _NF/Structures/Specific/bloodcultwall.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult
+
+# Blood Cult Airlock
+- type: entity
+  parent: AirlockGlass
+  id: AirlockBloodCult
+  suffix: Blood Cult
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/bloodcultairlock.rsi
+
+# Glowing Floor Thingy
+- type: entity
+  id: BloodCultGlowingFloor
+  name: blood cult glowing floor
+  parent: BaseRune
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/bloodcultglowingfloor.rsi
+      layers:
+      - state: floorglow
+        shader: unshaded
+
+# Props'n'decor
+
