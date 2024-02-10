@@ -114,10 +114,13 @@
   id: BoxMailCapsulePrimed
   description: A box of primed mail capsules.
   components:
+  - type: Storage
+    grid:
+    - 0,0,4,3
   - type: StorageFill
     contents:
       - id: MailCapsulePrimed
-        amount: 6
+        amount: 10
   - type: Sprite
     layers:
       - state: box
