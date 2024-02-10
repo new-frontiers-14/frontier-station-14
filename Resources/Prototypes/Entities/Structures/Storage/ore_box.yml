@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OreBox
   name: ore box
   description: A large storage container for collecting and holding unprocessed ores and fragments. # Frontier - was: A large storage container for holding unprocessed ores.
@@ -51,12 +51,15 @@
           False: { visible: true }
   - type: Storage
     capacity: 900 # Frontier - 525<900
+    grid:
+    - 0,0,9,5
+    maxItemSize: Normal
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
       - Ore
-      - ArtifactFragment # Frontier 
+      - ArtifactFragment  # Frontier
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key

@@ -73,8 +73,6 @@ namespace Content.Server.Body.Components
         [DataField("CPRSound")]
         public SoundSpecifier CPRSound { get; set; } = new SoundPathSpecifier("/Audio/Effects/CPR.ogg");
 
-        public IPlayingAudioStream? CPRPlayingStream;
-
         public bool IsReceivingCPR = false;
     }
 }
