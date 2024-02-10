@@ -29,6 +29,7 @@ using Content.Shared.Roles.Jobs;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
@@ -37,7 +38,9 @@ using Robust.Shared.Random;
 using Content.Shared.Emag.Systems;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
+using Content.Shared._NF.Cloning;
 using Content.Shared.Bank.Components;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Cloning
 {
@@ -65,6 +68,8 @@ namespace Content.Server.Cloning
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaSystem = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        // Frontier
+        [Dependency] private readonly ISerializationManager _serialization = default!;
 
         public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
         public const float EasyModeCloningCost = 0.7f;
@@ -255,6 +260,18 @@ namespace Content.Server.Cloning
                 bankComp.Balance = bank.Balance;
             }
 
+            // Frontier
+            // Transfer of special components, e.g. small/big traits
+            foreach (var comp in EntityManager.GetComponents(bodyToClone))
+            {
+                if (comp is ITransferredByCloning)
+                {
+                    var copy = _serialization.CreateCopy(comp, notNullableOverride: true);
+                    copy.Owner = mob;
+                    EntityManager.AddComponent(mob, copy, overwrite: true);
+                }
+            }
+
             var ev = new CloningEvent(bodyToClone, mob);
             RaiseLocalEvent(bodyToClone, ref ev);
 
@@ -264,7 +281,7 @@ namespace Content.Server.Cloning
             var cloneMindReturn = EntityManager.AddComponent<BeingClonedComponent>(mob);
             cloneMindReturn.Mind = mind;
             cloneMindReturn.Parent = uid;
-            clonePod.BodyContainer.Insert(mob);
+            _containerSystem.Insert(mob, clonePod.BodyContainer);
             ClonesWaitingForMind.Add(mind, mob);
             UpdateStatus(uid, CloningPodStatus.NoMind, clonePod);
             _euiManager.OpenEui(new AcceptCloningEui(mindEnt, mind, this), client);
@@ -335,7 +352,7 @@ namespace Content.Server.Cloning
                 return;
 
             EntityManager.RemoveComponent<BeingClonedComponent>(entity);
-            clonePod.BodyContainer.Remove(entity);
+            _containerSystem.Remove(entity, clonePod.BodyContainer);
             clonePod.CloningProgress = 0f;
             clonePod.UsedBiomass = 0;
             UpdateStatus(uid, CloningPodStatus.Idle, clonePod);
@@ -348,8 +365,7 @@ namespace Content.Server.Cloning
             clonePod.CloningProgress = 0f;
             UpdateStatus(uid, CloningPodStatus.Idle, clonePod);
             var transform = Transform(uid);
-            var indices = _transformSystem.GetGridOrMapTilePosition(uid);
-
+            var indices = _transformSystem.GetGridTilePositionOrDefault((uid, transform));
             var tileMix = _atmosphereSystem.GetTileMixture(transform.GridUid, null, indices, true);
 
             if (HasComp<EmaggedComponent>(uid))
@@ -363,7 +379,7 @@ namespace Content.Server.Cloning
             var i = 0;
             while (i < 1)
             {
-                tileMix?.AdjustMoles(Gas.Miasma, 6f);
+                tileMix?.AdjustMoles(Gas.Ammonia, 6f);
                 bloodSolution.AddReagent("Blood", 50);
                 if (_robustRandom.Prob(0.2f))
                     i++;

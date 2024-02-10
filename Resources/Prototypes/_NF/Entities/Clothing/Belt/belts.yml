@@ -5,7 +5,73 @@
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Belt/arcadia-webbing.rsi
+    sprite: _NF/Clothing/Belt/arcadia.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Belt/arcadia-webbing.rsi
+    sprite: _NF/Clothing/Belt/arcadia.rsi
 
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltChaplainSash
+  name: chaplain sash
+  description: Who knew that scarves can be also tied around your waist?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/chaplain_sash.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/chaplain_sash.rsi
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    # TODO: Fill this out more.
+    whitelist:
+      tags:
+        - Book
+        - Smokable
+        - Flare
+        - Matchstick
+        - Flashlight
+        - Trash
+        - CigPack
+        - Radio
+        - Crayon
+        - Bottle
+        - WeaponMeleeStake
+        - Censer
+        - ReligiousSymbol
+        - Crucifix
+  - type: ItemMapper
+    mapLayers:
+      book:
+        whitelist:
+          tags:
+          - Book
+      bottle:
+        whitelist:
+          tags:
+          - Bottle
+      censer:
+        whitelist:
+          tags:
+          - Censer
+      stake:
+        whitelist:
+          tags:
+          - WeaponMeleeStake
+      crucifix:
+        whitelist:
+          tags:
+          - Crucifix
+    sprite: _NF/Clothing/Belt/chaplain_sash_overlay.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltPilot
+  name: pilot webbing
+  description: A webbing designed for someone seating a lot.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/pilot.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/pilot.rsi

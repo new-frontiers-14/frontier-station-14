@@ -36,6 +36,7 @@ using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -99,6 +100,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
             PlayDenySound(uid, component);
+            return;
+        }
+
+        if (!GetAvailableShuttles(uid).Contains(vessel.ID))
+        {
+            PlayDenySound(uid, component);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
             return;
         }
 
@@ -173,7 +181,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
-        
+
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
         AssignShuttleDeedProperties(deedID, shuttle.Owner, name, player);
 
@@ -401,8 +409,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret", ("vessel", name)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-docking-secret"), InGameICChatType.Speak, true);
         }
         else
         {
@@ -417,8 +425,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (secret)
         {
-            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), channel, uid);
-            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret", ("vessel", name!)), InGameICChatType.Speak, true);
+            _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), channel, uid);
+            _chat.TrySendInGameICMessage(uid, Loc.GetString("shipyard-console-leaving-secret"), InGameICChatType.Speak, true);
         }
         else
         {
@@ -484,26 +492,73 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child.Value, out var mobState)
-                && !_mobState.IsDead(child.Value, mobState)
-                && _mind.TryGetMind(child.Value, out var mind, out var mindComp)
+            if (mobQuery.TryGetComponent(child, out var mobState)
+                && !_mobState.IsDead(child, mobState)
+                && _mind.TryGetMind(child, out var mind, out var mindComp)
                 && !_mind.IsCharacterDeadIc(mindComp)
-                || FoundOrganics(child.Value, mobQuery, xformQuery))
+                || FoundOrganics(child, mobQuery, xformQuery))
                 return true;
         }
 
         return false;
     }
 
+    /// <summary>
+    ///   Returns all shuttle prototype IDs the given shipyard console can offer.
+    /// </summary>
+    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null, ShipyardListingComponent? listing = null)
+    {
+        var availableShuttles = new List<string>();
+
+        if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
+        {
+            // Try to find a ui key that is an instance of the shipyard console ui key
+            foreach (var (k, v) in ui.Interfaces)
+            {
+                if (k is ShipyardConsoleUiKey shipyardKey)
+                {
+                    key = shipyardKey;
+                    break;
+                }
+            }
+        }
+
+        // Add all prototypes matching the ui key
+        if (key != null && key != ShipyardConsoleUiKey.Custom && ShipyardGroupMapping.TryGetValue(key.Value, out var group))
+        {
+            var protos = _prototypeManager.EnumeratePrototypes<VesselPrototype>();
+            foreach (var proto in protos)
+            {
+                if (proto.Group == group)
+                    availableShuttles.Add(proto.ID);
+            }
+        }
+
+        // Add all prototypes specified in ShipyardListing
+        if (listing != null || TryComp(uid, out listing))
+        {
+            foreach (var shuttle in listing.Shuttles)
+            {
+                availableShuttles.Add(shuttle);
+            }
+        }
+
+        return availableShuttles;
+    }
+
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, bool isTargetIdPresent, ShipyardConsoleUiKey uiKey)
     {
+        var listing = TryComp<ShipyardListingComponent>(uid, out var comp) ? comp : null;
+
         var newState = new ShipyardConsoleInterfaceState(
             balance,
             access,
             shipDeed,
             shipSellValue,
             isTargetIdPresent,
-            ((byte)uiKey));
+            ((byte)uiKey),
+            GetAvailableShuttles(uid, uiKey, listing),
+            uiKey.ToString());
 
         _ui.TrySetUiState(uid, uiKey, newState);
     }

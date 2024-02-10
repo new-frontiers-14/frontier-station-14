@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Maps
 {
     [Prototype("tile")]
-    public sealed class ContentTileDefinition : IPrototype, IInheritingPrototype, ITileDefinition
+    public sealed partial class ContentTileDefinition : IPrototype, IInheritingPrototype, ITileDefinition
     {
         public const string SpaceID = "Space";
 
@@ -39,6 +39,10 @@ namespace Content.Shared.Maps
         public string BaseTurf { get; private set; } = string.Empty;
 
         [DataField("canCrowbar")] public bool CanCrowbar { get; private set; }
+
+        // Delta V
+        [DataField("canShovel")] public bool CanShovel { get; private set; }
+        //Delta V
 
         /// <summary>
         /// Whether this tile can be pried by an advanced prying tool if not pryable otherwise.

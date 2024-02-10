@@ -5,9 +5,9 @@
   description: A jumpskirt produced by Arcadia Industries. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Uniforms/Jumpskirt/arcadia-jumpskirt.rsi
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/arcadia.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Uniforms/Jumpskirt/arcadia-jumpskirt.rsi
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/arcadia.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -23,8 +23,14 @@
 - type: entity
   parent: ClothingUniformJumpskirtDetective
   id: ClothingUniformJumpskirtBH
-  name: bounty hunter's hard-worn suit
+  name: hard-worn suit
   description: Someone who wears this means business.
+
+- type: entity
+  parent: ClothingUniformJumpskirtDetectiveGrey
+  id: ClothingUniformJumpskirtBHGrey
+  name: noir suit
+  description: A grey suit, complete with tie clip.
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -37,3 +43,13 @@
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpskirt/mercenary.rsi
 
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSecGuard
+  name: security guard jumpskirt
+  description: A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/security_guard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpskirt/security_guard.rsi

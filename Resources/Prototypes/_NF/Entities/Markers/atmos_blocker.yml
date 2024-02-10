@@ -51,3 +51,20 @@
           state: plasma
     - type: AtmosFixMarker
       mode: 9
+
+- type: entity
+  name: Atmos Fix Sauna Marker
+  id: AtmosFixSaunaMarker
+  description: "Sauna"
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/atmos.rsi # {
+          state: base
+          shader: unshaded
+        - sprite: Markers/atmos.rsi
+          shader: unshaded # }
+          state: oxygen
+    - type: AtmosFixMarker
+      mode: 10
