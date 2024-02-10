@@ -1,16 +1,26 @@
+# Author Info
+# GitHub: @Lokey82 (https://github.com/Lokey82)
+# Discord: @lokey_71
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
   id: WaveShot
-  name: NT WaveShot
+  name: NC WaveShot
   description: A mobile reporting studio fit for broadcasting the news.
-  price: 40000
+  price: 37500 # 15% markup +4890
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/waveshot.yml
+  shuttlePath: /Maps/_NF/Shuttles/waveshot.yml
 
 - type: gameMap
   id: WaveShot
-  mapName: 'NT WaveShot'
-  mapPath: /Maps/Shuttles/waveshot.yml
+  mapName: 'NC WaveShot'
+  mapPath: /Maps/_NF/Shuttles/waveshot.yml
   minPlayers: 0
   stations: 
     WaveShot:
@@ -24,4 +34,5 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
+            Pilot: [ 0, 0 ]
             Reporter: [ 0, 0 ]

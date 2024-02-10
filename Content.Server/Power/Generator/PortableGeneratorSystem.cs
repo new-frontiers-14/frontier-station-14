@@ -1,8 +1,9 @@
-﻿using Content.Server.DoAfter;
+using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Power.Generator;
 using Content.Shared.Verbs;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -38,6 +39,14 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
         SubscribeLocalEvent<PortableGeneratorComponent, PortableGeneratorSwitchOutputMessage>(GeneratorSwitchOutputMessage);
 
         SubscribeLocalEvent<FuelGeneratorComponent, SwitchPowerCheckEvent>(OnSwitchPowerCheck);
+
+        SubscribeLocalEvent<PortableGeneratorComponent, MapInitEvent>(GeneratorMapInit); // Frontier
+    }
+
+    private void GeneratorMapInit(EntityUid uid, PortableGeneratorComponent component, MapInitEvent args) // Frontier - Init on map generator
+    {
+        if (component.StartOnMapInit)
+            _generator.SetFuelGeneratorOn(uid, true);
     }
 
     private void GeneratorSwitchOutputMessage(EntityUid uid, PortableGeneratorComponent component, PortableGeneratorSwitchOutputMessage args)
@@ -97,7 +106,7 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
         var clogged = _generator.GetIsClogged(uid);
 
         var sound = empty ? component.StartSoundEmpty : component.StartSound;
-        _audio.Play(sound, Filter.Pvs(uid), uid, true);
+        _audio.PlayEntity(sound, Filter.Pvs(uid), uid, true);
 
         if (!clogged && !empty && _random.Prob(component.StartChance))
         {

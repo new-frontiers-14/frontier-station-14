@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: PTS
+  name: NC Personal Transport
+  description: A small transport shuttle with space for 5 passengers.
+  price: 13900
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/pts.yml
+
+- type: gameMap
+  id: PTS
+  mapName: 'NC Personal Transport'
+  mapPath: /Maps/_NF/Shuttles/pts.yml
+  minPlayers: 0
+  stations:
+    PTS:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'PTS {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

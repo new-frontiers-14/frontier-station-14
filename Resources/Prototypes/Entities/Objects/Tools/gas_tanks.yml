@@ -7,7 +7,7 @@
     sprite: Objects/Tanks/generic.rsi
     state: icon
   - type: Item
-    size: 15
+    size: Normal
     sprite: Objects/Tanks/generic.rsi
   - type: Clothing
     sprite: Objects/Tanks/generic.rsi
@@ -100,10 +100,9 @@
   - type: Sprite
     sprite: Objects/Tanks/emergency.rsi
   - type: Item
-    size: 10
+    size: Small
     sprite: Objects/Tanks/emergency.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 1.33
       temperature: 293.15
@@ -128,16 +127,15 @@
   description: An emergency tank with extended capacity. Technically rated for prolonged use.
   components:
   - type: Sprite
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
   - type: Item
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 3
       temperature: 293.15
   - type: Clothing
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
 
 - type: entity
   parent: ExtendedEmergencyOxygenTank
@@ -150,7 +148,6 @@
   - type: Item
     sprite: Objects/Tanks/emergency_double.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 5
       temperature: 293.15
@@ -168,8 +165,6 @@
   name: air tank
   description: Mixed anyone?
   components:
-  - type: Sprite
-    sprite: Objects/Tanks/generic.rsi
   - type: GasTank
     outputPressure: 101.3
     air:
@@ -211,9 +206,6 @@
     sprite: Objects/Tanks/plasma.rsi
   - type: GasTank
     outputPressure: 101.3
-    air:
-      volume: 5
-      temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/plasma.rsi
 
@@ -231,7 +223,7 @@
       volume: 2
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red.rsi
     slots:
@@ -260,7 +252,7 @@
       volume: 3
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red_extended.rsi
     slots:
@@ -282,7 +274,7 @@
       volume: 5
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red_double.rsi
     slots:

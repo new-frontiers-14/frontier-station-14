@@ -26,12 +26,12 @@ namespace Content.Server.SizeAttribute
 
             if (whitelist.Tall && component.Tall)
             {
-                Scale(uid, component, whitelist.TallScale, whitelist.TallDensity);
+                Scale(uid, component, whitelist.TallScale, whitelist.TallDensity, whitelist.TallCosmeticOnly);
                 PseudoItem(uid, component, whitelist.TallPseudoItem);
             }
             else if (whitelist.Short && component.Short)
             {
-                Scale(uid, component, whitelist.ShortScale, whitelist.ShortDensity);
+                Scale(uid, component, whitelist.ShortScale, whitelist.ShortDensity, whitelist.ShortCosmeticOnly);
                 PseudoItem(uid, component, whitelist.ShortPseudoItem);
             }
         }
@@ -54,7 +54,7 @@ namespace Content.Server.SizeAttribute
             }
         }
 
-        private void Scale(EntityUid uid, SizeAttributeComponent component, float scale, float density)
+        private void Scale(EntityUid uid, SizeAttributeComponent component, float scale, float density, bool cosmeticOnly)
         {
             if (scale <= 0f && density <= 0f)
                 return;
@@ -67,10 +67,13 @@ namespace Content.Server.SizeAttribute
 
             _appearance.SetData(uid, ScaleVisuals.Scale, oldScale * scale, appearanceComponent);
 
-            if (_entityManager.TryGetComponent(uid, out FixturesComponent? manager))
+            if (!cosmeticOnly && _entityManager.TryGetComponent(uid, out FixturesComponent? manager))
             {
                 foreach (var (id, fixture) in manager.Fixtures)
                 {
+                    if (!fixture.Hard || fixture.Density <= 1f)
+                        continue; // This will skip the flammable fixture and any other fixture that is not supposed to contribute to mass
+
                     switch (fixture.Shape)
                     {
                         case PhysShapeCircle circle:
