@@ -138,6 +138,8 @@
     color: "#c94242"
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
+  - type: StealTarget
+    stealGroup: CargoShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerShuttle
@@ -166,6 +168,8 @@
       color: "#c94242"
     - type: Computer
       board: SalvageShuttleConsoleCircuitboard
+    - type: StealTarget
+      stealGroup: SalvageShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputer
@@ -237,6 +241,7 @@
   - type: Computer
     board: PowerComputerCircuitboard
   - type: PowerMonitoringConsole
+  - type: PowerMonitoringCableNetworks
   - type: NodeContainer
     examinable: true
     nodes:
@@ -244,6 +249,7 @@
         !type:CableDeviceNode
         nodeGroupID: HVPower
   - type: ActivatableUI
+    singleUser: true
     key: enum.PowerMonitoringConsoleUiKey.Key
   - type: UserInterface
     interfaces:
@@ -317,7 +323,7 @@
     board: StationRecordsComputerCircuitboard
   - type: GuideHelp
     guides:
-    - DNA
+    - Forensics
 
 - type: entity
   parent: BaseComputer
@@ -372,6 +378,9 @@
       state: rd_key
   - type: ResearchClient
   - type: ResearchConsole
+  - type: ActiveRadio
+    channels:
+    - Science
   - type: TechnologyDatabase
   - type: ActivatableUI
     key: enum.ResearchConsoleUiKey.Key
@@ -685,7 +694,7 @@
 
 - type: entity
   id: ComputerCargoOrders
-  parent: BaseStructureComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer] # Frontier
   name: cargo request computer
   description: Used to order supplies and approve requests.
   placement:
@@ -745,13 +754,6 @@
   - type: GuideHelp
     guides:
     - Cargo
-  - type: Anchorable # Frontier
-    delay: 999999
-  - type: Destructible  # Frontier
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
 
 - type: entity
   id: ComputerCargoBounty
@@ -877,6 +879,8 @@
       color: "#b89f25"
     - type: AccessReader
 #      access: [["Salvage"]]
+    - type: StealTarget
+      stealGroup: SalvageExpeditionsComputerCircuitboard
 
 - type: entity
   parent: BaseComputer
