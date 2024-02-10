@@ -304,7 +304,7 @@ public sealed class FoodSystem : EntitySystem
         var damagingRegent = "Toxin";
         var emoteId = "Laugh";
 
-        TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream)
+        TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream);
 
         switch (entity.Comp.FinalQuality)
         {
@@ -317,7 +317,7 @@ public sealed class FoodSystem : EntitySystem
                             _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
                 }
                 else
@@ -334,7 +334,7 @@ public sealed class FoodSystem : EntitySystem
                             _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
                 }
                 else
@@ -351,7 +351,7 @@ public sealed class FoodSystem : EntitySystem
                             _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
                 }
                 else
@@ -364,7 +364,7 @@ public sealed class FoodSystem : EntitySystem
                 {
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
@@ -379,7 +379,7 @@ public sealed class FoodSystem : EntitySystem
                 {
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
                     _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 80f, 8f, true, null);
@@ -400,11 +400,8 @@ public sealed class FoodSystem : EntitySystem
                         _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                 }
-                if (TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream))
-                {
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
-                }
+                if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                    _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
                 break;
             default:
                 throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {entity.Comp.Quality}!");
