@@ -1,3 +1,5 @@
 # Cargo shipyard console
-cargo-shipyard-console-bank-amount = Bank spesos:${$amount}
-cargo-shipyard-console-sell-value = Shuttle estimated value:${$value}
+cargo-shipyard-console-bank-label = Account Balance:{" "}
+cargo-shipyard-console-bank-amount = ${$amount}
+cargo-shipyard-console-sell-label = Shuttle Estimated Value:{" "}
+cargo-shipyard-console-sell-value = ${$value}
