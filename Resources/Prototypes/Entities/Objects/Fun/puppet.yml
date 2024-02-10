@@ -12,9 +12,21 @@
   - type: Input
     context: "human"
   - type: DoAfter
-  - type: VentriloquistPuppet
+  - type: VentriloquistPuppet # Frontier
+    removeHand:
+      - ventriloquist-puppet-remove-hand
+    removedHand:
+      - ventriloquist-puppet-removed-hand
+    insertHand:
+      - ventriloquist-puppet-insert-hand
+    insertedHand:
+      - ventriloquist-puppet-inserted-hand
+    puppetRoleName:
+      - ventriloquist-puppet-role-name
+    puppetRoleDescription:
+      - ventriloquist-puppet-role-description
   - type: Item
-    size: 30
+    size: Normal
   - type: Muted
   - type: TypingIndicator
     proto: robot

@@ -1,6 +1,6 @@
 - type: entity
   name: ashtray
-  id: Ashtray
+  id: NFAshtray
   parent: BaseStorageItem
   components:
   - type: Sprite
@@ -10,7 +10,9 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    capacity: 12
+    maxItemSize: Tiny
+    grid:
+    - 0,0,3,3
     quickInsert: true
     areaInsert: true
     storageInsertSound:
@@ -20,13 +22,14 @@
         - Cigar
         - Cigarette
         - Ash
+        - Burnt
   - type: Appearance
   - type: StorageFillVisualizer
     maxFillLevels: 4
     fillBaseName: icon
   - type: Dumpable
   - type: Item
-    size: 12
+    size: Small
   - type: Damageable
     damageContainer: Inorganic
   - type: DamageOnLand

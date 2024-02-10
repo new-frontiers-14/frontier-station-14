@@ -12,3 +12,44 @@
         MatterBin: 1
       materialRequirements:
         Glass: 1
+
+- type: entity
+  id: SmallThrusterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallThruster
+    requirements:
+      Capacitor: 4
+    materialRequirements:
+      Steel: 5
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  id: SmallGyroscopeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallGyroscope
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+  - type: StaticPrice
+    price: 12.5
+
+- type: entity
+  id: ThrusterSecurityMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: security thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterSecurity
+    requirements:
+      Capacitor: 3
+    materialRequirements:
+      Steel: 5

@@ -1,4 +1,5 @@
 using Content.Shared._NF.Cloning;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Item.PseudoItem;
 /// <summary>
@@ -8,8 +9,8 @@ namespace Content.Shared.Item.PseudoItem;
 [RegisterComponent]
 public sealed partial class PseudoItemComponent : Component, ITransferredByCloning
 {
-    [DataField("size")]
-    public int Size = 120;
+    [DataField("size", customTypeSerializer: typeof(PrototypeIdSerializer<ItemSizePrototype>))]
+    public string Size = "Huge";
 
     public bool Active = false;
 

@@ -611,25 +611,6 @@
       sprite: Structures/Machines/computers.rsi
       state: atmos_key
 
-- type: entity # Prop
-  parent: [BaseStructureComputerTabletop, BaseStructureComputer]
-  id: ComputerTabletopComputer
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: generic
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: generic_keys
-
 # Computers: Frontier
 
 - type: entity
@@ -845,4 +826,3 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: id_key
- 

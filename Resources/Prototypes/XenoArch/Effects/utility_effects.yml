@@ -18,12 +18,13 @@
     requiresPower: false
     supportedChannels:
     - Common
-    - CentCom
-    - Command
+    - Traffic # Frontier
+#    - CentCom # Frontier
+#    - Command # Frontier
     - Engineering
     - Medical
     - Science
-    - Security
+#    - Security # Frontier
     - Service
     - Supply
 
@@ -52,7 +53,9 @@
       storagebase: !type:Container
         ents: [ ]
   - type: Storage
-    capacity: 50
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,5
 
 - type: artifactEffect
   id: EffectPhasing
@@ -106,6 +109,18 @@
     solution: beaker
 
 - type: artifactEffect
+  id: EffectSpeedUp
+  targetDepth: 2
+  effectHint: artifact-effect-hint-displacement
+  whitelist:
+    components:
+    - Item
+  permanentComponents:
+  - type: HeldSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.3
+
+- type: artifactEffect
   id: EffectDrill
   targetDepth: 3
   effectHint: artifact-effect-hint-drill
@@ -113,7 +128,7 @@
     components:
     - Item
   permanentComponents:
-  - type: ItemCooldown
+  - type: UseDelay
   - type: MeleeWeapon
     damage:
       types:
@@ -122,7 +137,6 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Sharp
-
 
 - type: artifactEffect
   id: EffectPowerGen20K
@@ -177,6 +191,8 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
+    requirements:
+    - !type:WhitelistRequirement
     name: sentient artifact
     description: |
       Enact your eldritch whims.

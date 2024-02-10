@@ -331,6 +331,7 @@ namespace Content.Client.Preferences.UI
             _backpackButton.AddItem(Loc.GetString("humanoid-profile-editor-preference-backpack"), (int) BackpackPreference.Backpack);
             _backpackButton.AddItem(Loc.GetString("humanoid-profile-editor-preference-satchel"), (int) BackpackPreference.Satchel);
             _backpackButton.AddItem(Loc.GetString("humanoid-profile-editor-preference-duffelbag"), (int) BackpackPreference.Duffelbag);
+            _backpackButton.AddItem(Loc.GetString("humanoid-profile-editor-preference-messenger"), (int) BackpackPreference.Messenger); // Frontier
 
             _backpackButton.OnItemSelected += args =>
             {

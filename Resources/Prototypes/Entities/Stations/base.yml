@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseStation
   abstract: true
   components:
@@ -33,12 +33,28 @@
     - type: StationArrivals
 
 - type: entity
+  id: BaseStationGateway
+  abstract: true
+  components:
+    - type: GatewayGenerator
+
+
+- type: entity
   id: BaseStationShuttles
   abstract: true
   components:
     - type: GridSpawn
       paths:
         - /Maps/Shuttles/cargo.yml
+        - /Maps/Shuttles/mining.yml
+
+- type: entity
+  id: BaseStationShuttlesCore
+  abstract: true
+  components:
+    - type: GridSpawn
+      paths:
+        - /Maps/Shuttles/cargo_core.yml
         - /Maps/Shuttles/mining.yml
 
 - type: entity
@@ -65,6 +81,12 @@
   abstract: true
   components:
     - type: SalvageExpeditionData
+
+- type: entity
+  id: BaseStationMagnet
+  abstract: true
+  components:
+    - type: SalvageMagnetData
 
 - type: entity
   id: BaseStationSiliconLawCrewsimov
