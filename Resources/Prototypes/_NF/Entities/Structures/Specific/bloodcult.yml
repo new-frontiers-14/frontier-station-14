@@ -6,7 +6,7 @@
   description: A vile chamber filled with blood. Seems to hold more than it's volume.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Specific/bloodcollector.rsi
+    sprite: _NF/Structures/Specific/BloodCult/bloodcollector.rsi
     layers:
     - state: blood_collector
     - state: unshaded
@@ -16,6 +16,7 @@
     energy: 1.2
     color: "#ff0000"
     castShadows: false
+    netsync: false
   - type: AmbientSound
     volume: -9
     range: 5
@@ -73,9 +74,9 @@
     tags:
       - Wall
   - type: Sprite
-    sprite: _NF/Structures/Specific/bloodcultwall.rsi
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
   - type: Icon
-    sprite: _NF/Structures/Specific/bloodcultwall.rsi
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
   - type: IconSmooth
     key: walls
     base: cult
@@ -87,7 +88,7 @@
   suffix: Blood Cult
   components:
   - type: Sprite
-    sprite: _NF/Structures/Specific/bloodcultairlock.rsi
+    sprite: _NF/Structures/Specific/BloodCult/airlock.rsi
 
 # Glowing Floor Thingy
 - type: entity
@@ -96,21 +97,45 @@
   parent: BaseRune
   components:
     - type: Sprite
-      sprite: _NF/Structures/Specific/bloodcultglowingfloor.rsi
+      sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
       layers:
       - state: floorglow
         shader: unshaded
 
+# Mini gravity generator
+- type: entity
+  id: BloodCultGravityGeneratorMini
+  parent: [BaseStructureDisableToolUse, GravityGeneratorMini]
+  name: blood cult gravity generator
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/gravity_generator.rsi
+    snapCardinals: true
+    layers:
+      - state: on
+        map: ["enum.GravityGeneratorVisualLayers.Base"]
+      - sprite: _NF/Structures/Specific/BloodCult/gravity_generator_core.rsi
+        state: activated
+        shader: unshaded
+        map: ["enum.GravityGeneratorVisualLayers.Core"]
+        offset: "0,0.6"
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#ff0000"
+    castShadows: false
+    netsync: false
+
 # Wall Light
 - type: entity
   name: blood cult light
-  description: "It moves. It glows. Do you want to touch it?"
+  description: "How is this thing glowing? Why?"
   id: BloodCultAlwaysPoweredLight
   suffix: Always powered
   parent: AlwaysPoweredWallLight
   components:
   - type: Sprite
-    sprite: _NF/Structures/Specific/bloodcultwalllight.rsi
+    sprite: _NF/Structures/Specific/BloodCult/light.rsi
     drawdepth: WallMountedItems
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -125,7 +150,3 @@
     softness: 1
     offset: "0, -0.5"
     color: "#990000"
-
-
-# Props'n'decor
-

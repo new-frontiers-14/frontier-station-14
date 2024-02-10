@@ -178,3 +178,22 @@
     maxDuration: 1200
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/wizardprobe.yml
+
+- type: entity
+  id: BluespaceBloodMoon
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-bloodmoon-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice2.ogg
+    endAnnouncement: station-event-bluespace-bloodmoon-end-announcement
+    earliestStart: 200
+    minimumPlayers: 15
+    weight: 10
+    startDelay: 10
+    duration: 1800
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/bloodmoon.yml
