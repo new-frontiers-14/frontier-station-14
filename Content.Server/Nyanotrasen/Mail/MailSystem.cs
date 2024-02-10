@@ -726,7 +726,6 @@ namespace Content.Server.Mail
 
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
-            _tagSystem.AddTag(uid, "ClothMade"); // Frontier - Make it so moth can eat open mail.
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }
