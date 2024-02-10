@@ -1,10 +1,9 @@
 - type: entity
-  parent: CrateBaseWeldable
+  parent: [BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, CrateBaseWeldable]
   id: CrateTradeBaseSecure
   noSpawn: true
   components:
   - type: TradeCrate
-  - type: Lock
   - type: AccessReader
     access: [[""]]
   - type: Icon
@@ -29,7 +28,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

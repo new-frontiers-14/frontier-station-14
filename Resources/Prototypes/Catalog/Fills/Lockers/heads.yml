@@ -112,8 +112,6 @@
   components:
   - type: StorageFill
     contents:
-#      - id: ClothingNeckCloakHop # Frontier - bloat
-#      - id: ClothingHeadHatHopcap # Frontier - bloat
       - id: HoPIDCard
 #      - id: ClothingHeadsetCommand # Frontier
       - id: ClothingHeadsetCentCom # Frontier
@@ -124,7 +122,8 @@
       - id: IDComputerCircuitboard
       - id: CommsComputerCircuitboard # Frontier
 #      - id: WeaponDisabler # Frontier - bloat
-      - id: ClothingOuterWinterHoP # Frontier - bloat
+      - id: ClothingOuterWinterHoP # Frontier
+      - id: ClothingShoesBootsWinterHoP # Frontier
 #      - id: CigarGoldCase  # Frontier
 #        prob: 0.25
         # Fuck the HoP they don't deserve fucking cigars.
@@ -379,3 +378,20 @@
 #      - id: BookSecretDocuments # Frontier
       - id: ClothingNeckMantleHOS # Frontier
       - id: ClothingOuterWinterHoS # Frontier
+      - id: ClothingShoesBootsWinterHoS # Frontier
+
+- type: entity
+  id: LockerFreezerVaultFilled
+  suffix: Vault, Locked
+  parent: LockerFreezerBase
+  components:
+  - type: AccessReader
+    access: [ [ "Command" ] ]
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverDeckard
+    - id: ClothingOuterHardsuitBasic
+    - id: JetpackBlue
+    - id: SpaceCash1000
+    - id: BeachBall
+    - id: BikeHorn
