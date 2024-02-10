@@ -24,6 +24,20 @@
     - type: Transform
 
 - type: entity
+  id: SecurityFrontierOutpost
+  parent:
+    - BaseStation # Copied from StandardFrontierStation
+    - BaseStationCargo # Cargo
+    - BaseStationJobsSpawning # Records and jobsspawning
+    - BaseStationRecords
+    - BaseStationShuttles # Can spawn shuttles via shipyard consoles
+    - BaseStationAlertLevels # Has a comms console
+    - BaseStationSiliconLawFrontierStation # No funny borg laws
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierVessel
   parent:
     - BaseStation

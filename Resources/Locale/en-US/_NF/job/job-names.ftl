@@ -1,8 +1,10 @@
 job-name-mercenary = Mercenary
-job-name-stc = Station Traffic Controller
 job-name-pilot = Pilot
+job-name-security-guard = Security Guard
+job-name-stc = Station Traffic Controller
 
 # Role timers - Make these alphabetical or I cut you
 JobMercenary = Mercenary
-JobSTC = Station Traffic Controller
 JobPilot = Pilot
+JobSecurityGuard = Security Guard
+JobSTC = Station Traffic Controller

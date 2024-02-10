@@ -4,33 +4,13 @@
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Pets/cat.rsi
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: mailcat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mailcat
-      Critical:
-        Base: mailcat_dead
-      Dead:
-        Base: mailcat_dead
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-  - type: Inventory
-    speciesId: cat
-    templateId: clippy
+    requirements:
+    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClippyGear ]
-#  - type: ReplacementAccent
-#    accent: archaic
   - type: RandomMetadata
     nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
@@ -60,12 +40,8 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-  - type: Inventory
-    speciesId: cat
-    templateId: clarpy
+    requirements:
+    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -75,41 +51,6 @@
   - type: AutoImplant
     implants:
     - DeathRattleImplant
-
-- type: entity
-  name: Crispy
-  parent: MobCatGhost
-  id: MobCatCrispy
-  description: Mistakes were made.
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Pets/cat.rsi
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: crispycat
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: crispycat
-      Critical:
-        Base: crispycat_dead
-      Dead:
-        Base: crispycat_dead
-  - type: GhostRole
-    name: ghost-role-information-crispy-name
-    description: ghost-role-information-crispy-description
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-  - type: Inventory
-    speciesId: cat
-    templateId: crispy
-  - type: Loadout
-    prototypes: [ MobCrispyGear ]
-  - type: RandomMetadata
-    nameSegments: [names_cat_crispy] # Its needed to fix the names since it was using the MobCatGhost list.
-  - type: FriedTrait
 
 - type: entity
   name: Mistake
@@ -134,14 +75,6 @@
   - type: GhostRole
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-  - type: Inventory
-    speciesId: cat
-    templateId: mistake
-  - type: Loadout
-    prototypes: [ MobMistakeGear ]
   - type: ReplacementAccent
     accent: mistakeCat
   - type: RandomMetadata
