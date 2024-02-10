@@ -101,5 +101,31 @@
       - state: floorglow
         shader: unshaded
 
+# Wall Light
+- type: entity
+  name: blood cult light
+  description: "It moves. It glows. Do you want to touch it?"
+  id: BloodCultAlwaysPoweredLight
+  suffix: Always powered
+  parent: AlwaysPoweredWallLight
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/bloodcultwalllight.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+  - type: PointLight
+    radius: 10
+    energy: 0.8
+    softness: 1
+    offset: "0, -0.5"
+    color: "#990000"
+
+
 # Props'n'decor
 
