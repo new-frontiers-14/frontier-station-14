@@ -401,7 +401,7 @@ public sealed class FoodSystem : EntitySystem
                     _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                 }
                 if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                    _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
+                    _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount), out _); // Add to blood
                 break;
             default:
                 throw new ArgumentOutOfRangeException($"No implemented mask radio behavior for {entity.Comp.Quality}!");
