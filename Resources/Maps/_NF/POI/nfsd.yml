@@ -2264,7 +2264,7 @@ entities:
       pos: 21.5,-10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11461.89
+      secondsUntilStateChange: -11864.337
       state: Opening
   - uid: 1449
     components:
@@ -2440,6 +2440,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -13.5,12.5
       parent: 1
+  - uid: 218
+    components:
+    - type: Transform
+      pos: 14.5,14.5
+      parent: 1
   - uid: 225
     components:
     - type: Transform
@@ -2461,16 +2466,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,6.5
       parent: 1
-  - uid: 515
-    components:
-    - type: MetaData
-      name: Cadet training
-    - type: Transform
-      pos: 14.5,14.5
-      parent: 1
-    - type: Door
-      secondsUntilStateChange: -10954.695
-      state: Opening
   - uid: 711
     components:
     - type: Transform
@@ -6972,6 +6967,14 @@ entities:
     components:
     - type: Transform
       pos: -11.579348,19.529264
+      parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 720
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 20.5,7.5
       parent: 1
 - proto: DisposalBend
   entities:
@@ -12007,7 +12010,7 @@ entities:
     - type: Transform
       pos: -15.5,-0.5
       parent: 1
-  - uid: 267
+  - uid: 255
     components:
     - type: Transform
       pos: 20.5,9.5
@@ -12016,16 +12019,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,8.5
-      parent: 1
-  - uid: 269
-    components:
-    - type: Transform
-      pos: 20.5,7.5
-      parent: 1
-  - uid: 270
-    components:
-    - type: Transform
-      pos: 20.5,5.5
       parent: 1
   - uid: 271
     components:
@@ -13270,13 +13263,15 @@ entities:
     - type: Transform
       pos: 9.5,11.5
       parent: 1
-- proto: LockerHeadOfSecurityFilled
+- proto: LockerHeadOfSecurityFilledHardsuit
   entities:
-  - uid: 218
+  - uid: 269
     components:
     - type: Transform
       pos: -3.5,8.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerSecurityFilled
   entities:
   - uid: 327
@@ -13294,13 +13289,15 @@ entities:
     - type: Transform
       pos: -9.5,7.5
       parent: 1
-- proto: LockerWardenFilled
+- proto: LockerWardenFilledHardsuit
   entities:
-  - uid: 255
+  - uid: 270
     components:
     - type: Transform
       pos: 8.5,9.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: MachineCryoSleepPod
   entities:
   - uid: 409
@@ -13773,6 +13770,11 @@ entities:
     - type: Transform
       pos: -2.5,13.5
       parent: 1
+  - uid: 515
+    components:
+    - type: Transform
+      pos: 20.5,8.5
+      parent: 1
   - uid: 529
     components:
     - type: Transform
@@ -13927,12 +13929,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,-0.5
       parent: 1
-  - uid: 682
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 20.5,5.5
-      parent: 1
   - uid: 684
     components:
     - type: Transform
@@ -13984,19 +13980,6 @@ entities:
   - uid: 719
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 20.5,8.5
-      parent: 1
-  - uid: 720
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 20.5,7.5
-      parent: 1
-  - uid: 722
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
       pos: 20.5,9.5
       parent: 1
   - uid: 723
@@ -16873,6 +16856,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -16.5,2.5
       parent: 1
+  - uid: 267
+    components:
+    - type: MetaData
+      flags: PvsPriority
+    - type: Transform
+      pos: 20.5,5.5
+      parent: 1
   - uid: 275
     components:
     - type: MetaData
@@ -17818,6 +17808,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,14.5
+      parent: 1
+  - uid: 682
+    components:
+    - type: MetaData
+      flags: PvsPriority
+    - type: Transform
+      pos: 20.5,7.5
       parent: 1
   - uid: 683
     components:

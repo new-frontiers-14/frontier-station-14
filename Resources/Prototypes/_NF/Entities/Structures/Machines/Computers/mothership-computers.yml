@@ -1,8 +1,23 @@
+# Custom console
+- type: entity
+  id: BaseMothershipComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: mothership shipyard console
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Custom
+      type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+
 # The empress console
 - type: entity
   id: EmpressMothershipComputer
-  name: Empress mothership console
   parent: BaseMothershipComputer
+  suffix: Empress
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -24,8 +39,8 @@
 # The mccargo console
 - type: entity
   id: McCargoMothershipComputer
-  name: McCargo delivery ship console
   parent: BaseMothershipComputer
+  suffix: McCargo
   components:
   - type: ShipyardListing
     shuttles:
@@ -34,8 +49,8 @@
 # The caduceus console
 - type: entity
   id: CaduceusMothershipComputer
-  name: Caduceus mothership console
   parent: BaseMothershipComputer
+  suffix: Caduceus
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -56,8 +71,8 @@
 # The GASBENDA-A-A-AH (sick metal guitar riff) console
 - type: entity
   id: GasbenderMothershipComputer
-  name: Gasbender mothership ship console
   parent: BaseMothershipComputer
+  suffix: Gasbender
   components:
   - type: ShipyardListing
     shuttles:
@@ -68,8 +83,8 @@
 # The crescent console
 - type: entity
   id: CrescentMothershipComputer
-  name: Crescent mothership console
   parent: BaseMothershipComputer
+  suffix: Crescent
   components:
   - type: ShipyardListing
     shuttles:
