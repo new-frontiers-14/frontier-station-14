@@ -62,6 +62,10 @@ public sealed partial class PinpointerComponent : Component
 
     [ViewVariables]
     public bool HasTarget => DistanceToTarget != Distance.Unknown;
+
+    // Frontier - if greater than 0, then the pinpointer stops pointing to the target when it's further than this value
+    [DataField("maxRange")]
+    public float MaxRange = -1;
 }
 
 [Serializable, NetSerializable]
