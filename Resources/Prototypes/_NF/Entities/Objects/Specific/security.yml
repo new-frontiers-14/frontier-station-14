@@ -1,0 +1,106 @@
+- type: entity
+  name: blue telecrystal
+  parent: BaseItem
+  id: SecurityTelecrystal
+  suffix: 20 TC
+  description: It seems to be pulsing with suspiciously enticing energies.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    state: telecrystal
+  - type: Item
+    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: SecurityTelecrystal
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      SecurityTelecrystal: 1
+
+- type: entity
+  parent: SecurityTelecrystal
+  id: SecurityTelecrystal1
+  suffix: 1 TC
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: SecurityTelecrystal
+  id: SecurityTelecrystal5
+  suffix: 5 TC
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: SecurityTelecrystal
+  id: SecurityTelecrystal10
+  suffix: 10 TC
+  components:
+  - type: Stack
+    count: 10
+
+# Uplinks
+- type: entity
+  parent: BaseItem
+  id: BaseSecurityUplinkRadio
+  name: nfsd uplink
+  description: Retro looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      SecurityTelecrystal: 0
+  - type: Tag
+    tags:
+    - SecurityUplink
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadio20TC
+  suffix: 20 TC
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      SecurityTelecrystal: 20
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadio25TC
+  suffix: 25 TC
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      SecurityTelecrystal: 25
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioDebug
+  suffix: Security, DEBUG
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      SecurityTelecrystal: 99999
