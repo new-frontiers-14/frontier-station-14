@@ -1,2 +1,2 @@
 # Cargo shipyard console
-cargo-shipyard-console-sell-label = Shuttle Estimated Value:{" "}
+cargo-shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
