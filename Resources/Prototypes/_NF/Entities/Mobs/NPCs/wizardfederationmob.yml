@@ -13,6 +13,13 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/Weapons/tap.ogg
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplant
+  - type: Reflect
+    enabled: true
+    reflectProb: .25
+    spread: 90
 # Immunity to Heat damage from being lit on fire
   - type: Flammable
     fireSpread: true
@@ -154,6 +161,16 @@
   - type: Loadout
     prototypes:
     - NPCWizardVioletHardsuitGear
+
+- type: entity
+  name: Soap Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardSoap
+  id: MobWizFedWizardSoapHardsuit
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardSoapHardsuitGear
 
 # Conjured Creatures
 - type: entity
