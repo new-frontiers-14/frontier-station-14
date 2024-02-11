@@ -1,0 +1,68 @@
+- type: entity
+  name: crispy
+  id: MobCatCrispy
+  parent: FoodMealFries
+  description: Mistakes were made.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cat
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: Item
+    size: Ginormous
+    heldPrefix: cat
+  # - type: Clothing
+    # quickEquip: false
+    # sprite: Mobs/Pets/cat.rsi
+    # equippedPrefix: cat
+    # slots:
+    # - HEAD
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-crispy-name
+    allowMovement: true
+    description: ghost-role-information-crispy-description
+    rules: ghost-role-information-Cak-rules
+  - type: GhostTakeoverAvailable
+  - type: OwOAccent
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: Tag
+    tags:
+    - VimPilot
+    - DoorBumpOpener
+  - type: CanEscapeInventory
+    baseResistTime: 2
+  - type: Puller
+    needsHands: false
+  - type: Examiner
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/cat_hiss.ogg
+    hidden: true
+    damage:
+      groups:
+        Brute: 1
+  - type: FriedTrait

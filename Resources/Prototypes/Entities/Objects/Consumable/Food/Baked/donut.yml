@@ -1,7 +1,7 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: [VendPriceFoodBase100, FoodInjectableBase] #  Frontier - VendPriceFoodBase100
   id: FoodDonutBase
   abstract: true
   description: Goes great with robust coffee.
@@ -21,7 +21,7 @@
           Quantity: 3
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donut.rsi
-    size: 1
+    size: Tiny
   - type: StaticPrice
     price: 14
 # Tastes like donut.
