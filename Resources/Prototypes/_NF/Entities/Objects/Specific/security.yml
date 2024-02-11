@@ -6,10 +6,10 @@
   description: It seems to be pulsing with suspiciously enticing energies.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    sprite: _NF/Objects/Specific/Security/telecrystal.rsi
     state: telecrystal
   - type: Item
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    sprite: _NF/Objects/Specific/Security/telecrystal.rsi
     size: Tiny
   - type: Stack
     count: 20
@@ -53,6 +53,7 @@
   name: nfsd uplink
   description: Retro looking old radio...
   suffix: Empty
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Devices/communication.rsi
@@ -74,26 +75,6 @@
   - type: Tag
     tags:
     - SecurityUplink
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadio20TC
-  suffix: 20 TC
-  components:
-  - type: Store
-    preset: StorePresetSecurityUplink
-    balance:
-      SecurityTelecrystal: 20
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadio25TC
-  suffix: 25 TC
-  components:
-  - type: Store
-    preset: StorePresetSecurityUplink
-    balance:
-      SecurityTelecrystal: 25
 
 - type: entity
   parent: BaseSecurityUplinkRadio
