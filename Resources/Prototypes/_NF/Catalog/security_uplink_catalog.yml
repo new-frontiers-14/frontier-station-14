@@ -13,3 +13,536 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuit
+  name:  uplink-security-hardsuit-name
+  description: uplink-security-hardsuit-desc
+  productEntity: ClothingOuterHardsuitSecurity
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitPatrol
+  name:  uplink-security-hardsuit-patrol-name
+  description: uplink-security-hardsuit-patrol-desc
+  productEntity: ClothingOuterHardsuitSecuritypatrol
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitBrigmedic
+  name:  uplink-security-hardsuit-brigmedic-name
+  description: uplink-security-hardsuit-brigmedic-desc
+  productEntity: ClothingOuterHardsuitBrigmedic
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitWarden
+  name:  uplink-security-hardsuit-warden-name
+  description: uplink-security-hardsuit-warden-desc
+  productEntity: ClothingOuterHardsuitWarden
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHardsuitSyndieReverseEngineered
+  name:  uplink-security-hardsuit-syndie-re-name
+  description: uplink-security-hardsuit-syndie-re-desc
+  productEntity: ClothingOuterHardsuitSyndieReverseEngineered
+  icon: { sprite: Nyanotrasen/Clothing/OuterClothing/ReverseEngineering/syndicate.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 30
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHardsuitSheriff
+  name:  uplink-security-hardsuit-sheriff-name
+  description: uplink-security-hardsuit-sheriff-desc
+  productEntity: ClothingOuterHardsuitSecurityRed
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityMK58
+  name:  uplink-security-mk58-name
+  description: uplink-security-mk58-desc
+  productEntity: WeaponPistolMk58
+  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityKammerer
+  name:  uplink-security-kammerer-name
+  description: uplink-security-kammerer-desc
+  productEntity: WeaponShotgunKammerer
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/pump.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityDisabler
+  name:  uplink-security-disabler-name
+  description: uplink-security-disabler-desc
+  productEntity: WeaponDisabler
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityStunbaton
+  name:  uplink-security-stunbaton-name
+  description: uplink-security-stunbaton-desc
+  productEntity: Stunbaton
+  icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityDeckard
+  name:  uplink-security-deckard-name
+  description: uplink-security-deckard-desc
+  productEntity: WeaponRevolverDeckard
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEmitter
+  name:  uplink-security-emitter-name
+  description: uplink-security-emitter-desc
+  productEntity: WeaponEmpEmitter
+  icon: { sprite: _NF/Objects/Weapons/EMP-Gun.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityN1984
+  name:  uplink-security-N1984-name
+  description: uplink-security-N1984-desc
+  productEntity: WeaponPistolN1984
+  icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnforcer
+  name:  uplink-security-enforcer-name
+  description: uplink-security-enforcer-desc
+  productEntity: WeaponShotgunEnforcer
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityLecter
+  name:  uplink-security-lecter-name
+  description: uplink-security-lecter-desc
+  productEntity: WeaponRifleLecter
+  icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityLaserCarbine
+  name:  uplink-security-lasercarbine-name
+  description: uplink-security-lasercarbine-desc
+  productEntity: WeaponLaserCarbine
+  icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityDisablerSMG
+  name:  uplink-security-disablersmg-name
+  description: uplink-security-disablersmg-desc
+  productEntity: WeaponDisablerSMG
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-desc
+  productEntity: EnergySword
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityWT550
+  name:  uplink-security-wt550-name
+  description: uplink-security-wt550-desc
+  productEntity: WeaponSubMachineGunWt550
+  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnergyGun
+  name:  uplink-security-energygun-name
+  description: uplink-security-energygun-desc
+  productEntity: WeaponEnergyGun
+  icon: { sprite: DeltaV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpRpg
+  name:  uplink-security-emprpg-name
+  description: uplink-security-emprpg-desc
+  productEntity: WeaponLauncherRocketEmp
+  icon: { sprite: Objects/Weapons/Guns/Launchers/rocket.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpGrenade
+  name:  uplink-security-empgrenade-name
+  description: uplink-security-empgrenade-desc
+  productEntity: EmpGrenade
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHolo
+  name:  uplink-security-holo-name
+  description: uplink-security-holo-desc
+  productEntity: HoloprojectorSecurity
+  icon: { sprite: Objects/Devices/Holoprojectors/security.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityJetpack
+  name:  uplink-security-jetpack-name
+  description: uplink-security-jetpack-desc
+  productEntity: JetpackSecurityFilled
+  icon: { sprite: Objects/Tanks/Jetpacks/security.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMagboots
+  name:  uplink-security-magboots-name
+  description: uplink-security-magboots-desc
+  productEntity: ClothingShoesBootsMagCombat
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTechfab
+  name:  uplink-security-techfab-name
+  description: uplink-security-techfab-desc
+  productEntity: SecurityTechFabCircuitboard
+  icon: { sprite: Objects/Misc/module.rsi, state: security }
+  cost:
+    SecurityTelecrystal: 5
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityKey
+  name:  uplink-security-key-name
+  description: uplink-security-key-desc
+  productEntity: BoxEncryptionKeySecurity
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpRocket
+  name:  uplink-security-emprocket-name
+  description: uplink-security-emprocket-desc
+  productEntity: CartridgeRocketEmp
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: rpg-emp }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityThrusterKit
+  name:  uplink-security-thrusterkit-name
+  description: uplink-security-thrusterkit-desc
+  productEntity: BoxT3SuperCapacitor
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
