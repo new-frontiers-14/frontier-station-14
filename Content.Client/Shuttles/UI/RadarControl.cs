@@ -396,7 +396,7 @@ public sealed class RadarControl : MapGridControl
                     shown.Add(ent);
                     label.Visible = true;
                     label.Text = state.Name;
-                    LayoutContainer.SetPosition(label, ScalePosition(uiPosition));
+                    LayoutContainer.SetPosition(label, ScalePosition(uiPosition) / UIScale);
                 }
             }
         }
