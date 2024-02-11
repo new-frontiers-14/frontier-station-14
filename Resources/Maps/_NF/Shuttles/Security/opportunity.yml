@@ -2282,12 +2282,6 @@ entities:
     - type: Transform
       pos: -11.5,-9.5
       parent: 2
-  - uid: 162
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-13.5
-      parent: 2
   - uid: 169
     components:
     - type: Transform
@@ -2324,12 +2318,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,0.5
       parent: 2
-  - uid: 291
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-13.5
-      parent: 2
   - uid: 403
     components:
     - type: Transform
@@ -2353,12 +2341,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,4.5
-      parent: 2
-  - uid: 875
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-14.5
       parent: 2
   - uid: 905
     components:
@@ -4790,6 +4772,77 @@ entities:
     - type: Transform
       pos: 1.5,-14.5
       parent: 2
+- proto: Paper
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      pos: -0.4609667,-15.2666645
+      parent: 2
+    - type: Paper
+      stampState: paper_stamp-ce
+      stampedBy:
+      - stampedBorderless: False
+        stampedColor: '#C69B17FF'
+        stampedName: stamp-component-stamped-name-ce
+      content: >-
+        [color=#1a6295]█▄ █ ▀█▀    [head=3]Galaxywise Shipyards[/head]
+
+        █ ▀█     █        [head=3][color=#cb0000]Opportunity Class Vessel[/head]
+
+        [/color][/color][color=lightgray]
+
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+        [/color][color=#f39f27][head=2]Engineering Notice[/head][/color]
+
+
+        Please be advised, this vessel will only operate as intended if a minimum of [color=green][bold]50 kW[/bold][/color] of power is provided by the onboard micro-nuclear generator.
+
+
+        It is also advised that you [bold][color=green]turn the generator's magnet on[/color][/bold] and place uranium fuel nearby.  Without doing this you will need to manually refuel the generator [color=red]every 30 minutes[/color].
+
+        [color=lightgray]
+
+        ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+        [/color][color=gray]Copyright © 2564 Nanotrasen. One Nanotrasen Plaza, New York, NY 10026 USA, Earth, Sol. All rights reserved.[/color]
+
+        Internal Document, do not distribute.
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.25,-0.25
+            - 0.25,-0.25
+            - 0.25,0.25
+            - -0.25,0.25
+          mask:
+          - Impassable
+          - HighImpassable
+          layer: []
+          density: 20
+          hard: True
+          restitution: 0.3
+          friction: 0.2
+        flammable:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+            position: 0,0
+          mask:
+          - TableLayer
+          - HighImpassable
+          - LowImpassable
+          - BulletImpassable
+          - InteractImpassable
+          - Opaque
+          layer: []
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
 - proto: Pickaxe
   entities:
   - uid: 816
