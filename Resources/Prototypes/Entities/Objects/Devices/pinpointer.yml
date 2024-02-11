@@ -68,7 +68,6 @@
   description: A handheld tracking device that locks onto any physical entity while off. Keep upright to retain accuracy.
   id: PinpointerUniversal
   parent: PinpointerBase
-  suffix: 128m # Frontier
   components:
   - type: Icon
     state: pinpointer-way
@@ -88,17 +87,6 @@
       visible: false
   - type: StaticPrice # Frontier
     price: 150
-
-# Frontier
-- type: entity
-  id: PinpointerUniversalNoRange
-  parent: PinpointerUniversal
-  suffix: no range, DO NOT MAP
-  components:
-  - type: Pinpointer
-    updateTargetName: true
-    canRetarget: true
-    maxRange: -1
 
 - type: entity
   parent: PinpointerBase
