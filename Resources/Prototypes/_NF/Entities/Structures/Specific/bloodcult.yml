@@ -102,6 +102,16 @@
       - state: floorglow
         shader: unshaded
 
+- type: entity
+  id: BloodCultHoleFloor
+  name: blood cult floor hole
+  parent: FlashRuneTimer
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/BloodCult/props.rsi
+      layers:
+      - state: prop-6
+
 # Mini gravity generator
 - type: entity
   id: BloodCultGravityGeneratorMini
@@ -150,3 +160,82 @@
     softness: 1
     offset: "0, -0.5"
     color: "#990000"
+
+# Props and decoration
+- type: entity
+  parent: CarpStatue
+  id: BloodCultProp01
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-1
+    - state: unshadedprop-1
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp02
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-2
+    - state: unshadedprop-2
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp03
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-3
+    - state: unshadedprop-3
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp04
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-4
+    - state: unshaded-0
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp05
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-5
+    - state: unshaded-0
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp07
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-7
+    - state: unshaded-0
+      shader: unshaded
