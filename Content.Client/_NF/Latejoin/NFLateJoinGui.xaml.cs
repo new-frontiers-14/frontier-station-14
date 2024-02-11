@@ -1,3 +1,4 @@
+using Content.Client.CrewManifest;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.UserInterface.Controls;
