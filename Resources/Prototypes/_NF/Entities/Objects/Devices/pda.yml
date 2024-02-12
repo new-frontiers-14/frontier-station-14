@@ -68,3 +68,17 @@
     accentVColor: "#A32D26"
   - type: Icon
     state: pda
+
+- type: entity
+  parent: SecurityPDA
+  id: SecurityGuardPDA
+  name: security guard PDA
+  description: Red to hide the stains of passenger blood.
+  components:
+  - type: Pda
+    id: SecurityGuardIDCard
+    state: pda-security
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+  - type: Icon
+    state: pda-security
