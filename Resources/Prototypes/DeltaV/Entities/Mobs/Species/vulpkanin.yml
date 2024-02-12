@@ -23,11 +23,6 @@
   - type: VulpLanguageSpeaker
   - type: VulpLangaugeListener
   - type: VulpGiveTranslator
-  - type: SizeAttributeWhitelist
-    short: true
-    shortscale: 0.8
-    shortDensity: 140
-    shortPseudoItem: true
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
@@ -114,6 +109,12 @@
     damage:
       types:
         Heat: 1.5 # Rip Fur
+  - type: SizeAttributeWhitelist # Frontier
+    short: true
+    shortscale: 0.8
+    shortDensity: 140
+    shortPseudoItem: true
+    shortCosmeticOnly: false
 
 - type: entity
   save: false
