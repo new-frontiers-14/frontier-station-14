@@ -13,3 +13,4 @@ shipyard-console-no-bank = No bank account found
 shipyard-console-no-deed = No ship deed found
 shipyard-console-sale-reqs = Ship must be docked and all crew disembarked
 shipyard-console-deed-label = Registered Ship:
+shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
