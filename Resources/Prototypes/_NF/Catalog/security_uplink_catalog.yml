@@ -221,8 +221,8 @@
 
 - type: listing
   id: UplinkSecurityN1984
-  name:  uplink-security-N1984-name
-  description: uplink-security-N1984-desc
+  name:  uplink-security-n1984-name
+  description: uplink-security-n1984-desc
   productEntity: WeaponPistolN1984
   icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
   cost:
@@ -516,7 +516,7 @@
   cost:
     SecurityTelecrystal: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityAmmo
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -531,9 +531,9 @@
   name:  uplink-security-thrusterkit-name
   description: uplink-security-thrusterkit-desc
   productEntity: BoxT3SuperCapacitor
-  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box}
   cost:
-    SecurityTelecrystal: 1
+    SecurityTelecrystal: 4
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -545,4 +545,60 @@
       whitelist:
         - Warden
         - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPistolMagazine
+  name:  uplink-security-magazinepistol-name
+  description: uplink-security-magazinepistol-desc
+  productEntity: BoxMagazinePistol
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurity20RifleMagazine
+  name:  uplink-security-20riflemagazine-name
+  description: uplink-security-20riflemagazine-desc
+  productEntity: BoxMagazineRifle
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityWT550Magazine
+  name:  uplink-security-wt550magazine-name
+  description: uplink-security-wt550magazine-desc
+  productEntity: BoxMagazinePistolSubMachineGunTopMounted
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
         - HeadOfSecurity
