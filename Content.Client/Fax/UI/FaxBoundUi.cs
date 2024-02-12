@@ -22,8 +22,8 @@ public sealed class FaxBoundUi : BoundUserInterface
         _window.OpenCentered();
 
         _window.OnClose += Close;
-        _window.SendButtonPressed += OnSendButtonPressed;
         _window.CopyButtonPressed += OnCopyButtonPressed;
+        _window.SendButtonPressed += OnSendButtonPressed;
         _window.RefreshButtonPressed += OnRefreshButtonPressed;
         _window.PeerSelected += OnPeerSelected;
     }

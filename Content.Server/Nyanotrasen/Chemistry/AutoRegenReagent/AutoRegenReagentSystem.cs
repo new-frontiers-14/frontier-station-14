@@ -1,5 +1,6 @@
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 
@@ -21,7 +22,7 @@ namespace Content.Server.Chemistry.AutoRegenReagent
         {
             if (component.SolutionName == null)
                 return;
-            if (_solutionSystem.TryGetSolution(uid, component.SolutionName, out var solution))
+            if (_solutionSystem.TryGetSolution(uid, component.SolutionName, out var _, out var solution))
                 component.Solution = solution;
             component.CurrentReagent = component.Reagents[component.CurrentIndex];
         }
@@ -67,16 +68,17 @@ namespace Content.Server.Chemistry.AutoRegenReagent
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            foreach (var autoComp in EntityQuery<AutoRegenReagentComponent>())
-            {
-                if (autoComp.Solution == null)
-                    return;
-                autoComp.Accumulator += frameTime;
-                if (autoComp.Accumulator < 1f)
-                    continue;
-                autoComp.Accumulator -= 1f;
 
-                _solutionSystem.TryAddReagent(autoComp.Owner, autoComp.Solution, autoComp.CurrentReagent, autoComp.unitsPerSecond, out var accepted);
+            var query = EntityQueryEnumerator<AutoRegenReagentComponent, SolutionComponent>();
+
+            while (query.MoveNext(out var solution, out var regenComp, out var solutionComp))
+            {
+                regenComp.Accumulator += frameTime;
+                if (regenComp.Accumulator < 1f)
+                    continue;
+                regenComp.Accumulator -= 1f;
+                _solutionSystem.TryAddReagent((solution, solutionComp), regenComp.CurrentReagent,
+                    regenComp.unitsPerSecond);
             }
         }
     }
