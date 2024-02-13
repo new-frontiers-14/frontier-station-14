@@ -170,6 +170,15 @@
       gasType: CarbonDioxide
       # 0.5 moles of gas for every sheet of plasma.
       moleRatio: 0.5
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNodes:
+        - output_hv
+        - output_mv
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen0
+    - type: MaterialStorageMagnetPickup # Frontier
+      range: 0.30
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -219,6 +228,15 @@
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
       scaling: Exponential
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNodes:
+        - output_hv
+        - output_mv
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen1
+    - type: MaterialStorageMagnetPickup # Frontier
+      range: 0.30
 
 - type: entity
   name: J.R.P.A.C.M.A.N.-type portable generator
@@ -268,7 +286,7 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 2000
+      targetPower: 4000 # Frontier - 2000<4000
       minTargetPower: 1000
       optimalPower: 5000
       maxTargetPower: 15000
@@ -282,7 +300,7 @@
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 50
+          maxVol: 100 # Frontier - 50<100
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
@@ -294,6 +312,11 @@
         output:
           !type:CableDeviceNode
           nodeGroupID: Apc
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNode: output
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen3
     - type: PowerSupplier
       # No ramping needed on this bugger.
       voltage: Apc
