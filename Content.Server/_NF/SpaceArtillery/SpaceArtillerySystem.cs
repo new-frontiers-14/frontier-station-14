@@ -32,6 +32,9 @@ using Content.Server.DeviceLinking.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
 using Robust.Shared.Timing;
+using Content.Shared.Shuttles.Systems;
+using Content.Shared.Shuttles.Components;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Shared.SpaceArtillery;
 
@@ -50,6 +53,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	[Dependency] private readonly IRobustRandom _random = default!;
 	[Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
 	[Dependency] private readonly IGameTiming _gameTiming = default!; //var variable = _gameTiming.CurTime; - to set with current time
+	[Dependency] private readonly SharedShuttleSystem _shuttleSystem = default!;
 	
 	private const float ShootSpeed = 30f;
 	private const float distance = 100;
@@ -75,7 +79,12 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 		SubscribeLocalEvent<SpaceArtilleryComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SpaceArtilleryComponent, ComponentRemove>(OnComponentRemove);
 		
+		///TODO Integrate vessel armament deactivation event
 		SubscribeLocalEvent<SpaceArtilleryGridComponent, MapInitEvent>(OnMapInit);
+		SubscribeLocalEvent<SpaceArtilleryGridComponent, SpaceArtilleryGridActivationEvent>(OnActivationEvent);
+		
+		//This is to ensure proper operation of armed vessel
+		SubscribeLocalEvent<IFFConsoleComponent, ComponentInit>(OnIFFInit);
 	}
 	
 	private void OnMapInit(EntityUid uid, SpaceArtilleryGridComponent componentGrid, MapInitEvent args)
@@ -144,19 +153,37 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			}
 			if (args.Port == component.SpaceArtilleryToggleSafetyPort)
 			{
+				///WIP TEST DEBUG-----------------------------------------------------------------------------------
+				if(TryComp<TransformComponent>(uid, out var transformComponent))
+				{
+					var _gridUid = transformComponent.GridUid;
+					
+					if(_gridUid is {Valid :true} gridUid)
+					{
+					var activationEvent = new SpaceArtilleryGridActivationEvent();
+					RaiseLocalEvent(gridUid, ref activationEvent);
+					}
+				}
+				
+				///TEST DEBUG--------------------------------------------------------------------------------
+				
 				if (TryComp<CombatModeComponent>(uid, out var combat))
 				{
 					if(combat.IsInCombatMode == false && combat.IsInCombatMode != null)
 					{
 						_combat.SetInCombatMode(uid, true, combat);
 						component.IsArmed = true;
-						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
+						
+						if(component.IsCapableOfSendingSignal == true)
+							_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					}
 					else
 					{
 						_combat.SetInCombatMode(uid, false, combat);
 						component.IsArmed = false;
-						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
+						
+						if(component.IsCapableOfSendingSignal == true)
+							_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					}
 				}
 			}
@@ -164,7 +191,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			{
 				if (TryComp<CombatModeComponent>(uid, out var combat) && combat.IsInCombatMode != null)
 				{
-					if(combat.IsInCombatMode == true)
+					if(combat.IsInCombatMode == true && component.IsCapableOfSendingSignal == true)
 						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					
 					_combat.SetInCombatMode(uid, false, combat);
@@ -176,7 +203,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			{
 				if (TryComp<CombatModeComponent>(uid, out var combat) && combat.IsInCombatMode != null)
 				{
-					if(combat.IsInCombatMode == false)
+					if(combat.IsInCombatMode == false && component.IsCapableOfSendingSignal == true)
 						_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedSafetyChangePort, true);
 					
 					_combat.SetInCombatMode(uid, true, combat);
@@ -347,7 +374,24 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			EntityCoordinates targetCordinates;
 			targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
 			
-			_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+			///Checks if armaments on grid are activated, or its a harmless armament
+			if(TryComp<SpaceArtilleryGridComponent>(_gridUid, out var componentGrid))
+			{
+				if(componentGrid.IsActive == true || component.IsDestructive == false)
+				{
+					///Fires the armament, sending signal to gun system
+					_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+				}
+				else
+				{
+					OnMalfunction(uid,component);
+				}
+			}
+			else if(component.IsDestructive == false)
+			{
+				///Fires the armament, sending signal to gun system
+				_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+			}
 			
 		}
 	}
@@ -366,9 +410,17 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         amount = coolantStack.Count;
         return;
     }
-	
+
+	///TODO Fix empty cartridge allowing recoil to be activated
+	///TOD add check for args.FiredProjectiles
 	private void OnShotEvent(EntityUid uid, SpaceArtilleryComponent component, AmmoShotEvent args)
 	{
+		if(args.FiredProjectiles.Count == 0)
+		{
+			OnMalfunction(uid,component);
+			return;
+		}
+		
 		if(TryComp<TransformComponent>(uid, out var transformComponent) && TryComp<BatteryComponent>(uid, out var battery)){
 			var worldPosX = transformComponent.WorldPosition.X;
 			var worldPosY = transformComponent.WorldPosition.Y;
@@ -377,8 +429,8 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			
 			var _gridUid = transformComponent.GridUid;
 		
-		
-		_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedFiringPort, true);
+		if(component.IsCapableOfSendingSignal == true)
+			_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedFiringPort, true);
 		
 		if(component.IsPowerRequiredToFire == true)
 		{
@@ -487,6 +539,145 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 	
 	private void OnMalfunction(EntityUid uid, SpaceArtilleryComponent component)
 	{
-		_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedMalfunctionPort, true);
+		if(component.IsCapableOfSendingSignal == true)
+			_deviceLink.SendSignal(uid, component.SpaceArtilleryDetectedMalfunctionPort, true);
+	}
+
+
+
+///Armed vessels handling
+//TODO Code it much much better
+
+	///Prevents built IFF console from being capable of changing armed vessel's IFF settings
+    private void OnIFFInit(EntityUid uid, IFFConsoleComponent iffComponent, ComponentInit args)
+    {
+		if(TryComp<TransformComponent>(uid, out var transformComponent))
+		{
+			var _gridUid = transformComponent.GridUid;
+			
+			if(_gridUid is {Valid :true} gridUid)
+			{
+				if(TryComp<SpaceArtilleryGridComponent>(gridUid, out var SpaceArtilleryGridComponent))
+				{
+					if(SpaceArtilleryGridComponent.IsActive == true || SpaceArtilleryGridComponent.IsCharging == true)
+					{
+							var _oldFlags = iffComponent.AllowedFlags;
+							var _newFlags = iffComponent.AccessableAllowedFlags;
+							
+							iffComponent.AllowedFlags = _newFlags;
+							iffComponent.AccessableAllowedFlags = _oldFlags;
+							
+							iffComponent.IsDisabled = true;
+							
+							var ev = new AnchorStateChangedEvent(transformComponent);
+							RaiseLocalEvent(uid, ref ev, false);
+					}
+				}
+			}
+		}
+    }
+
+	
+	private void OnActivationEvent(EntityUid GridUid, SpaceArtilleryGridComponent componentGrid, ref SpaceArtilleryGridActivationEvent args)
+	{
+
+		if(componentGrid.IsActive == true)
+		{
+			if(_gameTiming.CurTime >= componentGrid.CooldownEndTime)
+			{
+				componentGrid.IsActive = false;
+				
+				if(TryComp<IFFComponent>(GridUid, out var IffComponent))
+				{
+					//IffComponent.Color = componentGrid.Color;
+					_shuttleSystem.SetIFFColor(GridUid, componentGrid.Color, IffComponent);
+					//_shuttleSystem.AddIFFFlag(GridUid, IFFFlags.Hide);
+					//_shuttleSystem.AddIFFFlag(GridUid, IFFFlags.HideLabel);
+					
+					var query = EntityQueryEnumerator<IFFConsoleComponent>();
+					while (query.MoveNext(out var uid, out var comp))
+					{
+						if(TryComp<TransformComponent>(uid, out var transformComponent))
+						{
+							var _gridUid = transformComponent.GridUid;
+							
+							if(_gridUid is {Valid :true} gridUid && gridUid == GridUid && comp.IsDisabled == true)
+							{
+								var _oldFlags = comp.AllowedFlags;
+								var _newFlags = comp.AccessableAllowedFlags;
+								
+								comp.AllowedFlags = _newFlags;
+								comp.AccessableAllowedFlags = _oldFlags;
+								
+								comp.IsDisabled = false;
+								
+								var ev = new AnchorStateChangedEvent(transformComponent);
+								RaiseLocalEvent(uid, ref ev, false);
+							}
+						}
+					}
+				}
+			}
+		}
+		else if(componentGrid.IsCharging == true)
+		{
+			if(_gameTiming.CurTime >= componentGrid.ChargeUpEndTime)
+			{
+				componentGrid.IsCharging = false;
+				componentGrid.IsActive = true;
+			}
+		}
+		else
+		{
+			componentGrid.IsCharging = true;
+			
+			componentGrid.LastActivationTime = _gameTiming.CurTime;
+			componentGrid.ChargeUpEndTime = componentGrid.LastActivationTime + componentGrid.ChargeUpDuration;
+			componentGrid.CooldownEndTime = componentGrid.LastActivationTime + componentGrid.CooldownDuration;
+			
+			if(TryComp<IFFComponent>(GridUid, out var IffComponent))
+			{
+				//IffComponent.Color = componentGrid.ArmedColor;
+				//IffComponent.Flags = componentGrid.Flags;
+				///TODO have it affect IFF consoles and disable their ability
+				_shuttleSystem.SetIFFColor(GridUid, componentGrid.ArmedColor, IffComponent);
+				_shuttleSystem.RemoveIFFFlag(GridUid, IFFFlags.Hide);
+				_shuttleSystem.RemoveIFFFlag(GridUid, IFFFlags.HideLabel);
+				
+				var query = EntityQueryEnumerator<IFFConsoleComponent>();
+				while (query.MoveNext(out var uid, out var comp))
+				{
+					if(TryComp<TransformComponent>(uid, out var transformComponent))
+					{
+						var _gridUid = transformComponent.GridUid;
+						
+						if(_gridUid is {Valid :true} gridUid && gridUid == GridUid && comp.IsDisabled == false)
+						{
+							var _oldFlags = comp.AllowedFlags;
+							var _newFlags = comp.AccessableAllowedFlags;
+							
+							comp.AllowedFlags = _newFlags;
+							comp.AccessableAllowedFlags = _oldFlags;
+							
+							comp.IsDisabled = true;
+							
+							var ev = new AnchorStateChangedEvent(transformComponent);
+							RaiseLocalEvent(uid, ref ev, false);
+						}
+					}
+				}
+			}
+		}
 	}
 }
+
+
+
+
+// Raise event to activate armaments for the grid
+ /*       var activationEvent = new SpaceArtilleryGridActivationEvent(true, uid, GridUid);
+        RaiseLocalEvent(GridUid, activationEvent);
+		
+		if (activationEvent.Handled)
+            return;
+		*/

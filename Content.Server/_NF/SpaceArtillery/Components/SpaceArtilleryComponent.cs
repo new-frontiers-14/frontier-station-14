@@ -67,6 +67,17 @@ public sealed partial class SpaceArtilleryComponent : Component
     public int PowerChargeRate = 3000;
 	
 	/// <summary>
+	/// Whether the space artillery requires whole vessel to activate its armaments, 
+	/// Use these for any armaments with high destructive capability
+	/// </summary>
+    [DataField("isDestructive"),ViewVariables(VVAccess.ReadWrite)] public bool IsDestructive = true;
+	
+	/// <summary>
+	/// Whether the space artillery can send signals at all
+	/// </summary>
+    [DataField("isCapableOfSendingSignal"),ViewVariables(VVAccess.ReadWrite)] public bool IsCapableOfSendingSignal = true;
+	
+	/// <summary>
 	/// Whether the space artillery need power to operate remotely from signal
 	/// </summary>
     [DataField("isPowerRequiredForSignal"),ViewVariables(VVAccess.ReadWrite)] public bool IsPowerRequiredForSignal = true;
