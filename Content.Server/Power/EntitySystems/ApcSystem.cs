@@ -10,6 +10,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
 using Content.Shared.Emp;
