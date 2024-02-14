@@ -9,6 +9,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Language;
 using Content.Shared.Language.Components;
 using Content.Shared.Language.Systems;
+using Content.Shared.PowerCell;
 using static Content.Server.Language.LanguageSystem;
 using HandheldTranslatorComponent = Content.Shared.Language.Components.HandheldTranslatorComponent;
 using HoldsTranslatorComponent = Content.Shared.Language.Components.HoldsTranslatorComponent;
