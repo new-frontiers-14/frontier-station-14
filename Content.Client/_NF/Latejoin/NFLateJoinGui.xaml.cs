@@ -20,7 +20,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 
     private ClientGameTicker _gameTicker;
 
-    private NetEntity _lastSelection = NetEntity.Invalid;
+    private NetEntity _lastSelection;
 
     private readonly Dictionary<string, NewFrontierLateJoinJobButton> _buttons = new();
 
@@ -34,7 +34,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
         {
             UpdateUi(_gameTicker.JobsAvailable);
         };
-        CrewManifestButton.OnPressed += args =>
+        CrewManifestButton.OnPressed += _ =>
         {
             EntitySystem.Get<CrewManifestSystem>().RequestCrewManifest(_lastSelection);
         };
@@ -86,7 +86,6 @@ public sealed partial class NFLateJoinGui : FancyWindow
             var newButton = new NewFrontierLateJoinJobButton(station, jobId, _gameTicker, _prototypeManager);
             newButton.OnPressed += args =>
             {
-
                 Logger.InfoS("latejoin", $"Late joining as ID: {jobId}");
                 _consoleHost.ExecuteCommand($"joingame {CommandParsing.Escape(jobId)} {station}");
                 Close();

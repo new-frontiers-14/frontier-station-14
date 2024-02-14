@@ -9,7 +9,6 @@ namespace Content.Client._NF.Latejoin;
 [GenerateTypedNameReferences]
 public sealed partial class VesselListControl : BoxContainer
 {
-    private static readonly string FrontierOutpostName = "Frontier Outpost";
 
     private ClientGameTicker _gameTicker;
 
@@ -26,6 +25,7 @@ public sealed partial class VesselListControl : BoxContainer
             return (NetEntity) i.Metadata!;
         }
     }
+
     private IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>>? _lastJobState;
 
     public VesselListControl()
@@ -53,35 +53,42 @@ public sealed partial class VesselListControl : BoxContainer
 
     private int DefaultComparison(NetEntity x, NetEntity y)
     {
-        // Ensure "Frontier Outpost" always appears on top
-        // TODO: find a better way to identify a NetEntity as frontier outpost or NFSD station without string comparison
-        if (_gameTicker.StationNames[x] == FrontierOutpostName && _gameTicker.StationNames[y] != FrontierOutpostName)
+        var xContainsHop = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfPersonnel");
+        var yContainsHop = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfPersonnel");
+
+        var xContainsHos = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfSecurity");
+        var yContainsHos = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfSecurity");
+
+        // Prioritize "HeadOfPersonnel"
+        switch (xContainsHop)
         {
-            return -1;
-        }
-        else if (_gameTicker.StationNames[x] != FrontierOutpostName && _gameTicker.StationNames[y] == FrontierOutpostName)
-        {
-            return 1;
+            case true when !yContainsHop:
+                return -1;
+            case false when yContainsHop:
+                return 1;
         }
 
-        // Negated to enforce descending order
-        int jobCountComparison = -(int)(_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) - _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
-        int nameComparison = _gameTicker.StationNames[x].CompareTo(_gameTicker.StationNames[y]);
+        // If both or neither contain "HeadOfPersonnel", prioritize "HeadOfSecurity"
+        switch (xContainsHos)
+        {
+            case true when !yContainsHos:
+                return -1;
+            case false when yContainsHos:
+                return 1;
+        }
+
+        // If both or neither contain "HeadOfPersonnel" and "HeadOfSecurity", sort by jobCountComparison
+        var jobCountComparison = -(int) (_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) -
+                                         _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
+        var nameComparison = string.Compare(_gameTicker.StationNames[x], _gameTicker.StationNames[y], StringComparison.Ordinal);
 
         // Combine the comparisons
-        if (jobCountComparison != 0)
-        {
-            return jobCountComparison;
-        }
-        else
-        {
-            return nameComparison;
-        }
+        return jobCountComparison != 0 ? jobCountComparison : nameComparison;
     }
 
     private void Sort()
     {
-        if(Comparison != null)
+        if (Comparison != null)
             VesselItemList.Sort((a, b) => Comparison((NetEntity) a.Metadata!, (NetEntity) b.Metadata!));
     }
 
@@ -91,7 +98,7 @@ public sealed partial class VesselListControl : BoxContainer
 
         foreach (var (key, name) in _gameTicker.StationNames)
         {
-            if (VesselItemList.Any(x => ((NetEntity)x.Metadata!) == key))
+            if (VesselItemList.Any(x => ((NetEntity) x.Metadata!) == key))
                 continue;
 
             var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0);
