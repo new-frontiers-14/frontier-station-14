@@ -166,9 +166,12 @@ namespace Content.Server.Cargo.Systems
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
-            if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+
+            var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+            foreach (var stationBankComp in stationQuery)
             {
-                DeductFunds(stationBank, (int) -(Math.Floor(cost * 0.65f)));
+                DeductFunds(stationBankComp, (int) -(Math.Floor(cost * 0.45f)));
             }
             _bankSystem.TryBankWithdraw(player, cost);
 
