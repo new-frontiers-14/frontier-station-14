@@ -10,9 +10,11 @@ using Content.Shared.Database;
 using Content.Shared.Language;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
@@ -28,6 +30,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
@@ -70,10 +73,18 @@ public sealed class RadioSystem : EntitySystem
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, LanguagePrototype? language = null, bool escapeMarkup = true)
+    {
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, language: language);
+    }
+
+    /// <summary>
+    /// Send radio message to all active radio listeners
+    /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
     /// <param name="language">The language to send the message in.</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null)
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, bool escapeMarkup = true)
     {
         // Frontier - languages mechanic
         if (language == null)
@@ -109,14 +120,17 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
+        var content = escapeMarkup
+            ? FormattedMessage.EscapeText(message)
+            : message;
 
         // Frontier - languages mechanic
         // A message that the listener could understand
-        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, message);
-        var msg = new ChatMessage(ChatChannel.Radio, message, wrappedMessage, NetEntity.Invalid, null);
+        var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content);
+        var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
 
         // ... you guess it
-        var obfuscated = _language.ObfuscateSpeech(null, message, language);
+        var obfuscated = _language.ObfuscateSpeech(null, content, language);
         var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null);
 
@@ -135,8 +149,12 @@ public sealed class RadioSystem : EntitySystem
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
-            if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) && !intercom.SupportedChannels.Contains(channel.ID)))
-                continue;
+            if (!radio.ReceiveAllChannels)
+            {
+                if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
+                                                             !intercom.SupportedChannels.Contains(channel.ID)))
+                    continue;
+            }
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
@@ -153,7 +171,7 @@ public sealed class RadioSystem : EntitySystem
             if (attemptEv.Cancelled)
                 continue;
 
-            // Send the message
+            // send the message
             RaiseLocalEvent(receiver, ref ev);
         }
 

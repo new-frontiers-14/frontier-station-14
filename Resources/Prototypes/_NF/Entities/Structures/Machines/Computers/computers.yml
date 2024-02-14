@@ -1,6 +1,6 @@
 - type: entity
   name: shipyard console
-  parent: BaseStructureComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerShipyard
   description: Used to purchase and sell shuttles
   placement:
@@ -63,35 +63,39 @@
         components:
         - IdCard
   - type: ActivatableUI
+    singleUser: true
     key: enum.ShipyardConsoleUiKey.Shipyard
   - type: UserInterface
     interfaces:
     - key: enum.ShipyardConsoleUiKey.Shipyard
       type: ShipyardConsoleBoundUserInterface
-  - type: ItemSlots  
+  - type: ItemSlots
   - type: ContainerContainer
     containers:
       ShipyardConsole-targetId: !type:ContainerSlot {}
-  - type: Anchorable
-    delay: 999999
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
 
+# Custom console
+- type: entity
+  id: BaseMothershipComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: mothership console
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Custom
+      type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+
+# Hardcoded consoles
 - type: entity
   id: ComputerShipyardSecurity
-  parent: ComputerShipyard
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: security shipyard console
   description: Used to enlist into Nanotrasen Security Forces
   components:
-  - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Security
-  - type: UserInterface
-    interfaces:
-    - key: enum.ShipyardConsoleUiKey.Security
-      type: ShipyardConsoleBoundUserInterface
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
@@ -100,13 +104,19 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_security      
+      state: shipyard_security
     - map: ["computerLayerKeys"]
       state: telesci_key
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Security
+      type: ShipyardConsoleBoundUserInterface
 
 - type: entity
   id: ComputerShipyardBlackMarket
-  parent: ComputerShipyard
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
   name: black market shipyard console
   description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
   components:
@@ -124,21 +134,13 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
 
 - type: entity
   id: ComputerShipyardExpedition
-  parent: ComputerShipyard
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: expedition shipyard console
   description: Used to buy ships outfitted for planetary expeditions
   components:
@@ -156,13 +158,13 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
 
 - type: entity
   id: ComputerShipyardScrap
-  parent: ComputerShipyard
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
   name: scrapyard console
   description: Used to purchase and sell "shuttles"
   components:
@@ -180,14 +182,14 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: shipyard_blackmarket   
+      state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
 
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: BaseStructureComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerPalletConsoleNFNormalMarket
   description: Used to sell goods loaded onto cargo pallets
   placement:
@@ -246,15 +248,8 @@
     interfaces:
     - key: enum.CargoPalletConsoleUiKey.Sale
       type: CargoPalletConsoleBoundUserInterface
-  - type: Anchorable
-    delay: 999999
   - type: MarketModifier
     mod: 1.00
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
 
 - type: entity
   parent: ComputerPalletConsoleNFNormalMarket

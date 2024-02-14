@@ -2,6 +2,7 @@
   name: Queen
   parent: MobXenoQueen
   id: MobXenoQueenDungeon
+  suffix: Ghost
   components:
   - type: Tag
     tags:
@@ -15,3 +16,11 @@
     - Xeno
     understands:
     - Xeno
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+  - type: GhostTakeoverAvailable

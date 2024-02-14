@@ -6,7 +6,7 @@
   - type: StorageFill
     contents:
       - id: ClothingOuterArmorBasicSlim
-      - id: WeaponShotgunDoubleBarreledRubber
+#      - id: WeaponShotgunDoubleBarreledRubber # Frontier
       - id: DrinkShaker
       - id: ClothingEyesHudBeer
       - id: DrinkBottleBeer
@@ -15,8 +15,8 @@
         prob: 0.5
       - id: DrinkBottleBeer
         prob: 0.5
-      - id: BoxBeanbag
-        amount: 2
+#      - id: BoxBeanbag # Frontier
+#        amount: 2  # Frontier
       - id: RagItem
         amount: 2
 
@@ -33,7 +33,7 @@
   - type: StorageFill
     contents:
       - id: CrowbarRed
-      - id: MonkeyCubeBox
+      - id: VariantCubeBox
       - id: BoxMousetrap
         amount: 2
       - id: SprayBottleWater
@@ -42,12 +42,14 @@
       - id: ReagentContainerSugar
       - id: FoodCondimentPacketSalt
         amount: 3
+      - id: FoodCondimentPacketPepper
+        amount: 3
       - id: FoodCondimentBottleEnzyme
       # really, milk should go in the fridge. Unfortunately saltern only has freezers.
       # yes, I'm using this as an excuse to not have to do extra work.
-      - id: ReagentContainerMilk
+      - id: DrinkMilkCarton
         amount: 2
-      - id: ReagentContainerMilkSoy
+      - id: DrinkSoyMilkCarton
 
 - type: entity
   id: ClosetJanitorFilled
@@ -124,3 +126,13 @@
         prob: 0.5
       - id: NettleSeeds
         prob: 0.7
+
+- type: entity
+  id: ClosetJanitorBombFilled
+  parent: ClosetJanitorBomb
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetJanitorBombSuit
+      - id: ClothingOuterSuitJanitorBomb
