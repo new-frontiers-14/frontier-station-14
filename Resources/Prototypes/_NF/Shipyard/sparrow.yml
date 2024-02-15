@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Sparrow
+  name: NR Sparrow
+  description: A small research and engineering vessel.
+  price: 37000 # +4800 from 15% markup
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/sparrow.yml
+
+- type: gameMap
+  id: Sparrow
+  mapName: 'NR Sparrow'
+  mapPath: /Maps/_NF/Shuttles/sparrow.yml
+  minPlayers: 0
+  stations:
+    Sparrow:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Sparrow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
