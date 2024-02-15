@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: Shodhans
+# GitHub: ???
 # Discord: ???
 
 # Maintainer Info
@@ -9,25 +9,25 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: Comet
-  name: NT Comet
-  description: A mining and construction vessel intended to help build or repair quickly.
-  price: 55000
-  category: Medium
+  id: Sparrow
+  name: NR Sparrow
+  description: A small research and engineering vessel.
+  price: 37000 # +4800 from 15% markup
+  category: Small
   group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/comet.yml
+  shuttlePath: /Maps/_NF/Shuttles/sparrow.yml
 
 - type: gameMap
-  id: Comet
-  mapName: 'NT Comet'
-  mapPath: /Maps/_NF/Shuttles/comet.yml
+  id: Sparrow
+  mapName: 'NR Sparrow'
+  mapPath: /Maps/_NF/Shuttles/sparrow.yml
   minPlayers: 0
-  stations: 
-    Comet:
+  stations:
+    Sparrow:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Comet {1}'
+          mapNameTemplate: 'Sparrow {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
@@ -35,6 +35,4 @@
           overflowJobs: []
           availableJobs:
             StationEngineer: [ 0, 0 ]
-            ChiefEngineer: [ 0, 0 ]
-            SalvageSpecialist: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
