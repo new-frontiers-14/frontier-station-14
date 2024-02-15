@@ -602,3 +602,379 @@
     - !type:BuyerJobCondition
       whitelist:
         - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHypo
+  name:  uplink-security-hypo-name
+  description: uplink-security-hypo-desc
+  productEntity: Hypospray
+  icon: { sprite: Objects/Specific/Medical/hypospray.rsi, state: hypo }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - BrigMedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityAmbuzol
+  name:  uplink-security-ambuzol-name
+  description: uplink-security-ambuzol-desc
+  productEntity: SyringeAmbuzol
+  icon: { sprite: Objects/Specific/Chemistry/syringe.rsi, state: syringe_base0 }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - BrigMedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityMedkit
+  name:  uplink-security-medkit-name
+  description: uplink-security-medkit-desc
+  productEntity: MedkitCombatFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - BrigMedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityInspector
+  name:  uplink-security-inspector-name
+  description: uplink-security-inspector-desc
+  productEntity: WeaponRevolverInspector
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMateba
+  name:  uplink-security-mateba-name
+  description: uplink-security-mateba-desc
+  productEntity: WeaponRevolverMateba
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTruncheon
+  name:  uplink-security-truncheon-name
+  description: uplink-security-truncheon-desc
+  productEntity: Truncheon
+  icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityArmingSword
+  name:  uplink-security-armingsword-name
+  description: uplink-security-armingsword-desc
+  productEntity: PlasteelArmingSword
+  icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityCaptainSword
+  name:  uplink-security-captainsword-name
+  description: uplink-security-captainsword-desc
+  productEntity: ClothingBeltSheathFilled
+  icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 10
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPulsePistol
+  name:  uplink-security-pulsepistol-name
+  description: uplink-security-pulsepistol-desc
+  productEntity: WeaponPulsePistol
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 12
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPulseCarbine
+  name:  uplink-security-pulsecarbine-name
+  description: uplink-security-pulsecarbine-desc
+  productEntity: WeaponPulseCarbine
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 20
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHammer
+  name:  uplink-security-hammer-name
+  description: uplink-security-hammer-desc
+  productEntity: SecBreachingHammer
+  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityTeleShield
+  name:  uplink-security-teleshield-name
+  description: uplink-security-teleshield-desc
+  productEntity: TelescopicShield
+  icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEnergyShield
+  name:  uplink-security-energyshield-name
+  description: uplink-security-energyshield-desc
+  productEntity: EnergyShield
+  icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  cost:
+    SecurityTelecrystal: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecuritySwat
+  name:  uplink-security-swat-name
+  description: uplink-security-swat-desc
+  productEntity: ClothingMaskGasSwat
+  icon: { sprite: Clothing/Mask/swat.rsi, state: icon}
+  cost:
+    SecurityTelecrystal: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecuritySpeedloader
+  name:  uplink-security-speedloader-name
+  description: uplink-security-speedloader-desc
+  productEntity: SpeedLoaderMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecuritySpeedloaderRubber
+  name:  uplink-security-speedloaderrubber-name
+  description: uplink-security-speedloaderrubber-desc
+  productEntity: SpeedLoaderMagnumRubber
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotLethal
+  name:  uplink-security-shotlethal-name
+  description: uplink-security-shotlethal-desc
+  productEntity: BoxLethalshot
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotBeanbag
+  name:  uplink-security-shotbeanbag-name
+  description: uplink-security-shotbeanbag-desc
+  productEntity: BoxBeanbag
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotIncend
+  name:  uplink-security-shotincend-name
+  description: uplink-security-shotincend-desc
+  productEntity: BoxShotgunIncendiary
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotSlug
+  name:  uplink-security-shotslug-name
+  description: uplink-security-shotslug-desc
+  productEntity: BoxShotgunSlug
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityCash1000
+  name:  uplink-security-cash1000-name
+  description: uplink-security-cash1000-desc
+  productEntity: SpaceCash1000
+  icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000000 }
+  cost:
+    SecurityTelecrystal: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
