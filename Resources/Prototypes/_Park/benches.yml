@@ -146,6 +146,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/sofa.rsi
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaMiddleNode # Frontier
 
 - type: entity
   id: BenchSofaLeft
@@ -154,6 +157,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaLeftNode # Frontier
 
 - type: entity
   id: BenchSofaRight
@@ -162,6 +168,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaRightNode # Frontier
     
 - type: entity
   name: sofa
@@ -196,6 +205,9 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/metalbreak.ogg
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCornerNode # Frontier
 
 # Corp sofa
 - type: entity
@@ -205,6 +217,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/sofa_corp.rsi
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpMiddleNode # Frontier
 
 - type: entity
   id: BenchSofaCorpLeft
@@ -213,6 +228,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpLeftNode # Frontier
 
 - type: entity
   id: BenchSofaCorpRight
@@ -221,6 +239,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpRightNode # Frontier
 
 - type: entity
   name: grey sofa
@@ -255,3 +276,6 @@
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/metalbreak.ogg
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpCornerNode # Frontier
