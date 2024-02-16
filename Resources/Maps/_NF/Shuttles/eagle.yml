@@ -199,8 +199,8 @@ entities:
             color: '#334E6DC8'
             id: CheckerNESW
           decals:
-            110: 0,6
-            111: 0,6
+            105: 0,6
+            106: 0,6
         - node:
             color: '#EDB14293'
             id: CheckerNESW
@@ -221,7 +221,7 @@ entities:
             98: 2,3
             99: 2,4
             100: 2,5
-            112: 4,2
+            107: 4,2
         - node:
             color: '#52B4E996'
             id: FullTileOverlayGreyscale
@@ -379,7 +379,7 @@ entities:
             color: '#EFB34196'
             id: WarnLineGreyscaleS
           decals:
-            105: 4,3
+            104: 4,3
         - node:
             color: '#52B4E996'
             id: WarnLineGreyscaleW
@@ -558,14 +558,22 @@ entities:
       pos: -6.5,3.5
       parent: 1
     - type: DeviceList
+      configurators:
+      - invalid
       devices:
-      - 484
-      - 430
-      - 666
       - 41
       - 455
+      - 666
+      - 484
+      - 430
       - 672
       - 665
+      - 677
+      - 675
+      - 674
+      - 673
+      - 712
+      - 732
     - type: AtmosDevice
       joinedGrid: 1
   - uid: 266
@@ -748,7 +756,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 9
-      - 677
   - uid: 666
     components:
     - type: Transform
@@ -757,7 +764,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 9
-      - 677
   - uid: 667
     components:
     - type: Transform
@@ -766,8 +772,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 6
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 668
     components:
     - type: Transform
@@ -1899,15 +1903,15 @@ entities:
     - type: Transform
       pos: -12.5,-0.5
       parent: 1
+  - uid: 676
+    components:
+    - type: Transform
+      pos: -10.5,-3.5
+      parent: 1
   - uid: 701
     components:
     - type: Transform
       pos: -12.5,-4.5
-      parent: 1
-  - uid: 703
-    components:
-    - type: Transform
-      pos: -10.5,-3.5
       parent: 1
   - uid: 704
     components:
@@ -2146,46 +2150,8 @@ entities:
     - type: Transform
       pos: 2.5,7.5
       parent: 1
-- proto: FireAlarm
-  entities:
-  - uid: 677
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.5,-0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 676
-      - 674
-      - 673
-      - 675
-      - 666
-      - 665
-      - 732
-      - 733
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: FirelockEdge
   entities:
-  - uid: 673
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 677
-  - uid: 674
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 677
   - uid: 675
     components:
     - type: Transform
@@ -2194,16 +2160,27 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 677
-  - uid: 676
+      - 9
+  - uid: 677
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -9.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: -5.5,0.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 677
+      - 9
+  - uid: 712
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,0.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 9
   - uid: 732
     components:
     - type: Transform
@@ -2211,15 +2188,25 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 677
-  - uid: 733
+      - 9
+- proto: FirelockGlass
+  entities:
+  - uid: 673
     components:
     - type: Transform
-      pos: -9.5,-0.5
+      pos: -4.5,0.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 677
+      - 9
+  - uid: 674
+    components:
+    - type: Transform
+      pos: -9.5,-1.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 9
 - proto: Floodlight
   entities:
   - uid: 719
@@ -3909,17 +3896,25 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
-- proto: RandomPosterAny
+- proto: RandomPosterLegit
   entities:
   - uid: 103
     components:
     - type: Transform
-      pos: -2.5,6.5
+      rot: 3.141592653589793 rad
+      pos: -1.5,-2.5
       parent: 1
   - uid: 692
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: -6.5,4.5
+      parent: 1
+  - uid: 696
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,6.5
       parent: 1
 - proto: RCD
   entities:
