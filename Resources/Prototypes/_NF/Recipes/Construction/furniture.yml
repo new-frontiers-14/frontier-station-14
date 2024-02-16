@@ -33,7 +33,7 @@
   conditions:
     - !type:TileNotBlocked
 
-# Seats (sofas)
+# Seats
 - type: construction
   id: BenchSofaMiddle
   name: sofa (middle)
@@ -170,7 +170,127 @@
   conditions:
     - !type:TileNotBlocked
 
-# Bonefire, fireplace
+- type: construction
+  id: BenchSteelMiddle
+  name: bench (middle)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelMiddleNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+    state: middle
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchSteelRight
+  name: bench (right)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelRightNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+    state: right
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchSteelLeft
+  name: bench (left)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelLeftNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+    state: left
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchPewMiddle
+  name: pew (middle)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchPewMiddleNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+    state: middle
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchPewRight
+  name: pew (right)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchPewRightNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+    state: right
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchPewLeft
+  name: pew (left)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchPewLeftNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+    state: left
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# Storage
+- type: construction
+  id: LockerWoodenGeneric
+  name: wooden cabinet
+  description: Dusty old wooden cabinet.
+  graph: StorageFurnitureGraph
+  startNode: start
+  targetNode: LockerWoodenGenericNode
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Storage/closet.rsi
+    state: wooden_cabinet_icon
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# Decorations (bonfire, fireplace)
 - type: construction
   id: Bonfire
   name: bonefire
