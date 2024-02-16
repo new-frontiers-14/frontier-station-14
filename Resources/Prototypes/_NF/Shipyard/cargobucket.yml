@@ -1,0 +1,30 @@
+- type: vessel
+  id: Cargobucket
+  name: SCS Cargobucket
+  description: A old sattelite repurposed into a salvage vessel with a bar.
+  price: 65000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Shuttles/cargobucket.yml
+
+- type: gameMap
+  id: Cargobucket
+  mapName: 'SCS Cargobucket'
+  mapPath: /Maps/Shuttles/cargobucket.yml
+  minPlayers: 0
+  stations:
+    Cargobucket:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargobucket {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            Quartermaster: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
