@@ -30,25 +30,12 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1578
-    components:
-    - type: MetaData
-    - type: Transform
-    - type: Map
-    - type: PhysicsMap
-    - type: Broadphase
-    - type: OccluderTree
-    - type: Parallax
-      parallax: FrontierStation
-    - type: LoadedMap
-    - type: GridTree
-    - type: MovedGrids
   - uid: 2173
     components:
     - type: MetaData
     - type: Transform
       pos: 0.121950805,-0.15609694
-      parent: 1578
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -30989,6 +30976,14 @@ entities:
       parent: 2173
     - type: AtmosDevice
       joinedGrid: 2173
+- proto: NoticeBoardNF
+  entities:
+  - uid: 4937
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,25.5
+      parent: 2173
 - proto: NuclearBomb
   entities:
   - uid: 2775
@@ -36712,6 +36707,13 @@ entities:
     components:
     - type: Transform
       pos: -45.5,10.5
+      parent: 2173
+- proto: VendingMachinePottedPlantVend
+  entities:
+  - uid: 1578
+    components:
+    - type: Transform
+      pos: 4.5,18.5
       parent: 2173
 - proto: VendingMachinePride
   entities:
