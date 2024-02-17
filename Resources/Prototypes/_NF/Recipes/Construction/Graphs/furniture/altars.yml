@@ -1,0 +1,185 @@
+- type: constructionGraph
+  id: AltarsGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: AltarFrameNode
+      completed:
+      - !type:SetAnchor
+        value: false
+      steps:
+      - material: Steel
+        amount: 4
+      - material: MetalRod
+        amount: 4
+        doAfter: 4
+
+  - node: AltarFrameNode
+    entity: AltarFrameNF
+    actions:
+    - !type:SnapToGrid {}
+    - !type:SetAnchor {}
+    edges:
+# Toolbox
+    - to: AltarToolboxNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tag: Toolbox
+        name: toolbox (any)
+        store: altar_toolbox
+        icon:
+          sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+          state: icon
+      - material: Cloth
+        store: altar_cloth
+        amount: 2
+        doAfter: 2
+# Blue
+    - to: AltarConvertBlueNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle1
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle2
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - material: Cloth
+        store: altar_cloth
+        amount: 2
+        doAfter: 2
+# Maint
+    - to: AltarConvertMaintNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - component: RandomFillSolution
+        name: strange pill
+        store: altar_pill
+        icon:
+          sprite: Objects/Specific/Chemistry/pills.rsi
+          state: pill1
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle1
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle2
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - material: Cloth
+        store: altar_cloth
+        amount: 2
+        doAfter: 2
+# Burden
+    - to: AltarConvertBurdenNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - component: Storage # Not exclusive to backpacks, but oh well.
+        name: backpack (any)
+        store: altar_backpack
+        icon:
+          sprite: Clothing/Back/Backpacks/backpack.rsi
+          state: icon
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle1
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - component: ExtinguishOnInteract # Not exclusive to candles I believe, but it's something that narrows down the list
+        name: candle (any)
+        store: altar_candle2
+        icon:
+          sprite: Objects/Misc/candles.rsi
+          state: candle-big
+      - material: Cloth
+        store: altar_cloth
+        amount: 2
+        doAfter: 2
+# Dismantle
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 4
+      - !type:SpawnPrototype
+        prototype: PartRodMetal
+        amount: 4
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Prying
+        doAfter: 3
+# Final
+  - node: AltarToolboxNode
+    entity: AltarToolbox
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+  - node: AltarConvertMaintNode
+    entity: AltarConvertMaint
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+  - node: AltarConvertBlueNode
+    entity: AltarConvertBlue
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+  - node: AltarConvertBurdenNode
+    entity: AltarConvertBurden
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3

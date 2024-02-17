@@ -529,3 +529,72 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Altars
+- type: construction
+  id: AltarToolbox
+  name: toolbox altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarToolboxNode
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    state: toolbox
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertMaint
+  name: maint altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarConvertMaintNode
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: maint
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertBlue
+  name: blue altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarConvertBlueNode
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: blue
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertBurden
+  name: burden altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarConvertBurdenNode
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: convertaltar
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
