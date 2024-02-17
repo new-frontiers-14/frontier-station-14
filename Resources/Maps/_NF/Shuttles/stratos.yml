@@ -84,6 +84,7 @@ entities:
                     34: -9,3
                     35: -4,8
                     40: -4,7
+                    164: -8,7
                 - node:
                     color: '#D381C996'
                     id: BrickTileWhiteCornerNe
@@ -874,10 +875,6 @@ entities:
           - type: Transform
             pos: -8.5,8.5
             parent: 1
-          - type: DeviceLinkSource
-            linkedPorts:
-              151:
-                - DoorStatus: Toggle
       - uid: 400
         components:
           - type: Transform
@@ -1492,7 +1489,7 @@ entities:
             parent: 1
           - type: DeviceLinkSink
             links:
-              - 336
+              - 418
       - uid: 419
         components:
           - type: MetaData
@@ -5516,6 +5513,10 @@ entities:
           - type: Transform
             pos: -7.5,8.5
             parent: 1
+          - type: DeviceLinkSource
+            linkedPorts:
+              151:
+                - Pressed: Toggle
   - proto: SignAnomaly
     entities:
       - uid: 417
