@@ -274,3 +274,35 @@
     # makeSentient: true
     # allowSpeech: true
   # - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachinePottedPlantVend
+  name: Plant-O-Matic
+  description: Sometimes potted plants are the best crewmates money can get.
+  components:
+  - type: VendingMachine
+    pack: PottedPlantVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: MegaSeedAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/pottedplantvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#326e3f"
+  - type: MarketModifier
+    mod: 10
