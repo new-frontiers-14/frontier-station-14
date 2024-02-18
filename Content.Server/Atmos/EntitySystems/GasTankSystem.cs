@@ -312,7 +312,8 @@ namespace Content.Server.Atmos.EntitySystems
                     range = GasTankComponent.MaxExplosionRange;
                 }
 
-                _explosions.TriggerExplosive(owner, radius: range);
+                // Frontier - 1984
+                // _explosions.TriggerExplosive(owner, radius: range);
 
                 return;
             }
