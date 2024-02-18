@@ -20,6 +20,43 @@
     - Fighter
     - Cleric
     - Rogue
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.CustomSecurity
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.CustomSecurity
+      type: ShipyardConsoleBoundUserInterface
+
+
+# The versus console
+- type: entity
+  id: VersusMothershipComputer
+  name: Versus mothership console
+  parent: BaseMothershipComputer
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_security
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    shuttles:
+    - Gunner
+    - Ferry
+    - Corpus
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.CustomSecurity
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.CustomSecurity
+      type: ShipyardConsoleBoundUserInterface
+
 
 # The mccargo console
 - type: entity

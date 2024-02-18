@@ -1,0 +1,28 @@
+- type: vessel
+  id: Gunner
+  name: NSF Gunner
+  description: Small attack vessel used for boarding and transport of prisoners.
+  price: 10625 #Appraisal is 9625
+  category: Small
+  group: None
+  mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  shuttlePath: /Maps/_NF/Shuttles/gunner.yml
+
+- type: gameMap
+  id: Gunner
+  mapName: 'NSF Gunner'
+  mapPath: /Maps/_NF/Shuttles/gunner.yml
+  minPlayers: 0
+  stations:
+    Gunner:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Gunner {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]

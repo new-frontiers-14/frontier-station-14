@@ -178,6 +178,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 newAccess.Add($"Security");
                 newAccess.Add($"Brig");
             }
+            if (ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
+            {
+                newAccess.Add($"Security");
+                newAccess.Add($"Brig");
+            }
 
             _accessSystem.TrySetTags(targetId, newAccess, newCap);
         }
@@ -191,7 +196,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var channel = component.ShipyardChannel;
 
         if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
-            _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
+            if (ShipyardConsoleUiKey.CustomSecurity != (ShipyardConsoleUiKey) args.UiKey)
+                _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
+            else
+                channel = component.SecurityShipyardChannel;
         else
             channel = component.SecurityShipyardChannel;
 
@@ -330,6 +338,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         RemComp<ShuttleDeedComponent>(targetId);
 
         if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
+            channel = component.SecurityShipyardChannel;
+        if (ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
             channel = component.SecurityShipyardChannel;
 
         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)

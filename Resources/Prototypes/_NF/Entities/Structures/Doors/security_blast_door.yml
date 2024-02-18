@@ -1,0 +1,16 @@
+- type: entity
+  id: SecurityBlastDoor
+  parent: BlastDoor
+  name: blast door
+  suffix: Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: SecurityBlastDoorOpen
+  parent: SecurityBlastDoor
+  suffix: Open, Security
+  components:
+  - type: AccessReader
+    access: [["Security"]]

@@ -17,7 +17,8 @@ public enum ShipyardConsoleUiKey : byte
     Expedition,
     Scrap,
     // Do not add any ship to this key. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
-    Custom
+    Custom,
+    CustomSecurity
 }
 
 public abstract class SharedShipyardSystem : EntitySystem
@@ -32,7 +33,8 @@ public abstract class SharedShipyardSystem : EntitySystem
         {ShipyardConsoleUiKey.BlackMarket, "BlackMarket"},
         {ShipyardConsoleUiKey.Expedition, "Expedition"},
         {ShipyardConsoleUiKey.Scrap, "Scrap"},
-        {ShipyardConsoleUiKey.Custom, "<DO NOT USE>"}
+        {ShipyardConsoleUiKey.Custom, "<DO NOT USE>"},
+        {ShipyardConsoleUiKey.CustomSecurity, "Auxilliary Security"}
     };
 
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;

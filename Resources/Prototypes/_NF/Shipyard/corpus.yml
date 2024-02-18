@@ -1,0 +1,28 @@
+- type: vessel
+  id: Corpus
+  name: NSF Corpus
+  description: Small support vessel used to move and treat wounded people.
+  price: 11351 #Appraisal is 10351
+  category: Small
+  group: None
+  mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  shuttlePath: /Maps/_NF/Shuttles/corpus.yml
+
+- type: gameMap
+  id: Corpus
+  mapName: 'NSF Corpus'
+  mapPath: /Maps/_NF/Shuttles/corpus.yml
+  minPlayers: 0
+  stations:
+    Corpus:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Corpus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
