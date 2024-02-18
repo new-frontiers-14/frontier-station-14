@@ -1,9 +1,11 @@
 using System.Numerics;
+using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
+using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Collections;
@@ -23,6 +25,7 @@ public sealed class RadarControl : MapGridControl
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
     private SharedTransformSystem _transform;
 
     private const float GridLinesDistance = 32f;
@@ -65,6 +68,7 @@ public sealed class RadarControl : MapGridControl
     public RadarControl() : base(64f, 256f, 256f)
     {
         _transform = _entManager.System<SharedTransformSystem>();
+        _resourceCache = IoCManager.Resolve<IResourceCache>();
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
@@ -126,6 +130,7 @@ public sealed class RadarControl : MapGridControl
 
         _docks.Clear();
 
+        // This draws the purple dots where docking airlocks are located.
         foreach (var state in ls.Docks)
         {
             var coordinates = state.Coordinates;
@@ -249,11 +254,13 @@ public sealed class RadarControl : MapGridControl
                  (iff.Flags & IFFFlags.HideLabel) == 0x0))
             {
                 var gridBounds = grid.Comp.LocalAABB;
+
+
                 Label label;
 
                 if (!_iffControls.TryGetValue(gUid, out var control))
                 {
-                    label = new Label()
+                    label = new Label
                     {
                         HorizontalAlignment = HAlignment.Left,
                     };
@@ -267,6 +274,7 @@ public sealed class RadarControl : MapGridControl
                 }
 
                 label.FontColorOverride = color;
+                label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 10);
                 var gridCentre = matty.Transform(gridBody.LocalCenter);
                 gridCentre.Y = -gridCentre.Y;
                 var distance = gridCentre.Length();
@@ -276,29 +284,92 @@ public sealed class RadarControl : MapGridControl
 
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
                 // plus by the offset.
-                var uiPosition = ScalePosition(gridCentre) / UIScale - new Vector2(label.Width / 2f, -yOffset);
+                var uiPosition = ScalePosition(gridCentre) / UIScale;
 
                 // Confines the UI position within the viewport.
-                var uiXCentre = (int) (Width - label.Width) / 2;
-                var uiYCentre = (int) (Height - label.Height) / 2;
+                var uiXCentre = (int) Width / 2;
+                var uiYCentre = (int) Height / 2;
                 var uiXOffset = uiPosition.X - uiXCentre;
                 var uiYOffset = uiPosition.Y - uiYCentre;
                 var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
                 var uiX = uiXCentre * uiXOffset / uiDistance;
                 var uiY = uiYCentre * uiYOffset / uiDistance;
-                if (uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY))
+
+                var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
+                if (isOutsideRadarCircle)
                 {
+                    // offset the icons slightly away from edge of radar so it doesnt clip.
+                    uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
+                    uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
                     uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
                 }
 
-                label.Visible = ShowIFFShuttles
-                                || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+                label.Visible = ShowIFFShuttles || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
 
                 if (IFFFilter != null)
+                {
                     label.Visible &= IFFFilter(gUid, grid.Comp, iff);
+                }
 
                 label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
-                LayoutContainer.SetPosition(label, uiPosition);
+
+                var blipSize = 15;
+
+                LayoutContainer.SetPosition(label, uiPosition with
+                {
+                    X = uiPosition.X + blipSize * 0.7f,
+                    Y = uiPosition.Y - (label.Height / 2)
+                });
+
+                var verts = new[]
+                {
+                    new Vector2(0, 0),
+                    new Vector2(blipSize, 0),
+                    new Vector2(blipSize*0.6f, blipSize)
+                };
+
+                if (isOutsideRadarCircle)
+                {
+                    // Calculate the vector from the center to the position
+                    Vector2 vectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre);
+
+                    // Calculate the angle of rotation
+                    float angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + 0.5f;
+
+                    // Manually create a rotation matrix
+                    float cos = (float) Math.Cos(angle);
+                    float sin = (float) Math.Sin(angle);
+                    float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+                    // Rotate each vertex
+                    for (int i = 0; i < verts.Length; i++)
+                    {
+                        Vector2 vertex = verts[i];
+                        float x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                        float y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                        verts[i] = new Vector2(x, y);
+                    }
+                }
+
+                // Calculate the center of the current triangle
+                Vector2 currentCenter = (verts[0] + verts[1] + verts[2]) / 3;
+
+                // Calculate the vectors from the center to each vertex
+                Vector2[] vectorsFromCenter = new Vector2[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    vectorsFromCenter[i] = verts[i] - currentCenter;
+                }
+
+                // Calculate the vertices of the new triangle
+                Vector2[] newVerts = new Vector2[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    newVerts[i] = uiPosition + vectorsFromCenter[i];
+                }
+
+                // Draw the new triangle
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, newVerts, color);
             }
             else
             {
