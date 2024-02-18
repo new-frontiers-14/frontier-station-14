@@ -520,14 +520,17 @@ entities:
                 2,1:
                   0: 65535
                 2,2:
-                  0: 65535
+                  0: 32767
+                  1: 32768
                 2,3:
                   1: 33024
                   0: 28672
                 0,-1:
-                  0: 61440
+                  0: 28672
+                  1: 32768
                 -1,-1:
-                  0: 57344
+                  1: 8192
+                  0: 49152
                 -3,0:
                   1: 4563
                   0: 60972
@@ -535,8 +538,8 @@ entities:
                   1: 4369
                   0: 61166
                 -3,2:
-                  1: 273
-                  0: 61166
+                  1: 8465
+                  0: 52974
                 -3,3:
                   1: 8192
                   0: 49152
@@ -569,17 +572,19 @@ entities:
                 1,5:
                   0: 61167
                 1,6:
-                  0: 1262
-                  1: 2048
+                  0: 206
+                  1: 3104
                 2,4:
-                  0: 65535
+                  0: 65527
+                  1: 8
                 2,5:
                   0: 65535
                 2,6:
                   0: 52991
                   1: 8448
                 -3,4:
-                  0: 61166
+                  1: 2
+                  0: 61164
                 -3,5:
                   0: 61166
                 -2,4:
@@ -587,8 +592,8 @@ entities:
                 -2,5:
                   0: 65535
                 -2,6:
-                  0: 1279
-                  1: 768
+                  0: 127
+                  1: 1920
                 -1,4:
                   0: 65535
                 -1,5:
@@ -604,12 +609,14 @@ entities:
                 -3,-1:
                   1: 4096
                 2,7:
-                  0: 140
+                  1: 4
+                  0: 136
                 -3,6:
                   0: 28398
                   1: 32768
                 -3,7:
-                  0: 38
+                  0: 34
+                  1: 4
               uniqueMixes:
                 - volume: 2500
                   temperature: 293.15
@@ -1370,6 +1377,66 @@ entities:
         components:
           - type: Transform
             pos: 11.5,15.5
+            parent: 1
+      - uid: 1029
+        components:
+          - type: Transform
+            pos: 6.5,26.5
+            parent: 1
+      - uid: 1030
+        components:
+          - type: Transform
+            pos: -2.5,-0.5
+            parent: 1
+      - uid: 1031
+        components:
+          - type: Transform
+            pos: 3.5,-0.5
+            parent: 1
+      - uid: 1032
+        components:
+          - type: Transform
+            pos: 11.5,11.5
+            parent: 1
+      - uid: 1033
+        components:
+          - type: Transform
+            pos: 11.5,16.5
+            parent: 1
+      - uid: 1034
+        components:
+          - type: Transform
+            pos: 10.5,28.5
+            parent: 1
+      - uid: 1035
+        components:
+          - type: Transform
+            pos: 5.5,25.5
+            parent: 1
+      - uid: 1036
+        components:
+          - type: Transform
+            pos: -10.5,16.5
+            parent: 1
+      - uid: 1037
+        components:
+          - type: Transform
+            pos: -4.5,25.5
+            parent: 1
+      - uid: 1038
+        components:
+          - type: Transform
+            pos: -5.5,26.5
+            parent: 1
+      - uid: 1039
+        components:
+          - type: Transform
+            pos: -9.5,28.5
+            parent: 1
+      - uid: 1040
+        components:
+          - type: Transform
+            pos: -10.5,11.5
             parent: 1
   - proto: Autolathe
     entities:
