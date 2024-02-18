@@ -94,3 +94,22 @@
 #        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
     access: [["Captain"], ["Pilot"]]
+
+#Clown hardsuit
+- type: entity
+  id: SuitStorageClown
+  parent: SuitStorageBase
+  suffix: Clown
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitClown
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+#    access: [["Captain"], ["Pilot"]]
