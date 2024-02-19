@@ -6,6 +6,7 @@
       actions:
         - !type:DestroyEntity {}
       edges:
+# Steel bench
         - to: BenchSteelMiddleNode
           completed:
             - !type:SnapToGrid { }
@@ -27,6 +28,7 @@
             - material: Steel
               amount: 3
               doAfter: 1
+# Pew
         - to: BenchPewMiddleNode
           completed:
             - !type:SnapToGrid { }
@@ -48,7 +50,83 @@
             - material: WoodPlank
               amount: 3
               doAfter: 1
-
+# Park Bench
+        - to: BenchParkMiddleNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: WoodPlank
+              amount: 2
+              doAfter: 1
+        - to: BenchParkRightNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: WoodPlank
+              amount: 2
+              doAfter: 1
+        - to: BenchParkLeftNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1
+            - material: WoodPlank
+              amount: 2
+              doAfter: 1
+# Bamboo Park Bench
+        - to: BenchParkBambooMiddleNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 1
+        - to: BenchParkBambooRightNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 1
+        - to: BenchParkBambooLeftNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 3
+              doAfter: 1
+# White steel bench
+        - to: BenchSteelWhiteMiddleNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 1
+        - to: BenchSteelWhiteRightNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 1
+        - to: BenchSteelWhiteLeftNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 3
+              doAfter: 1
+# Nodes
+# Steel bench
     - node: BenchSteelMiddleNode
       entity: BenchSteelMiddle
       edges:
@@ -82,6 +160,7 @@
           steps:
             - tool: Screwing
               doAfter: 1
+# Pew
     - node: BenchPewMiddleNode
       entity: BenchPewMiddle
       edges:
@@ -111,6 +190,117 @@
           completed:
             - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+# Park Bench
+    - node: BenchParkMiddleNode
+      entity: BenchParkMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchParkRightNode
+      entity: BenchParkRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchParkLeftNode
+      entity: BenchParkLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+# Bamboo park bench
+    - node: BenchParkBambooMiddleNode
+      entity: BenchParkBambooMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchParkBambooLeftNode
+      entity: BenchParkBambooLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchParkBambooRightNode
+      entity: BenchParkBambooRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+# White bench
+    - node: BenchSteelWhiteMiddleNode
+      entity: BenchSteelWhiteMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchSteelWhiteRightNode
+      entity: BenchSteelWhiteRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+          steps:
+            - tool: Screwing
+              doAfter: 1
+    - node: BenchSteelWhiteLeftNode
+      entity: BenchSteelWhiteLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
               amount: 3
           steps:
             - tool: Screwing

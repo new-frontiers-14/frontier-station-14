@@ -33,7 +33,7 @@
   conditions:
     - !type:TileNotBlocked
 
-# Seats
+# Seat
 - type: construction
   id: BenchSofaMiddle
   name: sofa (middle)
@@ -172,7 +172,7 @@
 
 - type: construction
   id: BenchSteelMiddle
-  name: bench (middle)
+  name: steel bench (middle)
   description: Multiple seats spanning a single object. Truly a marvel of science.
   graph: BenchesGraph
   startNode: start
@@ -189,7 +189,7 @@
 
 - type: construction
   id: BenchSteelRight
-  name: bench (right)
+  name: steel bench (right)
   description: Multiple seats spanning a single object. Truly a marvel of science.
   graph: BenchesGraph
   startNode: start
@@ -206,7 +206,7 @@
 
 - type: construction
   id: BenchSteelLeft
-  name: bench (left)
+  name: steel bench (left)
   description: Multiple seats spanning a single object. Truly a marvel of science.
   graph: BenchesGraph
   startNode: start
@@ -265,6 +265,159 @@
   category: construction-category-furniture
   icon:
     sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+    state: left
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkMiddle
+  name: park bench (middle)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkMiddleNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_wooden.rsi
+    state: middle
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkRight
+  name: park bench (right)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkRightNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_wooden.rsi
+    state: right
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkLeft
+  name: park bench (left)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkLeftNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_wooden.rsi
+    state: left
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchSteelWhiteMiddle
+  name: white bench (middle)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelWhiteMiddleNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench_white.rsi
+    state: middle
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchSteelWhiteRight
+  name: white bench (right)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelWhiteRightNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench_white.rsi
+    state: right
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchSteelWhiteLeft
+  name: white bench (left)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchSteelWhiteLeftNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench_white.rsi
+    state: left
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkBambooMiddle
+  name: bamboo park bench (middle)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkBambooMiddleNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_bamboo.rsi
+    state: middle
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkBambooRight
+  name: bamboo park bench (right)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkBambooRightNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_bamboo.rsi
+    state: right
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchParkBambooLeft
+  name: bamboo park bench (left)
+  description: Multiple seats spanning a single object. Truly a marvel of science.
+  graph: BenchesGraph
+  startNode: start
+  targetNode: BenchParkBambooLeftNode
+  category: construction-category-furniture
+  icon:
+    sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_bamboo.rsi
     state: left
   objectType: Structure
   placementMode: SnapgridCenter
