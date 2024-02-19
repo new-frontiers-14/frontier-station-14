@@ -97,7 +97,6 @@
       chance: 0.9
       offset: 0.0
 
-
 - type: entity
   name: Salvage Handheld Flag Spawner
   id: SalvageHandheldFlagSpawner
@@ -107,7 +106,7 @@
       layers:
         - state: red
         - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
-          state: blue
+          state: icon
     - type: RandomSpawner
       prototypes:
         - NTHandyFlag
@@ -118,7 +117,6 @@
       chance: 0.9
       offset: 0.0
 
-
 - type: entity
   name: Salvage Tank Spawner
   id: SalvageTankSpawner
@@ -128,7 +126,7 @@
       layers:
         - state: red
         - sprite: Structures/Storage/tanks.rsi
-          state: blue
+          state: fueltank
     - type: RandomSpawner
       rarePrototypes:
         - WeldingFuelTankHighCapacity
@@ -141,7 +139,6 @@
       chance: 0.9
       offset: 0.0
 
-
 - type: entity
   name: Salvage Generator Spawner
   id: SalvageGeneratorSpawner
@@ -150,8 +147,8 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Structures/Structures/Power/Generation/portable_generator.rsi
-          state: blue
+        - sprite: Structures/Power/Generation/portable_generator.rsi
+          state: portgen0
     - type: RandomSpawner
       rarePrototypes:
         - PortableGeneratorSuperPacman
@@ -162,7 +159,6 @@
       chance: 0.6
       offset: 0.0
 
-
 - type: entity
   name: Salvage Suit Storage Spawner
   id: SalvageSuitStorageSpawner
@@ -172,7 +168,7 @@
       layers:
         - state: red
         - sprite: Structures/Storage/suit_storage.rsi
-          state: blue
+          state: base
     - type: RandomSpawner
       prototypes:
         - SuitStorageEVA
@@ -186,7 +182,6 @@
         - SuitStorageSalv
       offset: 0.0
 
-
 - type: entity
   name: Salvage Locker Spawner
   id: SalvageLockerSpawner
@@ -196,7 +191,7 @@
       layers:
         - state: red
         - sprite: Structures/Storage/closet.rsi
-          state: blue
+          state: alien
     - type: RandomSpawner
       rarePrototypes:
         - LockerAtmosphericsFilledHardsuit
@@ -230,7 +225,6 @@
       chance: 0.8
       offset: 0.0
 
-
 - type: entity
   name: Salvage Potted Plants Spawner
   id: SalvagePottedPlantsSpawner
@@ -240,7 +234,7 @@
       layers:
         - state: red
         - sprite: Structures/Furniture/potted_plants.rsi
-          state: blue
+          state: plant-01
     - type: RandomSpawner
       prototypes:
         - PottedPlant1
@@ -271,7 +265,6 @@
         - PottedPlant28
         - PottedPlant29
       offset: 0.0
-
 
 - type: entity
   name: Salvage T2 Machine Parts Spawner
