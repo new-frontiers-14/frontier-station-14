@@ -291,7 +291,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         
          if (_map.TryLoad(mapId, mercenaryhub, out var merchubUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(500f, 1000f)
+                Offset = _random.NextVector2(1500f, 2900f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(merchubUids[0]);
