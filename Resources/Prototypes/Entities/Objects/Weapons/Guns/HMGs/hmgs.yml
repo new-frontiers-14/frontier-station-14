@@ -7,6 +7,7 @@
   components:
   - type: Sprite
   - type: Item
+    size: Ginormous
   - type: Gun
     fireRate: 20
     selectedMode: FullAuto
@@ -18,10 +19,6 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: StaticPrice
     price: 500
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponRanged # Frontier
-    - WeaponLongarms # Frontier
   # No chamber because HMG may want its own
 
 - type: entity
@@ -37,7 +34,6 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
     sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
-    size: 90
   - type: Gun
     fireRate: 15
     soundGunshot:

@@ -97,8 +97,8 @@
   - type: FaxMachine
     name: "ERR*?*%!"
     responsePings: false
-    emagged: true
     notifyAdmins: true
+  - type: Emagged
 
 - type: entity
   parent: FaxMachineBase
@@ -109,3 +109,5 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
+    - type: StealTarget
+      stealGroup: FaxMachineCaptain

@@ -1,29 +1,4 @@
 - type: entity
-  name: medical insurance tracking implant box
-  parent: BoxCardboard
-  id: BoxMedicalTrackingImplants
-  description: Medical insurance implant kit.
-  components:
-  - type: Item
-    size: 60
-  - type: StorageFill
-    contents:
-      - id: MedicalTrackingImplanter
-        amount: 1
-      - id: HandheldGPSBasic
-        amount: 1
-      - id: PaperMedicalInsurance
-        amount: 1
-  - type: Storage
-    capacity: 60
-  - type: Sprite
-    layers:
-      - state: box
-      - state: syringe
-  - type: VendPrice
-    price: 200 # Single Implant Box (5 are 1000)
-
-- type: entity
   name: Wet floor sign box
   parent: BoxCardboard
   id: BoxWetFloorSign
@@ -34,7 +9,9 @@
       - id: WetFloorSign
         amount: 6
   - type: Storage
-    capacity: 90
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
     whitelist:
       tags:
         - WetFloorSign
@@ -54,7 +31,9 @@
       - id: Paper
         amount: 10
   - type: Storage
-    capacity: 30
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
     whitelist:
       tags:
         - Document
@@ -98,7 +77,9 @@
       - id: MysteryFigureBox
         amount: 6
   - type: Storage
-    capacity: 30
+    maxItemSize: Small
+    grid:
+    - 0,0,2,3
     whitelist:
       tags:
         - MysteryFigureBox

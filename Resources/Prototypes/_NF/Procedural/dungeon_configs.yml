@@ -5,10 +5,7 @@
       - CaveFactory
       - LavaBrig
       - LavaMercenary
-      - RuinedHospital
       - SalvageExperiment
-      - RuinedDwelling
-      - RuinedShop
     presets:
       - Bucket
       - Wow
@@ -48,9 +45,6 @@
           orGroup: content
         - id: RandomPainting
           prob: 0.05
-          orGroup: content
-        - id: IntercomCommon
-          prob: 0.1
           orGroup: content
         - id: DefibrillatorCabinetFilled
           prob: 0.1
@@ -117,9 +111,6 @@
         - id: RandomPainting
           prob: 0.05
           orGroup: content
-        - id: IntercomCommon
-          prob: 0.1
-          orGroup: content
 
     - !type:BoundaryWallPostGen
       tile: FloorSteel
@@ -161,8 +152,6 @@
   generator: !type:PrefabDunGen
     roomWhitelist:
       - SalvageExperiment
-      - RuinedHospital
-      - RuinedShop
     presets:
       - Bucket
       - Wow
@@ -202,9 +191,6 @@
         - id: RandomPainting
           prob: 0.05
           orGroup: content
-        - id: IntercomCommon
-          prob: 0.1
-          orGroup: content
         - id: DefibrillatorCabinetFilled
           prob: 0.2
           orGroup: content
@@ -231,8 +217,6 @@
   generator: !type:PrefabDunGen
     roomWhitelist:
       - CaveFactory
-      - RuinedDwelling
-      - RuinedShop
     presets:
       - Bucket
       - Wow
@@ -272,9 +256,6 @@
           orGroup: content
         - id: RandomPainting
           prob: 0.05
-          orGroup: content
-        - id: IntercomCommon
-          prob: 0.1
           orGroup: content
         - id: DefibrillatorCabinetFilled
           prob: 0.1
@@ -338,9 +319,6 @@
           orGroup: content
         - id: RandomPainting
           prob: 0.05
-          orGroup: content
-        - id: IntercomCommon
-          prob: 0.1
           orGroup: content
 
     - !type:BoundaryWallPostGen

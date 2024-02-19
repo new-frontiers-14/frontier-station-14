@@ -36,6 +36,7 @@ using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -491,11 +492,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         while (childEnumerator.MoveNext(out var child))
         {
-            if (mobQuery.TryGetComponent(child.Value, out var mobState)
-                && !_mobState.IsDead(child.Value, mobState)
-                && _mind.TryGetMind(child.Value, out var mind, out var mindComp)
+            if (mobQuery.TryGetComponent(child, out var mobState)
+                && !_mobState.IsDead(child, mobState)
+                && _mind.TryGetMind(child, out var mind, out var mindComp)
                 && !_mind.IsCharacterDeadIc(mindComp)
-                || FoundOrganics(child.Value, mobQuery, xformQuery))
+                || FoundOrganics(child, mobQuery, xformQuery))
                 return true;
         }
 

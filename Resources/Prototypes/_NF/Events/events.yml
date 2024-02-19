@@ -140,3 +140,22 @@
     maxDuration: 1200
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
+
+- type: entity
+  id: BluespaceArcIndDataCarrier
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-ship-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-ship-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 3
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/datacarrier.yml

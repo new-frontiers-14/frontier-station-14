@@ -1,0 +1,13 @@
+﻿- type: entity
+  id: TilePrinterNFMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: tile-meister 5000 machine board
+  description: A machine printed circuit board for an tile-meister 5000
+  components:
+    - type: MachineBoard
+      prototype: TilePrinterNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      materialRequirements:
+        Glass: 1
