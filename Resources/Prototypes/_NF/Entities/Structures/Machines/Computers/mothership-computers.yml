@@ -20,6 +20,16 @@
     - Fighter
     - Cleric
     - Rogue
+
+# The mccargo console
+- type: entity
+  id: McCargoMothershipComputer
+  name: McCargo delivery ship console
+  parent: BaseMothershipComputer
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - McDelivery
  
 # The caduceus console
 - type: entity
@@ -42,3 +52,34 @@
     shuttles:
     - Pulse
     - Searchlight
+
+# The GASBENDA-A-A-AH (sick metal guitar riff) console
+- type: entity
+  id: GasbenderMothershipComputer
+  name: Gasbender mothership ship console
+  parent: BaseMothershipComputer
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Pioneer
+    - Prospector
+    - Chisel
+
+# The crescent console
+- type: entity
+  id: CrescentMothershipComputer
+  name: Crescent mothership console
+  parent: BaseMothershipComputer
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Bocadillo
+    - Pulse
+    - PTS
+    - Construct
+    - Pioneer
+    - Loader
+    - Legman
+    - Liquidator
+    - Mission
+    - Honker

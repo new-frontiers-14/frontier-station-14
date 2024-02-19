@@ -81,7 +81,7 @@ public sealed partial class ResearchSystem
     }
 
     /// <summary>
-    /// Unregisterse a client from its server
+    /// Unregisters a client from its server
     /// </summary>
     /// <param name="client"></param>
     /// <param name="clientComponent"></param>

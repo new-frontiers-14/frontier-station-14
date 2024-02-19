@@ -17,15 +17,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
+        Blunt: 0.65
+        Slash: 0.65
         Piercing: 0.65
-        Heat: 0.70
-        Radiation: 0.70
-        Caustic: 0.8
+        Heat: 0.7
+        Radiation: 0.55
+        Caustic: 0.75
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.80
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
 
@@ -48,15 +49,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.8
-        Heat: 0.9 # Added 10%
-        Radiation: 0.5
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.8
+        Radiation: 0.6
         Caustic: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.9
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
 
@@ -68,11 +70,11 @@
   description: A hardsuit tailored for someone who spends the majority of their time buckled to a chair.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot_hardsuit.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pilot.rsi
   - type: PressureProtection
-    highPressureMultiplier: 0.7
+    highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
@@ -85,6 +87,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
   - type: StaticPrice
