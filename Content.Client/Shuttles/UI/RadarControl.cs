@@ -311,17 +311,17 @@ public sealed class RadarControl : MapGridControl
 
                     label.FontColorOverride = color;
                     label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", RadarFontSize);
-                    label.Visible = (ShowIFFShuttles && iff != null) || iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
+                    label.Visible = ShowIFFShuttles || iff == null || iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
                     if (IFFFilter != null)
                     {
                         label.Visible &= IFFFilter(gUid, grid.Comp, iff);
                     }
 
                     // Shows decimal when distance is < 50m, otherwise pointless to show it.
-                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}km";
+                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
                     label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", displayedDistance));
 
-                    var sideCorrection = uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
+                    var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
                     var blipCorrection = (RadarBlipSize * 0.7f);
 
                     LayoutContainer.SetPosition(label, uiPosition with
