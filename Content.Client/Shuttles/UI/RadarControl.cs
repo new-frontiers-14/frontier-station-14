@@ -25,10 +25,14 @@ public sealed class RadarControl : MapGridControl
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    private SharedTransformSystem _transform;
+    [Dependency] private readonly IResourceCache _resourceCache;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    private readonly SharedTransformSystem _transform;
 
     private const float GridLinesDistance = 32f;
+
+    private const int RadarBlipSize = 15;
+    private const int RadarFontSize = 10;
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -40,9 +44,9 @@ public sealed class RadarControl : MapGridControl
     /// <summary>
     /// Shows a label on each radar object.
     /// </summary>
-    private Dictionary<EntityUid, Control> _iffControls = new();
+    private readonly Dictionary<EntityUid, Control> _iffControls = new();
 
-    private Dictionary<EntityUid, List<DockingInterfaceState>> _docks = new();
+    private readonly Dictionary<EntityUid, List<DockingInterfaceState>> _docks = new();
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowIFFShuttles { get; set; } = true;
@@ -95,23 +99,22 @@ public sealed class RadarControl : MapGridControl
     }
 
     /// <summary>
-    /// Gets the entitycoordinates of where the mouseposition is, relative to the control.
+    /// Gets the entity coordinates of where the mouse position is, relative to the control.
     /// </summary>
     [PublicAPI]
-    public EntityCoordinates GetMouseCoordinates(ScreenCoordinates screen)
+    public EntityCoordinates GetMouseCoordinatesFromCenter()
     {
         if (_coordinates == null || _rotation == null)
         {
             return EntityCoordinates.Invalid;
         }
 
-        var pos = screen.Position / UIScale - GlobalPosition;
-
-        var a = InverseScalePosition(pos);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
+        var pos = _uiManager.MousePositionScaled.Position - GlobalPosition;
+        var relativeWorldPos =  InverseScalePosition(pos);
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-        return coords;
+
+        // I am not sure why the resulting point is 20 units under the mouse.
+        return _coordinates.Value.Offset(relativeWorldPos + new Vector2(0, -20));
     }
 
     public void UpdateState(RadarConsoleBoundInterfaceState ls)
@@ -143,9 +146,6 @@ public sealed class RadarControl : MapGridControl
     {
         base.Draw(handle);
 
-        var fakeAA = new Color(0.08f, 0.08f, 0.08f);
-
-        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius + 1, fakeAA);
         handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.Black);
 
         // No data
@@ -228,18 +228,18 @@ public sealed class RadarControl : MapGridControl
 
             _entManager.TryGetComponent<IFFComponent>(gUid, out var iff);
 
-            // Hide it entirely.
-            if (iff != null &&
-                (iff.Flags & IFFFlags.Hide) != 0x0)
+            var hideShuttleLabels = iff != null && (iff.Flags & IFFFlags.Hide) != 0x0;
+            if (hideShuttleLabels)
             {
                 continue;
             }
 
             shown.Add(gUid);
             var name = metaQuery.GetComponent(gUid).EntityName;
-
             if (name == string.Empty)
+            {
                 name = Loc.GetString("shuttle-console-unknown");
+            }
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
             Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
@@ -249,32 +249,9 @@ public sealed class RadarControl : MapGridControl
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
 
-            if (ShowIFF &&
-                (iff == null && IFFComponent.ShowIFFDefault ||
-                 (iff.Flags & IFFFlags.HideLabel) == 0x0))
+            if (ShowIFF && (iff == null && IFFComponent.ShowIFFDefault || (iff.Flags & IFFFlags.HideLabel) == 0x0))
             {
                 var gridBounds = grid.Comp.LocalAABB;
-
-
-                Label label;
-
-                if (!_iffControls.TryGetValue(gUid, out var control))
-                {
-                    label = new Label
-                    {
-                        HorizontalAlignment = HAlignment.Left,
-                    };
-
-                    _iffControls[gUid] = label;
-                    AddChild(label);
-                }
-                else
-                {
-                    label = (Label) control;
-                }
-
-                label.FontColorOverride = color;
-                label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 10);
                 var gridCentre = matty.Transform(gridBody.LocalCenter);
                 gridCentre.Y = -gridCentre.Y;
                 var distance = gridCentre.Length();
@@ -298,78 +275,67 @@ public sealed class RadarControl : MapGridControl
                 var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
                 if (isOutsideRadarCircle)
                 {
-                    // offset the icons slightly away from edge of radar so it doesnt clip.
+                    // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
                     uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
                     uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
-                    uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
+                    uiPosition = new Vector2(
+                        x: uiX + uiXCentre,
+                        y: uiY + uiYCentre
+                    );
                 }
 
-                label.Visible = ShowIFFShuttles || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+                var scaledMousePosition = ScalePosition(GetMouseCoordinatesFromCenter().Position);
+                var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition) < 30f;
 
-                if (IFFFilter != null)
+                // Distant stations that are not player controlled ships
+                var isDistantPOI = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+
+                if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
-                    label.Visible &= IFFFilter(gUid, grid.Comp, iff);
-                }
+                    Label label;
 
-                label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
-
-                var blipSize = 15;
-
-                LayoutContainer.SetPosition(label, uiPosition with
-                {
-                    X = uiPosition.X + blipSize * 0.7f,
-                    Y = uiPosition.Y - (label.Height / 2)
-                });
-
-                var verts = new[]
-                {
-                    new Vector2(0, 0),
-                    new Vector2(blipSize, 0),
-                    new Vector2(blipSize*0.6f, blipSize)
-                };
-
-                if (isOutsideRadarCircle)
-                {
-                    // Calculate the vector from the center to the position
-                    Vector2 vectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre);
-
-                    // Calculate the angle of rotation
-                    float angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + 0.5f;
-
-                    // Manually create a rotation matrix
-                    float cos = (float) Math.Cos(angle);
-                    float sin = (float) Math.Sin(angle);
-                    float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
-
-                    // Rotate each vertex
-                    for (int i = 0; i < verts.Length; i++)
+                    if (!_iffControls.TryGetValue(gUid, out var control))
                     {
-                        Vector2 vertex = verts[i];
-                        float x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
-                        float y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
-                        verts[i] = new Vector2(x, y);
+                        label = new Label
+                        {
+                            HorizontalAlignment = HAlignment.Left,
+                        };
+
+                        _iffControls[gUid] = label;
+                        AddChild(label);
                     }
+                    else
+                    {
+                        label = (Label) control;
+                    }
+
+                    label.FontColorOverride = color;
+                    label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", RadarFontSize);
+                    label.Visible = (ShowIFFShuttles && iff != null) || iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
+                    if (IFFFilter != null)
+                    {
+                        label.Visible &= IFFFilter(gUid, grid.Comp, iff);
+                    }
+
+                    // Shows decimal when distance is < 50m, otherwise pointless to show it.
+                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : $"{distance:0}";
+                    label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", displayedDistance));
+
+                    var sideCorrection = uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
+                    var blipCorrection = (RadarBlipSize * 0.7f);
+
+                    LayoutContainer.SetPosition(label, uiPosition with
+                    {
+                        X = uiPosition.X > Width / 2 ? uiPosition.X + blipCorrection + sideCorrection : uiPosition.X + blipCorrection,
+                        Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
+                    });
                 }
-
-                // Calculate the center of the current triangle
-                Vector2 currentCenter = (verts[0] + verts[1] + verts[2]) / 3;
-
-                // Calculate the vectors from the center to each vertex
-                Vector2[] vectorsFromCenter = new Vector2[3];
-                for (int i = 0; i < 3; i++)
+                else
                 {
-                    vectorsFromCenter[i] = verts[i] - currentCenter;
+                    ClearLabel(gUid);
                 }
 
-                // Calculate the vertices of the new triangle
-                Vector2[] newVerts = new Vector2[3];
-                for (int i = 0; i < 3; i++)
-                {
-                    newVerts[i] = uiPosition + vectorsFromCenter[i];
-                }
-
-                // Draw the new triangle
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, newVerts, color);
+                DrawBlip(handle, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, color);
             }
             else
             {
@@ -384,9 +350,71 @@ public sealed class RadarControl : MapGridControl
 
         foreach (var (ent, _) in _iffControls)
         {
-            if (shown.Contains(ent)) continue;
+            if (shown.Contains(ent))
+            {
+                continue;
+            }
             ClearLabel(ent);
         }
+    }
+
+    private void DrawBlip(
+        DrawingHandleBase handle,
+        bool isOutsideRadarCircle,
+        Vector2 uiPosition,
+        int uiXCentre,
+        int uiYCentre,
+        Color color
+    )
+    {
+        var triangleShapeVectorPoints = new[]
+        {
+            new Vector2(0, 0),
+            new Vector2(RadarBlipSize, 0),
+            new Vector2(RadarBlipSize*0.5f, RadarBlipSize)
+        };
+
+        if (isOutsideRadarCircle)
+        {
+            // Calculate the vector from the center to the position
+            var vectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre);
+
+            // Calculate the angle of rotation
+            var angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + 0.5f;
+
+            // Manually create a rotation matrix
+            var cos = (float) Math.Cos(angle);
+            var sin = (float) Math.Sin(angle);
+            float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+            // Rotate each vertex
+            for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+            {
+                var vertex = triangleShapeVectorPoints[i];
+                var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                triangleShapeVectorPoints[i] = new Vector2(x, y);
+            }
+        }
+
+        var triangleCenterVector = (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+        // Calculate the vectors from the center to each vertex
+        var vectorsFromCenter = new Vector2[3];
+        for (int i = 0; i < 3; i++)
+        {
+            vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+        }
+
+        // Calculate the vertices of the new triangle
+        var newVerts = new Vector2[3];
+        for (var i = 0; i < 3; i++)
+        {
+            newVerts[i] = (uiPosition * UIScale) + vectorsFromCenter[i];
+        }
+
+        // Draw the new triangle
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, newVerts, color.WithAlpha(0.6f));
     }
 
     private void Clear()
@@ -401,7 +429,10 @@ public sealed class RadarControl : MapGridControl
 
     private void ClearLabel(EntityUid uid)
     {
-        if (!_iffControls.TryGetValue(uid, out var label)) return;
+        if (!_iffControls.TryGetValue(uid, out var label))
+        {
+            return;
+        }
         label.Dispose();
         _iffControls.Remove(uid);
     }
