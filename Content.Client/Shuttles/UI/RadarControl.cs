@@ -318,7 +318,7 @@ public sealed class RadarControl : MapGridControl
                     }
 
                     // Shows decimal when distance is < 50m, otherwise pointless to show it.
-                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : $"{distance:0}";
+                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}km";
                     label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", displayedDistance));
 
                     var sideCorrection = uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
