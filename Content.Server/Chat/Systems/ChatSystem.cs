@@ -22,6 +22,7 @@ using Content.Shared.Players;
 using Content.Shared.Radio;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
@@ -70,7 +71,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public override void Initialize()
     {
         base.Initialize();
-        InitializeEmotes();
+        CacheEmotes();
         _configurationManager.OnValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged, true);
         _configurationManager.OnValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
         _configurationManager.OnValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
@@ -81,7 +82,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     public override void Shutdown()
     {
         base.Shutdown();
-        ShutdownEmotes();
         _configurationManager.UnsubValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged);
         _configurationManager.UnsubValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged);
         _configurationManager.UnsubValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged);
@@ -197,6 +197,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!CanSendInGame(message, shell, player))
             return;
 
+        ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
+
         // this method is a disaster
         // every second i have to spend working with this code is fucking agony
         // scientists have to wonder how any of this was merged
@@ -240,7 +242,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker);
                 return;
             }
         }
@@ -327,7 +329,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
         if (playSound)
         {
-            SoundSystem.Play(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
@@ -365,7 +367,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playDefaultSound)
         {
-            SoundSystem.Play(announcementSound?.GetSound() ?? DefaultAnnouncementSound, filter, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
@@ -387,7 +389,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, originalMessage);
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
+
         if (message.Length == 0)
             return;
 
@@ -454,7 +457,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, originalMessage);
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
         if (message.Length == 0)
             return;
 
@@ -475,7 +478,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             name = nameEv.Name;
         }
         name = FormattedMessage.EscapeText(name);
-
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
@@ -554,7 +556,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
             ("entityName", name),
             ("entity", ent),
-            ("message", FormattedMessage.EscapeText(action)));
+            ("message", FormattedMessage.RemoveMarkup(action)));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
@@ -740,6 +742,17 @@ public sealed partial class ChatSystem : SharedChatSystem
         return ev.Message;
     }
 
+    public bool CheckIgnoreSpeechBlocker(EntityUid sender, bool ignoreBlocker)
+    {
+        if (ignoreBlocker)
+            return ignoreBlocker;
+
+        var ev = new CheckIgnoreSpeechBlockerEvent(sender, ignoreBlocker);
+        RaiseLocalEvent(sender, ev, true);
+
+        return ev.IgnoreBlocker;
+    }
+
     private IEnumerable<INetChannel> GetDeadChatClients()
     {
         return Filter.Empty()
@@ -874,6 +887,18 @@ public sealed class TransformSpeechEvent : EntityEventArgs
     {
         Sender = sender;
         Message = message;
+    }
+}
+
+public sealed class CheckIgnoreSpeechBlockerEvent : EntityEventArgs
+{
+    public EntityUid Sender;
+    public bool IgnoreBlocker;
+
+    public CheckIgnoreSpeechBlockerEvent(EntityUid sender, bool ignoreBlocker)
+    {
+        Sender = sender;
+        IgnoreBlocker = ignoreBlocker;
     }
 }
 

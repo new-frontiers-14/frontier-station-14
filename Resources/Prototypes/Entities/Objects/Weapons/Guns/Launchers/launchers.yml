@@ -12,17 +12,13 @@
     slots:
     - Back
   - type: Item
-    size: 60
+    size: Huge
   - type: StaticPrice
     price: 500
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponRanged # Frontier
-    - WeaponLongarms # Frontier
 
 - type: entity
   name: china lake
@@ -244,7 +240,6 @@
     - type: Gun
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
       fireRate: 0.5
-    - type: RechargeCycleAmmo
     - type: BasicEntityAmmoProvider
       proto: GrapplingHook
       capacity: 1
@@ -267,8 +262,6 @@
             False: { state: base-unshaded-off }
     - type: Tag # Frontier
       tags: # Frontier
-      - WeaponRanged # Frontier
-      - WeaponShortArms # Frontier
       - Sidearm # Frontier
 
 # Admeme
@@ -276,7 +269,7 @@
   name: tether gun
   parent: BaseItem
   id: WeaponTetherGunAdmin
-  suffix: admin
+  suffix: Admeme
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
     - type: TetherGun
@@ -315,7 +308,7 @@
   name: force gun
   parent: BaseItem
   id: WeaponForceGunAdmin
-  suffix: Admin
+  suffix: Admeme
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
     - type: ForceGun

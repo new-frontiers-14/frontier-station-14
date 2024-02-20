@@ -1,5 +1,10 @@
+using Content.Server.Actions;
+using Content.Server.Bed.Sleep;
+using Content.Server.Carrying;
 using Content.Server.DoAfter;
+using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
@@ -18,6 +23,9 @@ public sealed class PseudoItemSystem : EntitySystem
     [Dependency] private readonly ItemSystem _itemSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!; // Frontier
+    [Dependency] private readonly ActionsSystem _actions = default!; // Frontier
+    [Dependency] private readonly PopupSystem _popup = default!; // Frontier
 
     [ValidatePrototypeId<TagPrototype>]
     private const string PreventTag = "PreventLabel";
@@ -32,6 +40,7 @@ public sealed class PseudoItemSystem : EntitySystem
         SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<PseudoItemComponent, PseudoItemInsertDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PseudoItemComponent, ContainerGettingInsertedAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<PseudoItemComponent, TryingToSleepEvent>(OnTrySleeping); // Frontier
     }
 
     private void AddInsertVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<InnateVerb> args)
@@ -45,9 +54,6 @@ public sealed class PseudoItemSystem : EntitySystem
         if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
             return;
 
-        if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
-            return;
-
         if (Transform(args.Target).ParentUid == uid)
             return;
 
@@ -55,7 +61,7 @@ public sealed class PseudoItemSystem : EntitySystem
         {
             Act = () =>
             {
-                TryInsert(args.Target, uid, component, targetStorage);
+                TryInsert(args.Target, uid, args.User, component, targetStorage);
             },
             Text = Loc.GetString("action-name-insert-self"),
             Priority = 2
@@ -69,6 +75,9 @@ public sealed class PseudoItemSystem : EntitySystem
             return;
 
         if (args.User == args.Target)
+            return;
+
+        if (component.Active)
             return;
 
         if (args.Hands == null)
@@ -96,6 +105,10 @@ public sealed class PseudoItemSystem : EntitySystem
 
         RemComp<ItemComponent>(uid);
         component.Active = false;
+
+        // Frontier
+        if (component.SleepAction is { Valid: true })
+            _actions.RemoveAction(uid, component.SleepAction);
     }
 
     private void OnGettingPickedUpAttempt(EntityUid uid, PseudoItemComponent component,
@@ -103,6 +116,20 @@ public sealed class PseudoItemSystem : EntitySystem
     {
         if (args.User == args.Item)
             return;
+
+        // Frontier: prevent people from pushing each other from a bag
+        if (HasComp<ItemComponent>(args.User))
+        {
+            args.Cancel();
+            return;
+        }
+
+        // Frontier: try to carry the person when taking them out of a bag.
+        if (_carrying.TryCarry(args.User, uid))
+        {
+            args.Cancel();
+            return;
+        }
 
         Transform(uid).AttachToGridOrMap();
         args.Cancel();
@@ -119,28 +146,33 @@ public sealed class PseudoItemSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Used == null)
             return;
 
-        args.Handled = TryInsert(args.Args.Used.Value, uid, component);
+        args.Handled = TryInsert(args.Args.Used.Value, uid, args.User, component);
     }
 
-    public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component,
+    public bool TryInsert(EntityUid storageUid, EntityUid toInsert, EntityUid userUid, PseudoItemComponent component,
         StorageComponent? storage = null)
     {
         if (!Resolve(storageUid, ref storage))
             return false;
 
-        if (component.Size > storage.StorageCapacityMax - storage.StorageUsed)
-            return false;
-
         var item = EnsureComp<ItemComponent>(toInsert);
         _tagSystem.TryAddTag(toInsert, PreventTag);
         _itemSystem.SetSize(toInsert, component.Size, item);
+        _itemSystem.VisualsChanged(toInsert);
 
-        if (!_storageSystem.Insert(storageUid, toInsert, out _, null, storage))
+        if (!_storageSystem.CanInsert(storageUid, toInsert, out _) ||
+            !_storageSystem.PlayerInsertEntityInWorld(storageUid, userUid, toInsert))
         {
             component.Active = false;
             RemComp<ItemComponent>(toInsert);
             return false;
         }
+        _storageSystem.UpdateUI(storageUid);
+        _storageSystem.UpdateAppearance(storageUid);
+
+        // Frontier
+        if (HasComp<AllowsSleepInsideComponent>(storageUid))
+            _actions.AddAction(toInsert, ref component.SleepAction, SleepingSystem.SleepActionId, toInsert);
 
         component.Active = true;
         return true;
@@ -170,5 +202,13 @@ public sealed class PseudoItemSystem : EntitySystem
             return;
         // This hopefully shouldn't trigger, but this is a failsafe just in case so we dont bluespace them cats
         args.Cancel();
+    }
+
+    // Frontier - show a popup when a pseudo-item falls asleep inside a bag.
+    private void OnTrySleeping(EntityUid uid, PseudoItemComponent component, TryingToSleepEvent args)
+    {
+        var parent = Transform(uid).ParentUid;
+        if (!HasComp<SleepingComponent>(uid) && parent is { Valid: true } && HasComp<AllowsSleepInsideComponent>(parent))
+            _popup.PopupEntity(Loc.GetString("popup-sleep-in-bag", ("entity", uid)), uid);
     }
 }
