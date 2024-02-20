@@ -71,8 +71,11 @@ namespace Content.Server.Kitchen.Components
 
         public Container Storage = default!;
 
+        /// <summary>
+        ///     The maximum number of items this microwave can store.
+        /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public int Capacity = 10;
+        public int Capacity = 16;
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
