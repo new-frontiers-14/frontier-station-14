@@ -1,20 +1,23 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
             xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-            SetSize="300 150"
-            MinSize="300 150">
+            SetSize="300 186"
+            MinSize="300 186">
     <BoxContainer Orientation="Vertical">
-        <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Horizontal" SetHeight="25">
             <Label Text="{Loc 'contraband-pallet-menu-appraisal-label'}"
                    StyleClasses="LabelKeyText" />
             <Label Name="AppraisalLabel"
                    Text="{Loc 'contraband-pallet-menu-no-goods-text'}" />
         </BoxContainer>
-        <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Horizontal" SetHeight="25">
             <Label Text="{Loc 'contraband-pallet-menu-count-label'}"
                    StyleClasses="LabelKeyText" />
             <Label Name="CountLabel"
                    Text="{Loc 'contraband-pallet-menu-no-goods-text'}" />
+        </BoxContainer>
+        <BoxContainer Orientation = "Horizontal" VerticalExpand = "False" SetHeight="62">
+            <RichTextLabel Name="Disclaimer" Access="Public" StyleClasses="LabelSubText"/>
         </BoxContainer>
         <Button Name="AppraiseButton"
                 Text="{Loc 'contraband-pallet-appraise-button'}"/>

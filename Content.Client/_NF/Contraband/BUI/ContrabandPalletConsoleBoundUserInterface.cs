@@ -1,6 +1,7 @@
 using Content.Client._NF.Contraband.UI;
 using Content.Shared._NF.Contraband.BUI;
 using Content.Shared._NF.Contraband.Events;
+using Robust.Shared.Utility;
 
 namespace Content.Client._NF.Contraband.BUI;
 
@@ -16,12 +17,13 @@ public sealed class ContrabandPalletConsoleBoundUserInterface : BoundUserInterfa
     protected override void Open()
     {
         base.Open();
-
+        var disclaimer = new FormattedMessage();
+        disclaimer.AddText(Loc.GetString($"contraband-pallet-disclaimer"));
         _menu = new ContrabandPalletMenu();
         _menu.AppraiseRequested += OnAppraisal;
         _menu.SellRequested += OnSell;
         _menu.OnClose += Close;
-
+        _menu.Disclaimer.SetMessage(disclaimer);
         _menu.OpenCentered();
     }
 

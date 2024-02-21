@@ -17,12 +17,12 @@ public sealed partial class ContrabandPalletMenu : FancyWindow
         RobustXamlLoader.Load(this);
         SellButton.OnPressed += OnSellPressed;
         AppraiseButton.OnPressed += OnAppraisePressed;
-        Title = Loc.GetString("cargo-pallet-console-menu-title");
+        Title = Loc.GetString("contraband-pallet-console-menu-title");
     }
 
     public void SetAppraisal(int amount)
     {
-        AppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
+        AppraisalLabel.Text = Loc.GetString("contraband-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
     public void SetCount(int count)

@@ -299,18 +299,18 @@
     - type: Sprite
       netsync: false
       noRot: true
-      sprite: Structures/Machines/computers.rsi
+      sprite: _NF/Structures/Machines/computers.rsi
       layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: request
-        - map: ["computerLayerKeys"]
-          state: tech_key
-    - type: Appearance
-    - type: GenericVisualizer
+      - map: ["computerLayerBody"]
+        state: computer
+      - map: ["computerLayerKeyboard"]
+        state: generic_keyboard
+      - map: ["computerLayerScreen"]
+        state: contraband
+      - map: ["computerLayerKeys"]
+        state: telesci_key
+      - type: Appearance
+      - type: GenericVisualizer
       visuals:
         enum.ComputerVisuals.Powered:
           computerLayerScreen:

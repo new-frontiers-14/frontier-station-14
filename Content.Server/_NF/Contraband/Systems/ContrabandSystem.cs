@@ -88,10 +88,10 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         UpdatePalletConsoleInterface(uid, component);
     }
 
-    private List<(EntityUid Entity, CargoPalletComponent Component)> GetCargoPallets(EntityUid gridUid)
+    private List<(EntityUid Entity, ContrabandPalletComponent Component)> GetContrabandPallets(EntityUid gridUid)
     {
-        var pads = new List<(EntityUid, CargoPalletComponent)>();
-        var query = AllEntityQuery<CargoPalletComponent, TransformComponent>();
+        var pads = new List<(EntityUid, ContrabandPalletComponent)>();
+        var query = AllEntityQuery<ContrabandPalletComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var comp, out var compXform))
         {
@@ -131,7 +131,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         amount = 0;
         toSell = new HashSet<EntityUid>();
 
-        foreach (var (palletUid, _) in GetCargoPallets(gridUid))
+        foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
                          LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
