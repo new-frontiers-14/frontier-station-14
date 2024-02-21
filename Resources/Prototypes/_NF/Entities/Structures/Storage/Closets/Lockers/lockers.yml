@@ -79,3 +79,15 @@
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: AccessReader
     access: [["Captain"], ["Pilot"]]
+
+# Wooden Cabinet
+- type: entity
+  id: LockerWoodenGeneric
+  parent: LockerBooze
+  name: wooden cabinet
+  description: Dusty old wooden cabinet. Smells like grandparents.
+  components:
+  - type: Construction
+    graph: StorageFurnitureGraph
+    node: LockerWoodenGenericNode
+  - type: AccessReader
