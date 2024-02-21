@@ -92,7 +92,7 @@ public sealed class RadarControl : MapGridControl
         }
 
         var a = InverseScalePosition(args.RelativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
+        var relativeWorldPos = a with { Y = -a.Y };
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
         var coords = _coordinates.Value.Offset(relativeWorldPos);
         OnRadarClick?.Invoke(coords);
@@ -110,11 +110,10 @@ public sealed class RadarControl : MapGridControl
         }
 
         var pos = _uiManager.MousePositionScaled.Position - GlobalPosition;
-        var relativeWorldPos =  InverseScalePosition(pos);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
+        var relativeWorldPos = _rotation.Value.RotateVec(pos);
 
         // I am not sure why the resulting point is 20 units under the mouse.
-        return _coordinates.Value.Offset(relativeWorldPos + new Vector2(0, -20));
+        return _coordinates.Value.Offset(relativeWorldPos);
     }
 
     public void UpdateState(RadarConsoleBoundInterfaceState ls)
@@ -284,8 +283,8 @@ public sealed class RadarControl : MapGridControl
                     );
                 }
 
-                var scaledMousePosition = ScalePosition(GetMouseCoordinatesFromCenter().Position);
-                var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition) < 30f;
+                var scaledMousePosition = GetMouseCoordinatesFromCenter().Position * UIScale;
+                var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
 
                 // Distant stations that are not player controlled ships
                 var isDistantPOI = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
@@ -323,12 +322,15 @@ public sealed class RadarControl : MapGridControl
 
                     var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
                     var blipCorrection = (RadarBlipSize * 0.7f);
-
-                    LayoutContainer.SetPosition(label, uiPosition with
+                    var correctedUiPosition = uiPosition with
                     {
-                        X = uiPosition.X > Width / 2 ? uiPosition.X + blipCorrection + sideCorrection : uiPosition.X + blipCorrection,
+                        X = uiPosition.X > Width / 2
+                            ? uiPosition.X + blipCorrection + sideCorrection
+                            : uiPosition.X + blipCorrection,
                         Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
-                    });
+                    };
+
+                    LayoutContainer.SetPosition(label, correctedUiPosition);
                 }
                 else
                 {
@@ -380,7 +382,7 @@ public sealed class RadarControl : MapGridControl
             var vectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre);
 
             // Calculate the angle of rotation
-            var angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + 0.5f;
+            var angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + -1.6f;
 
             // Manually create a rotation matrix
             var cos = (float) Math.Cos(angle);
