@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Abilities.Psionics;
 using Content.Shared.Speech;
 using Content.Shared.Stealth.Components;
@@ -7,11 +6,12 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Damage;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
-using Content.Server.Psionics;
 using Content.Server.GameTicking;
+using Content.Server.Psionics;
+using Content.Shared.Actions.Events;
+using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -26,6 +26,7 @@ namespace Content.Server.Abilities.Psionics
         [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
+        [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
         public override void Initialize()
         {
@@ -43,22 +44,17 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnInit(EntityUid uid, MindSwapPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<EntityTargetActionPrototype>("MindSwap", out var mindSwap))
-                return;
-
-            component.MindSwapPowerAction = new EntityTargetAction(mindSwap);
-            if (mindSwap.UseDelay != null)
-                component.MindSwapPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) mindSwap.UseDelay);
-            _actions.AddAction(uid, component.MindSwapPowerAction, null);
-
+            _actions.AddAction(uid, ref component.MindSwapActionEntity, component.MindSwapActionId );
+            _actions.TryGetActionData( component.MindSwapActionEntity, out var actionData );
+            if (actionData is { UseDelay: not null })
+                _actions.StartUseDelay(component.MindSwapActionEntity);
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
-                psionic.PsionicAbility = component.MindSwapPowerAction;
+                psionic.PsionicAbility = component.MindSwapActionEntity;
         }
 
         private void OnShutdown(EntityUid uid, MindSwapPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("MindSwap", out var action))
-                _actions.RemoveAction(uid, new EntityTargetAction(action), null);
+            _actions.RemoveAction(uid, component.MindSwapActionEntity);
         }
 
         private void OnPowerUsed(MindSwapPowerActionEvent args)
@@ -134,8 +130,9 @@ namespace Content.Server.Abilities.Psionics
             if (!HasComp<MindSwappedComponent>(args.Mind.CurrentEntity))
                 return;
 
-            //if (!args.ViaCommand)
-            //    return;
+            //No idea where the viaCommand went. It's on the internal OnGhostAttempt, but not this layer. Maybe unnecessary.
+            /*if (!args.viaCommand)
+                return;*/
 
             args.Result = false;
             args.Handled = true;
@@ -143,12 +140,12 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnSwapInit(EntityUid uid, MindSwappedComponent component, ComponentInit args)
         {
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("MindSwapReturn", out var mindSwap))
-            {
-                var action = new InstantAction(mindSwap);
-                action.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(15));
-                _actions.AddAction(uid, action, null);
-            }
+            _actions.AddAction(uid, ref component.MindSwapReturnActionEntity, component.MindSwapReturnActionId );
+            _actions.TryGetActionData( component.MindSwapReturnActionEntity, out var actionData );
+            if (actionData is { UseDelay: not null })
+                _actions.StartUseDelay(component.MindSwapReturnActionEntity);
+            if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
+                psionic.PsionicAbility = component.MindSwapReturnActionEntity;
         }
 
         public void Swap(EntityUid performer, EntityUid target, bool end = false)
@@ -157,30 +154,31 @@ namespace Content.Server.Abilities.Psionics
                 return;
 
             // Get the minds first. On transfer, they'll be gone.
-            Mind.Mind? performerMind = null;
-            Mind.Mind? targetMind = null;
+            MindComponent? performerMind = null;
+            MindComponent? targetMind = null;
 
             // This is here to prevent missing MindContainerComponent Resolve errors.
-            if (TryComp<MindContainerComponent>(performer, out var performerMindContainer))
-                performerMind = _mindSystem.GetMind(performer, performerMindContainer);
+            if(!_mindSystem.TryGetMind(performer, out var performerMindId, out performerMind)){
+                performerMind = null;
+            };
 
-            if (TryComp<MindContainerComponent>(target, out var targetMindContainer))
-                targetMind = _mindSystem.GetMind(target, targetMindContainer);
+            if(!_mindSystem.TryGetMind(target, out var targetMindId, out targetMind)){
+                targetMind = null;
+            };
 
             // Do the transfer.
             if (performerMind != null)
-                _mindSystem.TransferTo(performerMind, target, ghostCheckOverride: true);
+                _mindSystem.TransferTo(performerMindId, target, ghostCheckOverride: true, false, performerMind);
 
             if (targetMind != null)
-                _mindSystem.TransferTo(targetMind, performer, ghostCheckOverride: true);
+                _mindSystem.TransferTo(targetMindId, performer, ghostCheckOverride: true, false, targetMind);
 
             if (end)
             {
-                if (_prototypeManager.TryIndex<InstantActionPrototype>("MindSwapReturn", out var mindSwap))
-                {
-                    _actions.RemoveAction(performer, new InstantAction(mindSwap), null);
-                    _actions.RemoveAction(target, new InstantAction(mindSwap), null);
-                }
+                var performerMindPowerComp = EntityManager.GetComponent<MindSwappedComponent>(performer);
+                var targetMindPowerComp = EntityManager.GetComponent<MindSwappedComponent>(target);
+                _actions.RemoveAction(performer, performerMindPowerComp.MindSwapReturnActionEntity);
+                _actions.RemoveAction(target, targetMindPowerComp.MindSwapReturnActionEntity);
 
                 RemComp<MindSwappedComponent>(performer);
                 RemComp<MindSwappedComponent>(target);
@@ -196,24 +194,20 @@ namespace Content.Server.Abilities.Psionics
 
         public void GetTrapped(EntityUid uid)
         {
-            if (!_prototypeManager.TryIndex<InstantActionPrototype>("MindSwapReturn", out var action))
-                return;
 
             _popupSystem.PopupEntity(Loc.GetString("mindswap-trapped"), uid, uid, Shared.Popups.PopupType.LargeCaution);
-            _actions.RemoveAction(uid, action);
+            var perfComp = EnsureComp<MindSwappedComponent>(uid);
+            _actions.RemoveAction(uid, perfComp.MindSwapReturnActionEntity, null);
 
-            //if (HasComp<TelegnosticProjectionComponent>(uid))
-            //{
-            //    //RemComp<PsionicallyInvisibleComponent>(uid);
-            //    RemComp<StealthComponent>(uid);
-            //    EnsureComp<SpeechComponent>(uid);
-            //    EnsureComp<DispellableComponent>(uid);
-            //    MetaData(uid).EntityName = Loc.GetString("telegnostic-trapped-entity-name");
-            //    MetaData(uid).EntityDescription = Loc.GetString("telegnostic-trapped-entity-desc");
-            //}
+            if (HasComp<TelegnosticProjectionComponent>(uid))
+            {
+                RemComp<PsionicallyInvisibleComponent>(uid);
+                RemComp<StealthComponent>(uid);
+                EnsureComp<SpeechComponent>(uid);
+                EnsureComp<DispellableComponent>(uid);
+                _metaDataSystem.SetEntityName(uid, Loc.GetString("telegnostic-trapped-entity-name"));
+                _metaDataSystem.SetEntityDescription(uid, Loc.GetString("telegnostic-trapped-entity-desc"));
+            }
         }
     }
-
-    public sealed class MindSwapPowerActionEvent : EntityTargetActionEvent {}
-    public sealed class MindSwapPowerReturnActionEvent : InstantActionEvent {}
 }

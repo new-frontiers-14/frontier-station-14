@@ -6,7 +6,7 @@ namespace Content.Shared.Abilities.Psionics
     /// Takes damage when dispelled.
     /// </summary>
     [RegisterComponent]
-    public sealed class DamageOnDispelComponent : Component
+    public sealed partial class DamageOnDispelComponent : Component
     {
         [DataField("damage", required: true)]
         public DamageSpecifier  Damage = default!;

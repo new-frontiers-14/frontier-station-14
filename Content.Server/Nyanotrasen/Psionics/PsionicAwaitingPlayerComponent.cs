@@ -4,6 +4,6 @@ namespace Content.Server.Psionics
     /// Will open the 'accept psionics' UI when a player attaches.
     /// </summary>
     [RegisterComponent]
-    public sealed class PsionicAwaitingPlayerComponent : Component
+    public sealed partial class PsionicAwaitingPlayerComponent : Component
     {}
 }

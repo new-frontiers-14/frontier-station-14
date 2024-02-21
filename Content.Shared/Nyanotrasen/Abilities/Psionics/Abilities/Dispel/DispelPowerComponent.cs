@@ -1,4 +1,5 @@
-using Content.Shared.Actions;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Abilities.Psionics
 {
@@ -8,6 +9,11 @@ namespace Content.Shared.Abilities.Psionics
         [DataField("range")]
         public float Range = 10f;
 
-        public EntityTargetAction? DispelPowerAction = null;
+        [DataField("dispelActionId",
+            customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+        public string? DispelActionId = "ActionDispel";
+
+        [DataField("dispelActionEntity")]
+        public EntityUid? DispelActionEntity;
     }
 }

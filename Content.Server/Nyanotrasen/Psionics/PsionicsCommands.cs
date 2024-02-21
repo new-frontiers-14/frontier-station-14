@@ -1,9 +1,11 @@
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Abilities.Psionics;
+using Content.Shared.Actions;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Console;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Server.Psionics;
 
@@ -15,12 +17,19 @@ public sealed class ListPsionicsCommand : IConsoleCommand
     public string Help => Loc.GetString("command-lspsionic-help");
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        SharedActionsSystem actions = default!;
         var entMan = IoCManager.Resolve<IEntityManager>();
-        foreach (var (actor, mob, psionic, meta) in entMan.EntityQuery<ActorComponent, MobStateComponent, PsionicComponent, MetaDataComponent>())
-        {
+        foreach (var (actor, mob, psionic, meta) in entMan.EntityQuery<ActorComponent, MobStateComponent, PsionicComponent, MetaDataComponent>()){
             // filter out xenos, etc, with innate telepathy
-            if (psionic.PsionicAbility?.DisplayName != null)
-                shell.WriteLine(meta.EntityName + " (" + meta.Owner + ") - " + actor.PlayerSession.Name + " - " + Loc.GetString(psionic.PsionicAbility.DisplayName));
+            actions.TryGetActionData( psionic.PsionicAbility, out var actionData );
+            if (actionData == null || actionData.ToString() == null)
+                return;
+
+            var psiPowerName = actionData.ToString();
+            if (psiPowerName == null)
+                return;
+
+            shell.WriteLine(meta.EntityName + " (" + meta.Owner + ") - " + actor.PlayerSession.Name + Loc.GetString(psiPowerName));
         }
     }
 }

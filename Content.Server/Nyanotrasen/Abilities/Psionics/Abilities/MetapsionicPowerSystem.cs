@@ -1,10 +1,10 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Abilities.Psionics;
+using Content.Shared.Actions.Events;
+using Content.Shared.Mind;
 using Content.Shared.StatusEffect;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Abilities.Psionics
@@ -18,6 +18,7 @@ namespace Content.Server.Abilities.Psionics
         [Dependency] private readonly SharedPopupSystem _popups = default!;
         [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
 
         public override void Initialize()
@@ -30,22 +31,18 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnInit(EntityUid uid, MetapsionicPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<InstantActionPrototype>("MetapsionicPulse", out var metapsionicPulse))
-                return;
-
-            component.MetapsionicPowerAction = new InstantAction(metapsionicPulse);
-            if (metapsionicPulse.UseDelay != null)
-                component.MetapsionicPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) metapsionicPulse.UseDelay);
-            _actions.AddAction(uid, component.MetapsionicPowerAction, null);
-
+            _actions.AddAction(uid, ref component.MetapsionicActionEntity, component.MetapsionicActionId );
+            _actions.TryGetActionData( component.MetapsionicActionEntity, out var actionData );
+            if (actionData is { UseDelay: not null })
+                _actions.StartUseDelay(component.MetapsionicActionEntity);
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
-                psionic.PsionicAbility = component.MetapsionicPowerAction;
+                psionic.PsionicAbility = component.MetapsionicActionEntity;
+
         }
 
         private void OnShutdown(EntityUid uid, MetapsionicPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("MetapsionicPulse", out var metapsionicPulse))
-                _actions.RemoveAction(uid, new InstantAction(metapsionicPulse), null);
+            _actions.RemoveAction(uid, component.MetapsionicActionEntity);
         }
 
         private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)
@@ -66,6 +63,4 @@ namespace Content.Server.Abilities.Psionics
             args.Handled = true;
         }
     }
-
-    public sealed class MetapsionicPowerActionEvent : InstantActionEvent {}
 }

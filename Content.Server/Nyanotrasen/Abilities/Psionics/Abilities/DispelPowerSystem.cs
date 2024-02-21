@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.StatusEffect;
 using Content.Shared.Abilities.Psionics;
 using Content.Shared.Damage;
@@ -7,6 +6,9 @@ using Content.Shared.Revenant.Components;
 using Content.Server.Guardian;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
+using Content.Shared.Actions.Events;
+using Content.Shared.Mind;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -26,6 +28,7 @@ namespace Content.Server.Abilities.Psionics
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
 
         public override void Initialize()
@@ -45,22 +48,17 @@ namespace Content.Server.Abilities.Psionics
 
         private void OnInit(EntityUid uid, DispelPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<EntityTargetActionPrototype>("Dispel", out var action))
-                return;
-
-            component.DispelPowerAction = new EntityTargetAction(action);
-            if (action.UseDelay != null)
-                component.DispelPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) action.UseDelay);
-            _actions.AddAction(uid, component.DispelPowerAction, null);
-
+            _actions.AddAction(uid, ref component.DispelActionEntity, component.DispelActionId );
+            _actions.TryGetActionData( component.DispelActionEntity, out var actionData );
+            if (actionData is { UseDelay: not null })
+                _actions.StartUseDelay(component.DispelActionEntity);
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
-                psionic.PsionicAbility = component.DispelPowerAction;
+                psionic.PsionicAbility = component.DispelActionEntity;
         }
 
         private void OnShutdown(EntityUid uid, DispelPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("Dispel", out var action))
-                _actions.RemoveAction(uid, new EntityTargetAction(action), null);
+            _actions.RemoveAction(uid, component.DispelActionEntity);
         }
 
         private void OnPowerUsed(DispelPowerActionEvent args)
@@ -83,7 +81,7 @@ namespace Content.Server.Abilities.Psionics
             QueueDel(uid);
             Spawn("Ash", Transform(uid).Coordinates);
             _popupSystem.PopupCoordinates(Loc.GetString("psionic-burns-up", ("item", uid)), Transform(uid).Coordinates, Filter.Pvs(uid), true, Shared.Popups.PopupType.MediumCaution);
-            _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(uid), uid, true);
+            _audioSystem.PlayEntity("/Audio/Effects/lightburn.ogg", Filter.Pvs(uid), uid, true);
             args.Handled = true;
         }
 
@@ -100,7 +98,7 @@ namespace Content.Server.Abilities.Psionics
         private void OnGuardianDispelled(EntityUid uid, GuardianComponent guardian, DispelledEvent args)
         {
             if (TryComp<GuardianHostComponent>(guardian.Host, out var host))
-                _guardianSystem.ToggleGuardian(guardian.Host, host);
+                _guardianSystem.ToggleGuardian(guardian.Host.Value, host);
 
             DealDispelDamage(uid);
             args.Handled = true;
@@ -127,7 +125,7 @@ namespace Content.Server.Abilities.Psionics
                 return;
 
             _popupSystem.PopupCoordinates(Loc.GetString("psionic-burn-resist", ("item", uid)), Transform(uid).Coordinates, Filter.Pvs(uid), true, Shared.Popups.PopupType.SmallCaution);
-            _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(uid), uid, true);
+            _audioSystem.PlayEntity("/Audio/Effects/lightburn.ogg", Filter.Pvs(uid), uid, true);
 
             if (damage == null)
             {
@@ -137,8 +135,5 @@ namespace Content.Server.Abilities.Psionics
             _damageableSystem.TryChangeDamage(uid, damage, true, true);
         }
     }
-
-    public sealed class DispelPowerActionEvent : EntityTargetActionEvent {}
-
     public sealed class DispelledEvent : HandledEntityEventArgs {}
 }

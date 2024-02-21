@@ -10,6 +10,7 @@ using Content.Server.Jobs;
 using Content.Server.Materials;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Psionics;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Atmos;
 using Content.Shared.CCVar;
@@ -35,9 +36,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Emag.Systems;
-using Content.Server.Popups;
-using Content.Server.Traits.Assorted;
 using Content.Shared._NF.Cloning;
 using Content.Shared.Bank.Components;
 using Robust.Shared.Serialization.Manager;
@@ -252,6 +250,9 @@ namespace Content.Server.Cloning
 
             var mob = Spawn(speciesPrototype.Prototype, Transform(uid).MapPosition);
             _humanoidSystem.CloneAppearance(bodyToClone, mob);
+
+            // Nyano - Summary: adds the potential psionic trait to the reanimated mob.
+            EnsureComp<PotentialPsionicComponent>(mob);
 
             // bank account transfer
             if (TryComp<BankAccountComponent>(bodyToClone, out var bank))

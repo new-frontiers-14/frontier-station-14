@@ -1,7 +1,7 @@
 namespace Content.Shared.Abilities.Psionics
 {
     [RegisterComponent]
-    public sealed class ClothingGrantPsionicPowerComponent : Component
+    public sealed partial class ClothingGrantPsionicPowerComponent : Component
     {
         [DataField("power", required: true)]
         public string Power = "";

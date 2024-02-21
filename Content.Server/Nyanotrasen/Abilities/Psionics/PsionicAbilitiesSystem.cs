@@ -6,12 +6,12 @@ using Content.Shared.Random.Helpers;
 using Content.Server.EUI;
 using Content.Server.Psionics;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
+using Content.Shared.Mind.Components;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Abilities.Psionics
 {
@@ -50,8 +50,11 @@ namespace Content.Server.Abilities.Psionics
             if (HasComp<PsionicComponent>(uid))
                 return;
 
+            //Don't know if this will work. New mind state vs old.
             if (!TryComp<MindContainerComponent>(uid, out var mindContainer) ||
-                !_mindSystem.TryGetMind(uid, out var mind, mindContainer))
+                !_mindSystem.TryGetMind(uid, out _, out var mind ))
+            //||
+            //!_mindSystem.TryGetMind(uid, out var mind, mindContainer))
             {
                 EnsureComp<PsionicAwaitingPlayerComponent>(uid);
                 return;
@@ -122,8 +125,13 @@ namespace Content.Server.Abilities.Psionics
                 if (EntityManager.TryGetComponent(uid, comp.GetType(), out var psionicPower))
                     RemComp(uid, psionicPower);
             }
-            if (psionic.PsionicAbility != null)
-                _actionsSystem.RemoveAction(uid, psionic.PsionicAbility);
+            if (psionic.PsionicAbility != null){
+                _actionsSystem.TryGetActionData( psionic.PsionicAbility, out var psiAbility );
+                if (psiAbility != null){
+                    var owner = psiAbility.Owner;
+                    _actionsSystem.RemoveAction(uid, psiAbility.Owner);
+                }
+            }
 
             _statusEffectsSystem.TryAddStatusEffect(uid, "Stutter", TimeSpan.FromMinutes(5), false, "StutteringAccent");
 

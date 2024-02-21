@@ -3,12 +3,10 @@ using Content.Server.Power.Components;
 using Content.Server.Electrocution;
 using Content.Server.Lightning;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Construction;
 using Content.Server.Ghost;
 using Content.Server.Revenant.EntitySystems;
 using Content.Shared.Audio;
 using Content.Shared.Construction.EntitySystems;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.GameTicking;
 using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Verbs;
@@ -17,6 +15,7 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Construction.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
@@ -41,6 +40,7 @@ namespace Content.Server.Psionics.Glimmer
         [Dependency] private readonly RevenantSystem _revenantSystem = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
 
         public float Accumulator = 0;
         public const float UpdateFrequency = 15f;
@@ -79,27 +79,26 @@ namespace Content.Server.Psionics.Glimmer
             _appearanceSystem.SetData(uid, GlimmerReactiveVisuals.GlimmerTier, isEnabled ? currentGlimmerTier : GlimmerTier.Minimal);
 
             // update ambient sound
-            //if (TryComp(uid, out GlimmerSoundComponent? glimmerSound)
-            //    && TryComp(uid, out AmbientSoundComponent? ambientSoundComponent)
-            //    && glimmerSound.GetSound(currentGlimmerTier, out SoundSpecifier? spec))
-            //{
-            //    if (spec != null)
-            //       _sharedAmbientSoundSystem.SetSound(uid, spec, ambientSoundComponent);
-            //}
+            if (TryComp(uid, out GlimmerSoundComponent? glimmerSound)
+                && TryComp(uid, out AmbientSoundComponent? ambientSoundComponent)
+                && glimmerSound.GetSound(currentGlimmerTier, out SoundSpecifier? spec))
+            {
+                if (spec != null)
+                    _sharedAmbientSoundSystem.SetSound(uid, spec, ambientSoundComponent);
+            }
 
-            if (component.ModulatesPointLight)
-                if (TryComp(uid, out SharedPointLightComponent? pointLight))
+            if (component.ModulatesPointLight) //SharedPointLightComponent is now being fetched via TryGetLight.
+                if (_pointLightSystem.TryGetLight(uid, out var pointLight))
                 {
-                    pointLight.Enabled = isEnabled ? currentGlimmerTier != GlimmerTier.Minimal : false;
-
+                    _pointLightSystem.SetEnabled(uid, isEnabled ? currentGlimmerTier != GlimmerTier.Minimal : false, pointLight);
                     // The light energy and radius are kept updated even when off
                     // to prevent the need to store additional state.
                     //
                     // Note that this doesn't handle edge cases where the
                     // PointLightComponent is removed while the
                     // GlimmerReactiveComponent is still present.
-                    pointLight.Energy += glimmerTierDelta * component.GlimmerToLightEnergyFactor;
-                    pointLight.Radius += glimmerTierDelta * component.GlimmerToLightRadiusFactor;
+                    _pointLightSystem.SetEnergy(uid, pointLight.Energy + glimmerTierDelta * component.GlimmerToLightEnergyFactor, pointLight);
+                    _pointLightSystem.SetRadius(uid, pointLight.Radius + glimmerTierDelta * component.GlimmerToLightRadiusFactor, pointLight);
                 }
 
         }
@@ -113,9 +112,6 @@ namespace Content.Server.Psionics.Glimmer
         {
             if (component.RequiresApcPower && !HasComp<ApcPowerReceiverComponent>(uid))
                 Logger.Warning($"{ToPrettyString(uid)} had RequiresApcPower set to true but no ApcPowerReceiverComponent was found on init.");
-
-            if (component.ModulatesPointLight && !HasComp<SharedPointLightComponent>(uid))
-                Logger.Warning($"{ToPrettyString(uid)} had ModulatesPointLight set to true but no PointLightComponent was found on init.");
 
             UpdateEntityState(uid, component, LastGlimmerTier, (int) LastGlimmerTier);
         }
@@ -231,13 +227,13 @@ namespace Content.Server.Psionics.Glimmer
         public void BeamRandomNearProber(EntityUid prober, int targets, float range = 10f)
         {
             List<EntityUid> targetList = new();
-            foreach (var target in _entityLookupSystem.GetComponentsInRange<StatusEffectsComponent>(Transform(prober).Coordinates, range))
+            foreach (var target in _entityLookupSystem.GetComponentsInRange<StatusEffectsComponent>(_transformSystem.GetMapCoordinates(prober), range))
             {
                 if (target.AllowedEffects.Contains("Electrocution"))
                     targetList.Add(target.Owner);
             }
 
-            foreach(var reactive in _entityLookupSystem.GetComponentsInRange<SharedGlimmerReactiveComponent>(Transform(prober).Coordinates, range))
+            foreach(var reactive in _entityLookupSystem.GetComponentsInRange<SharedGlimmerReactiveComponent>(_transformSystem.GetMapCoordinates(prober), range))
             {
                 targetList.Add(reactive.Owner);
             }
@@ -403,4 +399,3 @@ namespace Content.Server.Psionics.Glimmer
         }
     }
 }
-

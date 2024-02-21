@@ -12,6 +12,7 @@ using Content.Server.Electrocution;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
@@ -29,6 +30,7 @@ namespace Content.Server.Psionics
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         /// <summary>
         /// Unfortunately, since spawning as a normal role and anything else is so different,
@@ -71,7 +73,7 @@ namespace Content.Server.Psionics
             {
                 if (HasComp<PsionicComponent>(entity))
                 {
-                    SoundSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(entity), entity);
+                    _audio.PlayPvs("/Audio/Effects/lightburn.ogg", entity);
                     args.ModifiersList.Add(component.Modifiers);
                     if (_random.Prob(component.DisableChance))
                         _statusEffects.TryAddStatusEffect(entity, "PsionicsDisabled", TimeSpan.FromSeconds(10), true, "PsionicsDisabled");

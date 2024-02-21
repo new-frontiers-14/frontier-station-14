@@ -1,6 +1,6 @@
 namespace Content.Shared.Abilities.Psionics
 {
     [RegisterComponent]
-    public sealed class DispellableComponent : Component
+    public sealed partial class DispellableComponent : Component
     {}
 }

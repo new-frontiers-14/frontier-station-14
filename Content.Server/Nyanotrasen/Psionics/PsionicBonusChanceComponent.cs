@@ -1,7 +1,7 @@
 namespace Content.Server.Psionics
 {
     [RegisterComponent]
-    public sealed class PsionicBonusChanceComponent : Component
+    public sealed partial class PsionicBonusChanceComponent : Component
     {
         [DataField("multiplier")]
         public float Multiplier = 1f;

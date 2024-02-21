@@ -3,7 +3,7 @@ using Content.Shared.Damage;
 namespace Content.Server.Psionics
 {
     [RegisterComponent]
-    public sealed class AntiPsionicWeaponComponent : Component
+    public sealed partial class AntiPsionicWeaponComponent : Component
     {
 
         [DataField("modifiers", required: true)]

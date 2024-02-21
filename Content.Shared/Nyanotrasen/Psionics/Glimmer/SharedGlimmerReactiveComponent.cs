@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Shared.Psionics.Glimmer
 {
     [RegisterComponent]
-    public class SharedGlimmerReactiveComponent : Component
+    public partial class SharedGlimmerReactiveComponent : Component
     {
         /// <summary>
         /// Do the effects of this component require power from an APC?
@@ -36,6 +36,6 @@ namespace Content.Shared.Psionics.Glimmer
         /// Noises to play on failed turn off.
         /// </summary>
         [DataField("shockNoises")]
-        public SoundSpecifier ShockNoises { get; } = new SoundCollectionSpecifier("sparks");
+        public SoundSpecifier ShockNoises { get; private set; } = new SoundCollectionSpecifier("sparks");
     }
 }

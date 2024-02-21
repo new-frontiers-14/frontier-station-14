@@ -4,7 +4,7 @@ using Content.Shared.DoAfter;
 namespace Content.Shared.Psionics.Events
 {
     [Serializable, NetSerializable]
-    public sealed class PsionicRegenerationDoAfterEvent : DoAfterEvent
+    public sealed partial class PsionicRegenerationDoAfterEvent : DoAfterEvent
     {
         [DataField("startedAt", required: true)]
         public TimeSpan StartedAt;
@@ -22,7 +22,7 @@ namespace Content.Shared.Psionics.Events
     }
 
     [Serializable, NetSerializable]
-    public sealed class GlimmerWispDrainDoAfterEvent : SimpleDoAfterEvent
+    public sealed partial class GlimmerWispDrainDoAfterEvent : SimpleDoAfterEvent
     {
     }
 }
