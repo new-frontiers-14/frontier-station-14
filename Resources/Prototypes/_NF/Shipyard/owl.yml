@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Houtblokje
+# Discord: houtblokje_
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Owl
+  name: NM Owl
+  description: A medium-sized research hospital. Has a medbay, small chemistry area and a research department for on-board artifact anlysis.
+  price: 47795
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/owl.yml
+
+- type: gameMap
+  id: Owl
+  mapName: 'NM owl'
+  mapPath: /Maps/_NF/Shuttles/owl.yml
+  minPlayers: 0
+  stations:
+    Owl:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Owl {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            ChiefMedicalOfficer: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            MedicalIntern: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
