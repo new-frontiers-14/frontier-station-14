@@ -1,0 +1,107 @@
+- type: entity
+  name: frontier uplink coin
+  parent: BaseItem
+  id: FrontierUplinkCoin
+  suffix: 20 TC
+  description: A token awarded to the NFSD for turning in contraband. It can be exchanged in an NFSD uplink device for a variety of law enforcement tools.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Security/frontieruplinkcoin.rsi
+    state: frontieruplinkcoin
+  - type: Item
+    sprite: _NF/Objects/Specific/Security/frontieruplinkcoin.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: FrontierUplinkCoin
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      FrontierUplinkCoin: 1
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin1
+  suffix: 1 TC
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin5
+  suffix: 5 TC
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin10
+  suffix: 10 TC
+  components:
+  - type: Stack
+    count: 10
+
+# Uplinks
+- type: entity
+  parent: BaseItem
+  id: BaseSecurityUplinkRadio
+  name: nfsd uplink
+  description: Retro looking old radio...
+  suffix: Empty
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 0
+  - type: Tag
+    tags:
+    - SecurityUplink
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioDebug
+  suffix: Security, DEBUG
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 99999
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioSheriff
+  suffix: Sheriff 15
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 15
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioOfficer
+  suffix: Officer 10
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 10
