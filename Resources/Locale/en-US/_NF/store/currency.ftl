@@ -1,1 +1,1 @@
-store-currency-display-security-telecrystal = Blue TC
+store-currency-display-security-telecrystal = FUC
