@@ -20,5 +20,5 @@ public sealed partial class ContrabandComponent : Component
     /// The currency stack prototype ID to spawn as reward.
     /// </summary>
     [DataField("currency", customTypeSerializer: typeof(PrototypeIdSerializer<StackPrototype>))]
-    public string Currency = "SecurityTelecrystal";
+    public string Currency = "FrontierUplinkCoin";
 }
