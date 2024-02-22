@@ -1,0 +1,30 @@
+- type: vessel
+  id: Ceres
+  name: NC Ceres
+  description: A medium-size, high-class restaurant ship with ample seating, integrated botany and a dining room for VIP guests
+  price: 47500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/ceres.yml
+
+- type: gameMap
+  id: Ceres
+  mapName: 'NC Ceres'
+  mapPath: /Maps/_NF/Shuttles/ceres.yml
+  minPlayers: 0
+  stations:
+    Ceres:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ceres {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Botanist: [ 0, 0 ]
+            Chef: [ 0, 0 ]
+            ServiceWorker: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
