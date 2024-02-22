@@ -275,7 +275,7 @@ namespace Content.Server.Power.Pow3r
 
                 battery.SupplyRampTarget = battery.MaxEffectiveSupply * relativeTargetBatteryOutput - battery.CurrentReceiving * battery.Efficiency;
 
-                // #Frontier - commenting this out this until they fix SMES issue i guess
+                // #Frontier - This is causing server crashes on debug builds, disabling it for now. Happens when big new group of demanding machines turn on causing a surge.
                 //DebugTools.Assert(battery.SupplyRampTarget + battery.CurrentReceiving * battery.Efficiency <= battery.LoadingNetworkDemand
                 //    || MathHelper.CloseToPercent(battery.SupplyRampTarget + battery.CurrentReceiving * battery.Efficiency, battery.LoadingNetworkDemand, 0.001));
             }
