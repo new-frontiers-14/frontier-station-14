@@ -10,14 +10,17 @@
   - type: Clothing
     sprite: Nyanotrasen/Clothing/Belt/mailbag.rsi
     quickEquip: false
-    slots: [belt]
+    slots:
+        - belt
+  - type: Item
+    size: Large
   - type: Storage
-    maxItemSize: Small
     grid:
-    - 0,0,7,5
+      - 0,0,5,3
     quickInsert: true
     areaInsert: true
     whitelist:
       components:
         - Mail
   - type: MagnetPickup # Frontier
+  
