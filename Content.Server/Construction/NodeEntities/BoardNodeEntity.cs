@@ -29,6 +29,9 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
 
         var board = container.ContainedEntities[0];
 
+        if (args.EntityManager.TryGetComponent(board, out ComputerTabletopBoardComponent? tabletopcomputer))
+            return tabletopcomputer.Prototype;
+
         // There should not be a case where both of these components exist on the same entity...
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))
             return machine.Prototype;
