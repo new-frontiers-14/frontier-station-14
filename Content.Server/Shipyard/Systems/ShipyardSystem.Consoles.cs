@@ -173,12 +173,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             var newAccess = newCap.Tags.ToList();
             newAccess.Add($"Captain");
 
-            if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
-            {
-                newAccess.Add($"Security");
-                newAccess.Add($"Brig");
-            }
-            if (ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
+            if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
             {
                 newAccess.Add($"Security");
                 newAccess.Add($"Brig");
@@ -195,11 +190,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var channel = component.ShipyardChannel;
 
-        if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey)
-            if (ShipyardConsoleUiKey.CustomSecurity != (ShipyardConsoleUiKey) args.UiKey)
-                _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
-            else
-                channel = component.SecurityShipyardChannel;
+        if (ShipyardConsoleUiKey.Security != (ShipyardConsoleUiKey) args.UiKey && ShipyardConsoleUiKey.CustomSecurity != (ShipyardConsoleUiKey) args.UiKey)
+            _idSystem.TryChangeJobTitle(targetId, $"Captain", idCard, player);
         else
             channel = component.SecurityShipyardChannel;
 
@@ -337,9 +329,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         RemComp<ShuttleDeedComponent>(targetId);
 
-        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
-            channel = component.SecurityShipyardChannel;
-        if (ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.CustomSecurity == (ShipyardConsoleUiKey) args.UiKey)
             channel = component.SecurityShipyardChannel;
 
         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
