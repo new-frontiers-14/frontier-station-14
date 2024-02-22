@@ -431,7 +431,7 @@ entities:
       parent: 1
 - proto: LockerEvidence
   entities:
-  - uid: 62
+  - uid: 61
     components:
     - type: Transform
       pos: -0.5,0.5
@@ -460,20 +460,20 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 63
+          - 62
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: null
 - proto: PlastitaniumWindow
   entities:
-  - uid: 64
+  - uid: 63
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-  - uid: 65
+  - uid: 64
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -481,7 +481,7 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
-  - uid: 66
+  - uid: 65
     components:
     - type: MetaData
       flags: PvsPriority
@@ -489,7 +489,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 1
-  - uid: 67
+  - uid: 66
     components:
     - type: MetaData
       flags: PvsPriority
@@ -497,7 +497,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 1
-  - uid: 68
+  - uid: 67
     components:
     - type: MetaData
       flags: PvsPriority
@@ -507,13 +507,13 @@ entities:
       parent: 1
 - proto: Railing
   entities:
-  - uid: 69
+  - uid: 68
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,4.5
       parent: 1
-  - uid: 70
+  - uid: 69
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -521,13 +521,13 @@ entities:
       parent: 1
 - proto: RailingCorner
   entities:
-  - uid: 71
+  - uid: 70
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,4.5
       parent: 1
-  - uid: 72
+  - uid: 71
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -535,7 +535,7 @@ entities:
       parent: 1
 - proto: SmallGyroscopeSecurity
   entities:
-  - uid: 61
+  - uid: 72
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -664,7 +664,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
-  - uid: 90
+  - uid: 89
     components:
     - type: MetaData
       flags: PvsPriority
@@ -672,20 +672,22 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: WallPlastitaniumDiagonal
-  entities:
-  - uid: 89
+  - uid: 99
     components:
+    - type: MetaData
+      flags: PvsPriority
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-  - uid: 91
+- proto: WallPlastitaniumDiagonal
+  entities:
+  - uid: 90
     components:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-  - uid: 92
+  - uid: 91
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -693,7 +695,7 @@ entities:
       parent: 1
 - proto: WallPlastitaniumIndestructible
   entities:
-  - uid: 93
+  - uid: 92
     components:
     - type: MetaData
       flags: PvsPriority
@@ -701,7 +703,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-3.5
       parent: 1
-  - uid: 94
+  - uid: 93
     components:
     - type: MetaData
       flags: PvsPriority
@@ -709,7 +711,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 1
-  - uid: 95
+  - uid: 94
     components:
     - type: MetaData
       flags: PvsPriority
@@ -717,7 +719,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 1
-  - uid: 96
+  - uid: 95
     components:
     - type: MetaData
       flags: PvsPriority
@@ -725,7 +727,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
-  - uid: 97
+  - uid: 96
     components:
     - type: MetaData
       flags: PvsPriority
@@ -735,7 +737,7 @@ entities:
       parent: 1
 - proto: WarpPointShip
   entities:
-  - uid: 98
+  - uid: 97
     components:
     - type: Transform
       pos: 0.5,0.5
@@ -744,18 +746,18 @@ entities:
       location: Gunner
 - proto: WeaponEmpEmitter
   entities:
-  - uid: 63
+  - uid: 62
     components:
     - type: MetaData
       flags: InContainer
     - type: Transform
-      parent: 62
+      parent: 61
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
 - proto: WindoorSecureSecurityLocked
   entities:
-  - uid: 99
+  - uid: 98
     components:
     - type: Transform
       rot: 3.141592653589793 rad

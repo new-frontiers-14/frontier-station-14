@@ -4,8 +4,18 @@
   name: blast door
   suffix: Security
   components:
+  - type: WirelessNetworkConnection
+    range: 300
   - type: AccessReader
     access: [["Security"]]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: SecurityBlastDoorOpen
@@ -14,3 +24,13 @@
   components:
   - type: AccessReader
     access: [["Security"]]
+  - type: Door
+    state: Open
+  - type: Occluder
+    enabled: false
+  - type: Physics
+    canCollide: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false
