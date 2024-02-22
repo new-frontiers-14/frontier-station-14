@@ -405,10 +405,13 @@ namespace Content.Server.VendingMachines
                 {
                     if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
                     {
-                        if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                        var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                        foreach (var stationBankComp in stationQuery)
                         {
-                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
+                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
                         }
+
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
                 }
