@@ -14,15 +14,14 @@ namespace Content.Client._NF.Language; // This EXACT class must have the _NF par
 [GenerateTypedNameReferences]
 public sealed partial class LanguageMenuWindow : DefaultWindow
 {
-    [Dependency] private readonly IConsoleHost _consoleHost = default!;
     private readonly LanguageSystem _language;
-
     private readonly List<EntryState> _entries = new();
+
+    public Action<string>? OnLanguageSelected;
 
     public LanguageMenuWindow()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
         _language = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
 
         Title = Loc.GetString("language-menu-window-title");
@@ -113,7 +112,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
     private void OnLanguageChosen(string id)
     {
-        _consoleHost.ExecuteCommand("lsselectlang " + id);
+        OnLanguageSelected?.Invoke(id);
     }
 
     private struct EntryState
