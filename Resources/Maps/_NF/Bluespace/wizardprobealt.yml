@@ -2478,10 +2478,12 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ComputerTabletopIFFSyndicate
+- proto: ComputerTabletopIFF
   entities:
-  - uid: 521
+  - uid: 2
     components:
+    - type: MetaData
+      name: damaged IFF computer
     - type: Transform
       pos: -0.5,1.5
       parent: 1
@@ -2492,9 +2494,9 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-- proto: ComputerTabletopShuttleSyndie
+- proto: ComputerTabletopShuttle
   entities:
-  - uid: 2
+  - uid: 521
     components:
     - type: Transform
       pos: 0.5,1.5
