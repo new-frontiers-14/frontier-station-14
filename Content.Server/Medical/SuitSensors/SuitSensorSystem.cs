@@ -17,6 +17,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Numerics; //Frontier modification
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -347,14 +348,22 @@ public sealed class SuitSensorSystem : EntitySystem
 
                 if (transform.GridUid != null)
                 {
-                    coordinates = new EntityCoordinates(transform.GridUid.Value,
+					/*
+					coordinates = new EntityCoordinates(transform.GridUid.Value,
                         _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
                         .Transform(_transform.GetWorldPosition(transform, xformQuery)));
+					*/
+                    coordinates = new EntityCoordinates(uid,
+                       new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
                 }
                 else if (transform.MapUid != null)
                 {
+					/*
                     coordinates = new EntityCoordinates(transform.MapUid.Value,
                         _transform.GetWorldPosition(transform, xformQuery));
+					*/
+                    coordinates = new EntityCoordinates(uid,
+                       new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
                 }
                 else
                 {
