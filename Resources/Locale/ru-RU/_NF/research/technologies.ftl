@@ -1,0 +1,1 @@
+research-techology-advanced-personal-propulsion = Продвинутые системы движения

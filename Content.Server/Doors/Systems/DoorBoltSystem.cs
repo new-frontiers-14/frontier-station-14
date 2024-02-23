@@ -1,4 +1,4 @@
-using Content.Server.Power.Components;
+﻿using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;

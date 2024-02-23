@@ -40,6 +40,7 @@ public sealed class AirlockSystem : SharedAirlockSystem
         if (TryComp<ApcPowerReceiverComponent>(uid, out var receiverComponent))
         {
             Appearance.SetData(uid, DoorVisuals.Powered, receiverComponent.Powered);
+            Appearance.SetData(uid, DoorVisuals.ClosedLights, true); // Corvax-Resprite-Airlocks
         }
     }
 

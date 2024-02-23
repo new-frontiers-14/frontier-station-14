@@ -21,3 +21,6 @@ ent-CrateVendingMachineRestockLessLethalVendFilled = LessLethalVend restock crat
 
 ent-CrateVendingMachineRestockAutoTuneVendFilled = AutoTuneVend restock crate
     .desc = Contains two restock boxes for the AutoTuneVend vending machine.
+
+ent-CrateVendingMachineRestockPottedPlantVendFilled = Plant-O-Matic restock crate
+    .desc = Contains two restock boxes for the Plant-O-Matic vending machine.
