@@ -141,6 +141,14 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
+    public class BlipData
+    {
+        public bool IsOutsideRadarCircle { get; set; }
+        public Vector2 UiPosition { get; set; }
+        public Vector2 VectorToPosition { get; set; }
+        public Color Color { get; set; }
+    }
+
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
@@ -210,6 +218,8 @@ public sealed class RadarControl : MapGridControl
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids);
+
+        var blipDataList = new List<BlipData>();
 
         // Draw other grids... differently
         foreach (var grid in _grids)
@@ -337,12 +347,20 @@ public sealed class RadarControl : MapGridControl
                     ClearLabel(gUid);
                 }
 
-                DrawBlip(handle, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, color);
+                blipDataList.Add(new BlipData
+                {
+                    IsOutsideRadarCircle = isOutsideRadarCircle,
+                    UiPosition = uiPosition,
+                    VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
+                    Color = color
+                });
             }
             else
             {
                 ClearLabel(gUid);
             }
+
+            DrawBlips(handle, blipDataList);
 
             // Detailed view
             DrawGrid(handle, matty, grid, color, true);
@@ -360,63 +378,75 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
-    private void DrawBlip(
+    private void DrawBlips(
         DrawingHandleBase handle,
-        bool isOutsideRadarCircle,
-        Vector2 uiPosition,
-        int uiXCentre,
-        int uiYCentre,
-        Color color
+        List<BlipData> blipDataList
     )
     {
-        var triangleShapeVectorPoints = new[]
+        var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
+
+        foreach (var blipData in blipDataList)
         {
-            new Vector2(0, 0),
-            new Vector2(RadarBlipSize, 0),
-            new Vector2(RadarBlipSize*0.5f, RadarBlipSize)
-        };
-
-        if (isOutsideRadarCircle)
-        {
-            // Calculate the vector from the center to the position
-            var vectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre);
-
-            // Calculate the angle of rotation
-            var angle = (float) Math.Atan2(vectorToPosition.Y, vectorToPosition.X) + -1.6f;
-
-            // Manually create a rotation matrix
-            var cos = (float) Math.Cos(angle);
-            var sin = (float) Math.Sin(angle);
-            float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
-
-            // Rotate each vertex
-            for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+            var triangleShapeVectorPoints = new[]
             {
-                var vertex = triangleShapeVectorPoints[i];
-                var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
-                var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
-                triangleShapeVectorPoints[i] = new Vector2(x, y);
+                new Vector2(0, 0),
+                new Vector2(RadarBlipSize, 0),
+                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+            };
+
+            if (blipData.IsOutsideRadarCircle)
+            {
+                // Calculate the angle of rotation
+                var angle = (float) Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+
+                // Manually create a rotation matrix
+                var cos = (float) Math.Cos(angle);
+                var sin = (float) Math.Sin(angle);
+                float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+                // Rotate each vertex
+                for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+                {
+                    var vertex = triangleShapeVectorPoints[i];
+                    var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                    var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                    triangleShapeVectorPoints[i] = new Vector2(x, y);
+                }
             }
+
+            var triangleCenterVector =
+                (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+            // Calculate the vectors from the center to each vertex
+            var vectorsFromCenter = new Vector2[3];
+            for (int i = 0; i < 3; i++)
+            {
+                vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+            }
+
+            // Calculate the vertices of the new triangle
+            var newVerts = new Vector2[3];
+            for (var i = 0; i < 3; i++)
+            {
+                newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
+            }
+
+            if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
+            {
+                valueList = new ValueList<Vector2>();
+
+            }
+            valueList.Add(newVerts[0]);
+            valueList.Add(newVerts[1]);
+            valueList.Add(newVerts[2]);
+            blipValueList[blipData.Color] = valueList;
         }
 
-        var triangleCenterVector = (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
-
-        // Calculate the vectors from the center to each vertex
-        var vectorsFromCenter = new Vector2[3];
-        for (int i = 0; i < 3; i++)
+        // One draw call for every color we have
+        foreach (var color in blipValueList)
         {
-            vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
         }
-
-        // Calculate the vertices of the new triangle
-        var newVerts = new Vector2[3];
-        for (var i = 0; i < 3; i++)
-        {
-            newVerts[i] = (uiPosition * UIScale) + vectorsFromCenter[i];
-        }
-
-        // Draw the new triangle
-        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, newVerts, color.WithAlpha(0.6f));
     }
 
     private void Clear()
