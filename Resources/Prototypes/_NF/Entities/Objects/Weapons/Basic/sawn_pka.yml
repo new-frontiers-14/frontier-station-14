@@ -9,19 +9,17 @@
     state: icon
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
-    state: icon
     size: Small
     shape:
     - 0,0,1,0
-    - 0,1,0,1
   - type: Gun
     fireRate: 0.5
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     angleDecay: 45
     minAngle: 41
     maxAngle: 55
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: AmmoCounter
@@ -39,8 +37,6 @@
     slots:
     - suitStorage
     - Belt
-#  - type: UseDelay
-#    delay: 1
   - type: Tag
     tags:
     - Sidearm
