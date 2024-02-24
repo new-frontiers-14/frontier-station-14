@@ -27,6 +27,15 @@
     damage:
       types:
         Heat: 0
+# Mad stamina
+  - type: Stamina
+    critThreshold: 400
+# Narrow dmg thresholds
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      120: Dead
   - type: Advertise
     pack: wizardhumanoidchatter
     minimumWait: 120 # 1 * 2
