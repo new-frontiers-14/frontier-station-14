@@ -30,7 +30,7 @@
       - BloodCultistPriestGear
   - type: Reflect
     enabled: true
-    reflectProb: .5
+    reflectProb: .3
     spread: 90
   - type: HitscanBatteryAmmoProvider
     proto: BloodCultLaser
@@ -57,7 +57,7 @@
       - BloodCultistAcolyteGear
   - type: Reflect
     enabled: true
-    reflectProb: .5
+    reflectProb: .3
     spread: 90
 
 - type: entity
@@ -136,6 +136,10 @@
   - type: MovementIgnoreGravity
   - type: Advertise
     pack: bloodcultisthumanoidchatter
+  - type: Reflect
+    enabled: true
+    reflectProb: .5
+    spread: 90
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
