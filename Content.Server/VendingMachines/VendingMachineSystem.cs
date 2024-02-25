@@ -67,6 +67,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
@@ -202,6 +203,12 @@ namespace Content.Server.VendingMachines
         private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
         {
             // only emag if there are emag-only items
+            args.Handled = component.EmaggedInventory.Count > 0;
+        }
+
+        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
+        {
+            // only unemag if there are emag-only items
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
@@ -398,10 +405,13 @@ namespace Content.Server.VendingMachines
                 {
                     if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
                     {
-                        if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                        var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                        foreach (var stationBankComp in stationQuery)
                         {
-                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
+                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
                         }
+
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
                 }
