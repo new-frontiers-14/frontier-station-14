@@ -1,6 +1,6 @@
 ent-IDCardStandard = ID карта
     .desc = Карта, необходимая для доступа в различные области станции.
-ent-PassengerIDCard = ID карта пассажира
+ent-PassengerIDCard = ID карта авантюриста
     .desc = { ent-IDCardStandard.desc }
 ent-TechnicalAssistantIDCard = ID карта ассистента-техника
     .desc = { ent-PassengerIDCard.desc }
@@ -90,7 +90,7 @@ ent-CentcomIDCardDeathsquad = ID карта эскадрона смерти
 ent-AgentIDCard = { ent-PassengerIDCard }
     .suffix = Агентская
     .desc = { ent-PassengerIDCard.desc }
-ent-NukieAgentIDCard = ID карта пассажира
+ent-NukieAgentIDCard = ID карта авантюриста
     .suffix = Оперативники
     .desc = { ent-AgentIDCard.desc }
 ent-AtmosIDCard = ID карта атмосферного техника
