@@ -1,4 +1,6 @@
 
+using Robust.Shared.Serialization;
+
 [Serializable, NetSerializable]
 public sealed class AdjustStationJobMsg : BoundUserInterfaceMessage
 {

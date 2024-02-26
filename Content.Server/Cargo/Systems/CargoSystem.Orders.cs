@@ -200,7 +200,7 @@ namespace Content.Server.Cargo.Systems
             }
             _bankSystem.TryBankWithdraw(player, cost);
 
-            UpdateOrders(orderDatabase);
+            UpdateOrders(uid, orderDatabase);
         }
 
         private void OnRemoveOrderMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleRemoveOrderMessage args)
@@ -236,7 +236,7 @@ namespace Content.Server.Cargo.Systems
 
             var data = GetOrderData(args, product, GenerateOrderId(orderDatabase));
 
-            if (!TryAddOrder(stationUid.Value, data, orderDatabase))
+            if (!TryAddOrder(orderDatabase.Owner, data, orderDatabase))
             {
                 PlayDenySound(uid, component);
                 return;
@@ -251,7 +251,7 @@ namespace Content.Server.Cargo.Systems
         private void OnOrderUIOpened(EntityUid uid, CargoOrderConsoleComponent component, BoundUIOpenedEvent args)
         {
             var station = _station.GetOwningStation(uid);
-            UpdateOrderState(uid, station);
+            UpdateOrderState(component, station);
         }
 
         #endregion
@@ -331,13 +331,13 @@ namespace Content.Server.Cargo.Systems
             // Order added so all consoles need updating.
             var orderQuery = AllEntityQuery<CargoOrderConsoleComponent>();
 
-            while (orderQuery.MoveNext(out var uid, out var _))
+            while (orderQuery.MoveNext(out var uid, out var comp))
             {
                 var station = _station.GetOwningStation(uid);
                 if (station != dbUid)
                     continue;
 
-                UpdateOrderState(uid, station);
+                UpdateOrderState(comp, station);
             }
 
             var consoleQuery = AllEntityQuery<CargoShuttleConsoleComponent>();

@@ -14,7 +14,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Trade.Components;
 using Content.Shared.Emag.Components;
-using System.Text; // Frontier - DEMAG
+using System.Text;
+using Content.Shared.Storage;
+using Robust.Shared.Audio; // Frontier - DEMAG
 
 namespace Content.Shared.Lock;
 
@@ -265,7 +267,6 @@ public sealed class LockSystem : EntitySystem
         if (HasComp<EmaggedComponent>(uid))
         {
             _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
-            _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
             //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
             component.Locked = true;
             args.Handled = true;

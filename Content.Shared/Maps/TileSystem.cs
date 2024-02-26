@@ -100,9 +100,6 @@ public sealed class TileSystem : EntitySystem
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tile.TypeId];
 
-        if (!tileDef.CanCrowbar)
-            return false;
-
         return DeconstructTile(tileRef);
     }
     // Delta V

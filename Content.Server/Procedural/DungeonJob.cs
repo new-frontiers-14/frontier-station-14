@@ -92,9 +92,9 @@ public sealed partial class DungeonJob : Job<Dungeon>
 
         switch (_gen.Generator)
         {
-            case NoiseDunGen noise:
-                dungeon = await GenerateNoiseDungeon(noise, _gridUid, _grid, _seed);
-                break;
+//            case NoiseDunGen noise:
+//                dungeon = await GenerateNoiseDungeon(noise, _gridUid, _grid, _seed);
+//                break;
             case PrefabDunGen prefab:
                 dungeon = await GeneratePrefabDungeon(prefab, _gridUid, _grid, _seed);
                 DebugTools.Assert(dungeon.RoomExteriorTiles.Count > 0);
@@ -118,7 +118,7 @@ public sealed partial class DungeonJob : Job<Dungeon>
                     await PostGen(cabling, dungeon, _gridUid, _grid, random);
                     break;
                 case BiomePostGen biome:
-                    await PostGen(biome, dungeon, _gridUid, _grid, random);
+//                    await PostGen(biome, dungeon, _gridUid, _grid, random);
                     break;
                 case BoundaryWallPostGen boundary:
                     await PostGen(boundary, dungeon, _gridUid, _grid, random);
@@ -151,7 +151,7 @@ public sealed partial class DungeonJob : Job<Dungeon>
                     await PostGen(internalWindow, dungeon, _gridUid, _grid, random);
                     break;
                 case BiomeMarkerLayerPostGen markerPost:
-                    await PostGen(markerPost, dungeon, _gridUid, _grid, random);
+//                    await PostGen(markerPost, dungeon, _gridUid, _grid, random);
                     break;
                 case RoomEntrancePostGen rEntrance:
                     await PostGen(rEntrance, dungeon, _gridUid, _grid, random);

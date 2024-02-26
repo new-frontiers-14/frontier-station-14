@@ -1,6 +1,7 @@
 using Content.Server.Interaction.Components;
 using Content.Server.Popups;
 using Content.Server.NPC.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;

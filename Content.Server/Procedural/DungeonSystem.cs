@@ -6,6 +6,7 @@ using Content.Server.Decals;
 using Content.Server.GameTicking.Events;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.EntitySystems;
+using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;

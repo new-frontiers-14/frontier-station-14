@@ -28,7 +28,6 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly ContestsSystem _contests = default!;
     [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private  readonly EntityManager _entityManager = default!;

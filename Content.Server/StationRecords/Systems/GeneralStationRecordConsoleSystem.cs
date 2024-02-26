@@ -14,6 +14,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     public override void Initialize()
     {
@@ -51,7 +52,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         {
             _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
         }
-        UpdateUserInterface(uid, component);
+        UpdateUserInterface((uid,component));
     }
     private void OnFiltersChanged(Entity<GeneralStationRecordConsoleComponent> ent, ref SetStationRecordFilter msg)
     {
@@ -94,7 +95,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var key = new StationRecordKey(id, owningStation.Value);
         _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);
 
-        GeneralStationRecordConsoleState newState = new(id, record, listing, console.Filter);
+        GeneralStationRecordConsoleState newState = new(id, record, listing, jobList, console.Filter);
         _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, newState);
     }
 }

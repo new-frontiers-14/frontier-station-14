@@ -40,7 +40,7 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     public readonly StationRecordsFilter? Filter;
 
     public GeneralStationRecordConsoleState(uint? key, GeneralStationRecord? record,
-        Dictionary<uint, string>? recordListing, StationRecordsFilter? newFilter)
+        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<string, uint?>? jobList, StationRecordsFilter? newFilter)
     {
         SelectedKey = key;
         Record = record;
@@ -50,7 +50,7 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     }
     public IReadOnlyDictionary<string, uint?>? JobList { get;  }
 
-    public GeneralStationRecordConsoleState() : this(null, null, null, null)
+    public GeneralStationRecordConsoleState() : this(null, null, null, null, null)
     {
     }
 
