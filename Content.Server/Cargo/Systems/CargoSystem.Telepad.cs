@@ -1,6 +1,4 @@
 using Content.Server.Cargo.Components;
-using Content.Server.Construction;
-using Content.Server.Paper;
 using Content.Server.Power.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
@@ -18,8 +16,6 @@ public sealed partial class CargoSystem
     private void InitializeTelepad()
     {
         SubscribeLocalEvent<CargoTelepadComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<CargoTelepadComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<CargoTelepadComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<CargoTelepadComponent, PowerChangedEvent>(OnTelepadPowerChange);
         // Shouldn't need re-anchored event
         SubscribeLocalEvent<CargoTelepadComponent, AnchorStateChangedEvent>(OnTelepadAnchorChange);
@@ -58,27 +54,20 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            var xform = Transform(comp.Owner);
-            var station = xform.GridUid;
-
-            if (station == null) return;
+            var station = _station.GetOwningStation(console);
 
             if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase) ||
                 orderDatabase.Orders.Count == 0)
             {
-                if (!TryComp<StationCargoOrderDatabaseComponent>(_station.GetOwningStation((EntityUid) station), out var gridDatabase) ||
-                    gridDatabase.Orders.Count == 0)
-                {
-                    comp.Accumulator += comp.Delay;
-                    continue;
-                }
-                orderDatabase = gridDatabase;
+                comp.Accumulator += comp.Delay;
+                continue;
             }
 
-            if (FulfillOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
+            var xform = Transform(uid);
+            if (FulfillNextOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
-                UpdateOrders(orderDatabase);
+                UpdateOrders(station.Value, orderDatabase);
 
                 comp.CurrentState = CargoTelepadState.Teleporting;
                 _appearance.SetData(uid, CargoTelepadVisuals.State, CargoTelepadState.Teleporting, appearance);
@@ -91,17 +80,6 @@ public sealed partial class CargoSystem
     private void OnInit(EntityUid uid, CargoTelepadComponent telepad, ComponentInit args)
     {
         _linker.EnsureSinkPorts(uid, telepad.ReceiverPort);
-    }
-
-    private void OnRefreshParts(EntityUid uid, CargoTelepadComponent component, RefreshPartsEvent args)
-    {
-        var rating = args.PartRatings[component.MachinePartTeleportDelay] - 1;
-        component.Delay = component.BaseDelay * MathF.Pow(component.PartRatingTeleportDelay, rating);
-    }
-
-    private void OnUpgradeExamine(EntityUid uid, CargoTelepadComponent component, UpgradeExamineEvent args)
-    {
-        args.AddPercentageUpgrade("cargo-telepad-delay-upgrade", component.Delay / component.BaseDelay);
     }
 
     private void SetEnabled(EntityUid uid, CargoTelepadComponent component, ApcPowerReceiverComponent? receiver = null,
