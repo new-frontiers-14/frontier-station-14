@@ -1,0 +1,28 @@
+- type: entity
+  id: ContrabandPallet
+  name: contraband exchange pallet
+  description: Designates valid items to exchange with CentCom for security crystals
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure] # Frontier - BaseStructureDisabledToolsUse,BaseStructureIndestructible
+  components:
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: CollideOnAnchor
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 15
+        mask:
+          - MachineMask
+  - type: ContrabandPallet
+  - type: StaticPrice
+    price: 100
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - sprite: _NF/Structures/contraband_pallet.rsi
+      state: base
