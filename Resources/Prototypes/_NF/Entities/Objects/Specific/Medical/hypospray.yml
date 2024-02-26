@@ -1,0 +1,49 @@
+- type: entity
+  name: NTCS-101 hypospray 
+  parent: BaseItem
+  description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. 
+  id: HypoMini
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/hypomini.rsi
+    state: hypo
+  - type: Item
+    sprite: _NF/Objects/Specific/Medical/hypomini.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 5
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyMobs: false
+  - type: UseDelay
+    delay: 2.5
+  - type: StaticPrice
+    price: 550
+
+- type: entity
+  name: NTCS-102 hypospray
+  parent: HypoMini
+  description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. This one is branded for use by law-enforcement.
+  id: HypoBrigmedic
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
+    state: hypo
+  - type: Item
+    sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
+    
+- type: entity
+  name: NTCS-103 hypospray
+  parent: HypoMini
+  description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. This one seems to be a limited edition, lucky you!
+  id: HypoMiniLimitedEdition
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/hypominilimitededition.rsi
+    state: hypo
+  - type: Item
+    sprite: _NF/Objects/Specific/Medical/hypominilimitededition.rsi
