@@ -219,6 +219,7 @@ public sealed class RadarControl : MapGridControl
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids);
 
+        // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
 
         // Draw other grids... differently
@@ -257,6 +258,11 @@ public sealed class RadarControl : MapGridControl
             // Others default:
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
+
+            /****************************************************************************
+             * FRONTIER - BEGIN radar improvements
+             * Everything below until end block belong to frontier improvements to radar
+             *****************************************************************************/
 
             if (ShowIFF && (iff == null && IFFComponent.ShowIFFDefault || (iff.Flags & IFFFlags.HideLabel) == 0x0))
             {
@@ -378,6 +384,10 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
+    /**
+     * Frontier - Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
+     * Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
+     */
     private void DrawBlips(
         DrawingHandleBase handle,
         List<BlipData> blipDataList
@@ -448,6 +458,9 @@ public sealed class RadarControl : MapGridControl
             handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
         }
     }
+    /****************************************************************************
+     * FRONTIER - END radar improvements
+     *****************************************************************************/
 
     private void Clear()
     {
