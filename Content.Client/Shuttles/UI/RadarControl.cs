@@ -496,6 +496,7 @@ public sealed class RadarControl : MapGridControl
             var labeled = new HashSet<string>();
             foreach (var state in docks)
             {
+                var ent = _entManager.GetEntity(state.Entity);
                 var position = state.Coordinates.Position;
                 var uiPosition = matrix.Transform(position);
 
