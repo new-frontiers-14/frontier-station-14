@@ -8,10 +8,10 @@ mail-desc-priority = На защитной щёлочке активна [color=
 mail-desc-priority-inactive = На защитной щёлочке имеется неактивная [color=#886600]приоритетная маркировка[/color].
 mail-unlocked = Защитная щёлочка снята.
 mail-unlocked-by-emag = Защитная щёлочка*БЖЖЖЖТ*
-mail-unlocked-reward = Защитная щёлочка снята. {$bounty} кредитов добавлены в счёт карго.
-mail-penalty-lock = ЗАЩИТНАЯ ЩЁЛОЧКА УНИЧТОЖЕНА. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} КРЕДИТОВ.
-mail-penalty-fragile = ЦЕЛОСТНОСТЬ НАРУШЕНА. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} КРЕДИТОВ.
-mail-penalty-expired = ВРЕМЯ ДОСТАВКИ ВЫШЛО. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} КРЕДИТОВ.
+mail-unlocked-reward = Защитная щёлочка снята. {$bounty} спесос добавлены в счёт карго.
+mail-penalty-lock = ЗАЩИТНАЯ ЩЁЛОЧКА УНИЧТОЖЕНА. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} СПЕСОС.
+mail-penalty-fragile = ЦЕЛОСТНОСТЬ НАРУШЕНА. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} СПЕСОС.
+mail-penalty-expired = ВРЕМЯ ДОСТАВКИ ВЫШЛО. СЧЁТ КАРГО ПОЛУЧАЕТ ШТРАФ В СУММЕ {$credits} СПЕСОС.
 
 command-mailto-description = Queue a parcel to be delivered to an entity. Example usage: `mailto 1234 5678 false false`. The target container's contents will be transferred to an actual mail parcel.
 command-mailto-help = Usage: {$command} <recipient entityUid> <container entityUid> [is-fragile: true or false] [is-priority: true or false]

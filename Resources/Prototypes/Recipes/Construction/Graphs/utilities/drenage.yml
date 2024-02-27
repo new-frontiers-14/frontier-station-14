@@ -1,0 +1,30 @@
+- type: constructionGraph
+  id: Drains
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: floorDrains
+      steps:
+      - material: Gold
+        amount: 30
+        doAfter: 1
+
+  - node: floorDrains
+    entity: FloorDrain
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: IngotGold1
+        amount: 30
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1
+

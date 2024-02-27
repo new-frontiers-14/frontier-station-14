@@ -878,3 +878,48 @@
   canBuildInImpassable: true
   conditions:
   - !type:WallmountCondition
+
+# FAN
+- type: construction
+  name: Little Fan
+  id: LitleFan
+  description: Fan to hold the air in and space outside.
+  graph: Fan
+  startNode: start
+  targetNode: litleFan
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: Structures/Piping/Atmospherics/tinyfan.rsi
+    state: icon
+
+# DRAIN
+- type: construction
+  name: Floor Drain
+  id: FloorDrains
+  description: Drain your floor liquid.
+  graph: Drains
+  startNode: start
+  targetNode: floorDrains
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: Objects/Specific/Janitorial/drain.rsi
+    state: icon
+
+# CRYOPOD
+- type: construction
+  name: Cryo Pod
+  id: CryoPodic
+  description: Cryo pod and life support WRN!!!EXPERIMENTAL!!!.
+  graph: Cryopod
+  startNode: start
+  targetNode: cryoPod
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _NF/Structures/cryopod.rsi
+    state: closed

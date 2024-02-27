@@ -1,5 +1,5 @@
 - type: entity
-  name: shipyard console
+  name: консоль верфи
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerShipyard
   description: Used to purchase and sell shuttles
@@ -78,7 +78,7 @@
 - type: entity
   id: BaseMothershipComputer
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: mothership console
+  name: консоль материского корабля
   description: Used on motherships to purchase and sell ships without returning to a station.
   components:
   - type: ActivatableUI
@@ -93,7 +93,7 @@
 - type: entity
   id: ComputerShipyardSecurity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: security shipyard console
+  name: косоль верфи охраны
   description: Used to enlist into Nanotrasen Security Forces
   components:
   - type: Sprite
@@ -117,7 +117,7 @@
 - type: entity
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
-  name: black market shipyard console
+  name: консоль верфи черного рынка
   description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
   components:
   - type: ActivatableUI
@@ -141,7 +141,7 @@
 - type: entity
   id: ComputerShipyardExpedition
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: expedition shipyard console
+  name: консоль верфи экспедиций
   description: Used to buy ships outfitted for planetary expeditions
   components:
   - type: ActivatableUI
