@@ -77,6 +77,15 @@
     iconOn: _NF/Clothing/Shoes/Boots/magboots-combat.rsi/icon-on.png
 
 - type: entity
+  id: ActionToggleMagbootsNfsd
+  parent: ActionBaseToggleMagboots
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
+    iconOn: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi/icon-on.png
+
+- type: entity
   id: ActionToggleMagbootsMercenary
   parent: ActionBaseToggleMagboots
   noSpawn: true
@@ -102,3 +111,29 @@
   - type: InstantAction
     icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-galoshes.rsi, state: icon }
     iconOn: _NF/Clothing/Shoes/Boots/magboots-galoshes.rsi/icon-on.png
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsNfsd
+  name: nfsd magboots
+  description: Combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
+  - type: Magboots
+    toggleAction: ActionToggleMagbootsNfsd
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.9
+    enabled: false
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1
+    weightlessFriction: 0.3
+    weightlessModifier: 1.2
+  - type: Tag
+    tags:
+    - WhitelistChameleon
