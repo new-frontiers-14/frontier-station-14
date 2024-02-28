@@ -5,7 +5,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Popups;
-using Content.Server.Station.Systems;
+//using Content.Server.Station.Systems; // Frontier modification
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Inventory.Events;
@@ -31,12 +31,12 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    //[Dependency] private readonly StationSystem _stationSystem = default!; // Frontier modification
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
+        //SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn); // Frontier modification
         SubscribeLocalEvent<SuitSensorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SuitSensorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SuitSensorComponent, GotEquippedEvent>(OnEquipped);
@@ -57,9 +57,10 @@ public sealed class SuitSensorSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _gameTiming.CurTime;
-        var sensors = EntityManager.EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent>();
+        //var sensors = EntityManager.EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent>(); // Frontier modification
+		var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
 
-        while (sensors.MoveNext(out var uid, out var sensor, out var device))
+        while (sensors.MoveNext(out var uid, out var sensor, out var device, out var xform)) // Frontier modification
         {
             if (device.TransmitFrequency is null)
                 continue;
@@ -68,8 +69,10 @@ public sealed class SuitSensorSystem : EntitySystem
             if (curTime < sensor.NextUpdate)
                 continue;
 
+			/* -- Frontier modification
             if (!CheckSensorAssignedStation(uid, sensor))
                 continue;
+			*/
 
             // TODO: This would cause imprecision at different tick rates.
             sensor.NextUpdate = curTime + sensor.UpdateRate;
@@ -82,8 +85,10 @@ public sealed class SuitSensorSystem : EntitySystem
             //Retrieve active server address if the sensor isn't connected to a server
             if (sensor.ConnectedServer == null)
             {
-                if (!_monitoringServerSystem.TryGetActiveServerAddress(sensor.StationId!.Value, out var address))
+                //if (!_monitoringServerSystem.TryGetActiveServerAddress(sensor.StationId!.Value, out var address)) // Frontier modification
+				if (!_monitoringServerSystem.TryGetActiveServerAddress(xform.MapID, out var address)) // Frontier modification
                     continue;
+				
 
                 sensor.ConnectedServer = address;
             }
@@ -102,6 +107,7 @@ public sealed class SuitSensorSystem : EntitySystem
         }
     }
 
+	/* -- Frontier modification
     /// <summary>
     /// Checks whether the sensor is assigned to a station or not
     /// and tries to assign an unassigned sensor to a station if it's currently on a grid
@@ -141,11 +147,14 @@ public sealed class SuitSensorSystem : EntitySystem
             RecursiveSensor(child, stationUid, sensorQuery, xformQuery);
         }
     }
+	*/
 
     private void OnMapInit(EntityUid uid, SuitSensorComponent component, MapInitEvent args)
     {
+		/* -- Frontier modification
         // Fallback
         component.StationId ??= _stationSystem.GetOwningStation(uid);
+		*/
 
         // generate random mode
         if (component.RandomMode)
