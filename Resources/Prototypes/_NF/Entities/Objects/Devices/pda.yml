@@ -90,7 +90,7 @@
   description: Whosoever bears this PDA is the law.
   components:
   - type: Pda
-    id: HoSIDCard
+    id: ClothingNeckNfsdBadgeHoS
     state: pda-sheriff
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -118,8 +118,8 @@
   description: Whosoever bears this PDA could be the law.
   components:
   - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
+    id: ClothingNeckNfsdBadgeSecurityCadet
+    state: pda-cadet
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -146,8 +146,8 @@
   description: Whosoever bears this PDA is close to being the law.
   components:
   - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
+    id: ClothingNeckNfsdBadgeSecurity
+    state: pda-deputy
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -169,41 +169,13 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdDeputyGreen
-  name: deputy PDA
-  description: Whosoever bears this PDA is close to being the law.
-  components:
-  - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
-  - type: PdaBorderColor
-    borderColor: "#FFFDD0"
-    accentHColor: "#896b49"
-  - type: Sprite
-    sprite: _NF/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-  - type: Icon
-    sprite: _NF/Objects/Devices/pda.rsi
-    state: pda-deputy_green
-
-- type: entity
-  parent: BasePDA
   id: NfsdBrigmedic
   name: brigmedic PDA
   description: Whosoever bears this PDA heals the law.
   components:
   - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
+    id: ClothingNeckNfsdBadgeBrigmedic
+    state: pda-brigmed
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -230,8 +202,8 @@
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
+    id: ClothingNeckNfsdBadgeSeniorOfficer
+    state: pda-sergeant
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -258,8 +230,8 @@
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: HoSIDCard
-    state: pda-sheriff
+    id: ClothingNeckNfsdBadgeWarden
+    state: pda-bailiff
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
