@@ -611,6 +611,30 @@
   - type: SpentAmmoVisuals
   - type: SpaceGarbage
 
+#Booster energy projectile which they spew out.
+#NEEDS CHECKUP TO ENSURE THAT ITS FIXED AND WONT CAUSE ISSUES LATER
+- type: entity 
+  name: booster wave
+  id: BulletBoosterWave
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Projectile
+    impactEffect: BulletImpactEffectRedDisabler
+    damage:
+      types:
+        Radiation: 5
+        Structural: 30 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
+    soundHit:
+      collection: MeatLaserImpact
+    soundForce: true
+  - type: SpaceArtilleryProjectile
 
 
 # Coolant object
