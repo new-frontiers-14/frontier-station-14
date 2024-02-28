@@ -59,6 +59,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
             BreakOnWeightlessMove = true,
             CancelDuplicate = true,
             BreakOnHandChange = true,
+            NeedHand = true,
             BreakOnTargetMove = true
         };
         _doAfter.TryStartDoAfter(daArgs);
@@ -66,6 +67,9 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
     private void OnPinpointerDoAfter(EntityUid uid, PinpointerComponent component, PinpointerDoAfterEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         component.Target = args.Target;
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.User):player} set target of {ToPrettyString(uid):pinpointer} to {ToPrettyString(component.Target):target}");
         if (component.UpdateTargetName)
