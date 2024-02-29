@@ -303,7 +303,7 @@ public sealed class RadarControl : MapGridControl
                 var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
 
                 // Distant stations that are not player controlled ships
-                var isDistantPOI = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+                var isDistantPOI = iff != null || (iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0);
 
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
@@ -326,7 +326,7 @@ public sealed class RadarControl : MapGridControl
 
                     label.FontColorOverride = color;
                     label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", RadarFontSize);
-                    label.Visible = ShowIFFShuttles || iff == null || iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
+                    label.Visible = ShowIFFShuttles || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
                     if (IFFFilter != null)
                     {
                         label.Visible &= IFFFilter(gUid, grid.Comp, iff);
