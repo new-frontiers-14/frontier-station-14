@@ -19,15 +19,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: AccessReader
   - type: Lock
     locked: false
@@ -163,15 +154,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: Construction
     graph: WeaponRackConstructionGraph
     node: PistolRackWallmountedNode
