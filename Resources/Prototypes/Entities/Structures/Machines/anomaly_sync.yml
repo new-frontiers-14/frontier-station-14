@@ -41,7 +41,7 @@
           bounds: "-0.35,-0.35,0.35,0.35"
         density: 100
         mask:
-        - ItemMask 
+        - ItemMask
         hard: True
   - type: Transform
     anchored: true
@@ -49,6 +49,9 @@
   - type: ApcPowerReceiver
     powerLoad: 2500
     needsPower: true
+  - type: UpgradePowerDraw
+    powerDrawMultiplier: 0.80
+    scaling: Exponential
   - type: ItemPlacer
     whitelist:
       components:

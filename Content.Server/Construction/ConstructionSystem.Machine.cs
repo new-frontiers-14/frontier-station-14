@@ -5,6 +5,7 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Construction;
@@ -143,7 +144,7 @@ public sealed partial class ConstructionSystem
                 var p = EntityManager.SpawnEntity(partProto.StockPartPrototype, xform.Coordinates);
 
                 if (!_container.Insert(p, partContainer))
-                    throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {partProto.StockPartPrototype}!");
+                    throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {partProto.StockPartPrototype ?? "N/A"}!");
             }
         }
 
@@ -183,7 +184,7 @@ public sealed class RefreshPartsEvent : EntityEventArgs
 {
     public IReadOnlyList<MachinePartComponent> Parts = new List<MachinePartComponent>();
 
-    public Dictionary<string, float> PartRatings = new();
+    public Dictionary<string, float> PartRatings = new Dictionary<string, float>();
 }
 
 public sealed class UpgradeExamineEvent : EntityEventArgs

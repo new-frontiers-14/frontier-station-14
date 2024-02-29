@@ -2491,10 +2491,16 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 2
-    - type: Battery
-      maxCharge: 8E+12
-    - type: PowerNetworkBattery
-      maxChargeRate: 5E+09
+      type: Transform
+    - maxCharge: 8E+12
+      type: Battery
+    - maxChargeRate: 5E+09
+      type: PowerNetworkBattery
+    - ShutdownSubscribers:
+      - 433
+      type: DeviceNetwork
+    missingComponents:
+    - UpgradeBattery
 - proto: SpawnPointChiefEngineer
   entities:
   - uid: 145
