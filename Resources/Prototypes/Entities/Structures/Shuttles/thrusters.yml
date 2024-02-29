@@ -5,17 +5,6 @@
   description: A thruster that allows a shuttle to move.
   abstract: true
   components:
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.45,-0.45,0.45,0.45"
-          density: 60
-          mask:
-          - MachineMask
-          layer:
-          - MachineLayer
     - type: AmbientSound
       enabled: false
       range: 4
