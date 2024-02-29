@@ -31,7 +31,7 @@ public sealed class FatExtractorSystem : EntitySystem
     {
         SubscribeLocalEvent<FatExtractorComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<FatExtractorComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-        SubscribeLocalEvent<FatExtractorComponent, EntityUnpausedEvent>(OnUnpaused);
+//        SubscribeLocalEvent<FatExtractorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<FatExtractorComponent, GotEmaggedEvent>(OnGotEmagged);
         SubscribeLocalEvent<FatExtractorComponent, StorageAfterCloseEvent>(OnClosed);
         SubscribeLocalEvent<FatExtractorComponent, StorageAfterOpenEvent>(OnOpen);
