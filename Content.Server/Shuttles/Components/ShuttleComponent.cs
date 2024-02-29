@@ -31,6 +31,12 @@ namespace Content.Server.Shuttles.Components
         public readonly float[] LinearThrust = new float[4];
 
         /// <summary>
+        /// The cached thrust available for each cardinal direction, if all thrusters are T1
+        /// </summary>
+        [ViewVariables]
+        public readonly float[] BaseLinearThrust = new float[4];
+
+        /// <summary>
         /// The thrusters contributing to each direction for impulse.
         /// </summary>
         // No touchy
