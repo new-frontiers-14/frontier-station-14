@@ -1,0 +1,310 @@
+# Parents
+- type: entity
+  id: gearbundlebase
+  name: gear bundle
+  description: A box that seems to fit inside more than its size suggests.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/gear_bundle.rsi
+    layers:
+    - state: base
+    - state: lights
+      shader: unshaded
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+
+# Price: sum of items + 20% mark up, round up
+# Filled bundles by vendomats
+# YouTool
+- type: entity
+  id: gearbundletoolbeltfilled
+  parent: [BaseItem, gearbundlebase]
+  name: engineering tool kit
+  description: |-
+    Gear bundle containing the following items:
+    toolbelt, filled with: crowbar, wrench,
+    screwdriver, wirecutters, welding tool,
+    multitool
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-tools
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: tools
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBeltUtilityEngineering
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 170
+
+# AstroVend
+- type: entity
+  id: gearbundleeva
+  parent: [BaseItem, gearbundlebase]
+  name: EVA kit
+  description: |-
+    Gear bundle containing the following items:
+    EVA helmet, EVA suit, air tank, magboots,
+    minijetpack, handheld gps
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-hardsuit
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: hardsuit
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHeadHelmetEVA
+      - id: ClothingOuterHardsuitEVA
+      - id: AirTankFilled
+      - id: ClothingShoesBootsMag
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 470
+
+- type: entity
+  id: gearbundlehardsuitbasic
+  parent: gearbundleeva
+  name: basic hardsuit kit
+  description: |-
+    Gear bundle containing the following items:
+    basic hardsuit, air tank, magboots,
+    minijetpack, handheld gps
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingOuterHardsuitBasic
+      - id: AirTankFilled
+      - id: ClothingShoesBootsMag
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 525
+
+- type: entity
+  id: gearbundlehardsuitspatio
+  parent: gearbundleeva
+  name: spationaut hardsuit kit
+  description: |-
+    Gear bundle containing the following items:
+    spationaut hardsuit, air tank, magboots,
+    minijetpack, handheld gps
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingOuterHardsuitSpatio
+      - id: AirTankFilled
+      - id: ClothingShoesBootsMag
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 645
+
+- type: entity
+  id: gearbundlehardsuitpilot
+  parent: gearbundleeva
+  name: pilot hardsuit kit
+  description: |-
+    Gear bundle containing the following items:
+    pilot hardsuit, air tank, magboots,
+    minijetpack, handheld gps
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingOuterHardsuitPilot
+      - id: AirTankFilled
+      - id: ClothingShoesBootsMag
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 600
+
+# MediDrobe
+- type: entity
+  id: gearbundlehardsuitparamedic
+  parent: gearbundleeva
+  name: paramedic void suit kit
+  description: |-
+    Gear bundle containing the following items:
+    paramedic void suit, paramedic void helmet,
+    air tank, magboots, minijetpack, handheld gps
+    crowbar, flashlight
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHeadHelmetVoidParamed
+      - id: ClothingOuterHardsuitVoidParamed
+      - id: AirTankFilled
+      - id: ClothingShoesBootsMag
+      - id: JetpackMiniFilled
+      - id: HandheldGPSBasic
+      - id: CrowbarRed
+      - id: FlashlightLantern
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 470
+
+# Nanomed
+- type: entity
+  id: gearbundlemedic
+  parent: [BaseItem, gearbundlebase]
+  name: doctor kit
+  description: |-
+    Gear bundle containing the following items:
+    medical headset, medical hud, health analyzer,
+    empty syringe, epinephrine bottle,
+    medical belt, filled with: 2 bruise packs,
+    1 ointment, blood pack, gauze, epi medipen
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-medical
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: medical
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingHeadsetMedical
+      - id: ClothingEyesHudMedical
+      - id: ClothingBeltMedicalFilled
+      - id: HandheldHealthAnalyzer
+      - id: Syringe
+      - id: EpinephrineChemistryBottle
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 550
+
+- type: entity
+  id: gearbundlefirstaid
+  parent: gearbundlemedic
+  name: first aid kit
+  description: |-
+    Gear bundle containing the following items:
+    bruise pack, ointment, gauze, medical tracker
+    pill canister (charcoal, dylovene, iron)
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-medical
+    - state: lights
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+      - id: MedicalTrackingImplanter
+      - id: PillCanister
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 205
+
+# Salvage vendor
+- type: entity
+  id: gearbundlesalvagerbasic
+  parent: [BaseItem, gearbundlebase]
+  name: basic salvager kit
+  description: |-
+    Gear bundle containing the following items:
+    pick, ore bag, crusher dagger, PKA, air tank
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-salvage
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: salvage
+  - type: SpawnItemsOnUse
+    items:
+      - id: Pickaxe
+      - id: OreBag
+      - id: WeaponCrusherDagger
+      - id: WeaponProtoKineticAccelerator
+      - id: AirTankFilled
+      - id: AppraisalTool
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 575
+
+- type: entity
+  id: gearbundlesalvageradvanced
+  parent: gearbundlesalvagerbasic
+  name: salvager kit
+  description: |-
+    Gear bundle containing the following items:
+    crusher glaive, two ore bags, PKA, extended
+    capacity oxygen tank, appraisal tool, salvage
+    rig
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-salvage
+    - state: lights
+      shader: unshaded
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponCrusherGlaive
+      - id: OreBag
+      - id: OreBag
+      - id: WeaponProtoKineticAccelerator
+      - id: ExtendedEmergencyOxygenTankFilled
+      - id: ClothingBeltSalvageWebbing
+      - id: AppraisalTool
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 975
+
+# NutriMax
+- type: entity
+  id: gearbundlebotanist
+  parent: [BaseItem, gearbundlebase]
+  name: botanist kit
+  description: |-
+    Gear bundle containing the following items:
+    plant bag, sterile swab box, empty bucket,
+    botanical belt, filled with: mini hoe, spade,
+    plant clippers, robust harvest bottle,
+    ez nutrient bottle
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-hydro
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: hydro
+  - type: SpawnItemsOnUse
+    items:
+      - id: PlantBag
+      - id: BoxMouthSwab
+      - id: ClothingBeltPlantFilled
+      - id: Bucket
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 160
