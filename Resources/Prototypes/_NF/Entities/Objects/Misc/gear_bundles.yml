@@ -27,7 +27,7 @@
     Gear bundle containing the following items:
     toolbelt, filled with: crowbar, wrench,
     screwdriver, wirecutters, welding tool,
-    multitool
+    multitool.
   components:
   - type: Sprite
     layers:
@@ -52,7 +52,7 @@
   description: |-
     Gear bundle containing the following items:
     EVA helmet, EVA suit, air tank, magboots,
-    minijetpack, handheld gps
+    minijetpack, handheld gps.
   components:
   - type: Sprite
     layers:
@@ -81,7 +81,7 @@
   description: |-
     Gear bundle containing the following items:
     basic hardsuit, air tank, magboots,
-    minijetpack, handheld gps
+    minijetpack, handheld gps.
   components:
   - type: SpawnItemsOnUse
     items:
@@ -102,7 +102,7 @@
   description: |-
     Gear bundle containing the following items:
     spationaut hardsuit, air tank, magboots,
-    minijetpack, handheld gps
+    minijetpack, handheld gps.
   components:
   - type: SpawnItemsOnUse
     items:
@@ -123,7 +123,7 @@
   description: |-
     Gear bundle containing the following items:
     pilot hardsuit, air tank, magboots,
-    minijetpack, handheld gps
+    minijetpack, handheld gps.
   components:
   - type: SpawnItemsOnUse
     items:
@@ -146,7 +146,7 @@
     Gear bundle containing the following items:
     paramedic void suit, paramedic void helmet,
     air tank, magboots, minijetpack, handheld gps
-    crowbar, flashlight
+    crowbar, flashlight.
   components:
   - type: SpawnItemsOnUse
     items:
@@ -163,7 +163,6 @@
   - type: StaticPrice
     price: 470
 
-# Nanomed
 - type: entity
   id: gearbundlemedic
   parent: [BaseItem, gearbundlebase]
@@ -173,7 +172,7 @@
     medical headset, medical hud, health analyzer,
     empty syringe, epinephrine bottle,
     medical belt, filled with: 2 bruise packs,
-    1 ointment, blood pack, gauze, epi medipen
+    1 ointment, blood pack, gauze, epi medipen.
   components:
   - type: Sprite
     layers:
@@ -195,6 +194,29 @@
   - type: StaticPrice
     price: 550
 
+# Nanomed
+- type: entity
+  parent: PillCanister
+  id: pillcanisterfirstaid
+  suffix: Generalized
+  components:
+  - type: StorageFill
+    contents:
+    - id: PillCharcoal
+      amount: 1
+    - id: PillDylovene
+      amount: 1
+    - id: PillTricordrazine
+      amount: 1
+    - id: PillIron
+      amount: 1
+    - id: PillCopper
+      amount: 1
+    - id: PillHyronalin
+      amount: 1
+    - id: PillDexalin
+      amount: 1
+
 - type: entity
   id: gearbundlefirstaid
   parent: gearbundlemedic
@@ -202,7 +224,8 @@
   description: |-
     Gear bundle containing the following items:
     bruise pack, ointment, gauze, medical tracker
-    pill canister (charcoal, dylovene, iron)
+    pill canister (charcoal, dylovene, tricordrazine,
+    iron, copper, hyronalin, dexalin).
   components:
   - type: Sprite
     layers:
@@ -215,7 +238,7 @@
       - id: Ointment
       - id: Gauze
       - id: MedicalTrackingImplanter
-      - id: PillCanister
+      - id: pillcanisterfirstaid
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
   - type: StaticPrice
@@ -228,7 +251,7 @@
   name: basic salvager kit
   description: |-
     Gear bundle containing the following items:
-    pick, ore bag, crusher dagger, PKA, air tank
+    pick, ore bag, crusher dagger, PKA, air tank.
   components:
   - type: Sprite
     layers:
@@ -258,7 +281,7 @@
     Gear bundle containing the following items:
     crusher glaive, two ore bags, PKA, extended
     capacity oxygen tank, appraisal tool, salvage
-    rig
+    rig.
   components:
   - type: Sprite
     layers:
@@ -289,7 +312,7 @@
     plant bag, sterile swab box, empty bucket,
     botanical belt, filled with: mini hoe, spade,
     plant clippers, robust harvest bottle,
-    ez nutrient bottle
+    ez nutrient bottle.
   components:
   - type: Sprite
     layers:
