@@ -227,11 +227,6 @@
     pill canister (charcoal, dylovene, tricordrazine,
     iron, copper, hyronalin, dexalin).
   components:
-  - type: Sprite
-    layers:
-    - state: bundle-medical
-    - state: lights
-      shader: unshaded
   - type: SpawnItemsOnUse
     items:
       - id: Brutepack
@@ -283,11 +278,6 @@
     capacity oxygen tank, appraisal tool, salvage
     rig.
   components:
-  - type: Sprite
-    layers:
-    - state: bundle-salvage
-    - state: lights
-      shader: unshaded
   - type: SpawnItemsOnUse
     items:
       - id: WeaponCrusherGlaive
@@ -331,3 +321,51 @@
       path: /Audio/Effects/teleport_arrival.ogg
   - type: StaticPrice
     price: 160
+
+# Liberation Station
+- type: entity
+  id: gearbundleshotgun
+  parent: [BaseItem, gearbundlebase]
+  name: shotgun kit
+  description: |-
+    Gear bundle containing the following items:
+    double-barreled shotgun, 4 boxes of lethal shots.
+  components:
+  - type: Sprite
+    layers:
+    - state: bundle-mercenary
+    - state: lights
+      shader: unshaded
+  - type: Item
+    heldPrefix: mercenary
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponShotgunDoubleBarreled
+      - id: BoxLethalshot
+      - id: BoxLethalshot
+      - id: BoxLethalshot
+      - id: BoxLethalshot
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 480
+
+- type: entity
+  id: gearbundlemosin
+  parent: gearbundleshotgun
+  name: kardashev-mosin kit
+  description: |-
+    Gear bundle containing the following items:
+    kardashev-mosin, 4 boxes of lethal shots.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponSniperMosin
+      - id: MagazineBoxLightRifle
+      - id: MagazineBoxLightRifle
+      - id: MagazineBoxLightRifle
+      - id: MagazineBoxLightRifle
+    sound:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: StaticPrice
+    price: 325
