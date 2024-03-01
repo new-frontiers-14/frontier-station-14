@@ -83,3 +83,30 @@
     - Liquidator
     - Mission
     - Honker
+
+# The spectre console
+- type: entity
+  id: SpectreMothershipComputer
+  name: Spectre Mothership Console
+  parent: BaseMothershipComputer
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_science
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_science
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    Shuttles:
+    - Bocadillo
+    - Construct
+    - Chisel
+    - Pioneer
+    - Prospector
+    - PTS
+    
