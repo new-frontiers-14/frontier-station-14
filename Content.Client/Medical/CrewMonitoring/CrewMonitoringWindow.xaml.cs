@@ -275,10 +275,13 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 jobContainer.AddChild(jobIcon);
             }
 
-            // Job name
+            // Job name area
+			// Frontier modification
+			// Made in its name appear location name as its much more convenient
+			// While job icons should do good enough job of conveying job
             var jobLabel = new Label()
             {
-                Text = sensor.Job,
+                Text = sensor.LocationName,
                 HorizontalExpand = true,
                 ClipText = true,
             };
