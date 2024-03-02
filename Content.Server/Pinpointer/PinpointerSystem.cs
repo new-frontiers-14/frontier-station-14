@@ -160,6 +160,15 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
         var dirVec = CalculateDirection(uid, target.Value);
         var oldDist = pinpointer.DistanceToTarget;
+
+        // Frontier: if the pinpointer has a max range and the distance to target is greater than the max range, set the distance to unknown
+        if (pinpointer.MaxRange > 0 && dirVec != null && dirVec.Value.LengthSquared() > pinpointer.MaxRange * pinpointer.MaxRange)
+        {
+            SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer);
+            return;
+        }
+
         if (dirVec != null)
         {
             var angle = dirVec.Value.ToWorldAngle();
