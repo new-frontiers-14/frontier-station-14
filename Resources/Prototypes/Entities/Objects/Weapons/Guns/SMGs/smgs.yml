@@ -7,7 +7,7 @@
   components:
   - type: Sprite
   - type: Item
-    size: 30
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
     quickEquip: false
@@ -54,10 +54,6 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponRanged # Frontier
-    - WeaponLongarms # Frontier
 
 - type: entity
   name: Atreides
@@ -107,6 +103,7 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
+  - type: Contraband #frontier
 
 - type: entity
   name: Drozd

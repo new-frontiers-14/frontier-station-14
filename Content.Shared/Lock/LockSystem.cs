@@ -11,8 +11,11 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Trade.Components;
+using Content.Shared.Emag.Components;
+using System.Text; // Frontier - DEMAG
 
 namespace Content.Shared.Lock;
 
@@ -38,6 +41,7 @@ public sealed class LockSystem : EntitySystem
         SubscribeLocalEvent<LockComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<LockComponent, GetVerbsEvent<AlternativeVerb>>(AddToggleLockVerb);
         SubscribeLocalEvent<LockComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<LockComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
     }
 
     private void OnStartup(EntityUid uid, LockComponent lockComp, ComponentStartup args)
@@ -103,11 +107,11 @@ public sealed class LockSystem : EntitySystem
 
         _sharedPopupSystem.PopupClient(Loc.GetString("lock-comp-do-lock-success",
                 ("entityName", Identity.Name(uid, EntityManager))), uid, user);
-        _audio.PlayPredicted(lockComp.LockSound, uid, user, AudioParams.Default.WithVolume(-5));
+        _audio.PlayPredicted(lockComp.LockSound, uid, user);
 
         lockComp.Locked = true;
         _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
-        Dirty(lockComp);
+        Dirty(uid, lockComp);
 
         var ev = new LockToggledEvent(true);
         RaiseLocalEvent(uid, ref ev, true);
@@ -131,11 +135,11 @@ public sealed class LockSystem : EntitySystem
                 ("entityName", Identity.Name(uid, EntityManager))), uid, user.Value);
         }
 
-        _audio.PlayPredicted(lockComp.UnlockSound, uid, user, AudioParams.Default.WithVolume(-5));
+        _audio.PlayPredicted(lockComp.UnlockSound, uid, user);
 
         lockComp.Locked = false;
         _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
-        Dirty(lockComp);
+        Dirty(uid, lockComp);
 
         var ev = new LockToggledEvent(false);
         RaiseLocalEvent(uid, ref ev, true);
@@ -212,15 +216,28 @@ public sealed class LockSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, LockComponent component, ref GotEmaggedEvent args)
     {
-        if (HasComp<TradeCrateComponent>(uid))
+        if (component.ImmuneToEmag) // Frontier
             return;
 
         if (!component.Locked || !component.BreakOnEmag)
             return;
-        _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
+        _audio.PlayPredicted(component.UnlockSound, uid, null);
         _appearanceSystem.SetData(uid, StorageVisuals.Locked, false);
-        RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged
+        //RemComp<LockComponent>(uid); //Literally destroys the lock as a tell it was emagged // Frontier - Has to remove this to allow fixing locks
+        component.Locked = false; // Disable lock
         args.Handled = true;
+    }
+
+    private void OnUnEmagged(EntityUid uid, LockComponent component, ref GotUnEmaggedEvent args) // Frontier - DEMAG
+    {
+        if (HasComp<EmaggedComponent>(uid))
+        {
+            _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
+            _appearanceSystem.SetData(uid, StorageVisuals.Locked, true);
+            //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
+            component.Locked = true;
+            args.Handled = true;
+        }
     }
 }
 

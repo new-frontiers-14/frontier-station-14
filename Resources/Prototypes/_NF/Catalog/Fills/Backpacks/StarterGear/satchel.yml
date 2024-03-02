@@ -60,4 +60,15 @@
       - id: BoxSurvival
       - id: Lighter
       - id: CigPackGreen
-      - id: ExtendedEmergencyOxygenTank
+      
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelSecurity
+  id: ClothingBackpackSatchelOfficerFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalSecurity
+      - id: Flash
+      - id: MagazinePistol
+      - id: BaseSecurityUplinkRadioOfficer # Frontier

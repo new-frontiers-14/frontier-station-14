@@ -112,8 +112,6 @@
   components:
   - type: StorageFill
     contents:
-#      - id: ClothingNeckCloakHop # Frontier - bloat
-#      - id: ClothingHeadHatHopcap # Frontier - bloat
       - id: HoPIDCard
 #      - id: ClothingHeadsetCommand # Frontier
       - id: ClothingHeadsetCentCom # Frontier
@@ -124,7 +122,8 @@
       - id: IDComputerCircuitboard
       - id: CommsComputerCircuitboard # Frontier
 #      - id: WeaponDisabler # Frontier - bloat
-      - id: ClothingOuterWinterHoP # Frontier - bloat
+      - id: ClothingOuterWinterHoP # Frontier
+      - id: ClothingShoesBootsWinterHoP # Frontier
 #      - id: CigarGoldCase  # Frontier
 #        prob: 0.25
         # Fuck the HoP they don't deserve fucking cigars.
@@ -143,6 +142,7 @@
 #      - id: ClothingHandsGlovesCaptain #TODO replace with new item!
 #      - id: ClothingOuterHardsuitCap #TODO replace with new item!
 #      - id: ClothingMaskGasCaptain #TODO replace with new item!
+      - id: Demag # Frontier
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -219,7 +219,8 @@
 #      - id: ClothingMaskSterile # Frontier - bloat
 #      - id: ClothingHeadHatBeretCmo # Frontier - bloat
       - id: ClothingOuterHardsuitMedical
-      - id: Hypospray
+#      - id: Hypospray # Frontier - balance
+      - id: HypoMini # Frontier
       - id: HandheldCrewMonitor
 #      - id: DoorRemoteMedical # Frontier
       - id: RubberStampCMO
@@ -252,7 +253,8 @@
 #      - id: ClothingHeadHatBeretCmo # Frontier - bloat
 #      - id: DiagnoserMachineCircuitboard # Frontier - bloat
 #      - id: VaccinatorMachineCircuitboard # Frontier - bloat
-      - id: Hypospray
+#      - id: Hypospray # Frontier - balance
+      - id: HypoMini # Frontier
       - id: HandheldCrewMonitor
 #      - id: DoorRemoteMedical # Frontier
       - id: RubberStampCMO
@@ -347,6 +349,7 @@
       - id: JetpackSecurityFilled # Frontier
       - id: HandheldGPSBasic # Frontier
       - id: ClothingShoesBootsMagCombatFilled # Frontier
+      - id: Demag # Frontier
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -379,3 +382,22 @@
 #      - id: BookSecretDocuments # Frontier
       - id: ClothingNeckMantleHOS # Frontier
       - id: ClothingOuterWinterHoS # Frontier
+      - id: Demag # Frontier
+      - id: ClothingShoesBootsWinterHoS # Frontier
+
+- type: entity
+  id: LockerFreezerVaultFilled
+  suffix: Vault, Locked
+  parent: LockerFreezerBase
+  noSpawn: true
+  components:
+  - type: AccessReader
+    access: [ [ "Command" ] ]
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverDeckard
+    - id: ClothingOuterHardsuitBasic
+    - id: JetpackBlue
+    - id: SpaceCash1000
+    - id: BeachBall
+    - id: BikeHorn

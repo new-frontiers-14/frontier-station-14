@@ -365,7 +365,7 @@ namespace Content.Shared.Preferences
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
 
-            if (!prototypeManager.TryIndex<SpeciesPrototype>(Species, out var speciesPrototype))
+            if (!prototypeManager.TryIndex<SpeciesPrototype>(Species, out var speciesPrototype) || speciesPrototype.RoundStart == false)
             {
                 Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index<SpeciesPrototype>(Species);
@@ -480,6 +480,7 @@ namespace Content.Shared.Preferences
                 BackpackPreference.Backpack => BackpackPreference.Backpack,
                 BackpackPreference.Satchel => BackpackPreference.Satchel,
                 BackpackPreference.Duffelbag => BackpackPreference.Duffelbag,
+                BackpackPreference.Messenger => BackpackPreference.Messenger, // Frontier
                 _ => BackpackPreference.Backpack // Invalid enum values.
             };
 

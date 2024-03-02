@@ -298,11 +298,16 @@ public sealed partial class CargoSystem
             return true;
         }
 
+        var complete = IsBountyComplete(uid, (EntityUid?) null, out var bountyEntities);
+
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
         while (children.MoveNext(out var child))
         {
-            if (!CanSell(child.Value, _xformQuery.GetComponent(child.Value)))
+            if (complete && bountyEntities.Contains(child))
+                continue;
+
+            if (!CanSell(child, _xformQuery.GetComponent(child)))
                 return false;
         }
 
