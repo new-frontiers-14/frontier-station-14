@@ -306,7 +306,8 @@ public sealed class SuitSensorSystem : EntitySystem
             return null;
 
         // check if sensor is enabled and worn by user
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || transform.GridUid == null)
+		// Frontier modification, made sensor work with grid being null
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null ) // || transform.GridUid == null
             return null;
 
         // try to get mobs id from ID slot
