@@ -1,9 +1,10 @@
 - type: species
   id: Vox
-  name: Vox
-  roundStart: false # sad...
+  name: species-name-vox
+  roundStart: true
   prototype: MobVox
   sprites: MobVoxSprites
+  defaultSkinTone: "#526d29"
   markingLimits: MobVoxMarkingLimits
   dollPrototype: MobVoxDummy
   skinColoration: Hues
@@ -14,6 +15,7 @@
     Head: MobVoxHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
     Chest: MobVoxTorso
     Eyes: MobVoxEyes
     LArm: MobVoxLArm
@@ -35,15 +37,31 @@
     FacialHair:
       points: 1
       required: false
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ VoxCrest ]
+    Head:
+      points: 1
+      required: true
+      defaultMarkings: [ VoxNeckMarkings ]
+    Snout:
+      points: 1
+      required: true
+      defaultMarkings: [ VoxBeak ]
     Chest:
       points: 1
       required: false
     Legs:
-      points: 2
+      points: 4
       required: false
     Arms:
-      points: 2
-      required: false
+      points: 6
+      required: true
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ VoxTail ]
 
 - type: humanoidBaseSprite
   id: MobVoxEyes
@@ -85,7 +103,7 @@
   id: MobVoxTorsoFemale
   baseSprite:
     sprite: Mobs/Species/Vox/parts.rsi
-    state: torso_f
+    state: torso_m
 
 - type: humanoidBaseSprite
   id: MobVoxLLeg

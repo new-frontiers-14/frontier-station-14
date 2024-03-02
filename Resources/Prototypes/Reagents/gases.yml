@@ -26,6 +26,15 @@
         conditions:
         - !type:OrganType
           type: Plant
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Vox
+        scaleByQuantity: true
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 1
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:

@@ -18,3 +18,6 @@ reagent-desc-fat = No matter how it was obtained, its application is important.
 
 reagent-name-vomit = vomit
 reagent-desc-vomit = You can see a few chunks of someones last meal in it.
+
+reagent-name-VoxIchor = Ichor?
+reagent-desc-VoxIchor = A sickly, bruised black, like the last gasp of a dying star.
