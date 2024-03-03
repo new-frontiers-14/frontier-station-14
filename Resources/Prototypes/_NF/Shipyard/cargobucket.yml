@@ -1,0 +1,33 @@
+- type: vessel
+  id: cargobucket
+  name: COU Cargobucket
+  description: An old COU branded Sattelite Recovered From bluespace, Repaired and operational
+  price: 85000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/cargobucket.yml
+  
+- type: gameMap
+  id: cargobucket
+  mapName: 'COU Cargobucket'
+  mapPath: /Maps/_NF/Shuttles/cargobucket.yml
+  minPlayers: 0
+  stations: 
+    cargobucket:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargobucket {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            Quartermaster: [ 0, 0 ]
+            CargoTechnician: [ 0, 0 ]
+            ServiceWorker: [ 0, 0 ]
