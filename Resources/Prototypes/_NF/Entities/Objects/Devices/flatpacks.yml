@@ -1,0 +1,418 @@
+# Base
+- type: entity
+  parent: BaseItem
+  id: autolatheflatpack
+  name: autolathe flatpack
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Item
+    size: Normal
+  - type: Flatpack
+    entity: Autolathe
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#EFB341"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: Tag
+    tags:
+    - DroneUsable
+  - type: StaticPrice
+    price: 150
+
+# Machines
+# Engineering
+- type: entity
+  parent: autolatheflatpack
+  id: engineeringtechfabflatpack
+  name: engineering tech fab flatpack
+  description: A flatpack used for constructing an engineering tech fab.
+  components:
+  - type: Flatpack
+    entity: EngineeringTechFab
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: autolatheflatpack
+  id: cellchargerflatpack
+  name: cell charger flatpack
+  description: A flatpack used for constructing a cell charger.
+  components:
+  - type: Flatpack
+    entity: PowerCellRecharger
+  - type: StaticPrice
+    price: 55
+
+- type: entity
+  parent: cellchargerflatpack
+  id: borgchargerflatpack
+  name: borg charger flatpack
+  description: A flatpack used for constructing a borg charger.
+  components:
+  - type: Flatpack
+    entity: BorgCharger
+
+- type: entity
+  parent: autolatheflatpack
+  id: portablegeneratorjrpacmanflatpack
+  name: J.R.P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a J.R.P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorJrPacman
+
+- type: entity
+  parent: autolatheflatpack
+  id: portablegeneratorpacmanflatpack
+  name: P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorPacman
+
+- type: entity
+  parent: autolatheflatpack
+  id: portablegeneratorsuperpacmanflatpack
+  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorSuperPacman
+
+- type: entity
+  parent: autolatheflatpack
+  id: amecontrollerflatpack
+  name: AME controller flatpack
+  description: A flatpack used for constructing an AME controller.
+  components:
+  - type: Flatpack
+    entity: AmeControllerUnanchored
+
+- type: entity
+  parent: autolatheflatpack
+  id: radiationcollectorflatpack
+  name: radiation collector flatpack
+  description: A flatpack used for constructing a radiation collector.
+  components:
+  - type: Flatpack
+    entity: RadiationCollectorFullTank
+
+- type: entity
+  parent: autolatheflatpack
+  id: gyroscopeflatpack
+  name: gyroscope flatpack
+  description: A flatpack used for constructing a gyroscope.
+  components:
+  - type: Flatpack
+    entity: GyroscopeUnanchored
+
+- type: entity
+  parent: autolatheflatpack
+  id: gyroscopesmallflatpack
+  name: small gyroscope flatpack
+  description: A flatpack used for constructing a small gyroscope.
+  components:
+  - type: Flatpack
+    entity: SmallGyroscopeUnanchored
+
+- type: entity
+  parent: autolatheflatpack
+  id: thrusterflatpack
+  name: thruster flatpack
+  description: A flatpack used for constructing a thruster.
+  components:
+  - type: Flatpack
+    entity: ThrusterUnanchored
+
+- type: entity
+  parent: autolatheflatpack
+  id: thrustersmallflatpack
+  name: small thruster flatpack
+  description: A flatpack used for constructing a small thruster.
+  components:
+  - type: Flatpack
+    entity: SmallThrusterUnanchored
+
+# Science
+- type: entity
+  parent: autolatheflatpack
+  id: exosuitfabricatorflatpack
+  name: exosuit fabricator flatpack
+  description: A flatpack used for constructing an exosuit fabricator.
+  components:
+  - type: Flatpack
+    entity: ExosuitFabricator
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#D381C9"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: circuitimprinterflatpack
+  name: circuit imprinter flatpack
+  description: A flatpack used for constructing a circuit imprinter.
+  components:
+  - type: Flatpack
+    entity: CircuitImprinter
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: protolatheflatpack
+  name: protolathe flatpack
+  description: A flatpack used for constructing a protolathe.
+  components:
+  - type: Flatpack
+    entity: Protolathe
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: artifactanalyzerflatpack
+  name: artifact analyzer flatpack
+  description: A flatpack used for constructing an artifact analyzer.
+  components:
+  - type: Flatpack
+    entity: MachineArtifactAnalyzer
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: anomalyvesselflatpack
+  name: anomaly vessel flatpack
+  description: A flatpack used for constructing an anomaly vessel.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalyVessel
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: apeflatpack
+  name: A.P.E. flatpack
+  description: A flatpack used for constructing an A.P.E..
+  components:
+  - type: Flatpack
+    entity: MachineAPE
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: sciencetechfabflatpack
+  name: science techfab flatpack
+  description: A flatpack used for constructing a science techfab.
+  components:
+  - type: Flatpack
+    entity: ScienceTechFab
+
+# Service
+- type: entity
+  parent: autolatheflatpack
+  id: uniformprinterflatpack
+  name: uniform printer flatpack
+  description: A flatpack used for constructing an uniform printer.
+  components:
+  - type: Flatpack
+    entity: UniformPrinter
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#9FED58"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+
+- type: entity
+  parent: uniformprinterflatpack
+  id: servicetechfabflatpack
+  name: service tech fab flatpack
+  description: A flatpack used for constructing a service tech fab.
+  components:
+  - type: Flatpack
+    entity: ServiceTechFab
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: uniformprinterflatpack
+  id: materialreclaimerflatpack
+  name: material reclaimer flatpack
+  description: A flatpack used for constructing a material reclaimer.
+  components:
+  - type: Flatpack
+    entity: MaterialReclaimer
+
+- type: entity
+  parent: uniformprinterflatpack
+  id: hydroponicstrayflatpack
+  name: hydroponics tray flatpack
+  description: A flatpack used for constructing a hydroponics tray.
+  components:
+  - type: Flatpack
+    entity: HydroponicsTrayEmpty
+
+- type: entity
+  parent: uniformprinterflatpack
+  id: tileprinternfflatpack
+  name: tile-meister 5000 flatpack
+  description: A flatpack used for constructing a tile-meister 5000.
+  components:
+  - type: Flatpack
+    entity: TilePrinterNF
+
+# Medical
+- type: entity
+  parent: autolatheflatpack
+  id: medicaltechfabflatpack
+  name: medical tech fab flatpack
+  description: A flatpack used for constructing a medical tech fab.
+  components:
+  - type: Flatpack
+    entity: MedicalTechFab
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#52B4E9"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: StaticPrice
+    price: 250
+
+# Supply
+- type: entity
+  parent: autolatheflatpack
+  id: oreprocessorflatpack
+  name: ore processor flatpack
+  description: A flatpack used for constructing an ore processor.
+  components:
+  - type: Flatpack
+    entity: OreProcessor
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#A46106"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+
+# Consoles
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: rndcomputerflatpack
+  name: R&D computer flatpack
+  description: A flatpack used for constructing a research and development computer.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopment
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: analysisconsoleflatpack
+  name: analysis console flatpack
+  description: A flatpack used for constructing an analysis console.
+  components:
+  - type: Flatpack
+    entity: ComputerAnalysisConsole
+
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: crewmonitoringcomputerflatpack
+  name: crew monitoring console flatpack
+  description: A flatpack used for constructing a crew monitoring console.
+  components:
+  - type: Flatpack
+    entity: ComputerCrewMonitoring
+
+# Servers
+- type: entity
+  parent: exosuitfabricatorflatpack
+  id: rndserverflatpack
+  name: R&D server flatpack
+  description: A flatpack used for constructing a research and development server.
+  components:
+  - type: Flatpack
+    entity: ResearchAndDevelopmentServer
+
+- type: entity
+  parent: autolatheflatpack
+  id: telecommunicationserverflatpack
+  name: telecommunication server flatpack
+  description: A flatpack used for constructing a telecommunication server.
+  components:
+  - type: Flatpack
+    entity: TelecomServer
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#334E6D"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+
+# Airlocks
+- type: entity
+  parent: telecommunicationserverflatpack
+  id: airlockflatpack
+  name: airlock flatpack
+  description: A flatpack used for constructing an airlock.
+  components:
+  - type: Flatpack
+    entity: Airlock
+  - type: StaticPrice
+    price: 95
+
+- type: entity
+  parent: airlockflatpack
+  id: airlockglassflatpack
+  name: glass airlock flatpack
+  description: A flatpack used for constructing an airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockGlass
+
+- type: entity
+  parent: airlockflatpack
+  id: airlockdockingflatpack
+  name: docking airlock flatpack
+  description: A flatpack used for constructing a docking airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockShuttle
+
+- type: entity
+  parent: airlockflatpack
+  id: airlockdockingglassflatpack
+  name: docking glass airlock flatpack
+  description: A flatpack used for constructing a glass docking airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockGlassShuttle
+
+# Memes
+- type: entity
+  parent: autolatheflatpack
+  id: xenoqueenflatpack
+  name: xeno queen flatpack
+  description: A flatpack containing xeno queen.
+  components:
+  - type: Flatpack
+    entity: MobXenoQueen
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#D381C9"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
