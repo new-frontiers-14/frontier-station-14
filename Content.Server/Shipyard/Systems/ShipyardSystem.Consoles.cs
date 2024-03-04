@@ -213,7 +213,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 if (!_records.TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
                     continue;
 
-                _records.RemoveRecord(keyStorage.Key.Value);
+                //_records.RemoveRecord(keyStorage.Key.Value);
                 _records.AddRecordEntry((EntityUid) shuttleStation, record);
                 recSuccess = true;
                 break;
@@ -312,7 +312,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             && keyStorage.Key.Value.OriginStation == shuttleStation
             && _records.TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
         {
-            _records.RemoveRecord(keyStorage.Key.Value);
+            //_records.RemoveRecord(keyStorage.Key.Value);
             _records.AddRecordEntry(stationUid, record);
             _records.Synchronize(stationUid);
         }
