@@ -83,7 +83,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    fireRate: 5
+    fireRate: 3
     useKey: false
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
@@ -351,7 +351,7 @@
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 3
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
@@ -359,7 +359,7 @@
         variation: 0.08
   - type: BasicEntityAmmoProvider
     proto: BulletKineticShuttle
-    capacity: 5
-    count: 5
+    capacity: 10
+    count: 10
   - type: Machine
     board: ShuttleGunKineticCircuitboard

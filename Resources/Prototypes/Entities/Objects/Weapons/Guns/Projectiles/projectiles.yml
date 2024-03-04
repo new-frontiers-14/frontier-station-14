@@ -414,7 +414,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 25
+        Blunt: 20
         Structural: 30
   # Short lifespan
   - type: TimedDespawn
@@ -435,7 +435,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 30
+        Blunt: 7
         Structural: 35
   - type: Ammo
     muzzleFlash: HitscanEffect
@@ -679,9 +679,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 150 # a ~2 tile radius
+    totalIntensity: 140 # a ~2 tile radius
     intensitySlope: 5
-    maxIntensity: 10
+    maxIntensity: 8
 
 - type: entity
   id: BulletGrenadeFlash
@@ -694,7 +694,7 @@
     layers:
       - state: grenade
   - type: FlashOnTrigger
-    range: 7
+    range: 9
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: ActiveTimerTrigger
@@ -828,8 +828,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DemolitionCharge
-    maxIntensity: 9
-    intensitySlope: 6
+    maxIntensity: 7
+    intensitySlope: 4
     totalIntensity: 60
     maxTileBreak: 0
   - type: PointLight
