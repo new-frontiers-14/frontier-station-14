@@ -666,7 +666,7 @@
     state: pda-centcom
 
 - type: entity
-  parent: CentcomPDA
+  parent: [MusicBasePDA, CentcomPDA] # Frontier - Added MusicBasePDA parent
   id: AdminPDA
   name: Admin PDA
   description: If you are not an admin please return this PDA to the nearest admin.
