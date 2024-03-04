@@ -1399,7 +1399,7 @@ entities:
       pos: -0.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1074.8624
+      secondsUntilStateChange: -1418.5448
       state: Opening
   - uid: 155
     components:
@@ -7116,6 +7116,13 @@ entities:
     - type: Transform
       pos: 8.5,-6.5
       parent: 1
+- proto: GunSafeShuttleT2Spawner
+  entities:
+  - uid: 1355
+    components:
+    - type: Transform
+      pos: -10.5,-7.5
+      parent: 1
 - proto: Gyroscope
   entities:
   - uid: 418
@@ -8798,6 +8805,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -10.5,-8.5
+      parent: 1
+  - uid: 977
+    components:
+    - type: Transform
+      pos: -7.5,-2.5
       parent: 1
 - proto: SignalButtonExt2
   entities:
@@ -10642,16 +10654,6 @@ entities:
     - type: Transform
       pos: -6.5,3.5
       parent: 1
-- proto: WardrobeSalvageFilled
-  entities:
-  - uid: 977
-    components:
-    - type: Transform
-      anchored: True
-      pos: -10.5,-7.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: WarpPointShip
   entities:
   - uid: 971
@@ -10676,6 +10678,20 @@ entities:
       pos: 9.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -51.551865
+      secondsUntilStateChange: -395.2342
       state: Opening
+  - uid: 1357
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,-7.5
+      parent: 1
+- proto: WindowReinforcedDirectional
+  entities:
+  - uid: 1356
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -10.5,-7.5
+      parent: 1
 ...
