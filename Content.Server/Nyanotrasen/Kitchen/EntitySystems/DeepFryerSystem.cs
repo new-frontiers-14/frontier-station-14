@@ -104,7 +104,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         SubscribeLocalEvent<DeepFryerComponent, MachineDeconstructedEvent>(OnDeconstruct);
         SubscribeLocalEvent<DeepFryerComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<DeepFryerComponent, ThrowHitByEvent>(OnThrowHitBy);
-        SubscribeLocalEvent<DeepFryerComponent, SolutionChangedEvent>(OnSolutionChange);
+        SubscribeLocalEvent<DeepFryerComponent, SolutionContainerChangedEvent>(OnSolutionChange);
         SubscribeLocalEvent<DeepFryerComponent, ContainerRelayMovementEntityEvent>(OnRelayMovement);
         SubscribeLocalEvent<DeepFryerComponent, InteractUsingEvent>(OnInteractUsing);
 
@@ -181,7 +181,9 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilPurity(EntityUid uid, DeepFryerComponent component)
     {
-        return GetOilVolume(uid, component) / component.Solution.Volume;
+        if (component.Solution.Volume > 0)
+            return GetOilVolume(uid, component) / component.Solution.Volume;
+        return FixedPoint2.Zero;
     }
 
     /// <summary>
@@ -189,7 +191,9 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilLevel(EntityUid uid, DeepFryerComponent component)
     {
-        return GetOilVolume(uid, component) / component.Solution.MaxVolume;
+        if (component.Solution.Volume > 0)
+            return GetOilVolume(uid, component) / component.Solution.Volume;
+        return FixedPoint2.Zero;
     }
 
     /// <summary>
@@ -491,7 +495,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         args.Handled = true;
     }
 
-    private void OnSolutionChange(EntityUid uid, DeepFryerComponent component, SolutionChangedEvent args)
+    private void OnSolutionChange(EntityUid uid, DeepFryerComponent component, SolutionContainerChangedEvent args)
     {
         UpdateUserInterface(uid, component);
         UpdateAmbientSound(uid, component);
