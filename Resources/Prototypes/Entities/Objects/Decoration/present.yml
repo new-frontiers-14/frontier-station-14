@@ -1,6 +1,6 @@
 - type: entity
   id: PresentBase
-  name: Present
+  name: present
   description: A little box with incredible surprises inside.
   abstract: true
   components:
@@ -16,6 +16,10 @@
   components:
   - type: Item
     size: Normal
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,2
 
 - type: entity
   id: PresentRandomUnsafe
@@ -260,7 +264,9 @@
         orGroup: GiftPool
       - id: FoodBoxDonkpocketPizza
         orGroup: GiftPool
-      - id: FoodBoxDonkpocketGondola
+      - id: FoodBoxDonkpocketStonk
+        orGroup: GiftPool
+      - id: FoodBoxDonkpocketCarp
         orGroup: GiftPool
       - id: FoodBoxDonkpocketBerry
         orGroup: GiftPool
