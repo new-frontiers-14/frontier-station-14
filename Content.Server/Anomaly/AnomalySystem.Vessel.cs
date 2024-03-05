@@ -24,7 +24,6 @@ public sealed partial class AnomalySystem
         SubscribeLocalEvent<AnomalyVesselComponent, InteractUsingEvent>(OnVesselInteractUsing);
         SubscribeLocalEvent<AnomalyVesselComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<AnomalyVesselComponent, ResearchServerGetPointsPerSecondEvent>(OnVesselGetPointsPerSecond);
-        SubscribeLocalEvent<AnomalyVesselComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<AnomalyShutdownEvent>(OnShutdown);
         SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnStabilityChanged);
     }
@@ -97,11 +96,6 @@ public sealed partial class AnomalySystem
             return;
 
         args.Points += (int) (GetAnomalyPointValue(anomaly) * component.PointMultiplier);
-    }
-
-    private void OnUnpaused(EntityUid uid, AnomalyVesselComponent component, ref EntityUnpausedEvent args)
-    {
-        component.NextBeep += args.PausedTime;
     }
 
     private void OnVesselAnomalyShutdown(ref AnomalyShutdownEvent args)
