@@ -5,6 +5,7 @@ using Content.Server.Medical.SuitSensors;
 using Content.Server.Power.Components;
 //using Content.Server.Station.Systems;
 using Robust.Shared.Map; // Frontier modification
+using Content.Shared.DeviceNetwork;
 using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
 
