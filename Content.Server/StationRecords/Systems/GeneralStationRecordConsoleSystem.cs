@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Content.Server.Station.Systems;
+using Content.Server.StationRecords.Components;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 using System.Linq;
@@ -9,32 +10,39 @@ namespace Content.Server.StationRecords.Systems;
 
 public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly StationRecordsSystem _stationRecordsSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, BoundUIOpenedEvent>(UpdateUserInterface);
-        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, SelectGeneralStationRecord>(OnKeySelected);
-        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, GeneralStationRecordsFilterMsg>(OnFiltersChanged);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AdjustStationJobMsg>(OnAdjustJob);
+
+        Subs.BuiEvents<GeneralStationRecordConsoleComponent>(GeneralStationRecordConsoleKey.Key, subs =>
+        {
+            subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
+            subs.Event<SelectStationRecord>(OnKeySelected);
+            subs.Event<SetStationRecordFilter>(OnFiltersChanged);
+        });
     }
 
-    private void UpdateUserInterface<T>(EntityUid uid, GeneralStationRecordConsoleComponent component, T ev)
+    private void UpdateUserInterface<T>(Entity<GeneralStationRecordConsoleComponent> ent, ref T args)
     {
-        UpdateUserInterface(uid, component);
+        UpdateUserInterface(ent);
     }
 
-    private void OnKeySelected(EntityUid uid, GeneralStationRecordConsoleComponent component,
-        SelectGeneralStationRecord msg)
+    // TODO: instead of copy paste shitcode for each record console, have a shared records console comp they all use
+    // then have this somehow play nicely with creating ui state
+    // if that gets done put it in StationRecordsSystem console helpers section :)
+    private void OnKeySelected(Entity<GeneralStationRecordConsoleComponent> ent, ref SelectStationRecord msg)
     {
-        component.ActiveKey = msg.SelectedKey;
-        UpdateUserInterface(uid, component);
+        ent.Comp.ActiveKey = msg.SelectedKey;
+        UpdateUserInterface(ent);
     }
 
     private void OnAdjustJob(EntityUid uid, GeneralStationRecordConsoleComponent component, AdjustStationJobMsg msg)
@@ -44,104 +52,50 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         {
             _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
         }
-        UpdateUserInterface(uid, component);
+        UpdateUserInterface((uid,component));
     }
-    private void OnFiltersChanged(EntityUid uid,
-        GeneralStationRecordConsoleComponent component, GeneralStationRecordsFilterMsg msg)
+    private void OnFiltersChanged(Entity<GeneralStationRecordConsoleComponent> ent, ref SetStationRecordFilter msg)
     {
-        if (component.Filter == null ||
-            component.Filter.Type != msg.Type || component.Filter.Value != msg.Value)
+        if (ent.Comp.Filter == null ||
+            ent.Comp.Filter.Type != msg.Type || ent.Comp.Filter.Value != msg.Value)
         {
-            component.Filter = new GeneralStationRecordsFilter(msg.Type, msg.Value);
-            UpdateUserInterface(uid, component);
+            ent.Comp.Filter = new StationRecordsFilter(msg.Type, msg.Value);
+            UpdateUserInterface(ent);
         }
     }
 
-    private void UpdateUserInterface(EntityUid uid,
-        GeneralStationRecordConsoleComponent? console = null)
+    private void UpdateUserInterface(Entity<GeneralStationRecordConsoleComponent> ent)
     {
-        if (!Resolve(uid, ref console))
+        var (uid, console) = ent;
+        var owningStation = _station.GetOwningStation(uid);
+
+        if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
+            _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
             return;
         }
 
-        var owningStation = _stationSystem.GetOwningStation(uid);
+        var listing = _stationRecords.BuildListing((owningStation.Value, stationRecords), console.Filter);
 
-        if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecordsComponent))
+        switch (listing.Count)
         {
-            GeneralStationRecordConsoleState state = new(null, null, null, null, null);
-            SetStateForInterface(uid, state);
+            case 0:
+                _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
+                return;
+            case 1:
+                console.ActiveKey = listing.Keys.First();
+                break;
+        }
+
+        if (console.ActiveKey is not { } id)
             return;
-        }
-
-        var consoleRecords =
-            _stationRecordsSystem.GetRecordsOfType<GeneralStationRecord>(owningStation.Value, stationRecordsComponent);
-
-        var listing = new Dictionary<(NetEntity, uint), string>();
-
-        foreach (var pair in consoleRecords)
-        {
-            if (console.Filter != null && IsSkippedRecord(console.Filter, pair.Item2))
-            {
-                continue;
-            }
-
-            listing.Add(_stationRecordsSystem.Convert(pair.Item1), pair.Item2.Name);
-        }
-
-        if (listing.Count == 0)
-        {
-            GeneralStationRecordConsoleState state = new(null, null, null, console.Filter, null);
-            SetStateForInterface(uid, state);
-            return;
-        }
-        else if (listing.Count == 1)
-        {
-            console.ActiveKey = listing.Keys.First();
-        }
-
         var jobList = _stationJobsSystem.GetJobs(owningStation.Value);
 
-        GeneralStationRecord? record = null;
-        if (console.ActiveKey != null)
-        {
-            _stationRecordsSystem.TryGetRecord(owningStation.Value, _stationRecordsSystem.Convert(console.ActiveKey.Value), out record,
-                stationRecordsComponent);
-        }
 
-        GeneralStationRecordConsoleState newState = new(console.ActiveKey, record, listing, console.Filter, jobList);
-        SetStateForInterface(uid, newState);
-    }
+        var key = new StationRecordKey(id, owningStation.Value);
+        _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);
 
-    private void SetStateForInterface(EntityUid uid, GeneralStationRecordConsoleState newState)
-    {
-        _userInterface.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, newState);
-    }
-
-    private bool IsSkippedRecord(GeneralStationRecordsFilter filter,
-        GeneralStationRecord someRecord)
-    {
-        bool isFilter = filter.Value.Length > 0;
-        string filterLowerCaseValue = "";
-
-        if (!isFilter)
-            return false;
-
-        filterLowerCaseValue = filter.Value.ToLower();
-
-        return filter.Type switch
-        {
-            GeneralStationRecordFilterType.Name =>
-                !someRecord.Name.ToLower().Contains(filterLowerCaseValue),
-            GeneralStationRecordFilterType.Prints => someRecord.Fingerprint != null
-                && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
-            GeneralStationRecordFilterType.DNA => someRecord.DNA != null
-                && IsFilterWithSomeCodeValue(someRecord.DNA, filterLowerCaseValue),
-        };
-    }
-
-    private bool IsFilterWithSomeCodeValue(string value, string filter)
-    {
-        return !value.ToLower().StartsWith(filter);
+        GeneralStationRecordConsoleState newState = new(id, record, listing, jobList, console.Filter);
+        _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, newState);
     }
 }

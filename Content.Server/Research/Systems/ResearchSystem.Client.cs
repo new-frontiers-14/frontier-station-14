@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
 
@@ -57,12 +58,20 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
-        if (allServers.Length > 0)
+        // If the actual RD server on a map is initialized later, it won't work if we run this immediately.
+        // For the time being while a better solution is found, we register/unregister a little bit later.
+        // If we don't run this later, RD servers won't appear in the list on all machines on a ship.
+        Task.Run(async () =>
         {
-            RegisterClient(uid, allServers[0].Owner, component, allServers[0]);
-            UnregisterClient(uid, component); // Unrigister a new computer from servers, this is need right after to make sure it didnt register unser someone else server.
-        }
+            await Task.Delay(TimeSpan.FromSeconds(10));
+
+            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            if (allServers.Length > 0)
+            {
+                RegisterClient(uid, allServers[0].Owner, component, allServers[0]);
+                UnregisterClient(uid, component);
+            }
+        });
     }
 
     private void OnClientShutdown(EntityUid uid, ResearchClientComponent component, ComponentShutdown args)

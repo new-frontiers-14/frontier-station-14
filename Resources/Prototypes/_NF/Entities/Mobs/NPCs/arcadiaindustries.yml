@@ -60,6 +60,14 @@
       damage:
         groups:
           Brute: 4
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1
 
 - type: entity
   name: Hijacked Hologuardian
@@ -107,10 +115,18 @@
         types:
           Piercing: 5
           Heat: 5
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1
 
 - type: entity
   name: Mobile Blaster Unit
-  parent: SimpleMobBase
+  parent: SimpleSpaceMobBase
   id: MobArcIndBlaster
   description: A mobile energy blaster that capable of... oh god run it's spotted you!
   components:
@@ -170,3 +186,11 @@
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     - type: CombatMode
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1

@@ -34,6 +34,7 @@ public sealed class AccessReaderSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<AccessReaderComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<AccessReaderComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - DEMAG
         SubscribeLocalEvent<AccessReaderComponent, LinkAttemptEvent>(OnLinkAttempt);
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentGetState>(OnGetState);
@@ -77,12 +78,18 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotEmaggedEvent args)
     {
-        if (reader.ImmuneToEmag)
+        if (!reader.BreakOnEmag)
             return;
-
         args.Handled = true;
         reader.Enabled = false;
         reader.AccessLog.Clear();
+        Dirty(uid, reader);
+    }
+
+    private void OnUnEmagged(EntityUid uid, AccessReaderComponent reader, ref GotUnEmaggedEvent args) // Frontier - DEMAG
+    {
+        args.Handled = true;
+        reader.Enabled = true;
         Dirty(uid, reader);
     }
 
