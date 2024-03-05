@@ -60,7 +60,7 @@ public sealed class RadarControl : MapGridControl
     /// <summary>
     /// Currently hovered docked to show on the map.
     /// </summary>
-    public EntityUid? HighlightedDock;
+    public NetEntity? HighlightedDock;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -217,7 +217,7 @@ public sealed class RadarControl : MapGridControl
 
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids);
+        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
         // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
@@ -303,7 +303,7 @@ public sealed class RadarControl : MapGridControl
                 var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
 
                 // Distant stations that are not player controlled ships
-                var isDistantPOI = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+                var isDistantPOI = iff != null || (iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0);
 
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
@@ -326,7 +326,7 @@ public sealed class RadarControl : MapGridControl
 
                     label.FontColorOverride = color;
                     label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", RadarFontSize);
-                    label.Visible = ShowIFFShuttles || iff == null || iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
+                    label.Visible = ShowIFFShuttles || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
                     if (IFFFilter != null)
                     {
                         label.Visible &= IFFFilter(gUid, grid.Comp, iff);
@@ -503,7 +503,7 @@ public sealed class RadarControl : MapGridControl
                 if (uiPosition.Length() > WorldRange - dockScale)
                     continue;
 
-                var color = HighlightedDock == ent ? state.HighlightedColor : state.Color;
+                var color = HighlightedDock == state.Entity ? state.HighlightedColor : state.Color;
 
                 uiPosition.Y = -uiPosition.Y;
 
