@@ -1,13 +1,9 @@
 using System.Numerics;
 using System.Threading;
 using Content.Server.DoAfter;
-using Content.Server.Body.Systems;
-using Content.Server.Hands.Systems;
 using Content.Server.Resist;
 using Content.Server.Popups;
-using Content.Server.Contests;
 using Content.Server.Item.PseudoItem;
-using Content.Server.Storage.EntitySystems;
 using Content.Shared.Climbing; // Shared instead of Server
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
@@ -39,7 +35,6 @@ namespace Content.Server.Carrying
 {
     public sealed class CarryingSystem : EntitySystem
     {
-        [Dependency] private readonly HandVirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly StandingStateSystem _standingState = default!;
@@ -48,7 +43,6 @@ namespace Content.Server.Carrying
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly EscapeInventorySystem _escapeInventorySystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
 
@@ -122,13 +116,7 @@ namespace Content.Server.Carrying
         /// </summary>
         private void OnThrow(EntityUid uid, CarryingComponent component, BeforeThrowEvent args)
         {
-            if (!TryComp<HandVirtualItemComponent>(args.ItemUid, out var virtItem) || !HasComp<CarriableComponent>(virtItem.BlockingEntity))
-                return;
-
-            args.ItemUid = virtItem.BlockingEntity;
-
-            var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
-            args.ThrowStrength = 5f * multiplier;
+            args.ThrowStrength = 5f;
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -176,7 +164,7 @@ namespace Content.Server.Carrying
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, _contests.MassContest(uid, component.Carrier));
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, 1);
             }
         }
 
@@ -263,8 +251,6 @@ namespace Content.Server.Carrying
             Transform(carried).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
             Transform(carried).AttachParent(Transform(carrier));
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
             ApplyCarrySlowdown(carrier, carried);
             var carriedComp = EnsureComp<BeingCarriedComponent>(carried);
@@ -283,7 +269,6 @@ namespace Content.Server.Carrying
             RemComp<BeingCarriedComponent>(carried);
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
-            _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
             Transform(carried).AttachToGridOrMap();
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
@@ -291,7 +276,7 @@ namespace Content.Server.Carrying
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
         {
-            var massRatio = _contests.MassContest(carrier, carried);
+            var massRatio = 1;
 
             if (massRatio == 0)
                 massRatio = 1;
@@ -352,7 +337,7 @@ namespace Content.Server.Carrying
         {
             TimeSpan length = TimeSpan.FromSeconds(3);
 
-            var mod = _contests.MassContest(carrier, carried);
+            var mod = 1;
             if (mod != 0)
                 length /= mod;
 
