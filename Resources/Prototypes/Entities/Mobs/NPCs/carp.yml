@@ -29,7 +29,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.5 # frontier trying to get them to not teleport into shuttles
           density: 80
           mask:
             - FlyingMobMask
@@ -63,7 +63,7 @@
       damage:
         types:
           Piercing: 5
-          Slash: 10
+          Slash: 5 # frontier nerf
     - type: TypingIndicator
       proto: alien
     - type: Tag
@@ -74,6 +74,11 @@
       accent: genericAggressive
     - type: Speech
       speechVerb: LargeMob
+    - type: InteractionPopup
+      interactSuccessString: petting-success-carp
+      interactFailureString: petting-failure-carp
+      interactFailureSound:
+        path: /Audio/Effects/bite.ogg
 
 - type: entity
   parent: BaseMobCarp
@@ -118,7 +123,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.5
           density: 10
           mask:
             - MobMask
@@ -144,27 +149,6 @@
   parent: MobCarp
   suffix: "Salvage Ruleset"
   components:
-    - type: GhostRole
-      prob: 0
-      name: ghost-role-information-salvage-carp-name
-      allowMovement: true
-      allowSpeech: true
-      description: ghost-role-information-salvage-carp-description
-    - type: GhostTakeoverAvailable
-    - type: SalvageMobRestrictions
-
-- type: entity
-  id: MobCarpSalvageGhost
-  parent: MobCarp
-  suffix: "Salvage Ruleset Ghost"
-  components:
-    - type: GhostRole
-      prob: 0.33
-      name: ghost-role-information-salvage-carp-name
-      allowMovement: true
-      allowSpeech: true
-      description: ghost-role-information-salvage-carp-description
-    - type: GhostTakeoverAvailable
     - type: SalvageMobRestrictions
 
 - type: entity
@@ -193,3 +177,62 @@
     damage:
       types:
         Slash: 5
+
+- type: entity
+  name: sharkminnow
+  parent: BaseMobCarp
+  id: MobShark
+  description: A dangerous shark from the blackness of endless space, who loves to drink blood.
+  components:
+    - type: Sprite
+      sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+      layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+      - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+        state: mouth
+        shader: unshaded
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.55
+          density: 100
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        80: Dead
+    - type: Stamina
+      critThreshold: 150
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+          BaseUnshaded: mouth
+        Dead:
+          Base: dead
+          BaseUnshaded: dead_mouth
+    - type: Body
+      prototype: Bloodsucker
+      requiredLegs: 1
+    - type: Butcherable
+      spawned:
+        - id: FoodMeatFish
+          amount: 4
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 7
+          Bloodloss: 5
+
+- type: entity
+  id: MobSharkSalvage
+  parent: MobShark
+  suffix: "Salvage Ruleset"
+  components:
+    - type: SalvageMobRestrictions

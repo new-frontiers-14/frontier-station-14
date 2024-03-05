@@ -12,17 +12,13 @@
     slots:
     - Back
   - type: Item
-    size: 60
+    size: Huge
   - type: StaticPrice
     price: 500
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponRanged # Frontier
-    - WeaponLongarms # Frontier
 
 - type: entity
   name: china lake
@@ -53,6 +49,7 @@
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Contraband #frontier
 
 - type: entity
   name: RPG-7
@@ -148,7 +145,7 @@
     - type: BallisticAmmoProvider
       whitelist:
         tags:
-          - Grenade
+          - CannonBall
       capacity: 1
       proto: CannonBall
       soundInsert:
@@ -162,6 +159,8 @@
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
+    - type: Item
+      storedRotation: -90
     - type: TetherGun
       frequency: 5
       dampingRatio: 4
@@ -199,6 +198,8 @@
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
+    - type: Item
+      storedRotation: -90
     - type: ForceGun
       frequency: 15
       dampingRatio: 4
@@ -244,7 +245,6 @@
     - type: Gun
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
       fireRate: 0.5
-    - type: RechargeCycleAmmo
     - type: BasicEntityAmmoProvider
       proto: GrapplingHook
       capacity: 1
@@ -267,8 +267,6 @@
             False: { state: base-unshaded-off }
     - type: Tag # Frontier
       tags: # Frontier
-      - WeaponRanged # Frontier
-      - WeaponShortArms # Frontier
       - Sidearm # Frontier
 
 # Admeme
@@ -276,7 +274,7 @@
   name: tether gun
   parent: BaseItem
   id: WeaponTetherGunAdmin
-  suffix: admin
+  suffix: Admeme
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
     - type: TetherGun
@@ -315,7 +313,7 @@
   name: force gun
   parent: BaseItem
   id: WeaponForceGunAdmin
-  suffix: Admin
+  suffix: Admeme
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
     - type: ForceGun

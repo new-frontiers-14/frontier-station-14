@@ -26,6 +26,8 @@
 - type: entity
   id: CrateFoodMRE
   parent: CratePlastic
+  name: MRE crate
+  description: A military style meal fit to feed a whole department.
   components:
   - type: StorageFill
     contents:
@@ -35,6 +37,8 @@
 - type: entity
   id: CrateFoodCooking
   parent: CratePlastic
+  name: kitchen supplies crate
+  description: Extra kitchen supplies, in case the botanists are absent.
   components:
   - type: StorageFill
     contents:
@@ -48,9 +52,9 @@
       amount: 3
     - id: ReagentContainerRice
       amount: 3
-    - id: ReagentContainerMilk
+    - id: DrinkMilkCarton
       amount: 4
-    - id: ReagentContainerMilkSoy
+    - id: DrinkSoyMilkCarton
       amount: 2
     - id: ReagentContainerSugar
       amount: 2
@@ -64,6 +68,8 @@
 - type: entity
   id: CrateFoodDinnerware
   parent: CratePlastic
+  name: kitchen dinnerware crate
+  description: Extra kitchen supplies, in case the clown was allowed in the cafeteria unsupervised.
   components:
   - type: StorageFill
     contents:
@@ -89,6 +95,8 @@
 - type: entity
   id: CrateFoodBarSupply
   parent: CratePlastic
+  name: bartending supplies crate
+  description: Extra Bar supplies, in case the clown was allowed in the bar unsupervised.
   components:
   - type: StorageFill
     contents:

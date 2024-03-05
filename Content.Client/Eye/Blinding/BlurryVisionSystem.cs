@@ -1,6 +1,7 @@
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Player;
 
 namespace Content.Client.Eye.Blinding;
 
@@ -35,13 +36,13 @@ public sealed class BlurryVisionSystem : EntitySystem
 
     private void OnBlurryInit(EntityUid uid, BlurryVisionComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnBlurryShutdown(EntityUid uid, BlurryVisionComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalEntity == uid)
         {
             _overlayMan.RemoveOverlay(_overlay);
         }

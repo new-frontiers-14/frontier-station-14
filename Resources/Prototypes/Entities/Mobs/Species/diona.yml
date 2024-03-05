@@ -8,13 +8,10 @@
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
-    starvationDamage:
-      types:
-        Bloodloss: 0.1
     baseDecayRate: 0.0083
   - type: Thirst
     baseDecayRate: 0.0083
-  - type: Carriable # Carrying system from nyanotrasen.  
+  - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full
@@ -29,7 +26,6 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#75b1f0"
-  - type: Perishable
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -100,6 +96,13 @@
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
   - type: ShoesRequiredStepTriggerImmune # Frontier
+  - type: IgniteOnHeatDamage
+    fireStacks: 1
+    threshold: 12
+  - type: GibAction
+    actionPrototype: DionaGibAction
+    allowedStates:
+    - Dead
 
 - type: entity
   parent: BaseSpeciesDummy

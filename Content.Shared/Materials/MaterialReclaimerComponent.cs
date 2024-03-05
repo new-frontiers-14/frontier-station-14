@@ -1,5 +1,4 @@
-﻿using Content.Shared.Chemistry.Components;
-using Content.Shared.Construction.Prototypes;
+﻿using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -13,7 +12,7 @@ namespace Content.Shared.Materials;
 /// This is a machine that handles converting entities
 /// into the raw materials and chemicals that make them up.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 [Access(typeof(SharedMaterialReclaimerSystem))]
 public sealed partial class MaterialReclaimerComponent : Component
 {
@@ -85,12 +84,6 @@ public sealed partial class MaterialReclaimerComponent : Component
     public string SolutionContainerId = "output";
 
     /// <summary>
-    /// The solution itself.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public Solution OutputSolution = default!;
-
-    /// <summary>
     /// a whitelist for what entities can be inserted into this reclaimer
     /// </summary>
     [DataField]
@@ -118,6 +111,7 @@ public sealed partial class MaterialReclaimerComponent : Component
     /// When the next sound will be allowed to be played. Used to prevent spam.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan NextSound;
 
     /// <summary>
@@ -126,7 +120,7 @@ public sealed partial class MaterialReclaimerComponent : Component
     [DataField]
     public TimeSpan SoundCooldown = TimeSpan.FromSeconds(0.8f);
 
-    public IPlayingAudioStream? Stream;
+    public EntityUid? Stream;
 
     /// <summary>
     /// A counter of how many items have been processed

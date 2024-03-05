@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Physics;
 using Robust.Client.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Eye;
@@ -40,7 +41,7 @@ public sealed class EyeLerpingSystem : EntitySystem
 
     private void OnEyeStartup(EntityUid uid, EyeComponent component, ComponentStartup args)
     {
-        if (_playerManager.LocalPlayer?.ControlledEntity == uid)
+        if (_playerManager.LocalEntity == uid)
             AddEye(uid, component, true);
     }
 
@@ -76,7 +77,7 @@ public sealed class EyeLerpingSystem : EntitySystem
             return;
 
         // If this is the currently controlled entity, we keep the component.
-        if (_playerManager.LocalPlayer?.ControlledEntity == uid)
+        if (_playerManager.LocalEntity == uid)
             lerp.ManuallyAdded = false;
         else
             RemComp(uid, lerp);

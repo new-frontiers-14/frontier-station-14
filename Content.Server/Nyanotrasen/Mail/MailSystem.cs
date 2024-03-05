@@ -9,7 +9,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
@@ -36,13 +36,15 @@ using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.PDA;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
+using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Mail
@@ -691,6 +693,7 @@ namespace Content.Server.Mail
                 var mail = EntityManager.SpawnEntity(chosenParcel, Transform(uid).Coordinates);
                 SetupMail(mail, component, candidate);
 
+                _tagSystem.AddTag(mail, "Mail"); // Frontier
                 _tagSystem.AddTag(mail, "Recyclable"); // Frontier - Make it so mail can be destroyed by reclaimer
             }
 
@@ -722,10 +725,8 @@ namespace Content.Server.Mail
                 _handsSystem.PickupOrDrop(user, entity);
             }
 
-            _itemSystem.SetSize(uid, 1);
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
-            _tagSystem.AddTag(uid, "ClothMade"); // Frontier - Make it so moth can eat open mail.
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }

@@ -20,7 +20,6 @@ namespace Content.Server.Shuttles.Systems
     public sealed partial class DockingSystem : EntitySystem
     {
         [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly DoorBoltSystem _bolts = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
         [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
         [Dependency] private readonly PathfindingSystem _pathfinding = default!;
@@ -363,7 +362,7 @@ namespace Content.Server.Shuttles.Systems
                     doorA.ChangeAirtight = false;
                     if (TryComp<DoorBoltComponent>(dockAUid, out var airlockA))
                     {
-                        _bolts.SetBoltsWithAudio(dockAUid, airlockA, true);
+                        _doorSystem.SetBoltsDown((dockAUid, airlockA), true);
                     }
                 }
             }
@@ -375,7 +374,7 @@ namespace Content.Server.Shuttles.Systems
                     doorB.ChangeAirtight = false;
                     if (TryComp<DoorBoltComponent>(dockBUid, out var airlockB))
                     {
-                        _bolts.SetBoltsWithAudio(dockBUid, airlockB, true);
+                        _doorSystem.SetBoltsDown((dockBUid, airlockB), true);
                     }
                 }
             }
@@ -459,45 +458,24 @@ namespace Content.Server.Shuttles.Systems
             if (dock.DockedWith == null)
                 return;
 
-            if (TryComp<DoorBoltComponent>(dockUid, out var airlockA))
-            {
-                _bolts.SetBoltsWithAudio(dockUid, airlockA, false);
-            }
-
-            if (TryComp<DoorBoltComponent>(dock.DockedWith, out var airlockB))
-            {
-                _bolts.SetBoltsWithAudio(dock.DockedWith.Value, airlockB, false);
-            }
-
-            if (TryComp(dockUid, out DoorComponent? doorA))
-            {
-                if (_doorSystem.TryClose(dockUid, doorA))
-                {
-                    doorA.ChangeAirtight = true;
-                }
-            }
-
-            if (TryComp(dock.DockedWith, out DoorComponent? doorB))
-            {
-                if (_doorSystem.TryClose(dock.DockedWith.Value, doorB))
-                {
-                    doorB.ChangeAirtight = true;
-                }
-            }
-
-            if (LifeStage(dockUid) < EntityLifeStage.Terminating)
-            {
-                var recentlyDocked = EnsureComp<RecentlyDockedComponent>(dockUid);
-                recentlyDocked.LastDocked = dock.DockedWith.Value;
-            }
-
-            if (TryComp(dock.DockedWith.Value, out MetaDataComponent? meta) && meta.EntityLifeStage < EntityLifeStage.Terminating)
-            {
-                var recentlyDocked = EnsureComp<RecentlyDockedComponent>(dock.DockedWith.Value);
-                recentlyDocked.LastDocked = dock.DockedWith.Value;
-            }
-
+            OnUndock(dockUid, dock.DockedWith.Value);
+            OnUndock(dock.DockedWith.Value, dockUid);
             Cleanup(dockUid, dock);
+        }
+
+        private void OnUndock(EntityUid dockUid, EntityUid other)
+        {
+            if (TerminatingOrDeleted(dockUid))
+                return;
+
+            if (TryComp<DoorBoltComponent>(dockUid, out var airlock))
+                _doorSystem.SetBoltsDown((dockUid, airlock), false);
+
+            if (TryComp(dockUid, out DoorComponent? door) && _doorSystem.TryClose(dockUid, door))
+                door.ChangeAirtight = true;
+
+            var recentlyDocked = EnsureComp<RecentlyDockedComponent>(dockUid);
+            recentlyDocked.LastDocked = other;
         }
     }
 }

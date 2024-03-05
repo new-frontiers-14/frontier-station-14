@@ -37,7 +37,7 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: 2 # Frontier - 3 to 2 size
+    size: Tiny
   - type: DamageOnLand
     damage:
       types:
@@ -66,13 +66,13 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: 2 # Frontier - 3 to 2 size
-  - type: Tag
-    tags:
-      - Trash
+    size: Tiny
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
+  - type: Tag
+    tags:
+      - Trash
   - type: StaticPrice
     price: 1
 # Tins
@@ -109,7 +109,7 @@
 - type: entity
   parent: FoodTinPeaches
   id: FoodTinPeachesMaint
-  name: Maintenance Peaches
+  name: maintenance peaches
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/Tins/maint_peaches.rsi
@@ -132,7 +132,7 @@
 - type: entity
   parent: FoodTinBaseTrash
   id: FoodTinPeachesMaintTrash
-  name: Maintenance Peaches
+  name: maintenance peaches
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/Tins/maint_peaches.rsi

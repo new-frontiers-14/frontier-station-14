@@ -7,6 +7,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
+using Content.Server.Roles.Jobs;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -22,6 +23,8 @@ using Content.Shared.Roles;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -47,6 +50,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly JobSystem _jobs = default!;
 
     public override void Initialize()
     {
@@ -269,8 +273,13 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         var prefList = new List<ICommonSession>();
         foreach (var player in allPlayers)
         {
-            if (player.AttachedEntity == null || !HasComp<HumanoidAppearanceComponent>(player.AttachedEntity) || HasComp<ZombieImmuneComponent>(player.AttachedEntity))
+            if (player.AttachedEntity == null || !HasComp<HumanoidAppearanceComponent>(player.AttachedEntity) ||
+             HasComp<ZombieImmuneComponent>(player.AttachedEntity) || !_jobs.CanBeAntag(player))
                 continue;
+
+            if (HasComp<InitialInfectedExemptComponent>(player.AttachedEntity))
+                continue; // used (for example) on ERT
+
             playerList.Add(player);
 
             var pref = (HumanoidCharacterProfile) _prefs.GetPreferences(player.UserId).SelectedCharacter;
@@ -334,7 +343,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
             // I went all the way to ChatManager.cs and all i got was this lousy T-shirt
             // You got a free T-shirt!?!?
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, message,
-               wrappedMessage, default, false, zombie.ConnectedClient, Color.Plum);
+               wrappedMessage, default, false, zombie.Channel, Color.Plum);
             _audio.PlayGlobal(component.InitialInfectedSound, ownedEntity);
         }
     }

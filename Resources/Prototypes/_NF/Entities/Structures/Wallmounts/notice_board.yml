@@ -36,7 +36,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
@@ -59,7 +59,9 @@
     maxFillLevels: 8
     fillBaseName: notices-
   - type: Storage
-    capacity: 16
+    maxItemSize: Small
+    grid:
+    - 0,0,5,3
     whitelist:
       tags:
       - Folder

@@ -5,7 +5,7 @@
   description: Linked together with some spare cuffs and metal.
   components:
   - type: Item
-    size: 20
+    size: Normal
   - type: Sprite
     sprite: Objects/Weapons/Throwable/bola.rsi
     state: icon
@@ -31,7 +31,8 @@
         damage: 15
       behaviors:
       - !type:PlaySoundBehavior
-        sound: /Audio/Effects/metalbreak.ogg
+        sound:
+          collection: MetalBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageOnLand

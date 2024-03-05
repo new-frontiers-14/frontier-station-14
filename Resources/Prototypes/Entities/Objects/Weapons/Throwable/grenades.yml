@@ -9,7 +9,7 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: Item
-    size: 5
+    size: Small
   - type: Clothing
     quickEquip: false
     slots:
@@ -29,7 +29,12 @@
         acts: ["Destruction"]
   - type: Appearance
   - type: AnimationPlayer
-  - type: TimerTriggerVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
 
 - type: entity
   name: explosive grenade
@@ -51,6 +56,7 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
+  - type: Contraband #frontier
 
 - type: entity
   name: flashbang
@@ -62,7 +68,7 @@
     sprite: Objects/Weapons/Grenades/flashbang.rsi
   - type: FlashOnTrigger
     range: 7
-  - type: EmitSoundOnTrigger
+  - type: SoundOnTrigger
     sound:
       path: "/Audio/Effects/flash_bang.ogg"
   - type: DeleteOnTrigger
@@ -114,6 +120,7 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
+  - type: Contraband #frontier
 
 - type: entity
   name: supermatter grenade
@@ -177,6 +184,7 @@
           params:
             volume: 5
       - type: ExplodeOnTrigger
+      - type: Contraband #frontier
 
 - type: entity
   name: whitehole grenade
@@ -224,6 +232,7 @@
           params:
             volume: 15
       - type: DeleteOnTrigger
+      - type: Contraband #frontier
 
 - type: entity
   name: the nuclear option
@@ -254,6 +263,7 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
+  - type: Contraband #frontier
 
 - type: entity
   name: modular grenade
@@ -267,7 +277,7 @@
     - state: empty
       map: [ "enum.ConstructionVisuals.Layer" ]
   - type: Item
-    size: 8
+    size: Small
   - type: PayloadCase
   - type: Construction
     graph: ModularGrenadeGraph
@@ -340,3 +350,38 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/hallelujah.ogg
+  - type: Contraband #frontier
+
+- type: entity
+  parent: GrenadeBase
+  id: SmokeGrenade
+  name: smoke grenade
+  description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/smoke.rsi
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 50
+  - type: SoundOnTrigger
+    sound: /Audio/Effects/smoke.ogg
+  - type: DeleteOnTrigger
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/Smoke-grenade.ogg
+
+- type: entity
+  parent: SmokeGrenade
+  id: TearGasGrenade
+  name: tear gas grenade
+  description: A riot control tear gas grenade. Causes irritation, pain and makes you cry your eyes out.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50

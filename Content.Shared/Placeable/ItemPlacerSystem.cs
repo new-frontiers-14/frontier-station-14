@@ -11,7 +11,6 @@ public sealed class ItemPlacerSystem : EntitySystem
 {
     [Dependency] private readonly CollisionWakeSystem _wake = default!;
     [Dependency] private readonly PlaceableSurfaceSystem _placeableSurface = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {
@@ -26,8 +25,8 @@ public sealed class ItemPlacerSystem : EntitySystem
         if (comp.Whitelist != null && !comp.Whitelist.IsValid(args.OtherEntity))
             return;
 
-        if (TryComp<CollisionWakeComponent>(uid, out var wakeComp))
-            _wake.SetEnabled(uid, false, wakeComp);
+        if (TryComp<CollisionWakeComponent>(args.OtherEntity, out var wakeComp))
+            _wake.SetEnabled(args.OtherEntity, false, wakeComp);
 
         var count = comp.PlacedEntities.Count;
         if (comp.MaxEntities == 0 || count < comp.MaxEntities)
@@ -47,8 +46,8 @@ public sealed class ItemPlacerSystem : EntitySystem
 
     private void OnEndCollide(EntityUid uid, ItemPlacerComponent comp, ref EndCollideEvent args)
     {
-        if (TryComp<CollisionWakeComponent>(uid, out var wakeComp))
-            _wake.SetEnabled(uid, true, wakeComp);
+        if (TryComp<CollisionWakeComponent>(args.OtherEntity, out var wakeComp))
+            _wake.SetEnabled(args.OtherEntity, true, wakeComp);
 
         comp.PlacedEntities.Remove(args.OtherEntity);
 

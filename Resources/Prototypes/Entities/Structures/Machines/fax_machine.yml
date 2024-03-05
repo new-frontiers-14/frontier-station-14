@@ -71,8 +71,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCentcom
-  name: centcom long range fax machine
-  suffix: Centcom
+  name: CentCom long range fax machine
+  suffix: CentCom
   components:
   - type: Sprite
     layers:
@@ -97,8 +97,8 @@
   - type: FaxMachine
     name: "ERR*?*%!"
     responsePings: false
-    emagged: true
     notifyAdmins: true
+  - type: Emagged
 
 - type: entity
   parent: FaxMachineBase
@@ -109,3 +109,5 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
+    - type: StealTarget
+      stealGroup: FaxMachineCaptain

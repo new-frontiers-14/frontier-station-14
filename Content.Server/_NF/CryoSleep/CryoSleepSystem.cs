@@ -24,6 +24,7 @@ using Content.Shared.NF14.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
@@ -131,7 +132,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         // Self-insert verb
         if (!IsOccupied(component) &&
-            (_actionBlocker.CanMove(args.User) || HasComp<WheelchairBoundComponent>(args.User))) // just get working legs
+            (_actionBlocker.CanMove(args.User))) // || HasComp<WheelchairBoundComponent>(args.User))) // just get working legs
         {
             AlternativeVerb verb = new()
             {

@@ -1,15 +1,14 @@
 - type: entity
-  parent: BaseItem
   id: BaseSubdermalImplant
   name: implant
   description: A microscopic chip that's injected under the skin.
   abstract: true
   components:
-    - type: SubdermalImplant
-    - type: Tag
-      tags:
-        - SubdermalImplant
-        - HideContextMenu
+  - type: SubdermalImplant
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
 
 #Fun implants
 
@@ -119,10 +118,9 @@
       whitelist:
         components:
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
-    - type: Item
-      size: 9999
     - type: Storage
-      capacity: 20 #10-20 should be more than enough for this
+      grid:
+      - 0,0,2,2
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
@@ -183,6 +181,19 @@
 
 - type: entity
   parent: BaseSubdermalImplant
+  id: ScramImplant
+  name: scram implant
+  description: This implant randomly teleports the user within a large radius when activated.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionActivateScramImplant
+    - type: TriggerImplantAction
+    - type: ScramImplant
+      teleportAttempts: 10 # small amount of risk of being teleported into space and lets you teleport off shuttles
+
+- type: entity
+  parent: BaseSubdermalImplant
   id: DnaScramblerImplant
   name: DNA scrambler implant
   description: This implant lets the user randomly change their appearance and name once.
@@ -200,7 +211,7 @@
   parent: BaseSubdermalImplant
   id: MicroBombImplant
   name: micro-bomb implant
-  description: This implant detonates the user upon death.
+  description: This implant detonates the user upon activation or upon death.
   noSpawn: true
   components:
     - type: SubdermalImplant
@@ -242,9 +253,10 @@
     - type: OnUseTimerTrigger
       delay: 7
       initialBeepDelay: 0
-      beepSound: /Audio/Machines/Nuke/general_beep.ogg
-      params:
-        volume: -2
+      beepSound:
+        path: /Audio/Machines/Nuke/general_beep.ogg
+        params:
+          volume: -2
     - type: ExplodeOnTrigger
     - type: GibOnTrigger
       deleteItems: true
@@ -259,6 +271,30 @@
         - SubdermalImplant
         - HideContextMenu
         - MacroBomb
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DeathAcidifierImplant
+  name: death-acidifier implant
+  description: This implant melts the user and their equipment upon death.
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateDeathAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerImplantAction
+  - type: GibOnTrigger
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - DeathAcidifier
 
 - type: entity
   parent: BaseSubdermalImplant

@@ -28,18 +28,19 @@
       - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
+      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSecurity
-  id: ClothingBackpackSecurityFilledDetective
+  parent: ClothingBackpack
+  id: ClothingBackpackFilledDetective
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
-      - id: Flash
+      - id: BoxSurvival
       - id: ForensicPad
       - id: ForensicScanner
+      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
@@ -49,6 +50,16 @@
   - type: StorageFill
     contents:
       - id: BoxSurvivalMedical
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackMedical
+  id: ClothingBackpackParamedicFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalMedical
+      - id: EmergencyRollerBedSpawnFolded
 
 - type: entity
   noSpawn: true
@@ -133,6 +144,7 @@
       - id: RubberStampHos  # Frontier
       - id: DoorRemoteSecurity  # Frontier
       - id: SecurityTechFabCircuitboard # Frontier
+      - id: BaseSecurityUplinkRadioSheriff # Frontier
 
 - type: entity
   noSpawn: true
@@ -292,8 +304,7 @@
         - id: trayScanner
         - id: RCD
         - id: RCDAmmo
-        - id: RCDAmmo
-        - id: RCDAmmo
+          amount: 2
         - id: CableMVStack
         - id: CableHVStack
         - id: CableApcStack
@@ -325,6 +336,9 @@
   name: death squad backpack
   description: Holds the kit of CentComm's most feared agents.
   components:
+    - type: Storage
+      grid:
+      - 0,0,7,6
     - type: StorageFill
       contents:
         - id: BoxSurvivalEngineering
@@ -337,7 +351,7 @@
         - id: ToolDebug # spanish army knife
         - id: WelderExperimental
         - id: Hypospray
-        - id: MicroBombImplanter # crew will try to steal their amazing hardsuits
+        - id: DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
         - id: FreedomImplanter
 
 # Cargo
@@ -383,3 +397,4 @@
     contents:
       - id: BoxSurvivalBrigmedic
       - id: Flash
+      - id: FrontierUplinkCoin5

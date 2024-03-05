@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Menace
+  name: Menace
+  description: 'Mail is no longer an option: you either receive it or you die.'
+  price: 76000
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/menace.yml
+
+- type: gameMap
+  id: Menace
+  mapName: 'Menace'
+  mapPath: /Maps/_NF/Shuttles/menace.yml
+  minPlayers: 0
+  stations:
+    Menace:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Menace {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

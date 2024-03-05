@@ -7,11 +7,10 @@
   - type: Tag
     tags:
     - Spear
-    - WeaponMeleeStake
     - Wooden
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/wooden_stake.rsi
-    size: 2
+    size: Tiny
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
@@ -39,11 +38,11 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          collection: WoodDestroy
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Item
-    size: 10
+    size: Small
     sprite: _NF/Objects/Weapons/Melee/wooden_stake.rsi
   - type: Construction
     graph: WoodenStakeCraftingGraph

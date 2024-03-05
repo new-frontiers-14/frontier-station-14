@@ -15,7 +15,6 @@
   - type: CargoSellBlacklist
   - type: StaticPrice
     price: 0
-  - type: ItemCooldown
   - type: MeleeWeapon
     damage:
       types:
@@ -25,7 +24,7 @@
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
   - type: Item
-    size: 50
+    size: Large
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -43,7 +42,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
@@ -144,3 +143,20 @@
     - state: green_bit
       shader: unshaded
     - state: refill_autotune
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockPottedPlantVend
+  name: Plant-O-Matic restock box
+  description: A box containing potted plants for the Plant-O-Matic vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - PottedPlantVendInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_pottedplant

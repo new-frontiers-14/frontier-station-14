@@ -1,0 +1,54 @@
+- type: entity
+  name: kanabou
+  parent: BaseItem
+  id: Kanabou
+  description: The classic oni weapon, for those that forgo subtlety.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Weapons/Melee/kanabou.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    attackRate: 0.75
+    range: 1.75
+    damage:
+      types:
+        Blunt: 16
+    bluntStaminaDamageFactor: 1.60 # 25.6 stamina damage
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 14
+  - type: Clothing
+    sprite: Nyanotrasen/Objects/Weapons/Melee/kanabou.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: Contraband #frontier
+
+- type: entity
+  name: shinai
+  parent: BaseItem
+  id: Shinai
+  description: A bamboo sword, commonly used in kendo. Made some time after the realization that wooden swords hurt a lot.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Weapons/Melee/shinai.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.25
+    range: 1.75
+    bluntStaminaDamageFactor: 2.0
+    damage:
+      types:
+        Blunt: 4
+    soundHit:
+      collection: WoodDestroyHeavy
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Item
+    size: Normal
+    sprite: Nyanotrasen/Objects/Weapons/Melee/shinai.rsi
+  - type: DisarmMalus

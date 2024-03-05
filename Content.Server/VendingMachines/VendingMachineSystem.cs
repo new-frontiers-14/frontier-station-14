@@ -1,7 +1,9 @@
 using System.Linq;
 using Content.Server.Bank;
 using System.Numerics;
+using Content.Server.Advertise;
 using Content.Server.Cargo.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Cargo.Components;
 using Content.Server.Popups;
@@ -21,6 +23,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
+using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -29,6 +32,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.VendingMachines
 {
@@ -38,7 +43,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly BankSystem _bankSystem = default!;
         [Dependency] private readonly CargoSystem _cargo = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -48,6 +53,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly AdvertiseSystem _advertise = default!;
 
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
@@ -62,13 +68,19 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
-            SubscribeLocalEvent<VendingMachineComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
-            SubscribeLocalEvent<VendingMachineComponent, VendingMachineEjectMessage>(OnInventoryEjectMessage);
+
+            Subs.BuiEvents<VendingMachineComponent>(VendingMachineUiKey.Key, subs =>
+            {
+                subs.Event<BoundUIOpenedEvent>(OnBoundUIOpened);
+                subs.Event<BoundUIClosedEvent>(OnBoundUIClosed);
+                subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
+            });
 
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
@@ -132,6 +144,16 @@ namespace Content.Server.VendingMachines
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
 
+        private void OnBoundUIClosed(EntityUid uid, VendingMachineComponent component, BoundUIClosedEvent args)
+        {
+            // Only vendors that advertise will send message after dispensing
+            if (component.ShouldSayThankYou && TryComp<AdvertiseComponent>(uid, out var advertise))
+            {
+                _advertise.SayThankYou(uid, advertise);
+                component.ShouldSayThankYou = false;
+            }
+        }
+
         private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
         {
             var state = new VendingMachineInterfaceState(GetAllInventory(uid, component), balance);
@@ -186,13 +208,19 @@ namespace Content.Server.VendingMachines
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
+        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
+        {
+            // only unemag if there are emag-only items
+            args.Handled = component.EmaggedInventory.Count > 0;
+        }
+
         private void OnDamage(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
         {
             if (component.Broken || component.DispenseOnHitCoolingDown ||
                 component.DispenseOnHitChance == null || args.DamageDelta == null)
                 return;
 
-            if (args.DamageIncreased && args.DamageDelta.Total >= component.DispenseOnHitThreshold &&
+            if (args.DamageIncreased && args.DamageDelta.GetTotal() >= component.DispenseOnHitThreshold &&
                 _random.Prob(component.DispenseOnHitChance.Value))
             {
                 if (component.DispenseOnHitCooldown > 0f)
@@ -323,6 +351,7 @@ namespace Content.Server.VendingMachines
             vendComponent.Ejecting = true;
             vendComponent.NextItemToEject = entry.ID;
             vendComponent.ThrowNextItem = throwItem;
+            vendComponent.ShouldSayThankYou = true;
             entry.Amount--;
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
@@ -379,10 +408,13 @@ namespace Content.Server.VendingMachines
                 {
                     if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
                     {
-                        if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                        var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                        foreach (var stationBankComp in stationQuery)
                         {
-                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
+                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
                         }
+
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
                 }
