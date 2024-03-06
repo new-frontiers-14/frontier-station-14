@@ -223,10 +223,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (HasComp<DisarmProneComponent>(disarmed))
             return 0.0f;
 
-        // var chance = disarmerComp.BaseDisarmFailChance;
-        // Frontier - restored from pre-#25425
-        var contestResults = 1 - _contests.OverallStrengthContest(disarmer, disarmed);
-        float chance = (disarmerComp.BaseDisarmFailChance + contestResults);
+        var chance = disarmerComp.BaseDisarmFailChance;
 
         if (inTargetHand != null && TryComp<DisarmMalusComponent>(inTargetHand, out var malus))
         {
