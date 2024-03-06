@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Server.Contests;
 using Content.Server.DoAfter;
+using Content.Server.Inventory;
 using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Item.PseudoItem;
@@ -22,6 +23,7 @@ using Content.Shared.Pulling;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Item.PseudoItem;
 using Content.Shared.Mind.Components;
@@ -47,6 +49,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
         [Dependency] private readonly ContestsSystem _contests = default!;
+        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
 
         public override void Initialize()
         {
@@ -118,7 +121,13 @@ namespace Content.Server.Carrying
         /// </summary>
         private void OnThrow(EntityUid uid, CarryingComponent component, BeforeThrowEvent args)
         {
-            args.ThrowStrength = 5f;
+            if (!TryComp<VirtualItemComponent>(args.ItemUid, out var virtItem) || !HasComp<CarriableComponent>(virtItem.BlockingEntity))
+                return;
+
+            args.ItemUid = virtItem.BlockingEntity;
+
+            var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
+            args.ThrowStrength = 5f * multiplier;
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -166,7 +175,7 @@ namespace Content.Server.Carrying
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, 1);
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, _contests.MassContest(component.Carrier, uid));
             }
         }
 
@@ -258,6 +267,9 @@ namespace Content.Server.Carrying
             var carriedComp = EnsureComp<BeingCarriedComponent>(carried);
             EnsureComp<KnockedDownComponent>(carried);
 
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+
             carryingComp.Carried = carried;
             carriedComp.Carrier = carrier;
 
@@ -274,6 +286,7 @@ namespace Content.Server.Carrying
             Transform(carried).AttachToGridOrMap();
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
+            _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
         }
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
@@ -324,9 +337,17 @@ namespace Content.Server.Carrying
                 if (carrier is not { Valid: true } || carried is not { Valid: true })
                     continue;
 
+                // SOMETIMES - when an entity is inserted into disposals, or a cryosleep chamber - it can get re-parented without a proper reparent event
+                // when this happens, it needs to be dropped because it leads to weird behavior
+                if (Transform(carried).ParentUid != carrier)
+                {
+                    DropCarried(carrier, carried);
+                    continue;
+                }
+
                 // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
                 var xform = Transform(carried);
-                if (!xform.LocalPosition.EqualsApprox(Vector2.Zero))
+                if (!xform.LocalPosition.Equals(Vector2.Zero))
                 {
                     xform.LocalPosition = Vector2.Zero;
                 }
