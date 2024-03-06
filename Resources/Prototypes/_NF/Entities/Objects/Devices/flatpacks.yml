@@ -10,16 +10,8 @@
   - type: Flatpack
     entity: Autolathe
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#EFB341"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
-  - type: Tag
-    tags:
-    - DroneUsable
+    sprite: _NF/Objects/Devices/flatpacks.rsi
+    state: engineering_lathe
   - type: StaticPrice
     price: 150
 
@@ -37,11 +29,22 @@
     price: 250
 
 - type: entity
+  parent: engineeringtechfabflatpack
+  id: flatpackerflatpack
+  name: flatpacker 1001 flatpack
+  description: A flatpack used for constructing a flatpacker 1001.
+  components:
+  - type: Flatpack
+    entity: MachineFlatpacker
+
+- type: entity
   parent: autolatheflatpack
   id: cellchargerflatpack
   name: cell charger flatpack
   description: A flatpack used for constructing a cell charger.
   components:
+  - type: Sprite
+    state: power_charger
   - type: Flatpack
     entity: PowerCellRecharger
   - type: StaticPrice
@@ -62,11 +65,13 @@
   name: J.R.P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a J.R.P.A.C.M.A.N.-type portable generator.
   components:
+  - type: Sprite
+    state: power_generator
   - type: Flatpack
     entity: PortableGeneratorJrPacman
 
 - type: entity
-  parent: autolatheflatpack
+  parent: portablegeneratorjrpacmanflatpack
   id: portablegeneratorpacmanflatpack
   name: P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a P.A.C.M.A.N.-type portable generator.
@@ -75,7 +80,7 @@
     entity: PortableGeneratorPacman
 
 - type: entity
-  parent: autolatheflatpack
+  parent: portablegeneratorjrpacmanflatpack
   id: portablegeneratorsuperpacmanflatpack
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N.-type portable generator.
@@ -89,11 +94,13 @@
   name: AME controller flatpack
   description: A flatpack used for constructing an AME controller.
   components:
+  - type: Sprite
+    state: power_console_ame
   - type: Flatpack
     entity: AmeControllerUnanchored
 
 - type: entity
-  parent: autolatheflatpack
+  parent: amecontrollerflatpack
   id: radiationcollectorflatpack
   name: radiation collector flatpack
   description: A flatpack used for constructing a radiation collector.
@@ -107,11 +114,13 @@
   name: gyroscope flatpack
   description: A flatpack used for constructing a gyroscope.
   components:
+  - type: Sprite
+    state: engineering_gyroscope
   - type: Flatpack
     entity: GyroscopeUnanchored
 
 - type: entity
-  parent: autolatheflatpack
+  parent: gyroscopeflatpack
   id: gyroscopesmallflatpack
   name: small gyroscope flatpack
   description: A flatpack used for constructing a small gyroscope.
@@ -125,11 +134,13 @@
   name: thruster flatpack
   description: A flatpack used for constructing a thruster.
   components:
+  - type: Sprite
+    state: engineering_thruster
   - type: Flatpack
     entity: ThrusterUnanchored
 
 - type: entity
-  parent: autolatheflatpack
+  parent: thrusterflatpack
   id: thrustersmallflatpack
   name: small thruster flatpack
   description: A flatpack used for constructing a small thruster.
@@ -147,13 +158,7 @@
   - type: Flatpack
     entity: ExosuitFabricator
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#D381C9"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
+    state: science_lathe
   - type: StaticPrice
     price: 250
 
@@ -181,6 +186,8 @@
   name: artifact analyzer flatpack
   description: A flatpack used for constructing an artifact analyzer.
   components:
+  - type: Sprite
+    state: science_artifact_analyzer
   - type: Flatpack
     entity: MachineArtifactAnalyzer
 
@@ -190,6 +197,8 @@
   name: anomaly vessel flatpack
   description: A flatpack used for constructing an anomaly vessel.
   components:
+  - type: Sprite
+    state: science_anomaly_vessel
   - type: Flatpack
     entity: MachineAnomalyVessel
 
@@ -199,6 +208,8 @@
   name: A.P.E. flatpack
   description: A flatpack used for constructing an A.P.E..
   components:
+  - type: Sprite
+    state: science_ape
   - type: Flatpack
     entity: MachineAPE
 
@@ -221,13 +232,7 @@
   - type: Flatpack
     entity: UniformPrinter
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#9FED58"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
+    state: service_lathe
 
 - type: entity
   parent: uniformprinterflatpack
@@ -255,6 +260,8 @@
   name: hydroponics tray flatpack
   description: A flatpack used for constructing a hydroponics tray.
   components:
+  - type: Sprite
+    state: service_tray
   - type: Flatpack
     entity: HydroponicsTrayEmpty
 
@@ -277,13 +284,7 @@
   - type: Flatpack
     entity: MedicalTechFab
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#52B4E9"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
+    state: medical_lathe
   - type: StaticPrice
     price: 250
 
@@ -297,13 +298,7 @@
   - type: Flatpack
     entity: OreProcessor
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#A46106"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
+    state: supply_lathe
 
 - type: entity
   parent: oreprocessorflatpack
@@ -313,6 +308,10 @@
   components:
   - type: Flatpack
     entity: ShuttleGunKinetic
+  - type: Sprite
+    state: supply_gun
+  - type: StaticPrice
+    price: 250
 
 # Consoles
 - type: entity
@@ -321,11 +320,13 @@
   name: R&D computer flatpack
   description: A flatpack used for constructing a research and development computer.
   components:
+  - type: Sprite
+    state: science_console
   - type: Flatpack
     entity: ComputerResearchAndDevelopment
 
 - type: entity
-  parent: exosuitfabricatorflatpack
+  parent: rndcomputerflatpack
   id: analysisconsoleflatpack
   name: analysis console flatpack
   description: A flatpack used for constructing an analysis console.
@@ -339,6 +340,8 @@
   name: crew monitoring console flatpack
   description: A flatpack used for constructing a crew monitoring console.
   components:
+  - type: Sprite
+    state: medical_console
   - type: Flatpack
     entity: ComputerCrewMonitoring
 
@@ -349,6 +352,8 @@
   name: R&D server flatpack
   description: A flatpack used for constructing a research and development server.
   components:
+  - type: Sprite
+    state: science_server
   - type: Flatpack
     entity: ResearchAndDevelopmentServer
 
@@ -361,23 +366,19 @@
   - type: Flatpack
     entity: TelecomServer
   - type: Sprite
-    sprite: Objects/Devices/flatpack.rsi
-    layers:
-    - state: base
-    - state: overlay
-      color: "#334E6D"
-      map: ["enum.FlatpackVisualLayers.Overlay"]
-    - state: icon-default
+    state: command_server
 
 # Airlocks
 - type: entity
-  parent: telecommunicationserverflatpack
+  parent: autolatheflatpack
   id: airlockflatpack
   name: airlock flatpack
   description: A flatpack used for constructing an airlock.
   components:
   - type: Flatpack
     entity: Airlock
+  - type: Sprite
+    state: command_airlock
   - type: StaticPrice
     price: 95
 
@@ -415,6 +416,8 @@
   name: tuba flatpack
   description: A flatpack containing a tuba.
   components:
+  - type: Sprite
+    state: service_music
   - type: Flatpack
     entity: TubaInstrument
   - type: StaticPrice
@@ -527,12 +530,3 @@
   components:
   - type: Flatpack
     entity: DawInstrument
-
-- type: entity
-  parent: tubaflatpack
-  id: rickenbacker4003flatpack
-  name: rickenbacker 4003 flatpack
-  description: A flatpack containing a rickenbacker 4003.
-  components:
-  - type: Flatpack
-    entity: Rickenbacker4003Instrument
