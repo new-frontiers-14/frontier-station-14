@@ -1,3 +1,4 @@
+using Content.Server.Contests;
 using Content.Server.Popups;
 using Content.Shared.Storage;
 using Content.Server.Carrying; // Carrying system from Nyanotrasen.
@@ -10,6 +11,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;
@@ -31,6 +33,7 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly CarryingSystem _carryingSystem = default!; // Carrying system from Nyanotrasen.
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private  readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly ContestsSystem _contests = default!;
 
     // Frontier - cancel inventory escape
     [ValidatePrototypeId<EntityPrototype>]
@@ -70,9 +73,23 @@ public sealed class EscapeInventorySystem : EntitySystem
         }
 
         // Contested
-        if (_handsSystem.IsHolding(container.Owner, uid, out _))
+        if (_handsSystem.IsHolding(container.Owner, uid, out var inHand))
         {
-            AttemptEscape(uid, container.Owner, component);
+            var contestResults = _contests.MassContest(uid, container.Owner);
+
+            // Inverse if we aren't going to divide by 0, otherwise just use a default multiplier of 1.
+            if (contestResults != 0)
+                contestResults = 1 / contestResults;
+            else
+                contestResults = 1;
+
+            if (contestResults >= MaximumMassDisadvantage)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-failed-resisting"), uid, uid);
+                return;
+            }
+
+            AttemptEscape(uid, container.Owner, component, contestResults);
             return;
         }
 

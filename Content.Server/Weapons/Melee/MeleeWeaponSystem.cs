@@ -4,6 +4,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.CombatMode.Disarm;
+using Content.Server.Contests;
 using Content.Server.Movement.Systems;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Components;
@@ -36,6 +37,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly ContestsSystem _contests = default!;
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly LagCompensationSystem _lag = default!;
@@ -221,7 +223,9 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (HasComp<DisarmProneComponent>(disarmed))
             return 0.0f;
 
-        var chance = disarmerComp.BaseDisarmFailChance;
+        var contestResults = 1 - _contests.OverallStrengthContest(disarmer, disarmed);
+
+        float chance = (disarmerComp.BaseDisarmFailChance + contestResults);
 
         if (inTargetHand != null && TryComp<DisarmMalusComponent>(inTargetHand, out var malus))
         {
