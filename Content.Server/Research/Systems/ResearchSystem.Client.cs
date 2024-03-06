@@ -8,7 +8,6 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     private void InitializeClient()
     {
         SubscribeLocalEvent<ResearchClientComponent, MapInitEvent>(OnClientMapInit);
