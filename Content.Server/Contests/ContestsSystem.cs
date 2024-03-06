@@ -4,6 +4,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Physics.Components;
 
+// Frontier: this class has been removed in upstream pPR #25425;
+// the removal was reverted to preserve the old behaviors of various systems.
 namespace Content.Server.Contests
 {
     /// <summary>

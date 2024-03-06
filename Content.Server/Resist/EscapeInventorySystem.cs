@@ -75,6 +75,10 @@ public sealed class EscapeInventorySystem : EntitySystem
         // Contested
         if (_handsSystem.IsHolding(container.Owner, uid, out var inHand))
         {
+            /* Frontier - upstream has replaced everything below with the following line:
+            AttemptEscape(uid, container.Owner, component);
+            Everything below has been restored to the state of pre-#25425 */
+
             var contestResults = _contests.MassContest(uid, container.Owner);
 
             // Inverse if we aren't going to divide by 0, otherwise just use a default multiplier of 1.
