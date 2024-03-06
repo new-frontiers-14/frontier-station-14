@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Threading;
+using Content.Server.Contests;
 using Content.Server.DoAfter;
 using Content.Server.Resist;
 using Content.Server.Popups;
@@ -45,6 +46,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
+        [Dependency] private readonly ContestsSystem _contests = default!;
 
         public override void Initialize()
         {
@@ -276,8 +278,7 @@ namespace Content.Server.Carrying
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
         {
-            var massRatio = 1;
-
+            var massRatio = _contests.MassContest(carrier, carried);
             if (massRatio == 0)
                 massRatio = 1;
 
@@ -337,7 +338,7 @@ namespace Content.Server.Carrying
         {
             TimeSpan length = TimeSpan.FromSeconds(3);
 
-            var mod = 1;
+            var mod = _contests.MassContest(carrier, carried);
             if (mod != 0)
                 length /= mod;
 
