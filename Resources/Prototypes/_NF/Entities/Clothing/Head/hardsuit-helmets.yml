@@ -70,3 +70,18 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
+
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitMaxim, ClothingHeadHardsuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMaximPrototype
+  noSpawn: true
+  name: experimental salvager helmet
+  description: A predication of decay washes over your mind.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: PointLight # Luxury Hardsuit Light
+    radius: 7
+    energy: 3
