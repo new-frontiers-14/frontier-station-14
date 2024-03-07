@@ -24,7 +24,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         SubscribeLocalEvent<FTLCompletedEvent>(OnLocateTarget);
     }
 
-    public bool TogglePinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
+    public override bool TogglePinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
     {
         if (!Resolve(uid, ref pinpointer))
             return false;
@@ -128,26 +128,13 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
     }
 
     /// <summary>
-    ///     Set pinpointers target to track
+    ///     Update direction from pinpointer to selected target (if it was set)
     /// </summary>
-    public void SetTarget(EntityUid uid, EntityUid? target, PinpointerComponent? pinpointer = null)
+    protected override void UpdateDirectionToTarget(EntityUid uid, PinpointerComponent? pinpointer = null)
     {
         if (!Resolve(uid, ref pinpointer))
             return;
 
-        if (pinpointer.Target == target)
-            return;
-
-        pinpointer.Target = target;
-        if (pinpointer.IsActive)
-            UpdateDirectionToTarget(uid, pinpointer);
-    }
-
-    /// <summary>
-    ///     Update direction from pinpointer to selected target (if it was set)
-    /// </summary>
-    private void UpdateDirectionToTarget(EntityUid uid, PinpointerComponent pinpointer)
-    {
         if (!pinpointer.IsActive)
             return;
 
@@ -160,6 +147,15 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
         var dirVec = CalculateDirection(uid, target.Value);
         var oldDist = pinpointer.DistanceToTarget;
+
+        // Frontier: if the pinpointer has a max range and the distance to target is greater than the max range, set the distance to unknown
+        if (pinpointer.MaxRange > 0 && dirVec != null && dirVec.Value.LengthSquared() > pinpointer.MaxRange * pinpointer.MaxRange)
+        {
+            SetDistance(uid, Distance.Unknown, pinpointer);
+            TrySetArrowAngle(uid, Angle.Zero, pinpointer);
+            return;
+        }
+
         if (dirVec != null)
         {
             var angle = dirVec.Value.ToWorldAngle();
