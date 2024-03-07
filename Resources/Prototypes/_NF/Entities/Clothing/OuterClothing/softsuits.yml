@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: clothingouterevasuithydro
+  name: botanist EVA suit
+  description: An emergency EVA suit with a built-in helmet commonly issued to hydroponics workers.
+  components:
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_hydro.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_hydro.rsi
+  - type: ToggleableClothing
+    clothingPrototype: clothingheadhelmetevahydro
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: StaticPrice
+    price: 65
