@@ -13,9 +13,6 @@
     radius: 4
   - type: StaticPrice
     price: 255
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponMelee # Frontier
 
 - type: entity
   parent: BaseWeaponCrusher
@@ -24,7 +21,6 @@
   - type: Tag
     tags:
       - Pickaxe
-      - WeaponMelee # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher.rsi
     state: icon
@@ -49,11 +45,12 @@
     capacity: 1
     count: 1
   - type: MeleeWeapon
+    attackRate: 1.5
     wideAnimationRotation: -135
     damage:
       types:
         Blunt: 5
-        Slash: 5
+        Slash: 3
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -79,14 +76,15 @@
   parent: BaseWeaponCrusher
   id: WeaponCrusherDagger
   name: crusher dagger
-  description: A scaled down version of a proto-kinetic crusher, usually used in a last ditch scenario.
+  description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_dagger.rsi
     state: icon
   - type: MeleeWeapon
+    autoAttack: true
     wideAnimationRotation: -135
-    attackRate: 1.5
+    attackRate: 2
     damage:
       types:
         Slash: 7
@@ -110,13 +108,11 @@
   - type: LeechOnMarker
     leech:
       groups:
-        Brute: -15
+        Brute: -12
   - type: MeleeWeapon
-    attackRate: 1.25
   - type: Tag
     tags:
       - Pickaxe
-      - WeaponMelee # Frontier
   - type: StaticPrice
     price: 285
   - type: Clothing

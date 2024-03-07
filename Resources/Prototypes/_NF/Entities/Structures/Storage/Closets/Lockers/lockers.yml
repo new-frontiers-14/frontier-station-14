@@ -18,7 +18,7 @@
     - state: generic_door
       map: ["enum.StorageVisualLayers.Door"]
     - state: locked
-      map: ["enum.StorageVisualLayers.Lock"]
+      map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
     - state: welded
       visible: false
@@ -46,7 +46,7 @@
     - state: generic_door
       map: ["enum.StorageVisualLayers.Door"]
     - state: locked
-      map: ["enum.StorageVisualLayers.Lock"]
+      map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
     - state: welded
       visible: false
@@ -72,10 +72,22 @@
     - state: generic_door
       map: ["enum.StorageVisualLayers.Door"]
     - state: locked
-      map: ["enum.StorageVisualLayers.Lock"]
+      map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: AccessReader
     access: [["Captain"], ["Pilot"]]
+
+# Wooden Cabinet
+- type: entity
+  id: LockerWoodenGeneric
+  parent: LockerBooze
+  name: wooden cabinet
+  description: Dusty old wooden cabinet. Smells like grandparents.
+  components:
+  - type: Construction
+    graph: StorageFurnitureGraph
+    node: LockerWoodenGenericNode
+  - type: AccessReader

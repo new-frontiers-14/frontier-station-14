@@ -39,6 +39,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Storage;

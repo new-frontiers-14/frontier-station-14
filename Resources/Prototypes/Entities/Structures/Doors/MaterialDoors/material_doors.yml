@@ -55,9 +55,16 @@
   - type: Occluder
 
 - type: entity
+  parent: BaseMaterialDoor
+  id: BaseMaterialDoorNavMap
+  abstract: true
+  components:
+  - type: NavMapDoor
+
+- type: entity
   id: MetalDoor
   name: metal door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   components:
   - type: Construction
     graph: DoorGraph
@@ -66,7 +73,7 @@
 - type: entity
   id: WoodDoor
   name: wooden door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -103,7 +110,7 @@
 - type: entity
   id: PaperDoor
   name: paper door
-  parent: WoodDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -126,7 +133,7 @@
 - type: entity
   id: PlasmaDoor
   name: plasma door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -152,7 +159,7 @@
 - type: entity
   id: GoldDoor
   name: gold door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -167,7 +174,7 @@
 - type: entity
   id: SilverDoor
   name: silver door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -182,7 +189,7 @@
 - type: entity
   id: BananiumDoor
   name: bananium door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, where will it lead?
   components:
   - type: Sprite
@@ -202,7 +209,7 @@
 - type: entity
   id: WebDoor
   name: web door
-  parent: BaseMaterialDoor
+  parent: BaseMaterialDoorNavMap
   description: A door, leading to the lands of the spiders... or a spaced room.
   components:
   - type: Sprite
@@ -223,7 +230,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWebSilk:

@@ -1,9 +1,11 @@
 using System.Numerics;
+using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
+using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Collections;
@@ -23,9 +25,14 @@ public sealed class RadarControl : MapGridControl
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    private SharedTransformSystem _transform;
+    [Dependency] private readonly IResourceCache _resourceCache;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    private readonly SharedTransformSystem _transform;
 
     private const float GridLinesDistance = 32f;
+
+    private const int RadarBlipSize = 15;
+    private const int RadarFontSize = 10;
 
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
@@ -37,9 +44,9 @@ public sealed class RadarControl : MapGridControl
     /// <summary>
     /// Shows a label on each radar object.
     /// </summary>
-    private Dictionary<EntityUid, Control> _iffControls = new();
+    private readonly Dictionary<EntityUid, Control> _iffControls = new();
 
-    private Dictionary<EntityUid, List<DockingInterfaceState>> _docks = new();
+    private readonly Dictionary<EntityUid, List<DockingInterfaceState>> _docks = new();
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowIFFShuttles { get; set; } = true;
@@ -53,7 +60,7 @@ public sealed class RadarControl : MapGridControl
     /// <summary>
     /// Currently hovered docked to show on the map.
     /// </summary>
-    public EntityUid? HighlightedDock;
+    public NetEntity? HighlightedDock;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -65,6 +72,7 @@ public sealed class RadarControl : MapGridControl
     public RadarControl() : base(64f, 256f, 256f)
     {
         _transform = _entManager.System<SharedTransformSystem>();
+        _resourceCache = IoCManager.Resolve<IResourceCache>();
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
@@ -84,30 +92,28 @@ public sealed class RadarControl : MapGridControl
         }
 
         var a = InverseScalePosition(args.RelativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
+        var relativeWorldPos = a with { Y = -a.Y };
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
         var coords = _coordinates.Value.Offset(relativeWorldPos);
         OnRadarClick?.Invoke(coords);
     }
 
     /// <summary>
-    /// Gets the entitycoordinates of where the mouseposition is, relative to the control.
+    /// Gets the entity coordinates of where the mouse position is, relative to the control.
     /// </summary>
     [PublicAPI]
-    public EntityCoordinates GetMouseCoordinates(ScreenCoordinates screen)
+    public EntityCoordinates GetMouseCoordinatesFromCenter()
     {
         if (_coordinates == null || _rotation == null)
         {
             return EntityCoordinates.Invalid;
         }
 
-        var pos = screen.Position / UIScale - GlobalPosition;
+        var pos = _uiManager.MousePositionScaled.Position - GlobalPosition;
+        var relativeWorldPos = _rotation.Value.RotateVec(pos);
 
-        var a = InverseScalePosition(pos);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-        return coords;
+        // I am not sure why the resulting point is 20 units under the mouse.
+        return _coordinates.Value.Offset(relativeWorldPos);
     }
 
     public void UpdateState(RadarConsoleBoundInterfaceState ls)
@@ -126,6 +132,7 @@ public sealed class RadarControl : MapGridControl
 
         _docks.Clear();
 
+        // This draws the purple dots where docking airlocks are located.
         foreach (var state in ls.Docks)
         {
             var coordinates = state.Coordinates;
@@ -134,13 +141,18 @@ public sealed class RadarControl : MapGridControl
         }
     }
 
+    public class BlipData
+    {
+        public bool IsOutsideRadarCircle { get; set; }
+        public Vector2 UiPosition { get; set; }
+        public Vector2 VectorToPosition { get; set; }
+        public Color Color { get; set; }
+    }
+
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
 
-        var fakeAA = new Color(0.08f, 0.08f, 0.08f);
-
-        handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius + 1, fakeAA);
         handle.DrawCircle(new Vector2(MidPoint, MidPoint), ScaledMinimapRadius, Color.Black);
 
         // No data
@@ -205,7 +217,10 @@ public sealed class RadarControl : MapGridControl
 
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids);
+        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(pos - MaxRadarRangeVector, pos + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
+
+        // Frontier - collect blip location data outside foreach - more changes ahead
+        var blipDataList = new List<BlipData>();
 
         // Draw other grids... differently
         foreach (var grid in _grids)
@@ -223,18 +238,18 @@ public sealed class RadarControl : MapGridControl
 
             _entManager.TryGetComponent<IFFComponent>(gUid, out var iff);
 
-            // Hide it entirely.
-            if (iff != null &&
-                (iff.Flags & IFFFlags.Hide) != 0x0)
+            var hideShuttleLabels = iff != null && (iff.Flags & IFFFlags.Hide) != 0x0;
+            if (hideShuttleLabels)
             {
                 continue;
             }
 
             shown.Add(gUid);
             var name = metaQuery.GetComponent(gUid).EntityName;
-
             if (name == string.Empty)
+            {
                 name = Loc.GetString("shuttle-console-unknown");
+            }
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
             Matrix3.Multiply(in gridMatrix, in offsetMatrix, out var matty);
@@ -244,29 +259,14 @@ public sealed class RadarControl : MapGridControl
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
 
-            if (ShowIFF &&
-                (iff == null && IFFComponent.ShowIFFDefault ||
-                 (iff.Flags & IFFFlags.HideLabel) == 0x0))
+            /****************************************************************************
+             * FRONTIER - BEGIN radar improvements
+             * Everything below until end block belong to frontier improvements to radar
+             *****************************************************************************/
+
+            if (ShowIFF && (iff == null && IFFComponent.ShowIFFDefault || (iff.Flags & IFFFlags.HideLabel) == 0x0))
             {
                 var gridBounds = grid.Comp.LocalAABB;
-                Label label;
-
-                if (!_iffControls.TryGetValue(gUid, out var control))
-                {
-                    label = new Label()
-                    {
-                        HorizontalAlignment = HAlignment.Left,
-                    };
-
-                    _iffControls[gUid] = label;
-                    AddChild(label);
-                }
-                else
-                {
-                    label = (Label) control;
-                }
-
-                label.FontColorOverride = color;
                 var gridCentre = matty.Transform(gridBody.LocalCenter);
                 gridCentre.Y = -gridCentre.Y;
                 var distance = gridCentre.Length();
@@ -276,34 +276,97 @@ public sealed class RadarControl : MapGridControl
 
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
                 // plus by the offset.
-                var uiPosition = ScalePosition(gridCentre) / UIScale - new Vector2(label.Width / 2f, -yOffset);
+                var uiPosition = ScalePosition(gridCentre) / UIScale;
 
                 // Confines the UI position within the viewport.
-                var uiXCentre = (int) (Width - label.Width) / 2;
-                var uiYCentre = (int) (Height - label.Height) / 2;
+                var uiXCentre = (int) Width / 2;
+                var uiYCentre = (int) Height / 2;
                 var uiXOffset = uiPosition.X - uiXCentre;
                 var uiYOffset = uiPosition.Y - uiYCentre;
                 var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
                 var uiX = uiXCentre * uiXOffset / uiDistance;
                 var uiY = uiYCentre * uiYOffset / uiDistance;
-                if (uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY))
+
+                var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
+                if (isOutsideRadarCircle)
                 {
-                    uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
+                    // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
+                    uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
+                    uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
+                    uiPosition = new Vector2(
+                        x: uiX + uiXCentre,
+                        y: uiY + uiYCentre
+                    );
                 }
 
-                label.Visible = ShowIFFShuttles
-                                || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0;
+                var scaledMousePosition = GetMouseCoordinatesFromCenter().Position * UIScale;
+                var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
 
-                if (IFFFilter != null)
-                    label.Visible &= IFFFilter(gUid, grid.Comp, iff);
+                // Distant stations that are not player controlled ships
+                var isDistantPOI = iff != null || (iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0);
 
-                label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", $"{distance:0.0}"));
-                LayoutContainer.SetPosition(label, uiPosition);
+                if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
+                {
+                    Label label;
+
+                    if (!_iffControls.TryGetValue(gUid, out var control))
+                    {
+                        label = new Label
+                        {
+                            HorizontalAlignment = HAlignment.Left,
+                        };
+
+                        _iffControls[gUid] = label;
+                        AddChild(label);
+                    }
+                    else
+                    {
+                        label = (Label) control;
+                    }
+
+                    label.FontColorOverride = color;
+                    label.FontOverride = _resourceCache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", RadarFontSize);
+                    label.Visible = ShowIFFShuttles || iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0 || isMouseOver;
+                    if (IFFFilter != null)
+                    {
+                        label.Visible &= IFFFilter(gUid, grid.Comp, iff);
+                    }
+
+                    // Shows decimal when distance is < 50m, otherwise pointless to show it.
+                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
+                    label.Text = Loc.GetString("shuttle-console-iff-label", ("name", name), ("distance", displayedDistance));
+
+                    var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -label.Size.X -20 : 0;
+                    var blipCorrection = (RadarBlipSize * 0.7f);
+                    var correctedUiPosition = uiPosition with
+                    {
+                        X = uiPosition.X > Width / 2
+                            ? uiPosition.X + blipCorrection + sideCorrection
+                            : uiPosition.X + blipCorrection,
+                        Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
+                    };
+
+                    LayoutContainer.SetPosition(label, correctedUiPosition);
+                }
+                else
+                {
+                    ClearLabel(gUid);
+                }
+
+                blipDataList.Add(new BlipData
+                {
+                    IsOutsideRadarCircle = isOutsideRadarCircle,
+                    UiPosition = uiPosition,
+                    VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
+                    Color = color
+                });
             }
             else
             {
                 ClearLabel(gUid);
             }
+
+            DrawBlips(handle, blipDataList);
 
             // Detailed view
             DrawGrid(handle, matty, grid, color, true);
@@ -313,10 +376,91 @@ public sealed class RadarControl : MapGridControl
 
         foreach (var (ent, _) in _iffControls)
         {
-            if (shown.Contains(ent)) continue;
+            if (shown.Contains(ent))
+            {
+                continue;
+            }
             ClearLabel(ent);
         }
     }
+
+    /**
+     * Frontier - Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
+     * Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
+     */
+    private void DrawBlips(
+        DrawingHandleBase handle,
+        List<BlipData> blipDataList
+    )
+    {
+        var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
+
+        foreach (var blipData in blipDataList)
+        {
+            var triangleShapeVectorPoints = new[]
+            {
+                new Vector2(0, 0),
+                new Vector2(RadarBlipSize, 0),
+                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+            };
+
+            if (blipData.IsOutsideRadarCircle)
+            {
+                // Calculate the angle of rotation
+                var angle = (float) Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+
+                // Manually create a rotation matrix
+                var cos = (float) Math.Cos(angle);
+                var sin = (float) Math.Sin(angle);
+                float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+                // Rotate each vertex
+                for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+                {
+                    var vertex = triangleShapeVectorPoints[i];
+                    var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                    var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                    triangleShapeVectorPoints[i] = new Vector2(x, y);
+                }
+            }
+
+            var triangleCenterVector =
+                (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+            // Calculate the vectors from the center to each vertex
+            var vectorsFromCenter = new Vector2[3];
+            for (int i = 0; i < 3; i++)
+            {
+                vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+            }
+
+            // Calculate the vertices of the new triangle
+            var newVerts = new Vector2[3];
+            for (var i = 0; i < 3; i++)
+            {
+                newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
+            }
+
+            if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
+            {
+                valueList = new ValueList<Vector2>();
+
+            }
+            valueList.Add(newVerts[0]);
+            valueList.Add(newVerts[1]);
+            valueList.Add(newVerts[2]);
+            blipValueList[blipData.Color] = valueList;
+        }
+
+        // One draw call for every color we have
+        foreach (var color in blipValueList)
+        {
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
+        }
+    }
+    /****************************************************************************
+     * FRONTIER - END radar improvements
+     *****************************************************************************/
 
     private void Clear()
     {
@@ -330,7 +474,10 @@ public sealed class RadarControl : MapGridControl
 
     private void ClearLabel(EntityUid uid)
     {
-        if (!_iffControls.TryGetValue(uid, out var label)) return;
+        if (!_iffControls.TryGetValue(uid, out var label))
+        {
+            return;
+        }
         label.Dispose();
         _iffControls.Remove(uid);
     }
@@ -356,7 +503,7 @@ public sealed class RadarControl : MapGridControl
                 if (uiPosition.Length() > WorldRange - dockScale)
                     continue;
 
-                var color = HighlightedDock == ent ? state.HighlightedColor : state.Color;
+                var color = HighlightedDock == state.Entity ? state.HighlightedColor : state.Color;
 
                 uiPosition.Y = -uiPosition.Y;
 
@@ -396,7 +543,7 @@ public sealed class RadarControl : MapGridControl
                     shown.Add(ent);
                     label.Visible = true;
                     label.Text = state.Name;
-                    LayoutContainer.SetPosition(label, ScalePosition(uiPosition));
+                    LayoutContainer.SetPosition(label, ScalePosition(uiPosition) / UIScale);
                 }
             }
         }

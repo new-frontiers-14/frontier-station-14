@@ -808,3 +808,40 @@
       sprite: Structures/Machines/computers.rsi
       state: tech_key
  
+- type: entity
+  parent: [BaseStructureComputerTabletop, StationAdminBankATM]
+  id: ComputerTabletopStationAdminBankATM
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: id
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: id_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerContrabandPalletConsole]
+  id: ComputerTabletopContrabandPalletConsole
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: contraband
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: telesci_key
