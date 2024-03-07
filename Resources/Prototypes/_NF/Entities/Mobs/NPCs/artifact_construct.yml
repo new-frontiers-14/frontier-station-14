@@ -41,8 +41,6 @@
         75: Dead
     - type: Stamina
       critThreshold: 50
-    - type: Bloodstream
-      bloodMaxVolume: 100
     - type: CombatMode
     - type: MeleeWeapon
       soundHit:
@@ -58,15 +56,21 @@
 - type: entity
   parent: BaseMobArtifactConstruct
   id: MobGrimForged
+  name: artifact construct 1
   components:
     - type: Sprite
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: move
+    - type: AmbientSound
+      volume: -5
+      range: 3
+      sound:
+        path: /Audio/_NF/Ambience/force-field.ogg
     - type: DamageStateVisuals
       states:
         Alive:
-          Base: golem
+          Base: move
         Critical:
           Base: dead
         Dead:
@@ -83,13 +87,13 @@
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
     - type: BasicEntityAmmoProvider
-      proto: BulletAcid
-      capacity: 1
-      count: 1
+      proto: ProjectileFireball
+      capacity: 3
+      count: 3
     - type: Gun
       fireRate: 0.75
       useKey: false
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
