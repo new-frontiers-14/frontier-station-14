@@ -150,7 +150,7 @@ public sealed partial class ArtifactSystem : EntitySystem
             var dx = _random.NextFloat(-range, range);
             var dy = _random.NextFloat(-range, range);
             var spawnCord = artifactCoord.Offset(new Vector2(dx, dy));
-            var mobEntity = Spawn("MobFleshGolem", spawnCord);
+            var mobEntity = Spawn("MobGrimForged", spawnCord);
             _transform.AttachToGridOrMap(mobEntity);
 
             _entityManager.DeleteEntity(uid);

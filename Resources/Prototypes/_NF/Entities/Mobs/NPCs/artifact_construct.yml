@@ -1,0 +1,95 @@
+﻿- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: BaseMobArtifactConstruct
+  name: artifact construct
+  description: A towering golem crafted from twisted metal and ancient stones.
+  abstract: true
+  components:
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+      blackboard:
+        NavClimb: !type:Bool
+          true
+        NavSmash: !type:Bool
+          true
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/Aliens/grim_forged.rsi
+    - type: MovementAlwaysTouching
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 1
+      baseSprintSpeed: 1.5
+    - type: ZombieImmune
+    - type: StatusEffects
+      allowed:
+        - SlowedDown
+        - Electrocution
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        75: Dead
+    - type: Stamina
+      critThreshold: 50
+    - type: Bloodstream
+      bloodMaxVolume: 100
+    - type: CombatMode
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Slash: 6
+    - type: ReplacementAccent
+      accent: genericAggressive
+
+- type: entity
+  parent: BaseMobArtifactConstruct
+  id: MobGrimForged
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: move
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: golem
+        Critical:
+          Base: dead
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        50: Dead
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: Stamina
+      critThreshold: 300
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+    - type: BasicEntityAmmoProvider
+      proto: BulletAcid
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
