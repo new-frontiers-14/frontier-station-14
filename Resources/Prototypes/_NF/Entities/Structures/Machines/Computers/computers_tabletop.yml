@@ -1,3 +1,39 @@
+# Base structures
+- type: entity
+  id: BaseStructureComputerTabletop
+  suffix: Tabletop
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - Impassable
+        - LowImpassable
+#        - TabletopMachineMask
+#        layer:
+#        - TabletopMachineLayer
+
 # Computers: Base Game
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerAlert]
