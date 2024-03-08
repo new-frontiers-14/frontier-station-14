@@ -71,9 +71,10 @@ public sealed class EscapeInventorySystem : EntitySystem
         }
 
         // Contested
-        if (_handsSystem.IsHolding(container.Owner, uid, out var inHand))
+        if (_handsSystem.IsHolding(container.Owner, uid, out var _))
         {
             AttemptEscape(uid, container.Owner, component);
+            return;
         }
 
         // Uncontested
