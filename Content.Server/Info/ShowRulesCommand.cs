@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Info;
@@ -12,6 +12,7 @@ namespace Content.Server.Info;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class ShowRulesCommand : IConsoleCommand
 {
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     public string Command => "showrules";
     public string Description => "Opens the rules popup for the specified player.";
     public string Help => "showrules <username> [seconds]";
@@ -60,7 +61,31 @@ public sealed class ShowRulesCommand : IConsoleCommand
         var message = new SharedRulesManager.ShowRulesPopupMessage();
         message.PopupTime = seconds;
 
-        var player = IoCManager.Resolve<IPlayerManager>().GetSessionByUserId(located.UserId);
-        netManager.ServerSendMessage(message, player.ConnectedClient);
+        var player = IoCManager.Resolve<IPlayerManager>().GetSessionById(located.UserId);
+        netManager.ServerSendMessage(message, player.Channel);
+    }
+
+    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        if (args.Length == 1)
+        {
+            return CompletionResult.FromHintOptions(
+                CompletionHelper.SessionNames(players: _playerManager),
+                Loc.GetString("<username>"));
+        }
+
+        if (args.Length == 2)
+        {
+            var durations = new CompletionOption[]
+            {
+                new("300", Loc.GetString("5 minutes")),
+                new("600", Loc.GetString("10 minutes")),
+                new("1200", Loc.GetString("20 minutes")),
+            };
+
+            return CompletionResult.FromHintOptions(durations, Loc.GetString("[seconds]"));
+        }
+
+        return CompletionResult.Empty;
     }
 }
