@@ -1,0 +1,31 @@
+- type: vessel
+  id: Gazpacho
+  name: II Gazpacho
+  description: The Gazpacho is an atmos/salvage vessel specialized in planetary gas mining.
+  price: 50000
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/gazpacho.yml
+
+- type: gameMap
+  id: Gazpacho
+  mapName: 'II Gazpacho'
+  mapPath: /Maps/_NF/Shuttles/gazpacho.yml
+  minPlayers: 0
+  stations:
+    Gazpacho:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Gazpacho {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            AtmosphericTechnician: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            Paramedic: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
