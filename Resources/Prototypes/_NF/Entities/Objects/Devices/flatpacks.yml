@@ -1,25 +1,30 @@
 # Base
 - type: entity
-  parent: BaseItem
-  id: autolatheflatpack
-  name: autolathe flatpack
-  description: A flatpack used for constructing an autolathe.
+  parent: BaseFlatpack
+  id: BaseNFFlatpack
   components:
-  - type: Item
-    size: Normal
-  - type: Flatpack
-    entity: Autolathe
-  - type: Sprite
-    sprite: _NF/Objects/Devices/flatpacks.rsi
-    state: engineering_lathe
   - type: StaticPrice
     price: 150
+  - type: Sprite
+    sprite: _NF/Objects/Devices/flatpack.rsi
 
 # Machines
 # Engineering
 - type: entity
-  parent: autolatheflatpack
-  id: engineeringtechfabflatpack
+  parent: BaseNFFlatpack
+  id: AutolatheFlatpack
+  name: autolathe flatpack
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: Autolathe
+  - type: Sprite
+    layers:
+    - state: engineering_lathe
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: EngineeringTechFabFlatpack
   name: engineering tech fab flatpack
   description: A flatpack used for constructing an engineering tech fab.
   components:
@@ -29,17 +34,19 @@
     price: 250
 
 - type: entity
-  parent: engineeringtechfabflatpack
-  id: flatpackerflatpack
+  parent: BaseNFFlatpack
+  id: MachineFlatpackerFlatpack
   name: flatpacker 1001 flatpack
   description: A flatpack used for constructing a flatpacker 1001.
   components:
   - type: Flatpack
     entity: MachineFlatpacker
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: autolatheflatpack
-  id: cellchargerflatpack
+  parent: BaseNFFlatpack
+  id: PowerCellRechargerFlatpack
   name: cell charger flatpack
   description: A flatpack used for constructing a cell charger.
   components:
@@ -51,17 +58,19 @@
     price: 55
 
 - type: entity
-  parent: cellchargerflatpack
-  id: borgchargerflatpack
+  parent: BaseNFFlatpack
+  id: BorgChargerFlatpack
   name: borg charger flatpack
   description: A flatpack used for constructing a borg charger.
   components:
   - type: Flatpack
     entity: BorgCharger
+  - type: StaticPrice
+    price: 55
 
 - type: entity
-  parent: autolatheflatpack
-  id: portablegeneratorjrpacmanflatpack
+  parent: BaseNFFlatpack
+  id: PortableGeneratorJrPacmanFlatpack
   name: J.R.P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a J.R.P.A.C.M.A.N.-type portable generator.
   components:
@@ -71,8 +80,8 @@
     entity: PortableGeneratorJrPacman
 
 - type: entity
-  parent: portablegeneratorjrpacmanflatpack
-  id: portablegeneratorpacmanflatpack
+  parent: BaseNFFlatpack
+  id: PortableGeneratorPacmanFlatpack
   name: P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a P.A.C.M.A.N.-type portable generator.
   components:
@@ -80,8 +89,8 @@
     entity: PortableGeneratorPacman
 
 - type: entity
-  parent: portablegeneratorjrpacmanflatpack
-  id: portablegeneratorsuperpacmanflatpack
+  parent: BaseNFFlatpack
+  id: PortableGeneratorSuperPacmanFlatpack
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator flatpack
   description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N.-type portable generator.
   components:
@@ -89,8 +98,8 @@
     entity: PortableGeneratorSuperPacman
 
 - type: entity
-  parent: autolatheflatpack
-  id: amecontrollerflatpack
+  parent: BaseNFFlatpack
+  id: AmeControllerUnanchoredFlatpack
   name: AME controller flatpack
   description: A flatpack used for constructing an AME controller.
   components:
@@ -100,8 +109,8 @@
     entity: AmeControllerUnanchored
 
 - type: entity
-  parent: amecontrollerflatpack
-  id: radiationcollectorflatpack
+  parent: BaseNFFlatpack
+  id: RadiationCollectorFullTankFlatpack
   name: radiation collector flatpack
   description: A flatpack used for constructing a radiation collector.
   components:
@@ -109,8 +118,8 @@
     entity: RadiationCollectorFullTank
 
 - type: entity
-  parent: autolatheflatpack
-  id: gyroscopeflatpack
+  parent: BaseNFFlatpack
+  id: GyroscopeUnanchoredFlatpack
   name: gyroscope flatpack
   description: A flatpack used for constructing a gyroscope.
   components:
@@ -120,8 +129,8 @@
     entity: GyroscopeUnanchored
 
 - type: entity
-  parent: gyroscopeflatpack
-  id: gyroscopesmallflatpack
+  parent: BaseNFFlatpack
+  id: SmallGyroscopeUnanchoredFlatpack
   name: small gyroscope flatpack
   description: A flatpack used for constructing a small gyroscope.
   components:
@@ -129,8 +138,8 @@
     entity: SmallGyroscopeUnanchored
 
 - type: entity
-  parent: autolatheflatpack
-  id: thrusterflatpack
+  parent: BaseNFFlatpack
+  id: ThrusterUnanchoredFlatpack
   name: thruster flatpack
   description: A flatpack used for constructing a thruster.
   components:
@@ -140,8 +149,8 @@
     entity: ThrusterUnanchored
 
 - type: entity
-  parent: thrusterflatpack
-  id: thrustersmallflatpack
+  parent: BaseNFFlatpack
+  id: SmallThrusterUnanchoredFlatpack
   name: small thruster flatpack
   description: A flatpack used for constructing a small thruster.
   components:
@@ -150,8 +159,8 @@
 
 # Science
 - type: entity
-  parent: autolatheflatpack
-  id: exosuitfabricatorflatpack
+  parent: BaseNFFlatpack
+  id: ExosuitFabricatorFlatpack
   name: exosuit fabricator flatpack
   description: A flatpack used for constructing an exosuit fabricator.
   components:
@@ -163,26 +172,30 @@
     price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: circuitimprinterflatpack
+  parent: BaseNFFlatpack
+  id: CircuitImprinterFlatpack
   name: circuit imprinter flatpack
   description: A flatpack used for constructing a circuit imprinter.
   components:
   - type: Flatpack
     entity: CircuitImprinter
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: protolatheflatpack
+  parent: BaseNFFlatpack
+  id: ProtolatheFlatpack
   name: protolathe flatpack
   description: A flatpack used for constructing a protolathe.
   components:
   - type: Flatpack
     entity: Protolathe
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: artifactanalyzerflatpack
+  parent: BaseNFFlatpack
+  id: MachineArtifactAnalyzerFlatpack
   name: artifact analyzer flatpack
   description: A flatpack used for constructing an artifact analyzer.
   components:
@@ -190,10 +203,12 @@
     state: science_artifact_analyzer
   - type: Flatpack
     entity: MachineArtifactAnalyzer
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: anomalyvesselflatpack
+  parent: BaseNFFlatpack
+  id: MachineAnomalyVesselFlatpack
   name: anomaly vessel flatpack
   description: A flatpack used for constructing an anomaly vessel.
   components:
@@ -201,10 +216,12 @@
     state: science_anomaly_vessel
   - type: Flatpack
     entity: MachineAnomalyVessel
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: apeflatpack
+  parent: BaseNFFlatpack
+  id: MachineAPEFlatpack
   name: A.P.E. flatpack
   description: A flatpack used for constructing an A.P.E..
   components:
@@ -212,20 +229,24 @@
     state: science_ape
   - type: Flatpack
     entity: MachineAPE
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: sciencetechfabflatpack
+  parent: BaseNFFlatpack
+  id: ScienceTechFabFlatpack
   name: science techfab flatpack
   description: A flatpack used for constructing a science techfab.
   components:
   - type: Flatpack
     entity: ScienceTechFab
+  - type: StaticPrice
+    price: 250
 
 # Service
 - type: entity
-  parent: autolatheflatpack
-  id: uniformprinterflatpack
+  parent: BaseNFFlatpack
+  id: UniformPrinterFlatpack
   name: uniform printer flatpack
   description: A flatpack used for constructing an uniform printer.
   components:
@@ -235,8 +256,8 @@
     state: service_lathe
 
 - type: entity
-  parent: uniformprinterflatpack
-  id: servicetechfabflatpack
+  parent: BaseNFFlatpack
+  id: ServiceTechFabFlatpack
   name: service tech fab flatpack
   description: A flatpack used for constructing a service tech fab.
   components:
@@ -246,8 +267,8 @@
     price: 250
 
 - type: entity
-  parent: uniformprinterflatpack
-  id: materialreclaimerflatpack
+  parent: BaseNFFlatpack
+  id: MaterialReclaimerFlatpack
   name: material reclaimer flatpack
   description: A flatpack used for constructing a material reclaimer.
   components:
@@ -255,8 +276,8 @@
     entity: MaterialReclaimer
 
 - type: entity
-  parent: uniformprinterflatpack
-  id: hydroponicstrayflatpack
+  parent: BaseNFFlatpack
+  id: HydroponicsTrayEmptyFlatpack
   name: hydroponics tray flatpack
   description: A flatpack used for constructing a hydroponics tray.
   components:
@@ -266,8 +287,8 @@
     entity: HydroponicsTrayEmpty
 
 - type: entity
-  parent: uniformprinterflatpack
-  id: tileprinternfflatpack
+  parent: BaseNFFlatpack
+  id: TilePrinterNFFlatpack
   name: tile-meister 5000 flatpack
   description: A flatpack used for constructing a tile-meister 5000.
   components:
@@ -276,8 +297,8 @@
 
 # Medical
 - type: entity
-  parent: autolatheflatpack
-  id: medicaltechfabflatpack
+  parent: BaseNFFlatpack
+  id: MedicalTechFabFlatpack
   name: medical tech fab flatpack
   description: A flatpack used for constructing a medical tech fab.
   components:
@@ -290,8 +311,8 @@
 
 # Supply
 - type: entity
-  parent: autolatheflatpack
-  id: oreprocessorflatpack
+  parent: BaseNFFlatpack
+  id: OreProcessorFlatpack
   name: ore processor flatpack
   description: A flatpack used for constructing an ore processor.
   components:
@@ -301,8 +322,8 @@
     state: supply_lathe
 
 - type: entity
-  parent: oreprocessorflatpack
-  id: shuttlegunkineticflatpack
+  parent: BaseNFFlatpack
+  id: ShuttleGunKineticFlatpack
   name: PTK-800 "Matter Dematerializer" flatpack
   description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
   components:
@@ -315,28 +336,32 @@
 
 # Consoles
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: rndcomputerflatpack
-  name: R&D computer flatpack
+  parent: BaseNFFlatpack
+  id: ComputerResearchAndDevelopmentFlatpack
+  name: research and development computer flatpack
   description: A flatpack used for constructing a research and development computer.
   components:
   - type: Sprite
     state: science_console
   - type: Flatpack
     entity: ComputerResearchAndDevelopment
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: rndcomputerflatpack
-  id: analysisconsoleflatpack
+  parent: BaseNFFlatpack
+  id: ComputerAnalysisConsoleFlatpack
   name: analysis console flatpack
   description: A flatpack used for constructing an analysis console.
   components:
   - type: Flatpack
     entity: ComputerAnalysisConsole
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: crewmonitoringcomputerflatpack
+  parent: BaseNFFlatpack
+  id: ComputerCrewMonitoringFlatpack
   name: crew monitoring console flatpack
   description: A flatpack used for constructing a crew monitoring console.
   components:
@@ -344,22 +369,37 @@
     state: medical_console
   - type: Flatpack
     entity: ComputerCrewMonitoring
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerIFFFlatpack
+  name: IFF computer flatpack
+  description: A flatpack used for constructing a IFF computer.
+  components:
+  - type: Flatpack
+    entity: ComputerIFF
+  - type: StaticPrice
+    price: 400
 
 # Servers
 - type: entity
-  parent: exosuitfabricatorflatpack
-  id: rndserverflatpack
-  name: R&D server flatpack
+  parent: BaseNFFlatpack
+  id: ResearchAndDevelopmentServerFlatpack
+  name: research and development server flatpack
   description: A flatpack used for constructing a research and development server.
   components:
   - type: Sprite
     state: science_server
   - type: Flatpack
     entity: ResearchAndDevelopmentServer
+  - type: StaticPrice
+    price: 250
 
 - type: entity
-  parent: autolatheflatpack
-  id: telecommunicationserverflatpack
+  parent: BaseNFFlatpack
+  id: TelecomServerFlatpack
   name: telecommunication server flatpack
   description: A flatpack used for constructing a telecommunication server.
   components:
@@ -370,8 +410,8 @@
 
 # Airlocks
 - type: entity
-  parent: autolatheflatpack
-  id: airlockflatpack
+  parent: BaseNFFlatpack
+  id: AirlockFlatpack
   name: airlock flatpack
   description: A flatpack used for constructing an airlock.
   components:
@@ -383,150 +423,178 @@
     price: 95
 
 - type: entity
-  parent: airlockflatpack
-  id: airlockglassflatpack
+  parent: BaseNFFlatpack
+  id: AirlockGlassFlatpack
   name: glass airlock flatpack
   description: A flatpack used for constructing an airlock.
   components:
   - type: Flatpack
     entity: AirlockGlass
+  - type: StaticPrice
+    price: 95
 
 - type: entity
-  parent: airlockflatpack
-  id: airlockdockingflatpack
+  parent: BaseNFFlatpack
+  id: AirlockShuttleFlatpack
   name: docking airlock flatpack
   description: A flatpack used for constructing a docking airlock.
   components:
   - type: Flatpack
     entity: AirlockShuttle
+  - type: StaticPrice
+    price: 95
 
 - type: entity
-  parent: airlockflatpack
-  id: airlockdockingglassflatpack
+  parent: BaseNFFlatpack
+  id: AirlockGlassShuttleFlatpack
   name: docking glass airlock flatpack
   description: A flatpack used for constructing a glass docking airlock.
   components:
   - type: Flatpack
     entity: AirlockGlassShuttle
+  - type: StaticPrice
+    price: 95
 
 # Musical instruments
 - type: entity
-  parent: uniformprinterflatpack
-  id: tubaflatpack
+  parent: BaseNFFlatpack
+  id: TubaInstrumentFlatpack
   name: tuba flatpack
   description: A flatpack containing a tuba.
   components:
-  - type: Sprite
-    state: service_music
   - type: Flatpack
     entity: TubaInstrument
   - type: StaticPrice
-    price: 200
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: harpflatpack
+  parent: BaseNFFlatpack
+  id: HarpInstrumentFlatpack
   name: harp flatpack
   description: A flatpack containing a harp.
   components:
   - type: Flatpack
     entity: HarpInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: contrabassflatpack
+  parent: BaseNFFlatpack
+  id: ContrabassInstrumentFlatpack
   name: contrabass flatpack
   description: A flatpack containing a contrabass.
   components:
   - type: Flatpack
     entity: ContrabassInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: vibraphoneflatpack
+  parent: BaseNFFlatpack
+  id: VibraphoneInstrumentFlatpack
   name: vibraphone flatpack
   description: A flatpack containing a vibraphone.
   components:
   - type: Flatpack
     entity: VibraphoneInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: marimbaflatpack
+  parent: BaseNFFlatpack
+  id: MarimbaInstrumentFlatpack
   name: marimba flatpack
   description: A flatpack containing a marimba.
   components:
   - type: Flatpack
     entity: MarimbaInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: tomdrumsflatpack
+  parent: BaseNFFlatpack
+  id: TomDrumsInstrumentFlatpack
   name: tom drums flatpack
   description: A flatpack containing tom drums.
   components:
   - type: Flatpack
     entity: TomDrumsInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: timpaniflatpack
+  parent: BaseNFFlatpack
+  id: TimpaniInstrumentFlatpack
   name: timpani flatpack
   description: A flatpack containing a timpani.
   components:
   - type: Flatpack
     entity: TimpaniInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: taikoflatpack
+  parent: BaseNFFlatpack
+  id: TaikoInstrumentFlatpack
   name: taiko flatpack
   description: A flatpack containing a taiko.
   components:
   - type: Flatpack
     entity: TaikoInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: minimoogflatpack
+  parent: BaseNFFlatpack
+  id: MinimoogInstrumentFlatpack
   name: minimoog flatpack
   description: A flatpack containing a minimoog.
   components:
   - type: Flatpack
     entity: MinimoogInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: churchorganflatpack
+  parent: BaseNFFlatpack
+  id: ChurchOrganInstrumentFlatpack
   name: church organ flatpack
   description: A flatpack containing a church organ.
   components:
   - type: Flatpack
     entity: ChurchOrganInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: pianoflatpack
+  parent: BaseNFFlatpack
+  id: PianoInstrumentFlatpack
   name: piano flatpack
   description: A flatpack containing a piano.
   components:
   - type: Flatpack
     entity: PianoInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: uprightpianoflatpack
+  parent: BaseNFFlatpack
+  id: UprightPianoInstrumentFlatpack
   name: upright piano flatpack
   description: A flatpack containing a upright piano.
   components:
   - type: Flatpack
     entity: UprightPianoInstrument
+  - type: StaticPrice
+    price: 400
 
 - type: entity
-  parent: tubaflatpack
-  id: dawflatpack
+  parent: BaseNFFlatpack
+  id: DawInstrumentFlatpack
   name: daw flatpack
   description: A flatpack containing a daw.
   components:
   - type: Flatpack
     entity: DawInstrument
+  - type: StaticPrice
+    price: 2000
