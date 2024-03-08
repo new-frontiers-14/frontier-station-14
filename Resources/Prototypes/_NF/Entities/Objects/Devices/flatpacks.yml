@@ -58,6 +58,17 @@
     - state: power_charger
 
 - type: entity
+  parent: PowerCellRechargerFlatpack
+  id: WeaponCapacitorRechargerFlatpack
+  name: recharger flatpack
+  description: A flatpack used for constructing a recharger.
+  components:
+  - type: Flatpack
+    entity: WeaponCapacitorRecharger
+  - type: StaticPrice
+    price: 15
+
+- type: entity
   parent: BaseNFFlatpack
   id: BorgChargerFlatpack
   name: borg charger flatpack
