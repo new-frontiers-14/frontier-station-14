@@ -1,0 +1,28 @@
+- type: entity
+  id: AdvancedReagentGrinder
+  parent: KitchenReagentGrinder
+  name: advanced reagent grinder
+  description: The new advanced grinder from BlenderTech. Will It Blend? Let's find out!
+  suffix: grinder/juicer
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/advancedjuicer.rsi
+    drawdepth: SmallObjects
+    snapCardinals: true
+    offset: "0.0,0.4"
+    layers:
+    - map: [ "grinder" ]
+      state: "juicer0"
+  - type: ApcPowerReceiver
+    powerLoad: 600
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: Machine
+#    board: AdvancedReagentGrinderMachineCircuitboard
+    board: ReagentGrinderMachineCircuitboard
+  - type: ReagentGrinder
+    advanced: true
