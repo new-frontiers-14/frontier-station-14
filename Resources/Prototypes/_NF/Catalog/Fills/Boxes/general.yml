@@ -88,3 +88,25 @@
       - state: box
   - type: VendPrice
     price: 1200
+    
+- type: entity
+  name: Thruster upgrade kit
+  parent: BoxCardboard
+  id: BoxT3SuperCapacitor
+  description: A box of super capacitors.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SuperCapacitorStockPart
+        amount: 12
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,3
+    whitelist:
+      tags:
+        - CapacitorStockPart
+  - type: Sprite
+    layers:
+      - state: box
+#      - state: wet_floor_sign
