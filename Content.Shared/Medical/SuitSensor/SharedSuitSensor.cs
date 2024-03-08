@@ -62,7 +62,7 @@ public static class SuitSensorConstants
     public const string NET_TOTAL_DAMAGE = "vitals";
     public const string NET_COORDINATES = "coords";
     public const string NET_SUIT_SENSOR_UID = "uid";
-	public const string NET_LOCATIONNAME = "location"; // Frontier modification
+	public const string NET_LOCATION_NAME = "location"; // Frontier modification
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";

@@ -475,7 +475,7 @@ public sealed class SuitSensorSystem : EntitySystem
         if (status.Coordinates != null)
             payload.Add(SuitSensorConstants.NET_COORDINATES, status.Coordinates);
 		if (status.LocationName != null)
-            payload.Add(SuitSensorConstants.NET_LOCATIONNAME, status.LocationName);
+            payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName);
 
         return payload;
     }
@@ -498,7 +498,7 @@ public sealed class SuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
-		if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATIONNAME, out string? location)) return null; // Frontier modification
+		if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier modification
 
         // try get total damage and cords and location name (optionals)
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE, out int? totalDamage);
