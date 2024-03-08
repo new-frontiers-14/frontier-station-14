@@ -1,6 +1,5 @@
 using System.Numerics;
 using System.Threading;
-using Content.Server.Contests;
 using Content.Server.DoAfter;
 using Content.Server.Inventory;
 using Content.Server.Resist;
@@ -48,7 +47,6 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
-        [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
 
         public override void Initialize()
@@ -126,8 +124,8 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
-            args.ThrowStrength = 5f * multiplier;
+            // var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
+            // args.ThrowStrength = 5f * multiplier;
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -175,7 +173,7 @@ namespace Content.Server.Carrying
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, _contests.MassContest(component.Carrier, uid));
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape);
             }
         }
 
@@ -291,13 +289,14 @@ namespace Content.Server.Carrying
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
         {
-            var massRatio = _contests.MassContest(carrier, carried);
-            if (massRatio == 0)
-                massRatio = 1;
-
-            var massRatioSq = Math.Pow(massRatio, 2);
-            var modifier = (1 - (0.15 / massRatioSq));
-            modifier = Math.Max(0.1, modifier);
+            // Carrying slowdown made static as a part of removing mass contests
+            // var massRatio = _contests.MassContest(carrier, carried);
+            // if (massRatio == 0)
+            //     massRatio = 1;
+            // var massRatioSq = Math.Pow(massRatio, 2);
+            // var modifier = (1 - (0.15 / massRatioSq));
+            // modifier = Math.Max(0.1, modifier);
+            var modifier = 0.7f; // 30% slowdown while carrying
             var slowdownComp = EnsureComp<CarryingSlowdownComponent>(carrier);
             _slowdown.SetModifier(carrier, (float) modifier, (float) modifier, slowdownComp);
         }
@@ -357,11 +356,11 @@ namespace Content.Server.Carrying
 
         public TimeSpan GetPickupDuration(EntityUid carrier, EntityUid carried)
         {
-            TimeSpan length = TimeSpan.FromSeconds(3);
+            TimeSpan length = TimeSpan.FromSeconds(6); // The default was 3 seconds; with the removal of mass contests was increased to 6 to make it less abusable
 
-            var mod = _contests.MassContest(carrier, carried);
-            if (mod != 0)
-                length /= mod;
+            // var mod = _contests.MassContest(carrier, carried);
+            // if (mod != 0)
+            //     length /= mod;
 
             return length;
         }
