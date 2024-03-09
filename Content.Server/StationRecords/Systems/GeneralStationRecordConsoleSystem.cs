@@ -75,12 +75,15 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             return;
         }
 
+        var jobList = _stationJobsSystem.GetJobs(owningStation.Value);
+
         var listing = _stationRecords.BuildListing((owningStation.Value, stationRecords), console.Filter);
 
         switch (listing.Count)
         {
             case 0:
-                _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
+                GeneralStationRecordConsoleState emptyState = new(null, null, null, jobList, console.Filter);
+                _ui.TrySetUiState(uid, GeneralStationRecordConsoleKey.Key, emptyState);
                 return;
             case 1:
                 console.ActiveKey = listing.Keys.First();
@@ -89,8 +92,6 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
         if (console.ActiveKey is not { } id)
             return;
-        var jobList = _stationJobsSystem.GetJobs(owningStation.Value);
-
 
         var key = new StationRecordKey(id, owningStation.Value);
         _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);
