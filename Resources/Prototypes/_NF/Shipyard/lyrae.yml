@@ -1,0 +1,29 @@
+- type: vessel
+  id: Lyrae
+  name: BB Lyrae
+  description: science, innit
+  price: 1
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/lyrae.yml
+
+- type: gameMap
+  id: Lyrae
+  mapName: 'BB Lyrae'
+  mapPath: /Maps/_NF/Shuttles/lyrae.yml
+  minPlayers: 0
+  stations:
+    Lyrae:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lyrae {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
