@@ -1119,6 +1119,21 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+  - uid: 812
+    components:
+    - type: MetaData
+    - type: Transform
+      parent: 747
+    - type: Solution
+      solution:
+        maxVol: 1
+        name: food
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+    - type: ContainedSolution
+      containerName: food
+      container: 747
 - proto: ActionToggleLight
   entities:
   - uid: 1147
@@ -1332,7 +1347,7 @@ entities:
       pos: -0.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3795.2966
+      secondsUntilStateChange: -4233.661
       state: Opening
   - uid: 155
     components:
@@ -7335,33 +7350,51 @@ entities:
       joinedGrid: 1
 - proto: Paper
   entities:
-  - uid: 887
+  - uid: 747
     components:
     - type: MetaData
-      desc: An old paper
-      name: Promotion Info
+      name: Sensor scan!
     - type: Transform
-      pos: 2.3483307,2.4843903
+      pos: 2.5043585,0.69965935
       parent: 1
     - type: Paper
-      stampState: paper_stamp-centcom
+      stampState: paper_stamp-cap
       stampedBy:
       - stampedBorderless: False
-        stampedColor: '#001D00FF'
-        stampedName: COU Command
+        stampedColor: '#0085ACFF'
+        stampedName: COU S.S.S.C
       content: >
-        Congratulations!
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        ░░████████░░░░████████░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░████████░░░░████████░░░░████████░░
+
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 
-        Employee:Barry Drun
+        Incoming Bluespace storm
 
-        You are now the proud commander of are sattelite!
 
-        You are to keep it functioning and maintained
+        An evacuation shuttle has been called
 
-        We have enabled your cargo consoles
 
-        Good luck!
+        Please Evacuate
+
+
+        ETA: 9:57
+    - type: SolutionContainerManager
+      solutions: null
+      containers:
+      - food
     - type: Fixtures
       fixtures:
         fix1:
@@ -7396,12 +7429,16 @@ entities:
           hard: False
           restitution: 0
           friction: 0.4
-  - uid: 930
+    - type: ContainerContainer
+      containers:
+        solution@food: !type:ContainerSlot
+          ent: 812
+  - uid: 887
     components:
     - type: MetaData
-      name: Evacuation Incoming
+      name: Promotion Info
     - type: Transform
-      pos: 0.5043575,-0.30034018
+      pos: 2.3483307,2.4843903
       parent: 1
     - type: Paper
       stampState: paper_stamp-centcom
@@ -7409,13 +7446,31 @@ entities:
       - stampedBorderless: False
         stampedColor: '#001D00FF'
         stampedName: COU Command
-      content: >
-        Your satellite is about to drift into a bluespace rift.
+      content: >-
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        ░░████████░░░░████████░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░████████░░░░████████░░░░████████░░
+
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 
-        to stop crew harm a emergency shuttle has been called,
+        Greetings Employee of COU.co
 
-        Please begin to evacuate
+
+        You! are the new commander of are state of the art satellite!
+
+
+        Your job will be to send us sensor scans of planets!
     - type: Fixtures
       fixtures:
         fix1:
@@ -7463,14 +7518,24 @@ entities:
       - stampedBorderless: False
         stampedColor: '#D93200FF'
         stampedName: Centcom Engineering
-      content: >
-        We have fixed the hull breaches, wiring, and most of the rust
+      content: >-
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+        ░░████████░░░░████████░░░░██░░░░██░░
 
-        We can not finish repairs due to the homeless issue
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
 
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
 
-        Once resolved we can finish repairs
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░████████░░░░████████░░░░████████░░
+
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        Satellite Repairs are underway
     - type: Fixtures
       fixtures:
         fix1:
@@ -7572,6 +7637,22 @@ entities:
         stampedColor: '#001D00FF'
         stampedName: Satellite Records Console
       content: >
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+        ░░████████░░░░████████░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░██░░░░░░░░░░██░░░░██░░░░██░░░░██░░
+
+        ░░████████░░░░████████░░░░████████░░
+
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
         Current Manifest:
 
 
@@ -7581,7 +7662,7 @@ entities:
 
         Stella Herald:Quartermaster
 
-        Barry Drun:Sattelite Commander
+        Barry Drun:Satellite Commander
 
         Clint Frag:Bartender
 
@@ -7597,6 +7678,7 @@ entities:
 
         Henry Rolm:Atmospheric Technician
 
+        Ben Wedly:Janitor
 
 
         Current Active Ipc Units:
@@ -10406,7 +10488,7 @@ entities:
       pos: 9.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2771.986
+      secondsUntilStateChange: -3210.3508
       state: Opening
   - uid: 1357
     components:
