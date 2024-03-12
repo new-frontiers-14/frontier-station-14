@@ -1,0 +1,17 @@
+- type: entity
+  parent: PosterBase
+  id: NFPosterBase
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Wallmounts/posters.rsi
+
+- type: entity
+  parent: NFPosterBase
+  id: NFPosterLegitMagnusWatching
+  name: "Always Watching"
+  description: "This poster depicts an ethereal judge. You think you hear a 'BWOINK,' but it is just your imagination, right?"
+  components:
+  - type: Sprite
+    state: nf_poster1_legit
