@@ -71,6 +71,7 @@ public sealed partial class BankSystem : EntitySystem
             profile.Appearance,
             profile.Clothing,
             profile.Backpack,
+            profile.SpawnPriority,
             profile.JobPriorities,
             profile.PreferenceUnavailable,
             profile.AntagPreferences,
