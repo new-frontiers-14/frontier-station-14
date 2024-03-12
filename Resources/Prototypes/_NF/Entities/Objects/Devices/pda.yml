@@ -1,4 +1,14 @@
 - type: entity
+  id: MusicBasePDA
+  abstract: true
+  components:
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    respectMidiLimits: false
+    handheld: true
+
+- type: entity
   parent: BasePDA
   id: MercenaryPDA
   name: mercenary PDA

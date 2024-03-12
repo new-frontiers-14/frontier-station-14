@@ -13,34 +13,32 @@ namespace Content.Client.StationRecords;
 [GenerateTypedNameReferences]
 public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 {
-    public Action<(NetEntity, uint)?>? OnKeySelected;
+    public Action<uint?>? OnKeySelected;
 
-    public Action<GeneralStationRecordFilterType, string>? OnFiltersChanged;
+    public Action<StationRecordFilterType, string>? OnFiltersChanged;
 
     public event Action<ButtonEventArgs>? OnJobAdd;
     public event Action<ButtonEventArgs>? OnJobSubtract;
 
     private bool _isPopulating;
 
-    private GeneralStationRecordFilterType _currentFilterType;
+    private StationRecordFilterType _currentFilterType;
 
     public GeneralStationRecordConsoleWindow()
     {
         RobustXamlLoader.Load(this);
 
-        _currentFilterType = GeneralStationRecordFilterType.Name;
+        _currentFilterType = StationRecordFilterType.Name;
 
-        foreach (var item in Enum.GetValues<GeneralStationRecordFilterType>())
+        foreach (var item in Enum.GetValues<StationRecordFilterType>())
         {
             StationRecordsFilterType.AddItem(GetTypeFilterLocals(item), (int) item);
         }
 
         RecordListing.OnItemSelected += args =>
         {
-            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not ValueTuple<NetEntity, uint> cast)
-            {
+            if (_isPopulating || RecordListing[args.ItemIndex].Metadata is not uint cast)
                 return;
-            }
 
             OnKeySelected?.Invoke(cast);
         };
@@ -53,7 +51,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         StationRecordsFilterType.OnItemSelected += eventArgs =>
         {
-            var type = (GeneralStationRecordFilterType) eventArgs.Id;
+            var type = (StationRecordFilterType) eventArgs.Id;
 
             if (_currentFilterType != type)
             {
@@ -96,13 +94,19 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         StationRecordsFilterType.SelectId((int) _currentFilterType);
 
+        if (state.JobList != null)
+        {
+            JobListing.Visible = true;
+            PopulateJobsContainer(state.JobList);
+        }
+
         if (state.RecordListing == null)
         {
             RecordListingStatus.Visible = true;
-            RecordListing.Visible = false;
+            RecordListing.Visible = true;
             RecordListingStatus.Text = Loc.GetString("general-station-record-console-empty-state");
-            RecordContainer.Visible = false;
-            RecordContainerStatus.Visible = false;
+            RecordContainer.Visible = true;
+            RecordContainerStatus.Visible = true;
             return;
         }
 
@@ -110,11 +114,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         RecordListing.Visible = true;
         RecordContainer.Visible = true;
         PopulateRecordListing(state.RecordListing!, state.SelectedKey);
-        if (state.JobList != null)
-        {
-            JobListing.Visible = true;
-            PopulateJobsContainer(state.JobList);
-        }
+
         RecordContainerStatus.Visible = state.Record == null;
 
         if (state.Record != null)
@@ -131,7 +131,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
             RecordContainer.RemoveAllChildren();
         }
     }
-    private void PopulateRecordListing(Dictionary<(NetEntity, uint), string> listing, (NetEntity, uint)? selected)
+    private void PopulateRecordListing(Dictionary<uint, string> listing, uint? selected)
     {
         RecordListing.Clear();
         RecordListing.ClearSelected();
@@ -142,10 +142,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         {
             var item = RecordListing.AddItem(name);
             item.Metadata = key;
-            if (selected != null && key.Item1 == selected.Value.Item1 && key.Item2 == selected.Value.Item2)
-            {
-                item.Selected = true;
-            }
+            item.Selected = key == selected;
         }
 
         _isPopulating = false;
@@ -210,7 +207,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         }
     }
 
-    private string GetTypeFilterLocals(GeneralStationRecordFilterType type)
+    private string GetTypeFilterLocals(StationRecordFilterType type)
     {
         return Loc.GetString($"general-station-record-{type.ToString().ToLower()}-filter");
     }
