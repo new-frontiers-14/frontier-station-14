@@ -5027,8 +5027,6 @@ entities:
     - type: Transform
       pos: 2.5,12.5
       parent: 1
-    - type: Thruster
-      enabled: False
 - proto: TintedWindow
   entities:
   - uid: 140
@@ -5938,20 +5936,6 @@ entities:
     - type: Transform
       pos: -4.5,16.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        charger_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 704
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: WarpPointShip
   entities:
   - uid: 713
@@ -5960,14 +5944,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-0.5
       parent: 1
-- proto: WeaponDisabler
-  entities:
-  - uid: 704
-    components:
-    - type: Transform
-      parent: 703
-    - type: Physics
-      canCollide: False
 - proto: WindowFrostedDirectional
   entities:
   - uid: 709
