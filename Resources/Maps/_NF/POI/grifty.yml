@@ -357,6 +357,20 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Grifty
+- proto: AirAlarm
+  entities:
+  - uid: 704
+    components:
+    - type: Transform
+      pos: 1.5,7.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 341
+      - 342
+      - 771
+    - type: AtmosDevice
+      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 233
@@ -3676,6 +3690,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 704
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3686,6 +3705,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 704
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3705,6 +3729,9 @@ entities:
     - type: Transform
       pos: 6.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 704
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
