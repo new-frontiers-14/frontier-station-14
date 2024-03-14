@@ -533,7 +533,7 @@ entities:
       - 237
 - proto: AltarSpawner
   entities:
-  - uid: 663
+  - uid: 662
     components:
     - type: Transform
       pos: 9.5,-5.5
@@ -1389,6 +1389,7 @@ entities:
     - type: Bin
       items:
       - 54
+      - 230
       - 651
       - 652
       - 653
@@ -1400,7 +1401,6 @@ entities:
       - 659
       - 660
       - 661
-      - 662
     - type: ContainerContainer
       containers:
         bin-container: !type:Container
@@ -1408,6 +1408,7 @@ entities:
           occludes: True
           ents:
           - 54
+          - 230
           - 651
           - 652
           - 653
@@ -1419,7 +1420,6 @@ entities:
           - 659
           - 660
           - 661
-          - 662
 - proto: Catwalk
   entities:
   - uid: 29
@@ -2067,13 +2067,13 @@ entities:
       parent: 179
     - type: Physics
       canCollide: False
-  - uid: 651
+  - uid: 230
     components:
     - type: Transform
       parent: 179
     - type: Physics
       canCollide: False
-  - uid: 652
+  - uid: 651
     components:
     - type: Transform
       parent: 179
@@ -3285,7 +3285,7 @@ entities:
       parent: 2
 - proto: MouseTimedSpawner
   entities:
-  - uid: 664
+  - uid: 663
     components:
     - type: Transform
       pos: 0.5,-8.5
@@ -3314,6 +3314,12 @@ entities:
       parent: 2
 - proto: PillTricordrazine
   entities:
+  - uid: 652
+    components:
+    - type: Transform
+      parent: 179
+    - type: Physics
+      canCollide: False
   - uid: 653
     components:
     - type: Transform
@@ -3363,12 +3369,6 @@ entities:
     - type: Physics
       canCollide: False
   - uid: 661
-    components:
-    - type: Transform
-      parent: 179
-    - type: Physics
-      canCollide: False
-  - uid: 662
     components:
     - type: Transform
       parent: 179
@@ -3580,13 +3580,6 @@ entities:
     components:
     - type: Transform
       pos: 2.7174866,-2.184526
-      parent: 2
-- proto: RubberStampPsychologist
-  entities:
-  - uid: 230
-    components:
-    - type: Transform
-      pos: 2.6966534,-2.5074427
       parent: 2
 - proto: ScalpelAdvanced
   entities:
