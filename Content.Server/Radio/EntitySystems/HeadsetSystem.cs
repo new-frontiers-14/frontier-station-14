@@ -112,7 +112,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             {
                 Message = canUnderstand ? args.UnderstoodChatMsg : args.NotUnderstoodChatMsg
             };
-            _netMan.ServerSendMessage(msg, actor.PlayerSession.ConnectedClient);
+            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         }
     }
 

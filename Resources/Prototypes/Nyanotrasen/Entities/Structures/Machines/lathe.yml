@@ -84,7 +84,20 @@
     board: ServiceTechFabCircuitboard
   - type: Lathe
     idleState: icon
-    runningState: icon
+    runningState: icon    
+    staticRecipes: #Frontier
+      - MailCapsule #Frontier
+      - SprayBottle #Frontier, moved this ones from dynamicRecipes, so the service fab wouldn't need a server for basic stuff
+      - FlashlightLantern
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - DrinkMug
+      - DrinkMugMetal
+      - DrinkGlass
+      - CableStack
+      - CableMVStack
+      - CableHVStack
     dynamicRecipes:
       - KitchenKnife
       - ButchCleaver
@@ -94,9 +107,6 @@
       - MopAdvanced
       - HydroponicsToolScythe
       - HydroponicsToolHatchet
-      - DrinkMug
-      - DrinkMugMetal
-      - DrinkGlass
       - MopBucket
       - SynthesizerInstrument
       - TrashBag
@@ -107,22 +117,14 @@
       - Spade
       - Clippers
       - Shovel # Below is shared with other lathes
-      - FlashlightLantern
       - Bucket
       - MopItem
-      - SprayBottle
-      - FireExtinguisher
-      - LightTube
-      - LightBulb
       - SheetSteel
       - SheetPlasteel
       - SheetPlasma
       - SheetGlass1
       - SheetRGlass
       - SheetPlastic
-      - CableStack
-      - CableMVStack
-      - CableHVStack
   - type: MaterialStorage
     whitelist:
       tags:
@@ -164,17 +166,17 @@
     dynamicRecipes:
       - Flash
       - MicroManipulatorStockPart
-      ##- NanoManipulatorStockPart
-      ##- PicoManipulatorStockPart
-      ##- FemtoManipulatorStockPart
+      - NanoManipulatorStockPart
+      - PicoManipulatorStockPart
+      - FemtoManipulatorStockPart
       - MatterBinStockPart
-      ##- AdvancedMatterBinStockPart
-      ##- SuperMatterBinStockPart
-      ##- BluespaceMatterBinStockPart
+      - AdvancedMatterBinStockPart
+      - SuperMatterBinStockPart
+      - BluespaceMatterBinStockPart
       - CapacitorStockPart
-      ##- AdvancedCapacitorStockPart
-      ##- SuperCapacitorStockPart
-      ##- QuadraticCapacitorStockPart
+      - AdvancedCapacitorStockPart
+      - SuperCapacitorStockPart
+      - QuadraticCapacitorStockPart
       - FirelockElectronics
       - DoorElectronics
       - APCElectronics
@@ -183,7 +185,6 @@
       - MailingUnitElectronics
       - IntercomElectronics
       - HolofanProjector
-      - Drone
       - ConveyorBeltAssembly
       - RPED
       - PowerDrill

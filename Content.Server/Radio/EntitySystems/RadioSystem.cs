@@ -11,6 +11,7 @@ using Content.Shared.Language;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Server.GameObjects;
+using Content.Shared.Speech;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -66,7 +67,7 @@ public sealed class RadioSystem : EntitySystem
                 msg = args.NotUnderstoodChatMsg;
             }
 
-            _netMan.ServerSendMessage(new MsgChatMessage { Message = msg}, actor.PlayerSession.ConnectedClient);
+            _netMan.ServerSendMessage(new MsgChatMessage { Message = msg}, actor.PlayerSession.Channel);
         }
     }
 
@@ -120,6 +121,17 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
+        SpeechVerbPrototype speech;
+        if (mask != null
+            && mask.Enabled
+            && mask.SpeechVerb != null
+            && _prototype.TryIndex<SpeechVerbPrototype>(mask.SpeechVerb, out var proto))
+        {
+            speech = proto;
+        }
+        else
+            speech = _chat.GetSpeechVerb(messageSource, message);
+
         var content = escapeMarkup
             ? FormattedMessage.EscapeText(message)
             : message;

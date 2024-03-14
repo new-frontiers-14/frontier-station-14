@@ -16,12 +16,14 @@ using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Language;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Radio;
+using Content.Shared.Speech;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -76,19 +78,11 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         base.Initialize();
         CacheEmotes();
-        _configurationManager.OnValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged, true);
-        _configurationManager.OnValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
-        _configurationManager.OnValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
+        Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged, true);
+        Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
+        Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        _configurationManager.UnsubValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged);
-        _configurationManager.UnsubValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged);
-        _configurationManager.UnsubValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged);
     }
 
     private void OnLoocEnabledChanged(bool val)
@@ -399,6 +393,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (message.Length == 0)
             return;
 
+        var speech = GetSpeechVerb(source, message);
+
         // get the entity's apparent name (if no override provided).
         string name;
         if (nameOverride != null)
@@ -410,6 +406,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             var nameEv = new TransformSpeakerNameEvent(source, Name(source));
             RaiseLocalEvent(source, nameEv);
             name = nameEv.Name;
+            // Check for a speech verb override
+            if (nameEv.SpeechVerb != null && _prototypeManager.TryIndex<SpeechVerbPrototype>(nameEv.SpeechVerb, out var proto))
+                speech = proto;
         }
 
         // Frontier - languages mechanic
@@ -508,7 +507,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                     ("message", FormattedMessage.EscapeText(finalMessage)));
 
                 // If the listener is in the clear range, do not perform further obfuscations
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, finalMessage, wrappedResult, source, false, session.ConnectedClient);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, finalMessage, wrappedResult, source, false, session.Channel);
             }
             else if (_interactionSystem.InRangeUnobstructed(source, listener, WhisperMuffledRange, Shared.Physics.CollisionGroup.Opaque))
             {
@@ -519,7 +518,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 var wrappedResult = Loc.GetString("chat-manager-entity-whisper-wrap-message",
                     ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(result)));
 
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedResult, source, false, session.ConnectedClient);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedResult, source, false, session.Channel);
             }
             else
             {
@@ -528,7 +527,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 var wrappedResult = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
                     ("message", FormattedMessage.EscapeText(result)));
 
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedResult, source, false, session.ConnectedClient);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedResult, source, false, session.Channel);
             }
         }
 
@@ -632,7 +631,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             wrappedMessage = Loc.GetString("chat-manager-send-admin-dead-chat-wrap-message",
                 ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                ("userName", player.ConnectedClient.UserName),
+                ("userName", player.Channel.UserName),
                 ("message", FormattedMessage.EscapeText(message)));
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Admin dead chat from {player:Player}: {message}");
         }
@@ -720,11 +719,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             if (channel == ChatChannel.LOOC || channel == ChatChannel.Emotes || _language.CanUnderstand(listener, language))
             {
-                _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.ConnectedClient, author: author);
+                _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
             }
             else
             {
-                _chatManager.ChatMessageToOne(channel, obfuscated, obfuscatedWrappedMessage, source, entHideChat, session.ConnectedClient, author: author);
+                _chatManager.ChatMessageToOne(channel, obfuscated, obfuscatedWrappedMessage, source, entHideChat, session.Channel, author: author);
             }
         }
 
@@ -808,7 +807,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             .AddWhereAttachedEntity(HasComp<GhostComponent>)
             .Recipients
             .Union(_adminManager.ActiveAdmins)
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
     }
 
     private string SanitizeMessagePeriod(string message)
@@ -914,6 +913,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         return modifiedMessage.ToString();
     }
 
+    public string BuildGibberishString(IReadOnlyList<char> charOptions, int length)
+    {
+        var sb = new StringBuilder();
+        for (var i = 0; i < length; i++)
+        {
+            sb.Append(_random.Pick(charOptions));
+        }
+        return sb.ToString();
+    }
+
     #endregion
 }
 
@@ -929,11 +938,13 @@ public sealed class TransformSpeakerNameEvent : EntityEventArgs
 {
     public EntityUid Sender;
     public string Name;
+    public string? SpeechVerb;
 
-    public TransformSpeakerNameEvent(EntityUid sender, string name)
+    public TransformSpeakerNameEvent(EntityUid sender, string name, string? speechVerb = null)
     {
         Sender = sender;
         Name = name;
+        SpeechVerb = speechVerb;
     }
 }
 
