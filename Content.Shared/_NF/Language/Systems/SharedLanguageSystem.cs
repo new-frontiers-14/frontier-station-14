@@ -13,8 +13,6 @@ public abstract class SharedLanguageSystem : EntitySystem
     public static readonly string UniversalPrototype = "Universal";
     public static LanguagePrototype GalacticCommon { get; private set; } = default!;
     public static LanguagePrototype Universal { get; private set; } = default!;
-
-    [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] protected readonly IPrototypeManager _prototype = default!;
     [Dependency] protected readonly IRobustRandom _random = default!;
     protected ISawmill _sawmill = default!;
@@ -24,19 +22,12 @@ public abstract class SharedLanguageSystem : EntitySystem
         GalacticCommon = _prototype.Index<LanguagePrototype>("GalacticCommon");
         Universal = _prototype.Index<LanguagePrototype>("Universal");
         _sawmill = Logger.GetSawmill("language");
-
-        SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInit);
     }
 
     public LanguagePrototype? GetLanguage(string id)
     {
         _prototype.TryIndex<LanguagePrototype>(id, out var proto);
         return proto;
-    }
-
-    private void OnInit(EntityUid uid, LanguageSpeakerComponent component, MapInitEvent args)
-    {
-        _action.AddAction(uid, ref component.Action, component.LanguageMenuAction, uid);
     }
 
     /// <summary>
