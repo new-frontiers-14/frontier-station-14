@@ -701,11 +701,6 @@ entities:
       - 611
       - 612
       - 613
-      - 641
-      - 625
-      - 461
-      - 241
-      - 557
     - type: AtmosDevice
       joinedGrid: 1
   - uid: 590
@@ -2880,24 +2875,36 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
   - uid: 611
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
   - uid: 612
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-7.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
   - uid: 613
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
   - uid: 616
     components:
     - type: Transform
@@ -3830,6 +3837,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3855,8 +3865,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 570
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3870,8 +3878,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 570
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3885,6 +3891,7 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
+      - invalid
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3897,8 +3904,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 570
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3912,8 +3917,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 570
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -3927,8 +3930,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 570
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
