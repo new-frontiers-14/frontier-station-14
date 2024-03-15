@@ -73,21 +73,6 @@
     containers:
       ShipyardConsole-targetId: !type:ContainerSlot {}
 
-# Custom console
-- type: entity
-  id: BaseMothershipComputer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: mothership console
-  description: Used on motherships to purchase and sell ships without returning to a station.
-  components:
-  - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Custom
-  - type: UserInterface
-    interfaces:
-    - key: enum.ShipyardConsoleUiKey.Custom
-      type: ShipyardConsoleBoundUserInterface
-  - type: ShipyardListing
-
 # Hardcoded consoles
 - type: entity
   id: ComputerShipyardSecurity

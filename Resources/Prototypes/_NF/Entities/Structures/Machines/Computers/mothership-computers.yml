@@ -1,8 +1,24 @@
+# Custom console
+- type: entity
+  id: BaseMothershipComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  suffix: Mothership
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  abstract: true
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Custom
+      type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+
 # The empress console
 - type: entity
   id: EmpressMothershipComputer
-  name: Empress mothership console
   parent: BaseMothershipComputer
+  name: empress shipyard console
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -24,8 +40,8 @@
 # The mccargo console
 - type: entity
   id: McCargoMothershipComputer
-  name: McCargo delivery ship console
   parent: BaseMothershipComputer
+  name: mccargo shipyard console
   components:
   - type: ShipyardListing
     shuttles:
@@ -34,8 +50,8 @@
 # The caduceus console
 - type: entity
   id: CaduceusMothershipComputer
-  name: Caduceus mothership console
   parent: BaseMothershipComputer
+  name: caduceus shipyard console
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -56,8 +72,8 @@
 # The GASBENDA-A-A-AH (sick metal guitar riff) console
 - type: entity
   id: GasbenderMothershipComputer
-  name: Gasbender mothership ship console
   parent: BaseMothershipComputer
+  name: gasbender shipyard console
   components:
   - type: ShipyardListing
     shuttles:
@@ -68,8 +84,8 @@
 # The crescent console
 - type: entity
   id: CrescentMothershipComputer
-  name: Crescent mothership console
   parent: BaseMothershipComputer
+  name: crescent shipyard console
   components:
   - type: ShipyardListing
     shuttles:
@@ -83,3 +99,15 @@
     - Liquidator
     - Mission
     - Honker
+
+# The mail console
+- type: entity
+  id: MailCarrierMothershipComputer
+  parent: BaseMothershipComputer
+  name: mail carrier shipyard console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - MailTruck
+#  - type: AccessReader # Cannot lock it for mail since the inserted card will be missing from you
+#    access: [["Mail"]] # Cannot lock it for mail since the inserted card will be missing from you
