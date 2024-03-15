@@ -3,6 +3,8 @@ using System.Numerics;
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared.Language;
 using Robust.Shared.Utility;
+using Content.Client._NF.Language;
+using static Content.Shared.Language.Systems.SharedLanguageSystem;
 
 namespace Content.Client._NF.Language.Systems.Chat.Controls;
 
@@ -80,16 +82,8 @@ public sealed class LanguageSelectorButton : ChatPopupButton<LanguageSelectorPop
         return name[..5];
     }
 
-    // public Color ChannelSelectColor(ChatSelectChannel channel)
-    // {
-    //     return channel switch
-    //     {
-    //         ChatSelectChannel.Radio => Color.LimeGreen,
-    //         ChatSelectChannel.LOOC => Color.MediumTurquoise,
-    //         ChatSelectChannel.OOC => Color.LightSkyBlue,
-    //         ChatSelectChannel.Dead => Color.MediumPurple,
-    //         ChatSelectChannel.Admin => Color.HotPink,
-    //         _ => Color.DarkGray
-    //     };
-    // }
+    public void UpdateLanguageSelectButton(LanguagePrototype language)
+    {
+        Text = LanguageSelectorName(language);
+    }
 }

@@ -10,6 +10,10 @@ using JetBrains.Annotations;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Client.UserInterface.Systems.Chat.Widgets;
+using Content.Client.Language.Systems;
+using Content.Shared.Language;
+using Content.Shared.Language.Systems;
 
 namespace Content.Client.UserInterface.Systems.Language;
 
@@ -18,10 +22,10 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
 {
     public LanguageMenuWindow? _languageWindow;
     private MenuButton? LanguageButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.LanguageButton;
-
     public string? LastPreferredLanguage;
     public Action<List<string>>? LanguagesChanged;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     public override void Initialize()
     {
@@ -115,16 +119,28 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
 
     private void OnStateUpdate(LanguageMenuStateMessage ev)
     {
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
+        if (chatBox != null)
+        {
+            var clangauge = _language.GetLanguage(ev.CurrentLanguage);
+            if (clangauge != null)
+            {
+                chatBox.ChatInput.LanguageSelector.UpdateLanguageSelectButton(clangauge);
+            }
+        }
+
         if (_languageWindow == null)
             return;
 
         _languageWindow.UpdateState(ev);
         LanguagesChanged?.Invoke(ev.Options);
     }
+
     public void RequestUpdate()
     {
         EntityManager.EntityNetManager?.SendSystemNetworkMessage(new RequestLanguageMenuStateMessage());
     }
+
     public void SetLanguage(string id)
     {
         _consoleHost.ExecuteCommand("lsselectlang " + id);
