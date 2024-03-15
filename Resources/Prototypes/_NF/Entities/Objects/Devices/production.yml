@@ -55,6 +55,20 @@
       Steel: 5
 
 - type: entity
+  id: TilePrinterNFMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: tile-meister 5000 machine board
+  description: A machine printed circuit board for an tile-meister 5000
+  components:
+    - type: MachineBoard
+      prototype: TilePrinterNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      materialRequirements:
+        Glass: 1
+
+- type: entity
   id: SalvageTechFabCircuitboardNF
   parent: BaseMachineCircuitboard
   name: salvage techfab machine board
@@ -63,7 +77,7 @@
     - type: Sprite
       state: supply
     - type: MachineBoard
-      prototype: salvagetechfabnf
+      prototype: SalvageTechfabNF
       requirements:
         MatterBin: 2
         Manipulator: 2
