@@ -59,13 +59,15 @@ public sealed partial class SuitSensorComponent : Component
     [DataField("nextUpdate", customTypeSerializer:typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
-
+	
+	/* -- Frontier modification
     /// <summary>
     ///     The station this suit sensor belongs to. If it's null the suit didn't spawn on a station and the sensor doesn't work.
     /// </summary>
     [DataField("station")]
     public EntityUid? StationId = null;
-
+	*/
+	
     /// <summary>
     ///     The server the suit sensor sends it state to.
     ///     The suit sensor will try connecting to a new server when no server is connected.
