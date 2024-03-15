@@ -49,3 +49,16 @@
     layers:
       - state: green
       - state: securityguard
+
+- type: entity
+  id: SpawnPointERTMailCarrier
+  parent: SpawnPointJobBase
+  name: ERTmailcarrier
+  components:
+  - type: SpawnPoint
+    job_id: ERTMailCarrier
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ertmailcarrier

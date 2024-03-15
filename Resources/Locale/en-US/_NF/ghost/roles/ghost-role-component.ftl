@@ -13,3 +13,6 @@ ghost-role-information-crispy-description = Mistakes were made.
 
 ghost-role-information-mistake-name = ?????
 ghost-role-information-mistake-description = Ymg' ph'nglui ah li.
+
+ghost-role-information-ert-mailcarrier-name = ERT Mail Carrier
+ghost-role-information-ert-mailcarrier-description = Assist with paperworks efforts to resolve the stations issues.
