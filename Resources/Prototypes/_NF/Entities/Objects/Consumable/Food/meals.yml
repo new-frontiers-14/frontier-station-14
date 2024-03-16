@@ -66,3 +66,35 @@
       groups:
         Brute: 1
   - type: FriedTrait
+
+## Science Meals
+
+- type: entity
+  name: citrus salad
+  parent: FoodBowlBase
+  id: FoodSaladCitrus
+  description: Citrus overload!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - leafy
+      - sour
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: citrusdelight
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 13
+        - ReagentId: Vitamin
+          Quantity: 15
+        - ReagentId: Flavorol
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Fruit
+    - Soup
