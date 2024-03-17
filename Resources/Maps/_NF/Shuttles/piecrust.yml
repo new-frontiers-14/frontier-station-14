@@ -199,7 +199,8 @@ entities:
             1: 225
             0: 14
           0,2:
-            0: 127
+            0: 123
+            2: 4
             1: 128
           1,0:
             0: 65535
@@ -242,12 +243,28 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 250
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
       id: PTS
     - type: SpreaderGrid
+    - type: NavMap
 - proto: AirAlarm
   entities:
   - uid: 193
@@ -316,7 +333,7 @@ entities:
       pos: -2.5,-1.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -394.1357
+      secondsUntilStateChange: -992.9712
       state: Opening
     - type: DeviceLinkSink
       links:
@@ -330,7 +347,7 @@ entities:
       pos: -2.5,0.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -399.4357
+      secondsUntilStateChange: -998.2712
       state: Opening
     - type: DeviceLinkSink
       links:
@@ -1883,6 +1900,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 8756
+- proto: SpawnPointChef
+  entities:
+  - uid: 303
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 8756
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 306
+    components:
+    - type: Transform
+      pos: 5.5,1.5
+      parent: 8756
+- proto: SpawnPointPilot
+  entities:
+  - uid: 304
+    components:
+    - type: Transform
+      pos: 3.5,6.5
+      parent: 8756
 - proto: StoolBar
   entities:
   - uid: 98
@@ -1910,6 +1948,16 @@ entities:
     - type: Transform
       pos: 6.5,6.5
       parent: 8756
+- proto: SuitStorageWallmountEVAEmergency
+  entities:
+  - uid: 307
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,5.5
+      parent: 8756
+    - type: Physics
+      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 6
@@ -2402,6 +2450,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,9.5
+      parent: 8756
+- proto: WarpPointShip
+  entities:
+  - uid: 305
+    components:
+    - type: Transform
+      pos: 0.5,2.5
       parent: 8756
 - proto: WaterTankFull
   entities:
