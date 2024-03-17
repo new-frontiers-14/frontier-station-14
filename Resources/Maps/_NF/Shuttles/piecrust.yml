@@ -69,7 +69,8 @@ entities:
           -1,-1:
             0: 65535
           -1,0:
-            0: 65535
+            0: 64511
+            1: 1024
           0,0:
             0: 65535
           0,-1:
@@ -85,7 +86,8 @@ entities:
           -1,1:
             0: 65535
           0,1:
-            0: 65535
+            0: 65531
+            1: 4
           0,-3:
             0: 4096
           0,-2:
@@ -108,6 +110,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -256,6 +273,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,0.5
+      parent: 8756
+- proto: Bucket
+  entities:
+  - uid: 272
+    components:
+    - type: Transform
+      pos: 6.5,-0.5
       parent: 8756
 - proto: CableApcExtension
   entities:
@@ -590,6 +614,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-1.5
       parent: 8756
+- proto: CheapLighter
+  entities:
+  - uid: 276
+    components:
+    - type: Transform
+      pos: 4.5725107,1.677062
+      parent: 8756
+- proto: CigPackBlack
+  entities:
+  - uid: 275
+    components:
+    - type: Transform
+      pos: 4.3225107,1.520812
+      parent: 8756
 - proto: ClosetChefFilled
   entities:
   - uid: 151
@@ -597,6 +635,24 @@ entities:
     - type: Transform
       pos: -1.5,2.5
       parent: 8756
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 20
@@ -656,6 +712,32 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,5.5
       parent: 8756
+- proto: DrinkMilkCarton
+  entities:
+  - uid: 263
+    components:
+    - type: Transform
+      parent: 66
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: DrinkShaker
+  entities:
+  - uid: 157
+    components:
+    - type: Transform
+      parent: 107
+    - type: Physics
+      canCollide: False
+- proto: DrinkSoyMilkCarton
+  entities:
+  - uid: 229
+    components:
+    - type: Transform
+      parent: 66
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: EmergencyLight
   entities:
   - uid: 230
@@ -693,6 +775,69 @@ entities:
       parent: 8756
     - type: Fixtures
       fixtures: {}
+- proto: FoodApple
+  entities:
+  - uid: 269
+    components:
+    - type: Transform
+      pos: 4.6360006,-0.733339
+      parent: 8756
+  - uid: 270
+    components:
+    - type: Transform
+      pos: 4.2922506,-0.467714
+      parent: 8756
+  - uid: 271
+    components:
+    - type: Transform
+      pos: 4.2610006,-0.967714
+      parent: 8756
+- proto: FoodButter
+  entities:
+  - uid: 260
+    components:
+    - type: Transform
+      parent: 66
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: FoodCheese
+  entities:
+  - uid: 261
+    components:
+    - type: Transform
+      parent: 66
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: FoodCondimentPacketSalt
+  entities:
+  - uid: 268
+    components:
+    - type: Transform
+      pos: 0.2407754,4.590644
+      parent: 8756
+- proto: FoodContainerEgg
+  entities:
+  - uid: 262
+    components:
+    - type: Transform
+      parent: 66
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: FoodPlateTin
+  entities:
+  - uid: 266
+    components:
+    - type: Transform
+      pos: 0.94147515,4.5373106
+      parent: 8756
+  - uid: 267
+    components:
+    - type: Transform
+      pos: 1.1758502,4.8498106
+      parent: 8756
 - proto: GasPipeBend
   entities:
   - uid: 5
@@ -1117,6 +1262,24 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 8756
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 157
+        inputContainer: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: KitchenSpike
   entities:
   - uid: 73
@@ -1137,6 +1300,55 @@ entities:
     components:
     - type: Transform
       pos: 2.5,4.5
+      parent: 8756
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 263
+          - 262
+          - 261
+          - 260
+          - 229
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: NFAshtray
+  entities:
+  - uid: 274
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.6350107,1.427062
+      parent: 8756
+- proto: PaperBin10
+  entities:
+  - uid: 273
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,8.5
       parent: 8756
 - proto: PortableGeneratorPacmanShuttle
   entities:
@@ -1250,12 +1462,26 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-0.5
       parent: 8756
-- proto: SheetPlasma
+- proto: ReagentContainerFlour
   entities:
-  - uid: 157
+  - uid: 265
     components:
     - type: Transform
-      pos: 4.5,7.5
+      pos: 0.69147515,4.8029356
+      parent: 8756
+- proto: RollingPin
+  entities:
+  - uid: 264
+    components:
+    - type: Transform
+      pos: 1.5196002,4.5841856
+      parent: 8756
+- proto: SheetPlasma
+  entities:
+  - uid: 277
+    components:
+    - type: Transform
+      pos: 3.5,7.5
       parent: 8756
 - proto: ShuttleWindow
   entities:
@@ -1874,7 +2100,7 @@ entities:
       bodyType: Static
 - proto: Wrench
   entities:
-  - uid: 229
+  - uid: 278
     components:
     - type: Transform
       pos: 3.5,7.5
