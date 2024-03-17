@@ -1,0 +1,52 @@
+- type: reaction
+  id: ArtifexiumIchor # rare recipe
+  reactants:
+    RawArtifexium:
+      amount: 1
+    Ichor:
+      amount: 1
+  products:
+    Artifexium: 4
+
+- type: reaction
+  id: ArtifexiumCarpoToxin # uncommon recipe
+  reactants:
+    RawArtifexium:
+      amount: 1
+    CarpoToxin:
+      amount: 2
+  products:
+    Artifexium: 2
+
+- type: reaction
+  id: ArtifexiumHonk # common recipe
+  reactants:
+    RawArtifexium:
+      amount: 1
+    Honk:
+      amount: 14
+  products:
+    Artifexium: 2
+
+- type: reaction
+  id: ArtifexiumNutriment # pain
+  reactants:
+    RawArtifexium:
+      amount: 2
+    Nutriment:
+      amount: 8
+  products:
+    Potassium: 4
+
+# the above and below recipes makes it so both require seperation from 'BananiumOre' after grinding
+# if it's done lazily by mixing all together it causes an explosion and wastes artifexium.
+
+- type: reaction
+  id: ArtifexiumVitamin # suffering
+  reactants:
+    RawArtifexium:
+      amount: 1
+    Vitamin:
+      amount: 2
+  products:
+    Water: 2
