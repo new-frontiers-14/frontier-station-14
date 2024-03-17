@@ -62,7 +62,6 @@ entities:
             color: '#9FED5896'
             id: Arrows
           decals:
-            1: -4,-2
             2: -4,0
         - node:
             color: '#1861D5FF'
@@ -93,12 +92,6 @@ entities:
             4: 0,1
             5: 1,1
             6: 2,1
-        - node:
-            color: '#FFFFFFFF'
-            id: BrickTileSteelLineW
-          decals:
-            7: -3,-2
-            8: -3,0
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -280,6 +273,12 @@ entities:
       - 225
       - 226
       - 227
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
     - type: AtmosDevice
       joinedGrid: 8756
 - proto: AirCanister
@@ -333,7 +332,7 @@ entities:
       pos: -2.5,-1.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -1052.5184
+      secondsUntilStateChange: -1115.7239
       state: Opening
     - type: DeviceLinkSink
       links:
@@ -347,7 +346,7 @@ entities:
       pos: -2.5,0.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -1057.8184
+      secondsUntilStateChange: -1121.0238
       state: Opening
     - type: DeviceLinkSink
       links:
@@ -997,6 +996,68 @@ entities:
     - type: Transform
       pos: 2.5,8.5
       parent: 8756
+- proto: Firelock
+  entities:
+  - uid: 312
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
+  - uid: 313
+    components:
+    - type: Transform
+      pos: -2.5,-1.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
+  - uid: 314
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
+  - uid: 315
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
+  - uid: 316
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
+  - uid: 317
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 8756
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 193
 - proto: FloorDrain
   entities:
   - uid: 125
