@@ -279,6 +279,18 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
+  - type: Pen # Frontier
+    mode: PenWrite # Frontier
+  - type: Stamp
+    stampedColor: "#000001"
+    stampState: "paper_stamp-generic"
+    stampedPersonal: true
+    stampedBorderless: true
+    sound:
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg
+      params:
+        volume: -2
+        maxDistance: 5
 
 - type: entity
   parent: Pen
@@ -294,18 +306,6 @@
     damage:
       types:
         Piercing: 3
-  - type: Pen
-    mode: PenWrite
-  - type: Stamp
-    stampedColor: "#000001"
-    stampState: "paper_stamp-generic"
-    stampedPersonal: true
-    stampedBorderless: true
-    sound:
-      path: /Audio/_NF/Items/Pen/pen_sign.ogg
-      params:
-        volume: -2
-        maxDistance: 5
   - type: StaticPrice
     price: 1
 
@@ -386,18 +386,6 @@
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
     state: pen_hop
-  - type: Pen
-    mode: PenWrite
-  - type: Stamp
-    stampedColor: "#000001"
-    stampState: "paper_stamp-generic"
-    stampedPersonal: true
-    stampedBorderless: true
-    sound:
-      path: /Audio/_NF/Items/Pen/pen_sign.ogg
-      params:
-        volume: -2
-        maxDistance: 5
   - type: StaticPrice
     price: 10
 

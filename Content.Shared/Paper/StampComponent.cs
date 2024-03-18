@@ -55,7 +55,7 @@ public sealed partial class StampComponent : Component
     public SoundSpecifier? Sound = null;
 
     /// <summary>
-    /// The stamp using the person name on it
+    /// Frontier - The stamp using the person name on it
     /// </summary>
     [DataField("stampedPersonal")]
     public bool StampedPersonal = false;
