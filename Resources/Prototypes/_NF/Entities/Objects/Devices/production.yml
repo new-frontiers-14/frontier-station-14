@@ -67,3 +67,24 @@
         Manipulator: 2
       materialRequirements:
         Glass: 1
+
+- type: entity
+  id: SalvageTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: salvage techfab machine board
+  description: A machine printed circuit board for a salvage techfab
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechfabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          Amount: 2
+          DefaultPrototype: Beaker
+          ExamineName: Glass Beaker
+    - type: StaticPrice
+      price: 200
