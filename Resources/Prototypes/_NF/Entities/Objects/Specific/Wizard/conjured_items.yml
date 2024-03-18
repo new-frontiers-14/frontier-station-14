@@ -21,6 +21,7 @@
     layers:
     - state: soap-4
       map: ["enum.SolutionContainerLayers.Fill"]
+      shader: unshaded
   - type: SolutionContainerVisuals
     maxFillLevels: 4
     fillBaseName: soap-
@@ -29,3 +30,7 @@
 #    heldPrefix: conjured
   - type: Ammo
     muzzleFlash: null
+  - type: PointLight
+    color: MediumPurple
+    radius: 1
+    softness: 1
