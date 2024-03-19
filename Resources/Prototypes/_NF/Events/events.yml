@@ -4,6 +4,8 @@
   noSpawn: true
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_normal_crate.ogg
     weight: 5
     startDelay: 30
     duration: 35
@@ -16,7 +18,7 @@
   components:
   - type: StationEvent
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_syndie_crate.ogg
     weight: 1
     startDelay: 30
     duration: 35
@@ -32,8 +34,10 @@
     - type: StationEvent
       startAnnouncement: station-event-bluespace-cache-start-announcement
       startAudio:
-        path: /Audio/Announcements/attention.ogg
+        path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_arrival.ogg
       endAnnouncement: station-event-bluespace-cache-end-announcement
+      endAudio:
+        path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
       earliestStart: 100
       minimumPlayers: 20
       weight: 2
@@ -52,8 +56,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_arrival.ogg
     endAnnouncement: station-event-bluespace-vault-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_leave.ogg
     earliestStart: 100
     minimumPlayers: 30
     weight: 2
@@ -72,8 +78,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_arrival.ogg
     endAnnouncement: station-event-bluespace-vault-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_vault_leave.ogg
     earliestStart: 100
     minimumPlayers: 15
     weight: 4
@@ -92,8 +100,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-asteroid-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_asteroid_arrival.ogg
     endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_asteroid_leave.ogg
     earliestStart: 100
     minimumPlayers: 15
     weight: 5
@@ -111,8 +121,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-asteroid-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_asteroid_arrival.ogg
     endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_asteroid_leave.ogg
     earliestStart: 100
     minimumPlayers: 15
     weight: 3
@@ -130,8 +142,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-ship-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_arrival.ogg
     endAnnouncement: station-event-bluespace-ship-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_leave.ogg
     earliestStart: 100
     minimumPlayers: 15
     weight: 5
@@ -149,8 +163,10 @@
   - type: StationEvent
     startAnnouncement: station-event-bluespace-ship-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_arrival.ogg
     endAnnouncement: station-event-bluespace-ship-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_ship_leave.ogg
     earliestStart: 100
     minimumPlayers: 15
     weight: 3
