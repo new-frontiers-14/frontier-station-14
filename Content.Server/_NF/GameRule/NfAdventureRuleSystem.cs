@@ -122,6 +122,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lab = "/Maps/_NF/POI/anomalouslab.yml";
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
+        var factory = "Maps/_NF/POI/factory.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
@@ -268,6 +269,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
             _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
             _shuttle.SetIFFColor(griftyUids[0], factionColor);
+        }
+
+if (_map.TryLoad(mapId, factory, out var factoryUids, new MapLoadOptions
+            {
+                Offset = -_random.NextVector2(2250f, 4600f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(factoryUids[0]);
+            _meta.SetEntityName(factoryUids[0], "Millenia Manufacturing", meta);
+            _shuttle.SetIFFColor(factoryUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
