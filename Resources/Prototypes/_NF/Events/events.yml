@@ -73,6 +73,8 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_breaker_flip.ogg
     weight: 7
     duration: 1
     minimumPlayers: 15
@@ -183,8 +185,10 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_gas_leak_start.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_gas_leak_end.ogg
     weight: 8
   - type: GasLeakRule
 
@@ -206,7 +210,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_vent_critters.ogg
     earliestStart: 15
     weight: 6
     duration: 50
@@ -255,7 +259,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_vent_critters.ogg
     weight: 6
     duration: 50
   - type: VentCrittersRule
@@ -270,27 +274,31 @@
   parent: BaseStationEventShortDelay # Old startDelay: 24
   components:
   - type: StationEvent
-    weight: 5
     startAnnouncement: station-event-power-grid-check-start-announcement
-    endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_offnf.ogg
+    endAnnouncement: station-event-power-grid-check-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg
       params:
        volume: -4
+    weight: 5
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
-  
+
 - type: entity
   parent: BaseGameRule
   id: SolarFlare
   components:
   - type: StationEvent
-    weight: 8
     startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_start.ogg
+    endAnnouncement: station-event-solar-flare-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_end.ogg
+    weight: 8
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -318,7 +326,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_vent_clog.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -531,6 +539,8 @@
   id: IonStorm
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_ion_stormnf.ogg
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
@@ -546,3 +556,15 @@
 #       maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
 #       weight: 5
 #     - type: MobReplacementRule
+
+# - type: entity   # Frontier - Reincluded this due to it having a speciality recorded line for Frontier
+#   id: RandomSentience
+#   parent: BaseGameRule
+#   components:
+#   - type: StationEvent
+#     weight: 6
+#     duration: 1
+#     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
+#     startAudio:
+#       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_random_sentience_mixdown.ogg
+#   - type: RandomSentienceRule
