@@ -7,27 +7,26 @@
   name: research-technology-rapid-construction
   icon:
     sprite: Objects/Tools/rcd.rsi
-    state: icon
+    state: icon-shipyard
   discipline: Industrial
   tier: 2
   cost: 10000
   recipeUnlocks:
-  - RCD
-  - RCDAmmo
-  - BorgModuleRCD
+    - ShipyardRCD
+    - ShipyardRCDAmmo
 
 # Tier 3
 
-# - type: technology # frontier - threw this in here since I noticed it was missing, incase anyone wanted it back in. not the point of this pr so can remove it if needed.
-#   id: CompactPower
-#   name: research-technology-compact-power
-#   icon:
-#     sprite: Structures/Power/Generation/wallmount_generator.rsi
-#     state: panel
-#   discipline: Industrial
-#   tier: 3
-#   cost: 15000
-#   recipeUnlocks:
-#   - WallmountSubstationElectronics
-#   - WallmountGeneratorElectronics
-#   - WallmountGeneratorAPUElectronics
+- type: technology
+  id: AdvRapidConstruction
+  name: research-technology-adv-rapid-construction
+  icon:
+    sprite: Objects/Tools/rcd.rsi
+    state: icon
+  discipline: Industrial
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - RCD
+  - RCDAmmo
+  - BorgModuleRCD
