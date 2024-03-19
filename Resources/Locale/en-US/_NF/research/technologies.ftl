@@ -6,3 +6,5 @@ research-technology-hardsuits-experimental-industrial = Experimental Salvager Ha
 research-technology-hardsuits-armored = Armored Hardsuits
 research-technology-hardsuits-armored-advanced = Advanced Armored Hardsuits
 research-technology-hardsuits-experimental-rd = Experimental Research Hardsuit
+research-technology-rapid-construction = Rapid Construction
+research-technology-rapid-construction-adv = Advanced Rapid Construction
