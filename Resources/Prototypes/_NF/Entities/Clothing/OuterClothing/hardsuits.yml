@@ -92,3 +92,57 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
   - type: StaticPrice
     price: 195
+
+# MAXIM Nerfed: mining hardsuit stats, but slightly worse expl and piercing res, better caustic res, better movement speed
+- type: entity
+  parent: ClothingOuterHardsuitMaxim
+  id: ClothingOuterHardsuitMaximPrototype
+  name: experimental salvager hardsuit
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.8
+        Radiation: 0.3
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
+
+# Funny meme jokes ha-ha: off-brand blood-red hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSundie
+  name: sundicate crimson-red hardsuit
+  description: A heavily armored hardsuit designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    color: orange
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 1.1
+        Heat: 1.5
+        Radiation: 1.5
+        Caustic: 1.5
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSundie
+  - type: Contraband

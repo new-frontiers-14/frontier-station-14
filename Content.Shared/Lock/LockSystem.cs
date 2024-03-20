@@ -267,6 +267,7 @@ public sealed class LockSystem : EntitySystem
         if (HasComp<EmaggedComponent>(uid))
         {
             _audio.PlayPredicted(component.UnlockSound, uid, null, AudioParams.Default.WithVolume(-5));
+            _appearanceSystem.SetData(uid, LockVisuals.Locked, true);
             //EnsureComp<LockComponent>(uid); //Literally addes the lock as a tell it was emagged
             component.Locked = true;
             args.Handled = true;

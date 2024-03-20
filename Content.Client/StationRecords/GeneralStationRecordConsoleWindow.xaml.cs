@@ -94,13 +94,19 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
 
         StationRecordsFilterType.SelectId((int) _currentFilterType);
 
+        if (state.JobList != null)
+        {
+            JobListing.Visible = true;
+            PopulateJobsContainer(state.JobList);
+        }
+
         if (state.RecordListing == null)
         {
             RecordListingStatus.Visible = true;
-            RecordListing.Visible = false;
+            RecordListing.Visible = true;
             RecordListingStatus.Text = Loc.GetString("general-station-record-console-empty-state");
-            RecordContainer.Visible = false;
-            RecordContainerStatus.Visible = false;
+            RecordContainer.Visible = true;
+            RecordContainerStatus.Visible = true;
             return;
         }
 
@@ -108,11 +114,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         RecordListing.Visible = true;
         RecordContainer.Visible = true;
         PopulateRecordListing(state.RecordListing!, state.SelectedKey);
-        if (state.JobList != null)
-        {
-            JobListing.Visible = true;
-            PopulateJobsContainer(state.JobList);
-        }
+
         RecordContainerStatus.Visible = state.Record == null;
 
         if (state.Record != null)

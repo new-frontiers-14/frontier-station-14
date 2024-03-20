@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Content.Shared.Emag.Components; // Frontier - Added DEMUG
 
 namespace Content.Shared.Doors.Systems;
 
@@ -82,6 +83,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         SubscribeLocalEvent<DoorComponent, GetPryTimeModifierEvent>(OnPryTimeModifier);
 
         SubscribeLocalEvent<DoorComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<DoorComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
     }
 
     protected virtual void OnComponentInit(Entity<DoorComponent> ent, ref ComponentInit args)
@@ -134,6 +136,23 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 return;
             Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
             args.Handled = true;
+        }
+    }
+
+    private void OnUnEmagged(EntityUid uid, DoorComponent door, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
+    {
+        if (TryComp<AirlockComponent>(uid, out var airlockComponent))
+        {
+            if (HasComp<EmaggedComponent>(uid))
+            {
+                if (TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
+                {
+                    SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, null, true);
+                    SetState(uid, DoorState.Closing, door);
+                }
+                Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
+                args.Handled = true;
+            }
         }
     }
 
