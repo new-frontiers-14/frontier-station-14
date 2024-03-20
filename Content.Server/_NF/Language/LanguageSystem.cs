@@ -171,7 +171,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     // </summary>
     public void SetLanguage(EntityUid speaker, string language, LanguageSpeakerComponent? languageComp = null)
     {
-        if (!CanSpeak(speaker, language))
+        if (!CanSpeak(speaker, language) || HasComp<UniversalLanguageSpeakerComponent>(speaker))
             return;
 
         if (languageComp == null && !TryComp(speaker, out languageComp))
@@ -204,30 +204,32 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         return ch is '.' or '!' or '?';
     }
 
-    // This event is reused because re-allocating it each time is way too costly.
-    private readonly DetermineEntityLanguagesEvent _determineLanguagesEvent = new(string.Empty, new(), new());
-
     /// <summary>
     ///   Returns a pair of (spoken, understood) languages of the given entity.
     /// </summary>
     public (List<string>, List<string>) GetAllLanguages(EntityUid speaker)
     {
         var languages = GetLanguages(speaker);
-        if (languages == null)
-            return (new(), new());
-
         // The lists need to be copied because the internal ones are re-used for performance reasons.
         return (new List<string>(languages.SpokenLanguages), new List<string>(languages.UnderstoodLanguages));
     }
 
+    // This event is reused because re-allocating it each time is way too costly.
+    private readonly DetermineEntityLanguagesEvent _determineLanguagesEvent = new(string.Empty, new(), new()),
+        _universalLanguagesEvent = new(UniversalPrototype, [UniversalPrototype], [UniversalPrototype]); // Used for universal speakers only; never mutated
+
     /// <summary>
     ///   Dynamically resolves the current language of the entity and the list of all languages it speaks.
     ///   The returned event is reused and thus must not be held as a reference anywhere but inside the caller function.
+    ///
+    ///   If the entity is not a language speaker, or is a universal language speaker, then it's assumed to speak Universal,
+    ///   aka all languages at once and none at the same time.
     /// </summary>
-    private DetermineEntityLanguagesEvent? GetLanguages(EntityUid speaker, LanguageSpeakerComponent? comp = null)
+    private DetermineEntityLanguagesEvent GetLanguages(EntityUid speaker, LanguageSpeakerComponent? comp = null)
     {
-        if (comp == null && !TryComp(speaker, out comp))
-            return null;
+        // This is a shortcut for ghosts and entities that should not speak normally (admemes)
+        if (HasComp<UniversalLanguageSpeakerComponent>(speaker) || !TryComp(speaker, out comp))
+            return _universalLanguagesEvent;
 
         var ev = _determineLanguagesEvent;
         ev.SpokenLanguages.Clear();

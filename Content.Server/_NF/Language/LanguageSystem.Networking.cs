@@ -14,6 +14,11 @@ public sealed partial class LanguageSystem
     {
         // Refresh the client's state when its mind hops to a different entity
         SubscribeLocalEvent<MindContainerComponent, MindAddedMessage>((uid, _, _) => SendLanguageStateToClient(uid));
+        SubscribeLocalEvent<MindComponent, MindGotRemovedEvent>((_, _, args) =>
+        {
+            if (args.Mind.Comp.Session != null)
+                SendLanguageStateToClient(args.Mind.Comp.Session);
+        });
 
         SubscribeLocalEvent<LanguageSpeakerComponent, LanguagesUpdateEvent>((uid, comp, _) => SendLanguageStateToClient(uid, comp));
         SubscribeNetworkEvent<RequestLanguagesMessage>((_, session) => SendLanguageStateToClient(session.SenderSession));
