@@ -1,9 +1,8 @@
 using Content.Client.VendingMachines.UI;
 using Content.Shared.VendingMachines;
-using Content.Shared.Bank.Components;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using System.Linq;
+using Content.Shared._NF.Bank.Components;
 
 namespace Content.Client.VendingMachines
 {

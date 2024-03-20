@@ -1,20 +1,19 @@
-using Content.Client.Cargo.UI;
-using Content.Shared.Cargo.BUI;
-using Content.Shared.Cargo.Events;
-using Robust.Client.GameObjects;
+﻿using Content.Client._NF.Cargo.UI;
+using Content.Shared._NF.Cargo.BUI;
+using Content.Shared._NF.Cargo.Events;
 
-namespace Content.Client.Cargo.BUI;
+namespace Content.Client._NF.Cargo.BUI;
 
-public sealed class CargoPalletConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed class FrontierCargoPalletConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
-    private CargoPalletMenu? _menu;
+    private FrontierCargoPalletMenu? _menu;
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = new CargoPalletMenu();
+        _menu = new FrontierCargoPalletMenu();
         _menu.AppraiseRequested += OnAppraisal;
         _menu.SellRequested += OnSell;
         _menu.OnClose += Close;
@@ -33,19 +32,19 @@ public sealed class CargoPalletConsoleBoundUserInterface(EntityUid owner, Enum u
 
     private void OnAppraisal()
     {
-        SendMessage(new CargoPalletAppraiseMessage());
+        SendMessage(new FrontierCargoPalletAppraiseMessage());
     }
 
     private void OnSell()
     {
-        SendMessage(new CargoPalletSellMessage());
+        SendMessage(new FrontierCargoPalletSellMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
 
-        if (state is not CargoPalletConsoleInterfaceState palletState)
+        if (state is not FrontierCargoPalletConsoleInterfaceState palletState)
             return;
 
         _menu?.SetEnabled(palletState.Enabled);
