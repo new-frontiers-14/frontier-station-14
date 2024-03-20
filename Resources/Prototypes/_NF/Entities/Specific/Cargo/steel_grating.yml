@@ -1,9 +1,9 @@
-﻿- type: entity
-  id: FrontierCargoPallet
-  name: frontier cargo pallet
-  description: Designates valid items to sell to CentCom when a shuttle is recalled.
-  suffix: DO NOT MAP # Extra clarification that this is NOT for design purposes.
-  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure ]
+﻿# A very inefficient way to fancy up your shuttle.
+- type: entity
+  id: SteelGrating
+  name: steel grating
+  description: A fancy steel grating to walk over.
+  parent: [BaseStructure]
   components:
     - type: InteractionOutline
     - type: Anchorable
@@ -19,12 +19,8 @@
           density: 15
           mask:
             - MachineMask
-    - type: FrontierCargoPallet
     - type: Sprite
       drawdepth: FloorTiles
       layers:
         - sprite: Structures/catwalk.rsi
           state: catwalk_preview
-    - type: GuideHelp
-      guides:
-        - Cargo
