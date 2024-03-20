@@ -44,7 +44,6 @@ public class ChatInputBox : PanelContainer
             MinWidth = 75
         };
         Container.AddChild(LanguageSelector);
-        LanguageSelector.OnLanguageSelect += SelectLanguage;
         // frontier block - end
         Input = new HistoryLineEdit
         {
@@ -66,13 +65,6 @@ public class ChatInputBox : PanelContainer
     private void UpdateActiveChannel(ChatSelectChannel selectedChannel)
     {
         ActiveChannel = (ChatChannel) selectedChannel;
-    }
-
-    // Frontier
-    private void SelectLanguage(LanguagePrototype language)
-    {
-        // This sucks a lot
-        IoCManager.Resolve<IUserInterfaceManager>().GetUIController<LanguageMenuUIController>().SetLanguage(language.ID);
     }
 
     private static string GetChatboxInfoPlaceholder()

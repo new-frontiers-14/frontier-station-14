@@ -24,7 +24,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentInit>(OnInitLanguageSpeaker);
         SubscribeAllEvent<RoundStartedEvent>(it => RandomRoundSeed = _random.Next());
 
-        InitializeWindows();
+        InitializeNet();
     }
 
     private void OnInitLanguageSpeaker(EntityUid uid, LanguageSpeakerComponent component, ComponentInit args)
@@ -270,6 +270,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (langs != null && !langs.SpokenLanguages.Contains(comp!.CurrentLanguage, StringComparer.Ordinal))
         {
             comp.CurrentLanguage = langs.SpokenLanguages.FirstOrDefault(UniversalPrototype);
+            RaiseLocalEvent(comp.Owner, new LanguagesUpdateEvent(), true);
         }
     }
 

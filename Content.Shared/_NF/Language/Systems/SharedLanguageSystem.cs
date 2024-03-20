@@ -38,27 +38,20 @@ public abstract class SharedLanguageSystem : EntitySystem
     }
 
     /// <summary>
-    ///   Sent when a client wants to update its language menu.
+    ///   Sent from the client to the server when it needs to learn the list of languages its entity knows.
+    ///   This event should always be followed by a <see cref="LanguagesUpdatedMessage"/>, unless the client doesn't have an entity.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class RequestLanguageMenuStateMessage : EntityEventArgs
-    {
-    }
+    public sealed class RequestLanguagesMessage : EntityEventArgs;
 
     /// <summary>
-    ///   Sent by the server when the client needs to update its language menu,
-    ///   or directly after [RequestLanguageMenuStateMessage].
+    ///   Sent to the client when its list of languages changes. The client should in turn update its HUD and relevant systems.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class LanguageMenuStateMessage : EntityEventArgs
+    public sealed class LanguagesUpdatedMessage(string currentLanguage, List<string> spoken, List<string> understood) : EntityEventArgs
     {
-        public string CurrentLanguage;
-        public List<string> Options;
-
-        public LanguageMenuStateMessage(string currentLanguage, List<string> options)
-        {
-            CurrentLanguage = currentLanguage;
-            Options = options;
-        }
+        public string CurrentLanguage = currentLanguage;
+        public List<string> Spoken = spoken;
+        public List<string> Understood = understood;
     }
 }

@@ -14,28 +14,26 @@ namespace Content.Client._NF.Language; // This EXACT class must have the _NF par
 [GenerateTypedNameReferences]
 public sealed partial class LanguageMenuWindow : DefaultWindow
 {
-    private readonly LanguageSystem _language;
+    private readonly LanguageSystem _clientLanguageSystem;
     private readonly List<EntryState> _entries = new();
-
-    public Action<string>? OnLanguageSelected;
 
     public LanguageMenuWindow()
     {
         RobustXamlLoader.Load(this);
-        _language = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
+        _clientLanguageSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
 
         Title = Loc.GetString("language-menu-window-title");
     }
 
-    public void UpdateState(LanguageMenuStateMessage state)
+    public void UpdateState(string currentLanguage, List<string> spokenLanguages)
     {
-        var clanguage = _language.GetLanguage(state.CurrentLanguage);
-        CurrentLanguageLabel.Text = Loc.GetString("language-menu-current-language", ("language", clanguage?.LocalizedName ?? "<error>"));
+        var langName = LanguagePrototype.GetLocalizedName(currentLanguage);
+        CurrentLanguageLabel.Text = Loc.GetString("language-menu-current-language", ("language", langName ?? "<error>"));
 
         OptionsList.RemoveAllChildren();
         _entries.Clear();
 
-        foreach (var language in state.Options)
+        foreach (var language in spokenLanguages)
         {
             AddLanguageEntry(language);
         }
@@ -44,13 +42,13 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
         foreach (var entry in _entries)
         {
             if (entry.button != null)
-                entry.button.Disabled = entry.language == state.CurrentLanguage;
+                entry.button.Disabled = entry.language == currentLanguage;
         }
     }
 
     private void AddLanguageEntry(string language)
     {
-        var proto = _language.GetLanguage(language);
+        var proto = _clientLanguageSystem.GetLanguage(language);
         var state = new EntryState { language = language };
 
         var container = new BoxContainer();
@@ -112,7 +110,9 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
     private void OnLanguageChosen(string id)
     {
-        OnLanguageSelected?.Invoke(id);
+        var proto = _clientLanguageSystem.GetLanguage(id);
+        if (proto != null)
+            _clientLanguageSystem.RequestSetLanguage(proto);
     }
 
     private struct EntryState

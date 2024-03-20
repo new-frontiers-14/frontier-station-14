@@ -1,7 +1,10 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Language.Systems;
 using Content.Client.UserInterface.Systems.Chat.Controls;
+using Content.Client.UserInterface.Systems.Language;
 using Content.Shared.Language;
+using Robust.Client.UserInterface;
 using Robust.Shared.Utility;
 
 namespace Content.Client._NF.Language.Systems.Chat.Controls;
@@ -9,8 +12,6 @@ namespace Content.Client._NF.Language.Systems.Chat.Controls;
 // Mostly copied from ChannelSelectorButton
 public sealed class LanguageSelectorButton : ChatPopupButton<LanguageSelectorPopup>
 {
-    public event Action<LanguagePrototype>? OnLanguageSelect;
-
     public LanguagePrototype? SelectedLanguage { get; private set; }
 
     private const int SelectorDropdownOffset = 38;
@@ -19,12 +20,23 @@ public sealed class LanguageSelectorButton : ChatPopupButton<LanguageSelectorPop
     {
         Name = "LanguageSelector";
 
-        Popup.Selected += OnLanguageSelected;
+        Popup.Selected += Select;
 
         if (Popup.FirstLanguage is { } firstSelector)
         {
             Select(firstSelector);
         }
+
+        IoCManager.Resolve<IUserInterfaceManager>().GetUIController<LanguageMenuUIController>().LanguagesUpdatedHook += UpdateLanguage;
+    }
+
+    private void UpdateLanguage((string current, List<string> spoken, List<string> understood) args)
+    {
+        Popup.SetLanguages(args.spoken);
+
+        // Kill me please
+        SelectedLanguage = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().GetLanguage(args.current);
+        Text = LanguageSelectorName(SelectedLanguage!);
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -34,11 +46,6 @@ public sealed class LanguageSelectorButton : ChatPopupButton<LanguageSelectorPop
         return UIBox2.FromDimensions(
             new Vector2(globalLeft, globalBot),
             new Vector2(SizeBox.Width, SelectorDropdownOffset));
-    }
-
-    private void OnLanguageSelected(LanguagePrototype channel)
-    {
-        Select(channel);
     }
 
     public void Select(LanguagePrototype language)
@@ -51,7 +58,7 @@ public sealed class LanguageSelectorButton : ChatPopupButton<LanguageSelectorPop
         if (SelectedLanguage == language)
             return;
         SelectedLanguage = language;
-        OnLanguageSelect?.Invoke(language);
+        IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().RequestSetLanguage(language);
 
         Text = LanguageSelectorName(language);
     }

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Language;
@@ -22,7 +23,19 @@ public sealed class LanguagePrototype : IPrototype
     [DataField("replacement", required: true)]
     public List<string> Replacement = new();
 
-    public string LocalizedName => Loc.GetString("language-" + ID + "-name");
+    #region utility
 
-    public string LocalizedDescription => Loc.GetString("language-" + ID + "-description");
+    public string LocalizedName => GetLocalizedName(ID);
+
+    public string LocalizedDescription => GetLocalizedDescription(ID);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetLocalizedName(string languageId) =>
+        Loc.GetString("language-" + languageId + "-name");
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetLocalizedDescription(string languageId) =>
+        Loc.GetString("language-" + languageId + "-description");
+
+    #endregion utility
 }
