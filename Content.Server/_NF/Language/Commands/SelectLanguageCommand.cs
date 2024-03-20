@@ -9,7 +9,7 @@ namespace Content.Server.Language.Commands;
 public sealed class SelectLanguageCommand : IConsoleCommand
 {
     public string Command => "lsselectlang";
-    public string Description => "Open a menu to select a langauge to speak.";
+    public string Description => "Open a menu to select a language to speak.";
     public string Help => "lsselectlang";
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
