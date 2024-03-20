@@ -1,4 +1,4 @@
-- type: cargoProduct
+- type: frontierCargoProduct
   id: Materials
   icon:
     sprite: Objects/Materials/Sheets/metal.rsi
@@ -8,7 +8,7 @@
   category: Materials
   group: market
 
-- type: cargoProduct
+- type: frontierCargoProduct
   id: MaterialUranium
   icon:
     sprite: Objects/Materials/Sheets/other.rsi
@@ -18,7 +18,7 @@
   category: Materials
   group: market
 
-- type: cargoProduct
+- type: frontierCargoProduct
   id: MaterialWood
   icon:
     sprite: Objects/Materials/materials.rsi
@@ -28,7 +28,7 @@
   category: Materials
   group: market
 
-- type: cargoProduct
+- type: frontierCargoProduct
   id: MaterialFuelTankHighCapacity
   icon:
     sprite: Structures/Storage/tanks.rsi
@@ -37,8 +37,8 @@
   cost: 5000
   category: Materials
   group: market
-  
-- type: cargoProduct
+
+- type: frontierCargoProduct
   id: MaterialWaterTankHighCapacity
   icon:
     sprite: Structures/Storage/tanks.rsi
@@ -47,3 +47,104 @@
   cost: 3300
   category: Materials
   group: market
+
+- type: frontierCargoProduct
+  id: MaterialGlass
+  icon:
+    sprite: Objects/Materials/Sheets/glass.rsi
+    state: glass_3
+  product: CrateMaterialGlass
+  cost: 5000 # TODO: Lower the cost back when possible
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialSteel
+  icon:
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: steel_3
+  product: CrateMaterialSteel
+  cost: 3000 # TODO: Lower the cost back when possible
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialPlastic
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: plastic_3
+  product: CrateMaterialPlastic
+  cost: 5000 # TODO: Lower the cost back when possible
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialPlasteel
+  icon:
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: plasteel_3
+  product: CrateMaterialPlasteel
+  cost: 7500 # TODO: Lower the cost back when possible
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialTextiles
+  icon:
+    sprite: Objects/Materials/materials.rsi
+    state: cloth_3
+  product: CrateMaterialTextiles
+  cost: 2000
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialPlasma
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: plasma_3
+  product: CrateMaterialPlasma
+  cost: 3000 # TODO: Lower the cost back when possible
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: CardboardMaterial
+  icon:
+    sprite: Objects/Materials/materials.rsi
+    state: cardboard_3
+  product: CrateMaterialCardboard
+  cost: 750
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: PaperMaterial
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: paper_3
+  product: CrateMaterialPaper
+  cost: 1000
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialFuelTank
+  icon:
+    sprite: Structures/Storage/tanks.rsi
+    state: fueltank
+  product: WeldingFuelTankFull
+  cost: 1500
+  category: Materials
+  group: market
+
+- type: frontierCargoProduct
+  id: MaterialWaterTank
+  icon:
+    sprite: Structures/Storage/tanks.rsi
+    state: watertank
+  product: WaterTankFull
+  cost: 1000
+  category: Materials
+  group: market
+

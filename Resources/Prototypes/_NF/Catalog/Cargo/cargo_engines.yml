@@ -1,4 +1,4 @@
-- type: cargoProduct
+- type: frontierCargoProduct
   id: EnginePortableGeneratorJrPacman
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
@@ -8,7 +8,7 @@
   category: Engineering
   group: market
 
-- type: cargoProduct
+- type: frontierCargoProduct
   id: EnginePortableGeneratorPacman
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
@@ -18,12 +18,72 @@
   category: Engineering
   group: market
 
-- type: cargoProduct
+- type: frontierCargoProduct
   id: EnginePortableGeneratorSuperPacman
   icon:
     sprite: Structures/Power/Generation/portable_generator.rsi
     state: portgen1
   product: PortableGeneratorSuperPacmanFlatpack
   cost: 4000
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineAmeShielding
+  icon:
+    sprite: Objects/Power/AME/ame_jar.rsi
+    state: jar
+  product: CrateEngineeringAMEShielding
+  cost: 10000
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineAmeJar
+  icon:
+    sprite: Objects/Power/AME/ame_jar.rsi
+    state: jar
+  product: CrateEngineeringAMEJar
+  cost: 2000
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineAmeControl
+  icon:
+    sprite: Structures/Power/Generation/ame.rsi
+    state: control
+  product: CrateEngineeringAMEControl
+  cost: 4000
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineSingularityCollector
+  icon:
+    sprite: Structures/Power/Generation/Singularity/collector.rsi
+    state: ca_on
+  product: CrateEngineeringSingularityCollector
+  cost: 1000
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineSolar
+  icon:
+    sprite: Objects/Devices/flatpack.rsi
+    state: solar-assembly-part
+  product: CrateEngineeringSolar
+  cost: 500
+  category: Engineering
+  group: market
+
+- type: frontierCargoProduct
+  id: EngineTeslaGroundingRod
+  icon:
+    sprite: Structures/Power/Generation/Tesla/coil.rsi
+    state: grounding_rod
+  product: CrateEngineeringTeslaGroundingRod
+  cost: 1000
   category: Engineering
   group: market
