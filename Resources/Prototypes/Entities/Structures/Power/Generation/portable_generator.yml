@@ -72,7 +72,7 @@
           behaviors:
             - !type:PlaySoundBehavior
               sound:
-                path: /Audio/Effects/metalbreak.ogg
+                collection: MetalBreak
             - !type:ChangeConstructionNodeBehavior
               node: machineFrame
             - !type:DoActsBehavior
@@ -90,6 +90,17 @@
       supplyRampRate: 500
       supplyRampTolerance: 500
       enabled: false
+    - type: DeviceLinkSink
+      ports:
+      - On
+      - Off
+      - Toggle
+    - type: GeneratorSignalControl
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
 
 - type: entity
   abstract: true
@@ -296,7 +307,8 @@
       fuelEfficiencyConstant: 0.5
     - type: ChemicalFuelGeneratorAdapter
       solution: tank
-      reagent: WeldingFuel
+      reagents:
+        WeldingFuel: 1
     - type: SolutionContainerManager
       solutions:
         tank:
@@ -344,7 +356,7 @@
               solution: tank
             - !type:PlaySoundBehavior
               sound:
-                path: /Audio/Effects/metalbreak.ogg
+                collection: MetalBreak
             - !type:ChangeConstructionNodeBehavior
               node: machineFrame
             - !type:DoActsBehavior

@@ -11,11 +11,6 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.1
-        Bloodloss: 0.1
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Thirst
   - type: Sericulture
     action: ActionSericulture
@@ -28,8 +23,22 @@
     - FootstepSound
     - DoorBumpOpener
     - SpiderCraft
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+      - id: FoodMeatSpider
+        amount: 5
   - type: Inventory
     templateId: arachnid
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Reactive
+    reactions:
+    - reagents: [Water]
+      methods: [Touch]
+      effects:
+      - !type:WearableReaction
+        slot: head
+        prototypeID: WaterDropletHat
   # Damage (Self)
   - type: Bloodstream
     bloodReagent: CopperBlood
@@ -37,11 +46,14 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Perishable
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-      - id: FoodMeatSpider
-        amount: 5
+  # Damage (Others)
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Piercing: 5
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:

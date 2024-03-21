@@ -110,6 +110,11 @@
   - type: Prayable
   - type: StaticPrice
     price: 1000
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    castShadows: false
+    color: "#eef066"
 
 - type: entity
   parent: BikeHorn
@@ -128,6 +133,11 @@
     slots: [Belt]
     quickEquip: false
   - type: EmitSoundOnUse
+    sound:
+      collection: BananiumHorn
+      params:
+        variation: 0.246
+  - type: EmitSoundOnTrigger
     sound:
       collection: BananiumHorn
       params:

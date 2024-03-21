@@ -8,10 +8,6 @@
   - type: HumanoidAppearance
     species: Moth
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.05
-        Bloodloss: 0.1
   - type: Thirst
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
@@ -34,6 +30,13 @@
     spawned:
     - id: FoodMeat
       amount: 5
+  - type: Bloodstream
+    bloodReagent: InsectBlood
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#808A51"
   - type: MothAccent
   - type: Vocal
     sounds:

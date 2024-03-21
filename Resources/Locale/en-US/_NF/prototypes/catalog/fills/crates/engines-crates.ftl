@@ -1,11 +1,11 @@
-ent-CrateThruster = { ent-BaseThruster }
-    .desc = { ent-BaseThruster.desc }
+ent-CrateThruster = thruster crate
+    .desc = A crate with a thruster that allows a shuttle to move.
 
-ent-CrateGyroscope = { ent-Gyroscope }
-    .desc = { ent-Gyroscope.desc }
+ent-CrateGyroscope = gyroscope crate
+    .desc = A crate with a gyroscope that increases the shuttle's potential angular rotation.
 
-ent-CrateSmallThruster = { ent-SmallThruster }
-    .desc = { ent-BaseThruster.desc }
+ent-CrateSmallThruster = small thruster crate
+    .desc = A crate with a small thruster that allows a shuttle to move.
 
-ent-CrateSmallGyroscope = { ent-SmallGyroscope }
-    .desc = { ent-Gyroscope.desc }
+ent-CrateSmallGyroscope = small gyroscope crate
+    .desc = A crate with a small gyroscope that increases the shuttle's potential angular rotation.

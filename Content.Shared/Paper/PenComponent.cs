@@ -17,12 +17,12 @@ namespace Content.Shared.Paper
     public enum PenMode : byte
     {
         /// <summary>
-        /// Sensor doesn't send any information about owner
+        /// Frontier - The normal mode of a pen.
         /// </summary>
         PenWrite = 0,
 
         /// <summary>
-        /// Sensor sends only binary status (alive/dead)
+        /// Frontier - The sign mode of a pen.
         /// </summary>
         PenSign = 1,
     }

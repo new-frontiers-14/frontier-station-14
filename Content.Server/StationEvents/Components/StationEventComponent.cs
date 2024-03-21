@@ -6,7 +6,7 @@ namespace Content.Server.StationEvents.Components;
 /// <summary>
 ///     Defines basic data for a station event
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class StationEventComponent : Component
 {
     public const float WeightVeryLow = 0.0f;
@@ -88,11 +88,13 @@ public sealed partial class StationEventComponent : Component
     /// When the station event starts.
     /// </summary>
     [DataField("startTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan StartTime;
 
     /// <summary>
     /// When the station event ends.
     /// </summary>
     [DataField("endTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan? EndTime;
 }

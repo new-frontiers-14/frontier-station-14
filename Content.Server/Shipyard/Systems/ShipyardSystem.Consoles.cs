@@ -210,11 +210,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             bool recSuccess = false;
             while (stationList.MoveNext(out var stationUid, out var stationRecComp))
             {
-                if (!_records.TryGetRecord<GeneralStationRecord>(stationUid, keyStorage.Key.Value, out var record))
+                if (!_records.TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
                     continue;
 
-                _records.RemoveRecord(stationUid, keyStorage.Key.Value);
-                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, record.Name, record.Age, record.Species, record.Gender, $"Captain", record.Fingerprint, record.DNA);
+                //_records.RemoveRecord(keyStorage.Key.Value);
+                _records.AddRecordEntry((EntityUid) shuttleStation, record);
                 recSuccess = true;
                 break;
             }
@@ -224,7 +224,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 TryComp<FingerprintComponent>(player, out var fingerprintComponent);
                 TryComp<DnaComponent>(player, out var dnaComponent);
-                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA);
+                TryComp<StationRecordsComponent>(shuttleStation, out var stationRec);
+                _records.CreateGeneralRecord((EntityUid) shuttleStation, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA, profile, stationRec!);
             }
         }
         _records.Synchronize(shuttleStation!.Value);
@@ -309,10 +310,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             && TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             && keyStorage.Key != null
             && keyStorage.Key.Value.OriginStation == shuttleStation
-            && _records.TryGetRecord<GeneralStationRecord>(shuttleStation, keyStorage.Key.Value, out var record))
+            && _records.TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
         {
-            _records.RemoveRecord(shuttleStation, keyStorage.Key.Value);
-            _records.CreateGeneralRecord(stationUid, targetId, record.Name, record.Age, record.Species, record.Gender, $"Passenger", record.Fingerprint, record.DNA);
+            //_records.RemoveRecord(keyStorage.Key.Value);
+            _records.AddRecordEntry(stationUid, record);
             _records.Synchronize(stationUid);
         }
 

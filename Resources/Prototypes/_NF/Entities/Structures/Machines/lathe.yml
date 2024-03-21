@@ -221,3 +221,146 @@
     - FloorCarpetItemPink
     - FloorTileItemCarpetClown
     - FloorTileItemCarpetOffice
+    dynamicRecipes:
+    - FauxTileAstroGrass
+    - FauxTileAstroIce
+  - type: EmagLatheRecipes
+    emagStaticRecipes:    
+    - MaterialSheetMeat
+
+- type: entity
+  parent: Protolathe
+  id: SalvageTechfabNF
+  name: salvage techfab
+  description: Prints equipment for salvagers.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: SalvageTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - Durathread
+      - Plasteel
+      - SheetSteel
+      - SheetPlasteel
+      - SheetPlasma
+      - SheetGlass1
+      - SheetRGlass
+      - SheetPlastic
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+      - Wirecutter
+      - Signaller
+      - Screwdriver
+      - Welder
+      - Wrench
+      - Crowbar
+      - Multitool
+      - NetworkConfigurator
+      - FlashlightLantern
+      - HandheldGPSBasic
+      - TRayScanner
+      - AirTank
+      - GasAnalyzer
+      - ClothingBeltSalvageWebbing
+      - Pickaxe
+      - AppraisalTool
+      - HandLabeler
+      - LightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - DrinkMugMetal
+      - PowerCellSmall
+      - PowerCellMedium
+      - EmergencyRollerBedSpawnFolded
+      - CableStack
+      - ConveyorBeltAssembly
+      - DoorElectronics
+      - StationMapElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+      - RadioHandheld
+      - Floodlight
+      - FlareLathe
+      - GlowstickBlue
+      - GlowstickBase
+      - GlowstickPurple
+      - GlowstickRedLathe
+      - GlowstickYellow
+    dynamicRecipes:
+      - MiningDrill
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      - Signaller
+      - PowerCellMedium
+      - PowerCellHigh
+      - PowerCellMicroreactor
+      - WeaponCrusher
+      - WeaponCrusherDagger
+      - WeaponCrusherGlaive
+      - WeaponProtoKineticAccelerator
+      - WeaponTetherGun
+      - WeaponGrapplingGun
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - OreBagOfHolding
+      - WelderExperimental
+      - JawsOfLife
+      - JetpackVoid
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitSpatio
+      - ClothingOuterHardsuitSalvage
+      - ClothingOuterHardsuitLuxury
+      - ClothingOuterHardsuitMaximPrototype
+      - ClothingHeadHelmetAncient
+      - ClothingOuterHardsuitAncientEVA
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+       - CartridgePistol
+       - CartridgeMagnum
+       - ShellShotgun
+       - ShellShotgunFlare
+       - ShellTranquilizer
+       - CartridgeLightRifle
+       - CartridgeRifle
+       - MagazineBoxPistol
+       - MagazineBoxMagnum
+       - MagazineBoxRifle
+       - MagazineBoxLightRifle
+       - GrenadeBlast
+       - ClothingHeadHelmetCosmonaut
+       - ClothingHeadHelmetSyndicate
+       - ClothingOuterHardsuitSyndicate
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot

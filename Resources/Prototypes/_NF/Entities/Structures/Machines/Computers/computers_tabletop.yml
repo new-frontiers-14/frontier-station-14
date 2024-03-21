@@ -1,45 +1,10 @@
-# Base structures
-- type: entity
-  id: BaseStructureComputerTabletop
-  suffix: Tabletop
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/computer_tabletop.rsi
-    drawdepth: SmallObjects
-    layers:
-    - map: ["computerLayerBody"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: computer_tabletop
-    - map: ["computerLayerKeyboard"]
-      sprite: _NF/Structures/Machines/computer_tabletop.rsi
-      state: generic_keyboard_tabletop
-    - map: ["computerLayerScreen"]
-      sprite: Structures/Machines/computers.rsi
-      state: generic
-    - map: ["computerLayerKeys"]
-      sprite: Structures/Machines/computers.rsi
-      state: generic_keys
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
-        mask:
-        - Impassable
-        - LowImpassable
-#        - TabletopMachineMask
-#        layer:
-#        - TabletopMachineLayer
-
 # Computers: Base Game
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerAlert]
   id: ComputerTabletopAlert
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -61,6 +26,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -79,6 +45,7 @@
   id: ComputerTabletopShuttle
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -98,6 +65,7 @@
   id: ComputerTabletopShuttleSyndie
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -118,6 +86,7 @@
   noSpawn: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -138,6 +107,7 @@
   noSpawn: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -157,6 +127,7 @@
   id: ComputerTabletopIFF
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -177,6 +148,7 @@
   suffix: Syndicate, Tabletop
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -196,6 +168,7 @@
   id: ComputerTabletopPowerMonitoring
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -215,6 +188,7 @@
   id: ComputerTabletopMedicalRecords
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -234,6 +208,7 @@
   id: ComputerTabletopCriminalRecords
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -253,6 +228,7 @@
   id: ComputerTabletopStationRecords
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -272,6 +248,7 @@
   id: ComputerTabletopCrewMonitoring
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -291,6 +268,7 @@
   id: ComputerTabletopResearchAndDevelopment
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -310,6 +288,7 @@
   id: ComputerTabletopAnalysisConsole
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -329,6 +308,7 @@
   id: ComputerTabletopId
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -349,6 +329,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       state: computer_tabletop
@@ -366,6 +347,7 @@
   id: ComputerTabletopComms
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -385,6 +367,7 @@
   id: SyndicateComputerTabletopComms
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -404,6 +387,7 @@
   id: ComputerTabletopSolarControl
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -423,6 +407,7 @@
   id: ComputerTabletopRadar
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -443,6 +428,7 @@
   noSpawn: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -462,6 +448,7 @@
   id: ComputerTabletopCargoOrders
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -481,6 +468,7 @@
   id: ComputerTabletopCargoBounty
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -500,6 +488,7 @@
   id: ComputerTabletopCloningConsole
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -519,6 +508,7 @@
   id: ComputerTabletopSalvageExpedition
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -538,6 +528,7 @@
   id: ComputerTabletopSurveillanceCameraMonitor
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -557,6 +548,7 @@
   id: ComputerTabletopSurveillanceWirelessCameraMonitor
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -576,6 +568,7 @@
   id: ComputerTabletopMassMedia
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -597,6 +590,7 @@
   noSpawn: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -618,6 +612,7 @@
   id: ComputerTabletopShipyard
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -638,6 +633,7 @@
   abstract: true
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -657,6 +653,7 @@
   id: ComputerTabletopShipyardSecurity
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -676,6 +673,7 @@
   id: ComputerTabletopShipyardBlackMarket
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -695,6 +693,7 @@
   id: ComputerTabletopShipyardExpedition
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -714,6 +713,7 @@
   id: ComputerTabletopShipyardScrap
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -734,6 +734,7 @@
   suffix: High, Tabletop
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -754,6 +755,7 @@
   suffix: Normal, Tabletop
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -774,6 +776,7 @@
   suffix: Low, Tabletop
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -794,6 +797,7 @@
   suffix: VeryLow, Tabletop
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -813,6 +817,7 @@
   id: ComputerTabletopStationAdminBankATM
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi
@@ -832,6 +837,7 @@
   id: ComputerTabletopContrabandPalletConsole
   components:
   - type: Sprite
+    drawdepth: SmallObjects
     layers:
     - map: ["computerLayerBody"]
       sprite: _NF/Structures/Machines/computer_tabletop.rsi

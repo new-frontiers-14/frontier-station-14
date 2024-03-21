@@ -147,11 +147,30 @@
   parent: BaseBullet
   noSpawn: true
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
   - type: Projectile
     damage:
       types:
         Piercing: 11 # 20% decrease
     ignoreResistances: true
+
+- type: entity
+  id: BaseBulletUranium
+  name: base bullet uranium
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: uranium
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 11
 
 # Energy projectiles
 - type: entity
@@ -191,7 +210,7 @@
         Heat: 5
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
-    soundForce: true
+    forceSound: true
   - type: StunOnCollide
     stunAmount: 5
     knockdownAmount: 5
@@ -236,8 +255,8 @@
       types:
         Heat: 5
     soundHit:
-      path: "/Audio/Weapons/tap.ogg"
-    soundForce: true
+      collection: WeakHit
+    forceSound: true
 
 - type: entity
   name : disabler bolt practice
@@ -276,8 +295,8 @@
       types:
         Heat: 1
     soundHit:
-      path: "/Audio/Weapons/tap.ogg"
-    soundForce: true
+      collection: WeakHit
+    forceSound: true
 
 - type: entity
   name: emitter bolt
@@ -395,11 +414,38 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 25
-        Structural: 30
+        Blunt: 20
+        Structural: 15
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.4
+
+- type: entity
+  id: BulletKineticShuttle
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 8
+        Structural: 5
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+  - type: GatheringProjectile
 
 - type: entity
   id: BulletCharge
@@ -633,9 +679,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 150 # a ~2 tile radius
+    totalIntensity: 140 # a ~2 tile radius
     intensitySlope: 5
-    maxIntensity: 10
+    maxIntensity: 8
 
 - type: entity
   id: BulletGrenadeFlash
@@ -648,7 +694,7 @@
     layers:
       - state: grenade
   - type: FlashOnTrigger
-    range: 7
+    range: 9
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: ActiveTimerTrigger
@@ -672,6 +718,27 @@
     totalIntensity: 175 # about a ~6 tile radius
     intensitySlope: 1
     maxIntensity: 10
+
+- type: entity
+  id: BulletGrenadeEMP
+  name: EMP rocket
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: EmpOnTrigger
+    range: 5
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
 
 - type: entity
   id: BulletCap
@@ -735,14 +802,14 @@
         maxVol: 50
   - type: Fixtures
     fixtures:
-      fix1:
+      projectile:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.10,-0.30,0.10,0.15"
         hard: false
         mask:
-        - FullTileMask
-        - Opaque
+        - Impassable
+        - BulletImpassable
   - type: Vapor
     active: true
   - type: Appearance
@@ -761,8 +828,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DemolitionCharge
-    maxIntensity: 9
-    intensitySlope: 6
+    maxIntensity: 7
+    intensitySlope: 4
     totalIntensity: 60
     maxTileBreak: 0
   - type: PointLight
@@ -848,8 +915,8 @@
       types:
         Heat: 2
     soundHit:
-      path: "/Audio/Weapons/tap.ogg"
-    soundForce: true
+      collection: WeakHit
+    forceSound: true
 
 - type: entity
   name: tesla gun lightning
@@ -1024,4 +1091,3 @@
         Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
     soundHit:
       collection: MeatLaserImpact
-    soundForce: true

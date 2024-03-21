@@ -60,8 +60,7 @@
     - Raw
     - Meat
   - type: Perishable
-    # raw meat rots in 5 minutes, get it into the freezer fast
-    rotAfter: 300
+    # raw meat rots in 15 mins like all meats from other species
     # don't want meat giving off ammonia only bodies
     molsPerSecondPerUnitMass: 0
   - type: RotInto
@@ -452,7 +451,7 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
-        - ReagentId: Toxin
+        - ReagentId: GastroToxin
           Quantity: 4
         - ReagentId: Fat
           Quantity: 4
