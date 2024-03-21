@@ -21,6 +21,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_wooden.rsi
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkMiddleNode # Frontier
 
 - type: entity
   id: BenchParkLeft
@@ -29,6 +32,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkLeftNode # Frontier
 
 - type: entity
   id: BenchParkRight
@@ -37,6 +43,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkRightNode # Frontier
 
 # Bamboo benches
 - type: entity
@@ -46,6 +55,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/parkbench_bamboo.rsi
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkBambooMiddleNode # Frontier
 
 - type: entity
   id: BenchParkBambooLeft
@@ -54,6 +66,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkBambooLeftNode # Frontier
 
 - type: entity
   id: BenchParkBambooRight
@@ -62,6 +77,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchParkBambooRightNode # Frontier
 
 # Pews
 - type: entity
@@ -71,6 +89,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/pews.rsi
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchPewMiddleNode # Frontier
 
 - type: entity
   id: BenchPewLeft
@@ -79,6 +100,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchPewLeftNode # Frontier
 
 - type: entity
   id: BenchPewRight
@@ -87,6 +111,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchPewRightNode # Frontier
 
 # Steel benches
 - type: entity
@@ -96,6 +123,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench.rsi
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelMiddleNode # Frontier
 
 - type: entity
   id: BenchSteelLeft
@@ -104,6 +134,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelLeftNode # Frontier
 
 - type: entity
   id: BenchSteelRight
@@ -112,6 +145,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelRightNode # Frontier
 
 # White steel benches
 - type: entity
@@ -121,6 +157,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/steel_bench_white.rsi
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelWhiteMiddleNode # Frontier
 
 - type: entity
   id: BenchSteelWhiteLeft
@@ -129,6 +168,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelWhiteLeftNode # Frontier
 
 - type: entity
   id: BenchSteelWhiteRight
@@ -137,6 +179,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: BenchesGraph # Frontier
+    node: BenchSteelWhiteRightNode # Frontier
 
 # Standard sofa
 - type: entity
@@ -146,6 +191,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/sofa.rsi
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaMiddleNode # Frontier
 
 - type: entity
   id: BenchSofaLeft
@@ -154,6 +202,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaLeftNode # Frontier
 
 - type: entity
   id: BenchSofaRight
@@ -162,6 +213,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaRightNode # Frontier
     
 - type: entity
   name: sofa
@@ -195,7 +249,10 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCornerNode # Frontier
 
 # Corp sofa
 - type: entity
@@ -205,6 +262,9 @@
   components:
   - type: Sprite
     sprite: SimpleStation14/Structures/Furniture/Benches/sofa_corp.rsi
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpMiddleNode # Frontier
 
 - type: entity
   id: BenchSofaCorpLeft
@@ -213,6 +273,9 @@
   components:
   - type: Sprite
     state: left
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpLeftNode # Frontier
 
 - type: entity
   id: BenchSofaCorpRight
@@ -221,6 +284,9 @@
   components:
   - type: Sprite
     state: right
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpRightNode # Frontier
 
 - type: entity
   name: grey sofa
@@ -254,4 +320,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
+  - type: Construction # Frontier
+    graph: SofasGraph # Frontier
+    node: BenchSofaCorpCornerNode # Frontier

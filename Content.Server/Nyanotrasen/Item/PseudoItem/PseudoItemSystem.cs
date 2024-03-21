@@ -1,5 +1,6 @@
 using Content.Server.Actions;
 using Content.Server.Bed.Sleep;
+using Content.Server.Carrying;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
@@ -22,6 +23,7 @@ public sealed class PseudoItemSystem : EntitySystem
     [Dependency] private readonly ItemSystem _itemSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!; // Frontier
     [Dependency] private readonly ActionsSystem _actions = default!; // Frontier
     [Dependency] private readonly PopupSystem _popup = default!; // Frontier
 
@@ -114,6 +116,20 @@ public sealed class PseudoItemSystem : EntitySystem
     {
         if (args.User == args.Item)
             return;
+
+        // Frontier: prevent people from pushing each other from a bag
+        if (HasComp<ItemComponent>(args.User))
+        {
+            args.Cancel();
+            return;
+        }
+
+        // Frontier: try to carry the person when taking them out of a bag.
+        if (_carrying.TryCarry(args.User, uid))
+        {
+            args.Cancel();
+            return;
+        }
 
         Transform(uid).AttachToGridOrMap();
         args.Cancel();

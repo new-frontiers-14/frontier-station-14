@@ -70,3 +70,42 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
+
+# MAXIM helmet, but with light
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitMaxim, ClothingHeadHardsuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMaximPrototype
+  noSpawn: true
+  name: experimental salvager helmet
+  description: A predication of decay washes over your mind.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+  - type: PointLight # Luxury Hardsuit Light
+    radius: 7
+    energy: 3
+
+# Funny meme jokes ha-ha so funny: off-brand blood-red hardsuit helmet
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSundie
+  noSpawn: true
+  name: sundicate crimson-red hardsuit helmet
+  description: A heavily armored helmet designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    color: orange
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+  - type: PointLight
+    color: darkgreen
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 1.05
+        Heat: 1.1
