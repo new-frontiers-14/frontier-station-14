@@ -13,3 +13,6 @@ ghost-role-information-crispy-description = Mistakes were made.
 
 ghost-role-information-mistake-name = ?????
 ghost-role-information-mistake-description = Ymg' ph'nglui ah li.
+
+ghost-role-information-jerma-name = Jerma
+ghost-role-information-jerma-description = Pog moment
