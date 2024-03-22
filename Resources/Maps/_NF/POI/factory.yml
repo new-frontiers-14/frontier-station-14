@@ -1648,6 +1648,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: BecomesStation
+      id: factory
 - proto: AirCanister
   entities:
   - uid: 2143
@@ -2756,15 +2758,15 @@ entities:
       bodyType: Static
 - proto: BigBox
   entities:
-  - uid: 2973
-    components:
-    - type: Transform
-      pos: 2.526918,-11.36042
-      parent: 1
   - uid: 2974
     components:
     - type: Transform
       pos: 3.635267,-8.39167
+      parent: 1
+  - uid: 3359
+    components:
+    - type: Transform
+      pos: 3.585553,-11.412293
       parent: 1
 - proto: BoozeDispenserEmpty
   entities:
@@ -12508,6 +12510,11 @@ entities:
       color: '#990000FF'
 - proto: GravityGeneratorMini
   entities:
+  - uid: 2973
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
+      parent: 1
   - uid: 3257
     components:
     - type: Transform
@@ -21516,6 +21523,8 @@ entities:
   entities:
   - uid: 1621
     components:
+    - type: MetaData
+      name: Millenia Manufacturing
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,8.5
