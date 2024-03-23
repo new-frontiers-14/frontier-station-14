@@ -251,22 +251,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
-        if (_map.TryLoad(mapId, factory, out var factoryUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(1650f, 3400f)
-            }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("factory", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["factory"], factoryUids);
-            }
-
-            var meta = EnsureComp<MetaDataComponent>(factoryUids[0]);
-            _meta.SetEntityName(factoryUids[0], "Millenia Manufacturing", meta);
-            _shuttle.SetIFFColor(factoryUids[0], civilianColor);
-        }
-
-
         if (_map.TryLoad(mapId, caseys, out var caseyUids, new MapLoadOptions
             {
                 Offset = caseysOffset
@@ -303,6 +287,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(labUids[0]);
             _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
             _shuttle.SetIFFColor(labUids[0], factionColor);
+        }
+
+             if (_map.TryLoad(mapId, factory, out var factoryUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2250f, 4600f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(factoryUids[0]);
+            _meta.SetEntityName(factoryUids[0], "Millenia Manufacturing", meta);
+            _shuttle.SetIFFColor(factoryUids[0], factionColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
