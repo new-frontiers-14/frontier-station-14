@@ -1,17 +1,17 @@
 # Pirate cat accent
-accent-words-pirate-cat-1 = Yarrgh Meow!
-accent-words-pirate-cat-2 = Yarr Mow.
-accent-words-pirate-cat-3 = Mrrrrrrow!
-accent-words-pirate-cat-4 = Arrgh Hhsss!
-accent-words-pirate-cat-5 = Brrrrrow.
-accent-words-pirate-cat-6 = Yarrgh Meow?
-accent-words-pirate-cat-7 = Garr Miau.
+accent-words-pirate-cat-1 = Яррргх Мяу!
+accent-words-pirate-cat-2 = Ярр Мяв.
+accent-words-pirate-cat-3 = Мррррряу!
+accent-words-pirate-cat-4 = Аррг Хссс!
+accent-words-pirate-cat-5 = Брррряу.
+accent-words-pirate-cat-6 = Ярррргх Мяу?
+accent-words-pirate-cat-7 = Гаррр Мяу.
 
 # Mistake cat accent
-accent-words-mistake-cat-1 = Hafh ya.
-accent-words-mistake-cat-2 = Ahh Y' ah like fahf.
-accent-words-mistake-cat-3 = ya lw'nafh ph' ah.
-accent-words-mistake-cat-4 = Y' ahor h' mggoka'ai.
-accent-words-mistake-cat-5 = Y' cant ah'ehye bug.
-accent-words-mistake-cat-6 = li h' nilgh'ri ngahnah.
-accent-words-mistake-cat-7 = ymg' mgep l' ah'n'gha ya.
+accent-words-mistake-cat-1 = Халф йа.
+accent-words-mistake-cat-2 = Ахх Й'а лайк фафх.
+accent-words-mistake-cat-3 = я лв'наф пф' а.
+accent-words-mistake-cat-4 = Й' ахор х' мггока'ай.
+accent-words-mistake-cat-5 = Й' кант а'эхйе баг.
+accent-words-mistake-cat-6 = ли х' нильг'ри нгахна.
+accent-words-mistake-cat-7 = ымг' мгеп л' а'н'га я.
