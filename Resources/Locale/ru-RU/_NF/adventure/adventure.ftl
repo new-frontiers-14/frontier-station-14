@@ -1,30 +1,30 @@
 ## UI
-playtime-deny-reason-not-whitelisted = You need to be whitelisted.
-adventure-list-start = NT Galactic Bank
-adventure-mode-profit-text = made a total profit of: {" "}
-adventure-mode-loss-text = lost a total of: {" "}
-adventure-list-high = Today's Top Earners:
-adventure-list-low = Today's Biggest Spenders:
-adventure-title = New Frontier Adventure Mode
-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
-currency = Spesos
+playtime-deny-reason-not-whitelisted = Вы должны быть в белом списке.
+adventure-list-start = Галактический Банк NT
+adventure-mode-profit-text = совокупная прибыль составила: {" "}
+adventure-mode-loss-text = всего потеряно: {" "}
+adventure-list-high = Больше всего заработали:
+adventure-list-low = Больше всего потратили:
+adventure-title = Приключения на Фронтире
+adventure-description = Купите собственный корабль или присоединитесь к любой команде, исследуйте, изучайте, занимайтесь спасением или перевозкой, чтобы разбогатеть!
+currency = Спесосы
 
-guide-entry-adventure = New Frontiers Program
-guide-entry-bank = NT Galactic Bank
-guide-entry-shipyard = Frontier Shipyards
+guide-entry-adventure = Программа Новый Фронтир
+guide-entry-bank = Галактический Банк NT
+guide-entry-shipyard = Верфи Фронтира
 
 shipyard-rules-default1 =
-    Thank you for your interest in Nanotrasen Security Forces.
-    By purchasing a Security vessel, you agree to enforce Space Law
-    as found at https://frontierstation14.com/index.php/Space_Law
+    Благодарим за присоединение к Службе Безопасности сектора.
+    Покупая Патрульный Шаттл вы соглашаетесь соблюдать Корпоративный Закон
+    который можно найти на https://station14.ru/wiki/%D0%9A%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9_%D0%97%D0%B0%D0%BA%D0%BE%D0%BD
 shipyard-rules-default2 =
-    Any actions performed by you or you crew that violate Space Law
-    can and will result in administrative action.
-    Thank you for choosing Nanotrasen Security Forces.
+    Любые действия, совершаемые вами или вашим экипажем, нарушающие
+    Корпоративный Закон приведут к административным мерам.
+    Спасибо, что выбрали Службу Безопасности NT.
 
-shuttle-ftl-proximity = Nearby objects too massive for FTL!
+shuttle-ftl-proximity = Близлежащие объекты слишком массивны для FTL прыжка!
 
-changelog-tab-title-Upstream = Upstream Changelog
+changelog-tab-title-Upstream = Журнал изменений
 
-public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
-public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
+public-transit-departure = Направляемся в {$destination}. Ориентировочное время в пути: {$flytime} секунд.
+public-transit-arrival = Спасибо за выбор общественного транспорта NT. Следующий шаттл до {$destination} отправляется через {$waittime} секунд.
