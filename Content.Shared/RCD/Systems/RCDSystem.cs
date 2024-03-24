@@ -98,7 +98,7 @@ public sealed class RCDSystem : EntitySystem
         {
             _popup.PopupClient(Loc.GetString("rcd-component-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User);
+            _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
             args.Handled = true;
             return;
         }
@@ -108,14 +108,14 @@ public sealed class RCDSystem : EntitySystem
         {
             _popup.PopupClient(Loc.GetString("rcd-component-id-card-removed"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.SwipeSound, rcdEntityUid, args.User);
+            _audio.PlayPredicted(comp.SwipeSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
             rcdComponent.LinkedShuttleUid = null;
         }
         else
         {
             _popup.PopupClient(Loc.GetString("rcd-component-id-card-accepted"),
                 uid, args.User, PopupType.Medium);
-            _audio.PlayPredicted(comp.InsertSound, rcdEntityUid, args.User);
+            _audio.PlayPredicted(comp.InsertSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
             rcdComponent.LinkedShuttleUid = shuttleDeedComponent.ShuttleUid;
         }
 
