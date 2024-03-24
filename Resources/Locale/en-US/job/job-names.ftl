@@ -48,6 +48,7 @@ job-name-senior-engineer = Senior Engineer
 job-name-senior-researcher = Senior Researcher
 job-name-senior-physician = Senior Physician
 job-name-senior-officer = Sergeant
+job-name-visitor = Visitor
 
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = Atmospheric Technician
@@ -98,5 +99,6 @@ JobSeniorResearcher = Senior Researcher
 JobServiceWorker = Service Worker
 JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
+JobVisitor = Visitor
 JobWarden = Bailiff
 JobZookeeper = Zookeeper

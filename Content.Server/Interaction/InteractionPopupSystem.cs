@@ -1,6 +1,7 @@
 using Content.Server.Interaction.Components;
 using Content.Server.Popups;
 using Content.Server.NPC.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -17,28 +18,46 @@ public sealed class InteractionPopupSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<InteractionPopupComponent, InteractHandEvent>(OnInteractHand);
+        SubscribeLocalEvent<InteractionPopupComponent, ActivateInWorldEvent>(OnActivateInWorld);
+    }
+
+    private void OnActivateInWorld(EntityUid uid, InteractionPopupComponent component, ActivateInWorldEvent args)
+    {
+        if (!component.OnActivate)
+            return;
+
+        SharedInteract(uid, component, args, args.Target, args.User);
     }
 
     private void OnInteractHand(EntityUid uid, InteractionPopupComponent component, InteractHandEvent args)
     {
-        if (HasComp<MobStateComponent>(uid))
-            return;
-
-        TryHug(uid, component, args.User);
+        SharedInteract(uid, component, args, args.Target, args.User);
     }
 
-    public void TryHug(EntityUid uid, InteractionPopupComponent component, EntityUid user)
+    private void SharedInteract(
+        EntityUid uid,
+        InteractionPopupComponent component,
+        HandledEntityEventArgs args,
+        EntityUid target,
+        EntityUid user)
     {
-        if (uid == user)
+        if (args.Handled || user == target)
             return;
+
+        //Handling does nothing and this thing annoyingly plays way too often.
+        if (HasComp<SleepingComponent>(uid))
+            return;
+
+        args.Handled = true;
 
         var curTime = _gameTiming.CurTime;
 
@@ -66,7 +85,7 @@ public sealed class InteractionPopupSystem : EntitySystem
                 sfx = component.InteractSuccessSound;
 
             if (component.InteractSuccessSpawn != null)
-                Spawn(component.InteractSuccessSpawn, Transform(uid).MapPosition);
+                Spawn(component.InteractSuccessSpawn, _transform.GetMapCoordinates(uid));
         }
         else
         {
@@ -77,7 +96,7 @@ public sealed class InteractionPopupSystem : EntitySystem
                 sfx = component.InteractFailureSound;
 
             if (component.InteractFailureSpawn != null)
-                Spawn(component.InteractFailureSpawn, Transform(uid).MapPosition);
+                Spawn(component.InteractFailureSpawn, _transform.GetMapCoordinates(uid));
         }
 
         if (component.MessagePerceivedByOthers != null)
@@ -93,9 +112,9 @@ public sealed class InteractionPopupSystem : EntitySystem
         if (sfx is not null) //not all cases will have sound.
         {
             if (component.SoundPerceivedByOthers)
-                _audio.PlayPvs(sfx, uid); //play for everyone in range
+                _audio.PlayPvs(sfx, target); //play for everyone in range
             else
-                _audio.PlayEntity(sfx, Filter.Entities(user, uid), uid, true); //play only for the initiating entity and its target.
+                _audio.PlayEntity(sfx, Filter.Entities(user, target), target, true); //play only for the initiating entity and its target.
         }
 
         component.LastInteractTime = curTime;

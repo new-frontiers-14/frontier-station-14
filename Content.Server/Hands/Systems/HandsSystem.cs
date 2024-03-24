@@ -1,19 +1,26 @@
 using System.Numerics;
+using Content.Server.Inventory;
 using Content.Server.Pulling;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Part;
 using Content.Shared.CombatMode;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Physics.Pull;
+using Content.Shared.Popups;
 using Content.Shared.Pulling.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Throwing;
 using Robust.Shared.Containers;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
@@ -27,7 +34,7 @@ namespace Content.Server.Hands.Systems
     {
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!;
-        [Dependency] private readonly HandVirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
@@ -37,7 +44,7 @@ namespace Content.Server.Hands.Systems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem)});
+            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(StaminaSystem)});
 
             SubscribeLocalEvent<HandsComponent, PullStartedMessage>(HandlePullStarted);
             SubscribeLocalEvent<HandsComponent, PullStoppedMessage>(HandlePullStopped);
@@ -46,7 +53,6 @@ namespace Content.Server.Hands.Systems
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
-            SubscribeLocalEvent<HandsComponent, EntityUnpausedEvent>(OnUnpaused);
 
             SubscribeLocalEvent<HandsComponent, BeforeExplodeEvent>(OnExploded);
 
@@ -67,10 +73,6 @@ namespace Content.Server.Hands.Systems
             args.State = new HandsComponentState(hands);
         }
 
-        private void OnUnpaused(Entity<HandsComponent> ent, ref EntityUnpausedEvent args)
-        {
-            ent.Comp.NextThrowTime += args.PausedTime;
-        }
 
         private void OnExploded(Entity<HandsComponent> ent, ref BeforeExplodeEvent args)
         {
@@ -93,6 +95,8 @@ namespace Content.Server.Hands.Systems
 
             if (!_handsSystem.TryDrop(uid, component.ActiveHand!, null, checkActionBlocker: false))
                 return;
+
+            args.PopupPrefix = "disarm-action-";
 
             args.Handled = true; // no shove/stun.
         }
@@ -149,7 +153,7 @@ namespace Content.Server.Hands.Systems
             foreach (var hand in component.Hands.Values)
             {
                 if (hand.HeldEntity == null
-                    || !TryComp(hand.HeldEntity, out HandVirtualItemComponent? virtualItem)
+                    || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
                     || virtualItem.BlockingEntity != args.Pulled.Owner)
                     continue;
 

@@ -45,7 +45,7 @@ namespace Content.Client.VendingMachines
 
             _menu.Populate(_cachedInventory, _mod, out _cachedFilteredIndex);
 
-            _menu.OpenCentered();
+            _menu.OpenCenteredLeft();
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

@@ -58,20 +58,17 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        // If the actual RD server on a map is initialized later, it won't work if we run this immediately.
-        // For the time being while a better solution is found, we register/unregister a little bit later.
-        // If we don't run this later, RD servers won't appear in the list on all machines on a ship.
-        Task.Run(async () =>
+        var maybeGrid = Transform(uid).GridUid;
+        if (maybeGrid is { } grid)
         {
-            await Task.Delay(TimeSpan.FromSeconds(10));
+            var servers = new HashSet<Entity<ResearchServerComponent>>();
+            _lookup.GetChildEntities(grid, servers);
 
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
-            if (allServers.Length > 0)
+            foreach (var server in servers)
             {
-                RegisterClient(uid, allServers[0].Owner, component, allServers[0]);
-                UnregisterClient(uid, component);
+                RegisterClient(uid, server, component);
             }
-        });
+        }
     }
 
     private void OnClientShutdown(EntityUid uid, ResearchClientComponent component, ComponentShutdown args)
@@ -89,12 +86,11 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (!TryGetClientServer(uid, out _, out var serverComponent, component))
-            return;
+        TryGetClientServer(uid, out _, out var serverComponent, component);
 
         var names = GetNFServerNames(uid);
         var state = new ResearchClientBoundInterfaceState(names.Length, names,
-            GetNFServerIds(uid), component.ConnectedToServer ? serverComponent.Id : -1);
+            GetNFServerIds(uid), serverComponent?.Id ?? -1);
 
         _uiSystem.TrySetUiState(uid, ResearchClientUiKey.Key, state);
     }
