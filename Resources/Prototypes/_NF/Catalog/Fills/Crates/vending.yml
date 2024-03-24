@@ -17,12 +17,12 @@
         amount: 2
 
 - type: entity
-  id: CrateVendingMachineRestockCircuitVendFilled
+  id: CrateVendingMachineRestockFlatpackVendFilled
   parent: CratePlasticBiodegradable
   components:
   - type: StorageFill
     contents:
-      - id: VendingMachineRestockCircuitVend
+      - id: VendingMachineRestockFlatpackVend
         amount: 2
 
 - type: entity
@@ -32,4 +32,31 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockCuddlyCritterVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockLessLethalVendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockLessLethalVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockAutoTuneVendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockAutoTuneVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockPottedPlantVendFilled
+  parent: CratePlasticBiodegradable
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockPottedPlantVend
         amount: 2

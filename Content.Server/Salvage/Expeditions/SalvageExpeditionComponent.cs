@@ -11,7 +11,7 @@ namespace Content.Server.Salvage.Expeditions;
 /// <summary>
 /// Designates this entity as holding a salvage expedition.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class SalvageExpeditionComponent : SharedSalvageExpeditionComponent
 {
     public SalvageMissionParams MissionParams = default!;
@@ -26,6 +26,7 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// When the expeditions ends.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("endTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
     public TimeSpan EndTime;
 
     /// <summary>
@@ -39,7 +40,7 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
-    public IPlayingAudioStream? Stream = null;
+    public EntityUid? Stream = null;
 
     /// <summary>
     /// Sound that plays when the mission end is imminent.
@@ -49,4 +50,16 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     {
         Params = AudioParams.Default.WithVolume(-5),
     };
+
+    /// <summary>
+    /// The difficulty this mission had or, in the future, was selected.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("difficulty")]
+    public DifficultyRating Difficulty;
+
+    /// <summary>
+    /// List of items to order on mission completion
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("rewards", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+    public List<string> Rewards = default!;
 }

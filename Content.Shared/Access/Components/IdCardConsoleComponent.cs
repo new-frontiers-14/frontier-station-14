@@ -22,23 +22,6 @@ public sealed partial class IdCardConsoleComponent : Component
     [DataField]
     public ItemSlot TargetIdSlot = new();
 
-    [Serializable, NetSerializable]
-    public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
-    {
-        public readonly string FullName;
-        public readonly string JobTitle;
-        public readonly List<string> AccessList;
-        public readonly string JobPrototype;
-
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<string> accessList, string jobPrototype)
-        {
-            FullName = fullName;
-            JobTitle = jobTitle;
-            AccessList = accessList;
-            JobPrototype = jobPrototype;
-        }
-    }
-
     // Put this on shared so we just send the state once in PVS range rather than every time the UI updates.
 
     [DataField, AutoNetworkedField]
@@ -56,16 +39,20 @@ public sealed partial class IdCardConsoleComponent : Component
         "ChiefEngineer",
         "ChiefMedicalOfficer",
         "Command",
+        "Cryogenics",
         "Engineering",
         "External",
-        "Frontier",
+        "Frontier", // Frontier
         "HeadOfPersonnel",
         "HeadOfSecurity",
         "Hydroponics",
         "Janitor",
         "Kitchen",
+        "Lawyer",
         "Maintenance",
         "Medical",
+        "Mercenary", // Frontier
+        "Pilot", // Frontier
         "Quartermaster",
         "Research",
         "ResearchDirector",
@@ -85,6 +72,8 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string TargetIdName;
         public readonly string? TargetIdFullName;
         public readonly string? TargetIdJobTitle;
+        public readonly bool HasOwnedShuttle;
+        public readonly string?[]? TargetShuttleNameParts;
         public readonly string[]? TargetIdAccessList;
         public readonly string[]? AllowedModifyAccessList;
         public readonly string TargetIdJobPrototype;
@@ -94,6 +83,8 @@ public sealed partial class IdCardConsoleComponent : Component
             bool isTargetIdPresent,
             string? targetIdFullName,
             string? targetIdJobTitle,
+            bool hasOwnedShuttle,
+            string?[]? targetShuttleNameParts,
             string[]? targetIdAccessList,
             string[]? allowedModifyAccessList,
             string targetIdJobPrototype,
@@ -105,6 +96,8 @@ public sealed partial class IdCardConsoleComponent : Component
             IsTargetIdPresent = isTargetIdPresent;
             TargetIdFullName = targetIdFullName;
             TargetIdJobTitle = targetIdJobTitle;
+            HasOwnedShuttle = hasOwnedShuttle;
+            TargetShuttleNameParts = targetShuttleNameParts;
             TargetIdAccessList = targetIdAccessList;
             AllowedModifyAccessList = allowedModifyAccessList;
             TargetIdJobPrototype = targetIdJobPrototype;

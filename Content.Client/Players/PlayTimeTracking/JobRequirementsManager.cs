@@ -95,7 +95,7 @@ public sealed partial class JobRequirementsManager
             return true;
         }
 
-        var player = _playerManager.LocalPlayer?.Session;
+        var player = _playerManager.LocalSession;
         if (player == null)
             return true;
 

@@ -1,7 +1,7 @@
-using Robust.Shared.Serialization;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Serialization;
 
-namespace Content.Shared.Kitchen.UI
+namespace Content.Shared.Nyanotrasen.Kitchen.UI
 {
     [Serializable, NetSerializable]
     public sealed class DeepFryerBoundUserInterfaceState : BoundUserInterfaceState

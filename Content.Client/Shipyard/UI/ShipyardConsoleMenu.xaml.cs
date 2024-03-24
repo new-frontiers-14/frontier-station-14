@@ -23,6 +23,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private readonly List<string> _categoryStrings = new();
     private string? _category;
 
+    private List<string> _lastProtos = new();
+    private string _lastType = "";
+
     public ShipyardConsoleMenu(ShipyardConsoleBoundUserInterface owner)
     {
         RobustXamlLoader.Load(this);
@@ -38,12 +41,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts((ShipyardConsoleUiKey) _menu.UiKey);
+        PopulateProducts(_lastProtos, _lastType);
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts((ShipyardConsoleUiKey) _menu.UiKey);
+        PopulateProducts(_lastProtos, _lastType);
     }
 
     private void SetCategoryText(int id)
@@ -52,51 +55,35 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Categories.SelectId(id);
     }
 
-    private void GetPrototypes(out IEnumerable<VesselPrototype> vessels)
-    {
-        vessels = _protoManager.EnumeratePrototypes<VesselPrototype>();
-    }
-
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(ShipyardConsoleUiKey uiKey)
+    public void PopulateProducts(List<string> prototypes, string type)
     {
         Vessels.RemoveAllChildren();
-        GetPrototypes(out var vessels);
-        var vesselList = vessels.ToList();
-        vesselList.Sort((x, y) =>
-            string.Compare(x.Name, y.Name, StringComparison.CurrentCultureIgnoreCase));
 
-        var type = uiKey switch
-        {
-            ShipyardConsoleUiKey.Shipyard => "Civilian",
-            ShipyardConsoleUiKey.Security => "Security",
-            ShipyardConsoleUiKey.BlackMarket => "BlackMarket",
-            ShipyardConsoleUiKey.Expedition => "Expedition",
-            _ => "Shipyard",
-        };
+        var newVessels = prototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
+            .Where(it => it != null)
+            .ToList();
+
+        newVessels.Sort((x, y) =>
+            string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
 
         var search = SearchBar.Text.Trim().ToLowerInvariant();
 
-        foreach (var prototype in vesselList)
+        foreach (var prototype in newVessels)
         {
-            // filter by type for ui key
-            if (prototype.Group != type)
-            {
-                continue;
-            }
             // if no search or category
             // else if search
             // else if category and not search
             if (search.Length == 0 && _category == null ||
-                search.Length != 0 && prototype.Name.ToLowerInvariant().Contains(search) ||
-                search.Length == 0 && _category != null && prototype.Category.Equals(_category))
+                search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
+                search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
             {
                 var vesselEntry = new VesselRow
                 {
                     Vessel = prototype,
-                    VesselName = { Text = prototype.Name },
+                    VesselName = { Text = prototype!.Name },
                     Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f },
                     Price = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Price.ToString())) },
                 };
@@ -104,6 +91,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 Vessels.AddChild(vesselEntry);
             }
         }
+
+        _lastProtos = prototypes;
+        _lastType = type;
     }
 
     /// <summary>
@@ -113,7 +103,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         _categoryStrings.Clear();
         Categories.Clear();
-        GetPrototypes(out var vessels);
+        var vessels = _protoManager.EnumeratePrototypes<VesselPrototype>();
         foreach (var prototype in vessels)
         {
             if (!_categoryStrings.Contains(prototype.Category))
@@ -135,8 +125,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
-        BankAccountLabel.Text = Loc.GetString("cargo-shipyard-console-bank-amount", ("amount", state.Balance.ToString()));
-        ShipSellValueLabel.Text = Loc.GetString("cargo-shipyard-console-sell-value", ("value", state.ShipSellValue.ToString()));
+        BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));
+        ShipAppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.ShipSellValue.ToString()));
         SellShipButton.Disabled = state.ShipDeedTitle == null;
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")

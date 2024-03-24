@@ -20,6 +20,9 @@
           - id: WallRock
             prob: 0.3
             orGroup: rock
+          - id: WallRockCoal
+            prob: 0.15
+            orGroup: rock
           - id: WallRockTin
             prob: 0.2
             orGroup: rock
@@ -54,12 +57,6 @@
             prob: 0.001
             orGroup: rock
           - id: SpawnMobKangarooSalvage
-            prob: 0.001
-            orGroup: rock
-          - id: SpawnMobSmallPurpleSnake
-            prob: 0.001
-            orGroup: rock
-          - id: SpawnMobPurpleSnake
             prob: 0.001
             orGroup: rock
     - type: GCAbleObject
@@ -117,8 +114,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 32
-      floorPlacements: 128
+      radius: 28
+      floorPlacements: 108
 
 - type: entity
   id: AsteroidSalvageSmall

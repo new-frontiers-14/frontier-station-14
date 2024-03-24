@@ -1,11 +1,9 @@
 - type: entity
-  parent: VendingMachine
+  parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineCuddlyCritterVend
   name: CuddlyCritterVend
   description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
   components:
-  - type: Anchorable
-    delay: 999999
   - type: VendingMachine
     pack: CuddlyCritterVendInventory
     offState: off
@@ -29,16 +27,14 @@
     energy: 1.6
     color: "#4b93ad"
   - type: MarketModifier
-    mod: 10
+    mod: 15
 
 - type: entity
-  parent: VendingMachine
+  parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineAstroVend
   name: AstroVend
   description: Essential gear for the space-men on the go
   components:
-  - type: Anchorable
-    delay: 999999
   - type: VendingMachine
     pack: AstroVendInventory
     offState: off
@@ -63,24 +59,22 @@
     color: "#4b93ad"
 
 - type: entity
-  parent: VendingMachine
-  id: VendingMachineCircuitVend
-  name: CircuitVend
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineFlatpackVend
+  name: FlatpackVend
   description: Essential tech for the space-men on the go
   components:
-  - type: Anchorable
-    delay: 999999
   - type: VendingMachine
-    pack: CircuitVendInventory
+    pack: FlatpackVendInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
-  - type: Advertise
-    pack: AstroVendAds
+#  - type: Advertise
+#    pack: FlatpackVendAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/circuitvend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/flatpackvend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -93,9 +87,11 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
+  - type: MarketModifier
+    mod: 25
 
 - type: entity
-  parent: VendingMachine
+  parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
@@ -113,9 +109,6 @@
     ejectDelay: 3
   - type: Advertise
     pack: SyndieDrobeAds
-  - type: Speech
-  - type: Anchorable
-    delay: 999999
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/syndicateArmor.rsi
     layers:
@@ -137,21 +130,19 @@
     mod: 50
 
 - type: entity
-  parent: VendingMachine
+  parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineBountyVend
   name: BountyVend
   description: Essential gear for the space-men on the go
   components:
-  - type: Anchorable
-    delay: 999999
   - type: VendingMachine
     pack: BountyVendInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-  - type: Advertise
-    pack: AstroVendAds
+#  - type: Advertise
+#    pack: BountyVendAds
   - type: Sprite
     sprite: _NF/Structures/bountyvend.rsi
     layers:
@@ -199,3 +190,121 @@
       radius: 1.5
       energy: 1.6
       color: "#ff033e"
+
+- type: entity
+  parent: VendingMachine
+  id: LessLethalVendingMachine
+  name: LessLethalVend
+  description: Making violence safe since '08
+  components:
+    - type: VendingMachine
+      pack: LessLethalVendInventory
+      dispenseOnHitChance: 0.25
+      dispenseOnHitThreshold: 2
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+      ejectState: eject-unshaded
+      denyState: deny-unshaded
+      ejectDelay: 3
+    - type: Advertise
+      pack: LessLethalVendAds
+    - type: Sprite
+      sprite: _NF/Structures/Machines/VendingMachines/lesslethalvend.rsi
+      layers:
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.Base"]
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#ff033e"
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineAutoTuneVend
+  name: AutoTune
+  description: feeling BASSed? time to TUNE into AutoVend! Take NOTES and let your audience TREBLE
+  components:
+  - type: VendingMachine
+    pack: AutoTuneVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+#  - type: Advertise
+#    pack: AutoTuneVendAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/autotunevend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: MarketModifier
+    mod: 10
+#Interface
+  - type: UserInterface
+    interfaces:
+    - key: enum.VendingMachineUiKey.Key
+      type: VendingMachineBoundUserInterface
+    - key: enum.WiresUiKey.Key
+      type: WiresBoundUserInterface
+    - key: enum.InstrumentUiKey.Key # Added
+      type: InstrumentBoundUserInterface # Added
+#Music
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    handheld: false
+#Ghost
+  # - type: GhostRole
+    # makeSentient: true
+    # allowSpeech: true
+  # - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachinePottedPlantVend
+  name: Plant-O-Matic
+  description: Sometimes potted plants are the best crewmates money can get.
+  components:
+  - type: VendingMachine
+    pack: PottedPlantVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: MegaSeedAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/pottedplantvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.4
+    energy: 1.7
+    softness: 0.9
+    offset: "0, -0.6"
+    color: "#EEEEFF"
+  - type: MarketModifier
+    mod: 10

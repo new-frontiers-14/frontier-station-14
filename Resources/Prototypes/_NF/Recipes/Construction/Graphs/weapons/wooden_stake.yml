@@ -1,0 +1,13 @@
+﻿- type: constructionGraph
+  id: WoodenStakeCraftingGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WoodenStakeNode
+      steps:
+      - material: WoodPlank
+        amount: 4
+        doAfter: 4
+  - node: WoodenStakeNode
+    entity: WoodenStake

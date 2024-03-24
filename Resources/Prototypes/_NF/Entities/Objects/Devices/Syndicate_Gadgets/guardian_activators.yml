@@ -1,0 +1,60 @@
+- type: entity
+  id: HoloparasiteInjectorAI
+  parent: HoloparasiteInjector
+  suffix: Ghost, AI
+  components:
+  - type: GuardianCreator
+    guardianProto: MobHoloparasiteGuardianAI
+
+- type: entity
+  parent: HoloClownInjector
+  id: HoloClownInjectorAI
+  suffix: Ghost, AI
+  components:
+  - type: GuardianCreator
+    guardianProto: MobHoloClownGuardianAI
+
+- type: entity
+  id: MagicalLampAI
+  parent: MagicalLamp
+  suffix: Ghost, AI
+  components:
+  - type: GuardianCreator
+    guardianProto: MobIfritGuardianAI
+
+- type: entity
+  parent: BoxHoloparasite
+  id: BoxHoloparasiteAI
+  suffix: Ghost, AI
+  components:
+  - type: StorageFill
+    contents:
+      - id: HoloparasiteInjectorAI
+      - id: HoloparasiteInfo
+      - id: ClothingHeadHatBizarreSoft
+  - type: Sprite
+    layers:
+      - state: box
+      - state: holo
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: BoxHoloclown
+  id: BoxHoloclownAI
+  suffix: Ghost, AI
+  components:
+  - type: StorageFill
+    contents:
+      - id: HoloClownInjectorAI
+      - id: ToyFigurineHoloClown
+      - id: ToyHammer
+  - type: Sprite
+    layers:
+      - state: box_hug
+      - state: holo
+  - type: Tag
+    tags:
+      - BoxHug
+  - type: StaticPrice
+    price: 1500

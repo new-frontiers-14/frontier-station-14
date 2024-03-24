@@ -1,0 +1,249 @@
+- type: entity
+  parent: Protolathe
+  id: ScienceTechFab
+  name: science techfab
+  description: Prints equipment for use by the epistemics department.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sci
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScienceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    dynamicRecipes:
+      - HandTeleporter
+      - BluespaceBeaker
+      - CryostasisBeaker
+      - BackpackOfHolding
+      - SatchelOfHolding
+      - DuffelbagOfHolding
+      - ChemicalPayload #Below = shared
+      - FlashlightLantern
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - SheetSteel
+      - SheetPlastic
+      - SheetPlasteel
+      - SheetPlasma
+      - SheetRGlass
+      - SheetGlass1
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      - NodeScanner
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitRd
+      # Frontier End
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+    materialWhiteList:
+    - Glass
+    - Plastic
+    - Steel
+    - Durathread
+
+- type: entity
+  parent: Protolathe
+  id: ServiceTechFab
+  name: service techfab
+  description: Prints equipment for service staff.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: service
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ServiceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon    
+    staticRecipes: #Frontier
+      - MailCapsule #Frontier
+      - SprayBottle #Frontier, moved some recipes from dynamicRecipes, so the service fab wouldn't need a server for the basic stuff
+      - FlashlightLantern
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - DrinkMug
+      - DrinkMugMetal
+      - DrinkGlass
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      - LightReplacer
+      - MopBucket
+      - TrashBag
+      - Bucket
+      - MopItem
+      - WetFloorSign
+      # Frontier Start
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+      - ClothingOuterEVASuitHydro
+      - ClothingOuterEVASuitMailman
+      # Frontier end
+    dynamicRecipes:
+      - KitchenKnife
+      - ButchCleaver
+      - Holoprojector
+      - TrashBagOfHolding
+      - MopAdvanced
+      - HydroponicsToolScythe
+      - HydroponicsToolHatchet
+      - SynthesizerInstrument
+      - MiniHoe
+      - HydroponicsToolScythe
+      - HydroponicsToolHatchet
+      - Spade
+      - Clippers
+      - Shovel # Below is shared with other lathes
+      - SheetSteel
+      - SheetPlasteel
+      - SheetPlasma
+      - SheetGlass1
+      - SheetRGlass
+      - SheetPlastic
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitPilot
+      - ClothingOuterHardsuitClown
+      - ClothingOuterHardsuitMime
+      # Frontier end
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+    materialWhiteList:
+    - Steel
+    - Plastic
+    - Glass
+    - Durathread
+    - Wood
+
+- type: entity
+  parent: Protolathe
+  id: EngineeringTechFab
+  name: engineering techfab
+  description: Prints equipment for engineers.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: engi
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: EngineeringTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    # Frontier Start
+    staticRecipes:
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+    # Frontier end
+    dynamicRecipes:
+      - Flash
+      - MicroManipulatorStockPart
+      - NanoManipulatorStockPart
+      - PicoManipulatorStockPart
+      - FemtoManipulatorStockPart
+      - MatterBinStockPart
+      - AdvancedMatterBinStockPart
+      - SuperMatterBinStockPart
+      - BluespaceMatterBinStockPart
+      - CapacitorStockPart
+      - AdvancedCapacitorStockPart
+      - SuperCapacitorStockPart
+      - QuadraticCapacitorStockPart
+      - FirelockElectronics
+      - DoorElectronics
+      - APCElectronics
+      - AirAlarmElectronics
+      - FireAlarmElectronics
+      - MailingUnitElectronics
+      - IntercomElectronics
+      - HolofanProjector
+      - ConveyorBeltAssembly
+      - RPED
+      - PowerDrill
+      - MiningDrill
+      - RCDAmmo # Below is shared with other lathes
+      - FlashlightLantern
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - SheetSteel
+      - SheetPlasteel
+      - SheetPlasma
+      - SheetGlass1
+      - SheetRGlass
+      - SheetPlastic
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitAtmos
+      - ClothingOuterHardsuitEngineering
+      - ClothingOuterHardsuitEngineeringWhite
+      - ClothingHeadHelmetAncient
+      - ClothingOuterHardsuitAncientEVA
+      # Frontier end
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+    materialWhiteList:
+    - Glass
+    - Plastic
+    - Steel

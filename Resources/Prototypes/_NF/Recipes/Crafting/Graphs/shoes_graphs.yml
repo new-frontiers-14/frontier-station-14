@@ -1,0 +1,109 @@
+﻿- type: constructionGraph
+  id: GraphClothingShoesClownModWhoopie
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: whoopiemod
+          steps:
+            - tag: ClownShoes
+              name: clown shoes
+              icon:
+                sprite: Clothing/Shoes/Specific/clown.rsi
+                state: icon
+              doAfter: 1
+            - tag: WhoopieCushion
+              name: whoopie cushion
+              icon:
+                sprite: Objects/Fun/whoopie.rsi
+                state: icon
+              doAfter: 1
+            - tag: WhoopieCushion
+              name: whoopie cushion
+              icon:
+                sprite: Objects/Fun/whoopie.rsi
+                state: icon
+              doAfter: 1
+    - node: whoopiemod
+      entity: ClothingShoesClownModWhoopie
+
+- type: constructionGraph
+  id: GraphClothingShoesClownModKetchup
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ketchupmod
+          steps:
+            - tag: ClownShoes
+              name: clown shoes
+              icon:
+                sprite: Clothing/Shoes/Specific/clown.rsi
+                state: icon
+              doAfter: 1
+            - tag: Ketchup
+              name: squeeze bottle
+              icon:
+                sprite: _NF/Objects/Consumable/Food/condiments.rsi
+                state: squeeze-bottle-ketchup
+              doAfter: 1
+    - node: ketchupmod
+      entity: ClothingShoesClownModKetchup
+
+- type: constructionGraph
+  id: GraphClothingShoesClownModMustarchup
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mustarchupmod
+          steps:
+            - tag: ClownShoes
+              name: clown shoes
+              icon:
+                sprite: Clothing/Shoes/Specific/clown.rsi
+                state: icon
+              doAfter: 1
+            - tag: Ketchup
+              name: ketchup
+              icon:
+                sprite: _NF/Objects/Consumable/Food/condiments.rsi
+                state: squeeze-bottle-ketchup
+              doAfter: 1
+            - tag: Mustard
+              name: mustard
+              icon:
+                sprite: _NF/Objects/Consumable/Food/condiments.rsi
+                state: squeeze-bottle-mustard
+              doAfter: 1
+    - node: mustarchupmod
+      entity: ClothingShoesClownModMustarchup
+
+- type: constructionGraph
+  id: GraphClothingShoesClownModUltimate
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ultimatemod
+          steps:
+            - tag: ClownShoes
+              name: clown shoes
+              icon:
+                sprite: Clothing/Shoes/Specific/clown.rsi
+                state: icon
+              doAfter: 1
+            - tag: Ketchup
+              name: squeeze bottle
+              icon:
+                sprite: _NF/Objects/Consumable/Food/condiments.rsi
+                state: squeeze-bottle-ketchup
+              doAfter: 1
+            - tag: WhoopieCushion
+              name: whoopie cushion
+              icon:
+                sprite: Objects/Fun/whoopie.rsi
+                state: icon
+              doAfter: 1
+    - node: ultimatemod
+      entity: ClothingShoesClownModUltimate

@@ -7,9 +7,10 @@
     sprite: Objects/Tanks/generic.rsi
     state: icon
   - type: Item
-    size: 15
+    size: Normal
     sprite: Objects/Tanks/generic.rsi
   - type: Clothing
+    quickEquip: false
     sprite: Objects/Tanks/generic.rsi
     slots:
     - Back
@@ -38,7 +39,7 @@
         Blunt: 10
   - type: PhysicalComposition
     materialComposition:
-      Steel: 400
+      Steel: 185
   - type: StaticPrice
     price: 20
 
@@ -66,19 +67,6 @@
     sprite: Objects/Tanks/oxygen.rsi
 
 - type: entity
-  parent: OxygenTank
-  id: YellowOxygenTank
-  name: oxygen tank
-  description: A standard cylindrical gas tank for oxygen. This one is yellow.
-  components:
-  - type: Sprite
-    sprite: Objects/Tanks/yellow.rsi
-  - type: Item
-    sprite: Objects/Tanks/yellow.rsi
-  - type: Clothing
-    sprite: Objects/Tanks/yellow.rsi
-
-- type: entity
   parent: GasTankRoundBase
   id: NitrogenTank
   name: nitrogen tank
@@ -100,10 +88,9 @@
   - type: Sprite
     sprite: Objects/Tanks/emergency.rsi
   - type: Item
-    size: 10
+    size: Small
     sprite: Objects/Tanks/emergency.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 1.33
       temperature: 293.15
@@ -128,16 +115,15 @@
   description: An emergency tank with extended capacity. Technically rated for prolonged use.
   components:
   - type: Sprite
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
   - type: Item
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 3
       temperature: 293.15
   - type: Clothing
-    sprite: Objects/Tanks/emergency_yellow.rsi
+    sprite: Objects/Tanks/emergency_extended.rsi
 
 - type: entity
   parent: ExtendedEmergencyOxygenTank
@@ -150,7 +136,6 @@
   - type: Item
     sprite: Objects/Tanks/emergency_double.rsi
   - type: GasTank
-    outputPressure: 21.3
     air:
       volume: 5
       temperature: 293.15
@@ -168,8 +153,6 @@
   name: air tank
   description: Mixed anyone?
   components:
-  - type: Sprite
-    sprite: Objects/Tanks/generic.rsi
   - type: GasTank
     outputPressure: 101.3
     air:
@@ -211,9 +194,6 @@
     sprite: Objects/Tanks/plasma.rsi
   - type: GasTank
     outputPressure: 101.3
-    air:
-      volume: 5
-      temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/plasma.rsi
 
@@ -231,7 +211,7 @@
       volume: 2
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red.rsi
     slots:
@@ -260,7 +240,7 @@
       volume: 3
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red_extended.rsi
     slots:
@@ -282,7 +262,7 @@
       volume: 5
       temperature: 293.15
   - type: Item
-    size: 10
+    size: Small
   - type: Clothing
     sprite: Objects/Tanks/emergency_red_double.rsi
     slots:

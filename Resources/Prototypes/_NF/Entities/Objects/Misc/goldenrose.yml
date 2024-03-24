@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStructure
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure]
   id: GoldenRose
   name: golden rose
   description: An expensive golden rose signifying this ship's luxury.
@@ -13,12 +13,3 @@
   - type: Physics
     bodyType: Dynamic
     canCollide: false
-  - type: Anchorable
-    delay: 999999
-  - type: StaticPrice
-    price: 15000
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0

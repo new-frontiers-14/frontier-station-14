@@ -53,7 +53,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -64,6 +64,11 @@
             max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: StealTarget
+    stealGroup: AltarNanotrasen
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarNanotrasenNode # Frontier
 
 - type: entity
   id: AltarChaos
@@ -76,6 +81,9 @@
   - type: Icon
     sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
     state: chaos
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarChaosNode # Frontier
 
 - type: entity
   id: AltarDruid
@@ -88,6 +96,9 @@
   - type: Icon
     sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
     state: druid
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarDruidNode # Frontier
 
 - type: entity
   id: AltarToolbox
@@ -100,6 +111,9 @@
   - type: Icon
     sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
     state: toolbox
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarToolboxNode # Frontier
 
 - type: entity
   id: AltarSpaceChristian
@@ -119,6 +133,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarSpaceChristianNode # Frontier
 
 - type: entity
   id: AltarSatana
@@ -138,6 +155,9 @@
     radius: 1.5
     energy: 1
     color: "#ff6347"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarSatanaNode # Frontier
 
 - type: entity
   id: AltarTechnology
@@ -157,6 +177,9 @@
     radius: 1.5
     energy: 1
     color: "#e0ffff"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarTechnologyNode # Frontier
 
 - type: entity
   id: AltarConvertFestival
@@ -185,7 +208,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          collection: WoodDestroyHeavy
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
@@ -199,6 +222,9 @@
   - type: Tag
     tags:
     - Wooden
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertFestivalNode # Frontier
 
 - type: entity
   id: AltarConvertMaint
@@ -218,6 +244,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertMaintNode # Frontier
 
 - type: entity
   id: AltarConvertBlue
@@ -237,6 +266,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertBlueNode # Frontier
 
 - type: entity
   id: AltarConvertBurden
@@ -256,6 +288,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertBurdenNode # Frontier
 
 - type: entity
   id: AltarConvert
@@ -294,6 +329,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertOrangeNode # Frontier
 
 - type: entity
   id: AltarConvertRed
@@ -313,6 +351,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertRedNode # Frontier
 
 - type: entity
   id: AltarConvertWhite
@@ -332,6 +373,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertWhiteNode # Frontier
 
 - type: entity
   id: AltarConvertYellow
@@ -351,6 +395,9 @@
     radius: 1.5
     energy: 1
     color: "#fbceb1"
+  - type: Construction # Frontier
+    graph: AltarsGraph # Frontier
+    node: AltarConvertYellowNode # Frontier
 
 - type: entity
   id: AltarHeaven
@@ -380,7 +427,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:

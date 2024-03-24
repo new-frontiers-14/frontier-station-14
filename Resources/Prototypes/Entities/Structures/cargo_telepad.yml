@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: CargoTelepad
-  parent: BaseMachinePowered
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachinePowered] # Frontier
   name: cargo telepad
   description: Beam in the pizzas and dig in.
   components:
@@ -47,8 +47,3 @@
     board: CargoTelepadMachineCircuitboard
   - type: Appearance
   - type: CollideOnAnchor
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0

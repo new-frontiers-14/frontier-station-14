@@ -41,6 +41,9 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
       - !type:ChangeConstructionNodeBehavior
         node: machineFrame
       - !type:DoActsBehavior
@@ -67,7 +70,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilled
-  suffix: Filled
+  suffix: Filled, DO NOT MAP # Frontier - Added DO NOT MAP
   components:
   - type: ContainerFill
     containers:
@@ -80,4 +83,4 @@
       - EncryptionKeySecurity
       - EncryptionKeyService
       - EncryptionKeyCommand
-      - EncryptionKeyTraffic # Frontier
+      - EncryptionKeyTraffic # Frontier - Add Traffic channel

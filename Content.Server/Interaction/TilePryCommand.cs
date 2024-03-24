@@ -7,9 +7,6 @@ using Robust.Shared.Map;
 
 namespace Content.Server.Interaction
 {
-    /// <summary>
-    /// <see cref="Shared.Tools.Components.TilePryingComponent.TryPryTile"/>
-    /// </summary>
     [AdminCommand(AdminFlags.Debug)]
     sealed class TilePryCommand : IConsoleCommand
     {
@@ -63,7 +60,7 @@ namespace Content.Server.Interaction
                     var coordinates = mapGrid.GridTileToLocal(tile.GridIndices);
                     var tileDef = (ContentTileDefinition) tileDefinitionManager[tile.Tile.TypeId];
 
-                    if (!tileDef.CanCrowbar) continue;
+                    if (tileDef.IsSubFloor) continue;
 
                     var plating = tileDefinitionManager["Plating"];
                     mapGrid.SetTile(coordinates, new Tile(plating.TileId));

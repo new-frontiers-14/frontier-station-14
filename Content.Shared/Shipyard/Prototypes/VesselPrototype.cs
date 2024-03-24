@@ -39,6 +39,13 @@ public sealed class VesselPrototype : IPrototype
     [DataField("group")]
     public string Group = string.Empty;
 
+    /// Frontier - Add this field for the MapChecker script.
+    /// <summary>
+    ///     The MapChecker override group for this vessel.
+    /// </summary>
+    [DataField("mapchecker_group_override")]
+    public string MapcheckerGroup = string.Empty;
+
     /// <summary>
     ///     Relative directory path to the given shuttle, i.e. `/Maps/Shuttles/yourshittle.yml`
     /// </summary>

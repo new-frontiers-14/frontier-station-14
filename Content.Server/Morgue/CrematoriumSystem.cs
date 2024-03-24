@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Morgue.Components;
 using Content.Server.Storage.Components;
@@ -7,6 +8,8 @@ using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Morgue;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
@@ -14,6 +17,10 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 
 namespace Content.Server.Morgue;
@@ -27,6 +34,9 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
+    [Dependency] private readonly SharedMindSystem _mind = default!; // frontier
 
     public override void Initialize()
     {
@@ -43,17 +53,24 @@ public sealed class CrematoriumSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        if (_appearance.TryGetData<bool>(uid, CrematoriumVisuals.Burning, out var isBurning, appearance) && isBurning)
+        using (args.PushGroup(nameof(CrematoriumComponent)))
         {
-            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-is-burning", ("owner", uid)));
-        }
-        if (_appearance.TryGetData<bool>(uid, StorageVisuals.HasContents, out var hasContents, appearance) && hasContents)
-        {
-            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-has-contents"));
-        }
-        else
-        {
-            args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-empty"));
+            if (_appearance.TryGetData<bool>(uid, CrematoriumVisuals.Burning, out var isBurning, appearance) &&
+                isBurning)
+            {
+                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-is-burning",
+                    ("owner", uid)));
+            }
+
+            if (_appearance.TryGetData<bool>(uid, StorageVisuals.HasContents, out var hasContents, appearance) &&
+                hasContents)
+            {
+                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-has-contents"));
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-empty"));
+            }
         }
     }
 
@@ -108,6 +125,15 @@ public sealed class CrematoriumSystem : EntitySystem
         if (storage.Open || storage.Contents.ContainedEntities.Count < 1)
             return false;
 
+        // Frontier - refuse to accept alive mobs and dead-but-connected players
+        var entity = storage.Contents.ContainedEntities.First();
+        if (entity is not { Valid: true })
+            return false;
+        if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
+            return false;
+        if (_mind.TryGetMind(entity, out var _, out var mind) && mind.Session?.State?.Status == SessionStatus.InGame)
+            return false;
+
         return Cremate(uid, component, storage);
     }
 
@@ -124,11 +150,11 @@ public sealed class CrematoriumSystem : EntitySystem
             for (var i = storage.Contents.ContainedEntities.Count - 1; i >= 0; i--)
             {
                 var item = storage.Contents.ContainedEntities[i];
-                storage.Contents.Remove(item);
+                _containers.Remove(item, storage.Contents);
                 EntityManager.DeleteEntity(item);
             }
             var ash = Spawn("Ash", Transform(uid).Coordinates);
-            storage.Contents.Insert(ash);
+            _containers.Insert(ash, storage.Contents);
         }
 
         _entityStorage.OpenStorage(uid, storage);

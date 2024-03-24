@@ -23,12 +23,12 @@
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
-  supervisors: job-supervisors-captain
+  supervisors: job-supervisors-hop # Frontier
   whitelistRequired: true
   canBeAntag: false
   access:
   - HeadOfSecurity
-  - HeadOfPersonnel
+  - HeadOfPersonnel # Frontier - This should probably be removed after we confirm they can get into SR office + Bank
   - Command
   - Brig
   - Frontier
@@ -38,6 +38,27 @@
   - Service
   - External
   - Detective
+  - Mercenary # Frontier
+  - Bar # Frontier
+  - Janitor # Frontier
+  - Theatre # Frontier
+  - Kitchen # Frontier
+  - Chapel # Frontier
+  - Hydroponics # Frontier
+  - Chemistry # Frontier
+  - Engineering # Frontier
+  - Quartermaster # Frontier
+  - Research # Frontier
+  - Salvage # Frontier
+  - Cargo # Frontier
+  - Atmospherics # Frontier
+  - Medical # Frontier
+  - EmergencyShuttleRepealAll # Frontier
+  - Captain # Frontier
+  - ChiefEngineer # Frontier
+  - ChiefMedicalOfficer # Frontier
+  - ResearchDirector # Frontier
+  - Pilot # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -52,13 +73,17 @@
     back: ClothingBackpackHOSFilled
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterCoatHoSTrench
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesGlassesSunglasses
     head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
+    pocket2: HoloprojectorSecurity # Frontier
+    neck: ClothingNeckCloakHos # Frontier
+    suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
   innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled
   duffelbag: ClothingBackpackDuffelHOSFilled
+  messenger: ClothingBackpackMessengerHOSFilled # Frontier

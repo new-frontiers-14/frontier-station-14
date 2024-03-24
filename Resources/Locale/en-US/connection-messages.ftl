@@ -32,10 +32,11 @@ ban-banned-permanent-appeal = This ban will only be removed via appeal. You can 
 ban-expires = This ban is for {$duration} minutes and will expire at {$time} UTC.
 ban-banned-1 = You, or another user of this computer or connection, are banned from playing here.
 ban-banned-2 = The ban reason is: "{$reason}"
-ban-banned-3 = Attempts to circumvent this ban such as creating a new account will be logged.
+ban-banned-3 = If this ban was a mistake or was made without a justification feel free to appeal on the discord following the guidelines.
+ban-banned-4 = Attempts to circumvent this ban such as creating a new account will result on escalation up to a community ban.
 
 soft-player-cap-full = The server is full!
-panic-bunker-account-denied = This server is in panic bunker mode. New connections are not being accepted at this time. Try again later
-panic-bunker-account-denied-reason = This server is in panic bunker mode and you were rejected. Reason: "{$reason}"
-panic-bunker-account-reason-account = The account's age must be older than {$minutes} minutes
-panic-bunker-account-reason-overall = The account's overall playtime must be greater than {$hours} hours
+panic-bunker-account-denied = This server is in panic bunker mode, often enabled as a precaution against raids. New connections by accounts not meeting certain requirements are temporarily not accepted. Try again later
+panic-bunker-account-denied-reason = This server is in panic bunker mode, often enabled as a precaution against raids. New connections by accounts not meeting certain requirements are temporarily not accepted. Try again later. Reason: "{$reason}"
+panic-bunker-account-reason-account = Your account is new to this server. Your first connection was less than {$minutes} minutes ago
+panic-bunker-account-reason-overall = Your overall playtime on the server must be greater than {$hours} hours

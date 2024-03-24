@@ -34,8 +34,11 @@ shuttle-console-hyperspace-none = No destinations found
 shuttle-console-unknown = Unknown
 shuttle-console-iff-label = {$name} ({$distance}m)
 
+shuttle-console-iff-search = Search IFF
+
 # Buttons
 shuttle-console-strafing = Strafing mode
 shuttle-console-iff-toggle = Show IFF
+shuttle-console-iffshuttles-toggle = Show Shuttle Labels
 shuttle-console-dock-toggle = Show docks
 shuttle-console-undock = Undock

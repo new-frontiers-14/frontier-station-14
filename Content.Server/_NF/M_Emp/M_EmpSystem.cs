@@ -19,6 +19,7 @@ using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Ame.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 // TO ANYONE LOOKING AT THIS CODE, IM SORRY
 // This code was reused for the salvage magnet and is a mess right now as it is, it has no known issues with, I hope, but its not cleaned as it sould be.

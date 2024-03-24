@@ -1,0 +1,16 @@
+- type: construction
+  name: notice board
+  id: NoticeBoardNFWallmountedConstruction
+  graph: NoticeBoardNFGraph
+  startNode: start
+  targetNode: NoticeBoardNFNode
+  category: construction-category-structures
+  description: A wallmounted notice board.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  icon:
+    sprite: _NF/Structures/Wallmounts/notice_board.rsi
+    state: icon
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition

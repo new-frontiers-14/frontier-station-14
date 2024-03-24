@@ -18,6 +18,8 @@
       blacklist:
         components:
         - Guardian # no holoparasite macrobomb wombo combo
+        tags:
+        - Unimplantable
       currentMode: Draw
       implanterSlot:
         name: Implant
@@ -39,6 +41,7 @@
     - type: Item
       sprite: Objects/Specific/Medical/implanter.rsi
       heldPrefix: 0
+      size: Small
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -97,7 +100,6 @@
   components:
     - type: Item
       sprite: Objects/Specific/Medical/syndi_implanter.rsi
-      size: 3
     - type: Sprite
       sprite: Objects/Specific/Medical/syndi_implanter.rsi
       state: implanter1
@@ -165,6 +167,7 @@
       implant: StorageImplant
     - type: StaticPrice
       price: 500
+    - type: Contraband #frontier
 
 - type: entity
   id: FreedomImplanter
@@ -173,6 +176,7 @@
   components:
     - type: Implanter
       implant: FreedomImplant
+    - type: Contraband #frontier
 
 - type: entity
   id: UplinkImplanter
@@ -181,6 +185,7 @@
   components:
   - type: Implanter
     implant: UplinkImplant
+  - type: Contraband #frontier
 
 - type: entity
   id: EmpImplanter
@@ -189,6 +194,16 @@
   components:
     - type: Implanter
       implant: EmpImplant
+    - type: Contraband #frontier
+
+- type: entity
+  id: ScramImplanter
+  name: scram implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: ScramImplant
+    - type: Contraband #frontier
 
 - type: entity
   id: DnaScramblerImplanter
@@ -197,6 +212,7 @@
   components:
     - type: Implanter
       implant: DnaScramblerImplant
+    - type: Contraband #frontier
 
 #Nuclear Operative/Special implanters
 
@@ -207,6 +223,7 @@
   components:
     - type: Implanter
       implant: MicroBombImplant
+    - type: Contraband #frontier
 
 - type: entity
   id: MacroBombImplanter
@@ -215,6 +232,7 @@
   components:
     - type: Implanter
       implant: MacroBombImplant
+    - type: Contraband #frontier
 
 - type: entity
   id: DeathRattleImplanter
@@ -223,6 +241,16 @@
   components:
     - type: Implanter
       implant: DeathRattleImplant
+    - type: Contraband #frontier
+
+- type: entity
+  id: DeathAcidifierImplanter
+  name: death acidifier implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathAcidifierImplant
+  - type: Contraband #frontier
 
 # Security and Command implanters
 

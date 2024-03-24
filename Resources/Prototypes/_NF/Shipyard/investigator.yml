@@ -1,0 +1,29 @@
+- type: vessel
+  id: Investigator
+  name: NR Investigator
+  description: A small salvage shuttle designed for researching artifacts, fitted with a small bar for long-distance travel.
+  price: 46000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/investigator.yml
+
+- type: gameMap
+  id: Investigator
+  mapName: 'NR Investigator'
+  mapPath: /Maps/_NF/Shuttles/investigator.yml
+  minPlayers: 0
+  stations:
+    Investigator:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Investigator {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Bartender: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            Scientist: [ 0, 0 ]

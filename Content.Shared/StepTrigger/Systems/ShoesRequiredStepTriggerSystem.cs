@@ -1,4 +1,4 @@
-﻿using Content.Shared.Examine;
+using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.Tag;
@@ -20,6 +20,12 @@ public sealed class ShoesRequiredStepTriggerSystem : EntitySystem
     private void OnStepTriggerAttempt(EntityUid uid, ShoesRequiredStepTriggerComponent component, ref StepTriggerAttemptEvent args)
     {
         if (_tagSystem.HasTag(args.Tripper, "ShoesRequiredStepTriggerImmune"))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (HasComp<ShoesRequiredStepTriggerImmuneComponent>(args.Tripper)) // Frontier
         {
             args.Cancelled = true;
             return;

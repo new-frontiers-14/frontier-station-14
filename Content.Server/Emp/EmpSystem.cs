@@ -7,6 +7,7 @@ using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Robust.Shared.Map;
+using static Content.Server.Shuttles.Systems.ShuttleConsoleSystem;
 using static Content.Server.Shuttles.Systems.ThrusterSystem;
 
 namespace Content.Server.Emp;
@@ -20,7 +21,6 @@ public sealed class EmpSystem : SharedEmpSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EmpDisabledComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
 
@@ -29,6 +29,7 @@ public sealed class EmpSystem : SharedEmpSystem
         SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
         SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
         SubscribeLocalEvent<EmpDisabledComponent, ThrusterToggleAttemptEvent>(OnThrusterToggle);
+        SubscribeLocalEvent<EmpDisabledComponent, ShuttleToggleAttemptEvent>(OnShuttleConsoleToggle);
     }
 
     /// <summary>
@@ -106,12 +107,6 @@ public sealed class EmpSystem : SharedEmpSystem
         }
     }
 
-    private void OnUnpaused(EntityUid uid, EmpDisabledComponent component, ref EntityUnpausedEvent args)
-    {
-        component.DisabledUntil += args.PausedTime;
-        component.TargetTime += args.PausedTime;
-    }
-
     private void OnExamine(EntityUid uid, EmpDisabledComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("emp-disabled-comp-on-examine"));
@@ -144,6 +139,11 @@ public sealed class EmpSystem : SharedEmpSystem
     }
 
     private void OnThrusterToggle(EntityUid uid, EmpDisabledComponent component, ref ThrusterToggleAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnShuttleConsoleToggle(EntityUid uid, EmpDisabledComponent component, ref ShuttleToggleAttemptEvent args)
     {
         args.Cancelled = true;
     }

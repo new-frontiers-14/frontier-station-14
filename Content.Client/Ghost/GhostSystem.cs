@@ -11,6 +11,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
+using Robust.Shared.Player;
 
 namespace Content.Client.Ghost
 {
@@ -19,9 +20,8 @@ namespace Content.Client.Ghost
         [Dependency] private readonly IClientConsoleHost _console = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
-        [Dependency] private readonly ILightManager _lightManager = default!;
         [Dependency] private readonly ContentEyeSystem _contentEye = default!;
-        [Dependency] private readonly IEyeManager _eye = default!;
+        [Dependency] private readonly EyeSystem _eye = default!;
         [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
 
@@ -54,12 +54,12 @@ namespace Content.Client.Ghost
                 var query = AllEntityQuery<GhostComponent, SpriteComponent>();
                 while (query.MoveNext(out var uid, out _, out var sprite))
                 {
-                    sprite.Visible = value || uid == _playerManager.LocalPlayer?.ControlledEntity;
+                    sprite.Visible = value || uid == _playerManager.LocalEntity;
                 }
             }
         }
 
-        public GhostComponent? Player => CompOrNull<GhostComponent>(_playerManager.LocalPlayer?.ControlledEntity);
+        public GhostComponent? Player => CompOrNull<GhostComponent>(_playerManager.LocalEntity);
         public bool IsGhost => Player != null;
 
         public event Action<GhostComponent>? PlayerRemoved;
@@ -80,39 +80,37 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<GhostComponent, LocalPlayerAttachedEvent>(OnGhostPlayerAttach);
             SubscribeLocalEvent<GhostComponent, LocalPlayerDetachedEvent>(OnGhostPlayerDetach);
 
-            SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttach);
-
             SubscribeNetworkEvent<GhostWarpsResponseEvent>(OnGhostWarpsResponse);
             SubscribeNetworkEvent<GhostUpdateGhostRoleCountEvent>(OnUpdateGhostRoleCount);
 
-            SubscribeLocalEvent<GhostComponent, ToggleLightingActionEvent>(OnToggleLighting);
-            SubscribeLocalEvent<GhostComponent, ToggleFoVActionEvent>(OnToggleFoV);
+            SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
+            SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
         {
             if (TryComp(uid, out SpriteComponent? sprite))
-                sprite.Visible = GhostVisibility;
+                sprite.Visible = GhostVisibility || uid == _playerManager.LocalEntity;
         }
 
-        private void OnToggleLighting(EntityUid uid, GhostComponent component, ToggleLightingActionEvent args)
+        private void OnToggleLighting(EntityUid uid, EyeComponent component, ToggleLightingActionEvent args)
         {
             if (args.Handled)
                 return;
 
             Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-lighting-manager-popup"), args.Performer);
-            _lightManager.Enabled = !_lightManager.Enabled;
+            _contentEye.RequestToggleLight(uid, component);
             args.Handled = true;
         }
 
-        private void OnToggleFoV(EntityUid uid, GhostComponent component, ToggleFoVActionEvent args)
+        private void OnToggleFoV(EntityUid uid, EyeComponent component, ToggleFoVActionEvent args)
         {
             if (args.Handled)
                 return;
 
             Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-fov-popup"), args.Performer);
-            _contentEye.RequestToggleFov(uid);
+            _contentEye.RequestToggleFov(uid, component);
             args.Handled = true;
         }
 
@@ -123,7 +121,7 @@ namespace Content.Client.Ghost
 
             Popup.PopupEntity(Loc.GetString("ghost-gui-toggle-ghost-visibility-popup"), args.Performer);
 
-            if (uid == _playerManager.LocalPlayer?.ControlledEntity)
+            if (uid == _playerManager.LocalEntity)
                 ToggleGhostVisibility();
 
             args.Handled = true;
@@ -136,16 +134,10 @@ namespace Content.Client.Ghost
             _actions.RemoveAction(uid, component.ToggleGhostsActionEntity);
             _actions.RemoveAction(uid, component.ToggleGhostHearingActionEntity);
 
-            if (uid != _playerManager.LocalPlayer?.ControlledEntity)
+            if (uid != _playerManager.LocalEntity)
                 return;
 
-            _lightManager.Enabled = true;
-
-            if (component.IsAttached)
-            {
-                GhostVisibility = false;
-            }
-
+            GhostVisibility = false;
             PlayerRemoved?.Invoke(component);
         }
 
@@ -155,7 +147,6 @@ namespace Content.Client.Ghost
                 return;
             component.TimeOfDeath = _gameTiming.CurTime;
             GhostVisibility = true;
-            component.IsAttached = true;
             PlayerAttached?.Invoke(component);
         }
 
@@ -164,32 +155,16 @@ namespace Content.Client.Ghost
             if (TryComp<SpriteComponent>(uid, out var sprite))
                 sprite.LayerSetColor(0, component.color);
 
-            if (uid != _playerManager.LocalPlayer?.ControlledEntity)
+            if (uid != _playerManager.LocalEntity)
                 return;
 
             PlayerUpdated?.Invoke(component);
         }
 
-        private bool PlayerDetach(EntityUid uid)
-        {
-            if (uid != _playerManager.LocalPlayer?.ControlledEntity)
-                return false;
-
-            GhostVisibility = false;
-            PlayerDetached?.Invoke();
-            return true;
-        }
-
         private void OnGhostPlayerDetach(EntityUid uid, GhostComponent component, LocalPlayerDetachedEvent args)
         {
-            if (PlayerDetach(uid))
-                component.IsAttached = false;
-        }
-
-        private void OnPlayerAttach(LocalPlayerAttachedEvent ev)
-        {
-            if (!HasComp<GhostComponent>(ev.Entity))
-                PlayerDetach(ev.Entity);
+            GhostVisibility = false;
+            PlayerDetached?.Invoke();
         }
 
         private void OnGhostWarpsResponse(GhostWarpsResponseEvent msg)

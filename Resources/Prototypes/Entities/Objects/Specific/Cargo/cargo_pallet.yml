@@ -2,11 +2,10 @@
   id: CargoPallet
   name: cargo pallet
   description: Designates valid items to sell to CentCom when a shuttle is recalled.
-  parent: BaseStructure
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure] # Frontier - BaseStructureDisabledToolsUse,BaseStructureIndestructible
   components:
   - type: InteractionOutline
   - type: Anchorable
-    delay: 999999
   - type: CollideOnAnchor
   - type: Physics
     canCollide: false
@@ -27,14 +26,28 @@
     layers:
     - sprite: Structures/catwalk.rsi
       state: catwalk_preview
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 0
+  # - type: Damageable
+    # damageContainer: Inorganic
+    # damageModifierSet: Metallic
+  # - type: Destructible
+    # thresholds:
+      # - trigger:
+          # !type:DamageTrigger
+          # damage: 500
+        # behaviors:
+          # - !type:DoActsBehavior
+            # acts: [ "Destruction" ]
+      # - trigger:
+          # !type:DamageTrigger
+          # damage: 200
+        # behaviors:
+          # - !type:SpawnEntitiesBehavior
+            # spawn:
+              # PartRodMetal: # takes two to construct, so drop less than that
+                # min: 0
+                # max: 1
+          # - !type:DoActsBehavior
+            # acts: [ "Destruction" ]
   - type: GuideHelp
     guides:
     - Cargo

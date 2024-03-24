@@ -6,6 +6,46 @@
   - type: SpawnPoint
     job_id: Mercenary
   - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
     layers:
       - state: green
-      - state: security_cadet
+      - state: mercenary
+
+- type: entity
+  id: SpawnPointPilot
+  parent: SpawnPointJobBase
+  name: pilot
+  components:
+  - type: SpawnPoint
+    job_id: Pilot
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: pilot
+
+- type: entity
+  id: SpawnPointStc
+  parent: SpawnPointJobBase
+  name: stc
+  components:
+  - type: SpawnPoint
+    job_id: StationTrafficController
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: stc
+
+- type: entity
+  id: SpawnPointSecurityGuard
+  parent: SpawnPointJobBase
+  name: security guard
+  components:
+  - type: SpawnPoint
+    job_id: SecurityGuard
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: securityguard

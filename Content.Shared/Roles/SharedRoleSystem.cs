@@ -2,6 +2,8 @@
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Roles;
@@ -10,6 +12,7 @@ public abstract class SharedRoleSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
 
     // TODO please lord make role entities
@@ -24,16 +27,18 @@ public abstract class SharedRoleSystem : EntitySystem
     private void OnJobGetAllRoles(EntityUid uid, JobComponent component, ref MindGetAllRolesEvent args)
     {
         var name = "game-ticker-unknown-role";
+        var prototype = "";
         string? playTimeTracker = null;
-        if (component.PrototypeId != null && _prototypes.TryIndex(component.PrototypeId, out JobPrototype? job))
+        if (component.Prototype != null && _prototypes.TryIndex(component.Prototype, out JobPrototype? job))
         {
             name = job.Name;
+            prototype = job.ID;
             playTimeTracker = job.PlayTimeTracker;
         }
 
         name = Loc.GetString(name);
 
-        args.Roles.Add(new RoleInfo(component, name, false, playTimeTracker));
+        args.Roles.Add(new RoleInfo(component, name, false, playTimeTracker, prototype));
     }
 
     protected void SubscribeAntagEvents<T>() where T : AntagonistRoleComponent
@@ -41,13 +46,15 @@ public abstract class SharedRoleSystem : EntitySystem
         SubscribeLocalEvent((EntityUid _, T component, ref MindGetAllRolesEvent args) =>
         {
             var name = "game-ticker-unknown-role";
+            var prototype = "";
             if (component.PrototypeId != null && _prototypes.TryIndex(component.PrototypeId, out AntagPrototype? antag))
             {
                 name = antag.Name;
+                prototype = antag.ID;
             }
             name = Loc.GetString(name);
 
-            args.Roles.Add(new RoleInfo(component, name, true, null));
+            args.Roles.Add(new RoleInfo(component, name, true, null, prototype));
         });
 
         SubscribeLocalEvent((EntityUid _, T _, ref MindIsAntagonistEvent args) => args.IsAntagonist = true);
@@ -152,5 +159,15 @@ public abstract class SharedRoleSystem : EntitySystem
     public bool IsAntagonistRole<T>()
     {
         return _antagTypes.Contains(typeof(T));
+    }
+
+    /// <summary>
+    /// Play a sound for the mind, if it has a session attached.
+    /// Use this for role greeting sounds.
+    /// </summary>
+    public void MindPlaySound(EntityUid mindId, SoundSpecifier? sound, MindComponent? mind = null)
+    {
+        if (Resolve(mindId, ref mind) && mind.Session != null)
+            _audio.PlayGlobal(sound, mind.Session);
     }
 }

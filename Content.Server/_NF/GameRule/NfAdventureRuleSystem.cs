@@ -110,21 +110,27 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private void OnStartup(RoundStartingEvent ev)
     {
-        var depotMap = "/Maps/cargodepot.yml";
-        var tinnia = "/Maps/tinnia.yml";
-        var caseys = "/Maps/caseyscasino.yml";
-        var lpbravo = "/Maps/lpbravo.yml";
-        var arena = "/Maps/arena.yml";
-        var cove = "/Maps/cove.yml";
-        var courthouse = "/Maps/courthouse.yml";
-        var lodge = "/Maps/lodge.yml";
+        var depotMap = "/Maps/_NF/POI/cargodepot.yml";
+        var tinnia = "/Maps/_NF/POI/tinnia.yml";
+        var caseys = "/Maps/_NF/POI/caseyscasino.yml";
+        var lpbravo = "/Maps/_NF/POI/lpbravo.yml";
+        // var northpole = "/Maps/_NF/POI/northpole.yml";
+        var arena = "/Maps/_NF/POI/arena.yml";
+        var cove = "/Maps/_NF/POI/cove.yml";
+        var courthouse = "/Maps/_NF/POI/courthouse.yml";
+        var lodge = "/Maps/_NF/POI/lodge.yml";
+        var lab = "/Maps/_NF/POI/anomalouslab.yml";
+        var church = "Maps/_NF/POI/beacon.yml";
+        var grifty = "Maps/_NF/POI/grifty.yml";
+        var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
         var depotOffset = _random.NextVector2(3000f, 5000f);
-
+        var tinniaOffset = _random.NextVector2(1100f, 2800f);
+        var caseysOffset = _random.NextVector2(2250f, 4600f);
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -135,16 +141,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
-        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2100f, 3800f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
-            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
-        }
-
         if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
             {
                 Offset = -depotOffset
@@ -153,6 +149,43 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
             _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
+        }
+
+        if (_map.TryLoad(mapId, nfsdStation, out var nfsdUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(500f, 700f)
+            }))
+        {
+            // We should figure out if it is possible to add this grid to the latejoin listing.
+            // Hey turns out we can! (This is kinda copypasted from the lodge with some values filled in.)
+            if (_prototypeManager.TryIndex<GameMapPrototype>("nfsd", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["nfsd"], nfsdUids);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
+            _meta.SetEntityName(nfsdUids[0], "NFSD Outpost", meta);
+            _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
+        }
+
+        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
+            {
+                Offset = tinniaOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
+            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
+            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, church, out var churchUids, new MapLoadOptions
+            {
+                Offset = -tinniaOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(churchUids[0]);
+            _meta.SetEntityName(churchUids[0], "Omnichurch Beacon", meta);
+            _shuttle.SetIFFColor(churchUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
@@ -166,9 +199,19 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
 
+        // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
+        //     {
+        //         Offset = _random.NextVector2(2150f, 3900f)
+        //     }))
+        // {
+        //     var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
+        //     _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
+        //     _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
+        // }
+
         if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(1900f, 3800f)
+                Offset = _random.NextVector2(2200f, 4200f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
@@ -207,14 +250,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
-        if (_map.TryLoad(mapId, caseys, out var depotUid7s, new MapLoadOptions
+        if (_map.TryLoad(mapId, caseys, out var caseyUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2250f, 4600f)
+                Offset = caseysOffset
             }))
         {
-            var meta = EnsureComp<MetaDataComponent>(depotUid7s[0]);
-            _meta.SetEntityName(depotUid7s[0], "Crazy Casey's Casino", meta);
-            _shuttle.SetIFFColor(depotUid7s[0], factionColor);
+            var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
+            _meta.SetEntityName(caseyUids[0], "Crazy Casey's Casino", meta);
+            _shuttle.SetIFFColor(caseyUids[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, grifty, out var griftyUids, new MapLoadOptions
+            {
+                Offset = -caseysOffset
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
+            _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
+            _shuttle.SetIFFColor(griftyUids[0], factionColor);
         }
 
         if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
@@ -223,6 +276,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
+        }
+
+        if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2100f, 3800f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(labUids[0]);
+            _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
+            _shuttle.SetIFFColor(labUids[0], factionColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();

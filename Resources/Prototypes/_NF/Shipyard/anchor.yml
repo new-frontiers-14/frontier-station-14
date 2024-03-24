@@ -5,19 +5,19 @@
   price: 135020
   category: Large
   group: Expedition
-  shuttlePath: /Maps/Shuttles/anchor.yml
+  shuttlePath: /Maps/_NF/Shuttles/anchor.yml
   
 - type: gameMap
   id: Anchor
   mapName: 'KC Anchor'
-  mapPath: /Maps/Shuttles/anchor.yml
+  mapPath: /Maps/_NF/Shuttles/anchor.yml
   minPlayers: 0
   stations: 
     Anchor:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'KC14 Anchor {1}'
+          mapNameTemplate: 'Anchor {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

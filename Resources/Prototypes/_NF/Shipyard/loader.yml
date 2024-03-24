@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: SurfinNinja1
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Loader
+  name: NC Loader
+  description: A compact cargo ship designed for hauling shipments.
+  price: 18000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/loader.yml
+
+- type: gameMap
+  id: Loader
+  mapName: 'NC Loader'
+  mapPath: /Maps/_NF/Shuttles/loader.yml
+  minPlayers: 0
+  stations:
+    Loader:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Loader {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            CargoTechnician: [ 0, 0 ]

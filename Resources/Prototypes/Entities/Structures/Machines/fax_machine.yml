@@ -24,9 +24,13 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 25
         mask:
-        - TabletopMachineMask
-        layer:
-        - TabletopMachineLayer
+#        - TabletopMachineMask
+        - Impassable # Frontier
+#        - MidImpassable # Frontier - Do not add this, it will block shutters from closing on it.
+        - LowImpassable # Frontier
+#        layer: # Frontier
+#        - TabletopMachineLayer # Frontier
+#        - LowImpassable # Frontier
   - type: ActivatableUI
     key: enum.FaxUiKey.Key
   - type: ActivatableUIRequiresPower
@@ -67,8 +71,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCentcom
-  name: centcom long range fax machine
-  suffix: Centcom
+  name: CentCom long range fax machine
+  suffix: CentCom
   components:
   - type: Sprite
     layers:
@@ -93,8 +97,8 @@
   - type: FaxMachine
     name: "ERR*?*%!"
     responsePings: false
-    emagged: true
     notifyAdmins: true
+  - type: Emagged
 
 - type: entity
   parent: FaxMachineBase
@@ -105,3 +109,5 @@
     - type: FaxMachine
       name: "Captain's Office"
       receiveNukeCodes: true
+    - type: StealTarget
+      stealGroup: FaxMachineCaptain

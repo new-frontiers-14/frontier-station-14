@@ -1,6 +1,6 @@
 - type: entity
   id: MachineCryoSleepPod
-  parent: BaseMachine
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine]
   name: cryo sleep chamber
   description: cold pillow guaranteed
   components:
@@ -9,19 +9,23 @@
     sprite: _NF/Structures/cryopod.rsi
     layers:
     - state: closed
-  - type: Anchorable
-    delay: 999999
   - type: Physics
     bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MobLayer # To allow people to pass through
   - type: MaterialStorage
   - type: Appearance
   - type: Climbable
   - type: CryoSleep
   - type: ContainerContainer
     containers:
-      body_container: !type:ContainerSlot  
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 0
+      body_container: !type:ContainerSlot

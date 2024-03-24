@@ -1,3 +1,23 @@
+#SOFTSUITS
+#Paramedic's hardsuit
+- type: entity
+  id: SuitStorageParamedic
+  parent: SuitStorageBase
+  suffix: Paramedic
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingHeadHelmetVoidParamed
+        - id: ClothingOuterHardsuitVoidParamed
+        - id: ClothingMaskBreathMedical
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+#    access: [["Medical"]]
+
 #HARDSUITS
 #Brigmedic's hardsuit
 - type: entity
@@ -7,28 +27,89 @@
   components:
   - type: StorageFill
     contents:
-        - id: NitrogenTankFilled
-        - id: OxygenTankFilled
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
         - id: ClothingOuterHardsuitBrigmedic
         - id: ClothingMaskBreathMedicalSecurity
         - id: JetpackSecurityFilled
         - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagCombatFilled # Frontier
   - type: AccessReader
     access: [["Security"]]
 
-#Paramedic's hardsuit
+#Quartermaster hardsuit
 - type: entity
-  id: SuitStorageParamedic
+  id: SuitStorageQuartermaster
   parent: SuitStorageBase
-  suffix: Paramedic
+  suffix: Quartermaster
   components:
   - type: StorageFill
     contents:
-        - id: NitrogenTankFilled
-        - id: OxygenTankFilled
-        - id: ClothingHeadHelmetVoidParamed
-        - id: ClothingOuterHardsuitVoidParamed
-        - id: ClothingMaskBreathMedical
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingShoesBootsMag
+        - id: ClothingOuterHardsuitLuxury
+        - id: ClothingMaskGasExplorer
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
+    # access: [["Quartermaster"]]
+
+#Mercenary hardsuit
+- type: entity
+  id: SuitStorageMercenary
+  parent: SuitStorageBase
+  suffix: Mercenary
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitMercenary
+        - id: ClothingMaskGasMercenary
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#Pilot hardsuit
+- type: entity
+  id: SuitStoragePilot
+  parent: SuitStorageBase
+  suffix: Pilot
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitPilot
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Captain"], ["Pilot"]]
+
+#Clown hardsuit
+- type: entity
+  id: SuitStorageClown
+  parent: SuitStorageBase
+  suffix: Clown
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitClown
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+#    access: [["Captain"], ["Pilot"]]

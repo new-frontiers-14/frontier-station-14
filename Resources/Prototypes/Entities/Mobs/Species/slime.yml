@@ -5,9 +5,6 @@
   abstract: true
   components:
   - type: Hunger
-    starvationDamage:
-      types:
-        Bloodloss: 0.1
   - type: Thirst
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
@@ -21,6 +18,8 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
   - type: Vocal
     sounds:
       Male: MaleSlime

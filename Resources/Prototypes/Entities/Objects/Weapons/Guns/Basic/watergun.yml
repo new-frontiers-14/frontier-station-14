@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: WeaponWaterGunBase
   abstract: true
   parent: BaseItem
@@ -10,7 +10,7 @@
     slots: BELT
   - type: Item
     sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
-    size: 10
+    size: Small
   - type: Gun
     clumsyProof: true
     cameraRecoilScalar: 0 #no recoil
@@ -45,10 +45,13 @@
   - type: ExaminableSolution
     solution: chamber
   - type: StaticPrice
-    price: 100
+    price: 30 # Frontier 100<30
   - type: PhysicalComposition
     materialComposition:
       Plastic: 150
+  - type: Tag # Frontier
+    tags: # Frontier
+    - Sidearm # Frontier
 
 - type: entity
   id: WeaponWaterPistol
@@ -95,7 +98,7 @@
       map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: Item
     sprite: Objects/Weapons/Guns/Pistols/soaker.rsi
-    size: 35
+    size: Normal
   - type: RandomSprite
     getAllGroups: true
     available:
@@ -132,7 +135,7 @@
       map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: Item
     sprite: Objects/Weapons/Guns/Pistols/soaker.rsi
-    size: 35
+    size: Normal
   - type: RandomSprite
     getAllGroups: true
     available:

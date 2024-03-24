@@ -1,24 +1,112 @@
 - type: entity
-  name: medical insurance tracking implant box
+  name: Wet floor sign box
   parent: BoxCardboard
-  id: BoxMedicalTrackingImplants
-  description: Medical insurance implant kit.
+  id: BoxWetFloorSign
+  description: A box of wet floor signs. Happy janitor noises.
   components:
-  - type: Item
-    size: 60
   - type: StorageFill
     contents:
-      - id: MedicalTrackingImplanter
-        amount: 1
-      - id: HandheldGPSBasic
-        amount: 1
-      - id: PaperMedicalInsurance
-        amount: 1
+      - id: WetFloorSign
+        amount: 6
   - type: Storage
-    capacity: 60
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+    whitelist:
+      tags:
+        - WetFloorSign
   - type: Sprite
     layers:
       - state: box
-      - state: syringe
+#      - state: wet_floor_sign
+
+- type: entity
+  name: Paper box
+  parent: BoxCardboard
+  id: BoxPaper
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Paper
+        amount: 10
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+        - Document
+  - type: Sprite
+    layers:
+      - state: box
+#      - state: paper
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  name: Office paper box
+  parent: BoxPaper
+  id: BoxPaperOffice
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PaperOffice
+        amount: 10
+
+- type: entity
+  name: Captains thoughts paper box
+  parent: BoxPaper
+  id: BoxPaperCaptainsThoughts
+  description: A box full of papers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PaperCaptainsThoughts
+        amount: 10
+
+- type: entity
+  name: mystery spacemen minifigure bulk box
+  parent: BoxCardboard
+  id: MysteryFigureBoxBulk
+  description: A box containing six mystery minifigure boxes.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MysteryFigureBox
+        amount: 6
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,3
+    whitelist:
+      tags:
+        - MysteryFigureBox
+  - type: Sprite
+    layers:
+      - state: box
   - type: VendPrice
-    price: 200 # Single Implant Box (5 are 1000)
+    price: 1200
+    
+- type: entity
+  name: Thruster upgrade kit
+  parent: BoxCardboard
+  id: BoxT3SuperCapacitor
+  description: A box of super capacitors.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SuperCapacitorStockPart
+        amount: 12
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,3
+    whitelist:
+      tags:
+        - CapacitorStockPart
+  - type: Sprite
+    layers:
+      - state: box
+#      - state: wet_floor_sign

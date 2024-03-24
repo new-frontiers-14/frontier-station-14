@@ -1,0 +1,366 @@
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseLathe]
+  id: PrizeCounter
+  name: prize counter
+  description: Claim your prize and win some toys and cute plushies!
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+    priority: Low
+  - type: Advertise
+    pack: CuddlyCritterAds
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _NF/Structures/Machines/prizecounter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - PrizeBallRecipe
+      - PlushieHampterRecipe
+      - PlushieVulpRecipe
+      - PlushieBeeRecipe
+      - PlushieLizardRecipe
+      - PlushieSpaceLizardRecipe
+      - PlushieVoxRecipe
+      - PlushieMoffRecipe
+      - PlushieMoffsicianRecipe
+      - PlushieMoffbarRecipe
+      - PlushieDionaRecipe
+      - PlushieSharkGreyRecipe
+      - PlushieSharkBlueRecipe
+      - PlushieSharkPinkRecipe
+      - PlushieRatvarRecipe
+      - PlushieNarRecipe
+      - PlushieSlimeRecipe
+      - PlushieSnakeRecipe
+      - PlushieCarpRecipe
+      - PlasticBananaRecipe
+      - BeachBallRecipe
+      - BasketballRecipe
+      - FootballRecipe
+      - ToyHammerRecipe
+      - WhoopieCushionRecipe
+      - ClownRecorderRecipe
+      - PonderingOrbRecipe
+      - CrayonBoxRecipe
+      - CrayonRainbowRecipe
+      - PlushieLampRecipe
+      - PlushieAtmosianRecipe
+      - PlushieRounyRecipe
+      - PlushieXenoRecipe
+      - FoamCrossbowRecipe
+      - BoxDonkSoftBoxRecipe
+      - RevolverCapGunRecipe
+      - BoxCartridgeCapRecipe
+      - ToyAmongPequenoRecipe
+      - FoamCutlassRecipe
+      - FoamBladeRecipe
+      - ToyRubberDuckRecipe
+      - ToyMouseRecipe
+      - ToyAiRecipe
+      - ToyGriffinRecipe
+      - ToyHonkRecipe
+      - ToyIanRecipe
+      - ToyMarauderRecipe
+      - ToyGygaxRecipe
+      - ToyOdysseusRecipe
+      - ToyOwlmanRecipe
+      - ToyPhazonRecipe
+      - ToyFireRipleyRecipe
+      - ToyReticenceRecipe
+      - ToyRipleyRecipe
+      - ToySeraphRecipe
+      - ToyDurandRecipe
+      - ToySkeletonRecipe
+      - FaceHuggerPlushieRecipe
+      - PetRockCarrierkRecipe
+      - PlushieGnomeRecipe
+      - PlushieLoveableRecipe
+      - PlushieDeerRecipe
+      - PlushieIpcRecipe
+      - PlushieGreyRecipe
+      - PlushieRedFoxRecipe
+      - PlushiePurpleFoxRecipe
+      - PlushiePinkFoxRecipe
+      - PlushieOrangeFoxRecipe
+      - PlushieMarbleFoxRecipe
+      - PlushieCrimsonFoxRecipe
+      - PlushieCoffeeFoxRecipe
+      - PlushieBlueFoxRecipe
+      - PlushieBlackFoxRecipe
+      - PlushieCorgiRecipe
+      - PlushieGirlyCorgiRecipe
+      - PlushieRobotCorgiRecipe
+      - PlushieCatBlackRecipe
+      - PlushieCatOrangeRecipe
+      - PlushieCatSiamesRecipe
+      - PlushieCatTabbyRecipe
+      - PlushieCatTuxedoRecipe
+      - PlushieCatWhiteRecipe
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - PlushieJesterRecipe
+      - PlushieTrystanRecipe
+      - PlushieSlipsRecipe
+      - PlushieNukeRecipe
+      - PlushieRGBeeRecipe
+      - BalloonCorgiRecipe
+      - BalloonSynRecipe
+      - ToyNukeRecipe
+      - ToyMaulerRecipe
+      - PlushieAbductorRecipe
+      - PlushieAbductorAgentRecipe
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - PrizeTicket
+
+- type: entity
+  parent: BaseLathe
+  id: TilePrinterNF
+  name: tile-meister 5000
+  description: Prints floor tiles. No mercy.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/sheetifier.rsi
+    layers:
+    - state: base_machine
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: buttons_on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Machine
+    board: TilePrinterNFMachineCircuitboard
+  - type: MaterialStorage
+    dropOnDeconstruct: true
+    ignoreColor: true
+    canEjectStoredMaterials: false
+    whitelist:
+      tags:
+      - Raw
+      - Wooden
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: base_machine
+    runningState: base_machine_processing
+    staticRecipes:
+    - FloorTileItemSteel
+    - FloorTileItemSteelCheckerLight
+    - FloorTileItemSteelCheckerDark
+    - FloorTileItemMetalDiamond
+    - FloorTileItemWood
+    - FloorTileItemWhite
+    - FloorTileItemDark
+    - FloorTileItemTechmaint
+    - FloorTileItemFreezer
+    - FloorTileItemShowroom
+    - FloorTileItemGCircuit
+    - FloorTileItemBCircuit
+    - FloorTileItemGold
+    - FloorTileItemReinforced
+    - FloorTileItemMono
+    - FloorTileItemLino
+    - FloorTileItemHydro
+    - FloorTileItemLime
+    - FloorTileItemShuttleWhite
+#    - FloorTileStackShuttleBlue
+#    - FloorTileStackShuttleOrange
+    - FloorTileItemShuttlePurple
+#    - FloorTileStackShuttleRed
+    - FloorTileItemEighties
+    - FloorTileItemArcadeBlue
+    - FloorTileItemArcadeBlue2
+    - FloorTileItemArcadeRed
+    - FloorTileItemBoxing
+    - FloorTileItemGym
+    - FloorTileItemBlue
+    - FloorTileItemMining
+    - FloorTileItemMiningDark
+    - FloorTileItemMiningLight
+    - FloorTileItemBar
+    - FloorTileItemClown
+    - FloorTileItemMime
+    - FloorTileItemKitchen
+    - FloorTileItemLaundry
+    - FloorTileItemSilver
+    - FloorTileItemSteelMaint
+    - FloorTileItemGratingMaint
+    - SheetPaper
+    - FloorCarpetItemRed
+    - FloorCarpetItemBlack
+    - FloorCarpetItemBlue
+    - FloorCarpetItemGreen
+    - FloorCarpetItemOrange
+    - FloorCarpetItemSkyBlue
+    - FloorCarpetItemPurple
+    - FloorCarpetItemPink
+    - FloorTileItemCarpetClown
+    - FloorTileItemCarpetOffice
+    dynamicRecipes:
+    - FauxTileAstroGrass
+    - FauxTileAstroIce
+  - type: EmagLatheRecipes
+    emagStaticRecipes:    
+    - MaterialSheetMeat
+
+- type: entity
+  parent: Protolathe
+  id: SalvageTechfabNF
+  name: salvage techfab
+  description: Prints equipment for salvagers.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: cargo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: SalvageTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - Durathread
+      - Plasteel
+      - SheetSteel
+      - SheetPlasteel
+      - SheetPlasma
+      - SheetGlass1
+      - SheetRGlass
+      - SheetPlastic
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+      - Wirecutter
+      - Signaller
+      - Screwdriver
+      - Welder
+      - Wrench
+      - Crowbar
+      - Multitool
+      - NetworkConfigurator
+      - FlashlightLantern
+      - HandheldGPSBasic
+      - TRayScanner
+      - AirTank
+      - GasAnalyzer
+      - ClothingBeltSalvageWebbing
+      - Pickaxe
+      - AppraisalTool
+      - HandLabeler
+      - LightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - DrinkMugMetal
+      - PowerCellSmall
+      - PowerCellMedium
+      - EmergencyRollerBedSpawnFolded
+      - CableStack
+      - ConveyorBeltAssembly
+      - DoorElectronics
+      - StationMapElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+      - RadioHandheld
+      - Floodlight
+      - FlareLathe
+      - GlowstickBlue
+      - GlowstickBase
+      - GlowstickPurple
+      - GlowstickRedLathe
+      - GlowstickYellow
+    dynamicRecipes:
+      - MiningDrill
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - FireExtinguisher
+      - LightTube
+      - LightBulb
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      - Signaller
+      - PowerCellMedium
+      - PowerCellHigh
+      - PowerCellMicroreactor
+      - WeaponCrusher
+      - WeaponCrusherDagger
+      - WeaponCrusherGlaive
+      - WeaponProtoKineticAccelerator
+      - WeaponTetherGun
+      - WeaponGrapplingGun
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - OreBagOfHolding
+      - WelderExperimental
+      - JawsOfLife
+      - JetpackVoid
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitSpatio
+      - ClothingOuterHardsuitSalvage
+      - ClothingOuterHardsuitLuxury
+      - ClothingOuterHardsuitMaximPrototype
+      - ClothingHeadHelmetAncient
+      - ClothingOuterHardsuitAncientEVA
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+       - CartridgePistol
+       - CartridgeMagnum
+       - ShellShotgun
+       - ShellShotgunFlare
+       - ShellTranquilizer
+       - CartridgeLightRifle
+       - CartridgeRifle
+       - MagazineBoxPistol
+       - MagazineBoxMagnum
+       - MagazineBoxRifle
+       - MagazineBoxLightRifle
+       - GrenadeBlast
+       - ClothingHeadHelmetCosmonaut
+       - ClothingHeadHelmetSyndicate
+       - ClothingOuterHardsuitSyndicate
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot

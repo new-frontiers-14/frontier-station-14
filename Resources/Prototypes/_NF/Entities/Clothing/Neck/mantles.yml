@@ -1,0 +1,37 @@
+- type: entity
+  parent: [ClothingNeckBase, ClothingSlotBase]
+  id: ClothingNeckCloakJanitor
+  name: janitor's cloak
+  description: How did you even get this? did you make it yourself?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Cloaks/janitor.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Cloaks/janitor.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: Plunger
+#        insertVerbText: cloak-insert-verb
+#        ejectVerbText: cloak-eject-verb
+        whitelist:
+          tags:
+          - Plunger
+  - type: ItemMapper
+    mapLayers:
+      plunger:
+        whitelist:
+          tags:
+            - Plunger
+    sprite: _NF/Clothing/Neck/Cloaks/janitor.rsi
+  - type: Appearance
+
+- type: entity
+  id: ClothingNeckCloakJanitorFilled
+  parent: ClothingNeckCloakJanitor
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - Plunger

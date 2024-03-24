@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Audio;
+using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Power.Generator;
@@ -42,6 +42,12 @@ public sealed partial class PortableGeneratorComponent : Component
     [DataField("startSoundEmpty")]
     [ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier? StartSoundEmpty { get; set; }
+
+    /// <summary>
+    /// Frontier - Start the generator with the map.
+    /// </summary>
+    [DataField("startOnMapInit")]
+    public bool StartOnMapInit { get; set; } = false;
 }
 
 /// <summary>
@@ -98,12 +104,17 @@ public sealed class PortableGeneratorComponentBuiState : BoundUserInterfaceState
 {
     public float RemainingFuel;
     public bool Clogged;
+    public (float Load, float Supply)? NetworkStats;
     public float TargetPower;
     public float MaximumPower;
     public float OptimalPower;
     public bool On;
 
-    public PortableGeneratorComponentBuiState(FuelGeneratorComponent component, float remainingFuel, bool clogged)
+    public PortableGeneratorComponentBuiState(
+        FuelGeneratorComponent component,
+        float remainingFuel,
+        bool clogged,
+        (float Demand, float Supply)? networkStats)
     {
         RemainingFuel = remainingFuel;
         Clogged = clogged;
@@ -111,6 +122,7 @@ public sealed class PortableGeneratorComponentBuiState : BoundUserInterfaceState
         MaximumPower = component.MaxTargetPower;
         OptimalPower = component.OptimalPower;
         On = component.On;
+        NetworkStats = networkStats;
     }
 }
 

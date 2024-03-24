@@ -1,6 +1,7 @@
 #nullable enable annotations
 using Content.Server.Kitchen.Components;
-using Content.Server.Kitchen.EntitySystems;
+using Content.Server.Nyanotrasen.Kitchen.Components;
+using Content.Server.Nyanotrasen.Kitchen.EntitySystems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Reflection;
 

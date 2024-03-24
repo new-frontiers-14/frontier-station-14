@@ -5,13 +5,30 @@
   description: Combat gloves produced by Arcadia Industries.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/arcadia-combatgloves.rsi
+    sprite: _NF/Clothing/Hands/Gloves/arcadia.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/arcadia-combatgloves.rsi
+    sprite: _NF/Clothing/Hands/Gloves/arcadia.rsi
   - type: GloveHeatResistance
     heatResistance: 1400
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-synthetic
     fiberColor: fibers-black
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesPilot
+  name: pilot gloves
+  description: Driving gloves, but for spaceships!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Hands/Gloves/pilot.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Hands/Gloves/pilot.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-brown
   - type: FingerprintMask

@@ -30,6 +30,10 @@
     - AirDanger
     - AirWarning
     - AirNormal
+    lastSignals:
+      AirDanger: false
+      AirWarning: false
+      AirNormal: false
   - type: AtmosAlarmable
     syncWith:
     - AirAlarm
@@ -62,7 +66,7 @@
     boardName: wires-board-name-airalarm
     layoutId: AirAlarm
   - type: AccessReader
-    access: [["Atmospherics"]]
+    access: [["Atmospherics"], ["Captain"]] # Frontier: allowed ["Captain"] to access air alarms
   - type: ContainerFill
     containers:
       board: [ AirAlarmElectronics ]
@@ -102,7 +106,9 @@
             acts: [ "Destruction" ]
           - !type:PlaySoundBehavior
             sound:
-              path: /Audio/Effects/metalbreak.ogg
+              collection: MetalGlassBreak
+              params:
+                volume: -4
 
 - type: entity
   id: AirAlarmAssembly

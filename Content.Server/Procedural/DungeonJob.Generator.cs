@@ -184,8 +184,8 @@ public sealed partial class DungeonJob
                         {
                             for (var y = roomSize.Bottom; y < roomSize.Top; y++)
                             {
-                                var index = matty.Transform(new Vector2(x, y) + grid.TileSizeHalfVector - packCenter).Floored();
-                                tiles.Add((index, new Tile(_tileDefManager["FloorPlanetGrass"].TileId)));
+                                //    var index = matty.Transform(new Vector2(x, y) + grid.TileSizeHalfVector - packCenter).Floored();
+                                //    tiles.Add((index, new Tile(_tileDefManager["FloorPlanetGrass"].TileId))); // This creates grass in space and places it should not have grass in it
                             }
                         }
 

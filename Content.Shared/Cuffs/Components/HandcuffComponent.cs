@@ -10,6 +10,12 @@ namespace Content.Shared.Cuffs.Components;
 public sealed partial class HandcuffComponent : Component
 {
     /// <summary>
+    /// Whether or not the entity can rot when cuffed (for spooder cocoon)
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool NoRot = false;
+
+    /// <summary>
     ///     The time it takes to cuff an entity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
@@ -45,14 +51,12 @@ public sealed partial class HandcuffComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public EntProtoId? BrokenPrototype;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public DamageSpecifier DamageOnResist = new()
-    {
-        DamageDict = new()
-             {
-                 { "Blunt", 3.0 },
-             }
-    };
+    /// <summary>
+    /// Whether or not these cuffs are in the process of being removed.
+    /// Used simply to prevent spawning multiple <see cref="BrokenPrototype"/>.
+    /// </summary>
+    [DataField]
+    public bool Removing;
 
     /// <summary>
     ///     The path of the RSI file used for the player cuffed overlay.

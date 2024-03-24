@@ -47,7 +47,7 @@
       types:
         Piercing: 15
   - type: Item
-    size: 95
+    size: Ginormous
   - type: Clothing
     quickEquip: false
     slots:
@@ -56,7 +56,6 @@
   - type: Construction
     graph: Spear
     node: spear
-  - type: ItemCooldown
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -69,6 +68,7 @@
     solution: melee
   - type: SolutionInjectOnCollide
     transferAmount: 2
+    fixtureId: "throw-fixture"
     blockSlots: NONE
   - type: SolutionTransfer
     maxTransferAmount: 2
@@ -94,6 +94,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+          params:
+            volume: -4
       - !type:SpawnEntitiesBehavior
         spawn:
           PartRodMetal1:
@@ -106,7 +108,6 @@
       types:
         Blunt: 5
   - type: UseDelay
-    delay: 1
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1

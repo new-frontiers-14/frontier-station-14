@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: CraftQuiverBolt
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftQuiverBolt
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 4
+
+  - node: CraftQuiverBolt
+    entity: ClothingBeltQuiverCrossbow

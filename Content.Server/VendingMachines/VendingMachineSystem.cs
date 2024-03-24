@@ -1,7 +1,9 @@
 using System.Linq;
 using Content.Server.Bank;
 using System.Numerics;
+using Content.Server.Advertise;
 using Content.Server.Cargo.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Cargo.Components;
 using Content.Server.Popups;
@@ -21,12 +23,17 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
+using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.VendingMachines
 {
@@ -36,7 +43,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly BankSystem _bankSystem = default!;
         [Dependency] private readonly CargoSystem _cargo = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -46,6 +53,9 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly AdvertiseSystem _advertise = default!;
+
+        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -58,19 +68,27 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
-            SubscribeLocalEvent<VendingMachineComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
-            SubscribeLocalEvent<VendingMachineComponent, VendingMachineEjectMessage>(OnInventoryEjectMessage);
+
+            Subs.BuiEvents<VendingMachineComponent>(VendingMachineUiKey.Key, subs =>
+            {
+                subs.Event<BoundUIOpenedEvent>(OnBoundUIOpened);
+                subs.Event<BoundUIClosedEvent>(OnBoundUIClosed);
+                subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
+            });
 
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
+
+            SubscribeLocalEvent<VendingMachineComponent, WeldableChangedEvent>(OnWeldChanged); // Frontier - Allow repair
         }
 
         private void OnComponentMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
@@ -126,6 +144,16 @@ namespace Content.Server.VendingMachines
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
 
+        private void OnBoundUIClosed(EntityUid uid, VendingMachineComponent component, BoundUIClosedEvent args)
+        {
+            // Only vendors that advertise will send message after dispensing
+            if (component.ShouldSayThankYou && TryComp<AdvertiseComponent>(uid, out var advertise))
+            {
+                _advertise.SayThankYou(uid, advertise);
+                component.ShouldSayThankYou = false;
+            }
+        }
+
         private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
         {
             var state = new VendingMachineInterfaceState(GetAllInventory(uid, component), balance);
@@ -156,11 +184,33 @@ namespace Content.Server.VendingMachines
         {
             vendComponent.Broken = true;
             TryUpdateVisualState(uid, vendComponent);
+            EnsureComp<WeldableComponent>(uid);
+        }
+
+        private void OnWeldChanged(EntityUid uid, VendingMachineComponent component, WeldableChangedEvent args)
+        {
+            if (!EntityManager.TryGetComponent(uid, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
+                return;
+
+            if (component.Broken)
+            {
+                component.Broken = false;
+                TryUpdateVisualState(uid, component);
+                EntityManager.RemoveComponent<WeldableComponent>(uid);
+                // Repair all damage
+                _damageableSystem.SetAllDamage(uid, damageable, 0);
+            }
         }
 
         private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
         {
             // only emag if there are emag-only items
+            args.Handled = component.EmaggedInventory.Count > 0;
+        }
+
+        private void OnUnEmagged(EntityUid uid, VendingMachineComponent component, ref GotUnEmaggedEvent args) // Frontier - Added DEMUG
+        {
+            // only unemag if there are emag-only items
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
@@ -170,7 +220,7 @@ namespace Content.Server.VendingMachines
                 component.DispenseOnHitChance == null || args.DamageDelta == null)
                 return;
 
-            if (args.DamageIncreased && args.DamageDelta.Total >= component.DispenseOnHitThreshold &&
+            if (args.DamageIncreased && args.DamageDelta.GetTotal() >= component.DispenseOnHitThreshold &&
                 _random.Prob(component.DispenseOnHitChance.Value))
             {
                 if (component.DispenseOnHitCooldown > 0f)
@@ -301,6 +351,7 @@ namespace Content.Server.VendingMachines
             vendComponent.Ejecting = true;
             vendComponent.NextItemToEject = entry.ID;
             vendComponent.ThrowNextItem = throwItem;
+            vendComponent.ShouldSayThankYou = true;
             entry.Amount--;
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
@@ -336,12 +387,12 @@ namespace Content.Server.VendingMachines
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
                 price *= modifier.Mod;
 
-            var totalPrice = ((int) price);
+            var totalPrice = (int) price;
 
             // This block exists to allow the VendPrice flag to set a vending machine item price.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
-            if (priceVend == null || priceVend == 0) { }
-            else { totalPrice = ((int) priceVend); }
+            if (priceVend != null && totalPrice <= (int) priceVend)
+                totalPrice = (int) priceVend;
             // This block exists to allow the VendPrice flag to set a vending machine item price.
 
             if (totalPrice > bank.Balance)
@@ -357,10 +408,13 @@ namespace Content.Server.VendingMachines
                 {
                     if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
                     {
-                        if (TryComp<StationBankAccountComponent>(_station.GetOwningStation(uid), out var stationBank))
+                        var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                        foreach (var stationBankComp in stationQuery)
                         {
-                            _cargo.DeductFunds(stationBank, (int) -(Math.Floor(totalPrice * 0.65f)));
+                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
                         }
+
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
                     }
                 }
@@ -408,16 +462,22 @@ namespace Content.Server.VendingMachines
             if (!Resolve(uid, ref vendComponent))
                 return;
 
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            if (vendComponent.Ejecting)
+                return;
+
+            if (vendComponent.EjectRandomCounter <= 0)
+            {
+                _audioSystem.PlayPvs(_audioSystem.GetSound(vendComponent.SoundDeny), uid);
+                _popupSystem.PopupEntity(Loc.GetString("vending-machine-component-try-eject-access-abused"), uid, PopupType.MediumCaution);
+                return;
+            }
+
             var availableItems = GetAvailableInventory(uid, vendComponent);
             if (availableItems.Count <= 0)
                 return;
-
-            if (!vendComponent.Ejecting)
-                return;
-
-            if (vendComponent.EjectRandomMax > vendComponent.EjectRandomCounter)
-                return;
-
             var item = _random.Pick(availableItems);
 
             if (forceEject)
@@ -431,9 +491,18 @@ namespace Content.Server.VendingMachines
             }
             else
                 TryEjectVendorItem(uid, item.Type, item.ID, throwItem, 0, vendComponent);
-            vendComponent.EjectRandomCounter += 1;
+            vendComponent.EjectRandomCounter -= 1;
+        }
 
+        public void AddCharges(EntityUid uid, int change, VendingMachineComponent? comp = null)
+        {
+            if (!Resolve(uid, ref comp, false))
+                return;
 
+            var old = comp.EjectRandomCounter;
+            comp.EjectRandomCounter = Math.Clamp(comp.EjectRandomCounter + change, 0, comp.EjectRandomMax);
+            if (comp.EjectRandomCounter != old)
+                Dirty(comp);
         }
 
         private void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false)
@@ -517,6 +586,14 @@ namespace Content.Server.VendingMachines
                         comp.DispenseOnHitCoolingDown = false;
                     }
                 }
+
+                // Added block for charges
+                if (comp.EjectRandomCounter == comp.EjectRandomMax || _timing.CurTime < comp.NextChargeTime)
+                    continue;
+
+                AddCharges(uid, 1, comp);
+                comp.NextChargeTime = _timing.CurTime + comp.RechargeDuration;
+                // Added block for charges
             }
             var disabled = EntityQueryEnumerator<EmpDisabledComponent, VendingMachineComponent>();
             while (disabled.MoveNext(out var uid, out _, out var comp))

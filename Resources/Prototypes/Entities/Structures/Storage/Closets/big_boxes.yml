@@ -71,7 +71,7 @@
       movementVisibilityRate: 0.20
     - type: StaticPrice
       price: 100
-
+    - type: Contraband #frontier
 
 - type: entity
   id: BigBox
@@ -111,24 +111,3 @@
       isCollidableWhenOpen: false
       openOnMove: false
       airtight: false
-
-#Exclamation effect for box opening
-- type: entity
-  id: Exclamation
-  name: exclamation
-  noSpawn: true
-  save: false
-  components:
-    - type: Transform
-      noRot: true
-    - type: Sprite
-      sprite: Structures/Storage/closet.rsi
-      drawdepth: Effects
-      noRot: true
-      layers:
-      - state: "cardboard_special"
-    - type: TimedDespawn
-      lifetime: 1
-    - type: Tag
-      tags:
-        - HideContextMenu

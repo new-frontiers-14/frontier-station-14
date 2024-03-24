@@ -1,5 +1,5 @@
 # Seeds
-seeds-moneytree-name = moneytree
-seeds-moneytree-display-name = money tree
+seeds-spesos-name = spesos
+seeds-spesos-display-name = spesos
 seeds-pear-name = pear
-seeds-pear-display-name = pear tree
+seeds-pear-display-name = pear

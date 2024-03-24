@@ -5,6 +5,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Labels;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -22,6 +23,10 @@ namespace Content.Server.Labels
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly LabelSystem _labelSystem = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!;
+
+        [ValidatePrototypeId<TagPrototype>]
+        private const string PreventTag = "PreventLabel";
 
         public override void Initialize()
         {
@@ -35,7 +40,8 @@ namespace Content.Server.Labels
 
         private void OnUtilityVerb(EntityUid uid, HandLabelerComponent handLabeler, GetVerbsEvent<UtilityVerb> args)
         {
-            if (args.Target is not { Valid: true } target || !handLabeler.Whitelist.IsValid(target) || !args.CanAccess)
+            if (args.Target is not { Valid: true } target || !handLabeler.Whitelist.IsValid(target) || !args.CanAccess
+                || _tagSystem.HasTag(target, PreventTag)) // DeltaV - Prevent labels on certain items
                 return;
 
             string labelerText = handLabeler.AssignedLabel == string.Empty ? Loc.GetString("hand-labeler-remove-label-text") : Loc.GetString("hand-labeler-add-label-text");
@@ -56,7 +62,8 @@ namespace Content.Server.Labels
 
         private void AfterInteractOn(EntityUid uid, HandLabelerComponent handLabeler, AfterInteractEvent args)
         {
-            if (args.Target is not {Valid: true} target || !handLabeler.Whitelist.IsValid(target) || !args.CanReach)
+            if (args.Target is not {Valid: true} target || !handLabeler.Whitelist.IsValid(target) || !args.CanReach
+                || _tagSystem.HasTag(target, PreventTag)) // DeltaV - Prevent labels on certain items
                 return;
 
             AddLabelTo(uid, handLabeler, target, out string? result);

@@ -1,0 +1,28 @@
+- type: constructionGraph
+  id: NoticeBoardNFGraph
+  start: start
+  graph:
+  - node: start
+    actions:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      - !type:DeleteEntity {}
+    edges:
+    - to: NoticeBoardNFNode
+      completed:
+      - !type:SetAnchor
+        value: false
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 2
+  - node: NoticeBoardNFNode
+    entity: NoticeBoardNF
+    edges:
+    - to: start
+      completed:
+      - !type:EmptyAllContainers {}
+      steps:
+      - tool: Prying
+        doAfter: 5

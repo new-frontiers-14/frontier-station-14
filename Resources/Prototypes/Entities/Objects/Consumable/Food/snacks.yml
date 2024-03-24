@@ -1,7 +1,8 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_snack.yml
 # Base
 
 - type: entity
-  parent: FoodBase
+  parent: [VendPriceFoodBase200, FoodBase] #  Frontier - VendPriceFoodBase100
   id: FoodSnackBase
   abstract: true
   components:
@@ -21,9 +22,9 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: 3
+    size: Tiny
   - type: StaticPrice
-    price: 7.5
+    price: 1
 # Snacks
 
 # "Snacks" means food in a packet. Down the line this stuff can have multiple
@@ -103,7 +104,7 @@
     state: chocolatebar
   - type: Item
     heldPrefix: chocolatebar
-    size: 3
+    size: Tiny
   - type: Tag
     tags:
       - FoodSnack
@@ -114,7 +115,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7.5
+    price: 21
 
 - type: entity
   name: chocolate bar
@@ -350,7 +351,7 @@
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
-    size: 1
+    size: Tiny
   - type: Food
     trash: FoodCookieFortune
 
@@ -361,7 +362,7 @@
   description: A carefully synthesized brick designed to contain the highest ratio of nutriment to volume. Tastes like shit.
   components:
   - type: Item
-    size: 10
+    size: Small
   - type: Tag
     tags:
       - FoodSnack
@@ -375,7 +376,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
+    price: 50
 
 - type: entity
   id: FoodSnackNutribrickOpen
@@ -387,9 +388,15 @@
     flavors:
       - nutribrick
   - type: Item
-    size: 10
+    size: Small
   - type: Sprite
     state: nutribrick-open
+  - type: Tag
+    tags:
+      - FoodSnack
+      - MothFood
+      - BloodFood
+      - Meat
   - type: Food
   - type: SolutionContainerManager
     solutions:
@@ -411,6 +418,9 @@
   - type: Tag
     tags:
       - FoodSnack
+      - MothFood
+      - BloodFood
+      - Meat
   - type: SpawnItemsOnUse
     items:
       - id: FoodPacketMRETrash
@@ -418,7 +428,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
-    price: 7
+    price: 21
 
 
 - type: entity
@@ -451,12 +461,14 @@
   parent: BaseItem
   id: FoodPacketTrash
   description: This is rubbish.
+  abstract: true
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
+    size: Tiny
   - type: Tag
     tags:
     - Trash
@@ -475,7 +487,6 @@
   components:
   - type: Sprite
     state: boritos-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -485,7 +496,6 @@
   components:
   - type: Sprite
     state: cnds-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -495,7 +505,6 @@
   components:
   - type: Sprite
     state: cheesiehonkers-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -505,7 +514,6 @@
   components:
   - type: Sprite
     state: chips-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -515,7 +523,6 @@
   components:
   - type: Sprite
     state: chocolatebar-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -525,7 +532,6 @@
   components:
   - type: Sprite
     state: energybar-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -535,7 +541,6 @@
   components:
   - type: Sprite
     state: pistachio-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -545,7 +550,6 @@
   components:
   - type: Sprite
     state: popcorn-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -555,7 +559,6 @@
   components:
   - type: Sprite
     state: raisins-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -565,7 +568,6 @@
   components:
   - type: Sprite
     state: semki-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -575,7 +577,6 @@
   components:
   - type: Sprite
     state: susjerky-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -585,7 +586,6 @@
   components:
   - type: Sprite
     state: syndicakes-trash
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -595,7 +595,6 @@
   components:
   - type: Sprite
     state: chinese1
-  - type: Item
 
 - type: entity
   noSpawn: true
@@ -605,7 +604,6 @@
   components:
   - type: Sprite
     state: chinese2
-  - type: Item
 
 - type: entity
   noSpawn: true

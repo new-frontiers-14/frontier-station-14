@@ -26,27 +26,22 @@ namespace Content.Server.Abilities.Oni
             var heldComp = EnsureComp<HeldByOniComponent>(args.Entity);
             heldComp.Holder = uid;
 
-            if (TryComp<ToolComponent>(args.Entity, out var tool) && _toolSystem.HasQuality(args.Entity, "Prying", tool))
-                tool.SpeedModifier *= 1.66f;
-
             if (TryComp<GunComponent>(args.Entity, out var gun))
             {
-                gun.MinAngle *= 15f;
-                gun.AngleIncrease *= 15f;
-                gun.MaxAngle *= 15f;
+                gun.MinAngle *= 20f;
+                gun.AngleIncrease *= 20f;
+                gun.MaxAngle *= 20f;
             }
         }
 
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
-            if (TryComp<ToolComponent>(args.Entity, out var tool) && _toolSystem.HasQuality(args.Entity, "Prying", tool))
-                tool.SpeedModifier /= 1.66f;
 
             if (TryComp<GunComponent>(args.Entity, out var gun))
             {
-                gun.MinAngle /= 15f;
-                gun.AngleIncrease /= 15f;
-                gun.MaxAngle /= 15f;
+                gun.MinAngle /= 20f;
+                gun.AngleIncrease /= 20f;
+                gun.MaxAngle /= 20f;
             }
 
             RemComp<HeldByOniComponent>(args.Entity);

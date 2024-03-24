@@ -2,6 +2,7 @@ using Content.Shared.Abilities;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Player;
 
 namespace Content.Client.Nyanotrasen.Overlays;
 public sealed class DogVisionSystem : EntitySystem

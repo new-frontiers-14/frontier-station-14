@@ -105,7 +105,7 @@
     clothingPrototype: ClothingHeadHatHoodChaplainHood
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingNeckBase # Frontier - Change to neck
   id: ClothingOuterPonchoClassic
   name: classic poncho
   description: A warm and comfy classic poncho.
@@ -140,7 +140,7 @@
     sprite: Clothing/OuterClothing/Misc/judge.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingNeckBase # Frontier - Change to neck
   id: ClothingOuterPoncho
   name: poncho
   description: A warm and comfy poncho.
@@ -248,7 +248,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterHospitalGown
-  name: Hospital Gown
+  name: hospital gown
   description: Made from the wool of slaughtered baby lambs.  The cruelty makes it softer.
   components:
   - type: Sprite
@@ -363,3 +363,14 @@
         color: "#000000"
   - type: TemperatureProtection
     coefficient: 0.3
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterRedRacoon
+  name: red racoon suit
+  description: Fluffy suit of red racoon!
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Misc/red_racoon.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Misc/red_racoon.rsi

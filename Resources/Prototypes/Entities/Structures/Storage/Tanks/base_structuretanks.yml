@@ -2,7 +2,7 @@
   id: StorageTank
   parent: BaseStructureDynamic
   name: storage tank
-  description: "A liquids storage tank."
+  description: A liquids storage tank.
   abstract: true
   components:
   - type: Sprite
@@ -15,7 +15,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
-        density: 155
+        density: 90 # Frontier
         mask:
         - MachineMask
         layer:
@@ -53,7 +53,7 @@
         solution: tank
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: SolutionContainerManager

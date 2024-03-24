@@ -24,7 +24,7 @@
   id: OxygenTankFilled
   parent: OxygenTank
   suffix: Filled
-  components: &oxyTankFill
+  components:
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -33,12 +33,6 @@
       moles:
         - 4.101137219 # oxygen
       temperature: 293.15
-
-- type: entity
-  id: YellowOxygenTankFilled
-  parent: YellowOxygenTank
-  suffix: Filled
-  components: *oxyTankFill
 
 - type: entity
   id: EmergencyOxygenTankFilled
@@ -204,4 +198,3 @@
           - 0           # oxygen
           - 2.032758145 #nitrogen
         temperature: 293.15
-

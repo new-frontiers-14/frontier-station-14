@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Popups;
-using Content.Server.UserInterface;
+using Content.Shared.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -13,6 +13,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Audio;
 using Content.Server.Access.Systems;
 using Content.Shared.Hands;
+using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
 using Content.Shared.Verbs;
 
@@ -88,40 +89,35 @@ namespace Content.Server.Paper
             if (!args.IsInDetailsRange)
                 return;
 
-            if (paperComp.Content != "")
-                args.PushMarkup(
-                    Loc.GetString(
-                        "paper-component-examine-detail-has-words", ("paper", uid)
-                    )
-                );
-
-            if (paperComp.StampedBy.Count > 0)
+            using (args.PushGroup(nameof(PaperComponent)))
             {
-                var commaSeparated = string.Join(", ", paperComp.StampedBy.Select(s => Loc.GetString(s.StampedName)));
-                args.PushMarkup(
-                    Loc.GetString(
-                        "paper-component-examine-detail-stamped-by", ("paper", uid), ("stamps", commaSeparated))
-                );
+                if (paperComp.Content != "")
+                    args.PushMarkup(
+                        Loc.GetString(
+                            "paper-component-examine-detail-has-words", ("paper", uid)
+                        )
+                    );
+
+                if (paperComp.StampedBy.Count > 0)
+                {
+                    var commaSeparated =
+                        string.Join(", ", paperComp.StampedBy.Select(s => Loc.GetString(s.StampedName)));
+                    args.PushMarkup(
+                        Loc.GetString(
+                            "paper-component-examine-detail-stamped-by", ("paper", uid), ("stamps", commaSeparated))
+                    );
+                }
             }
         }
 
         private void OnInteractUsing(EntityUid uid, PaperComponent paperComp, InteractUsingEvent args)
         {
-            // If a pen, attempt to use on paper
-            if (_tagSystem.HasTag(args.Used, "Write") && paperComp.StampedBy.Count == 0)
+            // only allow editing if there are no stamps or when using a cyberpen
+            var editable = paperComp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
+            if (_tagSystem.HasTag(args.Used, "Write") && editable)
             {
-                bool write = true;
-
-                if (TryComp<PenComponent>(args.Used, out var penComp))
-                {
-                    // If a pen in sign mod, dont try to write.
-                    if (penComp.Pen == PenMode.PenSign)
-                    {
-                        write = false;
-                    }
-                }
-
-                if (write)
+                if (TryComp<PenComponent>(args.Used, out var penComp) && penComp.Pen == PenMode.PenSign);
+                else // Frontier - Else the rest
                 {
                     var writeEvent = new PaperWriteEvent(uid, args.User);
                     RaiseLocalEvent(args.Used, ref writeEvent);
@@ -131,6 +127,7 @@ namespace Content.Server.Paper
                     paperComp.Mode = PaperAction.Write;
                     _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
                     UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+                    args.Handled = true;
                     return;
                 }
             }
@@ -138,37 +135,16 @@ namespace Content.Server.Paper
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
-                var actionOther = "stamps";
-                var actionSelf = "stamp";
-
-                if (stampComp.StampedPersonal)
-                {
-                    stampComp.StampedIdUser = args.User;
-
-                    var userName = Loc.GetString("stamp-component-unknown-name");
-                    var userJob = Loc.GetString("stamp-component-unknown-job");
-                    if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
-                    {
-                        if (card.Comp.FullName != null)
-                            userName = card.Comp.FullName;
-                        if (card.Comp.JobTitle != null)
-                            userJob = card.Comp.JobTitle;
-                    }
-                    //string stampedName = userJob + " - " + userName;
-                    string stampedName = userName;
-                    stampComp.StampedName = stampedName;
-
-                    actionOther = "signs";
-                    actionSelf = "sign";
-                }
+                if (stampComp.StampedPersonal) // Frontier
+                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
 
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                        ("action", actionOther), ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
                 _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
                 var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                        ("action", actionSelf), ("target", args.Target), ("stamp", args.Used));
+                        ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
@@ -177,7 +153,7 @@ namespace Content.Server.Paper
             }
         }
 
-        private StampDisplayInfo GetStampInfo(StampComponent stamp)
+        private static StampDisplayInfo GetStampInfo(StampComponent stamp)
         {
             return new StampDisplayInfo
             {
@@ -189,21 +165,22 @@ namespace Content.Server.Paper
 
         private void OnInputTextMessage(EntityUid uid, PaperComponent paperComp, PaperInputTextMessage args)
         {
-            if (string.IsNullOrEmpty(args.Text))
-                return;
-
-            if (args.Text.Length + paperComp.Content.Length <= paperComp.ContentSize)
+            if (args.Text.Length <= paperComp.ContentSize)
+            {
                 paperComp.Content = args.Text;
 
-            if (TryComp<AppearanceComponent>(uid, out var appearance))
-                _appearance.SetData(uid, PaperVisuals.Status, PaperStatus.Written, appearance);
+                if (TryComp<AppearanceComponent>(uid, out var appearance))
+                    _appearance.SetData(uid, PaperVisuals.Status, PaperStatus.Written, appearance);
 
-            if (TryComp<MetaDataComponent>(uid, out var meta))
-                _metaSystem.SetEntityDescription(uid, "", meta);
+                if (TryComp<MetaDataComponent>(uid, out var meta))
+                    _metaSystem.SetEntityDescription(uid, "", meta);
 
-            if (args.Session.AttachedEntity != null)
-                _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"{ToPrettyString(args.Session.AttachedEntity.Value):player} has written on {ToPrettyString(uid):entity} the following text: {args.Text}");
+                if (args.Session.AttachedEntity != null)
+                    _adminLogger.Add(LogType.Chat, LogImpact.Low,
+                        $"{ToPrettyString(args.Session.AttachedEntity.Value):player} has written on {ToPrettyString(uid):entity} the following text: {args.Text}");
+
+                _audio.PlayPvs(paperComp.Sound, uid);
+            }
 
             paperComp.Mode = PaperAction.Read;
             UpdateUserInterface(uid, paperComp);
@@ -267,20 +244,8 @@ namespace Content.Server.Paper
         {
             if (stampComp.StampedPersonal)
             {
-                stampComp.StampedIdUser = args.User;
-
-                var userName = Loc.GetString("stamp-component-unknown-name");
-                var userJob = Loc.GetString("stamp-component-unknown-job");
-                if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
-                {
-                    if (card.Comp.FullName != null)
-                        userName = card.Comp.FullName;
-                    if (card.Comp.JobTitle != null)
-                        userJob = card.Comp.JobTitle;
-                }
-                //string stampedName = userJob + " - " + userName;
-                string stampedName = userName;
-                stampComp.StampedName = stampedName;
+                if (stampComp.StampedPersonal) // Frontier
+                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
             }
         }
 

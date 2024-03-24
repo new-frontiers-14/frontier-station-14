@@ -1,6 +1,7 @@
 using Content.Shared.Drugs;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Player;
 
 namespace Content.Client.Drugs;
 
@@ -42,13 +43,13 @@ public sealed class DrugOverlaySystem : EntitySystem
 
     private void OnInit(EntityUid uid, SeeingRainbowsComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnShutdown(EntityUid uid, SeeingRainbowsComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalEntity == uid)
         {
             _overlay.Intoxication = 0;
             _overlayMan.RemoveOverlay(_overlay);

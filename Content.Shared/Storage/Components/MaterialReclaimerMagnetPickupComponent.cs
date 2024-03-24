@@ -1,6 +1,3 @@
-using Content.Shared.Tag;
-using Content.Shared.Whitelist;
-
 namespace Content.Server.Storage.Components;
 
 /// <summary>
@@ -15,9 +12,9 @@ public sealed partial class MaterialReclaimerMagnetPickupComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]
     public float Range = 1f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("whitelist")]
-    public EntityWhitelist? Whitelist;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("blacklist")]
-    public EntityWhitelist? Blacklist;
+    /// <summary>
+    /// Frontier - Is the magnet currently enabled?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("magnetEnabled")]
+    public bool MagnetEnabled = false;
 }

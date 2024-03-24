@@ -14,7 +14,7 @@
         - SimpleHostile
     - type: Sprite
       drawdepth: Mobs
-      sprite: _NF/Mobs/ArcadiaIndustries/arcind-shredder.rsi
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind_shredder.rsi
       layers:
         - map: ["enum.DamageStateVisualLayers.Base"]
           state: alive
@@ -60,6 +60,14 @@
       damage:
         groups:
           Brute: 4
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1
 
 - type: entity
   name: Hijacked Hologuardian
@@ -69,7 +77,7 @@
   components:
     - type: Sprite
       drawdepth: Mobs
-      sprite: _NF/Mobs/ArcadiaIndustries/arcind-guardians.rsi
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind_guardians.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: alive
@@ -107,10 +115,18 @@
         types:
           Piercing: 5
           Heat: 5
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1
 
 - type: entity
   name: Mobile Blaster Unit
-  parent: SimpleMobBase
+  parent: SimpleSpaceMobBase
   id: MobArcIndBlaster
   description: A mobile energy blaster that capable of... oh god run it's spotted you!
   components:
@@ -122,7 +138,7 @@
         task: SimpleRangedHostileCompound
     - type: Sprite
       drawdepth: Mobs
-      sprite: _NF/Mobs/ArcadiaIndustries/arcind-blasters.rsi
+      sprite: _NF/Mobs/ArcadiaIndustries/arcind_blasters.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: alive
@@ -170,3 +186,11 @@
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     - type: CombatMode
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Bloodstream
+      bloodReagent: Oil
+      bloodlossDamage:
+        types:
+          Bloodloss:
+            1

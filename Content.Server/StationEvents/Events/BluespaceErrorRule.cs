@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Robust.Server.GameObjects;
@@ -5,9 +6,12 @@ using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Salvage;
+using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -22,6 +26,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+
+    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
 
     protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule,
         GameRuleStartedEvent args)
@@ -69,21 +75,29 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         }
 
         var gridValue = _pricing.AppraiseGrid(gridUid, null);
-        foreach (var player in Filter.Empty().AddInGrid(gridTransform.GridUid.Value, EntityManager).Recipients)
+
+        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        _playerMobs.Clear();
+
+        while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
         {
-            if (player.AttachedEntity.HasValue)
-            {
-                var playerEntityUid = player.AttachedEntity.Value;
-                if (HasComp<SalvageMobRestrictionsComponent>(playerEntityUid))
-                {
-                    // Salvage mobs are NEVER immune (even if they're from a different salvage, they shouldn't be here)
-                    continue;
-                }
-                _transform.SetParent(playerEntityUid, gridTransform.ParentUid);
-            }
+            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != gridUid)
+                continue;
+
+            // Can't parent directly to map as it runs grid traversal.
+            _playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
+            _transform.DetachParentToNull(mobUid, xform);
         }
+
         // Deletion has to happen before grid traversal re-parents players.
         Del(gridUid);
+
+        foreach (var mob in _playerMobs)
+        {
+            _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
+        }
+
+
         var query = EntityQuery<StationBankAccountComponent>();
         foreach (var account in query)
         {

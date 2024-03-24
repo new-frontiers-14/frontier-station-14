@@ -60,18 +60,19 @@
     mixMessage: "bible-mixing-success"
     reactionTypes:
     - Holy
-  - type: ItemCooldown
   - type: Sprite
     sprite: _NF/Faction/Objects/weejurnum.rsi
     state: icon
   - type: Item
-    size: 15
+    size: Normal
     sprite: _NF/Faction/Objects/weejurnum.rsi
   - type: Clothing
     slots:
     - Belt
   - type: Storage
-    capacity: 10
+    maxItemSize: Tiny
+    grid:
+    - 0,0,2,2
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key

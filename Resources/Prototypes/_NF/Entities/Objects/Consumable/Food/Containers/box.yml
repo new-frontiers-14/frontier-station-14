@@ -1,0 +1,19 @@
+- type: entity
+  id: HappyHonkCargo
+  parent: HappyHonk
+  name: mccargo meal
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Happyhonk/cargo.rsi
+    state: box
+  - type: Item
+    sprite: _NF/Objects/Storage/Happyhonk/cargo.rsi
+    heldPrefix: box
+  - type: StorageFill
+    contents:
+      - id: MysteryFigureBox
+        orGroup: GiftPool
+      - id: ClothingHeadHatMcCrown
+        orGroup: GiftPool
+  - type: StaticPrice
+    price: 40

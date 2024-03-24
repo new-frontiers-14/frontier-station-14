@@ -3,6 +3,7 @@ using Content.Server.Paper;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Labels;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -19,19 +20,29 @@ namespace Content.Server.Labels
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!;
 
         public const string ContainerName = "paper_label";
+        [ValidatePrototypeId<TagPrototype>]
+        private const string PreventTag = "PreventLabel";
 
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<LabelComponent, ExaminedEvent>(OnExamine);
+            SubscribeLocalEvent<LabelComponent, MapInitEvent>(OnLabelCompMapInit);
             SubscribeLocalEvent<PaperLabelComponent, ComponentInit>(OnComponentInit);
             SubscribeLocalEvent<PaperLabelComponent, ComponentRemove>(OnComponentRemove);
             SubscribeLocalEvent<PaperLabelComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
             SubscribeLocalEvent<PaperLabelComponent, EntRemovedFromContainerMessage>(OnContainerModified);
             SubscribeLocalEvent<PaperLabelComponent, ExaminedEvent>(OnExamined);
+        }
+
+        private void OnLabelCompMapInit(EntityUid uid, LabelComponent component, MapInitEvent args)
+        {
+            if (!string.IsNullOrEmpty(component.CurrentLabel))
+                component.CurrentLabel = Loc.GetString(component.CurrentLabel);
         }
 
         /// <summary>
@@ -44,6 +55,8 @@ namespace Content.Server.Labels
         public void Label(EntityUid uid, string? text, MetaDataComponent? metadata = null, LabelComponent? label = null)
         {
             if (!Resolve(uid, ref metadata))
+                return;
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items
                 return;
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
@@ -100,25 +113,28 @@ namespace Content.Server.Labels
             if (comp.LabelSlot.Item is not {Valid: true} item)
                 return;
 
-            if (!args.IsInDetailsRange)
+            using (args.PushGroup(nameof(PaperLabelComponent)))
             {
-                args.PushMarkup(Loc.GetString("comp-paper-label-has-label-cant-read"));
-                return;
+                if (!args.IsInDetailsRange)
+                {
+                    args.PushMarkup(Loc.GetString("comp-paper-label-has-label-cant-read"));
+                    return;
+                }
+
+                if (!EntityManager.TryGetComponent(item, out PaperComponent? paper))
+                    // Assuming yaml has the correct entity whitelist, this should not happen.
+                    return;
+
+                if (string.IsNullOrWhiteSpace(paper.Content))
+                {
+                    args.PushMarkup(Loc.GetString("comp-paper-label-has-label-blank"));
+                    return;
+                }
+
+                args.PushMarkup(Loc.GetString("comp-paper-label-has-label"));
+                var text = paper.Content;
+                args.PushMarkup(text.TrimEnd());
             }
-
-            if (!EntityManager.TryGetComponent(item, out PaperComponent? paper))
-                // Assuming yaml has the correct entity whitelist, this should not happen.
-                return;
-
-            if (string.IsNullOrWhiteSpace(paper.Content))
-            {
-                args.PushMarkup(Loc.GetString("comp-paper-label-has-label-blank"));
-                return;
-            }
-
-            args.PushMarkup(Loc.GetString("comp-paper-label-has-label"));
-            var text = paper.Content;
-            args.PushMarkup(text.TrimEnd());
         }
 
         private void OnContainerModified(EntityUid uid, PaperLabelComponent label, ContainerModifiedMessage args)

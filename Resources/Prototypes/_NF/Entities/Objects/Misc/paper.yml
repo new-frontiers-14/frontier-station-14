@@ -1,29 +1,41 @@
 - type: entity
-  name: Medical insurance form
-  parent: Paper
-  id: PaperMedicalInsurance
-  description: 'Provide this papar for an insurance provider.'
+  name: psychologist rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPsychologist
+  suffix: DO NOT MAP
   components:
-  - type: Paper
-    contentSize: 10000
-    escapeFormatting: false
-    content: book-medical-insurance
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-psychologist
+    stampedColor: "#3366FF"
+    stampState: "paper_stamp-psychologist"
   - type: Sprite
-    sprite: Objects/Misc/bureaucracy.rsi
-    layers:
-      - state: paper
-        color: "#cccccc"
-      - state: paper_words
-        map: ["enum.PaperVisualLayers.Writing"]
-        color: "#cccccc" #aaaaaaaaaaaaaaaaaaaaaaa
-        visible: false
-      - state: paper_stamp-generic
-        map: ["enum.PaperVisualLayers.Stamp"]
-        visible: false
-  - type: PaperVisuals
-    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
-    contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
-    backgroundModulate: "#cccccc"
-    contentImageModulate: "#cccccc"
-    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
-    contentMargin: 16.0, 16.0, 16.0, 16.0
+    sprite: Objects/Misc/bureaucracy.rsi # Cannot use _NF or its exploding
+    state: stamp-psychologist
+
+- type: entity
+  name: lawyer rubber stamp
+  parent: RubberStampBase
+  id: RubberStampLawyer
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-lawyer
+    stampedColor: "#9F2A2E"
+    stampState: "paper_stamp-lawyer"
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi # Cannot use _NF or its exploding
+    state: stamp-lawyer
+
+- type: entity
+  name: station traffic controller's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampStc
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-stc
+    stampedColor: "#CC6633"
+    stampState: "paper_stamp-stc"
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi # Cannot use _NF or its exploding
+    state: stamp-stc

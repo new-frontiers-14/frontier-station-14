@@ -82,14 +82,21 @@
     contents:
       - id: ClothingOuterHardsuitAtmos
       - id: ClothingMaskGasAtmos
-      - id: YellowOxygenTankFilled
-      - id: NitrogenTankFilled
+#      - id: NitrogenTankFilled
+#      - id: OxygenTankFilled
+      - id: AirTankFilled
       - id: ClothingOuterSuitAtmosFire
       - id: ClothingHeadHelmetAtmosFire
       - id: GasAnalyzer
       - id: MedkitOxygenFilled
       - id: HolofanProjector
 #      - id: DoorRemoteFirefight
+      - id: ClothingShoesBootsMag # Frontier
+      - id: ClothingHandsGlovesColorYellow # Frontier
+      - id: trayScanner # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
+      - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
   id: LockerAtmosphericsFilled
@@ -105,6 +112,9 @@
       - id: MedkitOxygenFilled
       - id: HolofanProjector
 #      - id: DoorRemoteFirefight
+      - id: ClothingHandsGlovesColorYellow # Frontier
+      - id: trayScanner # Frontier
+      - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
   id: LockerEngineerFilledHardsuit
@@ -116,9 +126,14 @@
       - id: ClothingOuterHardsuitEngineering
       - id: ClothingHandsGlovesColorYellow
       - id: ClothingMaskGas
-      - id: OxygenTankFilled
-      - id: NitrogenTankFilled
+#      - id: NitrogenTankFilled
+#      - id: OxygenTankFilled
+      - id: AirTankFilled
       - id: ClothingShoesBootsMag
+      - id: trayScanner # Frontier
+      - id: JetpackMiniFilled # Frontier
+      - id: HandheldGPSBasic # Frontier
+      - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
   id: LockerEngineerFilled
@@ -130,6 +145,7 @@
       - id: ClothingHandsGlovesColorYellow
       - id: ClothingMaskGas
       - id: trayScanner
+      - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
   id: ClosetRadiationSuitFilled
@@ -138,8 +154,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingHeadHatHoodRad
-        amount: 2
       - id: ClothingOuterSuitRad
         amount: 2
       - id: GeigerCounter

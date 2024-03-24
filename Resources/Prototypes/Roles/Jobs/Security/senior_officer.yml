@@ -15,7 +15,7 @@
       time: 21600 #6 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 216000 # 60 hrs
+      time: 72000 # 20 hrs
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
@@ -26,6 +26,8 @@
   - Maintenance
   - Service
   - External
+  - Mercenary # Frontier
+  - Captain # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -34,7 +36,7 @@
   id: SeniorOfficerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackOfficerFilled # Frontier
     shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatBeret
@@ -43,6 +45,8 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
+    gloves: ClothingHandsGlovesCombat # Frontier
   innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+  satchel: ClothingBackpackSatchelOfficerFilled # Frontier
+  duffelbag: ClothingBackpackDuffelOfficerFilled # Frontier
+  messenger: ClothingBackpackMessengerOfficerFilled # Frontier

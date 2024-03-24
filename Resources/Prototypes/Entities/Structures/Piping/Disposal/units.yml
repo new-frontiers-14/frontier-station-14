@@ -55,7 +55,9 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
+          params:
+            volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -73,7 +75,7 @@
     price: 62
   - type: PowerSwitch
   - type: ApcPowerReceiver # Frontier
-    powerLoad: 250 # Allows up to not use the 1000 baseline
+    powerLoad: 250 # Allows us to not use the 1000 baseline
 
 - type: entity
   id: DisposalUnit

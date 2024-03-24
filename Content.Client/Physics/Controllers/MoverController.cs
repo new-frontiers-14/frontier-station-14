@@ -4,6 +4,7 @@ using Content.Shared.Pulling.Components;
 using Robust.Client.Physics;
 using Robust.Client.Player;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Physics.Controllers
@@ -29,13 +30,13 @@ namespace Content.Client.Physics.Controllers
         private void OnUpdatePredicted(EntityUid uid, InputMoverComponent component, ref UpdateIsPredictedEvent args)
         {
             // Enable prediction if an entity is controlled by the player
-            if (uid == _playerManager.LocalPlayer?.ControlledEntity)
+            if (uid == _playerManager.LocalEntity)
                 args.IsPredicted = true;
         }
 
         private void OnUpdateRelayTargetPredicted(EntityUid uid, MovementRelayTargetComponent component, ref UpdateIsPredictedEvent args)
         {
-            if (component.Source == _playerManager.LocalPlayer?.ControlledEntity)
+            if (component.Source == _playerManager.LocalEntity)
                 args.IsPredicted = true;
         }
 
@@ -44,7 +45,7 @@ namespace Content.Client.Physics.Controllers
             // Enable prediction if an entity is being pulled by the player.
             // Disable prediction if an entity is being pulled by some non-player entity.
 
-            if (component.Puller == _playerManager.LocalPlayer?.ControlledEntity)
+            if (component.Puller == _playerManager.LocalEntity)
                 args.IsPredicted = true;
             else if (component.Puller != null)
                 args.BlockPrediction = true;
@@ -83,7 +84,7 @@ namespace Content.Client.Physics.Controllers
         {
             base.UpdateBeforeSolve(prediction, frameTime);
 
-            if (_playerManager.LocalPlayer?.ControlledEntity is not {Valid: true} player)
+            if (_playerManager.LocalEntity is not {Valid: true} player)
                 return;
 
             if (RelayQuery.TryGetComponent(player, out var relayMover))

@@ -1,8 +1,10 @@
 - type: entity
   name: handheld crew monitor
+#  suffix: DO NOT MAP
   parent:
   - BaseItem
   - PowerCellSlotSmallItem
+  # CMO-only bud, don't add more. #on frontier who gaf
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.
   components:
@@ -24,11 +26,16 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
-  - type: WirelessNetworkConnection
-    range: 500
-  - type: StationLimitedNetwork
+#  - type: WirelessNetworkConnection # Frontier
+#    range: 500
+#  - type: StationLimitedNetwork
   - type: StaticPrice
     price: 500
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: HandheldCrewMonitor
 
 - type: entity
   id: HandheldCrewMonitorEmpty
@@ -38,4 +45,4 @@
   - type: ItemSlots
     slots:
       cell_slot:
-        name: power-cell-slot-component-slot-name-default 
+        name: power-cell-slot-component-slot-name-default

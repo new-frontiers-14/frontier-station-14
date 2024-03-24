@@ -1,14 +1,28 @@
 - type: inventoryTemplate
   id: emotionalsupportpet
   slots:
-#  - name: ears
-#    slotTexture: ears
-#    slotFlags: EARS
-#    slotGroup: MainHotbar
-#    stripTime: 3
-#    uiWindowPos: 1,2
-#    strippingWindowPos: 1,2
-#    displayName: Ears
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    slotGroup: MainHotbar
+    uiWindowPos: 0,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    whitelist:
+      tags:
+        - CatWearable
+
+  # - name: ears
+    # slotTexture: ears
+    # slotFlags: EARS
+    # slotGroup: MainHotbar
+    # stripTime: 3
+    # uiWindowPos: 1,2
+    # strippingWindowPos: 1,2
+    # displayName: Ears
+    # whitelist:
+      # tags:
+        # - PetWearableCat
 
   - name: mask
     slotTexture: mask

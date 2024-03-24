@@ -8,5 +8,8 @@ ghost-role-information-clippy-description = The Station Representative loyal wor
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 
+ghost-role-information-crispy-name = Crispy
+ghost-role-information-crispy-description = Mistakes were made.
+
 ghost-role-information-mistake-name = ?????
 ghost-role-information-mistake-description = Ymg' ph'nglui ah li.

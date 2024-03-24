@@ -1,0 +1,39 @@
+- type: entity
+  parent: MopItem
+  id: MopAdvanced
+  name: advanced mop
+  description: The next generation of mopping.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Specific/Janitorial/advmop.rsi
+    state: mop
+  - type: Item
+    size: Normal
+    sprite: Nyanotrasen/Objects/Specific/Janitorial/advmop.rsi
+  - type: Absorbent
+    pickupAmount: 30
+  - type: SolutionContainerManager
+    solutions:
+      absorbed:
+        maxVol: 100
+  - type: MeleeWeapon
+    bluntStaminaDamageFactor: 1.60 # 8 stamina damage
+    range: 1.85
+    damage:
+      types:
+        Blunt: 4
+  - type: StaminaDamageOnHit
+    damage: 6
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: BagOfSummoningGarbage
+  id: TrashBagOfHolding
+  name: trash bag of holding
+  description: A bluespace-infused trashbag with an extremely high capacity.
+  components:
+  - type: OfHolding

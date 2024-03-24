@@ -2,6 +2,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Access.Systems;
 
@@ -55,5 +56,35 @@ public abstract class SharedIdCardSystem : EntitySystem
 
         idCard = default;
         return false;
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
+    {
+        public readonly string FullName;
+        public readonly string JobTitle;
+        public readonly List<string> AccessList;
+        public readonly string JobPrototype;
+
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<string> accessList, string jobPrototype)
+        {
+            FullName = fullName;
+            JobTitle = jobTitle;
+            AccessList = accessList;
+            JobPrototype = jobPrototype;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class WriteToShuttleDeedMessage : BoundUserInterfaceMessage
+    {
+        public readonly string ShuttleName;
+        public readonly string ShuttleSuffix;
+
+        public WriteToShuttleDeedMessage(string shuttleName, string shuttleSuffix)
+        {
+            ShuttleName = shuttleName;
+            ShuttleSuffix = shuttleSuffix;
+        }
     }
 }

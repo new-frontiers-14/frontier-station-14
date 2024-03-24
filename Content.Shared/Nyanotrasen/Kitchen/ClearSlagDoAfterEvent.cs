@@ -1,9 +1,9 @@
-using Robust.Shared.Serialization;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Serialization;
 
-namespace Content.Shared.Kitchen
+namespace Content.Shared.Nyanotrasen.Kitchen
 {
     [Serializable, NetSerializable]
     public sealed partial class ClearSlagDoAfterEvent : DoAfterEvent
