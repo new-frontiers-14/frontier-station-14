@@ -72,36 +72,10 @@
     price: 1000
 
 - type: entity
-  id: WeaponSVTnonlethal
-  name: SVT-40
+  parent: WeaponSniperSVT
+  id: WeaponSniperSVTNonlethal
   suffix: Non-lethal
-  parent: BaseWeaponRifle
-  description: Magazine fed rifle chamber in .30 Cal. "Retreating is considered Treason" is carved in the wooden stock of the gun
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 3
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -120,14 +94,4 @@
         whitelist:
           tags:
             - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: StaticPrice
-    price: 1000
+
