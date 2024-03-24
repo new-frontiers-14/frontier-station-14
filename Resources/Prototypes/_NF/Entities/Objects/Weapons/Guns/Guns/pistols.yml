@@ -2,7 +2,7 @@
   name: Valentine
   parent: BaseWeaponPistol
   id: WeaponPistolValentine
-  description: An old and bloodstain, with a light blue S.T.A.R.S. medallion on the wooden grip. Seem to be chamber in .35 Auto
+  description: An old and bloodstain, with a light blue S.T.A.R.S. medallion on the wooden grip. It Seem to be chamber in .35 Auto
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Pistols/Valentine.rsi
@@ -24,26 +24,10 @@
 - type: entity
   name: Valentine
   suffix: Non-lethal
-  parent: BaseWeaponPistol
+  parent: WeaponPistolValentine
   id: WeaponPistolValentineNonLethal
-  description: An old and bloodstain, with a light blue S.T.A.R.S. medallion on the wooden grip. Seem to be chamber in .35 Auto
+  description: An old and bloodstain, with a light blue S.T.A.R.S. medallion on the wooden grip. It Seem to be chamber in .35 Auto
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Pistols/Valentine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Pistols/Valentine.rsi
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 3
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
