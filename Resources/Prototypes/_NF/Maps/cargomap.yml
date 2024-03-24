@@ -1,0 +1,17 @@
+﻿- type: gameMap
+  id: CargoMap
+  mapName: 'Cargo Map'
+  mapPath: /Maps/_NF/cargomap.yml
+  minPlayers: 0
+  maxPlayers: 100
+  stations:
+    Frontier:
+      stationProto: StandardFrontierStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargo Map'
+        - type: StationJobs
+          overflowJobs:
+            - Passenger
+          availableJobs:
+            Passenger: [ -1, -1 ]
