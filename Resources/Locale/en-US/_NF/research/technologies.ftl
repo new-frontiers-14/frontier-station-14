@@ -1,4 +1,5 @@
 research-techology-advanced-personal-propulsion = Advanced Personal Propulsion
+research-technology-rapid-construction = Rapid Construction
 research-technology-hardsuits-basic = Basic Hardsuits
 research-technology-hardsuits-specialized = Specialized Hardsuits
 research-technology-hardsuits-advanced = Advanced Hardsuits

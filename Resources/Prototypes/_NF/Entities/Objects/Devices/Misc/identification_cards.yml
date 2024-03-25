@@ -11,8 +11,6 @@
     - state: default
     - state: idmercenary
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
@@ -28,8 +26,6 @@
     - state: default
     - state: idpilot
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
@@ -45,8 +41,6 @@
     - state: silver
     - state: idstationtrafficcontroller
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: silver
@@ -58,3 +52,18 @@
   components:
   - type: PresetIdCard
     job: SecurityGuard
+
+- type: entity
+  parent: ERTChaplainIDCard
+  id: ERTMailCarrierIDCard
+  name: ERT mail carrier ID card
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: ert_mailcarrier
+  - type: IdCard
+    jobTitle: ERT Mail Carrier
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi

@@ -938,3 +938,20 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: AltarMail
+  name: mail altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarMailNode
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: mail
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

@@ -42,6 +42,16 @@ public sealed class RCDAmmoSystem : EntitySystem
             return;
 
         var user = args.User;
+
+        // ## Frontier - Shipyard RCD ammo only fits in shipyard RCD.
+        // At this point RCDComponent is guaranteed
+        EnsureComp<RCDComponent>(target, out var rcdComponent);
+        if (rcdComponent.IsShipyardRCD && !comp.IsShipyardRCDAmmo || !rcdComponent.IsShipyardRCD && comp.IsShipyardRCDAmmo)
+        {
+            _popup.PopupClient(Loc.GetString("rcd-component-wrong-ammo-type"), target, user);
+            return;
+        }
+
         args.Handled = true;
         var count = Math.Min(charges.MaxCharges - charges.Charges, comp.Charges);
         if (count <= 0)

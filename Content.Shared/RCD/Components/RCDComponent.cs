@@ -48,4 +48,18 @@ public sealed partial class RCDComponent : Component
     [DataField("floor", customTypeSerializer: typeof(PrototypeIdSerializer<ContentTileDefinition>))]
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public string Floor = "FloorSteel";
+
+    /// <summary>
+    /// ~~~ Frontier ~~~
+    /// A flag that limits RCD to the authorized ships.
+    /// </summary>
+    [DataField("isShipyardRCD"), AutoNetworkedField]
+    public bool IsShipyardRCD;
+
+    /// <summary>
+    /// ~~~ Frontier ~~~
+    /// The uid to which this RCD is limited to be used on.
+    /// </summary>
+    [DataField("linkedShuttleUid"), AutoNetworkedField]
+    public EntityUid? LinkedShuttleUid = null;
 }

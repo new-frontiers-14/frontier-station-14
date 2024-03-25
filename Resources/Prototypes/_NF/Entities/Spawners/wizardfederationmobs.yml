@@ -1,0 +1,152 @@
+# Random Spawners
+- type: entity
+  name: Random Wizard Spawner
+  id: SpawnMobWizFedWizard
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobWizFedWizardBlue
+    - MobWizFedWizardRed
+    - MobWizFedWizardViolet
+    rarePrototypes:
+    - MobWizFedWizardSoap
+    rareChance: 0.1
+
+- type: entity
+  name: Random Wizard Spawner
+  id: SpawnMobWizFedWizardHardsuit
+  suffix: AI, Hardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobWizFedWizardBlueHardsuit
+    - MobWizFedWizardRedHardsuit
+    - MobWizFedWizardVioletHardsuit
+    rarePrototypes:
+    - MobWizFedWizardSoapHardsuit
+    rareChance: 0.1
+
+# Fixed Spawners
+- type: entity
+  name: Blue Wizard Spawner
+  id: SpawnMobWizFedWizardBlue
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBlue
+
+- type: entity
+  name: Red Wizard Spawner
+  id: SpawnMobWizFedWizardRed
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardRed
+
+- type: entity
+  name: Violet Wizard Spawner
+  id: SpawnMobWizFedWizardViolet
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardViolet
+
+- type: entity
+  name: Soap Wizard Spawner
+  id: SpawnMobWizFedWizardSoap
+  suffix: AI
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardSoap
+
+# Hardsuits
+- type: entity
+  name: Blue Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardBlueHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardBlueHardsuit
+
+- type: entity
+  name: Red Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardRedHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardRedHardsuit
+
+- type: entity
+  name: Violet Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardVioletHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardVioletHardsuit
+
+- type: entity
+  name: Soap Wizard Spawner
+  suffix: AI, Hardsuit
+  id: SpawnMobWizFedWizardSoapHardsuit
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobWizFedWizardSoapHardsuit

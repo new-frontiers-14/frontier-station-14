@@ -111,3 +111,27 @@
   - type: Construction
     graph: CraftCrossbowBoltUraniumGlassShard
     node: CraftCrossbowBoltUraniumGlassShard
+
+- type: entity
+  parent: CrossbowBolt
+  id: CrossbowBoltBloodDrinker
+  name: blood drinker bolt
+  components:
+  - type: Sprite
+    layers:
+    - state: tail
+      color: darkred
+    - state: rod
+      color: black
+    - state: tip
+      color: darkred
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Slashing: 25
+        Bloodloss: 5
+  - type: TimedDespawn
+    lifetime: 10

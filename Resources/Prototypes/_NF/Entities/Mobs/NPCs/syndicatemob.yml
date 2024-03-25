@@ -1,0 +1,288 @@
+- type: entity
+  name: Syndicate Naval Agent
+  abstract: true
+#  parent: BaseMobHuman
+  parent: MobHumanoidHostileBase
+  id: MobSyndicateNavalBase
+  components:
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: AutoImplant
+    implants:
+    - DeathRattleImplant
+#    - DeathAcidifierImplant
+#    - MicroBombImplant
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Advertise
+    pack: syndicatehumanoidchatter
+    minimumWait: 120 # 1 * 2
+    maximumWait: 240 # 2 * 60
+    NextAdvertisementTime: 0
+
+# Humans
+- type: entity
+  name: Syndicate Captain
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalCaptain
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGear
+    - type: Reflect
+      enabled: true
+      reflectProb: .5
+      spread: 90
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnumAP
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 0.75
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+
+- type: entity
+  name: Syndicate Engineer
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalEngineer
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGear
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: PelletShotgun
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+
+- type: entity
+  name: Syndicate Medic
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalMedic
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGear
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 4
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: DartSindicateTranquilizer
+      capacity: 1
+      count: 1
+    - type: Gun
+      fireRate: 4
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot:
+        collection: BulletMiss
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalSecondOfficer
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGear
+    - type: HitscanBatteryAmmoProvider
+      proto: RedMediumLaser
+      fireCost: 100
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 600
+      startingCharge: 600
+    - type: Gun
+      fireRate: 1
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+
+- type: entity
+  name: Syndicate Operator
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalOperator
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGear
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 10
+      count: 10
+    - type: Gun
+      useKey: false
+      minAngle: 2
+      maxAngle: 16
+      fireRate: 10
+      angleIncrease: 3
+      angleDecay: 16
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalGrenadier
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGear
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeFrag
+      capacity: 1
+      count: 1
+    - type: Gun
+      useKey: false
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  name: Syndicate Saboteur
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalSaboteur
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGear
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistolEmp
+      capacity: 4
+      count: 4
+    - type: Gun
+      fireRate: 6
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Captive #Victim of Experimentation
+  parent: MobHumanoidHostileBase
+#  - MobBloodstream
+#  - MobFlammable
+#  - BaseMobSpecies
+  id: MobExperimentationVictim
+  components:
+    - type: NameIdentifier
+      group: GenericNumber
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Loadout
+      prototypes:
+        - SyndicateVictimInsaneGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+
+- type: entity
+  name: Syndicate Commander # Mega Fauna for Dungeons
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalCommander
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCommanderGear
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        140: Dead # No crit state to ensure that mob explodes ASAP
+    - type: Stamina
+      critThreshold: 500 # Extra hard to incapacitate and loot
+    - type: AutoImplant
+      implants:
+      - DeathRattleImplant
+      - DeathAcidifierImplant
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: CartridgeLightRifle
+      capacity: 4
+      count: 4
+    - type: Gun
+      fireRate: 5
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+
+- type: entity
+  name: Syndicate Deckhand
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalDeckhand
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGear
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 4
+      count: 4
+    - type: Gun
+      fireRate: 0.5
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg

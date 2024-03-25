@@ -1,0 +1,31 @@
+# When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_single.yml
+# Bun
+
+# Custom Burger Example
+
+- type: entity
+  name: clurger
+  parent: FoodBurgerBase
+  id: FoodBurgerClurger
+  description: The Mail Carrier's favorite!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - validhunting
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _NF/Objects/Consumable/Food/burger.rsi
+    state: clurger
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Bicaridine #keeping it somewhat consistent with the meat itself
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Meat
