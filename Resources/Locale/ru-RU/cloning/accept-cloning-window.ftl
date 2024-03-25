@@ -1,5 +1,4 @@
-accept-cloning-window-title = Cloning Machine
-accept-cloning-window-prompt-text-part = You are being cloned!
-                                         Transfer your soul to the clone body?
-accept-cloning-window-accept-button = Yes
-accept-cloning-window-deny-button = No
+accept-cloning-window-title = Клонирующая машина
+accept-cloning-window-prompt-text-part = 
+accept-cloning-window-accept-button = Да
+accept-cloning-window-deny-button = Нет

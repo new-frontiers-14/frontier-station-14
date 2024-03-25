@@ -1,5 +1,3 @@
-## UI
-
-body-scanner-display-title = Body Scanner
-body-scanner-display-health-label = Health:
-body-scanner-display-body-part-damage-text = {$damage} damage
+body-scanner-display-title = Сканер тела
+body-scanner-display-health-label = Здоровье:
+body-scanner-display-body-part-damage-text = { $damage } повреждений

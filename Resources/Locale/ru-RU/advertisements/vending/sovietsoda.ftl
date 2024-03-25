@@ -1,8 +1,8 @@
 ﻿advertisement-sovietsoda-1 = For comrade and country.
-advertisement-sovietsoda-2 = Have you fulfilled your nutrition quota today?
-advertisement-sovietsoda-3 = Very nice!
-advertisement-sovietsoda-4 = We are simple people, for this is all we eat.
-advertisement-sovietsoda-5 = If there is a person, there is a problem. If there is no person, then there is no problem.
+advertisement-sovietsoda-2 = Выполнили ли вы сегодня свою норму питания?
+advertisement-sovietsoda-3 = Очень хорошо!
+advertisement-sovietsoda-4 = Мы простые люди, потому что это все, что мы едим.
+advertisement-sovietsoda-5 = Если есть человек, значит, есть проблема. Если нет человека, то нет и проблемы.
 advertisement-sovietsoda-6 = If its good enough for daily life, it's good enough for us!
 thankyou-sovietsoda-1 = Enjoy, comrade!
 thankyou-sovietsoda-2 = Now get back to work.

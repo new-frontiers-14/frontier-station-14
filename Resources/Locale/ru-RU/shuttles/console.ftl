@@ -1,44 +1,32 @@
-shuttle-pilot-start = Piloting ship
-shuttle-pilot-end = Stopped piloting
-
-shuttle-console-in-ftl = Can't FTL while in FTL!
-shuttle-console-proximity = Too close to nearby objects
-shuttle-console-prevent = You are unable to pilot this ship.
-
-# Display
-shuttle-console-display-label = Display
-
-shuttle-console-ftl-state = FTL State
-shuttle-console-ftl-available = Available
-shuttle-console-ftl-starting = Starting
-shuttle-console-ftl-travelling = Travelling
-shuttle-console-ftl-arriving = Arriving
-shuttle-console-ftl-cooldown = Cooldown
-
-shuttle-console-ftl-timer = FTL Time
-
-shuttle-console-max-radar = Max radar range:
-shuttle-console-radar = Radar range:
-shuttle-console-position = Position:
-shuttle-console-orientation = Orientation:
-shuttle-console-linear-velocity = Linear velocity:
-shuttle-console-angular-velocity = Angular velocity:
-
-shuttle-console-dock-label = Docking ports
-shuttle-console-docked = (Docked)
-shuttle-console-dock-button = Dock {$suffix}
-
-shuttle-console-hyperspace-label = FTL destinations
-shuttle-console-hyperspace-none = No destinations found
-
-shuttle-console-unknown = Unknown
-shuttle-console-iff-label = {$name} ({$distance}m)
-
+shuttle-pilot-start = Пилотирование начато
+shuttle-pilot-end = Пилотирование прекращено
+shuttle-console-in-ftl = Невозможно войти в БСС когда уже в БСС!
+shuttle-console-proximity = Слишком близко к соседним объектам
+shuttle-console-prevent = Вы не можете управлять этим кораблем.
+shuttle-console-display-label = Дисплей
+shuttle-console-ftl-state = Состояние БСС
+shuttle-console-ftl-available = Доступно
+shuttle-console-ftl-starting = Запускается
+shuttle-console-ftl-travelling = В пути
+shuttle-console-ftl-arriving = Прибытие
+shuttle-console-ftl-cooldown = Охлаждение
+shuttle-console-ftl-timer = Время БСС
+shuttle-console-max-radar = Макс. дальн. радара:
+shuttle-console-radar = Дальн. радара:
+shuttle-console-position = Местопол:
+shuttle-console-orientation = Ориент:
+shuttle-console-linear-velocity = Линейн. скр:
+shuttle-console-angular-velocity = Угл. скр:
+shuttle-console-dock-label = Стык. порты
+shuttle-console-docked = { $index } (Пристыкован)
+shuttle-console-dock-button = Пристыковать { $suffix }
+shuttle-console-hyperspace-label = Пункты назначения БСС
+shuttle-console-hyperspace-none = Пункты назначения не найдены
+shuttle-console-unknown = Неизвестно
+shuttle-console-iff-label = { $name } ({ $distance }м)
 shuttle-console-iff-search = Search IFF
-
-# Buttons
-shuttle-console-strafing = Strafing mode
-shuttle-console-iff-toggle = Show IFF
+shuttle-console-strafing = Режим стрейфа
+shuttle-console-iff-toggle = Показать "свой-чужой"
 shuttle-console-iffshuttles-toggle = Show Shuttle Labels
-shuttle-console-dock-toggle = Show docks
-shuttle-console-undock = Undock
+shuttle-console-dock-toggle = Показать стыковку
+shuttle-console-undock = Отстыковать

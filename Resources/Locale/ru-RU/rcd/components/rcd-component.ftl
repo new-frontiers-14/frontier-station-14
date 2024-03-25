@@ -1,18 +1,9 @@
-
-### UI
-
-# Shown when an RCD is examined in details range
-rcd-component-examine-detail = It's currently on {$mode} mode.
-
-### Interaction Messages
-
-# Shown when changing RCD Mode
-rcd-component-change-mode = The RCD is now set to {$mode} mode.
-
-rcd-component-no-ammo-message = The RCD is out of ammo!
-rcd-component-tile-obstructed-message = That tile is obstructed!
-rcd-component-tile-indestructible-message = That tile can't be destroyed!
-rcd-component-deconstruct-target-not-on-whitelist-message = You can't deconstruct that!
-rcd-component-cannot-build-floor-tile-not-empty-message = You can only build a floor on space!
-rcd-component-cannot-build-wall-tile-not-empty-message = You cannot build a wall on space!
-rcd-component-cannot-build-airlock-tile-not-empty-message = Cannot build an airlock on space!
+rcd-component-examine-detail = Переключён в режим { $mode }.
+rcd-component-change-mode = РСУ переключён в режим { $mode }.
+rcd-component-no-ammo-message = В РСУ закончились заряды!
+rcd-component-tile-obstructed-message = Этот тайл заблокирован!
+rcd-component-tile-indestructible-message = Этот тайл не может быть уничтожен!
+rcd-component-deconstruct-target-not-on-whitelist-message = Вы не можете это деконструировать!
+rcd-component-cannot-build-floor-tile-not-empty-message = Пол можно построить только в космосе!
+rcd-component-cannot-build-wall-tile-not-empty-message = Вы не можете построить стену в космосе!
+rcd-component-cannot-build-airlock-tile-not-empty-message = Вы не можете построить шлюз в космосе!

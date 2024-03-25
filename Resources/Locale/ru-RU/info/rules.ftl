@@ -1,6 +1,4 @@
-﻿# Rules
-
-ui-rules-header = Frontier Station's Official Server Rules
-ui-rules-header-rp = Frontier Station's Roleplay Official Server Rules
-ui-rules-accept = I have read and agree to follow the rules
-ui-rules-wait = The accept button will be enabled after {$time} seconds.
+ui-rules-header = Правила сервера
+ui-rules-header-rp = Правила сервера
+ui-rules-accept = Я ознакомился и согласен следовать правилам
+ui-rules-wait = Кнопка принятия будет разблокирована через { $time } секунд.

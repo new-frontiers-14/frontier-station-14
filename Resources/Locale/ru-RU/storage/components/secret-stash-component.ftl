@@ -1,10 +1,7 @@
-### Secret stash component. Stuff like potted plants, comfy chair cushions, etc...
-
-comp-secret-stash-secret-part-name = { THE($item) }
-comp-secret-stash-action-hide-success = You hide { THE($item) } in { $this }
-comp-secret-stash-action-hide-container-not-empty = There's already something in here?!
-comp-secret-stash-action-hide-item-too-big = { THE($item) } is too big to fit in {$stash}!
-comp-secret-stash-action-get-item-found-something = There was something inside {$stash}!
-
-secret-stash-part-plant = the plant
-secret-stash-part-toilet = the toilet cistern
+comp-secret-stash-secret-part-name = { $name }
+comp-secret-stash-action-hide-success = Вы спрятали { $item } в { $this }
+comp-secret-stash-action-hide-container-not-empty = Здесь уже что-то есть?!
+comp-secret-stash-action-hide-item-too-big = { $item } слишком большой, чтобы поместиться в { $stash }!
+comp-secret-stash-action-get-item-found-something = Внутри { $stash } что-то было!
+secret-stash-part-plant = растение
+secret-stash-part-toilet = бачок унитаза

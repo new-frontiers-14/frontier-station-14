@@ -1,2 +1,1 @@
-# Verbs
-power-cell-slot-component-slot-name-default = Power cell
+power-cell-slot-component-slot-name-default = Батарея

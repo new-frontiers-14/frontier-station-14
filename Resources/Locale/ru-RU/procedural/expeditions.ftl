@@ -1,48 +1,31 @@
-salvage-expedition-structure-examine = This is a [color=#B02E26]destruction[/color] objective
-salvage-expedition-structure-remaining = {$count ->
-    [one] {$count} structure remaining.
-    *[other] {$count} structures remaining.
-}
-
+salvage-expedition-structure-examine = Это необходимо [color=#B02E26]уничтожить[/color]
+salvage-expedition-structure-remaining = 
 salvage-expedition-megafauna-remaining = {$count} megafauna remaining.
-
-salvage-expedition-window-title = Salvage expeditions
-salvage-expedition-window-difficulty = Difficulty:
-salvage-expedition-window-details = Details:
-salvage-expedition-window-hostiles = Hostiles:
-salvage-expedition-window-duration = Duration:
-salvage-expedition-window-biome = Biome:
-salvage-expedition-window-modifiers = Modifiers:
+salvage-expedition-window-title = Утилизаторские экспедиции
+salvage-expedition-window-difficulty = Сложность:
+salvage-expedition-window-details = Подробности:
+salvage-expedition-window-hostiles = Враги:
+salvage-expedition-window-duration = Продолжительность:
+salvage-expedition-window-biome = Биом:
+salvage-expedition-window-modifiers = Модификаторы:
 salvage-expedition-window-rewards = Rewards:
-salvage-expedition-window-claimed = Claimed
-salvage-expedition-window-claim = Claim
-
-salvage-expedition-window-next = Next offer
-
-# Expedition descriptions
+salvage-expedition-window-claimed = Принято
+salvage-expedition-window-claim = Принять
+salvage-expedition-window-next = Следующее предложение
 salvage-expedition-desc-mining = Collect resources inside the area.
-#  You will be taxed {$tax}% of the resources collected.
 salvage-expedition-desc-structure = {$count ->
-    [one] Destroy {$count} {$structure} inside the area.
-    *[other] Destroy {$count} {$structure}s inside the area.
-}
 salvage-expedition-desc-elimination = Kill a large and dangerous creature inside the area.
-
 salvage-expedition-type-Mining = Mining
 salvage-expedition-type-Destruction = Destruction
 salvage-expedition-type-Elimination = Elimination
-
 salvage-expedition-difficulty-Minimal = Minimal
 salvage-expedition-difficulty-Minor = Minor
-salvage-expedition-difficulty-Moderate = Moderate
-salvage-expedition-difficulty-Hazardous = Hazardous
-salvage-expedition-difficulty-Extreme = Extreme
-
-# Runner
-salvage-expedition-not-all-present = Not all salvagers are aboard the shuttle!
-
-salvage-expedition-announcement-countdown-minutes = {$duration} minutes remaining to complete the expedition.
-salvage-expedition-announcement-countdown-seconds = {$duration} seconds remaining to complete the expedition.
-salvage-expedition-announcement-dungeon = Dungeon is located {$direction}.
-salvage-expedition-completed = Expedition is completed.
-salvage-expedition-reward-description = Mission completion reward
+salvage-expedition-difficulty-Moderate = Умеренная
+salvage-expedition-difficulty-Hazardous = Высокая
+salvage-expedition-difficulty-Extreme = Экстремальная
+salvage-expedition-not-all-present = Не все утилизаторы вернулись на борт шаттла!
+salvage-expedition-announcement-countdown-minutes = 
+salvage-expedition-announcement-countdown-seconds = 
+salvage-expedition-announcement-dungeon = Подземелье расположено от вас на { $direction }.
+salvage-expedition-completed = Экспедиция окончена.
+salvage-expedition-reward-description = Награда за завершение миссии

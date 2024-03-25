@@ -1,20 +1,13 @@
-﻿# User interface
-comms-console-menu-title = Communications Console
-comms-console-menu-announcement-placeholder = Announcement text...
-comms-console-menu-announcement-button = Announce
+comms-console-menu-title = Консоль связи
+comms-console-menu-announcement-placeholder = Текст объявления...
+comms-console-menu-announcement-button = Сделать объявление
 comms-console-menu-broadcast-button = Broadcast
-comms-console-menu-call-shuttle = Call emergency shuttle
-comms-console-menu-recall-shuttle = Recall emergency shuttle
-
-# Popup
-comms-console-permission-denied = Permission denied
-comms-console-shuttle-unavailable = Shuttle is currently unavailable
-
-# Placeholder values
-comms-console-announcement-sent-by = Sent by
-comms-console-announcement-unknown-sender = Unknown
-
-# Comms console variant titles
-comms-console-announcement-title-station = Communications Console
-comms-console-announcement-title-centcom = Central Command
-comms-console-announcement-title-nukie = Syndicate Nuclear Operative
+comms-console-menu-call-shuttle = Вызвать
+comms-console-menu-recall-shuttle = Отозвать
+comms-console-permission-denied = В доступе отказано
+comms-console-shuttle-unavailable = В настоящее время шаттл недоступен
+comms-console-announcement-sent-by = Отправитель
+comms-console-announcement-unknown-sender = Неизвестный
+comms-console-announcement-title-station = Консоль связи
+comms-console-announcement-title-centcom = Центральное командование
+comms-console-announcement-title-nukie = Ядерные оперативники Синдиката
