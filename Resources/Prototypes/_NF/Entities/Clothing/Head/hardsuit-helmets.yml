@@ -71,6 +71,21 @@
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
 
+#ERT Mail Carrier Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitERTMailCarrier
+  name: ERT mail carrier hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/ERThelmets/ertmailcarrier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/ERThelmets/ertmailcarrier.rsi
+  - type: PointLight
+    color: "#cbadff"
+
 # MAXIM helmet, but with light
 - type: entity
   parent: [ ClothingHeadHelmetHardsuitMaxim, ClothingHeadHardsuitWithLightBase ]
