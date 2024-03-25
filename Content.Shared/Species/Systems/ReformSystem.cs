@@ -1,5 +1,6 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
+using Content.Shared.Bank.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -90,19 +91,37 @@ public sealed partial class ReformSystem : EntitySystem
             return;
 
         // Spawn a new entity
-        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent. 
+        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent.
         var child = Spawn(comp.ReformPrototype, Transform(uid).Coordinates);
 
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
                 _mindSystem.TransferTo(mindId, child, mind: mind);
 
+        // Frontier
+        // bank account transfer
+        if (TryComp<BankAccountComponent>(uid, out var bank))
+        {
+            // Do this carefully since changing the value of a bank account component on a entity will save the balance immediately through subscribers.
+            var oldBankBalance = bank.Balance;
+            var newBank = EnsureComp<BankAccountComponent>(child);
+            newBank.Balance = oldBankBalance;
+        }
+
+        // Frontier
+        RaiseLocalEvent(child, new SetDionaCargoBlacklistEvent(child), true);
+
         // Delete the old entity
         QueueDel(uid);
     }
 
-    public sealed partial class ReformEvent : InstantActionEvent { } 
-    
+    public sealed partial class ReformEvent : InstantActionEvent { }
+
     [Serializable, NetSerializable]
     public sealed partial class ReformDoAfterEvent : SimpleDoAfterEvent { }
+
+    public sealed partial class SetDionaCargoBlacklistEvent(EntityUid entity) : EntityEventArgs
+    {
+        public EntityUid ReformedDiona { get; } = entity;
+    }
 }
