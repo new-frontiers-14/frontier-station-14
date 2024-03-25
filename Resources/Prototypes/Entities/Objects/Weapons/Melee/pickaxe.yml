@@ -7,7 +7,6 @@
   - type: Tag
     tags:
     - Pickaxe
-    - WeaponMelee # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Melee/pickaxe.rsi
     state: pickaxe
@@ -53,10 +52,11 @@
   id: MiningDrill
   description: Powerful tool used to quickly drill through rocks
   components:
+  - type: Item
+    storedRotation: -90
   - type: Tag
     tags:
-      - Pickaxe
-      - WeaponMelee # Frontier
+    - Pickaxe
   - type: Sprite
     sprite: Objects/Tools/handdrill.rsi
     state: handdrill

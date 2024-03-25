@@ -1,0 +1,41 @@
+﻿# Author Info
+# GitHub: https://github.com/GreaseMonk
+# Discord: greasemonk
+
+# Maintainer Info
+# GitHub: https://github.com/GreaseMonk
+# Discord: greasemonk
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Stratos
+  name: NR Stratos
+  description: A medium sized research operations ship with salvage area and a bar.
+  price: 90000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/stratos.yml
+
+- type: gameMap
+  id: Stratos
+  mapName: 'NR Stratos'
+  mapPath: /Maps/_NF/Shuttles/stratos.yml
+  minPlayers: 0
+  stations:
+    Stratos:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Stratos {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Bartender: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]

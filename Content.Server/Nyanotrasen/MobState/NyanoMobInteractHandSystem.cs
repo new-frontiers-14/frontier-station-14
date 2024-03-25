@@ -38,12 +38,12 @@ namespace Content.Server.Mobs
             // Highest to lowest prio:
 
             // 1. Are we in crit and suffocating?
-            if (component.CurrentState == Shared.Mobs.MobState.Critical && TryComp<RespiratorComponent>(uid, out var respirator))
-            {
-                _respirator.AttemptCPR(uid, respirator, args.User);
-                args.Handled = true;
-                return;
-            }
+            // if (component.CurrentState == Shared.Mobs.MobState.Critical && TryComp<RespiratorComponent>(uid, out var respirator))
+            // {
+            //     _respirator.AttemptCPR(uid, respirator, args.User);
+            //     args.Handled = true;
+            //     return;
+            // }
 
             // 2. Are we sleeping?
             if (TryComp<SleepingComponent>(uid, out var sleeping))
@@ -63,12 +63,12 @@ namespace Content.Server.Mobs
             }
 
             // 4. Are we huggable/pettable?
-            if (TryComp<InteractionPopupComponent>(uid, out var popup))
-            {
-                _hug.TryHug(uid, popup, args.User);
-                args.Handled = true;
-                return;
-            }
+            // if (TryComp<InteractionPopupComponent>(uid, out var popup))
+            // {
+            //     _hug.TryHug(uid, popup, args.User);
+            //     args.Handled = true;
+            //     return;
+            // }
         }
     }
 }

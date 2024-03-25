@@ -140,3 +140,79 @@
     maxDuration: 1200
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
+
+- type: entity
+  id: BluespaceArcIndDataCarrier
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-ship-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-ship-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 3
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/datacarrier.yml
+
+- type: entity
+  id: BluespaceSyndicateFTLInterception
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-syndicate-ftl-interception-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-syndicate-ftl-interception-end-announcement
+    earliestStart: 200
+    minimumPlayers: 15
+    weight: 10
+    startDelay: 10
+    duration: 1800
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/syndieftlintercept.yml
+
+- type: entity
+  id: BluespaceWizardFederationScout
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-wizardfederation-scout-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-wizardfederation-scout-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 10
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/wizardprobealt.yml
+
+- type: entity
+  id: BluespaceBloodMoon
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-bloodmoon-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-bloodmoon-end-announcement
+    earliestStart: 200
+    minimumPlayers: 15
+    weight: 10
+    startDelay: 10
+    duration: 1800
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/bloodmoon.yml

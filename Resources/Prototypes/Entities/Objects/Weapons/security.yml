@@ -82,9 +82,6 @@
   - type: GuideHelp
     guides:
     - Security
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponMelee # Frontier
 
 - type: entity
   name: truncheon
@@ -116,9 +113,6 @@
   - type: GuideHelp
     guides:
     - Security
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponMelee # Frontier
 
 - type: entity
   name: flash
@@ -185,7 +179,6 @@
       sound:
         path: /Audio/Weapons/flash.ogg
     - type: FlashOnTrigger
-      repeating: true
       range: 3
     - type: TriggerOnProximity
       enabled: true
@@ -193,6 +186,7 @@
       shape:
         !type:PhysShapeCircle
           radius: 2
+      repeating: true
     - type: Anchorable
     - type: Sprite
       sprite: Objects/Weapons/pflash.rsi

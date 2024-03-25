@@ -58,27 +58,20 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            var xform = Transform(comp.Owner);
-            var station = xform.GridUid;
-
-            if (station == null) return;
+            var station = _station.GetOwningStation(console);
 
             if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase) ||
                 orderDatabase.Orders.Count == 0)
             {
-                if (!TryComp<StationCargoOrderDatabaseComponent>(_station.GetOwningStation((EntityUid) station), out var gridDatabase) ||
-                    gridDatabase.Orders.Count == 0)
-                {
-                    comp.Accumulator += comp.Delay;
-                    continue;
-                }
-                orderDatabase = gridDatabase;
+                comp.Accumulator += comp.Delay;
+                continue;
             }
 
-            if (FulfillOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
+            var xform = Transform(uid);
+            if (FulfillNextOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
-                UpdateOrders(orderDatabase);
+                UpdateOrders(station.Value, orderDatabase);
 
                 comp.CurrentState = CargoTelepadState.Teleporting;
                 _appearance.SetData(uid, CargoTelepadVisuals.State, CargoTelepadState.Teleporting, appearance);

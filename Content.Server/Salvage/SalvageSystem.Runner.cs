@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.GameTicking;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Server.Shuttles.Components;
@@ -10,8 +11,10 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage.Expeditions;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Salvage;
@@ -23,7 +26,7 @@ public sealed partial class SalvageSystem
      */
 
     [Dependency] private readonly MobStateSystem _mobState = default!;
-
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     private void InitializeRunner()
     {
         SubscribeLocalEvent<FTLRequestEvent>(OnFTLRequest);
@@ -197,7 +200,14 @@ public sealed partial class SalvageSystem
                             if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
                                 continue;
 
-                            _shuttle.FTLTravel(shuttleUid, shuttle, member, ftlTime);
+                            //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
+                            var mapId = _gameTicker.DefaultMap;
+                            var dropLocation = _random.NextVector2(750, 2750);
+                            var coords = new MapCoordinates(dropLocation, mapId);
+                            var location = Spawn(null, coords);
+                            var despawn = EnsureComp<TimedDespawnComponent>(location);
+                            despawn.Lifetime = 600;
+                            _shuttle.FTLTravel(shuttleUid, shuttle, location, ftlTime);
                         }
 
                         break;

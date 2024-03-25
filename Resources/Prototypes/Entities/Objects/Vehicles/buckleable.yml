@@ -37,7 +37,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalGlassBreak
       - !type:ExplodeBehavior
 
 - type: entity
@@ -82,7 +82,7 @@
           params:
             volume: -3
   - type: StaticPrice
-    price: 200 # Grand Theft Auto. # Frontier 750<200
+    price: 750 # Grand Theft Auto.
 
 - type: entity
   id: VehicleJanicart
@@ -125,7 +125,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalGlassBreak
       - !type:ExplodeBehavior
       - !type:SpawnEntitiesBehavior # in future should also emit a cloud of hot gas
         spawn:
@@ -386,9 +386,6 @@
     friction: 0.8
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4.3
-  - type: Tag
-    tags:
-      - DoorBumpOpener
   - type: Destructible
     thresholds:
     - trigger:
@@ -405,7 +402,7 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
 
 - type: entity
   parent: VehicleUnicycle
@@ -418,7 +415,7 @@
 - type: entity
   id: VehicleWheelchair
   parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: Wheelchair
+  name: wheelchair
   description: A chair with big wheels. It looks like you can move in these on your own.
   components:
     - type: Vehicle
@@ -454,7 +451,7 @@
           layer:
             - TableLayer
     - type: StaticPrice
-      price: 150
+      price: 70
 
 - type: entity
   parent: VehicleWheelchair

@@ -224,6 +224,12 @@ namespace Content.Shared.CCVar
             GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
 
         /// <summary>
+        /// Whether or not disconnecting inside of a cryopod should remove the character or just store them until they reconnect.
+        /// </summary>
+        public static readonly CVarDef<bool>
+            GameCryoSleepRejoining = CVarDef.Create("game.cryo_sleep_rejoining", false, CVar.SERVER | CVar.REPLICATED);
+
+        /// <summary>
         ///     Whether a random position offset will be applied to the station on roundstart.
         /// </summary>
         public static readonly CVarDef<bool> StationOffset =
@@ -304,6 +310,12 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<string> PanicBunkerCustomReason =
             CVarDef.Create("game.panic_bunker.custom_reason", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Allow bypassing the panic bunker if the user is whitelisted.
+        /// </summary>
+        public static readonly CVarDef<bool> BypassBunkerWhitelist =
+            CVarDef.Create("game.panic_bunker.whitelisted_can_bypass", true, CVar.SERVERONLY);
 
         /// <summary>
         /// Make people bonk when trying to climb certain objects like tables.
@@ -806,7 +818,7 @@ namespace Content.Shared.CCVar
         /// Default severity for server bans
         /// </summary>
         public static readonly CVarDef<string> ServerBanDefaultSeverity =
-            CVarDef.Create("admin.server_ban_default_severity", "high", CVar.ARCHIVE | CVar.SERVER);
+            CVarDef.Create("admin.server_ban_default_severity", "High", CVar.ARCHIVE | CVar.SERVER);
 
         /// <summary>
         ///     Minimum explosion intensity to create an admin alert message. -1 to disable the alert.
@@ -844,6 +856,12 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<int> NewPlayerThreshold =
             CVarDef.Create("admin.new_player_threshold", 0, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
+        /// <summary>
+        /// How long an admin client can go without any input before being considered AFK.
+        /// </summary>
+        public static readonly CVarDef<float> AdminAfkTime =
+            CVarDef.Create("admin.afk_time", 600f, CVar.SERVERONLY);
 
         /*
          * Explosions
@@ -1063,7 +1081,7 @@ namespace Content.Shared.CCVar
 		///     Also looks weird on slow spacing for unrelated reasons. If you do want to enable this, you should probably turn on instaspacing.
         /// </summary>
         public static readonly CVarDef<bool> MonstermosRipTiles =
-            CVarDef.Create("atmos.monstermos_rip_tiles", true, CVar.SERVERONLY);
+            CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY);
 
         /// <summary>
         ///     Whether explosive depressurization will cause the grid to gain an impulse.
@@ -1266,7 +1284,19 @@ namespace Content.Shared.CCVar
         ///     See vote.enabled, but specific to restart votes
         /// </summary>
         public static readonly CVarDef<bool> VoteRestartEnabled =
-            CVarDef.Create("vote.restart_enabled", true, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_enabled", false, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     Config for when the restart vote should be allowed to be called regardless with less than this amount of players.
+        /// </summary>
+        public static readonly CVarDef<int> VoteRestartMaxPlayers =
+            CVarDef.Create("vote.restart_max_players", 4, CVar.SERVERONLY);
+
+        /// <summary>
+        ///     Config for when the restart vote should be allowed to be called based on percentage of ghosts.
+        /// </summary>
+        public static readonly CVarDef<int> VoteRestartGhostPercentage =
+            CVarDef.Create("vote.restart_ghost_percentage", 75, CVar.SERVERONLY);
 
         /// <summary>
         ///     See vote.enabled, but specific to preset votes
@@ -1284,7 +1314,7 @@ namespace Content.Shared.CCVar
         ///     The required ratio of the server that must agree for a restart round vote to go through.
         /// </summary>
         public static readonly CVarDef<float> VoteRestartRequiredRatio =
-            CVarDef.Create("vote.restart_required_ratio", 0.85f, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_required_ratio", 0.90f, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether or not to prevent the restart vote from having any effect when there is an online admin
@@ -1309,7 +1339,7 @@ namespace Content.Shared.CCVar
         ///     Sets the duration of the restart vote timer.
         /// </summary>
         public static readonly CVarDef<int>
-            VoteTimerRestart = CVarDef.Create("vote.timerrestart", 60, CVar.SERVERONLY);
+            VoteTimerRestart = CVarDef.Create("vote.timerrestart", 300, CVar.SERVERONLY);
 
         /// <summary>
         ///     Sets the duration of the gamemode/preset vote timer.
@@ -1482,15 +1512,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> CrewManifestUnsecure =
             CVarDef.Create("crewmanifest.unsecure", true, CVar.REPLICATED);
 
-        /// <summary>
-        ///     Dictates the order the crew manifest will appear in, in terms of its sections.
-        ///     Sections not in this list will appear at the end of the list, in no
-        ///     specific order.
-        /// </summary>
-        public static readonly CVarDef<string> CrewManifestOrdering =
-            CVarDef.Create("crewmanifest.ordering", "Command,Security,Science,Medical,Engineering,Cargo,Civilian,Unknown",
-                CVar.REPLICATED);
-
         /*
          * Biomass
          */
@@ -1579,6 +1600,16 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> ReducedMotion =
             CVarDef.Create("accessibility.reduced_motion", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+        public static readonly CVarDef<bool> ChatEnableColorName =
+            CVarDef.Create("accessibility.enable_color_name", true, CVar.CLIENTONLY | CVar.ARCHIVE, "Toggles displaying names with individual colors.");
+
+        /// <summary>
+        /// Screen shake intensity slider, controlling the intensity of the CameraRecoilSystem.
+        /// Goes from 0 (no recoil at all) to 1 (regular amounts of recoil)
+        /// </summary>
+        public static readonly CVarDef<float> ScreenShakeIntensity =
+            CVarDef.Create("accessibility.screen_shake_intensity", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
         /*
          * CHAT
          */
@@ -1618,6 +1649,9 @@ namespace Content.Shared.CCVar
 
         public static readonly CVarDef<int> ChatMaxMessageLength =
             CVarDef.Create("chat.max_message_length", 1000, CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<int> ChatMaxAnnouncementLength =
+            CVarDef.Create("chat.max_announcement_length", 256, CVar.SERVER | CVar.REPLICATED);
 
         public static readonly CVarDef<bool> ChatSanitizerEnabled =
             CVarDef.Create("chat.chat_sanitizer_enabled", true, CVar.SERVERONLY);
@@ -1835,7 +1869,7 @@ namespace Content.Shared.CCVar
         /// The time you must spend reading the rules, before the "Request" button is enabled
         /// </summary>
         public static readonly CVarDef<float> GhostRoleTime =
-            CVarDef.Create("ghost.role_time", 5f, CVar.REPLICATED);
+            CVarDef.Create("ghost.role_time", 5f, CVar.REPLICATED | CVar.SERVER);
 
         /*
          * Fire alarm
@@ -2010,5 +2044,15 @@ namespace Content.Shared.CCVar
 
         public static readonly CVarDef<bool> GatewayGeneratorEnabled =
             CVarDef.Create("gateway.generator_enabled", false);
+
+        /*
+         * DEBUG
+         */
+
+        /// <summary>
+        /// A simple toggle to test <c>OptionsVisualizerComponent</c>.
+        /// </summary>
+        public static readonly CVarDef<bool> DebugOptionVisualizerTest =
+            CVarDef.Create("debug.option_visualizer_test", false, CVar.CLIENTONLY);
     }
 }

@@ -6,6 +6,7 @@ using Content.Server.Speech.Muting;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Robust.Shared.Random;
+using Content.Shared.Speech.Muting;
 
 namespace Content.Server.Puppet
 {

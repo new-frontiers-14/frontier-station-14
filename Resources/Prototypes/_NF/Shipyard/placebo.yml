@@ -1,0 +1,27 @@
+- type: vessel
+  id: Placebo
+  name: NC Placebo
+  description: A small psychology vessel. Named after the famous Placebo effect
+  price: 20000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/placebo.yml
+
+- type: gameMap
+  id: Placebo
+  mapName: 'NC Placebo'
+  mapPath: /Maps/_NF/Shuttles/placebo.yml
+  minPlayers: 0
+  stations:
+    Placebo:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Placebo {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Psychologist: [ 0, 0 ]
