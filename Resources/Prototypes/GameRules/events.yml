@@ -150,12 +150,13 @@
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_gas_leak_start.ogg # Frontier
     endAnnouncement: station-event-gas-leak-end-announcement
-    endAudio: #Frontier - will this work?
-      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_gas_leak_end.ogg # Frontier - will this work?
+    #  endAudio: #Frontier - will this work? - currently does not work properly, as the event ends rather immediately.
+    #    path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_gas_leak_end.ogg # Frontier - will this work?
     earliestStart: 10
     minimumPlayers: 5
     weight: 5
     startDelay: 20
+    duration: 30 #Frontier
   - type: GasLeakRule
 
 - type: entity
@@ -250,10 +251,6 @@
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_offnf.ogg # Frontier
-      params:
-       volume: -4
-    endAudio: # Frontier
-      path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg # Frontier
       params:
        volume: -4
     startDelay: 12

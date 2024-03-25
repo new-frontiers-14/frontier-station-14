@@ -31,22 +31,22 @@
   parent: BaseGameRule
   noSpawn: true
   components:
-    - type: StationEvent
-      startAnnouncement: station-event-bluespace-cache-start-announcement
-      startAudio:
-        path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_arrival.ogg
-      endAnnouncement: station-event-bluespace-cache-end-announcement
-      endAudio:
-        path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
-      earliestStart: 100
-      minimumPlayers: 20
-      weight: 2
-      startDelay: 10
-      duration: 1350
-      maxDuration: 1560
-    - type: BluespaceErrorRule
-      gridPath: /Maps/_NF/Bluespace/cache.yml
-      rewardFactor: 3.3
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-cache-start-announcement
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_arrival.ogg
+    endAnnouncement: station-event-bluespace-cache-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
+    earliestStart: 100
+    minimumPlayers: 20
+    weight: 2
+    startDelay: 10
+    duration: 1350
+    maxDuration: 1560
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/cache.yml
+    rewardFactor: 3.3
 
 - type: entity
   id: BluespaceVaultError
