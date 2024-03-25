@@ -1,0 +1,31 @@
+- type: vessel
+  id: phoenix
+  name: NR Phoenix
+  description: A research and salvage vessel designed for deep space exploration
+  price: 60000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/phoenix.yml
+
+- type: gameMap
+  id: phoenix
+  mapName: 'NR Phoenix'
+  mapPath: /Maps/_NF/Shuttles/phoenix.yml
+  minPlayers: 0
+  stations:
+    phoenix:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Phoenix {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            SalvageSpecialist: [ 0, 0 ]
+            Scientist: [ 0, 0 ]
+            ResearchDirector: [ 0, 0 ]
+            Borg: [ 0, 0 ]
+            Pilot: [ 0, 0 ]

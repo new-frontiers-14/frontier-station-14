@@ -1,0 +1,980 @@
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgAssault1
+  name:  uplink-reinforcement-radio-cyborg-assault-name
+  description: uplink-reinforcement-radio-cyborg-assault-desc
+  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuit
+  name:  uplink-security-hardsuit-name
+  description: uplink-security-hardsuit-desc
+  productEntity: ClothingOuterHardsuitSecurity
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitPatrol
+  name:  uplink-security-hardsuit-patrol-name
+  description: uplink-security-hardsuit-patrol-desc
+  productEntity: ClothingOuterHardsuitSecuritypatrol
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitBrigmedic
+  name:  uplink-security-hardsuit-brigmedic-name
+  description: uplink-security-hardsuit-brigmedic-desc
+  productEntity: ClothingOuterHardsuitBrigmedic
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityHardsuitWarden
+  name:  uplink-security-hardsuit-warden-name
+  description: uplink-security-hardsuit-warden-desc
+  productEntity: ClothingOuterHardsuitWarden
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHardsuitSyndieReverseEngineered
+  name:  uplink-security-hardsuit-syndie-re-name
+  description: uplink-security-hardsuit-syndie-re-desc
+  productEntity: ClothingOuterHardsuitSyndieReverseEngineered
+  icon: { sprite: Nyanotrasen/Clothing/OuterClothing/ReverseEngineering/syndicate.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 30
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHardsuitSheriff
+  name:  uplink-security-hardsuit-sheriff-name
+  description: uplink-security-hardsuit-sheriff-desc
+  productEntity: ClothingOuterHardsuitSecurityRed
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityMK58
+  name:  uplink-security-mk58-name
+  description: uplink-security-mk58-desc
+  productEntity: WeaponPistolMk58
+  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityKammerer
+  name:  uplink-security-kammerer-name
+  description: uplink-security-kammerer-desc
+  productEntity: WeaponShotgunKammerer
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/pump.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityDisabler
+  name:  uplink-security-disabler-name
+  description: uplink-security-disabler-desc
+  productEntity: WeaponDisabler
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityStunbaton
+  name:  uplink-security-stunbaton-name
+  description: uplink-security-stunbaton-desc
+  productEntity: Stunbaton
+  icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityDeckard
+  name:  uplink-security-deckard-name
+  description: uplink-security-deckard-desc
+  productEntity: WeaponRevolverDeckard
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEmitter
+  name:  uplink-security-emitter-name
+  description: uplink-security-emitter-desc
+  productEntity: WeaponEmpEmitter
+  icon: { sprite: _NF/Objects/Weapons/EMP-Gun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityN1984
+  name:  uplink-security-n1984-name
+  description: uplink-security-n1984-desc
+  productEntity: WeaponPistolN1984
+  icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnforcer
+  name:  uplink-security-enforcer-name
+  description: uplink-security-enforcer-desc
+  productEntity: WeaponShotgunEnforcer
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityLecter
+  name:  uplink-security-lecter-name
+  description: uplink-security-lecter-desc
+  productEntity: WeaponRifleLecter
+  icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityLaserCarbine
+  name:  uplink-security-lasercarbine-name
+  description: uplink-security-lasercarbine-desc
+  productEntity: WeaponLaserCarbine
+  icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityDisablerSMG
+  name:  uplink-security-disablersmg-name
+  description: uplink-security-disablersmg-desc
+  productEntity: WeaponDisablerSMG
+  icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-desc
+  productEntity: EnergySword
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityWT550
+  name:  uplink-security-wt550-name
+  description: uplink-security-wt550-desc
+  productEntity: WeaponSubMachineGunWt550
+  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEnergyGun
+  name:  uplink-security-energygun-name
+  description: uplink-security-energygun-desc
+  productEntity: WeaponEnergyGun
+  icon: { sprite: DeltaV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpRpg
+  name:  uplink-security-emprpg-name
+  description: uplink-security-emprpg-desc
+  productEntity: WeaponLauncherRocketEmp
+  icon: { sprite: Objects/Weapons/Guns/Launchers/rocket.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpGrenade
+  name:  uplink-security-empgrenade-name
+  description: uplink-security-empgrenade-desc
+  productEntity: EmpGrenade
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHolo
+  name:  uplink-security-holo-name
+  description: uplink-security-holo-desc
+  productEntity: HoloprojectorSecurity
+  icon: { sprite: Objects/Devices/Holoprojectors/security.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityJetpack
+  name:  uplink-security-jetpack-name
+  description: uplink-security-jetpack-desc
+  productEntity: JetpackSecurityFilled
+  icon: { sprite: Objects/Tanks/Jetpacks/security.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMagboots
+  name:  uplink-security-magboots-name
+  description: uplink-security-magboots-desc
+  productEntity: ClothingShoesBootsMagCombat
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTechfab
+  name:  uplink-security-techfab-name
+  description: uplink-security-techfab-desc
+  productEntity: SecurityTechFabCircuitboard
+  icon: { sprite: Objects/Misc/module.rsi, state: security }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityKey
+  name:  uplink-security-key-name
+  description: uplink-security-key-desc
+  productEntity: BoxEncryptionKeySecurity
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityEmpRocket
+  name:  uplink-security-emprocket-name
+  description: uplink-security-emprocket-desc
+  productEntity: CartridgeRocketEmp
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: rpg-emp }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityThrusterKit
+  name:  uplink-security-thrusterkit-name
+  description: uplink-security-thrusterkit-desc
+  productEntity: BoxT3SuperCapacitor
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box}
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPistolMagazine
+  name:  uplink-security-magazinepistol-name
+  description: uplink-security-magazinepistol-desc
+  productEntity: BoxMagazinePistol
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurity20RifleMagazine
+  name:  uplink-security-20riflemagazine-name
+  description: uplink-security-20riflemagazine-desc
+  productEntity: BoxMagazineRifle
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityWT550Magazine
+  name:  uplink-security-wt550magazine-name
+  description: uplink-security-wt550magazine-desc
+  productEntity: BoxMagazinePistolSubMachineGunTopMounted
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHypo
+  name:  uplink-security-hypo-name
+  description: uplink-security-hypo-desc
+  productEntity: HypoBrigmedic
+  icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityAmbuzol
+  name:  uplink-security-ambuzol-name
+  description: uplink-security-ambuzol-desc
+  productEntity: SyringeAmbuzol
+  icon: { sprite: Objects/Specific/Chemistry/syringe.rsi, state: syringe_base0 }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityMedkit
+  name:  uplink-security-medkit-name
+  description: uplink-security-medkit-desc
+  productEntity: MedkitCombatFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityInspector
+  name:  uplink-security-inspector-name
+  description: uplink-security-inspector-desc
+  productEntity: WeaponRevolverInspector
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMateba
+  name:  uplink-security-mateba-name
+  description: uplink-security-mateba-desc
+  productEntity: WeaponRevolverMateba
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTruncheon
+  name:  uplink-security-truncheon-name
+  description: uplink-security-truncheon-desc
+  productEntity: Truncheon
+  icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityArmingSword
+  name:  uplink-security-armingsword-name
+  description: uplink-security-armingsword-desc
+  productEntity: PlasteelArmingSword
+  icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityCaptainSword
+  name:  uplink-security-captainsword-name
+  description: uplink-security-captainsword-desc
+  productEntity: ClothingBeltSheathFilled
+  icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPulsePistol
+  name:  uplink-security-pulsepistol-name
+  description: uplink-security-pulsepistol-desc
+  productEntity: WeaponPulsePistol
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 12
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityPulseCarbine
+  name:  uplink-security-pulsecarbine-name
+  description: uplink-security-pulsecarbine-desc
+  productEntity: WeaponPulseCarbine
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 20
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityHammer
+  name:  uplink-security-hammer-name
+  description: uplink-security-hammer-desc
+  productEntity: SecBreachingHammer
+  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecurityTeleShield
+  name:  uplink-security-teleshield-name
+  description: uplink-security-teleshield-desc
+  productEntity: TelescopicShield
+  icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEnergyShield
+  name:  uplink-security-energyshield-name
+  description: uplink-security-energyshield-desc
+  productEntity: EnergyShield
+  icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecuritySwat
+  name:  uplink-security-swat-name
+  description: uplink-security-swat-desc
+  productEntity: ClothingMaskGasSwat
+  icon: { sprite: Clothing/Mask/swat.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Warden
+        - SeniorOfficer
+        - HeadOfSecurity
+
+- type: listing
+  id: UplinkSecuritySpeedloader
+  name:  uplink-security-speedloader-name
+  description: uplink-security-speedloader-desc
+  productEntity: SpeedLoaderMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecuritySpeedloaderRubber
+  name:  uplink-security-speedloaderrubber-name
+  description: uplink-security-speedloaderrubber-desc
+  productEntity: SpeedLoaderMagnumRubber
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotLethal
+  name:  uplink-security-shotlethal-name
+  description: uplink-security-shotlethal-desc
+  productEntity: BoxLethalshot
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotBeanbag
+  name:  uplink-security-shotbeanbag-name
+  description: uplink-security-shotbeanbag-desc
+  productEntity: BoxBeanbag
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotIncend
+  name:  uplink-security-shotincend-name
+  description: uplink-security-shotincend-desc
+  productEntity: BoxShotgunIncendiary
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityShotSlug
+  name:  uplink-security-shotslug-name
+  description: uplink-security-shotslug-desc
+  productEntity: BoxShotgunSlug
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityCash1000
+  name:  uplink-security-cash1000-name
+  description: uplink-security-cash1000-desc
+  productEntity: SpaceCash1000
+  icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000000 }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

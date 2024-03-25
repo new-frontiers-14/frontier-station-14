@@ -22,7 +22,7 @@ entities:
       name: RosebudMKII
     - type: Transform
       pos: -0.66406155,-0.5000076
-      parent: 46
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -905,17 +905,6 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: RosebudMKII
-  - uid: 46
-    components:
-    - type: MetaData
-      name: map 304
-    - type: Transform
-    - type: Map
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirlockAtmosphericsGlass
   entities:
   - uid: 1312
@@ -7166,14 +7155,6 @@ entities:
     - type: Transform
       pos: -8.642134,3.4433465
       parent: 1
-- proto: MiningDrill
-  entities:
-  - uid: 322
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 11.16817,4.674234
-      parent: 1
 - proto: Morgue
   entities:
   - uid: 175
@@ -11340,15 +11321,11 @@ entities:
       parent: 1
 - proto: WarpPointShip
   entities:
-  - uid: 1087
+  - uid: 46
     components:
-    - type: MetaData
-      name: RosebudMKII
     - type: Transform
       pos: 0.5,2.5
       parent: 1
-    - type: WarpPoint
-      location: RosebudMKII
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 1212
@@ -11385,14 +11362,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -12.707515,4.732394
-      parent: 1
-- proto: WeaponProtoKineticAccelerator
-  entities:
-  - uid: 814
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 13.647079,3.705484
       parent: 1
 - proto: WeldingFuelTankFull
   entities:

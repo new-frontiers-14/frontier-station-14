@@ -26,6 +26,23 @@
         - HighImpassable
         - BulletImpassable
   - type: InteractionOutline
+# Frontier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth1:
+            min: 1
+            max: 2
+          SheetSteel1:
+            min: 1
+            max: 2
 
 - type: entity
   id: BannerNanotrasen
@@ -36,6 +53,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerNanotrasenNode # Frontier
 
 - type: entity
   id: BannerCargo
@@ -46,6 +66,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_cargo
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerCargoNode # Frontier
 
 - type: entity
   id: BannerEngineering
@@ -56,6 +79,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_engineering
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerEngineeringNode # Frontier
 
 - type: entity
   id: BannerMedical
@@ -66,6 +92,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_medical
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerMedicalNode # Frontier
 
 - type: entity
   id: BannerRevolution
@@ -76,6 +105,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_revolution
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerRevolutionNode # Frontier
 
 - type: entity
   id: BannerSyndicate
@@ -86,6 +118,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_syndicate
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSyndicateNode # Frontier
 
 - type: entity
   id: BannerScience
@@ -96,6 +131,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_science
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerScienceNode # Frontier
 
 - type: entity
   id: BannerSecurity
@@ -106,6 +144,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_security
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSecurityNode # Frontier
 
 - type: entity
   id: BannerBlue
@@ -116,6 +157,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-blue
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerBlueNode # Frontier
 
 - type: entity
   id: BannerRed
@@ -126,6 +170,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerRedNode # Frontier
 
 - type: entity
   id: BannerYellow
@@ -136,6 +183,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-yellow
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerYellowNode # Frontier
 
 - type: entity
   id: BannerGreen
@@ -146,3 +196,6 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-green
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerGreenNode # Frontier

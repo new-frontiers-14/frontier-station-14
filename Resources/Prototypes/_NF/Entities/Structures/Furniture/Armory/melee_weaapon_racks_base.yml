@@ -17,15 +17,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: AccessReader
   - type: Lock
     locked: false
@@ -34,36 +25,36 @@
       weapon1_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
         insertOnInteract: false
         priority: 8
       weapon2_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
         insertOnInteract: false
         priority: 7
       weapon3_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
         insertOnInteract: false
         priority: 6
       weapon4_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
         insertOnInteract: false
         priority: 5
       weapon5_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
         insertOnInteract: false
         priority: 4
   - type: ItemMapper
@@ -71,28 +62,28 @@
       weapon_generic_melee1:
         minCount: 1
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
       weapon_generic_melee2:
         minCount: 2
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
       weapon_generic_melee3:
         minCount: 3
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
       weapon_generic_melee4:
         minCount: 4
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
       weapon_generic_melee5:
         minCount: 5
         whitelist:
-          tags:
-            - WeaponMelee
+          components:
+            - MeleeWeapon
     sprite: _NF/Structures/Furniture/Armory/melee_weapon_racks.rsi
   - type: Construction
     graph: WeaponRackConstructionGraph
@@ -116,15 +107,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: Construction
     graph: WeaponRackConstructionGraph
     node: MeleeRackWallmountedNode

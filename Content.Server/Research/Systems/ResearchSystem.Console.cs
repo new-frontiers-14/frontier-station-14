@@ -1,6 +1,6 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
-using Content.Server.UserInterface;
+using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -41,7 +41,7 @@ public sealed partial class ResearchSystem
         var message = Loc.GetString("research-console-unlock-technology-radio-broadcast",
             ("technology", Loc.GetString(technologyPrototype.Name)),
             ("amount", technologyPrototype.Cost));
-        _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+        //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier - Make the R&D computer silent
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }

@@ -7878,11 +7878,11 @@ entities:
       parent: 1
 - proto: ComputerCrewMonitoring
   entities:
-  - uid: 760
+  - uid: 1948
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-1.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -7903,6 +7903,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-31.5
       parent: 1
+- proto: ComputerRadar
+  entities:
+  - uid: 760
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
+      parent: 1
 - proto: ComputerShuttle
   entities:
   - uid: 758
@@ -7910,18 +7917,13 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
-  - uid: 793
-    components:
-    - type: Transform
-      pos: -4.5,-0.5
-      parent: 1
 - proto: ComputerStationRecords
   entities:
   - uid: 378
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-1.5
       parent: 1
 - proto: ComputerTelevision
   entities:
@@ -8216,13 +8218,6 @@ entities:
     components:
     - type: Transform
       pos: -6.8380527,-13.43149
-      parent: 1
-- proto: CrewMonitoringServer
-  entities:
-  - uid: 2593
-    components:
-    - type: Transform
-      pos: -4.5,-3.5
       parent: 1
 - proto: Crowbar
   entities:
@@ -16459,6 +16454,11 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-18.5
+      parent: 1
+  - uid: 793
+    components:
+    - type: Transform
+      pos: -4.5,-3.5
       parent: 1
   - uid: 1931
     components:

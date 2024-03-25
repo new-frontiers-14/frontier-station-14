@@ -7,6 +7,7 @@ namespace Content.Shared.Preferences
     {
         Backpack,
         Satchel,
-        Duffelbag
+        Duffelbag,
+        Messenger // Frontier
     }
 }

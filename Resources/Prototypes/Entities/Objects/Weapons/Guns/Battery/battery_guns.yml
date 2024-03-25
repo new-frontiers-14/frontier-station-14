@@ -30,10 +30,6 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  - type: Tag # Frontier
-    tags: # Frontier
-    - WeaponRanged # Frontier
-    - WeaponLongarms # Frontier
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -82,8 +78,6 @@
     - 0,1,0,1
   - type: Tag
     tags:
-    - WeaponRanged # Frontier
-    - WeaponShortArms # Frontier
     - Sidearm
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/taser.rsi
@@ -444,6 +438,7 @@
       sprite: Objects/Weapons/Guns/Battery/disabler.rsi
       quickEquip: false
       slots:
+        - suitStorage
         - Belt
     - type: Gun
       fireRate: 2
@@ -695,7 +690,7 @@
       fireCost: 100
 
 - type: entity
-  name: Eye of a behonker
+  name: eye of a behonker
   parent: BaseWeaponBatterySmall
   id: WeaponBehonkerLaser
   description: The eye of a behonker, it fires a laser when squeezed.

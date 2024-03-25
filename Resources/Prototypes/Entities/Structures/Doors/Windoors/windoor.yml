@@ -114,6 +114,22 @@
     access: [["Armory"]]
 
 - type: entity
+  parent: WindoorSecure
+  id: WindoorSecureAtmosphericsLocked
+  suffix: Atmospherics, Locked
+  components:
+  - type: AccessReader
+    access: [["Atmospherics"]]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureBarLocked
+  suffix: Bar, Locked
+  components:
+  - type: AccessReader
+    access: [["Bar"]]
+
+- type: entity
   parent: WindoorSecureSecurityLocked
   id: WindoorSecureBrigLocked
   suffix: Brig, Locked
@@ -164,6 +180,14 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureDetectiveLocked
+  suffix: Detective, Locked
+  components:
+  - type: AccessReader
+    access: [["Detective"]]
 
 - type: entity
   parent: WindoorSecure
@@ -246,17 +270,21 @@
 
 - type: entity
   parent: WindoorSecure
-  id: WindoorSecureHeadOfPersonnelLocked
-  suffix: HeadOfPersonnel, Locked
+  id: WindoorSecureServiceLocked
+  suffix: Service, Locked
   components:
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["Service"]]
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureAtmosphericsLocked
   suffix: Atmospherics, Locked
   noSpawn: true # Frontier
+
+- type: entity
+  id: WindoorSecureHeadOfPersonnelLocked
+  suffix: HeadOfPersonnel, Locked
   components:
   - type: AccessReader
-    access: [["Atmospherics"]]
+    access: [["HeadOfPersonnel"]]

@@ -184,8 +184,8 @@ public sealed partial class DungeonJob
                         {
                             for (var y = roomSize.Bottom; y < roomSize.Top; y++)
                             {
-                                var index = matty.Transform(new Vector2(x, y) + grid.TileSizeHalfVector - packCenter).Floored();
-                                tiles.Add((index, new Tile(_tileDefManager["FloorPlanetGrass"].TileId)));
+                                //    var index = matty.Transform(new Vector2(x, y) + grid.TileSizeHalfVector - packCenter).Floored();
+                                //    tiles.Add((index, new Tile(_tileDefManager["FloorPlanetGrass"].TileId))); // This creates grass in space and places it should not have grass in it
                             }
                         }
 
@@ -351,7 +351,8 @@ public sealed partial class DungeonJob
                             grid.SetTile(tilePos, fallbackTile);
                         }
 
-                        var result = _decals.TryAddDecal(
+                        // var result =
+                        _decals.TryAddDecal(
                             decal.Id,
                             new EntityCoordinates(gridUid, position),
                             out _,
@@ -360,7 +361,10 @@ public sealed partial class DungeonJob
                             decal.ZIndex,
                             decal.Cleanable);
 
-                        DebugTools.Assert(result);
+                        // Frontier change
+                        // We disable the assertion here because generation of spaceplatform stops prematurely since it has holes.
+                        // Dont care if decals dont get placed because of holes, generation works fine if we ignore the assertion.
+                        // DebugTools.Assert(result);
                     }
                 }
 

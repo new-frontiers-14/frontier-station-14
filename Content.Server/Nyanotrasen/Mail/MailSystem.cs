@@ -39,6 +39,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
@@ -692,6 +693,7 @@ namespace Content.Server.Mail
                 var mail = EntityManager.SpawnEntity(chosenParcel, Transform(uid).Coordinates);
                 SetupMail(mail, component, candidate);
 
+                _tagSystem.AddTag(mail, "Mail"); // Frontier
                 _tagSystem.AddTag(mail, "Recyclable"); // Frontier - Make it so mail can be destroyed by reclaimer
             }
 
@@ -725,7 +727,6 @@ namespace Content.Server.Mail
 
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
-            _tagSystem.AddTag(uid, "ClothMade"); // Frontier - Make it so moth can eat open mail.
             component.IsEnabled = false;
             UpdateMailTrashState(uid, true);
         }

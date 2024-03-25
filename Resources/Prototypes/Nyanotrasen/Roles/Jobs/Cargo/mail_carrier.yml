@@ -8,12 +8,13 @@
     - !type:OverallPlaytimeRequirement
       time: 10800
   icon: "JobIconMailCarrier"
-  supervisors: "station representative"
+  supervisors: job-supervisors-hop
   access:
   - Cargo
   - Maintenance
   - Service
   - External # Frontier
+  - Mail # Frontier
 
 - type: startingGear
   id: MailCarrierGear
@@ -22,9 +23,12 @@
     jumpsuit: ClothingUniformJumpsuitMailCarrier
     back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
+    outerClothing: ClothingOuterWinterCoatMail
+    eyes: ClothingEyesHudMail
     id: MailCarrierPDA
-    ears: ClothingHeadsetCargo
+    ears: ClothingHeadsetMailCarrier # Frontier - ClothingHeadsetCargo<ClothingHeadsetMailCarrier
     belt: MailBag
   innerClothingSkirt: ClothingUniformJumpskirtMailCarrier
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
+  messenger: ClothingBackpackMessengerMailCarrierFilled # Frontier

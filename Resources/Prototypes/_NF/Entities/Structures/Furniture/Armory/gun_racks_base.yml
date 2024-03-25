@@ -23,15 +23,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: AccessReader
   - type: Lock
     locked: false
@@ -52,7 +43,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -76,36 +67,36 @@
       weapon1_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
         insertOnInteract: false
         priority: 8
       weapon2_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
         insertOnInteract: false
         priority: 7
       weapon3_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
         insertOnInteract: false
         priority: 6
       weapon4_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
         insertOnInteract: false
         priority: 5
       weapon5_slot:
         name: stored weapon
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
         insertOnInteract: false
         priority: 4
   - type: ItemMapper
@@ -113,28 +104,28 @@
       weapon_generic_gun1:
         minCount: 1
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
       weapon_generic_gun2:
         minCount: 2
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
       weapon_generic_gun3:
         minCount: 3
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
       weapon_generic_gun4:
         minCount: 4
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
       weapon_generic_gun5:
         minCount: 5
         whitelist:
-          tags:
-            - WeaponLongarms
+          components:
+            - Gun
     sprite: _NF/Structures/Furniture/Armory/gun_racks.rsi
   - type: ContainerContainer
     containers:
@@ -170,15 +161,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: Construction
     graph: WeaponRackConstructionGraph
     node: GunRackWallmountedNode
