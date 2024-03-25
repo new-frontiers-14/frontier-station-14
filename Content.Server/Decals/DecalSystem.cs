@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Numerics;
-using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
@@ -293,14 +291,34 @@ namespace Content.Server.Decals
             decalId = 0;
 
             if (!PrototypeManager.HasIndex<DecalPrototype>(decal.Id))
+            {
+                Log.Warning($"Attempted to place decal {decal.Id} without DecalPrototype Index"); // Frontier
                 return false;
+            }
 
             var gridId = coordinates.GetGridUid(EntityManager);
             if (!TryComp(gridId, out MapGridComponent? grid))
+            {
+                Log.Warning($"Attempted to place decal on grid {gridId}, but couldnt load MapGridComponent on it"); // Frontier
                 return false;
+            }
+
+            // Frontier
+            // If we're trying to place dungeon rooms on space, fix it by putting tile underneath.
+            // It's better than stopping generation entirely and not generate the room.
+            if (_mapSystem.GetTileRef(gridId.Value, grid, coordinates).IsSpace(_tileDefMan))
+            {
+                if (EntityManager.TryGetComponent(gridId.Value, out MapGridComponent? mapGridComponent))
+                {
+                    _mapSystem.SetTile(gridId.Value, mapGridComponent, coordinates, new Tile(1));
+                }
+            }
 
             if (_mapSystem.GetTileRef(gridId.Value, grid, coordinates).IsSpace(_tileDefMan))
+            {
+                Log.Warning($"Attempted to place decal {decal.Id} for grid uid {gridId.Value} IN SPACE! at {coordinates.Position}, ignoring"); // Frontier
                 return false;
+            }
 
             if (!TryComp(gridId, out DecalGridComponent? comp))
                 return false;
