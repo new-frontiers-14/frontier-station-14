@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Shared.Coordinates;
+using Content.Shared.Body.Components; // Frontier - Gib organs
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -175,6 +176,19 @@ namespace Content.Server.Explosion.EntitySystems
                     Del(item);
                 }
             }
+
+            if (component.DeleteOrgans) // Frontier - Gib organs
+            {
+                if (TryComp<BodyComponent>(xform.ParentUid, out var body))
+                {
+                    var organs = _body.GetBodyOrganComponents<TransformComponent>(xform.ParentUid, body);
+                    foreach (var (_, organ) in organs)
+                    {
+                        Del(organ.Owner);
+                    }
+                }
+            } // Frontier
+
             _body.GibBody(xform.ParentUid, true);
             args.Handled = true;
         }

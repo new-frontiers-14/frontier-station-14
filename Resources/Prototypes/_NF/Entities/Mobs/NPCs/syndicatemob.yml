@@ -22,6 +22,9 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
+  - type: Buckle
+    disable: true
+  - type: AutoWakeUp
 
 # Humans
 - type: entity
@@ -164,7 +167,7 @@
         - SyndicateNavalGrenadierGear
     - type: AutoImplant
       implants:
-      - DeathAcidifierImplant
+      - DeathAcidifierImplantNF
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 5
       rechargeSound:
@@ -236,16 +239,12 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCommanderGear
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        140: Dead # No crit state to ensure that mob explodes ASAP
     - type: Stamina
       critThreshold: 500 # Extra hard to incapacitate and loot
     - type: AutoImplant
       implants:
       - DeathRattleImplant
-      - DeathAcidifierImplant
+      - DeathAcidifierImplantNF
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.5
       rechargeSound:
