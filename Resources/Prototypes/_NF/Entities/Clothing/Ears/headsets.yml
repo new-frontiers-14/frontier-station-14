@@ -7,3 +7,16 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
+
+- type: entity
+  parent: ClothingHeadsetCargo
+  id: ClothingHeadsetMailCarrier
+  name: mail carrier headset
+  description: A headset used by mail carrier employees.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyService
+      - EncryptionKeyCargo
+      - EncryptionKeyCommon
