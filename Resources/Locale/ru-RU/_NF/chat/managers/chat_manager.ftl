@@ -1,0 +1,9 @@
+chat-speech-verb-vulpkanin-1 = рычит
+chat-speech-verb-vulpkanin-2 = лает
+chat-speech-verb-vulpkanin-3 = гавкает
+chat-speech-verb-vulpkanin-4 = тявкает
+chat-speech-verb-vulpkanin-5 = воет
+chat-speech-verb-felinid-1 = мяукает
+chat-speech-verb-felinid-2 = мяфает
+chat-speech-verb-felinid-3 = мряфает
+chat-speech-verb-felinid-4 = мурлычет

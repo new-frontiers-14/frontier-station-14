@@ -1,0 +1,17 @@
+ent-SignalSwitch = переключатель сигнала
+    .desc = Это переключатель питания устройств.
+ent-SignalButton = кнопка сигнала
+    .desc = Эта кнопка что-то активирует.
+ent-ApcNetSwitch = переключатель сети ЛКП
+    .desc = Это переключатель источников света, использующих локальный контроллер питания.
+ent-TwoWayLever = двухпозиционный рычаг
+    .desc = Двухпозиционный рычаг.
+ent-SignalSwitchDirectional = переключатель сигнала
+    .suffix = Направленный
+    .desc = { ent-SignalSwitch.desc }
+ent-SignalButtonDirectional = кнопка сигнала
+    .suffix = Направленный
+    .desc = { ent-SignalButton.desc }
+ent-ApcNetSwitchDirectional = переключатель сети ЛКП
+    .suffix = Направленный
+    .desc = { ent-ApcNetSwitch.desc }
