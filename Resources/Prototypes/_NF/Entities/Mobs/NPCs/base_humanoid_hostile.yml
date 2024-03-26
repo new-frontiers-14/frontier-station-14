@@ -128,3 +128,20 @@
         Base: crit
       Dead:
         Base: dead
+
+- type: entity
+  save: false
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage # Slight passive regen.
+    allowedStates:
+    - Alive
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Airloss: -1
+        Toxin: -3
+        Genetic: -3

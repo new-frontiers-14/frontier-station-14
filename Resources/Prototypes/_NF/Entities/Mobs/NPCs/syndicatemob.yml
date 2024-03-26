@@ -5,6 +5,9 @@
   parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
+  - type: Body
+    prototype: HumanSyntheticOrgans # New set of synthetic organs grants elevated resistance to toxins and poisons
+    requiredLegs: 2
   - type: NpcFactionMember
     factions:
       - Syndicate
@@ -239,7 +242,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        140: Dead # No crit state to ensure that mob explodes ASAP
+        100: Dead # No crit state to ensure that mob explodes ASAP
     - type: Stamina
       critThreshold: 500 # Extra hard to incapacitate and loot
     - type: AutoImplant
