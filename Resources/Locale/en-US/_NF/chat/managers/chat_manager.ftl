@@ -9,6 +9,11 @@ chat-speech-verb-felinid-2 = mews
 chat-speech-verb-felinid-3 = meows
 chat-speech-verb-felinid-4 = purrs out
 
+chat-speech-verb-harpy-1 = chirps
+chat-speech-verb-harpy-2 = tweets
+chat-speech-verb-harpy-3 = caws
+chat-speech-verb-harpy-4 = trills
+
 chat-speech-verb-goblin-1 = jabbers
 chat-speech-verb-goblin-2 = vokers
 chat-speech-verb-goblin-3 = blurts out

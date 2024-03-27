@@ -161,6 +161,14 @@
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
+      # Frontier Start
+      - Durathread
+      - Plasteel
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingHeadHelmetEVALarge
+      - ClothingOuterHardsuitEVA
+      # Frontier End
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -175,6 +183,11 @@
        - MagazineBoxRifle
        - MagazineBoxLightRifle
        - GrenadeBlast
+       # Frontier Start
+       - ClothingHeadHelmetCosmonaut
+       - ClothingHeadHelmetSyndicate
+       - ClothingOuterHardsuitSyndicate
+       # Frontier End
     emagDynamicRecipes:
       - CartridgePistolRubber
       - CartridgeMagnumRubber
@@ -270,6 +283,8 @@
       - AnomalyLocatorWide
       - RCD
       - RCDAmmo
+      - ShipyardRCD # Frontier
+      - ShipyardRCDAmmo # Frontier
       - Scalpel
       - Retractor
       - Cautery
@@ -336,6 +351,26 @@
       - DeviceQuantumSpinInverter
       - UtilityBeltChiefEngineer
       - JetpackVoid
+      # Frontier Start
+      - ClothingShoesBootsMagAdv
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitAtmos
+      - ClothingOuterHardsuitEngineering
+      - ClothingOuterHardsuitSpatio
+      - ClothingOuterHardsuitSalvage
+      - ClothingOuterHardsuitClown
+      - ClothingOuterHardsuitMime
+      - ClothingOuterHardsuitCap
+      - ClothingOuterHardsuitEngineeringWhite
+      - ClothingOuterHardsuitMedical
+      - ClothingOuterHardsuitRd
+      - ClothingOuterHardsuitLuxury
+      - ClothingOuterHardsuitMercenary
+      - ClothingOuterHardsuitPilot
+      - ClothingOuterHardsuitMaximPrototype
+      - ClothingHeadHelmetAncient
+      - ClothingOuterHardsuitAncientEVA
+      # Frontier End
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -343,6 +378,10 @@
       - WeaponAdvancedLaser
       - WeaponLaserCannon
       - WeaponXrayCannon
+      # Frontier Start
+      - ClothingOuterHardsuitPirateEVA
+      - ClothingOuterHardsuitSundie
+      # Frontier End
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -394,6 +433,10 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    # Frontier Start
+    - TilePrinterNFMachineCircuitboard
+    - SalvageTechFabCircuitboardNF
+    # Frontier End
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -702,7 +745,13 @@
       - ShellShotgunPractice
       - WeaponLaserCarbinePractice
       - WeaponDisablerPractice
-      - ThrusterSecurityMachineCircuitboard # Frontier
+      # Frontier Start      
+      - ThrusterSecurityMachineCircuitboard
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingHeadHelmetEVALarge
+      - ClothingOuterHardsuitEVAPrisoner
+      # Frontier End
     dynamicRecipes:
       - CartridgeLightRifleIncendiary
       - CartridgeMagnumIncendiary
@@ -757,6 +806,12 @@
       - ShuttleGunPerforatorCircuitboard
       - ShuttleGunFriendshipCircuitboard
       - ShuttleGunDusterCircuitboard
+      # Frontier Start
+      - ClothingOuterHardsuitSecurity
+      - ClothingOuterHardsuitSecuritypatrol
+      - ClothingOuterHardsuitWarden
+      - ClothingOuterHardsuitBrigmedic
+      # Frontier End
   - type: MaterialStorage
     whitelist:
       tags:
@@ -867,6 +922,10 @@
       - Saw
       - Hemostat
       - ClothingEyesGlassesChemical
+      # Frontier Start
+      - ClothingOuterSuitEmergency
+      - ClothingOuterHardsuitVoidParamed
+      # Frontier End
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -874,6 +933,9 @@
       - SyringeBluespace
       - Jug
       - SyringeCryostasis
+      # Frontier Start
+      - ClothingOuterHardsuitMedical
+      # Frontier End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

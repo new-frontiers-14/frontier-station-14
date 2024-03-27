@@ -1,0 +1,37 @@
+# Tier 2
+
+- type: technology
+  id: HardsuitsArmored
+  name: research-technology-hardsuits-armored
+  icon:
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSecuritypatrol
+  - ClothingOuterHardsuitMercenary
+  - ClothingOuterHardsuitSundie
+  - ClothingOuterHardsuitPirateEVA
+  technologyPrerequisites:
+  - AdvancedRiotControl
+  - HardsuitsAdvanced
+
+# Tier 3
+
+- type: technology
+  id: HardsuitsArmoredAdvanced
+  name: research-technology-hardsuits-armored-advanced
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSecurity
+  - ClothingOuterHardsuitWarden
+  - ClothingOuterHardsuitBrigmedic
+  technologyPrerequisites:
+  - HardsuitsArmored

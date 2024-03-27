@@ -25,3 +25,29 @@
       - Dead
     - type: Rattle
       radioChannel: "Medical"
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DeathAcidifierImplantNF
+  name: death-acidifier implant
+  description: This implant melts the user and their equipment upon death.
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    permanent: true
+#    implantAction: ActionActivateDeathAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+    - Critical
+#  - type: TriggerImplantAction
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - DeathAcidifier

@@ -7,6 +7,7 @@ using Content.Shared.Speech;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Threading.Tasks; // Frontier
 
 namespace Content.Server.Bed.Sleep
 {
@@ -38,6 +39,16 @@ namespace Content.Server.Bed.Sleep
 
             // TODO remove hardcoded time.
             _actionsSystem.SetCooldown(component.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(15));
+
+            if (TryComp<AutoWakeUpComponent>(uid, out var autoWakeUp))  // Frontier
+            {
+                Task.Run(async () =>
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    ev = new SleepStateChangedEvent(false);
+                    RaiseLocalEvent(uid, ev);
+                });
+            }  // Frontier
         }
 
         private void OnShutdown(EntityUid uid, SleepingComponent component, ComponentShutdown args)

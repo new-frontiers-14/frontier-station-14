@@ -31,7 +31,7 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
 
         // Frontier - adds tabletop variants
         if (args.EntityManager.TryGetComponent(container.Owner, out ConstructionComponent? constructionComponent)
-            && constructionComponent.Graph == "GraphComputerTabletop"
+            && constructionComponent.Graph == "ComputerTabletop"
             && args.EntityManager.TryGetComponent(board, out ComputerTabletopBoardComponent? tabletopComputer))
         {
             return tabletopComputer.Prototype;
