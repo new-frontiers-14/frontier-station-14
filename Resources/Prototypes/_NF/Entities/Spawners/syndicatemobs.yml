@@ -182,3 +182,20 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCatSyndy
+
+- type: entity
+  name: Syndicate Naval Mime Spawner
+  id: SpawnMobSyndicateNavalMime
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Melee/chainsaw.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalMime

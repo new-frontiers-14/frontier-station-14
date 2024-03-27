@@ -288,3 +288,22 @@
       - FullAuto
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Syndicate Mime
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalMime
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMimeGear
+    - type: Stamina
+      critThreshold: 500 # Extra hard to incapacitate and loot
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 6
+    - type: Advertise
+      pack: mimehumanoidchatter
+      minimumWait: 120 # 1 * 2
+      maximumWait: 240 # 2 * 60
+      NextAdvertisementTime: 0
