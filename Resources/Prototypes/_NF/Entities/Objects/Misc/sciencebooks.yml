@@ -1,0 +1,51 @@
+- type: entity
+  parent: BookBase
+  id: BookScienceTextbook
+  name: "Scientific Academia Vol.I"
+  description: Volume One of the Science Textbook series.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+        - state: book_science
+    - type: Paper
+      content: book-text-academia-volumeone
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookSciencePhilospher
+  name: "Cooking with the Philospher's Stone"
+  description: A CentCom issued mixologist's book? All in the name of science, I guess.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+        - state: book_bar
+    - type: Paper
+      content: book-text-science-philospher
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookScienceDwarven
+  name: "Dwarven Guide to Free Thinking"
+  description: A CentCom issued account of a fisherman's journey. They really expect you to read this?
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+        - state: book_fish
+    - type: Paper
+      content: book-text-science-dwarven
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookScienceClown
+  name: "Honker's Hilarious Tight-Five"
+  description: A CentCom issued Standup Comedy Script..? This is getting ridiculous!
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+        - state: book3
+    - type: Paper
+      content: book-text-science-clown
