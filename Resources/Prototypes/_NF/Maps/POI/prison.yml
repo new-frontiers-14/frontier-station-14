@@ -1,0 +1,16 @@
+- type: gameMap
+  id: prison
+  mapName: 'prison'
+  mapPath: Maps/_NF/POI/Prison.yml
+  minPlayers: 0
+  stations:
+    prison:
+      stationProto: SecurityFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Prison'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Warden: [ 1, 1 ]
+            Prisoner: [ 0, 0 ]

@@ -123,7 +123,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
-        var prision = "Maps/_NF/POI/Prision.yml";
+        var prison = "Maps/_NF/POI/prison.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -169,19 +169,19 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
-        if (_map.TryLoad(mapId, prision, out var prisionUids, new MapLoadOptions
+        if (_map.TryLoad(mapId, prison, out var prisonUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(500f, 700f)
             }))
         {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("prision", out var stationProto))
+            if (_prototypeManager.TryIndex<GameMapPrototype>("prison", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["prision"], prisionUids);
+                _station.InitializeNewStation(stationProto.Stations["prison"], prisonUids);
             }
 
-            var meta = EnsureComp<MetaDataComponent>(prisionUids[0]);
-            _meta.SetEntityName(prisionUids[0], "Prision", meta);
-            _shuttle.SetIFFColor(prisionUids[0], new Color(1f, 0.2f, 0.2f));
+            var meta = EnsureComp<MetaDataComponent>(prisonUids[0]);
+            _meta.SetEntityName(prisonUids[0], "prison", meta);
+            _shuttle.SetIFFColor(prisonUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
