@@ -1,0 +1,131 @@
+﻿- type: entity
+  abstract: true
+  parent:
+    - BaseMob
+    - MobDamageable
+    - MobCombat
+  id: SimpleArtifactMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
+  suffix: AI
+  components:
+    - type: NpcFactionMember
+      factions:
+        - ArtifactConstruct
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+      blackboard:
+        NavClimb: !type:Bool
+          true
+        NavSmash: !type:Bool
+          true
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: Dead
+    - type: Body
+    - type: Climbing
+    - type: NameIdentifier
+      group: GenericNumber
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 0.7
+        80: 0.5
+    - type: ZombieImmune # Artifact constructs should not be able to become zombie
+    - type: MobPrice
+      price: 1000 # Living critters are valuable in space.
+
+- type: entity
+  parent: [ SimpleArtifactMobBase, FlyingMobBase ]
+  id: BaseMobArtifactConstruct
+  name: artifact construct
+  description: A towering golem crafted from twisted metal and ancient stones.
+  abstract: true
+  components:
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/Aliens/grim_forged.rsi
+    - type: MovementAlwaysTouching
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 1
+      baseSprintSpeed: 1.5
+    - type: StatusEffects
+      allowed:
+        - SlowedDown
+        - Electrocution
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: CombatMode
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 20
+      animation: WeaponArcFist
+    - type: ReplacementAccent
+      accent: genericAggressive
+
+- type: entity
+  parent: BaseMobArtifactConstruct
+  id: MobGrimForged
+  name: artifact construct 1
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: move
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: flash
+          shader: unshaded
+        - map: [ "clownedon" ]
+          sprite: "_NF/Effects/creampie_64.rsi"
+          state: "creampie_grimforged"
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.CreamPiedVisuals.Creamed:
+          clownedon:
+            True: { visible: true }
+            False: { visible: false }
+    - type: AmbientSound
+      volume: -6
+      range: 8
+      sound:
+        path: /Audio/_NF/Ambience/force-field.ogg
+    - type: CreamPied
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: move
+        Critical:
+          Base: dead
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        50: Dead
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: Stamina
+      critThreshold: 300
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLightLaser
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: Gun
+      fireRate: 1
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg

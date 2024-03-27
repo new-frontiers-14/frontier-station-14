@@ -1,18 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 using Content.Server.Cargo.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Events;
-using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
-using Content.Shared.CCVar;
 using Content.Shared.Tiles;
 using Content.Shared.Xenoarchaeology.XenoArtifacts;
 using JetBrains.Annotations;
-using Robust.Shared.Audio;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
@@ -28,6 +25,9 @@ public sealed partial class ArtifactSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+
 
     public override void Initialize()
     {
@@ -133,6 +133,28 @@ public sealed partial class ArtifactSystem : EntitySystem
         GenerateArtifactNodeTree(uid, ref component.NodeTree, nodeAmount);
         var firstNode = GetRootNode(component.NodeTree);
         EnterNode(uid, ref firstNode, component);
+    }
+
+    public void DisintegrateArtifact(EntityUid uid, float probabilityMin, float probabilityMax, float range)
+    {
+        // Make a chance between probabilityMin and probabilityMax
+        var randomChanceForDisintegration = _random.NextFloat(probabilityMin, probabilityMax);
+        var willDisintegrate = _random.Prob(randomChanceForDisintegration);
+
+        if (willDisintegrate)
+        {
+            var artifactCoord = _transform.GetMapCoordinates(uid);
+            var flashEntity = Spawn("EffectFlashBluespace", artifactCoord);
+            _transform.AttachToGridOrMap(flashEntity);
+
+            var dx = _random.NextFloat(-range, range);
+            var dy = _random.NextFloat(-range, range);
+            var spawnCord = artifactCoord.Offset(new Vector2(dx, dy));
+            var mobEntity = Spawn("MobGrimForged", spawnCord);
+            _transform.AttachToGridOrMap(mobEntity);
+
+            _entityManager.DeleteEntity(uid);
+        }
     }
 
     /// <summary>
