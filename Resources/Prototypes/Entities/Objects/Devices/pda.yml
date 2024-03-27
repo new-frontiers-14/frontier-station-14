@@ -81,8 +81,8 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - BountyContractsCartridge
       - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -184,6 +184,13 @@
     accentVColor: "#A32D26"
   - type: Icon
     state: pda-interncadet
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -421,6 +428,13 @@
     borderColor: "#6f6192"
   - type: Icon
     state: pda-lawyer
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -476,6 +490,13 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-hop
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -616,6 +637,13 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-hos
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -631,6 +659,13 @@
     accentVColor: "#949137"
   - type: Icon
     state: pda-warden
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -645,6 +680,13 @@
     borderColor: "#A32D26"
   - type: Icon
     state: pda-security
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BasePDA
@@ -921,6 +963,13 @@
     borderColor: "#774705"
   - type: Icon
     state: pda-detective
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: BaseMedicalPDA
@@ -937,6 +986,17 @@
     accentVColor: "#d7d7d0"
   - type: Icon
     state: pda-brigmedic
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: ClownPDA
@@ -1022,6 +1082,13 @@
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReadCartridge
+      - BountyContractsCartridge # Frontier
+      - CrimeAssistCartridge # DeltaV - Crime Assist
 
 - type: entity
   parent: SyndiPDA
