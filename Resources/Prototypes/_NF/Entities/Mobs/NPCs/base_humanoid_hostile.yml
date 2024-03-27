@@ -44,7 +44,7 @@
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
-      - id: FoodMeat
+      - id: FoodMeatHuman
         amount: 5
 # AI package
   - type: HTN
@@ -59,6 +59,11 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband
   - type: Advertise
     pack: syndicatehumanoidchatter # Don't have neutral one
     minimumWait: 120 # 1 * 2
@@ -128,6 +133,11 @@
         Base: crit
       Dead:
         Base: dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband
 
 - type: entity
   save: false

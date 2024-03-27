@@ -7,6 +7,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalCaptain
@@ -20,6 +24,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalEngineer
@@ -33,6 +41,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Melee/chainsaw.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalMedic
@@ -46,6 +58,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalSecondOfficer
@@ -59,6 +75,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalOperator
@@ -72,6 +92,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalGrenadier
@@ -85,6 +109,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalSaboteur
@@ -98,6 +126,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Melee/shiv.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobExperimentationVictim
@@ -111,6 +143,10 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalCommander
@@ -124,6 +160,25 @@
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalDeckhand
+
+- type: entity
+  name: syndicat
+  id: SpawnMobCatSyndy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Pets/cat.rsi
+        state: syndicat
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCatSyndy
