@@ -1,4 +1,4 @@
-using Content.Server.Body.Systems;
+﻿using Content.Server.Body.Systems;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -64,17 +64,5 @@ namespace Content.Server.Body.Components
 
             public void Increment(float delta) => Lifetime += delta;
         }
-
-        /// <summary>
-        ///     Frontier - Used by goblin for fliping the food quility effects
-        /// </summary>
-        [DataField]
-        public bool ReverseFoodQuality;
-
-        /// <summary>
-        ///     Frontier - Allow eating trash
-        /// </summary>
-        [DataField]
-        public bool TrashDigestion;
     }
 }
