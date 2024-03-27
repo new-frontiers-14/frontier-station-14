@@ -453,6 +453,7 @@
       - cobwebs
       - bread
   - type: Food
+    quality: Toxin # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat
@@ -475,7 +476,6 @@
     tags:
     - Meat
     - Bread
-# Tastes like bread, cobwebs.
 
 - type: entity
   name: spider meat bread slice
@@ -488,6 +488,7 @@
       - cobwebs
       - bread
   - type: Food
+    quality: Toxin # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat-slice
@@ -800,6 +801,8 @@
           Quantity: 4
         - ReagentId: Mold
           Quantity: 7
+  - type: Food # Frontier, New Food Quality System
+    quality: Toxin # Frontier, New Food Quality System
 # Tastes like decaying fungus.
 
 - type: entity
