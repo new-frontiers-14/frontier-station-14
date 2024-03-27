@@ -123,6 +123,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
+        var factory = "/Maps/_NF/POI/factory.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -286,6 +287,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(labUids[0]);
             _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
             _shuttle.SetIFFColor(labUids[0], factionColor);
+        }
+
+             if (_map.TryLoad(mapId, factory, out var factoryUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(2250f, 4600f)
+            }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(factoryUids[0]);
+            _meta.SetEntityName(factoryUids[0], "Millenia Manufacturing", meta);
+            _shuttle.SetIFFColor(factoryUids[0], factionColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
