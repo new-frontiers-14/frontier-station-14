@@ -94,14 +94,14 @@
       types:
         Blunt: 10
   - type: CargoSellBlacklist
-  - type: Food # Frontier - Moth food
-    requiresSpecialDigestion: true
+  - type: Food # Frontier
+    quality: Trash # Frontier, New Food Quality System
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 1
         reagents:
-        - ReagentId: Nothing
+        - ReagentId: TrashJuice
           Quantity: 1
 
 # This empty parcel is allowed to exist and evade the tests for the admin
