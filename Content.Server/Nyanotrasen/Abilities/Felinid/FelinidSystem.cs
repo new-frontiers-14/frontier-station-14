@@ -6,12 +6,14 @@ using Content.Shared.Item;
 using Content.Shared.Inventory;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
-using Content.Shared.Nutrition.Components;
+using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -19,7 +21,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nyanotrasen.Abilities;
 
 namespace Content.Server.Abilities.Felinid
@@ -29,8 +30,8 @@ namespace Content.Server.Abilities.Felinid
 
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+        [Dependency] private readonly HungerSystem _hungerSystem = default!;
         [Dependency] private readonly VomitSystem _vomitSystem = default!;
-        [Dependency] private readonly HungerSystem _hunger = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -151,7 +152,8 @@ namespace Content.Server.Abilities.Felinid
 
             _audio.PlayPvs("/Audio/Items/eatfood.ogg", uid, AudioHelpers.WithVariation(0.15f));
 
-            _hunger.ModifyHunger(uid, 70f, hunger);
+            _hungerSystem.ModifyHunger(uid, 70f, hunger);
+
             _actionsSystem.RemoveAction(uid, component.EatMouseAction);
         }
 
