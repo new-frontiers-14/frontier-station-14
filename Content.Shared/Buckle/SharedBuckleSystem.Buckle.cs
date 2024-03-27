@@ -323,6 +323,9 @@ public abstract partial class SharedBuckleSystem
         if (attemptEvent.Cancelled)
             return false;
 
+        if (buckleComp.Disable) // Frontier
+            return false; // Frontier
+
         return true;
     }
 
