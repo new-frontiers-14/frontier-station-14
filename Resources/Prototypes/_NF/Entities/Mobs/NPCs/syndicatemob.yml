@@ -23,9 +23,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: syndicatehumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 0
+    minimumWait: 20
+    maximumWait: 120 # 2 * 60
+    NextAdvertisementTime: 5
   - type: Buckle
     disable: true
   - type: AutoWakeUp
@@ -92,7 +92,7 @@
       prototypes:
         - SyndicateNavalMedicGear
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 4
+      rechargeCooldown: 2
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
@@ -142,7 +142,7 @@
       prototypes:
         - SyndicateNavalOperatorGear
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 0.5
+      rechargeCooldown: 1.5
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
@@ -151,8 +151,8 @@
       count: 10
     - type: Gun
       useKey: false
-      minAngle: 2
-      maxAngle: 16
+      minAngle: 10
+      maxAngle: 30
       fireRate: 10
       angleIncrease: 3
       angleDecay: 16
@@ -250,7 +250,7 @@
       - DeathRattleImplant
       - DeathAcidifierImplantNF
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 0.5
+      rechargeCooldown: 1.5
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
