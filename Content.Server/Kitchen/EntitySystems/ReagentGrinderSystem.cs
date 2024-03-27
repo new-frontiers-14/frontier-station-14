@@ -81,6 +81,15 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 foreach (var item in inputContainer.ContainedEntities.ToList())
                 {
+                    // Frontier code for regent grinder tier 2 - Start
+                    TryComp<ExtractableComponent>(item, out var extractable);
+                    if (!reagentGrinder.Advanced && extractable!.Advanced)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("advanced-reagent-grinder-component-cannot-grind-entity-message"), uid, PopupType.MediumCaution);
+                        continue;
+                    }
+                    // Frontier code for regent grinder tier 2 - End
+
                     var solution = active.Program switch
                     {
                         GrinderProgram.Grind => GetGrindSolution(item),

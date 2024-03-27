@@ -49,6 +49,12 @@ namespace Content.Server.Kitchen.Components
         public SoundSpecifier JuiceSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/juicer.ogg");
 
         public EntityUid? AudioStream;
+
+        /// <summary>
+        /// Frontier - Tier 2 reagent grinder
+        /// </summary>
+        [DataField("advanced")]
+        public bool Advanced;
     }
 
     [Access(typeof(ReagentGrinderSystem)), RegisterComponent]

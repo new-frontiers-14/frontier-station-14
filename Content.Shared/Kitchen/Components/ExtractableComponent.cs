@@ -1,4 +1,4 @@
-﻿using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Kitchen.Components;
@@ -14,4 +14,10 @@ public sealed partial class ExtractableComponent : Component
 
     [DataField("grindableSolutionName")]
     public string? GrindableSolution;
+
+    /// <summary>
+    /// Frontier - Tier 2 reagent grinder required
+    /// </summary>
+    [DataField("advanced")]
+    public bool Advanced;
 };
