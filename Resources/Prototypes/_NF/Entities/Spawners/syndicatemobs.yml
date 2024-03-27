@@ -199,3 +199,20 @@
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalMime
+
+- type: entity
+  name: Syndicate Naval Chemwarrior Spawner
+  id: SpawnMobSyndicateNavalChemwarrior
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalChemwarrior

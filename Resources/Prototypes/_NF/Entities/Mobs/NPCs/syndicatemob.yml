@@ -307,3 +307,48 @@
       minimumWait: 120 # 1 * 2
       maximumWait: 240 # 2 * 60
       NextAdvertisementTime: 0
+
+- type: entity
+  name: Syndicate Chemwarrior
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalChemwarrior
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGear
+#  - type: RechargeBasicEntityAmmo
+#    rechargeCooldown: 0.75
+#  - type: BasicEntityAmmoProvider
+#    proto: BulletAcid
+#    capacity: 2
+#    count: 2
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 2000 #100 shots
+        reagents:
+        - ReagentId: THC
+          Quantity: 200
+        - ReagentId: Phlogiston
+          Quantity: 50
+        - ReagentId: ChlorineTrifluoride
+          Quantity: 50
+        - ReagentId: PolytrinicAcid
+          Quantity: 900
+        - ReagentId: Napalm
+          Quantity: 800
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    proto: BulletWaterShot
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 50
+    minTransferAmount: 50
+    canChangeTransferAmount: false
