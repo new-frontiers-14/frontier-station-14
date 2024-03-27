@@ -1,0 +1,10 @@
+ent-MusicBasePDA = { "" }
+    .desc = { "" }
+ent-MercenaryPDA = mercenary PDA
+    .desc = This PDA smells of war.
+ent-PilotPDA = pilot PDA
+    .desc = This PDA smells like thruster exhaust fumes.
+ent-StcPDA = station traffic controller PDA
+    .desc = Declare emergencies in style!
+ent-SecurityGuardPDA = security guard PDA
+    .desc = Red to hide the stains of passenger blood.

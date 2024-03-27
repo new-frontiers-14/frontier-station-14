@@ -1,5 +1,7 @@
 ent-BaseGameRule = { "" }
     .desc = { "" }
+ent-SubGamemodesRule = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
 ent-DeathMatch31 = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-InactivityTimeRestart = { ent-BaseGameRule }
@@ -23,4 +25,8 @@ ent-Zombie = { ent-BaseGameRule }
 ent-BasicStationEventScheduler = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-RampingStationEventScheduler = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-Adventure = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
+ent-BasicRoundstartVariation = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }

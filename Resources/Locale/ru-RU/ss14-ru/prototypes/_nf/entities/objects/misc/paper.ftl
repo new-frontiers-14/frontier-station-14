@@ -1,0 +1,9 @@
+ent-RubberStampPsychologist = psychologist rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampLawyer = lawyer rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampStc = station traffic controller's rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }

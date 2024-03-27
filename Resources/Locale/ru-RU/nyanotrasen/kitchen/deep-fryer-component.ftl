@@ -26,7 +26,7 @@ deep-fryer-button-scoop-vat-tooltip = Зачерпнуть немного жид
 deep-fryer-button-clear-slag = Удалить осадок
 deep-fryer-button-clear-slag-tooltip = Удалить отходы из ёмкости с маслом. Вам необходимо держать емкость для жидкости.
 deep-fryer-button-remove-all-items = Удалить все предметы
-deep-fryer-button-remove-all-items-tooltip =  Удалите все предметы из корзин фритюрницы одновременно.
+deep-fryer-button-remove-all-items-tooltip = Удалите все предметы из корзин фритюрницы одновременно.
 
 ## DeepFriedComponent
 

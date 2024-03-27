@@ -1,0 +1,12 @@
+ent-MailEngineeringCables = { ent-BaseMail }
+    .suffix = cables
+    .desc = { ent-BaseMail.desc }
+ent-MailEngineeringKudzuDeterrent = { ent-BaseMail }
+    .suffix = antikudzu
+    .desc = { ent-BaseMail.desc }
+ent-MailEngineeringSheetGlass = { ent-BaseMail }
+    .suffix = sheetglass
+    .desc = { ent-BaseMail.desc }
+ent-MailEngineeringWelderReplacement = { ent-BaseMail }
+    .suffix = welder
+    .desc = { ent-BaseMail.desc }

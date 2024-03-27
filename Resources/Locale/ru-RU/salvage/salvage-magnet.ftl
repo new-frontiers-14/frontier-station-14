@@ -32,7 +32,7 @@ dungeon-config-proto-ClusterAsteroid = Астероидный кластер
 dungeon-config-proto-SpindlyAsteroid = Спираль астероидов
 dungeon-config-proto-SwissCheeseAsteroid = Фрагменты астероидов
 # Wrecks
-salvage-map-proto-Small1 = Инженерное хранилище	
+salvage-map-proto-Small1 = Инженерное хранилище
 salvage-map-proto-Small2 = Игровой уголок
 salvage-map-proto-Small3 = Прачечная
 salvage-map-proto-Small4 = Обломки бара

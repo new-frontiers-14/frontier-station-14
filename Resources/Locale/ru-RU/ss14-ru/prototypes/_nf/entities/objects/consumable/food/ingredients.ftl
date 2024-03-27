@@ -1,0 +1,12 @@
+ent-ReagentContainerSalt = salt container
+    .desc = A big container of salt. Good for cooking!
+ent-ReagentContainerPepper = pepper container
+    .desc = A big container of pepper. Good for cooking!
+ent-ReagentContainerRaisin = raisin bag
+    .desc = A big bag of raisin. Good for baking!
+ent-ReagentContainerChocolate = chocolate chips bag
+    .desc = A big bag of chocolate chips. Good for cooking!
+ent-DrinkKegPlasticKetchup = ketchup keg
+    .desc = { ent-DrinkKegPlastic.desc }
+ent-DrinkKegPlasticMustard = mustard keg
+    .desc = { ent-DrinkKegPlastic.desc }
