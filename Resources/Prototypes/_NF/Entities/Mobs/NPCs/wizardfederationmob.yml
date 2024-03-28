@@ -43,6 +43,7 @@
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
   - type: AutoWakeUp
+  - type: MovementAlwaysTouching
 
 # Humans
 - type: entity
@@ -191,6 +192,7 @@
   - MobNonHumanHostileBase
   id: WaterElementalConjured
   components:
+  - type: MovementAlwaysTouching
   - type: NoSlip
   - type: NpcFactionMember
     factions:
