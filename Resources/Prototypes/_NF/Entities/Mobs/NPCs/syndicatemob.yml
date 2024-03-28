@@ -5,12 +5,16 @@
   parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
+  - type: Body
+    prototype: HumanSyntheticOrgans # New set of synthetic organs grants elevated resistance to toxins and poisons
+    requiredLegs: 2
   - type: NpcFactionMember
     factions:
       - Syndicate
   - type: AutoImplant
     implants:
     - DeathRattleImplant
+    - DeathAcidifierImplantNF
 #    - DeathAcidifierImplant
 #    - MicroBombImplant
   - type: RechargeBasicEntityAmmo
@@ -19,9 +23,9 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: syndicatehumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 0
+    minimumWait: 20
+    maximumWait: 120 # 2 * 60
+    NextAdvertisementTime: 5
   - type: Buckle
     disable: true
   - type: AutoWakeUp
@@ -88,7 +92,7 @@
       prototypes:
         - SyndicateNavalMedicGear
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 4
+      rechargeCooldown: 2
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
@@ -138,7 +142,7 @@
       prototypes:
         - SyndicateNavalOperatorGear
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 0.5
+      rechargeCooldown: 1.5
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
@@ -147,8 +151,8 @@
       count: 10
     - type: Gun
       useKey: false
-      minAngle: 2
-      maxAngle: 16
+      minAngle: 10
+      maxAngle: 30
       fireRate: 10
       angleIncrease: 3
       angleDecay: 16
@@ -246,7 +250,7 @@
       - DeathRattleImplant
       - DeathAcidifierImplantNF
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 0.5
+      rechargeCooldown: 1.5
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
@@ -285,3 +289,67 @@
       - FullAuto
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Syndicate Mime
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalMime
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMimeGear
+    - type: Stamina
+      critThreshold: 500 # Extra hard to incapacitate and loot
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 6
+    - type: Advertise
+      pack: mimehumanoidchatter
+      minimumWait: 120 # 1 * 2
+      maximumWait: 240 # 2 * 60
+      NextAdvertisementTime: 0
+
+- type: entity
+  name: Syndicate Chemwarrior
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalChemwarrior
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGear
+#  - type: RechargeBasicEntityAmmo
+#    rechargeCooldown: 0.75
+#  - type: BasicEntityAmmoProvider
+#    proto: BulletAcid
+#    capacity: 2
+#    count: 2
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 2000 #100 shots
+        reagents:
+        - ReagentId: THC
+          Quantity: 200
+        - ReagentId: Phlogiston
+          Quantity: 50
+        - ReagentId: ChlorineTrifluoride
+          Quantity: 50
+        - ReagentId: PolytrinicAcid
+          Quantity: 900
+        - ReagentId: Napalm
+          Quantity: 800
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    proto: BulletWaterShot
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 50
+    minTransferAmount: 50
+    canChangeTransferAmount: false

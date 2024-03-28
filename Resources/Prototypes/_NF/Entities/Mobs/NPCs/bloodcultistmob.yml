@@ -17,6 +17,8 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
 
 # Humans
 - type: entity
@@ -134,6 +136,7 @@
     factions:
       - BloodCultNF
   - type: MovementIgnoreGravity
+  - type: MovementAlwaysTouching
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Reflect
@@ -194,7 +197,9 @@
 - type: entity
   name: Blood Leech
   suffix: AI, Melee
-  parent: MobNonHumanHostileBase
+  parent:
+  - MobNonHumanHostileBase
+  - MobPassiveRegen
   id: MobBloodCultLeech
   components:
   - type: NpcFactionMember

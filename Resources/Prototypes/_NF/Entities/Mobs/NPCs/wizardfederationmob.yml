@@ -4,6 +4,7 @@
   abstract: true
   parent:
   - MobHumanoidHostileBase
+  - MobPassiveRegen
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -15,10 +16,10 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: AutoImplant
     implants:
-    - DeathAcidifierImplant
+    - DeathAcidifierImplantNF
   - type: Reflect
     enabled: true
-    reflectProb: .25
+    reflectProb: .35
     spread: 90
 # Immunity to Heat damage from being lit on fire
   - type: Flammable
@@ -41,6 +42,8 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
 
 # Humans
 - type: entity
@@ -189,6 +192,7 @@
   - MobNonHumanHostileBase
   id: WaterElementalConjured
   components:
+  - type: MovementAlwaysTouching
   - type: NoSlip
   - type: NpcFactionMember
     factions:

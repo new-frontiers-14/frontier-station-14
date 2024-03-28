@@ -1,0 +1,56 @@
+# Organs with boosted metabolizm
+- type: entity
+  id: OrganSyntheticHeart
+  parent: BaseHumanOrgan
+  name: synthetic heart
+  description: "Whirrs and pumps blood."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 4
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+#    - id: Poison
+#    - id: Narcotic
+#    - id: Toxins
+  - type: Contraband
+
+- type: entity
+  id: OrganSyntheticLiver
+  parent: BaseHumanOrgan
+  name: synthetic liver
+  description: "Filters toxins from the bloodstream at higher rate than old 'ganic liver."
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    groups:
+    - id: Alcohol
+      rateModifier: 10 # removes Alcohol fast
+    - id: Poison
+      rateModifier: 10 # removes Poison fast
+    - id: Narcotic
+      rateModifier: 10 # removes Narcotic fast
+    - id: Toxins
+      rateModifier: 20 # removes Toxins fast
+  - type: Contraband
+
+- type: entity
+  id: OrganSyntheticKidneys
+  parent: BaseHumanOrgan
+  name: synthetic kidneys
+  description: "Filters toxins from the bloodstream at higher rate than old 'ganic liver."
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    removeEmpty: true
+  - type: Contraband

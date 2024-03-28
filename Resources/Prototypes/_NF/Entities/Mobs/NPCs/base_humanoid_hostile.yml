@@ -14,6 +14,33 @@
     thermalRegulationTemperatureThreshold: 25
   - type: MovedByPressure
 
+- type: entity
+  save: false
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage # Slight passive regen.
+    allowedStates:
+    - Alive
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -1
+        Burn: -10
+        Airloss: -1
+        Toxin: -7
+        Genetic: -7
+
+- type: entity
+  save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+
 # Human NPC, uses equipment, immune to vacuum/low pressure
 # but otherwise should be the same as base line human mob
 # Going to use this prototype later for other mobs
@@ -25,6 +52,7 @@
   - MobAtmosNF
   - MobBloodstream
   - MobFlammable
+  - MobLaserReflect
   - BaseMobSpecies
   id: MobHumanoidHostileBase
   components:
@@ -44,7 +72,7 @@
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
-      - id: FoodMeat
+      - id: FoodMeatHuman
         amount: 5
 # AI package
   - type: HTN
@@ -59,6 +87,11 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband
   - type: Advertise
     pack: syndicatehumanoidchatter # Don't have neutral one
     minimumWait: 120 # 1 * 2
@@ -72,6 +105,7 @@
   abstract: true
   parent:
   - MobAtmosNF
+  - MobLaserReflect
   - SimpleSpaceMobBase
   id: MobNonHumanHostileBase
   components:
@@ -128,3 +162,8 @@
         Base: crit
       Dead:
         Base: dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband
