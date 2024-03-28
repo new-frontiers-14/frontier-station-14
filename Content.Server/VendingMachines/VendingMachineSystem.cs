@@ -3,7 +3,6 @@ using Content.Server.Bank;
 using System.Numerics;
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
-using Content.Server.Advertise.EntitySystems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
 using Content.Server.Cargo.Components;
@@ -55,7 +54,6 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
-        [Dependency] private readonly AdvertiseSystem _advertise = default!;
 
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 

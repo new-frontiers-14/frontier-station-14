@@ -12,7 +12,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
-using Content.Shared.Sound.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
@@ -46,8 +45,7 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<MobStateComponent, WakeActionEvent>(OnWakeAction);
             SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<SleepingComponent, GetVerbsEvent<AlternativeVerb>>(AddWakeVerb);
-            // for cpr
-            //SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
+            SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<SleepingComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SleepingComponent, SlipAttemptEvent>(OnSlip);
             SubscribeLocalEvent<SleepingComponent, ConsciousAttemptEvent>(OnConsciousAttempt);
@@ -159,12 +157,14 @@ namespace Content.Server.Bed.Sleep
         /// <summary>
         /// When you click on a sleeping person with an empty hand, try to wake them.
         /// </summary>
-        public void WakeWithHands(EntityUid uid, SleepingComponent component, EntityUid user)
+        private void OnInteractHand(EntityUid uid, SleepingComponent component, InteractHandEvent args)
         {
+            args.Handled = true;
+
             if (!TryWakeCooldown(uid))
                 return;
 
-            TryWaking(uid, user: user);
+            TryWaking(args.Target, user: args.User);
         }
 
         private void OnExamined(EntityUid uid, SleepingComponent component, ExaminedEvent args)
