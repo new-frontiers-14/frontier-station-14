@@ -36,3 +36,21 @@
   - type: SpentAmmoVisuals
     state: emp
     suffix: false
+
+- type: entity
+  parent: SmokeGrenade
+  id: WhitePhosphorusGrenade
+  name: M34 'Willie Pete' Grenade  
+  description: A collaboration of Kesco and Sam's Weaponary Emporium, brings you this old but faithful phosphorous smoke-based incendiary grenade.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/M34.rsi
+  - type: SmokeOnTrigger
+    duration: 5
+    spreadAmount: 10
+    solution:
+      reagents:
+      - ReagentId: Phlogiston
+        Quantity: 10
+      - ReagentId: Napalm
+        Quantity: 10
