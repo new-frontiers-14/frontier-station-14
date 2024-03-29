@@ -7,11 +7,12 @@ namespace Content.Shared.Storage.Components;    // Frontier
 /// <summary>
 /// Applies an ongoing pickup area around the attached entity.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 [NetworkedComponent, AutoGenerateComponentState] // Frontier
 public sealed partial class MagnetPickupComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("nextScan")]
+    [AutoPausedField]
     public TimeSpan NextScan = TimeSpan.Zero;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]

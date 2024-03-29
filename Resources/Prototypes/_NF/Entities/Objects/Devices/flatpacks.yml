@@ -1,0 +1,609 @@
+# Base
+- type: entity
+  parent: BaseFlatpack
+  id: BaseNFFlatpack
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _NF/Objects/Devices/flatpack.rsi
+    layers:
+    - state: engineering_lathe
+
+# Machines
+# Engineering
+- type: entity
+  parent: BaseNFFlatpack
+  id: AutolatheFlatpack
+  name: autolathe flatpack
+  description: A flatpack used for constructing an autolathe.
+  components:
+  - type: Flatpack
+    entity: Autolathe
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: EngineeringTechFabFlatpack
+  name: engineering tech fab flatpack
+  description: A flatpack used for constructing an engineering tech fab.
+  components:
+  - type: Flatpack
+    entity: EngineeringTechFab
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: MachineFlatpackerFlatpack
+  name: flatpacker 1001 flatpack
+  description: A flatpack used for constructing a flatpacker 1001.
+  components:
+  - type: Flatpack
+    entity: MachineFlatpacker
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PowerCellRechargerFlatpack
+  name: cell charger flatpack
+  description: A flatpack used for constructing a cell charger.
+  components:
+  - type: Flatpack
+    entity: PowerCellRecharger
+  - type: StaticPrice
+    price: 55
+  - type: Sprite
+    layers:
+    - state: power_charger
+
+- type: entity
+  parent: PowerCellRechargerFlatpack
+  id: WeaponCapacitorRechargerFlatpack
+  name: recharger flatpack
+  description: A flatpack used for constructing a recharger.
+  components:
+  - type: Flatpack
+    entity: WeaponCapacitorRecharger
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: BorgChargerFlatpack
+  name: borg charger flatpack
+  description: A flatpack used for constructing a borg charger.
+  components:
+  - type: Flatpack
+    entity: BorgCharger
+  - type: StaticPrice
+    price: 55
+  - type: Sprite
+    layers:
+    - state: power_charger
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PortableGeneratorJrPacmanFlatpack
+  name: J.R.P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a J.R.P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorJrPacman
+  - type: Sprite
+    layers:
+    - state: power_generator
+
+- type: entity
+  parent: PortableGeneratorJrPacmanFlatpack
+  id: PortableGeneratorPacmanFlatpack
+  name: P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorPacman
+
+- type: entity
+  parent: PortableGeneratorJrPacmanFlatpack
+  id: PortableGeneratorSuperPacmanFlatpack
+  name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator flatpack
+  description: A flatpack used for constructing a S.U.P.E.R.P.A.C.M.A.N.-type portable generator.
+  components:
+  - type: Flatpack
+    entity: PortableGeneratorSuperPacman
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: AmeControllerUnanchoredFlatpack
+  name: AME controller flatpack
+  description: A flatpack used for constructing an AME controller.
+  components:
+  - type: Flatpack
+    entity: AmeControllerUnanchored
+  - type: Sprite
+    layers:
+    - state: power_console_ame
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: RadiationCollectorFullTankFlatpack
+  name: radiation collector flatpack
+  description: A flatpack used for constructing a radiation collector.
+  components:
+  - type: Flatpack
+    entity: RadiationCollectorFullTank
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: GyroscopeUnanchoredFlatpack
+  name: gyroscope flatpack
+  description: A flatpack used for constructing a gyroscope.
+  components:
+  - type: Flatpack
+    entity: GyroscopeUnanchored
+  - type: Sprite
+    layers:
+    - state: engineering_gyroscope
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: SmallGyroscopeUnanchoredFlatpack
+  name: small gyroscope flatpack
+  description: A flatpack used for constructing a small gyroscope.
+  components:
+  - type: Flatpack
+    entity: SmallGyroscopeUnanchored
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ThrusterUnanchoredFlatpack
+  name: thruster flatpack
+  description: A flatpack used for constructing a thruster.
+  components:
+  - type: Flatpack
+    entity: ThrusterUnanchored
+  - type: Sprite
+    layers:
+    - state: engineering_thruster
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: SmallThrusterUnanchoredFlatpack
+  name: small thruster flatpack
+  description: A flatpack used for constructing a small thruster.
+  components:
+  - type: Flatpack
+    entity: SmallThrusterUnanchored
+
+# Science
+- type: entity
+  parent: BaseNFFlatpack
+  id: ExosuitFabricatorFlatpack
+  name: exosuit fabricator flatpack
+  description: A flatpack used for constructing an exosuit fabricator.
+  components:
+  - type: Flatpack
+    entity: ExosuitFabricator
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_lathe
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: CircuitImprinterFlatpack
+  name: circuit imprinter flatpack
+  description: A flatpack used for constructing a circuit imprinter.
+  components:
+  - type: Flatpack
+    entity: CircuitImprinter
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: ProtolatheFlatpack
+  name: protolathe flatpack
+  description: A flatpack used for constructing a protolathe.
+  components:
+  - type: Flatpack
+    entity: Protolathe
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineArtifactAnalyzerFlatpack
+  name: artifact analyzer flatpack
+  description: A flatpack used for constructing an artifact analyzer.
+  components:
+  - type: Flatpack
+    entity: MachineArtifactAnalyzer
+  - type: Sprite
+    layers:
+    - state: science_artifact_analyzer
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineAnomalyVesselFlatpack
+  name: anomaly vessel flatpack
+  description: A flatpack used for constructing an anomaly vessel.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalyVessel
+  - type: Sprite
+    layers:
+    - state: science_anomaly_vessel
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineAPEFlatpack
+  name: A.P.E. flatpack
+  description: A flatpack used for constructing an A.P.E..
+  components:
+  - type: Flatpack
+    entity: MachineAPE
+  - type: Sprite
+    layers:
+    - state: science_ape
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: ScienceTechFabFlatpack
+  name: science techfab flatpack
+  description: A flatpack used for constructing a science techfab.
+  components:
+  - type: Flatpack
+    entity: ScienceTechFab
+
+# Service
+- type: entity
+  parent: BaseNFFlatpack
+  id: UniformPrinterFlatpack
+  name: uniform printer flatpack
+  description: A flatpack used for constructing an uniform printer.
+  components:
+  - type: Flatpack
+    entity: UniformPrinter
+  - type: Sprite
+    layers:
+    - state: service_lathe
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: ServiceTechFabFlatpack
+  name: service tech fab flatpack
+  description: A flatpack used for constructing a service tech fab.
+  components:
+  - type: Flatpack
+    entity: ServiceTechFab
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: MaterialReclaimerFlatpack
+  name: material reclaimer flatpack
+  description: A flatpack used for constructing a material reclaimer.
+  components:
+  - type: Flatpack
+    entity: MaterialReclaimer
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: HydroponicsTrayEmptyFlatpack
+  name: hydroponics tray flatpack
+  description: A flatpack used for constructing a hydroponics tray.
+  components:
+  - type: Flatpack
+    entity: HydroponicsTrayEmpty
+  - type: Sprite
+    layers:
+    - state: service_tray
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: TilePrinterNFFlatpack
+  name: tile-meister 5000 flatpack
+  description: A flatpack used for constructing a tile-meister 5000.
+  components:
+  - type: Flatpack
+    entity: TilePrinterNF
+
+# Medical
+- type: entity
+  parent: BaseNFFlatpack
+  id: MedicalTechFabFlatpack
+  name: medical tech fab flatpack
+  description: A flatpack used for constructing a medical tech fab.
+  components:
+  - type: Flatpack
+    entity: MedicalTechFab
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: medical_lathe
+
+# Supply
+- type: entity
+  parent: BaseNFFlatpack
+  id: OreProcessorFlatpack
+  name: ore processor flatpack
+  description: A flatpack used for constructing an ore processor.
+  components:
+  - type: Flatpack
+    entity: OreProcessor
+  - type: Sprite
+    layers:
+    - state: supply_lathe
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShuttleGunKineticFlatpack
+  name: PTK-800 "Matter Dematerializer" flatpack
+  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  components:
+  - type: Flatpack
+    entity: ShuttleGunKinetic
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: supply_gun
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: SalvageTechfabNFFlatpack
+  name: salvage techfab flatpack
+  description: A flatpack used for constructing a salvage techfab.
+  components:
+  - type: Flatpack
+    entity: SalvageTechfabNF
+
+# Consoles
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerResearchAndDevelopmentFlatpack
+  name: research and development computer flatpack
+  description: A flatpack used for constructing a research and development computer.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopment
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_console
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerAnalysisConsoleFlatpack
+  name: analysis console flatpack
+  description: A flatpack used for constructing an analysis console.
+  components:
+  - type: Flatpack
+    entity: ComputerAnalysisConsole
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerCrewMonitoringFlatpack
+  name: crew monitoring console flatpack
+  description: A flatpack used for constructing a crew monitoring console.
+  components:
+  - type: Flatpack
+    entity: ComputerCrewMonitoring
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: medical_console
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerIFFFlatpack
+  name: IFF computer flatpack
+  description: A flatpack used for constructing a IFF computer.
+  components:
+  - type: Flatpack
+    entity: ComputerIFF
+  - type: StaticPrice
+    price: 400
+  - type: Sprite
+    layers:
+    - state: supply_gun
+
+# Servers
+- type: entity
+  parent: BaseNFFlatpack
+  id: ResearchAndDevelopmentServerFlatpack
+  name: research and development server flatpack
+  description: A flatpack used for constructing a research and development server.
+  components:
+  - type: Flatpack
+    entity: ResearchAndDevelopmentServer
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_server
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: TelecomServerFlatpack
+  name: telecommunication server flatpack
+  description: A flatpack used for constructing a telecommunication server.
+  components:
+  - type: Flatpack
+    entity: TelecomServer
+  - type: Sprite
+    layers:
+    - state: command_server
+
+# Airlocks
+- type: entity
+  parent: BaseNFFlatpack
+  id: AirlockFlatpack
+  name: airlock flatpack
+  description: A flatpack used for constructing an airlock.
+  components:
+  - type: Flatpack
+    entity: Airlock
+  - type: StaticPrice
+    price: 95
+  - type: Sprite
+    layers:
+    - state: command_airlock
+
+- type: entity
+  parent: AirlockFlatpack
+  id: AirlockGlassFlatpack
+  name: glass airlock flatpack
+  description: A flatpack used for constructing an airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockGlass
+
+- type: entity
+  parent: AirlockFlatpack
+  id: AirlockShuttleFlatpack
+  name: docking airlock flatpack
+  description: A flatpack used for constructing a docking airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockShuttle
+
+- type: entity
+  parent: AirlockFlatpack
+  id: AirlockGlassShuttleFlatpack
+  name: docking glass airlock flatpack
+  description: A flatpack used for constructing a glass docking airlock.
+  components:
+  - type: Flatpack
+    entity: AirlockGlassShuttle
+
+# Musical instruments
+- type: entity
+  parent: BaseNFFlatpack
+  id: TubaInstrumentFlatpack
+  name: tuba flatpack
+  description: A flatpack containing a tuba.
+  components:
+  - type: Flatpack
+    entity: TubaInstrument
+  - type: StaticPrice
+    price: 400
+  - type: Sprite
+    layers:
+    - state: service_music
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: HarpInstrumentFlatpack
+  name: harp flatpack
+  description: A flatpack containing a harp.
+  components:
+  - type: Flatpack
+    entity: HarpInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: ContrabassInstrumentFlatpack
+  name: contrabass flatpack
+  description: A flatpack containing a contrabass.
+  components:
+  - type: Flatpack
+    entity: ContrabassInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: VibraphoneInstrumentFlatpack
+  name: vibraphone flatpack
+  description: A flatpack containing a vibraphone.
+  components:
+  - type: Flatpack
+    entity: VibraphoneInstrument
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: MarimbaInstrumentFlatpack
+  name: marimba flatpack
+  description: A flatpack containing a marimba.
+  components:
+  - type: Flatpack
+    entity: MarimbaInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: TomDrumsInstrumentFlatpack
+  name: tom drums flatpack
+  description: A flatpack containing tom drums.
+  components:
+  - type: Flatpack
+    entity: TomDrumsInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: TimpaniInstrumentFlatpack
+  name: timpani flatpack
+  description: A flatpack containing a timpani.
+  components:
+  - type: Flatpack
+    entity: TimpaniInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: TaikoInstrumentFlatpack
+  name: taiko flatpack
+  description: A flatpack containing a taiko.
+  components:
+  - type: Flatpack
+    entity: TaikoInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: MinimoogInstrumentFlatpack
+  name: minimoog flatpack
+  description: A flatpack containing a minimoog.
+  components:
+  - type: Flatpack
+    entity: MinimoogInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: ChurchOrganInstrumentFlatpack
+  name: church organ flatpack
+  description: A flatpack containing a church organ.
+  components:
+  - type: Flatpack
+    entity: ChurchOrganInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: PianoInstrumentFlatpack
+  name: piano flatpack
+  description: A flatpack containing a piano.
+  components:
+  - type: Flatpack
+    entity: PianoInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: UprightPianoInstrumentFlatpack
+  name: upright piano flatpack
+  description: A flatpack containing a upright piano.
+  components:
+  - type: Flatpack
+    entity: UprightPianoInstrument
+
+- type: entity
+  parent: TubaInstrumentFlatpack
+  id: DawInstrumentFlatpack
+  name: daw flatpack
+  description: A flatpack containing a daw.
+  components:
+  - type: Flatpack
+    entity: DawInstrument
+  - type: StaticPrice
+    price: 2000

@@ -332,6 +332,18 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: AdvancedRadarConsoleCircuitboard # Frontier
+  name: advanced radar console computer board
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerAdvancedRadar
+  - type: ComputerTabletopBoard # Frontier
+    prototype: ComputerTabletopAdvancedRadar # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: SolarControlComputerCircuitboard
   name: solar control computer board
   description: A computer printed circuit board for a solar control console.
@@ -423,8 +435,6 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerIFF
-    - type: StaticPrice
-      price: 400
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopIFF # Frontier
 

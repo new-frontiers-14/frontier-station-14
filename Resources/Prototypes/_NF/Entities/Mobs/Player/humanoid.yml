@@ -1,0 +1,61 @@
+# Random humanoids
+
+## ERT Mail Carrier
+
+- type: entity
+  id: RandomHumanoidSpawnerERTMailCarrier
+  parent: RandomHumanoidSpawnerERTLeader
+  name: ERT mail carrier
+  suffix: ERTRole, Basic
+  components:
+    - type: Sprite
+      sprite: _NF/Markers/jobs.rsi
+      state: ertmailcarrier
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTMailCarrier
+
+- type: randomHumanoidSettings
+  id: ERTMailCarrier
+  parent: ERTLeader
+  components:
+    - type: MindShield
+    - type: GhostRole
+      name: ghost-role-information-ert-mailcarrier-name
+      description: ghost-role-information-ert-mailcarrier-description
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTMailCarrierGear ]
+    - type: InitialInfectedExempt
+
+- type: entity
+  id: RandomHumanoidSpawnerERTMailCarrierEVA
+  parent: RandomHumanoidSpawnerERTMailCarrier
+  name: ERT mail carrier
+  suffix: ERTRole, Enviro EVA
+  components:
+    - type: Sprite
+      sprite: _NF/Markers/jobs.rsi
+      state: ertmailcarriereva
+    - type: RandomHumanoidSpawner
+      settings: ERTMailCarrierEVA
+
+- type: randomHumanoidSettings
+  id: ERTMailCarrierEVA
+  parent: ERTMailCarrier
+  components:
+    - type: MindShield
+    - type: GhostRole
+      name: ghost-role-information-ert-mailcarrier-name
+      description: ghost-role-information-ert-mailcarrier-description
+    - type: GhostTakeoverAvailable
+    - type: Loadout
+      prototypes: [ ERTMailCarrierGearEVA ]
+    - type: InitialInfectedExempt

@@ -283,8 +283,15 @@
   parent: BaseComputer
   id: ComputerCriminalRecords
   name: criminal records computer
-  description: This can be used to check criminal records.
+  description: This can be used to check criminal records. Only security can modify them.
   components:
+  - type: CriminalRecordsConsole
+  - type: UserInterface
+    interfaces:
+    - key: enum.CriminalRecordsConsoleKey.Key
+      type: CriminalRecordsConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CriminalRecordsConsoleKey.Key
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -301,6 +308,11 @@
     color: "#1f8c28"
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
+  - type: AccessReader
+    access: [["Security"]]
+  - type: GuideHelp
+    guides:
+    - CriminalRecords
 
 - type: entity
   parent: BaseComputer
@@ -484,6 +496,7 @@
     - key: enum.IdCardConsoleUiKey.Key
       type: IdCardConsoleBoundUserInterface
   - type: CrewManifestViewer
+    ownerKey: enum.IdCardConsoleUiKey.Key
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -546,6 +559,8 @@
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
     global: true #SR WILL NOT BE IGNORED
+  - type: DeviceNetwork
+    transmitFrequencyId: ShuttleTimer
   - type: ActivatableUI
     key: enum.CommunicationsConsoleUiKey.Key
   - type: UserInterface
@@ -643,7 +658,7 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
   - type: RadarConsole
-    maxRange: 512
+    maxRange: 256 # Frontier
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
@@ -656,6 +671,27 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
+
+- type: entity
+  parent: ComputerRadar
+  id: ComputerAdvancedRadar # Frontier
+  name: radar computer
+  description: Better CPU and components gives this radar the technological and tactical advantage on detection of far away objects.
+  components:
+  - type: Computer
+    board: AdvancedRadarConsoleCircuitboard
+  - type: RadarConsole
+    maxRange: 768
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: generic_keys
 
 - type: entity
   id: ComputerCargoShuttle
@@ -703,8 +739,7 @@
   - type: MeleeSound
     soundGroups:
       Brute:
-        path:
-          "/Audio/Effects/glass_hit.ogg"
+        collection: MetalGlassBreak
   - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
