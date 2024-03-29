@@ -46,7 +46,7 @@
 # Going to use this prototype later for other mobs
 - type: entity
   name: Human NPC
-  suffix: AI
+  suffix: AI, Hostile
   abstract: true
   parent:
   - MobAtmosNF
@@ -56,7 +56,10 @@
   - BaseMobSpecies
   id: MobHumanoidHostileBase
   components:
+  - type: MovementAlwaysTouching
+  - type: MobMover
   - type: NoSlip
+  - type: StandingState
   - type: RandomHumanoidAppearance
     randomizeName: true
   - type: MobThresholds
@@ -86,7 +89,7 @@
         true
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+      - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
@@ -101,7 +104,7 @@
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
   name: Mob NPC
-  suffix: AI
+  suffix: AI, Hostile
   abstract: true
   parent:
   - MobAtmosNF
@@ -109,6 +112,7 @@
   - SimpleSpaceMobBase
   id: MobNonHumanHostileBase
   components:
+  - type: MovementAlwaysTouching
   - type: NoSlip
   - type: ZombieImmune
   - type: Hands
@@ -147,7 +151,7 @@
 #        true
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+      - SimpleHostile
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
