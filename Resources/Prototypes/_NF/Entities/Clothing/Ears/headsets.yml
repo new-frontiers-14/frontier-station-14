@@ -9,6 +9,19 @@
       - EncryptionKeyCommon
 
 - type: entity
+  parent: ClothingHeadsetCargo
+  id: ClothingHeadsetMailCarrier
+  name: mail carrier headset
+  description: A headset used by mail carrier employees.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyService
+      - EncryptionKeyCargo
+      - EncryptionKeyCommon
+
+- type: entity
   parent: ClothingHeadsetSecurity
   id: ClothingHeadsetNFSDgreen # Ask SR or Sheriff for keys
   name: nfsd headset
