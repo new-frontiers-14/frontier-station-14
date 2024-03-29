@@ -150,6 +150,11 @@ entities:
             123: 2,18
             125: 1,21
         - node:
+            color: '#5E7C16FF'
+            id: BrickTileWhiteCornerNe
+          decals:
+            502: 7,9
+        - node:
             color: '#D381C9FF'
             id: BrickTileWhiteCornerNe
           decals:
@@ -179,12 +184,16 @@ entities:
           decals:
             128: 1,20
         - node:
+            color: '#5E7C16FF'
+            id: BrickTileWhiteCornerSe
+          decals:
+            501: 7,8
+        - node:
             color: '#D381C9FF'
             id: BrickTileWhiteCornerSe
           decals:
             73: -10,-3
             116: 3,1
-            155: -5,-4
         - node:
             color: '#334E6DFF'
             id: BrickTileWhiteCornerSw
@@ -219,6 +228,7 @@ entities:
             id: BrickTileWhiteInnerSw
           decals:
             103: 12,-3
+            572: 6,-4
         - node:
             color: '#D381C9FF'
             id: BrickTileWhiteLineE
@@ -232,7 +242,6 @@ entities:
             96: 14,-5
             97: 14,-4
             98: 14,0
-            107: -5,-3
             108: -5,-2
             109: -5,-1
             110: -5,0
@@ -296,12 +305,6 @@ entities:
             151: 5,1
             409: -8,-3
         - node:
-            color: '#FFFFFFFF'
-            id: BrickTileWhiteLineW
-          decals:
-            64: -6,-3
-            153: -6,-4
-        - node:
             color: '#951710FF'
             id: Delivery
           decals:
@@ -339,7 +342,6 @@ entities:
             id: DirtHeavy
           decals:
             414: -7,-2
-            415: -6,-3
             469: 16,-2
             477: 4,2
             478: 0,0
@@ -356,13 +358,13 @@ entities:
             410: -8,-3
             411: -8,-4
             463: -16,-1
+            540: -6,-4
         - node:
             cleanable: True
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
             id: DirtHeavy
           decals:
-            185: -6,-3
             241: 1,13
             244: 0,16
             272: 0,20
@@ -371,7 +373,6 @@ entities:
             284: 0,12
             288: 0,13
             289: 0,14
-            290: 6,8
             296: 6,9
             297: 7,9
             337: 1,10
@@ -382,7 +383,6 @@ entities:
             408: -8,-2
             412: -8,-2
             413: -7,-2
-            416: -6,-3
             464: -16,-2
             465: -16,-3
             466: 16,-3
@@ -395,16 +395,13 @@ entities:
             id: DirtHeavy
           decals:
             173: 0,2
-            184: -5,-3
             256: 0,12
             257: 1,12
             273: 0,21
             274: 0,15
             285: 0,12
             286: 0,13
-            291: 6,8
             295: 6,9
-            306: 6,7
             307: 12,3
             308: 12,4
             309: 0,7
@@ -416,10 +413,6 @@ entities:
             363: 0,-1
             364: 1,-2
             365: 1,-1
-            417: -6,-3
-            419: -5,-3
-            420: -5,-4
-            421: -6,-4
         - node:
             cleanable: True
             angle: 4.71238898038469 rad
@@ -431,27 +424,23 @@ entities:
             276: 0,16
             277: -1,15
             278: -1,16
-            292: 6,8
             298: 7,9
             299: 7,8
             328: 0,11
             332: 0,10
             340: 1,11
             384: -12,-2
-            418: -5,-3
-            422: -6,-4
+            539: -6,-4
         - node:
             cleanable: True
             angle: 6.283185307179586 rad
             color: '#FFFFFFFF'
             id: DirtHeavy
           decals:
-            293: 6,8
             294: 6,9
             300: 7,8
             301: 7,9
             302: 6,10
-            305: 6,7
             310: 0,2
             311: -1,2
             312: 0,1
@@ -542,12 +531,13 @@ entities:
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
           decals:
-            186: -6,-4
             245: -1,16
             246: -1,15
             402: -10,-1
             403: -8,-1
             404: -7,0
+            545: -5,-4
+            565: -6,-3
         - node:
             cleanable: True
             angle: 3.141592653589793 rad
@@ -555,6 +545,8 @@ entities:
             id: DirtHeavyMonotile
           decals:
             366: 1,-3
+            568: -5,-4
+            569: -6,-3
         - node:
             cleanable: True
             angle: 4.71238898038469 rad
@@ -562,6 +554,10 @@ entities:
             id: DirtHeavyMonotile
           decals:
             279: -1,17
+            538: -7,-3
+            546: -5,-4
+            566: -6,-3
+            567: -5,-3
         - node:
             cleanable: True
             angle: 14.137166941154069 rad
@@ -665,6 +661,7 @@ entities:
             324: 1,6
             325: 1,7
             326: -1,7
+            570: -6,-3
         - node:
             cleanable: True
             angle: 4.71238898038469 rad
@@ -673,9 +670,9 @@ entities:
           decals:
             191: -8,-2
             249: 0,17
-            423: -6,-4
-            424: -6,-3
-            425: -5,-3
+            548: -5,-4
+            549: -6,-4
+            571: -6,-3
         - node:
             cleanable: True
             angle: 6.283185307179586 rad
@@ -745,7 +742,6 @@ entities:
             491: 0,8
             492: 0,19
             493: 0,22
-            494: 6,7
             495: 12,2
         - node:
             cleanable: True
@@ -793,8 +789,6 @@ entities:
             172: 0,1
             206: 11,-1
             318: -3,4
-            426: -6,-4
-            427: -6,-3
         - node:
             cleanable: True
             angle: 6.283185307179586 rad
@@ -889,10 +883,10 @@ entities:
           decals:
             68: -12,1
         - node:
-            color: '#7B7B3FFF'
+            color: '#5E7C16FF'
             id: WarnLineGreyscaleN
           decals:
-            496: 6,6
+            500: 6,6
         - node:
             color: '#9FED5896'
             id: WarnLineGreyscaleN
@@ -920,10 +914,10 @@ entities:
           decals:
             67: -12,3
         - node:
-            color: '#7B7B3FFF'
+            color: '#5E7C16FF'
             id: WarnLineGreyscaleS
           decals:
-            497: 6,8
+            499: 6,8
         - node:
             color: '#9FED5896'
             id: WarnLineGreyscaleS
@@ -984,6 +978,39 @@ entities:
             id: guy
           decals:
             167: 2,-5
+        - node:
+            cleanable: True
+            color: '#1D1D2172'
+            id: splatter
+          decals:
+            558: -4.81437,-3.170342
+        - node:
+            cleanable: True
+            angle: 1.5707963267948966 rad
+            color: '#1D1D2172'
+            id: splatter
+          decals:
+            559: -5.15812,-2.920342
+        - node:
+            cleanable: True
+            angle: 3.141592653589793 rad
+            color: '#1D1D2172'
+            id: splatter
+          decals:
+            561: -4.81437,-3.576592
+            562: -5.236245,-3.889092
+            563: -6.298745,-2.904717
+        - node:
+            cleanable: True
+            angle: 4.71238898038469 rad
+            color: '#1D1D2172'
+            id: splatter
+          decals:
+            552: -5.579995,-4.123467
+            555: -5.81437,-3.873467
+            556: -5.62687,-2.326592
+            557: -4.84562,-2.451592
+            564: -5.486245,-3.201592
     - type: GridAtmosphere
       version: 2
       data:
@@ -1211,6 +1238,7 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Spectre
+    - type: NavMap
 - proto: AirAlarm
   entities:
   - uid: 17
@@ -1334,7 +1362,7 @@ entities:
       joinedGrid: 3
 - proto: AirCanister
   entities:
-  - uid: 1078
+  - uid: 473
     components:
     - type: Transform
       pos: 0.5,-7.5
@@ -1483,6 +1511,11 @@ entities:
       parent: 3
 - proto: AirlockScienceGlass
   entities:
+  - uid: 475
+    components:
+    - type: Transform
+      pos: -6.5,-4.5
+      parent: 3
   - uid: 1010
     components:
     - type: Transform
@@ -1518,12 +1551,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-4.5
-      parent: 3
-  - uid: 1016
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-4.5
       parent: 3
   - uid: 1017
     components:
@@ -3399,6 +3426,27 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 3
+- proto: ClosetEmergencyFilledRandom
+  entities:
+  - uid: 1214
+    components:
+    - type: Transform
+      pos: -6.5,6.5
+      parent: 3
+- proto: ClosetFireFilled
+  entities:
+  - uid: 1215
+    components:
+    - type: Transform
+      pos: 5.5,6.5
+      parent: 3
+- proto: ClosetL3ScienceFilled
+  entities:
+  - uid: 1216
+    components:
+    - type: Transform
+      pos: -4.5,6.5
+      parent: 3
 - proto: ClosetRadiationSuitFilled
   entities:
   - uid: 1022
@@ -3449,12 +3497,27 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 3
+- proto: ClothingOuterWinterJani
+  entities:
+  - uid: 1077
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,5.5
+      parent: 3
 - proto: ClothingShoesBootsWinterEngi
   entities:
   - uid: 634
     components:
     - type: Transform
       pos: 3.5,-0.5
+      parent: 3
+- proto: ClothingShoesBootsWinterJani
+  entities:
+  - uid: 1210
+    components:
+    - type: Transform
+      pos: 12.5,5.5
       parent: 3
 - proto: ClothingUniformJumpsuitScientistFormal
   entities:
@@ -3815,6 +3878,13 @@ entities:
     components:
     - type: Transform
       pos: -10.5,0.5
+      parent: 3
+- proto: DogBed
+  entities:
+  - uid: 1205
+    components:
+    - type: Transform
+      pos: -0.5,18.5
       parent: 3
 - proto: EncryptionKeyCommon
   entities:
@@ -6362,6 +6432,13 @@ entities:
     - type: Transform
       pos: 2.5,12.5
       parent: 3
+- proto: RandomFoodSingle
+  entities:
+  - uid: 1078
+    components:
+    - type: Transform
+      pos: 2.5,11.5
+      parent: 3
 - proto: RandomPosterLegit
   entities:
   - uid: 1070
@@ -6408,6 +6485,38 @@ entities:
     components:
     - type: Transform
       pos: 9.5,0.5
+      parent: 3
+- proto: RandomSpawner
+  entities:
+  - uid: 1212
+    components:
+    - type: Transform
+      pos: -10.5,0.5
+      parent: 3
+  - uid: 1217
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 3
+  - uid: 1218
+    components:
+    - type: Transform
+      pos: 5.5,4.5
+      parent: 3
+  - uid: 1219
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 3
+  - uid: 1220
+    components:
+    - type: Transform
+      pos: 12.5,3.5
+      parent: 3
+  - uid: 1221
+    components:
+    - type: Transform
+      pos: -0.5,15.5
       parent: 3
 - proto: RandomSpawner100
   entities:
@@ -6980,6 +7089,13 @@ entities:
     - type: Transform
       pos: -5.5,12.5
       parent: 3
+- proto: SpawnMobSmile
+  entities:
+  - uid: 1211
+    components:
+    - type: Transform
+      pos: 0.5,14.5
+      parent: 3
 - proto: SpawnPointBartender
   entities:
   - uid: 528
@@ -7013,6 +7129,23 @@ entities:
     - type: Transform
       pos: 2.5,-1.5
       parent: 3
+- proto: SpectreMothershipComputer
+  entities:
+  - uid: 1206
+    components:
+    - type: Transform
+      pos: -1.5,18.5
+      parent: 3
+    - type: ContainerContainer
+      containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: StoolBar
   entities:
   - uid: 543
@@ -7040,10 +7173,24 @@ entities:
       parent: 3
 - proto: StorageCanister
   entities:
-  - uid: 1077
+  - uid: 487
+    components:
+    - type: Transform
+      pos: 1.5,-7.5
+      parent: 3
+    - type: AtmosDevice
+      joinedGrid: 3
+  - uid: 1016
     components:
     - type: Transform
       pos: 0.5,-6.5
+      parent: 3
+    - type: AtmosDevice
+      joinedGrid: 3
+  - uid: 1213
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
       parent: 3
     - type: AtmosDevice
       joinedGrid: 3
@@ -7348,6 +7495,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-10.5
       parent: 3
+    - type: Thruster
+      enabled: False
   - uid: 217
     components:
     - type: Transform
