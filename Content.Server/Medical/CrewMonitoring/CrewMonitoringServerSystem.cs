@@ -3,7 +3,8 @@ using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Medical.SuitSensors;
 using Content.Server.Power.Components;
-using Content.Server.Station.Systems;
+//using Content.Server.Station.Systems;
+using Robust.Shared.Map; // Frontier modification
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Medical.SuitSensor;
 using Robust.Shared.Timing;
@@ -15,7 +16,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     [Dependency] private readonly SuitSensorSystem _sensors = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    //[Dependency] private readonly StationSystem _stationSystem = default!; // Frontier modification
 
     private const float UpdateRate = 3f;
     private float _updateDiff;
@@ -66,16 +67,18 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns the address of the currently active server for the given station id if there is one
+    /// Returns the address of the currently active server for the given map (instead of station id) if there is one
     /// </summary>
-    public bool TryGetActiveServerAddress(EntityUid stationId, out string? address)
+    //public bool TryGetActiveServerAddress(EntityUid stationId, out string? address) // Frontier modification
+	public bool TryGetActiveServerAddress(MapId map, out string? address) // Frontier modification
     {
-        var servers = EntityQueryEnumerator<CrewMonitoringServerComponent, DeviceNetworkComponent>();
+        var servers = EntityQueryEnumerator<CrewMonitoringServerComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
         (EntityUid id, CrewMonitoringServerComponent server, DeviceNetworkComponent device)? last = default;
 
-        while (servers.MoveNext(out var uid, out var server, out var device))
+        while (servers.MoveNext(out var uid, out var server, out var device, out var xform)) // Frontier modification
         {
-            if (!_stationSystem.GetOwningStation(uid)?.Equals(stationId) ?? true)
+			//if (!_stationSystem.GetOwningStation(uid)?.Equals(stationId) ?? true)
+            if (xform.MapID != map) //Frontier modification
                 continue;
 
             if (!server.Available)

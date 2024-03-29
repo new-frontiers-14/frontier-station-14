@@ -1,6 +1,7 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -40,4 +41,21 @@ public sealed partial class IdCardComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool BypassLogging;
+
+
+    // Frontier
+    [DataField("soundError")]
+    public SoundSpecifier ErrorSound =
+        new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+    // Frontier
+    [DataField("soundSwipe")]
+    public SoundSpecifier SwipeSound =
+        new SoundPathSpecifier("/Audio/Machines/id_swipe.ogg");
+
+    // Frontier
+    [DataField("soundInsert")]
+    public SoundSpecifier InsertSound =
+        new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
+
 }

@@ -6,3 +6,4 @@ lathe-category-parts = Parts
 lathe-category-robotics = Robotics
 lathe-category-tools = Tools
 lathe-category-weapons = Weapons
+lathe-category-evasuits = EVA

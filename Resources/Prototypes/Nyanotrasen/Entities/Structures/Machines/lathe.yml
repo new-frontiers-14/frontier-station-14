@@ -48,6 +48,10 @@
       - CableMVStack
       - CableHVStack
       - NodeScanner
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitRd
+      # Frontier End
   - type: MaterialStorage
     whitelist:
       tags:
@@ -87,7 +91,7 @@
     runningState: icon    
     staticRecipes: #Frontier
       - MailCapsule #Frontier
-      - SprayBottle #Frontier, moved this ones from dynamicRecipes, so the service fab wouldn't need a server for basic stuff
+      - SprayBottle #Frontier, moved some recipes from dynamicRecipes, so the service fab wouldn't need a server for the basic stuff
       - FlashlightLantern
       - FireExtinguisher
       - LightTube
@@ -98,33 +102,46 @@
       - CableStack
       - CableMVStack
       - CableHVStack
+      - LightReplacer
+      - MopBucket
+      - TrashBag
+      - Bucket
+      - MopItem
+      - WetFloorSign
+      # Frontier Start
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+      - ClothingOuterEVASuitHydro
+      - ClothingOuterEVASuitMailman
+      # Frontier end
     dynamicRecipes:
       - KitchenKnife
       - ButchCleaver
-      - LightReplacer
       - Holoprojector
       - TrashBagOfHolding
       - MopAdvanced
       - HydroponicsToolScythe
       - HydroponicsToolHatchet
-      - MopBucket
       - SynthesizerInstrument
-      - TrashBag
-      - WetFloorSign
       - MiniHoe
       - HydroponicsToolScythe
       - HydroponicsToolHatchet
       - Spade
       - Clippers
       - Shovel # Below is shared with other lathes
-      - Bucket
-      - MopItem
       - SheetSteel
       - SheetPlasteel
       - SheetPlasma
       - SheetGlass1
       - SheetRGlass
       - SheetPlastic
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitPilot
+      - ClothingOuterHardsuitClown
+      - ClothingOuterHardsuitMime
+      # Frontier end
   - type: MaterialStorage
     whitelist:
       tags:
@@ -163,6 +180,12 @@
   - type: Lathe
     idleState: icon
     runningState: icon
+    # Frontier Start
+    staticRecipes:
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingOuterHardsuitEVA
+    # Frontier end
     dynamicRecipes:
       - Flash
       - MicroManipulatorStockPart
@@ -206,6 +229,14 @@
       - CableStack
       - CableMVStack
       - CableHVStack
+      # Frontier Start
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitAtmos
+      - ClothingOuterHardsuitEngineering
+      - ClothingOuterHardsuitEngineeringWhite
+      - ClothingHeadHelmetAncient
+      - ClothingOuterHardsuitAncientEVA
+      # Frontier end
   - type: MaterialStorage
     whitelist:
       tags:

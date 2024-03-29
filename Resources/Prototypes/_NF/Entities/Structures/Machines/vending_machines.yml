@@ -60,21 +60,21 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineCircuitVend
-  name: CircuitVend
+  id: VendingMachineFlatpackVend
+  name: FlatpackVend
   description: Essential tech for the space-men on the go
   components:
   - type: VendingMachine
-    pack: CircuitVendInventory
+    pack: FlatpackVendInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
 #  - type: Advertise
-#    pack: CircuitVendAds
+#    pack: FlatpackVendAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/circuitvend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/flatpackvend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
