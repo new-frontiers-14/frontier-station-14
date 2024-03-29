@@ -107,7 +107,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
 
-# MAXIM Nerfed: mining hardsuit stats, but slightly worse expl and piercing res, better caustic res, better movement speed
+# MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
 - type: entity
   parent: ClothingOuterHardsuitMaxim
   id: ClothingOuterHardsuitMaximPrototype
@@ -119,19 +119,19 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.8
         Radiation: 0.3
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
+    walkModifier: 0.8
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
