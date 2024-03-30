@@ -45,42 +45,6 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-    state: base
-  - type: AmmoCounter
-  - type: Gun
-    useKey: false
-    fireRate: 1.25
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-  - type: BallisticAmmoProvider
-    capacity: 5
-    proto: CartridgeLightRifle
-    whitelist:
-      tags:
-      - CartridgeLightRifle
-  - type: MeleeWeapon
-    attackRate: .85
-    damage:
-      types:
-       Piercing: 16
-       Slash: 5
-    angle: 0
-    wideAnimationRotation: -135
-  - type: DisarmMalus
-    animation: WeaponArcThrust
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-  - type: Sharp
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - back
-    - suitStorage
-    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-    price: 210
 
 - type: entity
   name: Hristov
