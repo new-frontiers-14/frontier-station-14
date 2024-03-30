@@ -37,36 +37,3 @@
     state: emp
     suffix: false
 
-- type: entity
-  parent: SmokeGrenade
-  id: WhitePhosphorusGrenade
-  name: M34 'Willie Pete' Grenade
-  description: With the Team up of Kesco and A Single Arachnid, We bring you the old but, faithful Phosphorus based Smoke Incendiary Grenade.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/M34.rsi
-  - type: SmokeOnTrigger
-    duration: 5
-    spreadAmount: 10
-    solution:
-      reagents:
-      - ReagentId: Phlogiston
-        Quantity: 10
-      - ReagentId: Napalm
-        Quantity: 10
-
-- type: entity
-  parent: SmokeGrenade
-  id: SpaceCleanerGrenade
-  name: SpaceCleaner Grenade
-  description: A Jani's Best Friend
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/CleanNade.rsi
-  - type: SmokeOnTrigger
-    duration: 5
-    spreadAmount: 20
-    solution:
-      reagents:
-      - ReagentId: SpaceCleaner
-        Quantity: 50
