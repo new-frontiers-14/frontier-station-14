@@ -7,8 +7,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingHeadHelmetVoidParamed
         - id: ClothingOuterHardsuitVoidParamed
@@ -16,7 +14,6 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-#    access: [["Medical"]]
 
 #HARDSUITS
 #Brigmedic's hardsuit
@@ -27,8 +24,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitBrigmedic
         - id: ClothingMaskBreathMedicalSecurity
@@ -46,8 +41,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingShoesBootsMag
         - id: ClothingOuterHardsuitLuxury
@@ -55,7 +48,6 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-    # access: [["Quartermaster"]]
 
 #Mercenary hardsuit
 - type: entity
@@ -65,8 +57,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitMercenary
         - id: ClothingMaskGasMercenary
@@ -84,14 +74,11 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitPilot
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
     access: [["Captain"], ["Pilot"]]
 
@@ -103,13 +90,25 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitClown
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
-#    access: [["Captain"], ["Pilot"]]
+
+#Mail Carrier hardsuit
+- type: entity
+  id: SuitStorageMailCarrier
+  parent: SuitStorageBase
+  suffix: Mail Carrier
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitMailman
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Mail"]]
