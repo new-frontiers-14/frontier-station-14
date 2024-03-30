@@ -1,24 +1,24 @@
 - type: vessel
-  id: Fighter
-  name: NSF Fighter
-  description: Small attack vessel used for boarding and transport of prisoners.
-  price: 9000 #not sure how much mark up % to add but the appraisal is 8491$
+  id: Rogue
+  name: NSF Rogue
+  description: Small assault vessel with a toggle for going dark in deep space.
+  price: 12200 #the appraisal is 9100$
   category: Small
   group: None
   mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
-  shuttlePath: /Maps/Shuttles/fighter.yml
+  shuttlePath: /Maps/_NF/Shuttles/Security/rogue.yml
 
 - type: gameMap
-  id: Fighter
-  mapName: 'NSF Fighter'
-  mapPath: /Maps/Shuttles/fighter.yml
+  id: Rogue
+  mapName: 'NSF Rogue'
+  mapPath: /Maps/_NF/Shuttles/Security/rogue.yml
   minPlayers: 0
   stations:
-    Fighter:
+    Rogue:
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Fighter {1}'
+          mapNameTemplate: 'Rogue {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
