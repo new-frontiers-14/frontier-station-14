@@ -1,5 +1,7 @@
 - type: entity
-  parent: Dart
+  parent:
+  - Dart  
+  - ConjuredObject10 # Despawns in 10 seconds
   id: DartSindicateTranquilizer
   name: Syndicate Tranquilizer Dart
   description: Try not to prick yourself.
@@ -10,8 +12,6 @@
   - type: EmbeddableProjectile
     removalTime: 0.5
     sound: /Audio/Weapons/star_hit.ogg
-  - type: TimedDespawn
-    lifetime: 10
   - type: DamageOtherOnHit
     damage:
       types:

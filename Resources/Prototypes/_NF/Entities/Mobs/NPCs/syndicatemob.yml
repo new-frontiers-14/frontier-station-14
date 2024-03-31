@@ -31,7 +31,7 @@
   - type: AutoWakeUp
 
 # Humans
-# Syndicate Captain, armed with AP Python
+# Syndicate Captain, "armed" with AP Python
 - type: entity
   name: Syndicate Captain
   parent: MobSyndicateNavalBase
@@ -60,7 +60,7 @@
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
 
-# Syndicate Engineer, armed with shotgun
+# Syndicate Engineer, "armed" with shotgun
 - type: entity
   name: Syndicate Engineer
   parent: MobSyndicateNavalBase
@@ -85,7 +85,8 @@
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
 
-# Syndicate "Medic", throws poisoned darts
+# Syndicate "Medic", throws poisoned darts laced with 2u of Impedrezene (hallucinogenic, deals minor poison damage, makes you barf and slows you down)
+# Look for darts here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Throwable\throwable_weapons.yml
 - type: entity
   name: Syndicate Medic
   parent: MobSyndicateNavalBase
@@ -111,7 +112,7 @@
       soundGunshot:
         collection: BulletMiss
 
-# Second Officer, armed with Advanced Laser Pistol
+# Second Officer, "armed" with Advanced Laser Pistol
 - type: entity
   name: Syndicate Second Officer
   parent: MobSyndicateNavalBase
@@ -137,7 +138,7 @@
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
 
-# Syndicate Security Operative, armed with Atreides SMG
+# Syndicate Security Operative, "armed" with Atreides SMG
 - type: entity
   name: Syndicate Operative
   parent: MobSyndicateNavalBase
@@ -152,13 +153,13 @@
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
       proto: BulletPistol
-      capacity: 10
-      count: 10
+      capacity: 8
+      count: 8
     - type: Gun
       useKey: false
       minAngle: 10
       maxAngle: 30
-      fireRate: 10
+      fireRate: 8
       angleIncrease: 3
       angleDecay: 6
       selectedMode: FullAuto
@@ -166,7 +167,7 @@
         - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
 
-# Syndicate Grenadier, armed with china lake
+# Syndicate Grenadier, "armed" with china lake
 - type: entity
   name: Syndicate Grenadier
   parent: MobSyndicateNavalBase
@@ -194,7 +195,7 @@
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
-# Syndicate Saboteur, armed with EMP Viper
+# Syndicate Saboteur, "armed" with EMP Viper
 - type: entity
   name: Syndicate Saboteur
   parent: MobSyndicateNavalBase
@@ -220,7 +221,7 @@
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-# Hostile Victim of Experimentation, armed with shiv
+# Hostile Victim of Experimentation, "armed" with shiv
 - type: entity
   name: Captive #Victim of Experimentation
   parent: MobHumanoidHostileBase
@@ -243,7 +244,7 @@
       rootTask:
         task: SimpleHumanoidHostileCompound
 
-# Syndicate Commander, armed with AK
+# Syndicate Commander, "armed" with AK
 - type: entity
   name: Syndicate Commander # Mega Fauna for Dungeons
   parent: MobSyndicateNavalBase
@@ -274,7 +275,7 @@
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
 
-# Syndicate Deckhand, armed with Viper
+# Syndicate Deckhand, "armed" with Viper
 - type: entity
   name: Syndicate Deckhand
   parent: MobSyndicateNavalBase
@@ -300,7 +301,7 @@
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
-# Syndicate Mime, melee, armed with chainsaw
+# Syndicate Mime, melee, "armed" with chainsaw
 - type: entity
   name: Syndicate Mime
   parent: MobSyndicateNavalBase
