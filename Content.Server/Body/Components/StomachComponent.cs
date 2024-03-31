@@ -82,5 +82,11 @@ namespace Content.Server.Body.Components
         /// </summary>
         [DataField]
         public bool FiberDigestion;
+
+        /// <summary>
+        ///     Frontier - Allow eating mail TODO: Move this to a switch before fully added.
+        /// </summary>
+        [DataField]
+        public bool MailDigestion;
     }
 }
