@@ -15,8 +15,7 @@ public enum Quality : byte // Frontier
     Nasty,
     Toxin,
     Trash,
-    MailOpened,
-    MailClosed
+    Fiber
 }
 
 public enum FinalQuality : byte // Frontier 
@@ -27,8 +26,7 @@ public enum FinalQuality : byte // Frontier
     Nasty,
     Toxin,
     Trash,
-    MailOpened,
-    MailClosed
+    Fiber
 }
 
 [RegisterComponent, Access(typeof(FoodSystem))]
