@@ -76,5 +76,11 @@ namespace Content.Server.Body.Components
         /// </summary>
         [DataField]
         public bool TrashDigestion;
+
+        /// <summary>
+        ///     Frontier - Allow eating fiber like food (Moth food)
+        /// </summary>
+        [DataField]
+        public bool FiberDigestion;
     }
 }
