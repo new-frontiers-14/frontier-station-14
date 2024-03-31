@@ -1831,20 +1831,17 @@ entities:
         [bold]*[/bold] - Searchlight-class medical ship are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 14.7 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
 
         [bold]**[/bold] - Searchlight-class medical ship have average power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be put at 15 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 16 kW.
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 140
     components:
     - type: Transform
-      anchored: True
       pos: -2.5,-6.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PottedPlantRandom
   entities:
   - uid: 321
