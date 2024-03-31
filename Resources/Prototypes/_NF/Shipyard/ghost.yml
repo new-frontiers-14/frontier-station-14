@@ -1,33 +1,33 @@
 # Author Info
-# GitHub: ???
-# Discord: ???
+# GitHub: ThatOneGoblin25
+# Discord: thedaarkgoblin
 
 # Maintainer Info
-# GitHub: ???
-# Discord: ???
+# GitHub: ThatOneGoblin25
+# Discord: thedaarkgoblin
 
 # Shuttle Notes:
-#
+# Intended for any science mothership console.
 - type: vessel
-  id: PTS
-  name: NC Personal Transport
-  description: A small transport shuttle with space for 5 passengers.
-  price: 13900
+  id: Ghost
+  name: NX Ghost
+  description: A small, experimental design for Xenoarcheology. Completely solar-powered, this vessel is intended for the safe and meticulous study of troublesome artifacts.
+  price: 16500
   category: Small
-  group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/pts.yml
+  group: None
+  shuttlePath: /Maps/_NF/Shuttles/ghost.yml
 
 - type: gameMap
-  id: PTS
-  mapName: 'NC Personal Transport'
-  mapPath: /Maps/_NF/Shuttles/pts.yml
+  id: Ghost
+  mapName: 'NX Ghost'
+  mapPath: /Maps/_NF/Shuttles/ghost.yml
   minPlayers: 0
   stations:
-    PTS:
+    Ghost:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'PTS {1}'
+          mapNameTemplate: 'Ghost {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
