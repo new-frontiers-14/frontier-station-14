@@ -68,6 +68,12 @@ namespace Content.Shared.Roles
         public bool CanBeAntag { get; private set; } = true;
 
         /// <summary>
+        /// Nyano/DV: For e.g. prisoners, they'll never use their latejoin spawner.
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; } = false;
+
+        /// <summary>
         ///     Whether this job is a head.
         ///     The job system will try to pick heads before other jobs on the same priority level.
         /// </summary>
