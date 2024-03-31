@@ -1,0 +1,27 @@
+- type: vessel
+  id: Spearhead
+  name: NSF Spearhead
+  description: Medium transport ship used to movilize personnel and prisoners.
+  price: 23800 #Appraisal value is 19850
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Security/spearhead.yml
+
+- type: gameMap
+  id: Spearhead
+  mapName: 'NSF Spearhead'
+  mapPath: /Maps/_NF/Shuttles/Security/spearhead.yml
+  minPlayers: 0
+  stations:
+    Spearhead:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spearhead {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Passenger: [ 0, 0 ]
