@@ -81,3 +81,13 @@
   components:
     - type: PriorityDock
       tag: DockTransit
+
+- type: entity
+  parent: AirlockNFSDGlass
+  id: AirlockNFSDGlassLocked
+  suffix: NFSD, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Wires
+    layoutId: AirlockSecurity
