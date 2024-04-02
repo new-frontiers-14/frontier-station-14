@@ -2,6 +2,7 @@
 ILLEGAL_MATCHES = [
     "DO NOT MAP",
     "DEBUG",
+    "Admeme",
 	"CaptainSabre",
 	"ClothingBeltSheath",
 	"MagazinePistolHighCapacity",
