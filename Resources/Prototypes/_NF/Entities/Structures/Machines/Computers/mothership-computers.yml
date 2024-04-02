@@ -100,6 +100,27 @@
     - Mission
     - Honker
 
+# The spectre console
+- type: entity
+  id: SpectreMothershipComputer
+  name: spectre mothership console
+  parent: BaseMothershipComputer
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_science
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_science
+    - map: ["computerLayerKeys"]
+      state: aiupload_key
+  - type: ShipyardListing
+    shuttles:
+    - Ghost
+
 # The mail console
 - type: entity
   id: MailCarrierMothershipComputer
