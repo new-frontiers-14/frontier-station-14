@@ -20,7 +20,7 @@ public sealed class StreetpunkAccentSystem : EntitySystem
     {
         var msg = message;
 
-        msg = _replacement.ApplyReplacements(msg, "goblin");
+        msg = _replacement.ApplyReplacements(msg, "streetpunk");
         return msg;
     }
 

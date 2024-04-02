@@ -4,8 +4,7 @@
 # https://www.reddit.com/r/cyberpunkgame/comments/l0avwd/slang_megathread/
 # https://www.englishclub.com/vocabulary/contractions-informal.php
 # https://7esl.com/informal-contractions/
-# 
-
+ 
 accent-streetpunk-words-1 = , right?
 accent-streetpunk-words-2 = a lot of
 accent-streetpunk-words-3 = about
@@ -303,6 +302,7 @@ accent-streetpunk-words-294 = meeting
 accent-streetpunk-words-295 = told
 accent-streetpunk-words-296 = little
 accent-streetpunk-words-297 = doing
+accent-streetpunk-words-298 = guns
 
 accent-streetpunk-words-replace-1 = , neh?
 accent-streetpunk-words-replace-2 = alotta
@@ -601,3 +601,4 @@ accent-streetpunk-words-replace-294 = meetin’
 accent-streetpunk-words-replace-295 = tol’
 accent-streetpunk-words-replace-296 = lil’
 accent-streetpunk-words-replace-297 = doin’
+accent-streetpunk-words-replace-298 = iron
