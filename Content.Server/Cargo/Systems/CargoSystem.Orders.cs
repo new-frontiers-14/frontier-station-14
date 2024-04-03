@@ -414,9 +414,9 @@ namespace Content.Server.Cargo.Systems
             component.Orders.Clear();
         }
 
-        private static bool PopFrontOrder(StationCargoOrderDatabaseComponent orderDB, [NotNullWhen(true)] out CargoOrderData? orderOut)
+        private static bool PopFrontOrder(List<NetEntity> consoleUidList, StationCargoOrderDatabaseComponent orderDB, [NotNullWhen(true)] out CargoOrderData? orderOut)
         {
-            var orderIdx = orderDB.Orders.FindIndex(order => order.Approved);
+            var orderIdx = orderDB.Orders.FindIndex(order => order.Approved && consoleUidList.Any(consoleUid => consoleUid == order.Computer));
             if (orderIdx == -1)
             {
                 orderOut = null;
@@ -437,9 +437,9 @@ namespace Content.Server.Cargo.Systems
         /// <summary>
         /// Tries to fulfill the next outstanding order.
         /// </summary>
-        private bool FulfillNextOrder(StationCargoOrderDatabaseComponent orderDB, EntityCoordinates spawn, string? paperProto)
+        private bool FulfillNextOrder(List<NetEntity> consoleUidList, StationCargoOrderDatabaseComponent orderDB, EntityCoordinates spawn, string? paperProto)
         {
-            if (!PopFrontOrder(orderDB, out var order))
+            if (!PopFrontOrder(consoleUidList, orderDB, out var order))
                 return false;
 
             return FulfillOrder(order, spawn, paperProto);
