@@ -1,0 +1,120 @@
+- type: entity
+  parent:
+  - BaseSimpleMob
+  - MobBloodstream
+  - MobFlammable
+  - FlyingMobBase
+  id: MobDragonPet
+  name: small space dragon
+  description: A flying leviathan, loosely related to space carps.
+  components:
+  - type: Body
+    prototype: Animal
+  - type: Climbing
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MobPrice
+    price: 000
+  - type: Perishable
+  - type: Bloodstream
+    bloodMaxVolume: 650
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Speech
+    speechVerb: SmallMob
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+    weightlessModifier: 1.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/dragon.rsi
+    noRot: true
+    scale: 0.6, 0.6
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Critical
+      400: Dead
+  - type: Metabolizer
+    solutionOnBody: false
+    updateFrequency: 0.25
+    metabolizerTypes: [ Dragon ]
+    groups:
+    - id: Medicine
+    - id: Poison
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatDragon
+      amount: 1
+  - type: InteractionPopup
+    successChance: 0.25 # It's no goose, but you better smell like carp.
+    interactSuccessString: petting-success-dragon
+    interactFailureString: petting-failure-dragon
+    interactFailureSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundPerceivedByOthers: false # A 75% chance for a loud roar would get old fast.
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Piercing: 8
+        Slash: 8
+  - type: Puller
+    needsHands: false
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Tag
+    tags:
+    - CannotSuicide
