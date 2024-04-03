@@ -88,7 +88,7 @@
       - state: box
   - type: VendPrice
     price: 1200
-    
+
 - type: entity
   name: Thruster upgrade kit
   parent: BoxCardboard
@@ -110,3 +110,13 @@
     layers:
       - state: box
 #      - state: wet_floor_sign
+
+- type: entity
+  name: nfsd encryption key box
+  parent: BoxEncryptionKeyPassenger
+  id: BoxEncryptionKeyNFSD
+  components:
+  - type: StorageFill
+    contents:
+      - id: EncryptionKeyNFSD
+        amount: 4
