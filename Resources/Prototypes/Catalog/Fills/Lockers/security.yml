@@ -1,4 +1,26 @@
 - type: entity
+  id: LockerSecurityFilled
+  suffix: Filled
+  parent: LockerSecurity
+  components:
+  - type: StorageFill
+    contents:
+#      - id: FlashlightSeclite
+#      - id: ClothingUniformJumpsuitSecGrey
+#        prob: 0.3
+      - id: ClothingHeadHelmetBasic
+      - id: ClothingOuterArmorBasic
+#      - id: ClothingBeltSecurityFilled
+#      - id: Flash
+#      - id: ClothingEyesGlassesSecurity
+      - id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
+#      - id: ClothingHandsGlovesColorBlack
+#      - id: ClothingShoesBootsJack
+#      - id: WeaponMeleeNeedle
+#        prob: 0.1
+#      - id: ClothingEyesHudSecurity
+
+- type: entity
   id: LockerWardenFilledHardsuit
   suffix: Filled, Hardsuit
   parent: LockerWarden
@@ -53,28 +75,6 @@
       - id: RubberStampWarden
 #      - id: DoorRemoteArmory
 #      - id: HoloprojectorSecurity # Frontier - Starting gear
-#      - id: ClothingEyesHudSecurity
-
-- type: entity
-  id: LockerSecurityFilled
-  suffix: Filled
-  parent: LockerSecurity
-  components:
-  - type: StorageFill
-    contents:
-#      - id: FlashlightSeclite
-#      - id: ClothingUniformJumpsuitSecGrey
-#        prob: 0.3
-      - id: ClothingHeadHelmetBasic
-      - id: ClothingOuterArmorBasic
-#      - id: ClothingBeltSecurityFilled
-#      - id: Flash
-#      - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
-#      - id: ClothingHandsGlovesColorBlack
-#      - id: ClothingShoesBootsJack
-#      - id: WeaponMeleeNeedle
-#        prob: 0.1
 #      - id: ClothingEyesHudSecurity
 
 - type: entity
