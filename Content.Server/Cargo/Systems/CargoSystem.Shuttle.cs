@@ -19,6 +19,10 @@ public sealed partial class CargoSystem
      * Handles cargo shuttle / trade mechanics.
      */
 
+    // Frontier addition:
+    // The maximum distance from the console to look for pallets.
+    private const int DefaultPalletDistance = 8;
+
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
 
     private void InitializeShuttle()
@@ -63,7 +67,7 @@ public sealed partial class CargoSystem
             new CargoPalletConsoleInterfaceState(0, 0, false));
             return;
         }
-        GetPalletGoods(gridUid, out var toSell, out var amount);
+        GetPalletGoods(uid, gridUid, out var toSell, out var amount);
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
         {
             amount *= priceMod.Mod;
@@ -111,7 +115,7 @@ public sealed partial class CargoSystem
         TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase);
         TryComp<CargoShuttleComponent>(orderDatabase?.Shuttle, out var shuttle);
 
-        var orders = GetProjectedOrders(station ?? EntityUid.Invalid, orderDatabase, shuttle);
+        var orders = GetProjectedOrders(uid, station ?? EntityUid.Invalid, orderDatabase, shuttle);
         var shuttleName = orderDatabase?.Shuttle != null ? MetaData(orderDatabase.Shuttle.Value).EntityName : string.Empty;
 
         if (_uiSystem.TryGetUi(uid, CargoConsoleUiKey.Shuttle, out var bui))
@@ -139,6 +143,7 @@ public sealed partial class CargoSystem
     /// Returns the orders that can fit on the cargo shuttle.
     /// </summary>
     private List<CargoOrderData> GetProjectedOrders(
+        EntityUid consoleUid,
         EntityUid shuttleUid,
         StationCargoOrderDatabaseComponent? component = null,
         CargoShuttleComponent? shuttle = null)
@@ -148,7 +153,7 @@ public sealed partial class CargoSystem
         if (component == null || shuttle == null || component.Orders.Count == 0)
             return orders;
 
-        var spaceRemaining = GetCargoSpace(shuttleUid);
+        var spaceRemaining = GetCargoSpace(consoleUid, shuttleUid);
         for (var i = 0; i < component.Orders.Count && spaceRemaining > 0; i++)
         {
             var order = component.Orders[i];
@@ -177,21 +182,49 @@ public sealed partial class CargoSystem
     /// <summary>
     /// Get the amount of space the cargo shuttle can fit for orders.
     /// </summary>
-    private int GetCargoSpace(EntityUid gridUid)
+    private int GetCargoSpace(EntityUid consoleUid, EntityUid gridUid)
     {
-        var space = GetCargoPallets(gridUid).Count;
+        var space = GetCargoPallets(consoleUid, gridUid).Count;
         return space;
     }
 
-    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid gridUid)
+    /// <summary>
+    /// Frontier addition - calculates distance between two EntityCoordinates
+    /// Used to check for cargo pallets around the console instead of on the grid.
+    /// </summary>
+    /// <param name="point1">first point to get distance between</param>
+    /// <param name="point2">second point to get distance between</param>
+    /// <returns></returns>
+    public static double CalculateDistance(EntityCoordinates point1, EntityCoordinates point2)
+    {
+        var xDifference = point2.X - point1.X;
+        var yDifference = point2.Y - point1.Y;
+
+        return Math.Sqrt(xDifference * xDifference + yDifference * yDifference);
+    }
+
+    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid consoleUid, EntityUid gridUid)
     {
         _pads.Clear();
         var query = AllEntityQuery<CargoPalletComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var comp, out var compXform))
         {
+            // Frontier addition - To support multiple cargo selling stations we add a distance check for the pallets.
+            var distance = CalculateDistance(compXform.Coordinates, Transform(consoleUid).Coordinates);
+            var maxPalletDistance = DefaultPalletDistance;
+
+            // Get the mapped checking distance from the console
+            if (TryComp<CargoPalletConsoleComponent>(consoleUid, out var cargoShuttleComponent))
+            {
+                maxPalletDistance = cargoShuttleComponent.PalletDistance;
+            }
+
+            var isTooFarAway = distance > maxPalletDistance;
+            // End of Frontier addition
+
             if (compXform.ParentUid != gridUid ||
-                !compXform.Anchored)
+                !compXform.Anchored || isTooFarAway)
             {
                 continue;
             }
@@ -227,10 +260,10 @@ public sealed partial class CargoSystem
 
     #region Station
 
-    private bool SellPallets(EntityUid gridUid, EntityUid? station, out double amount)
+    private bool SellPallets(EntityUid consoleUid, EntityUid gridUid, EntityUid? station, out double amount)
     {
         station ??= _station.GetOwningStation(gridUid);
-        GetPalletGoods(gridUid, out var toSell, out amount);
+        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount);
 
         Log.Debug($"Cargo sold {toSell.Count} entities for {amount}");
 
@@ -251,12 +284,12 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private void GetPalletGoods(EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount)
+    private void GetPalletGoods(EntityUid consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount)
     {
         amount = 0;
         toSell = new HashSet<EntityUid>();
 
-        foreach (var (palletUid, _, _) in GetCargoPallets(gridUid))
+        foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid))
         {
             // Containers should already get the sell price of their children so can skip those.
             _setEnts.Clear();
@@ -340,7 +373,7 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(gridUid, null, out var price))
+        if (!SellPallets(uid, gridUid, null, out var price))
             return;
 
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
