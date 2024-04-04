@@ -1,2 +1,2 @@
-ent-FoodBreadMoldy = moldy loaf
-    .desc = It's still good enough to eat, just eat around the moldy bits.
+ent-FoodBreadMoldy = заплесневелый хлеб
+    .desc = Он все еще достаточно вкусный, просто объедайте заплесневелые части.
