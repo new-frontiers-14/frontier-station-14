@@ -1,6 +1,6 @@
 ent-TelecomServerFilledShuttle = { ent-TelecomServer }
-    .suffix = Ship
+    .suffix = Шаттл
     .desc = { ent-TelecomServer.desc }
 ent-TelecomServerFilledSecurity = { ent-TelecomServer }
-    .suffix = Ship, Security
+    .suffix = Шаттл, Служба Безопасности
     .desc = { ent-TelecomServer.desc }
