@@ -1,3 +1,3 @@
-ent-hydroponicsTrayAnchored = hydroponics tray
-    .desc = An anchored interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Stronger than your average hydroponics tray but can still be broken with force.
-    .suffix = anchored
+ent-hydroponicsTrayAnchored = гидропонный лоток
+    .desc = Космическая грядка межзвездного класса, позволяющая быстро выращивать и селекционировать сельскохозяйственные культуры. Только... не забывайте о космических сорняках.
+    .suffix = Закреплённый
