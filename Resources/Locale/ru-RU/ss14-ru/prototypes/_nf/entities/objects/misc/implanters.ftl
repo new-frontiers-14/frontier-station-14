@@ -1,5 +1,5 @@
-ent-MedicalTrackingImplanter = medical insurance tracking implanter
+ent-MedicalTrackingImplanter = имплантер медицинской страховки
     .desc = { ent-BaseImplantOnlyImplanter.desc }
-ent-DeathAcidifierImplanterNF = death acidifier implanter
+ent-DeathAcidifierImplanterNF = имплантер посмертный растворитель
     .suffix = All
     .desc = { ent-BaseImplantOnlyImplanterSyndi.desc }
