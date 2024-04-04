@@ -1,2 +1,2 @@
-ent-ClothingHeadHelmetERTMailCarrier = ERT mail carrier helmet
-    .desc = An in-atmosphere helmet worn by mail members of the Nanotrasen Emergency Response Team. Has dark purple highlights.
+ent-ClothingHeadHelmetERTMailCarrier = шлем почтальона ОБР
+    .desc = Атмосферный шлем, который носят офицеры безопасности отрядов быстрого реагирования Nanotrasen. Имеет фиолетовый фонарь.
