@@ -1,2 +1,2 @@
-ent-BionicSyrinxImplant = bionic syrinx implant
-    .desc = This implant lets a harpy adjust their voice to whoever they can think of.
+ent-BionicSyrinxImplant = бионический имплантер
+    .desc = Этот имплантер позволяет гарпиям подстраивать свой голос под любого человека.
