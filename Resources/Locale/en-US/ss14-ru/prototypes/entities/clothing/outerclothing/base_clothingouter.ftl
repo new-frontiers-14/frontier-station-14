@@ -8,7 +8,7 @@ ent-ClothingOuterStorageToggleableBase = { ent-ClothingOuterStorageBase }
     .desc = { ent-ClothingOuterStorageBase.desc }
 ent-ClothingOuterHardsuitBase = base hardsuit
 
-  .desc = { ent-['ClothingOuterBase', 'GeigerCounterClothing'].desc }
+  .desc = { ent-GeigerCounterClothing.desc }
 ent-ClothingOuterEVASuitBase = base EVA Suit
     .desc = { ent-ClothingOuterBase.desc }
 ent-ClothingOuterBaseToggleable = hoodie with hood
