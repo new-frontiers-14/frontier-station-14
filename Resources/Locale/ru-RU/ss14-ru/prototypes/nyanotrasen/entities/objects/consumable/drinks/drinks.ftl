@@ -1,5 +1,5 @@
 ent-DrinkTokkuri = токкури
-    .desc = Цветочный саке.
+    .desc = Цветочный сакэ.
 ent-DrinkOrangeCreamiceGlass = апельсиновые сливки
     .desc = Апельсиновый, сливочный вкус.
 ent-DrinkSilverjackGlass = Сильверджек
