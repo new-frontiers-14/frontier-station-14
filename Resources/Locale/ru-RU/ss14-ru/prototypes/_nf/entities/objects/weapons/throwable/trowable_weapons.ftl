@@ -1,2 +1,2 @@
-ent-DartSindicateTranquilizer = Syndicate Tranquilizer Dart
-    .desc = Try not to prick yourself.
+ent-DartSindicateTranquilizer = усыпляющий дротик Синдиката
+    .desc = Постарайся не уколоться.
