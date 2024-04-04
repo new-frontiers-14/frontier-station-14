@@ -1,2 +1,2 @@
-ent-GoldenRose = golden rose
-    .desc = An expensive golden rose signifying this ship's luxury.
+ent-GoldenRose = золотая роза
+    .desc = Дорогое украшение, придающее вашему шаттлу элитный вид.
