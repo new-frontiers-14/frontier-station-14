@@ -1,3 +1,3 @@
 ent-DoubleEmergencyAirTankFilled = { ent-DoubleEmergencyAirTank }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-DoubleEmergencyAirTank.desc }
