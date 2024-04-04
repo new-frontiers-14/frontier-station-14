@@ -1,4 +1,4 @@
-ent-ClothingEyesHudNfsd = nfsd hud
-    .desc = A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
-ent-ClothingEyesHudMail = mail hud
-    .desc = A heads-up display that scans mail in view and provides accurate mail data.
+ent-ClothingEyesHudNfsd = визор ДСБФ
+    .desc = Визор с индикатором на стекле, который сканирует гуманоидов в поле зрения и предоставляет точные данные об их идентификационном статусе и записях в системе безопасности.
+ent-ClothingEyesHudMail = почтовый визор
+    .desc = Визор, который сканирует почту в режиме просмотра и предоставляет точные почтовые данные.
