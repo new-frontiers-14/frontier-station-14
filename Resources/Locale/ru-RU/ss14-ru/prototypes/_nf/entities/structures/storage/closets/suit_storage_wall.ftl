@@ -1,2 +1,2 @@
-ent-SuitStorageWallmount = suit wallstorage unit
+ent-SuitStorageWallmount = настенное хранилище скафандра
     .desc = { ent-SuitStorageBase.desc }
