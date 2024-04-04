@@ -163,7 +163,20 @@
 # Syndicate NPC hard suit, unremoveable
 - type: entity
   parent: ClothingOuterHardsuitSyndie
-  id: ClothingOuterHardsuitSyndieUnremoveable
+  id: ClothingOuterHardsuitSyndieEliteUnremoveable
+  name: syndicate hardsuit
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
   name: syndicate hardsuit
   noSpawn: true
   components:
