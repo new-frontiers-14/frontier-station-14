@@ -1,5 +1,4 @@
 ent-MobWizFedlBase = Wizard
-
   .suffix = AI
   .desc = { ent-MobHumanoidHostileBase.desc }
 ent-MobWizFedWizardBlue = Blue Wizard
