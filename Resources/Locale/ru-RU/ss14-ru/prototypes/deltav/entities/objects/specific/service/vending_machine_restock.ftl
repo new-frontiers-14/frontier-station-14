@@ -1,2 +1,2 @@
-ent-VendingMachineRestockPride = Pride-O-Mat restock box
-    .desc = The station needs more plushie sharks and you know it. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+ent-VendingMachineRestockPride = комплект пополнения Радуг-О-Мата
+    .desc = Станции нужно больше плюшевых акул, и вы это знаете.
