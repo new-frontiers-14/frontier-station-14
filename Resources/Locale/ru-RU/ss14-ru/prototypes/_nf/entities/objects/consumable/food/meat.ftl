@@ -1,2 +1,2 @@
-ent-FoodMeatCat = prime-cut cat meat
-    .desc = The tainted gift of an evil crime. The meat may be delicious, but at what cost?
+ent-FoodMeatCat = отборное кошачье мясо
+    .desc = Оскверненный дар, полученный в результате жестокого преступления. Мясо должно быть вкусным, но такой ценой?
