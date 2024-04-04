@@ -16,15 +16,13 @@ ent-MobBloodCultistCaster = Blood Cult Zealot
     .suffix = AI, Ranged
     .desc = { ent-MobBloodCultistBase.desc }
 ent-MobBloodCultistAscended = Ascended Cultist
-
   .suffix = AI, Ranged
-  .desc = { ent-['MobNonHumanHostileBase', 'FlyingMobBase'].desc }
+  .desc = { ent-MobBloodCultistBase.desc }
 ent-MobBloodCultLeech = Blood Leech
     .suffix = AI, Melee
     .desc = { ent-MobNonHumanHostileBase.desc }
 ent-MobBloodCultDrainedOne = Drained One
-
   .suffix = AI, Melee
-  .desc = { ent-['MobNonHumanHostileBase', 'FlyingMobBase'].desc }
+  .desc = { ent-MobBloodCultistBase.desc }
 ent-BloodCultTurret = blood pylon
     .desc = { ent-BaseWeaponTurret.desc }
