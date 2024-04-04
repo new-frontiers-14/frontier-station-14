@@ -1,5 +1,5 @@
-ent-WeaponEnergyGun = energy gun
-    .desc = A basic hybrid energy gun with two settings: disable and kill.
-ent-WeaponEnergyGunMultiphase = x-01 multiphase energy gun
-    .desc = This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time.
-    .suffix = DO NOT MAP
+ent-WeaponEnergyGun = энергитическое оружие
+    .desc = Базовый гибридный энергетический пистолет с двумя настройками: оглушить и убить.
+ent-WeaponEnergyGunMultiphase = мультифазовый лазер x-01
+    .desc = Это дорогая современная реконструкция старинного лазерного пистолета. Пистолет имеет несколько уникальных режимов стрельбы, но лишен возможности перезаряжаться со временем.
+    .suffix = НЕ МАППИТЬ
