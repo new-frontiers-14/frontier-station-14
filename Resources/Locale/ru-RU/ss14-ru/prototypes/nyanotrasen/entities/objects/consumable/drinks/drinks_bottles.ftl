@@ -1,4 +1,4 @@
-ent-DrinkSakeBottleFull = бутылка саке
+ent-DrinkSakeBottleFull = бутылка сакэ
     .desc =
         Прозрачна иль мутна,
         Освежающе-прохладна, как ледяной ликер,
