@@ -1,10 +1,10 @@
-ent-LockerMailCarrier = mail's locker
+ent-LockerMailCarrier = шкафчик почтальона
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerMercenary = mercenary locker
+ent-LockerMercenary = шкафчик наёмника
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerJanitor = janitor locker
+ent-LockerJanitor = шкафчик уборщика
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerPilot = pilot's locker
+ent-LockerPilot = шкафчик пилота
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerWoodenGeneric = wooden cabinet
-    .desc = Dusty old wooden cabinet. Smells like grandparents.
+ent-LockerWoodenGeneric = деревянный шкаф
+    .desc = Пыльный деревянный шкаф. Пахнет старостью.
