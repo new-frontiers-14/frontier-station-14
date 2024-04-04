@@ -1,2 +1,2 @@
-ent-ClothingNeckCloakSheriff = sheriff's cloak
-    .desc = An exquisite brown and green cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
+ent-ClothingNeckCloakSheriff = плащ шерифа
+    .desc = Изысканный коричнево-зеленый плащ, подходящий для тех, кто может одержать верх над правонарушителями. Попробуйте проявить гражданственность в судебном преследовании!
