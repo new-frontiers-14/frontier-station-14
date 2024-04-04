@@ -1,5 +1,5 @@
-ent-DrinkSakeBottleFull = sake bottle
+ent-DrinkSakeBottleFull = бутылка саке
     .desc =
-        Clear, or sometimes foggy 
-        Chilled like ice cream alcohol 
-        Fill a cup, drink up!
+        Прозрачна иль мутна,
+        Освежающе-прохладна, как ледяной ликер,
+        Налей, отпей сполна!
