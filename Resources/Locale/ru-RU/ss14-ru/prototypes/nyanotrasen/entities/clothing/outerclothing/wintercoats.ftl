@@ -1,8 +1,8 @@
-ent-ClothingOuterCoatHyenhSweater = comfy sweater
-    .desc = It's comfy.
-ent-ClothingOuterWinterCoatLong = long winter coat
-    .desc = Even your legs will be warm with this stylish coat.
-ent-ClothingOuterWinterCoatPlaid = plaid winter coat
-    .desc = It might be made out of actual wool.
-ent-ClothingOuterWinterCoatMail = mail carrier's winter coat
-    .desc = It'll keep away the cold but not the dogs.
+ent-ClothingOuterCoatHyenhSweater = удобный свитер
+    .desc = Действительно удобен
+ent-ClothingOuterWinterCoatLong = длинное зимнее пальто
+    .desc = В этом стильном пальто даже вашим ногам будет тепло.
+ent-ClothingOuterWinterCoatPlaid = клетчатое зимнее пальто
+    .desc = Оно может быть сделана из настоящей шерсти.
+ent-ClothingOuterWinterCoatMail = зимнее пальто почтальтона
+    .desc = Убережет от холода, но не от собак.
