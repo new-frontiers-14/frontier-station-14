@@ -7,8 +7,7 @@ ent-LockerSalvageSpecialist = salvage specialist's equipment
 ent-LockerCaptain = captain's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerHeadOfPersonnel = station representative's locker
-
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'LockerBaseSecure'].desc }
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerChiefEngineer = chief engineer's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerElectricalSupplies = electrical supplies locker
@@ -42,11 +41,9 @@ ent-LockerResearchDirector = research director's locker
 ent-LockerScientist = scientist's locker
     .desc = { ent-LockerBase.desc }
 ent-LockerHeadOfSecurity = sheriff's locker
-
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'LockerBaseSecure'].desc }
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerWarden = bailiff's locker
-
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'LockerBaseSecure'].desc }
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerBrigmedic = brigmedic's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerSecurity = deputy's locker
