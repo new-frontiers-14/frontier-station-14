@@ -1,8 +1,8 @@
-ent-ClothingHandsGlovesArcadiaCombat = arcadia combat gloves
-    .desc = Combat gloves produced by Arcadia Industries.
-ent-ClothingHandsGlovesPilot = pilot gloves
-    .desc = Driving gloves, but for spaceships!
-ent-ClothingHandsGlovesCombatNfsdBrown = nfsd combat gloves
-    .desc = Insulated gloves for a deputy sheriff.
-ent-ClothingHandsGlovesCombatNfsdCream = nfsd combat gloves
-    .desc = Insulated gloves for a deputy sheriff.
+ent-ClothingHandsGlovesArcadiaCombat = аркадианские боевые перчатки
+    .desc = Боевые перчатки произведенные Arcadia Industries.
+ent-ClothingHandsGlovesPilot = перчатки пилота
+    .desc = Перчатки для управления шаттлами.
+ent-ClothingHandsGlovesCombatNfsdBrown = боевые перчатки ДСБФ
+    .desc = Боевые перчатки.
+ent-ClothingHandsGlovesCombatNfsdCream = боевые перчатки ДСБФ
+    .desc = Боевые перчатки.
