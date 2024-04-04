@@ -1,5 +1,4 @@
-ent-BaseMothershipComputer = { ent-['BaseStructureDisableToolUse', 'BaseStructureIndestructible', 'ComputerShipyard'] }
-
+ent-BaseMothershipComputer = { ent-ComputerShipyard }
   .desc = Used on motherships to purchase and sell ships without returning to a station.
   .suffix = Mothership
 ent-EmpressMothershipComputer = Empress mothership console
