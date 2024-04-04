@@ -1,2 +1,2 @@
-ent-MobJerma = Jerma
-    .desc = Its Jerma.
+ent-MobJerma = Джерма
+    .desc = Это Джерма.
