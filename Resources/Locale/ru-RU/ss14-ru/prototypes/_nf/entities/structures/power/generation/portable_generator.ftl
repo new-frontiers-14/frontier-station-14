@@ -1,9 +1,9 @@
 ent-PortableGeneratorPacmanShuttle = { ent-PortableGeneratorPacman }
-    .suffix = Plasma, 15 kW, Ship
+    .suffix = Плазма, 15 кВ, Шаттл
     .desc = { ent-PortableGeneratorPacman.desc }
 ent-PortableGeneratorSuperPacmanShuttle = { ent-PortableGeneratorSuperPacman }
-    .suffix = Uranium, 30 kW, Ship
+    .suffix = Уран, 30 кВ, Шаттл
     .desc = { ent-PortableGeneratorSuperPacman.desc }
 ent-PortableGeneratorJrPacmanShuttle = { ent-PortableGeneratorJrPacman }
-    .suffix = Welding Fuel, 5 kW, Ship
+    .suffix = Сварочное топливо, 5 кВ, Шаттл
     .desc = { ent-PortableGeneratorJrPacman.desc }
