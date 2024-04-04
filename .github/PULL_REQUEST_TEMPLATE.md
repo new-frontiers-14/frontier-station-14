@@ -3,12 +3,13 @@
 
 ## About the PR
 <!-- What did you change in this PR? -->
+<!-- If this is a code change, summarize at high level how your new code works. This makes it easier to review. -->
 
 ## Why / Balance
 <!-- Why was it changed? Link any discussions or issues here. Please discuss how this would affect game balance. -->
 
-## Technical details
-<!-- If this is a code change, summarize at high level how your new code works. This makes it easier to review. -->
+## How to test
+<!-- Describe the way it can be tested -->
 
 ## Media
 <!-- 
