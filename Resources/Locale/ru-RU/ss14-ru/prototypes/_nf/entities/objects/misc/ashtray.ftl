@@ -1,2 +1,2 @@
-ent-NFAshtray = ashtray
+ent-NFAshtray = пепельница
     .desc = { ent-BaseStorageItem.desc }
