@@ -11,8 +11,7 @@ ent-BloodCultGlowingFloor = blood cult glowing floor
 ent-BloodCultHoleFloor = blood cult floor hole
     .desc = { ent-FlashRuneTimer.desc }
 ent-BloodCultGravityGeneratorMini = blood cult gravity generator
-
-  .desc = { ent-['BaseStructureDisableToolUse', 'GravityGeneratorMini'].desc }
+  .desc = { ent-GravityGeneratorMini.desc }
 ent-BloodCultAlwaysPoweredLight = blood cult light
     .desc = How is this thing glowing? Why?
     .suffix = Always powered
