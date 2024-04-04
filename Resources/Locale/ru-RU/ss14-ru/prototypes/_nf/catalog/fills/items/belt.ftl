@@ -1,11 +1,11 @@
 ent-ClothingBeltPilotFilled = { ent-ClothingBeltPilot }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-ClothingBeltPilot.desc }
 ent-ClothingBeltNfsdFilled = { ent-ClothingBeltNfsd }
   .desc = { ent-ClothingBeltNfsd.desc }
 ent-ClothingBeltNfsdWebbingFilledBrigmedic = { ent-ClothingBeltNfsdWebbing }
-    .suffix = Filled, Brigmedic
+    .suffix = Заполненный, Бригмедик
     .desc = { ent-ClothingBeltNfsdWebbing.desc }
 ent-ClothingBeltNfsdWebbingFilled = { ent-ClothingBeltNfsdWebbing }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-ClothingBeltNfsdWebbing.desc }
