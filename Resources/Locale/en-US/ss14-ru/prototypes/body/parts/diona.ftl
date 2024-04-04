@@ -1,33 +1,22 @@
 ent-PartDiona = diona body part
-
-  .desc = { ent-['BaseItem', 'BasePart'].desc }
+  .desc = { ent-BasePart.desc }
 ent-TorsoDiona = diona torso
-
-  .desc = { ent-['PartDiona', 'BaseTorso'].desc }
+  .desc = { ent-BaseTorso.desc }
 ent-HeadDiona = diona head
-
-  .desc = { ent-['PartDiona', 'BaseHead'].desc }
+  .desc = { ent-BaseHead.desc }
 ent-LeftArmDiona = left diona arm
-
-  .desc = { ent-['PartDiona', 'BaseLeftArm'].desc }
+  .desc = { ent-BaseLeftArm.desc }
 ent-RightArmDiona = right diona arm
-
-  .desc = { ent-['PartDiona', 'BaseRightArm'].desc }
+  .desc = { ent-BaseRightArm.desc }
 ent-LeftHandDiona = left diona hand
-
-  .desc = { ent-['PartDiona', 'BaseLeftHand'].desc }
+  .desc = { ent-BaseLeftHand.desc }
 ent-RightHandDiona = right diona hand
-
-  .desc = { ent-['PartDiona', 'BaseRightHand'].desc }
+  .desc = { ent-BaseRightHand.desc }
 ent-LeftLegDiona = left diona leg
-
-  .desc = { ent-['PartDiona', 'BaseLeftLeg'].desc }
+  .desc = { ent-BaseLeftLeg.desc }
 ent-RightLegDiona = right diona leg
-
-  .desc = { ent-['PartDiona', 'BaseRightLeg'].desc }
+  .desc = { ent-BaseRightLeg.desc }
 ent-LeftFootDiona = left diona foot
-
-  .desc = { ent-['PartDiona', 'BaseLeftFoot'].desc }
+  .desc = { ent-BaseLeftFoot.desc }
 ent-RightFootDiona = right diona foot
-
-  .desc = { ent-['PartDiona', 'BaseRightFoot'].desc }
+  .desc = { ent-BaseRightFoot.desc }
