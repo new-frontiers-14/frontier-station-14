@@ -1,33 +1,22 @@
 ent-PartSlime = slime body part
-
-  .desc = { ent-['BaseItem', 'BasePart'].desc }
+  .desc = { ent-BasePart.desc }
 ent-TorsoSlime = slime torso
-
-  .desc = { ent-['PartSlime', 'BaseTorso'].desc }
+  .desc = { ent-BaseTorso.desc }
 ent-HeadSlime = slime head
-
-  .desc = { ent-['PartSlime', 'BaseHead'].desc }
+  .desc = { ent-BaseHead.desc }
 ent-LeftArmSlime = left slime arm
-
-  .desc = { ent-['PartSlime', 'BaseLeftArm'].desc }
+  .desc = { ent-BaseLeftArm.desc }
 ent-RightArmSlime = right slime arm
-
-  .desc = { ent-['PartSlime', 'BaseRightArm'].desc }
+  .desc = { ent-BaseRightArm.desc }
 ent-LeftHandSlime = left slime hand
-
-  .desc = { ent-['PartSlime', 'BaseLeftHand'].desc }
+  .desc = { ent-BaseLeftHand.desc }
 ent-RightHandSlime = right slime hand
-
-  .desc = { ent-['PartSlime', 'BaseRightHand'].desc }
+  .desc = { ent-BaseRightHand.desc }
 ent-LeftLegSlime = left slime leg
-
-  .desc = { ent-['PartSlime', 'BaseLeftLeg'].desc }
+  .desc = { ent-BaseLeftLeg.desc }
 ent-RightLegSlime = right slime leg
-
-  .desc = { ent-['PartSlime', 'BaseRightLeg'].desc }
+  .desc = { ent-BaseRightLeg.desc }
 ent-LeftFootSlime = left slime foot
-
-  .desc = { ent-['PartSlime', 'BaseLeftFoot'].desc }
+  .desc = { ent-BaseLeftFoot.desc }
 ent-RightFootSlime = right slime foot
-
-  .desc = { ent-['PartSlime', 'BaseRightFoot'].desc }
+  .desc = { ent-BaseRightFoot.desc }
