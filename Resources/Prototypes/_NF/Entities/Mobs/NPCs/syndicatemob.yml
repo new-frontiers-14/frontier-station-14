@@ -238,12 +238,12 @@
 - type: entity
   name: Syndicate Second Officer
   parent: MobSyndicateNavalBase
-  id: MobSyndicateNavalSecondOfficer
+  id: MobSyndicateNavalSecondOfficerA
   noSpawn: true
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalSecondOfficerGear
+        - SyndicateNavalSecondOfficerGearA
     - type: HitscanBatteryAmmoProvider
       proto: RedMediumLaser
       fireCost: 100
@@ -260,6 +260,39 @@
       availableModes:
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearB
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearC
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearD
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLaser
+      fireCost: 50
 
 # Syndicate Security Operative, "armed" with Atreides SMG
 - type: entity

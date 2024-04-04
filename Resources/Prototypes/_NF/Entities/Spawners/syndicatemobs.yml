@@ -99,6 +99,7 @@
   name: Syndicate Naval Second Officer Spawner
   id: SpawnMobSyndicateNavalSecondOfficer
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
@@ -106,11 +107,26 @@
       - state: ai
       - sprite: Mobs/Species/Human/parts.rsi
         state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/recruit_syndie.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+        state: equipped-OUTERCLOTHING
       - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
-        state: icon
-  - type: ConditionalSpawner
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/cutlass.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalSecondOfficer
+    - MobSyndicateNavalSecondOfficerB
+    - MobSyndicateNavalSecondOfficerC
+    - MobSyndicateNavalSecondOfficerD
+    rarePrototypes:
+    - MobSyndicateNavalSecondOfficerA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Operator Spawner
@@ -149,6 +165,7 @@
   name: Syndicate Naval Grenadier Spawner
   id: SpawnMobSyndicateNavalGrenadier
   parent: MarkerBase
+  suffix: AI, Hostile
   components:
   - type: Sprite
     layers:
@@ -156,8 +173,16 @@
       - state: ai
       - sprite: Mobs/Species/Human/parts.rsi
         state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Head/Helmets/bombsuit.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/OuterClothing/Suits/bombsuit.rsi
+        state: equipped-OUTERCLOTHING
       - sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
-        state: icon
+        state: inhand-left
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalGrenadier
@@ -199,6 +224,7 @@
   name: Victim of Experimentation Spawner
   id: SpawnMobExperimentationVictim
   parent: MarkerBase
+  suffix: AI, Hostile
   components:
   - type: Sprite
     layers:
@@ -206,8 +232,10 @@
       - state: ai
       - sprite: Mobs/Species/Human/parts.rsi
         state: full
+      - sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
+        state: equipped-OUTERCLOTHING
       - sprite: Objects/Weapons/Melee/shiv.rsi
-        state: icon
+        state: inhand-right
   - type: ConditionalSpawner
     prototypes:
       - MobExperimentationVictim
@@ -289,6 +317,7 @@
   name: Syndicate Naval Mime Spawner
   id: SpawnMobSyndicateNavalMime
   parent: MarkerBase
+  suffix: AI, Hostile
   components:
   - type: Sprite
     layers:
@@ -296,8 +325,16 @@
       - state: ai
       - sprite: Mobs/Species/Human/parts.rsi
         state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/mime.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/mime.rsi
+        state: equipped-MASK
+      - sprite: Clothing/Head/Hats/beret.rsi
+        state: equipped-HELMET
       - sprite: Objects/Weapons/Melee/chainsaw.rsi
-        state: icon
+        state: wielded-inhand-right
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalMime
@@ -306,6 +343,7 @@
   name: Syndicate Naval Chemwarrior Spawner
   id: SpawnMobSyndicateNavalChemwarrior
   parent: MarkerBase
+  suffix: AI, Hostile
   components:
   - type: Sprite
     layers:
@@ -313,8 +351,16 @@
       - state: ai
       - sprite: Mobs/Species/Human/parts.rsi
         state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+        state: equipped-HELMET
+      - sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+        state: equipped-OUTERCLOTHING
       - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
-        state: icon
+        state: inhand-left
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalChemwarrior
