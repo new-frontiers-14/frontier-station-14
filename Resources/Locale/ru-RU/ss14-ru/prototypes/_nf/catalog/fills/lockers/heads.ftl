@@ -1,3 +1,3 @@
 ent-LockerQuarterMasterFilledHardsuit = { ent-LockerQuarterMaster }
-    .suffix = Filled, Hardsuit
+    .suffix = Заполненный, Скафандр
     .desc = { ent-LockerQuarterMaster.desc }
