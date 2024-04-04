@@ -1,4 +1,4 @@
-ent-SpawnMobCatClippy = Clippy Spawner
+ent-SpawnMobCatClippy = Спавнер Клиппи
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobCatClarpy = Clarpy Spawner
+ent-SpawnMobCatClarpy = Спавнер Кларпи
     .desc = { ent-MarkerBase.desc }
