@@ -41,9 +41,8 @@ ent-ComputerTabletopSolarControl = { ent-ComputerSolarControl }
     .desc = { ent-ComputerSolarControl.desc }
 ent-ComputerTabletopRadar = { ent-ComputerRadar }
     .desc = { ent-ComputerRadar.desc }
-ent-ComputerTabletopAdvancedRadar = { ent-['BaseStructureComputerTabletop', 'ComputerAdvancedRadar'] }
-
-  .desc = { ent-['BaseStructureComputerTabletop', 'ComputerAdvancedRadar'].desc }
+ent-ComputerTabletopAdvancedRadar = { ent-ComputerAdvancedRadar }
+  .desc = { ent-ComputerAdvancedRadar.desc }
 ent-ComputerTabletopCargoShuttle = { ent-ComputerCargoShuttle }
     .desc = { ent-ComputerCargoShuttle.desc }
 ent-ComputerTabletopCargoOrders = { ent-ComputerCargoOrders }
