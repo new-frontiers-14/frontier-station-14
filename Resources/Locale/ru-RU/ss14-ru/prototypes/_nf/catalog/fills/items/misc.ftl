@@ -1,11 +1,11 @@
 ent-ClothingShoesBootsMagCombatFilled = { ent-ClothingShoesBootsMagCombat }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-ClothingShoesBootsMagCombat.desc }
 ent-ClothingShoesBootsMagNfsdFilled = { ent-ClothingShoesBootsMagNfsd }
   .desc = { ent-ClothingShoesBootsMagNfsd.desc }
 ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-ClothingShoesBootsMagMercenary.desc }
 ent-ClothingShoesBootsMagPirateFilled = { ent-ClothingShoesBootsMagPirate }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-ClothingShoesBootsMagPirate.desc }
