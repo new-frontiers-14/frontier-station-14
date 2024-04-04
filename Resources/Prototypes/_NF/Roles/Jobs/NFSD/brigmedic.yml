@@ -1,0 +1,46 @@
+- type: job
+  id: Brigmedic
+  name: job-name-brigmedic
+  description: job-description-brigmedic
+  playTimeTracker: JobBrigmedic
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # Frontier - 10 hrs
+  startingGear: BrigmedicGear
+  icon: "JobIconBrigmedic"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Medical
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: BrigmedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNfsd # Frontier
+    outerClothing: ClothingOuterCoatNfsdBomberBrigmed # Frontier
+    back: ClothingBackpacknfsdBrigmedFilled # Frontier
+    shoes: ClothingShoesBootsNFSDCream # Frontier
+    gloves: ClothingHandsGlovesNitrile
+    eyes: ClothingEyesHudMedical
+    head: ClothingHeadHatNfsdBeretCream # Frontier
+    id: NfsdBrigmedic # Frontier
+    ears: ClothingHeadsetNFSDbrown # Frontier
+    belt: ClothingBeltNfsdWebbingFilledBrigmedic # Frontier
+    neck: ClothingNeckNfsdBadgeBrigmedic # Frontier
+    pocket1: WeaponPistolMk58Nonlethal # Frontier
+  innerClothingSkirt: ClothingUniformJumpskirtNfsd # Frontier
+  satchel: ClothingBackpackSatchelnfsdBrigmedFilled # Frontier
+  duffelbag: ClothingBackpackDuffelnfsdBrigmed # Frontier
+  messenger: ClothingBackpackMessengerBrigmedicFilled # Frontier
