@@ -1,0 +1,12 @@
+ent-BaseWallDiagonal = basewall
+    .suffix = diagonal
+    .desc = { ent-BaseStructure.desc }
+ent-WallReinforcedDiagonal = reinforced wall
+    .suffix = diagonal
+    .desc = { ent-WallReinforced.desc }
+ent-WallWoodDiagonal = wood wall
+    .suffix = diagonal
+    .desc = { ent-WallWood.desc }
+ent-WallUraniumDiagonal = uranium wall
+    .suffix = diagonal
+    .desc = { ent-WallUranium.desc }

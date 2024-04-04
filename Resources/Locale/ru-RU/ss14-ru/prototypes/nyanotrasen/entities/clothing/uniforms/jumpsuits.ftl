@@ -1,0 +1,12 @@
+ent-ClothingUniformJumpsuitMailCarrier = mail carrier's jumpsuit
+    .desc = Enemy of dogs everywhere.
+ent-ClothingUniformJumpskirtMailCarrier = mail carrier's jumpskirt
+    .desc = Enemy of dogs everywhere.
+ent-ClothingUniformJumpsuitTshirtJeans = white t-shirt and jeans
+    .desc = Even in space, this combo is still in style.
+ent-ClothingUniformJumpsuitTshirtJeansGray = gray t-shirt and jeans
+    .desc = Even though there are no forests in space, this combo is still practical.
+ent-ClothingUniformJumpsuitTshirtJeansPeach = peach t-shirt and jeans
+    .desc = Even though your favorite emo clothing store is back at home, this combo is still edgy.
+ent-ClothingUniformJumpsuitPrisonGuard = prison guard's uniform
+    .desc = A comfortable, durable, waterproof uniform made to keep prison staff comfortable and safe.

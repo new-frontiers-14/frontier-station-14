@@ -1,0 +1,9 @@
+research-techology-advanced-personal-propulsion = Продвинутые технологии передвижения
+research-technology-rapid-construction = Быстрое строительство
+research-technology-hardsuits-basic = Базовые скафандры
+research-technology-hardsuits-specialized = Специализированные скафандры
+research-technology-hardsuits-advanced = Продвинутые скафандры
+research-technology-hardsuits-experimental-industrial = Экспериментальный скафандр утилизации
+research-technology-hardsuits-armored = Бронированные скафандры
+research-technology-hardsuits-armored-advanced = Продвинутый бронированные скафандры
+research-technology-hardsuits-experimental-rd = Экспериментальные исследовательские скафандры

@@ -1,0 +1,14 @@
+ent-ClothingUniformJumpsuitArcadia = arcadia jumpsuit
+    .desc = A jumpsuit produced by Arcadia Industries. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
+ent-ClothingUniformJumpsuitValet = valet's uniform
+    .desc = A nice and tidy uniform.
+ent-ClothingUniformJumpsuitBH = hard-worn suit
+    .desc = Someone who wears this means business.
+ent-ClothingUniformJumpsuitBHGrey = noir suit
+    .desc = A grey suit, complete with tie clip.
+ent-ClothingUniformJumpsuitChaplainPilgrimVest = pilgrim jumpsuit
+    .desc = Knock-knock. Would you care to have a word about our Lord-n-Savior Nar-Sss.. Err.. Space Jeebus?
+ent-ClothingUniformJumpsuitSecGuard = security guard jumpsuit
+    .desc = A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.
+ent-ClothingUniformJumpsuitPilot = pilot jumpsuit
+    .desc = You too think there should be a pocket for your fav smokes?

@@ -17,15 +17,13 @@ GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 GITHUB_RUN        = os.environ["GITHUB_RUN_ID"]
 GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
 
-# https://discord.com/developers/docs/resources/webhook
-DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-CHANGELOG_FILE = "Resources/Changelog/Changelog.yml"
+CHANGELOG_FILES = ["Resources/Changelog/Changelog.yml", "Resources/Changelog/ChangelogSyndie.yml"] # Corvax-MultiChangelog
 
 TYPES_TO_EMOJI = {
     "Fix":    "🐛",
-    "Add":    "🆕",
+    "Add":    "✨", # Corvax: Use gitmoji 💥
     "Remove": "❌",
     "Tweak":  "⚒️"
 }
@@ -43,13 +41,17 @@ def main():
 
     most_recent = get_most_recent_workflow(session)
     last_sha = most_recent['head_commit']['id']
-    print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
-    last_changelog = yaml.safe_load(get_last_changelog(session, last_sha))
-    with open(CHANGELOG_FILE, "r") as f:
-        cur_changelog = yaml.safe_load(f)
-
-    diff = diff_changelog(last_changelog, cur_changelog)
-    send_to_discord(diff)
+    print(f"Last successsful publish job was {most_recent['id']}: {last_sha}")
+    
+    # Corvax-MultiChangelog-Start
+    for changelog_file in CHANGELOG_FILES:
+        last_changelog = yaml.safe_load(get_last_changelog(session, last_sha, changelog_file))
+        with open(changelog_file, "r") as f:
+            cur_changelog = yaml.safe_load(f)
+    
+        diff = diff_changelog(last_changelog, cur_changelog)
+        send_to_discord(diff)
+    # Corvax-MultiChangelog-End
 
 
 def get_most_recent_workflow(sess: requests.Session) -> Any:
@@ -82,7 +84,7 @@ def get_past_runs(sess: requests.Session, current_run: Any) -> Any:
     return resp.json()
 
 
-def get_last_changelog(sess: requests.Session, sha: str) -> str:
+def get_last_changelog(sess: requests.Session, sha: str, changelog_file: str) -> str:
     """
     Use GitHub API to get the previous version of the changelog YAML (Actions builds are fetched with a shallow clone)
     """
@@ -93,7 +95,7 @@ def get_last_changelog(sess: requests.Session, sha: str) -> str:
         "Accept": "application/vnd.github.raw"
     }
 
-    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{CHANGELOG_FILE}", headers=headers, params=params)
+    resp = sess.get(f"{GITHUB_API_URL}/repos/{GITHUB_REPOSITORY}/contents/{changelog_file}", headers=headers, params=params)
     resp.raise_for_status()
     return resp.text
 
@@ -106,9 +108,34 @@ def diff_changelog(old: dict[str, Any], cur: dict[str, Any]) -> Iterable[Changel
     return (e for e in cur["Entries"] if e["id"] not in old_entry_ids)
 
 
-def get_discord_body(content: str):
-    return {
-            "content": content,
+def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
+    if not DISCORD_WEBHOOK_URL:
+        return
+
+    content = io.StringIO()
+    for name, group in itertools.groupby(entries, lambda x: x["author"]):
+        content.write(f"**{name}** обновил(а):\n")
+        for entry in group:
+            for change in entry["changes"]:
+                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+                message = change['message']
+                # Corvax-Localization-Start
+                TRANSLATION_API_URL = os.environ.get("TRANSLATION_API_URL")
+                if TRANSLATION_API_URL:
+                    resp = requests.post(TRANSLATION_API_URL, json={
+                        "text": message,
+                        "source_lang": "EN",
+                        "target_lang": "RU"
+                    })
+                    message = resp.json()['data']
+                # Corvax-Localization-End
+                content.write(f"{emoji} {message}\n")
+        content.write(f"\n") # Corvax: Better formatting
+
+    content.seek(0) # Corvax
+    for chunk in iter(lambda: content.read(2000), ''): # Corvax: Split big changelogs messages
+        body = {
+            "content": chunk,
             # Do not allow any mentions.
             "allowed_mentions": {
                 "parse": []
@@ -117,60 +144,7 @@ def get_discord_body(content: str):
             "flags": 1 << 2
         }
 
-
-def send_discord(content: str):
-    body = get_discord_body(content)
-
-    response = requests.post(DISCORD_WEBHOOK_URL, json=body)
-    response.raise_for_status()
-
-
-def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
-    if not DISCORD_WEBHOOK_URL:
-        print(f"No discord webhook URL found, skipping discord send")
-        return
-
-    message_content = io.StringIO()
-    # We need to manually split messages to avoid discord's character limit
-    # With that being said this isn't entirely robust
-    # e.g. a sufficiently large CL breaks it, but that's a future problem
-
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
-        group_content.write(f"**{name}** updated:\n")
-
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                message = change['message']
-                url = entry.get("url")
-                if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
-                else:
-                    group_content.write(f"{emoji} - {message}\n")
-
-        group_text = group_content.getvalue()
-        message_text = message_content.getvalue()
-        message_length = len(message_text)
-        group_length = len(group_text)
-
-        # If adding the text would bring it over the group limit then send the message and start a new one
-        if message_length + group_length >= DISCORD_SPLIT_LIMIT:
-            print("Split changelog  and sending to discord")
-            send_discord(message_text)
-
-            # Reset the message
-            message_content = io.StringIO()
-
-        # Flush the group to the message
-        message_content.write(group_text)
-    
-    # Clean up anything remaining
-    message_text = message_content.getvalue()
-    if len(message_text) > 0:
-        print("Sending final changelog to discord")
-        send_discord(message_text)
+        requests.post(DISCORD_WEBHOOK_URL, json=body)
 
 
 main()

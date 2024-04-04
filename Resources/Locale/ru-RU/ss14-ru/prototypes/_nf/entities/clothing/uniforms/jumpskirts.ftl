@@ -1,0 +1,12 @@
+ent-ClothingUniformJumpskirtArcadia = arcadia jumpskirt
+    .desc = A jumpskirt produced by Arcadia Industries. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
+ent-ClothingUniformJumpskirtValet = valet's uniform
+    .desc = A nice and tidy uniform.
+ent-ClothingUniformJumpskirtBH = hard-worn suit
+    .desc = Someone who wears this means business.
+ent-ClothingUniformJumpskirtBHGrey = noir suit
+    .desc = A grey suit, complete with tie clip.
+ent-ClothingUniformJumpskirtMercenary = mercenary jumpskirt
+    .desc = Clothing for real mercenaries who have gone through fire, water and the jungle of planets flooded with dangerous monsters or targets for which a reward has been assigned.
+ent-ClothingUniformJumpskirtSecGuard = security guard jumpskirt
+    .desc = A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.

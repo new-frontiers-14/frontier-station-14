@@ -1,0 +1,10 @@
+ent-CrateTradeSecureNormalFilled = { ent-CrateTradeBaseSecureNormal }
+    .desc = { ent-CrateTradeBaseSecureNormal.desc }
+ent-CrateTradeSecureHighFilled = { ent-CrateTradeBaseSecureHigh }
+    .desc = { ent-CrateTradeBaseSecureHigh.desc }
+ent-CrateTradeContrabandSecureNormalFilled = { ent-CrateTradeContrabandSecureNormal }
+    .desc = { ent-CrateTradeContrabandSecureNormal.desc }
+ent-CrateTradeContrabandSecureDonkFilled = { ent-CrateTradeContrabandSecureDonk }
+    .desc = { ent-CrateTradeContrabandSecureDonk.desc }
+ent-CrateTradeContrabandSecureCyberSunFilled = { ent-CrateTradeContrabandSecureCyberSun }
+    .desc = { ent-CrateTradeContrabandSecureCyberSun.desc }
