@@ -1,7 +1,7 @@
 ent-MobWizFedlBase = Wizard
 
   .suffix = AI
-  .desc = { ent-['MobHumanoidHostileBase'].desc }
+  .desc = { ent-MobHumanoidHostileBase.desc }
 ent-MobWizFedWizardBlue = Blue Wizard
     .desc = { ent-MobWizFedlBase.desc }
 ent-MobWizFedWizardRed = Red Wizard
@@ -24,6 +24,5 @@ ent-MobWizFedWizardSoapHardsuit = Soap Wizard
     .suffix = AI, Hardsuit
     .desc = { ent-MobWizFedWizardSoap.desc }
 ent-WaterElementalConjured = Blue Curacao Elemental
-
   .suffix = AI
-  .desc = { ent-['MobNonHumanHostileBase'].desc }
+  .desc = { ent-MobNonHumanHostileBase.desc }
