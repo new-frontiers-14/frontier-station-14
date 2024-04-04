@@ -5,10 +5,13 @@
   playTimeTracker: JobWarden
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 21600 # Frontier - 6 hours
+      time: 54000 # Frontier - 15 hours
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 36000 # Frontier - 10 hrs
+      time: 10800 # Frontier - 3 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6 hrs
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
