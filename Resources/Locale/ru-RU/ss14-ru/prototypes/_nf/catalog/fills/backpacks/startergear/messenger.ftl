@@ -63,7 +63,6 @@ ent-ClothingBackpackMessengerPilotFilled = { ent-ClothingBackpackMessengerPilot 
 ent-ClothingBackpackMessengerJanitorFilled = { ent-ClothingBackpackMessengerJanitor }
     .desc = { ent-ClothingBackpackMessengerJanitor.desc }
 ent-ClothingBackpackMessengerMailCarrierFilled = { ent-ClothingBackpackMessengerMailCarrier }
-
   .desc = { ent-ClothingBackpackMessengerMailCarrier.desc }
 ent-ClothingBackpackMessengerMailmanFilled = { ent-ClothingBackpackMessengerMailman }
     .desc = { ent-ClothingBackpackMessengerMailman.desc }
