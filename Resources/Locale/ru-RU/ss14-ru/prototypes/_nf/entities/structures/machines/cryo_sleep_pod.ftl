@@ -1,2 +1,2 @@
-ent-MachineCryoSleepPod = cryo sleep chamber
-    .desc = cold pillow guaranteed
+ent-MachineCryoSleepPod = капсула криогенного сна
+    .desc = Супер-охлаждаемый контейнер, обеспечивающий сохранность членов экипажа во время космических путешествий.
