@@ -1,10 +1,10 @@
-ent-WizardStaffMeleeBase = wizard staff
-    .desc = Symbol of wizard's mastery of arcane arts.
-ent-WizardStaffMeleeRed = red wizard staff
+ent-WizardStaffMeleeBase = волшебный посох
+    .desc = Символ мастерства волшебника в тайных искусствах.
+ent-WizardStaffMeleeRed = красный волшебный посох
     .desc = { ent-WizardStaffMeleeBase.desc }
-ent-WizardStaffMeleeViolet = violet wizard staff
+ent-WizardStaffMeleeViolet = фиолетовый волшебный посох
     .desc = { ent-WizardStaffMeleeBase.desc }
-ent-WizardStaffMeleeSoap = soap wizard staff
+ent-WizardStaffMeleeSoap = мыльный волшебный посох
     .desc = { ent-WizardStaffMeleeBase.desc }
-ent-WizardStaffMeleeBlood = blood cult staff
+ent-WizardStaffMeleeBlood = кровавый волшебный посох
     .desc = { ent-WizardStaffMeleeRed.desc }
