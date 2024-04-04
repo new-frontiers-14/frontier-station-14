@@ -62,9 +62,9 @@ ent-ClothingBackpackMessengerPilotFilled = { ent-ClothingBackpackMessengerPilot 
     .desc = { ent-ClothingBackpackMessengerPilot.desc }
 ent-ClothingBackpackMessengerJanitorFilled = { ent-ClothingBackpackMessengerJanitor }
     .desc = { ent-ClothingBackpackMessengerJanitor.desc }
-ent-ClothingBackpackMessengerMailCarrierFilled = { ent-['ClothingBackpackMessengerMailCarrier', 'ClothingBackpackFilled'] }
+ent-ClothingBackpackMessengerMailCarrierFilled = { ent-ClothingBackpackMessengerMailCarrier }
 
-  .desc = { ent-['ClothingBackpackMessengerMailCarrier', 'ClothingBackpackFilled'].desc }
+  .desc = { ent-ClothingBackpackMessengerMailCarrier.desc }
 ent-ClothingBackpackMessengerMailmanFilled = { ent-ClothingBackpackMessengerMailman }
     .desc = { ent-ClothingBackpackMessengerMailman.desc }
 ent-ClothingBackpackMessengerOfficerFilled = { ent-ClothingBackpackMessengerSecurity }
