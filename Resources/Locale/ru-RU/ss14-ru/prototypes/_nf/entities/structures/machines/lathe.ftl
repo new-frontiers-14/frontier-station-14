@@ -1,6 +1,6 @@
-ent-PrizeCounter = prize counter
-    .desc = Claim your prize and win some toys and cute plushies!
-ent-TilePrinterNF = tile-meister 5000
-    .desc = Prints floor tiles. No mercy.
-ent-SalvageTechfabNF = salvage techfab
-    .desc = Prints equipment for salvagers.
+ent-PrizeCounter = раздатчик призов
+    .desc = Забери свой приз и выиграй несколько игрушек и милых плюшевых мишек!
+ent-TilePrinterNF = Плиточник 5000
+    .desc = Печатает напольные плитки.
+ent-SalvageTechfabNF = утилизационный техфаб
+    .desc = Печатает снаряжение необходимое каждому утилизатору.
