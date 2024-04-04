@@ -1,2 +1,2 @@
-ent-FoodBurgerClurger = clurger
-    .desc = The Mail Carrier's favorite!
+ent-FoodBurgerClurger = Клургер
+    .desc = Любимая еда почтальонов!
