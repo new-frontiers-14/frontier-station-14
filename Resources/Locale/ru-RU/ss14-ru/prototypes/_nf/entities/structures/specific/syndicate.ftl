@@ -1,2 +1,2 @@
-ent-CybersunDataMiner = cybersun dataminer
-    .desc = Data collecting and processing machine produced by Cybersun.
+ent-CybersunDataMiner = датамайнер киберсан
+    .desc = Машина для сбора и обработки данных производства компании Cybersun.
