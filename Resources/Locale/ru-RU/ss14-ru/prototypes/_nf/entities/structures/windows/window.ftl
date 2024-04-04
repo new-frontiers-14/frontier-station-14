@@ -1,3 +1,3 @@
-ent-WallInvisibleShip = Invisible Wall
-    .suffix = Ship
+ent-WallInvisibleShip = Невидимая стена
+    .suffix = Шаттл
     .desc = { "" }
