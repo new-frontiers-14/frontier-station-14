@@ -40,14 +40,12 @@ ent-SuitStorageCMO = { ent-SuitStorageBase }
 ent-SuitStorageRD = { ent-SuitStorageBase }
     .suffix = Research Director
     .desc = { ent-SuitStorageBase.desc }
-ent-SuitStorageHOS = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'SuitStorageBase'] }
-
+ent-SuitStorageHOS = { ent-SuitStorageBase }
   .suffix = Head of Security
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'SuitStorageBase'].desc }
-ent-SuitStorageWarden = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'SuitStorageBase'] }
-
+  .desc = { ent-SuitStorageBase.desc }
+ent-SuitStorageWarden = { ent-SuitStorageBase }
   .suffix = Warden
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'SuitStorageBase'].desc }
+  .desc = { ent-SuitStorageBase.desc }
 ent-SuitStorageCaptain = { ent-SuitStorageBase }
     .suffix = Captain
     .desc = { ent-SuitStorageBase.desc }
