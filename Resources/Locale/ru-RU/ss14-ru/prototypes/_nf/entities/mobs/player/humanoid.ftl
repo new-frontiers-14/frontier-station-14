@@ -1,6 +1,6 @@
-ent-RandomHumanoidSpawnerERTMailCarrier = ERT mail carrier
-    .suffix = ERTRole, Basic
+ent-RandomHumanoidSpawnerERTMailCarrier = ОБР почтальон
+    .suffix = Роль ОБР, Базовый
     .desc = { ent-RandomHumanoidSpawnerERTLeader.desc }
-ent-RandomHumanoidSpawnerERTMailCarrierEVA = ERT mail carrier
-    .suffix = ERTRole, Enviro EVA
+ent-RandomHumanoidSpawnerERTMailCarrierEVA = ОБР почтальон
+    .suffix = Роль ОБР, EVA
     .desc = { ent-RandomHumanoidSpawnerERTMailCarrier.desc }
