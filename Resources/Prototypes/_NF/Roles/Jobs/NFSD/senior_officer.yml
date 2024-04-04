@@ -1,0 +1,53 @@
+- type: job
+  id: SeniorOfficer
+  name: job-name-senior-officer
+  description: job-description-senior-officer
+  playTimeTracker: JobSeniorOfficer
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 21600 #6 hrs
+#    - !type:RoleTimeRequirement
+#      role: JobDetective
+#      time: 7200 #2 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 21600 #6 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 72000 # 20 hrs
+  startingGear: SeniorOfficerGear
+  icon: "JobIconSeniorOfficer"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: SeniorOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNfsdTacBlack # Frontier
+    back: ClothingBackpacknfsdFilled # Frontier
+    shoes: ClothingShoesBootsNFSDBrown # Frontier
+    eyes: ClothingEyesGlassesNFSD # Frontier
+    head: ClothingHeadHatNfsdBeretGreen # Frontier
+    outerClothing: ClothingOuterCoatNfsdLongCoat # Frontier
+    id: NfsdSergeant # Frontier
+    ears: ClothingHeadsetAltNFSDbrown # Frontier
+    belt: ClothingBeltNfsdFilled # Frontier
+    pocket1: WeaponPistolMk58Nonlethal
+    gloves: ClothingHandsGlovesCombatNfsdCream # Frontier
+    neck: ClothingNeckNfsdBadgeSeniorOfficer # Frontier
+  innerClothingSkirt: ClothingUniformJumpskirtNfsd # Frontier
+  satchel: ClothingBackpackSatchelnfsdFilled # Frontier
+  duffelbag: ClothingBackpackDuffelnfsdFilled # Frontier
+  messenger: ClothingBackpackMessengerOfficerFilled # Frontier

@@ -1,0 +1,50 @@
+- type: entity
+  parent: CarpStatue
+  id: CybersunDataMiner
+  name: cybersun dataminer
+  description: Data collecting and processing machine produced by Cybersun.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/Syndicate/cybersundataminer.rsi
+    layers:
+    - state: dataminer
+    - state: unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3db83b"
+    castShadows: false
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/hdd_buzz.ogg
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2

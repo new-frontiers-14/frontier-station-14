@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/arcadia.rsi
-    
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackPilot
@@ -15,3 +15,82 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/pilot.rsi
+
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTMailCarrier
+  name: ERT mail carrier backpack
+  description: A spacious backpack with lots of pockets, worn by Mail Carrier's of an Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/ertmailcarrier.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackClippy
+  name: Clippy's backpack
+  description: Made from a real Clippy.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/clippy.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: CatMeows
+
+- type: entity
+  parent: ClothingBackpackSecurityFilled
+  id: ClothingBackpacknfsdFilled
+  name: nfsd backpack
+  description: A backpack for Deputy Sheriff.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpacknfsd
+  name: nfsd backpack
+  description: A backpack for Deputy Sheriff.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackHOSFilled
+  id: ClothingBackpacknfsdsheriffFilled
+  name: nfsd backpack
+  description: A backpack for the Sheriff.
+  suffix: Filled - Sheriff
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
+
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpacknfsdsheriff
+  name: nfsd backpack
+  description: A backpack for the Sheriff.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackBrigmedicFilled
+  id: ClothingBackpacknfsdBrigmedFilled
+  name: nfsd brigmedic backpack
+  description: A backpack for Deputized Physician.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_brigmed_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpacknfsdBrigmed
+  name: nfsd brigmedic backpack
+  description: A backpack for Deputized Physician.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_brigmed_backpack.rsi
