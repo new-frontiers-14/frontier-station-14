@@ -1,5 +1,5 @@
 ent-ConjuredObject10 = { "" }
-    .desc = A magically created object, that'll vanish from existance eventually.
-    .suffix = Conjured
-ent-SoapConjured = soap
+    .desc = Магически созданный объект, который рано или поздно исчезнет.
+    .suffix = Наколдованный
+ent-SoapConjured = мыло
   .desc = { ent-Soap.desc }
