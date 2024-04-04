@@ -1,7 +1,5 @@
 ent-ComputerShipyard = shipyard console
     .desc = Used to purchase and sell shuttles
-ent-BaseMothershipComputer = mothership console
-    .desc = Used on motherships to purchase and sell ships without returning to a station.
 ent-ComputerShipyardSecurity = security shipyard console
     .desc = Used to enlist into Nanotrasen Security Forces
 ent-ComputerShipyardBlackMarket = black market shipyard console

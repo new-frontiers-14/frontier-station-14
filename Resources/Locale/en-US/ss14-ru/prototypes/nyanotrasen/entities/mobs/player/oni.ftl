@@ -1,2 +1,3 @@
 ent-MobOni = Urist McOni
-  .desc = { ent-MobOniBase.desc }
+
+  .desc = { ent-['MobOniBase', 'BaseMob'].desc }

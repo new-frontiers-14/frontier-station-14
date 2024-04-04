@@ -1,9 +1,12 @@
-ent-BaseSimpleMob = { ent-BaseMob }
+ent-BaseSimpleMob = { ent-['BaseMob', 'MobDamageable', 'MobAtmosExposed'] }
+
   .suffix = AI
-  .desc = { ent-BaseMob.desc }
-ent-SimpleSpaceMobBase = { ent-BaseSimpleMob }
+  .desc = { ent-['BaseMob', 'MobDamageable', 'MobAtmosExposed'].desc }
+ent-SimpleSpaceMobBase = { ent-['BaseSimpleMob', 'MobCombat', 'MobBloodstream', 'MobFlammable'] }
+
   .suffix = AI
-  .desc = { ent-BaseSimpleMob.desc }
-ent-SimpleMobBase = { ent-SimpleSpaceMobBase }
+  .desc = { ent-['BaseSimpleMob', 'MobCombat', 'MobBloodstream', 'MobFlammable'].desc }
+ent-SimpleMobBase = { ent-['MobRespirator', 'MobAtmosStandard', 'SimpleSpaceMobBase'] }
+
   .suffix = AI
-  .desc = { ent-SimpleSpaceMobBase.desc }
+  .desc = { ent-['MobRespirator', 'MobAtmosStandard', 'SimpleSpaceMobBase'].desc }

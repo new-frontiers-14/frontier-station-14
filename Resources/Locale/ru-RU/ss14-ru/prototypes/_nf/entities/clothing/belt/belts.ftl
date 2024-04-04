@@ -4,3 +4,7 @@ ent-ClothingBeltChaplainSash = chaplain sash
     .desc = Who knew that scarves can be also tied around your waist?
 ent-ClothingBeltPilot = pilot webbing
     .desc = A webbing designed for someone seating a lot.
+ent-ClothingBeltNfsd = nfsd belt
+    .desc = A tactical assault belt.
+ent-ClothingBeltNfsdWebbing = nfsd webbing
+    .desc = A tactical assault webbing.

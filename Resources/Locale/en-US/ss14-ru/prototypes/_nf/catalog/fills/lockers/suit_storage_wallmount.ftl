@@ -1,54 +1,81 @@
-ent-SuitStorageWallmountParamedic = { ent-SuitStorageParamedic }
-    .desc = { ent-SuitStorageParamedic.desc }
-ent-SuitStorageWallmountBrigmedic = { ent-SuitStorageBrigmedic }
-    .desc = { ent-SuitStorageBrigmedic.desc }
-ent-SuitStorageWallmountQuartermaster = { ent-SuitStorageQuartermaster }
-    .desc = { ent-SuitStorageQuartermaster.desc }
-ent-SuitStorageWallmountMercenary = { ent-SuitStorageMercenary }
-    .desc = { ent-SuitStorageMercenary.desc }
-ent-SuitStorageWallmountPilot = { ent-SuitStoragePilot }
-    .desc = { ent-SuitStoragePilot.desc }
-ent-SuitStorageWallmountEVA = { ent-SuitStorageEVA }
-    .desc = { ent-SuitStorageEVA.desc }
-ent-SuitStorageWallmountEVAAlternate = { ent-SuitStorageEVAAlternate }
-    .desc = { ent-SuitStorageEVAAlternate.desc }
-ent-SuitStorageWallmountEVAEmergency = { ent-SuitStorageEVAEmergency }
-    .desc = { ent-SuitStorageEVAEmergency.desc }
-ent-SuitStorageWallmountEVAPrisoner = { ent-SuitStorageEVAPrisoner }
-    .desc = { ent-SuitStorageEVAPrisoner.desc }
-ent-SuitStorageWallmountEVASyndicate = { ent-SuitStorageEVASyndicate }
-    .desc = { ent-SuitStorageEVASyndicate.desc }
-ent-SuitStorageWallmountEVAPirate = { ent-SuitStorageEVAPirate }
-    .desc = { ent-SuitStorageEVAPirate.desc }
-ent-SuitStorageWallmountNTSRA = { ent-SuitStorageNTSRA }
-  .desc = { ent-SuitStorageNTSRA.desc }
-ent-SuitStorageWallmountBasic = { ent-SuitStorageBasic }
-    .desc = { ent-SuitStorageBasic.desc }
-ent-SuitStorageWallmountEngi = { ent-SuitStorageEngi }
-    .desc = { ent-SuitStorageEngi.desc }
-ent-SuitStorageWallmountAtmos = { ent-SuitStorageAtmos }
-    .desc = { ent-SuitStorageAtmos.desc }
-ent-SuitStorageWallmountSec = { ent-SuitStorageSec }
-    .desc = { ent-SuitStorageSec.desc }
-ent-SuitStorageWallmountCE = { ent-SuitStorageCE }
-    .desc = { ent-SuitStorageCE.desc }
-ent-SuitStorageWallmountCMO = { ent-SuitStorageCMO }
-    .desc = { ent-SuitStorageCMO.desc }
-ent-SuitStorageWallmountRD = { ent-SuitStorageRD }
-    .desc = { ent-SuitStorageRD.desc }
-ent-SuitStorageWallmountHOS = { ent-SuitStorageHOS }
-    .desc = { ent-SuitStorageHOS.desc }
-ent-SuitStorageWallmountWarden = { ent-SuitStorageWarden }
-    .desc = { ent-SuitStorageWarden.desc }
-ent-SuitStorageWallmountCaptain = { ent-SuitStorageCaptain }
-    .desc = { ent-SuitStorageCaptain.desc }
-ent-SuitStorageWallmountSalv = { ent-SuitStorageSalv }
-    .desc = { ent-SuitStorageSalv.desc }
-ent-SuitStorageWallmountSyndie = { ent-SuitStorageSyndie }
-    .desc = { ent-SuitStorageSyndie.desc }
-ent-SuitStorageWallmountPirateCap = { ent-SuitStoragePirateCap }
-    .desc = { ent-SuitStoragePirateCap.desc }
-ent-SuitStorageWallmountWizard = { ent-SuitStorageWizard }
-    .desc = { ent-SuitStorageWizard.desc }
-ent-SuitStorageWallmountClown = { ent-SuitStorageClown }
-    .desc = { ent-SuitStorageClown.desc }
+ent-SuitStorageWallmountParamedic = { ent-['SuitStorageWallmount', 'SuitStorageParamedic'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageParamedic'].desc }
+ent-SuitStorageWallmountBrigmedic = { ent-['SuitStorageWallmount', 'SuitStorageBrigmedic'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageBrigmedic'].desc }
+ent-SuitStorageWallmountQuartermaster = { ent-['SuitStorageWallmount', 'SuitStorageQuartermaster'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageQuartermaster'].desc }
+ent-SuitStorageWallmountMercenary = { ent-['SuitStorageWallmount', 'SuitStorageMercenary'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageMercenary'].desc }
+ent-SuitStorageWallmountPilot = { ent-['SuitStorageWallmount', 'SuitStoragePilot'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStoragePilot'].desc }
+ent-SuitStorageWallmountEVA = { ent-['SuitStorageWallmount', 'SuitStorageEVA'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVA'].desc }
+ent-SuitStorageWallmountEVAAlternate = { ent-['SuitStorageWallmount', 'SuitStorageEVAAlternate'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVAAlternate'].desc }
+ent-SuitStorageWallmountEVAEmergency = { ent-['SuitStorageWallmount', 'SuitStorageEVAEmergency'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVAEmergency'].desc }
+ent-SuitStorageWallmountEVAPrisoner = { ent-['SuitStorageWallmount', 'SuitStorageEVAPrisoner'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVAPrisoner'].desc }
+ent-SuitStorageWallmountEVASyndicate = { ent-['SuitStorageWallmount', 'SuitStorageEVASyndicate'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVASyndicate'].desc }
+ent-SuitStorageWallmountEVAPirate = { ent-['SuitStorageWallmount', 'SuitStorageEVAPirate'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEVAPirate'].desc }
+ent-SuitStorageWallmountNTSRA = { ent-['SuitStorageWallmount', 'SuitStorageNTSRA'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageNTSRA'].desc }
+ent-SuitStorageWallmountBasic = { ent-['SuitStorageWallmount', 'SuitStorageBasic'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageBasic'].desc }
+ent-SuitStorageWallmountEngi = { ent-['SuitStorageWallmount', 'SuitStorageEngi'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageEngi'].desc }
+ent-SuitStorageWallmountAtmos = { ent-['SuitStorageWallmount', 'SuitStorageAtmos'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageAtmos'].desc }
+ent-SuitStorageWallmountSec = { ent-['SuitStorageWallmount', 'SuitStorageSec'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageSec'].desc }
+ent-SuitStorageWallmountCE = { ent-['SuitStorageWallmount', 'SuitStorageCE'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageCE'].desc }
+ent-SuitStorageWallmountCMO = { ent-['SuitStorageWallmount', 'SuitStorageCMO'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageCMO'].desc }
+ent-SuitStorageWallmountRD = { ent-['SuitStorageWallmount', 'SuitStorageRD'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageRD'].desc }
+ent-SuitStorageWallmountHOS = { ent-['SuitStorageWallmount', 'SuitStorageHOS'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageHOS'].desc }
+ent-SuitStorageWallmountWarden = { ent-['SuitStorageWallmount', 'SuitStorageWarden'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageWarden'].desc }
+ent-SuitStorageWallmountCaptain = { ent-['SuitStorageWallmount', 'SuitStorageCaptain'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageCaptain'].desc }
+ent-SuitStorageWallmountSalv = { ent-['SuitStorageWallmount', 'SuitStorageSalv'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageSalv'].desc }
+ent-SuitStorageWallmountSyndie = { ent-['SuitStorageWallmount', 'SuitStorageSyndie'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageSyndie'].desc }
+ent-SuitStorageWallmountPirateCap = { ent-['SuitStorageWallmount', 'SuitStoragePirateCap'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStoragePirateCap'].desc }
+ent-SuitStorageWallmountWizard = { ent-['SuitStorageWallmount', 'SuitStorageWizard'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageWizard'].desc }
+ent-SuitStorageWallmountClown = { ent-['SuitStorageWallmount', 'SuitStorageClown'] }
+
+  .desc = { ent-['SuitStorageWallmount', 'SuitStorageClown'].desc }

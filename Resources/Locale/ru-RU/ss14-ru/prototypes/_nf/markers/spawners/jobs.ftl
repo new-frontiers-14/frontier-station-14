@@ -6,3 +6,5 @@ ent-SpawnPointStc = stc
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointSecurityGuard = security guard
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointERTMailCarrier = ERTmailcarrier
+    .desc = { ent-SpawnPointJobBase.desc }

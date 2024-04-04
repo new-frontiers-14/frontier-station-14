@@ -4,30 +4,39 @@ ent-BaseEmotionalGhostCat = { "" }
     .desc = { "" }
 ent-BaseEmotionalGhostDog = { "" }
     .desc = { "" }
-ent-MobCatGhost = { ent-MobCat }
-    .suffix = Ghost
-    .desc = { ent-MobCat.desc }
-ent-MobCatCalicoGhost = { ent-MobCatCalico }
-    .suffix = Ghost
-    .desc = { ent-MobCatCalico.desc }
-ent-MobCatCaracalGhost = { ent-MobCatCaracal }
-    .suffix = Ghost
-    .desc = { ent-MobCatCaracal.desc }
-ent-MobCatSpaceGhost = { ent-MobCatSpace }
-    .suffix = Ghost
-    .desc = { ent-MobCatSpace.desc }
-ent-MobBingusGhost = { ent-MobBingus }
-    .suffix = Ghost
-    .desc = { ent-MobBingus.desc }
-ent-MobCorgiGhost = { ent-MobCorgi }
-    .suffix = Ghost
-    .desc = { ent-MobCorgi.desc }
-ent-MobCorgiPuppyGhost = { ent-MobCorgiPuppy }
-    .suffix = Ghost
-    .desc = { ent-MobCorgiPuppy.desc }
-ent-MobPibbleGhost = { ent-MobPibble }
-    .suffix = Ghost
-    .desc = { ent-MobPibble.desc }
-ent-MobChickenGhost = { ent-MobChicken }
-    .suffix = Ghost
-    .desc = { ent-MobChicken.desc }
+ent-MobCatGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCat'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCat'].desc }
+ent-MobCatCalicoGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatCalico'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatCalico'].desc }
+ent-MobCatCaracalGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatCaracal'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatCaracal'].desc }
+ent-MobCatSpaceGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatSpace'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobCatSpace'].desc }
+ent-MobBingusGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobBingus'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostCat', 'MobBingus'].desc }
+ent-MobCorgiGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobCorgi'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobCorgi'].desc }
+ent-MobCorgiPuppyGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobCorgiPuppy'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobCorgiPuppy'].desc }
+ent-MobPibbleGhost = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobPibble'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'BaseEmotionalGhostDog', 'MobPibble'].desc }
+ent-MobChickenGhost = { ent-['BaseEmotionalGhost', 'MobChicken'] }
+
+  .suffix = Ghost
+  .desc = { ent-['BaseEmotionalGhost', 'MobChicken'].desc }

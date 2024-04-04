@@ -1,2 +1,2 @@
 ent-SuitStorageWallmount = suit wallstorage unit
-  .desc = { ent-SuitStorageBase.desc }
+    .desc = { ent-SuitStorageBase.desc }

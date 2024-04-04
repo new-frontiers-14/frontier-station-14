@@ -1,3 +1,11 @@
 ent-ClothingHeadsetSecuritySafe = { ent-ClothingHeadsetSecurity }
     .suffix = Safe
     .desc = { ent-ClothingHeadsetSecurity.desc }
+ent-ClothingHeadsetMailCarrier = mail carrier headset
+    .desc = A headset used by mail carrier employees.
+ent-ClothingHeadsetNFSDgreen = nfsd headset
+    .desc = A headset for deputy sheriff's.
+ent-ClothingHeadsetNFSDbrown = nfsd headset
+    .desc = A headset for deputy sheriff's.
+ent-ClothingHeadsetNFSDcb = nfsd headset
+    .desc = A headset for deputy sheriff's.

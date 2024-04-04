@@ -7,9 +7,10 @@ ent-BaseGeneratorWallmountFrame = wallmount generator frame
 ent-GeneratorBasic = { ent-BaseGenerator }
     .suffix = Basic, 3kW
     .desc = { ent-BaseGenerator.desc }
-ent-GeneratorBasic15kW = { ent-BaseGenerator }
+ent-GeneratorBasic15kW = { ent-['BaseStructureDisableToolUse', 'BaseGenerator'] }
+
   .suffix = Basic, 15kW, Anchored
-  .desc = { ent-BaseGenerator.desc }
+  .desc = { ent-['BaseStructureDisableToolUse', 'BaseGenerator'].desc }
 ent-GeneratorWallmountBasic = { ent-BaseGeneratorWallmount }
     .suffix = Basic, 3kW
     .desc = { ent-BaseGeneratorWallmount.desc }

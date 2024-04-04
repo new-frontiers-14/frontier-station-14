@@ -2,11 +2,11 @@ ent-BaseWallDiagonal = basewall
     .suffix = diagonal
     .desc = { ent-BaseStructure.desc }
 ent-WallReinforcedDiagonal = reinforced wall
-    .suffix = diagonal
-    .desc = { ent-WallReinforced.desc }
+
+  .desc = { ent-['WallReinforced', 'BaseWallDiagonal'].desc }
 ent-WallWoodDiagonal = wood wall
-    .suffix = diagonal
-    .desc = { ent-WallWood.desc }
+
+  .desc = { ent-['WallWood', 'BaseWallDiagonal'].desc }
 ent-WallUraniumDiagonal = uranium wall
-    .suffix = diagonal
-    .desc = { ent-WallUranium.desc }
+
+  .desc = { ent-['WallUranium', 'BaseWallDiagonal'].desc }

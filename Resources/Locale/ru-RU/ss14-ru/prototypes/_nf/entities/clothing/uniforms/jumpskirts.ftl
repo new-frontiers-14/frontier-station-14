@@ -10,3 +10,7 @@ ent-ClothingUniformJumpskirtMercenary = mercenary jumpskirt
     .desc = Clothing for real mercenaries who have gone through fire, water and the jungle of planets flooded with dangerous monsters or targets for which a reward has been assigned.
 ent-ClothingUniformJumpskirtSecGuard = security guard jumpskirt
     .desc = A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.
+ent-ClothingUniformJumpskirtNfsd = nfsd jumpskirt
+    .desc = A long sleeved jumpskirt produced for deputy sheriff's. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
+ent-ClothingUniformJumpskirtNfsdShort = nfsd jumpskirt
+    .desc = A short sleeved jumpskirt produced for deputy sheriff's. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood

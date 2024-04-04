@@ -1,22 +1,33 @@
 ent-PartMoth = moth body part
-  .desc = { ent-BasePart.desc }
+
+  .desc = { ent-['BaseItem', 'BasePart'].desc }
 ent-TorsoMoth = moth torso
-  .desc = { ent-BaseTorso.desc }
+
+  .desc = { ent-['PartMoth', 'BaseTorso'].desc }
 ent-HeadMoth = moth head
-  .desc = { ent-BaseHead.desc }
+
+  .desc = { ent-['PartMoth', 'BaseHead'].desc }
 ent-LeftArmMoth = left moth arm
-  .desc = { ent-BaseLeftArm.desc }
+
+  .desc = { ent-['PartMoth', 'BaseLeftArm'].desc }
 ent-RightArmMoth = right moth arm
-  .desc = { ent-BaseRightArm.desc }
+
+  .desc = { ent-['PartMoth', 'BaseRightArm'].desc }
 ent-LeftHandMoth = left moth hand
-  .desc = { ent-BaseLeftHand.desc }
+
+  .desc = { ent-['PartMoth', 'BaseLeftHand'].desc }
 ent-RightHandMoth = right moth hand
-  .desc = { ent-BaseRightHand.desc }
+
+  .desc = { ent-['PartMoth', 'BaseRightHand'].desc }
 ent-LeftLegMoth = left moth leg
-  .desc = { ent-BaseLeftLeg.desc }
+
+  .desc = { ent-['PartMoth', 'BaseLeftLeg'].desc }
 ent-RightLegMoth = right moth leg
-  .desc = { ent-BaseRightLeg.desc }
+
+  .desc = { ent-['PartMoth', 'BaseRightLeg'].desc }
 ent-LeftFootMoth = left moth foot
-  .desc = { ent-BaseLeftFoot.desc }
+
+  .desc = { ent-['PartMoth', 'BaseLeftFoot'].desc }
 ent-RightFootMoth = right moth foot
-  .desc = { ent-BaseRightFoot.desc }
+
+  .desc = { ent-['PartMoth', 'BaseRightFoot'].desc }

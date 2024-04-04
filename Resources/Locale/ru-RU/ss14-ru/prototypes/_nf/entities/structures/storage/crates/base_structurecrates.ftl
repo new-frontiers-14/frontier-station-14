@@ -1,2 +1,2 @@
 ent-CrateTradeBaseSecure = { ent-CrateBaseWeldable }
-  .desc = { ent-CrateBaseWeldable.desc }
+    .desc = { ent-CrateBaseWeldable.desc }

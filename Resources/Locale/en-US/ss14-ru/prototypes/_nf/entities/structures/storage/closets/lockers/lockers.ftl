@@ -1,3 +1,5 @@
+ent-LockerMailCarrier = mail's locker
+    .desc = { ent-LockerBaseSecure.desc }
 ent-LockerMercenary = mercenary locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerJanitor = janitor locker

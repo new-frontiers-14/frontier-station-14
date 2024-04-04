@@ -1,4 +1,5 @@
-ent-FoodDonutBase = { ent-VendPriceFoodBase100 }
+ent-FoodDonutBase = { ent-['VendPriceFoodBase100', 'FoodInjectableBase'] }
+
   .desc = Goes great with robust coffee.
 ent-FoodDonutPlain = plain donut
     .desc = { ent-FoodDonutBase.desc }

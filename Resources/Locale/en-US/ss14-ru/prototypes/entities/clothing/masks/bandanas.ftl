@@ -1,6 +1,6 @@
-ent-ClothingMaskBandanaBase = { ent-BaseFoldable }
+ent-ClothingMaskBandanaBase = { ent-['ClothingMaskBaseButcherable', 'BaseFoldable'] }
 
-  .desc = { ent-BaseFoldable.desc }
+  .desc = { ent-['ClothingMaskBaseButcherable', 'BaseFoldable'].desc }
 ent-ClothingMaskBandBlack = black bandana
     .desc = A black bandana to make you look cool.
 ent-ClothingMaskBandBlue = blue bandana

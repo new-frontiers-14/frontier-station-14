@@ -1,0 +1,10 @@
+ent-WizardStaffMeleeBase = wizard staff
+    .desc = Symbol of wizard's mastery of arcane arts.
+ent-WizardStaffMeleeRed = red wizard staff
+    .desc = { ent-WizardStaffMeleeBase.desc }
+ent-WizardStaffMeleeViolet = violet wizard staff
+    .desc = { ent-WizardStaffMeleeBase.desc }
+ent-WizardStaffMeleeSoap = soap wizard staff
+    .desc = { ent-WizardStaffMeleeBase.desc }
+ent-WizardStaffMeleeBlood = blood cult staff
+    .desc = { ent-WizardStaffMeleeRed.desc }

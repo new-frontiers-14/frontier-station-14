@@ -9,3 +9,7 @@ ghost-role-information-crispy-name = Криспи
 ghost-role-information-crispy-description = Были допущены ошибки.
 ghost-role-information-mistake-name = ?????
 ghost-role-information-mistake-description = Имг' пх'нглуи а ли.
+ghost-role-information-ert-mailcarrier-name = ERT Mail Carrier
+ghost-role-information-ert-mailcarrier-description = Assist with paperworks efforts to resolve the stations issues.
+ghost-role-information-jerma-name = Jerma
+ghost-role-information-jerma-description = Pog moment
