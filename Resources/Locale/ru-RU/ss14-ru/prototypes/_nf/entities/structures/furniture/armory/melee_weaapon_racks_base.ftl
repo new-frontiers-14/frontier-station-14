@@ -1,5 +1,5 @@
-ent-WeaponRackMeleeBase = melee weapon rack
-    .desc = A storage unit for expedited pacification measures.
+ent-WeaponRackMeleeBase = хранилище холодного оружия
+    .desc = Хранилище для ускоренных мер по умиротворению.
 ent-WeaponRackMeleeWallmountedBase = { ent-WeaponRackMeleeBase }
-    .suffix = Wallmount
+    .suffix = Настенное
     .desc = { ent-WeaponRackMeleeBase.desc }
