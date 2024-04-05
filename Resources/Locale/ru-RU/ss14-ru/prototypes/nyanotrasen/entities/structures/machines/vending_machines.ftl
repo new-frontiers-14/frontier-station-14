@@ -1,6 +1,6 @@
-ent-VendingMachineRepDrobe = RepDrobe
-    .desc = A machine for all your reporting needs, as long as you need clothes.
-ent-VendingMachineBoxingDrobe = Boxing Drobe
-    .desc = Always short on stock.
-ent-VendingMachineMailDrobe = MailDrobe
-    .desc = Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
+ent-VendingMachineRepDrobe = РепВенд
+    .desc = Машина для всех ваших репортёрских потребностей, пока вам нужна одежда.
+ent-VendingMachineBoxingDrobe = БоксВенд
+    .desc = Всегда имеет шорты в наличии.
+ent-VendingMachineMailDrobe = ПочтоМаг
+    .desc = Ни солнечные вспышки, ни метеоры, ни плазменный огонь, ни пустота космоса не останавливают этих курьеров от быстрого завершения назначенного им обхода.
