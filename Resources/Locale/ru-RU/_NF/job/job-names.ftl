@@ -1,12 +1,12 @@
 job-name-ertmailcarrier = ERT Mail Carrier
-job-name-mercenary = Наемник
-job-name-pilot = Пилот
-job-name-security-guard = Охранник
-job-name-stc = Регулятор
+job-name-mercenary = наёмник
+job-name-pilot = пилот
+job-name-security-guard = тюремщик
+job-name-stc = диспетчер станции
 # Role timers - Make these alphabetical or I cut you
-JobERTMailCarrier = Почтовый перевозчик ОБР
+JobERTMailCarrier = почтальон ОБР
 # Role timers - Make these alphabetical or I cut you
-JobMercenary = Наемник
-JobPilot = Пилот
-JobSecurityGuard = Охранник
-JobSTC = Регулятор
+JobMercenary = наёмник
+JobPilot = пилот
+JobSecurityGuard = тюремщик
+JobSTC = диспетчер станции
