@@ -1,30 +1,22 @@
 - type: entity
   id: PlastitaniumWindow
   name: plastitanium window
-  parent: Window
+  parent: PlastitaniumWindowIndestructible
   components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/plastitanium_window.rsi
-  - type: Icon
-    sprite: Structures/Windows/plastitanium_window.rsi
-  - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 3
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: RGlass
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -34,25 +26,8 @@
           ShardGlassReinforced:
             min: 1
             max: 2
-          PartRodMetal:
-            min: 1
-            max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: IconSmooth
-    base: ptwindow
-  - type: Appearance
-  - type: DamageVisuals
-    thresholds: [4, 8, 12]
-    damageDivisor: 28
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
-  - type: Construction # Frontier
-    graph: Plastitanium
-    node: plastitaniumWindow
-  - type: StaticPrice
-    price: 100
 
 - type: entity
   parent: ShuttleWindow
