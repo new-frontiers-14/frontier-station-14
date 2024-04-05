@@ -1,0 +1,10 @@
+ent-ClothingHeadHelmetHardsuitSecuritypatrol = security patrol hardsuit helmet
+    .desc = Lightly armored hardsuit helmet for security beat-cop needs.
+ent-ClothingHeadHelmetHardsuitMercenary = mercenary hardsuit helmet
+    .desc = Lightly armored hardsuit helmet for mercenary needs.
+ent-ClothingHeadHelmetHardsuitPilot = pilot hardsuit helmet
+    .desc = Light hardsuit helmet for pilots.
+ent-ClothingHeadHelmetHardsuitMaximPrototype = experimental salvager helmet
+    .desc = A predication of decay washes over your mind.
+ent-ClothingHeadHelmetHardsuitSundie = sundicate crimson-red hardsuit helmet
+    .desc = A heavily armored helmet designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.

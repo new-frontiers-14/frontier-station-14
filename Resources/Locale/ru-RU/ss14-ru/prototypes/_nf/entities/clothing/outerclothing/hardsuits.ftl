@@ -1,0 +1,10 @@
+ent-ClothingOuterHardsuitSecuritypatrol = security patrol hardsuit
+    .desc = A special suit that protects from the danger of space, employed by security patrol officers. Not certified to be blunderbuss proof.
+ent-ClothingOuterHardsuitMercenary = mercenary hardsuit
+    .desc = A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss proof.
+ent-ClothingOuterHardsuitPilot = pilot hardsuit
+    .desc = A hardsuit tailored for someone who spends the majority of their time buckled to a chair.
+ent-ClothingOuterHardsuitMaximPrototype = experimental salvager hardsuit
+    .desc = Fire. Heat. These things forge great weapons, they also forge great salvagers.
+ent-ClothingOuterHardsuitSundie = sundicate crimson-red hardsuit
+    .desc = A heavily armored hardsuit designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.

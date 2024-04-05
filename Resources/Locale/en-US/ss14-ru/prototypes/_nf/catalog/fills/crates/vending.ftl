@@ -1,0 +1,14 @@
+ent-CrateVendingMachineRestockAstroVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockAmmoFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockFlatpackVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockCuddlyCritterVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockLessLethalVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockAutoTuneVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }
+ent-CrateVendingMachineRestockPottedPlantVendFilled = { ent-CratePlasticBiodegradable }
+    .desc = { ent-CratePlasticBiodegradable.desc }

@@ -1,0 +1,14 @@
+ent-BaseStructureDisableToolUse = { "" }
+    .desc = { "" }
+ent-BaseStructureUnanchorable = { "" }
+    .desc = { "" }
+ent-BaseStructureDestructible = { "" }
+    .desc = { "" }
+ent-BaseStructureIndestructible = { "" }
+    .desc = { "" }
+ent-BaseStructureWallmount = { "" }
+    .desc = { "" }
+ent-BaseStructureLockImmuneToEmag = { "" }
+    .desc = { "" }
+ent-BaseStructureAccessReaderImmuneToEmag = { "" }
+    .desc = { "" }

@@ -1,0 +1,11 @@
+ent-AtmosFixShuttleOxygenMarker = Atmos Fix Oxygen Marker
+    .desc = Oxygen at lower presure
+    .suffix = Shuttle
+ent-AtmosFixShuttleNitrogenMarker = Atmos Fix Nitrogen Marker
+    .desc = Nitrogen at lower presure
+    .suffix = Shuttle
+ent-AtmosFixShuttlePlasmaMarker = Atmos Fix Plasma Marker
+    .desc = Plasma at lower presure
+    .suffix = Shuttle
+ent-AtmosFixSaunaMarker = Atmos Fix Sauna Marker
+    .desc = Sauna

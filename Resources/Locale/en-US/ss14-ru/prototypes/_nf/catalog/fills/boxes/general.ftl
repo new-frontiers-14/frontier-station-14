@@ -1,0 +1,12 @@
+ent-BoxWetFloorSign = Wet floor sign box
+    .desc = A box of wet floor signs. Happy janitor noises.
+ent-BoxPaper = Paper box
+    .desc = A box full of papers.
+ent-BoxPaperOffice = Office paper box
+    .desc = A box full of papers.
+ent-BoxPaperCaptainsThoughts = Captains thoughts paper box
+    .desc = A box full of papers.
+ent-MysteryFigureBoxBulk = mystery spacemen minifigure bulk box
+    .desc = A box containing six mystery minifigure boxes.
+ent-BoxT3SuperCapacitor = Thruster upgrade kit
+    .desc = A box of super capacitors.

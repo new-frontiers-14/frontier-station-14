@@ -93,7 +93,21 @@
   - type: StaticPrice
     price: 195
 
-# MAXIM Nerfed: mining hardsuit stats, but slightly worse expl and piercing res, better caustic res, better movement speed
+#ERT Mail Carrier Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitCBURN
+  id: ClothingOuterHardsuitERTMailCarrier
+  name: ERT mail carrier's hardsuit
+  description: A protective hardsuit worn by the mail carriers of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
+
+# MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
 - type: entity
   parent: ClothingOuterHardsuitMaxim
   id: ClothingOuterHardsuitMaximPrototype
@@ -105,19 +119,19 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.6
+        Piercing: 0.5
         Heat: 0.8
         Radiation: 0.3
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
+    walkModifier: 0.8
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
@@ -146,3 +160,68 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSundie
   - type: Contraband
+
+- type: entity
+  parent: ClothingOuterHardsuitSecuritypatrol
+  id: ClothingOuterHardsuitNfsdBronze
+  name: nfsd bronze patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitNfsdSilver
+  name: nfsd silver patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
+
+- type: entity
+  parent: ClothingOuterHardsuitWarden
+  id: ClothingOuterHardsuitNfsdGold
+  name: nfsd gold patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitNfsdSheriff
+  name: nfsd sheriff patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
+
+- type: entity
+  parent: ClothingOuterHardsuitBrigmedic
+  id: ClothingOuterHardsuitNfsdBrigMed
+  name: nfsd brigmedic patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmed

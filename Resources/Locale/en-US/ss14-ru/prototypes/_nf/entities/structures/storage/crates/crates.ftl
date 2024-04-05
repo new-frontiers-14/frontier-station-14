@@ -1,0 +1,14 @@
+ent-CratePlasticBiodegradable = biodegradable plastic crate
+    .desc = { ent-CrateBaseWeldable.desc }
+ent-CrateUranium = uranium crate
+    .desc = { ent-CrateBaseSecure.desc }
+ent-CrateTradeBaseSecureNormal = cargo steel crate
+    .desc = { ent-CrateTradeBaseSecure.desc }
+ent-CrateTradeBaseSecureHigh = high value cargo steel crate
+    .desc = { ent-CrateTradeBaseSecure.desc }
+ent-CrateTradeContrabandSecureNormal = Syndicate contraband crate
+    .desc = { ent-CrateTradeBaseSecure.desc }
+ent-CrateTradeContrabandSecureDonk = Donk Co. contraband crate
+    .desc = { ent-CrateTradeBaseSecure.desc }
+ent-CrateTradeContrabandSecureCyberSun = Cybersun Industries contraband crate
+    .desc = { ent-CrateTradeBaseSecure.desc }
