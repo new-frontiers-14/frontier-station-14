@@ -1,22 +1,14 @@
 - type: entity
   id: PlastitaniumWindow
   name: plastitanium window
-  parent: Window # Corvax-Frontier Change
+  parent: PlastitaniumWindowIndestructible # Frontier - Change to ReinforcedWindow
+  suffix: "" # Frontier
   components:
-  - type: WallMount
-    arc: 360 # interact despite grilles
-  - type: Tag
-    tags:
-      - ForceFixRotations
-      - Window
   - type: Sprite
     drawdepth: WallTops
     sprite: Structures/Windows/plastitanium_window.rsi
   - type: Icon
     sprite: Structures/Windows/plastitanium_window.rsi
-    state: full
-  - type: Physics
-    bodyType: Static
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: RGlass
@@ -42,27 +34,24 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb {}
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Airtight
   - type: IconSmooth
-    key: walls
     base: plwindow
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [4, 8, 12]
+    damageDivisor: 36
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: StaticPrice
+    price: 65
   - type: Construction # Frontier
     graph: Plastitanium
     node: plastitaniumWindow
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
-  - type: Appearance
-  - type: StaticPrice
-    price: 65
+  - type: Repairable
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: MetalGlassBreak
