@@ -26,6 +26,20 @@
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: IconSmooth
+    key: walls
+    base: plwindow
+  - type: Airtight
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [4, 8, 12]
+    damageDivisor: 28
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -37,15 +51,13 @@
         - FullTileMask
         layer:
         - GlassLayer
-  - type: Airtight
-  - type: IconSmooth
-    key: walls
-    base: plwindow
   - type: InteractionPopup
     interactSuccessString: comp-window-knock
     messagePerceivedByOthers: comp-window-knock
     interactSuccessSound:
       path: /Audio/Effects/glass_knock.ogg
-  - type: Appearance
+  - type: Construction # Frontier
+    graph: Plastitanium
+    node: plastitaniumWindow
   - type: StaticPrice
     price: 65
