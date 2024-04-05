@@ -1,72 +1,57 @@
 - type: entity
   id: PlastitaniumWindow
   name: plastitanium window
-  parent: PlastitaniumWindowIndestructible
+  parent: PlastitaniumWindowIndestructible # Frontier - Change to ReinforcedWindow
+  suffix: "" # Frontier
   components:
+  # - type: Sprite
+    # drawdepth: WallTops
+    # sprite: Structures/Windows/plastitanium_window.rsi
+  # - type: Icon
+    # sprite: Structures/Windows/plastitanium_window.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: RGlass
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
+        damage: 2000
+      behaviors: #excess damage, don't spawn entities.
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 1000
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: WindowShatter
+          collection: GlassBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          ShardGlassReinforced:
+          PartRodMetal:
             min: 1
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-
-- type: entity
-  parent: ShuttleWindow
-  id: PlastitaniumWindowDiagonal
-  suffix: diagonal
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
-  components:
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: Structures/Windows/plastitanium_window_diagonal.rsi
-    state: state0
-  - type: IconSmooth
-    mode: Diagonal
-    key: windows
-    base: state
-  - type: Icon
-    sprite: Structures/Windows/plastitanium_window_diagonal.rsi
-    state: state0
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
-    - East
+  # - type: IconSmooth
+    # base: plwindow
+  # - type: Appearance
   - type: DamageVisuals
+    thresholds: [4, 8, 12]
+    damageDivisor: 36
+    trackAllDamage: true
     damageOverlay:
-      sprite: Structures/Windows/cracks_diagonal.rsi
+      sprite: Structures/Windows/cracks.rsi
+  # - type: StaticPrice
+    # price: 65
+  - type: Construction # Frontier
+    graph: Plastitanium
+    node: plastitaniumWindow
+  - type: Repairable
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: MetalGlassBreak
