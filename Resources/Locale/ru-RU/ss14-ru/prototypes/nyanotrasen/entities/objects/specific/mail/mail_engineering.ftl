@@ -1,12 +1,12 @@
 ent-MailEngineeringCables = { ent-BaseMail }
-    .suffix = cables
+    .suffix = кабея
     .desc = { ent-BaseMail.desc }
 ent-MailEngineeringKudzuDeterrent = { ent-BaseMail }
-    .suffix = antikudzu
+    .suffix = анти-кудзу
     .desc = { ent-BaseMail.desc }
 ent-MailEngineeringSheetGlass = { ent-BaseMail }
-    .suffix = sheetglass
+    .suffix = материалы
     .desc = { ent-BaseMail.desc }
 ent-MailEngineeringWelderReplacement = { ent-BaseMail }
-    .suffix = welder
+    .suffix = сварочный аппарат
     .desc = { ent-BaseMail.desc }
