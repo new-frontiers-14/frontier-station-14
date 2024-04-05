@@ -1,11 +1,11 @@
-advertisement-syndicatehumanoid-1 = Чувак, я ненавижу это здесь!
+advertisement-syndicatehumanoid-1 = Чувак, я ненавижу NanoTrasen!
 advertisement-syndicatehumanoid-2 = Вчера я видел сотрудника NT. Жалкое существо.
 advertisement-syndicatehumanoid-3 = Должно быть, это был ветер.
 advertisement-syndicatehumanoid-4 = Что это было?
 advertisement-syndicatehumanoid-5 = Вы это видели?
 advertisement-syndicatehumanoid-6 = Эй, чувак, зацени это!
 advertisement-syndicatehumanoid-7 = СУКА, этот тупой удар сильно бьет, я спотыкаюсь.
-advertisement-syndicatehumanoid-8 = Я с нетерпением жду выплаты за работу за работу в опасных условиях.
+advertisement-syndicatehumanoid-8 = Я с нетерпением жду выплаты за работу в опасных условиях.
 advertisement-syndicatehumanoid-9 = УМРИ, УМРИ, УМРИ!
 advertisement-syndicatehumanoid-10 = Иногда мне снится сыр...
 advertisement-syndicatehumanoid-11 = СТОП!
