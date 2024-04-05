@@ -1,2 +1,2 @@
-ent-HatSpawner = Hat Spawner
+ent-HatSpawner = спавнер случайной шляпы
     .desc = { ent-MarkerBase.desc }
