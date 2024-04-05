@@ -1,9 +1,9 @@
-ent-SalvagePartsSpawnerLow = Salvage Parts Spawner
-    .suffix = Low
+ent-SalvagePartsSpawnerLow = случайная добыча
+    .suffix = Низкий
     .desc = { ent-MarkerBase.desc }
-ent-SalvagePartsSpawnerMid = Salvage Parts Spawner
-    .suffix = High
+ent-SalvagePartsSpawnerMid = случайная добыча
+    .suffix = Высокий
     .desc = { ent-MarkerBase.desc }
-ent-SalvagePartsSpawnerSubSpace = Salvage Parts Spawner
-    .suffix = Subspace
+ent-SalvagePartsSpawnerSubSpace = случайная добыча
+    .suffix = Космический
     .desc = { ent-MarkerBase.desc }
