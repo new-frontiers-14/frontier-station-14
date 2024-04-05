@@ -461,6 +461,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 1
+    - type: AtmosDevice
+      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -674,8 +676,6 @@ entities:
       linkedPorts:
         41:
         - Pressed: DoorBolt
-        invalid:
-        - Pressed: Toggle
         79:
         - Pressed: Toggle
 - proto: SignMail
