@@ -1,4 +1,4 @@
-#Contraband Exchange Console
+ # Contraband Exchange Console
 contraband-pallet-console-menu-title = Обмен контрабандой
 contraband-console-menu-points-amount = { $amount } ТК
 contraband-pallet-menu-no-goods-text = Контрабанда не обнаружена
