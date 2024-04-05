@@ -1,2 +1,2 @@
-ent-ClothingHeadHatHoodArcadia = arcadia coat hood
+ent-ClothingHeadHatHoodArcadia = капюшон аркадианского пальто
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }

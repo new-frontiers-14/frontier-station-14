@@ -14,6 +14,6 @@ ent-KudzuFlowerAngry = { ent-KudzuFlowerFriendly }
 ent-FleshKudzu = tendons
     .desc = A rapidly growing cluster of meaty tendons. WHY ARE YOU STOPPING TO LOOK AT IT?!
 ent-ShadowKudzu = dark haze
-  .desc = { ent-BaseKudzu.desc }
+  .desc = { ent-BaseShadow.desc }
 ent-ShadowKudzuWeak = Haze
     .desc = { ent-ShadowKudzu.desc }

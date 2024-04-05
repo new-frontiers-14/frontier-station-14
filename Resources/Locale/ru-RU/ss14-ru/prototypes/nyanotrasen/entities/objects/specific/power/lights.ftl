@@ -1,2 +1,2 @@
-ent-BlueLightTube = blue light tube
-    .desc = A medium power high energy bulb that reminds you of space. May contain mercury.
+ent-BlueLightTube = синяя люминесцентная лампа-трубка
+    .desc = Мощная лампа, внутри которой находится маленький цветной кристалл.

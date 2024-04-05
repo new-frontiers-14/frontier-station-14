@@ -1,2 +1,2 @@
-ent-ClothingBeltQuiverCrossbow = quiver (bolts)
-    .desc = Can hold up to 20 bolts, and fits snug around your waist.
+ent-ClothingBeltQuiverCrossbow = колчан (болты)
+    .desc = Плотно облегающий талию колчан, который может вмещать до 20 болтов для арбалета.

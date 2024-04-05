@@ -1,5 +1,5 @@
-ent-Demag = cryptographic resequencer
-    .desc = The all-in-one unhacking solution. The thinking man's lock. The iconic DEMAG fixer.
-ent-DemagUnlimited = cryptographic resequencer
-    .desc = The all-in-one unhacking solution. The thinking man's lock. The iconic DEMAG fixer.
-    .suffix = Unlimited
+ent-Demag = криптографический ресеквенсор
+    .desc = Универсальное анти-хакерское устройство. Так же известное как DEMAG.
+ent-DemagUnlimited = криптографический ресеквенсор
+    .desc = Универсальное анти-хакерское устройство. Так же известное как DEMAG.
+    .suffix = Неограниченный

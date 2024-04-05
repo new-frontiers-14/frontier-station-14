@@ -1,5 +1,5 @@
-ent-BaseMail = mail-item-name-unaddressed
+ent-BaseMail = посылка без адресата
     .desc = { ent-BaseItem.desc }
 ent-MailAdminFun = { ent-BaseMail }
-    .suffix = adminfun
+    .suffix = адмеме
     .desc = { ent-BaseMail.desc }

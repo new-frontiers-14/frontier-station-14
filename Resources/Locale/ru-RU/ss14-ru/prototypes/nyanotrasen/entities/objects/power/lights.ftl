@@ -1,6 +1,6 @@
-ent-ColoredLightTubeRed = red light tube
-    .desc = A colorful light tube. These emit a red hue.
-ent-ColoredLightTubeFrostyBlue = blue light tube
-    .desc = A colorful light tube. These emit a frosty blue hue.
-ent-ColoredLightTubeBlackLight = black light tube
-    .desc = A colorful light tube. These emit "black light".
+ent-ColoredLightTubeRed = красная лампа-трубка
+    .desc = Мощная лампа, внутри которой находится маленький цветной кристалл.
+ent-ColoredLightTubeFrostyBlue = синяя лампа-трубка
+    .desc = Мощная лампа, внутри которой находится маленький цветной кристалл.
+ent-ColoredLightTubeBlackLight = чёрная лампа-трубка
+    .desc = Мощная лампа. Светит "чёрным светом".

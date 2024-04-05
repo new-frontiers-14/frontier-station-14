@@ -7,3 +7,7 @@ chat-speech-verb-felinid-1 = мяукает
 chat-speech-verb-felinid-2 = мяфает
 chat-speech-verb-felinid-3 = мряфает
 chat-speech-verb-felinid-4 = мурлычет
+chat-speech-verb-harpy-1 = щебечет
+chat-speech-verb-harpy-2 = чирикает
+chat-speech-verb-harpy-3 = каркает
+chat-speech-verb-harpy-4 = вибрирует

@@ -1,2 +1,2 @@
-ent-PaintingNightOfThePostGoblin = Night Of The Post Goblin
-    .desc = A rotund sprite, astride a sinuous feline steed, brandishing a gleaming blade while donning rubbery foot coverings.
+ent-PaintingNightOfThePostGoblin = Ночь почтового гоблина
+    .desc = Пухлый сказочный дух, восседающий на извивающемся кошачьем скакуне, гордо потрясает сверкающим клинком, облаченный в резиновые ботинки для длинных походов. Пылкий вестник, доставляющий послания сквозь ночь, он отважно скачет навстречу приключениям, развевая плащ из почтовых конвертов за спиной.

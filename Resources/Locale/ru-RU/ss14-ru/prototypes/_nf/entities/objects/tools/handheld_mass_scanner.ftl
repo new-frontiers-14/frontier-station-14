@@ -1,2 +1,2 @@
-ent-HandHeldMassScanner = handheld mass scanner
-    .desc = A hand-held mass scanner.
+ent-HandHeldMassScanner = ручной сканер массы
+    .desc = Ручной сканер для отслеживания близлежащих космических тел, отображающий их позицию и массу.

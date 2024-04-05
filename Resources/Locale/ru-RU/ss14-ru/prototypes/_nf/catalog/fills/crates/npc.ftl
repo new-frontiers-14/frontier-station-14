@@ -1,5 +1,5 @@
-ent-CrateNPCEmotionalSupport = Emotional support pet crate
+ent-CrateNPCEmotionalSupport = ящик с ручными зверушками
     .desc = { ent-CrateLivestock.desc }
-ent-CrateNPCEmotionalSupportSafe = Emotional support pet crate
-    .suffix = Safe
+ent-CrateNPCEmotionalSupportSafe = ящик с ручными зверушками
+    .suffix = Безопасный
     .desc = { ent-CrateLivestock.desc }

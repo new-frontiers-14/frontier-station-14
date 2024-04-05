@@ -1,2 +1,2 @@
-ent-KillerTomatoSeeds = packet of killer tomato seeds
-    .desc = Killer taste.
+ent-KillerTomatoSeeds = пакет семян томатов убийц
+    .desc = Смертельно вкусно.

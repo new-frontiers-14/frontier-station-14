@@ -1,6 +1,6 @@
-ent-BaseFoodCondimentSqueezeBottle = condiment squeeze bottle
-    .desc = A thin plastic container used to store condiments.
-ent-FoodCondimentSqueezeBottleKetchup = ketchup squeeze bottle
-    .desc = You feel more American already.
-ent-FoodCondimentSqueezeBottleMustard = mustard squeeze bottle
-    .desc = You feel more American already.
+ent-BaseFoodCondimentSqueezeBottle = бутылочка для соуса
+    .desc = Пластиковая бутылочка, обычно используяющаяся для соусов.
+ent-FoodCondimentSqueezeBottleKetchup = бутылочка кетчупа
+    .desc = А что можешь делать ты, пока течет твой любимый кетчуп?
+ent-FoodCondimentSqueezeBottleMustard = бутылочка горчицы
+    .desc = Отличное дополнение к хот-догу.

@@ -1,3 +1,3 @@
 ent-LockerPilotFilled = { ent-LockerPilot }
-    .suffix = Filled
+    .suffix = Заполненный
     .desc = { ent-LockerPilot.desc }

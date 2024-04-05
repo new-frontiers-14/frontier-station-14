@@ -1,11 +1,11 @@
-ent-DrinkKegBase = keg
-    .desc = I don't have a drinking problem - the keg solved it.
+ent-DrinkKegBase = кега
+    .desc = У меня нет проблем с алкоголем - кега решила их.
 ent-DrinkKegSteel = { ent-DrinkKegBase }
-    .suffix = Steel
+    .suffix = Сталь
     .desc = { ent-DrinkKegBase.desc }
 ent-DrinkKegWood = { ent-DrinkKegBase }
-    .suffix = Wood
+    .suffix = Дерево
     .desc = { ent-DrinkKegBase.desc }
 ent-DrinkKegPlastic = { ent-DrinkKegBase }
-    .suffix = Plastic
+    .suffix = Пластик
     .desc = { ent-DrinkKegBase.desc }

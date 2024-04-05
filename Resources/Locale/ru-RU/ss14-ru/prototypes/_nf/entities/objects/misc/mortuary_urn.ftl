@@ -1,2 +1,2 @@
-ent-UrnMortuary = mortuary urn
-    .desc = Keeps your beloved friend's ashes not scattered in your pocket.
+ent-UrnMortuary = урна для праха
+    .desc = Лучшее решение для тех, кто боится просыпать остатки своих друзей.

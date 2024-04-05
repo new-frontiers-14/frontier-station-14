@@ -1,5 +1,5 @@
-ent-RandomBox = random box spawner
+ent-RandomBox = спавниер случайной коробка
     .desc = { ent-MarkerBase.desc }
-ent-RandomAmmoBox = random ammo box spawner
+ent-RandomAmmoBox = спавнер случайной коробки с патронами
     .suffix = 15%
     .desc = { ent-MarkerBase.desc }

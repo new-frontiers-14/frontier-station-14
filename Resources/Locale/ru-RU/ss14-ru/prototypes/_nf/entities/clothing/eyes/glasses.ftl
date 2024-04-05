@@ -1,4 +1,6 @@
-ent-ClothingEyesArcadiaVisor = arcadia visor
-    .desc = A visor produced by Arcadia Industries, with some high tech optics systems built in.
-ent-ClothingEyesGlassesPilot = pilot goggles
-    .desc = I'm sorry, but you can't pilot a ship without cool glasses. Those are the Rules. Has a GPS built in them too.
+ent-ClothingEyesArcadiaVisor = аркадианский визор
+    .desc = Визор производжства Arcadia Industries, со втроенными высокотехнологичными окулярами.
+ent-ClothingEyesGlassesPilot = очки пилота
+    .desc = Я конечно извиняюсь, но нельзя быть пилотом без этих крутых очков. Имеют встроенный GPS.
+ent-ClothingEyesGlassesNFSD = очки ДСБФ
+    .desc = Модернизированные солнцезащитные очки с функцией защиты от вспышек и визором СБ.

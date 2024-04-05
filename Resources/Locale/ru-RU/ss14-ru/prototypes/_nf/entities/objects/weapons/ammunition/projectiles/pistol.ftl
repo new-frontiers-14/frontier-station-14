@@ -1,2 +1,2 @@
-ent-BulletPistolEmp = bullet (.35 auto emp)
+ent-BulletPistolEmp = пуля (.35 авто эми)
     .desc = { ent-BaseBulletEmp.desc }

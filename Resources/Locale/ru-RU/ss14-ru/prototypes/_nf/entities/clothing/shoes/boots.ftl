@@ -1,2 +1,6 @@
-ent-ClothingShoesBootsPilot = pilot boots
-    .desc = Stylish boots for running in circles on a deck during emergencies.
+ent-ClothingShoesBootsPilot = ботинки пилота
+    .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
+ent-ClothingShoesBootsNFSDBrown = ботинки ДСБФ
+    .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
+ent-ClothingShoesBootsNFSDCream = ботинки ДСБФ
+    .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.

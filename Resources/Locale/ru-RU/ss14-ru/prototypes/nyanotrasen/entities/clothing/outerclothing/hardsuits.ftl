@@ -1,6 +1,6 @@
-ent-ClothingOuterHardsuitSyndieReverseEngineered = SA-122 combat hardsuit
+ent-ClothingOuterHardsuitSyndieReverseEngineered = боевой скафандр SA-122
     .suffix = reverse-engineered
     .desc = { ent-ClothingOuterHardsuitSyndie.desc }
-ent-ClothingOuterHardsuitJuggernautReverseEngineered = SA-126 assault hardsuit
-    .desc = A suit made by the special acquisitions department of Nanotrasen to be hyper resilient.
+ent-ClothingOuterHardsuitJuggernautReverseEngineered = боевой скафандр SA-126
+    .desc = Скафандр, созданный отделом специальных операций компании Nanotrasen и обладающий повышенной прочностью.
     .suffix = reverse-engineered

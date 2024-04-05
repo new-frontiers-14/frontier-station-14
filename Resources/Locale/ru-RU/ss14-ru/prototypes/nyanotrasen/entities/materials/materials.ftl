@@ -1,2 +1,2 @@
-ent-HideMothroach = mothroach hide
-    .desc = A thin layer of mothroach hide.
+ent-HideMothroach = шёрстка таракамоли
+    .desc = Тонкий слой шёрстки таракамоли.

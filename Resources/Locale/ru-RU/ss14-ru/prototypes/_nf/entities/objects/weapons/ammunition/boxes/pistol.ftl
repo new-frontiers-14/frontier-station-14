@@ -1,2 +1,2 @@
-ent-MagazineBoxPistolEmp = ammunition box (.35 auto emp)
+ent-MagazineBoxPistolEmp = коробка патронов (.35 авто эми)
     .desc = { ent-BaseMagazineBoxPistol.desc }

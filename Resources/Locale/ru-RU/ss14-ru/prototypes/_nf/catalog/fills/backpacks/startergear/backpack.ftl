@@ -12,3 +12,5 @@ ent-ClothingBackpackPilotFilled = { ent-ClothingBackpackPilot }
     .desc = { ent-ClothingBackpackPilot.desc }
 ent-ClothingBackpackOfficerFilled = { ent-ClothingBackpackSecurity }
     .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackERTMailCarrierFilled = { ent-ClothingBackpackERTMailCarrier }
+    .desc = { ent-ClothingBackpackERTMailCarrier.desc }

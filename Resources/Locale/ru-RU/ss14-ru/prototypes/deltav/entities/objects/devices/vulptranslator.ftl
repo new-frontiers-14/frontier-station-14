@@ -1,2 +1,2 @@
-ent-VulpTranslator = Canilunzt translator
-    .desc = Used by Vulpkanins to translate their speech.
+ent-VulpTranslator = переводчик с вульпканинского
+    .desc = Используется вульпканами для перевода речи.

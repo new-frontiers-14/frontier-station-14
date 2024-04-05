@@ -1,2 +1,2 @@
-ent-WeaponEmpEmitter = emp emitter
-    .desc = Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
+ent-WeaponEmpEmitter = электромагнитный излучатель
+    .desc = Испускает электромагнитные импульсы, которые выводят из строя или повреждают электронные устройства и разряжают элементы питания. Способен самостоятельно заряжаться.

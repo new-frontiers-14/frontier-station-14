@@ -1,9 +1,8 @@
 ent-ClothingShoesBootsMagCombatFilled = { ent-ClothingShoesBootsMagCombat }
-    .suffix = Filled
-    .desc = { ent-ClothingShoesBootsMagCombat.desc }
-ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
-    .suffix = Filled
-    .desc = { ent-ClothingShoesBootsMagMercenary.desc }
+  .desc = { ent-lothingShoesBootsMagCombat.desc }
+ent-ClothingShoesBootsMagNfsdFilled = { ent-ClothingShoesBootsMagNfsd }
+  .desc = { ent-ClothingShoesBootsMagNfsd.desc }
 ent-ClothingShoesBootsMagPirateFilled = { ent-ClothingShoesBootsMagPirate }
-    .suffix = Filled
-    .desc = { ent-ClothingShoesBootsMagPirate.desc }
+  .desc = { ent-ClothingShoesBootsMagPirate.desc }
+ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
+  .desc = { ent-ClothingShoesBootsMagMercenary.desc }

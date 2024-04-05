@@ -1,3 +1,3 @@
 ent-PinpointerUniversalDebug = { ent-PinpointerUniversal }
-    .suffix = DEBUG, DO NOT MAP
+    .suffix = DEBUG, НЕ МАППИТЬ
     .desc = { ent-PinpointerUniversal.desc }

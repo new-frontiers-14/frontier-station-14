@@ -1,2 +1,2 @@
-ent-SchoolgirlUniformSpawner = Schoolgirl Uniform Spawner
+ent-SchoolgirlUniformSpawner = спавнер школьной униформы
     .desc = { ent-MarkerBase.desc }

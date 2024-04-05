@@ -1,2 +1,2 @@
-ent-ClothingUniformJumpsuitKilt = kilt
-    .desc = A fine bit o' garb for the lad an' lasses.
+ent-ClothingUniformJumpsuitKilt = килт
+    .desc = Модная одежка для девчонок и мальчишек.

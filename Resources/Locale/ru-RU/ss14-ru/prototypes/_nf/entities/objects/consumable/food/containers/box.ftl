@@ -1,2 +1,2 @@
-ent-HappyHonkCargo = mccargo meal
+ent-HappyHonkCargo = обед каргонии
     .desc = { ent-HappyHonk.desc }

@@ -1,6 +1,6 @@
 ent-ClothingMaskGasVoiceChameleonFakeName = { ent-ClothingMaskGasVoiceChameleon }
-    .suffix = Voice Mask, Chameleon, Radio Fake Name
+    .suffix = Голосовая маска, Хамелеон, Замена имени
     .desc = { ent-ClothingMaskGasVoiceChameleon.desc }
 ent-ClothingMaskGasVoiceChameleonRealName = { ent-ClothingMaskGasVoiceChameleon }
-    .suffix = Voice Mask, Chameleon, Radio Real Name
+    .suffix = Голосовая маска, Хамелеон, Без замены имени
     .desc = { ent-ClothingMaskGasVoiceChameleon.desc }

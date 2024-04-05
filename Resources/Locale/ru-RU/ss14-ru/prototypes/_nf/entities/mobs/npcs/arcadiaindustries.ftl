@@ -1,6 +1,6 @@
-ent-MobArcIndShredder = Shredder
-    .desc = A small drone meant to deconstruct both organic and non-organic structures
-ent-MobArcIndHoloparasiteGuardian = Hijacked Hologuardian
-    .desc = A syndicate hologuardian that seems to have been modified by unknown means.
-ent-MobArcIndBlaster = Mobile Blaster Unit
-    .desc = A mobile energy blaster that capable of... oh god run it's spotted you!
+ent-MobArcIndShredder = Шреддер
+    .desc = Небольшой беспилотник, предназначенный для разрушения как органических, так и неорганических структур
+ent-MobArcIndHoloparasiteGuardian = Взломанный Голопаразит
+    .desc = Голопаразит синдиката, перепрограмированный с неизвестной целью.
+ent-MobArcIndBlaster = Мобильная Пусковая Установка
+    .desc = Мобильный энергетический бластер, способный... о боже, он заметил тебя, беги!
