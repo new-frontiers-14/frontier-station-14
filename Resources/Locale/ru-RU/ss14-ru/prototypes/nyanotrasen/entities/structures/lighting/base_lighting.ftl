@@ -1,3 +1,3 @@
 ent-PoweredlightBlueInterior = { ent-PoweredlightExterior }
-    .desc = A light fixture. Draws power and produces light when equipped with a light tube.
-    .suffix = Blue Interior
+    .desc = Осветительный прибор. Потребляет энергию и излучает свет, если оснащен лампой-трубкой.
+    .suffix = Синяя
