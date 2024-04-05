@@ -1,8 +1,8 @@
-ent-SignSec = security sign
-    .desc = A sign indicating the Security department.
-ent-SignLastIdiot = Zero Days Since Last Idiot
-    .desc = Must be an Engineering joke.
-ent-SignConspiracyBoard = conspiracy board
-    .desc = Perfect for tracking the multiple layers of criminal activities.
-ent-SignDojo = dojo sign
-    .desc = A sign indicating a place with discipline and tatami mats.
+ent-SignSec = знак службы безопасности
+    .desc = Табличка с указанием отдела безопасности.
+ent-SignLastIdiot = Ноль Дней С Последнего Идиота
+    .desc = Возможно инженерная шутка.
+ent-SignConspiracyBoard = конспиративная доска
+    .desc = Идеально подходит для отслеживания многоуровневой преступной деятельности.
+ent-SignDojo = знак додзё
+    .desc = Табличка, указывающая на место, где царит дисциплина и лежат коврики татами.
