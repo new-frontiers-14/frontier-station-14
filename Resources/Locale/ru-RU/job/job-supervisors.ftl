@@ -1,7 +1,7 @@
 job-supervisors-centcom = представителю Центкома
 job-supervisors-captain = капитану
-job-supervisors-hop = главе персонала
-job-supervisors-hos = главе службы безопасности
+job-supervisors-hop = представителю Фронтира
+job-supervisors-hos = шерифу
 job-supervisors-ce = старшему инженеру
 job-supervisors-cmo = главному врачу
 job-supervisors-qm = квартирмейстеру
