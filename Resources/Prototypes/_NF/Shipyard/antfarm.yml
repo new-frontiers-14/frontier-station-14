@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Andrew-Fall
+# Discord: Andrew, 12th Earl of Sandwich
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Antfarm
+  name: NC Antfarm
+  description: A mobile food bar and mining hub, equiped with a farm and kitchen to keep workers full.
+  price: 63250
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/antfarm.yml
+
+- type: gameMap
+  id: Antfarm
+  mapName: 'NC Antfarm'
+  mapPath: /Maps/_NF/Shuttles/antfarm.yml
+  minPlayers: 0
+  stations:
+    Antfarm:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Antfarm {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            Chef: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            Botanist: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
