@@ -1,0 +1,130 @@
+# Syndicate Chemwarrior Projectiles
+- type: entity
+#  parent: BaseBulletPractice
+  parent: BulletWaterShot
+  id: SplatterChemBase
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/water_shot.rsi
+    layers:
+    - state: icon
+      map: ["enum.VaporVisualLayers.Base"]
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+  - type: RefillableSolution
+    solution: vapor
+  - type: DrainableSolution
+    solution: vapor
+  - type: SolutionInjectOnCollide
+    transferAmount: 50
+    blockSlots: NONE # can't be blocked by clothing
+  - type: InjectableSolution
+    solution: vapor
+  - type: Vapor
+    active: true
+  - type: Appearance
+  - type: VaporVisuals
+
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemPhlogNapalm
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 1
+        - ReagentId: Phlogiston
+          Quantity: 1
+        - ReagentId: ChlorineTrifluoride
+          Quantity: 1
+        - ReagentId: Laughter
+          Quantity: 4
+
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemDrugs
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: THC
+          Quantity: 5
+        - ReagentId: PolytrinicAcid
+          Quantity: 1
+        - ReagentId: Razorium
+          Quantity: 1
+
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemMute
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 4
+        - ReagentId: PolytrinicAcid
+          Quantity: 1
+        - ReagentId: ChloralHydrate
+          Quantity: 1
+
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemWeh
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 5 # 50u in bloodstream required to turn victim into a lizard
+        - ReagentId: Licoxide
+          Quantity: 1
+
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemCold
+  name: chemical splatter
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: Fresium
+          Quantity: 7 # needs 40u in bloodstream for special effect

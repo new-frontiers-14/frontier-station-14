@@ -358,12 +358,12 @@
 - type: entity
   name: Syndicate Grenadier
   parent: MobSyndicateNavalBase
-  id: MobSyndicateNavalGrenadier
+  id: MobSyndicateNavalGrenadierA
   noSpawn: true
   components:
     - type: Loadout
       prototypes:
-        - SyndicateNavalGrenadierGear
+        - SyndicateNavalGrenadierGearA
     - type: AutoImplant
       implants:
       - DeathAcidifierImplantNF
@@ -382,6 +382,48 @@
       availableModes:
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearB
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeBlast
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearC
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeBaton
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearD
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeFlash
+      capacity: 2
+      count: 2
 
 # Syndicate Saboteur, "armed" with EMP Viper
 - type: entity
@@ -615,49 +657,71 @@
       maximumWait: 240 # 2 * 60
       NextAdvertisementTime: 0
 
-# Syndicate Chemwarrior, shoots health mix of Napalm/Phlog/CF3/Acid/THC
+# Syndicate Chemwarrior, shoots healthy mixes of chems
+# Look for chems here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Ammunition\Projectiles\chem.yml
 - type: entity
-  name: Syndicate Chemwarrior
+  name: Syndicate ChemwarriorA
   parent: MobSyndicateNavalBase
-  id: MobSyndicateNavalChemwarrior
+  id: MobSyndicateNavalChemwarriorA
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-    - SyndicateNavalChemwarriorGear
-#  - type: RechargeBasicEntityAmmo
-#    rechargeCooldown: 0.75
-#  - type: BasicEntityAmmoProvider
-#    proto: BulletAcid
-#    capacity: 2
-#    count: 2
+    - SyndicateNavalChemwarriorGearA
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCold
+    capacity: 3
+    count: 3
   - type: Gun
-    fireRate: 1
+    fireRate: 4
     useKey: false
-    selectedMode: FullAuto
+    selectedMode: SemiAuto
     availableModes:
-    - FullAuto
+    - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
-  - type: SolutionContainerManager
-    solutions:
-      chamber:
-        maxVol: 2000 #~40 shots
-        reagents:
-        - ReagentId: THC
-          Quantity: 200
-        - ReagentId: Phlogiston
-          Quantity: 50
-        - ReagentId: ChlorineTrifluoride
-          Quantity: 50
-        - ReagentId: PolytrinicAcid
-          Quantity: 900
-        - ReagentId: Napalm
-          Quantity: 800
-  - type: SolutionAmmoProvider
-    solutionId: chamber
-    proto: BulletWaterShot
-  - type: SolutionTransfer
-    transferAmount: 50
-    maxTransferAmount: 50
-    minTransferAmount: 50
-    canChangeTransferAmount: false
+
+- type: entity
+  name: Syndicate ChemwarriorB
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorB
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearB
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemDrugs
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: Syndicate ChemwarriorC
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorC
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearC
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemMute
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: Syndicate ChemwarriorD
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorD
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearD
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemWeh
+    capacity: 1
+    count: 1

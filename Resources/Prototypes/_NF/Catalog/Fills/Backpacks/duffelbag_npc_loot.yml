@@ -449,6 +449,114 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
+# Syndicate Naval Chemwarrior
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateChemwarriorLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBackpackWaterTank
+      - id: WeaponSprayNozzle
+      - id: Stimpack
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterBlasterSuper
+      - id: Stimpack
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterBlaster
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterPistol
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Grenadier
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateGrenadierLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ExGrenade
+        amount: 4
+      - id: SpaceCash5000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ExGrenade
+        amount: 2
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: GrenadeFlashBang
+        amount: 4
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: GrenadeFlashBang
+        amount: 2
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
 # Blood Cult NPCs Loot
 # Blood Cultist Zealot (Ranged) Loot
 - type: entity
