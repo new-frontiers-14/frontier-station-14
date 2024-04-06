@@ -1,4 +1,4 @@
-job-name-ertmailcarrier = ERT Mail Carrier
+job-name-ertmailcarrier = ОБР почтальон
 job-name-mercenary = наёмник
 job-name-pilot = пилот
 job-name-security-guard = тюремщик
