@@ -40,3 +40,6 @@ ent-ClothingBeltHolsterFilled = { ent-ClothingBeltHolster }
 ent-ClothingBeltChefFilled = { ent-ClothingBeltChef }
     .suffix = Filled
     .desc = { ent-ClothingBeltChef.desc }
+ent-ClothingNeckMantleSheriffFilled = { ent-ClothingNeckMantleSheriff }
+    .suffix = Filled
+    .desc = { ent-ClothingNeckMantleSheriff.desc }

@@ -1,2 +1,2 @@
-ent-ClothingBackpackDuffelSyndicateBundleSamurai = Samurai armor bundle
-    .desc = A bundle containing a modern replica of a full Tousei-Gusoku set.
+ent-ClothingBackpackDuffelSyndicateBundleSamurai = комплект самурайской брони
+    .desc = Набор, содержащий современную реплику полного комплекта Тоусея-Гусоку.

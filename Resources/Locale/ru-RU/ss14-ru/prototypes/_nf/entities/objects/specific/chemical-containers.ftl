@@ -1,2 +1,2 @@
-ent-JugSpaceCleaner = jug (Space Cleaner)
+ent-JugSpaceCleaner = кувшин (Космический Очиститель)
     .desc = { ent-Jug.desc }

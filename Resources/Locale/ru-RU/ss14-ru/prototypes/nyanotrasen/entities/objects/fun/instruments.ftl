@@ -1,5 +1,5 @@
-ent-Rickenbacker4003Instrument = Rickenbacker
-    .desc = Just a regular bass guitar.
-ent-Rickenbacker4001Instrument = Rickenbacker
-    .desc = It's the climax!
-    .suffix = Antag
+ent-Rickenbacker4003Instrument = Рикенбейкер
+    .desc = Обычная басс-гитара
+ent-Rickenbacker4001Instrument = Рикенбейкер
+    .desc = Вот и кульминация!
+    .suffix = Антаг

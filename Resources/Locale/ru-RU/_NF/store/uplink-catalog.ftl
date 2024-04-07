@@ -1,4 +1,4 @@
-uplink-emp-grenade-launcher-bundle-name = EMP China-Lake Набор
+uplink-emp-grenade-launcher-bundle-name = Набор ЭМИ China-Lake
 uplink-emp-grenade-launcher-bundle-desc = Старый гранатомет "China-Lake" в комплекте с 8 EMP боеприпасами.
 store-category-sechardsuits = EVA костюмы
 store-category-secweapons = Оружие
@@ -57,7 +57,7 @@ uplink-security-magboots-desc = Легкие резиновые сапоги, п
 uplink-security-techfab-name = СБ ТехФаб
 uplink-security-techfab-desc = Печатная плата для технической лаборатории безопасности. Позволяет производить боеприпасы, магазины, оружие и множество других утилит. Использует исходные ресурсы. Может быть модернизирован.
 uplink-security-key-name = Ключи шифрования безопасности
-uplink-security-key-desc = Коробка с 4 ключами шифрования, которые дают доступ к радиоканалу NFSD.
+uplink-security-key-desc = Коробка с 4 ключами шифрования, которые дают доступ к радиоканалу ДСБФ.
 uplink-security-emprocket-name = ЭМИ ракета
 uplink-security-emprocket-desc = ЭМИ ракета для РПГ-7
 uplink-security-thrusterkit-name = TКомплект для модернизации двигателя

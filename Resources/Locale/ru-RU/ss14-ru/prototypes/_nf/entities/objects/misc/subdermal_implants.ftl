@@ -1,2 +1,4 @@
-ent-MedicalTrackingImplant = medical insurance tracking implant
-    .desc = This implant has a tracking device monitor for the Medical radio channel.
+ent-MedicalTrackingImplant = имплант медицинской страховки
+    .desc = Этот имплант автоматически передаёт ваше местоположение медицинским службам при получении критического урона.
+ent-DeathAcidifierImplantNF = посмертный растворитель
+    .desc = Этот имплант полностью растворяет пользователя со всем его снаряжением после смерти.

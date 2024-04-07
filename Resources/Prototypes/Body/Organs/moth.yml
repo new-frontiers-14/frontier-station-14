@@ -4,12 +4,10 @@
   noSpawn: true
   components:
   - type: Stomach
-    # specialDigestible:
-    #   tags:
-    #   - MothFood
-    #   - Fruit
-    #   - Pill
-    #   - Crayon
+    specialDigestible: # Corvax-MRP
+      tags:
+      - ClothMade
+      - Paper
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -26,7 +24,3 @@
     groups:
       - id: Food
       - id: Drink
-      - id: Medicine
-      - id: Poison
-      - id: Narcotic
-      - id: Alcohol

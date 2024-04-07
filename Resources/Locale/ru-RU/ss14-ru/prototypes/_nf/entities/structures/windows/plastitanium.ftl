@@ -1,3 +1,3 @@
-ent-PlastitaniumWindowIndestructible = plastitanium window
-    .suffix = Indestructible
+ent-PlastitaniumWindowIndestructible = пластитановое окно
+    .suffix = Неразрушимое
     .desc = { ent-BaseStructure.desc }

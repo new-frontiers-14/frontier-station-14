@@ -1,4 +1,4 @@
-ent-Kanabou = kanabou
-    .desc = The classic oni weapon, for those that forgo subtlety.
-ent-Shinai = shinai
-    .desc = A bamboo sword, commonly used in kendo. Made some time after the realization that wooden swords hurt a lot.
+ent-Kanabou = канабу
+    .desc = Классическое оружие Они, для тех, кто не приемлет тонкости.
+ent-Shinai = шинаи
+    .desc = Бамбуковый меч, обычно используемый в кендо. Сделан спустя некоторое время после осознания того, что деревянные мечи причиняют много боли.

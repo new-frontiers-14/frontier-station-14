@@ -1,1 +1,1 @@
-chat-radio-traffic = движение
+chat-radio-traffic = диспетчер

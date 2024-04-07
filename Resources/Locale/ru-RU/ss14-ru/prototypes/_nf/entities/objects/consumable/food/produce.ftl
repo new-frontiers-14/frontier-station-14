@@ -1,2 +1,2 @@
-ent-FoodPear = pear
-    .desc = it's peary good.
+ent-FoodPear = груша
+    .desc = Чертовски хороша.

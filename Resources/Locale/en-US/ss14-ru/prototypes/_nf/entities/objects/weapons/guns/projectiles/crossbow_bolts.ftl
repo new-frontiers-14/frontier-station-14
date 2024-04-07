@@ -8,3 +8,5 @@ ent-CrossbowBoltPlasmaGlassShard = plasma glass shard bolt
     .desc = A bolt with a plasma glass shard as a tip.
 ent-CrossbowBoltUraniumGlassShard = uranium glass shard bolt
     .desc = A bolt with a uranium glass shard as a tip. God have mercy on thy victims for you won't.
+ent-CrossbowBoltBloodDrinker = blood drinker bolt
+    .desc = { ent-CrossbowBolt.desc }

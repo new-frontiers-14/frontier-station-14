@@ -1,2 +1,2 @@
-ent-WeaponProtoKineticAcceleratorSawn = sawn-off proto-kinetic accelerator
-    .desc = boundaries and rules are ment to be broken otherwise there will be no progress, but this thing here is a good argumant against that statement.
+ent-WeaponProtoKineticAcceleratorSawn = обрезанный протокинетический ускоритель
+    .desc = Все правила можно нарушить. Но это против самих законов мироздания.

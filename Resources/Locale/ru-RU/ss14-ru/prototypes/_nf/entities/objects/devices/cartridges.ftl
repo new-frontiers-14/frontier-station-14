@@ -1,2 +1,2 @@
-ent-BountyContractsCartridge = bounty contracts cartridge
-    .desc = A program for tracking and placing bounty contracts
+ent-BountyContractsCartridge = картридж контрактов
+    .desc = Программа для отслеживания и размещения контрактов.

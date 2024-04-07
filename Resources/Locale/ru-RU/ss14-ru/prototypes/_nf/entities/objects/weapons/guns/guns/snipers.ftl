@@ -1,3 +1,3 @@
 ent-Kardashev-MosinNonlethal = { ent-WeaponSniperMosin }
-    .suffix = Non-lethal
+    .suffix = Травматический
     .desc = { ent-WeaponSniperMosin.desc }

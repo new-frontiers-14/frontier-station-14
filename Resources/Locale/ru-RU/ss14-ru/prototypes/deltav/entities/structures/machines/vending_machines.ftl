@@ -1,2 +1,2 @@
-ent-VendingMachinePride = Pride-O-Mat
-    .desc = A vending machine containing crimes.
+ent-VendingMachinePride = Радуг-О-Мат
+    .desc = Торговый автомат преступлений против человечности.

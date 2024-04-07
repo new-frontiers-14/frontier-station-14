@@ -1,9 +1,9 @@
-job-name-mail-carrier = Почтальон
-job-name-gladiator = Гладиатор
-job-name-fugitive = Беглец
-job-name-prisoner = Заключенный
-job-name-valet = Камердинер
-job-name-guard = Тюремщик
+job-name-mail-carrier = почтальон
+job-name-gladiator = гладиатор
+job-name-fugitive = беглец
+job-name-prisoner = заключенный
+job-name-valet = камердинер
+job-name-guard = тюремщик
 job-name-martialartist = Мастер боевых искуств
 job-description-mail-carrier = Доставляйте почту. Избегайте собак.
 job-description-gladiator = Дайте хлеба и зрелищ команде. Сражайтесь за честь и отвагу.

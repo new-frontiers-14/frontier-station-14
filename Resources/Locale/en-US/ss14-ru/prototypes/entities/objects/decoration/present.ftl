@@ -1,9 +1,9 @@
 ent-PresentBase = present
     .desc = A little box with incredible surprises inside.
-ent-Present = { ent-BaseStorageItem }
+ent-Present = { ent-PresentBase }
   .suffix = Empty
-  .desc = { ent-BaseStorageItem.desc }
-ent-PresentRandomUnsafe = { ent-BaseItem }
+  .desc = { ent-PresentBase.desc }
+ent-PresentRandomUnsafe = { ent-PresentBase }
   .suffix = Filled, any item
   .desc = { ent-PresentBase.desc }
 ent-PresentRandomInsane = { ent-PresentRandomUnsafe }

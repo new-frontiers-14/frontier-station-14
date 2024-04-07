@@ -1,6 +1,6 @@
-ent-MobCatClippy = Clippy
-    .desc = It looks like you’re writing a letter, would you like help?
-ent-MobCatClarpy = Clarpy
-    .desc = First cat to gain a bounty.
-ent-MobCatMistake = Mistake
+ent-MobCatClippy = Клиппи
+    .desc = Лучший помощник при заполнении документации.
+ent-MobCatClarpy = Кларпи
+    .desc = Первый кот, самостоятельно выполнивший контракт.
+ent-MobCatMistake = Ошибкот
     .desc = ???

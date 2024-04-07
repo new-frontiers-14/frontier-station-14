@@ -1,4 +1,4 @@
-ent-SpesosTreeSeeds = packet of spesos seeds
-    .desc = these seeds seem like a miracle, but expert farmers get rich from the kitchen.
-ent-PearSeeds = packet of pear seeds
-    .desc = they are peary good for you.
+ent-SpesosTreeSeeds = пакет семян денежного дерева
+    .desc = Это может показаться фантастикой, но деньги и правда можно выращивать на деревьях!
+ent-PearSeeds = пакет семян груши
+    .desc = Они чертовски полезны.

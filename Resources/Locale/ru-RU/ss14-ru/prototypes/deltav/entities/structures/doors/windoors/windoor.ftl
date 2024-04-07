@@ -1,9 +1,9 @@
 ent-WindoorMailLocked = { ent-Windoor }
-    .suffix = Mail, Locked
+    .suffix = Почтовый, Закрыт
     .desc = { ent-Windoor.desc }
 ent-WindoorSecureMailLocked = { ent-WindoorSecure }
-    .suffix = Mail, Locked
+    .suffix = Почтовый, Закрыт
     .desc = { ent-WindoorSecure.desc }
 ent-WindoorSecureParamedicLocked = { ent-WindoorSecure }
-    .suffix = Paramedic, Locked
+    .suffix = Парамедик, Закрыт
     .desc = { ent-WindoorSecure.desc }

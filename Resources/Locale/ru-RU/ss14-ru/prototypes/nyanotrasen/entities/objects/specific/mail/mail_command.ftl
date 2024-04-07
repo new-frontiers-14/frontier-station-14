@@ -1,3 +1,3 @@
 ent-MailCommandPinpointerNuclear = { ent-BaseMail }
-    .suffix = pinpointernuclear
+    .suffix = пинпоинтер
     .desc = { ent-BaseMail.desc }

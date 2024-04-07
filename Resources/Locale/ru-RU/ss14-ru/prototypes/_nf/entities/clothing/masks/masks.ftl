@@ -1,6 +1,6 @@
-ent-ClothingMaskArcadia = arcadia battle mask
-    .desc = A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
-ent-FaceHuggerPlushie = facehugger plushie
-    .desc = The perfect plushie to scare your friends with aliens!
-ent-ClothingMaskPilot = pilot breathing mask
-    .desc = A close-fitting breathing mask designed for, it would seems, minimal comfort of wearer.
+ent-ClothingMaskArcadia = аркадианская боевая маска
+    .desc = Плотно прилегающая высокотехнологичная маска, разработанная компанией Arcadia Industries для космических бойцов.
+ent-FaceHuggerPlushie = плюшевый лицехват
+    .desc = Отличный подарок для расистов!
+ent-ClothingMaskPilot = дыхательная маска пилота
+    .desc = Можно спокойно носить в режиме 24/7.

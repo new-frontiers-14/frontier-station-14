@@ -1,6 +1,6 @@
-ent-ClothingOuterArmorGladiator = gladiator armor
-    .desc = A good old set of boiled leather armor fit with buckles, belts, and a decorated pauldron. Are you not entertained?
-ent-ClothingOuterArmorKendoBogu = bogu
-    .desc = A set of armor used in Kendo. It covers the waist, torso, and hands.
-ent-ClothingOuterArmorTouseiGusoku = tousei-gusoku
-    .desc = A modern replica of a Ni-mai-do Gusoku armor set.
+ent-ClothingOuterArmorGladiator = гладиаторская броня
+    .desc = Старый добрый комплект доспехов из сыровареной кожи, украшенный пряжками, ремнями и декорированным палдроном. Вам не интересно?
+ent-ClothingOuterArmorKendoBogu = богу
+    .desc = Комплект доспехов, используемый в кендо. Он закрывает талию, торс и руки.
+ent-ClothingOuterArmorTouseiGusoku = тосэй-гусоку
+    .desc = Современная копия комплекта доспехов Ни-май-до Гусоку.

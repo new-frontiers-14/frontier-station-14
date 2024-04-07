@@ -1,2 +1,2 @@
-ent-MobPibble = pitbull
-    .desc = Nanny dog. Or a lab mix depending on who is asking.
+ent-MobPibble = питбуль
+    .desc = Что для одних собака-поводырь, то для других жертва ужасных экспериментов.

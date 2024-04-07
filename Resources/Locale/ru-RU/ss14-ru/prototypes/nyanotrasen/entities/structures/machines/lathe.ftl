@@ -1,6 +1,6 @@
-ent-ScienceTechFab = science techfab
-    .desc = Prints equipment for use by the epistemics department.
-ent-ServiceTechFab = service techfab
-    .desc = Prints equipment for service staff.
-ent-EngineeringTechFab = engineering techfab
-    .desc = Prints equipment for engineers.
+ent-ScienceTechFab = научный техфаб
+    .desc = Печатает снаряжение необходимое ученым.
+ent-ServiceTechFab = сервисный техваб
+    .desc = Печатает снаряжение необходимое сервисным работникам.
+ent-EngineeringTechFab = инженерный техфаб
+    .desc = Печатает снаряжение необходимое инженерам.

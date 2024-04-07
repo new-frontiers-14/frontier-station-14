@@ -1,4 +1,4 @@
-ammonia-smell = Something smells pungent!
+ammonia-smell = Что-то дурно попахивает!
 miasma-smell = Что-то дурно попахивает!
 perishable-1 = [color=green]{ CAPITALIZE(POSS-ADJ($target)) } тело выглядит еще свежим.[/color]
 perishable-2 = [color=orangered]{ CAPITALIZE(POSS-ADJ($target)) } тело выглядит слегка испортившимся.[/color]

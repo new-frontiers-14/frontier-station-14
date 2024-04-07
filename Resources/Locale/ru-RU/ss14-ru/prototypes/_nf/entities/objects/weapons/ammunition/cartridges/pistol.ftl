@@ -1,2 +1,2 @@
-ent-CartridgePistolEmp = cartridge (.35 auto emp)
+ent-CartridgePistolEmp = патрон (.35 авто эми)
     .desc = { ent-BaseCartridgePistol.desc }

@@ -1,2 +1,2 @@
-ent-Lockbox = lockbox
-    .desc = A lockbox secured by an access reader.
+ent-Lockbox = защищенная ячейка
+    .desc = Ящик с замком, защищенный считывателем доступа.

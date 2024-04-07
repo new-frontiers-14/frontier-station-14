@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Searchlight
-  name: NM Searchlight
-  description: A small vessel outfitted for the search and recovery of wounded NT personnel. Primarily for recovery. Search though? Well. You got that medical tracker implanted, right?
+  name: NM Прожектор
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-3 человека.
   price: 29500
   category: Small
   group: Civilian
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Searchlight {1}'
+          mapNameTemplate: 'Прожектор {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
