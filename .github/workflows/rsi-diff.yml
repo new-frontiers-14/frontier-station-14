@@ -21,7 +21,7 @@ jobs:
 
       - name: Diff changed RSIs
         id: diff
-        uses: space-wizards/RSIDiffBot@v1.1
+        uses: mirrorcult/RSIDiffBot@v1.1
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
