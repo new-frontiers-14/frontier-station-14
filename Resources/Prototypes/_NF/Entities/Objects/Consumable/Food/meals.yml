@@ -66,3 +66,33 @@
       groups:
         Brute: 1
   - type: FriedTrait
+
+- type: entity
+  name: dragon omelette
+  parent: FoodMealBase
+  id: FoodMealDragonOmelette
+  description:
+  components:
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - fishy
+      - salty
+      - peppery
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/dragonomelette.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Flavorol
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 12
+  - type: Tag
+    tags:
+    - Meat
