@@ -1,8 +1,8 @@
-ent-CrateVendingMachineRestockAstroVend = { ent-CrateVendingMachineRestockAstroVendFilled }
-    .desc = { ent-CrateVendingMachineRestockAstroVendFilled.desc }
-ent-CrateVendingMachineRestockAmmo = { ent-CrateVendingMachineRestockAmmoFilled }
-    .desc = { ent-CrateVendingMachineRestockAmmoFilled.desc }
-ent-CrateVendingMachineRestockFlatpackVend = { ent-CrateVendingMachineRestockFlatpackVendFilled }
-    .desc = { ent-CrateVendingMachineRestockFlatpackVendFilled.desc }
-ent-CrateVendingMachineRestockCuddlyCritterVend = { ent-CrateVendingMachineRestockCuddlyCritterVendFilled }
-    .desc = { ent-CrateVendingMachineRestockCuddlyCritterVendFilled.desc }
+ent-CrateVendingMachineRestockAstroVend = Ящик для пополнения запасов АстроВенд
+    .desc = Содержит две коробки для пополнения запасов для торгового автомата АстроВенд.
+ent-CrateVendingMachineRestockAmmo = Ящик для пополнения запасов Библеомата
+    .desc = Содержит две коробки для пополнения запасов в торговом автомате Библеомат.
+ent-CrateVendingMachineRestockFlatpackVend = Ящик для пополнения запасов КомпактВенд
+    .desc = Содержит две коробки для пополнения запасов в автомате КомпактВенд.
+ent-CrateVendingMachineRestockCuddlyCritterVend = Ящик для пополнения запасов Ручных Зверушек
+    .desc = Содержит две коробки для пополнения запасов в торговом автомате Ручных Зверушек.
