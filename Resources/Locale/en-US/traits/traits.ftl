@@ -35,3 +35,12 @@ trait-frontal-lisp-desc = You thpeak with a lithp
 
 trait-socialanxiety-name = Social Anxiety
 trait-socialanxiety-desc = You are anxious when you speak and stutter.
+
+trait-colorblindness-name = Colorblindness
+trait-colorblindness-desc = You have Protanopia. You cannot distinguish between the colors and color shades of the magenta part of the spectrum.
+
+trait-tall-name = Tall
+trait-tall-desc = Do you have a problem with gigantism.
+
+trait-short-name = Short
+trait-short-desc = Do you have a dwarfism problem.
