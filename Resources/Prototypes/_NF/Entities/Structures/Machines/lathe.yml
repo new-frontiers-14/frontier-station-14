@@ -364,3 +364,132 @@
         - Sheet
         - RawMaterial
         - Ingot
+
+- type: entity
+  id: NFSDTechFab
+  parent: BaseLathe
+  name: nfsd techfab
+  description: Prints equipment for use by nfsd.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: nfsd
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: SecurityTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - Flash
+      - Handcuffs
+      - Zipties
+      - Stunbaton
+      - ForensicPad
+      - RiotShield
+      - ShellShotgun
+      - ShellShotgunSlug
+      - ShellShotgunFlare
+      - ShellTranquilizer
+      - MagazinePistol
+      - MagazinePistolSubMachineGun
+      - MagazinePistolSubMachineGunTopMounted
+      - MagazineRifle
+      - MagazineLightRifle
+      - MagazineBoxPistol
+      - MagazineBoxMagnum
+      - MagazineBoxRifle
+      - MagazineBoxLightRifle
+      - SpeedLoaderMagnum
+      - TargetHuman
+      - TargetSyndicate
+      - TargetClown
+      - MagazineBoxLightRiflePractice
+      - MagazineBoxMagnumPractice
+      - MagazineBoxPistolPractice
+      - MagazineBoxRiflePractice
+      - ShellShotgunPractice
+      - WeaponLaserCarbinePractice
+      - WeaponDisablerPractice
+      # Frontier Start      
+      - ThrusterSecurityMachineCircuitboard
+      - ClothingOuterSuitEmergency
+      - ClothingHeadHelmetEVA
+      - ClothingHeadHelmetEVALarge
+      - ClothingOuterHardsuitEVAPrisoner
+      # Frontier End
+    dynamicRecipes:
+      - CartridgeLightRifleIncendiary
+      - CartridgeMagnumIncendiary
+      - CartridgePistolIncendiary
+      - CartridgeRifleIncendiary
+      - CartridgeLightRifleUranium
+      - CartridgeMagnumUranium
+      - CartridgePistolUranium
+      - CartridgeRifleUranium
+      - CartridgeLightRifleRubber
+      - CartridgeMagnumRubber
+      - CartridgePistolRubber
+      - CartridgeRifleRubber
+      - ClothingEyesGlassesSecurity
+      - ExplosivePayload
+      - FlashPayload
+      - HoloprojectorSecurity
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleUranium
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      - MagazineGrenadeEmpty
+      - GrenadeEMP
+      - GrenadeFlash
+      - ShellShotgunBeanbag
+      - ShellShotgunIncendiary
+      - ShellShotgunUranium
+      - Signaller
+      - SignalTrigger
+      - TelescopicShield
+      - TimerTrigger
+      - Truncheon
+      - VoiceTrigger
+      - WeaponDisablerPractice
+      - WeaponAdvancedLaser
+#      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponLaserCarbine
+      - WeaponXrayCannon
+      - PowerCageSmall
+      - PowerCageMedium
+      - PowerCageHigh
+      - ShuttleGunSvalinnMachineGunCircuitboard
+      - ShuttleGunPerforatorCircuitboard
+      - ShuttleGunFriendshipCircuitboard
+      - ShuttleGunDusterCircuitboard
+      # Frontier Start
+      - ClothingOuterHardsuitSecurity
+      - ClothingOuterHardsuitSecuritypatrol
+      - ClothingOuterHardsuitWarden
+      - ClothingOuterHardsuitBrigmedic
+      # Frontier End
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
