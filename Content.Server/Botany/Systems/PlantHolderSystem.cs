@@ -287,7 +287,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 return;
             }
 
-            component.Health -= (_random.Next(3, 5) * 5);
+            component.Health -= (_random.Next(3, 5) * 2);
             component.Seed.Unique = false;
             var seed = _botany.SpawnSeedPacket(component.Seed, Transform(args.User).Coordinates, args.User, component.Health);
             _randomHelper.RandomOffset(seed, 0.25f);
