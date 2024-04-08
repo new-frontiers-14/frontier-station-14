@@ -16,3 +16,15 @@
     sprite: _NF/Structures/Doors/Airlocks/Glass/mercenary.rsi
   - type: PaintableAirlock
     group: Glass
+
+#Glass
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNFSDGlass
+  suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/nfsd.rsi
+  - type: PaintableAirlock
+    department: Security
+    group: Glass

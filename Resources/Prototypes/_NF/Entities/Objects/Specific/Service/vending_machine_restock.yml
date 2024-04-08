@@ -160,3 +160,37 @@
     - state: green_bit
       shader: unshaded
     - state: refill_pottedplant
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockNFSDDrobe
+  name: NFSDDrobe restock box
+  description: "nfsddrobe restock box - may explode on contact with appendages."
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - NFSDDrobeInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_nfsddrobe
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockNFSDTec
+  name: NFSDTec restock box
+  description: "nfsdtec restock box - may unleash a singulo on contact with appendages"
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - NFSDTecInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_nfsdtec
