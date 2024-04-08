@@ -174,7 +174,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Ресторан Триньки", meta); // Corvax RU
+            _meta.SetEntityName(depotUid2s[0], "Ресторан Тринньки", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 
