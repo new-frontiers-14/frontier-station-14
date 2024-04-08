@@ -47,7 +47,7 @@ job-name-zookeeper = зоотехник
 job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
 job-name-senior-physician = ведущий врач
-job-name-senior-officer = инструктор СБ
+job-name-senior-officer = инструктор ДСБФ
 job-name-visitor = посетитель
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
