@@ -137,7 +137,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
-            _meta.SetEntityName(depotUids[0], "Cargo Depot A", meta);
+            _meta.SetEntityName(depotUids[0], "Грузовое Депо A", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUids[0], depotColor);
         }
 
@@ -147,7 +147,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
+            _meta.SetEntityName(depotUid3s[0], "Грузовое Депо B", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid3s[0], depotColor);
         }
 
@@ -164,7 +164,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
-            _meta.SetEntityName(nfsdUids[0], "NFSD Outpost", meta);
+            _meta.SetEntityName(nfsdUids[0], "Аванпост ДСБФ", meta); // Corvax RU
             _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
@@ -174,7 +174,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
+            _meta.SetEntityName(depotUid2s[0], "Ресторан Тринньки", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid2s[0], factionColor);
         }
 
@@ -184,7 +184,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(churchUids[0]);
-            _meta.SetEntityName(churchUids[0], "Omnichurch Beacon", meta);
+            _meta.SetEntityName(churchUids[0], "Маяк ВсеЦеркви", meta); // Corvax RU
             _shuttle.SetIFFColor(churchUids[0], factionColor);
         }
 
@@ -194,7 +194,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
+            _meta.SetEntityName(depotUid4s[0], "Прослушивающий пункт Браво", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
         }
@@ -215,7 +215,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
-            _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
+            _meta.SetEntityName(depotUid5s[0], "Дыра", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
         }
 
@@ -230,7 +230,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
-            _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
+            _meta.SetEntityName(depotUid6s[0], "Пиратская Бухта", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
             _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
         }
@@ -246,7 +246,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
-            _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
+            _meta.SetEntityName(lodgeUids[0], "Экспедиционная База", meta); // Corvax RU
             _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
         }
 
@@ -256,7 +256,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
-            _meta.SetEntityName(caseyUids[0], "Crazy Casey's Casino", meta);
+            _meta.SetEntityName(caseyUids[0], "Казино Чокнутой Кейси", meta); // Corvax RU
             _shuttle.SetIFFColor(caseyUids[0], factionColor);
         }
 
@@ -266,7 +266,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
-            _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
+            _meta.SetEntityName(griftyUids[0], "Заправка Гриффина", meta); // Corvax RU
             _shuttle.SetIFFColor(griftyUids[0], factionColor);
         }
 
@@ -284,7 +284,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(labUids[0]);
-            _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
+            _meta.SetEntityName(labUids[0], "Ксеноархеологическая Лаборатория", meta); // Corvax RU
             _shuttle.SetIFFColor(labUids[0], factionColor);
         }
 
