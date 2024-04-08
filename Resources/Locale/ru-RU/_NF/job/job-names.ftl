@@ -8,5 +8,5 @@ JobERTMailCarrier = ОБР почтальон
 # Role timers - Make these alphabetical or I cut you
 JobMercenary = наёмник
 JobPilot = пилот
-JobSecurityGuard = охранник
+JobSecurityGuard = охрана аванпоста
 JobSTC = диспетчер станции
