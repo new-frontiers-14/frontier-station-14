@@ -274,9 +274,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 Offset = _random.NextVector2(1150f, 2050f)
             }))
-        {
+                {
+            var meta = EnsureComp<MetaDataComponent>(depotUid8s[0]);
+            _meta.SetEntityName(depotUid8s[0], "Судебный Комплекс", meta); // Corvax RU
             _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
-        }
+                }
 
         if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
             {
