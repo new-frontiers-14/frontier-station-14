@@ -4,6 +4,7 @@
   abstract: true
   parent:
   - MobHumanoidHostileBase
+  - MobPassiveRegen
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -15,10 +16,10 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: AutoImplant
     implants:
-    - DeathAcidifierImplant
+    - DeathAcidifierImplantNF
   - type: Reflect
     enabled: true
-    reflectProb: .25
+    reflectProb: .35
     spread: 90
 # Immunity to Heat damage from being lit on fire
   - type: Flammable
@@ -41,8 +42,11 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
 
 # Humans
+# Blue Wizard, summons 2 Blue Curacao Elementals
 - type: entity
   name: Blue Wizard
   parent: MobWizFedlBase
@@ -64,6 +68,8 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
 
+# Red Wizard, shoots magic bolts that put targets on fire (2 heat damage, 2 fire stacks)
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Red Wizard
   parent: MobWizFedlBase
@@ -101,6 +107,8 @@
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
 
+# Violet Wizard, shoots asphyxiation magic bolts (4 bloodloss, 4 asphyxiation)
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Violet Wizard
   parent: MobWizFedlBase
@@ -122,6 +130,8 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
 
+# Soap Wizard, summons soap to slip targets
+# Look for soap here: \Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
 - type: entity
   name: Soap Wizard
   suffix: AI
@@ -189,6 +199,7 @@
   - MobNonHumanHostileBase
   id: WaterElementalConjured
   components:
+  - type: MovementAlwaysTouching
   - type: NoSlip
   - type: NpcFactionMember
     factions:
