@@ -17,8 +17,12 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     NextAdvertisementTime: 0
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
 
 # Humans
+# Blood Cult Priest, ranged mab, bolts deal 10 slash damage
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Priest
   parent: MobBloodCultistBase
@@ -37,15 +41,16 @@
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 100
   - type: Battery
-    maxCharge: 200
-    startingCharge: 200
+    maxCharge: 300
+    startingCharge: 300
   - type: Gun
     fireRate: 4
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
+# Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
   name: Blood Cult Acolyte
   parent: MobBloodCultistBase
@@ -60,6 +65,7 @@
     reflectProb: .3
     spread: 90
 
+# Blood Cult Acolyte, melee mob armed with ritual dagger (12 slash)
 - type: entity
   name: Blood Cult Zealot
   parent: MobBloodCultistBase
@@ -74,6 +80,8 @@
     reflectProb: .1
     spread: 90
 
+# Blood Cult Zealot, ranged mob, crossbow bolt deals 20 slash and 5 bloodloss
+# Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
   name: Blood Cult Zealot
   suffix: AI, Crossbow
@@ -99,6 +107,8 @@
     soundGunshot:
       collection: BulletMiss
 
+# Blood Cult Zealot, ranged mob, magic bolt deals 5 slash and 2 bloodloss
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Zealot
   suffix: AI, Ranged
@@ -122,6 +132,7 @@
       path: /Audio/_NF/Effects/silence.ogg
 
 # Non-human mobs
+# Ascended Cultist, spawns 2 Drained Ones
 - type: entity
   name: Ascended Cultist # Megafauna
   suffix: AI, Ranged
@@ -134,11 +145,12 @@
     factions:
       - BloodCultNF
   - type: MovementIgnoreGravity
+  - type: MovementAlwaysTouching
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Reflect
     enabled: true
-    reflectProb: .5
+    reflectProb: .4
     spread: 90
   - type: Sprite
     drawdepth: Mobs
@@ -170,7 +182,7 @@
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 50
+    rechargeCooldown: 55
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: MeleeWeapon
@@ -190,11 +202,18 @@
     range: 5
     sound:
       path: /Audio/_NF/Effects/bloodcult/whispers.ogg
+  - type: Butcherable
+    spawned:
+    - id: ClothingNeckAmuletBloodCult
+      amount: 1
 
+# Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: Blood Leech
   suffix: AI, Melee
-  parent: MobNonHumanHostileBase
+  parent:
+  - MobNonHumanHostileBase
+  - MobPassiveRegen
   id: MobBloodCultLeech
   components:
   - type: NpcFactionMember
@@ -226,19 +245,15 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 4
     baseSprintSpeed: 6
-  - type: LeechOnMarker
-    leech:
-      groups:
-        Brute: -10
-        Burn: -10
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 12
+        Slash: 10
     animation: WeaponArcBite
 
+# Drained One, melee
 - type: entity
   name: Drained One
   suffix: AI, Melee
@@ -279,7 +294,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Asphyxiation: 12
+        Asphyxiation: 7
     animation: WeaponArcClaw
   - type: PointLight
     color: MediumPurple
@@ -295,7 +310,22 @@
   - type: Ammo
     muzzleFlash: null
 
+# Drained One (summonable by players), melee
+- type: entity
+  name: Drained One
+  suffix: AI, Melee
+  parent: MobBloodCultDrainedOne
+  id: MobBloodCultDrainedOneNanoTrasen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  - type: TimedDespawn
+    lifetime: 80
+
 # Turrets
+# blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   parent: BaseWeaponTurret
   id: BloodCultTurret

@@ -14,21 +14,52 @@
     thermalRegulationTemperatureThreshold: 25
   - type: MovedByPressure
 
+- type: entity
+  save: false
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage # Slight passive regen.
+    allowedStates:
+    - Alive
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -1
+        Burn: -10
+        Airloss: -1
+        Toxin: -7
+        Genetic: -7
+
+- type: entity
+  save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+
 # Human NPC, uses equipment, immune to vacuum/low pressure
 # but otherwise should be the same as base line human mob
 # Going to use this prototype later for other mobs
 - type: entity
   name: Human NPC
-  suffix: AI
+  suffix: AI, Hostile
   abstract: true
   parent:
   - MobAtmosNF
   - MobBloodstream
   - MobFlammable
+  - MobLaserReflect
   - BaseMobSpecies
   id: MobHumanoidHostileBase
   components:
+  - type: MovementAlwaysTouching
+  - type: MobMover
   - type: NoSlip
+  - type: StandingState
   - type: RandomHumanoidAppearance
     randomizeName: true
   - type: MobThresholds
@@ -44,7 +75,7 @@
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
-      - id: FoodMeat
+      - id: FoodMeatHuman
         amount: 5
 # AI package
   - type: HTN
@@ -55,10 +86,15 @@
 #      task: SimpleRangedHostileCompound
     blackboard:
       NavClimb: !type:Bool # They use this option too much for my liking, but without this mobs usually get stuck on spawn in expeds
-        true
+        false
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+      - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband
   - type: Advertise
     pack: syndicatehumanoidchatter # Don't have neutral one
     minimumWait: 120 # 1 * 2
@@ -68,13 +104,15 @@
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
   name: Mob NPC
-  suffix: AI
+  suffix: AI, Hostile
   abstract: true
   parent:
   - MobAtmosNF
+  - MobLaserReflect
   - SimpleSpaceMobBase
   id: MobNonHumanHostileBase
   components:
+  - type: MovementAlwaysTouching
   - type: NoSlip
   - type: ZombieImmune
   - type: Hands
@@ -113,7 +151,7 @@
 #        true
   - type: NpcFactionMember
     factions:
-      - SimpleNeutral
+      - SimpleHostile
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
@@ -128,3 +166,8 @@
         Base: crit
       Dead:
         Base: dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+  - type: Contraband

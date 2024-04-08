@@ -70,19 +70,19 @@
   id: Syndicate
   groups:
   - entries:
-    - id: MobSyndicateNavalDeckhand
+    - id: SpawnMobSyndicateNavalDeckhand
       amount: 2
       maxAmount: 3
-    - id: MobSyndicateNavalEngineer
+    - id: SpawnMobSyndicateNavalEngineer
       amount: 1
   - entries:
-    - id: MobSyndicateNavalSaboteur
-      amount: 0
+    - id: SpawnMobSyndicateNavalSaboteur
+      amount: 1
       maxAmount: 2
     prob: 0.5
   - entries:
-    - id: MobSyndicateNavalMedic
-      amount: 0
+    - id: SpawnMobSyndicateNavalMedic
+      amount: 1
       maxAmount: 2
     prob: 0.25
   - entries:
@@ -90,21 +90,22 @@
       amount: 1
     prob: 0.25
   - entries:
-      - id: MobSyndicateNavalOperator
+      - id: SpawnMobSyndicateNavalOperator
         amount: 1
     prob: 0.25
   - entries:
-    - id: MobSyndicateNavalCaptain
+    - id: SpawnMobSyndicateNavalCaptain
       amount: 1
     prob: 0.1
   - entries:
-    - id: MobSyndicateNavalCommander
-      amount: 1
+    - id: SpawnMobSyndicateNavalHorror
+      amount: 0
+      maxAmount: 1
     prob: 0.001
   configs:
     DefenseStructure: CybersunDataMiner
     Mining: Xenos # No idea what this thing does or where to look for it
-    Megafauna: MobSyndicateNavalCommander
+    Megafauna: MobSyndicateNavalCommanderA # Can't use spawner here
 
 - type: salvageFaction
   id: Cultists
@@ -138,7 +139,7 @@
       amount: 1
     prob: 0.1
   - entries:
-    - id: MobBloodCultistAscended
+    - id: MobBloodCultistAcolyte # Will replace it later with new mob
       amount: 1
     prob: 0.001
   configs:
