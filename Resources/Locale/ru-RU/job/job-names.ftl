@@ -1,7 +1,6 @@
 job-name-warden = судебный пристав
 job-name-security = офицер ДСБФ
 job-name-cadet = кадет ДСБФ
-job-name-senior-officer = инструктор ДСБФ
 job-name-hos = шериф
 job-name-detective = детектив
 job-name-brigmedic = бригмедик
@@ -48,7 +47,7 @@ job-name-zookeeper = зоотехник
 job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
 job-name-senior-physician = ведущий врач
-job-name-senior-officer = инструктор СБ
+job-name-senior-officer = инструктор ДСБФ
 job-name-visitor = посетитель
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
