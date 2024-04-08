@@ -1,6 +1,7 @@
 job-name-warden = судебный пристав
 job-name-security = офицер ДСБФ
 job-name-cadet = кадет ДСБФ
+job-name-senior-officer = инструктор ДСБФ
 job-name-hos = шериф
 job-name-detective = детектив
 job-name-brigmedic = бригмедик
