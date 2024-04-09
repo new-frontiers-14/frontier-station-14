@@ -11,7 +11,7 @@
   name: tool
   id: SpawnDungeonLootToolsBasicEngineering
   parent: MarkerBasePlaceFree
-  suffix: Basic, Random
+  suffix: Basic, Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -41,7 +41,7 @@
   name: tool
   id: SpawnDungeonLootToolsAdvancedEngineering
   parent: MarkerBasePlaceFree
-  suffix: CE, Random
+  suffix: CE, Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -63,7 +63,7 @@
   name: toolbox
   id: SpawnDungeonLootToolbox
   parent: MarkerBasePlaceFree
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -84,7 +84,7 @@
   name: surgery tool
   id: SpawnDungeonLootToolsSurgeryCrude
   parent: MarkerBasePlaceFree
-  suffix: Improvised, Random
+  suffix: Improvised, Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -104,7 +104,7 @@
   name: surgery tool
   id: SpawnDungeonLootToolsSurgery
   parent: MarkerBasePlaceFree
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -127,7 +127,7 @@
   name: surgery tool
   id: SpawnDungeonLootToolsSurgeryAdvanced
   parent: MarkerBasePlaceFree
-  suffix: Advanced, Random
+  suffix: Advanced, Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -151,7 +151,7 @@
   name: surgery kit
   id: SpawnDungeonLootKitSurgery
   parent: MarkerBasePlaceFree
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -172,7 +172,7 @@
   name: med kit
   id: SpawnDungeonLootKitsFirstAid
   parent: MarkerBasePlaceFree
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -198,10 +198,10 @@
 
 # Lathes and circuits
 - type: entity
-  name: lathe or techfab
+  name: random machine fab
   id: SpawnDungeonLootLathe
   parent: MarkerBase
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -231,10 +231,10 @@
     rareChance: 0.1
 
 - type: entity
-  name: circuit board
+  name: machine board
   id: SpawnDungeonLootCircuitBoard
   parent: MarkerBasePlaceFree
-  suffix: Random
+  suffix: Random, Dungeon
   components:
   - type: Sprite
     layers:
@@ -262,7 +262,17 @@
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - FlatpackerMachineCircuitboard
+    - ChemMasterMachineCircuitboard
+    - ShuttleGunKineticCircuitboard
+    - CentrifugeMachineCircuitboard
+    - CondenserMachineCircuitBoard
+    - DeepFryerMachineCircuitboard
+    - DawInstrumentMachineCircuitboard
+    - EmitterCircuitboard
+    - GasRecyclerMachineCircuitboard
+    - ThermomachineHeaterMachineCircuitBoard
+    - ThermomachineFreezerMachineCircuitBoard
+    - FatExtractorMachineCircuitboard
     rarePrototypes:
     - SecurityTechFabCircuitboard
     rareChance: 0.1
-
