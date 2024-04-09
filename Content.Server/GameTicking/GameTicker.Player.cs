@@ -1,3 +1,4 @@
+using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
@@ -59,7 +60,10 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Corvax-Queue-Start
+                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
+                        Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Corvax-Queue-End
 
                     var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
@@ -129,7 +133,8 @@ namespace Content.Server.GameTicking
                         mind.Session = null;
                     }
 
-                    _userDb.ClientDisconnected(session);
+                    if (_playerGameStatuses.ContainsKey(args.Session.UserId)) // Corvax-Queue: Delete data only if player was in game
+                        _userDb.ClientDisconnected(session);
                     break;
                 }
             }

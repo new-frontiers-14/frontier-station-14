@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Threading.Tasks;
+using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -16,6 +17,7 @@ namespace Content.Server.Connection
     public interface IConnectionManager
     {
         void Initialize();
+        Task<bool> HavePrivilegedJoin(NetUserId userId); // Corvax-Queue
     }
 
     /// <summary>
@@ -30,9 +32,11 @@ namespace Content.Server.Connection
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ILocalizationManager _loc = default!;
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
+        private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
 
         public void Initialize()
         {
+            IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Corvax-Sponsors
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
             // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
@@ -106,7 +110,10 @@ namespace Content.Server.Connection
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            // Corvax-Start: Allow privileged players bypass bunker
+            var isPrivileged = await HavePrivilegedJoin(e.UserId);
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !isPrivileged)
+            // Corvax-End
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -156,7 +163,10 @@ namespace Content.Server.Connection
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && adminData is null) && !wasInGame)
+            // Corvax-Queue-Start
+            var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
+            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
+                // Corvax-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -206,5 +216,19 @@ namespace Content.Server.Connection
             await _db.AssignUserIdAsync(name, assigned);
             return assigned;
         }
+
+        // Corvax-Queue-Start: Make these conditions in one place, for checks in the connection and in the queue
+        public async Task<bool> HavePrivilegedJoin(NetUserId userId)
+        {
+            var adminBypass = await _dbManager.GetAdminDataForAsync(userId) != null;
+            var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HavePriorityJoin(userId); // Corvax-Sponsors
+            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
+                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+                            status == PlayerGameStatus.JoinedGame;
+            return adminBypass ||
+                   havePriorityJoin || // Corvax-Sponsors
+                   wasInGame;
+        }
+        // Corvax-Queue-End
     }
 }

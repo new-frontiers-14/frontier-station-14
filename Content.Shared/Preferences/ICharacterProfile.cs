@@ -15,11 +15,11 @@ namespace Content.Shared.Preferences
         /// <summary>
         ///     Makes this profile valid so there's no bad data like negative ages.
         /// </summary>
-        void EnsureValid(IConfigurationManager configManager, IPrototypeManager prototypeManager);
+        void EnsureValid(IConfigurationManager configManager, IPrototypeManager prototypeManager, string[] sponsorPrototypes); // Corvax-Sponsors: Integrated filtering for sponsor prototypes (markings/species/etc)
 
         /// <summary>
         /// Gets a copy of this profile that has <see cref="EnsureValid"/> applied, i.e. no invalid data.
         /// </summary>
-        ICharacterProfile Validated(IConfigurationManager configManager, IPrototypeManager prototypeManager);
+        ICharacterProfile Validated(IConfigurationManager configManager, IPrototypeManager prototypeManager, string[] sponsorPrototypes);
     }
 }
