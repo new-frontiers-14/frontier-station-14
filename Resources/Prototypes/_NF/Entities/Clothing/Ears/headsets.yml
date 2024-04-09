@@ -7,3 +7,98 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
+
+- type: entity
+  parent: ClothingHeadsetCargo
+  id: ClothingHeadsetMailCarrier
+  name: mail carrier headset
+  description: A headset used by mail carrier employees.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyService
+      - EncryptionKeyCargo
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetNFSD
+  name: nfsd headset
+  description: This is used by your elite sheriff's department force.
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNFSD
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetNFSD
+  id: ClothingHeadsetNFSDgreen # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetNFSD
+  id: ClothingHeadsetNFSDbrown # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+
+- type: entity
+  parent: ClothingHeadsetNFSD
+  id: ClothingHeadsetNFSDcb # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  
+- type: entity
+  parent: ClothingHeadsetSecuritySafe
+  id: ClothingHeadsetNFSDgreenSafe # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetSecuritySafe
+  id: ClothingHeadsetNFSDbrownSafe # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+
+- type: entity
+  parent: ClothingHeadsetSecuritySafe
+  id: ClothingHeadsetNFSDcbSafe # Ask SR or Sheriff for keys
+  name: nfsd headset
+  description: A headset for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi

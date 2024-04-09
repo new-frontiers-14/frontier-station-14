@@ -92,3 +92,175 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
   - type: StaticPrice
     price: 195
+
+#ERT Mail Carrier Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitCBURN
+  id: ClothingOuterHardsuitERTMailCarrier
+  name: ERT mail carrier's hardsuit
+  description: A protective hardsuit worn by the mail carriers of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
+
+# MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
+- type: entity
+  parent: ClothingOuterHardsuitMaxim
+  id: ClothingOuterHardsuitMaximPrototype
+  name: experimental salvager hardsuit
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.8
+        Radiation: 0.3
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
+
+# Funny meme joke ha-ha: off-brand blood-red hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSundie
+  name: sundicate crimson-red hardsuit
+  description: A heavily armored hardsuit designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    color: orange
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 1.1
+        Heat: 1.5
+        Radiation: 1.5
+        Caustic: 1.5
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSundie
+
+# Syndicate NPC hard suit, unremoveable
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieEliteUnremoveable
+  name: syndicate hardsuit
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
+  name: syndicate hardsuit
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterHardsuitSecuritypatrol
+  id: ClothingOuterHardsuitNfsdBronze
+  name: nfsd bronze patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitNfsdSilver
+  name: nfsd silver patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
+
+- type: entity
+  parent: ClothingOuterHardsuitWarden
+  id: ClothingOuterHardsuitNfsdGold
+  name: nfsd gold patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitNfsdSheriff
+  name: nfsd sheriff patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
+
+- type: entity
+  parent: ClothingOuterHardsuitBrigmedic
+  id: ClothingOuterHardsuitNfsdBrigMed
+  name: nfsd brigmedic patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmed
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieReverseEngineered
+  id: ClothingOuterHardsuitNfsdExperimental
+  name: an experimental nfsd hardsuit
+  description: An experimental nfsd hardsuit, never before seen!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdExperimental
