@@ -1,6 +1,7 @@
 # Markers
 - type: entity
   id: SalvageShuttleMarker
+  name: Salvage shuttle marker
   parent: FTLPoint
 
 # Biome mods -> at least 1 required
@@ -300,4 +301,138 @@
   cost: 3
   temperature: 123.15 # -150C
   biomes:
-  - Snow
+    - Snow
+
+# Air mixtures
+- type: salvageAirMod
+  id: Space
+  desc: No atmosphere
+  space: true
+  cost: 2
+  biomes:
+    - Caves
+    - Lava
+
+- type: salvageAirMod
+  id: Breathable
+  cost: 0
+  gases:
+    - 21.824779 # oxygen
+    - 82.10312 # nitrogen
+
+- type: salvageAirMod
+  id: Sleepy
+  cost: 1
+  desc: Dangerous atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 72.10312 # nitrogen
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 10 # nitrous oxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+
+- type: salvageAirMod
+  id: Poisoned
+  cost: 2
+  desc: Dangerous atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 77.10312 # nitrogen
+    - 10 # carbon dioxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+
+- type: salvageAirMod
+  id: Poison
+  cost: 3
+  desc: Toxic atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 82.10312 # carbon dioxide
+  biomes:
+    - Caves
+    - Snow
+    - Lava
+
+- type: salvageAirMod
+  id: Plasma
+  cost: 4
+  desc: Toxic atmosphere
+  gases:
+    - 0
+    - 0
+    - 0
+    - 103.927899 # plasma
+  biomes:
+    - Caves
+    - Lava
+
+- type: salvageAirMod
+  id: Burnable
+  cost: 5
+  desc: Volatile atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 0
+    - 82.10312 # plasma
+  biomes:
+    - Caves
+    - Lava
+
+# Weather mods -> not required
+#- type: salvageWeatherMod
+#  id: SnowfallHeavy
+#  weather: SnowfallHeavy
+#  cost: 1
+#
+#- type: salvageWeatherMod
+#  id: Rain
+#  weather: Rain
+
+# Dungeons
+#  For now just simple 1-dungeon setups
+- type: salvageDungeonMod
+  id: Experiment
+  proto: Experiment
+  biomes:
+    #- LowDesert
+    - Grasslands
+
+- type: salvageDungeonMod
+  id: LavaBrig
+  proto: LavaBrig
+  biomes:
+    - Lava
+
+- type: salvageDungeonMod
+  id: Mineshaft
+  proto: Mineshaft
+  biomes:
+    - Caves
+
+- type: salvageDungeonMod
+  id: SnowyLabs
+  proto: SnowyLabs
+  biomes:
+    - Snow
+    
+- type: salvageDungeonMod
+  id: Haunted
+  proto: Haunted
+  biomes:
+    - Caves

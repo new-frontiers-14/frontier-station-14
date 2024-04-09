@@ -4,8 +4,8 @@
   id: BasicRobotics
   name: research-technology-basic-robotics
   icon:
-    sprite: Mobs/Silicon/drone.rsi
-    state: drone
+    sprite: Structures/Machines/exosuit_fabricator.rsi
+    state: fab-idle
   discipline: Experimental
   tier: 1
   cost: 5000
@@ -139,20 +139,21 @@
   tier: 2
   cost: 7500
   recipeUnlocks:
-  - RPED
+    - RPED
 
-# - type: technology # Frontier - The cancer-inator
-  # id: DeterrenceTechnologies
-  # name: research-technology-deterrence
-  # icon:
-    # sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
-    # state: base
-  # discipline: Experimental
-  # tier: 2
-  # cost: 7500
-  # recipeUnlocks:
-  # - WeaponParticleDecelerator
-  # - HoloprojectorField
+- type: technology
+  id: DeterrenceTechnologies
+  abstract: true # Frontier
+  name: research-technology-deterrence
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    state: base
+  discipline: Experimental
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - WeaponParticleDecelerator
+  - HoloprojectorField
 
 # Tier 3
 
