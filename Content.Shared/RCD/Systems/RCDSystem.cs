@@ -27,6 +27,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.RCD.Systems;
 
@@ -200,10 +201,6 @@ public class RCDSystem : EntitySystem
 
         if (!_net.IsServer)
             return;
-            
-        if (!IsAuthorized(gridId, uid, comp, args)) {
-            return;
-        }
 
         // Get the starting cost, delay, and effect from the prototype
         var cost = component.CachedPrototype.Cost;
@@ -289,7 +286,7 @@ public class RCDSystem : EntitySystem
         {
             return true;
         }
-        var mapGrid = _mapMan.GetGrid(gridId.Value);
+        var mapGrid = Comp<MapGridComponent>(gridId.Value);
         var gridUid = mapGrid.Owner;
 
         // Frontier - Remove all RCD use on outpost.
@@ -464,7 +461,7 @@ public class RCDSystem : EntitySystem
         if (component.CachedPrototype.Mode == RcdMode.ConstructTile)
         {
             // Check rule: Tile placement is valid
-            if (!_floors.CanPlaceTile(mapGridData.GridUid, mapGridData.Component, out var reason))
+            if (!_floors.CanPlaceTile(mapGridData.GridUid, mapGridData.Component, null, out var reason))
             {
                 if (popMsgs)
                     _popup.PopupClient(reason, uid, user);
