@@ -193,3 +193,76 @@
     rarePrototypes:
     - ClothingBackpackDuffelSyndicateMedicalBundleFilled
     rareChance: 0.1
+
+# Vendomats
+
+# Lathes and circuits
+- type: entity
+  name: lathe or techfab
+  id: SpawnDungeonLootLathe
+  parent: MarkerBase
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - TilePrinterNF
+    - SalvageTechfabNF
+    - ScienceTechFab
+    - ServiceTechFab
+    - EngineeringTechFab
+    - Autolathe
+    - Protolathe
+    - CircuitImprinter
+    - ExosuitFabricator
+    - Biofabricator
+    - AmmoTechFab
+    - MedicalTechFab
+    - UniformPrinter
+    - OreProcessorIndustrial
+    - MachineFlatpacker
+    rarePrototypes:
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    rareChance: 0.1
+
+- type: entity
+  name: circuit board
+  id: SpawnDungeonLootCircuitBoard
+  parent: MarkerBasePlaceFree
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Misc/module.rsi
+        state: generic
+  - type: RandomSpawner
+    prototypes:
+    - SalvageTechFabCircuitboardNF
+    - TilePrinterNFMachineCircuitboard
+    - ScienceTechFabCircuitboard
+    - ServiceTechFabCircuitboard
+    - EngineeringTechFabCircuitboard
+    - AutolatheMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - AutolatheHyperConvectionMachineCircuitboard
+    - ProtolatheHyperConvectionMachineCircuitboard
+    - ExosuitFabricatorMachineCircuitboard
+    - BiofabricatorMachineCircuitboard
+    - AmmoTechFabCircuitboard
+    - MedicalTechFabCircuitboard
+    - UniformPrinterMachineCircuitboard
+    - OreProcessorIndustrialMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - MicrowaveMachineCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - FlatpackerMachineCircuitboard
+    rarePrototypes:
+    - SecurityTechFabCircuitboard
+    rareChance: 0.1
+
