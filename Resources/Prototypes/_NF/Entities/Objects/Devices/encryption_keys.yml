@@ -10,9 +10,27 @@
     defaultChannel: Traffic
   - type: Item
     sprite: _NF/Objects/Devices/encryption_keys.rsi
-    size: Tiny # Frontier - 5 to 2 size
   - type: Sprite
     sprite: _NF/Objects/Devices/encryption_keys.rsi
     layers:
     - state: crypt_gray
     - state: stc_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNFSD
+  name: nfsd encryption key
+  suffix: DO NOT MAP
+  description: An encryption key for the new frontier security department channel.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NFSD
+    defaultChannel: NFSD
+  - type: Item
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: _NF/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+    - state: nfsd_label

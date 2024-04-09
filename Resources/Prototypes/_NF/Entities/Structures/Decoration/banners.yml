@@ -1,0 +1,25 @@
+- type: entity
+  id: BannerNFSD
+  parent: BannerBase
+  name: nfsd banner
+  description: A banner displaying the colors of the new frontier sheriff's department. # Frontier - description change
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSecurityNode # Frontier
+
+- type: entity
+  id: FlagNFSD
+  parent: BannerBase
+  name: nfsd flag
+  description: A flag displaying the colors of the new frontier sheriff's department. # Frontier - description change
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-flag
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSecurityNode # Frontier

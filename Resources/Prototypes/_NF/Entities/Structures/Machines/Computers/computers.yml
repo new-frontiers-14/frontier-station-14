@@ -99,6 +99,30 @@
       type: ShipyardConsoleBoundUserInterface
 
 - type: entity
+  id: ComputerShipyardNFSD
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: nfsd shipyard console
+  description: Used to buy nfsd patrol vessels
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_nfsd
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Security
+      type: ShipyardConsoleBoundUserInterface
+
+- type: entity
   id: ComputerShipyardBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
   name: black market shipyard console
