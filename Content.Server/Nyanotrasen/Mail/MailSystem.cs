@@ -33,6 +33,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -40,6 +41,7 @@ using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
@@ -442,7 +444,7 @@ namespace Content.Server.Mail
             foreach (var item in EntitySpawnCollection.GetSpawns(mailComp.Contents, _random))
             {
                 var entity = EntityManager.SpawnEntity(item, Transform(uid).Coordinates);
-                if (!container.Insert(entity))
+                if (!_containerSystem.Insert(entity, container))
                 {
                     _sawmill.Error($"Can't insert {ToPrettyString(entity)} into new mail delivery {ToPrettyString(uid)}! Deleting it.");
                     QueueDel(entity);
