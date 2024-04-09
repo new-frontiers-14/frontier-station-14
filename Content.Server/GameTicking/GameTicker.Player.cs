@@ -203,7 +203,7 @@ namespace Content.Server.GameTicking
 
     public sealed class PlayerJoinedLobbyEvent : EntityEventArgs
     {
-        public readonly ICommonSession PlayerSession;
+        public ICommonSession PlayerSession;
 
         public PlayerJoinedLobbyEvent(ICommonSession playerSession)
         {
