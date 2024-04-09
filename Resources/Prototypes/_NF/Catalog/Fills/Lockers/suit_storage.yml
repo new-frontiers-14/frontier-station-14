@@ -57,6 +57,25 @@
   - type: AccessReader
     # access: [["Quartermaster"]]
 
+#Mining hardsuit
+- type: entity
+  id: SuitStorageMining
+  parent: SuitStorageBase
+  suffix: Mining
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingShoesBootsMag
+        - id: ClothingOuterHardsuitSalvage
+        - id: ClothingMaskGasExplorer
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    # access: [["Quartermaster"]]
+
 #Mercenary hardsuit
 - type: entity
   id: SuitStorageMercenary
