@@ -4,10 +4,13 @@
   description: job-description-guard
   playTimeTracker: JobPrisonGuard
   requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: PrisonGuardGear
-  icon: "JobIconWarden" 
+  icon: "JobIconWarden"
   supervisors: job-supervisors-hos # Frontier
   canBeAntag: false
   access:

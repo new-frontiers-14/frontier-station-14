@@ -113,3 +113,117 @@
 #        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
 #    access: [["Captain"], ["Pilot"]]
+
+#Cadet hardsuit
+- type: entity
+  id: SuitStorageCadet
+  parent: SuitStorageBase
+  suffix: NFSDCadet
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdBronze # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Deputy hardsuit
+- type: entity
+  id: SuitStorageDeputy
+  parent: SuitStorageBase
+  suffix: NFSDDeputy
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdSilver # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Brigmed hardsuit
+- type: entity
+  id: SuitStorageBrigmed
+  parent: SuitStorageBase
+  suffix: NFSDBrigMedic
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdBrigMed # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Sergeant hardsuit
+- type: entity
+  id: SuitStorageSergeant
+  parent: SuitStorageBase
+  suffix: NFSDSergeant
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdGold # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Bailiff hardsuit
+- type: entity
+  id: SuitStorageBailiff
+  parent: SuitStorageBase
+  suffix: NFSDBailiff
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdGold # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Sheriff hardsuit
+- type: entity
+  id: SuitStorageSheriff
+  parent: SuitStorageBase
+  suffix: NFSDSheriff
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdSheriff # Frontier
+        - id: ClothingMaskBreathMedicalSecurity 
+        - id: JetpackSecurityFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]

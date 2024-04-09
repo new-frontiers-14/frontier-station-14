@@ -23,6 +23,32 @@
     damageCoefficient: 0.60
   - type: GroupExamine
 
+# Syndicate armored bio suit
+- type: entity
+  parent: ClothingOuterBioGeneral
+  id: ClothingOuterBioArmoredSyndicate
+  name: bio suit
+  suffix: Syndicate
+  description: Favorite protective gear of any syndicate chemical warfare enjoyers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 1.2
+        Piercing: 0.4
+        Heat: 0.6
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: Contraband
+
 - type: entity
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorNfsdArmor
