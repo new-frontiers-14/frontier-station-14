@@ -264,3 +264,34 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdExperimental
+
+# SCAF hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitScaf
+  name: scaf hardsuit
+  description: A green and brown combat hardsuit. Old yet sturdy nonetheless.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/scaf.rsi
+  - type: Armor # Kept original scaf stats
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.4
+        Heat: 0.9
+        Caustic: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitScaf

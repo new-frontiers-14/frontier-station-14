@@ -196,3 +196,27 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
+
+#SCAF Helmet
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitScaf
+  name: scaf hardsuit helmet
+  description: A robust, strong helmet. On the inside smells of pent up anger.
+  noSpawn: true
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/scaf.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/scaf.rsi
+  - type: Armor # Kept original scaf stats
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+  - type: PointLight
+    radius: 7
+    energy: 2
+    #color: "#d6adff"
