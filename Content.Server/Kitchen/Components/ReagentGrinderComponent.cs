@@ -13,7 +13,7 @@ namespace Content.Server.Kitchen.Components
     /// it contained, juice an apple and get "apple juice".
     /// </summary>
     [Access(typeof(ReagentGrinderSystem)), RegisterComponent]
-    public sealed partial class ReagentGrinderComponent : Component
+    public sealed partial class ReagentGrinderComponent : Component {
         [DataField]
         public int StorageMaxEntities = 6;
 
