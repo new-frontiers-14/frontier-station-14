@@ -26,6 +26,7 @@ using Content.Server.Power.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Spawners.EntitySystems;
+using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Damage;
@@ -749,11 +750,11 @@ namespace Content.Server.Mail
         public string Name;
         public string Job;
         public string JobIcon;
-        public HashSet<String> AccessTags;
+        public HashSet<ProtoId<AccessLevelPrototype>> AccessTags;
         public bool MayReceivePriorityMail;
         public string Ship;
 
-        public MailRecipient(string name, string job, string jobIcon, HashSet<String> accessTags, bool mayReceivePriorityMail, string ship)
+        public MailRecipient(string name, string job, string jobIcon, HashSet<ProtoId<AccessLevelPrototype>> accessTags, bool mayReceivePriorityMail, string ship)
         {
             Name = name;
             Job = job;

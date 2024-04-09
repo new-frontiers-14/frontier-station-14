@@ -10,6 +10,7 @@ using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Player;
@@ -53,7 +54,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         var location = Spawn(null, coords);
         if (TryComp<ShuttleComponent>(component.GridUid, out var shuttle))
         {
-            _shuttle.FTLTravel(gridUid, shuttle, location, 5.5f, 55f);
+            _shuttle.FTLToCoordinates(gridUid, shuttle, location.ToCoordinates(), 5.5f, 55f);
         }
 
     }

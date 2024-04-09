@@ -194,21 +194,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             foreach (var gridDock in gridDocks)
             {
-                if (shuttleDock.Component.DockedWith == gridDock.Uid)
+                if (shuttleDock.Comp.DockedWith == gridDock.Owner)
                 {
                     isDocked = true;
                     break;
-                };
-            };
+                }
+            }
             if (isDocked)
                 break;
-        };
+        }
 
         if (!isDocked)
         {
             _sawmill.Warning($"shuttle is not docked to that station");
             return false;
-        };
+        }
 
         var mobQuery = GetEntityQuery<MobStateComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
@@ -217,7 +217,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _sawmill.Warning($"organics on board");
             return false;
-        };
+        }
 
         //just yeet and delete for now. Might want to split it into another function later to send back to the shipyard map first to pause for something
         //also superman 3 moment
@@ -238,7 +238,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             ShipyardMap = null;
             return;
-        };
+        }
 
         _mapManager.DeleteMap(ShipyardMap.Value);
     }

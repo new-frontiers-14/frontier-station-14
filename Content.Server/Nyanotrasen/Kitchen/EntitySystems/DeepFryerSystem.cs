@@ -245,7 +245,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             MetaData(item).EntityPrototype?.ID != component.CharredPrototype)
         {
             var charred = Spawn(component.CharredPrototype, Transform(uid).Coordinates);
-            component.Storage.Insert(charred);
+            _containerSystem.Insert(charred, component.Storage);
             Del(item);
         }
     }
@@ -456,7 +456,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
         if (!CanInsertItem(uid, component, args.Thrown) ||
             _random.Prob(missChance) ||
-            !component.Storage.Insert(args.Thrown))
+            !_containerSystem.Insert(args.Thrown, component.Storage))
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("deep-fryer-thrown-missed"),
@@ -504,7 +504,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     private void OnRelayMovement(EntityUid uid, DeepFryerComponent component,
         ref ContainerRelayMovementEntityEvent args)
     {
-        if (!component.Storage.Remove(args.Entity, EntityManager, destination: Transform(uid).Coordinates))
+        if (!_containerSystem.Remove(args.Entity, component.Storage, destination: Transform(uid).Coordinates))
             return;
 
         _popupSystem.PopupEntity(
@@ -527,7 +527,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         if (removedItem.Valid)
         {
             //JJ Comment - This line should be unnecessary. Some issue is keeping the UI from updating when converting straight to a Burned Mess while the UI is still open. To replicate, put a Raw Meat in the fryer with no oil in it. Wait until it sputters with no effect. It should transform to Burned Mess, but doesn't.
-            if (!component.Storage.Remove(removedItem))
+            if (!_containerSystem.Remove(removedItem, component.Storage))
                 return;
 
             var user = args.Session.AttachedEntity;
