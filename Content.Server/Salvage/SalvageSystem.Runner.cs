@@ -7,6 +7,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.Chat;
+using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -208,7 +209,7 @@ public sealed partial class SalvageSystem
                             var location = Spawn(null, coords);
                             var despawn = EnsureComp<TimedDespawnComponent>(location);
                             despawn.Lifetime = 600;
-                            _shuttle.FTLTravel(shuttleUid, shuttle, location, ftlTime);
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, location.ToCoordinates(), ftlTime);
                         }
 
                         break;

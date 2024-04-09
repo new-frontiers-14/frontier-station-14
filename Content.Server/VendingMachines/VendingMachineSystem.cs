@@ -144,16 +144,6 @@ namespace Content.Server.VendingMachines
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
 
-        private void OnBoundUIClosed(EntityUid uid, VendingMachineComponent component, BoundUIClosedEvent args)
-        {
-            // Only vendors that advertise will send message after dispensing
-            if (component.ShouldSayThankYou && TryComp<AdvertiseComponent>(uid, out var advertise))
-            {
-                _advertise.SayThankYou(uid, advertise);
-                component.ShouldSayThankYou = false;
-            }
-        }
-
         private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
         {
             var state = new VendingMachineInterfaceState(GetAllInventory(uid, component), balance);

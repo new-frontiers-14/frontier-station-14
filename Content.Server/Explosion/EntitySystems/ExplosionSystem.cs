@@ -401,8 +401,6 @@ public sealed partial class ExplosionSystem : EntitySystem
         if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
             return null;
 
-        var visualEnt = CreateExplosionVisualEntity(epicenter, type.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
-
         return new Explosion(this,
             queued.Proto,
             spaceData,

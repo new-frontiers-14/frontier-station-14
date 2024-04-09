@@ -14,6 +14,7 @@ using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Coordinates;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
@@ -114,7 +115,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString((EntityUid) stationUid)} for {price:f2}");
         //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.FTLTravel(shuttleGrid.Value, shuttle, targetGrid.Value, 0f, 15f, true);
+        _shuttle.FTLToCoordinates(shuttleGrid.Value, shuttle, targetGrid.Value.ToCoordinates(), 0f, 15f);
 
         return true;
     }

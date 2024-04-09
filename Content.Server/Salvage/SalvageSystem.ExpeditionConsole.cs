@@ -69,7 +69,7 @@ public sealed partial class SalvageSystem
         _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
         _audio.PlayPvs(component.PrintSound, uid);
 
-        UpdateConsoles((station.Value, data));
+        UpdateConsoles(data);
     }
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
