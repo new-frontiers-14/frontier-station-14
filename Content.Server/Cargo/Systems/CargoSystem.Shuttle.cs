@@ -379,7 +379,7 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(uid, gridUid, null, out var price))
+        if (!SellPallets(uid, gridUid, out var price))
             return;
 
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))

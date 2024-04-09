@@ -43,6 +43,12 @@ public sealed class ContentPlayerData
     /// </summary>
     public bool Stealthed { get; set; }
 
+    /// <summary>
+    ///     Nyanotrasen - Are they whitelisted? Lets us avoid async.
+    /// </summary>
+    [ViewVariables]
+    public bool Whitelisted { get; set; }
+
     public ContentPlayerData(NetUserId userId, string name)
     {
         UserId = userId;

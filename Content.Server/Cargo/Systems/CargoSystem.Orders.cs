@@ -190,21 +190,23 @@ namespace Content.Server.Cargo.Systems
 
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,
-                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bank.Balance}");
+                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
 
             // orderDatabase.Orders.Remove(order); # Frontier
             var stationQuery = EntityQuery<StationBankAccountComponent>();
-            
+
             foreach (var stationBankComp in stationQuery)
             {
                 DeductFunds(stationBankComp, (int) -(Math.Floor(cost * 0.4f)));
             }
             _bankSystem.TryBankWithdraw(player, cost);
-            
+
             UpdateOrders(uid, orderDatabase);
         }
 
-        private EntityUid? TryFulfillOrder(StationDataComponent stationData, CargoOrderData order, StationCargoOrderDatabaseComponent orderDatabase)
+        // Frontier - consoleUid is required to find cargo pads
+        // Only consoleUid is added thats the frontier change
+        private EntityUid? TryFulfillOrder(EntityUid consoleUid, StationDataComponent stationData, CargoOrderData order, StationCargoOrderDatabaseComponent orderDatabase)
         {
             // No slots at the trade station
             _listEnts.Clear();
@@ -214,7 +216,7 @@ namespace Content.Server.Cargo.Systems
             // Try to fulfill from any station where possible, if the pad is not occupied.
             foreach (var trade in _listEnts)
             {
-                var tradePads = GetCargoPallets(trade, BuySellType.Buy);
+                var tradePads = GetCargoPallets(consoleUid, trade, BuySellType.Buy);
                 _random.Shuffle(tradePads);
 
                 var freePads = GetFreeCargoPallets(trade, tradePads);

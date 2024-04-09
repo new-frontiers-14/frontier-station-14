@@ -90,7 +90,7 @@ public sealed class SuitSensorSystem : EntitySystem
                 // if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(sensor.StationId!.Value, out var address))
                 if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(xform.MapID, out var address))
                     continue;
-				
+
 
                 sensor.ConnectedServer = address;
             }
@@ -384,10 +384,11 @@ public sealed class SuitSensorSystem : EntitySystem
                 status.TotalDamageThreshold = totalDamageThreshold;
                 EntityCoordinates coordinates;
                 var xformQuery = GetEntityQuery<TransformComponent>();
+                var locationName = "";
 
                 if (transform.GridUid != null)
                 {
-					
+
 					coordinates = new EntityCoordinates(transform.GridUid.Value,
                         _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
                         .Transform(_transform.GetWorldPosition(transform, xformQuery)));
@@ -395,7 +396,7 @@ public sealed class SuitSensorSystem : EntitySystem
                     coordinates = new EntityCoordinates(uid,
                        new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
 					   */
-					
+
 					// Frontier modification
 					/// Checks if sensor is present on expedition grid
 					if(TryComp<SalvageExpeditionComponent>(transform.GridUid.Value, out var salvageComp))
@@ -405,26 +406,26 @@ public sealed class SuitSensorSystem : EntitySystem
 					else
 					{
 						var meta = MetaData(transform.GridUid.Value);
-						
+
 						locationName = meta.EntityName;
 					}
                 }
                 else if (transform.MapUid != null)
                 {
-					
+
                     coordinates = new EntityCoordinates(transform.MapUid.Value,
                         _transform.GetWorldPosition(transform, xformQuery));
 					/*
                     coordinates = new EntityCoordinates(uid,
                        new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
 					   */
-					
+
 					locationName = Loc.GetString("suit-sensor-location-space"); // Frontier modification
                 }
                 else
                 {
                     coordinates = EntityCoordinates.Invalid;
-					
+
 					locationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier modification
                 }
 
