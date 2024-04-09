@@ -1,0 +1,195 @@
+# An assortment of randomised dungeon loot spawners to be used instead of static spawns
+- type: entity
+  parent: MarkerBase
+  id: MarkerBasePlaceFree
+  abstract: true
+  placement:
+    mode: PlaceFree # So one had an option to scatter loot around in more natural fashion
+
+# Engineering Tools
+- type: entity
+  name: tool
+  id: SpawnDungeonLootToolsBasicEngineering
+  parent: MarkerBasePlaceFree
+  suffix: Basic, Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Tools/wrench.rsi
+        state: icon
+      - sprite: Objects/Tools/crowbar.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - Wirecutter
+    - Screwdriver
+    - Crowbar
+    - Multitool
+    - NetworkConfigurator
+    - trayScanner
+    - WelderIndustrial # Common welder isn't cool enough
+    - SprayPainter
+    - GasAnalyzer
+    - AppraisalTool
+    - FlashlightLantern
+    rarePrototypes:
+    - WelderIndustrialAdvanced
+    rareChance: 0.05
+
+- type: entity
+  name: tool
+  id: SpawnDungeonLootToolsAdvancedEngineering
+  parent: MarkerBasePlaceFree
+  suffix: CE, Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Tools/drill.rsi
+        state: drill_screw
+  - type: RandomSpawner
+    prototypes:
+    - PowerDrill
+    - JawsOfLife
+    - WelderExperimental
+    - HolofanProjector
+    rarePrototypes:
+    - RCD
+    - SyndicateJawsOfLife
+    rareChance: 0.05
+
+- type: entity
+  name: toolbox
+  id: SpawnDungeonLootToolbox
+  parent: MarkerBasePlaceFree
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - ToolboxElectricalFilled
+    - ToolboxEmergencyFilled
+    - ToolboxMechanicalFilled
+    rarePrototypes:
+    - ToolboxSyndicateFilled
+    rareChance: 0.05
+
+# Surgery Tools
+- type: entity
+  name: surgery tool
+  id: SpawnDungeonLootToolsSurgeryCrude
+  parent: MarkerBasePlaceFree
+  suffix: Improvised, Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: improv
+  - type: RandomSpawner
+    prototypes:
+    - ScalpelShiv
+    - WelderMini
+    - SawImprov
+    rarePrototypes:
+    - WeaponShotgunHandmade
+    rareChance: 0.05
+
+- type: entity
+  name: surgery tool
+  id: SpawnDungeonLootToolsSurgery
+  parent: MarkerBasePlaceFree
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: saw
+  - type: RandomSpawner
+    prototypes:
+    - Scalpel
+    - Cautery
+    - Saw
+    - Drill
+    - Hemostat
+    - Retractor
+    rarePrototypes:
+    - SawElectric
+    rareChance: 0.1
+
+- type: entity
+  name: surgery tool
+  id: SpawnDungeonLootToolsSurgeryAdvanced
+  parent: MarkerBasePlaceFree
+  suffix: Advanced, Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: advanced
+  - type: RandomSpawner
+    prototypes:
+    - ScalpelAdvanced
+    - ScalpelLaser
+    - Cautery
+    - SawElectric
+    - Drill
+    - Hemostat
+    - Retractor
+    rarePrototypes:
+    - SawAdvanced
+    rareChance: 0.15
+
+- type: entity
+  name: surgery kit
+  id: SpawnDungeonLootKitSurgery
+  parent: MarkerBasePlaceFree
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Clothing/Back/Duffels/medical.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - ClothingBackpackDuffelSurgeryImpovFilled
+    - ClothingBackpackDuffelSurgeryFilled
+    - ClothingBackpackDuffelSurgeryAdvancedFilled
+    rarePrototypes:
+    - ClothingBackpackDuffelSyndicateFilledMedical
+    rareChance: 0.2
+
+# Medkits
+- type: entity
+  name: med kit
+  id: SpawnDungeonLootKitsFirstAid
+  parent: MarkerBasePlaceFree
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Tools/wrench.rsi
+        state: icon
+      - sprite: Objects/Specific/Medical/firstaidkits.rsi
+        state: firstaid
+  - type: RandomSpawner
+    prototypes:
+    - MedkitFilled
+    - MedkitBruteFilled
+    - MedkitAdvancedFilled
+    - MedkitCombatFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitRadiationFilled
+    rarePrototypes:
+    - ClothingBackpackDuffelSyndicateMedicalBundleFilled
+    rareChance: 0.1
