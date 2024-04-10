@@ -1,0 +1,71 @@
+- type: entity
+  id: SpaceBlade
+  parent: AirTank
+  name: space blade
+  description: Let it rip
+  abstract: true
+  components:
+  - type: GasTank
+    outputPressure: 0.1
+    maxOutputPressure: 0.1
+    valveOutputRate: 50
+    air:
+      volume: 1
+      moles:
+         - 0.4101137219 # oxygen
+      temperature: 293.15
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 0.1
+        mask:
+        - SmallMobMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+  # - type: EmitSoundOnThrow
+    # sound:
+      # collection: DeskBell
+      # params:
+          # variation: 0.03
+          # volume: 0.3
+  - type: Sprite
+    sprite: _NF/Objects/Fun/spaceblade.rsi
+    state: redorange
+    scale: 0.5, 0.5
+  - type: Item
+    sprite: _NF/Objects/Fun/spaceblade.rsi
+    state: redorange
+    scale: 0.5, 0.5
+
+- type: entity
+  id: SpaceBladeRedOrange
+  parent: SpaceBlade
+  name: space blade
+  description: Let it rip
+
+- type: entity
+  id: SpaceBladeRedBlue
+  parent: SpaceBlade
+  name: space blade
+  description: Let it rip
+  components:
+  - type: Sprite
+    state: blue
+  - type: Item
+    state: blue
+
+- type: entity
+  id: SpaceBladeRedPizza
+  parent: SpaceBlade
+  name: space blade
+  description: Let it mama mia
+  components:
+  - type: Sprite
+    state: pizza
+  - type: Item
+    state: pizza
