@@ -1,8 +1,12 @@
 ent-MobAtmosNF = { "" }
     .desc = { "" }
+ent-MobPassiveRegen = { "" }
+    .desc = { "" }
+ent-MobLaserReflect = { "" }
+    .desc = { "" }
 ent-MobHumanoidHostileBase = Человек NPC
-  .suffix = AI
-  .desc = { ent-BaseMobSpecies.desc }
+    .suffix = AI
+    .desc = { ent-BaseMobSpecies.desc }
 ent-MobNonHumanHostileBase = Моб NPC
-  .suffix = AI
-  .desc = { ent-SimpleSpaceMobBase.desc }
+    .suffix = AI
+    .desc = { ent-SimpleSpaceMobBase.desc }

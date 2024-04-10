@@ -16,3 +16,7 @@ ent-VendingMachineAutoTuneVend = AutoTune
     .desc = feeling BASSed? time to TUNE into AutoVend! Take NOTES and let your audience TREBLE
 ent-VendingMachinePottedPlantVend = Plant-O-Matic
     .desc = Sometimes potted plants are the best crewmates money can get.
+ent-VendingMachineNFSDDrobe = NFSDDrobe
+    .desc = A vending machine for NFSD and NFSD clothing!
+ent-VendingMachineNFSDTec = NFSDTec
+    .desc = A vending machine for NFSD and NFSD tech!

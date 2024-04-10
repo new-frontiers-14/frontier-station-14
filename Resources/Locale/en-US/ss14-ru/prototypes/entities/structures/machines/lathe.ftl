@@ -1,5 +1,5 @@
 ent-BaseLathe = lathe
-  .desc = { ent-BaseMachinePowered.desc }
+  .desc = { ent-ConstructibleMachine.desc }
 ent-Autolathe = autolathe
     .desc = It produces items using metal and glass.
 ent-AutolatheHyperConvection = hyper convection autolathe

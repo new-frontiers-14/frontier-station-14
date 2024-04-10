@@ -1,6 +1,6 @@
 ent-BaseMothershipComputer = { ent-ComputerShipyard }
-  .desc = Используется на авианосцах для покупки дополнительных шаттлов, не возвращаясь на станцию.
-  .suffix = Mothership
+    .desc = Используется на авианосцах для покупки дополнительных шаттлов, не возвращаясь на станцию.
+    .suffix = Mothership
 ent-EmpressMothershipComputer = консоль авианосца "Императрица"
     .desc = { ent-BaseMothershipComputer.desc }
 ent-McCargoMothershipComputer = консоль авианосца "Каргония"

@@ -20,3 +20,5 @@ ent-ClothingHeadHelmetHardsuitNfsdBrigmed = nfsd patrol hardsuit helmet
     .desc = Lightly armored hardsuit helmet for beat-cop needs.
 ent-ClothingHeadHelmetHardsuitNfsdSheriff = nfsd sheriff hardsuit helmet
     .desc = Lightly armored hardsuit helmet for beat-cop-cop needs.
+ent-ClothingHeadHelmetHardsuitNfsdExperimental = nfsd experimental hardsuit helmet
+    .desc = An experimental nfsd hardsuit helmet.

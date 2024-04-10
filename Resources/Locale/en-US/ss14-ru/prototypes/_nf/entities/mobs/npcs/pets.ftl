@@ -1,6 +1,6 @@
-ent-MobCatClippy = Clippy
+ent-MobCatClippy = MobCatClippy
     .desc = It looks like you’re writing a letter, would you like help?
-ent-MobCatClarpy = Clarpy
+ent-MobCatClarpy = MobCatClarpy
     .desc = First cat to gain a bounty.
-ent-MobCatMistake = Mistake
+ent-MobCatMistake = MobCatMistake
     .desc = ???

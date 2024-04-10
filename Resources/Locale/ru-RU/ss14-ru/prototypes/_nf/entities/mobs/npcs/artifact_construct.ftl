@@ -1,6 +1,6 @@
 ent-SimpleArtifactMobBase = { ent-BaseMob }
-  .suffix = AI
-  .desc = { ent-BaseMob.desc }
+    .suffix = AI
+    .desc = { ent-BaseMob.desc }
 ent-BaseMobArtifactConstruct = артефактный голем
     .desc = Огромный голем, созданный из искореженного металла и камней.
 ent-MobGrimForged = артефактный голем 1

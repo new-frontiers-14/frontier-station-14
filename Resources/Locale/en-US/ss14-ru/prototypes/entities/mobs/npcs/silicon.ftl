@@ -1,7 +1,7 @@
 ent-MobSiliconBase = { "" }
     .desc = { "" }
-ent-MobSiliconBaseVehicle = { ent-BaseVehicle }
-  .desc = { ent-BaseVehicle.desc }
+ent-MobSiliconBaseVehicle = { ent-MobSiliconBase }
+  .desc = { ent-MobSiliconBase.desc }
 ent-MobTaxiBot = taxibot
     .desc = Give a ride?
 ent-MobSupplyBot = supplybot

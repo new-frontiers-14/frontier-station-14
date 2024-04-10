@@ -16,3 +16,7 @@ ent-VendingMachineAutoTuneVend = МузВенд
     .desc = В космосе никто не слышит ваш крик? Пусть услышат вашу музыку!
 ent-VendingMachinePottedPlantVend = Трав-О-Маг
     .desc = Иногда растения в горшках самые лучшие напарники, которых можно купить за деньги.
+ent-VendingMachineNFSDDrobe = ДСБФдроб
+    .desc = Торговый аппарат для ДСБФ.
+ent-VendingMachineNFSDTec = ДСБФтех
+    .desc = Торговый аппарат для ДСБФ.

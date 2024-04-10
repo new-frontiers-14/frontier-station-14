@@ -10,3 +10,5 @@ ent-MysteryFigureBoxBulk = mystery spacemen minifigure bulk box
     .desc = A box containing six mystery minifigure boxes.
 ent-BoxT3SuperCapacitor = Thruster upgrade kit
     .desc = A box of super capacitors.
+ent-BoxEncryptionKeyNFSD = nfsd encryption key box
+    .desc = { ent-BoxEncryptionKeyPassenger.desc }

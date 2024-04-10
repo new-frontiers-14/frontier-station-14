@@ -4,3 +4,6 @@ ent-AirlockMercenary = { ent-Airlock }
 ent-AirlockMercenaryGlass = { ent-AirlockGlass }
     .suffix = Наёмник
     .desc = { ent-AirlockGlass.desc }
+ent-AirlockNFSDGlass = { ent-AirlockGlass }
+    .suffix = ДСБФ
+    .desc = { ent-AirlockGlass.desc }

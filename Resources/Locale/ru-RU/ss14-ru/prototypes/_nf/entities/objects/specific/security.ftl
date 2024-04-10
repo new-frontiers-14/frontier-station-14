@@ -1,5 +1,5 @@
 ent-FrontierUplinkCoin = таможенные кредиты
-    .desc = Таможенные кредиты, которые выдаются за представителям ДСБФ за успешный перехват контрабанды. 
+    .desc = Таможенные кредиты, которые выдаются за представителям ДСБФ за успешный перехват контрабанды.
     .suffix = 20 ТК
 ent-FrontierUplinkCoin1 = { ent-FrontierUplinkCoin }
     .suffix = 1 ТК
@@ -22,3 +22,5 @@ ent-BaseSecurityUplinkRadioSheriff = { ent-BaseSecurityUplinkRadio }
 ent-BaseSecurityUplinkRadioOfficer = { ent-BaseSecurityUplinkRadio }
     .suffix = Офицер 10
     .desc = { ent-BaseSecurityUplinkRadio.desc }
+ent-NFSDDeployableBarrier = развертываемый барьер ДСБФ
+    .desc = Развертываемый барьер. Для разблокировки приложите свою ID карту.

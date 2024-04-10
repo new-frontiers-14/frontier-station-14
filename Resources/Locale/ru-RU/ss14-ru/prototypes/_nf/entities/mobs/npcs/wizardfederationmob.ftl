@@ -1,6 +1,6 @@
 ent-MobWizFedlBase = Волшебник
-  .suffix = AI
-  .desc = { ent-MobHumanoidHostileBase.desc }
+    .suffix = AI
+    .desc = { ent-MobHumanoidHostileBase.desc }
 ent-MobWizFedWizardBlue = Синий Волшеник
     .desc = { ent-MobWizFedlBase.desc }
 ent-MobWizFedWizardRed = Красный Волшебник
@@ -23,5 +23,5 @@ ent-MobWizFedWizardSoapHardsuit = Мыльный Волшебник
     .suffix = AI, Скафандр
     .desc = { ent-MobWizFedWizardSoap.desc }
 ent-WaterElementalConjured = Голубой Элементаль
-  .suffix = AI
-  .desc = { ent-MobNonHumanHostileBase.desc }
+    .suffix = AI
+    .desc = { ent-MobNonHumanHostileBase.desc }

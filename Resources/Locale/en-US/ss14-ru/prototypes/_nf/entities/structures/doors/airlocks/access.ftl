@@ -25,3 +25,6 @@ ent-AirlockMercenaryGlassLocked = { ent-AirlockMercenaryGlass }
 ent-AirlockExternalGlassShuttleTransit = { ent-AirlockGlassShuttle }
     .suffix = External, PubTrans, Glass, Docking
     .desc = { ent-AirlockGlassShuttle.desc }
+ent-AirlockNFSDGlassLocked = { ent-AirlockNFSDGlass }
+    .suffix = NFSD, Locked
+    .desc = { ent-AirlockNFSDGlass.desc }
