@@ -195,6 +195,115 @@
     rareChance: 0.1
 
 # Vendomats
+- type: entity
+  name: random recreational vendomat # food, drinks, smokes, toy, decor
+  id: SpawnDungeonVendomatsRecreational
+  parent: MarkerBase
+  suffix: Random, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: any
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineBooze
+    - VendingMachineCigs
+    - VendingMachineCoffee
+    - VendingMachineCola
+    - VendingMachineColaBlack
+    - VendingMachineColaRed
+    - VendingMachineSpaceUp
+    - VendingMachineSoda
+    - VendingMachineStarkist
+    - VendingMachineShamblersJuice
+    - VendingMachinePwrGame
+    - VendingMachineDrGibb
+    - VendingMachineDiscount
+    - VendingMachineSnack
+    - VendingMachineSustenance
+    - VendingMachineSnackBlue
+    - VendingMachineSnackOrange
+    - VendingMachineSnackGreen
+    - VendingMachineSnackTeal
+    - VendingMachineSovietSoda
+    - VendingMachineGames
+    - VendingMachineChang
+    - VendingMachineDonut
+    - VendingMachineHappyHonk
+    - CuddlyCritterVend
+    - VendingMachineAutoTuneVend
+    - VendingMachinePottedPlantVend
+    rarePrototypes:
+    - VendingMachineChemicalsSyndicate
+    rareChance: 0.05
+
+- type: entity
+  name: random clothes vendomat
+  id: SpawnDungeonVendomatsClothes
+  parent: MarkerBase
+  suffix: Random, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: any
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineClothing
+    - VendingMachineWinter
+    - HyDrobe
+    - VendingMachineTheater
+    - VendingMachineLawDrobe
+    - VendingBarDrobe
+    - VendingMachineChapel
+    - VendingMachineCargoDrobe
+    - VendingMachineMediDrobe
+    - VendingMachineChemDrobe
+    - VendingMachineCuraDrobe
+    - VendingMachineAtmosDrobe
+    - VendingMachineEngiDrobe
+    - VendingMachineChefDrobe
+    - VendingMachineJaniDrobe
+    - VendingMachineSciDrobe
+    - VendingMachineRoboDrobe
+    - VendingMachineGeneDrobe
+    - VendingMachineViroDrobe
+    rarePrototypes:
+    - VendingMachineMagivend
+    - VendingMachineSyndieContraband
+    - VendingMachineBountyVend
+    - VendingMachineArcadia
+    - VendingMachineSyndieDrobe
+    rareChance: 0.05
+
+- type: entity
+  name: random tools vendomat
+  id: SpawnDungeonVendomatsTools
+  parent: MarkerBase
+  suffix: Random, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: any
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineVendomat
+    - VendingMachineEngivend
+    - VendingMachineRobotics
+    - VendingMachineYouTool
+    - VendingMachineSalvage
+    rarePrototypes:
+    - LessLethalVendingMachine
+    - VendingMachineAmmo
+    - VendingMachineSyndieContraband
+    - VendingMachineNFSDTec
+    - VendingMachineArcadia
+    rareChance: 0.05
 
 # Lathes and circuits
 - type: entity
@@ -275,4 +384,30 @@
     - FatExtractorMachineCircuitboard
     rarePrototypes:
     - SecurityTechFabCircuitboard
+    rareChance: 0.1
+
+# Hard, cold space cash
+- type: entity
+  name: money
+  id: SpawnDungeonLootSpesos
+  parent: MarkerBasePlaceFree
+  suffix: Random, Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Economy/cash.rsi
+        state: cash_500
+  - type: RandomSpawner
+    prototypes:
+    - SpaceCash10
+    - SpaceCash100
+    - SpaceCash500
+    - SpaceCash1000
+    - SpaceCash2500
+    - SpaceCash5000
+    - SpaceCash10000
+    rarePrototypes:
+    - SpaceCash20000
+    - SpaceCash30000
     rareChance: 0.1
