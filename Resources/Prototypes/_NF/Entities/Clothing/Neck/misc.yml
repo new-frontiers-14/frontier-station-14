@@ -32,3 +32,28 @@
   - type: EmitsSoundOnMove
     soundCollection:
       collection: FootstepJester
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckAmuletBloodCult
+  name: ascended cultist amulet
+  description: Every time you look upon it, you feel like it gazes back.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/ascended_cultist_amulet.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/ascended_cultist_amulet.rsi
+  - type: BasicEntityAmmoProvider
+    proto: MobBloodCultDrainedOneNanoTrasen
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 440
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
