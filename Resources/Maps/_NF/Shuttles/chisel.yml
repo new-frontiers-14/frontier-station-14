@@ -86,6 +86,7 @@ entities:
           decals:
             49: 3,-2
             97: 6,-1
+            98: -6,2
         - node:
             color: '#FFFFFFFF'
             id: BotLeft
@@ -277,20 +278,6 @@ entities:
             18: 1,-5
             19: 1,-4
             20: 1,-6
-            22: 3,-3
-        - node:
-            cleanable: True
-            angle: 1.5707963267948966 rad
-            color: '#FFFFFFFF'
-            id: Dirt
-          decals:
-            21: 3,-3
-        - node:
-            cleanable: True
-            color: '#FFFFFFFF'
-            id: MiniTileSteelLineN
-          decals:
-            23: 3,-3
         - node:
             color: '#BC863FFF'
             id: MiniTileWhiteEndS
@@ -418,6 +405,18 @@ entities:
     - type: RadiationGridResistance
 - proto: AirAlarm
   entities:
+  - uid: 213
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,2.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 194
+      - 188
+    - type: AtmosDevice
+      joinedGrid: 1
   - uid: 292
     components:
     - type: Transform
@@ -425,12 +424,10 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 187
-      - 316
-      - 194
-      - 190
       - 317
-      - 188
+      - 190
+      - 316
+      - 187
     - type: AtmosDevice
       joinedGrid: 1
 - proto: AirCanister
@@ -483,18 +480,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,0.5
-      parent: 1
-  - uid: 263
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,2.5
-      parent: 1
-  - uid: 271
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,2.5
       parent: 1
   - uid: 284
     components:
@@ -741,7 +726,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 19
-      - 337
   - uid: 18
     components:
     - type: Transform
@@ -751,7 +735,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 19
-      - 337
   - uid: 60
     components:
     - type: Transform
@@ -761,7 +744,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 19
-      - 337
   - uid: 183
     components:
     - type: Transform
@@ -778,15 +760,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 189
-  - uid: 315
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,2.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 19
 - proto: CableApcExtension
   entities:
   - uid: 31
@@ -1038,6 +1011,11 @@ entities:
     - type: Transform
       pos: 6.5,-0.5
       parent: 1
+  - uid: 315
+    components:
+    - type: Transform
+      pos: 4.5,-0.5
+      parent: 1
   - uid: 339
     components:
     - type: Transform
@@ -1047,6 +1025,16 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-2.5
+      parent: 1
+  - uid: 342
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 1
+  - uid: 343
+    components:
+    - type: Transform
+      pos: 5.5,-1.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -1240,43 +1228,43 @@ entities:
   - uid: 100
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,2.5
       parent: 1
     - type: DeviceLinkSink
       links:
       - 330
+      - 149
   - uid: 101
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 1
     - type: DeviceLinkSink
       links:
       - 330
+      - 149
   - uid: 103
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 1
     - type: DeviceLinkSink
       links:
       - 330
+      - 149
   - uid: 104
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,3.5
       parent: 1
     - type: DeviceLinkSink
       links:
       - 330
+      - 149
   - uid: 105
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: -2.5,-3.5
       parent: 1
     - type: DeviceLinkSink
@@ -1311,10 +1299,10 @@ entities:
       - 294
 - proto: CrateGenericSteel
   entities:
-  - uid: 149
+  - uid: 70
     components:
     - type: Transform
-      pos: -2.5,-3.5
+      pos: -2.5,-2.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1322,7 +1310,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -4.5,1.5
+      pos: -1.5,-3.5
       parent: 1
 - proto: DrinkMugMetal
   entities:
@@ -1752,7 +1740,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 292
+      - 213
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1802,7 +1790,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 292
+      - 213
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1885,16 +1873,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,4.5
       parent: 1
-- proto: LockerQuarterMasterFilled
+- proto: LockerSalvageSpecialistFilled
   entities:
-  - uid: 211
+  - uid: 146
     components:
     - type: Transform
       pos: -5.5,2.5
       parent: 1
-- proto: LockerSalvageSpecialistFilled
-  entities:
-  - uid: 146
+  - uid: 211
     components:
     - type: Transform
       pos: 3.5,-1.5
@@ -1908,10 +1894,10 @@ entities:
       parent: 1
 - proto: OreProcessor
   entities:
-  - uid: 70
+  - uid: 263
     components:
     - type: Transform
-      pos: -3.5,-3.5
+      pos: -2.5,-3.5
       parent: 1
 - proto: PaperBin5
   entities:
@@ -2129,22 +2115,6 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        315:
-        - Pressed: Toggle
-        60:
-        - Pressed: Toggle
-        2:
-        - Pressed: Toggle
-        18:
-        - Pressed: Toggle
-  - uid: 337
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,4.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
         60:
         - Pressed: Toggle
         2:
@@ -2165,6 +2135,13 @@ entities:
         - Pressed: Toggle
         185:
         - Pressed: Toggle
+- proto: SignElectricalMed
+  entities:
+  - uid: 345
+    components:
+    - type: Transform
+      pos: 5.5,-2.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 253
@@ -2197,10 +2174,10 @@ entities:
       parent: 1
 - proto: SpawnPointSalvageSpecialist
   entities:
-  - uid: 213
+  - uid: 346
     components:
     - type: Transform
-      pos: -1.5,0.5
+      pos: 4.5,0.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
@@ -2275,6 +2252,11 @@ entities:
     - type: Transform
       pos: -4.5,4.5
       parent: 1
+  - uid: 271
+    components:
+    - type: Transform
+      pos: -3.5,-3.5
+      parent: 1
 - proto: Thruster
   entities:
   - uid: 59
@@ -2329,8 +2311,38 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
+- proto: trayScanner
+  entities:
+  - uid: 344
+    components:
+    - type: Transform
+      pos: 6.521159,0.83292365
+      parent: 1
 - proto: TwoWayLever
   entities:
+  - uid: 149
+    components:
+    - type: Transform
+      pos: 2.5,6.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        103:
+        - Left: Forward
+        - Right: Forward
+        - Middle: Off
+        101:
+        - Left: Forward
+        - Right: Forward
+        - Middle: Off
+        104:
+        - Left: Forward
+        - Right: Forward
+        - Middle: Off
+        100:
+        - Left: Forward
+        - Right: Forward
+        - Middle: Off
   - uid: 162
     components:
     - type: Transform
