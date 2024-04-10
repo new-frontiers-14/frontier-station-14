@@ -1,11 +1,14 @@
-﻿namespace Content.Server._NF.Market.Components;
+﻿using Content.Server._NF.Market.Systems;
+
+namespace Content.Server._NF.Market.Components;
 
 /// <summary>
-/// Component that is put on a Cargo pallet console to track its sales.
+/// Component that belongs to the market computer
 /// </summary>
 [RegisterComponent]
-public sealed partial class MarketComponent : Component
+[Access(typeof(MarketSystem))]
+public sealed partial class MarketConsoleComponent : Component
 {
-
+    [DataField]
+    public string CashType = "Credit";
 }
-
