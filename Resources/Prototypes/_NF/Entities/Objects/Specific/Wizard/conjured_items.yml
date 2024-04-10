@@ -3,7 +3,7 @@
   id: ConjuredObject10
   suffix: Conjured
   abstract: true
-  description: A magically created object, that'll vanish from existance eventually.
+  description: A magically created entity, that'll vanish from existence eventually.
   components:
   - type: TimedDespawn
     lifetime: 10
@@ -13,6 +13,7 @@
   name: soap
   id: SoapConjured
   parent:
+  - BaseBullet
   - Soap
   - ConjuredObject10
   components:
@@ -26,11 +27,35 @@
     maxFillLevels: 4
     fillBaseName: soap-
     changeColor: false
-#  - type: Item
-#    heldPrefix: conjured
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
   - type: Ammo
     muzzleFlash: null
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Blunt: 9 # 12 hits to crit unarmored target
+  - type: StaminaDamageOnCollide
+    damage: 10 # 6 hits to slow, 10 hits to stun
   - type: PointLight
     color: MediumPurple
-    radius: 1
+    radius: 1.5
     softness: 1

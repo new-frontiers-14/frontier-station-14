@@ -1,8 +1,11 @@
 - type: entity
-  parent: Dart
-  id: DartSindicateTranquilizer
-  name: Syndicate Tranquilizer Dart
+  parent:
+  - Dart  
+  - ConjuredObject10 # Despawns in 10 seconds
+  id: DartSindicateImpedrezene
+  name: syndicate impedrezene dart
   description: Try not to prick yourself.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Fun/Darts/dart_red.rsi
@@ -10,8 +13,6 @@
   - type: EmbeddableProjectile
     removalTime: 0.5
     sound: /Audio/Weapons/star_hit.ogg
-  - type: TimedDespawn
-    lifetime: 10
   - type: DamageOtherOnHit
     damage:
       types:
@@ -28,7 +29,24 @@
   - type: DrainableSolution
     solution: ammo
   - type: SolutionInjectOnCollide
-    transferAmount: 4
+    transferAmount: 2
     blockSlots: NONE #tranquillizer darts shouldn't be blocked by a mask
   - type: InjectableSolution
     solution: ammo
+
+- type: entity # 4 hits to KO a spaceman
+  parent: DartSindicateImpedrezene
+  id: DartSindicateTranquilizer
+  name: syndicate tranquilizer dart
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 3
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 3
+  - type: SolutionInjectOnCollide
+    transferAmount: 3
+    blockSlots: NONE #tranquillizer darts shouldn't be blocked by a mask

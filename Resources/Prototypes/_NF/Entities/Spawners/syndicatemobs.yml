@@ -2,102 +2,245 @@
   name: Syndicate Naval Captain Spawner
   id: SpawnMobSyndicateNavalCaptain
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap_maa.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecaparmored.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+        state: inhand-left
+      - sprite: _NF/Objects/Weapons/Melee/armingsword.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalCaptain
+    - MobSyndicateNavalCaptainB
+    - MobSyndicateNavalCaptainC
+    - MobSyndicateNavalCaptainD
+    rarePrototypes:
+    - MobSyndicateNavalCaptainA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Engineer Spawner
   id: SpawnMobSyndicateNavalEngineer
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/repairman_syndie.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+        state: inhand-left
+      - sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalEngineer
+    - MobSyndicateNavalEngineerB
+    - MobSyndicateNavalEngineerC
+    - MobSyndicateNavalEngineerD
+    rarePrototypes:
+    - MobSyndicateNavalEngineerA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Medic Spawner
   id: SpawnMobSyndicateNavalMedic
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+        state: inhand-left
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: advanced-inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalMedic
+    - MobSyndicateNavalMedicB
+    - MobSyndicateNavalMedicC
+    - MobSyndicateNavalMedicD
+    rarePrototypes:
+    - MobSyndicateNavalMedicA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Second Officer Spawner
   id: SpawnMobSyndicateNavalSecondOfficer
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/recruit_syndie.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/cutlass.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalSecondOfficer
+    - MobSyndicateNavalSecondOfficerB
+    - MobSyndicateNavalSecondOfficerC
+    - MobSyndicateNavalSecondOfficerD
+    rarePrototypes:
+    - MobSyndicateNavalSecondOfficerA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Operator Spawner
   id: SpawnMobSyndicateNavalOperator
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Helmets/swat_syndicate.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/kukri_knife.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalOperator
+    - MobSyndicateNavalOperatorB
+    - MobSyndicateNavalOperatorC
+    - MobSyndicateNavalOperatorD
+    rarePrototypes:
+    - MobSyndicateNavalOperatorA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Grenadier Spawner
   id: SpawnMobSyndicateNavalGrenadier
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite:  _NF/Clothing/OuterClothing/Suits/syndicate_bombsuit.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+        state: equipped-HELMET
+      - sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+        state: inhand-left
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalGrenadier
+    - MobSyndicateNavalGrenadierB
+    - MobSyndicateNavalGrenadierC
+    - MobSyndicateNavalGrenadierD
+    rarePrototypes:
+    - MobSyndicateNavalGrenadierA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Saboteur Spawner
   id: SpawnMobSyndicateNavalSaboteur
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/kukri_knife.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalSaboteur
+    - MobSyndicateNavalSaboteurB
+    - MobSyndicateNavalSaboteurC
+    - MobSyndicateNavalSaboteurD
+    rarePrototypes:
+    - MobSyndicateNavalSaboteurA
+    rareChance: 0.1
 
 - type: entity
   name: Victim of Experimentation Spawner
   id: SpawnMobExperimentationVictim
   parent: MarkerBase
+  suffix: AI, Hostile
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Melee/shiv.rsi
+        state: inhand-right
   - type: ConditionalSpawner
     prototypes:
       - MobExperimentationVictim
@@ -106,24 +249,168 @@
   name: Syndicate Naval Commander Spawner
   id: SpawnMobSyndicateNavalCommander
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
-  - type: ConditionalSpawner
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hardsuits/syndicate.rsi
+        state: combat-equipped-HELMET
+      - sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/captain_sabre.rsi
+        state: inhand-right
+  - type: RandomSpawner
     prototypes:
-      - MobSyndicateNavalCommander
+    - MobSyndicateNavalCommanderB
+    - MobSyndicateNavalCommanderC
+    - MobSyndicateNavalCommanderD
+    rarePrototypes:
+    - MobSyndicateNavalCommanderA
+    rareChance: 0.1
 
 - type: entity
   name: Syndicate Naval Deckhand Spawner
   id: SpawnMobSyndicateNavalDeckhand
   parent: MarkerBase
+  suffix: AI, Hostile, RND
   components:
   - type: Sprite
     layers:
       - state: red
       - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hats/syndiecap.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Uniforms/Jumpsuit/recruit_syndie.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: inhand-left
+  - type: RandomSpawner
+    prototypes:
+    - MobSyndicateNavalDeckhandB
+    - MobSyndicateNavalDeckhandC
+    - MobSyndicateNavalDeckhandD
+    rarePrototypes:
+    - MobSyndicateNavalDeckhandA
+    rareChance: 0.1
+
+- type: entity
+  name: syndicat
+  id: SpawnMobCatSyndy
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Pets/cat.rsi
+        state: syndicat
+      - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSyndicateNavalDeckhand
+      - MobCatSyndy
+
+- type: entity
+  name: Syndicate Naval Mime Spawner
+  id: SpawnMobSyndicateNavalMime
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/mime.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: Clothing/Mask/mime.rsi
+        state: equipped-MASK
+      - sprite: Clothing/Head/Hats/beret.rsi
+        state: equipped-HELMET
+      - sprite: Objects/Weapons/Melee/chainsaw.rsi
+        state: wielded-inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalMime
+
+- type: entity
+  name: Syndicate Naval Chemwarrior Spawner
+  id: SpawnMobSyndicateNavalChemwarrior
+  parent: MarkerBase
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+        state: equipped-HELMET
+      - sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/uranium_spear.rsi
+        state: inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobSyndicateNavalChemwarriorB
+    - MobSyndicateNavalChemwarriorC
+    - MobSyndicateNavalChemwarriorD
+    rarePrototypes:
+    - MobSyndicateNavalChemwarriorA
+    rareChance: 0.1
+
+- type: entity
+  name: Syndicate Naval Horror Spawner
+  id: SpawnMobSyndicateNavalHorror
+  parent: MarkerBase
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
+        state: equipped-INNERCLOTHING
+      - sprite: Clothing/Shoes/Boots/jackboots.rsi
+        state: equipped-FEET
+      - sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+        state: equipped-HELMET
+      - sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+        state: inhand-left
+      - sprite: Objects/Weapons/Melee/uranium_spear.rsi
+        state: inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobSyndicateNavalGrenadierB
+    - MobSyndicateNavalGrenadierC
+    - MobSyndicateNavalGrenadierD
+    - MobSyndicateNavalChemwarriorB
+    - MobSyndicateNavalChemwarriorC
+    - MobSyndicateNavalChemwarriorD
+    rarePrototypes:
+    - MobSyndicateNavalMime
+    - MobSyndicateNavalChemwarriorA
+    - MobSyndicateNavalGrenadierA
+    rareChance: 0.1
