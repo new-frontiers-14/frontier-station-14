@@ -79,6 +79,7 @@ public sealed partial class IdCardConsoleComponent : Component
         "Salvage",
         "Security",
         "Service",
+        "StationTrafficController", // Frontier
         "Theatre",
     };
 
