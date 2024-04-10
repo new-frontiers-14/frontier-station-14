@@ -1,0 +1,115 @@
+- type: entity
+  id: BaseStructureComputerTabletop
+  parent: BaseStructure
+  suffix: Tabletop
+  abstract: true
+  components:
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.35,0.25,0.35"
+          density: 190
+          mask:
+            - TabletopMachineMask
+          layer:
+            - TabletopMachineLayer
+    - type: InteractionOutline
+    - type: Rotatable
+    - type: Anchorable
+    - type: Construction
+      graph: ComputerTabletop
+      node: frameUnsecured
+    - type: Sprite
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      drawdepth: SmallObjects
+      layers:
+        - map: [ "computerLayerBody" ]
+          sprite: _NF/Structures/Machines/computer_tabletop.rsi
+          state: computer_tabletop
+        - map: [ "computerLayerKeyboard" ]
+          sprite: _NF/Structures/Machines/computer_tabletop.rsi
+          state: generic_keyboard_tabletop
+        - map: [ "computerLayerScreen" ]
+          sprite: Structures/Machines/computers.rsi
+          state: generic
+        - map: [ "computerLayerKeys" ]
+          sprite: Structures/Machines/computers.rsi
+          state: generic_keys
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Electronic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: monitorBroken
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: StaticPrice
+      price: 100
+
+- type: entity
+  parent: BaseStructureComputerTabletop
+  name: computer
+  id: ComputerTabletopFrame
+  components:
+  - type: Construction
+    graph: ComputerTabletop
+    node: frameUnsecured
+    containers:
+      - board
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    layers:
+    - state: computer_tabletop_frame
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          frameUnsecured: { state: computer_tabletop_frame }
+          boardUnsecured: { state: computer_board_exposed }
+          missingWires: { state: computer_tabletop }
+          monitorMissing: { state: computer_no_monitor }
+          monitorUnsecured: { state: computer_monitor_unscrewed }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - Impassable
+        - LowImpassable
+
+- type: entity
+  parent: ComputerBroken
+  id: ComputerTabletopBroken
+  suffix: Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _NF/Structures/Machines/computer_tabletop.rsi
+    state: broken_tabletop
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - Impassable
+        - LowImpassable

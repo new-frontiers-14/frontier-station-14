@@ -49,8 +49,8 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSlug
-    count: 4
-    spread: 5
+    count: 1
+    spread: 0
   - type: SpentAmmoVisuals
     state: "slug"
 
@@ -127,9 +127,9 @@
       ammo:
         reagents:
         - ReagentId: ChloralHydrate
-          Quantity: 7
+          Quantity: 4
   - type: SolutionTransfer
-    maxTransferAmount: 7
+    maxTransferAmount: 4
   - type: SpentAmmoVisuals
     state: "practice"
 
@@ -157,14 +157,13 @@
   name: uranium shotgun shell
   parent: BaseShellShotgun
   components:
-  - type: Sprite
-    layers:
-      - state: depleted-uranium
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    count: 5
-    spread: 6
-    proto: PelletShotgunUranium
-  - type: SpentAmmoVisuals
-    state: "depleted-uranium"
-
+    - type: Sprite
+      layers:
+        - state: depleted-uranium
+          map: [ "enum.AmmoVisualLayers.Base" ]
+    - type: CartridgeAmmo
+      count: 5
+      spread: 6
+      proto: PelletShotgunUranium
+    - type: SpentAmmoVisuals
+      state: "depleted-uranium"

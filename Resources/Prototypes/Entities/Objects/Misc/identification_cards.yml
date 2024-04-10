@@ -445,6 +445,8 @@
     layers:
     - state: default
     - state: idbrigmedic
+  - type: PresetIdCard
+    job: Brigmedic
 
 - type: entity
   parent: IDCardStandard
@@ -483,7 +485,7 @@
 - type: entity
   parent: ERTLeaderIDCard
   id: ERTChaplainIDCard
-  name: ERT Chaplain ID card
+  name: ERT chaplain ID card
   components:
   - type: Sprite
     layers:
@@ -497,7 +499,7 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTEngineerIDCard
-  name: ERT Engineer ID card
+  name: ERT engineer ID card
   components:
   - type: Sprite
     layers:
@@ -509,7 +511,7 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTJanitorIDCard
-  name: ERT Janitor ID card
+  name: ERT janitor ID card
   components:
   - type: Sprite
     layers:
@@ -521,7 +523,7 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTMedicIDCard
-  name: ERT Medic ID card
+  name: ERT medic ID card
   components:
   - type: Sprite
     layers:
@@ -533,7 +535,7 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTSecurityIDCard
-  name: ERT Security ID card
+  name: ERT security ID card
   components:
   - type: Sprite
     layers:
@@ -650,6 +652,7 @@
     - JobIconServiceWorker
     - JobIconSecurityCadet
     - JobIconZookeeper
+    - JobIconVisitor
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -667,6 +670,7 @@
         type: ChameleonBoundUserInterface
   - type: StaticPrice
     price: 200
+  - type: Contraband #frontier
 
 - type: entity
   name: passenger ID card
@@ -704,6 +708,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: Contraband #frontier
 
 - type: entity
   parent: IDCardStandard
@@ -845,3 +850,5 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: PresetIdCard
+    job: SeniorOfficer

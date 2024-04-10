@@ -323,6 +323,9 @@ public abstract partial class SharedBuckleSystem
         if (attemptEvent.Cancelled)
             return false;
 
+        if (buckleComp.Disable) // Frontier
+            return false; // Frontier
+
         return true;
     }
 
@@ -357,13 +360,12 @@ public abstract partial class SharedBuckleSystem
         if (TryComp<AppearanceComponent>(buckleUid, out var appearance))
             Appearance.SetData(buckleUid, BuckleVisuals.Buckled, true, appearance);
 
-        _rotationVisuals.SetHorizontalAngle(buckleUid,  strapComp.Rotation);
+        _rotationVisuals.SetHorizontalAngle(buckleUid, strapComp.Rotation);
 
         ReAttach(buckleUid, strapUid, buckleComp, strapComp);
         SetBuckledTo(buckleUid, strapUid, strapComp, buckleComp);
         // TODO user is currently set to null because if it isn't the sound fails to play in some situations, fix that
-        var audioSourceUid = userUid == buckleUid ? userUid : strapUid;
-        _audio.PlayPredicted(strapComp.BuckleSound, strapUid, audioSourceUid);
+        _audio.PlayPredicted(strapComp.BuckleSound, strapUid, userUid);
 
         var ev = new BuckleChangeEvent(strapUid, buckleUid, true);
         RaiseLocalEvent(ev.BuckledEntity, ref ev);

@@ -10,6 +10,7 @@ namespace Content.Client._NF.Latejoin;
 [GenerateTypedNameReferences]
 public sealed partial class VesselListControl : BoxContainer
 {
+
     private ClientGameTicker _gameTicker;
 
     public Comparison<NetEntity>? Comparison;
@@ -25,6 +26,7 @@ public sealed partial class VesselListControl : BoxContainer
             return (NetEntity) i.Metadata!;
         }
     }
+
     private IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>>? _lastJobState;
 
     public VesselListControl()
@@ -33,9 +35,9 @@ public sealed partial class VesselListControl : BoxContainer
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
         _gameTicker.LobbyJobsAvailableUpdated += UpdateUi;
-        UpdateUi(_gameTicker.JobsAvailable);
-
         Comparison = DefaultComparison;
+
+        UpdateUi(_gameTicker.JobsAvailable);
 
         FilterLineEdit.OnTextChanged += _ =>
         {
@@ -52,13 +54,42 @@ public sealed partial class VesselListControl : BoxContainer
 
     private int DefaultComparison(NetEntity x, NetEntity y)
     {
-        // Negated to enforce descending order
-        return -(int)(_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) - _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
+        var xContainsHop = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfPersonnel");
+        var yContainsHop = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfPersonnel");
+
+        var xContainsHos = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfSecurity");
+        var yContainsHos = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfSecurity");
+
+        // Prioritize "HeadOfPersonnel"
+        switch (xContainsHop)
+        {
+            case true when !yContainsHop:
+                return -1;
+            case false when yContainsHop:
+                return 1;
+        }
+
+        // If both or neither contain "HeadOfPersonnel", prioritize "HeadOfSecurity"
+        switch (xContainsHos)
+        {
+            case true when !yContainsHos:
+                return -1;
+            case false when yContainsHos:
+                return 1;
+        }
+
+        // If both or neither contain "HeadOfPersonnel" and "HeadOfSecurity", sort by jobCountComparison
+        var jobCountComparison = -(int) (_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) -
+                                         _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
+        var nameComparison = string.Compare(_gameTicker.StationNames[x], _gameTicker.StationNames[y], StringComparison.Ordinal);
+
+        // Combine the comparisons
+        return jobCountComparison != 0 ? jobCountComparison : nameComparison;
     }
 
-    public void Sort()
+    private void Sort()
     {
-        if(Comparison != null)
+        if (Comparison != null)
             VesselItemList.Sort((a, b) => Comparison((NetEntity) a.Metadata!, (NetEntity) b.Metadata!));
     }
 
@@ -68,16 +99,15 @@ public sealed partial class VesselListControl : BoxContainer
 
         foreach (var (key, name) in _gameTicker.StationNames)
         {
-            if (VesselItemList.Any(x => ((NetEntity)x.Metadata!) == key))
+            if (VesselItemList.Any(x => ((NetEntity) x.Metadata!) == key))
                 continue;
 
-            var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0).ToString();
+            var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0);
             var item = new ItemList.Item(VesselItemList)
             {
                 Metadata = key,
                 Text = name + $" ({jobsAvailable})"
             };
-
             if (!string.IsNullOrEmpty(FilterLineEdit.Text) &&
                 !name.ToLowerInvariant().Contains(FilterLineEdit.Text.Trim().ToLowerInvariant()))
             {
@@ -87,8 +117,12 @@ public sealed partial class VesselListControl : BoxContainer
             VesselItemList.Add(item);
         }
 
+        _lastJobState = obj;
         Sort();
 
-        _lastJobState = obj;
+        if (Selected == null && VesselItemList.Count > 0)
+        {
+            VesselItemList.First().Selected = true;
+        }
     }
 }

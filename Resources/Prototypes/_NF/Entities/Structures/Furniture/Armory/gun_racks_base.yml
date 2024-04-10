@@ -23,15 +23,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: AccessReader
   - type: Lock
     locked: false
@@ -52,7 +43,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -170,15 +161,6 @@
       map: [ unlocked ]
   - type: Appearance
   - type: EntityStorageVisuals
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Locked:
-        locked:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        unlocked:
-          True: { visible: false }
-          False: { visible: true, shader: unshaded }
   - type: Construction
     graph: WeaponRackConstructionGraph
     node: GunRackWallmountedNode

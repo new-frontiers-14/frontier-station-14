@@ -8,10 +8,6 @@
   - type: HumanoidAppearance
     species: Reptilian
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.1
-        Bloodloss: 0.1
   - type: Puller
     needsHands: false
   - type: Thirst
@@ -33,6 +29,8 @@
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
+  - type: TypingIndicator
+    proto: lizard
   - type: Vocal
     sounds:
       Male: UnisexReptilian
@@ -48,8 +46,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 4
-        Blunt: 1
+        Slash: 5
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 285
@@ -60,7 +57,8 @@
         Cold : 0.1 #per second, scales with temperature & other constants
     heatDamage:
       types:
-        Heat : 0.1 #per second, scales with temperature & other constants
+        Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Wagging
   - type: SizeAttributeWhitelist # Frontier
     tall: true
     tallscale: 1.2

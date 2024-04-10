@@ -1,0 +1,72 @@
+- type: entity
+  id: AltarFrameNF
+  parent: BaseStructure
+  name: altar frame
+  description: Altar of the Gods. Kinda hollow to be honest.
+  suffix: Unfinished
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: _NF/Structures/Furniture/altar_frame.rsi
+    state: altar_frame
+  - type: Icon
+    sprite: _NF/Structures/Furniture/altar_frame.rsi
+    state: altar_frame
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Climbable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Construction
+    containers:
+      - altar_candle1
+      - altar_candle2
+      - altar_cloth
+      - altar_component
+    graph: AltarsGraph
+    node: AltarFrameNode
+  - type: ContainerContainer
+    containers:
+      altar_candle1: !type:Container
+      altar_candle2: !type:Container
+      altar_cloth: !type:Container
+      altar_component: !type:Container

@@ -2,17 +2,18 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Pointing;
 using Content.Shared.Speech;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Threading.Tasks; // Frontier
 
 namespace Content.Server.Bed.Sleep
 {
     public abstract class SharedSleepingSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly INetManager _net = default!;
         [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
         [Dependency] private readonly BlindableSystem _blindableSystem = default!;
 
@@ -25,14 +26,9 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<SleepingComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<SleepingComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<SleepingComponent, CanSeeAttemptEvent>(OnSeeAttempt);
-            SubscribeLocalEvent<SleepingComponent, EntityUnpausedEvent>(OnSleepUnpaused);
+            SubscribeLocalEvent<SleepingComponent, PointAttemptEvent>(OnPointAttempt);
         }
 
-        private void OnSleepUnpaused(EntityUid uid, SleepingComponent component, ref EntityUnpausedEvent args)
-        {
-            component.CoolDownEnd += args.PausedTime;
-            Dirty(uid, component);
-        }
 
         private void OnMapInit(EntityUid uid, SleepingComponent component, MapInitEvent args)
         {
@@ -42,7 +38,17 @@ namespace Content.Server.Bed.Sleep
             _actionsSystem.AddAction(uid, ref component.WakeAction, WakeActionId, uid);
 
             // TODO remove hardcoded time.
-            _actionsSystem.SetCooldown(component.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(15));
+            _actionsSystem.SetCooldown(component.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(5));
+
+            if (TryComp<AutoWakeUpComponent>(uid, out var autoWakeUp))  // Frontier
+            {
+                Task.Run(async () =>
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(5));
+                    ev = new SleepStateChangedEvent(false);
+                    RaiseLocalEvent(uid, ev);
+                });
+            }  // Frontier
         }
 
         private void OnShutdown(EntityUid uid, SleepingComponent component, ComponentShutdown args)
@@ -69,6 +75,11 @@ namespace Content.Server.Bed.Sleep
         {
             if (component.LifeStage <= ComponentLifeStage.Running)
                 args.Cancel();
+        }
+
+        private void OnPointAttempt(EntityUid uid, SleepingComponent component, PointAttemptEvent args)
+        {
+            args.Cancel();
         }
     }
 }

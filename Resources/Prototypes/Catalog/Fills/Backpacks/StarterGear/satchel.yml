@@ -41,18 +41,19 @@
       - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
+      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSatchelSecurity
-  id: ClothingBackpackSatchelSecurityFilledDetective
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelFilledDetective
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
-      - id: Flash
+      - id: BoxSurvival
       - id: ForensicPad
       - id: ForensicScanner
+      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
@@ -61,7 +62,9 @@
   components:
   - type: StorageFill
     contents:
+      - id: BoxSurvivalBrigmedic
       - id: Flash
+      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
@@ -162,9 +165,11 @@
       - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
-      - id: RubberStampHos  # Frontier
+      - id: RubberStampSheriff # Frontier
       - id: DoorRemoteSecurity  # Frontier
       - id: SecurityTechFabCircuitboard # Frontier
+      - id: BaseSecurityUplinkRadioSheriff # Frontier
+      - id: ClothingNeckNfsdBadgeHoS # Frontier
 
 - type: entity
   noSpawn: true
@@ -276,15 +281,6 @@
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSatchel
-  id: ClothingBackpackSatchelDrone
-  components:
-  - type: Tag
-    tags:
-    - InnateDontDelete
-
-- type: entity
-  noSpawn: true
   parent: ClothingBackpackSatchelMime
   id: ClothingBackpackSatchelMimeFilled
   components:
@@ -292,3 +288,14 @@
     contents:
       - id: BoxSurvival
       - id: RubberStampMime
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelHolding
+  id: ClothingBackpackSatchelHoldingAdmin
+  components:
+  - type: StorageFill
+    contents:
+    - id: GasAnalyzer
+    - id: trayScanner
+  - type: Unremoveable

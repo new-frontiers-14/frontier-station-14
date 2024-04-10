@@ -15,10 +15,24 @@
       - id: ClothingHandsGlovesLatex
 #      - id: ClothingHeadsetMedical  # Frontier
       - id: ClothingMaskSterile
-      - id: ClothingBeltParamedicFilled # Frontier
+      - id: ClothingBeltMedicalEMTFilled # Frontier
       - id: MedkitFilled # Frontier
-      - id: NitrogenTankFilled # Frontier
-      - id: OxygenTankFilled # Frontier
+#      - id: NitrogenTankFilled # Frontier
+#      - id: OxygenTankFilled # Frontier
+      - id: AirTankFilled #Frontier
       - id: ClothingMaskBreathMedical # Frontier
       - id: JetpackMiniFilled # Frontier
       - id: HandheldGPSBasic # Frontier
+
+- type: entity
+  id: LockerPsychologistFilled
+  name: psychologist's locker
+  suffix: Filled
+  parent: LockerMedical
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskSterile
+      - id: BoxFolderWhite
+      - id: PillCanisterTricordrazine
+      - id: RubberStampPsychologist

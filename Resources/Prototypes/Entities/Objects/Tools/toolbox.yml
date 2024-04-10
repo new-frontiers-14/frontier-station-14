@@ -4,6 +4,9 @@
   abstract: true
   components:
   - type: Sprite
+    layers:
+      - map: [ base ]
+        state: icon
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/toolbox_drop.ogg
@@ -21,8 +24,14 @@
       path: "/Audio/Weapons/smash.ogg"
   - type: Tag
     tags:
-    - DroneUsable
     - Toolbox
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: Appearance
 
 - type: entity
   name: emergency toolbox
@@ -90,6 +99,7 @@
                 max: 1
   - type: StaticPrice
     price: 1350
+  - type: Contraband #frontier
 
 - type: entity
   name: artistic toolbox
@@ -122,6 +132,7 @@
     damage:
       types:
         Blunt: 20
+  - type: Contraband #frontier
 
 - type: entity
   name: golden toolbox

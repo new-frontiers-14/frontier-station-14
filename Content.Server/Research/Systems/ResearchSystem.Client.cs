@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
 
@@ -57,11 +58,16 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
-        if (allServers.Length > 0)
+        var maybeGrid = Transform(uid).GridUid;
+        if (maybeGrid is { } grid)
         {
-            RegisterClient(uid, allServers[0].Owner, component, allServers[0]);
-            UnregisterClient(uid, component); // Unrigister a new computer from servers, this is need right after to make sure it didnt register unser someone else server.
+            var servers = new HashSet<Entity<ResearchServerComponent>>();
+            _lookup.GetChildEntities(grid, servers);
+
+            foreach (var server in servers)
+            {
+                RegisterClient(uid, server, component);
+            }
         }
     }
 
@@ -80,12 +86,11 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        if (!TryGetClientServer(uid, out _, out var serverComponent, component))
-            return;
+        TryGetClientServer(uid, out _, out var serverComponent, component);
 
         var names = GetNFServerNames(uid);
         var state = new ResearchClientBoundInterfaceState(names.Length, names,
-            GetNFServerIds(uid), component.ConnectedToServer ? serverComponent.Id : -1);
+            GetNFServerIds(uid), serverComponent?.Id ?? -1);
 
         _uiSystem.TrySetUiState(uid, ResearchClientUiKey.Key, state);
     }

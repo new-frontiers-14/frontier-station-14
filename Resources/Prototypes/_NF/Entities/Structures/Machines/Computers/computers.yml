@@ -9,8 +9,7 @@
   - type: MeleeSound
     soundGroups:
       Brute:
-        path:
-          "/Audio/Effects/glass_hit.ogg"
+        collection: MetalGlassBreak
   - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
@@ -74,21 +73,6 @@
     containers:
       ShipyardConsole-targetId: !type:ContainerSlot {}
 
-# Custom console
-- type: entity
-  id: BaseMothershipComputer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: mothership console
-  description: Used on motherships to purchase and sell ships without returning to a station.
-  components:
-  - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Custom
-  - type: UserInterface
-    interfaces:
-    - key: enum.ShipyardConsoleUiKey.Custom
-      type: ShipyardConsoleBoundUserInterface
-  - type: ShipyardListing
-
 # Hardcoded consoles
 - type: entity
   id: ComputerShipyardSecurity
@@ -105,6 +89,30 @@
       state: generic_keyboard
     - map: ["computerLayerScreen"]
       state: shipyard_security
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Security
+      type: ShipyardConsoleBoundUserInterface
+
+- type: entity
+  id: ComputerShipyardNFSD
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: nfsd shipyard console
+  description: Used to buy nfsd patrol vessels
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_nfsd
     - map: ["computerLayerKeys"]
       state: telesci_key
   - type: ActivatableUI
@@ -198,8 +206,7 @@
   - type: MeleeSound
     soundGroups:
       Brute:
-        path:
-          "/Audio/Effects/glass_hit.ogg"
+        collection: MetalGlassBreak
   - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
@@ -277,3 +284,64 @@
   components:
   - type: MarketModifier
     mod: 0.40
+
+- type: entity
+  name: contraband exchange computer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  id: ComputerContrabandPalletConsole
+  description: Used to exchange contraband
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          collection: MetalGlassBreak
+    - type: Computer
+    - type: ApcPowerReceiver
+      powerLoad: 200
+    - type: ExtensionCableReceiver
+    - type: ActivatableUIRequiresPower
+    - type: Sprite
+      netsync: false
+      noRot: true
+      sprite: _NF/Structures/Machines/computers.rsi
+      layers:
+      - map: ["computerLayerBody"]
+        state: computer
+      - map: ["computerLayerKeyboard"]
+        state: generic_keyboard
+      - map: ["computerLayerScreen"]
+        state: contraband
+      - map: ["computerLayerKeys"]
+        state: telesci_key
+      - type: Appearance
+      - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true, shader: shaded }
+    - type: LitOnPowered
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#b89f25"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      offset: "0, 0.4" # shine from the top, not bottom of the computer
+      castShadows: false
+    - type: EmitSoundOnUIOpen
+      sound:
+        collection: Keyboard
+    - type: ContrabandPalletConsole
+    - type: ActivatableUI
+      key: enum.ContrabandPalletConsoleUiKey.Contraband
+    - type: UserInterface
+      interfaces:
+        - key: enum.ContrabandPalletConsoleUiKey.Contraband
+          type: ContrabandPalletConsoleBoundUserInterface

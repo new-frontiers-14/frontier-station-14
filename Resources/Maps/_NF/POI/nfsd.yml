@@ -2264,7 +2264,7 @@ entities:
       pos: 21.5,-10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11461.89
+      secondsUntilStateChange: -12147.6875
       state: Opening
   - uid: 1449
     components:
@@ -2469,7 +2469,7 @@ entities:
       pos: 14.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10954.695
+      secondsUntilStateChange: -11640.493
       state: Opening
   - uid: 711
     components:
@@ -3573,17 +3573,6 @@ entities:
     - type: Transform
       pos: -7.5,16.5
       parent: 1
-- proto: BaseComputer
-  entities:
-  - uid: 273
-    components:
-    - type: MetaData
-      desc: Used to order supplies and approve requests. This one appears to have run into a green screen of death, better call tech support.
-      name: crashed cargo request computer
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,0.5
-      parent: 1
 - proto: Bed
   entities:
   - uid: 311
@@ -3603,17 +3592,16 @@ entities:
       parent: 1
 - proto: BedsheetMedical
   entities:
-  - uid: 765
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 19.5,9.5
-      parent: 1
   - uid: 877
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 19.5,8.5
+      parent: 1
+  - uid: 2768
+    components:
+    - type: Transform
+      pos: 19.5,7.5
       parent: 1
 - proto: BedsheetOrange
   entities:
@@ -6727,17 +6715,6 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-- proto: ComputerBroken
-  entities:
-  - uid: 1420
-    components:
-    - type: MetaData
-      desc: "It has a note attached to it reading: \"We ordered a replacement, it's just a week away.\""
-      name: broken station administration console
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,4.5
-      parent: 1
 - proto: ComputerComms
   entities:
   - uid: 459
@@ -6745,6 +6722,18 @@ entities:
     - type: Transform
       pos: -2.5,9.5
       parent: 1
+- proto: ComputerContrabandPalletConsole
+  entities:
+  - uid: 765
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,0.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 180
@@ -6861,6 +6850,32 @@ entities:
           ents: []
         bank-ATM-cashSlot: !type:ContainerSlot {}
     - type: ItemSlots
+- proto: ContrabandPallet
+  entities:
+  - uid: 39
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,1.5
+      parent: 1
+  - uid: 2762
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,1.5
+      parent: 1
+  - uid: 2763
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,2.5
+      parent: 1
+  - uid: 2764
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,2.5
+      parent: 1
 - proto: ConveyorBelt
   entities:
   - uid: 355
@@ -6972,6 +6987,18 @@ entities:
     components:
     - type: Transform
       pos: -11.579348,19.529264
+      parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 700
+    components:
+    - type: Transform
+      pos: 19.5,10.5
+      parent: 1
+  - uid: 2766
+    components:
+    - type: Transform
+      pos: 12.5,6.5
       parent: 1
 - proto: DisposalBend
   entities:
@@ -13226,6 +13253,13 @@ entities:
     - type: Transform
       pos: 18.435602,13.615202
       parent: 1
+- proto: LockerBrigmedic
+  entities:
+  - uid: 891
+    components:
+    - type: Transform
+      pos: 18.5,9.5
+      parent: 1
 - proto: LockerDetectiveFilled
   entities:
   - uid: 995
@@ -13277,6 +13311,8 @@ entities:
     - type: Transform
       pos: -3.5,8.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerSecurityFilled
   entities:
   - uid: 327
@@ -13301,6 +13337,8 @@ entities:
     - type: Transform
       pos: 8.5,9.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: MachineCryoSleepPod
   entities:
   - uid: 409
@@ -13403,10 +13441,10 @@ entities:
     - type: Transform
       pos: 19.5,8.5
       parent: 1
-  - uid: 891
+  - uid: 2767
     components:
     - type: Transform
-      pos: 19.5,9.5
+      pos: 19.5,7.5
       parent: 1
 - proto: MedkitAdvancedFilled
   entities:
@@ -14481,6 +14519,14 @@ entities:
     - type: Transform
       pos: -4.5,-9.5
       parent: 1
+- proto: PowerCellRecharger
+  entities:
+  - uid: 2771
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,6.5
+      parent: 1
 - proto: Poweredlight
   entities:
   - uid: 64
@@ -15120,11 +15166,6 @@ entities:
     - type: Transform
       pos: 9.5,1.5
       parent: 1
-  - uid: 2269
-    components:
-    - type: Transform
-      pos: 19.5,10.5
-      parent: 1
   - uid: 2270
     components:
     - type: Transform
@@ -15139,6 +15180,11 @@ entities:
     components:
     - type: Transform
       pos: -2.5,20.5
+      parent: 1
+  - uid: 2765
+    components:
+    - type: Transform
+      pos: 17.5,10.5
       parent: 1
 - proto: RandomSpawner100
   entities:
@@ -15191,11 +15237,6 @@ entities:
     components:
     - type: Transform
       pos: -14.5,4.5
-      parent: 1
-  - uid: 2691
-    components:
-    - type: Transform
-      pos: -9.5,1.5
       parent: 1
   - uid: 2692
     components:
@@ -15703,10 +15744,10 @@ entities:
       parent: 1
 - proto: SpawnPointHeadOfSecurity
   entities:
-  - uid: 169
+  - uid: 170
     components:
     - type: Transform
-      pos: 0.5,8.5
+      pos: 0.5,-3.5
       parent: 1
 - proto: SpawnPointLatejoin
   entities:
@@ -15725,10 +15766,10 @@ entities:
       parent: 1
 - proto: SpawnPointWarden
   entities:
-  - uid: 170
+  - uid: 169
     components:
     - type: Transform
-      pos: 8.5,8.5
+      pos: 1.5,-3.5
       parent: 1
 - proto: Stairs
   entities:
@@ -15756,6 +15797,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 16.5,15.5
       parent: 1
+- proto: StationAdminBankATM
+  entities:
+  - uid: 273
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,4.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        station-bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: StoolBar
   entities:
   - uid: 211
@@ -15907,11 +15966,6 @@ entities:
     - type: Transform
       pos: 4.5,13.5
       parent: 1
-  - uid: 700
-    components:
-    - type: Transform
-      pos: 19.5,6.5
-      parent: 1
   - uid: 750
     components:
     - type: Transform
@@ -15981,6 +16035,11 @@ entities:
       parent: 1
 - proto: TableReinforcedGlass
   entities:
+  - uid: 41
+    components:
+    - type: Transform
+      pos: 19.5,6.5
+      parent: 1
   - uid: 306
     components:
     - type: Transform
@@ -16000,6 +16059,11 @@ entities:
     components:
     - type: Transform
       pos: -14.5,6.5
+      parent: 1
+  - uid: 2769
+    components:
+    - type: Transform
+      pos: 18.5,6.5
       parent: 1
 - proto: TableWood
   entities:
@@ -16301,6 +16365,13 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-8.5
+      parent: 1
+- proto: VendingMachineMedical
+  entities:
+  - uid: 2269
+    components:
+    - type: Transform
+      pos: 16.5,9.5
       parent: 1
 - proto: VendingMachineSec
   entities:
@@ -19898,18 +19969,6 @@ entities:
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
-  - uid: 39
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 16.5,9.5
-      parent: 1
-  - uid: 41
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 16.5,8.5
-      parent: 1
   - uid: 82
     components:
     - type: Transform
@@ -20016,5 +20075,17 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 17.5,4.5
+      parent: 1
+  - uid: 2691
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,9.5
+      parent: 1
+  - uid: 2770
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,8.5
       parent: 1
 ...

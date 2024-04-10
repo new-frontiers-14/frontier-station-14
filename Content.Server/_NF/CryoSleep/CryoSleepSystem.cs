@@ -132,7 +132,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         // Self-insert verb
         if (!IsOccupied(component) &&
-            (_actionBlocker.CanMove(args.User) || HasComp<WheelchairBoundComponent>(args.User))) // just get working legs
+            (_actionBlocker.CanMove(args.User))) // || HasComp<WheelchairBoundComponent>(args.User))) // just get working legs
         {
             AlternativeVerb verb = new()
             {

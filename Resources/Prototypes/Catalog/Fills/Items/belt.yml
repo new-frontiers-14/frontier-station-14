@@ -88,9 +88,8 @@
       - id: EmergencyMedipen #You never know what people are going to latejoin into
 
 - type: entity
-  id: ClothingBeltParamedicFilled
-  parent: ClothingBeltMedical #in the future, make this a seperate prototype so it can have a unique, darker sprite
-  name: EMT belt
+  id: ClothingBeltMedicalEMTFilled
+  parent: ClothingBeltMedicalEMT
   suffix: Paramedic,Filled
   components:
   - type: StorageFill
@@ -192,3 +191,15 @@
     contents:
     - id: FoodShakerSalt
     - id: FoodShakerPepper
+
+- type: entity
+  id: ClothingNeckMantleSheriffFilled
+  parent: ClothingNeckMantleSheriff
+  suffix: Filled
+  components:
+   - type: StorageFill
+     contents:
+     - id: CigarGold
+       amount: 4
+     - id: FlippoEngravedLighter
+       amount: 1

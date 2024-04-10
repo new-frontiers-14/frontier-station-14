@@ -1,0 +1,184 @@
+- type: entity
+  name: frontier uplink coin
+  parent: BaseItem
+  id: FrontierUplinkCoin
+  suffix: 20 TC
+  description: A token awarded to the NFSD for turning in contraband. It can be exchanged in an NFSD uplink device for a variety of law enforcement tools.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Security/frontieruplinkcoin.rsi
+    state: frontieruplinkcoin
+  - type: Item
+    sprite: _NF/Objects/Specific/Security/frontieruplinkcoin.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: FrontierUplinkCoin
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      FrontierUplinkCoin: 1
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin1
+  suffix: 1 TC
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin5
+  suffix: 5 TC
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: FrontierUplinkCoin
+  id: FrontierUplinkCoin10
+  suffix: 10 TC
+  components:
+  - type: Stack
+    count: 10
+
+# Uplinks
+- type: entity
+  parent: BaseItem
+  id: BaseSecurityUplinkRadio
+  name: nfsd uplink
+  description: Retro looking old radio...
+  suffix: Empty
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 0
+  - type: Tag
+    tags:
+    - SecurityUplink
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioDebug
+  suffix: Security, DEBUG
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 99999
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioSheriff
+  suffix: Sheriff 15
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 15
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioOfficer
+  suffix: Officer 10
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 10
+
+- type: entity
+  name: nfsd deployable barrier
+  id: NFSDDeployableBarrier
+  description: A deployable barrier. Swipe your ID card to lock/unlock it.
+  parent: BaseStructure
+  components:
+  - type: Transform
+    anchored: false
+    noRot: true
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Security/nfsdbarrier.rsi
+    layers:
+    - state: idle
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Appearance
+  - type: LockVisuals
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      base:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 75
+        mask:
+        - MachineMask
+      barrier:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        layer:
+        - WallLayer
+  - type: DeployableBarrier
+    fixture: barrier
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Lock
+    locked: false
+    lockOnClick: true # toggle lock just by clicking on barrier
+    lockTime: 5
+    unlockTime: 5
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel:
+            min: 5
+            max: 5
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    enabled: false
+    radius: 3
+    color: red
+  - type: StaticPrice
+    price: 200

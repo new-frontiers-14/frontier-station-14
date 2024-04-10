@@ -60,3 +60,29 @@
       - id: BoxSurvival
       - id: Lighter
       - id: CigPackGreen
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpacknfsd
+  id: ClothingBackpackOfficerFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalSecurity
+      - id: Flash
+      - id: MagazinePistol
+      - id: BaseSecurityUplinkRadioOfficer # Frontier
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTMailCarrier
+  id: ClothingBackpackERTMailCarrierFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvivalEngineering
+        - id: WeaponMailLake
+        - id: BoxMailCapsulePrimed
+        - id: RubberStampCentcom
+        - id: PenCentcom
+        - id: BoxFolderCentCom
