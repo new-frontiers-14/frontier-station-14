@@ -12,3 +12,49 @@
     sprite: _NF/Clothing/Head/Helmets/ert_mailcarrier.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/ert_mailcarrier.rsi
+
+# Syndicate Bomb Suit Helmet
+- type: entity
+  parent: ClothingHeadHelmetBombSuit
+  id: ClothingHeadHelmetBombSuitSyndie
+  name: syndicate bombsuit helmet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: Contraband
+
+# Syndicate NPC helmets, unremoveable
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSyndieUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetNFSD
+  name: nfsd helmet
+  description: an nfsd issued helmet to protect your head
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/nfsd.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/nfsd.rsi
