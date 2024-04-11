@@ -224,17 +224,64 @@
   name: ATV
   description: All-Tile Vehicle.
   components:
+  # Frontier start
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    layers:
+    - state: hull
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    noRot: true
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          hull: Rainbow
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+      bag:
+        name: stored bag
+        whitelist:
+          components:
+            - Storage
+        priority: 2
+        insertSound:
+          path: /Audio/Items/belt_equip.ogg
+          params:
+            volume: -3
+  - type: ItemMapper
+    mapLayers:
+      bag:
+        whitelist:
+          components:
+            - Storage
+    sprite: Objects/Vehicles/atv.rsi
+  - type: Appearance
   - type: Vehicle
     southOver: true
     northOver: true
     northOverride: -0.1
     southOverride: 0.1
-  - type: Sprite
-    sprite: Objects/Vehicles/atv.rsi
-    layers:
-    - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-    noRot: true
+#  - type: Sprite
+#    sprite: Objects/Vehicles/atv.rsi
+#    layers:
+#    - state: vehicle
+#      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+#    noRot: true
+  # Frontier end
   - type: RandomMetadata
     descriptionSegments: [ATVDescriptions]
   - type: MovementSpeedModifier
@@ -252,32 +299,6 @@
     softness: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: vehicle-slot-component-slot-name-keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - ATVKeys
-        insertSound:
-          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
-          params:
-            volume: -3
-  # Frontier start
-  - type: Storage
-    grid: # duffel bag
-    - 0,0,7,4
-    maxItemSize: Large
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-  - type: UserInterface
-    interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
-  # Frontier end
 
 - type: entity
   id: VehicleSyndicateSegway
