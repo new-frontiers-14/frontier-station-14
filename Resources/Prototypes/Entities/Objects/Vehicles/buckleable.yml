@@ -265,6 +265,19 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
+  # Frontier start
+  - type: Storage
+    grid: # duffel bag
+    - 0,0,7,4
+    maxItemSize: Large
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  # Frontier end
 
 - type: entity
   id: VehicleSyndicateSegway
@@ -354,6 +367,21 @@
             path: /Audio/Effects/Vehicle/vehiclestartup.ogg
             params:
               volume: -3
+    # Frontier start
+    - type: Storage
+      grid: # satchel
+      - 0,0,1,3
+      - 3,0,6,3
+      - 8,0,9,3
+      maxItemSize: Large
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+    - type: UserInterface
+      interfaces:
+      - key: enum.StorageUiKey.Key
+        type: StorageBoundUserInterface
+    # Frontier end
 
 - type: entity
   id: VehicleUnicycle
