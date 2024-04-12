@@ -83,7 +83,7 @@
         mask:
         - ItemMask
         restitution: 0.3
-        friction: 0.2
+        friction: 0.1
       projectile:
         shape:
           !type:PhysShapeAabb
@@ -94,10 +94,12 @@
         - BulletImpassable
   - type: Projectile
     deleteOnCollide: false
-    onlyCollideWhenShot: true
+    onlyCollideWhenShot: false
     damage:
       types:
-        Slash: 5
+        Slash: 1
+  - type: StaminaDamageOnCollide
+    damage: 1
   - type: PointLight
     color: red
     radius: 1.2
@@ -105,10 +107,13 @@
 
 - type: entity
   name: soap
-  id: SoapConjuredBloodCultCluster
-  parent: SoapConjured
+  id: SoapConjuredBloodCultCluster # I swear, I'll use it some how
+  parent:
+  - Soap
+  - ConjuredObject10
   components:
   - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
     layers:
     - state: soap-4
       shader: unshaded
@@ -116,20 +121,20 @@
   - type: Appearance
   - type: ClusterGrenade
     fillPrototype: SoapletBloodCult
-    maxGrenadesCount: 30
+    maxGrenadesCount: 20
     grenadeTriggerIntervalMax: 0
     grenadeTriggerIntervalMin: 0
     baseTriggerDelay: 60
     randomSpread: true
-    velocity: 3
+    velocity: 25
   - type: DamageOnLand
     damage:
       types:
-        Blunt: 10
-  - type: PassiveDamage # Slight passive regen.
+        Blunt: 9
+  - type: PassiveDamage
     damage:
       groups:
-        Brute: 4
+        Brute: 10
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -148,7 +153,7 @@
     muzzleFlash: null
   - type: Projectile
     deleteOnCollide: false
-    onlyCollideWhenShot: false
+    onlyCollideWhenShot: true
     damage:
       types:
         Slash: 5
@@ -156,3 +161,22 @@
     color: red
     radius: 1.2
     softness: 1
+
+- type: entity
+  id: ShellSoapConjuredBloodCultCluster
+  parent:
+  - BaseCartridge
+  - ConjuredObject10
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Wizard/conjuredsoap.rsi
+    layers:
+    - state: soap-4
+      shader: unshaded
+      color: red
+  - type: CartridgeAmmo
+    proto: SoapletBloodCult # SoapConjuredBloodCultCluster
+    count: 35
+    spread: 35
+  - type: Ammo
+    muzzleFlash: null

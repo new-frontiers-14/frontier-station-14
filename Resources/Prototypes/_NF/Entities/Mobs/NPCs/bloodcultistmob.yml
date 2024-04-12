@@ -65,16 +65,22 @@
     enabled: true
     reflectProb: .3
     spread: 90
+  - type: Stamina
+    critThreshold: 500
   - type: BasicEntityAmmoProvider
-    proto: SoapConjuredBloodCultCluster
-    capacity: 3
-    count: 3
+    proto: ShellSoapConjuredBloodCultCluster # SoapConjuredBloodCultCluster
+    capacity: 1
+    count: 1
   - type: Gun
     showExamineText: false
     fireRate: 4
     selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 10
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
 
 # Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
