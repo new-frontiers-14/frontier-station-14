@@ -115,7 +115,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString((EntityUid) stationUid)} for {price:f2}");
         //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.FTLToCoordinates(shuttleGrid.Value, shuttle, targetGrid.Value.ToCoordinates(), 0f, 15f);
+        _shuttle.TryFTLDock(shuttleGrid.Value, shuttle, targetGrid.Value);
 
         return true;
     }
