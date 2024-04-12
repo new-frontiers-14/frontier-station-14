@@ -10,6 +10,7 @@ namespace Content.Packaging;
 
 public static class ClientPackaging
 {
+    private static readonly bool UseSecrets = File.Exists(Path.Combine("Secrets", "CorvaxSecrets.sln")); // Corvax-Secrets
     /// <summary>
     /// Be advised this can be called from server packaging during a HybridACZ build.
     /// </summary>
@@ -34,6 +35,24 @@ public static class ClientPackaging
                     "/m"
                 }
             });
+            if (UseSecrets)
+            {
+                await ProcessHelpers.RunCheck(new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    ArgumentList =
+                    {
+                        "build",
+                        Path.Combine("Secrets","Content.Corvax.Client", "Content.Corvax.Client.csproj"),
+                        "-c", "Release",
+                        "--nologo",
+                        "/v:m",
+                        "/t:Rebuild",
+                        "/p:FullRelease=true",
+                        "/m"
+                    }
+                });
+            }
         }
 
         logger.Info("Packaging client...");
@@ -64,12 +83,16 @@ public static class ClientPackaging
         AssetGraph.CalculateGraph(graph.AllPasses.Append(pass).ToArray(), logger);
 
         var inputPass = graph.Input;
-
+        // Corvax-Secrets-Start: Add Corvax interfaces to Magic ACZ
+        var assemblies = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.Corvax.Interfaces.Client", "Content.Corvax.Interfaces.Shared" };
+        if (UseSecrets)
+            assemblies.AddRange(new[] { "Content.Corvax.Shared", "Content.Corvax.Client" });
+        // Corvax-Secrets-End
         await RobustSharedPackaging.WriteContentAssemblies(
             inputPass,
             contentDir,
             "Content.Client",
-            new[] { "Content.Client", "Content.Shared", "Content.Shared.Database" },
+            assemblies,
             cancel: cancel);
 
         await RobustClientPackaging.WriteClientResources(contentDir, pass, cancel);
