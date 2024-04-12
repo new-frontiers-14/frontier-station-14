@@ -34,6 +34,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: MaleHumanGaspSound
 
 - type: emoteSounds
   id: FemaleHuman
@@ -70,6 +72,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: FemaleHumanGaspSound
 
 - type: emoteSounds
   id: UnisexReptilian
@@ -88,6 +92,8 @@
       collection: MaleCry
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: MaleHumanGaspSound
 
 - type: emoteSounds
   id: MaleSlime
@@ -124,6 +130,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: MaleHumanGaspSound
   params:
     variation: 0.125
 
@@ -162,19 +170,10 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: FemaleHumanGaspSound
   params:
     variation: 0.125
-
-- type: emoteSounds
-  id: UnisexVox
-  sounds:
-    Scream:
-      path: /Audio/Voice/Vox/shriek1.ogg
-    Laugh:
-      path: /Audio/Voice/Vox/vox_laugh.ogg
-  params:
-    variation: 0.125
-    # We need vox sounds for the other emotes
 
 - type: emoteSounds
   id: UnisexDiona
@@ -187,6 +186,8 @@
       collection: BikeHorn
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: /Audio/Voice/Diona/diona_scream.ogg
   params:
     variation: 0.125
 
@@ -205,6 +206,8 @@
       path: /Audio/Voice/Arachnid/arachnid_click.ogg
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: FemaleHumanGaspSound
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -239,6 +242,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: FemaleHumanGaspSound
   params:
     variation: 0.125
     pitch: 0.75
@@ -276,6 +281,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: FemaleHumanGaspSound
   params:
     variation: 0.125
     pitch: 0.75
@@ -297,6 +304,24 @@
       path: /Audio/Voice/Moth/moth_squeak.ogg
     Weh:
       collection: Weh
+    DefaultDeathgasp: # Corvax-Frontier
+      collection: MaleHumanGaspSound
+
+- type: emoteSounds # Corvax-Frontier change
+  id: UnisexMothroach
+  params:
+    variation: 0.125
+  sounds:
+    Buzz:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+    Scream:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+    Laugh:
+      path: /Audio/Voice/Moth/moth_laugh.ogg
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+    Squeak:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
 
 # body emotes
 - type: emoteSounds
