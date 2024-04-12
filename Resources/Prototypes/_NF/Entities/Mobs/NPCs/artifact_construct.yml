@@ -1,10 +1,11 @@
 ﻿- type: entity
   abstract: true
   parent:
-    - BaseMob
-    - MobDamageable
+    - MobAtmosNF
+    - BaseSimpleMob
     - MobCombat
-  id: SimpleArtifactMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
+    - FlyingMobBase
+  id: SimpleArtifactMobBase
   suffix: AI
   components:
     - type: NpcFactionMember
@@ -18,6 +19,10 @@
           true
         NavSmash: !type:Bool
           true
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
     - type: MobThresholds
       thresholds:
         0: Alive
@@ -31,47 +36,52 @@
         60: 0.7
         80: 0.5
     - type: ZombieImmune # Artifact constructs should not be able to become zombie
-    - type: MobPrice
-      price: 1000 # Living critters are valuable in space.
 
 - type: entity
-  parent: [ SimpleArtifactMobBase, FlyingMobBase ]
+  parent: SimpleArtifactMobBase
   id: BaseMobArtifactConstruct
   name: artifact construct
-  description: A towering golem crafted from twisted metal and ancient stones.
   abstract: true
   components:
-    - type: Tag
-      tags:
-        - DoorBumpOpener
     - type: Sprite
       drawdepth: Mobs
       sprite: _NF/Mobs/Aliens/grim_forged.rsi
-    - type: MovementAlwaysTouching
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 1
-      baseSprintSpeed: 1.5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 100
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
     - type: StatusEffects
       allowed:
         - SlowedDown
         - Electrocution
-    - type: MobState
-      allowedStates:
-        - Alive
-        - Dead
+    - type: Tag
+      tags:
+        - DoorBumpOpener # Allow opening doors by bumping into them
     - type: CombatMode
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 20
-      animation: WeaponArcFist
+          Blunt: 10
+      animation: WeaponArcPunch
     - type: ReplacementAccent
       accent: genericAggressive
+    - type: MobPrice
+      price: 1000
+      deathPenalty: 0.5
 
 - type: entity
   parent: BaseMobArtifactConstruct
   id: MobGrimForged
-  name: artifact construct 1
+  name: Grimforged Construct
+  description: A towering golem crafted from twisted metal and ancient stones.
+  suffix: AI
   components:
     - type: Sprite
       layers:
@@ -84,6 +94,12 @@
           sprite: "_NF/Effects/creampie_64.rsi"
           state: "creampie_grimforged"
           visible: false
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: move
+        Dead:
+          Base: dead
     - type: GenericVisualizer
       visuals:
         enum.CreamPiedVisuals.Creamed:
@@ -96,18 +112,6 @@
       sound:
         path: /Audio/_NF/Ambience/force-field.ogg
     - type: CreamPied
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: move
-        Critical:
-          Base: dead
-        Dead:
-          Base: dead
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        50: Dead
     - type: HTN
       rootTask:
         task: SimpleRangedHostileCompound
@@ -118,13 +122,13 @@
       fireCost: 50
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 50
+      autoRechargeRate: 40
     - type: Battery
-      maxCharge: 1000
-      startingCharge: 1000
+      maxCharge: 55
+      startingCharge: 0
     - type: Gun
+      showExamineText: false
       fireRate: 1
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
