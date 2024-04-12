@@ -67,17 +67,20 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 10
+          Blunt: 3
       animation: WeaponArcPunch
     - type: ReplacementAccent
       accent: genericAggressive
-    - type: MobPrice
-      price: 1000
+    - type: StaticPrice
+      price: 100
       deathPenalty: 0.5
     - type: Butcherable
       spawned:
         - id: ArtifactFragment
           amount: 2
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2
 
 - type: entity
   parent: BaseMobArtifactConstruct
@@ -109,11 +112,17 @@
           clownedon:
             True: { visible: true }
             False: { visible: false }
+    - type: SpamEmitSound
+      rollInterval: 10
+      sound:
+        path: /Audio/_NF/Ambience/monster-flange.ogg
+    - type: AmbientWhenAlive
     - type: AmbientSound
       volume: -6
       range: 8
       sound:
         path: /Audio/_NF/Ambience/force-field.ogg
+      StopsWhenEntityDead: true
     - type: CreamPied
     - type: HTN
       rootTask:
@@ -127,6 +136,7 @@
       autoRecharge: true
       autoRechargeRate: 40
     - type: Battery
+      showExamineText: false
       maxCharge: 55
       startingCharge: 0
     - type: Gun
