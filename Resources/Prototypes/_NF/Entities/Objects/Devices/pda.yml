@@ -72,12 +72,25 @@
   components:
   - type: Pda
     id: StcIDCard
-    state: pda
+    state: pda-stc
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#A32D26"
+    borderColor: "#F2F2F2"
+    accentVColor: "#FE4900"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-stc
 
 - type: entity
   parent: SecurityPDA
