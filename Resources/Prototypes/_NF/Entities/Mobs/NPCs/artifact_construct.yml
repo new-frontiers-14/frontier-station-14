@@ -27,7 +27,6 @@
       thresholds:
         0: Alive
         120: Dead
-    - type: Body
     - type: Climbing
     - type: NameIdentifier
       group: GenericNumber
@@ -75,6 +74,10 @@
     - type: MobPrice
       price: 1000
       deathPenalty: 0.5
+    - type: Butcherable
+      spawned:
+        - id: ArtifactFragment
+          amount: 2
 
 - type: entity
   parent: BaseMobArtifactConstruct
