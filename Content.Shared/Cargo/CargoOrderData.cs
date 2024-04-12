@@ -39,7 +39,9 @@ namespace Content.Shared.Cargo
         public  bool Approved => Approver is not null;
         public string? Approver;
 
-        public CargoOrderData(int orderId, string productId, int price, int amount, string requester, string reason)
+        public NetEntity? Computer = null;
+
+        public CargoOrderData(int orderId, string productId, int price, int amount, string requester, string reason, NetEntity? computer)
         {
             OrderId = orderId;
             ProductId = productId;
@@ -47,6 +49,7 @@ namespace Content.Shared.Cargo
             OrderQuantity = amount;
             Requester = requester;
             Reason = reason;
+            Computer = computer;
         }
 
         public void SetApproverData(string? fullName, string? jobTitle)
