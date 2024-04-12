@@ -29,19 +29,18 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockClothes
-        amount: 7 # Frontier
-      - id: VendingMachineRestockCostumes
-        amount: 1 # Frontier
+        amount: 2 # Frontier
 
 - type: entity
   id: CrateVendingMachineRestockAutoDrobeFilled
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier
   name: AutoDrobe restock crate
   description: Contains a restock box for the AutoDrobe.
   components:
-    - type: StorageFill
-  contents:
-    - id: VendingMachineRestockCostumes
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCostumes
+        amount: 2 # Frontier
 
 - type: entity
   id: CrateVendingMachineRestockCondimentStationFilled
