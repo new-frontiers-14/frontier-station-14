@@ -1,5 +1,7 @@
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Sound.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Sound;
 using Robust.Shared.Random;
@@ -15,6 +17,13 @@ public sealed class EmitSoundSystem : SharedEmitSoundSystem
 
         while (query.MoveNext(out var uid, out var soundSpammer))
         {
+            // Stops spamming when entity is dead based on mobstate
+            if (soundSpammer.StopsWhenEntityDead && TryComp<MobStateComponent>(uid, out var state))
+            {
+                soundSpammer.Enabled = state.CurrentState == MobState.Alive;
+                continue;
+            }
+
             if (!soundSpammer.Enabled)
                 continue;
 
