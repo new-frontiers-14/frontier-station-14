@@ -42,7 +42,7 @@ public sealed class EmitSoundSystem : SharedEmitSoundSystem
 
         SubscribeLocalEvent<EmitSoundOnTriggerComponent, TriggerEvent>(HandleEmitSoundOnTrigger);
         SubscribeLocalEvent<EmitSoundOnUIOpenComponent, AfterActivatableUIOpenEvent>(HandleEmitSoundOnUIOpen);
-            SubscribeLocalEvent<SpamEmitSoundComponent, MobStateChangedEvent>(HandleMobDeath);
+        SubscribeLocalEvent<SpamEmitSoundComponent, MobStateChangedEvent>(HandleMobDeath);
     }
 
     private void HandleMobDeath(EntityUid uid, SpamEmitSoundComponent component, MobStateChangedEvent args)
