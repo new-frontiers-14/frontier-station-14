@@ -199,6 +199,9 @@ public class RCDSystem : EntitySystem
         if (!IsRCDOperationStillValid(uid, component, mapGridData.Value, args.Target, args.User))
             return;
 
+        if (!IsAuthorized(mapGridData.Value.GridUid, uid, component, args))
+            return;
+
         if (!_net.IsServer)
             return;
 
