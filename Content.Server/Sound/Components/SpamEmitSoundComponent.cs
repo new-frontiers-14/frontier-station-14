@@ -23,10 +23,5 @@ namespace Content.Server.Sound.Components
 
         [DataField("enabled")]
         public bool Enabled = true;
-
-        // Stops spamming when this is a entity and it's died.
-        // Allows entities to have chatter while they're alive.
-        [DataField]
-        public bool StopsWhenEntityDead = false;
     }
 }
