@@ -11,12 +11,11 @@
     rechargeCooldown: 1.5
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-#  - type: ArchaicAccent
   - type: Advertise
     pack: bloodcultisthumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 0
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
   - type: AutoWakeUp
   - type: MovementAlwaysTouching
 
@@ -27,7 +26,7 @@
   name: Blood Cult Priest
   parent: MobBloodCultistBase
   id: MobBloodCultistPriest
-  suffix: AI, Ranged
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -46,7 +45,34 @@
     maxCharge: 300
     startingCharge: 300
   - type: Gun
+    showExamineText: false
     fireRate: 4
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+
+# Blood Cult Janitor, ranged mab, bolts deal 10 slash damage
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
+- type: entity
+  name: Blood Cult Janitor
+  parent: MobBloodCultistBase
+  id: MobBloodCultistJanitor
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+      - BloodCultistJanitorGear
+  - type: Reflect
+    enabled: true
+    reflectProb: .3
+    spread: 90
+  - type: BasicEntityAmmoProvider
+    proto: SoapConjuredBloodCultCluster
+    capacity: 3
+    count: 3
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
 
@@ -55,7 +81,7 @@
   name: Blood Cult Acolyte
   parent: MobBloodCultistBase
   id: MobBloodCultistAcolyte
-  suffix: AI, Melee
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -70,7 +96,7 @@
   name: Blood Cult Zealot
   parent: MobBloodCultistBase
   id: MobBloodCultistZealotMelee
-  suffix: AI, Melee
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -84,9 +110,9 @@
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
   name: Blood Cult Zealot
-  suffix: AI, Crossbow
   parent: MobBloodCultistBase
   id: MobBloodCultistZealotRanged
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -99,7 +125,7 @@
     capacity: 1
     count: 1
   - type: Gun
-    useKey: false
+    showExamineText: false
     fireRate: 0.5
     selectedMode: SemiAuto
     availableModes:
@@ -111,9 +137,9 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Zealot
-  suffix: AI, Ranged
   parent: MobBloodCultistBase
   id: MobBloodCultistCaster
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -135,7 +161,7 @@
 # Ascended Cultist, spawns 2 Drained Ones
 - type: entity
   name: Ascended Cultist # Megafauna
-  suffix: AI, Ranged
+  noSpawn: true
   parent:
   - MobNonHumanHostileBase
   - FlyingMobBase
@@ -178,6 +204,7 @@
     capacity: 2
     count: 2
   - type: Gun
+    showExamineText: false
     fireRate: 1
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -210,7 +237,7 @@
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: Blood Leech
-  suffix: AI, Melee
+  noSpawn: true
   parent:
   - MobNonHumanHostileBase
   - MobPassiveRegen
@@ -256,7 +283,7 @@
 # Drained One, melee
 - type: entity
   name: Drained One
-  suffix: AI, Melee
+  noSpawn: true
   parent: 
   - MobNonHumanHostileBase
   - FlyingMobBase
@@ -313,7 +340,7 @@
 # Drained One (summonable by players), melee
 - type: entity
   name: Drained One
-  suffix: AI, Melee
+  noSpawn: true
   parent: MobBloodCultDrainedOne
   id: MobBloodCultDrainedOneNanoTrasen
   components:
@@ -347,6 +374,7 @@
       interactSuccessSound:
         path: /Audio/_NF/Effects/bloodcult/ghost-scream.ogg
     - type: Gun
+      showExamineText: false
       fireRate: 2
       selectedMode: FullAuto
       availableModes:
@@ -359,8 +387,6 @@
         path: /Audio/_NF/Effects/silence.ogg
     - type: BallisticAmmoProvider
       proto: BulletBloodCultDarkBolt
-#      capacity: 1000
-#      count: 1000
     - type: HTN
       rootTask:
         task: TurretCompound

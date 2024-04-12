@@ -105,3 +105,25 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
+
+# Bloodcult Janitor Robes
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatCultJanitor
+  name: cult leader armored robes
+  description: Regal robes fitting for a cult leader.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
+  - type: Armor # ClothingOuterArmorBulletproof stats
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Contraband
