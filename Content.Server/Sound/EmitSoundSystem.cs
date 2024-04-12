@@ -17,13 +17,6 @@ public sealed class EmitSoundSystem : SharedEmitSoundSystem
 
         while (query.MoveNext(out var uid, out var soundSpammer))
         {
-            // Stops spamming when entity is dead based on mobstate
-            if (soundSpammer.StopsWhenEntityDead && TryComp<MobStateComponent>(uid, out var state))
-            {
-                soundSpammer.Enabled = state.CurrentState == MobState.Alive;
-                continue;
-            }
-
             if (!soundSpammer.Enabled)
                 continue;
 
@@ -49,6 +42,15 @@ public sealed class EmitSoundSystem : SharedEmitSoundSystem
 
         SubscribeLocalEvent<EmitSoundOnTriggerComponent, TriggerEvent>(HandleEmitSoundOnTrigger);
         SubscribeLocalEvent<EmitSoundOnUIOpenComponent, AfterActivatableUIOpenEvent>(HandleEmitSoundOnUIOpen);
+            SubscribeLocalEvent<SpamEmitSoundComponent, MobStateChangedEvent>(HandleMobDeath);
+    }
+
+    private void HandleMobDeath(EntityUid uid, SpamEmitSoundComponent component, MobStateChangedEvent args)
+    {
+        if (component.StopsWhenEntityDead)
+        {
+            component.Enabled = args.NewMobState == MobState.Alive;
+        }
     }
 
     private void HandleEmitSoundOnUIOpen(EntityUid uid, EmitSoundOnUIOpenComponent component, AfterActivatableUIOpenEvent args)
