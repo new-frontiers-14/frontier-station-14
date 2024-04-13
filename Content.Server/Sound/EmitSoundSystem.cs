@@ -1,8 +1,5 @@
-using Content.Server._NF.Audio;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Sound.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Sound;
 using Robust.Shared.Random;
@@ -43,14 +40,6 @@ public sealed class EmitSoundSystem : SharedEmitSoundSystem
 
         SubscribeLocalEvent<EmitSoundOnTriggerComponent, TriggerEvent>(HandleEmitSoundOnTrigger);
         SubscribeLocalEvent<EmitSoundOnUIOpenComponent, AfterActivatableUIOpenEvent>(HandleEmitSoundOnUIOpen);
-        SubscribeLocalEvent<SoundWhileAliveComponent, MobStateChangedEvent>(HandleMobDeath);
-    }
-
-    private void HandleMobDeath(EntityUid uid, SoundWhileAliveComponent component, MobStateChangedEvent args)
-    {
-        // Disable this component rather than removing it because it can be brought back to life.
-        if(TryComp<SpamEmitSoundComponent>(uid, out var comp))
-            comp.Enabled = args.NewMobState == MobState.Alive;
     }
 
     private void HandleEmitSoundOnUIOpen(EntityUid uid, EmitSoundOnUIOpenComponent component, AfterActivatableUIOpenEvent args)

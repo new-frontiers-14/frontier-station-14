@@ -1,6 +1,7 @@
 using Content.Server._NF.Audio;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Sound.Components; // Frontier
 using Content.Shared.Audio;
 using Content.Shared.Mobs;
 
@@ -16,9 +17,12 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
         SubscribeLocalEvent<SoundWhileAliveComponent, MobStateChangedEvent>(HandleMobDeath);
     }
 
-    private void HandleMobDeath(EntityUid uid, SoundWhileAliveComponent component, MobStateChangedEvent args)
+    private void HandleMobDeath(EntityUid uid, SoundWhileAliveComponent component, MobStateChangedEvent args) // Frontier
     {
         SetAmbience(uid, args.NewMobState != MobState.Dead);
+
+        if (TryComp<SpamEmitSoundComponent>(uid, out var comp))
+            comp.Enabled = args.NewMobState == MobState.Alive;
     }
 
     private void HandlePowerSupply(EntityUid uid, AmbientOnPoweredComponent component, ref PowerNetBatterySupplyEvent args)
