@@ -21,6 +21,7 @@ public sealed class AmbientSoundSystem : SharedAmbientSoundSystem
     {
         SetAmbience(uid, args.NewMobState != MobState.Dead);
 
+        // In the case the mob also have a SpamEmitSoundComponent, disable this component rather than removing it because it can be brought back to life.
         if (TryComp<SpamEmitSoundComponent>(uid, out var comp))
             comp.Enabled = args.NewMobState == MobState.Alive;
     }
