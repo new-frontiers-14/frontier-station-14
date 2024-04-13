@@ -256,7 +256,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
-            _meta.SetEntityName(caseyUids[0], "Казино Чокнутой Кейси", meta); // Corvax RU
+            _meta.SetEntityName(caseyUids[0], "Казино Чокнутого Джерри", meta); // Corvax RU
             _shuttle.SetIFFColor(caseyUids[0], factionColor);
         }
 
