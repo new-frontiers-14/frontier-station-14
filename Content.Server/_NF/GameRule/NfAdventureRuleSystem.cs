@@ -266,7 +266,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
-            _meta.SetEntityName(griftyUids[0], "Заправка Гриффина", meta); // Corvax RU
+            _meta.SetEntityName(griftyUids[0], "Заправка Зекинса", meta); // Corvax RU
             _shuttle.SetIFFColor(griftyUids[0], factionColor);
         }
 
