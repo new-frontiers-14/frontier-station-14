@@ -12,22 +12,22 @@
   id: Menace
   name: Menace
   description: 'Mail is no longer an option: you either receive it or you die.'
-  price: 76000
+  price: 50000
   category: Small
   group: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/menace.yml
+  shuttlePath: /Maps/_NF/Shuttles/Blackmarket/menace.yml
 
 - type: gameMap
   id: Menace
   mapName: 'Menace'
-  mapPath: /Maps/_NF/Shuttles/menace.yml
+  mapPath: /Maps/_NF/Shuttles/Blackmarket/menace.yml
   minPlayers: 0
   stations:
     Menace:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Menace {1}'
+          mapNameTemplate: 'Mail Truck {1}' # Fake name eh?
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
