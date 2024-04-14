@@ -23,3 +23,16 @@
       - id: ClothingMaskBreathMedical # Frontier
       - id: JetpackMiniFilled # Frontier
       - id: HandheldGPSBasic # Frontier
+
+- type: entity
+  id: LockerPsychologistFilled
+  name: psychologist's locker
+  suffix: Filled
+  parent: LockerMedical
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskSterile
+      - id: BoxFolderWhite
+      - id: PillCanisterTricordrazine
+      - id: RubberStampPsychologist

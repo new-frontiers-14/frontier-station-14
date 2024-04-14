@@ -136,7 +136,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
 
-# Funny meme jokes ha-ha: off-brand blood-red hardsuit
+# Funny meme joke ha-ha: off-brand blood-red hardsuit
 - type: entity
   parent: ClothingOuterHardsuitSyndie
   id: ClothingOuterHardsuitSundie
@@ -159,6 +159,32 @@
         Caustic: 1.5
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSundie
+
+# Syndicate NPC hard suit, unremoveable
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieEliteUnremoveable
+  name: syndicate hardsuit
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
+  name: syndicate hardsuit
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Contraband
 
 - type: entity
@@ -225,3 +251,16 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmed
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieReverseEngineered
+  id: ClothingOuterHardsuitNfsdExperimental
+  name: an experimental nfsd hardsuit
+  description: An experimental nfsd hardsuit, never before seen!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdExperimental

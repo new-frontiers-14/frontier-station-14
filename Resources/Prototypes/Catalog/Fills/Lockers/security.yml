@@ -1,4 +1,100 @@
 - type: entity
+  id: LockerBrigmedicFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerBrigmedic
+  components:
+  - type: StorageFill
+    contents:
+#      - id: ClothingEyesHudSecurity
+#      - id: WeaponDisabler
+      - id: ClothingOuterHardsuitBrigmedic
+      - id: BoxSterileMask
+#      - id: ClothingHeadHatBeretBrigmedic
+#      - id: ClothingOuterCoatAMG
+#      - id: ClothingUniformJumpsuitBrigmedic
+#      - id: ClothingUniformJumpskirtBrigmedic
+#      - id: ClothingUniformJumpskirtOfLife
+#        prob: 0.1
+      - id: MedkitFilled
+      - id: MedkitCombatFilled
+#        prob: 0.6
+      - id: MedkitAdvancedFilled
+#        prob: 0.4
+#      - id: MedkitOxygenFilled
+#        prob: 0.3
+#      - id: MedkitBruteFilled
+#        prob: 0.3
+#      - id: MedkitToxinFilled
+#        prob: 0.3
+#      - id: MedkitBurnFilled
+#        prob: 0.7
+#      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+#        prob: 0.15
+#      - id: NitrogenTankFilled
+#      - id: OxygenTankFilled
+      - id: AirTankFilled
+      - id: ClothingMaskBreathMedicalSecurity
+      - id: JetpackSecurityFilled
+      - id: HandheldGPSBasic
+      - id: ClothingShoesBootsMagCombatFilled
+      - id: HypoBrigmedic # Frontier
+
+- type: entity
+  id: LockerBrigmedicFilled
+  suffix: Filled
+  parent: LockerBrigmedic
+  components:
+  - type: StorageFill
+    contents:
+#      - id: ClothingEyesHudSecurity
+#      - id: WeaponDisabler
+      - id: BoxSterileMask
+#      - id: ClothingHeadHatBeretBrigmedic
+#      - id: ClothingOuterCoatAMG
+#      - id: ClothingUniformJumpsuitBrigmedic
+#      - id: ClothingUniformJumpskirtBrigmedic
+#      - id: ClothingUniformJumpskirtOfLife
+#        prob: 0.1
+      - id: MedkitFilled
+      - id: MedkitCombatFilled
+#        prob: 0.6
+      - id: MedkitAdvancedFilled
+#        prob: 0.4
+#      - id: MedkitOxygenFilled
+#        prob: 0.3
+#      - id: MedkitBruteFilled
+#        prob: 0.3
+#      - id: MedkitToxinFilled
+#        prob: 0.3
+#      - id: MedkitBurnFilled
+#        prob: 0.7
+#      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+#        prob: 0.15
+      - id: HypoBrigmedic # Frontier
+      
+- type: entity
+  id: LockerSecurityFilled
+  suffix: Filled
+  parent: LockerSecurity
+  components:
+  - type: StorageFill
+    contents:
+#      - id: FlashlightSeclite
+#      - id: ClothingUniformJumpsuitSecGrey
+#        prob: 0.3
+      - id: ClothingHeadHelmetBasic
+      - id: ClothingOuterArmorBasic
+#      - id: ClothingBeltSecurityFilled
+#      - id: Flash
+#      - id: ClothingEyesGlassesSecurity
+      - id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
+#      - id: ClothingHandsGlovesColorBlack
+#      - id: ClothingShoesBootsJack
+#      - id: WeaponMeleeNeedle
+#        prob: 0.1
+#      - id: ClothingEyesHudSecurity
+
+- type: entity
   id: LockerWardenFilledHardsuit
   suffix: Filled, Hardsuit
   parent: LockerWarden
@@ -53,28 +149,6 @@
       - id: RubberStampWarden
 #      - id: DoorRemoteArmory
 #      - id: HoloprojectorSecurity # Frontier - Starting gear
-#      - id: ClothingEyesHudSecurity
-
-- type: entity
-  id: LockerSecurityFilled
-  suffix: Filled
-  parent: LockerSecurity
-  components:
-  - type: StorageFill
-    contents:
-#      - id: FlashlightSeclite
-#      - id: ClothingUniformJumpsuitSecGrey
-#        prob: 0.3
-      - id: ClothingHeadHelmetBasic
-      - id: ClothingOuterArmorBasic
-#      - id: ClothingBeltSecurityFilled
-#      - id: Flash
-#      - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
-#      - id: ClothingHandsGlovesColorBlack
-#      - id: ClothingShoesBootsJack
-#      - id: WeaponMeleeNeedle
-#        prob: 0.1
 #      - id: ClothingEyesHudSecurity
 
 - type: entity
