@@ -25,8 +25,6 @@ public sealed class AdminWhoCommand : IConsoleCommand
         if (shell.Player != null)
         {
             var playerData = adminMgr.GetAdminData(shell.Player);
-
-            seeStealth = playerData != null && playerData.CanStealth();
         }
 
         var sb = new StringBuilder();
@@ -40,15 +38,9 @@ public sealed class AdminWhoCommand : IConsoleCommand
             var adminData = adminMgr.GetAdminData(admin)!;
             DebugTools.AssertNotNull(adminData);
 
-            if (adminData.Stealth && !seeStealth)
-                continue;
-
             sb.Append(admin.Name);
             if (adminData.Title is { } title)
                 sb.Append($": [{title}]");
-
-            if (adminData.Stealth)
-                sb.Append(" (S)");
 
             if (shell.Player is { } player && adminMgr.HasAdminFlag(player, AdminFlags.Admin))
             {
