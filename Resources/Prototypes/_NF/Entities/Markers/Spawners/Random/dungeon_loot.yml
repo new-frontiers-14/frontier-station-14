@@ -40,6 +40,8 @@
     - GasAnalyzer
     - AppraisalTool
     - FlashlightLantern
+    - ClothingEyesGlassesMeson
+    - ClothingHandsGlovesColorYellow
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -98,6 +100,50 @@
     offset: 0.0
     rarePrototypes:
     - ToolboxSyndicateFilled
+    rareChance: 0.05
+
+- type: entity
+  name: random engi items
+  id: SpawnDungeonLootEngiItems
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/stock_parts.rsi
+        state: bluespace_matter_bin
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # T2
+    - AdvancedCapacitorStockPart
+    - NanoManipulatorStockPart
+    - AdvancedMatterBinStockPart
+    # T3
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
+    # Engi related things
+    - PowerCellPotato
+    - PowerCellMedium
+    - PowerCellHigh
+    - PowerCellHyper
+    - ProximitySensor
+    - RemoteSignaller
+    - Igniter
+    - DrinkSpaceLube
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    # T4
+    - QuadraticCapacitorStockPart
+    - FemtoManipulatorStockPart
+    - BluespaceMatterBinStockPart
+    - PowerCellMicroreactor
     rareChance: 0.05
 
 # Surgery Tools
@@ -211,6 +257,74 @@
     rarePrototypes:
     - ClothingBackpackDuffelSyndicateFilledMedical
     rareChance: 0.2
+
+# Bureaucracy clutter items
+- type: entity
+  name: random pen
+  id: SpawnDungeonLootBureaucracyPen
+  noSpawn: true
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: luxury_pen
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - LuxuryPen
+    - LuxuryPen
+    - LuxuryPen
+    - PenCap
+    - PenHop
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - PenExplodingBox
+    - HypopenBox
+    rareChance: 0.05
+
+- type: entity
+  name: random bureaucracy items
+  id: SpawnDungeonLootBureaucracy
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: labeler1
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PaperOffice
+    - Paper
+    - ClothingEyesGlasses
+    - ClothingEyesGlassesJamjar
+    - HandLabeler
+    - NewtonCradle
+    - DrinkSpaceGlue
+    - FolderSpawner
+    - SpawnDungeonLootBureaucracyPen
+    chance: 1
+    offset: 0.0
 
 # Medkits
 - type: entity
