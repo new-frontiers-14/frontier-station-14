@@ -2,7 +2,7 @@
 
 shipyard-console-invalid-vessel = Не удается приобрести судно:
 shipyard-console-menu-title = Меню верфи
-shipyard-console-docking = Капитан { $owner } шаттла { $vessel } в пути, расчётное премя прибытия 10 секунд.
+shipyard-console-docking = Капитан { $owner } шаттла { $vessel } в пути, расчётное время прибытия 10 секунд.
 shipyard-console-leaving = Капитан { $owner } шаттла { $vessel } продал судно { $player }.
 shipyard-console-docking-secret = Обнаружено незарегистрированное судно, заходящее в ваш сектор.
 shipyard-console-leaving-secret = Обнаружено незарегистрированное судно, покидающее ваш сектор.
