@@ -1,6 +1,6 @@
 ent-ComputerBankATMBase = { "" }
     .desc = { "" }
-ent-ComputerBankATMDeposit = банкоман
+ent-ComputerBankATMDeposit = банкомат
     .desc = Используется для ввода и вывода средств с личного банковского счета.
 ent-ComputerBankATMWithdraw = банкомат (только вывод)
     .desc = Используется для вывода средств с личного банковского счета.

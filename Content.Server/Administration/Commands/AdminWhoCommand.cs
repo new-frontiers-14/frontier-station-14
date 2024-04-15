@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Admin)]
+[AnyCommand] // Corvax: Allow use to everyone
 public sealed class AdminWhoCommand : IConsoleCommand
 {
     public string Command => "adminwho";
@@ -18,6 +18,14 @@ public sealed class AdminWhoCommand : IConsoleCommand
     {
         var adminMgr = IoCManager.Resolve<IAdminManager>();
         var afk = IoCManager.Resolve<IAfkManager>();
+
+        var seeStealth = true;
+
+        // If null it (hopefully) means it is being called from the console.
+        if (shell.Player != null)
+        {
+            var playerData = adminMgr.GetAdminData(shell.Player);
+        }
 
         var sb = new StringBuilder();
         var first = true;

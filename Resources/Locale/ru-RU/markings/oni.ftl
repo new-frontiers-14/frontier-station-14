@@ -11,3 +11,4 @@ marking-OniHornSingleCurved = Они, рог (Изогнутый)
 marking-OniHornSingleLeftCurved = Они, рог (Изогнутый, лево)
 marking-OniHornSingleRightCurved = Они, рог (Изогнутый, право)
 marking-OniTail = Они, хвост
+marking-OniTail-tail_oni = Хвост
