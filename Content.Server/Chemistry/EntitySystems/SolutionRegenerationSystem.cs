@@ -11,7 +11,7 @@ public sealed class SolutionRegenerationSystem : EntitySystem
 {
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    private readonly TimeSpan _updateTime = TimeSpan.Zero;
+    private TimeSpan _updateTime = TimeSpan.Zero;
 
     public override void Update(float frameTime)
     {
