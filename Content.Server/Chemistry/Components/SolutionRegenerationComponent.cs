@@ -33,12 +33,12 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// How long it takes to regenerate once.
     /// </summary>
     [DataField("duration"), ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan Duration = TimeSpan.FromSeconds(5);
+    public TimeSpan Duration = TimeSpan.FromSeconds(1);
 
     /// <summary>
     /// The time when the next regeneration will occur.
     /// </summary>
     [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoPausedField]
-    public TimeSpan NextRegenTime = TimeSpan.FromSeconds(0);
+    public TimeSpan NextRegenTime = TimeSpan.FromSeconds(5);
 }
