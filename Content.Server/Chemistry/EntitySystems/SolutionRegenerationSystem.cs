@@ -28,7 +28,7 @@ public sealed class SolutionRegenerationSystem : EntitySystem
                 continue;
 
             // timer ignores if its full, it's just a fixed cycle
-            regen.NextRegenTime = _timing.CurTime + TimeSpan.FromSeconds(5);
+            regen.NextRegenTime = _timing.CurTime + regen.Duration;
             if (_solutionContainer.ResolveSolution((uid, manager), regen.SolutionName, ref regen.Solution, out var solution))
             {
                 var amount = FixedPoint2.Min(solution.AvailableVolume, regen.Generated.Volume);
