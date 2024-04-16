@@ -1,0 +1,18 @@
+# Directional Station Guide Signs
+- type: entity
+  parent: BaseSign
+  id: BaseSignDirectionalNF
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Wallmounts/signs.rsi
+      snapCardinals: false
+
+- type: entity
+  parent: BaseSignDirectionalNF
+  id: SignDirectionalSR
+  name: sr sign
+  description: A direction sign, pointing out which way the station representative's office is.
+  components:
+  - type: Sprite
+    state: direction_sr
