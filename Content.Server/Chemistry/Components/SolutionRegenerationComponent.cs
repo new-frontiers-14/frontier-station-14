@@ -40,5 +40,5 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// </summary>
     [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoPausedField]
-    public TimeSpan NextRegenTime = TimeSpan.FromSeconds(0);
+    public TimeSpan NextRegenTime = TimeSpan.FromSeconds(5);
 }
