@@ -1,12 +1,12 @@
 - type: job
-  id: SecurityOfficer
+  id: Deputy
   name: job-name-security
   description: job-description-security
   playTimeTracker: JobSecurityOfficer
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 21600 # Frontier - 6 hrs
-  startingGear: SecurityOfficerGear
+  startingGear: DeputyGear
   icon: "JobIconSecurityOfficer" # Frontier
   supervisors: job-supervisors-hos
   canBeAntag: false
@@ -23,7 +23,7 @@
     implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
-  id: SecurityOfficerGear
+  id: DeputyGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNfsd # Frontier
     back: ClothingBackpacknfsdFilled # Frontier

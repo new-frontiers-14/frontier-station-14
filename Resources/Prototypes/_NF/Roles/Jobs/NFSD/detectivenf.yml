@@ -1,5 +1,5 @@
 - type: job
-  id: Detective
+  id: DetectiveNF
   name: job-name-detective
   description: job-description-detective
   playTimeTracker: JobDetective
@@ -9,7 +9,7 @@
       time: 10800 # 3 hrs
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
-  startingGear: DetectiveGear
+  startingGear: DetectiveNFGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
   canBeAntag: false
@@ -27,7 +27,7 @@
     implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
-  id: DetectiveGear
+  id: DetectiveNFGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
     back: ClothingBackpackFilledDetective

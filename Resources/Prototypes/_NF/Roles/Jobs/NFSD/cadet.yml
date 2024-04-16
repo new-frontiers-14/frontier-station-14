@@ -1,5 +1,5 @@
 - type: job
-  id: SecurityCadet
+  id: Cadet
   name: job-name-cadet
   description: job-description-cadet
   playTimeTracker: JobSecurityCadet
@@ -10,9 +10,9 @@
       department: Security
       time: 36000 # Frontier - 10 hrs
       inverted: true # stop playing intern if you're good at security!
-  startingGear: SecurityCadetGear
+  startingGear: CadetGear
   icon: "JobIconSecurityCadet" # Frontier
-  supervisors: job-supervisors-hos # Frontier
+  supervisors: job-supervisors-security
   canBeAntag: false
   access:
   - Security
@@ -27,7 +27,7 @@
     implants: [ MindShieldImplant, TrackingImplant ]
 
 - type: startingGear
-  id: SecurityCadetGear
+  id: CadetGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNfsdShort # Frontier
     back: ClothingBackpacknfsdFilled # Frontier
