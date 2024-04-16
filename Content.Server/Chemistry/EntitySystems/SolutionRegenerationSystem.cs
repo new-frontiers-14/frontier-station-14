@@ -11,10 +11,15 @@ public sealed class SolutionRegenerationSystem : EntitySystem
 {
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    private readonly TimeSpan _updateTime = TimeSpan.Zero;
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        
+        if (_updateTime > _timing.CurTime)
+            return;
+        _updateTime = _timing.CurTime + TimeSpan.FromSeconds(0.5);
 
         var query = EntityQueryEnumerator<SolutionRegenerationComponent, SolutionContainerManagerComponent>();
         while (query.MoveNext(out var uid, out var regen, out var manager))
