@@ -6,10 +6,13 @@
   requirements:
     - !type:WhitelistRequirement
     - !type:OverallPlaytimeRequirement
-      time: 108000 # Frontier - 30 hours
+      time: 129600 # Frontier - 36 hours
     - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10800 #3 hrs
+      role: JobSeniorOfficer
+      time: 43200 # Frontier - 12 hrs
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 43200 # Frontier - 12 hrs
     - !type:DepartmentTimeRequirement
       department: Security
       time: 43200 # 12 hrs
@@ -18,7 +21,7 @@
   alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity" # Frontier
   requireAdminNotify: true
-  supervisors: job-supervisors-hop # Frontier
+  supervisors: job-supervisors-centcom # Frontier
   whitelistRequired: true
   canBeAntag: false
   access:
