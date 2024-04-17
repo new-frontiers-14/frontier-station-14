@@ -91,6 +91,17 @@
     mod: 25
 
 - type: entity
+  parent: [BaseStructureUnanchorable, VendingMachineFlatpackVend]
+  id: VendingMachineExpeditionaryFlatpackVend
+  name: Expeditionary FlatpackVend
+  description: Essential tech for the space-men on an expedition
+  components:
+  - type: VendingMachine
+    pack: ExpeditionaryFlatpackVendInventory
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
+
+- type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend

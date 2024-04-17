@@ -197,6 +197,33 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+  - type: Storage
+    grid:
+      - 0,0,1,1
+    whitelist:
+      components:
+        - Welder
+        - Cigar
+  - type: UserInterface
+    interfaces:
+      - key: enum.StorageUiKey.Key
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: ClothingHeadHatNfsdCampaign
+  id: ClothingHeadHatNfsdCampaignFilled
+  name: nfsd campaign hat
+  description: yee-haw partner.
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlippoEngravedLighter
+      - id: CigarGold 
+        amount: 3
 
 - type: entity
   parent: ClothingHeadBase

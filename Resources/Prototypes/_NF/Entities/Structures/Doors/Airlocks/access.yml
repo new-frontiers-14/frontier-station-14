@@ -91,3 +91,13 @@
     access: [["Security"]]
   - type: Wires
     layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockNFSD
+  id: AirlockNFSDLocked
+  suffix: NFSD, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Wires
+    layoutId: AirlockSecurity
