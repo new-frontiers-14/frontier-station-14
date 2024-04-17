@@ -30,6 +30,23 @@ public sealed partial class NavScreen : BoxContainer
 
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
+
+        // Frontier - IFF search
+        IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
+    }
+
+    // Frontier - IFF search
+    private void OnIffSearchChanged(string text)
+    {
+        text = text.Trim();
+
+        NavRadar.IFFFilter = text.Length == 0
+            ? null // If empty, do not filter
+            : (entity, grid, iff) => // Otherwise use simple search criteria
+            {
+                _entManager.TryGetComponent<MetaDataComponent>(entity, out var metadata);
+                return metadata != null && metadata.EntityName.Contains(text, StringComparison.OrdinalIgnoreCase);
+            };
     }
 
     public void SetShuttle(EntityUid? shuttle)

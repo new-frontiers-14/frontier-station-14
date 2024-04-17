@@ -38,6 +38,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowDocks { get; set; } = true;
 
     /// <summary>
+    ///   If present, called for every IFF. Must determine if it should or should not be shown.
+    /// </summary>
+    public Func<EntityUid, MapGridComponent, IFFComponent?, bool>? IFFFilter { get; set; } = null;
+
+    /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
     /// </summary>
     public Action<EntityCoordinates>? OnRadarClick;
@@ -204,6 +209,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             var labelName = _shuttles.GetIFFLabel(grid, self: false, iff);
 
             var showShuttleIFFs = ShowIFFShuttles && iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0;
+            if (IFFFilter != null)
+            {
+                showShuttleIFFs &= IFFFilter(gUid, grid.Comp, iff);
+            }
 
             if (ShowIFF && labelName != null && showShuttleIFFs)
             {
