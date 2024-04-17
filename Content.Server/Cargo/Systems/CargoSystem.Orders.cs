@@ -285,7 +285,7 @@ namespace Content.Server.Cargo.Systems
             if (!component.AllowedGroups.Contains(product.Group))
                 return;
 
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase));
+            var data = GetOrderData(EntityManager.GetNetEntity(uid), args, product, GenerateOrderId(orderDatabase));
 
             if (!TryAddOrder(orderDatabase.Owner, data, orderDatabase))
             {
@@ -334,12 +334,15 @@ namespace Content.Server.Cargo.Systems
 
             if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase, component)) return;
 
+            // Frontier - we only want to see orders made on the same computer, so filter them out
+            var filteredOrders = orderDatabase.Orders.Where(order => order.Computer == EntityManager.GetNetEntity(component.Owner)).ToList();
+
             var state = new CargoConsoleInterfaceState(
                 MetaData(player).EntityName,
                 GetOutstandingOrderCount(orderDatabase),
                 orderDatabase.Capacity,
                 balance,
-                orderDatabase.Orders);
+                filteredOrders);
 
             _uiSystem.SetUiState(bui, state);
         }
@@ -354,9 +357,9 @@ namespace Content.Server.Cargo.Systems
             _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
         }
 
-        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
+        private static CargoOrderData GetOrderData(NetEntity consoleUid, CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
         {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Cost, args.Amount, args.Requester, args.Reason);
+            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, consoleUid);
         }
 
         public static int GetOutstandingOrderCount(StationCargoOrderDatabaseComponent component)
@@ -417,7 +420,7 @@ namespace Content.Server.Cargo.Systems
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, cost, qty, sender, description);
+            var order = new CargoOrderData(id, spawnId, cost, qty, sender, description, null);
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -462,9 +465,9 @@ namespace Content.Server.Cargo.Systems
             component.Orders.Clear();
         }
 
-        private static bool PopFrontOrder(StationCargoOrderDatabaseComponent orderDB, [NotNullWhen(true)] out CargoOrderData? orderOut)
+        private static bool PopFrontOrder(List<NetEntity> consoleUidList, StationCargoOrderDatabaseComponent orderDB, [NotNullWhen(true)] out CargoOrderData? orderOut)
         {
-            var orderIdx = orderDB.Orders.FindIndex(order => order.Approved);
+            var orderIdx = orderDB.Orders.FindIndex(order => order.Approved && consoleUidList.Any(consoleUid => consoleUid == order.Computer));
             if (orderIdx == -1)
             {
                 orderOut = null;
@@ -485,9 +488,9 @@ namespace Content.Server.Cargo.Systems
         /// <summary>
         /// Tries to fulfill the next outstanding order.
         /// </summary>
-        private bool FulfillNextOrder(StationCargoOrderDatabaseComponent orderDB, EntityCoordinates spawn, string? paperProto)
+        private bool FulfillNextOrder(List<NetEntity> consoleUidList, StationCargoOrderDatabaseComponent orderDB, EntityCoordinates spawn, string? paperProto)
         {
-            if (!PopFrontOrder(orderDB, out var order))
+            if (!PopFrontOrder(consoleUidList, orderDB, out var order))
                 return false;
 
             return FulfillOrder(order, spawn, paperProto);
