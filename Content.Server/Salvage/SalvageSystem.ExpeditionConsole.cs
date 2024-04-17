@@ -59,15 +59,17 @@ public sealed partial class SalvageSystem
         }
         // end of Frontier proximity check
 
-        var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
-        SpawnMission(missionparams, station.Value, cdUid);
+        // Frontier  change - disable coordinate disks for expedition missions
+        //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
+        SpawnMission(missionparams, station.Value, null);
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
-        _labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
-        _audio.PlayPvs(component.PrintSound, uid);
+        // Frontier  change - disable coordinate disks for expedition missions
+        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
+        //_audio.PlayPvs(component.PrintSound, uid);
 
         UpdateConsoles(data);
     }
