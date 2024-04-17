@@ -308,3 +308,55 @@
     color: "#EEEEFF"
   - type: MarketModifier
     mod: 10
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineNFSDDrobe
+  name: NFSDDrobe
+  description: A vending machine for NFSD and NFSD clothing!
+  components:
+  - type: VendingMachine
+    pack: NFSDDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: NFSDDrobeAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineNFSDTec
+  name: NFSDTec
+  description: A vending machine for NFSD and NFSD tech!
+  components:
+  - type: VendingMachine
+    pack: NFSDTecInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: NFSDDrobeAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/nfsdtec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Security"]]

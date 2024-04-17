@@ -1,0 +1,613 @@
+# Duffel bag - gift box
+- type: entity
+  parent: BaseItem
+  id: SyndieDuffelGiftBox
+  name: syndicate naval operative bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-ammo
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate NPCs Loot
+# Syndicate Naval Captain Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateCaptainLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRevolverPythonAP
+      - id: SpeedLoaderMagnumAP
+      - id: SpeedLoaderMagnumAP
+      - id: SpaceCash5000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateCaptainLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRevolverPython
+      - id: SpeedLoaderMagnum
+      - id: SpeedLoaderMagnum
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateCaptainLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpeedLoaderMagnum
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateCaptainLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Second Officer Loot
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateSecondOfficerLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponLaserSvalinn
+      - id: PowerCellHyperPrinted
+      - id: PowerCellHyperPrinted
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateSecondOfficerLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponDisabler
+      - id: PowerCellHighPrinted
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateSecondOfficerLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: PowerCellHighPrinted
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCaptainLootA
+  id: ClothingBackpackSyndicateSecondOfficerLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash1000
+      - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Commander Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateCommanderLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRifleAk
+      - id: MagazineLightRifle
+      - id: MagazineLightRifle
+      - id: SpaceCash10000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCommanderLootA
+  id: ClothingBackpackSyndicateCommanderLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponRifleLecter
+      - id: MagazineRifle
+      - id: MagazineRifle
+      - id: SpaceCash10000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCommanderLootA
+  id: ClothingBackpackSyndicateCommanderLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MagazineLightRifle
+      - id: MagazineLightRifle
+      - id: SpaceCash10000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateCommanderLootA
+  id: ClothingBackpackSyndicateCommanderLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Security Operative Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateOperativeLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponSubMachineGunAtreides
+      - id: MagazinePistolSubMachineGun
+      - id: MagazinePistolSubMachineGun
+      - id: SpaceCash1000
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateOperativeLootA
+  id: ClothingBackpackSyndicateOperativeLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponSubMachineGunWt550
+      - id: MagazinePistolSubMachineGunTopMounted
+      - id: SpaceCash1000
+      - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateOperativeLootA
+  id: ClothingBackpackSyndicateOperativeLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MagazineBoxPistol
+      - id: MagazineBoxPistol
+      - id: SpaceCash1000
+      - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateOperativeLootA
+  id: ClothingBackpackSyndicateOperativeLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash1000
+      - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Deckhand Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateDeckhandLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolViper
+      - id: MagazinePistol
+      - id: MagazinePistol
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateDeckhandLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponPistolMk58
+      - id: MagazinePistol
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateDeckhandLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MagazinePistol
+      - id: MagazinePistol
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateDeckhandLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Saboteur Loot
+- type: entity
+  parent: ClothingBackpackSyndicateDeckhandLootA
+  id: ClothingBackpackSyndicateSaboteurLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingBackpackSyndicateDeckhandLootB
+  id: ClothingBackpackSyndicateSaboteurLootB
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingBackpackSyndicateDeckhandLootC
+  id: ClothingBackpackSyndicateSaboteurLootC
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingBackpackSyndicateDeckhandLootD
+  id: ClothingBackpackSyndicateSaboteurLootD
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
+    state: icon
+
+# Syndicate Naval Medic Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateMedicLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-med
+  - type: SpawnItemsOnUse
+    items:
+      - id: HypoMiniLimitedEdition
+      - id: BruteAutoInjector
+      - id: AntiPoisonMedipen
+      - id: MedicatedSuture
+      - id: Stimpack
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateMedicLootA
+  id: ClothingBackpackSyndicateMedicLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: HypoMini
+      - id: BruteAutoInjector
+      - id: AntiPoisonMedipen
+      - id: MedicatedSuture
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateMedicLootA
+  id: ClothingBackpackSyndicateMedicLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: HypoMini
+      - id: AntiPoisonMedipen
+      - id: MedicatedSuture
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateMedicLootA
+  id: ClothingBackpackSyndicateMedicLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: AntiPoisonMedipen
+      - id: MedicatedSuture
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Engineer Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateEngineerLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponShotgunKammerer
+      - id: SyndicateJawsOfLife
+      - id: BoxShotgunSlug
+      - id: SpaceCash1000
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateEngineerLootA
+  id: ClothingBackpackSyndicateEngineerLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponShotgunKammerer
+      - id: JawsOfLife
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateEngineerLootA
+  id: ClothingBackpackSyndicateEngineerLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: JawsOfLife
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateEngineerLootA
+  id: ClothingBackpackSyndicateEngineerLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Chemwarrior
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateChemwarriorLootA
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/waterbackpack.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBackpackWaterTank
+      - id: WeaponSprayNozzle
+      - id: Stimpack
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterBlasterSuper
+      - id: Stimpack
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterBlaster
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateChemwarriorLootA
+  id: ClothingBackpackSyndicateChemwarriorLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WeaponWaterPistol
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Syndicate Naval Grenadier
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackSyndicateGrenadierLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ExGrenade
+        amount: 4
+      - id: SpaceCash5000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ExGrenade
+        amount: 2
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: GrenadeFlashBang
+        amount: 4
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackSyndicateGrenadierLootA
+  id: ClothingBackpackSyndicateGrenadierLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: GrenadeFlashBang
+        amount: 2
+      - id: SpaceCash2500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Blood Cult NPCs Loot
+# Blood Cultist Zealot (Ranged) Loot
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: ClothingBackpackBloodCultZealotLootA
+  name: cultist gear bundle
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/messenger.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: CrossbowImprovised
+#      - id: ClothingBeltQuiverCrossbowFilledBolt
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: CrossbowImprovised
+      - id: ClothingBeltQuiverCrossbowFilledUranium
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ClothingBeltQuiverCrossbowFilledPlasma
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg

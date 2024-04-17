@@ -5,13 +5,13 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 36000 # Frontier 10 hrs
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 # Frontier - 10 hrs
       inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
-  icon: "JobIconSecurityCadet"
+  icon: "JobIconSecurityCadet" # Frontier
   supervisors: job-supervisors-hos # Frontier
   canBeAntag: false
   access:

@@ -4,6 +4,9 @@
   description: job-description-detective
   playTimeTracker: JobDetective
   requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6 hrs
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: DetectiveGear
