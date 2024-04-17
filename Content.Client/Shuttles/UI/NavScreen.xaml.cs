@@ -25,6 +25,9 @@ public sealed partial class NavScreen : BoxContainer
         IFFToggle.OnToggled += OnIFFTogglePressed;
         IFFToggle.Pressed = NavRadar.ShowIFF;
 
+        IFFShuttleToggle.OnToggled += OnIFFShuttleTogglePressed;
+        IFFShuttleToggle.Pressed = NavRadar.ShowIFFShuttles;
+
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
     }
@@ -38,6 +41,12 @@ public sealed partial class NavScreen : BoxContainer
     {
         NavRadar.ShowIFF ^= true;
         args.Button.Pressed = NavRadar.ShowIFF;
+    }
+
+    private void OnIFFShuttleTogglePressed(BaseButton.ButtonEventArgs args)
+    {
+        NavRadar.ShowIFFShuttles ^= true;
+        args.Button.Pressed = NavRadar.ShowIFFShuttles;
     }
 
     private void OnDockTogglePressed(BaseButton.ButtonEventArgs args)

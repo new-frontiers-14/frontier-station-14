@@ -34,6 +34,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
 
     public bool ShowIFF { get; set; } = true;
+    public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
 
     /// <summary>
@@ -202,8 +203,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             // Hostile default: Color.Firebrick
             var labelName = _shuttles.GetIFFLabel(grid, self: false, iff);
 
-            if (ShowIFF &&
-                 labelName != null)
+            var showShuttleIFFs = ShowIFFShuttles && iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0;
+
+            if (ShowIFF && labelName != null && showShuttleIFFs)
             {
                 var gridBounds = grid.Comp.LocalAABB;
 

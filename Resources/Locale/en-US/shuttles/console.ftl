@@ -24,8 +24,8 @@ shuttle-console-iff-search = Search IFF
 shuttle-console-strafing = Strafing mode
 shuttle-console-nav-settings = Settings
 shuttle-console-iff-toggle = Show IFF
-shuttle-console-iffshuttles-toggle = Show Shuttle Labels
 shuttle-console-dock-toggle = Show docks
+shuttle-console-iffshuttles-toggle = Show shuttles
 
 # MAP
 
