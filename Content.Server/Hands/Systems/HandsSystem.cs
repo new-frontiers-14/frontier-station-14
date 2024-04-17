@@ -9,7 +9,6 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Movement.Pulling.Components;
@@ -161,7 +160,7 @@ namespace Content.Server.Hands.Systems
                     continue;
                 }
 
-                QueueDel(hand.HeldEntity.Value);
+                TryDrop(args.PullerUid, hand, handsComp: component);
                 break;
             }
         }

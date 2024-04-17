@@ -224,6 +224,7 @@
   - type: Tag
     tags:
       - Multitool
+      - DoorElectronicsConfigurator
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -265,6 +266,9 @@
     - type: ActivatableUI
       key: enum.NetworkConfiguratorUiKey.List
       inHandsOnly: true
+    - type: Tag
+      tags:
+        - DoorElectronicsConfigurator
     - type: UserInterface
       interfaces:
         - key: enum.NetworkConfiguratorUiKey.List
@@ -342,13 +346,13 @@
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
   - type: RCD
-    availablePrototypes:   
+    availablePrototypes:
     - WallSolid
     - FloorSteel
     - Plating
     - Catwalk
     - Grille
-    - Window    
+    - Window
     - WindowDirectional
     - WindowReinforcedDirectional
     - ReinforcedWindow
@@ -397,7 +401,7 @@
   - type: LimitedCharges
     charges: 0
   - type: RCD
-    availablePrototypes:   
+    availablePrototypes:
     - WallSolid
     - FloorSteel
     - Plating

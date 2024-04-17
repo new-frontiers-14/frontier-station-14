@@ -526,7 +526,7 @@
 # Shakers
 
 - type: entity
-  parent: BaseFoodCondimentBottle
+  parent: BaseFoodCondiment
   id: BaseFoodShaker
   abstract: true
   name: empty shaker
@@ -566,6 +566,8 @@
     state: shaker-empty
   - type: StaticPrice
     price: 9
+  - type: RefillableSolution
+    solution: food
 
 - type: entity
   parent: BaseFoodShaker
