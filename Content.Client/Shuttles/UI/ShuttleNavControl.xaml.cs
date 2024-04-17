@@ -261,7 +261,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 // Shows decimal when distance is < 50m, otherwise pointless to show it.
                 var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
-                var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
+                var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
 
                 var textLengthCorrection = labelText.Length * 9.5f;
                 var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -textLengthCorrection : 0;
