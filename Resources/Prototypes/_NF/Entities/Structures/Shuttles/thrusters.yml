@@ -92,6 +92,94 @@
             acts: ["Destruction"]
 
 - type: entity
+  id: ThrusterNFSD
+  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
+  name: thruster
+  suffix: NFSD
+  components:
+  - type: Machine
+    board: ThrusterNFSDMachineCircuitboard
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+
+- type: entity
+  id: ThrusterNFSDUnanchored
+  parent: ThrusterUnanchored
+  suffix: Unanchored, NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+
+- type: entity
+  id: DebugThrusterNFSD
+  parent: [BaseStructureDisableToolUse, DebugThruster]
+  name: thruster
+  suffix: DEBUG, NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+
+- type: entity
   id: SmallThruster
   parent: Thruster
   name: small thruster
@@ -225,6 +313,93 @@
   id: SmallGyroscopeSecurityUnanchored
   parent: SmallGyroscopeSecurity
   suffix: Unanchored, Security
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
+
+- type: entity
+  id: GyroscopeNFSD
+  parent: [BaseStructureDisableToolUse, Gyroscope]
+  suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn
+      map: [ "enum.ThrusterVisualLayers.Thrusting" ]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: DebugGyroscopeNFSD
+  parent: [BaseStructureDisableToolUse, DebugGyroscope]
+  name: gyroscope
+  suffix: DEBUG, NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: SmallGyroscopeNFSD
+  parent: GyroscopeNFSD
+  name: small gyroscope
+  suffix: NFSD
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 250
+    thrust: 250
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+  - type: StaticPrice
+    price: 250
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
+
+- type: entity
+  id: SmallGyroscopeNFSDUnanchored
+  parent: SmallGyroscopeNFSD
+  suffix: Unanchored, NFSD
   components:
     - type: Transform
       anchored: false
