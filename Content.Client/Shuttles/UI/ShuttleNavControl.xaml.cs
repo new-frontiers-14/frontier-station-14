@@ -221,8 +221,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var gridCentre = matty.Transform(gridBody.LocalCenter);
                 gridCentre.Y = -gridCentre.Y;
                 var distance = gridCentre.Length();
-                var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName),
-                    ("distance", $"{distance:0.0}"));
+
+                // Shows decimal when distance is < 50m, otherwise pointless to show it.
+                var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
+                var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
 
                 // yes 1.0 scale is intended here.
                 var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
