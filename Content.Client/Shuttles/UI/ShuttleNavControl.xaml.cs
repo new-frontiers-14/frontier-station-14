@@ -21,6 +21,7 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class ShuttleNavControl : BaseShuttleControl
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
 
@@ -73,30 +74,28 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         }
 
         var a = InverseScalePosition(args.RelativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
+        var relativeWorldPos = a with { Y = -a.Y };
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
         var coords = _coordinates.Value.Offset(relativeWorldPos);
         OnRadarClick?.Invoke(coords);
     }
 
     /// <summary>
-    /// Gets the entitycoordinates of where the mouseposition is, relative to the control.
+    /// Gets the entity coordinates of where the mouse position is, relative to the control.
     /// </summary>
     [PublicAPI]
-    public EntityCoordinates GetMouseCoordinates(ScreenCoordinates screen)
+    public EntityCoordinates GetMouseCoordinatesFromCenter()
     {
         if (_coordinates == null || _rotation == null)
         {
             return EntityCoordinates.Invalid;
         }
 
-        var pos = screen.Position / UIScale - GlobalPosition;
+        var pos = _uiManager.MousePositionScaled.Position - GlobalPosition;
+        var relativeWorldPos = _rotation.Value.RotateVec(pos);
 
-        var a = InverseScalePosition(pos);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-        return coords;
+        // I am not sure why the resulting point is 20 units under the mouse.
+        return _coordinates.Value.Offset(relativeWorldPos);
     }
 
     public void UpdateState(NavInterfaceState state)
@@ -186,6 +185,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
+        // Frontier - collect blip location data outside foreach - more changes ahead
+        var blipDataList = new List<BlipData>();
+
         // Draw other grids... differently
         foreach (var grid in _grids)
         {
@@ -208,49 +210,88 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             // Hostile default: Color.Firebrick
             var labelName = _shuttles.GetIFFLabel(grid, self: false, iff);
 
-            var showShuttleIFFs = ShowIFFShuttles && iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0;
+            var isPlayerShuttle = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0;
+            var shouldDrawIFF = ShowIFF && labelName != null && (iff != null && (iff.Flags & IFFFlags.HideLabel) == 0x0);
             if (IFFFilter != null)
             {
-                showShuttleIFFs &= IFFFilter(gUid, grid.Comp, iff);
+                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff);
+            }
+            if (isPlayerShuttle)
+            {
+                shouldDrawIFF &= ShowIFFShuttles;
             }
 
-            if (ShowIFF && labelName != null && showShuttleIFFs)
+            if (shouldDrawIFF)
             {
-                var gridBounds = grid.Comp.LocalAABB;
-
                 var gridCentre = matty.Transform(gridBody.LocalCenter);
                 gridCentre.Y = -gridCentre.Y;
+
+                // The actual position in the UI. We offset the matrix position to render it off by half its width
+                // plus by the offset.
+                var uiPosition = ScalePosition(gridCentre) / UIScale;
+
+                // Confines the UI position within the viewport.
+                var uiXCentre = (int) Width / 2;
+                var uiYCentre = (int) Height / 2;
+                var uiXOffset = uiPosition.X - uiXCentre;
+                var uiYOffset = uiPosition.Y - uiYCentre;
+                var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
+                var uiX = uiXCentre * uiXOffset / uiDistance;
+                var uiY = uiYCentre * uiYOffset / uiDistance;
+
+                var isOutsideRadarCircle = uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY);
+                if (isOutsideRadarCircle)
+                {
+                    // 0.95f for offsetting the icons slightly away from edge of radar so it doesnt clip.
+                    uiX = uiXCentre * uiXOffset / uiDistance * 0.95f;
+                    uiY = uiYCentre * uiYOffset / uiDistance * 0.95f;
+                    uiPosition = new Vector2(
+                        x: uiX + uiXCentre,
+                        y: uiY + uiYCentre
+                    );
+                }
+
+                var scaledMousePosition = GetMouseCoordinatesFromCenter().Position * UIScale;
+                var isMouseOver = Vector2.Distance(scaledMousePosition, uiPosition * UIScale) < 30f;
+
+                // Distant stations that are not player controlled ships
+                var isDistantPOI = iff != null || (iff == null || (iff.Flags & IFFFlags.IsPlayerShuttle) == 0x0);
+
                 var distance = gridCentre.Length();
 
                 // Shows decimal when distance is < 50m, otherwise pointless to show it.
                 var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
 
-                // yes 1.0 scale is intended here.
-                var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-
-                // y-offset the control to always render below the grid (vertically)
-                var yOffset = Math.Max(gridBounds.Height, gridBounds.Width) * MinimapScale / 1.8f;
-
-                // The actual position in the UI. We offset the matrix position to render it off by half its width
-                // plus by the offset.
-                var uiPosition = ScalePosition(gridCentre)- new Vector2(labelDimensions.X / 2f, -yOffset);
-
-                // Confines the UI position within the viewport.
-                var uiXCentre = (int) (Width - labelDimensions.X) / 2;
-                var uiYCentre = (int) (Height - labelDimensions.Y) / 2;
-                var uiXOffset = uiPosition.X - uiXCentre;
-                var uiYOffset = uiPosition.Y - uiYCentre;
-                var uiDistance = (int) Math.Sqrt(Math.Pow(uiXOffset, 2) + Math.Pow(uiYOffset, 2));
-                var uiX = uiXCentre * uiXOffset / uiDistance;
-                var uiY = uiYCentre * uiYOffset / uiDistance;
-                if (uiDistance > Math.Abs(uiX) && uiDistance > Math.Abs(uiY))
+                var textLengthCorrection = labelText.Length * 9.5f;
+                var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -textLengthCorrection : 0;
+                var blipCorrection = (RadarBlipSize * 0.7f);
+                var correctedUiPosition = uiPosition with
                 {
-                    uiPosition = new Vector2(uiX + uiXCentre, uiY + uiYCentre);
+                    X = uiPosition.X > Width / 2
+                        ? uiPosition.X + blipCorrection + sideCorrection
+                        : uiPosition.X + blipCorrection,
+                    Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
+                };
+
+                if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
+                {
+                    handle.DrawString(Font, correctedUiPosition, labelText, color);
                 }
 
-                handle.DrawString(Font, uiPosition, labelText, color);
+                blipDataList.Add(new BlipData
+                {
+                    IsOutsideRadarCircle = isOutsideRadarCircle,
+                    UiPosition = uiPosition,
+                    VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
+                    Color = color
+                });
+
+
             }
+
+            // Don't skip drawing blips if they're out of range.
+            DrawBlips(handle, blipDataList);
 
             // Detailed view
             var gridAABB = gridMatrix.TransformBox(grid.Comp.LocalAABB);
@@ -308,5 +349,91 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Vector2 InverseScalePosition(Vector2 value)
     {
         return (value - MidPointVector) / MinimapScale;
+    }
+
+    public class BlipData
+    {
+        public bool IsOutsideRadarCircle { get; set; }
+        public Vector2 UiPosition { get; set; }
+        public Vector2 VectorToPosition { get; set; }
+        public Color Color { get; set; }
+    }
+
+    private const int RadarBlipSize = 15;
+    private const int RadarFontSize = 10;
+
+    /**
+     * Frontier - Adds blip style triangles that are on ships or pointing towards ships on the edges of the radar.
+     * Draws blips at the BlipData's uiPosition and uses VectorToPosition to rotate to point towards ships.
+     */
+    private void DrawBlips(
+        DrawingHandleBase handle,
+        List<BlipData> blipDataList
+    )
+    {
+        var blipValueList = new Dictionary<Color, ValueList<Vector2>>();
+
+        foreach (var blipData in blipDataList)
+        {
+            var triangleShapeVectorPoints = new[]
+            {
+                new Vector2(0, 0),
+                new Vector2(RadarBlipSize, 0),
+                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+            };
+
+            if (blipData.IsOutsideRadarCircle)
+            {
+                // Calculate the angle of rotation
+                var angle = (float) Math.Atan2(blipData.VectorToPosition.Y, blipData.VectorToPosition.X) + -1.6f;
+
+                // Manually create a rotation matrix
+                var cos = (float) Math.Cos(angle);
+                var sin = (float) Math.Sin(angle);
+                float[,] rotationMatrix = { { cos, -sin }, { sin, cos } };
+
+                // Rotate each vertex
+                for (var i = 0; i < triangleShapeVectorPoints.Length; i++)
+                {
+                    var vertex = triangleShapeVectorPoints[i];
+                    var x = vertex.X * rotationMatrix[0, 0] + vertex.Y * rotationMatrix[0, 1];
+                    var y = vertex.X * rotationMatrix[1, 0] + vertex.Y * rotationMatrix[1, 1];
+                    triangleShapeVectorPoints[i] = new Vector2(x, y);
+                }
+            }
+
+            var triangleCenterVector =
+                (triangleShapeVectorPoints[0] + triangleShapeVectorPoints[1] + triangleShapeVectorPoints[2]) / 3;
+
+            // Calculate the vectors from the center to each vertex
+            var vectorsFromCenter = new Vector2[3];
+            for (int i = 0; i < 3; i++)
+            {
+                vectorsFromCenter[i] = (triangleShapeVectorPoints[i] - triangleCenterVector) * UIScale;
+            }
+
+            // Calculate the vertices of the new triangle
+            var newVerts = new Vector2[3];
+            for (var i = 0; i < 3; i++)
+            {
+                newVerts[i] = (blipData.UiPosition * UIScale) + vectorsFromCenter[i];
+            }
+
+            if (!blipValueList.TryGetValue(blipData.Color, out var valueList))
+            {
+                valueList = new ValueList<Vector2>();
+
+            }
+            valueList.Add(newVerts[0]);
+            valueList.Add(newVerts[1]);
+            valueList.Add(newVerts[2]);
+            blipValueList[blipData.Color] = valueList;
+        }
+
+        // One draw call for every color we have
+        foreach (var color in blipValueList)
+        {
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, color.Value.Span, color.Key);
+        }
     }
 }
