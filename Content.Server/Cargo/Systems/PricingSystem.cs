@@ -232,6 +232,7 @@ public sealed class PricingSystem : EntitySystem
     public double GetPrice(EntityUid uid)
     {
         var ev = new PriceCalculationEvent();
+        ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
         RaiseLocalEvent(uid, ref ev);
 
         if (ev.Handled)
