@@ -130,7 +130,7 @@
   productEntity: WeaponPistolMk58
   icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -268,7 +268,7 @@
   productEntity: WeaponRifleLecter
   icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -310,7 +310,7 @@
   productEntity: WeaponDisablerSMG
   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -331,7 +331,7 @@
   productEntity: EnergySword
   icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 7
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -350,7 +350,7 @@
   productEntity: WeaponSubMachineGunWt550
   icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -399,6 +399,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+
 
 - type: listing
   id: UplinkSecurityHolo
@@ -589,7 +590,7 @@
   productEntity: HypoBrigmedic
   icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -681,7 +682,7 @@
   productEntity: Truncheon
   icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -697,7 +698,7 @@
   productEntity: PlasteelArmingSword
   icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -774,7 +775,7 @@
   productEntity: SecBreachingHammer
   icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -811,7 +812,7 @@
   productEntity: EnergyShield
   icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
   cost:
-    FrontierUplinkCoin: 6
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -975,9 +976,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityExplosiveGrenadeBox
@@ -996,9 +997,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityIncendiaryGrenadeBox
@@ -1017,9 +1018,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityShrapnelGrenadeBox
@@ -1038,9 +1039,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecuritySmokeGrenadeBox
@@ -1105,3 +1106,24 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityBreachingChargesBox
+  name:  uplink-security-breachingcharge-box-name
+  description: uplink-security-breachingcharge-box-desc
+  productEntity: BoxBreachingCharges
+  icon: { sprite: DeltaV/Objects/Weapons/Bombs/breaching.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityExplosives
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
