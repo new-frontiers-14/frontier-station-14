@@ -45,3 +45,43 @@
   - type: Clothing
     sprite: _NF/Clothing/Masks/pilot.rsi
   - type: BreathMask
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasNFSD
+  name: nfsd gas mask
+  description: A standard issue nfsd gas mask.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/nfsd.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/nfsd.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasSheriff
+  name: nfsd sheriff gas mask
+  description: A gas mask worthy of a sheriff.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/nfsd_sheriff.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/nfsd_sheriff.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
