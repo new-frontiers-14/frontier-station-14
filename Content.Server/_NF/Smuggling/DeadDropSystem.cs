@@ -102,7 +102,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
 
         //tattle on the smuggler here, but obfuscate it a bit if possible to just the grid it was summoned from.
-        var channel = _prototypeManager.Index<RadioChannelPrototype>("Security");
+        var channel = _prototypeManager.Index<RadioChannelPrototype>("NFSD");
         var sender = Transform(user).GridUid ?? uid;
 
         _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
