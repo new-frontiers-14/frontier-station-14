@@ -227,6 +227,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             var owned = EnsureComp<OwnedDebrisComponent>(ent);
             owned.OwningController = uid;
             owned.LastKey = point;
+            EnsureComp<SpaceDebrisComponent>(ent);
         }
 
         if (failures > 0)

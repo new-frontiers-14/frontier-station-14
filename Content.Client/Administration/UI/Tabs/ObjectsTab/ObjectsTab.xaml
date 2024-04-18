@@ -2,8 +2,12 @@
          xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal">
-            <Label HorizontalExpand="True" SizeFlagsStretchRatio="0.50"
-                   Text="{Loc Object type:}" />
+            <Label Name="ShuttlesCount" HorizontalExpand="True" SizeFlagsStretchRatio="0.15"
+                   Text="{Loc Shuttles Count}" />
+            <Label Name="DebrisCount" HorizontalExpand="True" SizeFlagsStretchRatio="0.15"
+                   Text="{Loc Debris Count}" />
+            <Label Name="ExpeditionCount" HorizontalExpand="True" SizeFlagsStretchRatio="0.15"
+                   Text="{Loc Expedition Count}" />
             <OptionButton Name="ObjectTypeOptions" HorizontalExpand="True" SizeFlagsStretchRatio="0.25"/>
         </BoxContainer>
         <cc:HSeparator/>
