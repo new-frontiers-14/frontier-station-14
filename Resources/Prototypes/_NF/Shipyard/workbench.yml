@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: Tegotia
+# Discord: tegotia
+
+# Maintainer Info
+# GitHub: Tegotia
+# Discord: tegotia
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Workbench
+  name: DSI Workbench
+  description: Sometimes nicknamed "The Slab" for its rectangular radar cross-section, this tiny contractor's shuttle is packed tight with engineering equipment.
+  price: 11900
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/workbench.yml
+
+- type: gameMap
+  id: Workbench
+  mapName: 'DSI Workbench'
+  mapPath: /Maps/_NF/Shuttles/workbench.yml
+  minPlayers: 0
+  stations:
+    Workbench:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Workbench {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            StationEngineer: [ 0, 0 ]
