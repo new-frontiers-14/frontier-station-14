@@ -79,9 +79,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHardsuitSyndieReverseEngineered
@@ -100,9 +100,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHardsuitSheriff
@@ -121,7 +121,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityMK58
@@ -130,7 +130,7 @@
   productEntity: WeaponPistolMk58
   icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -236,9 +236,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEnforcer
@@ -257,9 +257,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLecter
@@ -268,7 +268,7 @@
   productEntity: WeaponRifleLecter
   icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -278,9 +278,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityLaserCarbine
@@ -299,9 +299,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityDisablerSMG
@@ -309,6 +309,46 @@
   description: uplink-security-disablersmg-desc
   productEntity: WeaponDisablerSMG
   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-desc
+  productEntity: EnergySword
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityWT550
+  name:  uplink-security-wt550-name
+  description: uplink-security-wt550-desc
+  productEntity: WeaponSubMachineGunWt550
+  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -320,47 +360,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
-        - SeniorOfficer
-        - HeadOfSecurity
-
-- type: listing
-  id: UplinkSecurityEnergySword
-  name:  uplink-security-energysword-name
-  description: uplink-security-energysword-desc
-  productEntity: EnergySword
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - HeadOfSecurity
-
-- type: listing
-  id: UplinkSecurityWT550
-  name:  uplink-security-wt550-name
-  description: uplink-security-wt550-desc
-  productEntity: WeaponSubMachineGunWt550
-  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEnergyGun
@@ -379,7 +379,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEmpRpg
@@ -398,8 +398,28 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
+- type: listing
+  id: UplinkSecurityEmpGrenade
+  name:  uplink-security-empgrenade-name
+  description: uplink-security-empgrenade-desc
+  productEntity: EmpGrenade
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHolo
@@ -466,7 +486,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityKey
@@ -485,7 +505,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityEmpRocket
@@ -504,7 +524,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityThrusterKit
@@ -523,9 +543,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityPistolMagazine
@@ -560,9 +580,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityWT550Magazine
@@ -581,7 +601,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHypo
@@ -590,7 +610,7 @@
   productEntity: HypoBrigmedic
   icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -601,7 +621,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - Brigmedic
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityAmbuzol
@@ -621,7 +641,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - Brigmedic
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityMedkit
@@ -641,7 +661,7 @@
     - !type:BuyerJobCondition
       whitelist:
         - Brigmedic
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityInspector
@@ -682,7 +702,7 @@
   productEntity: Truncheon
   icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -698,7 +718,7 @@
   productEntity: PlasteelArmingSword
   icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -724,9 +744,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityPulsePistol
@@ -745,9 +765,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityPulseCarbine
@@ -766,7 +786,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityHammer
@@ -775,7 +795,7 @@
   productEntity: SecBreachingHammer
   icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -785,9 +805,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -812,7 +832,7 @@
   productEntity: EnergyShield
   icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
   cost:
-    FrontierUplinkCoin: 4
+    FrontierUplinkCoin: 6
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -822,9 +842,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecuritySwat
@@ -843,9 +863,9 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Warden
+        - Bailiff
         - SeniorOfficer
-        - HeadOfSecurity
+        - Sheriff
 
 - type: listing
   id: UplinkSecuritySpeedloader
