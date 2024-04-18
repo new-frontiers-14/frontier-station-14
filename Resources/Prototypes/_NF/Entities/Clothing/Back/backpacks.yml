@@ -40,6 +40,7 @@
 - type: entity
   parent: ClothingBackpackSecurityFilled
   id: ClothingBackpacknfsdFilled
+  noSpawn: true
   name: nfsd backpack
   description: A backpack for Deputy Sheriff.
   suffix: Filled
@@ -51,7 +52,7 @@
   parent: ClothingBackpack
   id: ClothingBackpacknfsd
   name: nfsd backpack
-  description: A backpack for Deputy Sheriff.
+  description: A backpack for a Deputy Sheriff.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
@@ -59,6 +60,7 @@
 - type: entity
   parent: ClothingBackpackHOSFilled
   id: ClothingBackpacknfsdsheriffFilled
+  noSpawn: true
   name: nfsd backpack
   description: A backpack for the Sheriff.
   suffix: Filled - Sheriff
@@ -67,17 +69,9 @@
     sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
 
 - type: entity
-  parent: ClothingBackpack
-  id: ClothingBackpacknfsdsheriff
-  name: nfsd backpack
-  description: A backpack for the Sheriff.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Backpacks/nfsd_backpack.rsi
-
-- type: entity
   parent: ClothingBackpackBrigmedicFilled
   id: ClothingBackpacknfsdBrigmedFilled
+  noSpawn: true
   name: nfsd brigmedic backpack
   description: A backpack for Deputized Physician.
   suffix: Filled
