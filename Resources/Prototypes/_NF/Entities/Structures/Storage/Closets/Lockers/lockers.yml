@@ -315,3 +315,14 @@
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: AccessReader
     access: [["HeadOfSecurity"]]
+
+# SR
+- type: entity
+  id: LockerStationRepresentative
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerHeadOfPersonnel] # Frontier
+  name: station representative's locker
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: hop_door

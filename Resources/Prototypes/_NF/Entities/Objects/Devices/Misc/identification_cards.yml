@@ -181,3 +181,17 @@
     jobTitle: ERT Mail Carrier
   - type: Clothing
     sprite: _NF/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: HoPIDCard
+  id: SrIDCard
+  name: station representative ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idheadofpersonnel
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: StationRepresentative
