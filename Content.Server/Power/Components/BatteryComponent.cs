@@ -57,6 +57,13 @@ namespace Content.Server.Power.Components
         [Obsolete("Use system method")]
         public bool TryUseCharge(float value)
             => _entMan.System<BatterySystem>().TryUseCharge(Owner, value, this);
+
+        /// <summary>
+        /// Whether or not information about
+        /// the battery will be shown on examine.
+        /// </summary>
+        [DataField]
+        public bool ShowExamineText = true;
     }
 
     /// <summary>

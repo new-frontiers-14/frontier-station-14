@@ -3,6 +3,7 @@ job-name-mercenary = Mercenary
 job-name-pilot = Pilot
 job-name-security-guard = Security Guard
 job-name-stc = Station Traffic Controller
+job-name-sr = Station Representative
 
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ERT Mail Carrier
