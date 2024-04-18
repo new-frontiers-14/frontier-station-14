@@ -401,27 +401,6 @@
         - Sheriff
 
 - type: listing
-  id: UplinkSecurityEmpGrenade
-  name:  uplink-security-empgrenade-name
-  description: uplink-security-empgrenade-desc
-  productEntity: EmpGrenade
-  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
   id: UplinkSecurityHolo
   name:  uplink-security-holo-name
   description: uplink-security-holo-desc
