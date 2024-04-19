@@ -95,16 +95,31 @@
   id: ThrusterNfsd
   parent: ThrusterSecurity
   suffix: NFSD
+  components:
+  - type: Machine
+    board: ThrusterNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
 
 - type: entity
   id: ThrusterNfsdUnanchored
   parent: ThrusterSecurityUnanchored
   suffix: Unanchored, NFSD
+  components:
+  - type: Machine
+    board: ThrusterNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
 
 - type: entity
   id: DebugThrusterNfsd
   parent: DebugThrusterSecurity
   suffix: DEBUG, NFSD
+  components:
+  - type: Machine
+    board: ThrusterNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
 
 - type: entity
   id: SmallThruster
@@ -250,16 +265,31 @@
   id: GyroscopeNfsd
   parent: GyroscopeSecurity
   suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
 
 - type: entity
   id: DebugGyroscopeNfsd
   parent: DebugGyroscopeSecurity
   suffix: DEBUG, NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
 
 - type: entity
   id: SmallGyroscopeNfsd
   parent: GyroscopeSecurity
   suffix: NFSD
+  components:
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
 
 - type: entity
   id: SmallGyroscopeNfsdUnanchored
