@@ -156,14 +156,14 @@
 - type: entity
   id: SuitStorageBrigmedic
   parent: SuitStorageBase
-  suffix: NFSD BrigMedic
+  suffix: NFSD Brigmedic
   components:
   - type: StorageFill
     contents:
 #        - id: NitrogenTankFilled
 #        - id: OxygenTankFilled
         - id: AirTankFilled
-        - id: ClothingOuterHardsuitNfsdBrigMed # Frontier
+        - id: ClothingOuterHardsuitNfsdBrigmedic # Frontier
         - id: ClothingMaskGasNfsd 
         - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
@@ -230,7 +230,7 @@
 
 #Combat hardsuit
 - type: entity
-  id: SuitStorageCombat
+  id: SuitStorageNfsdCombat
   parent: SuitStorageBase
   suffix: NFSD Combat
   components:
@@ -249,7 +249,7 @@
 
 #Command hardsuit
 - type: entity
-  id: SuitStorageCommand
+  id: SuitStorageNfsdCommand
   parent: SuitStorageBase
   suffix: NFSD Command
   components:
