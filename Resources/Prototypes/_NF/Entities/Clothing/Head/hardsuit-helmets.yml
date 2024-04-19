@@ -86,9 +86,9 @@
   description: Lightly armored hardsuit helmet for beat-cop needs.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: PointLight
     color: "#ffeead"
   - type: Armor
@@ -117,9 +117,9 @@
   description: Lightly armored hardsuit helmet for beat-cop needs.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -127,22 +127,22 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSecurityRed
+  parent: ClothingHeadHelmetHardsuitNfsdBronze
   id: ClothingHeadHelmetHardsuitNfsdSheriff
   noSpawn: true
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff_helm.rsi
+    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieReverseEngineered
+  parent: ClothingHeadHelmetHardsuitJuggernautReverseEngineered
   id: ClothingHeadHelmetHardsuitNfsdExperimental
   noSpawn: true
   name: experimental nfsd hardsuit helmet
@@ -155,8 +155,8 @@
 
 #Security Combat Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitWarden
-  id: ClothingHeadHelmetHardsuitSecuritycombat
+  parent: ClothingHeadHardsuitWithLightBaseNfsd
+  id: ClothingHeadHelmetHardsuitNfsdCombat
   noSpawn: true
   name: nfsd combat hardsuit helmet
   description: Medium armored hardsuit helmet for NFSD raids.
@@ -167,11 +167,21 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_combat.rsi
   - type: PointLight
     color: "#79bb66"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 #Security Command Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSecurityRed
-  id: ClothingHeadHelmetHardsuitSecuritycommand
+  parent: ClothingHeadHardsuitWithLightBaseNfsd
+  id: ClothingHeadHelmetHardsuitNfsdCommand
   noSpawn: true
   name: nfsd command hardsuit helmet
   description: Medium armored hardsuit helmet for NFSD raids.
@@ -182,3 +192,13 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_command.rsi
   - type: PointLight
     color: "#ffed7f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
