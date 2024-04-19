@@ -142,7 +142,7 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitJuggernautReverseEngineered
+  parent: ClothingHeadHardsuitWithLightBaseNfsd
   id: ClothingHeadHelmetHardsuitNfsdExperimental
   noSpawn: true
   name: experimental nfsd hardsuit helmet
@@ -152,6 +152,16 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 #Security Combat Hardsuit
 - type: entity
