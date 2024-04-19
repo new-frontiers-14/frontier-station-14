@@ -14,16 +14,10 @@
       time: 32400 # 9 hrs
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer" # Frontier
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-bailiff
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service
-  - External
-  - Mercenary # Frontier
-  - Captain # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
