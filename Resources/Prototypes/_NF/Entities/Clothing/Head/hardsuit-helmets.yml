@@ -28,6 +28,36 @@
         Piercing: 0.9
         Heat: 0.9
 
+#Security Combat Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitWarden
+  id: ClothingHeadHelmetHardsuitSecuritycombat
+  noSpawn: true
+  name: nfsd combat hardsuit helmet
+  description: Medium armored hardsuit helmet for NFSD raids.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/security-combat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/security-combat.rsi
+  - type: PointLight
+    color: "#79bb66"
+
+#Security Command Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurityRed
+  id: ClothingHeadHelmetHardsuitSecuritycommand
+  noSpawn: true
+  name: nfsd command hardsuit helmet
+  description: Medium armored hardsuit helmet for NFSD raids.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/security-command.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/security-command.rsi
+  - type: PointLight
+    color: "#ffed7f"
+
 #Mercenary Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
@@ -189,8 +219,8 @@
   parent: ClothingHeadHelmetHardsuitSyndieReverseEngineered
   id: ClothingHeadHelmetHardsuitNfsdExperimental
   noSpawn: true
-  name: nfsd experimental hardsuit helmet
-  description: An experimental nfsd hardsuit helmet.
+  name: experimental nfsd hardsuit helmet
+  description: experimental nfsd hardsuit helmet
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi

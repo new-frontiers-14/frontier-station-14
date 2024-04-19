@@ -9,16 +9,17 @@
   startingGear: ValetGear
   alwaysUseSpawner: true
   icon: "JobIconServiceWorker"
-  supervisors: job-supervisors-everyone
+  supervisors: job-supervisors-sr
+  canBeAntag: false
   access:
-  - Service
-  - Bar
-  - Kitchen
-  - Cargo
   - Maintenance
-  - Janitor
   - External # Frontier
+  - Service
+  - Janitor
   - Mail # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: ValetGear

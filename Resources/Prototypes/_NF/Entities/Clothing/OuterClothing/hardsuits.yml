@@ -29,6 +29,34 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
+    
+#Security Combat Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitWarden
+  id: ClothingOuterHardsuitSecuritycombat
+  name: nfsd combat hardsuit
+  description: AMedium armored hardsuit helmet for NFSD raids.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-combat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-combat.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritycombat
+    
+#Security Command Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitSecuritycommand
+  name: nfsd command hardsuit
+  description: Medium armored hardsuit helmet for NFSD raids.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-command.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-command.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritycommand
 
 #Mercenary Hardsuit
 - type: entity
@@ -255,7 +283,7 @@
 - type: entity
   parent: ClothingOuterHardsuitSyndieReverseEngineered
   id: ClothingOuterHardsuitNfsdExperimental
-  name: an experimental nfsd hardsuit
+  name: experimental nfsd hardsuit
   description: An experimental nfsd hardsuit, never before seen!
   components:
   - type: Sprite

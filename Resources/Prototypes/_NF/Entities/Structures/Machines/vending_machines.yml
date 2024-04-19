@@ -91,6 +91,17 @@
     mod: 25
 
 - type: entity
+  parent: [BaseStructureUnanchorable, VendingMachineFlatpackVend]
+  id: VendingMachineExpeditionaryFlatpackVend
+  name: Expeditionary FlatpackVend
+  description: Essential tech for the space-men on an expedition
+  components:
+  - type: VendingMachine
+    pack: ExpeditionaryFlatpackVendInventory
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
+
+- type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend
@@ -311,17 +322,17 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDDrobe
+  id: VendingMachineNfsdDrobe
   name: NFSDDrobe
   description: A vending machine for NFSD and NFSD clothing!
   components:
   - type: VendingMachine
-    pack: NFSDDrobeInventory
+    pack: NfsdDrobeInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    pack: NFSDDrobeAds
+    pack: NfsdDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi
     layers:
@@ -337,19 +348,19 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDTec
-  name: NFSDTec
+  id: VendingMachineNfsdTech
+  name: NFSDTech
   description: A vending machine for NFSD and NFSD tech!
   components:
   - type: VendingMachine
-    pack: NFSDTecInventory
+    pack: NfsdTechInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    pack: NFSDDrobeAds
+    pack: NfsdDrobeAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/nfsdtec.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/nfsdtech.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -360,3 +371,27 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Security"]]
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart] # Frontier
+  id: VendingMachineCartNfsd
+  components:
+  - type: VendingMachine
+    pack: PTechNfsdInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
