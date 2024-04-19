@@ -68,7 +68,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
+      - id: BoxSurvivalNFSD
       - id: Flash
       - id: MagazinePistol
       - id: BaseSecurityUplinkRadioOfficer # Frontier
@@ -86,3 +86,17 @@
         - id: RubberStampCentcom
         - id: PenCentcom
         - id: BoxFolderCentCom
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpack
+  id: ClothingBackpackSrFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      - id: Flash
+      - id: RubberStampSr
+      - id: DoorRemoteCommand
+      - id: AccessConfigurator
+      - id: PhoneInstrument
