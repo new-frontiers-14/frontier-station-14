@@ -1,4 +1,5 @@
-﻿using Content.Server.Bank;
+﻿using Content.Server._NF.Market.Components;
+using Content.Server.Bank;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
@@ -16,7 +17,7 @@ public sealed partial class MarketSystem
 
     private void InitializeCrateMachine()
     {
-        SubscribeLocalEvent<SharedCrateMachineComponent, CrateMachinePurchaseMessage>(OnPurchaseCrateMessage);
+        SubscribeLocalEvent<CrateMachineComponent, CrateMachinePurchaseMessage>(OnPurchaseCrateMessage);
     }
 
     private void OnPurchaseCrateMessage(EntityUid uid, SharedCrateMachineComponent component, CrateMachinePurchaseMessage args)

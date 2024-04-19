@@ -24,6 +24,8 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
         SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);
         SubscribeLocalEvent<MarketConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
+
+        InitializeCrateMachine();
     }
 
     private void OnEntitySoldEvent(ref EntitySoldEvent ev)

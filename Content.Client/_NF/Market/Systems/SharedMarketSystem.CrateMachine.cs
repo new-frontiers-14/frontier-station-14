@@ -1,4 +1,5 @@
-﻿using Content.Shared._NF.Market;
+﻿using Content.Client._NF.Market.Components;
+using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -124,7 +125,7 @@ public sealed class MarketSystem : SharedMarketSystem
         }
     }
 
-    private void OnAppearanceChange(EntityUid uid, CrateMachineComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(EntityUid uid, SharedCrateMachineComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
