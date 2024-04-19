@@ -322,7 +322,7 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDDrobe
+  id: VendingMachineNfsdDrobe
   name: NFSDDrobe
   description: A vending machine for NFSD and NFSD clothing!
   components:
@@ -348,19 +348,19 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDTec
-  name: NFSDTec
+  id: VendingMachineNfsdTech
+  name: NFSDTech
   description: A vending machine for NFSD and NFSD tech!
   components:
   - type: VendingMachine
-    pack: NFSDTecInventory
+    pack: NfsdTechInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    pack: NFSDDrobeAds
+    pack: NfsdDrobeAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/nfsdtec.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/nfsdtech.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
