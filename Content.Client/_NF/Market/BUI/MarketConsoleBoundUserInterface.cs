@@ -1,7 +1,6 @@
 ﻿using Content.Client._NF.Market.UI;
-using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.BUI;
-using Robust.Client.UserInterface.Controls;
+using Content.Shared._NF.Market.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._NF.Market.BUI;
@@ -23,6 +22,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         _menu = new MarketMenu();
         _menu.OnClose += Close;
         _menu.OnPurchase += Purchase;
+        _menu.OnPurchaseCrate += PurchaseCrate;
 
         _menu.OpenCentered();
     }
@@ -43,5 +43,10 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void Purchase(ButtonEventArgs args)
     {
         // Do stuff
+    }
+
+    private void PurchaseCrate(ButtonEventArgs args)
+    {
+        SendMessage(new CrateMachinePurchaseMessage());
     }
 }

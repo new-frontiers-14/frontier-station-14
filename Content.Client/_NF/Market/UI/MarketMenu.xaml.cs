@@ -16,11 +16,14 @@ public sealed partial class MarketMenu : FancyWindow
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public event Action<BaseButton.ButtonEventArgs>? OnPurchase;
+    public event Action<BaseButton.ButtonEventArgs>? OnPurchaseCrate;
 
     public MarketMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        PurchaseCrate.OnPressed += OnPurchaseCrate;
     }
 
     public void SetEnabled(bool enabled)
