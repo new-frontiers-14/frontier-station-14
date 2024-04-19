@@ -1,0 +1,255 @@
+# Engineering Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsBasicEngineering
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/wrench.rsi
+        state: icon
+      - sprite: Objects/Tools/crowbar.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Wirecutter
+    - Screwdriver
+    - Crowbar
+    - Multitool
+    - NetworkConfigurator
+    - trayScanner
+    - WelderIndustrial # Basic welder isn't cool enough
+    - SprayPainter
+    - GasAnalyzer
+    - AppraisalTool
+    - FlashlightLantern
+    - ClothingEyesGlassesMeson
+    - ClothingHandsGlovesColorYellow
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - WelderIndustrialAdvanced
+    rareChance: 0.01
+
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsAdvancedEngineering
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chief Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/drill.rsi
+        state: drill_screw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PowerDrill
+    - JawsOfLife
+    - WelderExperimental
+    - HolofanProjector
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - RCD
+    - SyndicateJawsOfLife
+    rareChance: 0.04
+
+- type: entity
+  name: random toolbox
+  id: SpawnDungeonLootToolbox
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ToolboxElectricalFilled
+    - ToolboxEmergencyFilled
+    - ToolboxMechanicalFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ToolboxSyndicateFilled
+    rareChance: 0.02
+
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootMaterialsValuableSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootToolsAdvancedEngineering
+    rareChance: 0.01
+
+- type: entity
+  name: random parts
+  id: SpawnDungeonLootPartsEngi
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/stock_parts.rsi
+        state: bluespace_matter_bin
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # T2
+    - AdvancedCapacitorStockPart
+    - NanoManipulatorStockPart
+    - AdvancedMatterBinStockPart
+    # T3
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
+    # Engi related things
+    - PowerCellPotato
+    - PowerCellMedium
+    - PowerCellHigh
+    - PowerCellHyper
+    - ProximitySensor
+    - RemoteSignaller
+    - Igniter
+    - DrinkSpaceLube
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    # T4
+    - QuadraticCapacitorStockPart
+    - FemtoManipulatorStockPart
+    - BluespaceMatterBinStockPart
+    - PowerCellMicroreactor
+    - HandheldStationMap
+    rareChance: 0.01
+
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerEngineerFilled
+    - LockerWeldingSuppliesFilled
+    - LockerElectricalSuppliesFilled
+    - LockerAtmosphericsFilled
+    - ClosetToolFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerChiefEngineerFilled
+    rareChance: 0.05
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: engi
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - CircuitImprinter
+    - MachineFlatpacker
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - Autolathe
+    - Protolathe
+    - TilePrinterNF
+    rareChance: 0.05
+
+- type: entity
+  name: random vendomats
+  id: SpawnDungeonVendomatsEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engi"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: any
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineAtmosDrobe
+    - VendingMachineEngiDrobe
+    - VendingMachineVendomat
+    - VendingMachineEngivend
+    - VendingMachineRobotics
+    - VendingMachineYouTool
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContraband
+    - VendingMachineSyndieDrobe
+    rareChance: 0.01

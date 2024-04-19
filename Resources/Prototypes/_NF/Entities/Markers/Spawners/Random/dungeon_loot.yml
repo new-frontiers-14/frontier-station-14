@@ -9,255 +9,6 @@
   - type: Transform
     anchored: false
 
-# Engineering Tools
-- type: entity
-  name: random tool
-  id: SpawnDungeonLootToolsBasicEngineering
-  parent: MarkerBasePlaceFree
-  suffix: Basic, Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Tools/wrench.rsi
-        state: icon
-      - sprite: Objects/Tools/crowbar.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - Wirecutter
-    - Screwdriver
-    - Crowbar
-    - Multitool
-    - NetworkConfigurator
-    - trayScanner
-    - WelderIndustrial # Common welder isn't cool enough
-    - SprayPainter
-    - GasAnalyzer
-    - AppraisalTool
-    - FlashlightLantern
-    - ClothingEyesGlassesMeson
-    - ClothingHandsGlovesColorYellow
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - WelderIndustrialAdvanced
-    rareChance: 0.05
-
-- type: entity
-  name: random tool
-  id: SpawnDungeonLootToolsAdvancedEngineering
-  parent: MarkerBasePlaceFree
-  suffix: CE, Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Tools/drill.rsi
-        state: drill_screw
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - PowerDrill
-    - JawsOfLife
-    - WelderExperimental
-    - HolofanProjector
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - RCD
-    - SyndicateJawsOfLife
-    rareChance: 0.05
-
-- type: entity
-  name: random toolbox
-  id: SpawnDungeonLootToolbox
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ToolboxElectricalFilled
-    - ToolboxEmergencyFilled
-    - ToolboxMechanicalFilled
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - ToolboxSyndicateFilled
-    rareChance: 0.05
-
-- type: entity
-  name: random engi items
-  id: SpawnDungeonLootEngiItems
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Misc/stock_parts.rsi
-        state: bluespace_matter_bin
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    # T2
-    - AdvancedCapacitorStockPart
-    - NanoManipulatorStockPart
-    - AdvancedMatterBinStockPart
-    # T3
-    - SuperCapacitorStockPart
-    - PicoManipulatorStockPart
-    - SuperMatterBinStockPart
-    # Engi related things
-    - PowerCellPotato
-    - PowerCellMedium
-    - PowerCellHigh
-    - PowerCellHyper
-    - ProximitySensor
-    - RemoteSignaller
-    - Igniter
-    - DrinkSpaceLube
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    # T4
-    - QuadraticCapacitorStockPart
-    - FemtoManipulatorStockPart
-    - BluespaceMatterBinStockPart
-    - PowerCellMicroreactor
-    rareChance: 0.05
-
-# Surgery Tools
-- type: entity
-  name: random surgery tool
-  id: SpawnDungeonLootToolsSurgeryCrude
-  parent: MarkerBasePlaceFree
-  suffix: Improvised, Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
-        state: improv
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ScalpelShiv
-    - WelderMini
-    - SawImprov
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - WeaponShotgunHandmade
-    rareChance: 0.05
-
-- type: entity
-  name: random surgery tool
-  id: SpawnDungeonLootToolsSurgery
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
-        state: saw
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - Scalpel
-    - Cautery
-    - Saw
-    - Drill
-    - Hemostat
-    - Retractor
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - SawElectric
-    rareChance: 0.1
-
-- type: entity
-  name: random surgery tool
-  id: SpawnDungeonLootToolsSurgeryAdvanced
-  parent: MarkerBasePlaceFree
-  suffix: Advanced, Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
-        state: advanced
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ScalpelAdvanced
-    - ScalpelLaser
-    - Cautery
-    - SawElectric
-    - Drill
-    - Hemostat
-    - Retractor
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - SawAdvanced
-    rareChance: 0.15
-
-- type: entity
-  name: random surgery kit
-  id: SpawnDungeonLootKitSurgery
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Clothing/Back/Duffels/medical.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ClothingBackpackDuffelSurgeryImpovFilled
-    - ClothingBackpackDuffelSurgeryFilled
-    - ClothingBackpackDuffelSurgeryAdvancedFilled
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - ClothingBackpackDuffelSyndicateFilledMedical
-    rareChance: 0.2
-
 # Bureaucracy clutter items
 - type: entity
   name: random pen
@@ -295,7 +46,7 @@
     rarePrototypes:
     - PenExplodingBox
     - HypopenBox
-    rareChance: 0.05
+    rareChance: 0.01
 
 - type: entity
   name: random bureaucracy items
@@ -325,37 +76,6 @@
     - SpawnDungeonLootBureaucracyPen
     chance: 1
     offset: 0.0
-
-# Medkits
-- type: entity
-  name: random med kit
-  id: SpawnDungeonLootKitsFirstAid
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/firstaidkits.rsi
-        state: firstaid
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - MedkitFilled
-    - MedkitBruteFilled
-    - MedkitAdvancedFilled
-    - MedkitCombatFilled
-    - MedkitBurnFilled
-    - MedkitToxinFilled
-    - MedkitRadiationFilled
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - ClothingBackpackDuffelSyndicateMedicalBundleFilled
-    rareChance: 0.1
 
 # Vendomats
 - type: entity
@@ -444,7 +164,7 @@
     - VendingMachineBountyVend
     - VendingMachineArcadia
     - VendingMachineSyndieDrobe
-    rareChance: 0.05
+    rareChance: 0.01
 
 - type: entity
   name: random tools vendomat
@@ -472,7 +192,7 @@
     - VendingMachineSyndieContraband
     - VendingMachineNFSDTec
     - VendingMachineArcadia
-    rareChance: 0.05
+    rareChance: 0.01
 
 # Lathes and circuits
 - type: entity
@@ -511,7 +231,7 @@
     rarePrototypes:
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
-    rareChance: 0.1
+    rareChance: 0.05
 
 - type: entity
   name: random machine board
@@ -597,3 +317,170 @@
     - SpaceCash20000
     - SpaceCash30000
     rareChance: 0.1
+
+# Materials
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsBasicFull
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon, Basic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/Sheets/metal.rsi
+        state: plasteel_3
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SheetGlass
+    - SheetRGlass
+    - SheetPGlass
+    - SheetUGlass
+    - SheetSteel
+    - SheetPaper
+    - SheetPlasma
+    - SheetPlastic
+    - SheetUranium
+    - MaterialCloth
+    - MaterialWoodPlank
+    - PartRodMetal
+    - CableHVStack
+    - CableMVStack
+    - CableApcStack
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium
+    - MaterialBones
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsValuableFull
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon, Valuable
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/ingots.rsi
+        state: gold_3
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - IngotGold
+    - IngotSilver
+    - SheetRPGlass
+    - SheetRUGlass
+    - SheetPlasteel
+    - MaterialDurathread
+    - MaterialDiamond
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium
+    - MaterialBones
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsBasicSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Basic, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/Sheets/metal.rsi
+        state: plasteel
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SheetGlass1
+    - SheetRGlass1
+    - SheetPGlass1
+    - SheetUGlass1
+    - SheetSteel1
+    - SheetPaper1
+    - SheetPlasma1
+    - SheetPlastic1
+    - SheetUranium1
+    - MaterialCloth1
+    - MaterialWoodPlank1
+    - PartRodMetal1
+    - CableHVStack1
+    - CableMVStack1
+    - CableApcStack1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium1
+    - MaterialBones1
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsValuableSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Valuable, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/ingots.rsi
+        state: gold
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - IngotGold1
+    - IngotSilver1
+    - SheetRPGlass1
+    - SheetRUGlass1
+    - SheetPlasteel1
+    - MaterialDurathread1
+    - MaterialDiamond1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium1
+    - MaterialBones1
+    rareChance: 0.01
+
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresFull
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon, Full
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GoldOre
+    - SteelOre
+    - PlasmaOre
+    - SilverOre
+    - SpaceQuartz
+    - UraniumOre
+    - Coal
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - BananiumOre
+    rareChance: 0.05
