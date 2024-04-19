@@ -24,42 +24,8 @@
   supervisors: job-supervisors-centcom # Frontier
   whitelistRequired: true
   canBeAntag: false
-  access:
-  - HeadOfSecurity
-  - HeadOfPersonnel # Frontier - This should probably be removed after we confirm they can get into SR office + Bank
-  - Command
-  - Brig
-  - Frontier
-  - Security
-  - Armory
-  - Maintenance
-  - Service
-  - External
-  - Detective
-  - Mercenary # Frontier
-  - Bar # Frontier
-  - Janitor # Frontier
-  - Theatre # Frontier
-  - Kitchen # Frontier
-  - Chapel # Frontier
-  - Hydroponics # Frontier
-  - Chemistry # Frontier
-  - Engineering # Frontier
-  - Quartermaster # Frontier
-  - Research # Frontier
-  - Salvage # Frontier
-  - Cargo # Frontier
-  - Atmospherics # Frontier
-  - Medical # Frontier
-  - EmergencyShuttleRepealAll # Frontier
-  - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - ChiefMedicalOfficer # Frontier
-  - ResearchDirector # Frontier
-  - Pilot # Frontier
-  - Lawyer # Frontier
-  - Cryogenics # Frontier
-  - Mail # Frontier
+  accessGroups:
+  - AllAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -71,7 +37,7 @@
   id: SheriffGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNfsdTacGray # Frontier
-    back: ClothingBackpacknfsdsheriffFilled # Frontier
+    back: ClothingBackpackNfsdBrownSheriffFilled # Frontier
     shoes: ClothingShoesBootsNFSDBrownFilled # Frontier
     outerClothing: ClothingOuterCoatNfsdFormalSheriff # Frontier
     eyes: ClothingEyesGlassesNFSD # Frontier
@@ -86,6 +52,6 @@
     neck: ClothingNeckMantleSheriffFilled # Frontier
     suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
   innerClothingSkirt: ClothingUniformJumpskirtNfsd # Frontier
-  satchel: ClothingBackpackSatchelnfsdsheriffFilled # Frontier
-  duffelbag: ClothingBackpackDuffelnfsdsheriffFilled # Frontier
-  messenger: ClothingBackpackMessengerHOSFilled # Frontier
+  satchel: ClothingBackpackSatchelNfsdBrownSheriffFilled
+  duffelbag: ClothingBackpackDuffelNfsdBrownSheriffFilled
+  messenger: ClothingBackpackMessengerNfsdBrownSheriffFilled
