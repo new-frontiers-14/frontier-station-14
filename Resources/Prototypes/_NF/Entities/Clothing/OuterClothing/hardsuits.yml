@@ -104,30 +104,6 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
 
-# Funny meme joke ha-ha: off-brand blood-red hardsuit
-- type: entity
-  parent: ClothingOuterHardsuitSyndie
-  id: ClothingOuterHardsuitSundie
-  name: sundicate crimson-red hardsuit
-  description: A heavily armored hardsuit designed for work in special operations. Manufactored in Twinwine Colony by Goreblox Looters LLC.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-    color: orange
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 1.1
-        Heat: 1.5
-        Radiation: 1.5
-        Caustic: 1.5
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSundie
-
 # Syndicate NPC hard suit, unremoveable
 - type: entity
   parent: ClothingOuterHardsuitSyndie
@@ -158,14 +134,16 @@
 # Security
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
-  id: ClothingOuterHardsuitNfsdPatrol
-  name: nfsd patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by security patrol officers. Not certified to be blunderbuss proof.
+  id: ClothingOuterHardsuitNfsdBronze
+  name: nfsd bronze patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -178,26 +156,11 @@
         Radiation: 0.55
         Caustic: 0.75
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
+    walkModifier: 0.95
+    sprintModifier: 0.85
 
 - type: entity
-  parent: ClothingOuterHardsuitNfsdPatrol
-  id: ClothingOuterHardsuitNfsdBronze
-  name: nfsd bronze patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
-
-- type: entity
-  parent: ClothingOuterHardsuitNfsdPatrol
+  parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSilver
   name: nfsd silver patrol hardsuit
   description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
@@ -210,7 +173,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
 
 - type: entity
-  parent: ClothingOuterHardsuitNfsdPatrol
+  parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdGold
   name: nfsd gold patrol hardsuit
   description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
@@ -223,7 +186,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
 
 - type: entity
-  parent: ClothingOuterHardsuitNfsdPatrol
+  parent: ClothingOuterHardsuitNfsdBronze
   id: ClothingOuterHardsuitNfsdSheriff
   name: nfsd sheriff patrol hardsuit
   description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
@@ -236,8 +199,8 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
 
 - type: entity
-  parent: ClothingOuterHardsuitNfsdPatrol
-  id: ClothingOuterHardsuitNfsdBrigMed
+  parent: ClothingOuterHardsuitNfsdBronze
+  id: ClothingOuterHardsuitNfsdBrigmedic
   name: nfsd brigmedic patrol hardsuit
   description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
   components:
@@ -249,7 +212,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmed
 
 - type: entity
-  parent: ClothingOuterHardsuitSyndieReverseEngineered
+  parent: ClothingOuterHardsuitJuggernautReverseEngineered # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
   name: experimental nfsd hardsuit
   description: An experimental nfsd hardsuit, never before seen!
@@ -263,10 +226,10 @@
 
 #Security Combat Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitWarden
-  id: ClothingOuterHardsuitSecuritycombat
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdCombat
   name: nfsd combat hardsuit
-  description: AMedium armored hardsuit helmet for NFSD raids.
+  description: Medium armored hardsuit helmet for NFSD raids.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/security-combat.rsi
@@ -274,17 +237,45 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/security-combat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritycombat
-    
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.60
+        Radiation: 0.50
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
+
 #Security Command Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitSecurityRed
-  id: ClothingOuterHardsuitSecuritycommand
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdCommand
   name: nfsd command hardsuit
   description: Medium armored hardsuit helmet for NFSD raids.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-command.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Hardsuits/security-command.rsi
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritycommand
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.50
+        Radiation: 0.4
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
