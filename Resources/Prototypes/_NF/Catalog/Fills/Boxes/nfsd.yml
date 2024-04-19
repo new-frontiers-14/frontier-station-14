@@ -2,7 +2,7 @@
 - type: entity
   name: box of nfsd items
   parent: BoxCardboard
-  id: BoxBundleNFSD
+  id: BoxBundleNfsd
   description: A box full of nfsd items.
   components:
   - type: Sprite
@@ -11,7 +11,7 @@
 
 - type: entity
   name: box of explosive grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxExplosiveGrenades
   description: A box full of explosive grenades.
   components:
@@ -22,7 +22,7 @@
 
 - type: entity
   name: box of incendiary grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxIncendiaryGrenades
   description: A box full of incendiary grenades.
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   name: box of shrapnel grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxShrapnelGrenades
   description: A box full of shrapnel grenades.
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   name: box of smoke grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxSmokeGrenades
   description: A box full of smoke grenades.
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   name: box of tear gas grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxTeargasGrenades
   description: A box full of tear gas grenades.
   components:
@@ -65,8 +65,7 @@
         amount: 4
 
 - type: entity
-  name: box of EMP grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxEMPGrenades
   description: A box full of EMP grenades.
   components:
@@ -77,7 +76,7 @@
 
 - type: entity
   name: box of flashbang grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxFlashBangGrenades
   description: A box full of flashbang grenades.
   components:
@@ -88,11 +87,23 @@
 
 - type: entity
   name: box of stinger grenades
-  parent: BoxBundleNFSD
+  parent: BoxBundleNfsd
   id: BoxStingerGrenades
   description: A box full of stinger grenades.
   components:
   - type: StorageFill
     contents:
       - id: GrenadeStinger
+        amount: 4
+
+## plastic explosives
+- type: entity
+  name: box of breaching charges grenades
+  parent: BoxBundleNfsd
+  id: BoxBreachingCharges
+  description: A box full of breaching charges.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BreachingCharge
         amount: 4
