@@ -11,6 +11,7 @@
 - type: entity
   parent: ClothingHeadsetSecuritySafe
   id: ClothingHeadsetNfsdSafe # Ask SR or Sheriff for keys
+  abstract: true
 
 - type: entity
   parent: ClothingHeadset
@@ -22,12 +23,8 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNFSD
+      - EncryptionKeyNfsd
       - EncryptionKeyCommon
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
   parent: ClothingHeadsetNfsd
@@ -49,16 +46,7 @@
 
 - type: entity
   parent: ClothingHeadsetNfsd
-  id: ClothingHeadsetNfsdCb # Ask SR or Sheriff for keys
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-
-- type: entity
-  parent: ClothingHeadsetNfsd
-  id: ClothingHeadsetNfsdCb # Ask SR or Sheriff for keys
+  id: ClothingHeadsetNfsdCream # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
@@ -91,3 +79,14 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+
+- type: entity
+  parent: ClothingHeadsetNfsdCream
+  id: ClothingHeadsetNfsdCreamMed # Ask SR or Sheriff for keys
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
