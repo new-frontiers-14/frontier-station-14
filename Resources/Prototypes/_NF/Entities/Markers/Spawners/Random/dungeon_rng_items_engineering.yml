@@ -1,9 +1,38 @@
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootMaterialsValuableSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootToolsAdvancedEngineering
+    rareChance: 0.01
+
 # Engineering Tools
 - type: entity
   name: random tool
   id: SpawnDungeonLootToolsBasicEngineering
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Engineer"
+  suffix: "Dungeon, Engineering"
   components:
   - type: Sprite
     layers:
@@ -93,33 +122,6 @@
 
 # Clutter
 - type: entity
-  name: random clutter
-  id: SpawnDungeonLootClutterEngi
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Engineer"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - SpawnDungeonLootPartsEngi
-    - SpawnDungeonLootToolsBasicEngineering
-    - SpawnDungeonLootMaterialsValuableSingle
-    - SpawnDungeonLootMaterialsBasicSingle
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootToolsAdvancedEngineering
-    rareChance: 0.01
-
-- type: entity
   name: random parts
   id: SpawnDungeonLootPartsEngi
   parent: MarkerBasePlaceFree
@@ -145,10 +147,7 @@
     - PicoManipulatorStockPart
     - SuperMatterBinStockPart
     # Engi related things
-    - PowerCellPotato
-    - PowerCellMedium
-    - PowerCellHigh
-    - PowerCellHyper
+    - SpawnDungeonLootPowerCell
     - ProximitySensor
     - RemoteSignaller
     - Igniter
@@ -160,15 +159,41 @@
     - QuadraticCapacitorStockPart
     - FemtoManipulatorStockPart
     - BluespaceMatterBinStockPart
-    - PowerCellMicroreactor
     - HandheldStationMap
+    rareChance: 0.01
+
+- type: entity
+  name: random power cell
+  id: SpawnDungeonLootPowerCell
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Power/power_cells.rsi
+        state: hyper
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PowerCellMedium
+    - PowerCellHigh
+    - PowerCellHyper
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - PowerCellMicroreactor
+    - PowerCellPotato
     rareChance: 0.01
 
 - type: entity
   name: random locker
   id: SpawnDungeonLootLockersEngi
   parent: MarkerBase
-  suffix: "Dungeon, Engineer"
+  suffix: "Dungeon, Engineering"
   components:
   - type: Sprite
     layers:
@@ -198,7 +223,7 @@
   name: random machine techfab
   id: SpawnDungeonLootLatheEngi
   parent: MarkerBase
-  suffix: "Dungeon, Engineer"
+  suffix: "Dungeon, Engineering"
   components:
   - type: Sprite
     layers:
@@ -232,7 +257,7 @@
   name: random vendomats
   id: SpawnDungeonVendomatsEngi
   parent: MarkerBase
-  suffix: "Dungeon, Engi"
+  suffix: "Dungeon, Engineering"
   components:
   - type: Sprite
     layers:

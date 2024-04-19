@@ -9,74 +9,6 @@
   - type: Transform
     anchored: false
 
-# Bureaucracy clutter items
-- type: entity
-  name: random pen
-  id: SpawnDungeonLootBureaucracyPen
-  noSpawn: true
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: luxury_pen
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - LuxuryPen
-    - LuxuryPen
-    - LuxuryPen
-    - PenCap
-    - PenHop
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - PenExplodingBox
-    - HypopenBox
-    rareChance: 0.01
-
-- type: entity
-  name: random bureaucracy items
-  id: SpawnDungeonLootBureaucracy
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: labeler1
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - PaperOffice
-    - Paper
-    - ClothingEyesGlasses
-    - ClothingEyesGlassesJamjar
-    - HandLabeler
-    - NewtonCradle
-    - DrinkSpaceGlue
-    - FolderSpawner
-    - SpawnDungeonLootBureaucracyPen
-    chance: 1
-    offset: 0.0
-
 # Vendomats
 - type: entity
   name: random recreational vendomat # food, drinks, smokes, toy, decor
@@ -323,7 +255,7 @@
   name: random materials
   id: SpawnDungeonLootMaterialsBasicFull
   parent: MarkerBasePlaceFree
-  suffix: Dungeon, Basic
+  suffix: "Dungeon, Basic"
   components:
   - type: Sprite
     layers:
@@ -361,7 +293,7 @@
   name: random materials
   id: SpawnDungeonLootMaterialsValuableFull
   parent: MarkerBasePlaceFree
-  suffix: Dungeon, Valuable
+  suffix: "Dungeon, Valuable"
   components:
   - type: Sprite
     layers:
@@ -459,7 +391,7 @@
   name: random ores
   id: SpawnDungeonLootOresFull
   parent: MarkerBasePlaceFree
-  suffix: Dungeon, Full
+  suffix: "Dungeon, Full"
   components:
   - type: Sprite
     layers:
@@ -484,3 +416,103 @@
     rarePrototypes:
     - BananiumOre
     rareChance: 0.05
+
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GoldOre1
+    - SteelOre1
+    - PlasmaOre1
+    - SilverOre1
+    - SpaceQuartz1
+    - UraniumOre1
+    - Coal1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - BananiumOre1
+    rareChance: 0.05
+
+# Bureaucracy clutter items
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootBureaucracy
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Bureaucracy"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: labeler1
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PaperOffice
+    - Paper
+    - Paper
+    - Paper
+    - ClothingEyesGlasses
+    - ClothingEyesGlassesJamjar
+    - HandLabeler
+    - NewtonCradle
+    - DrinkSpaceGlue
+    - FolderSpawner
+    - SpawnDungeonLootBureaucracyPen
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random pen
+  id: SpawnDungeonLootBureaucracyPen
+  noSpawn: true
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: luxury_pen
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - LuxuryPen
+    - LuxuryPen
+    - LuxuryPen
+    - PenCap
+    - PenHop
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - PenExplodingBox
+    - HypopenBox
+    rareChance: 0.01

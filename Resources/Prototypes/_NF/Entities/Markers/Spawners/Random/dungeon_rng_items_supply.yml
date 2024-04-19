@@ -1,0 +1,155 @@
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootToolsSalvage
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootOresFull
+    - SpawnDungeonLootOresSingle
+    - SpawnDungeonLootOresFull
+    - SpawnDungeonLootOresSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitSalvage
+    - ClothingOuterHardsuitMaximPrototype
+    - ClothingOuterHardsuitLuxury
+    - ClothingOuterHardsuitSpatio
+    rareChance: 0.01
+
+# Salvage Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCrusherDagger
+    - WeaponCrusher
+    - WeaponCrusherGlaive
+    - WeaponProtoKineticAccelerator
+    - OreBag
+    - RadioHandheld
+    - HandheldGPSBasic
+    - Floodlight
+    - Pickaxe
+    - AppraisalTool
+    - MiningDrill
+    - ClothingHeadsetMining
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - OreBagOfHolding
+    - HandHeldMassScanner
+    rareChance: 0.01
+
+# Clutter
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: mining
+      - sprite: Structures/Storage/closet.rsi
+        state: mining_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerSalvageSpecialistFilled
+    - WardrobeCargoFilled
+    - LockerQuarterMasterFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SuitStorageSalv
+    - SuitStorageQuartermaster
+    rareChance: 0.03
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: cargo
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - Autolathe
+    - OreProcessorIndustrial
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessor
+    rareChance: 0.05
+
+- type: entity
+  name: random vendomats
+  id: SpawnDungeonVendomatsSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/random.rsi
+        state: any
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineYouTool
+    - VendingMachineSalvage
+    - VendingMachineSalvage
+    - VendingMachineWinter
+    - VendingMachineCargoDrobe
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContraband
+    - VendingMachineSyndieDrobe
+    - VendingMachineArcadia
+    rareChance: 0.01

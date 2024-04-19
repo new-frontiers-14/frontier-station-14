@@ -1,3 +1,43 @@
+- type: entity
+  name: random clutter
+  id: SpawnDungeonClutterMedical
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingNeckStethoscope
+    - ClothingHandsGlovesLatex
+    - ClothingHandsGlovesNitrile
+    - ClothingHeadsetMedical
+    - ClothingMaskSterile
+    - ClothingEyesHudMedical
+    - HandheldHealthAnalyzer
+    - ClothingEyesGlassesChemical
+    - DiseaseSwab
+    - SpawnDungeonClutterSyringe
+    - SpawnDungeonClutterBeaker
+    - SpawnDungeonClutterPatientTransport
+    - SpawnDungeonClutterImplanter
+    - SpawnDungeonClutterHypospray
+    - SpawnDungeonLootToolsSurgery
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootKitsFirstAid
+    - HandheldCrewMonitor
+    - SpawnDungeonLootToolsSurgeryAdvanced
+    rareChance: 0.01
+
 # Medkits
 - type: entity
   name: random medkit
@@ -145,45 +185,6 @@
     rareChance: 0.05
 
 # Clutter
-- type: entity
-  name: random clutter
-  id: SpawnDungeonClutterMedical
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Medical"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ClothingNeckStethoscope
-    - ClothingHandsGlovesLatex
-    - ClothingHandsGlovesNitrile
-    - ClothingHeadsetMedical
-    - ClothingMaskSterile
-    - ClothingEyesHudMedical
-    - HandheldHealthAnalyzer
-    - ClothingEyesGlassesChemical
-    - DiseaseSwab
-    - SpawnDungeonClutterSyringe
-    - SpawnDungeonClutterBeaker
-    - SpawnDungeonClutterPatientTransport
-    - SpawnDungeonClutterImplanter
-    - SpawnDungeonClutterHypospray
-    - SpawnDungeonLootToolsSurgery
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - HandheldCrewMonitor
-    - SpawnDungeonLootToolsSurgeryAdvanced
-    rareChance: 0.01
-
 - type: entity
   name: random beaker
   id: SpawnDungeonClutterBeakerEmpty
