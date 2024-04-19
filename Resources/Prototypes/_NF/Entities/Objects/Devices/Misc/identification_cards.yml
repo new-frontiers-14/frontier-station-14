@@ -47,11 +47,11 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsdcadetID
+  id: CadetIDCard
   name: nfsd cadet ID card
   components:
   - type: PresetIdCard
-    job: SecurityCadet
+    job: Cadet
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
@@ -66,11 +66,11 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsddeputyID
+  id: DeputyIDCard
   name: nfsd deputy ID card
   components:
   - type: PresetIdCard
-    job: SecurityOfficer
+    job: Deputy
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
@@ -85,7 +85,7 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsdbrigmedicID
+  id: BrigmedicNFIDCard
   name: nfsd brigmedic ID card
   components:
   - type: PresetIdCard
@@ -104,7 +104,7 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsdsergeantID
+  id: SergeantIDCard
   name: nfsd sergeant ID card
   components:
   - type: PresetIdCard
@@ -123,11 +123,11 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsdbailiffID
+  id: BailiffIDCard
   name: nfsd bailiff ID card
   components:
   - type: PresetIdCard
-    job: Warden
+    job: Bailiff
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
@@ -142,11 +142,11 @@
 
 - type: entity
   parent: IDCardStandard
-  id: nfsdsheriffID
+  id: ShriffIDCard
   name: nfsd sheriff ID card
   components:
   - type: PresetIdCard
-    job: HeadOfSecurity
+    job: Sheriff
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
@@ -158,6 +158,18 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: silver
+
+- type: entity
+  parent: IDCardStandard
+  id: DetectiveNFIDCard
+  name: detective ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: iddetective
+  - type: PresetIdCard
+    job: DetectiveNF
 
 - type: entity
   parent: SecurityIDCard
