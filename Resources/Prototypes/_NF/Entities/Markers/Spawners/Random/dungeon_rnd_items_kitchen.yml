@@ -1,0 +1,114 @@
+- type: entity
+  name: random mug
+  id: SpawnDungeonLootMugs
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Drinks/mug_moebius.rsi
+        state: icon-0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - DrinkMugOne
+    - DrinkMugBlack
+    - DrinkMugDog
+    - DrinkMugBlue
+    - DrinkMugGreen
+    - DrinkMugHeart
+    - DrinkMugMetal
+    - DrinkMugMoebius
+    - DrinkMug
+    - DrinkMugRainbow
+    - DrinkMugRed
+    - DrinkGlassCoupeShaped
+    - DrinkGlass
+    - DrinkShotGlass
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random kitchen tabletop machine
+  id: SpawnDungeonLootKitchenTabletop
+  parent: MarkerBase
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/microwave.rsi
+        state: mw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - KitchenMicrowave
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - KitchenElectricGrill
+    - KitchenReagentGrinder
+    rareChance: 0.30
+
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterKitchen
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Kitchen tabletop"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/desk_bell.rsi
+        state: normal
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ButchCleaver
+    - KitchenKnife
+    - RollingPin
+    - Fork
+    - Spoon
+    - FoodBowlBig
+    - FoodPlate
+    - FoodPlateSmall
+    - FoodPlateTin
+    - FoodKebabSkewer
+    - SpawnDungeonLootMugs
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random food
+  id: SpawnDungeonLootFood
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/burger.rsi
+        state: plain
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - DonkpocketBoxSpawner
+    - RandomFoodBakedSingle
+    - RandomFoodBakedWhole
+    - RandomFoodMeal
+    - RandomFoodSingle
+    - RandomSnacks
+    chance: 1
+    offset: 0.0

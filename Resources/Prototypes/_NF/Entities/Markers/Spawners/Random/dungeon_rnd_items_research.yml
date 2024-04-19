@@ -1,0 +1,27 @@
+- type: entity
+  name: random disk
+  id: SpawnDungeonLootRnDDisk
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Research/researchdisk.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    - ResearchDisk
+    - ResearchDisk5000
+    - TechnologyDisk
+    - TechnologyDiskRare
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ResearchDisk10000
+    rareChance: 0.1

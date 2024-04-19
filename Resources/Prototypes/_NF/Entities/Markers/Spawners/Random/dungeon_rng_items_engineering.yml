@@ -8,7 +8,7 @@
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+      - sprite: Objects/Misc/skub.rsi
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -24,8 +24,8 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - SpawnDungeonLootToolsAdvancedEngineering
-    rareChance: 0.01
+    - SpawnDungeonLootCircuitBoard
+    rareChance: 0.05
 
 # Engineering Tools
 - type: entity
@@ -87,6 +87,7 @@
     - JawsOfLife
     - WelderExperimental
     - HolofanProjector
+    - RPED
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -152,6 +153,8 @@
     - RemoteSignaller
     - Igniter
     - DrinkSpaceLube
+    - VoiceTrigger
+    - TimerTrigger
     chance: 1
     offset: 0.0
     rarePrototypes:

@@ -11,10 +11,10 @@
 
 # Vendomats
 - type: entity
-  name: random recreational vendomat # food, drinks, smokes, toy, decor
+  name: random vendomat # food, drinks, smokes, toy, decor
   id: SpawnDungeonVendomatsRecreational
   parent: MarkerBase
-  suffix: Dungeon
+  suffix: "Dungeon, Recreational"
   components:
   - type: Sprite
     layers:
@@ -50,6 +50,7 @@
     - CuddlyCritterVend
     - VendingMachineAutoTuneVend
     - VendingMachinePottedPlantVend
+    - WaterCooler
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -57,10 +58,10 @@
     rareChance: 0.05
 
 - type: entity
-  name: random clothes vendomat
+  name: random vendomat
   id: SpawnDungeonVendomatsClothes
   parent: MarkerBase
-  suffix: Dungeon
+  suffix: "Dungeon, Clothes"
   components:
   - type: Sprite
     layers:
@@ -99,10 +100,10 @@
     rareChance: 0.01
 
 - type: entity
-  name: random tools vendomat
+  name: random vendomat
   id: SpawnDungeonVendomatsTools
   parent: MarkerBase
-  suffix: Dungeon
+  suffix: "Dungeon, Tools"
   components:
   - type: Sprite
     layers:
@@ -216,7 +217,8 @@
     offset: 0.0
     rarePrototypes:
     - SecurityTechFabCircuitboard
-    rareChance: 0.1
+    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
+    rareChance: 0.05
 
 # Hard, cold space cash
 - type: entity
@@ -516,3 +518,62 @@
     - PenExplodingBox
     - HypopenBox
     rareChance: 0.01
+
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersGeneral
+  parent: MarkerBase
+  suffix: "Dungeon, Generic"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: generic
+      - sprite: Structures/Storage/closet.rsi
+        state: generic_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetMaintenanceFilledRandom
+    - WardrobeBlackFilled
+    - WardrobeBlueFilled
+    - WardrobeGreenFilled
+    - WardrobeGreyFilled
+    - WardrobeMixedFilled
+    - WardrobePinkFilled
+    - WardrobeWhiteFilled
+    - WardrobeYellowFilled
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersProtectiveGear
+  parent: MarkerBase
+  suffix: "Dungeon, Protective Gear"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: fire
+      - sprite: Structures/Storage/closet.rsi
+        state: fire_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetEmergencyFilledRandom
+    - ClosetFireFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClosetBombFilled
+    - ClosetRadiationSuitFilled
+    - ClosetL3Filled
+    rareChance: 0.15
+
