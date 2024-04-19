@@ -77,3 +77,61 @@
         - KudzuFlowerAngry
         - KudzuFlowerFriendly
     rareChance: 0.01
+
+# Botanist Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Hydroponics/spade.rsi
+        state: icon
+      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - HydroponicsToolMiniHoe
+    - HydroponicsToolClippers
+    - HydroponicsToolSpade
+    - HydroponicsToolScythe
+    - HydroponicsToolHatchet
+    - PlantBag
+    - Shovel
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random chemicals
+  id: SpawnDungeonLootChemsHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PestSpray
+    - WeedSpray
+    - PlantBGoneSpray
+    - EZNutrientChemistryBottle
+    - RobustHarvestChemistryBottle
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - UnstableMutagenChemistryBottle
+    rareChance: 0.05
