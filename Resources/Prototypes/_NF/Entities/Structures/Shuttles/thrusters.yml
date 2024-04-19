@@ -93,91 +93,18 @@
 
 - type: entity
   id: ThrusterNfsd
-  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
-  name: thruster
+  parent: ThrusterSecurity
   suffix: NFSD
-  components:
-  - type: Machine
-    board: ThrusterNfsdMachineCircuitboard
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
-        behaviors:
-          - !type:DoActsBehavior
-            acts: ["Destruction"]
 
 - type: entity
   id: ThrusterNfsdUnanchored
-  parent: ThrusterUnanchored
+  parent: ThrusterSecurityUnanchored
   suffix: Unanchored, NFSD
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
-        behaviors:
-          - !type:DoActsBehavior
-            acts: ["Destruction"]
 
 - type: entity
   id: DebugThrusterNfsd
-  parent: [BaseStructureDisableToolUse, DebugThruster]
-  name: thruster
+  parent: DebugThrusterSecurity
   suffix: DEBUG, NFSD
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 600  # Considering we need a lot of thrusters didn't want to make an individual one too tanky
-        behaviors:
-          - !type:DoActsBehavior
-            acts: ["Destruction"]
 
 - type: entity
   id: SmallThruster
