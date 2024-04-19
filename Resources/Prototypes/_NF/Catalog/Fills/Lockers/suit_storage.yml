@@ -118,7 +118,7 @@
 - type: entity
   id: SuitStorageCadet
   parent: SuitStorageBase
-  suffix: NFSDCadet
+  suffix: NFSD Cadet
   components:
   - type: StorageFill
     contents:
@@ -127,7 +127,7 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBronze # Frontier
         - id: ClothingMaskGasNfsd
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -137,7 +137,7 @@
 - type: entity
   id: SuitStorageDeputy
   parent: SuitStorageBase
-  suffix: NFSDDeputy
+  suffix: NFSD Deputy
   components:
   - type: StorageFill
     contents:
@@ -146,7 +146,7 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSilver # Frontier
         - id: ClothingMaskGasNfsd 
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -154,9 +154,9 @@
 
 #Brigmed hardsuit
 - type: entity
-  id: SuitStorageBrigmed
+  id: SuitStorageBrigmedic
   parent: SuitStorageBase
-  suffix: NFSDBrigMedic
+  suffix: NFSD BrigMedic
   components:
   - type: StorageFill
     contents:
@@ -165,7 +165,7 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBrigMed # Frontier
         - id: ClothingMaskGasNfsd 
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -175,7 +175,7 @@
 - type: entity
   id: SuitStorageSergeant
   parent: SuitStorageBase
-  suffix: NFSDSergeant
+  suffix: NFSD Sergeant
   components:
   - type: StorageFill
     contents:
@@ -184,7 +184,7 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
         - id: ClothingMaskGasNfsd 
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -194,7 +194,7 @@
 - type: entity
   id: SuitStorageBailiff
   parent: SuitStorageBase
-  suffix: NFSDBailiff
+  suffix: NFSD Bailiff
   components:
   - type: StorageFill
     contents:
@@ -203,7 +203,7 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
         - id: ClothingMaskGasNfsd 
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -213,7 +213,7 @@
 - type: entity
   id: SuitStorageSheriff
   parent: SuitStorageBase
-  suffix: NFSDSheriff
+  suffix: NFSD Sheriff
   components:
   - type: StorageFill
     contents:
@@ -222,7 +222,45 @@
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSheriff # Frontier
         - id: ClothingMaskGasSheriff
-        - id: JetpackSecurityFilled
+        - id: JetpackNfsdFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Combat hardsuit
+- type: entity
+  id: SuitStorageCombat
+  parent: SuitStorageBase
+  suffix: NFSD Combat
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdCombat # Frontier
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Command hardsuit
+- type: entity
+  id: SuitStorageCommand
+  parent: SuitStorageBase
+  suffix: NFSD Command
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdCommand # Frontier
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
