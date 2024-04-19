@@ -13,13 +13,13 @@ public abstract partial class SharedCrateMachineComponent: Component
     /// <summary>
     /// Sounds played when the door is opening and crate coming out.
     /// </summary>
-    [ViewVariables, DataField("soundOpening")]
+    [ViewVariables]
     public SoundSpecifier? OpeningSound = new SoundPathSpecifier("/Audio/Machines/disposalflush.ogg");
 
     /// <summary>
     /// Sounds played when the door is closing
     /// </summary>
-    [ViewVariables, DataField("soundClosing")]
+    [ViewVariables]
     public SoundSpecifier? ClosingSound = new SoundPathSpecifier("/Audio/Machines/disposalflush.ogg");
 
     [DataField]
