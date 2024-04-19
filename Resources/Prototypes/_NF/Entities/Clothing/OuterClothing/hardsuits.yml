@@ -1,38 +1,6 @@
-#Security Patrol Hardsuit
-- type: entity
-  parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitSecuritypatrol
-  name: security patrol hardsuit
-  description: A special suit that protects from the danger of space, employed by security patrol officers. Not certified to be blunderbuss proof.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.525
-    lowPressureMultiplier: 10000
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.65
-        Heat: 0.7
-        Radiation: 0.55
-        Caustic: 0.75
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
-
 #Mercenary Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: ClothingOuterHardsuitBaseNF
   id: ClothingOuterHardsuitMercenary # stats are of luxury mining hardsuit
   name: mercenary hardsuit
   description: A special suit that protects from the danger of space, employed by mercenary forces. Not certified to be blunderbuss proof.
@@ -64,7 +32,7 @@
 
 # Pilot Hardsuit - Spationaut stats
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: ClothingOuterHardsuitBaseNF
   id: ClothingOuterHardsuitPilot
   name: pilot hardsuit
   description: A hardsuit tailored for someone who spends the majority of their time buckled to a chair.
@@ -187,8 +155,36 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Contraband
 
+# Security
 - type: entity
-  parent: ClothingOuterHardsuitSecuritypatrol
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdPatrol
+  name: nfsd patrol hardsuit
+  description: A special suit that protects from the danger of space, employed by security patrol officers. Not certified to be blunderbuss proof.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/security-patrol.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.7
+        Radiation: 0.55
+        Caustic: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritypatrol
+
+- type: entity
+  parent: ClothingOuterHardsuitNfsdPatrol
   id: ClothingOuterHardsuitNfsdBronze
   name: nfsd bronze patrol hardsuit
   description: A special suit that protects from the danger of space, employed by nfsd patrol officers. Not certified to be blunderbuss proof.
