@@ -108,7 +108,7 @@
   description: Whosoever bears this PDA is the law.
   components:
   - type: Pda
-    id: nfsdsheriffID
+    id: ShriffIDCard
     state: pda-sheriff
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -131,12 +131,12 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdCadet
+  id: CadetPDA
   name: cadet PDA
   description: Whosoever bears this PDA could be the law.
   components:
   - type: Pda
-    id: nfsdcadetID
+    id: CadetIDCard
     state: pda-cadet
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -159,12 +159,12 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdDeputy
+  id: DeputyPDA
   name: deputy PDA
   description: Whosoever bears this PDA is close to being the law.
   components:
   - type: Pda
-    id: nfsddeputyID
+    id: DeputyIDCard
     state: pda-deputy
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -187,12 +187,12 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdBrigmedic
+  id: BrigmedicPDANT
   name: brigmedic PDA
   description: Whosoever bears this PDA heals the law.
   components:
   - type: Pda
-    id: nfsdbrigmedicID
+    id: BrigmedicIDCard
     state: pda-brigmed
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -215,12 +215,12 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdSergeant
+  id: SergeantPDA
   name: sergeant PDA
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: nfsdsergeantID
+    id: SergeantIDCard
     state: pda-sergeant
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -243,12 +243,12 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdBailiff
+  id: BailiffPDA
   name: bailiff PDA
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: nfsdbailiffID
+    id: BailiffIDCard
     state: pda-bailiff
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
@@ -268,6 +268,20 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-bailiff
+
+- type: entity
+  parent: BasePDA
+  id: DetectivePDANF
+  name: detective PDA
+  description: Smells like rain... pouring down the rooftops...
+  components:
+  - type: Pda
+    id: DetectiveNFIDCard
+    state: pda-detective
+  - type: PdaBorderColor
+    borderColor: "#774705"
+  - type: Icon
+    state: pda-detective
 
 - type: entity
   parent: HoPPDA
