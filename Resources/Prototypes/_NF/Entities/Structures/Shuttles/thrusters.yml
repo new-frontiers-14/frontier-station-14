@@ -295,6 +295,13 @@
   id: SmallGyroscopeNfsdUnanchored
   parent: SmallGyroscopeSecurityUnanchored
   suffix: Unanchored, NFSD
+  components:
+  - type: Sprite
+    scale: 0.8, 0.8
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
 
 - type: entity
   id: SmallGyroscope
