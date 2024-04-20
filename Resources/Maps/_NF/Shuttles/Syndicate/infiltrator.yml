@@ -564,12 +564,6 @@ entities:
       parent: 499
     - type: InstantAction
       container: 499
-  - uid: 834
-    components:
-    - type: Transform
-      parent: 880
-    - type: InstantAction
-      container: 880
 - proto: AirlockExternal
   entities:
   - uid: 4
@@ -2511,6 +2505,13 @@ entities:
           priority: 0
           component: ClothingSpeedModifier
         title: null
+- proto: ClothingBackpackDuffelSyndicatePyjamaBundle
+  entities:
+  - uid: 631
+    components:
+    - type: Transform
+      pos: 1.412887,-13.279245
+      parent: 1
 - proto: ClothingBackpackSyndicate
   entities:
   - uid: 670
@@ -2520,10 +2521,10 @@ entities:
       parent: 1
 - proto: ClothingBeltSyndieHolster
   entities:
-  - uid: 839
+  - uid: 572
     components:
     - type: Transform
-      pos: 1.4785284,-12.069004
+      pos: 1.4706825,-11.349909
       parent: 1
 - proto: ClothingHeadHatSyndie
   entities:
@@ -4527,13 +4528,6 @@ entities:
     - type: Transform
       pos: -1.5,-18.5
       parent: 1
-- proto: RubberStampSyndicate
-  entities:
-  - uid: 882
-    components:
-    - type: Transform
-      pos: -1.559974,-2.1690073
-      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 597
@@ -4828,47 +4822,6 @@ entities:
     - type: Transform
       pos: -2.5329337,-11.412754
       parent: 1
-- proto: SyndiPDA
-  entities:
-  - uid: 880
-    components:
-    - type: Transform
-      pos: 1.501412,-11.531393
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        PDA-id: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-pen: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-pai: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-book: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        Cartridge-Slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        program-container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 834
-    - type: UnpoweredFlashlight
-      toggleActionEntity: 834
-    - type: ActionsContainer
 - proto: SyringeInaprovaline
   entities:
   - uid: 635
