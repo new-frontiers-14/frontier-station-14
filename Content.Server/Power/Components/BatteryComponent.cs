@@ -35,6 +35,17 @@ namespace Content.Server.Power.Components
         /// </summary>
         [DataField]
         public float PricePerJoule = 0.0001f;
+
+        [Obsolete("Use system method")]
+        public bool TryUseCharge(float value)
+            => _entMan.System<BatterySystem>().TryUseCharge(Owner, value, this);
+
+        /// <summary>
+        /// Whether or not information about
+        /// the battery will be shown on examine.
+        /// </summary>
+        [DataField]
+        public bool ShowExamineText = true;
     }
 
     /// <summary>

@@ -39,7 +39,7 @@ namespace Content.Server.Power.EntitySystems
         {
             if (!TryComp<BatteryComponent>(uid, out var batteryComponent))
                 return;
-            if (args.IsInDetailsRange)
+            if (args.IsInDetailsRange && batteryComponent.ShowExamineText)
             {
                 var effectiveMax = batteryComponent.MaxCharge;
                 if (effectiveMax == 0)

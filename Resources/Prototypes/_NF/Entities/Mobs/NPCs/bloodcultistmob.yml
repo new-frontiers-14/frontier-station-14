@@ -44,8 +44,10 @@
     autoRechargeRate: 100
   - type: Battery
     maxCharge: 300
+    showExamineText: false
     startingCharge: 300
   - type: Gun
+    showExamineText: false
     fireRate: 4
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
@@ -257,7 +259,7 @@
 - type: entity
   name: Drained One
   suffix: AI, Melee
-  parent: 
+  parent:
   - MobNonHumanHostileBase
   - FlyingMobBase
   id: MobBloodCultDrainedOne

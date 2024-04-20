@@ -8,6 +8,14 @@
   - type: Wires
     layoutId: AirlockSecurity
 
+- type: entity
+  parent: Airlock
+  id: AirlockNfsd
+  suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi
+
 # Glass
 - type: entity
   parent: AirlockGlass
@@ -24,7 +32,7 @@
 #Glass
 - type: entity
   parent: AirlockGlass
-  id: AirlockNFSDGlass
+  id: AirlockNfsdGlass
   suffix: NFSD
   components:
   - type: Sprite

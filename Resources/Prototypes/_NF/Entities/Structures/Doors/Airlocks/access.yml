@@ -72,8 +72,18 @@
       board: [ DoorElectronicsMercenary ]
 
 - type: entity
-  parent: AirlockNFSDGlass
-  id: AirlockNFSDGlassLocked
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdGlassLocked
+  suffix: NFSD, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdLocked
   suffix: NFSD, Locked
   components:
   - type: ContainerFill

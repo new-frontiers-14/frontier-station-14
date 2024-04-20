@@ -3,42 +3,24 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Sound.Components;
 
 /// <summary>
-/// Repeatedly plays a sound with a randomized delay.
+/// Rolls to play a sound every few seconds.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class SpamEmitSoundComponent : BaseEmitSoundComponent
 {
-    /// <summary>
-    /// The time at which the next sound will play.
-    /// </summary>
-    [DataField, AutoPausedField, AutoNetworkedField]
-    public TimeSpan NextSound;
+    [DataField("accumulator")]
+    public float Accumulator = 0f;
 
-    /// <summary>
-    /// The minimum time in seconds between playing the sound.
-    /// </summary>
-    [DataField]
-    public TimeSpan MinInterval = TimeSpan.FromSeconds(2);
+    [DataField("rollInterval")]
+    public float RollInterval = 2f;
 
-    /// <summary>
-    /// The maximum time in seconds between playing the sound.
-    /// </summary>
-    [DataField]
-    public TimeSpan MaxInterval = TimeSpan.FromSeconds(2);
+    [DataField("playChance")]
+    public float PlayChance = 0.5f;
 
     // Always Pvs.
-    /// <summary>
-    /// Content of a popup message to display whenever the sound plays.
-    /// </summary>
-    [DataField]
-    public LocId? PopUp;
+    [DataField("popUp")]
+    public string? PopUp;
 
-    /// <summary>
-    /// Whether the timer is currently running and sounds are being played.
-    /// Do not set this directly, use <see cref="EmitSoundSystem.SetEnabled"/>
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    [Access(typeof(SharedEmitSoundSystem))]
+    [DataField("enabled")]
     public bool Enabled = true;
 }

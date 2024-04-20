@@ -9,7 +9,8 @@
   startingGear: JanitorGear
   alwaysUseSpawner: true
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
+  canBeAntag: false
   access:
   - Service
   - Janitor
@@ -20,6 +21,8 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: JanitorGear

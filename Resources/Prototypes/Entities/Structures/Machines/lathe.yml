@@ -162,14 +162,12 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
-      # Frontier Start
-      - Durathread
-      - Plasteel
-      - ClothingOuterSuitEmergency
-      - ClothingHeadHelmetEVA
-      - ClothingHeadHelmetEVALarge
-      - ClothingOuterHardsuitEVA
-      # Frontier End
+      - Durathread # Frontier
+      - Plasteel # Frontier
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingHeadHelmetEVA # Frontier
+      - ClothingHeadHelmetEVALarge # Frontier
+      - ClothingOuterHardsuitEVA # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -184,11 +182,9 @@
        - MagazineBoxRifle
        - MagazineBoxLightRifle
        - GrenadeBlast
-       # Frontier Start
-       - ClothingHeadHelmetCosmonaut
-       - ClothingHeadHelmetSyndicate
-       - ClothingOuterHardsuitSyndicate
-       # Frontier End
+#       - ClothingHeadHelmetCosmonaut # Frontier
+#       - ClothingHeadHelmetSyndicate # Frontier
+#       - ClothingOuterHardsuitSyndicate # Frontier
     emagDynamicRecipes:
       - CartridgePistolRubber
       - CartridgeMagnumRubber
@@ -354,26 +350,24 @@
       - DeviceQuantumSpinInverter
       - UtilityBeltChiefEngineer
       - JetpackVoid
-      # Frontier Start
-      - ClothingShoesBootsMagAdv
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitAtmos
-      - ClothingOuterHardsuitEngineering
-      - ClothingOuterHardsuitSpatio
-      - ClothingOuterHardsuitSalvage
-      - ClothingOuterHardsuitClown
-      - ClothingOuterHardsuitMime
-      - ClothingOuterHardsuitCap
-      - ClothingOuterHardsuitEngineeringWhite
-      - ClothingOuterHardsuitMedical
-      - ClothingOuterHardsuitRd
-      - ClothingOuterHardsuitLuxury
-      - ClothingOuterHardsuitMercenary
-      - ClothingOuterHardsuitPilot
-      - ClothingOuterHardsuitMaximPrototype
-      - ClothingHeadHelmetAncient
-      - ClothingOuterHardsuitAncientEVA
-      # Frontier End
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitAtmos # Frontier
+      - ClothingOuterHardsuitEngineering # Frontier
+      - ClothingOuterHardsuitSpatio # Frontier
+      - ClothingOuterHardsuitSalvage # Frontier
+      - ClothingOuterHardsuitClown # Frontier
+      - ClothingOuterHardsuitMime # Frontier
+      - ClothingOuterHardsuitCap # Frontier
+      - ClothingOuterHardsuitEngineeringWhite # Frontier
+      - ClothingOuterHardsuitMedical # Frontier
+      - ClothingOuterHardsuitRd # Frontier
+      - ClothingOuterHardsuitLuxury # Frontier
+      - ClothingOuterHardsuitMercenary # Frontier
+      - ClothingOuterHardsuitPilot # Frontier
+      - ClothingOuterHardsuitMaximPrototype # Frontier
+      - ClothingHeadHelmetAncient # Frontier
+      - ClothingOuterHardsuitAncientEVA # Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -381,10 +375,7 @@
       - WeaponAdvancedLaser
       - WeaponLaserCannon
       - WeaponXrayCannon
-      # Frontier Start
-      - ClothingOuterHardsuitPirateEVA
-      - ClothingOuterHardsuitSundie
-      # Frontier End
+      - ClothingOuterHardsuitPirateEVA # Frontier
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -523,15 +514,13 @@
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ReagentGrinderIndustrialMachineCircuitboard
-    # Begin Nyano additions
-      - DoorElectronics
-      - FireAlarmElectronics
-      - FirelockElectronics
-      - IntercomElectronics
-      - MailingUnitElectronics
-      - StationMapElectronics
-      - DeepFryerMachineCircuitboard
-    # End Nyano additions
+      - DoorElectronics # Nyano
+      - FireAlarmElectronics # Nyano
+      - FirelockElectronics # Nyano
+      - IntercomElectronics # Nyano
+      - MailingUnitElectronics # Nyano
+      - StationMapElectronics # Nyano
+      - DeepFryerMachineCircuitboard # Nyano
       - SmallThrusterMachineCircuitboard # Frontier
       - SmallGyroscopeMachineCircuitboard # Frontier
   - type: MaterialStorage
@@ -816,12 +805,10 @@
       - ShuttleGunPerforatorCircuitboard
       - ShuttleGunFriendshipCircuitboard
       - ShuttleGunDusterCircuitboard
-      # Frontier Start
-      - ClothingOuterHardsuitSecurity
-      - ClothingOuterHardsuitSecuritypatrol
-      - ClothingOuterHardsuitWarden
-      - ClothingOuterHardsuitBrigmedic
-      # Frontier End
+#      - ClothingOuterHardsuitSecurity # Frontier
+#      - ClothingOuterHardsuitNfsdPatrol # Frontier
+#      - ClothingOuterHardsuitWarden # Frontier
+#      - ClothingOuterHardsuitBrigmedic # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1070,9 +1057,8 @@
       - ClothingHeadHatWarden
       - ClothingUniformJumpsuitWarden
       - ClothingUniformJumpskirtWarden
-      - ClothingHeadHatParamedicsoft
-      - ClothingUniformJumpsuitSecGuard #Frontier
-      - ClothingUniformJumpskirtSecGuard #Frontier
+      - ClothingUniformJumpsuitPrivateSec #Frontier
+      - ClothingUniformJumpskirtPrivateSec #Frontier
       # Winter outfits
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
@@ -1122,7 +1108,7 @@
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple
-      # Carpets
+#      - Carpets
       - Carpet
       - CarpetBlack
       - CarpetPink
@@ -1132,30 +1118,30 @@
       - CarpetPurple
       - CarpetCyan
       - CarpetWhite
-  - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - ClothingHeadHatCentcomcap
-      - ClothingHeadHatCentcom
-      - ClothingUniformJumpsuitCentcomAgent
-      - ClothingUniformJumpsuitCentcomFormal
-      - ClothingUniformJumpskirtCentcomFormalDress
-      - ClothingUniformJumpsuitCentcomOfficer
-      - ClothingUniformJumpsuitCentcomOfficial
-      - ClothingHeadHatSyndieMAA
-      - ClothingHeadHatSyndie
-      - ClothingUniformJumpsuitOperative
-      - ClothingUniformJumpskirtOperative
-      - ClothingUniformJumpsuitSyndieFormal
-      - ClothingUniformJumpskirtSyndieFormalDress
-      - ClothingHeadPyjamaSyndicateBlack
-      - ClothingUniformJumpsuitPyjamaSyndicateBlack
-      - ClothingHeadPyjamaSyndicatePink
-      - ClothingUniformJumpsuitPyjamaSyndicatePink
-      - ClothingHeadPyjamaSyndicateRed
-      - ClothingUniformJumpsuitPyjamaSyndicateRed
-      - ClothingOuterWinterCentcom
-      - ClothingOuterWinterSyndie
-      - ClothingOuterWinterSyndieCap
+#  - type: EmagLatheRecipes # Frontier
+#    emagStaticRecipes: # Frontier
+#      - ClothingHeadHatCentcomcap # Frontier
+#      - ClothingHeadHatCentcom # Frontier
+#      - ClothingUniformJumpsuitCentcomAgent # Frontier
+#      - ClothingUniformJumpsuitCentcomFormal # Frontier
+#      - ClothingUniformJumpskirtCentcomFormalDress # Frontier
+#      - ClothingUniformJumpsuitCentcomOfficer # Frontier
+#      - ClothingUniformJumpsuitCentcomOfficial # Frontier
+#      - ClothingHeadHatSyndieMAA # Frontier
+#      - ClothingHeadHatSyndie # Frontier
+#      - ClothingUniformJumpsuitOperative # Frontier
+#      - ClothingUniformJumpskirtOperative # Frontier
+#      - ClothingUniformJumpsuitSyndieFormal # Frontier
+#      - ClothingUniformJumpskirtSyndieFormalDress # Frontier
+#      - ClothingHeadPyjamaSyndicateBlack # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicateBlack # Frontier
+#      - ClothingHeadPyjamaSyndicatePink # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicatePink # Frontier
+#      - ClothingHeadPyjamaSyndicateRed # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicateRed # Frontier
+#      - ClothingOuterWinterCentcom # Frontier
+#      - ClothingOuterWinterSyndie # Frontier
+#      - ClothingOuterWinterSyndieCap # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
