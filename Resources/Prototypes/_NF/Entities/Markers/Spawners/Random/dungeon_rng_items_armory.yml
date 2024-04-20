@@ -135,6 +135,7 @@
     - ClothingOuterArmorBasic
     - Zipties
     - Handcuffs
+    - WeaponGrapplingGun
     - RiotShield
     - RiotLaserShield
     - ClothingHeadHelmetMercenary
@@ -143,6 +144,7 @@
     rarePrototypes:
     - ClothingOuterArmorReflective
     - ClothingOuterHardsuitMercenary
+    - SpawnDungeonLootArmoryMelee
     rareChance: 0.01
 
 - type: entity
@@ -163,6 +165,7 @@
   - type: RandomSpawner
     prototypes:
     - ClothingMaskGasSecurity
+    - ClothingHeadHelmetSwat
     - ClothingMaskGasSwat
     - FlashlightSeclite
     - ClothingHeadHelmetRiot
@@ -187,6 +190,7 @@
     - ClothingOuterArmorHeavy
     rareChance: 0.01
 
+# Weapons
 - type: entity
   name: random gun
   id: SpawnDungeonLootArmoryGuns
@@ -209,12 +213,13 @@
     - WeaponLaserGunExpedition
     - WeaponShotgunKammererExpedition
     #- WeaponLaserSvalinnExpedition
-    chance: 0.9
+    chance: 0.65
     offset: 0.0
     rarePrototypes:
     - WeaponSubMachineGunWt550Expedition
     - WeaponSubMachineGunAtreidesExpedition
     - WeaponSubMachineGunDrozdExpedition
+    - SpawnDungeonLootArmoryMelee # Yep, not guns in gun pool
     rareChance: 0.01
 
 - type: entity
@@ -239,13 +244,75 @@
     - WeaponSubMachineGunAtreidesExpedition
     - WeaponEnergyGunExpedition
     - WeaponLaserCarbineExpedition
-    chance: 0.9
+    chance: 0.65
     offset: 0.0
     rarePrototypes:
     - WeaponRifleAk
     - WeaponSniperHristov
+    - SpawnDungeonLootArmoryRare
+    rareChance: 0.01
+
+- type: entity
+  name: random melee weapon
+  id: SpawnDungeonLootArmoryMelee
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/katana.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Katana
+    - Machete
+    - KukriKnife
+    - BaseBallBat
+    - Stunbaton
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - PlasteelArmingSword
+    - Cutlass
+    - EnergyShield
+    rareChance: 0.01
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryRare
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Armory, Rare"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/e_sword.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - EnergyShield
+    - EnergySword
+    - EnergyDagger
+    - EnergyCutlass
+    - Claymore
+    - Truncheon
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - CaptainSabre
+    - EnergySwordDouble
     - WeaponLauncherRocket
-    rareChance: 0.1
+    - SecBreachingHammer
+    rareChance: 0.01
 
 # Lathes
 - type: entity

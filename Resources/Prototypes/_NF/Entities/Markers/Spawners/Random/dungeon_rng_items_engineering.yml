@@ -92,9 +92,9 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - RCD
+    #- RCD
     - SyndicateJawsOfLife
-    rareChance: 0.04
+    rareChance: 0.01
 
 - type: entity
   name: random toolbox
@@ -140,6 +140,10 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    # T1
+    - MicroManipulatorStockPart
+    - MatterBinStockPart
+    - CapacitorStockPart
     # T2
     - AdvancedCapacitorStockPart
     - NanoManipulatorStockPart
@@ -156,7 +160,7 @@
     - DrinkSpaceLube
     - VoiceTrigger
     - TimerTrigger
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     # T4
@@ -186,7 +190,7 @@
     - PowerCellMedium
     - PowerCellHigh
     - PowerCellHyper
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - PowerCellMicroreactor
@@ -241,21 +245,21 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - Autolathe
+    - Protolathe
     - EngineeringTechFab
     - EngineeringTechFab
     - EngineeringTechFab
     - EngineeringTechFab
     - CircuitImprinter
     - MachineFlatpacker
-    - AutolatheHyperConvection
-    - ProtolatheHyperConvection
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - Autolathe
-    - Protolathe
     - TilePrinterNF
-    rareChance: 0.05
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    rareChance: 0.01
 
 - type: entity
   name: random vendomats

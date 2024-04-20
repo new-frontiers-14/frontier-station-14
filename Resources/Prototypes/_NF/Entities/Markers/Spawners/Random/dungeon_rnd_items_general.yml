@@ -45,7 +45,7 @@
     - VendingMachineSovietSoda
     - VendingMachineGames
     - VendingMachineHappyHonk
-    - CuddlyCritterVend
+    - VendingMachineCuddlyCritterVend
     - VendingMachineAutoTuneVend
     - VendingMachinePottedPlantVend
     - WaterCooler
@@ -172,14 +172,14 @@
     - AmmoTechFab
     - MedicalTechFab
     - UniformPrinter
-    - OreProcessorIndustrial
     - MachineFlatpacker
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - OreProcessorIndustrial
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
-    rareChance: 0.05
+    rareChance: 0.01
 
 - type: entity
   name: random machine board
@@ -198,6 +198,7 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - MaterialReclaimerMachineCircuitboard
     - SalvageTechFabCircuitboardNF
     - TilePrinterNFMachineCircuitboard
     - ScienceTechFabCircuitboard
@@ -228,12 +229,12 @@
     - ThermomachineHeaterMachineCircuitBoard
     - ThermomachineFreezerMachineCircuitBoard
     - FatExtractorMachineCircuitboard
+    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
     chance: 1
     offset: 0.0
     rarePrototypes:
     - SecurityTechFabCircuitboard
-    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
-    rareChance: 0.05
+    rareChance: 0.01
 
 # Hard, cold space cash
 - type: entity
@@ -299,7 +300,7 @@
     - CableHVStack
     - CableMVStack
     - CableApcStack
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - MaterialBananium
@@ -328,7 +329,7 @@
     - SheetRUGlass
     - SheetPlasteel
     - MaterialDurathread
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond
@@ -367,7 +368,7 @@
     - CableHVStack1
     - CableMVStack1
     - CableApcStack1
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - MaterialBananium1
@@ -396,7 +397,7 @@
     - SheetRUGlass1
     - SheetPlasteel1
     - MaterialDurathread1
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -428,7 +429,7 @@
     - SpaceQuartz
     - UraniumOre
     - Coal
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - BananiumOre
@@ -458,7 +459,7 @@
     - SpaceQuartz1
     - UraniumOre1
     - Coal1
-    chance: 1
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - BananiumOre1
@@ -491,6 +492,10 @@
     - HandLabeler
     - NewtonCradle
     - DrinkSpaceGlue
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
     - FolderSpawner
     - SpawnDungeonLootBureaucracyPen
     chance: 1
@@ -619,7 +624,7 @@
     - PlasmaCanister
     - StorageCanister
     - WaterVaporCanister
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - FrezonCanister
@@ -627,4 +632,4 @@
     - LiquidNitrogenCanister
     - LiquidOxygenCanister
     - TritiumCanister
-    rareChance: 0.05
+    rareChance: 0.01
