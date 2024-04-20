@@ -1,7 +1,5 @@
 using System.Numerics;
-using Content.Server.Emp;
 using Content.Server.Audio;
-using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -20,17 +18,13 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Server.Popups;
-using Content.Shared.Popups;
-using Content.Shared.Access.Systems;
-using Content.Shared.Emp;
-
+using Content.Server.Construction; // Frontier
+using Content.Server.Popups; // Frontier
+using Content.Server.Emp; // Frontier
 namespace Content.Server.Shuttles.Systems;
 
 public sealed class ThrusterSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly AmbientSoundSystem _ambient = default!;
@@ -59,13 +53,11 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
-        SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
 
-        SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
-        SubscribeLocalEvent<ThrusterComponent, ThrusterToggleMessage>(OnToggleThruster);
+        SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
+        SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+        //SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -269,18 +261,6 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
-    private void OnToggleThruster(EntityUid uid, ThrusterComponent component, ThrusterToggleMessage args)
-    {
-        var attemptEv = new ThrusterToggleAttemptEvent();
-        RaiseLocalEvent(uid, ref attemptEv);
-        if (attemptEv.Cancelled)
-        {
-            _popup.PopupCursor(Loc.GetString("apc-component-on-toggle-cancel"),
-                args.Session, PopupType.Medium);
-            return;
-        }
-    }
-
     /// <summary>
     /// Tries to enable the thruster and turn it on. If it's already enabled it does nothing.
     /// </summary>
@@ -458,7 +438,7 @@ public sealed class ThrusterSystem : EntitySystem
 
         var xform = Transform(uid);
 
-        if (!xform.Anchored ||!this.IsPowered(uid, EntityManager))
+        if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
         {
             return false;
         }
@@ -500,21 +480,6 @@ public sealed class ThrusterSystem : EntitySystem
             {
                 _damageable.TryChangeDamage(uid, comp.Damage);
             }
-        }
-
-        /// <summary>
-        /// This makes the thruster pulse like its trying to come back online
-        /// After the EMP is over it will try to toggle it back on
-        /// </summary>
-        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ThrusterComponent>();
-        while (disabled.MoveNext(out var uid, out _, out var comp))
-        {
-            if (comp.TimeoutFromEmp <= _timing.CurTime)
-            {
-                EnableThruster(uid, comp);
-                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.5);
-            }
-            else { DisableThruster(uid, comp); }
         }
     }
 
@@ -643,28 +608,22 @@ public sealed class ThrusterSystem : EntitySystem
         args.AddPercentageUpgrade("thruster-comp-upgrade-thrust", component.Thrust / component.BaseThrust);
     }
 
+    //private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
+    //{
+    //    if (component.Enabled && !component.ThrusterIgnoreEmp)
+    //    {
+    //        args.Affected = true;
+    //        args.Disabled = true;
+    //    }
+    //}
+
+    //[ByRefEvent]
+    //public record struct ThrusterToggleAttemptEvent(bool Cancelled);
+
     #endregion
 
     private int GetFlagIndex(DirectionFlag flag)
     {
         return (int) Math.Log2((int) flag);
     }
-
-    private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
-    {
-        if (component.ThrusterIgnoreEmp)
-        {
-            args.Affected = false;
-            args.Disabled = false;
-        }
-        else
-        {
-            args.Affected = true;
-            args.Disabled = true;
-            component.TimeoutFromEmp = _timing.CurTime;
-        }
-    }
-
-    [ByRefEvent]
-    public record struct ThrusterToggleAttemptEvent(bool Cancelled);
 }
