@@ -15,6 +15,17 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - BoxFolderWhite
+    - BoxNitrileGloves
+    - BoxBodyBag
+    - BoxPillCanister
+    - ClothingHeadHatSurgcapPurple
+    - UniformScrubsColorPurple
+    - ClothingHeadNurseHat
+    - ClothingOuterHospitalGown
+    - ClothingOuterCoatLab
+    - ClothingMaskBreathMedical
+    - ClothingBeltMedical
     - ClothingNeckStethoscope
     - ClothingHandsGlovesLatex
     - ClothingHandsGlovesNitrile
@@ -25,18 +36,22 @@
     - ClothingEyesGlassesChemical
     - DiseaseSwab
     - SpawnDungeonClutterSyringe
-    - SpawnDungeonClutterBeaker
+    - SpawnDungeonClutterBeakerEmpty
     - SpawnDungeonClutterPatientTransport
     - SpawnDungeonClutterImplanter
     - SpawnDungeonClutterHypospray
     - SpawnDungeonLootToolsSurgery
-    chance: 1
+    - SpawnDungeonClutterMedipens
+    - SpawnDungeonClutterMedsSingle
+    - PillCanisterRandom
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootKitsFirstAid
     - HandheldCrewMonitor
     - SpawnDungeonLootToolsSurgeryAdvanced
     - SpawnDungeonLootChems
+    - SpawnDungeonClutterMedsFull
     rareChance: 0.01
 
 - type: entity
@@ -78,6 +93,7 @@
     - JugGold
     - JugMercury
     - JugSilver
+    - JugWeldingFuel
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -110,7 +126,6 @@
     - MedkitFilled
     - MedkitFilled
     - MedkitBruteFilled
-    - MedkitAdvancedFilled
     - MedkitBurnFilled
     - MedkitToxinFilled
     - MedkitRadiationFilled
@@ -119,14 +134,14 @@
     rarePrototypes:
     - MedkitAdvancedFilled
     - MedkitCombatFilled
-    rareChance: 0.05
+    rareChance: 0.01
 
 # Surgery Tools
 - type: entity
-  name: random surgery tool
+  name: random tool
   id: SpawnDungeonLootToolsSurgeryCrude
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Improvised"
+  suffix: "Dungeon, Surgery, Improvised"
   components:
   - type: Sprite
     layers:
@@ -149,10 +164,10 @@
     rareChance: 0.05
 
 - type: entity
-  name: random surgery tool
+  name: random tool
   id: SpawnDungeonLootToolsSurgery
   parent: MarkerBasePlaceFree
-  suffix: Dungeon
+  suffix: "Dungeon, Surgery"
   components:
   - type: Sprite
     layers:
@@ -178,10 +193,10 @@
     rareChance: 0.1
 
 - type: entity
-  name: random surgery tool
+  name: random tool
   id: SpawnDungeonLootToolsSurgeryAdvanced
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Advanced"
+  suffix: "Dungeon, Surgery, Advanced"
   components:
   - type: Sprite
     layers:
@@ -263,6 +278,94 @@
     rarePrototypes:
     - BluespaceBeaker
     rareChance: 0.05
+
+- type: entity
+  name: random medipens
+  id: SpawnDungeonClutterMedipens
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medipen.rsi
+        state: firstaid
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ChemicalMedipen
+    - EmergencyMedipen
+    - AntiPoisonMedipen
+    - BruteAutoInjector
+    - BurnAutoInjector
+    - SpaceMedipen
+    - RadAutoInjector
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CombatMedipen
+    - Stimpack
+    - StimpackMini
+    rareChance: 0.01
+
+- type: entity
+  name: random meds
+  id: SpawnDungeonClutterMedsFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Full"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medical.rsi
+        state: gauze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Brutepack
+    - Ointment
+    - Gauze
+    - Bloodpack
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - MedicatedSuture
+    - RegenerativeMesh
+    - AloeCream
+    rareChance: 0.01
+
+- type: entity
+  name: random meds
+  id: SpawnDungeonClutterMedsSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medical.rsi
+        state: gauze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Brutepack1
+    - Ointment1
+    - Gauze1
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - MedicatedSuture1
+    - RegenerativeMesh1
+    rareChance: 0.01
 
 - type: entity
   name: random patient transport
