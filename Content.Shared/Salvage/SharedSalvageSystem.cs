@@ -196,24 +196,27 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
     /// <summary>
     /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
+    /// Frontier: added uncommon and legendary reward tiers, limited amount of rewards to 1 per difficulty rating
     /// </summary>
     private string[] RewardsForDifficulty(DifficultyRating rating)
     {
         var common = "SalvageRewardCommon";
+        var uncommon = "SalvageRewardUncommon";
         var rare = "SalvageRewardRare";
         var epic = "SalvageRewardEpic";
+        var legendary = "SalvageRewardLegendary";
         switch (rating)
         {
             case DifficultyRating.Minimal:
-                return new string[] { common, common, common };
+                return new string[] { common };
             case DifficultyRating.Minor:
-                return new string[] { common, common, rare };
+                return new string[] { uncommon };
             case DifficultyRating.Moderate:
-                return new string[] { common, rare, rare };
+                return new string[] { rare };
             case DifficultyRating.Hazardous:
-                return new string[] { rare, rare, rare, epic };
+                return new string[] { epic };
             case DifficultyRating.Extreme:
-                return new string[] { rare, rare, epic, epic, epic };
+                return new string[] { legendary };
             default:
                 throw new NotImplementedException();
         }

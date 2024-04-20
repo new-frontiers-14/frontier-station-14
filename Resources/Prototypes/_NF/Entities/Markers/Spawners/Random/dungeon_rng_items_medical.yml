@@ -36,7 +36,50 @@
     - SpawnDungeonLootKitsFirstAid
     - HandheldCrewMonitor
     - SpawnDungeonLootToolsSurgeryAdvanced
+    - SpawnDungeonLootChems
     rareChance: 0.01
+
+- type: entity
+  name: random chemicals
+  id: SpawnDungeonLootChems
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chemistry"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - JugAluminium
+    - JugCarbon
+    - JugChlorine
+    - JugFluorine
+    - JugIodine
+    - JugPhosphorus
+    - JugSulfur
+    - JugSilicon
+    - JugOxygen
+    - JugNitrogen
+    - JugHydrogen
+    - JugLithium
+    - JugSodium
+    - JugPotassium
+    - JugRadium
+    - JugSugar
+    - JugEthanol
+    - JugIron
+    - JugCopper
+    - JugGold
+    - JugMercury
+    - JugSilver
+    chance: 1
+    offset: 0.0
 
 # Medkits
 - type: entity
