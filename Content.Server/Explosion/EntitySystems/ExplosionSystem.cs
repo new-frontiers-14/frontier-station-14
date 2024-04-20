@@ -353,6 +353,25 @@ public sealed partial class ExplosionSystem : EntitySystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
+        // Frontier - Block explosions on safe zone
+        var location = EntityCoordinates.FromMap(_mapManager.GetMapEntityId(pos.MapId), pos, _transformSystem, EntityManager);
+        var gridId = location.GetGridUid(EntityManager);
+        if (!HasComp<MapGridComponent>(gridId))
+        {
+            location = location.AlignWithClosestGridTile();
+            gridId = location.GetGridUid(EntityManager);
+            // Check if fixing it failed / get final grid ID
+            if (HasComp<MapGridComponent>(gridId))
+            {
+                var mapGrid = _mapManager.GetGrid(gridId.Value);
+                var gridUid = mapGrid.Owner;
+                var ev = new FloorTileAttemptEvent();
+                if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+                    return null;
+            }
+        }
+        // Frontier - Block explosions on safe zone
+
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // camera shake
@@ -383,23 +402,6 @@ public sealed partial class ExplosionSystem : EntitySystem
             : queued.Proto.SoundFar;
 
         _audio.PlayGlobal(farSound, farFilter, true, farSound.Params);
-
-        // Block explosions on safe zone
-        var location = mapEntityCoords;
-        var gridId = location.GetGridUid(EntityManager);
-        if (!HasComp<MapGridComponent>(gridId))
-        {
-            location = location.AlignWithClosestGridTile();
-            gridId = location.GetGridUid(EntityManager);
-            // Check if fixing it failed / get final grid ID
-            if (!HasComp<MapGridComponent>(gridId))
-                return null;
-        }
-        var mapGrid = _mapManager.GetGrid(gridId.Value);
-        var gridUid = mapGrid.Owner;
-        var ev = new FloorTileAttemptEvent();
-        if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
-            return null;
 
         return new Explosion(this,
             queued.Proto,
