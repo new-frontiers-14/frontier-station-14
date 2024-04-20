@@ -9,13 +9,16 @@
     - !type:OverallPlaytimeRequirement
       time: 10800
   icon: "JobIconMailCarrier"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
+  canBeAntag: false
   access:
-  - Cargo
+  - External # Frontier
   - Maintenance
   - Service
-  - External # Frontier
   - Mail # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: MailCarrierGear
