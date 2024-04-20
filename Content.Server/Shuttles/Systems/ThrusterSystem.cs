@@ -21,6 +21,7 @@ using Robust.Shared.Utility;
 using Content.Server.Construction; // Frontier
 using Content.Server.Popups; // Frontier
 using Content.Server.Emp; // Frontier
+
 namespace Content.Server.Shuttles.Systems;
 
 public sealed class ThrusterSystem : EntitySystem
@@ -274,7 +275,8 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
-            apcPower.NeedsPower = true;
+            //apcPower.NeedsPower = true;
+            //apcPower.Load = 1500;
         }
 
         component.IsOn = true;
@@ -382,7 +384,8 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
-            apcPower.NeedsPower = false;
+            //apcPower.NeedsPower = false;
+            //apcPower.Load = 0;
         }
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
