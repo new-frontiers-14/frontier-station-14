@@ -1,0 +1,274 @@
+# Vendomats
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineBountyVend
+    - VendingMachineAmmo
+    - LessLethalVendingMachine
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineArcadia
+    - VendingMachineSec
+    - VendingMachineSecDrobe
+    rareChance: 0.01
+
+# Lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory, Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Structures/Storage/closet.rsi
+        state: mercenary
+      - sprite: _NF/Structures/Storage/closet.rsi
+        state: mercenary_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerMercenaryFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerSyndicatePersonalFilled
+    - ClosetBombFilled
+    rareChance: 0.01
+
+# Crates
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateArmoryWeapon
+  parent: MarkerBase
+  suffix: "Dungeon, Armory, Weapon"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/weapon.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateArmoryShotgun
+    - CrateArmoryPistols
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - CrateArmorySMG
+    - CrateArmoryLaser
+    - CrateSecurityNonlethal
+    rareChance: 0.05
+
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateArmoryArmor
+  parent: MarkerBase
+  suffix: "Dungeon, Armory, Armor"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/sec_gear.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateSecurityArmor
+    - CrateSecurityHelmet
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - CrateSecurityRiot
+    - CrateSecurityBiosuit
+    rareChance: 0.05
+
+# Gear
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootArmoryClutter
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Armory, Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingOuterVestWebMercenary
+    - ClothingEyesGlassesMercenary
+    - ClothingHeadHatBeretMercenary
+    - ClothingShoesBootsMercenaryFilled
+    - ClothingBeltMercenaryWebbing
+    - ClothingMaskGasMercenary
+    - ClothingOuterCoatBHTrench
+    - ClothingHeadHatBH
+    - ClothingHeadBandMercenary
+    - ClothingOuterArmorBasic
+    - Zipties
+    - Handcuffs
+    - RiotShield
+    - RiotLaserShield
+    - ClothingHeadHelmetMercenary
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterArmorReflective
+    - ClothingOuterHardsuitMercenary
+    rareChance: 0.01
+
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootArmoryClutterSec
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Armory, Security"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/stunbaton.rsi
+        state: stunbaton_off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingMaskGasSecurity
+    - ClothingMaskGasSwat
+    - FlashlightSeclite
+    - ClothingHeadHelmetRiot
+    - ClothingOuterArmorRiot
+    - ClothingHeadHatSecsoftFlipped
+    - ClothingOuterCoatDetective
+    - ClothingBeltSecurityFilled
+    - ClothingEyesGlassesSecurity
+    - ClothingHeadHatBeretSecurity
+    - ClothingBeltSecurityWebbing
+    - ClothingEyesHudSecurity
+    - ClothingOuterArmorBasic
+    - ClothingShoesBootsCombatFilled
+    - Zipties
+    - Handcuffs
+    - RiotShield
+    - RiotLaserShield
+    chance: 0.85
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterArmorReflective
+    - ClothingOuterArmorHeavy
+    rareChance: 0.01
+
+- type: entity
+  name: random gun
+  id: SpawnDungeonLootArmoryGuns
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponPistolMk58Expedition
+    - WeaponRevolverDeckardExpedition
+    - WeaponLaserGunExpedition
+    - WeaponShotgunKammererExpedition
+    #- WeaponLaserSvalinnExpedition
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - WeaponSubMachineGunWt550Expedition
+    - WeaponSubMachineGunAtreidesExpedition
+    - WeaponSubMachineGunDrozdExpedition
+    rareChance: 0.01
+
+- type: entity
+  name: random gun
+  id: SpawnDungeonLootVaultGuns
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Vault"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponSubMachineGunDrozdExpedition
+    - WeaponSubMachineGunWt550Expedition
+    - WeaponSubMachineGunAtreidesExpedition
+    - WeaponEnergyGunExpedition
+    - WeaponLaserCarbineExpedition
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - WeaponRifleAk
+    - WeaponSniperHristov
+    - WeaponLauncherRocket
+    rareChance: 0.1
+
+# Lathes
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: sec
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - AmmoTechFab
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SecurityTechFab
+    rareChance: 0.01

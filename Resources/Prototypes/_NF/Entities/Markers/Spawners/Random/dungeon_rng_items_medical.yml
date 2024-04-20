@@ -384,8 +384,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+      - sprite: Structures/Machines/VendingMachines/medical.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: RandomSpawner
     prototypes:
     - VendingMachineMediDrobe

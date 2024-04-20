@@ -11,7 +11,7 @@
 
 # Vendomats
 - type: entity
-  name: random vendomat # food, drinks, smokes, toy, decor
+  name: random vendomat # drinks, smokes, toy, decor
   id: SpawnDungeonVendomatsRecreational
   parent: MarkerBase
   suffix: "Dungeon, Recreational"
@@ -19,10 +19,16 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: RandomSpawner
     prototypes:
+    - SpaceVillainArcade
+    - SpaceVillainArcadeFilled
+    - BlockGameArcade
     - VendingMachineBooze
     - VendingMachineCigs
     - VendingMachineCoffee
@@ -35,22 +41,23 @@
     - VendingMachineShamblersJuice
     - VendingMachinePwrGame
     - VendingMachineDrGibb
-    - VendingMachineDiscount
-    - VendingMachineSnack
-    - VendingMachineSustenance
-    - VendingMachineSnackBlue
-    - VendingMachineSnackOrange
-    - VendingMachineSnackGreen
-    - VendingMachineSnackTeal
+    - CuddlyCritterVend
     - VendingMachineSovietSoda
     - VendingMachineGames
-    - VendingMachineChang
-    - VendingMachineDonut
     - VendingMachineHappyHonk
     - CuddlyCritterVend
     - VendingMachineAutoTuneVend
     - VendingMachinePottedPlantVend
     - WaterCooler
+    #- VendingMachineChang # No food vendomats in expeds - buy from food ships or die
+    #- VendingMachineDonut
+    #- VendingMachineDiscount
+    #- VendingMachineSnack
+    #- VendingMachineSustenance
+    #- VendingMachineSnackBlue
+    #- VendingMachineSnackOrange
+    #- VendingMachineSnackGreen
+    #- VendingMachineSnackTeal
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -66,8 +73,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: RandomSpawner
     prototypes:
     - VendingMachineClothing
@@ -93,8 +103,8 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineMagivend
-    - VendingMachineSyndieContraband
-    - VendingMachineBountyVend
+    #- VendingMachineSyndieContraband
+    #- VendingMachineBountyVend
     - VendingMachineArcadia
     - VendingMachineSyndieDrobe
     rareChance: 0.01
@@ -108,8 +118,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: RandomSpawner
     prototypes:
     - VendingMachineVendomat
@@ -121,10 +134,12 @@
     offset: 0.0
     rarePrototypes:
     - LessLethalVendingMachine
+    - VendingMachineFlatpackVend
+    - VendingMachineExpeditionaryFlatpackVend
     - VendingMachineAmmo
     - VendingMachineSyndieContraband
     - VendingMachineNFSDTec
-    - VendingMachineArcadia
+    #- VendingMachineArcadia
     rareChance: 0.01
 
 # Lathes and circuits
@@ -569,6 +584,7 @@
     prototypes:
     - ClosetEmergencyFilledRandom
     - ClosetFireFilled
+    - ClosetL3Filled
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -577,3 +593,38 @@
     - ClosetL3Filled
     rareChance: 0.15
 
+# Canisters
+- type: entity
+  name: random canister
+  id: SpawnDungeonLootCanister
+  parent: MarkerBase
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/canister.rsi
+        state: greenys
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - AirCanister
+    - AmmoniaCanister
+    - CarbonDioxideCanister
+    - NitrogenCanister
+    - NitrousOxideCanister
+    - OxygenCanister
+    - PlasmaCanister
+    - StorageCanister
+    - WaterVaporCanister
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - FrezonCanister
+    - LiquidCarbonDioxideCanister
+    - LiquidNitrogenCanister
+    - LiquidOxygenCanister
+    - TritiumCanister
+    rareChance: 0.05

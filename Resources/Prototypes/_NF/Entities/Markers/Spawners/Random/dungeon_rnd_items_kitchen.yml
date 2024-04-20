@@ -91,7 +91,7 @@
   name: random food
   id: SpawnDungeonLootFood
   parent: MarkerBasePlaceFree
-  suffix: Dungeon
+  suffix: "Dungeon, Spoiled"
   components:
   - type: Sprite
     layers:
@@ -104,11 +104,26 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - DonkpocketBoxSpawner
-    - RandomFoodBakedSingle
-    - RandomFoodBakedWhole
-    - RandomFoodMeal
-    - RandomFoodSingle
-    - RandomSnacks
+    - FoodBurgerBaconRotten
+    - FoodBurgerBigBiteRotten
+    - FoodBurgerCheeseRotten
+    - FoodBurgerEmpoweredRotten
+    - FoodBurgerPlainRotten
+    - FoodRiceEggMoldy
+    - FoodSoupMeatballMoldy
+    - FoodNoodlesMoldy
+    - FoodNoodlesMeatballMoldy
+    - FoodSaladCaesarMoldy
+    #- DonkpocketBoxSpawner
+    #- RandomFoodBakedSingle
+    #- RandomFoodBakedWhole
+    #- RandomFoodMeal
+    #- RandomFoodSingle
+    #- RandomSnacks
     chance: 1
     offset: 0.0
+    rarePrototypes:
+    - FoodBreadMoldySlice
+    - FoodBreadMoldy
+    - FoodPizzaMoldySlice
+    rareChance: 0.05

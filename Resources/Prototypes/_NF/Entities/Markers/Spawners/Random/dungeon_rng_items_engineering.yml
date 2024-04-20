@@ -9,6 +9,7 @@
       - state: green
         scale: 0.7, 0.7
       - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -265,8 +266,11 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Structures/Machines/VendingMachines/random.rsi
-        state: any
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
   - type: RandomSpawner
     prototypes:
     - VendingMachineAtmosDrobe
