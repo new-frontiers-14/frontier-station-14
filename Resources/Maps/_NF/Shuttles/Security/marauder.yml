@@ -523,6 +523,7 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Marauder
+    - type: NavMap
 - proto: ActionToggleLight
   entities:
   - uid: 3
@@ -849,19 +850,17 @@ entities:
     - type: Transform
       pos: 5.5,-6.5
       parent: 1
-- proto: APCHighCapacity
-  entities:
   - uid: 57
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,3.5
-      parent: 1
-  - uid: 58
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,16.5
+      parent: 1
+  - uid: 58
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,3.5
       parent: 1
 - proto: AtmosDeviceFanTiny
   entities:
