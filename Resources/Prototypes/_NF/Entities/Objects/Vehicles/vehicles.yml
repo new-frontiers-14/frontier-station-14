@@ -141,80 +141,7 @@
     radius: 7
     energy: 3
 
-- type: entity
-  parent: VehicleSkeletonMotorcycleNF
-  id: VehicleHoverbikeNfsd
-  name: nfsd hoverbike
-  description: An NFSD issued turbine with bike handles. Very safe.
-  components:
-  - type: MovementIgnoreGravity
-  - type: MovementAlwaysTouching
-  - type: CanMoveInAir
-  - type: Vehicle
-    northOver: true
-    westOver: true
-    eastOver: true
-    northOverride: -0.1
-    southOverride: 0.1
-    hornSound:
-      path: /Audio/Effects/Vehicle/policesiren.ogg
-  - type: AmbientSound
-    sound: /Audio/Effects/shuttle_thruster.ogg
-    range: 8
-    volume: 2
-    enabled: false
-  - type: MovementSpeedModifier # Very petty
-    acceleration: 1.9
-    friction: 1.4
-    baseWalkSpeed: 4.3
-    baseSprintSpeed: 6.8
-  - type: Sprite
-    sprite: _NF/Objects/Vehicles/hoverbike.rsi
-    layers:
-    - state: hull
-      color: "#49633d"
-    - state: engine
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-    - state: nfsdstar
-    noRot: true
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: vehicle-slot-component-slot-name-keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - HoverbikeKeys
-        priority: 1
-        insertSound:
-          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
-          params:
-            volume: -5
-      nfsdbaton:
-        name: stunbaton
-        whitelist:
-          components:
-            - Stunbaton
-        priority: 2
-  - type: ItemMapper
-    mapLayers:
-      nfsdbaton:
-        whitelist:
-          components:
-            - Stunbaton
-    sprite: _NF/Objects/Vehicles/hoverbike.rsi
-  - type: Appearance
-  - type: RotatingLight
-    speed: 190
-  - type: PointLight
-    enabled: false
-    radius: 6
-    energy: 2
-    color: "#FF4020"
-    mask: /Textures/Effects/LightMasks/double_cone.png
-
-# Mailcarrier
+# Mail carrier
 - type: entity
   parent: VehicleSkeletonMotorcycleNF
   id: VehicleHoverbikeMailcarrier
@@ -270,3 +197,69 @@
     enabled: false
     radius: 6
     energy: 3
+
+# NFSD
+- type: entity
+  parent: VehicleHoverbikeMailcarrier
+  id: VehicleHoverbikeNfsd
+  name: nfsd hoverbike
+  description: An NFSD issued turbine with bike handles. Very safe.
+  components:
+  - type: Vehicle
+    northOver: true
+    westOver: true
+    eastOver: true
+    northOverride: -0.1
+    southOverride: 0.1
+    hornSound:
+      path: /Audio/Effects/Vehicle/policesiren.ogg
+  - type: MovementSpeedModifier # Very petty on my end
+    acceleration: 1.9
+    friction: 1.4
+    baseWalkSpeed: 4.3
+    baseSprintSpeed: 6.8
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+    layers:
+    - state: hull
+      color: "#49633d"
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: nfsdstar
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      nfsdbaton:
+        name: stunbaton
+        whitelist:
+          components:
+            - Stunbaton
+        priority: 2
+  - type: ItemMapper
+    mapLayers:
+      nfsdbaton:
+        whitelist:
+          components:
+            - Stunbaton
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+  - type: Appearance
+  - type: RotatingLight
+    speed: 190
+  - type: PointLight
+    enabled: false
+    radius: 6
+    energy: 2
+    color: "#FF4020"
+    mask: /Textures/Effects/LightMasks/double_cone.png
