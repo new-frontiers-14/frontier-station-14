@@ -1,23 +1,23 @@
 - type: vessel
-  id: svorange
-  name: SV Orange
-  description: A cargo slash salvage shuttle made from scavenged wrecks, comes with some damage.
-  price: 16000 #Appraisal is 14500
+  id: Tide
+  name: SV Tide
+  description: A cheaply made mass-produced shuttle made from salvaged wrecks. For the seasoned assistant.
+  price: 9700
   category: Small
   group: Scrap
-  shuttlePath: /Maps/Shuttles/svorange.yml
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/tide.yml
 
 - type: gameMap
-  id: svorange
-  mapName: 'SV Orange'
-  mapPath: /Maps/Shuttles/svorange.yml
+  id: Tide
+  mapName: 'SV Tide'
+  mapPath: /Maps/_NF/Shuttles/Scrap/tide.yml
   minPlayers: 0
   stations:
-    svorange:
+    Tide:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Orange {1}'
+          mapNameTemplate: 'Tide {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
