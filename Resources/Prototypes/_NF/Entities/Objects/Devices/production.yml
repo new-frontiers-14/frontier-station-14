@@ -55,7 +55,7 @@
       Steel: 5
 
 - type: entity
-  id: ThrusterNFSDMachineCircuitboard
+  id: ThrusterNfsdMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: nfsd thruster machine board
   components:
@@ -100,3 +100,14 @@
           ExamineName: Glass Beaker
     - type: StaticPrice
       price: 200
+
+- type: entity
+  id: NfsdTechFabCircuitboard
+  parent: SecurityTechFabCircuitboard
+  name: nfsd techfab machine board
+  description: A machine printed circuit board for an nfsd techfab.
+  components:
+    - type: Sprite
+      state: nfsd
+    - type: MachineBoard
+      prototype: NfsdTechFab
