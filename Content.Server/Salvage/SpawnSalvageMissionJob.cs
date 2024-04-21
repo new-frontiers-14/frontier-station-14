@@ -183,7 +183,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         if (shuttleUid is { Valid : true } vesselUid)
         {
             var shuttle = _entManager.GetComponent<ShuttleComponent>(vesselUid);
-            _shuttle.FTLToCoordinates(vesselUid, shuttle, new EntityCoordinates(mapUid, Vector2.Zero), 5.5f, 50f);
+            _shuttle.FTLToCoordinates(vesselUid, shuttle, new EntityCoordinates(mapUid, Vector2.Zero), 0f, 5.5f, 50f);
         }
 
         var landingPadRadius = 38; //we go a liiitle bigger for the shipses

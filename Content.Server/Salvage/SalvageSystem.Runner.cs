@@ -204,12 +204,10 @@ public sealed partial class SalvageSystem
 
                             //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
                             var mapId = _gameTicker.DefaultMap;
+                            var mapUid = _mapManager.GetMapEntityId(mapId);
                             var dropLocation = _random.NextVector2(750, 2750);
-                            var coords = new MapCoordinates(dropLocation, mapId);
-                            var location = Spawn(null, coords);
-                            var despawn = EnsureComp<TimedDespawnComponent>(location);
-                            despawn.Lifetime = 600;
-                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, location.ToCoordinates(), ftlTime);
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 5.5f, 50f);
                         }
 
                         break;
