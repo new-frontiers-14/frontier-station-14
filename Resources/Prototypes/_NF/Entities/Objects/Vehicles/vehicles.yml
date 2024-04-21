@@ -1,4 +1,4 @@
-
+# Base game vehicles
 - type: entity
   parent: VehicleATV
   id: VehicleATVNF
@@ -69,3 +69,69 @@
       interfaces:
       - key: enum.StorageUiKey.Key
         type: StorageBoundUserInterface
+
+# New Frontier vehicles
+- type: entity
+  parent: VehicleATVNF
+  id: VehicleHoverbikeNF
+  name: hoverbike
+  description: Turbine with bike handles. Very safe.
+  components:
+  - type: AmbientSound
+    sound: /Audio/Effects/shuttle_thruster.ogg
+    range: 8
+    volume: -1
+    enabled: false
+  - type: Strap
+    buckleOffset: "0.1, -0.05"
+    maxBuckleDistance: 1
+  - type: MovementSpeedModifier
+    acceleration: 2
+    friction: 1.5
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 7
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+    layers:
+    - state: hull
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    noRot: true
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          hull: Sixteen # Rainbow, Emagged, Departmental, Advanced
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+      bag:
+        name: stored bag
+        whitelist:
+          components:
+            - Storage
+        priority: 2
+        insertSound:
+          path: /Audio/Items/belt_equip.ogg
+          params:
+            volume: -3
+  - type: ItemMapper
+    mapLayers:
+      bag:
+        whitelist:
+          components:
+            - Storage
+    sprite: _NF/Objects/Vehicles/atv.rsi
+  - type: Appearance
+
