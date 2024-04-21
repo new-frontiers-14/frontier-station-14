@@ -103,10 +103,13 @@
   id: ClothingBeltCultForceField
   name: cult force field
   components:
-  - type: Unremoveable
   - type: Sprite
     sprite: _NF/Clothing/Belt/cult_force_field.rsi
     shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/Belt/cult_force_field.rsi
     shader: unshaded
+  - type: Reflect
+    enabled: true
+    reflectProb: .1
+    spread: 90

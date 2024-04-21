@@ -566,13 +566,13 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/messenger.rsi
+    sprite: _NF/Clothing/Back/Messenger/bloodcult.rsi
     state: icon
   - type: SpawnItemsOnUse
     items:
-      - id: CrossbowImprovised
-#      - id: ClothingBeltQuiverCrossbowFilledBolt
-      - id: SpaceCash1000
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledBolt
+    - id: SpaceCash1000
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -583,9 +583,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: CrossbowImprovised
-      - id: ClothingBeltQuiverCrossbowFilledUranium
-      - id: SpaceCash1000
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledUranium
+    - id: SpaceCash1000
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -596,8 +596,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: ClothingBeltQuiverCrossbowFilledPlasma
-      - id: SpaceCash1000
+    - id: ClothingBeltQuiverCrossbowFilledPlasma
+    - id: SpaceCash500
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -608,6 +608,79 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: SpaceCash1000
+    - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# Blood Cultist: generic cash rewards
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.08
+    - id: Tourniquet
+      amount: 1
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash500
+      prob: 0.5
+    - id: Bloodpack
+      prob: 0.06
+    - id: BruteAutoInjector
+      amount: 1
+      prob: 0.02
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.04
+    - id: EmergencyMedipen
+      amount: 1
+      prob: 0.02
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.02
+    - id: Gauze1
+      amount: 1
+      prob: 0.01
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
