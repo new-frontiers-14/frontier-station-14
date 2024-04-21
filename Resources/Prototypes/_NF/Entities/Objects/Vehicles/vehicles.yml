@@ -77,6 +77,9 @@
   name: hoverbike
   description: Turbine with bike handles. Very safe.
   components:
+  - type: MovementIgnoreGravity
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
   - type: AmbientSound
     sound: /Audio/Effects/shuttle_thruster.ogg
     range: 8
