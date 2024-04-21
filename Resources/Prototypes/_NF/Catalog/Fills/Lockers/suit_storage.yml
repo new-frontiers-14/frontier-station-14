@@ -19,25 +19,6 @@
 #    access: [["Medical"]]
 
 #HARDSUITS
-#Brigmedic's hardsuit
-- type: entity
-  id: SuitStorageBrigmedic
-  parent: SuitStorageBase
-  suffix: Brigmedic
-  components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitBrigmedic
-        - id: ClothingMaskBreathMedicalSecurity
-        - id: JetpackSecurityFilled
-        - id: HandheldGPSBasic
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
-  - type: AccessReader
-    access: [["Security"]]
-
 #Quartermaster hardsuit
 - type: entity
   id: SuitStorageQuartermaster
@@ -137,7 +118,7 @@
 - type: entity
   id: SuitStorageCadet
   parent: SuitStorageBase
-  suffix: NFSDCadet
+  suffix: NFSD Cadet
   components:
   - type: StorageFill
     contents:
@@ -145,8 +126,8 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBronze # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingMaskGasNfsd
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -156,7 +137,7 @@
 - type: entity
   id: SuitStorageDeputy
   parent: SuitStorageBase
-  suffix: NFSDDeputy
+  suffix: NFSD Deputy
   components:
   - type: StorageFill
     contents:
@@ -164,8 +145,8 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSilver # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -173,18 +154,18 @@
 
 #Brigmed hardsuit
 - type: entity
-  id: SuitStorageBrigmed
+  id: SuitStorageBrigmedic
   parent: SuitStorageBase
-  suffix: NFSDBrigMedic
+  suffix: NFSD Brigmedic
   components:
   - type: StorageFill
     contents:
 #        - id: NitrogenTankFilled
 #        - id: OxygenTankFilled
         - id: AirTankFilled
-        - id: ClothingOuterHardsuitNfsdBrigMed # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingOuterHardsuitNfsdBrigmedic # Frontier
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -194,7 +175,7 @@
 - type: entity
   id: SuitStorageSergeant
   parent: SuitStorageBase
-  suffix: NFSDSergeant
+  suffix: NFSD Sergeant
   components:
   - type: StorageFill
     contents:
@@ -202,8 +183,8 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -213,7 +194,7 @@
 - type: entity
   id: SuitStorageBailiff
   parent: SuitStorageBase
-  suffix: NFSDBailiff
+  suffix: NFSD Bailiff
   components:
   - type: StorageFill
     contents:
@@ -221,8 +202,8 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
@@ -232,7 +213,7 @@
 - type: entity
   id: SuitStorageSheriff
   parent: SuitStorageBase
-  suffix: NFSDSheriff
+  suffix: NFSD Sheriff
   components:
   - type: StorageFill
     contents:
@@ -240,8 +221,46 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSheriff # Frontier
-        - id: ClothingMaskBreathMedicalSecurity 
-        - id: JetpackSecurityFilled
+        - id: ClothingMaskGasSheriff
+        - id: JetpackNfsdFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Combat hardsuit
+- type: entity
+  id: SuitStorageNfsdCombat
+  parent: SuitStorageBase
+  suffix: NFSD Combat
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdCombat # Frontier
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
+        - id: HandheldGPSBasic
+        - id: ClothingShoesBootsMagNfsd # Frontier
+  - type: AccessReader
+    access: [["Security"]]
+
+#Command hardsuit
+- type: entity
+  id: SuitStorageNfsdCommand
+  parent: SuitStorageBase
+  suffix: NFSD Command
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitNfsdCommand # Frontier
+        - id: ClothingMaskGasNfsd 
+        - id: JetpackNfsdFilled
         - id: HandheldGPSBasic
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
