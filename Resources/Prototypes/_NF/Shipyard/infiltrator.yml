@@ -1,20 +1,20 @@
 - type: vessel
   id: Infiltrator
   name: Infiltrator
-  description: An outdated Syndicate Nuclear Operative infiltration ship, expedition capable.
+  description: An outdated Syndicate Nuclear Operative infiltration ship.
   price: 64000
   category: Medium
   group: BlackMarket
-  shuttlePath: /Maps/Shuttles/infiltrator.yml
+  shuttlePath: /Maps/_NF/Shuttles/infiltrator.yml
 
 - type: gameMap
   id: Infiltrator
   mapName: 'Infiltrator'
-  mapPath: /Maps/Shuttles/infiltrator.yml
+  mapPath: /Maps/_NF/Shuttles/infiltrator.yml
   minPlayers: 0
   stations:
     Infiltrator:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Infiltrator {1}'
