@@ -319,10 +319,28 @@
 # SR
 - type: entity
   id: LockerStationRepresentative
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerHeadOfPersonnel] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerBaseSecure] # Frontier
   name: station representative's locker
   components:
+  - type: Appearance
   - type: EntityStorageVisuals
-    stateBaseClosed: hop
-    stateDoorOpen: hop_open
-    stateDoorClosed: hop_door
+    stateBaseClosed: sr
+    stateDoorOpen: sr_open
+    stateDoorClosed: sr_door
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
