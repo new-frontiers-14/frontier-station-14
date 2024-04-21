@@ -50,11 +50,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _shuttle.SetIFFColor(gridUid, component.Color);
         var offset = _random.NextVector2(1350f, 2200f);
         var mapId = GameTicker.DefaultMap;
-        var coords = new MapCoordinates(offset, mapId);
-        var location = Spawn(null, coords);
+        var mapUid = _mapManager.GetMapEntityId(mapId);
         if (TryComp<ShuttleComponent>(component.GridUid, out var shuttle))
         {
-            _shuttle.FTLToCoordinates(gridUid, shuttle, location.ToCoordinates(), 5.5f, 55f);
+            _shuttle.FTLToCoordinates(gridUid, shuttle, new EntityCoordinates(mapUid, offset), 0f, 0f, 30f);
         }
 
     }
