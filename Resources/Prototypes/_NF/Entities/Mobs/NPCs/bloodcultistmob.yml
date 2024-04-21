@@ -169,9 +169,7 @@
 - type: entity
   name: Ascended Cultist # Megafauna
   noSpawn: true
-  parent:
-  - MobNonHumanHostileBase
-  - FlyingMobBase
+  parent: MobNonHumanHostileBase
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -179,6 +177,7 @@
       - BloodCultNF
   - type: MovementIgnoreGravity
   - type: MovementAlwaysTouching
+  - type: CanMoveInAir
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Reflect
@@ -231,6 +230,7 @@
     energy: 1.2
     color: "#ff0000"
     castShadows: false
+  - type: SoundWhileAlive
   - type: AmbientSound
     volume: -9
     range: 5
