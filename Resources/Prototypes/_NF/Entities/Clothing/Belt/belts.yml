@@ -99,7 +99,7 @@
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: ClothingBeltBase
   id: ClothingBeltCultForceField
   name: cult force field
   components:
@@ -113,3 +113,14 @@
     enabled: true
     reflectProb: .1
     spread: 90
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltCultWebbing
+  name: cult webbing
+  description: A webbing with pockets lined with waterproof (water, huh?)  material.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi

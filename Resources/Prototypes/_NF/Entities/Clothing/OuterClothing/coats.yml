@@ -106,9 +106,9 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
 
-# Bloodcult Janitor Robes
+# Bloodcult Robes
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, ClothingOuterArmorBulletproof ]
   id: ClothingOuterCoatCultJanitor
   name: cult leader armored robes
   description: Regal robes fitting for a cult leader.
@@ -117,17 +117,23 @@
     sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
-  - type: Armor # ClothingOuterArmorBulletproof stats
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.4
-        Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.80
   - type: Contraband
-    
+
+- type: entity
+  parent: [ ClothingOuterStorageToggleableBase, ClothingOuterArmorBasic ]
+  id: ClothingOuterCoatBloodCultRobes
+  name: cult robes
+  description: There's no cult without classic red/crimson cult robes with bulletproof vests.
+  suffix: Frontier
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodBloodCulthood
+  - type: Contraband
+
 - type: entity
   parent: ClothingOuterWinterHoP
   id: ClothingOuterJacketSr
