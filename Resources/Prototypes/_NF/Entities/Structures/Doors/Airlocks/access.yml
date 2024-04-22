@@ -76,8 +76,9 @@
   id: AirlockNfsdGlassLocked
   suffix: NFSD, Locked
   components:
-  - type: AccessReader
-    access: [["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
   - type: Wires
     layoutId: AirlockSecurity
 
