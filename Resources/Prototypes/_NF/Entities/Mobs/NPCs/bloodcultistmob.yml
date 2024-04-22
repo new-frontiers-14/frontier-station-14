@@ -97,6 +97,16 @@
     enabled: true
     reflectProb: .3
     spread: 90
+  - type: HTN
+    rootTask:
+       task: MeleeCombatCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
 
 # Blood Cult Acolyte, melee mob armed with ritual dagger (12 slash)
 - type: entity
@@ -112,6 +122,16 @@
     enabled: true
     reflectProb: .1
     spread: 90
+  - type: HTN
+    rootTask:
+       task: MeleeCombatCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
 
 # Blood Cult Zealot, ranged mob, crossbow bolt deals 20 slash and 5 bloodloss
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
@@ -412,3 +432,26 @@
       range: 5
       sound:
         path: /Audio/Effects/shuttle_thruster.ogg
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 300
+          # TODO: Construction graph
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ShardCrystalRed:
+                  min: 1
+                  max: 3
