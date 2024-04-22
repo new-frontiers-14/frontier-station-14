@@ -70,6 +70,17 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("thrusterIgnoreEmp")]
         public bool ThrusterIgnoreEmp = false;
+
+        /// <summary>
+        ///     While disabled by EMP
+        /// </summary>
+        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
+
+        ///     Amount of charge this needs from an APC per second to function.
+        /// </summary>
+        [DataField("originalPowerLoad")]
+        public float OriginalLoad = 0;
     }
 
     public enum ThrusterType

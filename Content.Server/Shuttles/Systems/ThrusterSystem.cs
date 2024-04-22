@@ -139,10 +139,16 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (!component.Enabled)
         {
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0) // Frontier
+                apcPower.Load = 1; // Frontier
+
             DisableThruster(uid, component);
         }
         else if (CanEnable(uid, component))
         {
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load) // Frontier
+                apcPower.Load = component.OriginalLoad; // Frontier
+
             EnableThruster(uid, component);
         }
     }
@@ -232,6 +238,8 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnThrusterInit(EntityUid uid, ThrusterComponent component, ComponentInit args)
     {
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
+
         _ambient.SetAmbience(uid, false);
 
         if (!component.Enabled)
@@ -276,7 +284,6 @@ public sealed class ThrusterSystem : EntitySystem
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
             //apcPower.NeedsPower = true;
-            //apcPower.Load = 1500;
         }
 
         component.IsOn = true;
@@ -385,7 +392,6 @@ public sealed class ThrusterSystem : EntitySystem
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
             //apcPower.NeedsPower = false;
-            //apcPower.Load = 0;
         }
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
