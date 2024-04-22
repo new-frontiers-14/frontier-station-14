@@ -184,23 +184,57 @@
       shader: unshaded
 
 - type: entity
-  parent: BloodCultProp01
+  parent: Autolathe
   id: BloodCultProp02
-  name: curious object
-  description: Huh, I wonder what this thing is and what does it do.
+  name: blood cult forge
+  description: A forge for weapon and armor production.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    sprite: _NF/Structures/Specific/BloodCult/forge.rsi
+    snapCardinals: true
     layers:
-    - state: prop-2
-    - state: unshadedprop-2
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
       shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - RitualDagger
+    - EldritchBlade
+    - UnholyHalberd
+    - WizardStaffMeleeBlood
+    - SpearBone
+    - ClothingHeadHelmetCultJanitor
+    - ClothingMaskCultJanitor
+    - ClothingOuterCoatCultJanitor
+    - ClothingHeadHelmetCult
+    - ClothingOuterArmorCult
+    - ClothingShoesCult
+    - ClothingHeadHatHoodCulthood
+    - ClothingOuterRobesCult
+    - ClothingHeadHelmetBone
+    - ClothingOuterArmorBone
+    - PumpkinLanternSmall
+    - CandleRedInfinite
 
 - type: entity
   parent: BloodCultProp01
   id: BloodCultProp03
-  name: curious object
-  description: Huh, I wonder what this thing is and what does it do.
+  name: blood cult shrine
+  description: An occult shrine for imbuing objects with vile energies.
   components:
   - type: Sprite
     sprite: _NF/Structures/Specific/BloodCult/props.rsi
@@ -212,8 +246,8 @@
 - type: entity
   parent: BloodCultProp01
   id: BloodCultProp04
-  name: curious object
-  description: Huh, I wonder what this thing is and what does it do.
+  name: blood cult workbench
+  description: An occult workbench with handy drawers. There is a severed hand in one.
   components:
   - type: Sprite
     sprite: _NF/Structures/Specific/BloodCult/props.rsi
