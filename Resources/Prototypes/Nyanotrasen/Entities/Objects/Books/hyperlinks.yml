@@ -1,34 +1,51 @@
 # Frontier - this needs a dedicated fix if we want to continue using it even
-#- type: entity
-#  parent: BaseItem
-#  id: BaseHyperlinkBook
-#  abstract: true
-#  components:
-#  - type: Sprite
-#    sprite: Objects/Misc/books.rsi
-#  - type: Tag
-#    tags:
-#    - Book
-#  - type: StaticPrice
-#    price: 35
-#
-#- type: entity
-#  parent: BaseHyperlinkBook
-#  id: HyperlinkBookSpaceLaw
-#  name: space law
-#  description: A big book of laws for space courts.
-#  components:
-#  - type: Sprite
-#    sprite: Nyanotrasen/Objects/Misc/books.rsi
-#    layers:
-#    - state: law_space
-#  - type: HyperlinkBook
-#    url: https://frontierstation14.com/index.php/Space_Law # Frontier
-#  - type: Tag
-#    tags:
-#    - Book
-#    - BookSpaceLaw # Frontier
-#
+- type: entity
+  parent: BaseItem
+  id: BaseHyperlinkBook
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+  - type: Tag
+    tags:
+    - Book
+  - type: StaticPrice
+    price: 35
+
+- type: entity
+  parent: BaseHyperlinkBook
+  id: HyperlinkBookSpaceLaw
+  name: space law
+  description: A big book of laws for space courts.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Misc/books.rsi
+    layers:
+    - state: law_space
+  - type: HyperlinkBook
+    url: https://frontierstation14.com/index.php/Space_Law  #Frontier
+  - type: Tag
+    tags:
+    - Book
+    - BookSpaceLaw  #Frontier
+
+- type: entity
+  parent: BaseHyperlinkBook
+  id: HyperlinkBookNfsdSop
+  name: nfsd sop's
+  description: A book defining nfsd standard operating procedures.
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Misc/books.rsi
+    layers:
+    - state: nfsd_sop
+  - type: HyperlinkBook
+    url: https://frontierstation14.com/index.php/NFSDSOP  #Frontier
+  - type: Tag
+    tags:
+    - Book
+    - BookNfsdSop  #Frontier
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookSupernanny
@@ -41,7 +58,7 @@
 #    - state: law_space
 #  - type: HyperlinkBook
 #    url: https://supernannyfanon.fandom.com/wiki/Category:Discipline_Techniques
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookChemistry
@@ -53,7 +70,7 @@
 #    - state: book_chemistry
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Chemistry
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookBartending
@@ -65,7 +82,7 @@
 #    - state: book_bar
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Drinks
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookCooking
@@ -77,7 +94,7 @@
 #    - state: book_cooking
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Cooking
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookBotany
@@ -89,7 +106,7 @@
 #    - state: book_hydroponics_pod_people
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Hydroponics
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookShuttle
@@ -101,7 +118,7 @@
 #    - state: book_engineering
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Shuttle_Construction
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookAlerts
@@ -113,7 +130,7 @@
 #    - state: book_nuclear
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Alert_Procedure
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookProcedure
@@ -125,7 +142,7 @@
 #    - state: book_particle_accelerator
 #  - type: HyperlinkBook
 #    url: https://frontierstation14.com/index.php/Space_Law
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookPower
@@ -137,7 +154,7 @@
 #    - state: book_engineering2
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Power
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookMedical
@@ -149,7 +166,7 @@
 #    - state: book_infections
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Medical
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookHacking
@@ -161,7 +178,7 @@
 #    - state: book_hacking
 #  - type: HyperlinkBook
 #    url: https://wiki.nyanotrasen.moe/view/Hacking
-#
+
 #- type: entity
 #  parent: BaseHyperlinkBook
 #  id: HyperlinkBookAtmos

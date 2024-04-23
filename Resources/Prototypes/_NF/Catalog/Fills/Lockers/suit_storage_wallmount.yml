@@ -1,8 +1,13 @@
 #SOFTSUITS
-#Paramedic's hardsuit
+#Paramedic's Voidsuit
 - type: entity
   id: SuitStorageWallmountParamedic
   parent: [SuitStorageWallmount, SuitStorageParamedic]
+
+#Hydroponics EVA
+- type: entity
+  id: SuitStorageWallmountHydro
+  parent: [SuitStorageWallmount, SuitStorageHydro]
 
 #HARDSUITS
 #Quartermaster hardsuit
@@ -10,10 +15,20 @@
   id: SuitStorageWallmountQuartermaster
   parent: [SuitStorageWallmount, SuitStorageQuartermaster]
 
+#Mining hardsuit
+- type: entity
+  id: SuitStorageWallmountMining
+  parent: [SuitStorageWallmount, SuitStorageMining]
+
 #Mercenary hardsuit
 - type: entity
   id: SuitStorageWallmountMercenary
   parent: [SuitStorageWallmount, SuitStorageMercenary]
+
+#SCAF hardsuit
+- type: entity
+  id: SuitStorageWallmountScaf
+  parent: [SuitStorageWallmount, SuitStorageScaf]
 
 #Pilot hardsuit
 - type: entity
@@ -171,3 +186,8 @@
 - type: entity
   id: SuitStorageWallmountNfsdCommand
   parent: [SuitStorageWallmount, SuitStorageNfsdCommand]
+
+#Mail Carrier
+- type: entity
+  id: SuitStorageWallmountMailCarrier
+  parent: [SuitStorageWallmount, SuitStorageMailCarrier]
