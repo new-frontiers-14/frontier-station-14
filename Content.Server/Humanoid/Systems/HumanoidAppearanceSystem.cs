@@ -151,42 +151,4 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         Dirty(uid, humanoid);
     }
-
-    /// <summary>
-    /// Takes ID of the species prototype, returns UI-friendly name of the species.
-    /// </summary>
-    public string GetSpeciesRepresentation(string speciesId)
-    {
-        if (_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
-        {
-            return Loc.GetString(species.Name);
-        }
-        else
-        {
-            return Loc.GetString("humanoid-appearance-component-unknown-species");
-        }
-    }
-
-    public string GetAgeRepresentation(string species, int age)
-    {
-        _prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype);
-
-        if (speciesPrototype == null)
-        {
-            Log.Error("Tried to get age representation of species that couldn't be indexed: " + species);
-            return Loc.GetString("identity-age-young");
-        }
-
-        if (age < speciesPrototype.YoungAge)
-        {
-            return Loc.GetString("identity-age-young");
-        }
-
-        if (age < speciesPrototype.OldAge)
-        {
-            return Loc.GetString("identity-age-middle-aged");
-        }
-
-        return Loc.GetString("identity-age-old");
-    }
 }
