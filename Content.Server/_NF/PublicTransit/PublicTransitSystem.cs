@@ -201,7 +201,7 @@ public sealed class PublicTransitSystem : EntitySystem
                         ignoreActionBlocker: true);
                 }
             }
-            _shuttles.FTLTravel(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, dock: true);
+            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime);
 
             if (TryGetNextStation(out var nextStation) && nextStation is {Valid : true} destination)
                 comp.NextStation = destination;
@@ -273,7 +273,7 @@ public sealed class PublicTransitSystem : EntitySystem
             {
                 //we set up a default in case the second time we call it fails for some reason
                 transitComp.NextStation = destination;
-                _shuttles.FTLTravel(shuttleUids[0], shuttleComp, destination, hyperspaceTime: 5f, dock: true);
+                _shuttles.FTLToDock(shuttleUids[0], shuttleComp, destination, hyperspaceTime: 5f);
                 transitComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
 
                 //since the initial cached value of the next station is actually the one we are 'starting' from, we need to run the

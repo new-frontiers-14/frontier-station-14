@@ -49,6 +49,7 @@
     price: 25
   - type: RadiationBlocker
     resistance: 2
+  - type: BlockWeather
 
 - type: entity
   parent: BaseWall
@@ -58,11 +59,14 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/brick.rsi
   - type: Icon
     sprite: Structures/Walls/brick.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
   - type: Destructible
     thresholds:
     - trigger:
@@ -78,7 +82,7 @@
         acts: [ "Destruction" ]
 
   - type: IconSmooth
-    key: walls
+    key: bricks
     base: brick
 
 - type: entity
@@ -89,11 +93,13 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/clock.rsi
   - type: Icon
     sprite: Structures/Walls/clock.rsi
+  - type: Construction
+    graph: ClockworkGirder
+    node: clockworkWall
   - type: Destructible
     thresholds:
     - trigger:
@@ -102,7 +108,7 @@
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
-          Girder:
+          ClockworkGirder:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -119,7 +125,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/clown.rsi
   - type: Icon
@@ -127,6 +132,10 @@
   - type: Construction
     graph: Girder
     node: bananiumWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -152,7 +161,6 @@
   components:
   - type: Tag
     tags:
-      - RCDDeconstructWhitelist
       - Wall
       - Structure
   - type: Sprite
@@ -161,7 +169,7 @@
     sprite: Structures/Walls/meat.rsi
   - type: Construction
     graph: Girder
-    node: bananiumWall
+    node: meatWall
   - type: Destructible
     thresholds:
     - trigger:
@@ -186,7 +194,6 @@
   components:
   - type: Tag
     tags:
-      - RCDDeconstructWhitelist
       - Wall
   - type: Sprite
     sprite: Structures/Walls/cult.rsi
@@ -219,7 +226,6 @@
     tags:
       - Wall
       - Debug
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/debug.rsi
   - type: Icon
@@ -249,11 +255,14 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/diamond.rsi
   - type: Icon
     sprite: Structures/Walls/diamond.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8   
   - type: Destructible
     thresholds:
     - trigger:
@@ -279,7 +288,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/gold.rsi
   - type: Icon
@@ -287,6 +295,10 @@
   - type: Construction
     graph: Girder
     node: goldWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8  
   - type: Destructible
     thresholds:
     - trigger:
@@ -321,7 +333,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/ice.rsi
   - type: Icon
@@ -351,7 +362,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/plasma.rsi
   - type: Icon
@@ -359,6 +369,10 @@
   - type: Construction
     graph: Girder
     node: plasmaWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
   - type: Destructible
     thresholds:
     - trigger:
@@ -395,7 +409,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/plastic.rsi
   - type: Icon
@@ -403,6 +416,10 @@
   - type: Construction
     graph: Girder
     node: plasticWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -445,8 +462,8 @@
     - type: IconSmooth
       key: walls
       base: plastitanium
-    - type: Reflect
-      reflectProb: 0.75
+#    - type: Reflect # Frontier
+#      reflectProb: 0.75 # Frontier
 
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -470,8 +487,8 @@
                   max: 1
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
-    - type: Reflect
-      reflectProb: 0.15
+#    - type: Reflect # Frontier
+#      reflectProb: 0.15 # Frontier
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -494,8 +511,8 @@
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-  - type: Reflect
-    reflectProb: 0.15
+#  - type: Reflect # Frontier
+#    reflectProb: 0.15 # Frontier
 
 - type: entity
   parent: BaseWall
@@ -569,7 +586,7 @@
     state: rgeneric
   - type: Construction
     graph: Girder
-    node: reinforcedWall
+    node: reinforcedWallRust
   - type: IconSmooth
     key: walls
     base: reinf_over
@@ -605,7 +622,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/riveted.rsi
   - type: Icon
@@ -640,11 +656,14 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/sandstone.rsi
   - type: Icon
     sprite: Structures/Walls/sandstone.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -670,7 +689,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/silver.rsi
   - type: Icon
@@ -678,6 +696,10 @@
   - type: Construction
     graph: Girder
     node: silverWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -737,8 +759,8 @@
     damageModifierSet: StructuralMetallic
   - type: Physics
     bodyType: Static
-  - type: Reflect
-    reflectProb: 0.1
+#  - type: Reflect # Frontier
+#    reflectProb: 0.1 # Frontier
   - type: Pullable
   - type: Airtight
     noAirWhenFullyAirBlocked: false
@@ -813,8 +835,8 @@
           3: { state: shuttle_construct-3, visible: true}
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
-  - type: Reflect
-    reflectProb: 0.1
+#  - type: Reflect # Frontier
+#    reflectProb: 0.1 # Frontier
 
 - type: entity
   parent: WallSolid
@@ -832,8 +854,8 @@
   - type: IconSmooth
     key: walls
     base: state
-  - type: Reflect
-    reflectProb: 0.1
+#  - type: Reflect # Frontier
+#    reflectProb: 0.1 # Frontier
 
 - type: entity
   parent: BaseWall
@@ -843,7 +865,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/solid.rsi
   - type: WallReplacementMarker
@@ -852,6 +873,10 @@
     node: wall
   - type: Icon
     sprite: Structures/Walls/solid.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -993,7 +1018,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    key: walls
+    key: woods
     base: wood
 
 - type: entity
@@ -1013,7 +1038,6 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/web.rsi
   - type: Icon
@@ -1035,7 +1059,7 @@
         sound:
           collection: WoodDestroy
   - type: IconSmooth
-    key: walls
+    key: webs
     base: wall
   - type: Construction
     graph: WebStructures
@@ -1225,11 +1249,14 @@
   - type: Tag
     tags:
       - Wall
-      - RCDDeconstructWhitelist
   - type: Sprite
     sprite: Structures/Walls/cobblebrick.rsi
   - type: Icon
     sprite: Structures/Walls/cobblebrick.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8    
   - type: Destructible
     thresholds:
     - trigger:
@@ -1239,7 +1266,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1252,7 +1279,7 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_basalt.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1266,7 +1293,7 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_snow.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1279,7 +1306,7 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_asteroid.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1292,7 +1319,7 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_sand.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1305,7 +1332,7 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_chromite.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick
 
 - type: entity
@@ -1318,5 +1345,5 @@
   - type: Icon
     sprite: Structures/Walls/cobblebrick_andesite.rsi
   - type: IconSmooth
-    key: walls
+    key: cobblebricks
     base: cobblebrick

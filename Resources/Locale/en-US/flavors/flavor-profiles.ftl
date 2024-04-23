@@ -51,6 +51,7 @@ flavor-base-horrible = ужасно
 flavor-base-terrible = ужасающе
 flavor-base-mindful = разумно
 
+
 # Complex flavors. Put a flavor here when you want something that's more
 # specific.
 

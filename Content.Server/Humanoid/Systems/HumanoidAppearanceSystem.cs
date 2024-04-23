@@ -1,36 +1,23 @@
-using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects.Components.Localization;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Humanoid;
 
 public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 {
     [Dependency] private readonly MarkingManager _markingManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidMarkingModifierMarkingSetMessage>(OnMarkingsSet);
         SubscribeLocalEvent<HumanoidAppearanceComponent, HumanoidMarkingModifierBaseLayersSetMessage>(OnBaseLayersSet);
         SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<Verb>>(OnVerbsRequest);
-        SubscribeLocalEvent<HumanoidAppearanceComponent, ExaminedEvent>(OnExamined);
-    }
-
-    private void OnExamined(EntityUid uid, HumanoidAppearanceComponent component, ExaminedEvent args)
-    {
-        var identity = Identity.Entity(uid, EntityManager);
-        var species = GetSpeciesRepresentation(component.Species).ToLower();
-        var age = GetAgeRepresentation(component.Species, component.Age);
-
-        args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
     }
 
     // this was done enough times that it only made sense to do it here
