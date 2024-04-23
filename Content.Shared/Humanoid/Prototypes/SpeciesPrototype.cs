@@ -80,7 +80,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// <summary>
     /// Prototype used by the species for the dress-up doll in various menus.
     /// </summary>
-    [DataField("dollPrototype", required: true, customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField(required: true, customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string DollPrototype { get; private set; } = default!;
 
     /// <summary>
@@ -133,6 +133,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
+
+    /// <summary>
+    ///     The Style used for the guidebook info link in the character profile editor
+    /// </summary>
+    [DataField]
+    public string GuideBookIcon = "SpeciesInfoDefault";
 }
 
 public enum SpeciesNaming : byte

@@ -44,3 +44,9 @@ trait-tall-desc = Do you have a problem with gigantism.
 
 trait-short-name = Short
 trait-short-desc = Do you have a dwarfism problem.
+
+trait-southern-name = Southern Drawl
+trait-southern-desc = You have a different way of speakin'.
+
+trait-snoring-name = Snoring
+trait-snoring-desc = You will snore while sleeping.
