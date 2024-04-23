@@ -1,0 +1,192 @@
+- type: entity
+  id: BluespaceCacheError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: StationEvent
+      startAnnouncement: station-event-bluespace-cache-start-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      endAnnouncement: station-event-bluespace-cache-end-announcement
+      earliestStart: 100
+      minimumPlayers: 20
+      weight: 2
+      startDelay: 10
+      duration: 1350
+      maxDuration: 1560
+    - type: BluespaceErrorRule
+      gridPath: /Maps/_NF/Bluespace/cache.yml
+      rewardFactor: 3.3
+
+- type: entity
+  id: BluespaceVaultError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 30
+    weight: 2
+    startDelay: 10
+    duration: 1020
+    maxDuration: 1350
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/vault.yml
+    rewardFactor: 0.7
+
+- type: entity
+  id: BluespaceVaultSmallError
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 4
+    startDelay: 10
+    duration: 590
+    maxDuration: 780
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/vaultsmall.yml
+    rewardFactor: 1
+
+- type: entity
+  id: BluespaceAsteroid
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-asteroid-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 10
+    duration: 1500
+    maxDuration: 1800
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/asteroidvault.yml
+
+- type: entity
+  id: BluespaceAsteroidBunker
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-asteroid-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 3
+    startDelay: 10
+    duration: 2100
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/asteroidbunker.yml
+
+- type: entity
+  id: BluespaceCargoniaShip
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-ship-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-ship-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
+
+- type: entity
+  id: BluespaceArcIndDataCarrier
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-ship-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-ship-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/datacarrier.yml
+
+- type: entity
+  id: BluespaceSyndicateFTLInterception
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-syndicate-ftl-interception-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-syndicate-ftl-interception-end-announcement
+    earliestStart: 80
+    minimumPlayers: 30
+    weight: 5
+    startDelay: 10
+    duration: 1800
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/syndieftlintercept.yml
+
+- type: entity
+  id: BluespaceWizardFederationScout
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-wizardfederation-scout-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-wizardfederation-scout-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 10
+    duration: 900
+    maxDuration: 1200
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/wizardprobealt.yml
+
+- type: entity
+  id: BluespaceBloodMoon
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-bloodmoon-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-bloodmoon-end-announcement
+    earliestStart: 80
+    minimumPlayers: 30
+    weight: 5
+    startDelay: 10
+    duration: 1800
+    maxDuration: 2400
+  - type: BluespaceErrorRule
+    gridPath: /Maps/_NF/Bluespace/bloodmoon.yml
