@@ -11,18 +11,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
   - type: Destructible
     thresholds:
     - trigger:
@@ -41,18 +29,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
   - type: Destructible
     thresholds:
     - trigger:
@@ -72,18 +48,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thrustersecurity.rsi
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
-      offset: 0, 1
   - type: Destructible
     thresholds:
     - trigger:
@@ -103,20 +67,6 @@
   - type: Sprite
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn
-      map: [ "enum.ThrusterVisualLayers.Thrusting" ]
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
   - type: Machine
     board: GyroscopeSecurityMachineCircuitboard
 
@@ -141,17 +91,6 @@
   - type: Sprite
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
   - type: Machine
     board: GyroscopeSecurityMachineCircuitboard
 
@@ -172,17 +111,6 @@
     scale: 0.8, 0.8
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
     snapCardinals: true
-    layers:
-    - state: base
-      map: ["enum.ThrusterVisualLayers.Base"]
-    - state: thrust
-      map: ["enum.ThrusterVisualLayers.ThrustOn"]
-      shader: unshaded
-      visible: false
-    - state: thrust_burn_unshaded
-      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
-      shader: unshaded
-      visible: false
   - type: StaticPrice
     price: 100
   - type: Machine
