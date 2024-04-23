@@ -7,8 +7,9 @@
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: SecurityGuardGear
+  alwaysUseSpawner: true
   icon: "JobIconSecurityGuard"
-  supervisors: job-supervisors-hop # not hos
+  supervisors: job-supervisors-sr
   canBeAntag: false
   access:
   - Security
@@ -16,9 +17,9 @@
   - Maintenance
   - Service
   - External
-  - Mercenary # Frontier
-  - Captain # Frontier
-  - Frontier # Frontier
+  - Mercenary
+  - Captain
+  - Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -36,8 +37,8 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
-    gloves: ClothingHandsGlovesCombat # Frontier
+    gloves: ClothingHandsGlovesCombat
   innerClothingSkirt: ClothingUniformJumpskirtSecGuard
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackMessengerSecurityFilled # Frontier
+  messenger: ClothingBackpackSecurityFilled

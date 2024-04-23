@@ -96,7 +96,7 @@
     - state: refill_chef
 
 - type: entity
-  parent: BaseVendingMachineRestock
+  parent: SecuredVendingMachineRestock
   id: VendingMachineRestockCondimentStation
   name: condiment station restock box
   description: Refill the condiment station. Mmmm, cold sauce.
@@ -141,7 +141,8 @@
     - MailDrobeInventory
     - RepDrobeInventory
     - BoxingDrobeInventory
-    - PietyVendInventory
+#    - PietyVendInventory # Dont enable, infinite demon dogs issue
+    - NfsdDrobeInventory # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -320,6 +321,7 @@
   - type: VendingMachineRestock
     canRestock:
     - PTechInventory
+    - PTechNfsdInventory # Frontier
   - type: Sprite
     layers:
     - state: base
@@ -359,6 +361,7 @@
   - type: VendingMachineRestock
     canRestock:
     - SecTechInventory
+    - NfsdTechInventory
   - type: Sprite
     layers:
     - state: base

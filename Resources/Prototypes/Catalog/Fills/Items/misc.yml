@@ -2,10 +2,18 @@
   id: ClothingShoesBootsCombatFilled
   parent: ClothingShoesBootsCombat
   suffix: Filled
-
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
 
 - type: entity
   id: ClothingShoesBootsMercenaryFilled # Frontier - Merc to Mercenary
-  parent: ClothingShoesBootsMercenary
+  parent: ClothingShoesBootsMercenary # Frontier - Merc to Mercenary
   suffix: Filled
-
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - KukriKnife

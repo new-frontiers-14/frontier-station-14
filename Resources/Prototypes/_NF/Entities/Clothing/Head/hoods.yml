@@ -8,3 +8,30 @@
     sprite: _NF/Clothing/Head/Hoods/Coat/arcadia.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/Coat/arcadia.rsi
+
+# Syndicate armored bio suit hood
+- type: entity
+  parent: ClothingHeadHatHoodBioGeneral
+  id: ClothingHeadHatHoodBioArmoredSyndicate
+  name: bio hood
+  suffix: Syndicate
+  description: A hood that protects the head and face from biological contaminants. As well as user's identity.
+  components:
+  - type: IdentityBlocker
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+  - type: Contraband
+
+- type: entity # for looks only
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterSyndieUnremoveable
+  noSpawn: true
+  name: syndicate coat hood
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi

@@ -7,17 +7,22 @@
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: JanitorGear
+  alwaysUseSpawner: true
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
+  canBeAntag: false
   access:
   - Service
   - Janitor
   - Maintenance
   - External # Frontier
+  - Frontier # Frontier
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: JanitorGear

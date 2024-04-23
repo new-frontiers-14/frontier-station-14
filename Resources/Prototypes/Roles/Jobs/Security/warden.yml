@@ -2,13 +2,11 @@
   id: Warden
   name: job-name-warden
   description: job-description-warden
-  playTimeTracker: JobWarden
+  playTimeTracker: JobWardenOld
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 21600 # Frontier - 6 hours
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 36000 # Frontier - 10 hrs
+      time: 36000 #10 hrs
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
@@ -21,28 +19,25 @@
   - Service
   - External
   - Detective
-  - Mercenary # Frontier
-  - Captain # Frontier
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ] # Frontier
+    implants: [ MindShieldImplant ]
+  setPreference: false # Frontier
 
 - type: startingGear
   id: WardenGear
   equipment:
     head: ClothingHeadHatWarden
     jumpsuit: ClothingUniformJumpsuitWarden
-    back: ClothingBackpackOfficerFilled # Frontier
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
-    ears: ClothingHeadsetAltSecurityWarden # Frontier
+    ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
-    pocket2: HoloprojectorSecurity # Frontier
-    gloves: ClothingHandsGlovesCombat # Frontier
+    pocket1: WeaponPistolMk58
   innerClothingSkirt: ClothingUniformJumpskirtWarden
-  satchel: ClothingBackpackSatchelOfficerFilled # Frontier
-  duffelbag: ClothingBackpackDuffelOfficerFilled # Frontier
-  messenger: ClothingBackpackMessengerOfficerFilled # Frontier
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled

@@ -1,14 +1,23 @@
 - type: entity
   id: ClothingShoesBootsMagCombatFilled
-  parent: ClothingShoesBootsMagCombat
-  suffix: Filled
+  parent: [ClothingShoesBootsMagCombat, ClothingShoesBootsCombatFilled]
 
 - type: entity
-  id: ClothingShoesBootsMagMercenaryFilled
-  parent: ClothingShoesBootsMagMercenary
-  suffix: Filled
+  id: ClothingShoesBootsMagNfsdFilled
+  parent: [ClothingShoesBootsMagNfsd, ClothingShoesBootsCombatFilled]
 
 - type: entity
   id: ClothingShoesBootsMagPirateFilled
-  parent: ClothingShoesBootsMagPirate
-  suffix: Filled
+  parent: [ClothingShoesBootsMagPirate, ClothingShoesBootsCombatFilled]
+
+- type: entity
+  id: ClothingShoesBootsMagMercenaryFilled
+  parent: [ClothingShoesBootsMagMercenary, ClothingShoesBootsMercenaryFilled]
+
+- type: entity
+  id: ClothingShoesBootsNfsdBrownFilled
+  parent: [ClothingShoesBootsNfsdBrown, ClothingShoesBootsCombatFilled]
+
+- type: entity
+  id: ClothingShoesBootsNfsdCreamFilled
+  parent: [ClothingShoesBootsNfsdCream, ClothingShoesBootsCombatFilled]

@@ -17,6 +17,18 @@
     openSound:
       path: /Audio/Effects/woodenclosetopen.ogg
 
+# Basic
+- type: entity
+  id: LockerSteel
+  parent: LockerBaseSecure
+  name: secure closet
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
+
 # Cargo
 - type: entity
   id: LockerQuarterMaster
@@ -61,8 +73,8 @@
 
 - type: entity
   id: LockerHeadOfPersonnel
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerBaseSecure] # Frontier
-  name: station representative's locker
+  parent: LockerBaseSecure
+  name: head of personnel's locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
