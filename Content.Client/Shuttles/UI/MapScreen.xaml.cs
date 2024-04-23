@@ -339,7 +339,7 @@ public sealed partial class MapScreen : BoxContainer
                     AddMapObject(mapComp.MapId, gridObj);
                 }
                 else if (!_shuttles.IsBeaconMap(_mapManager.GetMapEntityId(mapComp.MapId)) && (iffComp == null ||
-                         (iffComp.Flags & IFFFlags.Hide) == 0x0))
+                         (iffComp.Flags & IFFFlags.Hide | iffComp.Flags & IFFFlags.HideLabel) == 0x0)) // Frontier
                 {
                     _pendingMapObjects.Add((mapComp.MapId, gridObj));
                 }
