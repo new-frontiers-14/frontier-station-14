@@ -10,7 +10,7 @@
       - id: EmergencyOxygenTankFilled
       - id: SpaceMedipen
       - id: EmergencyMedipen
-      ##- id: Flare
+      ##- id: Flare # Frontier
       - id: FoodPSB
       - id: DrinkWaterBottleFull
       - id: EncryptionKeyTraffic  # Frontier
@@ -44,47 +44,21 @@
   name: survival box
   parent: BoxCardboard
   id: BoxSurvivalSecurity
-  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  description: It's a box with basic internals inside.
   suffix: Security
   components:
   - type: StorageFill
     contents:
       - id: ClothingMaskGasSecurity
-#      - id: EmergencyOxygenTankFilled
-      - id: ExtendedEmergencyOxygenTankFilled # Frontier
-      - id: SpaceMedipen
+      - id: EmergencyOxygenTankFilled
       - id: EmergencyMedipen
-      ##- id: Flare
-      - id: FoodPSB
+      - id: Flare
+      - id: FoodSnackNutribrick
       - id: DrinkWaterBottleFull
-      - id: EncryptionKeyTraffic  # Frontier
   - type: Sprite
     layers:
       - state: internals
-      - state: extendedtank # Frontier
-
-- type: entity
-  name: survival box
-  parent: BoxCardboard
-  id: BoxSurvivalBrigmedic
-  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
-  suffix: MedSec
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingMaskBreathMedicalSecurity
-#      - id: EmergencyOxygenTankFilled
-      - id: ExtendedEmergencyOxygenTankFilled # Frontier
-      - id: SpaceMedipen
-      - id: EmergencyMedipen
-      ##- id: EmergencyMedipen
-      - id: FoodPSB
-      - id: DrinkWaterBottleFull
-      - id: EncryptionKeyTraffic  # Frontier
-  - type: Sprite
-    layers:
-      - state: internals
-      - state: extendedtank # Frontier
+      - state: emergencytank
 
 - type: entity
   name: survival box
@@ -113,6 +87,7 @@
   parent: BoxCardboard
   id: BoxHug
   description: A special box for sensitive people.
+  suffix: Emergency
   components:
   - type: Sprite
     layers:

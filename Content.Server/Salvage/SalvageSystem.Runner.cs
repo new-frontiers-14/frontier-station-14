@@ -7,11 +7,13 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.Chat;
+using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Map;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Spawners;
@@ -202,12 +204,10 @@ public sealed partial class SalvageSystem
 
                             //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
                             var mapId = _gameTicker.DefaultMap;
+                            var mapUid = _mapManager.GetMapEntityId(mapId);
                             var dropLocation = _random.NextVector2(750, 2750);
-                            var coords = new MapCoordinates(dropLocation, mapId);
-                            var location = Spawn(null, coords);
-                            var despawn = EnsureComp<TimedDespawnComponent>(location);
-                            despawn.Lifetime = 600;
-                            _shuttle.FTLTravel(shuttleUid, shuttle, location, ftlTime);
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 5.5f, 50f);
                         }
 
                         break;

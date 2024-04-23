@@ -1,0 +1,30 @@
+- type: entity
+  id: HolosignNfsd
+  parent: HolosignWetFloor
+  name: nfsd holographic barrier
+  description: A barrier of hard light that blocks movement, but pretty weak.
+  components:
+    - type: Physics
+      bodyType: Static
+      canCollide: true
+    - type: Sprite
+      sprite: _NF/Structures/Holo/nfsd.rsi
+      state: icon
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.3,-0.3,0.3,0.3"
+          mask:
+            - TableMask
+          layer:
+            - TableLayer
+    - type: TimedDespawn
+      lifetime: 180
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: red
+    - type: Climbable
+    - type: Clickable

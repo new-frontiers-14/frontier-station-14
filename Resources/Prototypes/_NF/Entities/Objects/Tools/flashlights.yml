@@ -1,0 +1,46 @@
+﻿- type: entity
+  name: nfsdlite
+  parent: FlashlightLantern
+  id: FlashlightNfsdLite
+  description: A robust flashlight used by the nfsd.
+  components:
+  - type: Tag
+    tags:
+      - SecBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableLightVisuals
+    inhandVisuals:
+      left:
+      - state: inhand-left-light
+        shader: unshaded
+      right:
+      - state: inhand-right-light
+        shader: unshaded
+  - type: Sprite
+    sprite: _NF/Objects/Tools/nfsdlite.rsi
+    layers:
+      - state: nfsdlite
+      - state: nfsdlite-overlay
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: Item
+    sprite: _NF/Objects/Tools/nfsdlite.rsi
+  - type: PointLight
+    enabled: false
+    radius: 8
+  - type: Clothing
+    sprite: _NF/Objects/Tools/nfsdlite.rsi
+    quickEquip: false
+    slots:
+      - Belt
