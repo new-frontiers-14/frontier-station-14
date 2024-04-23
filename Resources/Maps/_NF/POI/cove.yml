@@ -695,16 +695,19 @@ entities:
   - uid: 22
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -35.5,-6.5
       parent: 1
   - uid: 23
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -35.5,-5.5
       parent: 1
   - uid: 24
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -35.5,-4.5
       parent: 1
 - proto: APCBasic
@@ -2928,6 +2931,50 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5590277,3.5358868
       parent: 1
+  - uid: 1998
+    components:
+    - type: Transform
+      pos: -8.796216,-0.5835842
+      parent: 1
+  - uid: 1999
+    components:
+    - type: Transform
+      pos: -8.858716,-0.3492092
+      parent: 1
+  - uid: 2000
+    components:
+    - type: Transform
+      pos: -8.624341,-0.3804592
+      parent: 1
+  - uid: 2005
+    components:
+    - type: Transform
+      pos: -8.093091,-0.5835842
+      parent: 1
+- proto: CannonBallGlassshot
+  entities:
+  - uid: 2001
+    components:
+    - type: Transform
+      pos: -8.358716,-0.5679592
+      parent: 1
+  - uid: 2002
+    components:
+    - type: Transform
+      pos: -8.155591,-0.2710842
+      parent: 1
+- proto: CannonBallGrapeshot
+  entities:
+  - uid: 2003
+    components:
+    - type: Transform
+      pos: -8.624341,-0.17733419
+      parent: 1
+  - uid: 2004
+    components:
+    - type: Transform
+      pos: -8.889966,-0.4585842
+      parent: 1
 - proto: CarpetBlack
   entities:
   - uid: 1824
@@ -4853,6 +4900,13 @@ entities:
     - type: Transform
       pos: -6.5,3.5
       parent: 1
+- proto: Rack
+  entities:
+  - uid: 2006
+    components:
+    - type: Transform
+      pos: -8.5,-0.5
+      parent: 1
 - proto: Railing
   entities:
   - uid: 1733
@@ -5127,6 +5181,32 @@ entities:
     components:
     - type: Transform
       pos: -7.5,-13.5
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 1996
+    components:
+    - type: Transform
+      pos: -5.5,-9.5
+      parent: 1
+  - uid: 1997
+    components:
+    - type: Transform
+      pos: -3.5,-9.5
+      parent: 1
+- proto: SpawnPointPirateCaptain
+  entities:
+  - uid: 1994
+    components:
+    - type: Transform
+      pos: -3.5,-7.5
+      parent: 1
+- proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 1995
+    components:
+    - type: Transform
+      pos: -5.5,-7.5
       parent: 1
 - proto: SpesosTreeSeeds
   entities:
@@ -11094,7 +11174,7 @@ entities:
       pos: -0.5,-8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1560.3269
+      secondsUntilStateChange: -1725.3612
       state: Opening
   - uid: 1840
     components:
@@ -11102,7 +11182,7 @@ entities:
       pos: -0.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1561.0078
+      secondsUntilStateChange: -1726.0421
       state: Opening
   - uid: 1841
     components:
@@ -11110,7 +11190,7 @@ entities:
       pos: -1.5,-1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1534.2413
+      secondsUntilStateChange: -1699.2756
       state: Opening
   - uid: 1842
     components:
@@ -11118,7 +11198,7 @@ entities:
       pos: -0.5,-1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1534.8745
+      secondsUntilStateChange: -1699.9088
       state: Opening
   - uid: 1905
     components:
@@ -11126,7 +11206,7 @@ entities:
       pos: -5.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1532.7623
+      secondsUntilStateChange: -1697.7966
       state: Opening
 - proto: WoodSecretDoor
   entities:
