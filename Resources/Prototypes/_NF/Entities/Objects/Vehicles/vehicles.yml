@@ -12,6 +12,8 @@
       map: [ "enum.DamageStateVisualLayers.Base" ]
     - state: engine
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: lights
+      shader: unshaded
     noRot: true
   - type: RandomSprite
     available:
@@ -83,7 +85,7 @@
   - type: AmbientSound
     sound: /Audio/Effects/shuttle_thruster.ogg
     range: 8
-    volume: 2
+    volume: 5
     enabled: false
   - type: Strap
     buckleOffset: "0.1, -0.05"
@@ -100,6 +102,8 @@
       map: [ "enum.DamageStateVisualLayers.Base" ]
     - state: engine
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: lights
+      shader: unshaded
     noRot: true
   - type: RandomSprite
     available:
@@ -154,7 +158,7 @@
   - type: AmbientSound
     sound: /Audio/Effects/shuttle_thruster.ogg
     range: 8
-    volume: 2
+    volume: 5
     enabled: false
   - type: Sprite
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
@@ -164,6 +168,8 @@
     - state: engine
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
     - state: mailtrim
+    - state: lights
+      shader: unshaded
     noRot: true
   - type: ItemSlots
     slots:
@@ -226,6 +232,8 @@
     - state: engine
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
     - state: nfsdstar
+    - state: lights
+      shader: unshaded
     noRot: true
   - type: ItemSlots
     slots:
