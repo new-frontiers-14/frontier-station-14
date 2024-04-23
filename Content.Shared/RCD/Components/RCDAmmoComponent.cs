@@ -21,5 +21,3 @@ public sealed partial class RCDAmmoComponent : Component
     [DataField("isShipyardRCDAmmo"), AutoNetworkedField]
     public bool IsShipyardRCDAmmo;
 }
-
-// TODO: state??? check if it desyncs
