@@ -137,3 +137,116 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdBeretGreen
+  name: nfsd beret
+  description: a blue beret produced for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdBeretBrown
+  name: nfsd beret
+  description: a brown beret produced for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_brown.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdBeretCream
+  name: nfsd beret
+  description: a cream beret produced for deputy sheriff's.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_cream.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/nfsd_beret_cream.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdCampaign
+  name: nfsd campaign hat
+  description: yee-haw partner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/nfsd_campaign.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/nfsd_campaign.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+  - type: Storage
+    grid:
+      - 0,0,1,1
+    whitelist:
+      components:
+        - Welder
+        - Cigar
+  - type: UserInterface
+    interfaces:
+      - key: enum.StorageUiKey.Key
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: ClothingHeadHatNfsdCampaign
+  id: ClothingHeadHatNfsdCampaignFilled
+  name: nfsd campaign hat
+  description: yee-haw partner.
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlippoEngravedLighter
+      - id: CigarGold 
+        amount: 3
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdSmallCampaign
+  name: nfsd campaign cap
+  description: yee partner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatSrCap
+  name: station representative's cap
+  description: A cap issued to Frontier Outpost's station representative. Try not to lose it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/sr_cap.rsi

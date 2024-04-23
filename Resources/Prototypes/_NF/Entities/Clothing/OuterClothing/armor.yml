@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingOuterBaseLarge
-  id: ClothingOuterArmorSRCarapace
-  name: "station rep's carapace"
+  id: ClothingOuterArmorSrCarapace
+  name: "station representative's carapace"
   description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
   components:
   - type: Sprite
@@ -16,6 +16,57 @@
         Piercing: 0.5
         Heat: 0.6
         Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: GroupExamine
+
+# Syndicate armored bio suit
+- type: entity
+  parent: ClothingOuterBioGeneral
+  id: ClothingOuterBioArmoredSyndicate
+  name: bio suit
+  suffix: Syndicate
+  description: Favorite protective gear of any syndicate chemical warfare enjoyers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Bio/syndicate.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 1.2
+        Piercing: 0.4
+        Heat: 0.6
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorNfsd
+  name: nfsd armor
+  description: get shot, maybe survive?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/nfsd_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.65
+        Heat: 0.7
+        Caustic: 0.65
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
