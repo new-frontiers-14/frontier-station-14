@@ -9,10 +9,14 @@
   startingGear: JanitorGear
   alwaysUseSpawner: true
   icon: "JobIconJanitor"
-  supervisors: job-supervisors-hire # Frontier
+  supervisors: job-supervisors-sr
   canBeAntag: false
-  accessGroups: # Frontier
-  - GeneralAccess # Frontier
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External # Frontier
+  - Frontier # Frontier
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay

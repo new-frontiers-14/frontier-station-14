@@ -4,8 +4,8 @@
     sprite: Clothing/Head/Helmets/bombsuit.rsi
     state: icon
   product: CrateEmergencyExplosive
-  cost: 700
-  category: Emergency
+  cost: 1000
+  category: cargoproduct-category-name-emergency
   group: market
 
 - type: cargoProduct
@@ -14,29 +14,31 @@
     sprite: Objects/Misc/fire_extinguisher.rsi
     state: fire_extinguisher_closed
   product: CrateEmergencyFire
-  cost: 2800
-  category: Emergency
+  cost: 1500
+  category: cargoproduct-category-name-emergency
   group: market
 
-# - type: cargoProduct
-  # id: EmergencyInternals
-  # icon:
-    # sprite: Clothing/Mask/breath.rsi
-    # state: icon
-  # product: CrateEmergencyInternals
-  # cost: 620
-  # category: Emergency
-  # group: market
+- type: cargoProduct
+  id: EmergencyInternals
+  abstract: true # Frontier
+  icon:
+    sprite: Clothing/Mask/breath.rsi
+    state: icon
+  product: CrateEmergencyInternals
+  cost: 500
+  category: cargoproduct-category-name-emergency
+  group: market
 
-# - type: cargoProduct
-  # id: EmergencyInternalsLarge
-  # icon:
-    # sprite: Clothing/Mask/breath.rsi
-    # state: icon
-  # product: CrateEmergencyInternalsLarge
-  # cost: 2000
-  # category: Emergency
-  # group: market
+- type: cargoProduct
+  id: EmergencyInternalsLarge
+  abstract: true # Frontier
+  icon:
+    sprite: Clothing/Mask/breath.rsi
+    state: icon
+  product: CrateEmergencyInternalsLarge
+  cost: 2000
+  category: cargoproduct-category-name-emergency
+  group: market
 
 - type: cargoProduct
   id: EmergencyRadiation
@@ -44,36 +46,39 @@
     sprite: Structures/Wallmounts/signs.rsi
     state: radiation
   product: CrateEmergencyRadiation
-  cost: 1400
-  category: Emergency
+  cost: 1000
+  category: cargoproduct-category-name-emergency
   group: market
 
-# - type: cargoProduct
-  # id: EmergencyInflatablewall
-  # icon:
-    # sprite: Objects/Misc/inflatable_wall.rsi
-    # state: item_wall
-  # product: CrateEmergencyInflatablewall
-  # cost: 500
-  # category: Emergency
-  # group: market
+- type: cargoProduct
+  id: EmergencyInflatablewall
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Misc/inflatable_wall.rsi
+    state: item_wall
+  product: CrateEmergencyInflatablewall
+  cost: 500
+  category: cargoproduct-category-name-emergency
+  group: market
 
-# - type: cargoProduct
-  # id: EmergencyNitrogenTanks
-  # icon:
-    # sprite: Objects/Tanks/red.rsi
-    # state: icon
-  # product: CrateSlimepersonLifeSupport
-  # cost: 400
-  # category: Emergency
-  # group: market
+- type: cargoProduct
+  id: EmergencyNitrogenTanks
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Tanks/red.rsi
+    state: icon
+  product: CrateSlimepersonLifeSupport
+  cost: 300
+  category: cargoproduct-category-name-emergency
+  group: market
 
-# - type: cargoProduct
-  # id: EmergencyBiosuit
-  # icon:
-    # sprite: Clothing/Head/Hoods/Bio/general.rsi
-    # state: icon
-  # product: CrateGenericBiosuit
-  # cost: 1100
-  # category: Emergency
-  # group: market
+- type: cargoProduct
+  id: EmergencyBiosuit
+  abstract: true # Frontier
+  icon:
+    sprite: Clothing/Head/Hoods/Bio/general.rsi
+    state: icon
+  product: CrateGenericBiosuit
+  cost: 800
+  category: cargoproduct-category-name-emergency
+  group: market
