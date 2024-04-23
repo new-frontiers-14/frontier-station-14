@@ -1,0 +1,26 @@
+- type: vessel
+  id: Tide
+  name: SV Tide
+  description: A cheaply made mass-produced shuttle made from salvaged wrecks. For the seasoned assistant.
+  price: 9700
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/tide.yml
+
+- type: gameMap
+  id: Tide
+  mapName: 'SV Tide'
+  mapPath: /Maps/_NF/Shuttles/Scrap/tide.yml
+  minPlayers: 0
+  stations:
+    Tide:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Tide {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

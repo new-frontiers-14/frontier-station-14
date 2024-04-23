@@ -421,8 +421,6 @@ entities:
       - 342
       - 771
       - 396
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 233
@@ -430,15 +428,11 @@ entities:
     - type: Transform
       pos: 2.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 566
     components:
     - type: Transform
       pos: 13.5,14.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: Airlock
   entities:
   - uid: 200
@@ -1475,12 +1469,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,1.5
       parent: 1
+    - type: SpamEmitSound
+      enabled: False
 - proto: BookAurora
   entities:
   - uid: 680
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookBase
@@ -1488,31 +1485,36 @@ entities:
   - uid: 674
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
   - uid: 675
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
   - uid: 676
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
   - uid: 677
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
   - uid: 678
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookCafe
@@ -1520,7 +1522,8 @@ entities:
   - uid: 694
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookChemicalCompendium
@@ -1528,7 +1531,8 @@ entities:
   - uid: 682
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookEarth
@@ -1536,15 +1540,8 @@ entities:
   - uid: 673
     components:
     - type: Transform
-      parent: 530
-    - type: Physics
-      canCollide: False
-- proto: BookEscalationSecurity
-  entities:
-  - uid: 671
-    components:
-    - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookFeather
@@ -1552,7 +1549,8 @@ entities:
   - uid: 226
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookHowToKeepStationClean
@@ -1560,7 +1558,8 @@ entities:
   - uid: 683
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookHowToSurvive
@@ -1568,7 +1567,8 @@ entities:
   - uid: 681
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanAntarctica
@@ -1576,7 +1576,8 @@ entities:
   - uid: 571
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanArctic
@@ -1584,7 +1585,8 @@ entities:
   - uid: 686
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanCity
@@ -1592,7 +1594,8 @@ entities:
   - uid: 693
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanDesert
@@ -1600,7 +1603,8 @@ entities:
   - uid: 688
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanLostWolfPup
@@ -1608,7 +1612,8 @@ entities:
   - uid: 690
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanMountain
@@ -1616,7 +1621,8 @@ entities:
   - uid: 689
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanOcean
@@ -1624,7 +1630,8 @@ entities:
   - uid: 687
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookIanRanch
@@ -1632,7 +1639,8 @@ entities:
   - uid: 685
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookMedicalOfficer
@@ -1640,7 +1648,17 @@ entities:
   - uid: 679
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
+    - type: Physics
+      canCollide: False
+- proto: BookRandomStory
+  entities:
+  - uid: 671
+    components:
+    - type: Transform
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookRufus
@@ -1648,7 +1666,8 @@ entities:
   - uid: 684
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookshelfFilled
@@ -1658,47 +1677,13 @@ entities:
     - type: Transform
       pos: 8.5,8.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 671
-          - 226
-          - 571
-          - 672
-          - 673
-          - 674
-          - 675
-          - 676
-          - 677
-          - 678
-          - 679
-          - 680
-          - 681
-          - 682
-          - 683
-          - 684
-          - 685
-          - 686
-          - 687
-          - 688
-          - 689
-          - 690
-          - 691
-          - 692
-          - 693
-          - 694
-          - 695
-          - 696
-          - 697
 - proto: BookSlothClownMMD
   entities:
   - uid: 697
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookSlothClownPranks
@@ -1706,7 +1691,8 @@ entities:
   - uid: 695
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookSlothClownSSS
@@ -1714,7 +1700,8 @@ entities:
   - uid: 696
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookTemple
@@ -1722,7 +1709,8 @@ entities:
   - uid: 692
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BookTruth
@@ -1730,7 +1718,8 @@ entities:
   - uid: 691
     components:
     - type: Transform
-      parent: 530
+      pos: 0.484375,0.47654724
+      parent: 1
     - type: Physics
       canCollide: False
 - proto: BoxLightMixed
@@ -3631,8 +3620,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasOutletInjector
@@ -3643,8 +3630,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 231
@@ -3653,8 +3638,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
 - proto: GasPassiveVent
@@ -3664,8 +3647,6 @@ entities:
     - type: Transform
       pos: 0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 223
@@ -3673,8 +3654,6 @@ entities:
     - type: Transform
       pos: 3.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 730
@@ -3682,8 +3661,6 @@ entities:
     - type: Transform
       pos: -5.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 244
@@ -4482,8 +4459,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 13.5,14.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 235
@@ -4491,8 +4466,6 @@ entities:
     - type: Transform
       pos: 13.5,12.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 310
@@ -4501,8 +4474,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 727
@@ -4511,8 +4482,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPressurePump
@@ -4523,8 +4492,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,15.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 268
@@ -4533,8 +4500,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,11.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 314
@@ -4542,8 +4507,6 @@ entities:
     - type: Transform
       pos: 3.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 371
@@ -4551,8 +4514,6 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -4563,8 +4524,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 325
@@ -4573,8 +4532,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 343
@@ -4583,8 +4540,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -4598,8 +4553,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 704
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 342
@@ -4613,8 +4566,6 @@ entities:
       - invalid
       deviceLists:
       - 704
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 386
@@ -4623,8 +4574,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 396
@@ -4635,8 +4584,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 704
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 771
@@ -4647,8 +4594,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 704
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVolumePump
@@ -4659,8 +4604,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -4871,16 +4814,8 @@ entities:
       pos: -8.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -980.0301
+      secondsUntilStateChange: -1013.1801
       state: Opening
-- proto: HyperlinkBookSupernanny
-  entities:
-  - uid: 672
-    components:
-    - type: Transform
-      parent: 530
-    - type: Physics
-      canCollide: False
 - proto: Lamp
   entities:
   - uid: 564
@@ -6003,8 +5938,6 @@ entities:
     - type: Transform
       pos: 3.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: SubstationBasic
   entities:
   - uid: 212
