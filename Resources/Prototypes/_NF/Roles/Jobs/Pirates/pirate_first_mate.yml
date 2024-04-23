@@ -9,12 +9,12 @@
       time: 129600 # Frontier - 36 hours
   startingGear: NFPirateFirstMateGear
   canBeAntag: true
+  alwaysUseSpawner: true
   icon: "JobIconMercenary" 
   supervisors: job-supervisors-hire
   setPreference: true
-  access:
-  - Maintenance
-  - External
+  accessGroups:
+  - GeneralAccess
 
 - type: startingGear
   id: NFPirateFirstMateGear

@@ -7,13 +7,13 @@
     - !type:OverallPlaytimeRequirement
       time: 86400 # Frontier - 24 hours
   startingGear: NFPirateGear
+  alwaysUseSpawner: true
   canBeAntag: true
   icon: "JobIconMercenary" 
   supervisors: job-supervisors-hire
   setPreference: true
-  access:
-  - Maintenance
-  - External
+  accessGroups:
+  - GeneralAccess
 
 - type: startingGear
   id: NFPirateGear
