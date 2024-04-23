@@ -1,11 +1,6 @@
 - type: entity
-  id: BaseThrusterSecurity
-  parent: BaseThruster
-  abstract: true
-
-- type: entity
   id: ThrusterSecurity
-  parent: [ BaseStructureUnanchorable, BaseThrusterSecurity, ConstructibleMachine ]
+  parent: [ BaseStructureUnanchorable, Thruster ]
   name: thruster
   suffix: Security
   components:
