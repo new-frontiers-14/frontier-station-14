@@ -1,6 +1,6 @@
 - type: entity
   parent:
-  - Dart  
+  - Dart
   - ConjuredObject10 # Despawns in 10 seconds
   id: DartSindicateImpedrezene
   name: syndicate impedrezene dart
@@ -28,9 +28,9 @@
     solution: ammo
   - type: DrainableSolution
     solution: ammo
-  - type: SolutionInjectOnCollide
+  - type: SolutionInjectOnEmbed
     transferAmount: 2
-    blockSlots: NONE #tranquillizer darts shouldn't be blocked by a mask
+    solution: melee
   - type: InjectableSolution
     solution: ammo
 
@@ -47,6 +47,6 @@
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 3
-  - type: SolutionInjectOnCollide
+  - type: SolutionInjectOnEmbed
     transferAmount: 3
-    blockSlots: NONE #tranquillizer darts shouldn't be blocked by a mask
+    solution: melee
