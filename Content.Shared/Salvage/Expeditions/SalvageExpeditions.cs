@@ -31,6 +31,13 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SalvageExpeditionConsoleComponent : Component
 {
+    /// <summary>
+    /// The sound made when spawning a coordinates disk
+    /// </summary>
+    [DataField]
+    public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/terminal_insert_disc.ogg");
+    
+    // Frontier - Adding error to the FTL warning - Hard to tell without it - PR 377
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
     new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");

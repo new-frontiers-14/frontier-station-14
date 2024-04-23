@@ -345,18 +345,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockEngineering
-  entities:
-  - uid: 147
-    components:
-    - type: Transform
-      pos: -3.5,1.5
-      parent: 1
-  - uid: 148
-    components:
-    - type: Transform
-      pos: 2.5,1.5
-      parent: 1
 - proto: AirlockExternal
   entities:
   - uid: 95
@@ -452,12 +440,22 @@ entities:
   - uid: 93
     components:
     - type: Transform
-      pos: 4.5,-3.5
+      pos: 2.5,-3.5
       parent: 1
   - uid: 94
     components:
     - type: Transform
-      pos: 2.5,-3.5
+      pos: 4.5,-3.5
+      parent: 1
+  - uid: 147
+    components:
+    - type: Transform
+      pos: -3.5,1.5
+      parent: 1
+  - uid: 148
+    components:
+    - type: Transform
+      pos: 2.5,1.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -1152,6 +1150,11 @@ entities:
       parent: 1
 - proto: BannerSyndicate
   entities:
+  - uid: 446
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
   - uid: 502
     components:
     - type: Transform
@@ -1432,6 +1435,8 @@ entities:
     - type: Transform
       pos: -4.5,-5.5
       parent: 1
+    - type: SpamEmitSound
+      enabled: False
 - proto: BoxFolderBlack
   entities:
   - uid: 327
@@ -1444,7 +1449,7 @@ entities:
   - uid: 326
     components:
     - type: Transform
-      pos: -2.5414453,-3.3334007
+      pos: -2.5025015,-3.4585454
       parent: 1
 - proto: BoxFolderRed
   entities:
@@ -2485,6 +2490,13 @@ entities:
     - type: Transform
       pos: -6.3969417,-6.374212
       parent: 1
+- proto: ClothingBackpackMessengerSyndicate
+  entities:
+  - uid: 652
+    components:
+    - type: Transform
+      pos: -2.481668,-2.9168787
+      parent: 1
 - proto: ClothingBeltSyndieHolster
   entities:
   - uid: 192
@@ -2547,6 +2559,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,2.5
       parent: 1
+- proto: ComputerShipyardSyndicate
+  entities:
+  - uid: 447
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ComputerSolarControl
   entities:
   - uid: 204
@@ -2845,6 +2874,13 @@ entities:
     components:
     - type: Transform
       pos: -3.1763327,-2.790039
+      parent: 1
+- proto: Plunger
+  entities:
+  - uid: 171
+    components:
+    - type: Transform
+      pos: 1.5812624,-4.2293787
       parent: 1
 - proto: PosterContrabandC20r
   entities:
@@ -3491,13 +3527,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-5.5
       parent: 1
-- proto: SpawnMobCatSyndy
-  entities:
-  - uid: 652
-    components:
-    - type: Transform
-      pos: -1.5,3.5
-      parent: 1
+    - type: SpamEmitSound
+      enabled: False
 - proto: SpawnMobSyndicateNavalDeckhand
   entities:
   - uid: 525
@@ -3559,13 +3590,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
-      parent: 1
-- proto: SyndiPDA
-  entities:
-  - uid: 171
-    components:
-    - type: Transform
-      pos: 1.5875343,-4.7766685
       parent: 1
 - proto: TablePlasmaGlass
   entities:
@@ -3644,20 +3668,6 @@ entities:
     - type: Transform
       pos: -2.3828456,2.660123
       parent: 1
-- proto: VendingMachineCoffee
-  entities:
-  - uid: 447
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
-      parent: 1
-- proto: VendingMachineDonut
-  entities:
-  - uid: 446
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
-      parent: 1
 - proto: VendingMachineSyndieContraband
   entities:
   - uid: 516
@@ -3670,7 +3680,7 @@ entities:
   - uid: 187
     components:
     - type: Transform
-      pos: -1.5,0.5
+      pos: 0.5,-2.5
       parent: 1
 - proto: WallPlastitanium
   entities:
