@@ -49,7 +49,6 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-<<<<<<< HEAD
         private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
 		
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
