@@ -27,30 +27,18 @@
       - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
-      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelFilledDetective
+  parent: ClothingBackpackDuffelSecurity
+  id: ClothingBackpackDuffelSecurityFilledDetective
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvival
+      - id: BoxSurvivalSecurity
+      - id: Flash
       - id: ForensicPad
       - id: ForensicScanner
-      - id: FrontierUplinkCoin5
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackDuffelBrigmedic
-  id: ClothingBackpackDuffelBrigmedicFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvivalBrigmedic
-      - id: Flash
-      - id: FrontierUplinkCoin5
 
 - type: entity
   noSpawn: true
@@ -144,14 +132,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalNFSD
+      - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
-      - id: RubberStampSheriff # Frontier
-      - id: DoorRemoteNfsd  # Frontier
-      - id: NFSDTechFabCircuitboard # Frontier
-      - id: BaseSecurityUplinkRadioSheriff # Frontier
-      - id: ClothingNeckNfsdBadgeHoS # Frontier
 
 - type: entity
   noSpawn: true
@@ -219,6 +202,16 @@
       - id: BoxSurvival
       - id: Bible
       - id: RubberStampChaplain
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelLawyerFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      - id: RubberStampLawyer
 
 - type: entity
   noSpawn: true

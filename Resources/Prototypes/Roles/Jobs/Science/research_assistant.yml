@@ -4,10 +4,12 @@
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 10800
-      inverted: true # stop playing intern if you're good at science!
+#    - !type:DepartmentTimeRequirement
+#      department: Science
+#      time: 10800
+#      inverted: true # stop playing intern if you're good at science!
+    - !type:OverallPlaytimeRequirement # Frontier
+      time: 10800 # Frontier
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
@@ -16,6 +18,7 @@
   - Research
   - Maintenance
   - External # Frontier
+  setPreference: false # Frontier
 
 - type: startingGear
   id: ResearchAssistantGear
