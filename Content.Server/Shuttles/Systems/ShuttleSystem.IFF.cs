@@ -39,15 +39,14 @@ public sealed partial class ShuttleSystem
         {
             return;
         }
-
-        if (!args.Show)
-        {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
-        }
-        else
-        {
-            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
-        }
+        ///if (!args.Show)
+        ///{
+        ///    AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
+        ///}
+        ///else
+        ///{
+        ///    RemoveIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
+        ///}
     }
 
     private void OnIFFConsoleAnchor(EntityUid uid, IFFConsoleComponent component, ref AnchorStateChangedEvent args)
