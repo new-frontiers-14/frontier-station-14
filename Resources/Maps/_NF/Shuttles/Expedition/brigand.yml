@@ -34,7 +34,7 @@ entities:
           version: 6
         0,-1:
           ind: 0,-1
-          tiles: fQAAAAAAfQAAAAAAfAAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIwAAAAACIwAAAAAAIwAAAAACIwAAAAACfQAAAAAALgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABHgAAAAADHgAAAAAAHgAAAAADIwAAAAACawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAADHgAAAAAAHgAAAAACHgAAAAACIwAAAAADawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAIwAAAAACIwAAAAABIwAAAAADfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAfQAAAAAAIwAAAAACIwAAAAADIwAAAAABfQAAAAAALgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABfQAAAAAAIwAAAAACIwAAAAAAIwAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAIwAAAAABawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAfQAAAAAAawAAAAAAfQAAAAAAfQAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAADfQAAAAAAawAAAAAAfQAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAALgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: fQAAAAAAfQAAAAAAfAAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIwAAAAACIwAAAAAAIwAAAAACIwAAAAACfQAAAAAALgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABHgAAAAADHgAAAAAAHgAAAAADIwAAAAACawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAADHgAAAAAAHgAAAAACHgAAAAACIwAAAAADawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAIwAAAAACIwAAAAABIwAAAAADfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAfQAAAAAAIwAAAAACIwAAAAADIwAAAAABfQAAAAAALgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAABfQAAAAAAIwAAAAACIwAAAAAAIwAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAawAAAAAAawAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAawAAAAAAfQAAAAAAfQAAAAAAIwAAAAABawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAfQAAAAAAawAAAAAAfQAAAAAAfQAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAADfQAAAAAAawAAAAAAfQAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAawAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAALgAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         -1,-1:
           ind: -1,-1
@@ -407,7 +407,7 @@ entities:
           0,2:
             0: 65535
           0,3:
-            0: 5
+            0: 4
             1: 10
           1,0:
             0: 29491
@@ -523,8 +523,6 @@ entities:
       - 339
       - 497
       - 561
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 515
     components:
     - type: Transform
@@ -540,8 +538,6 @@ entities:
       - 456
       - 336
       - 378
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 516
     components:
     - type: Transform
@@ -556,8 +552,6 @@ entities:
       - 323
       - 379
       - 133
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: Airlock
   entities:
   - uid: 305
@@ -660,6 +654,10 @@ entities:
           showEnts: False
           occludes: True
           ent: 466
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: AmeJar
   entities:
   - uid: 464
@@ -1087,7 +1085,7 @@ entities:
     - type: DeviceLinkSink
       links:
       - 648
-- proto: BodyBag_Folded
+- proto: BodyBagFolded
   entities:
   - uid: 661
     components:
@@ -2314,8 +2312,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.79
       inletOneConcentration: 0.21
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -2326,8 +2322,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -3117,8 +3111,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
   - uid: 231
@@ -3127,8 +3119,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#03FCD3FF'
 - proto: GasPressurePump
@@ -3139,8 +3129,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -3153,8 +3141,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 323
@@ -3166,8 +3152,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 336
@@ -3179,8 +3163,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 378
@@ -3192,8 +3174,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 379
@@ -3205,8 +3185,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 426
@@ -3215,8 +3193,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-11.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 456
@@ -3228,8 +3204,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 497
@@ -3241,8 +3215,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 436
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 561
@@ -3254,8 +3226,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 436
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 675
@@ -3264,8 +3234,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -3279,8 +3247,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 235
@@ -3291,8 +3257,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 294
@@ -3304,8 +3268,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 339
@@ -3317,8 +3279,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 436
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 375
@@ -3330,8 +3290,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 380
@@ -3343,8 +3301,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 515
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 381
@@ -3356,8 +3312,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 405
@@ -3369,8 +3323,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 436
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 422
@@ -3381,8 +3333,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 516
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 425
@@ -3391,8 +3341,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-11.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 502
@@ -3404,8 +3352,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 436
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -3514,12 +3460,16 @@ entities:
     - type: Transform
       pos: 0.5,10.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 511
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: HandheldHealthAnalyzerUnpowered
   entities:
   - uid: 247
@@ -3657,8 +3607,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: OxygenCanister
   entities:
   - uid: 42
@@ -3669,8 +3617,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: PowerCellRecharger
   entities:
   - uid: 678
@@ -4456,64 +4402,86 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-15.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 115
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-16.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 116
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-16.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 117
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-16.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 118
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-15.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 119
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-14.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 120
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-13.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 121
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-13.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 122
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-14.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 126
     components:
     - type: Transform
       pos: -3.5,9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 127
     components:
     - type: Transform
       pos: 4.5,9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: ToiletDirtyWater
   entities:
   - uid: 208
@@ -5256,7 +5224,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,-12.5
+      pos: 2.5,-12.5
       parent: 1
   - uid: 397
     components:
@@ -5268,7 +5236,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 2.5,-12.5
+      pos: 0.5,-12.5
       parent: 1
   - uid: 399
     components:
