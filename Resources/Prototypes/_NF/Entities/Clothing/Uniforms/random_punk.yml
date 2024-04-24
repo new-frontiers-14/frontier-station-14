@@ -1,0 +1,28 @@
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingUniformRandomPunkCroptop
+  name: punk crop top
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/punk-procedural.rsi
+    layers:
+    - state: base_torso_croptop_armless
+      map: [ "torso" ]
+    - state: base_leg_standard
+      map: [ "leg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/punk-procedural.rsi
+  - type: RandomSprite
+    available:
+      - torso:
+          base_torso_croptop_armless: ChatNames
+        leg:
+          base_leg_standard: Sixteen
+        decor:
+          base_torso_croptop_armless_decor: ChatNames
+          mask_null: ""
