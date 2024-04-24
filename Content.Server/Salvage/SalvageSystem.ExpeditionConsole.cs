@@ -27,13 +27,7 @@ public sealed partial class SalvageSystem
 
         var activeExpeditionCount = 0;
         var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
-        if (activeExpeditionCount >= 2)
-        {
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-loaded"), uid, PopupType.MediumCaution);
-            return; 
-        }
-
+        
         if (activeExpeditionCount >= 2)
         {
             PlayDenySound(uid, component);
