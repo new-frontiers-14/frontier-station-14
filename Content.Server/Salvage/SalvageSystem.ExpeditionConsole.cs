@@ -8,6 +8,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
+using Content.Client.Salvage;
 
 namespace Content.Server.Salvage;
 
@@ -27,11 +28,18 @@ public sealed partial class SalvageSystem
 
         var activeExpeditionCount = 0;
         var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
-        
+        while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
+        {
+            if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && !expeditionData.Claimed)
+            {
+                activeExpeditionCount++;
+            }
+        }
+
         if (activeExpeditionCount >= 2)
         {
             PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-loaded"), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
             return; 
         }
 
