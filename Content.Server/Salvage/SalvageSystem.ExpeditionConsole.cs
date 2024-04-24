@@ -25,6 +25,7 @@ public sealed partial class SalvageSystem
     {
         var station = _station.GetOwningStation(uid);
 
+        // Corvax-Frontier Start
         var activeExpeditionCount = 0;
         var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
         while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
@@ -41,7 +42,8 @@ public sealed partial class SalvageSystem
             _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
             return; 
         }
-    
+        // Corvax-Frontier End
+
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
 
