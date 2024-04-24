@@ -26,7 +26,4 @@ public sealed partial class ShipyardConsoleComponent : Component
 
     [DataField("securityShipyardChannel")]
     public string SecurityShipyardChannel = "Nfsd";
-
-    [DataField("blackMarketShipyardChannel")]
-    public string BlackMarketShipyardChannel = "Syndicate";
 }

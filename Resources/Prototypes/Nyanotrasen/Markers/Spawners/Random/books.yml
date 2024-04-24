@@ -7,28 +7,9 @@
     layers:
       - state: red
       - sprite: Objects/Misc/books.rsi
-        state: book6
+        state: book_icon
   - type: RandomSpawner
     offset: 0
     prototypes:
-      - HyperlinkBookSpaceLaw
-      - HyperlinkBookSupernanny
-      - HyperlinkBookChemistry
-      - HyperlinkBookBartending
-      - HyperlinkBookCooking
-      - HyperlinkBookBotany
-      - HyperlinkBookShuttle
-      - HyperlinkBookAlerts
-      - HyperlinkBookProcedure
-      - HyperlinkBookPower
-      - HyperlinkBookMedical
-      - HyperlinkBookHacking
-      - HyperlinkBookAtmos
-    chance: 0.9
-    rarePrototypes:
-      - BookChemistryInsane
-      - BookBotanicalTextbook
-      - BookGnominomicon
-      - BookFishing
-      - BookDetective
-    rareChance: 0.25
+      - BookRandomStory
+    chance: 1.0
