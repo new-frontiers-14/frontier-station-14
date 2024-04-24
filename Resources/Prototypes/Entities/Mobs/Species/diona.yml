@@ -7,8 +7,12 @@
   components:
   - type: HumanoidAppearance
     species: Diona
-  - type: Hunger
+  - type: Hunger # Corvax-Frontier
     baseDecayRate: 0.0083
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
   - type: Thirst
     baseDecayRate: 0.0083
   - type: Carriable # Carrying system from nyanotrasen.
