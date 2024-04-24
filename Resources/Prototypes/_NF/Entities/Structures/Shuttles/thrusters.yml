@@ -32,16 +32,6 @@
     board: SmallThrusterMachineCircuitboard
 
 - type: entity
-  id: SmallThrusterUnanchored
-  parent: SmallThruster
-  suffix: Unanchored
-  components:
-    - type: Transform
-      anchored: false
-    - type: Physics
-      bodyType: Dynamic
-
-- type: entity
   id: SmallGyroscope
   parent: Gyroscope
   name: small gyroscope
@@ -72,13 +62,3 @@
     price: 100
   - type: Machine
     board: SmallGyroscopeMachineCircuitboard
-
-- type: entity
-  id: SmallGyroscopeUnanchored
-  parent: SmallGyroscope
-  suffix: Unanchored
-  components:
-    - type: Transform
-      anchored: false
-    - type: Physics
-      bodyType: Dynamic
