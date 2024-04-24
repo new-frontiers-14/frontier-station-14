@@ -16,6 +16,8 @@ public sealed partial class SalvageSystem
     [ValidatePrototypeId<EntityPrototype>]
     public const string CoordinatesDisk = "CoordinatesDisk";
 
+    public SalvageMissionParams MissionParams = default!;
+
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     private const float ShuttleFTLMassThreshold = 50f;
