@@ -8,7 +8,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
-using Content.Client.Salvage;
 
 namespace Content.Server.Salvage;
 
@@ -24,38 +23,78 @@ public sealed partial class SalvageSystem
 
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
-        var station = _station.GetOwningStation(uid);
+        var activeExpeditionCount = CountActiveExpeditions();
 
+        if (activeExpeditionCount >= 2)
+        {
+            HandleExpeditionLimitReached(uid, component);
+            return;
+        }
+
+        if (!TryGetStationData(uid, out var data) || data.Claimed)
+            return;
+
+        if (!data.Missions.TryGetValue(args.Index, out var missionParams))
+            return;
+
+        if (!TryGetStationAndGridComponents(uid, out var station, out var grid))
+            return;
+
+        if (CheckProximityToOtherObjects(uid, grid))
+            return;
+
+        SpawnMissionAndHandleData(data, missionParams, station);
+    }
+
+    private int CountActiveExpeditions()
+    {
         var activeExpeditionCount = 0;
         var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
-        while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
+
+        while (expeditionQuery.MoveNext(out _, out _, out var expeditionData))
         {
-            if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && !expeditionData.Claimed)
+            if (expeditionData != null && !expeditionData.Claimed)
             {
                 activeExpeditionCount++;
             }
         }
 
-        if (activeExpeditionCount >= 2)
+        return activeExpeditionCount;
+    }
+
+    private void HandleExpeditionLimitReached(EntityUid uid, SalvageExpeditionConsoleComponent component)
+    {
+        PlayDenySound(uid, component);
+        _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
+    }
+
+    private bool TryGetStationData(EntityUid uid, out SalvageExpeditionDataComponent data)
+    {
+        var station = _station.GetOwningStation(uid);
+        return TryComp(station, out data);
+    }
+
+    private bool TryGetStationAndGridComponents(EntityUid uid, out SalvageExpeditionDataComponent station, out MapGridComponent grid)
+    {
+        var station = _station.GetOwningStation(uid);
+        if (!TryComp(station, out station))
         {
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
-            return; 
+            grid = null;
+            return false;
         }
 
-        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
-            return;
+        var gridEntity = _station.GetLargestGrid(station);
+        if (gridEntity is not { Valid: true })
+        {
+            grid = null;
+            return false;
+        }
 
-        if (!data.Missions.TryGetValue(args.Index, out var missionparams))
-            return;
+        return TryComp(gridEntity, out grid);
+    }
 
-        if (!TryComp<StationDataComponent>(station, out var stationData))
-            return;
-        if (_station.GetLargestGrid(stationData) is not {Valid : true} grid)
-            return;
-        if (!TryComp<MapGridComponent>(grid, out var gridComp))
-            return;
-
+    private bool CheckProximityToOtherObjects(EntityUid uid, MapGridComponent grid)
+    {
         var xform = Transform(grid);
         var bounds = xform.WorldMatrix.TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
         var bodyQuery = GetEntityQuery<PhysicsComponent>();
@@ -71,21 +110,18 @@ public sealed partial class SalvageSystem
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
             UpdateConsoles(data);
-            return;
+            return true;
         }
 
-        // Frontier change - disable coordinate disks for expedition missions
-        //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
-        SpawnMission(missionparams, station.Value, null);
+        return false;
+    }
 
+    private void SpawnMissionAndHandleData(SalvageExpeditionDataComponent data, MissionParams missionParams, SalvageExpeditionConsoleComponent station)
+    {
+        SpawnMission(missionParams, station.Value, null);
         data.ActiveMission = args.Index;
-        var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
+        var mission = GetMission(missionParams.MissionType, missionParams.Difficulty, missionParams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
-
-        // Frontier change - disable coordinate disks for expedition missions
-        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
-        //_audio.PlayPvs(component.PrintSound, uid);
-
         UpdateConsoles(data);
     }
 
