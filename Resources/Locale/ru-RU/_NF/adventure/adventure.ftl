@@ -21,6 +21,7 @@ shipyard-rules-default2 =
     Корпоративный Закон приведут к административным мерам.
     Спасибо, что выбрали Службу Безопасности NT.
 shuttle-ftl-proximity = Близлежащие объекты слишком массивны для FTL прыжка!
+ftl-channel-blocked = FTL канал перегружен, попробуйте позже.
 changelog-tab-title-Upstream = Журнал изменений
 public-transit-departure = Направляемся в { $destination }. Ориентировочное время в пути: { $flytime } секунд.
 public-transit-arrival = Спасибо за выбор общественного транспорта NT. Следующий шаттл до { $destination } отправляется через { $waittime } секунд.
