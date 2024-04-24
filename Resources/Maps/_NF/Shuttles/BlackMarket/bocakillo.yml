@@ -875,6 +875,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 218
+    components:
+    - type: Transform
+      pos: -2.5,5.5
+      parent: 2
 - proto: DisposalBend
   entities:
   - uid: 20
@@ -928,6 +935,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,2.5
+      parent: 2
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 242
+    components:
+    - type: Transform
+      pos: -0.5,5.5
       parent: 2
 - proto: FaxMachineShipAntag
   entities:
@@ -1248,13 +1262,15 @@ entities:
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
-- proto: PirateFlag
+- proto: LockerWallMedicalFilled
   entities:
-  - uid: 236
+  - uid: 241
     components:
     - type: Transform
-      pos: -2.5,5.5
+      pos: -3.5,5.5
       parent: 2
+- proto: PirateFlag
+  entities:
   - uid: 237
     components:
     - type: Transform
@@ -1848,16 +1864,15 @@ entities:
       parent: 2
 - proto: WallWeaponCapacitorRecharger
   entities:
-  - uid: 218
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,5.5
-      parent: 2
   - uid: 221
     components:
     - type: Transform
       pos: -5.5,5.5
+      parent: 2
+  - uid: 236
+    components:
+    - type: Transform
+      pos: -1.5,5.5
       parent: 2
 - proto: WarpPointShip
   entities:
