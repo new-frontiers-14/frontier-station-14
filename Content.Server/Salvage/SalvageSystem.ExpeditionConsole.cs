@@ -36,9 +36,9 @@ public sealed partial class SalvageSystem
 
             if (activeExpeditionCount >= 2)
             {
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-loaded"), uid, PopupType.MediumCaution);
-            return; 
+                PlayDenySound(uid, component);
+                _popupSystem.PopupEntity(Loc.GetString("ftl-channel-loaded"), uid, PopupType.MediumCaution);
+                return; 
             }
         }
 
