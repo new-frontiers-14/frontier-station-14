@@ -100,37 +100,37 @@
     fixtureId: fix1
     fireStacks: 1
 
-#- type: entity
-#  id: AnomalyGravity
-#  parent: BaseAnomaly
-#  suffix: Gravity
-#  components:
-#  - type: Anomaly
-#    corePrototype: AnomalyCoreGravity
-#    coreInertPrototype: AnomalyCoreGravityInert
-#  - type: Sprite
-#    layers:
-#    - state: anom2
-#      map: ["enum.AnomalyVisualLayers.Base"]
-#    - state: anom2-pulse
-#      map: ["enum.AnomalyVisualLayers.Animated"]
-#      visible: false
-#  - type: PointLight
-#    radius: 5.0
-#    energy: 20
-#    color: "#1e070e"
-#    castShadows: false
-#  - type: GravityAnomaly
-#  - type: GravityWell
-#  - type: RadiationSource
-#  - type: Physics
-#    bodyType: Dynamic
-#    bodyStatus: InAir
-#  - type: CanMoveInAir
-#  - type: RandomWalk
-#  - type: SingularityDistortion
-#    intensity: 1000
-#    falloffPower: 2.7
+- type: entity
+  id: AnomalyGravity
+  parent: BaseAnomaly
+  suffix: Gravity
+  components:
+  - type: Anomaly
+    corePrototype: AnomalyCoreGravity
+    coreInertPrototype: AnomalyCoreGravityInert
+  - type: Sprite
+    layers:
+    - state: anom2
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: anom2-pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: PointLight
+    radius: 5.0
+    energy: 20
+    color: "#1e070e"
+    castShadows: false
+  - type: GravityAnomaly
+#  - type: GravityWell # Оптимизацияи
+  - type: RadiationSource
+  - type: Physics
+    bodyType: Dynamic
+    bodyStatus: InAir
+  - type: CanMoveInAir
+#  - type: RandomWalk # Оптимизация
+  - type: SingularityDistortion
+    intensity: 1000
+    falloffPower: 2.7
 
 - type: entity
   id: AnomalyElectricity
