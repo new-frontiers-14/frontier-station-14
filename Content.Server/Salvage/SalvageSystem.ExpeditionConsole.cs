@@ -29,11 +29,6 @@ public sealed partial class SalvageSystem
         var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
         while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
         {
-            if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && !expeditionData.Claimed)
-            {
-                activeExpeditionCount++;
-            }
-
             if (activeExpeditionCount >= 2)
             {
                 PlayDenySound(uid, component);
