@@ -795,7 +795,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
       parent: 2
-- proto: ComputerIFF
+- proto: ComputerIFFSyndicate
   entities:
   - uid: 119
     components:
@@ -858,6 +858,7 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 234
           - 92
           - 93
           - 94
@@ -1247,6 +1248,42 @@ entities:
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
+- proto: PirateFlag
+  entities:
+  - uid: 236
+    components:
+    - type: Transform
+      pos: -2.5,5.5
+      parent: 2
+  - uid: 237
+    components:
+    - type: Transform
+      pos: 4.5,6.5
+      parent: 2
+  - uid: 238
+    components:
+    - type: Transform
+      pos: -7.5,7.5
+      parent: 2
+  - uid: 239
+    components:
+    - type: Transform
+      pos: -8.5,2.5
+      parent: 2
+  - uid: 240
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 2
+- proto: PirateHandyFlag
+  entities:
+  - uid: 234
+    components:
+    - type: Transform
+      parent: 91
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: PlastitaniumWindow
   entities:
   - uid: 11
@@ -1428,6 +1465,13 @@ entities:
         - Pressed: Toggle
         56:
         - Pressed: Toggle
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 235
+    components:
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 2
 - proto: SubstationBasic
   entities:
   - uid: 111
