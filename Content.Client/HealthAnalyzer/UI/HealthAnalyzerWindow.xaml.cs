@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -79,12 +80,22 @@ namespace Content.Client.HealthAnalyzer.UI
             );
 
             Temperature.Text = Loc.GetString("health-analyzer-window-entity-temperature-text",
-                ("temperature", float.IsNaN(msg.Temperature) ? "N/A" : $"{msg.Temperature - 273f:F1} °C ({msg.Temperature:F1} °K)")
+                ("temperature", float.IsNaN(msg.Temperature) ? "N/A" : $"{msg.Temperature - Atmospherics.T0C:F1} °C ({msg.Temperature:F1} K)")
             );
 
             BloodLevel.Text = Loc.GetString("health-analyzer-window-entity-blood-level-text",
                 ("bloodLevel", float.IsNaN(msg.BloodLevel) ? "N/A" : $"{msg.BloodLevel * 100:F1} %")
             );
+
+            if (msg.Bleeding == true)
+            {
+                Bleeding.Text = Loc.GetString("health-analyzer-window-entity-bleeding-text");
+                Bleeding.FontColorOverride = Color.Red;
+            }
+            else
+            {
+                Bleeding.Text = string.Empty;  // Clear the text
+            }
 
             patientDamageAmount.Text = Loc.GetString(
                 "health-analyzer-window-entity-damage-total-text",

@@ -1,7 +1,7 @@
 - type: entity
-  name: NTCS-101 hypospray 
+  name: NTCS-101 hypospray
   parent: BaseItem
-  description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. 
+  description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay.
   id: HypoMini
   components:
   - type: Sprite
@@ -18,7 +18,7 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyMobs: false
+    onlyAffectsMobs: false
   - type: UseDelay
     delay: 2.5
   - type: StaticPrice
@@ -35,7 +35,7 @@
     state: hypo
   - type: Item
     sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi
-    
+
 - type: entity
   name: NTCS-103 hypospray
   parent: HypoMini
