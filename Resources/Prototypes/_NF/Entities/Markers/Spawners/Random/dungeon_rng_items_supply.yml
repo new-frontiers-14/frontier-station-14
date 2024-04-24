@@ -16,21 +16,20 @@
     - SpawnDungeonLootToolsSalvage
     - SpawnDungeonLootPartsEngi
     - SpawnDungeonLootToolsBasicEngineering
-    - SpawnDungeonLootOresFull
-    - SpawnDungeonLootOresSingle
-    - SpawnDungeonLootOresFull
+    - SpawnDungeonLootClothesSalvage
     - SpawnDungeonLootOresSingle
     - SpawnDungeonLootMaterialsBasicSingle
     chance: 0.9
     offset: 0.0
     rarePrototypes:
+    - SpawnDungeonLootOresFull
     - ClothingOuterHardsuitSalvage
     - ClothingOuterHardsuitMaximPrototype
     - ClothingOuterHardsuitLuxury
     - ClothingOuterHardsuitSpatio
     rareChance: 0.01
 
-# Salvage Tools
+# Tools
 - type: entity
   name: random tool
   id: SpawnDungeonLootToolsSalvage
@@ -71,7 +70,42 @@
     - ClothingOuterHardsuitSpatio
     rareChance: 0.01
 
-# Clutter
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvage"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitSalvageSpecialist
+    - ClothingNeckCloakMiner
+    - ClothingNeckMantleQM
+    - ClothingBeltSalvageWebbing
+    - ClothingShoesBootsSalvage
+    - ClothingNeckScarfStripedBrown
+    - ClothingHeadHatQMsoft
+    - ClothingHeadBandBrown
+    - ClothingHeadsetMining
+    - ClothingBackpackDuffelSalvage
+    - ClothingBackpackMessengerSalvage
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitSpatio
+    rareChance: 0.01
+
+# Lockers
 - type: entity
   name: random locker
   id: SpawnDungeonLootLockersSalvage

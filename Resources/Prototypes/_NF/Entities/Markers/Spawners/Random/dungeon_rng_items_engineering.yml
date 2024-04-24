@@ -1,3 +1,4 @@
+# Clutter
 - type: entity
   name: random clutter
   id: SpawnDungeonLootClutterEngi
@@ -22,6 +23,7 @@
     - SpawnDungeonLootToolsBasicEngineering
     - SpawnDungeonLootMaterialsValuableSingle
     - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootClothesEngi
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -129,7 +131,38 @@
     - ToolboxSyndicateFilled
     rareChance: 0.02
 
-# Clutter
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitEngineeringHazard
+    - ClothingOuterVestHazard
+    - ClothingShoesBootsWork
+    - ClothingHeadHatHardhatOrange
+    - ClothingBackpackDuffelEngineering
+    - ClothingBackpackMessengerEngineering
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitEngineering
+    - ClothingOuterHardsuitAtmos
+    rareChance: 0.01
+
+# Other
 - type: entity
   name: random parts
   id: SpawnDungeonLootPartsEngi

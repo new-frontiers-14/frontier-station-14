@@ -16,24 +16,13 @@
   - type: RandomSpawner
     prototypes:
     - BoxFolderWhite
-    - BoxNitrileGloves
     - BoxBodyBag
     - BoxPillCanister
-    - ClothingHeadHatSurgcapPurple
-    - UniformScrubsColorPurple
-    - ClothingHeadNurseHat
-    - ClothingOuterHospitalGown
-    - ClothingOuterCoatLab
-    - ClothingMaskBreathMedical
-    - ClothingBeltMedical
-    - ClothingNeckStethoscope
-    - ClothingHandsGlovesLatex
-    - ClothingHandsGlovesNitrile
-    - ClothingHeadsetMedical
-    - ClothingMaskSterile
+    - BoxNitrileGloves
     - ClothingEyesHudMedical
     - HandheldHealthAnalyzer
     - ClothingEyesGlassesChemical
+    - ClothingHeadsetMedical
     - DiseaseSwab
     - SpawnDungeonClutterSyringe
     - SpawnDungeonClutterBeakerEmpty
@@ -46,6 +35,7 @@
     - SpawnDungeonLootToolsSurgeryCrude
     - SpawnDungeonLootToolsSurgery
     - SpawnDungeonLootToolsSurgeryAdvanced
+    - SpawnDungeonLootClothesMed
     - PillCanisterRandom
     chance: 0.95
     offset: 0.0
@@ -551,4 +541,48 @@
     rarePrototypes:
     - VendingMachineSyndieContraband
     - VendingMachineSyndieDrobe
+    rareChance: 0.01
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/medical.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingHeadHatSurgcapPurple
+    - UniformScrubsColorPurple
+    - ClothingHeadNurseHat
+    - ClothingOuterHospitalGown
+    - ClothingOuterCoatLab
+    - ClothingMaskBreathMedical
+    - ClothingBeltMedical
+    - ClothingNeckStethoscope
+    - ClothingHandsGlovesLatex
+    - ClothingHandsGlovesNitrile
+    - ClothingMaskSterile
+    - ClothingUniformJumpsuitParamedic
+    - ClothingOuterCoatParamedicWB
+    - UniformScrubsColorPurple
+    - UniformScrubsColorBlue
+    - UniformScrubsColorGreen
+    - ClothingBeltMedical
+    - ClothingUniformJumpsuitMedicalDoctor
+    - ClothingBackpackMessengerMedical
+    - ClothingBackpackDuffelMedical
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitVoidParamed
     rareChance: 0.01
