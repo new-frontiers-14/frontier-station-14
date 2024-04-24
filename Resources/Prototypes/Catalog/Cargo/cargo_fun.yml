@@ -120,6 +120,7 @@
 
 - type: cargoProduct
   id: FunBoardGames
+  abstract: true # Frontier - Moved to vending machine
   icon:
     sprite: Objects/Fun/dice.rsi
     state: d6_6
@@ -219,9 +220,20 @@
 - type: cargoProduct
   id: FunATV
   icon:
+    sprite: Objects/Vehicles/atv.rsi
+    state: vehicle
+  product: CrateFunATV
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunCrateGambling
+  abstract: true # Frontier
+  icon:
     sprite: Objects/Economy/cash.rsi
     state: cash_1000000
   product: CrateCargoGambling
-  cost: 10000
+  cost: 1000000 # Frontier 10000<1000000 in the case this is added again by mistake.
   category: cargoproduct-category-name-fun
   group: market
