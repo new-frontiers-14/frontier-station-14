@@ -163,8 +163,8 @@ entities:
           0,0:
             0: 65527
           0,1:
-            0: 65533
-            1: 2
+            0: 65277
+            1: 258
           -3,1:
             0: 61166
           -3,0:
@@ -361,6 +361,15 @@ entities:
     - type: DeviceLinkSink
       links:
       - 129
+- proto: BoxBodyBag
+  entities:
+  - uid: 244
+    components:
+    - type: Transform
+      parent: 243
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ButtonFrameCaution
   entities:
   - uid: 55
@@ -795,6 +804,38 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
       parent: 2
+- proto: ClosetWall
+  entities:
+  - uid: 243
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 244
 - proto: ComputerIFF
   entities:
   - uid: 119
