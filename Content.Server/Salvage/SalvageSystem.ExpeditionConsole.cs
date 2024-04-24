@@ -25,14 +25,29 @@ public sealed partial class SalvageSystem
     {
         var station = _station.GetOwningStation(uid);
 
+        var activeExpeditionCount = 0;
+        var expeditionQuery = EntityManager.AllEntityQueryEnumerator<SalvageExpeditionDataComponent, MetaDataComponent>();
+        while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
+        {
+            if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && !expeditionData.Claimed)
+            {
+                activeExpeditionCount++;
+            }
+        }
+
+        if (activeExpeditionCount >= 2)
+        {
+            PlayDenySound(uid, component);
+            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-loaded"), uid, PopupType.MediumCaution);
+            return; 
+        }
+
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
 
-        // On Frontier, FTL travel is currently restricted to expeditions and such, and so we need to put this here
-        // until FTL changes for us in some way.
         if (!TryComp<StationDataComponent>(station, out var stationData))
             return;
         if (_station.GetLargestGrid(stationData) is not {Valid : true} grid)
@@ -57,9 +72,8 @@ public sealed partial class SalvageSystem
             UpdateConsoles(data);
             return;
         }
-        // end of Frontier proximity check
 
-        // Frontier  change - disable coordinate disks for expedition missions
+        // Frontier change - disable coordinate disks for expedition missions
         //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
         SpawnMission(missionparams, station.Value, null);
 
@@ -67,7 +81,7 @@ public sealed partial class SalvageSystem
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
-        // Frontier  change - disable coordinate disks for expedition missions
+        // Frontier change - disable coordinate disks for expedition missions
         //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
         //_audio.PlayPvs(component.PrintSound, uid);
 
@@ -116,6 +130,7 @@ public sealed partial class SalvageSystem
 
         _ui.TrySetUiState(component, SalvageConsoleUiKey.Expedition, state);
     }
+
     private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
     {
         _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
