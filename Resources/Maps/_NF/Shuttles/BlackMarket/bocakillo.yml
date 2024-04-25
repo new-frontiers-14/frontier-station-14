@@ -852,7 +852,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,4.5
       parent: 2
-- proto: ComputerTabletopShuttleSyndie
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 75
     components:
@@ -1522,19 +1522,26 @@ entities:
         - Pressed: Toggle
         56:
         - Pressed: Toggle
-- proto: SpawnPointLatejoin
+- proto: SpawnPointPirate
   entities:
   - uid: 235
     components:
     - type: Transform
-      pos: -0.5,4.5
+      pos: -4.5,4.5
       parent: 2
-- proto: SpawnPointPirate
+- proto: SpawnPointPirateCaptain
   entities:
   - uid: 245
     components:
     - type: Transform
-      pos: -4.5,4.5
+      pos: -3.5,4.5
+      parent: 2
+- proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 246
+    components:
+    - type: Transform
+      pos: -2.5,4.5
       parent: 2
 - proto: SubstationBasic
   entities:
