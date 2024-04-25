@@ -3,6 +3,7 @@ using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.Tools.Components;
+using Content.Shared.Wieldable;
 using Content.Shared.Item;
 using Robust.Shared.Random;
 
