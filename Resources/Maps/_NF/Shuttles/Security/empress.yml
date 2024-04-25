@@ -1305,8 +1305,6 @@ entities:
       - 1800
       - 1823
       - 1801
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 1780
     components:
     - type: Transform
@@ -1329,8 +1327,6 @@ entities:
       - 1837
       - 1815
       - 2649
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 741
@@ -1338,8 +1334,6 @@ entities:
     - type: Transform
       pos: -23.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: Airlock
   entities:
   - uid: 972
@@ -1476,28 +1470,30 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,5.5
       parent: 1
-- proto: AirlockNfsdGlassLocked
+- proto: AirlockNfsdBrigGlassLocked
   entities:
   - uid: 3
     components:
     - type: Transform
-      pos: -11.5,4.5
+      pos: -8.5,4.5
       parent: 1
   - uid: 4
     components:
     - type: Transform
-      pos: -5.5,4.5
+      pos: -15.5,4.5
       parent: 1
   - uid: 5
     components:
     - type: Transform
-      pos: -8.5,4.5
+      pos: -11.5,4.5
       parent: 1
   - uid: 6
     components:
     - type: Transform
-      pos: -15.5,4.5
+      pos: -5.5,4.5
       parent: 1
+- proto: AirlockNfsdGlassLocked
+  entities:
   - uid: 7
     components:
     - type: Transform
@@ -1605,6 +1601,10 @@ entities:
           showEnts: False
           occludes: True
           ent: 135
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: AmeJar
   entities:
   - uid: 135
@@ -2582,12 +2582,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 28.5,1.5
       parent: 1
-- proto: BedsheetNfsdBrigmed
+- proto: BedsheetNfsdBrigmedic
   entities:
   - uid: 147
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 26.5,-5.5
       parent: 1
 - proto: BedsheetNfsdSheriff
@@ -7613,8 +7612,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -27.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 271
@@ -7623,8 +7620,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -25.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
 - proto: GasMixerFlipped
@@ -7635,8 +7630,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -26.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
 - proto: GasPassiveGate
@@ -7646,8 +7639,6 @@ entities:
     - type: Transform
       pos: -24.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPassiveVent
   entities:
   - uid: 1829
@@ -7655,16 +7646,12 @@ entities:
     - type: Transform
       pos: -24.5,7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 2497
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -26.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 2498
@@ -7673,22 +7660,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -28.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 2499
     components:
     - type: Transform
       pos: -28.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 2500
     components:
     - type: Transform
       pos: -26.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 331
@@ -10222,8 +10203,6 @@ entities:
     - type: Transform
       pos: -23.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
 - proto: GasVentPump
@@ -10234,8 +10213,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -24.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1795
@@ -10244,8 +10221,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -23.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1796
@@ -10254,8 +10229,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -20.5,-6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1797
@@ -10266,8 +10239,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1798
@@ -10278,8 +10249,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1799
@@ -10290,8 +10259,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1800
@@ -10302,8 +10269,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1801
@@ -10315,8 +10280,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1802
@@ -10324,8 +10287,6 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1803
@@ -10334,8 +10295,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-13.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1804
@@ -10344,8 +10303,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1805
@@ -10354,8 +10311,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1806
@@ -10363,8 +10318,6 @@ entities:
     - type: Transform
       pos: 13.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1807
@@ -10373,8 +10326,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1808
@@ -10382,8 +10333,6 @@ entities:
     - type: Transform
       pos: 7.5,7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1809
@@ -10392,8 +10341,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 20.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1810
@@ -10405,8 +10352,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1811
@@ -10418,8 +10363,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1812
@@ -10431,8 +10374,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1813
@@ -10444,8 +10385,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1814
@@ -10457,8 +10396,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1815
@@ -10470,8 +10407,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1816
@@ -10482,8 +10417,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
   - uid: 1817
@@ -10491,8 +10424,6 @@ entities:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000AAFF'
 - proto: GasVentScrubber
@@ -10503,8 +10434,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -21.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1120
@@ -10513,8 +10442,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1345
@@ -10523,8 +10450,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1790
@@ -10533,8 +10458,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1818
@@ -10543,8 +10466,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -24.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1819
@@ -10553,8 +10474,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1820
@@ -10565,8 +10484,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1821
@@ -10577,8 +10494,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1822
@@ -10589,8 +10504,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1823
@@ -10601,8 +10514,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1779
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1825
@@ -10611,8 +10522,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-13.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1827
@@ -10620,8 +10529,6 @@ entities:
     - type: Transform
       pos: -1.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1828
@@ -10630,8 +10537,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1830
@@ -10639,8 +10544,6 @@ entities:
     - type: Transform
       pos: 5.5,7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1831
@@ -10648,8 +10551,6 @@ entities:
     - type: Transform
       pos: 11.5,7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1832
@@ -10658,8 +10559,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1833
@@ -10670,8 +10569,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1834
@@ -10683,8 +10580,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1835
@@ -10696,8 +10591,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1836
@@ -10709,8 +10602,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1837
@@ -10722,8 +10613,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 1838
@@ -10735,8 +10624,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 2581
@@ -10744,8 +10631,6 @@ entities:
     - type: Transform
       pos: -4.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
   - uid: 2649
@@ -10757,8 +10642,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1780
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#AA0000FF'
 - proto: GravityGeneratorMini
@@ -11575,11 +11458,15 @@ entities:
     - type: Transform
       pos: 22.5,-10.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 661
     components:
     - type: Transform
       pos: -23.5,-10.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: HandheldCrewMonitor
   entities:
   - uid: 646
@@ -12086,8 +11973,6 @@ entities:
     - type: Transform
       pos: -28.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: OxygenCanister
   entities:
   - uid: 742
@@ -12095,15 +11980,11 @@ entities:
     - type: Transform
       pos: -23.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 743
     components:
     - type: Transform
       pos: -26.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: PackPaperRollingFilters
   entities:
   - uid: 944
@@ -14617,6 +14498,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -14.5,5.5
       parent: 1
+    - type: SpamEmitSound
+      enabled: False
 - proto: SpawnPointBrigmedic
   entities:
   - uid: 2657
@@ -15571,209 +15454,281 @@ entities:
     - type: Transform
       pos: -26.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1005
     components:
     - type: Transform
       pos: -25.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1006
     components:
     - type: Transform
       pos: -24.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1014
     components:
     - type: Transform
       pos: -23.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1028
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -25.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1029
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -25.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1030
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -23.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1044
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -22.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1047
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 20.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1050
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 21.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1051
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1052
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1053
     components:
     - type: Transform
       pos: 22.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1059
     components:
     - type: Transform
       pos: 23.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1060
     components:
     - type: Transform
       pos: 25.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1061
     components:
     - type: Transform
       pos: 24.5,8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1062
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 26.5,-8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1063
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 26.5,-9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1070
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 24.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1092
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 24.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1128
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 24.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1129
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 19.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1130
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 18.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1132
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1213
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,-10.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1214
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,-9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1217
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,-8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1222
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,-8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1223
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,-9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1224
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,-10.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 1231
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 2336
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -19.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 2338
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -21.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 2507
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -20.5,-12.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 2652
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -27.5,-9.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 2653
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -27.5,-8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: ToiletDirtyWater
   entities:
   - uid: 915
@@ -15782,14 +15737,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -20.5,8.5
       parent: 1
-    - type: Toilet
-      lidOpen: True
     - type: ContainerContainer
       containers:
         stash: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: 916
+        disposals: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ToiletEmpty
   entities:
   - uid: 1056
