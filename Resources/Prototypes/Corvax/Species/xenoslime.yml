@@ -1,0 +1,145 @@
+- type: species
+  id: Xenoslime
+  name: species-name-xenoslime
+  roundStart: true
+  #sponsorOnly: true # Corvax-Sponsors
+  prototype: MobXenoslime
+  sprites: MobXenoslimeSprites
+  defaultSkinTone: "#eb943d"
+  markingLimits: MobXenoslimeMarkingLimits
+  dollPrototype: MobXenoslimeDummy
+  skinColoration: Hues
+  maleFirstNames: names_vulp_first_male
+  femaleFirstNames: names_vulp_first_female
+  maleLastNames: names_vulp_last # Corvax-LastnameGender
+  femaleLastNames: names_vulp_last # Corvax-LastnameGender
+
+- type: speciesBaseSprites
+  id: MobXenoslimeSprites
+  sprites:
+    Head: MobXenoslimeHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobXenoslimeTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    LArm: MobXenoslimeLArm
+    RArm: MobXenoslimeRArm
+    LHand: MobXenoslimeLHand
+    RHand: MobXenoslimeRHand
+    LLeg: MobXenoslimeLLeg
+    RLeg: MobXenoslimeRLeg
+    LFoot: MobXenoslimeLFoot
+    RFoot: MobXenoslimeRFoot
+
+- type: markingPoints
+  id: MobXenoslimeMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ FoxXenoslimeTail ]
+    Snout:
+      points: 1
+      required: true
+      defaultMarkings: [ FoxXenoslimeSnout ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ FoxXenoslimeEar ]
+    HeadSide:
+      points: 1
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeHead
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeHeadMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeHeadFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeTorso
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeTorsoMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeTorsoFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeLLeg
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeLHand
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeLArm
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeLFoot
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeRLeg
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeRHand
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeRArm
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoslimeRFoot
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: r_foot
