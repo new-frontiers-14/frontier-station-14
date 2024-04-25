@@ -58,7 +58,7 @@
   tier: 1
   cost: 7500
   recipeUnlocks:
-  - BorgModuleDiagnosis
+  - BorgModuleAdvancedTreatment
   - BorgModuleDefibrillator
 
 - type: technology
@@ -77,16 +77,19 @@
 # Tier 2
 
 - type: technology
-  id: Cryopod
-  name: research-technology-cryogenics
+  id: BiochemicalStasis
+  name: research-technology-biochemical-stasis
   icon:
-    sprite: Structures/Machines/cryogenics.rsi
-    state: pod-on
-  discipline: Biochemical
+    sprite: Structures/Machines/stasis_bed.rsi
+    state: icon
+  discipline: CivilianServices
   tier: 2
   cost: 7500
   recipeUnlocks:
+  - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
+  - CryostasisBeaker
+  - SyringeCryostasis
 
 - type: technology
   id: ChemicalDispensary
