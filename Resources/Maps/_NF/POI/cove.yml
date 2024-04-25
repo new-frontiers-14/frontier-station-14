@@ -2338,6 +2338,21 @@ entities:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
+  - uid: 1732
+    components:
+    - type: Transform
+      pos: 5.5,1.5
+      parent: 1
+  - uid: 1738
+    components:
+    - type: Transform
+      pos: 7.5,1.5
+      parent: 1
+  - uid: 1739
+    components:
+    - type: Transform
+      pos: 6.5,1.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 1316
@@ -3740,19 +3755,21 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-- proto: ComputerFrame
-  entities:
-  - uid: 570
-    components:
-    - type: Transform
-      pos: 7.5,1.5
-      parent: 1
-- proto: ComputerPowerMonitoring
+- proto: ComputerBroken
   entities:
   - uid: 574
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 7.5,2.5
+      parent: 1
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 570
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,1.5
       parent: 1
 - proto: ComputerShipyardBlackMarket
   entities:
@@ -4938,9 +4955,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-6.5
       parent: 1
-  - uid: 1739
+  - uid: 1832
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 0.5,-5.5
       parent: 1
 - proto: RailingCorner
@@ -4962,54 +4980,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,-13.5
       parent: 1
-- proto: RailingCornerSmall
-  entities:
-  - uid: 1732
-    components:
-    - type: Transform
-      pos: 1.5,-7.5
-      parent: 1
-  - uid: 1738
-    components:
-    - type: Transform
-      pos: 1.5,-8.5
-      parent: 1
 - proto: RandomSpawner
   entities:
-  - uid: 1832
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 1
-  - uid: 1833
-    components:
-    - type: Transform
-      pos: 0.5,1.5
-      parent: 1
-  - uid: 1834
-    components:
-    - type: Transform
-      pos: -4.5,2.5
-      parent: 1
-  - uid: 1835
-    components:
-    - type: Transform
-      pos: -6.5,3.5
-      parent: 1
-  - uid: 1836
-    components:
-    - type: Transform
-      pos: 3.5,-16.5
-      parent: 1
   - uid: 1837
     components:
     - type: Transform
       pos: -11.5,-13.5
-      parent: 1
-  - uid: 1838
-    components:
-    - type: Transform
-      pos: -23.5,-5.5
       parent: 1
 - proto: ReagentContainerFlour
   entities:
@@ -5182,14 +5158,9 @@ entities:
     - type: Transform
       pos: -7.5,-13.5
       parent: 1
-- proto: SpawnPointLatejoin
+- proto: SpawnPointPirate
   entities:
-  - uid: 1996
-    components:
-    - type: Transform
-      pos: -5.5,-9.5
-      parent: 1
-  - uid: 1997
+  - uid: 1833
     components:
     - type: Transform
       pos: -3.5,-9.5
@@ -11174,7 +11145,7 @@ entities:
       pos: -0.5,-8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1725.3612
+      secondsUntilStateChange: -1983.0103
       state: Opening
   - uid: 1840
     components:
@@ -11182,7 +11153,7 @@ entities:
       pos: -0.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1726.0421
+      secondsUntilStateChange: -1983.6912
       state: Opening
   - uid: 1841
     components:
@@ -11190,7 +11161,7 @@ entities:
       pos: -1.5,-1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1699.2756
+      secondsUntilStateChange: -1956.9247
       state: Opening
   - uid: 1842
     components:
@@ -11198,7 +11169,7 @@ entities:
       pos: -0.5,-1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1699.9088
+      secondsUntilStateChange: -1957.5579
       state: Opening
   - uid: 1905
     components:
@@ -11206,7 +11177,7 @@ entities:
       pos: -5.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1697.7966
+      secondsUntilStateChange: -1955.4457
       state: Opening
 - proto: WoodSecretDoor
   entities:
