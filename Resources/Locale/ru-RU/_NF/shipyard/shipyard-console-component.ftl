@@ -2,8 +2,8 @@
 
 shipyard-console-invalid-vessel = Не удается приобрести судно:
 shipyard-console-menu-title = Меню верфи
-shipyard-console-docking = Капитан { $owner } шаттла { $vessel } в пути, расчётное время прибытия 10 секунд.
-shipyard-console-leaving = Капитан { $owner } шаттла { $vessel } продал судно { $player }.
+shipyard-console-docking = Шаттл { $vessel } капитана { $owner } в пути, расчётное время прибытия 10 секунд.
+shipyard-console-leaving = Шаттл { $vessel } капитана { $owner } продано { $player }.
 shipyard-console-docking-secret = Обнаружено незарегистрированное судно, заходящее в ваш сектор.
 shipyard-console-leaving-secret = Обнаружено незарегистрированное судно, покидающее ваш сектор.
 shipyard-commands-purchase-desc = Запускает и закрепляет на FTL указанный шаттл из файла сетки.
