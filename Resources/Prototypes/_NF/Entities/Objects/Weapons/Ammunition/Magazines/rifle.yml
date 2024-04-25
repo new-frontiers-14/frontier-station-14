@@ -9,6 +9,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Low-Cap-Rifle-Magazine.rsi
     layers:
     - state: red
       map: ["enum.GunVisualLayers.Base"]
@@ -18,7 +19,7 @@
 - type: entity
   id: MagazineRifleLowCapacityPractice
   name: "magazine Low-Cap (.20 rifle practice)"
-  parent: BaseMagazineRifle
+  parent: MagazineRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRiflePractice
@@ -35,7 +36,7 @@
 - type: entity
   id: MagazineRifleLowCapacityRubber
   name: "magazine Low-Cap (.20 rifle rubber)"
-  parent: BaseMagazineRifle
+  parent: MagazineRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleRubber
@@ -52,7 +53,7 @@
 - type: entity
   id: MagazineRifleLowCapacityUranium
   name: "magazine Low-Cap (.20 rifle uranium)"
-  parent: BaseMagazineRifle
+  parent: MagazineRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleUranium
