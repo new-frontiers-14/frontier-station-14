@@ -168,3 +168,21 @@
     radius: 1.5
     energy: 1.6
     color: "#c94242"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
+  id: ComputerIFFPOI
+  name: IFF computer
+  suffix: POI
+  description: Allows you to control the IFF and stealth characteristics of this station.
+  components:
+  - type: IFFConsole
+    allowedFlags:
+      - Hide
+  - type: ActivatableUI
+    key: enum.IFFConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.IFFConsoleUiKey.Key
+        type: IFFConsoleBoundUserInterface
+  - type: Computer
