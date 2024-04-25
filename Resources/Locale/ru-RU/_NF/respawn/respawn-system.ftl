@@ -2,7 +2,7 @@
 
 ghost-respawn-rules-window-title = Правила возрождения призраков
 ghost-respawn-rules-window-confirm-button = Я понимаю, возроди меня
-ghost-gui-respawn-button-denied = Возрождение ({ $time }s)
+ghost-gui-respawn-button-denied = Возрождение ({ $time }с)
 ghost-gui-respawn-button-allowed = Возрождение
 ghost-respawn-rules-window-rules =
     Возрождение происходит в соответствии со строгим правилом Новой жизни:

@@ -1,10 +1,10 @@
-terminator-round-end-agent-name = nt-800
-objective-issuer-susnet = [color=#d64119]Susnet[/color]
+terminator-round-end-agent-name = NT-800
+objective-issuer-susnet = [color=#d64119]SusNet[/color]
 terminator-role-greeting =
-    Вы терминатор, бессердечный убийца, отправленный из будущего.
-    Вам необходимо устранить { $target }, { $job }.
-    Используй любые способы для достижения цели.
-    Смерть НТ.
-terminator-role-briefing = Убить цель любой ценой.
-terminator-endoskeleton-gib-popup = Плоть отпадает, обнажая блестящий эндоскелет!
-terminator-endoskeleton-burn-popup = Плоть сгорает, обнажая блестящий эндоскелет!
+    Вы - экстерминатор, неумолимый убийца, посланный в прошлое, чтобы защитить наше будущее.
+    Нам необходимо, чтобы вы устранили { $target }, { $job }.
+    Используйте любые доступные вам средства, чтобы выполнить задание.
+    Слава Cybersun.
+terminator-role-briefing = Убейте цель любой ценой.
+terminator-endoskeleton-gib-popup = Ваша истерзанная плоть рассыпается, обнажая титановый эндоскелет!
+terminator-endoskeleton-burn-popup = Ваша обожжённая плоть сгорает до хрустящей корочки, обнажая титановый эндоскелет!

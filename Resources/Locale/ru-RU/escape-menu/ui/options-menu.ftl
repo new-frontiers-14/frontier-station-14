@@ -5,27 +5,30 @@ ui-options-tab-graphics = Графика
 ui-options-tab-controls = Управление
 ui-options-tab-audio = Аудио
 ui-options-tab-network = Сеть
-ui-options-tab-misc = General
+ui-options-tab-misc = Основные
 ui-options-apply = Применить
 ui-options-reset-all = Сбросить всё
 ui-options-default = По-умолчанию
 
-## Audio menu
+# Misc/General menu
 
-ui-options-discordrich = Enable Discord Rich Presence
-ui-options-general-ui-style = Стиль интерфейса
+ui-options-discordrich = Включить Discord Rich Presence
+ui-options-general-ui-style = Стиль UI
 ui-options-general-discord = Discord
 ui-options-general-cursor = Курсор
-ui-options-general-speech = Голос
-ui-options-general-storage = Хранилище
+ui-options-general-speech = Речь
+ui-options-general-storage = Инвентарь
 ui-options-general-accessibility = Доступность
+
+## Audio menu
+
 ui-options-master-volume = Основная громкость:
 ui-options-midi-volume = Громкость MIDI (Муз. инструменты):
 ui-options-ambient-music-volume = Громкость музыки окружения:
 ui-options-ambience-volume = Громкость окружения:
 ui-options-lobby-volume = Громкость лобби и окончания раунда:
-ui-options-ambience-max-sounds = Кол-во одновременных звуков окружения:
 ui-options-interface-volume = Громкость интерфейса:
+ui-options-ambience-max-sounds = Кол-во одновременных звуков окружения:
 ui-options-lobby-music = Музыка в лобби
 ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
@@ -35,17 +38,21 @@ ui-options-volume-percent = { TOSTRING($volume, "P0") }
 
 ## Graphics menu
 
-ui-options-show-held-item = Показать удерживаемый элемент рядом с курсором?
-ui-options-show-combat-mode-indicators = Показать индикатор боевого режима рядом с курсором?
-ui-options-show-looc-on-head = Показывать LOOC-чат над головами персонажей?
-ui-options-opaque-storage-window = Непрозрачное окно инвентаря
-ui-options-vsync = Вертикальная синхронизация
-ui-options-fancy-speech = Отображать имена в облачках сообщений
-ui-options-fancy-name-background = Добавить фон облачкам сообщений
-ui-options-enable-color-name = Отображать имена разными цветами
-ui-options-reduced-motion = Уменьшить влияние визуальных жффектов
-ui-options-screen-shake-intensity = Интенсивность тряски экрана
+ui-options-show-held-item = Показать удерживаемый элемент рядом с курсором
+ui-options-show-combat-mode-indicators = Показать индикатор боевого режима рядом с курсором
+ui-options-opaque-storage-window = Непрозрачность окна хранилища
+ui-options-show-ooc-patron-color = Цветной ник в OOC для патронов с Patreon
+ui-options-show-looc-on-head = Показывать LOOC-чат над головами персонажей
+ui-options-fancy-speech = Показывать имена в облачках с текстом
+ui-options-fancy-name-background = Добавить фон облачкам с текстом
+ui-options-enable-color-name = Цветные имена персонажей
+ui-options-colorblind-friendly = Режим для дальтоников
+ui-options-reduced-motion = Снижение интенсивности визуальных эффектов
+ui-options-chat-window-opacity = Прозрачность окна чата
+ui-options-chat-window-opacity-percent = { TOSTRING($opacity, "P0") }
+ui-options-screen-shake-intensity = Интенсивность дрожания экрана
 ui-options-screen-shake-percent = { TOSTRING($intensity, "P0") }
+ui-options-vsync = Вертикальная синхронизация
 ui-options-fullscreen = Полный экран
 ui-options-lighting-label = Качество освещения:
 ui-options-lighting-very-low = Очень низкое
@@ -62,15 +69,12 @@ ui-options-scale-175 = 175%
 ui-options-scale-200 = 200%
 ui-options-hud-theme = Тема HUD:
 ui-options-hud-theme-default = По умолчанию
-ui-options-hud-theme-modernized = Модернизированная
-ui-options-hud-theme-plasmafire = Плазменный
-ui-options-hud-theme-slimecore = Слаймовый
-ui-options-hud-theme-clockwork = Часовой
+ui-options-hud-theme-plasmafire = Плазма
+ui-options-hud-theme-slimecore = Слаймкор
+ui-options-hud-theme-clockwork = Механизм
 ui-options-hud-theme-retro = Ретро
 ui-options-hud-theme-minimalist = Минимализм
-ui-options-hud-theme-eris = Эрис
-ui-options-hud-theme-ashen = Ашен
-ui-options-hud-theme-classic = Классическая
+ui-options-hud-theme-ashen = Пепел
 ui-options-vp-stretch = Растянуть изображение для соответствия окну игры
 ui-options-vp-scale = Фиксированный масштаб окна игры: x{ $scale }
 ui-options-vp-integer-scaling = Использовать целочисленное масштабирование (может вызывать появление чёрных полос/обрезания)
@@ -81,7 +85,7 @@ ui-options-vp-integer-scaling-tooltip =
     чёрные полосы или что часть окна не будет видна.
 ui-options-vp-low-res = Изображение низкого разрешения
 ui-options-parallax-low-quality = Низкокачественный параллакс (фон)
-ui-options-fps-counter = Показать счетчик FPS
+ui-options-fps-counter = Показать счётчик FPS
 ui-options-vp-width = Ширина окна игры: { $width }
 ui-options-hud-layout = Тип HUD:
 
@@ -126,14 +130,15 @@ ui-options-function-activate-item-in-world = Использовать предм
 ui-options-function-alt-activate-item-in-world = Альтернативно использовать предмет в мире
 ui-options-function-drop = Положить предмет
 ui-options-function-examine-entity = Осмотреть
-ui-options-function-move-stored-item = Move stored item
-ui-options-function-rotate-stored-item = Rotate stored item
-ui-options-static-storage-ui = Lock storage window to hotbar
 ui-options-function-swap-hands = Поменять руки
+ui-options-function-move-stored-item = Переместить хранящийся объект
+ui-options-function-rotate-stored-item = Повернуть хранящийся объект
+ui-options-function-save-item-location = Сохранить расположение объекта
+ui-options-static-storage-ui = Закрепить интерфейс хранилища на хотбаре
 ui-options-function-smart-equip-backpack = Умная экипировка в рюкзак
-ui-options-function-open-backpack = Open backpack
-ui-options-function-open-belt = Open belt
 ui-options-function-smart-equip-belt = Умная экипировка на пояс
+ui-options-function-open-backpack = Открыть рюкзак
+ui-options-function-open-belt = Открыть пояс
 ui-options-function-throw-item-in-hand = Бросить предмет
 ui-options-function-try-pull-object = Тянуть объект
 ui-options-function-move-pulled-object = Тянуть объект в сторону
@@ -147,7 +152,7 @@ ui-options-function-focus-radio-window = Писать в чат (Радио)
 ui-options-function-focus-looc-window = Писать в чат (LOOC)
 ui-options-function-focus-ooc-window = Писать в чат (OOC)
 ui-options-function-focus-admin-chat-window = Писать в чат (Админ)
-ui-options-function-focus-dead-chat-window = Писать в чат (Мертвые)
+ui-options-function-focus-dead-chat-window = Писать в чат (Мёртвые)
 ui-options-function-focus-console-chat-window = Писать в чат (Консоль)
 ui-options-function-cycle-chat-channel-forward = Переключение каналов чата (Вперёд)
 ui-options-function-cycle-chat-channel-backward = Переключение каналов чата (Назад)
@@ -225,18 +230,18 @@ ui-options-net-predict-tick-bias-tooltip =
 ui-options-net-pvs-spawn = Лимит появление PVS сущностей
 ui-options-net-pvs-spawn-tooltip =
     Ограничение частоты отправки новых появившихся сущностей сервером на клиент.
-    Снижение этого параметра может помочь уменьшить "захлебывания",
+    Снижение этого параметра может помочь уменьшить "захлёбывания",
     вызываемые спавном сущностей, но может привести к их резкому появлению.
 ui-options-net-pvs-entry = Лимит PVS сущностей
 ui-options-net-pvs-entry-tooltip =
     Ограничение частоты отправки новых видимых сущностей сервером на клиент.
-    Снижение этого параметра может помочь уменьшить "захлебывания",
+    Снижение этого параметра может помочь уменьшить "захлёбывания",
     вызываемые спавном сущностей, но может привести к их резкому появлению.
 ui-options-net-pvs-leave = Частота удаления PVS
 ui-options-net-pvs-leave-tooltip =
     Ограничение частоты, с которой клиент будет удалять
     сущности вне поля зрения. Снижение этого параметра может помочь
-    уменьшить "захлебывания" при ходьбе, но иногда может
+    уменьшить "захлёбывания" при ходьбе, но иногда может
     привести к неправильным предугадываниям и другим проблемам.
 cmd-options-desc = Открывает меню опций, опционально с конкретно выбранной вкладкой.
 cmd-options-help = Использование: options [tab]

@@ -8,3 +8,6 @@ ent-WizardStaffMeleeSoap = мыльный волшебный посох
     .desc = { ent-WizardStaffMeleeBase.desc }
 ent-WizardStaffMeleeBlood = кровавый волшебный посох
     .desc = { ent-WizardStaffMeleeRed.desc }
+ent-WizardStaffDarkBolt = посох культиста
+    .suffix = Тёмный снаряд
+    .desc = { ent-WizardStaffMeleeBlood.desc }

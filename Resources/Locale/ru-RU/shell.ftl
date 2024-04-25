@@ -1,3 +1,8 @@
+### for technical and/or system messages
+
+
+## General
+
 shell-server-cannot = Сервер не может выполнить это.
 shell-command-success = Команда выполнена.
 shell-invalid-command = Неверная команда.
@@ -5,8 +10,20 @@ shell-invalid-command-specific = Неверная команда { $commandName 
 shell-cannot-run-command-from-server = Вы не можете выполнить эту команду с сервера.
 shell-only-players-can-run-this-command = Только игроки могут выполнять эту команду.
 shell-must-be-attached-to-entity = Для выполнения этой команды вы должны быть прикреплены к сущности.
+
+## Arguments
+
 shell-need-exactly-one-argument = Нужен ровно один аргумент.
-shell-wrong-arguments-number-need-specific = Need { $properAmount } arguments, there were { $currentAmount }.
+shell-wrong-arguments-number-need-specific =
+    Нужно { $properAmount } { $properAmount ->
+        [one] аргумент
+        [few] аргумента
+       *[other] аргументов
+    }, было { $currentAmount } { $currentAmount ->
+        [one] аргумент
+        [few] аргумента
+       *[other] аргументов
+    }.
 shell-argument-must-be-number = Аргумент должен быть числом.
 shell-argument-must-be-boolean = Аргумент должен быть boolean.
 shell-wrong-arguments-number = Неправильное количество аргументов.
@@ -14,6 +31,9 @@ shell-need-between-arguments = Нужно от { $lower } до { $upper } арг
 shell-need-minimum-arguments = Нужно не менее { $minimum } аргументов!
 shell-need-minimum-one-argument = Нужен хотя бы один аргумент!
 shell-argument-uid = EntityUid
+
+## Guards
+
 shell-entity-is-not-mob = Целевая сущность не является мобом!
 shell-invalid-entity-id = Недопустимый ID сущности.
 shell-invalid-grid-id = Недопустимый ID сетки.
@@ -33,4 +53,6 @@ shell-argument-number-must-be-between = Аргумент { $index } должен
 shell-argument-station-id-invalid = Аргумент { $index } должен быть валидным station id!
 shell-argument-map-id-invalid = Аргумент { $index } должен быть валидным map id!
 shell-argument-number-invalid = Аргумент { $index } должен быть валидным числом!
+# Hints
 shell-argument-username-hint = <username>
+shell-argument-username-optional-hint = [username]

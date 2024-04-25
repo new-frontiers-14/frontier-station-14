@@ -1,9 +1,3 @@
-ent-LockerBrigmedicFilledHardsuit = { ent-LockerBrigmedic }
-    .suffix = Заполненный, Скафандр
-    .desc = { ent-LockerBrigmedic.desc }
-ent-LockerBrigmedicFilled = { ent-LockerBrigmedic }
-    .suffix = Заполненный
-    .desc = { ent-LockerBrigmedic.desc }
 ent-LockerMercenaryFilled = { ent-LockerMercenary }
     .suffix = Заполненный
     .desc = { ent-LockerMercenary.desc }

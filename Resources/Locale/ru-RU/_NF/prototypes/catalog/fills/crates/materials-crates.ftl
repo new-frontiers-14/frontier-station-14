@@ -1,4 +1,4 @@
-ent-CrateMaterials = ящик материалов
-    .desc = 1 лист стекла, пластика, стали, плазмы и пластали.
-ent-CrateMaterialUranium = ящик урана
-    .desc = 90 листов урана.
+ent-CrateMaterials = Materials crate
+    .desc = 1 sheet of glass, plastic, steel, plasma and plasteel.
+ent-CrateMaterialUranium = Uranium crate
+    .desc = 90 sheets of uranium.

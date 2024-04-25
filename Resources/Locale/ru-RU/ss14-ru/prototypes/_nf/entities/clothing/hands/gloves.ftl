@@ -33,3 +33,5 @@ ent-ClothingHandsGlovesColorBlackCrossbow = боевые перчатки
 ent-ClothingHandsGlovesColorBlackLaserPistol = боевые перчатки
     .suffix = лазерный пистолет
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }
+ent-ClothingHandsGlovesSr = перчатки от порезов
+    .desc = Идеально подходят для работы с бумагами и решения бюрократических вопросов.

@@ -5,3 +5,8 @@ ent-ClothingHeadHatHoodBioArmoredSyndicate = капюшон биозащитно
     .suffix = Синдикат
 ent-ClothingHeadHatHoodWinterSyndieUnremoveable = зимний капюшон
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
+ent-ClothingHeadHatHoodBloodCulthood = шлем культа
+    .desc = { ent-ClothingHeadBase.desc }
+ent-ClothingHeadHatHoodBloodCulthoodUnremoveable = шлем культа
+
+  .desc = { ent-ClothingHeadHatHoodBloodCulthood.desc }

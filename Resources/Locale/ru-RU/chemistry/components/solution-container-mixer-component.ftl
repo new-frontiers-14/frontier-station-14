@@ -1,3 +1,3 @@
-solution-container-mixer-activate = Активаровано
+solution-container-mixer-activate = Активировать
 solution-container-mixer-no-power = Нет энергии!
-solution-container-mixer-popup-nothing-to-mix = Ничего не загружено!
+solution-container-mixer-popup-nothing-to-mix = Внутри пусто!
