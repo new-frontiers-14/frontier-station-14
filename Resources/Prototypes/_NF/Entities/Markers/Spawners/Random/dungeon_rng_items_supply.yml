@@ -1,3 +1,4 @@
+# Clutter
 - type: entity
   name: random clutter
   id: SpawnDungeonLootClutterSalvage
@@ -19,6 +20,7 @@
     - SpawnDungeonLootClothesSalvage
     - SpawnDungeonLootOresSingle
     - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootCircuitBoardSalvage
     chance: 0.9
     offset: 0.0
     rarePrototypes:
@@ -193,4 +195,45 @@
     - VendingMachineSyndieContraband
     - VendingMachineSyndieDrobe
     - VendingMachineArcadia
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: supply
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Computers
+    - ComputerIFFCircuitboard
+    # Lathes
+    - SalvageTechFabCircuitboardNF
+    - AutolatheMachineCircuitboard
+    - OreProcessorMachineCircuitboard
+    # Machines
+    - MaterialReclaimerMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
+    - TurboItemRechargerCircuitboard
+    - GyroscopeMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - ThrusterMachineCircuitboard
+    - ShuttleGunKineticCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrialMachineCircuitboard
+    - AmmoTechFabCircuitboard
+    - ShuttleGunSvalinnMachineGunCircuitboard
+    - SecurityTechFabCircuitboard
     rareChance: 0.01

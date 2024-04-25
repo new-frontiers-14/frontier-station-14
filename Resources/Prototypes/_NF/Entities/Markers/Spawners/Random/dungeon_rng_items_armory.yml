@@ -1,9 +1,9 @@
-# Gear
+# Clutter
 - type: entity
   name: random clutter
   id: SpawnDungeonLootArmoryClutter
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory, Mercenary"
+  suffix: "Dungeon, Mercenary"
   components:
   - type: Sprite
     layers:
@@ -29,19 +29,19 @@
     - WeaponGrapplingGun
     - RiotShield
     - RiotLaserShield
-    chance: 0.85
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ClothingOuterArmorReflective
     - ClothingOuterHardsuitMercenary
     - SpawnDungeonLootArmoryMelee
-    rareChance: 0.01
+    rareChance: 0.05
 
 - type: entity
   name: random clutter
   id: SpawnDungeonLootArmoryClutterSec
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory, Security"
+  suffix: "Dungeon, Security"
   components:
   - type: Sprite
     layers:
@@ -82,10 +82,10 @@
 
 # Tools (Weapons)
 - type: entity
-  name: random gun
+  name: random weapon
   id: SpawnDungeonLootArmoryGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory"
+  suffix: "Dungeon, Armory, Gun"
   components:
   - type: Sprite
     layers:
@@ -115,10 +115,10 @@
     rareChance: 0.01
 
 - type: entity
-  name: random gun
+  name: random weapon
   id: SpawnDungeonLootVaultGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Vault"
+  suffix: "Dungeon, Vault, Gun"
   components:
   - type: Sprite
     layers:
@@ -145,10 +145,10 @@
     rareChance: 0.01
 
 - type: entity
-  name: random melee weapon
+  name: random weapon
   id: SpawnDungeonLootArmoryMelee
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory"
+  suffix: "Dungeon, Armory, Melee"
   components:
   - type: Sprite
     layers:
@@ -179,7 +179,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryRare
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory, Rare"
+  suffix: "Dungeon, Vault, Rare"
   components:
   - type: Sprite
     layers:
@@ -242,35 +242,7 @@
     - ClothingOuterHardsuitMercenary
     rareChance: 0.01
 
-# Vendomats
-- type: entity
-  name: random vendomat
-  id: SpawnDungeonVendomatsArmory
-  parent: MarkerBase
-  suffix: "Dungeon, Armory"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
-        state: off
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - VendingMachineBountyVend
-    - VendingMachineAmmo
-    - LessLethalVendingMachine
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - VendingMachineArcadia
-    - VendingMachineSec
-    - VendingMachineSecDrobe
-    rareChance: 0.01
-
-# Lockers
+# Furniture/Lockers
 - type: entity
   name: random locker
   id: SpawnDungeonLootLockersArmory
@@ -297,7 +269,6 @@
     - ClosetBombFilled
     rareChance: 0.01
 
-# Crates
 - type: entity
   name: random crate
   id: SpawnDungeonLootCrateArmoryWeapon
@@ -350,7 +321,34 @@
     - CrateSecurityBiosuit
     rareChance: 0.05
 
-# Lathes
+# Machines
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineBountyVend
+    - VendingMachineAmmo
+    - LessLethalVendingMachine
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineArcadia
+    - VendingMachineSec
+    - VendingMachineSecDrobe
+    rareChance: 0.01
+
 - type: entity
   name: random machine techfab
   id: SpawnDungeonLootLatheArmory

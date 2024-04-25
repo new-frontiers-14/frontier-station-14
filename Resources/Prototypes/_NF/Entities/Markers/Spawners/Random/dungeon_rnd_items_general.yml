@@ -1,4 +1,5 @@
 # An assortment of randomised dungeon loot spawners to be used instead of static spawns
+# Base
 - type: entity
   parent: MarkerBase
   id: MarkerBasePlaceFree
@@ -188,7 +189,7 @@
   name: random machine board
   id: SpawnDungeonLootCircuitBoard
   parent: MarkerBasePlaceFree
-  suffix: Dungeon
+  suffix: "Dungeon, General"
   components:
   - type: Sprite
     layers:
@@ -201,38 +202,23 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - MaterialReclaimerMachineCircuitboard
+    # Spawners
+    - SpawnDungeonLootCircuitBoardSalvage
+    - SpawnDungeonLootCircuitBoardEngi
+    - SpawnDungeonLootCircuitBoardScience
+    - SpawnDungeonLootCircuitBoardMed
+    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
+    # Boards
     - SalvageTechFabCircuitboardNF
-    - TilePrinterNFMachineCircuitboard
     - ScienceTechFabCircuitboard
     - ServiceTechFabCircuitboard
     - EngineeringTechFabCircuitboard
-    - AutolatheMachineCircuitboard
-    - ProtolatheMachineCircuitboard
-    - AutolatheHyperConvectionMachineCircuitboard
-    - ProtolatheHyperConvectionMachineCircuitboard
-    - ExosuitFabricatorMachineCircuitboard
-    - BiofabricatorMachineCircuitboard
     - AmmoTechFabCircuitboard
     - MedicalTechFabCircuitboard
-    - UniformPrinterMachineCircuitboard
     - OreProcessorIndustrialMachineCircuitboard
-    - MiniGravityGeneratorCircuitboard
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
-    - FlatpackerMachineCircuitboard
-    - ChemMasterMachineCircuitboard
-    - ShuttleGunKineticCircuitboard
-    - CentrifugeMachineCircuitboard
-    - CondenserMachineCircuitBoard
-    - DeepFryerMachineCircuitboard
     - DawInstrumentMachineCircuitboard
-    - EmitterCircuitboard
-    - GasRecyclerMachineCircuitboard
-    - ThermomachineHeaterMachineCircuitBoard
-    - ThermomachineFreezerMachineCircuitBoard
-    - FatExtractorMachineCircuitboard
-    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
     chance: 1
     offset: 0.0
     rarePrototypes:

@@ -1,3 +1,4 @@
+# Clutter
 - type: entity
   name: random clutter
   id: SpawnDungeonClutterMedical
@@ -46,56 +47,7 @@
     - SpawnDungeonClutterMedsFull
     rareChance: 0.01
 
-- type: entity
-  name: random chemicals
-  id: SpawnDungeonLootChems
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Chemistry"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Chemistry/beaker.rsi
-        state: beaker
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - JugAluminium
-    - JugCarbon
-    - JugChlorine
-    - JugFluorine
-    - JugIodine
-    - JugPhosphorus
-    - JugSulfur
-    - JugSilicon
-    - JugOxygen
-    - JugNitrogen
-    - JugHydrogen
-    - JugLithium
-    - JugSodium
-    - JugPotassium
-    - JugRadium
-    - JugSugar
-    - JugEthanol
-    - JugIron
-    - JugCopper
-    - JugGold
-    - JugMercury
-    - JugSilver
-    - JugWeldingFuel
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - CognizineChemistryBottle
-    - OmnizineChemistryBottle
-    - SpawnDungeonLootToolsSurgeryAdvanced
-    - SpawnDungeonLootChems
-    rareChance: 0.01
-
-# Medkits
+# Tools
 - type: entity
   name: random medkit
   id: SpawnDungeonLootKitsFirstAid
@@ -127,7 +79,6 @@
     - MedkitCombatFilled
     rareChance: 0.01
 
-# Surgery Tools
 - type: entity
   name: random tool
   id: SpawnDungeonLootToolsSurgeryCrude
@@ -239,7 +190,6 @@
     - ClothingBackpackDuffelSyndicateFilledMedical
     rareChance: 0.05
 
-# Clutter
 - type: entity
   name: random beaker
   id: SpawnDungeonClutterBeakerEmpty
@@ -484,6 +434,51 @@
     - SyndiHypo
     rareChance: 0.01
 
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/medical.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingHeadHatSurgcapPurple
+    - UniformScrubsColorPurple
+    - ClothingHeadNurseHat
+    - ClothingOuterHospitalGown
+    - ClothingOuterCoatLab
+    - ClothingMaskBreathMedical
+    - ClothingBeltMedical
+    - ClothingNeckStethoscope
+    - ClothingHandsGlovesLatex
+    - ClothingHandsGlovesNitrile
+    - ClothingMaskSterile
+    - ClothingUniformJumpsuitParamedic
+    - ClothingOuterCoatParamedicWB
+    - UniformScrubsColorPurple
+    - UniformScrubsColorBlue
+    - UniformScrubsColorGreen
+    - ClothingBeltMedical
+    - ClothingUniformJumpsuitMedicalDoctor
+    - ClothingBackpackMessengerMedical
+    - ClothingBackpackDuffelMedical
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitVoidParamed
+    rareChance: 0.01
+
+# Furniture/Lockers
 - type: entity
   name: random locker
   id: SpawnDungeonLootLockersMed
@@ -543,10 +538,59 @@
     - VendingMachineSyndieDrobe
     rareChance: 0.01
 
-# Clothes
+# Other
 - type: entity
-  name: random clothes
-  id: SpawnDungeonLootClothesMed
+  name: random chemicals
+  id: SpawnDungeonLootChems
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chemistry"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - JugAluminium
+    - JugCarbon
+    - JugChlorine
+    - JugFluorine
+    - JugIodine
+    - JugPhosphorus
+    - JugSulfur
+    - JugSilicon
+    - JugOxygen
+    - JugNitrogen
+    - JugHydrogen
+    - JugLithium
+    - JugSodium
+    - JugPotassium
+    - JugRadium
+    - JugSugar
+    - JugEthanol
+    - JugIron
+    - JugCopper
+    - JugGold
+    - JugMercury
+    - JugSilver
+    - JugWeldingFuel
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CognizineChemistryBottle
+    - OmnizineChemistryBottle
+    - SpawnDungeonLootToolsSurgeryAdvanced
+    - SpawnDungeonLootChems
+    rareChance: 0.01
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardMed
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Medical"
   components:
@@ -554,35 +598,30 @@
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Clothing/Uniforms/Jumpsuit/medical.rsi
-        state: icon
+      - sprite: Objects/Misc/module.rsi
+        state: medical
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
   - type: RandomSpawner
     prototypes:
-    - ClothingHeadHatSurgcapPurple
-    - UniformScrubsColorPurple
-    - ClothingHeadNurseHat
-    - ClothingOuterHospitalGown
-    - ClothingOuterCoatLab
-    - ClothingMaskBreathMedical
-    - ClothingBeltMedical
-    - ClothingNeckStethoscope
-    - ClothingHandsGlovesLatex
-    - ClothingHandsGlovesNitrile
-    - ClothingMaskSterile
-    - ClothingUniformJumpsuitParamedic
-    - ClothingOuterCoatParamedicWB
-    - UniformScrubsColorPurple
-    - UniformScrubsColorBlue
-    - UniformScrubsColorGreen
-    - ClothingBeltMedical
-    - ClothingUniformJumpsuitMedicalDoctor
-    - ClothingBackpackMessengerMedical
-    - ClothingBackpackDuffelMedical
-    chance: 1
+    # Computers
+    - BodyScannerComputerCircuitboard
+    - CloningConsoleComputerCircuitboard
+    - MedicalRecordsComputerCircuitboard
+    # Lathes
+    - MedicalTechFabCircuitboard
+    # Machines
+    - ChemMasterMachineCircuitboard
+    - CentrifugeMachineCircuitboard
+    - ChemDispenserMachineCircuitboard
+    - CloningPodMachineCircuitboard
+    - CryoPodMachineCircuitboard
+    - DiagnoserMachineCircuitboard
+    - ElectrolysisUnitMachineCircuitboard
+    - HotplateMachineCircuitboard
+    - MedicalScannerMachineCircuitboard
+    - StasisBedMachineCircuitboard
+    - VaccinatorMachineCircuitboard
+    chance: 0.95
     offset: 0.0
-    rarePrototypes:
-    - ClothingOuterHardsuitVoidParamed
-    rareChance: 0.01
