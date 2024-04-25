@@ -1,7 +1,8 @@
 ent-BaseThruster = thruster
     .desc = A thruster that allows a shuttle to move.
 ent-Thruster = thruster
-  .desc = { ent-BaseThruster.desc }
+
+  .desc = { ent-['BaseThruster', 'ConstructibleMachine'].desc }
 ent-ThrusterUnanchored = { ent-Thruster }
     .suffix = Unanchored
     .desc = { ent-Thruster.desc }

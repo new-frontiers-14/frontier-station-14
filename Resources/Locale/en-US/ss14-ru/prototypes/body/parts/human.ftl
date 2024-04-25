@@ -1,22 +1,33 @@
 ent-PartHuman = human body part
-  .desc = { ent-BasePart.desc }
+
+  .desc = { ent-['BaseItem', 'BasePart'].desc }
 ent-TorsoHuman = human torso
-  .desc = { ent-BaseTorso.desc }
+
+  .desc = { ent-['PartHuman', 'BaseTorso'].desc }
 ent-HeadHuman = human head
-  .desc = { ent-BaseHead.desc }
+
+  .desc = { ent-['PartHuman', 'BaseHead'].desc }
 ent-LeftArmHuman = left human arm
-  .desc = { ent-BaseLeftArm.desc }
+
+  .desc = { ent-['PartHuman', 'BaseLeftArm'].desc }
 ent-RightArmHuman = right human arm
-  .desc = { ent-BaseRightArm.desc }
+
+  .desc = { ent-['PartHuman', 'BaseRightArm'].desc }
 ent-LeftHandHuman = left human hand
-  .desc = { ent-BaseLeftHand.desc }
+
+  .desc = { ent-['PartHuman', 'BaseLeftHand'].desc }
 ent-RightHandHuman = right human hand
-  .desc = { ent-BaseRightHand.desc }
+
+  .desc = { ent-['PartHuman', 'BaseRightHand'].desc }
 ent-LeftLegHuman = left human leg
-  .desc = { ent-BaseLeftLeg.desc }
+
+  .desc = { ent-['PartHuman', 'BaseLeftLeg'].desc }
 ent-RightLegHuman = right human leg
-  .desc = { ent-BaseRightLeg.desc }
+
+  .desc = { ent-['PartHuman', 'BaseRightLeg'].desc }
 ent-LeftFootHuman = left human foot
-  .desc = { ent-BaseLeftFoot.desc }
+
+  .desc = { ent-['PartHuman', 'BaseLeftFoot'].desc }
 ent-RightFootHuman = right human foot
-  .desc = { ent-BaseRightFoot.desc }
+
+  .desc = { ent-['PartHuman', 'BaseRightFoot'].desc }

@@ -1,0 +1,14 @@
+ent-ComputerShipyard = shipyard console
+    .desc = Used to purchase and sell shuttles
+ent-ComputerShipyardSecurity = security shipyard console
+    .desc = Used to enlist into Nanotrasen Security Forces
+ent-ComputerShipyardNfsd = nfsd shipyard console
+    .desc = Used to buy nfsd patrol vessels
+ent-ComputerShipyardSyndicate = syndicate shipyard console
+    .desc = Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+ent-ComputerShipyardBlackMarket = black market shipyard console
+    .desc = Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+ent-ComputerShipyardExpedition = expedition shipyard console
+    .desc = Used to buy ships outfitted for planetary expeditions
+ent-ComputerShipyardScrap = scrapyard console
+    .desc = Used to purchase and sell "shuttles"

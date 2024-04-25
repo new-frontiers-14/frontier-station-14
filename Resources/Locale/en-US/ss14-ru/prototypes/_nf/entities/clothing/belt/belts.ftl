@@ -8,3 +8,7 @@ ent-ClothingBeltNfsd = nfsd belt
     .desc = A tactical assault belt.
 ent-ClothingBeltNfsdWebbing = nfsd webbing
     .desc = A tactical assault webbing.
+ent-ClothingBeltCultForceField = cult runic belt buckle
+    .desc = { ent-ClothingBeltBase.desc }
+ent-ClothingBeltCultWebbing = cult webbing
+    .desc = A webbing with pockets lined with waterproof (water, huh?)  material.

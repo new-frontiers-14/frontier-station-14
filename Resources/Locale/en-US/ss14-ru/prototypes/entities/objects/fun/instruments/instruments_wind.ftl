@@ -3,7 +3,8 @@ ent-SaxophoneInstrument = saxophone
 ent-AccordionInstrument = accordion
     .desc = { ent-BaseHandheldInstrument.desc }
 ent-HarmonicaInstrument = harmonica
-    .desc = { ent-BaseHandheldInstrument.desc }
+
+  .desc = { ent-['BaseHandheldInstrument', 'Clothing'].desc }
 ent-ClarinetInstrument = clarinet
     .desc = Skweedward tintacklays.
 ent-FluteInstrument = flute

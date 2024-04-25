@@ -33,3 +33,5 @@ ent-ClothingHandsGlovesColorBlackCrossbow = combat gloves
 ent-ClothingHandsGlovesColorBlackLaserPistol = combat gloves
     .suffix = laser pistol
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }
+ent-ClothingHandsGlovesSr = papercut-proof gloves
+    .desc = Perfect for dealing with paperwork and matters with bureaucracy.

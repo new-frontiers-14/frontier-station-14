@@ -108,3 +108,5 @@ ent-UprightPianoInstrumentFlatpack = upright piano flatpack
     .desc = A flatpack containing a upright piano.
 ent-DawInstrumentFlatpack = daw flatpack
     .desc = A flatpack containing a daw.
+ent-NfsdTechFabFlatpack = nfsd tech fab flatpack
+    .desc = A flatpack used for constructing a nfsd tech fab.

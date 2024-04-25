@@ -1,7 +1,9 @@
-ent-SimpleArtifactMobBase = { ent-MobCombat }
+ent-SimpleArtifactMobBase = { ent-['MobAtmosNF', 'BaseSimpleMob', 'MobCombat', 'FlyingMobBase'] }
+
   .suffix = AI
-  .desc = { ent-MobCombat.desc }
+  .desc = { ent-['MobAtmosNF', 'BaseSimpleMob', 'MobCombat', 'FlyingMobBase'].desc }
 ent-BaseMobArtifactConstruct = artifact construct
+    .desc = { ent-SimpleArtifactMobBase.desc }
+ent-MobGrimForged = Grimforged Construct
     .desc = A towering golem crafted from twisted metal and ancient stones.
-ent-MobGrimForged = artifact construct 1
-    .desc = { ent-BaseMobArtifactConstruct.desc }
+    .suffix = AI

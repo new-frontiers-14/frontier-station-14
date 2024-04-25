@@ -1,11 +1,14 @@
 ent-ShotGunCabinet = shotgun cabinet
     .desc = There is a small label that reads "For Emergency use only" along with details for safe use of the shotgun. As if.
-ent-ShotGunCabinetOpen = { ent-ShotGunCabinet }
+ent-ShotGunCabinetOpen = { ent-['ShotGunCabinet', 'FireAxeCabinetOpen'] }
+
   .suffix = Open
-  .desc = { ent-ShotGunCabinet.desc }
-ent-ShotGunCabinetFilled = { ent-ShotGunCabinet }
+  .desc = { ent-['ShotGunCabinet', 'FireAxeCabinetOpen'].desc }
+ent-ShotGunCabinetFilled = { ent-['ShotGunCabinet', 'FireAxeCabinetFilled'] }
+
   .suffix = Filled
-  .desc = { ent-ShotGunCabinet.desc }
-ent-ShotGunCabinetFilledOpen = { ent-ShotGunCabinetFilled }
+  .desc = { ent-['ShotGunCabinet', 'FireAxeCabinetFilled'].desc }
+ent-ShotGunCabinetFilledOpen = { ent-['ShotGunCabinetFilled', 'FireAxeCabinetFilledOpen'] }
+
   .suffix = Filled, Open
-  .desc = { ent-ShotGunCabinetFilled.desc }
+  .desc = { ent-['ShotGunCabinetFilled', 'FireAxeCabinetFilledOpen'].desc }

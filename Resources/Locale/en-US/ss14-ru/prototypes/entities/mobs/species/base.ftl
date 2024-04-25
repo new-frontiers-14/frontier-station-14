@@ -1,6 +1,8 @@
-ent-BaseMobSpecies = { ent-BaseMob }
-  .desc = { ent-BaseMob.desc }
-ent-BaseMobSpeciesOrganic = { ent-BaseMobSpecies }
-  .desc = { ent-BaseMobSpecies.desc }
+ent-BaseMobSpecies = { ent-['BaseMob', 'MobDamageable', 'MobCombat'] }
+
+  .desc = { ent-['BaseMob', 'MobDamageable', 'MobCombat'].desc }
+ent-BaseMobSpeciesOrganic = { ent-['MobBloodstream', 'MobRespirator', 'MobAtmosStandard', 'MobFlammable', 'BaseMobSpecies'] }
+
+  .desc = { ent-['MobBloodstream', 'MobRespirator', 'MobAtmosStandard', 'MobFlammable', 'BaseMobSpecies'].desc }
 ent-BaseSpeciesDummy = { "" }
     .desc = { "" }
