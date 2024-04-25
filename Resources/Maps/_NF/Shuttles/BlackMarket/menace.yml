@@ -739,6 +739,8 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 103
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: NitrousOxideTankFilled
   entities:
   - uid: 5
@@ -898,7 +900,21 @@ entities:
     - type: Transform
       pos: -2.5,-1.5
       parent: 103
-- proto: SpawnPointLatejoin
+- proto: SpawnPointPirate
+  entities:
+  - uid: 145
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 103
+- proto: SpawnPointPirateCaptain
+  entities:
+  - uid: 144
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 103
+- proto: SpawnPointPirateFirstMate
   entities:
   - uid: 60
     components:
@@ -959,24 +975,32 @@ entities:
     - type: Transform
       pos: -2.5,4.5
       parent: 103
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 76
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
       parent: 103
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 97
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,0.5
       parent: 103
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 116
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 103
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: WallMining
   entities:
   - uid: 12
