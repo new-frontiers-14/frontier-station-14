@@ -1,5 +1,5 @@
 #SOFTSUITS
-#Paramedic's hardsuit
+#Paramedic's voidsuit
 - type: entity
   id: SuitStorageParamedic
   parent: SuitStorageBase
@@ -10,13 +10,31 @@
 #        - id: NitrogenTankFilled
 #        - id: OxygenTankFilled
         - id: AirTankFilled
-        - id: ClothingHeadHelmetVoidParamed
         - id: ClothingOuterHardsuitVoidParamed
         - id: ClothingMaskBreathMedical
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
 #    access: [["Medical"]]
+
+#Hydroponics EVA
+- type: entity
+  id: SuitStorageHydro
+  parent: SuitStorageBase
+  suffix: Hydroponics
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitHydro
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    # access: [[ "Hydroponics" ]]
 
 #HARDSUITS
 #Quartermaster hardsuit
@@ -69,6 +87,25 @@
 #        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitMercenary
+        - id: ClothingMaskGasMercenary
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
+#SCAF hardsuit
+- type: entity
+  id: SuitStorageScaf
+  parent: SuitStorageBase
+  suffix: SCAF
+  components:
+  - type: StorageFill
+    contents:
+#        - id: NitrogenTankFilled
+#        - id: OxygenTankFilled
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitScaf
         - id: ClothingMaskGasMercenary
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
