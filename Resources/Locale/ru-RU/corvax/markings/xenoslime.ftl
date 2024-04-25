@@ -1,0 +1,14 @@
+marking-SlimePawSocks-pawsocks = Носки на лапах из слизи
+marking-SlimePawSocks = Носки на лапах из слизи
+marking-FoxSlimeTail-vulp_tail = Лисий хвост из слизи
+marking-FoxSlimeTail = Лисий хвост из слизи
+marking-FoxSlimeEar-vulp_ear = Лисье ухо из слизи (внешнее)
+marking-FoxSlimeEar-vulp_ear_inner = Лисье ухо из слизи (внутреннее)
+marking-FoxSlimeEar = Лисье ухо из слизи (внутреннее)
+marking-WolfSlimeTail-wolf_tail = Волчий хвост из слизи (основа)
+marking-WolfSlimeTail-wolf_tail_inner = Волчий хвост из слизи (конец)
+marking-WolfSlimeTail = Волчий хвост из слизи (конец)
+marking-FoxSlimeBelly-vulp_belly-torso = Лисье брюхо из слизи
+marking-FoxSlimeBelly = Лисье брюхо из слизи
+marking-FoxSlimeSnout-vulp_face = Лисья морда из слизи
+marking-FoxSlimeSnout = Лисья морда из слизи
