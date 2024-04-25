@@ -113,3 +113,39 @@
     layers:
       - state: green
       - state: hop
+
+- type: entity
+  id: SpawnPointSheriff
+  parent: SpawnPointHeadOfSecurity
+  name: sheriff
+  components:
+  - type: SpawnPoint
+    job_id: Sheriff
+  - type: Sprite
+    layers:
+      - state: green
+      - state: hos
+
+- type: entity
+  id: SpawnPointBailiff
+  parent: SpawnPointWarden
+  name: bailiff
+  components:
+  - type: SpawnPoint
+    job_id: Bailiff
+  - type: Sprite
+    layers:
+      - state: green
+      - state: warden
+
+- type: entity
+  id: SpawnPointDetectiveNF
+  parent: SpawnPointDetective
+  name: detective nf
+  components:
+  - type: SpawnPoint
+    job_id: DetectiveNF
+  - type: Sprite
+    layers:
+      - state: green
+      - state: detective
