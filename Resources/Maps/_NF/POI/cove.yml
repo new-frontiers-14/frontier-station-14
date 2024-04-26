@@ -5897,7 +5897,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -394.00717
+      secondsUntilStateChange: -446.87357
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -8101,17 +8101,18 @@ entities:
     - type: Transform
       pos: 15.417093,25.484812
       parent: 1
-- proto: PortableGeneratorPacmanShuttle
+- proto: PortableGeneratorPacman
   entities:
   - uid: 1910
     components:
     - type: Transform
       pos: 9.5,17.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
+    - type: MaterialStorage
+      storage:
+        Plasma: 1500
+    - type: InsertingMaterialStorage
+      endTime: 0
 - proto: PortableScrubber
   entities:
   - uid: 9
@@ -9131,6 +9132,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.3394558,13.652866
       parent: 1
+  - uid: 2053
+    components:
+    - type: Transform
+      pos: 9.503929,17.419426
+      parent: 1
+    - type: Stack
+      count: 15
 - proto: SheetUranium
   entities:
   - uid: 670
@@ -12910,5 +12918,12 @@ entities:
     components:
     - type: Transform
       pos: 6.5,28.5
+      parent: 1
+- proto: Wrench
+  entities:
+  - uid: 2054
+    components:
+    - type: Transform
+      pos: 9.483096,17.492344
       parent: 1
 ...
