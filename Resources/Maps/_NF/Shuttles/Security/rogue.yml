@@ -148,11 +148,12 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-- proto: AirlockSecurityGlassLocked
+- proto: AirlockNfsdGlassLocked
   entities:
-  - uid: 22
+  - uid: 46
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 0.5,-1.5
       parent: 1
 - proto: APCBasic
@@ -720,7 +721,7 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
-- proto: SmallGyroscopeSecurity
+- proto: SmallGyroscopeNfsd
   entities:
   - uid: 50
     components:
@@ -756,30 +757,30 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
-- proto: ThrusterSecurity
+- proto: ThrusterNfsd
   entities:
-  - uid: 46
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
-      parent: 1
-  - uid: 47
+  - uid: 22
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-3.5
       parent: 1
-  - uid: 48
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 1
-  - uid: 49
+  - uid: 47
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,3.5
+      parent: 1
+  - uid: 48
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-3.5
+      parent: 1
+  - uid: 49
+    components:
+    - type: Transform
+      pos: 2.5,4.5
       parent: 1
 - proto: WallPlastitanium
   entities:
