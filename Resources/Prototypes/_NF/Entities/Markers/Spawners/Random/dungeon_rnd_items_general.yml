@@ -207,7 +207,7 @@
     - SpawnDungeonLootCircuitBoardEngi
     - SpawnDungeonLootCircuitBoardScience
     - SpawnDungeonLootCircuitBoardMed
-    - RandomBoards # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\devices.yml
+    - RandomBoards # /Resources/Prototypes/Nyanotrasen/Markers/Spawners/Random/devices.yml
     # Boards
     - SalvageTechFabCircuitboardNF
     - ScienceTechFabCircuitboard
@@ -589,6 +589,31 @@
     - ClosetRadiationSuitFilled
     - ClosetL3Filled
     rareChance: 0.15
+
+- type: entity
+  name: random vehicle crate
+  id: SpawnDungeonLootCrateVehicle
+  parent: MarkerBase
+  suffix: "Dungeon"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/livestock.rsi
+        state: base
+      - sprite: _NF/Objects/Vehicles/hoverbike.rsi
+        state: vehicle
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateFunATV
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CrateFunHoverbikeNF
+    rareChance: 0.35
 
 # Canisters
 - type: entity

@@ -354,13 +354,6 @@ entities:
     - type: GridTree
     - type: MovedGrids
     - type: GridPathfinding
-- proto: AirCanister
-  entities:
-  - uid: 302
-    components:
-    - type: Transform
-      pos: 20.5,38.5
-      parent: 1653
 - proto: AirlockMining
   entities:
   - uid: 149
@@ -529,42 +522,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSalvage
-  entities:
-  - uid: 432
-    components:
-    - type: Transform
-      pos: 4.447749,45.58406
-      parent: 1653
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: This decreases your speed by [color=yellow]25%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Blunt[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=yellow]Slash[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Radiation[/color] damage reduced by [color=lightblue]70%[/color].
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=orange]Explosion[/color] damage reduced by [color=lightblue]70%[/color].
-          priority: 0
-          component: Armor
-        title: null
 - proto: ClothingShoesClown
   entities:
   - uid: 202
@@ -1607,20 +1564,6 @@ entities:
     - type: Transform
       pos: 25.5,19.5
       parent: 1653
-- proto: KitchenElectricGrill
-  entities:
-  - uid: 205
-    components:
-    - type: Transform
-      pos: 35.5,40.5
-      parent: 1653
-- proto: KitchenMicrowave
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      pos: 26.5,21.5
-      parent: 1653
 - proto: LampGold
   entities:
   - uid: 380
@@ -2041,12 +1984,130 @@ entities:
     - type: Transform
       pos: 12.112694,46.119095
       parent: 1653
+- proto: SpawnDungeonLootCanister
+  entities:
+  - uid: 58
+    components:
+    - type: Transform
+      pos: 20.5,38.5
+      parent: 1653
+- proto: SpawnDungeonLootClothesSalvage
+  entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 4.38971,45.707054
+      parent: 1653
+  - uid: 460
+    components:
+    - type: Transform
+      pos: 4.780335,45.425804
+      parent: 1653
+  - uid: 469
+    components:
+    - type: Transform
+      pos: 4.311585,45.28518
+      parent: 1653
+  - uid: 474
+    components:
+    - type: Transform
+      pos: 10.373032,46.62893
+      parent: 1653
+  - uid: 482
+    components:
+    - type: Transform
+      pos: 18.668245,45.62893
+      parent: 1653
+  - uid: 483
+    components:
+    - type: Transform
+      pos: 36.64347,31.557724
+      parent: 1653
+  - uid: 484
+    components:
+    - type: Transform
+      pos: 16.473904,32.216118
+      parent: 1653
+  - uid: 485
+    components:
+    - type: Transform
+      pos: 15.356223,19.703928
+      parent: 1653
+  - uid: 486
+    components:
+    - type: Transform
+      pos: 15.996848,19.969553
+      parent: 1653
+  - uid: 487
+    components:
+    - type: Transform
+      pos: 19.28439,13.351238
+      parent: 1653
+  - uid: 489
+    components:
+    - type: Transform
+      pos: 51.3111,1.6247389
+      parent: 1653
+  - uid: 496
+    components:
+    - type: Transform
+      pos: 39.409256,0.68723893
+      parent: 1653
+  - uid: 497
+    components:
+    - type: Transform
+      pos: 13.68438,26.592575
+      parent: 1653
+- proto: SpawnDungeonLootClutterSalvage
+  entities:
+  - uid: 302
+    components:
+    - type: Transform
+      pos: 38.56884,2.5570703
+      parent: 1653
+  - uid: 432
+    components:
+    - type: Transform
+      pos: 38.75634,2.2445703
+      parent: 1653
+  - uid: 498
+    components:
+    - type: Transform
+      pos: 52.990715,4.2133203
+      parent: 1653
+  - uid: 499
+    components:
+    - type: Transform
+      pos: 51.25634,2.8383203
+      parent: 1653
+  - uid: 500
+    components:
+    - type: Transform
+      pos: 19.488459,3.7289453
+      parent: 1653
+  - uid: 501
+    components:
+    - type: Transform
+      pos: 10.945346,1.4789453
+      parent: 1653
+  - uid: 502
+    components:
+    - type: Transform
+      pos: 42.24788,39.248783
+      parent: 1653
 - proto: SpawnDungeonLootCrateArmoryWeapon
   entities:
   - uid: 316
     components:
     - type: Transform
       pos: 15.5,36.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateVehicle
+  entities:
+  - uid: 449
+    components:
+    - type: Transform
+      pos: 13.5,35.5
       parent: 1653
 - proto: SpawnDungeonLootFood
   entities:
@@ -2100,6 +2161,18 @@ entities:
     components:
     - type: Transform
       pos: 0.7339158,25.464163
+      parent: 1653
+- proto: SpawnDungeonLootKitchenTabletop
+  entities:
+  - uid: 205
+    components:
+    - type: Transform
+      pos: 35.5,40.5
+      parent: 1653
+  - uid: 244
+    components:
+    - type: Transform
+      pos: 26.5,21.5
       parent: 1653
 - proto: SpawnDungeonLootKitsFirstAid
   entities:
@@ -2450,18 +2523,6 @@ entities:
     components:
     - type: Transform
       pos: 32.5,20.5
-      parent: 1653
-- proto: Torch
-  entities:
-  - uid: 58
-    components:
-    - type: Transform
-      pos: 52.617035,4.4522324
-      parent: 1653
-  - uid: 60
-    components:
-    - type: Transform
-      pos: 38.654633,2.7959824
       parent: 1653
 - proto: TorsoSkeleton
   entities:

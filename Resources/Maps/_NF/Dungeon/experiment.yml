@@ -179,8 +179,6 @@ entities:
             638: 16,25
             639: 16,26
             640: 16,27
-            806: 5,6
-            807: 5,7
             808: 0,6
             809: 0,7
             810: 7,10
@@ -190,6 +188,8 @@ entities:
             896: 30,19
             925: 1,12
             926: 1,13
+            1339: 3,6
+            1340: 3,7
         - node:
             color: '#FFFFFFFF'
             id: BotLeft
@@ -6025,13 +6025,6 @@ entities:
     - type: Transform
       pos: 4.5,28.5
       parent: 1653
-- proto: ClothingBeltUtilityEngineering
-  entities:
-  - uid: 786
-    components:
-    - type: Transform
-      pos: 30.535934,19.609272
-      parent: 1653
 - proto: ClothingHeadHatAnimalHeadslime
   entities:
   - uid: 1457
@@ -6052,20 +6045,6 @@ entities:
     components:
     - type: Transform
       pos: 30.475718,12.610211
-      parent: 1653
-- proto: ClothingOuterCoatJensen
-  entities:
-  - uid: 827
-    components:
-    - type: Transform
-      pos: 12.472879,28.68102
-      parent: 1653
-- proto: ClothingOuterCoatLab
-  entities:
-  - uid: 828
-    components:
-    - type: Transform
-      pos: 12.613504,28.540396
       parent: 1653
 - proto: ClothingOuterSuitMonkey
   entities:
@@ -6176,13 +6155,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 31.5,21.5
-      parent: 1653
-- proto: ComputerCrewMonitoring
-  entities:
-  - uid: 1006
-    components:
-    - type: Transform
-      pos: 19.5,22.5
       parent: 1653
 - proto: ComputerResearchAndDevelopment
   entities:
@@ -6898,18 +6870,6 @@ entities:
     - type: Transform
       pos: 19.503967,13.342637
       parent: 1653
-- proto: LandMineModular
-  entities:
-  - uid: 1121
-    components:
-    - type: Transform
-      pos: 6.462872,16.34209
-      parent: 1653
-  - uid: 1122
-    components:
-    - type: Transform
-      pos: 6.619122,16.201466
-      parent: 1653
 - proto: LockerScienceFilled
   entities:
   - uid: 699
@@ -6950,13 +6910,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 22.5,27.5
-      parent: 1653
-- proto: MachineFrame
-  entities:
-  - uid: 1087
-    components:
-    - type: Transform
-      pos: 2.5,16.5
       parent: 1653
 - proto: MachineTraversalDistorter
   entities:
@@ -7050,21 +7003,6 @@ entities:
     components:
     - type: Transform
       pos: 5.3228545,16.510914
-      parent: 1653
-  - uid: 1634
-    components:
-    - type: Transform
-      pos: 40.388412,13.373815
-      parent: 1653
-  - uid: 1635
-    components:
-    - type: Transform
-      pos: 40.482162,13.57694
-      parent: 1653
-  - uid: 1636
-    components:
-    - type: Transform
-      pos: 40.607162,13.405065
       parent: 1653
 - proto: MonkeyCube
   entities:
@@ -7189,15 +7127,15 @@ entities:
       parent: 1653
 - proto: PottedPlantRandom
   entities:
-  - uid: 498
-    components:
-    - type: Transform
-      pos: 3.5,40.5
-      parent: 1653
   - uid: 521
     components:
     - type: Transform
       pos: 24.5,40.5
+      parent: 1653
+  - uid: 1633
+    components:
+    - type: Transform
+      pos: 5.5,40.5
       parent: 1653
 - proto: PottedPlantRandomPlastic
   entities:
@@ -8509,6 +8447,18 @@ entities:
     - type: Transform
       pos: 36.555485,40.471622
       parent: 1653
+- proto: SpawnDungeonLootArmoryMelee
+  entities:
+  - uid: 1576
+    components:
+    - type: Transform
+      pos: 10.009466,10.008511
+      parent: 1653
+  - uid: 1635
+    components:
+    - type: Transform
+      pos: 0.6236644,0.5972314
+      parent: 1653
 - proto: SpawnDungeonLootBureaucracy
   entities:
   - uid: 619
@@ -8592,12 +8542,54 @@ entities:
     - type: Transform
       pos: 22.679785,28.597403
       parent: 1653
+- proto: SpawnDungeonLootClothesScience
+  entities:
+  - uid: 526
+    components:
+    - type: Transform
+      pos: 12.407462,28.413622
+      parent: 1653
+  - uid: 646
+    components:
+    - type: Transform
+      pos: 12.657462,28.538622
+      parent: 1653
+  - uid: 1694
+    components:
+    - type: Transform
+      pos: 0.41181087,18.659483
+      parent: 1653
 - proto: SpawnDungeonLootClutterEngi
   entities:
+  - uid: 786
+    components:
+    - type: Transform
+      pos: 6.6116033,16.626543
+      parent: 1653
+  - uid: 811
+    components:
+    - type: Transform
+      pos: 6.3928533,16.376543
+      parent: 1653
   - uid: 823
     components:
     - type: Transform
       pos: 33.507645,36.598564
+      parent: 1653
+  - uid: 827
+    components:
+    - type: Transform
+      pos: 40.63004,12.862738
+      parent: 1653
+  - uid: 828
+    components:
+    - type: Transform
+      pos: 40.41129,12.612738
+      parent: 1653
+  - uid: 839
+    components:
+    - type: Transform
+      pos: 40.69254,12.612738
       parent: 1653
   - uid: 880
     components:
@@ -8608,6 +8600,31 @@ entities:
     components:
     - type: Transform
       pos: 14.310189,28.457159
+      parent: 1653
+  - uid: 1102
+    components:
+    - type: Transform
+      pos: 5.6730566,16.664314
+      parent: 1653
+  - uid: 1103
+    components:
+    - type: Transform
+      pos: 6.0011816,16.71119
+      parent: 1653
+  - uid: 1121
+    components:
+    - type: Transform
+      pos: 40.41129,13.565863
+      parent: 1653
+  - uid: 1122
+    components:
+    - type: Transform
+      pos: 40.583164,13.597113
+      parent: 1653
+  - uid: 1150
+    components:
+    - type: Transform
+      pos: 40.44254,13.206488
       parent: 1653
   - uid: 1379
     components:
@@ -8668,6 +8685,11 @@ entities:
     components:
     - type: Transform
       pos: 37.614346,39.748646
+      parent: 1653
+  - uid: 1603
+    components:
+    - type: Transform
+      pos: 6.6730566,16.039314
       parent: 1653
   - uid: 1638
     components:
@@ -8738,6 +8760,50 @@ entities:
     - type: Transform
       pos: 36.614346,40.60802
       parent: 1653
+- proto: SpawnDungeonLootClutterScience
+  entities:
+  - uid: 498
+    components:
+    - type: Transform
+      pos: 30.383333,19.690279
+      parent: 1653
+  - uid: 844
+    components:
+    - type: Transform
+      pos: 1.562161,43.304916
+      parent: 1653
+  - uid: 952
+    components:
+    - type: Transform
+      pos: 31.07698,4.494423
+      parent: 1653
+  - uid: 953
+    components:
+    - type: Transform
+      pos: 30.57698,4.681923
+      parent: 1653
+  - uid: 1631
+    components:
+    - type: Transform
+      pos: 31.748856,4.541298
+      parent: 1653
+  - uid: 1634
+    components:
+    - type: Transform
+      pos: 2.046536,46.47679
+      parent: 1653
+  - uid: 1693
+    components:
+    - type: Transform
+      pos: 30.654924,19.605516
+      parent: 1653
+- proto: SpawnDungeonLootCrateVehicle
+  entities:
+  - uid: 1006
+    components:
+    - type: Transform
+      pos: 20.5,25.5
+      parent: 1653
 - proto: SpawnDungeonLootFood
   entities:
   - uid: 899
@@ -8804,10 +8870,27 @@ entities:
     - type: Transform
       pos: 20.5,46.5
       parent: 1653
+  - uid: 1636
+    components:
+    - type: Transform
+      pos: 28.5,4.5
+      parent: 1653
   - uid: 1642
     components:
     - type: Transform
       pos: 20.5,44.5
+      parent: 1653
+- proto: SpawnDungeonLootLatheEngi
+  entities:
+  - uid: 655
+    components:
+    - type: Transform
+      pos: 19.5,22.5
+      parent: 1653
+  - uid: 745
+    components:
+    - type: Transform
+      pos: 2.5,16.5
       parent: 1653
 - proto: SpawnDungeonLootLockersEngi
   entities:
@@ -8917,10 +9000,15 @@ entities:
     - type: Transform
       pos: 16.5,32.5
       parent: 1653
-  - uid: 1150
+  - uid: 1087
     components:
     - type: Transform
-      pos: 5.5,7.5
+      pos: 3.5,6.5
+      parent: 1653
+  - uid: 1101
+    components:
+    - type: Transform
+      pos: 3.5,7.5
       parent: 1653
 - proto: SpawnDungeonLootMaterialsBasicFull
   entities:
@@ -9146,16 +9234,6 @@ entities:
     components:
     - type: Transform
       pos: 19.55425,2.457082
-      parent: 1653
-  - uid: 1693
-    components:
-    - type: Transform
-      pos: 30.66336,4.535207
-      parent: 1653
-  - uid: 1694
-    components:
-    - type: Transform
-      pos: 31.50711,4.550832
       parent: 1653
 - proto: SpawnDungeonLootPowerCell
   entities:
@@ -9394,13 +9472,6 @@ entities:
     - type: Transform
       pos: 9.5,10.5
       parent: 1653
-- proto: SpawnVehicleATV
-  entities:
-  - uid: 844
-    components:
-    - type: Transform
-      pos: 20.5,25.5
-      parent: 1653
 - proto: SprayBottleSpaceCleaner
   entities:
   - uid: 720
@@ -9481,6 +9552,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 13.5,27.5
       parent: 1653
+  - uid: 846
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.4773784,6.610151
+      parent: 1653
   - uid: 876
     components:
     - type: Transform
@@ -9510,18 +9587,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,6.5
       parent: 1653
-  - uid: 952
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,6.5
-      parent: 1653
-  - uid: 953
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,7.5
-      parent: 1653
   - uid: 1064
     components:
     - type: Transform
@@ -9550,6 +9615,12 @@ entities:
     components:
     - type: Transform
       pos: 28.5,13.5
+      parent: 1653
+  - uid: 1632
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.4773784,7.641401
       parent: 1653
 - proto: SubstationBasic
   entities:
@@ -10119,33 +10190,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 45.5,1.5
       parent: 1653
-- proto: TimerTrigger
-  entities:
-  - uid: 1101
-    components:
-    - type: Transform
-      pos: 5.6041045,16.67286
-      parent: 1653
-  - uid: 1102
-    components:
-    - type: Transform
-      pos: 5.7759795,16.51661
-      parent: 1653
-  - uid: 1631
-    components:
-    - type: Transform
-      pos: 40.404037,12.592565
-      parent: 1653
-  - uid: 1632
-    components:
-    - type: Transform
-      pos: 40.575912,12.73319
-      parent: 1653
-  - uid: 1633
-    components:
-    - type: Transform
-      pos: 40.654037,12.48319
-      parent: 1653
 - proto: ToiletEmpty
   entities:
   - uid: 799
@@ -10235,20 +10279,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,25.5
-      parent: 1653
-- proto: VehicleKeyATV
-  entities:
-  - uid: 846
-    components:
-    - type: Transform
-      pos: 20.483374,24.635374
-      parent: 1653
-- proto: VoiceTrigger
-  entities:
-  - uid: 1103
-    components:
-    - type: Transform
-      pos: 6.4634795,16.756445
       parent: 1653
 - proto: WallmountTelescreen
   entities:
