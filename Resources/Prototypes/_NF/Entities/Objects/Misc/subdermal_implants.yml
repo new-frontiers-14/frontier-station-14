@@ -3,7 +3,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: MedicalTrackingImplant
-  name: medical insurance tracking implant
+  name: medical tracking implant
   description: This implant has a tracking device monitor for the Medical radio channel.
   noSpawn: true
   components:
@@ -25,3 +25,55 @@
       - Dead
     - type: Rattle
       radioChannel: "Medical"
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: FreelanceTrackingImplant
+  name: freelance tracking implant
+  description: This implant has a tracking device monitor for the Freelance radio channel.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+#    - type: SuitSensor
+#      randomMode: false
+#      controlsLocked: true
+#      mode: SensorCords
+#      activationContainer: "implant"
+#    - type: DeviceNetwork
+#      deviceNetId: Wireless
+#      transmitFrequencyId: SuitSensor
+#    - type: StationLimitedNetwork
+#    - type: WirelessNetworkConnection
+#      range: 500
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Critical
+      - Dead
+    - type: Rattle
+      radioChannel: "Freelance"
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DeathAcidifierImplantNF
+  name: death-acidifier implant
+  description: This implant melts the user and their equipment upon death.
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    permanent: true
+#    implantAction: ActionActivateDeathAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+    - Critical
+#  - type: TriggerImplantAction
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - DeathAcidifier

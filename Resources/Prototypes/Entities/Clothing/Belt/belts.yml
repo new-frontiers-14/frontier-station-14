@@ -41,6 +41,7 @@
         - Geiger
         - TrayScanner
         - GasAnalyzer
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -225,6 +226,7 @@
         - JanicartKeys
       components:
         - LightReplacer
+        - SmokeOnTrigger
     maxItemSize: Large
   - type: ItemMapper
     mapLayers:
@@ -267,10 +269,12 @@
         - PillCanister
         - Radio
         - DiscreteHealthAnalyzer
+        - SurgeryTool
       components:
         - Hypospray
         - Injector
         - Pill
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -343,6 +347,7 @@
       components:
         - Seed
         - Smokable
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       hatchet:
@@ -592,6 +597,7 @@
         - Gun
         - BallisticAmmoProvider
         - CartridgeAmmo
+  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -686,3 +692,4 @@
     whitelist:
       tags:
       - WizardWand
+  - type: Contraband #frontier

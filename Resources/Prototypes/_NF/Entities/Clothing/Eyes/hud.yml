@@ -1,0 +1,52 @@
+- type: entity
+  parent: ClothingEyesHudSecurity
+  id: ClothingEyesHudNfsd
+  name: nfsd hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and criminal records.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
+  - type: ShowSecurityIcons
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudMail
+  name: mail hud
+  description: A heads-up display that scans mail in view and provides accurate mail data.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Hud/mail.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Hud/mail.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudNfsdMed
+  name: brigmedic hud
+  description: An eye display that looks like a mixture of medical and nfsd huds.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
+  - type: Construction
+    graph: HudMedSec
+    node: medsecHud
+  - type: ShowSecurityIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+
+- type: entity
+  parent: ClothingEyesHudSecurity
+  id: ClothingEyesHudNfsdPatch
+  name: nfsd hud eyepatch
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and criminal records.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
+  - type: ShowSecurityIcons

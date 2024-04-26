@@ -187,8 +187,7 @@ public sealed class PseudoItemSystem : EntitySystem
         var ev = new PseudoItemInsertDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, inserter, 5f, ev, toInsert, toInsert, storageEntity)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             NeedHand = true
         };
 

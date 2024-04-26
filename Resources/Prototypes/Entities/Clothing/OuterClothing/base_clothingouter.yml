@@ -41,7 +41,49 @@
     - key: enum.StorageUiKey.Key
       type: StorageBoundUserInterface
   - type: StaticPrice
-    price: 30
+    price: 70
+
+- type: entity
+  abstract: true
+  parent: [ClothingOuterStorageBase, BaseFoldable]
+  id: ClothingOuterStorageFoldableBase
+  components:
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+    unfoldVerbText: fold-zip-verb
+    foldVerbText: fold-unzip-verb
+  - type: FoldableClothing
+    foldedEquippedPrefix: open
+    foldedHeldPrefix: open
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-open
+      map: ["foldedLayer"]
+      visible: false
+
+- type: entity
+  abstract: true
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterStorageFoldableBaseOpened
+  suffix: opened
+  components:
+  - type: Foldable
+    folded: true
+  - type: Clothing
+    equippedPrefix: open
+  - type: Item
+    heldPrefix: open
+  - type: Sprite
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+      visible: false
+    - state: icon-open
+      map: ["foldedLayer"]
+      visible: true
 
 - type: entity
   abstract: true
@@ -92,7 +134,12 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-
+    - HidesHarpyWings #Frontier, needed for Harpies
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Durathread: 300
+      Cloth: 100
+      Steel: 100
 
 - type: entity
   abstract: true
@@ -111,6 +158,10 @@
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Durathread: 100
+      Cloth: 100
 
 - type: entity
   parent: ClothingOuterBase

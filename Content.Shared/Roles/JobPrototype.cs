@@ -68,6 +68,12 @@ namespace Content.Shared.Roles
         public bool CanBeAntag { get; private set; } = true;
 
         /// <summary>
+        /// Nyano/DV: For e.g. prisoners, they'll never use their latejoin spawner.
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; } = false;
+
+        /// <summary>
         ///     Whether this job is a head.
         ///     The job system will try to pick heads before other jobs on the same priority level.
         /// </summary>
@@ -108,17 +114,17 @@ namespace Content.Shared.Roles
         [DataField("special", serverOnly: true)]
         public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
 
-        [DataField("access", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessLevelPrototype>))]
-        public IReadOnlyCollection<string> Access { get; private set; } = Array.Empty<string>();
+        [DataField("access")]
+        public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> Access { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
 
-        [DataField("accessGroups", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessGroupPrototype>))]
-        public IReadOnlyCollection<string> AccessGroups { get; private set; } = Array.Empty<string>();
+        [DataField("accessGroups")]
+        public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> AccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
 
-        [DataField("extendedAccess", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessLevelPrototype>))]
-        public IReadOnlyCollection<string> ExtendedAccess { get; private set; } = Array.Empty<string>();
+        [DataField("extendedAccess")]
+        public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> ExtendedAccess { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
 
-        [DataField("extendedAccessGroups", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessGroupPrototype>))]
-        public IReadOnlyCollection<string> ExtendedAccessGroups { get; private set; } = Array.Empty<string>();
+        [DataField("extendedAccessGroups")]
+        public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> ExtendedAccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
     }
 
     /// <summary>

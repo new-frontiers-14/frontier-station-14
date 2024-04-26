@@ -1,0 +1,86 @@
+- type: entity
+  name: wizard staff
+  parent: Shovel
+  id: WizardStaffMeleeBase
+  description: Symbol of wizard's mastery of arcane arts.
+  components:
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    heldPrefix: staff
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    state: nothing
+  - type: MeleeWeapon
+    attackRate: 1.1
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 12
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Tag
+    tags:
+    - WizardStaff
+  - type: Contraband
+
+- type: entity
+  name: inert red wizard staff
+  parent: WizardStaffMeleeBase
+  id: WizardStaffMeleeRed
+  components:
+  - type: Item
+    heldPrefix: animation
+  - type: Sprite
+    state: animation
+  - type: Contraband
+
+- type: entity
+  name: inert violet wizard staff
+  parent: WizardStaffMeleeBase
+  id: WizardStaffMeleeViolet
+  components:
+  - type: Item
+    heldPrefix: chaos
+  - type: Sprite
+    state: chaos
+  - type: Contraband
+
+- type: entity
+  name: inert soap wizard staff
+  parent: WizardStaffMeleeBase
+  id: WizardStaffMeleeSoap
+  components:
+  - type: Item
+    heldPrefix: healing
+  - type: Sprite
+    state: healing
+  - type: Contraband
+
+# Blood Cult
+- type: entity
+  name: inert cultist staff
+  parent: WizardStaffMeleeRed
+  id: WizardStaffMeleeBlood
+  components:
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 13
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+  - type: Contraband
+
+- type: entity
+  name: cultist staff
+  parent: WizardStaffMeleeBlood
+  id: WizardStaffDarkBolt
+  suffix: "Dark bolt"
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    capacity: 10
+    count: 10

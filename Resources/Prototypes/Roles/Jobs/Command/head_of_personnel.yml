@@ -2,23 +2,31 @@
   id: HeadOfPersonnel
   name: job-name-hop
   description: job-description-hop
-  playTimeTracker: JobHeadOfPersonnel
+  playTimeTracker: JobHeadOfPersonnelOld # Frontier
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000 # Frontier
-    - !type:WhitelistRequirement
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10 hours
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 # 10 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 36000 # 10 hours
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
   requireAdminNotify: true
-  supervisors: job-supervisors-centcom # Frontier
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Command
   - HeadOfPersonnel
   - Bar
   - Service
-  - Frontier
   - Maintenance
   - Janitor
   - Theatre
@@ -26,35 +34,28 @@
   - Chapel
   - Hydroponics
   - External
+  - Cryogenics
   # I mean they'll give themselves the rest of the access levels *anyways*.
   # As of 15/03/23 they can't do that so here's MOST of the rest of the access levels.
   # Head level access that isn't their own was deliberately left out, get AA from the captain instead.
-  - Chemistry # Frontier
-  - Engineering # Frontier
-  - Quartermaster # Frontier
-  - Research # Frontier
-  - Detective # Frontier
-  - Salvage # Frontier
-  - Security # Frontier
-  - Brig # Frontier
-  - Cargo # Frontier
-  - Atmospherics # Frontier
-  - Medical # Frontier
-  - EmergencyShuttleRepealAll # Frontier
-  - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - ChiefMedicalOfficer # Frontier
-#  - HeadOfSecurity # Frontier - Whitelist for sheriff only.
-  - ResearchDirector # Frontier
-  - Armory # Frontier
-  - Mercenary # Frontier
-  - Pilot # Frontier
+  - Chemistry
+  - Engineering
+  - Research
+  - Detective
+  - Salvage
+  - Security
+  - Brig
+  - Lawyer
+  - Cargo
+  - Atmospherics
+  - Medical
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ] # Frontier - Added TrackingImplant
+    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  setPreference: false # Frontier
 
 - type: startingGear
   id: HoPGear
@@ -64,14 +65,9 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatHopcap
     id: HoPPDA
-    gloves: ClothingHandsGlovesHop # Frontier
-    ears: ClothingHeadsetAltCentCom
-    eyes: ClothingEyesGlassesSunglasses
-    belt: BoxFolderQmClipboard # Frontier
-    neck: ClothingNeckCloakHop # Frontier
-    outerClothing: ClothingOuterArmorSRCarapace # Frontier
-    pocket1: WeaponDisabler # Frontier
+    gloves: ClothingHandsGlovesHop
+    ears: ClothingHeadsetAltCommand
+    belt: BoxFolderClipboard
   innerClothingSkirt: ClothingUniformJumpskirtHoP
   satchel: ClothingBackpackSatchelHOPFilled
   duffelbag: ClothingBackpackDuffelHOPFilled
-  messenger: ClothingBackpackMessengerHOPFilled # Frontier

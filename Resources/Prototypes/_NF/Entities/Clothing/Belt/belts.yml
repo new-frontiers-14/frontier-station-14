@@ -75,3 +75,51 @@
     sprite: _NF/Clothing/Belt/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/pilot.rsi
+
+- type: entity
+  parent: ClothingBeltAssault
+  id: ClothingBeltNfsd
+  name: nfsd belt
+  description: A tactical assault belt.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/nfsd_belt.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/nfsd_belt.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltNfsdWebbing
+  name: nfsd webbing
+  description: A tactical assault webbing.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
+
+- type: entity
+  parent: ClothingBeltBase
+  id: ClothingBeltCultForceField
+  name: cult runic belt buckle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/cult_force_field.rsi
+    shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/cult_force_field.rsi
+  - type: Reflect
+    enabled: true
+    reflectProb: .1
+    spread: 90
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltCultWebbing
+  name: cult webbing
+  description: A webbing with pockets lined with waterproof (water, huh?)  material.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi

@@ -1,0 +1,169 @@
+# Used for mobs that are unaffected by atmospherics, pressure, and heat
+- type: entity
+  save: false
+  id: MobAtmosNF
+  abstract: true
+  components:
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 25
+  - type: MovedByPressure
+
+- type: entity
+  save: false
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage # Slight passive regen.
+    allowedStates:
+    - Alive
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -1
+        Burn: -10
+        Airloss: -1
+        Toxin: -7
+        Genetic: -7
+
+- type: entity
+  save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+
+# Human NPC, uses equipment, immune to vacuum/low pressure
+# but otherwise should be the same as base line human mob
+- type: entity
+  name: Human NPC
+  suffix: AI, Hostile
+  abstract: true
+  parent:
+  - MobAtmosNF
+  - MobBloodstream
+  - MobFlammable
+  - MobLaserReflect
+  - BaseMobSpecies
+  id: MobHumanoidHostileBase
+  components:
+  - type: MovementAlwaysTouching
+  - type: MobMover
+  - type: NoSlip
+  - type: StandingState
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      160: Dead
+  - type: Stamina
+    critThreshold: 130
+  - type: Flashable
+  - type: Blindable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+      - id: FoodMeatHuman
+        amount: 5
+# AI package
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500
+    deathPenalty: 0.5
+  - type: Contraband
+  - type: Advertise
+    pack: syndicatehumanoidchatter # Don't have neutral one
+    minimumWait: 120 # 1 * 2
+    maximumWait: 240 # 2 * 60
+    NextAdvertisementTime: 0
+
+# NonHuman NPC base, no equipment, immune to vacuum/low pressure
+- type: entity
+  name: Mob NPC
+  suffix: AI, Hostile
+  abstract: true
+  parent:
+  - MobAtmosNF
+  - MobLaserReflect
+  - SimpleSpaceMobBase
+  id: MobNonHumanHostileBase
+  components:
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: ZombieImmune
+  - type: Hands
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      160: Dead
+  - type: Stamina
+    critThreshold: 120
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - ShoesRequiredStepTriggerImmune
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+#        true
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ascended_cultist
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ascended_cultist
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500
+    deathPenalty: 0.5
+  - type: Contraband

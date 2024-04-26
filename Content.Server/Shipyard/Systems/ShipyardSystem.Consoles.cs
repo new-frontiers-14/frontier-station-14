@@ -36,6 +36,7 @@ using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Shipyard.Systems;
@@ -238,11 +239,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
-            channel = component.BlackMarketShipyardChannel;
+            channel = component.ShipyardChannel;
 
             SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
         }
@@ -333,7 +334,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
             channel = component.SecurityShipyardChannel;
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (bill * 0.30f);
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
@@ -344,7 +345,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             bill -= tax;
-            channel = component.BlackMarketShipyardChannel;
+            channel = component.ShipyardChannel;
 
             SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
@@ -388,7 +389,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
@@ -438,12 +439,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
     }
 
     private void PlayConfirmSound(EntityUid uid, ShipyardConsoleComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
+        _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
     }
 
     private void OnItemSlotChanged(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
@@ -476,7 +477,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;

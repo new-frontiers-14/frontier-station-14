@@ -1,0 +1,222 @@
+- type: entity
+  name: Wizard
+  abstract: true
+  parent:
+  - MobHumanoidHostileBase
+  - MobPassiveRegen
+  id: MobWizFedlBase
+  components:
+  - type: NpcFactionMember
+    factions:
+    - WizFedFaction
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  #- type: AutoImplant # muh loot! nooo
+    #implants:
+    #- DeathAcidifierImplantNF
+  - type: Reflect
+    enabled: true
+    reflectProb: .35
+    spread: 90
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 0
+  - type: Stamina
+    critThreshold: 400
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      160: Dead
+  - type: Advertise
+    pack: wizardhumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
+
+# Humans
+# Blue Wizard, summons 2 Blue Curacao Elementals
+- type: entity
+  name: Blue Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardBlue
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBlueGear
+  - type: BasicEntityAmmoProvider
+    proto: WaterElementalConjured
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 40
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+
+# Red Wizard, shoots magic bolts that put targets on fire (2 heat damage, 2 fire stacks)
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
+- type: entity
+  name: Red Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardRed
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardRedGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletFireBolt
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+
+# Violet Wizard, shoots asphyxiation magic bolts (4 bloodloss, 4 asphyxiation)
+# Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
+- type: entity
+  name: Violet Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardViolet
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardVioletGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagicBolt
+    capacity: 8
+    count: 8
+  - type: Gun
+    showExamineText: false
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+
+# Soap Wizard, summons soap to slip targets
+# Look for soap here: \Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
+- type: entity
+  name: Soap Wizard
+  parent: MobWizFedlBase
+  id: MobWizFedWizardSoap
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardSoapGear
+  - type: BasicEntityAmmoProvider
+    proto: SoapConjured
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+
+# Wizards in hardsuits
+- type: entity
+  name: Blue Wizard
+  parent: MobWizFedWizardBlue
+  id: MobWizFedWizardBlueHardsuit
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardBlueHardsuitGear
+
+- type: entity
+  name: Red Wizard
+  parent: MobWizFedWizardRed
+  id: MobWizFedWizardRedHardsuit
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardRedHardsuitGear
+
+- type: entity
+  name: Violet Wizard
+  parent: MobWizFedWizardViolet
+  id: MobWizFedWizardVioletHardsuit
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardVioletHardsuitGear
+
+- type: entity
+  name: Soap Wizard
+  suffix: AI, Hardsuit
+  parent: MobWizFedWizardSoap
+  id: MobWizFedWizardSoapHardsuit
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - NPCWizardSoapHardsuitGear
+
+# Conjured Creatures
+- type: entity
+  name: Blue Curacao Elemental
+  noSpawn: true
+  parent:
+  - MobNonHumanHostileBase
+  id: WaterElementalConjured
+  components:
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: NpcFactionMember
+    factions:
+    - WizFedFaction
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#75b1f0"
+  - type: PointLight
+    radius: 2.0
+    energy: 3.5
+    color: "#75b1f0"
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Bloodstream
+    bloodReagent: BlueCuracao
+    chemicalMaxVolume: 100
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 15
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 10
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Ammo
+    muzzleFlash: null

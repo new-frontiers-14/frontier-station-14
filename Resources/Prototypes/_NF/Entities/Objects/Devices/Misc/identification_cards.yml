@@ -11,8 +11,6 @@
     - state: default
     - state: idmercenary
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
@@ -28,8 +26,6 @@
     - state: default
     - state: idpilot
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
@@ -45,11 +41,135 @@
     - state: silver
     - state: idstationtrafficcontroller
   - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: silver
+
+- type: entity
+  parent: IDCardStandard
+  id: CadetIDCard
+  name: nfsd cadet ID card
+  components:
+  - type: PresetIdCard
+    job: Cadet
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsdcadet
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
+
+- type: entity
+  parent: IDCardStandard
+  id: DeputyIDCard
+  name: nfsd deputy ID card
+  components:
+  - type: PresetIdCard
+    job: Deputy
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsddeputy
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
+
+- type: entity
+  parent: IDCardStandard
+  id: BrigmedicNFIDCard
+  name: nfsd brigmedic ID card
+  components:
+  - type: PresetIdCard
+    job: Brigmedic
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsdbrigmed
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
+
+- type: entity
+  parent: IDCardStandard
+  id: SergeantIDCard
+  name: nfsd sergeant ID card
+  components:
+  - type: PresetIdCard
+    job: SeniorOfficer
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsdsergeant
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
+
+- type: entity
+  parent: IDCardStandard
+  id: BailiffIDCard
+  name: nfsd bailiff ID card
+  components:
+  - type: PresetIdCard
+    job: Bailiff
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsdbailiff
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
+
+- type: entity
+  parent: IDCardStandard
+  id: ShriffIDCard
+  name: nfsd sheriff ID card
+  components:
+  - type: PresetIdCard
+    job: Sheriff
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idnfsdsheriff
+  - type: Clothing
     slots:
     - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: silver
+
+- type: entity
+  parent: IDCardStandard
+  id: DetectiveNFIDCard
+  name: detective ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: iddetective
+  - type: PresetIdCard
+    job: DetectiveNF
 
 - type: entity
   parent: SecurityIDCard
@@ -58,3 +178,32 @@
   components:
   - type: PresetIdCard
     job: SecurityGuard
+
+- type: entity
+  parent: ERTChaplainIDCard
+  id: ERTMailCarrierIDCard
+  name: ERT mail carrier ID card
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: ert_mailcarrier
+  - type: IdCard
+    jobTitle: ERT Mail Carrier
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: HoPIDCard
+  id: SrIDCard
+  name: station representative ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idheadofpersonnel
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: StationRepresentative

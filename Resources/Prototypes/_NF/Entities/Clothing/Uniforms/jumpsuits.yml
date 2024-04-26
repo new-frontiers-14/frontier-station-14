@@ -46,8 +46,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSecGuard
-  name: security guard jumpsuit
-  description: A specialized uniform for a security guard. Crisp and official to let dock loiterers know you mean business.
+  name: security guard's uniform
+  description: A specialized uniform for Frontier Outpost's station guard. Crisp and official to let dock loiterers know you mean business.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Uniforms/Jumpsuit/security_guard.rsi
@@ -64,3 +64,148 @@
     sprite: _NF/Clothing/Uniforms/Jumpsuit/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/pilot.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitERTMailCarrier
+  name: ERT mail carrier uniform
+  description: A special suit made for the elite mail carriers under CentCom.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/ert_mailcarrier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/ert_mailcarrier.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsd
+  name: nfsd jumpsuit
+  description: A long sleeved jumpsuit produced for deputy sheriff's. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_jump.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_jump.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdShort
+  name: nfsd jumpsuit
+  description: A short sleeved jumpsuit produced for deputy sheriff's. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_jump_short.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_jump_short.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdTacBlack
+  name: nfsd tactical jumpsuit
+  description: A tactical jumpsuit for deputies in the field.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_black.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdTacGray
+  name: nfsd tactical jumpsuit
+  description: A tactical jumpsuit for deputies in the field.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_gray.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_gray.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdTacCamo
+  name: nfsd tactical jumpsuit
+  description: A tactical jumpsuit for deputies in the field.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_camo.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_camo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdTacCream
+  name: nfsd tactical jumpsuit
+  description: A tactical jumpsuit for deputies in the field.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_cream.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/nfsd_tac_cream.rsi
+
+# Syndicate Jupsuits with sensors off
+- type: entity
+  parent: ClothingUniformJumpsuitRecruitSyndie
+  id: ClothingUniformJumpsuitRecruitSyndieNF
+  components:
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorOff
+  - type: Contraband
+
+- type: entity
+  parent: ClothingUniformJumpsuitRepairmanSyndie
+  id: ClothingUniformJumpsuitRepairmanSyndieNF
+  components:
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorOff
+  - type: Contraband
+
+- type: entity
+  parent: ClothingUniformJumpsuitParamedicSyndie
+  id: ClothingUniformJumpsuitParamedicSyndieNF
+  components:
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorOff
+  - type: Contraband
+
+- type: entity
+  parent: ClothingUniformJumpsuitChiefEngineerSyndie
+  id: ClothingUniformJumpsuitChiefEngineerSyndieNF
+  components:
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorOff
+  - type: Contraband
+
+- type: entity
+  parent: ClothingUniformJumpsuitSyndieFormal
+  id: ClothingUniformJumpsuitSyndieFormalNF
+  components:
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorOff
+  - type: Contraband
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrivateSec
+  name: private security jumpsuit
+  description: A specialized uniform for a private security guard. For the discerning private contractor in need of a professional look.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/private_security.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/private_security.rsi
+    
+- type: entity
+  parent: ClothingUniformJumpsuitHoP
+  id: ClothingUniformJumpsuitSr
+  name: station representative's uniform
+  description: A top of the line outfit for Frontier Outpost's station representative. No expense was spared in the tailoring, every stitch is a masterpiece. The fact this suit was even issued shows the trust Central Command is placing in their representative on this outpost.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/sr.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/sr.rsi

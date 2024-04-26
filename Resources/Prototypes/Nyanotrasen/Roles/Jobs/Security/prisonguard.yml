@@ -4,11 +4,14 @@
   description: job-description-guard
   playTimeTracker: JobPrisonGuard
   requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: PrisonGuardGear
-  icon: "JobIconWarden" 
-  supervisors: job-supervisors-hos # Frontier
+  icon: "JobIconWarden"
+  supervisors: job-supervisors-bailiff # Frontier
   canBeAntag: false
   access:
   - Security
@@ -39,4 +42,4 @@
   innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackMessengerSecurityFilled # Frontier
+  messenger: ClothingBackpackSecurityFilled
