@@ -1164,3 +1164,24 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityHoverbikeNfsdFlatpack
+  name:  uplink-security-hoverbike-name
+  description: uplink-security-hoverbike-desc
+  productEntity: HoverbikeNfsdFlatpack
+  icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
+  cost:
+    FrontierUplinkCoin: 35
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
