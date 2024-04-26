@@ -1,6 +1,6 @@
 - type: entity
   id: ThrusterNfsd
-  parent: [ BaseStructureUnanchorable, ThrusterSecurity ]
+  parent: ThrusterSecurity
   suffix: NFSD
   components:
   - type: Sprite
@@ -9,18 +9,8 @@
     board: ThrusterNfsdMachineCircuitboard
 
 - type: entity
-  id: ThrusterNfsdUnanchored
-  parent: ThrusterSecurityUnanchored
-  suffix: Unanchored, NFSD
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/thrusternfsd.rsi
-  - type: Machine
-    board: ThrusterNfsdMachineCircuitboard
-
-- type: entity
   id: DebugThrusterNfsd
-  parent: [BaseStructureDisableToolUse, DebugThrusterSecurity]
+  parent: DebugThrusterSecurity
   suffix: DEBUG, NFSD
   components:
   - type: Sprite
@@ -32,17 +22,6 @@
   id: GyroscopeNfsd
   parent: GyroscopeSecurity
   suffix: NFSD
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
-    snapCardinals: true
-  - type: Machine
-    board: GyroscopeNfsdMachineCircuitboard
-
-- type: entity
-  id: GyroscopeNfsdUnanchored
-  parent: GyroscopeSecurityUnanchored
-  suffix: Unanchored, NFSD
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
@@ -66,18 +45,6 @@
   parent: GyroscopeSecurity
   name: small gyroscope
   suffix: NFSD
-  components:
-  - type: Sprite
-    scale: 0.8, 0.8
-    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
-    snapCardinals: true
-  - type: Machine
-    board: SmallGyroscopeNfsdMachineCircuitboard
-
-- type: entity
-  id: SmallGyroscopeNfsdUnanchored
-  parent: SmallGyroscopeSecurityUnanchored
-  suffix: Unanchored, NFSD
   components:
   - type: Sprite
     scale: 0.8, 0.8
