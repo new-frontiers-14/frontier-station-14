@@ -1,0 +1,26 @@
+- type: vessel
+  id: Bison
+  name: NT Bison
+  description: A heavy duty ship breaker with a durable hull and a substantial amount of living space, built for long journeys with self-sufficiency.
+  price: 166138
+  category: Large
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/bison.yml
+
+- type: gameMap
+  id: Bison
+  mapName: 'NT Bison'
+  mapPath: /Maps/_NF/Shuttles/Scrap/bison.yml
+  minPlayers: 0
+  stations: 
+    Bison:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bison {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

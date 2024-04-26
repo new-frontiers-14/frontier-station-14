@@ -491,6 +491,8 @@
   parent: SpawnPointJobBase
   name: brigmedic
   components:
+  - type: SpawnPoint # Frontier
+    job_id: Brigmedic # Frontier
   - type: Sprite
     layers:
       - state: green
@@ -509,6 +511,18 @@
     layers:
       - state: green
       - state: ertleader
+
+- type: entity
+  id: SpawnPointERTChaplain
+  parent: SpawnPointJobBase
+  name: ERTchaplain
+  components:
+  - type: SpawnPoint
+    job_id: ERTChaplain
+  - type: Sprite
+    layers:
+      - state: green
+      - state: chaplain
 
 - type: entity
   id: SpawnPointERTEngineer

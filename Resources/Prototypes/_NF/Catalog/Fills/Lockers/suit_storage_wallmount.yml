@@ -1,15 +1,15 @@
 #SOFTSUITS
-#Paramedic's hardsuit
+#Paramedic's Voidsuit
 - type: entity
   id: SuitStorageWallmountParamedic
   parent: [SuitStorageWallmount, SuitStorageParamedic]
 
-#HARDSUITS
-#Brigmedic's hardsuit
+#Hydroponics EVA
 - type: entity
-  id: SuitStorageWallmountBrigmedic
-  parent: [SuitStorageWallmount, SuitStorageBrigmedic]
+  id: SuitStorageWallmountHydro
+  parent: [SuitStorageWallmount, SuitStorageHydro]
 
+#HARDSUITS
 #Quartermaster hardsuit
 - type: entity
   id: SuitStorageWallmountQuartermaster
@@ -19,6 +19,11 @@
 - type: entity
   id: SuitStorageWallmountMercenary
   parent: [SuitStorageWallmount, SuitStorageMercenary]
+
+#SCAF hardsuit
+- type: entity
+  id: SuitStorageWallmountScaf
+  parent: [SuitStorageWallmount, SuitStorageScaf]
 
 #Pilot hardsuit
 - type: entity
@@ -149,8 +154,8 @@
 
 #NFSDBrigmed
 - type: entity
-  id: SuitStorageWallmountBrigmed
-  parent: [SuitStorageWallmount, SuitStorageBrigmed]
+  id: SuitStorageWallmountBrigmedic
+  parent: [SuitStorageWallmount, SuitStorageBrigmedic]
 
 #NFSDSergeant
 - type: entity
@@ -166,3 +171,13 @@
 - type: entity
   id: SuitStorageWallmountSheriff
   parent: [SuitStorageWallmount, SuitStorageSheriff]
+
+#NFSDCombat
+- type: entity
+  id: SuitStorageWallmountNfsdCombat
+  parent: [SuitStorageWallmount, SuitStorageNfsdCombat]
+
+#NFSDCommand
+- type: entity
+  id: SuitStorageWallmountNfsdCommand
+  parent: [SuitStorageWallmount, SuitStorageNfsdCommand]

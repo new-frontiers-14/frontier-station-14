@@ -369,7 +369,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoPIDCard
-  name: station representative ID card
+  name: head of personnel ID card
   components:
   - type: Sprite
     layers:
@@ -593,8 +593,8 @@
   id: AgentIDCard
   suffix: Agent
   components:
-  - type: IdCard
-    jobTitle: Passenger
+  - type: PresetIdCard
+    job: Passenger
   - type: Access
     tags:
     - Maintenance
