@@ -6,7 +6,7 @@ analysis-console-print-button = Печать
 analysis-console-print-tooltip-info = Распечатать актуальную информацию об артефакте.
 analysis-console-extract-button = Извлечь О.И.
 analysis-console-extract-button-info = Извлечь очки исследований из артефакта, пропорциональные количеству исследованных узлов.
-analysis-console-info-no-scanner = Анализатор не подключен! Пожалуйста, подключите его с помощью мультитула.
+analysis-console-info-no-scanner = Анализатор не подключён! Пожалуйста, подключите его с помощью мультитула.
 analysis-console-info-no-artifact = Артефакт не найден! Поместите артефакт на платформу, затем просканируйте для получения данных.
 analysis-console-info-ready = Все системы запущены. Сканирование готово.
 analysis-console-info-id = ID_УЗЛА: { $id }
@@ -18,7 +18,7 @@ analysis-console-info-trigger = СТИМУЛЯТОР: { $trigger }
 analysis-console-info-edges = КРАЯ: { $edges }
 analysis-console-info-value = НЕИЗВЛЕЧЁННЫЕ_О.И.: { $value }
 analysis-console-info-scanner = Сканирование...
-analysis-console-info-scanner-paused = Paused.
+analysis-console-info-scanner-paused = Приостановлено.
 analysis-console-progress-text =
     { $seconds ->
         [one] T-{ $seconds } секунда

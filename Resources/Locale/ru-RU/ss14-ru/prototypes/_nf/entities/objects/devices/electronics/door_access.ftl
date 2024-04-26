@@ -1,0 +1,15 @@
+ent-DoorElectronicsFrontier = { ent-DoorElectronics }
+    .suffix = Фронтир, Закрыт
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsFrontierBridge = { ent-DoorElectronics }
+    .suffix = Театр, Закрыт
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsFrontierCommand = { ent-DoorElectronics }
+    .suffix = Церковь, Закрыт
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsMailCarrier = { ent-DoorElectronics }
+    .suffix = Почта, Закрыт
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsMercenary = { ent-DoorElectronics }
+    .suffix = Наёмник, Закрыт
+    .desc = { ent-DoorElectronics.desc }

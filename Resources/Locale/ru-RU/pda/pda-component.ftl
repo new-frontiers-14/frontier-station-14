@@ -13,11 +13,11 @@ pda-bound-user-interface-show-uplink-description = Получите доступ
 pda-bound-user-interface-lock-uplink-title = Закрыть аплинк
 pda-bound-user-interface-lock-uplink-description = Предотвратите доступ к вашему аплинку персон без кода
 comp-pda-ui-menu-title = КПК
-comp-pda-ui-footer = Персональный Искуственный Интеллект
+comp-pda-ui-footer = Карманный Персональный Компьютер
 comp-pda-ui-station = Станция: [color=white]{ $station }[/color]
 comp-pda-ui-station-alert-level = Уровень угрозы: [color={ $color }]{ $level }[/color]
 comp-pda-ui-station-alert-level-instructions = Инструкции: [color=white]{ $instructions }[/color]
-comp-pda-ui-station-time = Длительность смены: [color=white]{ $time }[/color]
+comp-pda-ui-station-time = Продолжительность смены: [color=white]{ $time }[/color]
 comp-pda-ui-eject-id-button = Извлечь ID
 comp-pda-ui-eject-pen-button = Извлечь ручку
 comp-pda-ui-ringtone-button-description = Измените рингтон вашего КПК
@@ -27,3 +27,5 @@ pda-bound-user-interface-music-button-description = Слушайте музык�
 pda-bound-user-interface-music-button = Музыкальный инструмент
 comp-pda-ui-unknown = Неизвестно
 comp-pda-ui-unassigned = Не назначено
+pda-notification-message = [font size=12][bold]КПК[/bold] { $header }: [/font]
+    "{ $message }"

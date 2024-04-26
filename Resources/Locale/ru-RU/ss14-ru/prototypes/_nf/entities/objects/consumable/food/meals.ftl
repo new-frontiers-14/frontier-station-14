@@ -1,2 +1,2 @@
-ent-MobCatCrispy = хрустик
+ent-MobCatCrispy = Хрустик
     .desc = Раньше его звали Барсик. Теперь ты попадёшь в ад.

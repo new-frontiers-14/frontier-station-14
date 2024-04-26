@@ -86,27 +86,27 @@ accent-words-slimes-5 = Блабл бламп!
 # Mothroach
 accent-words-mothroach-1 = Чирик!
 # Crab
-accent-words-crab-1 = Click.
-accent-words-crab-2 = Click-clack!
-accent-words-crab-3 = Clack?
-accent-words-crab-4 = Tipi-tap!
-accent-words-crab-5 = Clik-tap.
-accent-words-crab-6 = Cliliick.
+accent-words-crab-1 = Чик.
+accent-words-crab-2 = Чик-клац!
+accent-words-crab-3 = Клац?
+accent-words-crab-4 = Типи-тап!
+accent-words-crab-5 = Чик-тап.
+accent-words-crab-6 = Чикичик.
 # Kobold
-accent-words-kobold-1 = Yip!
-accent-words-kobold-2 = Grrar.
-accent-words-kobold-3 = Yap!
-accent-words-kobold-4 = Bip.
-accent-words-kobold-5 = Screet?
-accent-words-kobold-6 = Gronk!
-accent-words-kobold-7 = Hiss!
-accent-words-kobold-8 = Eeee!
-accent-words-kobold-9 = Yip.
+accent-words-kobold-1 = Йип!
+accent-words-kobold-2 = Гррар.
+accent-words-kobold-3 = Йап!
+accent-words-kobold-4 = Бип.
+accent-words-kobold-5 = Скрит?
+accent-words-kobold-6 = Гронк!
+accent-words-kobold-7 = Хисс!
+accent-words-kobold-8 = Йии!
+accent-words-kobold-9 = Йип.
 # Nymph
-accent-words-nymph-1 = Chirp!
-accent-words-nymph-2 = Churr...
-accent-words-nymph-3 = Cheep?
-accent-words-nymph-4 = Chrrup!
+accent-words-nymph-1 = Чирик!
+accent-words-nymph-2 = Чурр...
+accent-words-nymph-3 = Чипи?
+accent-words-nymph-4 = Шрруп!
 accent-words-mothroach-2 = Chirp!
 accent-words-mothroach-3 = Peep!
 accent-words-mothroach-4 = Eeee!

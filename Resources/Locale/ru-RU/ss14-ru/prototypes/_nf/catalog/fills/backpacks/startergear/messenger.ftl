@@ -1,70 +1,102 @@
-ent-ClothingBackpackMessengerFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerClownFilled = { ent-ClothingBackpackMessengerClown }
-    .desc = { ent-ClothingBackpackMessengerClown.desc }
-ent-ClothingBackpackMessengerSecurityFilled = { ent-ClothingBackpackMessengerSecurity }
-    .desc = { ent-ClothingBackpackMessengerSecurity.desc }
-ent-ClothingBackpackMessengerSecurityFilledDetective = { ent-ClothingBackpackMessengerSecurity }
-    .desc = { ent-ClothingBackpackMessengerSecurity.desc }
-ent-ClothingBackpackMessengerMedicalFilled = { ent-ClothingBackpackMessengerMedical }
-    .desc = { ent-ClothingBackpackMessengerMedical.desc }
-ent-ClothingBackpackMessengerCaptainFilled = { ent-ClothingBackpackMessengerCaptain }
-    .desc = { ent-ClothingBackpackMessengerCaptain.desc }
-ent-ClothingBackpackMessengerChiefEngineerFilled = { ent-ClothingBackpackMessengerEngineering }
-    .desc = { ent-ClothingBackpackMessengerEngineering.desc }
-ent-ClothingBackpackMessengerResearchDirectorFilled = { ent-ClothingBackpackMessengerScience }
-    .desc = { ent-ClothingBackpackMessengerScience.desc }
-ent-ClothingBackpackMessengerHOPFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerCMOFilled = { ent-ClothingBackpackMessengerMedical }
-    .desc = { ent-ClothingBackpackMessengerMedical.desc }
-ent-ClothingBackpackMessengerQuartermasterFilled = { ent-ClothingBackpackMessengerCargo }
-    .desc = { ent-ClothingBackpackMessengerCargo.desc }
-ent-ClothingBackpackMessengerHOSFilled = { ent-ClothingBackpackMessengerSecurity }
-    .desc = { ent-ClothingBackpackMessengerSecurity.desc }
-ent-ClothingBackpackMessengerEngineeringFilled = { ent-ClothingBackpackMessengerEngineering }
-    .desc = { ent-ClothingBackpackMessengerEngineering.desc }
-ent-ClothingBackpackMessengerAtmosphericsFilled = { ent-ClothingBackpackMessengerAtmospherics }
-    .desc = { ent-ClothingBackpackMessengerAtmospherics.desc }
-ent-ClothingBackpackMessengerScienceFilled = { ent-ClothingBackpackMessengerScience }
-    .desc = { ent-ClothingBackpackMessengerScience.desc }
-ent-ClothingBackpackMessengerHydroponicsFilled = { ent-ClothingBackpackMessengerHydroponics }
-    .desc = { ent-ClothingBackpackMessengerHydroponics.desc }
-ent-ClothingBackpackMessengerMimeFilled = { ent-ClothingBackpackMessengerMime }
-    .desc = { ent-ClothingBackpackMessengerMime.desc }
-ent-ClothingBackpackMessengerChemistryFilled = { ent-ClothingBackpackMessengerChemistry }
-    .desc = { ent-ClothingBackpackMessengerChemistry.desc }
-ent-ClothingBackpackMessengerChaplainFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerMusicianFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerLibrarianFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerDetectiveFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerCargoFilled = { ent-ClothingBackpackMessengerCargo }
-    .desc = { ent-ClothingBackpackMessengerCargo.desc }
-ent-ClothingBackpackMessengerSalvageFilled = { ent-ClothingBackpackMessengerSalvage }
-    .desc = { ent-ClothingBackpackMessengerSalvage.desc }
-ent-ClothingBackpackMessengerBrigmedicFilled = { ent-ClothingBackpackMessengerBrigmedic }
-    .desc = { ent-ClothingBackpackMessengerBrigmedic.desc }
-ent-ClothingBackpackMessengerMercenaryFilled = { ent-ClothingBackpackMessengerMercenary }
-    .desc = { ent-ClothingBackpackMessengerMercenary.desc }
-ent-ClothingBackpackMessengerReporterFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerPsychologistFilled = { ent-ClothingBackpackMessengerMedical }
-    .desc = { ent-ClothingBackpackMessengerMedical.desc }
-ent-ClothingBackpackMessengerLawyerFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerStcFilled = { ent-ClothingBackpackMessenger }
-    .desc = { ent-ClothingBackpackMessenger.desc }
-ent-ClothingBackpackMessengerPilotFilled = { ent-ClothingBackpackMessengerPilot }
-    .desc = { ent-ClothingBackpackMessengerPilot.desc }
-ent-ClothingBackpackMessengerJanitorFilled = { ent-ClothingBackpackMessengerJanitor }
-    .desc = { ent-ClothingBackpackMessengerJanitor.desc }
-ent-ClothingBackpackMessengerMailCarrierFilled = { ent-ClothingBackpackMessengerMailCarrier }
-    .desc = { ent-ClothingBackpackMessengerMailCarrier.desc }
-ent-ClothingBackpackMessengerMailmanFilled = { ent-ClothingBackpackMessengerMailman }
-    .desc = { ent-ClothingBackpackMessengerMailman.desc }
-ent-ClothingBackpackMessengerOfficerFilled = { ent-ClothingBackpackMessengerSecurity }
-    .desc = { ent-ClothingBackpackMessengerSecurity.desc }
+ent-ClothingBackpackMessengerFilled = { ent-ClothingBackpackFilled }
+
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerClownFilled = { ent-ClothingBackpackClownFilled }
+
+  .desc = { ent-ClothingBackpackClownFilled.desc }
+ent-ClothingBackpackMessengerMedicalFilled = { ent-ClothingBackpackMedicalFilled }
+
+  .desc = { ent-ClothingBackpackMedicalFilled.desc }
+ent-ClothingBackpackMessengerCaptainFilled = { ent-ClothingBackpackCaptainFilled }
+
+  .desc = { ent-ClothingBackpackCaptainFilled.desc }
+ent-ClothingBackpackMessengerChiefEngineerFilled = { ent-ClothingBackpackChiefEngineerFilled }
+
+  .desc = { ent-ClothingBackpackChiefEngineerFilled.desc }
+ent-ClothingBackpackMessengerResearchDirectorFilled = { ent-ClothingBackpackResearchDirectorFilled }
+
+  .desc = { ent-ClothingBackpackResearchDirectorFilled.desc }
+ent-ClothingBackpackMessengerHOPFilled = { ent-ClothingBackpackHOPFilled }
+
+  .desc = { ent-ClothingBackpackHOPFilled.desc }
+ent-ClothingBackpackMessengerCMOFilled = { ent-ClothingBackpackCMOFilled }
+
+  .desc = { ent-ClothingBackpackCMOFilled.desc }
+ent-ClothingBackpackMessengerQuartermasterFilled = { ent-ClothingBackpackQuartermasterFilled }
+
+  .desc = { ent-ClothingBackpackQuartermasterFilled.desc }
+ent-ClothingBackpackMessengerEngineeringFilled = { ent-ClothingBackpackEngineeringFilled }
+
+  .desc = { ent-ClothingBackpackEngineeringFilled.desc }
+ent-ClothingBackpackMessengerAtmosphericsFilled = { ent-ClothingBackpackAtmosphericsFilled }
+
+  .desc = { ent-ClothingBackpackAtmosphericsFilled.desc }
+ent-ClothingBackpackMessengerScienceFilled = { ent-ClothingBackpackScienceFilled }
+
+  .desc = { ent-ClothingBackpackScienceFilled.desc }
+ent-ClothingBackpackMessengerHydroponicsFilled = { ent-ClothingBackpackHydroponicsFilled }
+
+  .desc = { ent-ClothingBackpackHydroponicsFilled.desc }
+ent-ClothingBackpackMessengerMimeFilled = { ent-ClothingBackpackMimeFilled }
+
+  .desc = { ent-ClothingBackpackMimeFilled.desc }
+ent-ClothingBackpackMessengerChemistryFilled = { ent-ClothingBackpackChemistryFilled }
+
+  .desc = { ent-ClothingBackpackChemistryFilled.desc }
+ent-ClothingBackpackMessengerChaplainFilled = { ent-ClothingBackpackChaplainFilled }
+
+  .desc = { ent-ClothingBackpackChaplainFilled.desc }
+ent-ClothingBackpackMessengerMusicianFilled = { ent-ClothingBackpackMusicianFilled }
+
+  .desc = { ent-ClothingBackpackMusicianFilled.desc }
+ent-ClothingBackpackMessengerLibrarianFilled = { ent-ClothingBackpackLibrarianFilled }
+
+  .desc = { ent-ClothingBackpackLibrarianFilled.desc }
+ent-ClothingBackpackMessengerCargoFilled = { ent-ClothingBackpackCargoFilled }
+
+  .desc = { ent-ClothingBackpackCargoFilled.desc }
+ent-ClothingBackpackMessengerSalvageFilled = { ent-ClothingBackpackSalvageFilled }
+
+  .desc = { ent-ClothingBackpackSalvageFilled.desc }
+ent-ClothingBackpackMessengerMercenaryFilled = { ent-ClothingBackpackMercenaryFilled }
+
+  .desc = { ent-ClothingBackpackMercenaryFilled.desc }
+ent-ClothingBackpackMessengerReporterFilled = { ent-ClothingBackpackReporterFilled }
+
+  .desc = { ent-ClothingBackpackReporterFilled.desc }
+ent-ClothingBackpackMessengerPsychologistFilled = { ent-ClothingBackpackMedicalFilled }
+
+  .desc = { ent-ClothingBackpackMedicalFilled.desc }
+ent-ClothingBackpackMessengerLawyerFilled = { ent-ClothingBackpackLawyerFilled }
+
+  .desc = { ent-ClothingBackpackLawyerFilled.desc }
+ent-ClothingBackpackMessengerStcFilled = { ent-ClothingBackpackStcFilled }
+
+  .desc = { ent-ClothingBackpackStcFilled.desc }
+ent-ClothingBackpackMessengerPilotFilled = { ent-ClothingBackpackPilotFilled }
+
+  .desc = { ent-ClothingBackpackPilotFilled.desc }
+ent-ClothingBackpackMessengerJanitorFilled = { ent-ClothingBackpackFilled }
+
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerMailCarrierFilled = { ent-ClothingBackpackFilled }
+
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerSrFilled = { ent-ClothingBackpackSrFilled }
+
+  .desc = { ent-ClothingBackpackSrFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownFilled = { ent-ClothingBackpackNfsdBrownFilled }
+
+  .desc = { ent-ClothingBackpackNfsdBrownFilled.desc }
+ent-ClothingBackpackMessengerNfsdCreamFilled = { ent-ClothingBackpackNfsdCreamFilled }
+
+  .desc = { ent-ClothingBackpackNfsdCreamFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownDetectiveFilled = { ent-ClothingBackpackNfsdBrownDetectiveFilled }
+
+  .desc = { ent-ClothingBackpackNfsdBrownDetectiveFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownRadioFilled = { ent-ClothingBackpackNfsdBrownRadioFilled }
+
+  .desc = { ent-ClothingBackpackNfsdBrownRadioFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownSheriffFilled = { ent-ClothingBackpackNfsdBrownSheriffFilled }
+
+  .desc = { ent-ClothingBackpackNfsdBrownSheriffFilled.desc }

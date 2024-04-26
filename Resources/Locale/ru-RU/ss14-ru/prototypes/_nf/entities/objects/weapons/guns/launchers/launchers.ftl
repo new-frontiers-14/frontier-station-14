@@ -1,4 +1,4 @@
-ent-WeaponLauncherChinaLakeEmp = China Lake
+ent-WeaponLauncherChinaLakeEmp = china lake
     .desc = БЛУП
     .suffix = ЭМИ
 ent-WeaponLauncherRocketEmp = РПГ-7

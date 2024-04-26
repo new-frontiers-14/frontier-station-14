@@ -2,5 +2,5 @@
 
 stamp-component-signee-name = { $user }
 stamp-component-stamped-name-psychologist = Психолог
-stamp-component-stamped-name-lawyer = Юрист
-stamp-component-stamped-name-stc = Станционный регулировщик движения
+stamp-component-stamped-name-stc = Диспетчер
+stamp-component-stamped-name-sr = Представитель станции

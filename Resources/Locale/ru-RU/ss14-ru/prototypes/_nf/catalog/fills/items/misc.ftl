@@ -1,11 +1,18 @@
 ent-ClothingShoesBootsMagCombatFilled = { ent-ClothingShoesBootsMagCombat }
-    .suffix = Заполненный
-    .desc = { ent-ClothingShoesBootsMagCombat.desc }
+
+  .desc = { ent-ClothingShoesBootsMagCombat.desc }
 ent-ClothingShoesBootsMagNfsdFilled = { ent-ClothingShoesBootsMagNfsd }
-    .desc = { ent-ClothingShoesBootsMagNfsd.desc }
-ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
-    .suffix = Заполненный
-    .desc = { ent-ClothingShoesBootsMagMercenary.desc }
+
+  .desc = { ent-ClothingShoesBootsMagNfsd.desc }
 ent-ClothingShoesBootsMagPirateFilled = { ent-ClothingShoesBootsMagPirate }
-    .suffix = Заполненный
-    .desc = { ent-ClothingShoesBootsMagPirate.desc }
+
+  .desc = { ent-ClothingShoesBootsMagPirate.desc }
+ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
+
+  .desc = { ent-ClothingShoesBootsMagMercenary.desc }
+ent-ClothingShoesBootsNfsdBrownFilled = { ent-ClothingShoesBootsNfsdBrown }
+
+  .desc = { ent-ClothingShoesBootsNfsdBrown.desc }
+ent-ClothingShoesBootsNfsdCreamFilled = { ent-ClothingShoesBootsNfsdCream }
+
+  .desc = { ent-ClothingShoesBootsNfsdCream.desc }

@@ -10,9 +10,9 @@ cryo-wakeup-window-title = Просыпаться
 cryo-wakeup-window-accept-button = Подтвердить
 cryo-wakeup-window-deny-button = Отменить
 cryo-wakeup-window-rules = Вы попытаетесь вернуться из своего криосна! Вы не знаете ничего, что произошло с того момента, как вы заснули. Подтвердите это и продолжите?
-cryo-wakeup-result-occupied = Криоподушка занята! Попробуйте немного подождать.
-cryo-wakeup-result-no-cryopod = Криоподушка пропала! О-о-ох.
-cryo-wakeup-result-no-body = У вас нет тела в криокапсуле!
+cryo-wakeup-result-occupied = Криокамера занята! Попробуйте немного подождать.
+cryo-wakeup-result-no-cryopod = Криокамера пропала! Ой-ой.
+cryo-wakeup-result-no-body = У вас нет тела в криокамере!
 cryo-wakeup-result-disabled = Возврат из криосна отключен на этом сервере.
 # Cryopod
 cryopod-refuse-dead = { $cryopod } отказывается принимать мертвых пациентов.

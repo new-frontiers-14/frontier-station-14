@@ -1,6 +1,6 @@
-ventriloquist-rock-grasp-hand = Вы крепко сжимаете любимый камень.
-ventriloquist-rock-release-hand = Ты отпускаешь свой любимый камень.
-ventriloquist-rock-grasped-hand = Вы были схвачены.
-ventriloquist-rock-released-hand = Тебя освободили.
-ventriloquist-rock-role-name = Питомец камень
-ventriloquist-rock-role-description = Ты - любимый минерал.
+ventriloquist-rock-grasp-hand = Вы крепко сжимаете ручной камень.
+ventriloquist-rock-release-hand = Ты отпускаешь свой ручной камень.
+ventriloquist-rock-grasped-hand = Вас схватили.
+ventriloquist-rock-released-hand = Вас освободили.
+ventriloquist-rock-role-name = Ручной камень
+ventriloquist-rock-role-description = Вы - любимый минерал.

@@ -11,4 +11,4 @@ ent-MysteryFigureBoxBulk = комплект минифигурок Загадо�
 ent-BoxT3SuperCapacitor = комплект обновления двигателей
     .desc = Коробка с суперконденсаторами.
 ent-BoxEncryptionKeyNFSD = коробка ключей шифрования ДСБФ
-    .desc = { ent-BoxEncryptionKeyPassenger.desc }
+    .desc = { ent-BoxEncryptionKeySecurity.desc }

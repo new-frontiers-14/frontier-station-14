@@ -23,13 +23,13 @@ materials-meat = мясо
 materials-web = шёлк
 materials-bones = кости
 materials-coal = уголь
+materials-gunpowder = чёрный порох
 # Ores
-materials-raw-iron = необработанное железо
-materials-raw-quartz = необработанный кварц
-materials-raw-gold = необработанное золото
-materials-raw-silver = необработанное серебро
-materials-raw-plasma = необработанная плазма
-materials-raw-uranium = необработанный уран
-materials-raw-bananium = необработанный бананиум
-# Material Reclaimer
-material-reclaimer-upgrade-process-rate = скорость переработки
+materials-raw-iron = руда железа
+materials-raw-quartz = руда кварца
+materials-raw-gold = руда золота
+materials-raw-silver = руда серебра
+materials-raw-plasma = руда плазмы
+materials-raw-uranium = руда урана
+materials-raw-bananium = руда бананиума
+materials-raw-salt = каменная соль
