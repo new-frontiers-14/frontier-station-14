@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
+using Content.Server.Station.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
@@ -48,7 +49,21 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
             return;
 
-        CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
+        var query = EntityQueryEnumerator<AdditionalStationRecordsComponent>();
+
+        while (query.MoveNext(out var stationGridUid, out var comp))
+        {
+            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
+            {
+                var stationEntityUid = stationMemberComponent.Station;
+
+                CreateGeneralRecord(stationEntityUid, args.Mob, args.Profile, args.JobId, stationRecords);
+
+
+
+            }
+
+        }
     }
 
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
