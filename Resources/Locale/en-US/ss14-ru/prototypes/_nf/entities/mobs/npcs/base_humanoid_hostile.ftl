@@ -5,10 +5,8 @@ ent-MobPassiveRegen = { "" }
 ent-MobLaserReflect = { "" }
     .desc = { "" }
 ent-MobHumanoidHostileBase = Human NPC
-
   .suffix = AI, Hostile
-  .desc = { ent-['MobAtmosNF', 'MobBloodstream', 'MobFlammable', 'MobLaserReflect', 'BaseMobSpecies'].desc }
+  .desc = { ent-BaseMobSpecies.desc }
 ent-MobNonHumanHostileBase = Mob NPC
-
   .suffix = AI, Hostile
-  .desc = { ent-['MobAtmosNF', 'MobLaserReflect', 'SimpleSpaceMobBase'].desc }
+  .desc = { ent-SimpleSpaceMobBase.desc }

@@ -18,7 +18,6 @@ ent-WaterCooler = water cooler
 ent-WaterTankHighCapacity = high-capacity water tank
     .desc = A highly pressurized water tank made to hold gargantuan amounts of water.
     .suffix = Full
-ent-GenericTank = { ent-['StorageTank', 'StructureWheeled'] }
-
-  .suffix = Empty
-  .desc = { ent-['StorageTank', 'StructureWheeled'].desc }
+ent-GenericTank = { ent-StorageTank }
+    .suffix = Empty
+    .desc = { ent-StorageTank.desc }

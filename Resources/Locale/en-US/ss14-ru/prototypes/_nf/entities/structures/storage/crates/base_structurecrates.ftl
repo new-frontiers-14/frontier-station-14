@@ -1,3 +1,2 @@
-ent-CrateTradeBaseSecure = { ent-['BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'CrateBaseWeldable'] }
-
-  .desc = { ent-['BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'CrateBaseWeldable'].desc }
+ent-CrateTradeBaseSecure = { ent-CrateBaseWeldable }
+  .desc = { ent-CrateBaseWeldable.desc }

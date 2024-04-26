@@ -1,5 +1,3 @@
-ent-BaseSuicideAction = { "" }
-    .desc = { "" }
 ent-ActionScream = Scream
     .desc = AAAAAAAAAAAAAAAAAAAAAAAAA
 ent-ActionTurnUndead = Turn Undead

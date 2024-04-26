@@ -19,83 +19,57 @@ ent-BaseBorgModuleSyndicate = { ent-BaseBorgModule }
 ent-BaseBorgModuleSyndicateAssault = { ent-BaseBorgModule }
     .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleCable = cable cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleFireExtinguisher = fire extinguisher cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleGPS = GPS cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleRadiationDetection = radiation detection cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleTool = tool cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleAppraisal = appraisal cyborg module
-
-  .desc = { ent-['BaseBorgModuleCargo', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleCargo.desc }
 ent-BorgModuleMining = mining cyborg module
-
-  .desc = { ent-['BaseBorgModuleCargo', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleCargo.desc }
 ent-BorgModuleGrapplingGun = grappling gun cyborg module
-
-  .desc = { ent-['BaseBorgModuleCargo', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleCargo.desc }
 ent-BorgModuleAdvancedTool = advanced tool cyborg module
-
-  .desc = { ent-['BaseBorgModuleEngineering', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleEngineering.desc }
 ent-BorgModuleConstruction = construction cyborg module
-
-  .desc = { ent-['BaseBorgModuleEngineering', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleEngineering.desc }
 ent-BorgModuleRCD = RCD cyborg module
-
-  .desc = { ent-['BaseBorgModuleEngineering', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleEngineering.desc }
 ent-BorgModuleLightReplacer = light replacer cyborg module
-
-  .desc = { ent-['BaseBorgModuleJanitor', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleJanitor.desc }
 ent-BorgModuleCleaning = cleaning cyborg module
-
-  .desc = { ent-['BaseBorgModuleJanitor', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleJanitor.desc }
 ent-BorgModuleAdvancedCleaning = advanced cleaning cyborg module
-
-  .desc = { ent-['BaseBorgModuleJanitor', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleJanitor.desc }
 ent-BorgModuleDiagnosis = diagnosis cyborg module
-
-  .desc = { ent-['BaseBorgModuleMedical', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleTreatment = treatment cyborg module
-
-  .desc = { ent-['BaseBorgModuleMedical', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleDefibrillator = defibrillator cyborg module
-
-  .desc = { ent-['BaseBorgModuleMedical', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleAdvancedTreatment = advanced treatment cyborg module
-
-  .desc = { ent-['BaseBorgModuleMedical', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleMedical.desc }
 ent-BorgModuleArtifact = artifact cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleAnomaly = anomaly cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleService = service cyborg module
-
-  .desc = { ent-['BaseBorgModuleService', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleService.desc }
 ent-BorgModuleMusique = musique cyborg module
-
-  .desc = { ent-['BaseBorgModuleService', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleService.desc }
 ent-BorgModuleGardening = gardening cyborg module
-
-  .desc = { ent-['BaseBorgModuleService', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleService.desc }
 ent-BorgModuleHarvesting = harvesting cyborg module
-
-  .desc = { ent-['BaseBorgModuleService', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleService.desc }
 ent-BorgModuleClowning = clowning cyborg module
-
-  .desc = { ent-['BaseBorgModuleService', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleService.desc }
 ent-BorgModuleSyndicateWeapon = weapon cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BorgModuleOperative = operative cyborg module
     .desc = A module that comes with a crowbar, an Emag and a syndicate pinpointer.
 ent-BorgModuleEsword = energy sword cyborg module

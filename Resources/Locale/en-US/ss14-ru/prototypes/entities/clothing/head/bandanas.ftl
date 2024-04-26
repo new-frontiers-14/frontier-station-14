@@ -1,33 +1,22 @@
-ent-ClothingHeadBandBase = { ent-['ClothingHeadBaseButcherable', 'BaseFoldable'] }
-
-  .desc = { ent-['ClothingHeadBaseButcherable', 'BaseFoldable'].desc }
+ent-ClothingHeadBandBase = { ent-BaseFoldable }
+  .desc = { ent-BaseFoldable.desc }
 ent-ClothingHeadBandBlack = black bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandBlack'].desc }
+  .desc = { ent-ClothingMaskBandBlack.desc }
 ent-ClothingHeadBandBlue = blue bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandBlue'].desc }
+  .desc = { ent-ClothingMaskBandBlue.desc }
 ent-ClothingHeadBandBotany = botany bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandBotany'].desc }
+  .desc = { ent-ClothingMaskBandBotany.desc }
 ent-ClothingHeadBandGold = gold bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandGold'].desc }
+  .desc = { ent-ClothingMaskBandGold.desc }
 ent-ClothingHeadBandGreen = green bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandGreen'].desc }
+  .desc = { ent-ClothingMaskBandGreen.desc }
 ent-ClothingHeadBandGrey = grey bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandGrey'].desc }
+  .desc = { ent-ClothingMaskBandGrey.desc }
 ent-ClothingHeadBandRed = red bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandRed'].desc }
+  .desc = { ent-ClothingMaskBandRed.desc }
 ent-ClothingHeadBandSkull = skull bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandSkull'].desc }
+  .desc = { ent-ClothingMaskBandSkull.desc }
 ent-ClothingHeadBandMercenary = mercenary bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandMerc'].desc }
+  .desc = { ent-ClothingMaskBandMerc.desc }
 ent-ClothingHeadBandBrown = brown bandana
-
-  .desc = { ent-['ClothingHeadBandBase', 'ClothingMaskBandBrown'].desc }
+  .desc = { ent-ClothingMaskBandBrown.desc }

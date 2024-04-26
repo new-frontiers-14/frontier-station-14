@@ -1,15 +1,13 @@
 ent-LockerBooze = booze storage
     .desc = This is where the bartender keeps the booze.
-ent-LockerSteel = secure closet
-    .desc = { ent-LockerBaseSecure.desc }
 ent-LockerQuarterMaster = quartermaster's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerSalvageSpecialist = salvage specialist's equipment
     .desc = Nevermind the pickaxe.
 ent-LockerCaptain = captain's locker
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerHeadOfPersonnel = head of personnel's locker
-    .desc = { ent-LockerBaseSecure.desc }
+ent-LockerHeadOfPersonnel = station representative's locker
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerChiefEngineer = chief engineer's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerElectricalSupplies = electrical supplies locker
@@ -43,11 +41,9 @@ ent-LockerResearchDirector = research director's locker
 ent-LockerScientist = scientist's locker
     .desc = { ent-LockerBase.desc }
 ent-LockerHeadOfSecurity = sheriff's locker
-
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'LockerBaseSecure'].desc }
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerWarden = bailiff's locker
-
-  .desc = { ent-['BaseStructureIndestructible', 'BaseStructureLockImmuneToEmag', 'BaseStructureAccessReaderImmuneToEmag', 'BaseStructureDisableToolUse', 'BaseStructureUnanchorable', 'LockerBaseSecure'].desc }
+  .desc = { ent-LockerBaseSecure.desc }
 ent-LockerBrigmedic = brigmedic's locker
     .desc = { ent-LockerBaseSecure.desc }
 ent-LockerSecurity = deputy's locker

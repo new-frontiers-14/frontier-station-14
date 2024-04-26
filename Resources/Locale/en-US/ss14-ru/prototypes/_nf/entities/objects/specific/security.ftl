@@ -22,5 +22,5 @@ ent-BaseSecurityUplinkRadioSheriff = { ent-BaseSecurityUplinkRadio }
 ent-BaseSecurityUplinkRadioOfficer = { ent-BaseSecurityUplinkRadio }
     .suffix = Officer 10
     .desc = { ent-BaseSecurityUplinkRadio.desc }
-ent-NfsdDeployableBarrier = nfsd deployable barrier
+ent-NFSDDeployableBarrier = nfsd deployable barrier
     .desc = A deployable barrier. Swipe your ID card to lock/unlock it.

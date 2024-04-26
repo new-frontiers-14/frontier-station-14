@@ -1,4 +1,4 @@
-ent-BannerNfsd = nfsd banner
+ent-BannerNFSD = nfsd banner
     .desc = A banner displaying the colors of the new frontier sheriff's department.
-ent-FlagNfsd = nfsd flag
+ent-FlagNFSD = nfsd flag
     .desc = A flag displaying the colors of the new frontier sheriff's department.

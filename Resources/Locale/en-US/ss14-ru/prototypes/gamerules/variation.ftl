@@ -12,5 +12,3 @@ ent-BasicPuddleMessVariationPass = { ent-BaseVariationPass }
     .desc = { ent-BaseVariationPass.desc }
 ent-BloodbathPuddleMessVariationPass = { ent-BaseVariationPass }
     .desc = { ent-BaseVariationPass.desc }
-ent-CutWireVariationPass = { ent-BaseVariationPass }
-    .desc = { ent-BaseVariationPass.desc }

@@ -1,3 +1,3 @@
-ent-IntercomNfsd = { ent-IntercomSecurity }
+ent-IntercomNFSD = { ent-Intercom }
     .suffix = NFSD
-    .desc = { ent-IntercomSecurity.desc }
+    .desc = { ent-Intercom.desc }
