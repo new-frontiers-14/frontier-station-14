@@ -158,8 +158,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 24
@@ -252,30 +250,20 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
-  - uid: 11
+  - uid: 34
     components:
     - type: Transform
-      pos: 2.5,1.5
+      pos: 1.5,1.5
       parent: 1
   - uid: 59
     components:
     - type: Transform
-      pos: -1.5,0.5
-      parent: 1
-  - uid: 61
-    components:
-    - type: Transform
-      pos: -0.5,0.5
+      pos: 2.5,1.5
       parent: 1
   - uid: 62
     components:
     - type: Transform
       pos: 0.5,1.5
-      parent: 1
-  - uid: 64
-    components:
-    - type: Transform
-      pos: 1.5,1.5
       parent: 1
   - uid: 97
     components:
@@ -299,6 +287,14 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
+- proto: CableTerminal
+  entities:
+  - uid: 32
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,1.5
+      parent: 1
 - proto: ChairOfficeLight
   entities:
   - uid: 58
@@ -321,8 +317,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -339,25 +335,17 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 89
+          - 5
+          - 91
           - 93
           - 92
-          - 91
-          - 5
+          - 89
 - proto: ClothingBackpackMessengerMailCarrier
   entities:
   - uid: 98
     components:
     - type: Transform
-      pos: 1.3333334,-1.4148562
-      parent: 1
-- proto: ClothingEyesHudMail
-  entities:
-  - uid: 100
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.3020834,-0.83152276
+      pos: 1.380333,-0.8295465
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -398,13 +386,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: DogBed
-  entities:
-  - uid: 83
-    components:
-    - type: Transform
-      pos: -0.5,1.5
-      parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 65
@@ -428,8 +409,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeStraight
@@ -449,8 +428,6 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -461,8 +438,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -473,22 +448,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GeneratorWallmountBasic
-  entities:
-  - uid: 22
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 1
-  - uid: 67
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 12
@@ -556,6 +517,25 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-0.5
+      parent: 1
+- proto: PortableGeneratorPacmanShuttle
+  entities:
+  - uid: 61
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 1
+    - type: FuelGenerator
+      on: False
+    - type: Physics
+      bodyType: Static
+- proto: PowerCellRecharger
+  entities:
+  - uid: 64
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-1.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -636,6 +616,15 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: SheetPlasma1
+  entities:
+  - uid: 67
+    components:
+    - type: Transform
+      pos: -0.5155004,1.5259578
+      parent: 1
+    - type: Stack
+      count: 15
 - proto: SheetPlastic
   entities:
   - uid: 92
@@ -694,6 +683,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 200
 - proto: SpawnPointLatejoin
   entities:
   - uid: 107
@@ -761,23 +752,31 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 4
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 13
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 14
     components:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: WallReinforced
   entities:
   - uid: 2
@@ -792,10 +791,20 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
+  - uid: 11
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
   - uid: 15
     components:
     - type: Transform
       pos: 1.5,2.5
+      parent: 1
+  - uid: 22
+    components:
+    - type: Transform
+      pos: -1.5,0.5
       parent: 1
   - uid: 28
     components:
@@ -803,20 +812,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
       parent: 1
-  - uid: 32
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 1
   - uid: 33
     components:
     - type: Transform
       pos: -0.5,-1.5
-      parent: 1
-  - uid: 34
-    components:
-    - type: Transform
-      pos: -1.5,0.5
       parent: 1
   - uid: 39
     components:
