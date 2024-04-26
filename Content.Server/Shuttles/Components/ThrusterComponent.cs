@@ -77,8 +77,10 @@ namespace Content.Server.Shuttles.Components
         [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
 
-        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
-        public float DisableDuration = 60f;
+        ///     Amount of charge this needs from an APC per second to function.
+        /// </summary>
+        [DataField("originalPowerLoad")]
+        public float OriginalLoad = 0;
     }
 
     public enum ThrusterType
