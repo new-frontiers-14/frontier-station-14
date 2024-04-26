@@ -53,6 +53,8 @@ public sealed partial class NavScreen : BoxContainer
     public void SetShuttle(EntityUid? shuttle)
     {
         _shuttleEntity = shuttle;
+
+        // Frontier - PR #1284 Add Shuttle Designation
         if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))
         {
             var shipNameParts = metadata.EntityName.Split(' ');
@@ -65,6 +67,7 @@ public sealed partial class NavScreen : BoxContainer
             else
                 NavDisplayLabel.Text = metadata.EntityName;
         }
+        // End Frontier - PR #1284
     }
 
     private void OnIFFTogglePressed(BaseButton.ButtonEventArgs args)
