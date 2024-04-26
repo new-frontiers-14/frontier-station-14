@@ -2,7 +2,7 @@
   name: Gestio
   parent: BaseWeaponRifle
   id: WeaponRifleGestio
-  description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It hasn't ever left the trials. Its blueprints can be found scattered in old structures. Uses .20 rifle ammo.
+  description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It hasn't ever left the trials. Given it's antiquity it is considered a civilian grade weapon.   Uses .20 rifle ammo.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Gestio-Rifle.rsi
@@ -77,3 +77,18 @@
         whitelist:
           tags:
             - CartridgeRifle
+
+
+#Crate for expedition rewards
+- type: entity
+  id: CrateArmoryRifleGestio
+  parent: CrateWeaponSecure
+  name: Gestio rifle crate
+  description: Contains two old prototype, burst-fire rifles with six low capacity mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleGestio
+        amount: 2
+      - id: MagazineRifleLowCapacity
+        amount: 6
