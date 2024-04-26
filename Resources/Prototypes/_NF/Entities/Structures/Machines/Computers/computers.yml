@@ -11,7 +11,6 @@
     soundGroups:
       Brute:
         collection: MetalGlassBreak
-  - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -61,6 +60,8 @@
       type: CargoPalletConsoleBoundUserInterface
   - type: MarketModifier
     mod: 1.00
+  - type: Computer
+    board: Null
 
 - type: entity
   parent: ComputerPalletConsoleNFNormalMarket
@@ -101,7 +102,6 @@
       soundGroups:
         Brute:
           collection: MetalGlassBreak
-    - type: Computer
     - type: ApcPowerReceiver
       powerLoad: 200
     - type: ExtensionCableReceiver
@@ -149,6 +149,8 @@
       interfaces:
         - key: enum.ContrabandPalletConsoleUiKey.Contraband
           type: ContrabandPalletConsoleBoundUserInterface
+  - type: Computer
+    board: Null
 
 - type: entity
   parent: ComputerShuttle
@@ -186,3 +188,4 @@
       - key: enum.IFFConsoleUiKey.Key
         type: IFFConsoleBoundUserInterface
   - type: Computer
+    board: Null
