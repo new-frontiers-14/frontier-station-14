@@ -1,6 +1,6 @@
 ent-CratePlasticBiodegradable = биоразлагаемый пластиковый ящик
     .desc = { ent-CrateBaseWeldable.desc }
-ent-CrateUranium = урановый ящик
+ent-CrateUranium = ящик урана
     .desc = { ent-CrateBaseSecure.desc }
 ent-CrateTradeBaseSecureNormal = стальной торговый ящик
     .desc = { ent-CrateTradeBaseSecure.desc }
