@@ -118,23 +118,72 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30583
+            0: 1
+            1: 30582
           -1,0:
-            0: 52428
+            2: 4
+            1: 52424
           0,-1:
-            0: 30583
+            1: 25975
+            3: 4096
+            0: 512
           -1,-1:
-            0: 52428
+            1: 52428
           0,1:
-            0: 7
+            1: 7
           -1,1:
-            0: 12
+            1: 12
         uniqueMixes:
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 23.710548
+          - 89.19683
           - 0
           - 0
           - 0
@@ -195,19 +244,23 @@ entities:
   - uid: 37
     components:
     - type: Transform
-      pos: 1.3854167,-0.06948286
-      parent: 1
+      parent: 72
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 105
     components:
     - type: Transform
-      pos: 1.5833334,-0.30906618
-      parent: 1
+      parent: 72
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: BoxPaperOffice
   entities:
   - uid: 89
     components:
     - type: Transform
-      parent: 66
+      parent: 99
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -277,10 +330,10 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-  - uid: 72
+  - uid: 64
     components:
     - type: Transform
-      pos: 1.5,1.5
+      pos: 2.5,2.5
       parent: 1
   - uid: 73
     components:
@@ -305,11 +358,11 @@ entities:
       parent: 1
 - proto: ClosetWall
   entities:
-  - uid: 66
+  - uid: 72
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-1.5
       parent: 1
     - type: EntityStorage
       air:
@@ -317,8 +370,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -335,17 +388,49 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 5
-          - 91
-          - 93
-          - 92
-          - 89
-- proto: ClothingBackpackMessengerMailCarrier
-  entities:
-  - uid: 98
+          - 37
+          - 105
+  - uid: 99
     components:
     - type: Transform
-      pos: 1.380333,-0.8295465
+      rot: 1.5707963267948966 rad
+      pos: -0.5,0.5
+      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 91
+          - 89
+          - 93
+          - 92
+          - 5
+- proto: ClothingBackpackMessengerMailCarrier
+  entities:
+  - uid: 83
+    components:
+    - type: Transform
+      pos: 1.3910502,-1.4036231
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -383,8 +468,8 @@ entities:
   - uid: 25
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-0.5
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -531,11 +616,11 @@ entities:
       bodyType: Static
 - proto: PowerCellRecharger
   entities:
-  - uid: 64
+  - uid: 98
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,-1.5
+      pos: 1.5,-0.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -612,7 +697,7 @@ entities:
   - uid: 93
     components:
     - type: Transform
-      parent: 66
+      parent: 99
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -630,7 +715,7 @@ entities:
   - uid: 92
     components:
     - type: Transform
-      parent: 66
+      parent: 99
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -639,7 +724,7 @@ entities:
   - uid: 91
     components:
     - type: Transform
-      parent: 66
+      parent: 99
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -854,11 +939,11 @@ entities:
       parent: 1
 - proto: WeaponMailLake
   entities:
-  - uid: 99
+  - uid: 66
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.7500001,-1.1752727
+      pos: 1.669134,-0.77862304
       parent: 1
 - proto: WindoorSecureMailLocked
   entities:
@@ -880,7 +965,7 @@ entities:
   - uid: 5
     components:
     - type: Transform
-      parent: 66
+      parent: 99
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
