@@ -1,102 +1,102 @@
-ent-ClothingBackpackMessengerFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackFilled'] }
+ent-ClothingBackpackMessengerFilled = { ent-ClothingBackpackFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackFilled'].desc }
-ent-ClothingBackpackMessengerClownFilled = { ent-['ClothingBackpackMessengerClown', 'ClothingBackpackClownFilled'] }
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerClownFilled = { ent-ClothingBackpackClownFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerClown', 'ClothingBackpackClownFilled'].desc }
-ent-ClothingBackpackMessengerMedicalFilled = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackMedicalFilled'] }
+  .desc = { ent-ClothingBackpackClownFilled.desc }
+ent-ClothingBackpackMessengerMedicalFilled = { ent-ClothingBackpackMedicalFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackMedicalFilled'].desc }
-ent-ClothingBackpackMessengerCaptainFilled = { ent-['ClothingBackpackMessengerCaptain', 'ClothingBackpackCaptainFilled'] }
+  .desc = { ent-ClothingBackpackMedicalFilled.desc }
+ent-ClothingBackpackMessengerCaptainFilled = { ent-ClothingBackpackCaptainFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerCaptain', 'ClothingBackpackCaptainFilled'].desc }
-ent-ClothingBackpackMessengerChiefEngineerFilled = { ent-['ClothingBackpackMessengerEngineering', 'ClothingBackpackChiefEngineerFilled'] }
+  .desc = { ent-ClothingBackpackCaptainFilled.desc }
+ent-ClothingBackpackMessengerChiefEngineerFilled = { ent-ClothingBackpackChiefEngineerFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerEngineering', 'ClothingBackpackChiefEngineerFilled'].desc }
-ent-ClothingBackpackMessengerResearchDirectorFilled = { ent-['ClothingBackpackMessengerScience', 'ClothingBackpackResearchDirectorFilled'] }
+  .desc = { ent-ClothingBackpackChiefEngineerFilled.desc }
+ent-ClothingBackpackMessengerResearchDirectorFilled = { ent-ClothingBackpackResearchDirectorFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerScience', 'ClothingBackpackResearchDirectorFilled'].desc }
-ent-ClothingBackpackMessengerHOPFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackHOPFilled'] }
+  .desc = { ent-ClothingBackpackResearchDirectorFilled.desc }
+ent-ClothingBackpackMessengerHOPFilled = { ent-ClothingBackpackHOPFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackHOPFilled'].desc }
-ent-ClothingBackpackMessengerCMOFilled = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackCMOFilled'] }
+  .desc = { ent-ClothingBackpackHOPFilled.desc }
+ent-ClothingBackpackMessengerCMOFilled = { ent-ClothingBackpackCMOFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackCMOFilled'].desc }
-ent-ClothingBackpackMessengerQuartermasterFilled = { ent-['ClothingBackpackMessengerCargo', 'ClothingBackpackQuartermasterFilled'] }
+  .desc = { ent-ClothingBackpackCMOFilled.desc }
+ent-ClothingBackpackMessengerQuartermasterFilled = { ent-ClothingBackpackQuartermasterFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerCargo', 'ClothingBackpackQuartermasterFilled'].desc }
-ent-ClothingBackpackMessengerEngineeringFilled = { ent-['ClothingBackpackMessengerEngineering', 'ClothingBackpackEngineeringFilled'] }
+  .desc = { ent-ClothingBackpackQuartermasterFilled.desc }
+ent-ClothingBackpackMessengerEngineeringFilled = { ent-ClothingBackpackEngineeringFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerEngineering', 'ClothingBackpackEngineeringFilled'].desc }
-ent-ClothingBackpackMessengerAtmosphericsFilled = { ent-['ClothingBackpackMessengerAtmospherics', 'ClothingBackpackAtmosphericsFilled'] }
+  .desc = { ent-ClothingBackpackEngineeringFilled.desc }
+ent-ClothingBackpackMessengerAtmosphericsFilled = { ent-ClothingBackpackAtmosphericsFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerAtmospherics', 'ClothingBackpackAtmosphericsFilled'].desc }
-ent-ClothingBackpackMessengerScienceFilled = { ent-['ClothingBackpackMessengerScience', 'ClothingBackpackScienceFilled'] }
+  .desc = { ent-ClothingBackpackAtmosphericsFilled.desc }
+ent-ClothingBackpackMessengerScienceFilled = { ent-ClothingBackpackScienceFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerScience', 'ClothingBackpackScienceFilled'].desc }
-ent-ClothingBackpackMessengerHydroponicsFilled = { ent-['ClothingBackpackMessengerHydroponics', 'ClothingBackpackHydroponicsFilled'] }
+  .desc = { ent-ClothingBackpackScienceFilled.desc }
+ent-ClothingBackpackMessengerHydroponicsFilled = { ent-ClothingBackpackHydroponicsFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerHydroponics', 'ClothingBackpackHydroponicsFilled'].desc }
-ent-ClothingBackpackMessengerMimeFilled = { ent-['ClothingBackpackMessengerMime', 'ClothingBackpackMimeFilled'] }
+  .desc = { ent-ClothingBackpackHydroponicsFilled.desc }
+ent-ClothingBackpackMessengerMimeFilled = { ent-ClothingBackpackMimeFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMime', 'ClothingBackpackMimeFilled'].desc }
-ent-ClothingBackpackMessengerChemistryFilled = { ent-['ClothingBackpackMessengerChemistry', 'ClothingBackpackChemistryFilled'] }
+  .desc = { ent-ClothingBackpackMimeFilled.desc }
+ent-ClothingBackpackMessengerChemistryFilled = { ent-ClothingBackpackChemistryFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerChemistry', 'ClothingBackpackChemistryFilled'].desc }
-ent-ClothingBackpackMessengerChaplainFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackChaplainFilled'] }
+  .desc = { ent-ClothingBackpackChemistryFilled.desc }
+ent-ClothingBackpackMessengerChaplainFilled = { ent-ClothingBackpackChaplainFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackChaplainFilled'].desc }
-ent-ClothingBackpackMessengerMusicianFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackMusicianFilled'] }
+  .desc = { ent-ClothingBackpackChaplainFilled.desc }
+ent-ClothingBackpackMessengerMusicianFilled = { ent-ClothingBackpackMusicianFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackMusicianFilled'].desc }
-ent-ClothingBackpackMessengerLibrarianFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackLibrarianFilled'] }
+  .desc = { ent-ClothingBackpackMusicianFilled.desc }
+ent-ClothingBackpackMessengerLibrarianFilled = { ent-ClothingBackpackLibrarianFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackLibrarianFilled'].desc }
-ent-ClothingBackpackMessengerCargoFilled = { ent-['ClothingBackpackMessengerCargo', 'ClothingBackpackCargoFilled'] }
+  .desc = { ent-ClothingBackpackLibrarianFilled.desc }
+ent-ClothingBackpackMessengerCargoFilled = { ent-ClothingBackpackCargoFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerCargo', 'ClothingBackpackCargoFilled'].desc }
-ent-ClothingBackpackMessengerSalvageFilled = { ent-['ClothingBackpackMessengerSalvage', 'ClothingBackpackSalvageFilled'] }
+  .desc = { ent-ClothingBackpackCargoFilled.desc }
+ent-ClothingBackpackMessengerSalvageFilled = { ent-ClothingBackpackSalvageFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerSalvage', 'ClothingBackpackSalvageFilled'].desc }
-ent-ClothingBackpackMessengerMercenaryFilled = { ent-['ClothingBackpackMessengerMercenary', 'ClothingBackpackMercenaryFilled'] }
+  .desc = { ent-ClothingBackpackSalvageFilled.desc }
+ent-ClothingBackpackMessengerMercenaryFilled = { ent-ClothingBackpackMercenaryFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMercenary', 'ClothingBackpackMercenaryFilled'].desc }
-ent-ClothingBackpackMessengerReporterFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackReporterFilled'] }
+  .desc = { ent-ClothingBackpackMercenaryFilled.desc }
+ent-ClothingBackpackMessengerReporterFilled = { ent-ClothingBackpackReporterFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackReporterFilled'].desc }
-ent-ClothingBackpackMessengerPsychologistFilled = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackMedicalFilled'] }
+  .desc = { ent-ClothingBackpackReporterFilled.desc }
+ent-ClothingBackpackMessengerPsychologistFilled = { ent-ClothingBackpackMedicalFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMedical', 'ClothingBackpackMedicalFilled'].desc }
-ent-ClothingBackpackMessengerLawyerFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackLawyerFilled'] }
+  .desc = { ent-ClothingBackpackMedicalFilled.desc }
+ent-ClothingBackpackMessengerLawyerFilled = { ent-ClothingBackpackLawyerFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackLawyerFilled'].desc }
-ent-ClothingBackpackMessengerStcFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackStcFilled'] }
+  .desc = { ent-ClothingBackpackLawyerFilled.desc }
+ent-ClothingBackpackMessengerStcFilled = { ent-ClothingBackpackStcFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackStcFilled'].desc }
-ent-ClothingBackpackMessengerPilotFilled = { ent-['ClothingBackpackMessengerPilot', 'ClothingBackpackPilotFilled'] }
+  .desc = { ent-ClothingBackpackStcFilled.desc }
+ent-ClothingBackpackMessengerPilotFilled = { ent-ClothingBackpackPilotFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerPilot', 'ClothingBackpackPilotFilled'].desc }
-ent-ClothingBackpackMessengerJanitorFilled = { ent-['ClothingBackpackMessengerJanitor', 'ClothingBackpackFilled'] }
+  .desc = { ent-ClothingBackpackPilotFilled.desc }
+ent-ClothingBackpackMessengerJanitorFilled = { ent-ClothingBackpackFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerJanitor', 'ClothingBackpackFilled'].desc }
-ent-ClothingBackpackMessengerMailCarrierFilled = { ent-['ClothingBackpackMessengerMailCarrier', 'ClothingBackpackFilled'] }
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerMailCarrierFilled = { ent-ClothingBackpackFilled }
 
-  .desc = { ent-['ClothingBackpackMessengerMailCarrier', 'ClothingBackpackFilled'].desc }
-ent-ClothingBackpackMessengerSrFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackSrFilled'] }
+  .desc = { ent-ClothingBackpackFilled.desc }
+ent-ClothingBackpackMessengerSrFilled = { ent-ClothingBackpackSrFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackSrFilled'].desc }
-ent-ClothingBackpackMessengerNfsdBrownFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownFilled'] }
+  .desc = { ent-ClothingBackpackSrFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownFilled = { ent-ClothingBackpackNfsdBrownFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownFilled'].desc }
-ent-ClothingBackpackMessengerNfsdCreamFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdCreamFilled'] }
+  .desc = { ent-ClothingBackpackNfsdBrownFilled.desc }
+ent-ClothingBackpackMessengerNfsdCreamFilled = { ent-ClothingBackpackNfsdCreamFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdCreamFilled'].desc }
-ent-ClothingBackpackMessengerNfsdBrownDetectiveFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownDetectiveFilled'] }
+  .desc = { ent-ClothingBackpackNfsdCreamFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownDetectiveFilled = { ent-ClothingBackpackNfsdBrownDetectiveFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownDetectiveFilled'].desc }
-ent-ClothingBackpackMessengerNfsdBrownRadioFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownRadioFilled'] }
+  .desc = { ent-ClothingBackpackNfsdBrownDetectiveFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownRadioFilled = { ent-ClothingBackpackNfsdBrownRadioFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownRadioFilled'].desc }
-ent-ClothingBackpackMessengerNfsdBrownSheriffFilled = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownSheriffFilled'] }
+  .desc = { ent-ClothingBackpackNfsdBrownRadioFilled.desc }
+ent-ClothingBackpackMessengerNfsdBrownSheriffFilled = { ent-ClothingBackpackNfsdBrownSheriffFilled }
 
-  .desc = { ent-['ClothingBackpackMessenger', 'ClothingBackpackNfsdBrownSheriffFilled'].desc }
+  .desc = { ent-ClothingBackpackNfsdBrownSheriffFilled.desc }
