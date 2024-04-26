@@ -149,22 +149,3 @@
       interfaces:
         - key: enum.ContrabandPalletConsoleUiKey.Contraband
           type: ContrabandPalletConsoleBoundUserInterface
-
-- type: entity
-  parent: ComputerShuttle
-  id: ComputerShuttleAntag
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: syndishuttle
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#c94242"

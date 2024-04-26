@@ -1,0 +1,96 @@
+- type: entity
+  save: false
+  name: Urist McXenoclime
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobXenoslime
+  abstract: true
+  components:
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Icon
+    sprite: Corvax/Mobs/Species/Xenoslime/parts.rsi
+    state: full
+  - type: Body
+    prototype: Xenoslime
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: Xenoslime
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
+  - type: Vocal
+    sounds:
+      Male: MaleXenoslime
+      Female: FemaleXenoslime
+      Unsexed: MaleXenoslime
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Xenoslime
+  - type: Bloodstream
+    bloodReagent: Xenoslime # TODO Color Xenoslime blood based on their Xenoslime color or smth
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make Xenoslime boil more than blunt stretch them so i decided on this instead.
+  - type: Inventory
+    speciesId: reptilian 
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "slime-hurt-by-water-popup" ]
+        probability: 0.25
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatSlime
+      amount: 5
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: SizeAttributeWhitelist # Frontier
+    short: true
+    shortscale: 0.8
+    shortDensity: 140
+    shortPseudoItem: true
+    shortCosmeticOnly: false
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobXenoslimeDummy
+  noSpawn: true
+  description: A dummy Xenoslime meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Xenoslime
