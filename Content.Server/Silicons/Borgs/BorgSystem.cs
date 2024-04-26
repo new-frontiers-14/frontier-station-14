@@ -1,4 +1,4 @@
-﻿using Content.Server.Actions;
+using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Hands.Systems;
@@ -321,11 +321,9 @@ public sealed partial class BorgSystem : SharedBorgSystem
             access.Add($"Captain");
             access.Add($"Maintenance");
             access.Add($"External");
-            access.Add($"Cargo");
-            access.Add($"Salvage");
             access.Add($"Medical");
-            access.Add($"Service");
-            access.Add($"Research");
+            access.Add($"Pilot");
+            access.Add($"Mercenary");
 
             _access.TrySetTags(uid, access);
         }
