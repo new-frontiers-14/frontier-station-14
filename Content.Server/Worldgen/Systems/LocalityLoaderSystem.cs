@@ -16,7 +16,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     [Dependency] private readonly TransformSystem _xformSys = default!;
 
     // Duration to reset the despawn timer to when a debris is loaded into a player's view.
-    private const float DebrisActiveDuration = 420; // 7 минут Corvax, а то 5 было маловато людям.
+    private const float DebrisActiveDuration = 300; // 5 минут Corvax, а то 5 было маловато людям.
 
     public override void Initialize()
     {
