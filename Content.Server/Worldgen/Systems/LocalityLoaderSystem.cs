@@ -88,21 +88,9 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
-        var logger = IoCManager.Resolve<ILogManager>().GetSawmill("world.debris.debug");
-
-        logger.Debug(ToPrettyString(entity));
-
         while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-        {
-            logger.Debug($"{ToPrettyString(mob)} {xform.GridUid}");
-
             if (xform.MapUid is not null && xform.GridUid == entity)
-            {
                 _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
-
-                logger.Debug($"Unparented!");
-            }
-        }
     }
 }
 
