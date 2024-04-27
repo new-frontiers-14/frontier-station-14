@@ -19,7 +19,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<SpaceDebrisComponent, TimedDespawnEvent>(OnDebrisDespawn);
+        SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
     }
 
     /// <inheritdoc />
@@ -84,7 +84,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
         }
     }
 
-    private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, TimedDespawnEvent e)
+    private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
