@@ -1,35 +1,9 @@
 - type: entity
-  save: false
-  parent: BaseMobSpeciesOrganic
+  parent: BaseMobHuman
   name: Urist McGoblin
   id: MobGoblinBase
   abstract: true
   components:
-  - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.1
-        Bloodloss: 0.1
-  - type: Thirst
-  - type: Carriable # Carrying system from nyanotrasen.
-  - type: Stamina
-  - type: PseudoItem
-  - type: Perishable
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.8
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeatGoblin
-      amount: 3
-  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
-    sprite: _NF/Mobs/Species/Goblin/parts.rsi
-    state: full
   - type: Sprite
     scale: 0.8, 0.7
   - type: HumanoidAppearance
@@ -39,7 +13,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
+          radius: 0.28
         density: 135
         restitution: 0.0
         mask:
@@ -48,7 +22,6 @@
         - MobLayer
   - type: Body
     prototype: Goblin
-    requiredLegs: 2
   - type: Damageable
     damageModifierSet: Goblin
   - type: MeleeWeapon
@@ -64,27 +37,29 @@
     damage:
       types:
         Blunt: 1
-  - type: SizeAttributeWhitelist
-    tall: true
-    tallscale: 1
-    tallDensity: 185
+  - type: Stamina
+  - type: PseudoItem
   - type: Vocal
     wilhelm: "/Audio/_NF/Voice/Goblin/goblin-cackle-05.ogg"
     sounds:
       Male: MaleGoblin
       Female: FemaleGoblin
       Unsexed: MaleGoblin
-  - type: ReplacementAccent
-    accent: goblin_accent
-#  - type: Goblin
+  - type: Goblin
   - type: NpcFactionMember
     factions:
     - NanoTrasen
     - Goblin
-  - type: Tag
-    tags:
-    - CanPilot
-    - DoorBumpOpener
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoblin
+      amount: 3
+#  - type: SizeAttributeWhitelist # This system need to move to a slider
+#    tall: true
+#    tallscale: 1
+#    tallDensity: 185
+  - type: ReplacementAccent
+    accent: goblin_accent
 
 - type: entity
   save: false
