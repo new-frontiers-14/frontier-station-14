@@ -24,7 +24,7 @@
   - type: Contraband
 
 - type: entity
-  name: red wizard staff
+  name: inert red wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeRed
   components:
@@ -35,7 +35,7 @@
   - type: Contraband
 
 - type: entity
-  name: violet wizard staff
+  name: inert violet wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeViolet
   components:
@@ -46,7 +46,7 @@
   - type: Contraband
 
 - type: entity
-  name: soap wizard staff
+  name: inert soap wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeSoap
   components:
@@ -58,7 +58,7 @@
 
 # Blood Cult
 - type: entity
-  name: blood cult staff
+  name: inert cultist staff
   parent: WizardStaffMeleeRed
   id: WizardStaffMeleeBlood
   components:
@@ -73,3 +73,14 @@
     soundHit:
       path: /Audio/Effects/bite.ogg
   - type: Contraband
+
+- type: entity
+  name: cultist staff
+  parent: WizardStaffMeleeBlood
+  id: WizardStaffDarkBolt
+  suffix: "Dark bolt"
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    capacity: 10
+    count: 10

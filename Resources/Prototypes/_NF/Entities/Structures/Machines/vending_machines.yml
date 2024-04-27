@@ -44,7 +44,7 @@
   - type: Advertise
     pack: AstroVendAds
   - type: Sprite
-    sprite: _NF/Structures/astrovend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/astrovend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -121,7 +121,7 @@
   - type: Advertise
     pack: SyndieDrobeAds
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/syndicateArmor.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/contravend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -155,7 +155,7 @@
 #  - type: Advertise
 #    pack: BountyVendAds
   - type: Sprite
-    sprite: _NF/Structures/bountyvend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/bountyvend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -188,7 +188,7 @@
     - type: Advertise
       pack: ArcadiaDrobeAds
     - type: Sprite
-      sprite: _NF/Structures/arcadiadrobe.rsi
+      sprite: _NF/Structures/Machines/VendingMachines/arcadiadrobe.rsi
       layers:
       - state: "off"
         map: ["enum.VendingMachineVisualLayers.Base"]
@@ -375,6 +375,7 @@
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart] # Frontier
   id: VendingMachineCartNfsd
+  suffix: NFSD
   components:
   - type: VendingMachine
     pack: PTechNfsdInventory
