@@ -8,22 +8,16 @@
       time: 108000 # Frontier - 30 hours
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 10800 #3 hrs
+      time: 43200 # Frontier - 12 hrs
     - !type:DepartmentTimeRequirement
       department: Security
       time: 32400 # 9 hrs
   startingGear: SeniorOfficerGear
-  icon: "JobIconSeniorOfficer"
-  supervisors: job-supervisors-hos
+  icon: "JobIconSeniorOfficer" # Frontier
+  supervisors: job-supervisors-bailiff
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service
-  - External
-  - Mercenary # Frontier
-  - Captain # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -32,18 +26,18 @@
   id: SeniorOfficerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNfsdTacBlack # Frontier
-    back: ClothingBackpacknfsdFilled # Frontier
-    shoes: ClothingShoesBootsNFSDBrown # Frontier
-    eyes: ClothingEyesGlassesNFSD # Frontier
+    back: ClothingBackpackNfsdBrownRadioFilled
+    shoes: ClothingShoesBootsNfsdBrownFilled # Frontier
+    eyes: ClothingEyesGlassesNfsd # Frontier
     head: ClothingHeadHatNfsdBeretGreen # Frontier
     outerClothing: ClothingOuterCoatNfsdLongCoat # Frontier
-    id: NfsdSergeant # Frontier
-    ears: ClothingHeadsetAltNFSDbrown # Frontier
+    id: SergeantPDA # Frontier
+    ears: ClothingHeadsetAltNfsdbrown # Frontier
     belt: ClothingBeltNfsdFilled # Frontier
     pocket1: WeaponPistolMk58Nonlethal
     gloves: ClothingHandsGlovesCombatNfsdCream # Frontier
     neck: ClothingNeckNfsdBadgeSeniorOfficer # Frontier
   innerClothingSkirt: ClothingUniformJumpskirtNfsd # Frontier
-  satchel: ClothingBackpackSatchelnfsdFilled # Frontier
-  duffelbag: ClothingBackpackDuffelnfsdFilled # Frontier
-  messenger: ClothingBackpackMessengerOfficerFilled # Frontier
+  satchel: ClothingBackpackSatchelNfsdBrownRadioFilled # Frontier
+  duffelbag: ClothingBackpackDuffelNfsdBrownRadioFilled # Frontier
+  messenger: ClothingBackpackMessengerNfsdBrownRadioFilled # Frontier

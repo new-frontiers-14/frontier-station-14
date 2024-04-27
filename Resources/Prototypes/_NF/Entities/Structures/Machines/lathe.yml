@@ -254,14 +254,15 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-      - Durathread
-      - Plasteel
-      - SheetSteel
-      - SheetPlasteel
-      - SheetPlasma
-      - SheetGlass1
-      - SheetRGlass
-      - SheetPlastic
+      #- Durathread
+      #- Plasteel
+      #- SheetSteel
+      #- SheetPlasteel
+      #- SheetPlasma30
+      #- SheetUranium30
+      #- SheetGlass30
+      #- SheetRGlass
+      #- SheetPlastic
       - ClothingOuterSuitEmergency
       - ClothingHeadHelmetEVA
       - ClothingOuterHardsuitEVA
@@ -305,26 +306,21 @@
       - GlowstickPurple
       - GlowstickRedLathe
       - GlowstickYellow
-    dynamicRecipes:
+      - OreBag
       - MiningDrill
+      - WeaponProtoKineticAccelerator
+    dynamicRecipes:
       - Bucket
       - MopItem
       - SprayBottle
       - FireExtinguisher
-      - LightTube
-      - LightBulb
-      - CableStack
       - CableMVStack
       - CableHVStack
-      - Signaller
-      - PowerCellMedium
       - PowerCellHigh
       - PowerCellMicroreactor
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
-      - WeaponProtoKineticAccelerator
-      - WeaponTetherGun
       - WeaponGrapplingGun
       - ClothingBackpackHolding
       - ClothingBackpackSatchelHolding
@@ -356,11 +352,34 @@
        - MagazineBoxLightRifle
        - GrenadeBlast
        - ClothingHeadHelmetCosmonaut
-       - ClothingHeadHelmetSyndicate
-       - ClothingOuterHardsuitSyndicate
+#       - ClothingHeadHelmetSyndicate # Frontier
+#       - ClothingOuterHardsuitSyndicate # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
+#        - Ore
+
+- type: entity
+  id: NfsdTechFab
+  parent: SecurityTechFab
+  name: nfsd techfab
+  description: Prints equipment for use by nfsd.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: nfsd
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NfsdTechFabCircuitboard

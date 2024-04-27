@@ -8,13 +8,10 @@
       time: 21600
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Lawyer
-  - Brig
-  - Maintenance
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralNfsdBrigAccess # Frontier
 
 - type: startingGear
   id: LawyerGear
@@ -24,7 +21,6 @@
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
     ears: ClothingHeadsetSecurity
-    pocket1: HyperlinkBookSpaceLaw # Frontier
   inhand:
     - BriefcaseBrownFilled
   innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack

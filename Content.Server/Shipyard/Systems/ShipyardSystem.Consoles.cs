@@ -239,11 +239,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
-            channel = component.BlackMarketShipyardChannel;
+            channel = component.ShipyardChannel;
 
             SendPurchaseMessage(uid, player, name, component.SecurityShipyardChannel, true);
         }
@@ -334,7 +334,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey)
             channel = component.SecurityShipyardChannel;
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (bill * 0.30f);
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
@@ -345,7 +345,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             bill -= tax;
-            channel = component.BlackMarketShipyardChannel;
+            channel = component.ShipyardChannel;
 
             SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), component.SecurityShipyardChannel, player, true);
         }
@@ -389,7 +389,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) args.UiKey || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) args.UiKey) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;
@@ -477,7 +477,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key)
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
         {
             var tax = (int) (sellValue * 0.30f);
             sellValue -= tax;

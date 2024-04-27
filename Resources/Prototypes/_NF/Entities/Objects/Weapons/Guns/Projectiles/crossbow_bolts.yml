@@ -113,9 +113,12 @@
     node: CraftCrossbowBoltUraniumGlassShard
 
 - type: entity
-  parent: CrossbowBolt
+  parent:
+  - CrossbowBolt
+  - ConjuredObject10 # Despawns in 10 seconds
   id: CrossbowBoltBloodDrinker
   name: blood drinker bolt
+  description: A razor-sharp bolt with a serrated tip. Unquestionably unethical.
   components:
   - type: Sprite
     layers:
@@ -131,7 +134,5 @@
   - type: Projectile
     damage:
       types:
-        Slashing: 25
+        Slashing: 20
         Bloodloss: 5
-  - type: TimedDespawn
-    lifetime: 10
