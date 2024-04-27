@@ -10,7 +10,183 @@
   - type: Transform
     anchored: false
 
-# Vendomats
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootBureaucracy
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Bureaucracy"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: labeler1
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PaperOffice
+    - Paper
+    - Paper
+    - Paper
+    - ClothingEyesGlasses
+    - ClothingEyesGlassesJamjar
+    - HandLabeler
+    - NewtonCradle
+    - DrinkSpaceGlue
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - SpawnDungeonLootBureaucracyPen
+    chance: 1
+    offset: 0.0
+
+# Tools
+- type: entity
+  name: random pen
+  id: SpawnDungeonLootBureaucracyPen
+  noSpawn: true
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: luxury_pen
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - LuxuryPen
+    - LuxuryPen
+    - LuxuryPen
+    - PenCap
+    - PenHop
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - PenExplodingBox
+    - HypopenBox
+    rareChance: 0.01
+
+# Clothes
+
+# Furniture/lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersGeneral
+  parent: MarkerBase
+  suffix: "Dungeon, Generic"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: generic
+      - sprite: Structures/Storage/closet.rsi
+        state: generic_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetMaintenanceFilledRandom
+    - WardrobeBlackFilled
+    - WardrobeBlueFilled
+    - WardrobeGreenFilled
+    - WardrobeGreyFilled
+    - WardrobeMixedFilled
+    - WardrobePinkFilled
+    - WardrobeWhiteFilled
+    - WardrobeYellowFilled
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersProtectiveGear
+  parent: MarkerBase
+  suffix: "Dungeon, Protective Gear"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: fire
+      - sprite: Structures/Storage/closet.rsi
+        state: fire_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetEmergencyFilledRandom
+    - ClosetFireFilled
+    - ClosetL3Filled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClosetBombFilled
+    - ClosetRadiationSuitFilled
+    - ClosetL3Filled
+    rareChance: 0.15
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLathe
+  parent: MarkerBase
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - TilePrinterNF
+    - SalvageTechfabNF
+    - ScienceTechFab
+    - ServiceTechFab
+    - EngineeringTechFab
+    - Autolathe
+    - Protolathe
+    - CircuitImprinter
+    - ExosuitFabricator
+    - Biofabricator
+    - AmmoTechFab
+    - MedicalTechFab
+    - UniformPrinter
+    - MachineFlatpacker
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrial
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    - SpawnDungeonMachineFrame
+    rareChance: 0.03
+
 - type: entity
   name: random vendomat # drinks, smokes, toy, decor
   id: SpawnDungeonVendomatsRecreational
@@ -106,12 +282,10 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineMagivend
-    #- VendingMachineSyndieContraband
-    #- VendingMachineBountyVend
     - VendingMachineArcadia
     - VendingMachineSyndieDrobe
     - SpawnDungeonMachineFrame
-    rareChance: 0.01
+    rareChance: 0.03
 
 - type: entity
   name: random vendomat
@@ -145,7 +319,7 @@
     - VendingMachineSec
     - VendingMachineArcadia
     - SpawnDungeonMachineFrame
-    rareChance: 0.01
+    rareChance: 0.03
 
 - type: entity
   name: random machine frame
@@ -170,46 +344,7 @@
     chance: 1
     offset: 0.0
 
-# Lathes and circuits
-- type: entity
-  name: random machine techfab
-  id: SpawnDungeonLootLathe
-  parent: MarkerBase
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Machines/techfab.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - TilePrinterNF
-    - SalvageTechfabNF
-    - ScienceTechFab
-    - ServiceTechFab
-    - EngineeringTechFab
-    - Autolathe
-    - Protolathe
-    - CircuitImprinter
-    - ExosuitFabricator
-    - Biofabricator
-    - AmmoTechFab
-    - MedicalTechFab
-    - UniformPrinter
-    - MachineFlatpacker
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - OreProcessorIndustrial
-    - AutolatheHyperConvection
-    - ProtolatheHyperConvection
-    - SpawnDungeonMachineFrame
-    rareChance: 0.01
-
+# Other
 - type: entity
   name: random machine board
   id: SpawnDungeonLootCircuitBoard
@@ -251,7 +386,6 @@
     - ComputerIFFCircuitboard
     rareChance: 0.01
 
-# Hard, cold space cash
 - type: entity
   name: random spesos
   id: SpawnDungeonLootSpesos
@@ -284,7 +418,6 @@
     - SpaceCash30000
     rareChance: 0.01
 
-# Materials
 - type: entity
   name: random materials
   id: SpawnDungeonLootMaterialsBasicFull
@@ -483,139 +616,6 @@
     - BananiumOre1
     rareChance: 0.05
 
-# Bureaucracy clutter items
-- type: entity
-  name: random clutter
-  id: SpawnDungeonLootBureaucracy
-  parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Bureaucracy"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: labeler1
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - PaperOffice
-    - Paper
-    - Paper
-    - Paper
-    - ClothingEyesGlasses
-    - ClothingEyesGlassesJamjar
-    - HandLabeler
-    - NewtonCradle
-    - DrinkSpaceGlue
-    - FolderSpawner
-    - FolderSpawner
-    - FolderSpawner
-    - FolderSpawner
-    - FolderSpawner
-    - SpawnDungeonLootBureaucracyPen
-    chance: 1
-    offset: 0.0
-
-- type: entity
-  name: random pen
-  id: SpawnDungeonLootBureaucracyPen
-  noSpawn: true
-  parent: MarkerBasePlaceFree
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Misc/bureaucracy.rsi
-        state: luxury_pen
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - Pen
-    - LuxuryPen
-    - LuxuryPen
-    - LuxuryPen
-    - PenCap
-    - PenHop
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - PenExplodingBox
-    - HypopenBox
-    rareChance: 0.01
-
-- type: entity
-  name: random locker
-  id: SpawnDungeonLootLockersGeneral
-  parent: MarkerBase
-  suffix: "Dungeon, Generic"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Storage/closet.rsi
-        state: generic
-      - sprite: Structures/Storage/closet.rsi
-        state: generic_door
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ClosetMaintenanceFilledRandom
-    - WardrobeBlackFilled
-    - WardrobeBlueFilled
-    - WardrobeGreenFilled
-    - WardrobeGreyFilled
-    - WardrobeMixedFilled
-    - WardrobePinkFilled
-    - WardrobeWhiteFilled
-    - WardrobeYellowFilled
-    chance: 1
-    offset: 0.0
-
-- type: entity
-  name: random locker
-  id: SpawnDungeonLootLockersProtectiveGear
-  parent: MarkerBase
-  suffix: "Dungeon, Protective Gear"
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Storage/closet.rsi
-        state: fire
-      - sprite: Structures/Storage/closet.rsi
-        state: fire_door
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - ClosetEmergencyFilledRandom
-    - ClosetFireFilled
-    - ClosetL3Filled
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - ClosetBombFilled
-    - ClosetRadiationSuitFilled
-    - ClosetL3Filled
-    rareChance: 0.15
-
 - type: entity
   name: random vehicle crate
   id: SpawnDungeonLootCrateVehicle
@@ -641,7 +641,6 @@
     - CrateFunHoverbikeNF
     rareChance: 0.35
 
-# Canisters
 - type: entity
   name: random canister
   id: SpawnDungeonLootCanister
