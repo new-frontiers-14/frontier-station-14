@@ -1,0 +1,26 @@
+- type: vessel
+  id: Hunter
+  name: Hunter
+  description: A small armored Syndicate assault shuttle, perfect for devious operations!
+  price: 50000
+  category: Small
+  group: Syndicate
+  shuttlePath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
+
+- type: gameMap
+  id: Hunter
+  mapName: 'Hunter'
+  mapPath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
+  minPlayers: 0
+  stations:
+    Hunter:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Hunter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

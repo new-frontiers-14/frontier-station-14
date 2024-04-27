@@ -369,7 +369,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoPIDCard
-  name: station representative ID card
+  name: head of personnel ID card
   components:
   - type: Sprite
     layers:
@@ -445,6 +445,8 @@
     layers:
     - state: default
     - state: idbrigmedic
+  - type: PresetIdCard
+    job: Brigmedic
 
 - type: entity
   parent: IDCardStandard
@@ -591,8 +593,8 @@
   id: AgentIDCard
   suffix: Agent
   components:
-  - type: IdCard
-    jobTitle: Passenger
+  - type: PresetIdCard
+    job: Passenger
   - type: Access
     tags:
     - Maintenance
@@ -848,3 +850,5 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: PresetIdCard
+    job: SeniorOfficer

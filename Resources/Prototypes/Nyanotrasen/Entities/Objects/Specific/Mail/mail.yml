@@ -88,29 +88,30 @@
   components:
   - type: Mail
     contents:
-      # Don't use BookDemonomiconRandom.
-      # It uses a RandomSpawner which just spawns the book outside of the mail.
-    - id: BookDemonomicon1
-      orGroup: Demonomicon
-    - id: BookDemonomicon2
-      orGroup: Demonomicon
-    - id: BookDemonomicon3
-      orGroup: Demonomicon
-      # There's no way to signal "spawn nothing" with an orGroup,
-      # so have this blank book instead. Write your own demon summoning tome!
-    - id: BookRandom
-      prob: 3
-      orGroup: Demonomicon
-    - id: BookChemistryInsane
-      prob: 0.10
-    - id: BookBotanicalTextbook
-      prob: 0.5
-    - id: BookFishing
-      prob: 0.10
-    - id: BookDetective
-      prob: 0.10
-    - id: BookGnominomicon
-      prob: 0.2
+      # # Don't use BookDemonomiconRandom.
+      # # It uses a RandomSpawner which just spawns the book outside of the mail.
+    # - id: BookDemonomicon1
+      # orGroup: Demonomicon
+    # - id: BookDemonomicon2
+      # orGroup: Demonomicon
+    # - id: BookDemonomicon3
+      # orGroup: Demonomicon
+      # # There's no way to signal "spawn nothing" with an orGroup,
+      # # so have this blank book instead. Write your own demon summoning tome!
+    # - id: BookRandom
+      # prob: 3
+      # orGroup: Demonomicon
+    # - id: BookChemistryInsane
+      # prob: 0.10
+    # - id: BookBotanicalTextbook
+      # prob: 0.5
+    # - id: BookFishing
+      # prob: 0.10
+    # - id: BookDetective
+      # prob: 0.10
+    # - id: BookGnominomicon
+      # prob: 0.2
+    - id: BookRandomStory
 
 - type: entity
   noSpawn: true
@@ -411,10 +412,7 @@
   - type: Mail
     contents:
     # TODO actual flowers
-    - id: ClothingHeadHatFlowerCrown
-      orGroup: Flower
-    - id: ClothingHeadHatHairflower
-      orGroup: Flower
+    - id: ClothingHeadHatFlowerWreath
 
 - type: entity
   noSpawn: true

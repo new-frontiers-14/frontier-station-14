@@ -14,47 +14,6 @@
         Glass: 1
 
 - type: entity
-  id: SmallThrusterMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: small thruster machine board
-  components:
-  - type: MachineBoard
-    prototype: SmallThruster
-    requirements:
-      Capacitor: 4
-    materialRequirements:
-      Steel: 5
-  - type: StaticPrice
-    price: 30
-
-- type: entity
-  id: SmallGyroscopeMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: small gyroscope machine board
-  components:
-  - type: MachineBoard
-    prototype: SmallGyroscope
-    requirements:
-      Manipulator: 2
-      Capacitor: 1
-    materialRequirements:
-      Glass: 2
-  - type: StaticPrice
-    price: 12.5
-
-- type: entity
-  id: ThrusterSecurityMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: security thruster machine board
-  components:
-  - type: MachineBoard
-    prototype: ThrusterSecurity
-    requirements:
-      Capacitor: 3
-    materialRequirements:
-      Steel: 5
-
-- type: entity
   id: TilePrinterNFMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: tile-meister 5000 machine board
@@ -86,5 +45,126 @@
           Amount: 2
           DefaultPrototype: Beaker
           ExamineName: Glass Beaker
-    - type: StaticPrice
-      price: 200
+
+# TechFab
+- type: entity
+  id: NfsdTechFabCircuitboard
+  parent: SecurityTechFabCircuitboard
+  name: nfsd techfab machine board
+  description: A machine printed circuit board for an nfsd techfab.
+  components:
+    - type: Sprite
+      state: nfsd
+    - type: MachineBoard
+      prototype: NfsdTechFab
+
+# Thrusters
+- type: entity
+  id: ThrusterSecurityMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: security thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterSecurity
+    requirements:
+      Capacitor: 3
+    materialRequirements:
+      Steel: 5
+
+- type: entity
+  id: ThrusterNfsdMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: nfsd thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: ThrusterNfsd
+    requirements:
+      Capacitor: 3
+    materialRequirements:
+      Steel: 5
+
+- type: entity
+  id: SmallThrusterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallThruster
+    requirements:
+      Capacitor: 4
+    materialRequirements:
+      Steel: 5
+  - type: StaticPrice
+    price: 12.5
+
+# Gyroscope
+- type: entity
+  id: GyroscopeSecurityMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: security gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: GyroscopeSecurity
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+
+- type: entity
+  id: SmallGyroscopeSecurityMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small security gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallGyroscopeSecurity
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+  - type: StaticPrice
+    price: 12.5
+
+- type: entity
+  id: GyroscopeNfsdMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: nfsd gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: GyroscopeNfsd
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+
+- type: entity
+  id: SmallGyroscopeNfsdMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small nfsd gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallGyroscopeNfsd
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+  - type: StaticPrice
+    price: 12.5
+
+- type: entity
+  id: SmallGyroscopeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small gyroscope machine board
+  components:
+  - type: MachineBoard
+    prototype: SmallGyroscope
+    requirements:
+      Manipulator: 2
+      Capacitor: 1
+    materialRequirements:
+      Glass: 2
+  - type: StaticPrice
+    price: 12.5

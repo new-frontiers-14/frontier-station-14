@@ -1,22 +1,22 @@
-# - type: cargoProduct # Frontier - Moved to crate
-  # id: ShuttleThruster
-  # icon:
-    # sprite: Structures/Shuttles/thruster.rsi
-    # state: base
-  # product: ThrusterUnanchored
-  # cost: 1500
-  # category: Shuttle
-  # group: market
+- type: cargoProduct
+  id: ShuttleThruster
+  icon:
+    sprite: Structures/Shuttles/thruster.rsi
+    state: base
+  product: CrateEngineeringThruster
+  cost: 1500
+  category: cargoproduct-category-name-shuttle
+  group: market
 
-# - type: cargoProduct # Frontier - Moved to crate
-  # id: ShuttleGyroscope
-  # icon:
-    # sprite: Structures/Shuttles/gyroscope.rsi
-    # state: base
-  # product: GyroscopeUnanchored
-  # cost: 4000
-  # category: Shuttle
-  # group: market
+- type: cargoProduct
+  id: ShuttleGyroscope
+  icon:
+    sprite: Structures/Shuttles/gyroscope.rsi
+    state: base
+  product: CrateEngineeringGyroscope
+  cost: 4000
+  category: cargoproduct-category-name-shuttle
+  group: market
 
 # - type: cargoProduct
   # id: ShuttlePowerKit
@@ -25,6 +25,6 @@
     # state: avionics-systems
   # product: CrateEngineeringShuttle
   # cost: 3000
-  # category: Shuttle
+  # category: cargoproduct-category-name-shuttle
   # group: market
 #  locked: true   # only the QM has permission to order by default
