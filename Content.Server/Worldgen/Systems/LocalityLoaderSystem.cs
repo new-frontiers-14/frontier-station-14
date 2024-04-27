@@ -1,8 +1,9 @@
 ﻿using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Components.Debris;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Spawners;
-
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -14,7 +15,12 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     [Dependency] private readonly TransformSystem _xformSys = default!;
 
     // Duration to reset the despawn timer to when a debris is loaded into a player's view.
-    private const float DebrisActiveDuration = 420; // 7 минут Corvax, а то 5 было маловато людям.
+    private const float DebrisActiveDuration = 300; // 5 минут Corvax.
+
+    public override void Initialize()
+    {
+        SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
+    }
 
     /// <inheritdoc />
     public override void Update(float frameTime)
@@ -76,6 +82,15 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
             timedDespawn = AddComp<TimedDespawnComponent>(uid);
             timedDespawn.Lifetime = DebrisActiveDuration;
         }
+    }
+
+    private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
+    {
+        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+
+        while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
+            if (xform.MapUid is not null && xform.GridUid == entity)
+                _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
     }
 }
 
