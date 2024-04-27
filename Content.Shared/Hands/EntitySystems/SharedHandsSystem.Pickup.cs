@@ -1,3 +1,4 @@
+using Content.Shared._NF.LoggingExtensions;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;
@@ -223,7 +224,10 @@ public abstract partial class SharedHandsSystem : EntitySystem
             return;
         }
 
-        _adminLogger.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(uid):user} picked up {ToPrettyString(entity):entity}");
+        // Frontier modification: adds extra things to the log
+        var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, entity);
+
+        _adminLogger.Add(LogType.Pickup, LogImpact.Low, $"{ToPrettyString(uid):user} picked up {ToPrettyString(entity):entity}{extraLogs}");
 
         Dirty(uid, hands);
 
