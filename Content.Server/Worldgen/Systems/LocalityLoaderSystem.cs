@@ -2,8 +2,8 @@
 using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
+using Microsoft.Extensions.Logging;
 using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Spawners;
 
 namespace Content.Server.Worldgen.Systems;
@@ -89,9 +89,21 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
+        var logger = IoCManager.Resolve<ILogger>();
+
+        logger.LogDebug(ToPrettyString(entity));
+
         while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
+        {
+            logger.LogDebug($"{ToPrettyString(mob)} {xform.GridUid}");
+
             if (xform.MapUid is not null && xform.GridUid == entity)
+            {
                 _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+
+                logger.LogDebug($"Unparented!");
+            }
+        }
     }
 }
 
