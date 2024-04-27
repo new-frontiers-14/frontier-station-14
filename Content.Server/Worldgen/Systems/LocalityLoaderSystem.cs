@@ -87,13 +87,10 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 
     private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, TimedDespawnEvent e)
     {
-        if (!EntityManager.TryGetComponent<TransformComponent>(entity, out var transform))
-            return;
-
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
         while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-            if (xform.MapUid is not null && xform.GridUid == transform.GridUid)
+            if (xform.MapUid is not null && xform.GridUid == entity)
                 _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
     }
 }
