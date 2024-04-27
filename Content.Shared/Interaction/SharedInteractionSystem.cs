@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._NF.LoggingExtensions;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
@@ -419,7 +420,11 @@ namespace Content.Shared.Interaction
             // all interactions should only happen when in range / unobstructed, so no range check is needed
             var message = new InteractHandEvent(user, target);
             RaiseLocalEvent(target, message, true);
-            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{ToPrettyString(user):user} interacted with {ToPrettyString(target):target}");
+
+            // Frontier modification: adds extra things to the log
+            var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, target);
+
+            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{ToPrettyString(user):user} interacted with {ToPrettyString(target):target}{extraLogs}");
             DoContactInteraction(user, target, message);
             if (message.Handled)
                 return;
@@ -1047,7 +1052,12 @@ namespace Content.Shared.Interaction
             var dropMsg = new DroppedEvent(user);
             RaiseLocalEvent(item, dropMsg, true);
             if (dropMsg.Handled)
-                _adminLogger.Add(LogType.Drop, LogImpact.Low, $"{ToPrettyString(user):user} dropped {ToPrettyString(item):entity}");
+            {
+                // Frontier modification: adds extra things to the log
+                var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, item);
+
+                _adminLogger.Add(LogType.Drop, LogImpact.Low, $"{ToPrettyString(user):user} dropped {ToPrettyString(item):entity}{extraLogs}");
+            }
 
             // If the dropper is rotated then use their targetrelativerotation as the drop rotation
             var rotation = Angle.Zero;
