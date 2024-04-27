@@ -10,20 +10,22 @@
     minimumPlayers: 55
   - type: AnomalySpawnRule
 
-# - type: entity
-  # id: BluespaceArtifact
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # weight: 5
-    # startDelay: 30
-    # duration: 35
-  # - type: BluespaceArtifactRule
+- type: entity
+  id: BluespaceArtifact
+  parent: BaseGameRule
+  abstract: true # Frontier
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    startDelay: 30
+    duration: 35
+  - type: BluespaceArtifactRule
 
 - type: entity
   id: BluespaceLocker
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -46,8 +48,8 @@
 
 - type: entity
   id: BureaucraticError
-  abstract: true # Frontier
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -59,8 +61,8 @@
 
 - type: entity
   id: ClericalError
-  abstract: true # Frontier
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -152,37 +154,39 @@
     startDelay: 20
   - type: GasLeakRule
 
-# - type: entity
-  # id: KudzuGrowth
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # earliestStart: 15
-    # minimumPlayers: 15
-    # weight: 5
-    # startDelay: 50
-    # duration: 240
-  # - type: KudzuGrowthRule
+- type: entity
+  id: KudzuGrowth
+  parent: BaseGameRule
+  abstract: true # Frontier
+  noSpawn: true
+  components:
+  - type: StationEvent
+    earliestStart: 15
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 50
+    duration: 240
+  - type: KudzuGrowthRule
 
-# - type: entity
-  # id: MeteorSwarm
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # earliestStart: 30
-    # weight: 5
-    # minimumPlayers: 20
-    # startAnnouncement: station-event-meteor-swarm-start-announcement
-    # endAnnouncement: station-event-meteor-swarm-end-announcement
-    # startAudio:
-      # path: /Audio/Announcements/meteors.ogg
-      # params:
-        # volume: -4
-    # duration: null #ending is handled by MeteorSwarmRule
-    # startDelay: 30
-  # - type: MeteorSwarmRule
+- type: entity
+  id: MeteorSwarm
+  parent: BaseGameRule
+  abstract: true # Frontier
+  noSpawn: true
+  components:
+  - type: StationEvent
+    earliestStart: 30
+    weight: 5
+    minimumPlayers: 20
+    startAnnouncement: station-event-meteor-swarm-start-announcement
+    endAnnouncement: station-event-meteor-swarm-end-announcement
+    startAudio:
+      path: /Audio/Announcements/meteors.ogg
+      params:
+        volume: -4
+    duration: null #ending is handled by MeteorSwarmRule
+    startDelay: 30
+  - type: MeteorSwarmRule
 
 - type: entity
   id: MouseMigration
@@ -284,18 +288,19 @@
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
-# - type: entity
- # parent: BaseGameRule
- # id: TerminatorSpawn
- # noSpawn: true
- # components:
- # - type: StationEvent
-   # weight: 8
-   # duration: 1
-   # earliestStart: 30
-   # minimumPlayers: 20
- # - type: RandomSpawnRule
-   # prototype: SpawnPointGhostTerminator
+- type: entity
+  parent: BaseGameRule
+  id: TerminatorSpawn
+  abstract: true # Frontier
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 8
+    duration: 1
+    earliestStart: 30
+    minimumPlayers: 20
+  - type: RandomSpawnRule
+    prototype: SpawnPointGhostTerminator
 
 - type: entity
   id: VentClog
@@ -402,8 +407,8 @@
 
 - type: entity
   id: ZombieOutbreak
-  abstract: true # Frontier
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -420,8 +425,8 @@
 
 - type: entity
   id: LoneOpsSpawn
-  abstract: true # Frontier
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -450,8 +455,8 @@
 
 - type: entity
   id: ImmovableRodSpawn
-  abstract: true # Frontier
   parent: BaseGameRule
+  abstract: true # Frontier
   noSpawn: true
   components:
   - type: StationEvent
@@ -495,7 +500,7 @@
   id: IonStorm
   components:
   - type: StationEvent
-    weight: 10
+    weight: 1 # Frontier 10<1
     reoccurrenceDelay: 20
     duration: 1
   - type: IonStormRule

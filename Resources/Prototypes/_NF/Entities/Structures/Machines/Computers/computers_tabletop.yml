@@ -63,6 +63,27 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerShuttleSyndie] # Shuttle
   id: ComputerTabletopShuttleSyndie
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: syndishuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: syndie_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleAntag] # Shuttle
+  id: ComputerTabletopShuttleAntag
   components:
   - type: Sprite
     drawdepth: SmallObjects
