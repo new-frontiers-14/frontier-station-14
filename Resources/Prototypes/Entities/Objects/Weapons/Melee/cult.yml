@@ -21,6 +21,7 @@
     slots:
     - back
   - type: DisarmMalus
+  - type: Contraband #frontier
 
 - type: entity
   name: eldritch blade
@@ -45,6 +46,7 @@
     slots:
     - back
   - type: DisarmMalus
+  - type: Contraband #frontier
 
 - type: entity
   name: unholy halberd
@@ -67,6 +69,8 @@
         Blunt: 10
         Slash: 10
         Structural: 5
+    soundHit:
+      collection: MetalThud
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
@@ -83,3 +87,4 @@
     - back
   - type: UseDelay
     delay: 1
+  - type: Contraband #frontier

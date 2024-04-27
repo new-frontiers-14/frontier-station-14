@@ -165,7 +165,7 @@ public sealed partial class CargoSystem
                     // We won't be able to fit the whole order on, so make one
                     // which represents the space we do have left:
                     var reducedOrder = new CargoOrderData(order.OrderId,
-                            order.ProductId, order.Price, spaceRemaining, order.Requester, order.Reason);
+                            order.ProductId, order.Price, spaceRemaining, order.Requester, order.Reason, null);
                     orders.Add(reducedOrder);
                 }
                 else
@@ -184,7 +184,7 @@ public sealed partial class CargoSystem
     /// </summary>
     private int GetCargoSpace(EntityUid consoleUid, EntityUid gridUid)
     {
-        var space = GetCargoPallets(consoleUid, gridUid).Count;
+        var space = GetCargoPallets(consoleUid, gridUid, BuySellType.Buy).Count;
         return space;
     }
 
@@ -203,9 +203,12 @@ public sealed partial class CargoSystem
         return Math.Sqrt(xDifference * xDifference + yDifference * yDifference);
     }
 
-    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid consoleUid, EntityUid gridUid)
+    /// GetCargoPallets(gridUid, BuySellType.Sell) to return only Sell pads
+    /// GetCargoPallets(gridUid, BuySellType.Buy) to return only Buy pads
+    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid consoleUid, EntityUid gridUid, BuySellType requestType = BuySellType.All)
     {
         _pads.Clear();
+
         var query = AllEntityQuery<CargoPalletComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var comp, out var compXform))
@@ -229,7 +232,13 @@ public sealed partial class CargoSystem
                 continue;
             }
 
+            if ((requestType & comp.PalletType) == 0)
+            {
+                continue;
+            }
+
             _pads.Add((uid, comp, compXform));
+
         }
 
         return _pads;
@@ -260,9 +269,8 @@ public sealed partial class CargoSystem
 
     #region Station
 
-    private bool SellPallets(EntityUid consoleUid, EntityUid gridUid, EntityUid? station, out double amount)
+    private bool SellPallets(EntityUid consoleUid, EntityUid gridUid, out double amount)
     {
-        station ??= _station.GetOwningStation(gridUid);
         GetPalletGoods(consoleUid, gridUid, out var toSell, out amount);
 
         Log.Debug($"Cargo sold {toSell.Count} entities for {amount}");
@@ -270,11 +278,9 @@ public sealed partial class CargoSystem
         if (toSell.Count == 0)
             return false;
 
-        if (station != null)
-        {
-            var ev = new EntitySoldEvent(station.Value, toSell);
-            RaiseLocalEvent(ref ev);
-        }
+
+        var ev = new EntitySoldEvent(toSell);
+        RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
         {
@@ -289,7 +295,7 @@ public sealed partial class CargoSystem
         amount = 0;
         toSell = new HashSet<EntityUid>();
 
-        foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid))
+        foreach (var (palletUid, _, _) in GetCargoPallets(consoleUid, gridUid, BuySellType.Sell))
         {
             // Containers should already get the sell price of their children so can skip those.
             _setEnts.Clear();
@@ -334,7 +340,7 @@ public sealed partial class CargoSystem
             return true;
         }
 
-        var complete = IsBountyComplete(uid, (EntityUid?) null, out var bountyEntities);
+        var complete = IsBountyComplete(uid, out var bountyEntities);
 
         // Recursively check for mobs at any point.
         var children = xform.ChildEnumerator;
@@ -373,7 +379,7 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!SellPallets(uid, gridUid, null, out var price))
+        if (!SellPallets(uid, gridUid, out var price))
             return;
 
         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
@@ -399,4 +405,4 @@ public sealed partial class CargoSystem
 /// deleted but after the price has been calculated.
 /// </summary>
 [ByRefEvent]
-public readonly record struct EntitySoldEvent(EntityUid Station, HashSet<EntityUid> Sold);
+public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold);

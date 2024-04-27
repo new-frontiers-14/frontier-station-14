@@ -30,7 +30,6 @@
   - Reporter
   - Visitor
   - Zookeeper
-  - Detective
   - ServiceWorker
   - Valet ##nyanojobs below
   - MartialArtist
@@ -39,6 +38,7 @@
   - Mercenary # Frontier
   - Pilot # Frontier
   - StationTrafficController # Frontier
+  - StationRepresentative # Frontier
 
 - type: department
   id: Command
@@ -53,6 +53,8 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - StationRepresentative # Frontier
+  - Sheriff  # Frontier
   primary: false
   weight: 100
 
@@ -84,14 +86,21 @@
   color: "#DE3A3A"
   weight: 20
   roles:
-  - HeadOfSecurity
-  - SecurityCadet
-  - SecurityOfficer
-  - Warden
+  - Detective # Frontier - No Longer Usable
+  - HeadOfSecurity # Frontier - No Longer Usable
+  - SecurityCadet # Frontier - No Longer Usable
+  - SecurityOfficer # Frontier - No Longer Usable
+  - Warden # Frontier - No Longer Usable
   - PrisonGuard ##nyano
   - Prisoner ##nyano
-  - Brigmedic
+  - Brigmedic # Frontier
   - SecurityGuard # Frontier
+  - DetectiveNF # Frontier
+  - Cadet # Frontier
+  - Deputy # Frontier
+  - Bailiff # Frontier
+  - Sheriff # Frontier
+  - SeniorOfficer # Frontier
 
 - type: department
   id: Science

@@ -1,0 +1,38 @@
+- type: entity
+  id: BannerNfsd
+  parent: BannerBase
+  name: nfsd banner
+  description: A banner displaying the colors of the new frontier sheriff's department. # Frontier - description change
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSecurityNode # Frontier
+
+- type: entity
+  id: FlagNfsd
+  parent: BannerBase
+  name: nfsd flag
+  description: A flag displaying the colors of the new frontier sheriff's department. # Frontier - description change
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-flag
+  - type: Construction # Frontier
+    graph: BannersGraph # Frontier
+    node: BannerSecurityNode # Frontier
+
+- type: entity
+  id: BannerGoblin01
+  parent: BannerBase
+  name: goblin banner
+  description: A banner displaying one of goblin clan symbols.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner_goblin
+  - type: Construction
+    graph: BannersGraph
+    node: BannerGoblin01

@@ -111,6 +111,9 @@
     Poison:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Human
         damage:
           types:
             Poison: 1
@@ -425,11 +428,12 @@
   color: "#D6CE7B"
   metabolisms:
     Poison:
+      metabolismRate: 0.2
       effects:
       - !type:HealthChange
         damage:
           types:
-            Poison: 6
+            Poison: 3
 
 - type: reagent
   id: VentCrud
@@ -455,6 +459,7 @@
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#7e916e"
+  worksOnTheDead: true
   metabolisms:
     Medicine:
       effects:
@@ -477,7 +482,8 @@
       - !type:PopupMessage
         conditions:
           - !type:OrganType
-            type: Human
+            type: Animal
+            shouldHave: false
         reagent: Protein
         type: Local
         visualType: MediumCaution
@@ -487,21 +493,29 @@
         probability: 0.1
         conditions:
           - !type:OrganType
-            type: Human
+            type: Animal
+            shouldHave: false
       - !type:HealthChange
         conditions:
         - !type:OrganType
-          type: Human
+          type: Animal
+          shouldHave: false
         damage:
           types:
             Poison: 1
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
-          type: Human
-          shouldHave: false
+          type: Animal
+          shouldHave: true
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent # Frontier: Goblin
+        conditions: # Frontier: Goblin
+        - !type:OrganType # Frontier: Goblin
+          type: Goblin # Frontier: Goblin
+        reagent: Protein # Frontier: Goblin
+        amount: 0.5 # Frontier: Goblin
 
 - type: reagent
   id: Allicin

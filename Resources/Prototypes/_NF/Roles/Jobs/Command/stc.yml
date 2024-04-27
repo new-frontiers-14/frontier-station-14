@@ -13,12 +13,14 @@
       time: 10800 # 3 hrs as sec
   canBeAntag: false
   icon: "JobIconStc" 
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
   setPreference: true
   access:
+  - Service
   - Maintenance
   - External
   - Frontier
+  - StationTrafficController
 
 - type: startingGear
   id: StcGear
