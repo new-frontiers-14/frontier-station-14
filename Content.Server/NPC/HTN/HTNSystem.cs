@@ -2,20 +2,20 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Content.Server.Administration.Managers;
-using Robust.Shared.CPUJob.JobQueues;
-using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Systems;
+using Content.Server.Worldgen;
+using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Robust.Shared.Physics.Systems;
-using Content.Server.Worldgen.Systems;
-using Content.Server.Worldgen.Components;
 
 namespace Content.Server.NPC.HTN;
 
@@ -27,7 +27,7 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
     //[Dependency] private readonly SharedPhysicsSystem _physics = default!;
     //[Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly BaseWorldSystem _world = default!;
+    [Dependency] private readonly WorldControllerSystem _world = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -258,14 +258,12 @@ public sealed class HTNSystem : EntitySystem
 
     private bool IsNPCActive(HTNComponent component)
     {
-        EntityUid entity = component.Owner;
-
-        if (!_xformQuery.TryGetComponent(entity, out TransformComponent? xform))
+        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform))
             return true;
 
         /*return _physics.GetCollidingEntities(xform.MapID, Box2.CenteredAround(_transform.GetWorldPosition(xform), new(12))).Any(physicsComponent => physicsComponent.);*/
 
-        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(_world.GetChunkCoords(entity, xform), xform.MapUid!.Value));
+        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid!.Value));
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
