@@ -166,7 +166,7 @@ public sealed class HTNSystem : EntitySystem
                 break;
 
             if (!IsNPCActive(comp))
-                return;
+                continue;
 
             if (comp.PlanningJob != null)
             {
