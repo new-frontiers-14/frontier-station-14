@@ -1,7 +1,7 @@
 - type: entity
   name: weapon case
   parent: ToolboxBase
-  id: GunCaseLong
+  id: WeaponCaseLong
   description: A reinforced casing for storing long weapons and accessories.
   suffix: Long
   components:
@@ -31,13 +31,18 @@
       - Projectile
       - CartridgeAmmo
       - PowerCell
+      - MeleeWeapon
+      - DisarmMalus
+      - EnergySword
+      - ItemToggleDisarmMalus
+      - Blocking
       tags:
       - Cartridge
 
 - type: entity
   name: weapon case
   parent: ToolboxBase
-  id: GunCaseShort
+  id: WeaponCaseShort
   description: A reinforced casing for storing side arms and weapon accessories.
   suffix: Short
   components:
@@ -62,7 +67,10 @@
       - Projectile
       - CartridgeAmmo
       - PowerCell
+      - MeleeWeapon
+      - DisarmMalus
       - EnergySword
       - ItemToggleDisarmMalus
+      - Blocking
       tags:
       - Cartridge

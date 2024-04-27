@@ -28,13 +28,13 @@
     - Handcuffs
     - RiotShield
     - RiotLaserShield
+    - ComputerIFFCircuitboard
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ClothingOuterArmorReflective
     - ClothingOuterHardsuitMercenary
     - SpawnDungeonLootArmoryMelee
-    - ComputerIFFCircuitboard
     rareChance: 0.05
 
 - type: entity
@@ -73,12 +73,12 @@
     - Handcuffs
     - RiotShield
     - RiotLaserShield
+    - ComputerIFFCircuitboard
     chance: 0.85
     offset: 0.0
     rarePrototypes:
     - ClothingOuterArmorReflective
     - ClothingOuterArmorHeavy
-    - ComputerIFFCircuitboard
     rareChance: 0.01
 
 # Tools (Weapons)
@@ -99,20 +99,20 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - GunCaseShortMk58Expedition
-    - GunCaseShortMk58Expedition
-    - GunCaseShortDeckardExpedition
-    - GunCaseShortLaserGunExpedition
-    - GunCaseShortLaserGunExpedition
-    - GunCaseLongKammererExpedition
-    - GunCaseLongRepeaterExpedition
-    #- GunCaseShortSvalinnExpedition
-    chance: 0.65
+    - WeaponCaseShortMk58Expedition
+    - WeaponCaseShortMk58Expedition
+    - WeaponCaseShortDeckardExpedition
+    - WeaponCaseShortLaserGunExpedition
+    - WeaponCaseShortLaserGunExpedition
+    - WeaponCaseLongKammererExpedition
+    - WeaponCaseLongRepeaterExpedition
+    #- WeaponCaseShortSvalinnExpedition
+    chance: 0.7
     offset: 0.0
     rarePrototypes:
-    - GunCaseLongWT550Expedition
-    - GunCaseLongAtreidesExpedition
-    - GunCaseLongDrozdExpedition
+    - WeaponCaseLongWT550Expedition
+    - WeaponCaseLongAtreidesExpedition
+    - WeaponCaseLongDrozdExpedition
     - SpawnDungeonLootArmoryMelee
     rareChance: 0.05
 
@@ -133,18 +133,20 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - GunCaseLongDrozdExpedition
-    - GunCaseLongWT550Expedition
-    - GunCaseLongAtreidesExpedition
-    - GunCaseLongEnergyGunExpedition
-    - GunCaseLongLaserCarbineExpedition
+    - WeaponCaseLongDrozdExpedition
+    - WeaponCaseLongWT550Expedition
+    - WeaponCaseLongAtreidesExpedition
+    - WeaponCaseLongEnergyGunExpedition
+    - WeaponCaseLongLaserCarbineExpedition
     - SpawnDungeonLootArmoryRare
-    chance: 0.7
+    chance: 0.75
     offset: 0.0
     rarePrototypes:
-    - GunCaseLongAkExpedition
-    - GunCaseLongLecterExpedition
-    - GunCaseLongHristovExpedition
+    - WeaponCaseLongAkExpedition
+    - WeaponCaseLongLecterExpedition
+    - WeaponCaseLongHristovExpedition
+    - WeaponCaseLongM90Expedition
+    - WeaponCaseShortN1984Expedition
     - SpawnDungeonLootArmoryRare
     rareChance: 0.05
 
@@ -171,12 +173,12 @@
     - BaseBallBat
     - Stunbaton
     - ThrowingKnife
-    chance: 0.85
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - PlasteelArmingSword
     - Cutlass
-    - GunCaseShortEnergyShieldExpedition
+    - WeaponCaseShortEnergyShieldExpedition
     rareChance: 0.01
 
 - type: entity
@@ -196,20 +198,20 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - GunCaseShortEnergyShieldExpedition
-    - GunCaseShortEnergySwordExpedition
-    - GunCaseShortEnergyDaggerExpedition
-    - GunCaseShortEnergyCutlassExpedition
+    - WeaponCaseShortEnergyShieldExpedition
+    - WeaponCaseShortEnergySwordExpedition
+    - WeaponCaseShortEnergyDaggerExpedition
+    - WeaponCaseShortEnergyCutlassExpedition
     - Claymore
     - Truncheon
-    chance: 0.85
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - CaptainSabre
-    - GunCaseShortEnergySwordDoubleExpedition
-    - GunCaseLongLauncherRocketExpedition
+    - WeaponCaseShortEnergySwordDoubleExpedition
+    - WeaponCaseLongLauncherRocketExpedition
     - SecBreachingHammer
-    rareChance: 0.01
+    rareChance: 0.03
 
 # Clothes
 - type: entity

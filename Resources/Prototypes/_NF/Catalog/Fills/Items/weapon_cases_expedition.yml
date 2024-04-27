@@ -1,9 +1,10 @@
 # Gun cases with contraband (unregistered) guns for expeditions
 # Pistols
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortMk58Expedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortMk58Expedition
   suffix: Dungeon, Mk58
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -12,11 +13,25 @@
     - id: MagazinePistol
       amount: 2
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortN1984Expedition
+  suffix: Dungeon, N1984
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolN1984
+      amount: 1
+    - id: MagazineMagnum
+      amount: 2
+
 # Revolvers
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortDeckardExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortDeckardExpedition
   suffix: Dungeon, Deckard
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -27,9 +42,10 @@
 
 # Shotguns
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongKammererExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongKammererExpedition
   suffix: Dungeon, Kammerer
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -40,9 +56,10 @@
 
 # SMGs
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongWT550Expedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongWT550Expedition
   suffix: Dungeon, SMG, WT550
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -52,9 +69,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongAtreidesExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongAtreidesExpedition
   suffix: Dungeon, SMG, Atreides
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -64,9 +82,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongDrozdExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongDrozdExpedition
   suffix: Dungeon, SMG, Drozd
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -77,9 +96,10 @@
 
 # Rifles
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongLecterExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongLecterExpedition
   suffix: Dungeon, Lecter
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -89,9 +109,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongAkExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongAkExpedition
   suffix: Dungeon, AKMS
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -100,11 +121,25 @@
     - id: MagazineLightRifle
       amount: 2
 
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongM90Expedition
+  suffix: Dungeon, M90
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM90GrenadeLauncher
+      amount: 1
+    - id: MagazineRifle
+      amount: 2
+
 # Energy
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortLaserGunExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortLaserGunExpedition
   suffix: Dungeon, Retro Laser
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -112,9 +147,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortSvalinnExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortSvalinnExpedition
   suffix: Dungeon, Svalinn
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -124,9 +160,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongLaserCarbineExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongLaserCarbineExpedition
   suffix: Dungeon, Laser Carbine
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -134,20 +171,33 @@
       amount: 1
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongEnergyGunExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongEnergyGunExpedition
   suffix: Dungeon, Energy Gun
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
     - id: WeaponEnergyGunExpedition
       amount: 1
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortAdvancedLaserExpedition
+  suffix: Dungeon, Advanced Laser
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponAdvancedLaserExpedition
+      amount: 1
+
 # Sniper
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongHristovExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongHristovExpedition
   suffix: Dungeon, Hristov
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -157,9 +207,10 @@
       amount: 2
 
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongRepeaterExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongRepeaterExpedition
   suffix: Dungeon, Repeater
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -170,9 +221,10 @@
 
 # RPG
 - type: entity
-  parent: GunCaseLong
-  id: GunCaseLongLauncherRocketExpedition
+  parent: WeaponCaseLong
+  id: WeaponCaseLongLauncherRocketExpedition
   suffix: Dungeon, RPG
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -183,9 +235,10 @@
 
 # Melee
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortEnergyShieldExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortEnergyShieldExpedition
   suffix: Dungeon, Energy Shield
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -193,9 +246,10 @@
       amount: 1
 
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortEnergySwordExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortEnergySwordExpedition
   suffix: Dungeon, Energy Sword
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -203,9 +257,10 @@
       amount: 1
 
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortEnergyDaggerExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortEnergyDaggerExpedition
   suffix: Dungeon, Energy Dagger
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -213,9 +268,10 @@
       amount: 1
 
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortEnergyCutlassExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortEnergyCutlassExpedition
   suffix: Dungeon, Energy Cutlass
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -223,9 +279,10 @@
       amount: 1
 
 - type: entity
-  parent: GunCaseShort
-  id: GunCaseShortEnergySwordDoubleExpedition
+  parent: WeaponCaseShort
+  id: WeaponCaseShortEnergySwordDoubleExpedition
   suffix: Dungeon, Energy Sword Double
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
