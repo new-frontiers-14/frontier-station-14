@@ -2,14 +2,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Content.Server.Administration.Managers;
-using Robust.Shared.CPUJob.JobQueues;
-using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Systems;
+using Content.Server.Worldgen;
+using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -22,6 +25,11 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    [Dependency] private readonly WorldControllerSystem _world = default!;
+
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    private EntityQuery<WorldControllerComponent> _mapQuery;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -31,6 +39,9 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
+        _mapQuery = GetEntityQuery<WorldControllerComponent>();
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -153,6 +164,9 @@ public sealed class HTNSystem : EntitySystem
             if (count >= maxUpdates)
                 break;
 
+            if (!IsNPCActive(comp))
+                continue;
+
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -239,6 +253,14 @@ public sealed class HTNSystem : EntitySystem
             Update(comp, frameTime);
             count++;
         }
+    }
+
+    private bool IsNPCActive(HTNComponent component)
+    {
+        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform) || !_mapQuery.TryGetComponent(xform.MapUid, out var worldComponent))
+            return true;
+
+        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid.Value, worldComponent));
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
