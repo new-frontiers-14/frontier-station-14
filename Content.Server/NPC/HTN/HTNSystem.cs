@@ -13,6 +13,9 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Physics.Systems;
+using Content.Server.Worldgen.Systems;
+using Content.Server.Worldgen.Components;
 
 namespace Content.Server.NPC.HTN;
 
@@ -22,6 +25,13 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    //[Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    //[Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly BaseWorldSystem _world = default!;
+
+    private EntityQuery<TransformComponent> _xformQuery;
+
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -31,6 +41,8 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -153,6 +165,9 @@ public sealed class HTNSystem : EntitySystem
             if (count >= maxUpdates)
                 break;
 
+            if (!IsNPCActive(comp))
+                return;
+
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -239,6 +254,18 @@ public sealed class HTNSystem : EntitySystem
             Update(comp, frameTime);
             count++;
         }
+    }
+
+    private bool IsNPCActive(HTNComponent component)
+    {
+        EntityUid entity = component.Owner;
+
+        if (!_xformQuery.TryGetComponent(entity, out TransformComponent? xform))
+            return true;
+
+        /*return _physics.GetCollidingEntities(xform.MapID, Box2.CenteredAround(_transform.GetWorldPosition(xform), new(12))).Any(physicsComponent => physicsComponent.);*/
+
+        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(_world.GetChunkCoords(entity, xform), xform.MapUid!.Value));
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
