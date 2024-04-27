@@ -1,6 +1,8 @@
 - type: entity
   id: CrateFloorsFun
   parent: CrateGenericSteel
+  name: fun floors tiles crate
+  description: A crate full of 30 random tiles, used for decoration.
   components:
   - type: StorageFill
     contents:
@@ -24,3 +26,14 @@
         amount: 30
         prob: 1
         orGroup: FloorTileItemArcadeBlue
+
+- type: entity
+  id: CrateFunHoverbikeNF
+  parent: CrateLivestock
+  name: hoverbike crate
+  description: Harder, better, faster, stronger? No, just faster, faster, faster.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleHoverbikeNF
+      - id: VehicleKeyHoverbikeNF
