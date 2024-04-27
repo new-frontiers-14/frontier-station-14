@@ -379,11 +379,11 @@
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - DawInstrumentMachineCircuitboard
+    - ComputerIFFCircuitboard
     chance: 1
     offset: 0.0
     rarePrototypes:
     - SecurityTechFabCircuitboard
-    - ComputerIFFCircuitboard
     rareChance: 0.01
 
 - type: entity
@@ -434,27 +434,28 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - SheetSteel
+    - SheetSteel
     - SheetGlass
-    - SheetRGlass
+    - SheetGlass
+    - SheetPlastic
+    - SheetPlastic
     - SheetPGlass
     - SheetUGlass
-    - SheetSteel
-    - SheetPaper
     - SheetPlasma
-    - SheetPlastic
     - SheetUranium
     - MaterialCloth
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SheetPaper
     - MaterialWoodPlank
     - PartRodMetal
     - CableHVStack
     - CableMVStack
     - CableApcStack
-    chance: 0.9
-    offset: 0.0
-    rarePrototypes:
-    - MaterialBananium
-    - MaterialBones
-    rareChance: 0.01
+    - SheetRGlass
+    rareChance: 0.05
 
 - type: entity
   name: random materials
@@ -482,8 +483,6 @@
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond
-    - MaterialBananium
-    - MaterialBones
     rareChance: 0.01
 
 - type: entity
@@ -518,7 +517,7 @@
     - CableMVStack1
     - CableApcStack1
     - ShardGlass
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - MaterialBananium1
@@ -548,7 +547,7 @@
     - SheetPlasteel1
     - MaterialDurathread1
     - ShardGlass
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -580,7 +579,7 @@
     - SpaceQuartz
     - UraniumOre
     - Coal
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - BananiumOre
