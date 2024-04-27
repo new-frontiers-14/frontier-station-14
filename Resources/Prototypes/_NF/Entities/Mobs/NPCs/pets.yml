@@ -15,6 +15,7 @@
     nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
     implants:
+    - MindShieldImplant
     - MedicalTrackingImplant
   - type: Butcherable
     spawned:
@@ -56,6 +57,43 @@
   - type: AutoImplant
     implants:
     - DeathRattleImplant
+
+- type: entity
+  name: Cappy
+  parent: MobCatGhost
+  id: MobCatCappy
+  description: First cat to shoot a gun.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nfsdcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nfsdcat
+      Critical:
+        Base: nfsdcat_dead
+      Dead:
+        Base: nfsdcat_dead
+  - type: GhostRole
+    name: ghost-role-information-cappy-name
+    description: ghost-role-information-cappy-description
+    requirements:
+    - !type:WhitelistRequirement
+  - type: Loadout
+    prototypes: [ MobCappyGear ]
+  - type: ReplacementAccent
+    accent: nfsdCat
+  - type: RandomMetadata
+    nameSegments: [names_cat_cappy] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplant
+    - LightImplant
 
 - type: entity
   name: Mistake
