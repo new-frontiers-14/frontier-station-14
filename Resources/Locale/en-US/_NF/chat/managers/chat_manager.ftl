@@ -17,6 +17,7 @@ chat-speech-verb-harpy-2 = tweets
 chat-speech-verb-harpy-3 = caws
 chat-speech-verb-harpy-4 = trills
 
+chat-speech-verb-name-goblin = Goblin
 chat-speech-verb-goblin-1 = jabbers
 chat-speech-verb-goblin-2 = vokers
 chat-speech-verb-goblin-3 = blurts out
