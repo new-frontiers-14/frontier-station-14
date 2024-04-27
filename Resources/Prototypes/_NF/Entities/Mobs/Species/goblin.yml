@@ -1,0 +1,73 @@
+- type: entity
+  parent: BaseMobHuman
+  name: Urist McGoblin
+  id: MobGoblinBase
+  abstract: true
+  components:
+  - type: Sprite
+    scale: 0.8, 0.7
+  - type: HumanoidAppearance
+    species: Goblin
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 135
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Goblin
+  - type: Damageable
+    damageModifierSet: Goblin
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 3
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 1
+  - type: Stamina
+  - type: PseudoItem
+  - type: Vocal
+    wilhelm: "/Audio/_NF/Voice/Goblin/goblin-cackle-05.ogg"
+    sounds:
+      Male: MaleGoblin
+      Female: FemaleGoblin
+      Unsexed: MaleGoblin
+  - type: Goblin
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+    - Goblin
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoblin
+      amount: 3
+#  - type: SizeAttributeWhitelist # This system need to move to a slider
+#    tall: true
+#    tallscale: 1
+#    tallDensity: 185
+  - type: ReplacementAccent
+    accent: goblin_accent
+
+- type: entity
+  save: false
+  name: Urist McGoblin
+  parent: MobHumanDummy
+  id: MobGoblinDummy
+  noSpawn: true
+  description: A dummy goblin meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Goblin

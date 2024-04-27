@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyard]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyard]
   id: ComputerTabletopShipyard
   components:
   - type: Sprite
@@ -19,7 +19,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, BaseMothershipComputer]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, BaseMothershipComputer]
   id: BaseMothershipComputerTabletop
   abstract: true
   components:
@@ -40,7 +40,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardSecurity]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardSecurity]
   id: ComputerTabletopShipyardSecurity
   components:
   - type: Sprite
@@ -60,7 +60,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardNfsd]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardNfsd]
   id: ComputerTabletopShipyardNfsd
   components:
   - type: Sprite
@@ -80,7 +80,7 @@
       state: telesci_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardBlackMarket]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardBlackMarket]
   id: ComputerTabletopShipyardBlackMarket
   components:
   - type: Sprite
@@ -100,7 +100,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardExpedition]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardExpedition]
   id: ComputerTabletopShipyardExpedition
   components:
   - type: Sprite
@@ -120,7 +120,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShipyardScrap]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShipyardScrap]
   id: ComputerTabletopShipyardScrap
   components:
   - type: Sprite

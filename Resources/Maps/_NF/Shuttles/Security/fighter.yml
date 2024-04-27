@@ -159,14 +159,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockBrigGlassLocked
-  entities:
-  - uid: 27
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-1.5
-      parent: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 28
@@ -174,6 +166,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,4.5
+      parent: 1
+- proto: AirlockNfsdGlassLocked
+  entities:
+  - uid: 27
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -516,9 +515,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
-- proto: LockerEvidence
+- proto: LockerNfsdEvidence
   entities:
-  - uid: 56
+  - uid: 30
     components:
     - type: Transform
       pos: 1.5,-0.5
@@ -601,12 +600,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-- proto: SmallGyroscopeSecurity
+- proto: SmallGyroscopeNfsd
   entities:
-  - uid: 34
+  - uid: 32
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -1.5,-1.5
       parent: 1
 - proto: Stool
@@ -625,30 +623,30 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 1
-- proto: ThrusterSecurity
+- proto: ThrusterNfsd
   entities:
-  - uid: 30
-    components:
-    - type: Transform
-      pos: 1.5,4.5
-      parent: 1
   - uid: 31
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,4.5
+      rot: 3.141592653589793 rad
+      pos: -1.5,-3.5
       parent: 1
-  - uid: 32
+  - uid: 33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
-  - uid: 33
+  - uid: 34
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-3.5
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 56
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,4.5
       parent: 1
 - proto: WallPlastitanium
   entities:
