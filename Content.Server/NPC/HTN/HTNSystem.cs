@@ -25,8 +25,6 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
-    //[Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    //[Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly WorldControllerSystem _world = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
@@ -259,15 +257,10 @@ public sealed class HTNSystem : EntitySystem
 
     private bool IsNPCActive(HTNComponent component)
     {
-        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform))
+        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform) || !_mapQuery.TryGetComponent(xform.MapUid, out var worldComponent))
             return true;
 
-        /*return _physics.GetCollidingEntities(xform.MapID, Box2.CenteredAround(_transform.GetWorldPosition(xform), new(12))).Any(physicsComponent => physicsComponent.);*/
-
-        if (!_mapQuery.TryGetComponent(xform.MapUid, out var worldComponent))
-            return true;
-
-        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid!.Value, worldComponent));
+        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid.Value, worldComponent));
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
