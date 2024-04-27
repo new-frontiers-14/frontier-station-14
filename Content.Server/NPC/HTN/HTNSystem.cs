@@ -13,6 +13,7 @@ using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -30,8 +31,8 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly WorldControllerSystem _world = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
-
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    private EntityQuery<MapComponent> _mapQuery;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -43,6 +44,7 @@ public sealed class HTNSystem : EntitySystem
         base.Initialize();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
+        _mapQuery = GetEntityQuery<MapComponent>();
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -262,6 +264,9 @@ public sealed class HTNSystem : EntitySystem
             return true;
 
         /*return _physics.GetCollidingEntities(xform.MapID, Box2.CenteredAround(_transform.GetWorldPosition(xform), new(12))).Any(physicsComponent => physicsComponent.);*/
+
+        if (!_mapQuery.HasComponent(xform.MapUid))
+            return true;
 
         return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid!.Value));
     }
