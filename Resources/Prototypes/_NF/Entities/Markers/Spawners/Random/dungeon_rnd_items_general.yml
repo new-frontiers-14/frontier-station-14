@@ -49,6 +49,7 @@
     - VendingMachineAutoTuneVend
     - VendingMachinePottedPlantVend
     - WaterCooler
+    - SpawnDungeonMachineFrame
     #- VendingMachineChang # No food vendomats in expeds - buy from food ships or die
     #- VendingMachineDonut
     #- VendingMachineDiscount
@@ -63,6 +64,7 @@
     rarePrototypes:
     - VendingMachineChemicalsSyndicate
     - MachineFrameDestroyed
+    - VendingMachineArcadia
     rareChance: 0.05
 
 - type: entity
@@ -108,7 +110,7 @@
     #- VendingMachineBountyVend
     - VendingMachineArcadia
     - VendingMachineSyndieDrobe
-    - MachineFrameDestroyed
+    - SpawnDungeonMachineFrame
     rareChance: 0.01
 
 - type: entity
@@ -140,10 +142,33 @@
     - VendingMachineExpeditionaryFlatpackVend
     - VendingMachineAmmo
     - VendingMachineSyndieContraband
-    - VendingMachineNfsdTech
-    #- VendingMachineArcadia
-    - MachineFrameDestroyed
+    - VendingMachineSec
+    - VendingMachineArcadia
+    - SpawnDungeonMachineFrame
     rareChance: 0.01
+
+- type: entity
+  name: random machine frame
+  id: SpawnDungeonMachineFrame
+  parent: MarkerBase
+  suffix: Dungeon
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MachineFrameDestroyed
+    - UnfinishedMachineFrame
+    - MachineFrame
+    chance: 1
+    offset: 0.0
 
 # Lathes and circuits
 - type: entity
@@ -182,7 +207,7 @@
     - OreProcessorIndustrial
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
-    - MachineFrameDestroyed
+    - SpawnDungeonMachineFrame
     rareChance: 0.01
 
 - type: entity
@@ -223,6 +248,7 @@
     offset: 0.0
     rarePrototypes:
     - SecurityTechFabCircuitboard
+    - ComputerIFFCircuitboard
     rareChance: 0.01
 
 # Hard, cold space cash
@@ -290,7 +316,7 @@
     - CableHVStack
     - CableMVStack
     - CableApcStack
-    chance: 0.85
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - MaterialBananium
@@ -319,7 +345,7 @@
     - SheetRUGlass
     - SheetPlasteel
     - MaterialDurathread
-    chance: 0.85
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond
@@ -359,7 +385,7 @@
     - CableMVStack1
     - CableApcStack1
     - ShardGlass
-    chance: 0.85
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - MaterialBananium1
@@ -389,7 +415,7 @@
     - SheetPlasteel1
     - MaterialDurathread1
     - ShardGlass
-    chance: 0.85
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -421,7 +447,7 @@
     - SpaceQuartz
     - UraniumOre
     - Coal
-    chance: 0.85
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - BananiumOre
@@ -451,7 +477,7 @@
     - SpaceQuartz1
     - UraniumOre1
     - Coal1
-    chance: 0.85
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - BananiumOre1
