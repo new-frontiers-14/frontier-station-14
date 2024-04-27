@@ -23,7 +23,7 @@ public sealed class GCQueuePrototype : IPrototype
     ///     The maximum amount of time that can be spent processing this queue.
     /// </summary>
     [DataField("maximumTickTime")]
-    public TimeSpan MaximumTickTime { get; } = TimeSpan.FromMilliseconds(5);
+    public TimeSpan MaximumTickTime { get; } = TimeSpan.FromMilliseconds(1);
 
     /// <summary>
     ///     The minimum depth before entities in the queue actually get processed for deletion.
