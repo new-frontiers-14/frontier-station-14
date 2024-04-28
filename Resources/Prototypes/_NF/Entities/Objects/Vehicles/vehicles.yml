@@ -356,3 +356,160 @@
           components:
             - Stunbaton
         priority: 2
+
+# Pirate
+- type: entity
+  parent: VehicleHoverbikeMailcarrier
+  id: VehicleHoverbikePirate
+  name: pirate hoverbike
+  description: You better run, better run, faster than my mail.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    maxItemSize: Huge
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+    layers:
+    - state: hull
+      color: "#3d2712"
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: pirate
+    - state: lights
+      shader: unshaded
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      piratemusket:
+        name: gun
+        whitelist:
+          components:
+            - Gun
+        priority: 2
+  - type: ItemMapper
+    mapLayers:
+      piratemusket:
+        whitelist:
+          components:
+            - Gun
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+  - type: Appearance
+
+- type: entity
+  parent: VehicleHoverbikePirate
+  id: VehicleHoverbikePirateKey
+  suffix: With key
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        startingItem: VehicleKeyHoverbikeNF
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      piratemusket:
+        name: gun
+        whitelist:
+          components:
+            - Gun
+        priority: 2
+
+# Syndicate
+- type: entity
+  parent: VehicleHoverbikeMailcarrier
+  id: VehicleHoverbikeSyndicate
+  name: syndicate hoverbike
+  description: You better run, better run, faster than my mail.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+    layers:
+    - state: hull
+      color: "#b51e0e"
+    - state: engine
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: syndicatebags
+    - state: syndicatelights
+      shader: unshaded
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      piratemusket:
+        name: gun
+        whitelist:
+          components:
+            - Gun
+        priority: 2
+  - type: ItemMapper
+    mapLayers:
+      piratemusket:
+        whitelist:
+          components:
+            - Gun
+    sprite: _NF/Objects/Vehicles/hoverbike.rsi
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    color: green
+    radius: 6
+    energy: 3
+
+- type: entity
+  parent: VehicleHoverbikeSyndicate
+  id: VehicleHoverbikeSyndicateKey
+  suffix: With key
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - HoverbikeKeys
+        startingItem: VehicleKeyHoverbikeNF
+        priority: 1
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -5
+      piratemusket:
+        name: gun
+        whitelist:
+          components:
+            - Gun
+        priority: 2
