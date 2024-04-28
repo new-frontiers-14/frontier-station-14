@@ -22,6 +22,20 @@
     - id: FoodMeatCat
       amount: 1
 #    - id: MaterialHideClippy
+  - type: IntrinsicRadioTransmitter
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Service
+  - type: ActiveRadio
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Service
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
 
 - type: entity
   name: Clarpy
@@ -56,7 +70,18 @@
     nameSegments: [names_cat_clarpy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
     implants:
-    - DeathRattleImplant
+    - FreelanceTrackingImplant
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Freelance
+  - type: ActiveRadio
+    channels:
+    - Freelance
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PirateNF
 
 - type: entity
   name: Cappy
@@ -99,16 +124,28 @@
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-    - Common
-    - Traffic
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: ActiveRadio
     channels:
-    - Common
-    - Traffic
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: Inventory
     templateId: nfsdpet
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggle
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0 # Declawed cat
+  - type: StaminaDamageOnHit
+    damage: 18
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
 
 - type: entity
   name: Mistake
