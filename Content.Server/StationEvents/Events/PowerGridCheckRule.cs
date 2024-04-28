@@ -30,8 +30,11 @@ namespace Content.Server.StationEvents.Events
             var query = AllEntityQuery<ApcComponent, TransformComponent>();
             while (query.MoveNext(out var apcUid ,out var apc, out var transform))
             {
-                if (apc.MainBreakerEnabled && CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == chosenStation)
+                if (apc.MainBreakerEnabled &&
+                    CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == chosenStation)
+                {
                     component.Powered.Add(apcUid);
+                }
             }
 
             RobustRandom.Shuffle(component.Powered);
@@ -53,6 +56,8 @@ namespace Content.Server.StationEvents.Events
                     if(!apcComponent.MainBreakerEnabled)
                         _apcSystem.ApcToggleBreaker(entity, apcComponent);
                 }
+
+                RemComp<ElectricalOverloadComponent>(entity);
             }
 
             // Can't use the default EndAudio
@@ -88,7 +93,10 @@ namespace Content.Server.StationEvents.Events
                 if (TryComp<ApcComponent>(selected, out var apcComponent))
                 {
                     if (apcComponent.MainBreakerEnabled)
+                    {
                         _apcSystem.ApcToggleBreaker(selected, apcComponent);
+                        AddComp<ElectricalOverloadComponent>(selected);
+                    }
                 }
                 component.Unpowered.Add(selected);
             }
