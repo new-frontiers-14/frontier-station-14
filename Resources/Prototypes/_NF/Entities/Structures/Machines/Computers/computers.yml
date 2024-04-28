@@ -11,7 +11,6 @@
     soundGroups:
       Brute:
         collection: MetalGlassBreak
-  - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -61,6 +60,8 @@
       type: CargoPalletConsoleBoundUserInterface
   - type: MarketModifier
     mod: 1.00
+  - type: Computer
+    board: Null
 
 - type: entity
   parent: ComputerPalletConsoleNFNormalMarket
@@ -97,55 +98,94 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: MeleeSound
-      soundGroups:
-        Brute:
-          collection: MetalGlassBreak
-    - type: Computer
-    - type: ApcPowerReceiver
-      powerLoad: 200
-    - type: ExtensionCableReceiver
-    - type: ActivatableUIRequiresPower
-    - type: Sprite
-      netsync: false
-      noRot: true
-      sprite: _NF/Structures/Machines/computers.rsi
-      layers:
-      - map: ["computerLayerBody"]
-        state: computer
-      - map: ["computerLayerKeyboard"]
-        state: generic_keyboard
-      - map: ["computerLayerScreen"]
-        state: contraband
-      - map: ["computerLayerKeys"]
-        state: telesci_key
-      - type: Appearance
-      - type: GenericVisualizer
-      visuals:
-        enum.ComputerVisuals.Powered:
-          computerLayerScreen:
-            True: { visible: true, shader: unshaded }
-            False: { visible: false }
-          computerLayerKeys:
-            True: { visible: true, shader: unshaded }
-            False: { visible: true, shader: shaded }
-    - type: LitOnPowered
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-      enabled: false
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      offset: "0, 0.4" # shine from the top, not bottom of the computer
-      castShadows: false
-    - type: EmitSoundOnUIOpen
-      sound:
-        collection: Keyboard
-    - type: ContrabandPalletConsole
-    - type: ActivatableUI
-      key: enum.ContrabandPalletConsoleUiKey.Contraband
-    - type: UserInterface
-      interfaces:
-        - key: enum.ContrabandPalletConsoleUiKey.Contraband
-          type: ContrabandPalletConsoleBoundUserInterface
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: MetalGlassBreak
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+    - type: Appearance
+    - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: ContrabandPalletConsole
+  - type: ActivatableUI
+    key: enum.ContrabandPalletConsoleUiKey.Contraband
+  - type: UserInterface
+    interfaces:
+      - key: enum.ContrabandPalletConsoleUiKey.Contraband
+        type: ContrabandPalletConsoleBoundUserInterface
+  - type: Computer
+    board: Null
+
+- type: entity
+  parent: ComputerShuttle
+  id: ComputerShuttleAntag
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: syndishuttle
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
+  id: ComputerIFFPOI
+  name: IFF computer
+  suffix: POI
+  description: Allows you to control the IFF and stealth characteristics of this station.
+  components:
+  - type: IFFConsole
+    allowedFlags:
+      - Hide
+  - type: ActivatableUI
+    key: enum.IFFConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.IFFConsoleUiKey.Key
+        type: IFFConsoleBoundUserInterface
+  - type: Computer
+    board: Null
