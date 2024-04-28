@@ -442,6 +442,9 @@
   name: syndicate hoverbike
   description: You better run, better run, faster than my mail.
   components:
+  - type: Storage
+    grid:
+    - 0,0,8,4
   - type: Sprite
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
     layers:
@@ -467,7 +470,7 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -5
-      piratemusket:
+      syndicategun:
         name: gun
         whitelist:
           components:
@@ -475,7 +478,7 @@
         priority: 2
   - type: ItemMapper
     mapLayers:
-      piratemusket:
+      syndicategun:
         whitelist:
           components:
             - Gun
@@ -507,7 +510,7 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -5
-      piratemusket:
+      syndicategun:
         name: gun
         whitelist:
           components:
