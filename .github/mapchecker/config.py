@@ -27,7 +27,11 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "Kammerer", # Opportunity
         "HighSecDoor",
     ],
-    "BlackMarket": [
+    "Syndicate": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
-    ]
+    ],
+	"BlackMarket": [
+        "Plastitanium",  # And also on blackmarket ships cause syndicate.
+        "ButtonFrameCautionSecurity",  # Decal.
+	]
 }

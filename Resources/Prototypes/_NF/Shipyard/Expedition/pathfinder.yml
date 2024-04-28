@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Kesiath (https://github.com/Kesiath)
+# Discord: @kesiath
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Pathfinder
+  name: KC Pathfinder
+  description: Once a scout ship serving with the Nanotrasen Marine Expeditionary Forces, this now decommissioned expedition capable ship can be yours!
+  price: 52920
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/pathfinder.yml
+  
+- type: gameMap
+  id: Pathfinder
+  mapName: 'KC Pathfinder'
+  mapPath: /Maps/_NF/Shuttles/Expedition/pathfinder.yml
+  minPlayers: 0
+  stations: 
+    Pathfinder:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pathfinder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]

@@ -2,6 +2,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Access.Systems;
@@ -63,10 +64,10 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         public readonly string FullName;
         public readonly string JobTitle;
-        public readonly List<string> AccessList;
+        public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
         public readonly string JobPrototype;
 
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<string> accessList, string jobPrototype)
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, string jobPrototype)
         {
             FullName = fullName;
             JobTitle = jobTitle;
