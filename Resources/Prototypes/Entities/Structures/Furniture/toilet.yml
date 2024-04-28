@@ -36,12 +36,13 @@
     noUI: true
     blacklist:
       components:
-      - HumanoidAppearance
+#      - HumanoidAppearance # Frontier - Allow goblins to jump inside.
       - Plunger
       - SolutionTransfer
     whitelist:
       components:
       - Item
+      - Goblin # Frontier - Only goblins.
     soundFlush: /Audio/Effects/Fluids/flush.ogg
     soundInsert: /Audio/Effects/Fluids/splash.ogg
   - type: Toilet

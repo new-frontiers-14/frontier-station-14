@@ -136,3 +136,5 @@ uplink-security-stingergrenade-box-name = Stinger Grenade Box
 uplink-security-stingergrenade-box-desc = A box containing 4 stinger grenades.
 uplink-security-breachingcharge-box-name = Breaching Charge Box
 uplink-security-breachingcharge-box-desc = A box containing 4 breaching charges.
+uplink-security-hoverbike-name = NFSD Hoverbike Flatpack
+uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bike handles. Keys already slotted in the ignition. Very safe.

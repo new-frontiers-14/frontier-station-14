@@ -23,3 +23,16 @@
   - type: Construction # Frontier
     graph: BannersGraph # Frontier
     node: BannerSecurityNode # Frontier
+
+- type: entity
+  id: BannerGoblin01
+  parent: BannerBase
+  name: goblin banner
+  description: A banner displaying one of goblin clan symbols.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner_goblin
+  - type: Construction
+    graph: BannersGraph
+    node: BannerGoblin01
