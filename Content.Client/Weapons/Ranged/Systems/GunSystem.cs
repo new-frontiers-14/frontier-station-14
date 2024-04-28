@@ -214,6 +214,9 @@ public sealed partial class GunSystem : SharedGunSystem
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
+                        // Добавляем компонент TimedDespawnComponent на сущность патрона - Корвакс
+                        var despawnComponent = EnsureComp<TimedDespawnComponent>(ent.Value);
+                        despawnComponent.Lifetime = 300;
                     }
                     else
                     {
