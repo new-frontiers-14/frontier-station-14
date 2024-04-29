@@ -673,3 +673,30 @@
     - LiquidOxygenCanister
     - TritiumCanister
     rareChance: 0.01
+
+- type: entity
+  name: random briefcase
+  id: SpawnDungeonLootBriefcase
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+        state: greenys
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - BriefcaseBrown
+    - BriefcaseBrownFilled
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - BriefcaseSyndieLobbyingBundleFilled
+    - BriefcaseThiefBribingBundleFilled
+    - BriefcaseSyndieLobbyingBundleFilled
+    - BriefcaseSyndieSniperBundleFilled
+    rareChance: 0.01

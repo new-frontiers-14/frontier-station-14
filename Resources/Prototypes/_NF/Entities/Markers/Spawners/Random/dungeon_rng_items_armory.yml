@@ -210,8 +210,33 @@
     - CaptainSabre
     - WeaponCaseShortEnergySwordDoubleExpedition
     - WeaponCaseLongLauncherRocketExpedition
+    - SpawnDungeonLootArmoryExplosives
     - SecBreachingHammer
     rareChance: 0.03
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootArmoryExplosives
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Explosives"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Bombs/seismic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortSeismicCharge
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - WeaponCaseShortC4
+    rareChance: 0.01
 
 # Clothes
 - type: entity
