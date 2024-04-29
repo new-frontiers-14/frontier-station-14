@@ -1,6 +1,7 @@
 - type: entity
   parent: ClothingHeadsetSecurity
   id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
+  name: nfsd headset
   suffix: Safe
   components:
   - type: ContainerFill
@@ -9,8 +10,13 @@
       - EncryptionKeyCommon
 
 - type: entity
+  parent: ClothingHeadsetSecuritySafe
+  id: ClothingHeadsetNfsdSafe # Ask SR or Sheriff for keys
+  abstract: true
+
+- type: entity
   parent: ClothingHeadset
-  id: ClothingHeadsetNFSD
+  id: ClothingHeadsetNfsd
   name: nfsd headset
   description: This is used by your elite sheriff's department force.
   abstract: true
@@ -18,18 +24,12 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNFSD
+      - EncryptionKeyNfsd
       - EncryptionKeyCommon
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDgreen # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsd
+  id: ClothingHeadsetNfsdGreen # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
@@ -37,10 +37,8 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDbrown # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsd
+  id: ClothingHeadsetNfsdBrown # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
@@ -48,21 +46,17 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDcb # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsd
+  id: ClothingHeadsetNfsdCream # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  
+
 - type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDgreenSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdSafe
+  id: ClothingHeadsetNfsdGreenSafe # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
@@ -70,10 +64,8 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDbrownSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdSafe
+  id: ClothingHeadsetNfsdBrownSafe # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
@@ -81,12 +73,22 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
 
 - type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDcbSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdSafe
+  id: ClothingHeadsetNfsdCreamSafe # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+
+- type: entity
+  parent: ClothingHeadsetNfsdCream
+  id: ClothingHeadsetNfsdCreamMed # Ask SR or Sheriff for keys
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical

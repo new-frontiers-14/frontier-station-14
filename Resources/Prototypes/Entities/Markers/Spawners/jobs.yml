@@ -441,10 +441,10 @@
 - type: entity
   id: SpawnPointHeadOfSecurity
   parent: SpawnPointJobBase
-  name: sheriff
+  name: headofsecurity
   components:
   - type: SpawnPoint
-    job_id: Sheriff
+    job_id: HeadOfSecurity
   - type: Sprite
     layers:
       - state: green
@@ -453,10 +453,10 @@
 - type: entity
   id: SpawnPointWarden
   parent: SpawnPointJobBase
-  name: bailiff
+  name: warden
   components:
   - type: SpawnPoint
-    job_id: Bailiff
+    job_id: Warden
   - type: Sprite
     layers:
       - state: green
@@ -465,10 +465,10 @@
 - type: entity
   id: SpawnPointSecurityOfficer
   parent: SpawnPointJobBase
-  name: deputy
+  name: securityofficer
   components:
   - type: SpawnPoint
-    job_id: Deputy
+    job_id: SecurityOfficer
   - type: Sprite
     layers:
       - state: green
@@ -480,7 +480,7 @@
   name: detective
   components:
   - type: SpawnPoint
-    job_id: DetectiveNF
+    job_id: Detective
   - type: Sprite
     layers:
       - state: green
@@ -491,8 +491,8 @@
   parent: SpawnPointJobBase
   name: brigmedic
   components:
-  - type: SpawnPoint
-    job_id: Brigmedic
+  - type: SpawnPoint # Frontier
+    job_id: Brigmedic # Frontier
   - type: Sprite
     layers:
       - state: green
@@ -511,6 +511,18 @@
     layers:
       - state: green
       - state: ertleader
+
+- type: entity
+  id: SpawnPointERTChaplain
+  parent: SpawnPointJobBase
+  name: ERTchaplain
+  components:
+  - type: SpawnPoint
+    job_id: ERTChaplain
+  - type: Sprite
+    layers:
+      - state: green
+      - state: chaplain
 
 - type: entity
   id: SpawnPointERTEngineer

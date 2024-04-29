@@ -122,7 +122,7 @@
 
 # NFSD - Evidence
 - type: entity
-  id: LockernfsdEvidence
+  id: LockerNfsdEvidence
   parent: LockerBaseSecure
   name: nfsd evidence locker
   components:
@@ -150,7 +150,7 @@
 
 # NFSD Copper
 - type: entity
-  id: LockernfsdCopper
+  id: LockerNfsdCopper
   parent: LockerBaseSecure
   name: nfsd cadet locker
   components:
@@ -178,7 +178,7 @@
 
 # NFSD Silver
 - type: entity
-  id: LockernfsdSilver
+  id: LockerNfsdSilver
   parent: LockerBaseSecure
   name: nfsd deputy locker
   components:
@@ -206,7 +206,7 @@
 
 # NFSD Brigmedic
 - type: entity
-  id: LockernfsdBrigmedic
+  id: LockerNfsdBrigmedic
   parent: LockerBaseSecure
   name: nfsd brigmedic locker
   components:
@@ -234,7 +234,7 @@
 
 # NFSD Gold - Sergeant
 - type: entity
-  id: LockernfsdSergeant
+  id: LockerNfsdSergeant
   parent: LockerBaseSecure
   name: nfsd sergeant locker
   components:
@@ -262,7 +262,7 @@
 
 # NFSD Gold - Bailiff
 - type: entity
-  id: LockernfsdBailiff
+  id: LockerNfsdBailiff
   parent: LockerBaseSecure
   name: nfsd bailiff locker
   components:
@@ -290,7 +290,7 @@
 
 # NFSD Sheriff
 - type: entity
-  id: LockernfsdSheriff
+  id: LockerNfsdSheriff
   parent: LockerBaseSecure
   name: nfsd sheriff's locker
   components:
@@ -319,10 +319,28 @@
 # SR
 - type: entity
   id: LockerStationRepresentative
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerHeadOfPersonnel] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, LockerBaseSecure] # Frontier
   name: station representative's locker
   components:
+  - type: Appearance
   - type: EntityStorageVisuals
-    stateBaseClosed: hop
-    stateDoorOpen: hop_open
-    stateDoorClosed: hop_door
+    stateBaseClosed: sr
+    stateDoorOpen: sr_open
+    stateDoorClosed: sr_door
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
