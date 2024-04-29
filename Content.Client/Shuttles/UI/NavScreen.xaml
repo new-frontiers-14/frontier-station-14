@@ -75,6 +75,25 @@
                             TextAlign="Center"
                             ToggleMode="True"/>
 
+                    <!-- Frontier - Ship Settings -->
+                    <controls:Label Text="{controls:Loc 'shuttle-console-control-mode'}"/>
+                    <controls:Label Name="Control Mode"
+                               Text="Maneuver"
+                               HorizontalExpand="True"
+                               Align="Center"/>
+                    <controls:Button Name="CRS"
+                            Text="{controls:Loc 'shuttle-console-cruise-toggle'}"
+                            TextAlign="Center"
+                            ToggleMode="True"/>
+                    <controls:Button Name="HLD"
+                            Text="{controls:Loc 'shuttle-console-hold-toggle'}"
+                            TextAlign="Center"
+                            ToggleMode="True"/>
+                    <controls:Button Name="MVR"
+                            Text="{controls:Loc 'shuttle-console-maneuver-toggle'}"
+                            TextAlign="Center"
+                            ToggleMode="True"/>
+
                     <!-- Frontier - IFF search -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"></controls:Label>
