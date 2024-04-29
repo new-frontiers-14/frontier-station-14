@@ -1,0 +1,172 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterScience
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - NodeScanner
+    - AnomalyScanner
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootMaterialsValuableSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootClothesScience
+    - SpawnDungeonLootRnDDisk
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootCircuitBoardScience
+    rareChance: 0.05
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesScience
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/scientist.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitScientistFormal
+    - ClothingOuterCoatRnd
+    - ClothingNeckTieSci
+    - ClothingNeckMantleRD
+    - ClothingBackpackDuffelScience
+    - ClothingBackpackMessengerScience
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitRd
+    rareChance: 0.01
+
+# Furniture/Lockers
+- type: entity
+  name: random furniture
+  id: SpawnDungeonFurnitureScience
+  parent: MarkerBase
+  suffix: "Dungeon, Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerScienceFilled
+    - LockerScientist
+    - LockerScienceFilled
+    - LockerScientist
+    - LockerScienceFilled
+    - LockerScientist
+    - MachineAnomalyVessel
+    - CrateArtifactContainer
+    - SpawnDungeonMachineFrame
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerResearchDirectorFilled
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random disk
+  id: SpawnDungeonLootRnDDisk
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Research/researchdisk.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ResearchDisk
+    - ResearchDisk
+    - ResearchDisk5000
+    - TechnologyDisk
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - TechnologyDiskRare
+    - ResearchDisk10000
+    rareChance: 0.05
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardScience
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Sciense"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: science
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Computers
+    - ResearchComputerCircuitboard
+    - AnalysisComputerCircuitboard
+    - TechDiskComputerCircuitboard
+    # Lathes
+    - CircuitImprinterMachineCircuitboard
+    - ExosuitFabricatorMachineCircuitboard
+    - ScienceTechFabCircuitboard
+    - ProtolatheMachineCircuitboard
+    - AutolatheMachineCircuitboard
+    - FlatpackerMachineCircuitboard
+    # Machines
+    - ResearchAndDevelopmentServerMachineCircuitboard
+    - APECircuitboard
+    - ArtifactAnalyzerMachineCircuitboard
+    - ArtifactCrusherMachineCircuitboard
+    - AnomalySynchronizerCircuitboard
+    - AnomalyVesselCircuitboard
+    - AnomalyVesselExperimentalCircuitboard
+    - TraversalDistorterMachineCircuitboard
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - AutolatheHyperConvectionMachineCircuitboard
+    - ProtolatheHyperConvectionMachineCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.05
