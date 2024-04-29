@@ -89,22 +89,22 @@
 - type: entity
   parent: BaseSecurityUplinkRadio
   id: BaseSecurityUplinkRadioSheriff
-  suffix: Sheriff 15
+  suffix: Sheriff 20
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 20
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioOfficer
+  suffix: Officer 15
   components:
   - type: Store
     preset: StorePresetSecurityUplink
     balance:
       FrontierUplinkCoin: 15
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadioOfficer
-  suffix: Officer 10
-  components:
-  - type: Store
-    preset: StorePresetSecurityUplink
-    balance:
-      FrontierUplinkCoin: 10
 
 - type: entity
   name: nfsd deployable barrier
