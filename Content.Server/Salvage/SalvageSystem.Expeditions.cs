@@ -30,7 +30,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 4;
+    private const int MissionLimit = 5;
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private readonly JobQueue _salvageQueue = new();
