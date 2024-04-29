@@ -1839,19 +1839,24 @@ entities:
     - type: Transform
       pos: 3.5,0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 204
-          - 203
-          - 202
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClosetWallEmergencyFilledRandom
   entities:
   - uid: 205
@@ -1860,26 +1865,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-4.5
       parent: 1
-  - uid: 206
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-8.5
-      parent: 1
-- proto: ClosetWallFireFilledRandom
-  entities:
-  - uid: 207
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,1.5
-      parent: 1
-  - uid: 208
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-8.5
-      parent: 1
 - proto: ClosetWallMaintenanceFilledRandom
   entities:
   - uid: 209
@@ -1887,13 +1872,26 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClothingEyesEyepatch
   entities:
-  - uid: 210
-    components:
-    - type: Transform
-      pos: -0.3120169,12.330579
-      parent: 1
   - uid: 211
     components:
     - type: Transform
@@ -1904,14 +1902,14 @@ entities:
   - uid: 212
     components:
     - type: Transform
-      pos: 1.2214307,2.6089354
+      pos: -0.4273789,2.6294885
       parent: 1
 - proto: ClothingHeadHatPirate
   entities:
   - uid: 213
     components:
     - type: Transform
-      pos: 1.5811653,12.328757
+      pos: 1.4499189,12.408553
       parent: 1
 - proto: ClothingHeadHatPirateTricord
   entities:
@@ -1920,40 +1918,13 @@ entities:
     - type: Transform
       pos: -0.27106684,-0.46582198
       parent: 1
-- proto: ClothingNeckCloakPirateCap
-  entities:
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingOuterCoatJensen
   entities:
   - uid: 215
     components:
     - type: Transform
-      pos: -0.3756531,12.328757
+      pos: -0.3953849,12.460637
       parent: 1
-- proto: ClothingOuterCoatPirate
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitPirate
-  entities:
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ComputerIFF
   entities:
   - uid: 216
@@ -1987,6 +1958,11 @@ entities:
       parent: 1
 - proto: CrateEmptySpawner
   entities:
+  - uid: 202
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
   - uid: 220
     components:
     - type: Transform
@@ -2006,27 +1982,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-2.5
-      parent: 1
-- proto: CrateFunPirate
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-- proto: CratePirateChest
-  entities:
-  - uid: 224
-    components:
-    - type: Transform
-      pos: -0.5,5.5
-      parent: 1
-- proto: CratePirateChestCaptain
-  entities:
-  - uid: 274
-    components:
-    - type: Transform
-      pos: -0.5,2.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -2131,13 +2086,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,9.5
-      parent: 1
-- proto: FoodMealNachosCuban
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      pos: 2.418281,9.579869
       parent: 1
 - proto: GravityGeneratorMini
   entities:
@@ -2333,13 +2281,6 @@ entities:
     - type: Transform
       pos: 2.3989987,-8.34466
       parent: 1
-- proto: PinpointerUniversal
-  entities:
-  - uid: 280
-    components:
-    - type: Transform
-      pos: 0.67992365,2.5024152
-      parent: 1
 - proto: PirateFlag
   entities:
   - uid: 281
@@ -2494,6 +2435,11 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 203
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
   - uid: 304
     components:
     - type: Transform
@@ -2686,21 +2632,6 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
-  - uid: 337
-    components:
-    - type: Transform
-      pos: -1.5,4.5
-      parent: 1
-  - uid: 338
-    components:
-    - type: Transform
-      pos: 2.5,7.5
-      parent: 1
-  - uid: 339
-    components:
-    - type: Transform
-      pos: 1.5,9.5
-      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 505
@@ -2746,6 +2677,8 @@ entities:
     - type: Transform
       pos: -0.51266235,8.61944
       parent: 1
+    - type: Stack
+      count: 15
 - proto: ShuttersNormal
   entities:
   - uid: 341
@@ -3028,13 +2961,6 @@ entities:
       parent: 1
     - type: SpamEmitSound
       enabled: False
-- proto: SpawnMobParrot
-  entities:
-  - uid: 372
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 1
 - proto: SpawnPointPirate
   entities:
   - uid: 373
@@ -3073,6 +2999,11 @@ entities:
       parent: 1
 - proto: TableCarpet
   entities:
+  - uid: 204
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
   - uid: 380
     components:
     - type: Transform
@@ -3575,34 +3506,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,3.5
-      parent: 1
-- proto: WeaponGrapplingGun
-  entities:
-  - uid: 471
-    components:
-    - type: Transform
-      pos: 0.44128692,2.693194
-      parent: 1
-- proto: WeaponLauncherPirateCannon
-  entities:
-  - uid: 472
-    components:
-    - type: Transform
-      pos: 0.4072001,5.6771774
-      parent: 1
-- proto: WeaponRevolverPirate
-  entities:
-  - uid: 473
-    components:
-    - type: Transform
-      pos: 0.6162869,5.484689
-      parent: 1
-- proto: WeaponShotgunBlunderbuss
-  entities:
-  - uid: 474
-    components:
-    - type: Transform
-      pos: 0.5503819,5.2956195
       parent: 1
 - proto: Window
   entities:

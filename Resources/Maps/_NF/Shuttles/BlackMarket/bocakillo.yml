@@ -251,7 +251,7 @@ entities:
       pos: 1.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -138.06781
+      secondsUntilStateChange: -239.95091
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -642,96 +642,6 @@ entities:
     - type: Transform
       pos: 0.5,9.5
       parent: 2
-- proto: CannonBall
-  entities:
-  - uid: 205
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 206
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 207
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 208
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: CannonBallGlassshot
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 203
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: CannonBallGrapeshot
-  entities:
-  - uid: 198
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 199
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 200
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 210
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Catwalk
   entities:
   - uid: 80
@@ -989,54 +899,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,10.5
       parent: 2
-- proto: CratePirate
-  entities:
-  - uid: 197
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 209
-          - 208
-          - 207
-          - 206
-          - 205
-          - 204
-          - 203
-          - 202
-          - 201
-          - 200
-          - 199
-          - 198
-          - 210
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 149
@@ -1473,15 +1335,6 @@ entities:
     - type: Transform
       pos: 2.5,-2.5
       parent: 2
-- proto: PirateHandyFlag
-  entities:
-  - uid: 209
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: PlastitaniumWindow
   entities:
   - uid: 144
@@ -1677,19 +1530,26 @@ entities:
         - Pressed: Trigger
         75:
         - Pressed: Trigger
-- proto: SpawnPointLatejoin
+- proto: SpawnPointPirate
   entities:
   - uid: 158
     components:
     - type: Transform
-      pos: 0.5,6.5
+      pos: 0.5,7.5
       parent: 2
-- proto: SpawnPointPirate
+- proto: SpawnPointPirateCaptain
   entities:
-  - uid: 164
+  - uid: 156
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.5,6.5
+      parent: 2
+- proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 76
+    components:
+    - type: Transform
+      pos: 0.5,5.5
       parent: 2
 - proto: SubstationBasic
   entities:
