@@ -1,9 +1,12 @@
-﻿using Content.Server.Worldgen.Components;
+﻿using System.Linq;
+using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Spawners;
+
+using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates);
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -14,12 +17,20 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
     [Dependency] private readonly TransformSystem _xformSys = default!;
 
+    private EntityQuery<SpaceDebrisComponent> _debrisQuery;
+
+    private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
+
     // Duration to reset the despawn timer to when a debris is loaded into a player's view.
     private const float DebrisActiveDuration = 300; // 5 минут Corvax.
 
     public override void Initialize()
     {
+        _debrisQuery = GetEntityQuery<SpaceDebrisComponent>();
+
         SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
+
+        EntityManager.EntityDeleted += OnEntityDeleted;
     }
 
     /// <inheritdoc />
@@ -88,9 +99,30 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
+        List<EntityPosition> positions = [];
+
         while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
             if (xform.MapUid is not null && xform.GridUid == entity)
-                _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+            {
+                positions.Add((mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform))));
+
+                _xformSys.DetachParentToNull(mob, xform);
+            }
+
+        _terminatingDebris.Add((entity, positions));
+    }
+
+    private void OnEntityDeleted(Entity<MetaDataComponent> entity)
+    {
+        var debris = _terminatingDebris.FirstOrDefault(debris => debris.Debris == entity.Owner);
+
+        if (debris.Debris == EntityUid.Invalid)
+            return;
+
+        foreach (var position in debris.Entity)
+            _xformSys.SetCoordinates(position.Entity, position.Coordinates);
+
+        _terminatingDebris.Remove(debris);
     }
 }
 
