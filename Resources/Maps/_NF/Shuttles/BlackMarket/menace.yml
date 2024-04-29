@@ -96,29 +96,43 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30583
+            0: 13107
             1: 34952
           0,-1:
-            0: 30579
-            1: 4
-          -1,-1:
-            1: 36
-            0: 61128
+            0: 13104
+            2: 4
           -1,0:
-            0: 52974
+            0: 36076
             1: 8192
           0,1:
-            0: 3
             1: 12
+          -1,-1:
+            0: 51328
+            1: 32
+            2: 4
           -1,1:
             1: 6
-            0: 8
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -928,13 +942,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,0.5
-      parent: 103
-- proto: SuitStorageEVAPirate
-  entities:
-  - uid: 123
-    components:
-    - type: Transform
-      pos: 0.5,0.5
       parent: 103
 - proto: TableCarpet
   entities:
