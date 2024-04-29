@@ -27,7 +27,8 @@ public sealed class UserDbDataManager
     // but this runs into ordering issues with game ticker.
     public void ClientConnected(ICommonSession session)
     {
-        DebugTools.Assert(!_users.ContainsKey(session.UserId), "We should not have any cached data on client connect.");
+        if (_users.ContainsKey(session.UserId))
+            return;
 
         var cts = new CancellationTokenSource();
         var task = Load(session, cts.Token);

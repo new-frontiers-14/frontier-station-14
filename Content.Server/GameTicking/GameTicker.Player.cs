@@ -89,6 +89,8 @@ namespace Content.Server.GameTicking
                         _roundStartCountdownHasNotStartedYetDueToNoPlayers = false;
                         _roundStartTime = _gameTiming.CurTime + LobbyDuration;
                     }
+                    
+                    _userDb.ClientConnected(session);
 
                     break;
                 }
