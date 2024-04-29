@@ -1,0 +1,209 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Hydroponics/spade.rsi
+        state: icon
+      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootSeed
+    - SpawnDungeonLootToolsHydroponics
+    - SpawnDungeonLootChemsHydroponics
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootClothesHydroponics
+    rareChance: 0.1
+
+# Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Hydroponics/spade.rsi
+        state: icon
+      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - HydroponicsToolMiniHoe
+    - HydroponicsToolClippers
+    - HydroponicsToolSpade
+    - HydroponicsToolScythe
+    - HydroponicsToolHatchet
+    - PlantBag
+    - Shovel
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterEVASuitHydro
+    rareChance: 0.01
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/hydro.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitHydroponics
+    - ClothingUniformOveralls
+    - ClothingOuterApronBotanist
+    - ClothingNeckScarfStripedGreen
+    - ClothingHandsGlovesLeather
+    - ClothingShoesColorBrown
+    - ClothingOuterWinterHydro
+    - ClothingShoesBootsWinterHydro
+    - ClothingBackpackDuffelHydroponics
+    - ClothingBackpackMessengerHydroponics
+    - ClothingBeltPlant
+    - ClothingHeadBandBotany
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterEVASuitHydro
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random chemicals
+  id: SpawnDungeonLootChemsHydroponics
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PestSpray
+    - WeedSpray
+    - PlantBGoneSpray
+    - EZNutrientChemistryBottle
+    - RobustHarvestChemistryBottle
+    - UnstableMutagenChemistryBottle
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CognizineChemistryBottle
+    - OmnizineChemistryBottle
+    rareChance: 0.05
+
+- type: entity
+  name: random seed
+  id: SpawnDungeonLootSeed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Hydroponics/seeds.rsi
+        state: seed-alien3
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+        - SalvageSeedSpawnerLow # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\seeds.yml
+        - WheatSeeds
+        - SpesosTreeSeeds
+        - OatSeeds
+        - BananaSeeds
+        - CarrotSeeds
+        - LemonSeeds
+        - PotatoSeeds
+        - SugarcaneSeeds
+        - TowercapSeeds
+        - TomatoSeeds
+        - EggplantSeeds
+        - AppleSeeds
+        - CornSeeds
+        - ChanterelleSeeds
+        - ChiliSeeds
+        - AloeSeeds
+        - PoppySeeds
+        - LingzhiSeeds
+        - AmbrosiaVulgarisSeeds
+        - GalaxythistleSeeds
+        - FlyAmanitaSeeds
+        - OnionSeeds
+        - PineappleSeeds
+        - EggySeeds
+        - TobaccoSeeds
+        - CannabisSeeds
+        - NettleSeeds
+        - BlueTomatoSeeds
+        - OrangeSeeds
+        - LimeSeeds
+        - LemoonSeeds
+        - GarlicSeeds
+        - CabbageSeeds
+        - SugarcaneSeeds
+        - BloodTomatoSeeds
+        - ChillySeeds
+        - LilySeeds
+        - GatfruitSeeds
+        - RiceSeeds
+        - SoybeanSeeds
+        - SpacemansTrumpetSeeds
+        - KoibeanSeeds
+        - OnionRedSeeds
+        - WatermelonSeeds
+        - GrapeSeeds
+        - BerrySeeds
+        - BungoSeeds
+        - PeaSeeds
+        - PumpkinSeeds
+        - CottonSeeds
+        - MimanaSeeds
+        - LaughinPeaSeeds
+        - SteelcapSeeds
+        - KillerTomatoSeeds
+        - DeathNettleSeeds
+    chance: 0.95
+    offset: 0.0
+    #rarePrototypes: # !!FUN!!
+        #- WeakKudzu
+        #- KudzuFlowerAngry
+        #- KudzuFlowerFriendly
+    #rareChance: 0.01
