@@ -263,3 +263,19 @@
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
     access: [["Security"]]
+
+#Mail Carrier hardsuit
+- type: entity
+  id: SuitStorageMailCarrier
+  parent: SuitStorageBase
+  suffix: Mail Carrier
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitMailman
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Mail"]]
