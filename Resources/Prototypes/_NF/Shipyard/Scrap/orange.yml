@@ -1,0 +1,26 @@
+- type: vessel
+  id: Orange
+  name: SV Orange
+  description: A cargo slash salvage shuttle made from scavenged wrecks, comes with some damage.
+  price: 16000 #Appraisal is 14500
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/orange.yml
+
+- type: gameMap
+  id: Orange
+  mapName: 'SV Orange'
+  mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
+  minPlayers: 0
+  stations:
+    Orange:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Orange {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

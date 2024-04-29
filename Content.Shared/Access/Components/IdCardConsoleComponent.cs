@@ -3,6 +3,8 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Access.Components;
 
@@ -21,6 +23,23 @@ public sealed partial class IdCardConsoleComponent : Component
 
     [DataField]
     public ItemSlot TargetIdSlot = new();
+
+    [Serializable, NetSerializable]
+    public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
+    {
+        public readonly string FullName;
+        public readonly string JobTitle;
+        public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
+        public readonly ProtoId<AccessLevelPrototype> JobPrototype;
+
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<AccessLevelPrototype> jobPrototype)
+        {
+            FullName = fullName;
+            JobTitle = jobTitle;
+            AccessList = accessList;
+            JobPrototype = jobPrototype;
+        }
+    }
 
     // Put this on shared so we just send the state once in PVS range rather than every time the UI updates.
 
@@ -60,6 +79,7 @@ public sealed partial class IdCardConsoleComponent : Component
         //"Salvage",
         "Security",
         "Service",
+        "StationTrafficController", // Frontier
         //"Theatre",
     };
 
@@ -73,11 +93,11 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string TargetIdName;
         public readonly string? TargetIdFullName;
         public readonly string? TargetIdJobTitle;
-        public readonly bool HasOwnedShuttle;
-        public readonly string?[]? TargetShuttleNameParts;
-        public readonly string[]? TargetIdAccessList;
-        public readonly string[]? AllowedModifyAccessList;
-        public readonly string TargetIdJobPrototype;
+        public readonly bool HasOwnedShuttle; // Frontier
+        public readonly string?[]? TargetShuttleNameParts; // Frontier
+        public readonly List<ProtoId<AccessLevelPrototype>>? TargetIdAccessList;
+        public readonly List<ProtoId<AccessLevelPrototype>>? AllowedModifyAccessList;
+        public readonly ProtoId<AccessLevelPrototype> TargetIdJobPrototype;
 
         public IdCardConsoleBoundUserInterfaceState(bool isPrivilegedIdPresent,
             bool isPrivilegedIdAuthorized,
@@ -86,9 +106,9 @@ public sealed partial class IdCardConsoleComponent : Component
             string? targetIdJobTitle,
             bool hasOwnedShuttle,
             string?[]? targetShuttleNameParts,
-            string[]? targetIdAccessList,
-            string[]? allowedModifyAccessList,
-            string targetIdJobPrototype,
+            List<ProtoId<AccessLevelPrototype>>? targetIdAccessList,
+            List<ProtoId<AccessLevelPrototype>>? allowedModifyAccessList,
+            ProtoId<AccessLevelPrototype> targetIdJobPrototype,
             string privilegedIdName,
             string targetIdName)
         {
