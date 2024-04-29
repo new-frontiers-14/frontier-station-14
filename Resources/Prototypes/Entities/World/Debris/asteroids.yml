@@ -5,6 +5,9 @@
   abstract: true
   components:
     - type: MapGrid
+    - type: Shuttle #frontier
+      linearDamping: 0.02 
+      angulerDamping: 0.02 
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorAsteroidSand
