@@ -66,7 +66,7 @@ namespace Content.Server.Shuttles.Components
         /// Damping applied to the shuttle's physics component when not in FTL.
         /// </summary>
         [DataField("linearDamping"), ViewVariables(VVAccess.ReadWrite)]
-        public float LinearDamping = 0.005f; // Frontier PR 1298 0.002f < 0.05f
+        public float LinearDamping = 0.005f; // Frontier PR 1298 0.005f < 0.05f
 
         [DataField("angularDamping"), ViewVariables(VVAccess.ReadWrite)]
         public float AngularDamping = 0.6f; // Frontier PR 1298 0.6f < 0.05f
