@@ -4,6 +4,9 @@ tool-quality-anchoring-tool-name = Wrench
 tool-quality-prying-name = Prying
 tool-quality-prying-tool-name = Crowbar
 
+tool-quality-advanced-prying-name = Advanced Prying
+tool-quality-advanced-prying-tool-name = Fireaxe
+
 tool-quality-screwing-name = Screwing
 tool-quality-screwing-tool-name = Screwdriver
 
