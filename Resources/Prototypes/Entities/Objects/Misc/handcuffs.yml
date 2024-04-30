@@ -116,6 +116,8 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+  - type: TimedDespawn # Corvax-Frontier-Optimization
+    lifetime: 300
   - type: StaticPrice
     price: 1
 
@@ -128,6 +130,8 @@
   - type: Sprite
     sprite: Objects/Misc/zipties.rsi
     state: cuff-broken
+  - type: TimedDespawn # Corvax-Frontier-Optimization
+    lifetime: 300
 
 - type: entity
   name: broken cables
@@ -147,6 +151,8 @@
       right:
         - state: inhand-right
           color: forestgreen
+  - type: TimedDespawn # Corvax-Frontier-Optimization
+    lifetime: 300
 
 - type: entity
   parent: Handcuffs
