@@ -7,15 +7,12 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitVoidParamed
         - id: ClothingMaskBreathMedical
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-#    access: [["Medical"]]
 
 #Hydroponics EVA
 - type: entity
@@ -25,8 +22,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterEVASuitHydro
         - id: ClothingMaskBreath
@@ -34,7 +29,6 @@
         - id: HandheldGPSBasic
 #        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
-    # access: [[ "Hydroponics" ]]
 
 #HARDSUITS
 #Quartermaster hardsuit
@@ -45,8 +39,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingShoesBootsMag
         - id: ClothingOuterHardsuitLuxury
@@ -54,7 +46,22 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-    # access: [["Quartermaster"]]
+
+#Mining hardsuit
+- type: entity
+  id: SuitStorageMining
+  parent: SuitStorageBase
+  suffix: Mining
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingShoesBootsMag
+        - id: ClothingOuterHardsuitSalvage
+        - id: ClothingMaskGasExplorer
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
 
 #Mercenary hardsuit
 - type: entity
@@ -64,8 +71,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitMercenary
         - id: ClothingMaskGasMercenary
@@ -83,8 +88,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitScaf
         - id: ClothingMaskGasMercenary
@@ -102,14 +105,11 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitPilot
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
     access: [["Captain"], ["Pilot"]]
 
@@ -121,16 +121,12 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitClown
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
   - type: AccessReader
-#    access: [["Captain"], ["Pilot"]]
 
 #Cadet hardsuit
 - type: entity
@@ -140,8 +136,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBronze # Frontier
         - id: ClothingMaskGasNfsd
@@ -159,8 +153,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSilver # Frontier
         - id: ClothingMaskGasNfsd 
@@ -178,8 +170,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdBrigmedic # Frontier
         - id: ClothingMaskGasNfsd 
@@ -197,8 +187,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
         - id: ClothingMaskGasNfsd 
@@ -216,8 +204,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdGold # Frontier
         - id: ClothingMaskGasNfsd 
@@ -235,8 +221,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdSheriff # Frontier
         - id: ClothingMaskGasSheriff
@@ -254,8 +238,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdCombat # Frontier
         - id: ClothingMaskGasNfsd 
@@ -273,8 +255,6 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
         - id: AirTankFilled
         - id: ClothingOuterHardsuitNfsdCommand # Frontier
         - id: ClothingMaskGasNfsd 
@@ -283,3 +263,19 @@
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
     access: [["Security"]]
+
+#Mail Carrier hardsuit
+- type: entity
+  id: SuitStorageMailCarrier
+  parent: SuitStorageBase
+  suffix: Mail Carrier
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitMailman
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Mail"]]
