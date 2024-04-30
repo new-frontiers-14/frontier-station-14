@@ -46,7 +46,7 @@ public sealed partial class CartridgeAmmoComponent : AmmoComponent
     /// Caseless ammunition.
     /// </summary>
     [DataField("deleteOnSpawn")]
-    public bool DeleteOnSpawn;
+    public bool DeleteOnSpawn = true; // Corvax-Frontier-Optimization
 
     [DataField("soundEject")]
     public SoundSpecifier? EjectSound = new SoundCollectionSpecifier("CasingEject");
