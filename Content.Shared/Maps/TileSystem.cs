@@ -86,7 +86,7 @@ public sealed class TileSystem : EntitySystem
         return PryTile(tileRef);
     }
 
-	public bool PryTile(TileRef tileRef)
+    public bool PryTile(TileRef tileRef)
     {
         return PryTile(tileRef, false);
     }
