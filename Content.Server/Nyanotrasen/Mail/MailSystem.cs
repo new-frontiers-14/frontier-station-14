@@ -74,6 +74,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
 
         private ISawmill _sawmill = default!;
 
@@ -574,6 +575,12 @@ namespace Content.Server.Mail
                 }
 
                 if (!_mind.TryGetMind(receiver.Owner, out var mindId, out var mindComp))
+                {
+                    recipient = null;
+                    return false;
+                }
+
+                if (_entManager.TryGetComponent<MailDisabledComponent>(receiver.Owner, out var antag))
                 {
                     recipient = null;
                     return false;
