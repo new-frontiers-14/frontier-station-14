@@ -69,3 +69,45 @@
       amount: 2
     - id: MagazinePistol
       amount: 4
+
+- type: entity
+  id: CrateArmoryLethalNfsd
+  parent: CrateNfsdSecure2
+  name: nfsd lethal armory crate
+  description: Contains a standard armory stock kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecter
+      amount: 5
+    - id: WeaponSubMachineGunWt550
+      amount: 4
+    - id: WeaponShotgunEnforcer
+      amount: 5
+    - id: WeaponLaserCarbine
+      amount: 4
+    - id: WeaponEnergyGun
+      amount: 4
+    - id: WeaponPistolMk58
+      amount: 4
+    - id: WeaponRevolverInspector
+      amount: 4
+
+- type: entity
+  id: CrateArmoryNonLethalNfsd
+  parent: CrateNfsdSecure1
+  name: nfsd non-lethal armory crate
+  description: Contains a standard armory stock kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDisabler
+      amount: 5
+    - id: WeaponPistolMk58Nonlethal
+      amount: 4
+    - id: WeaponDisablerSMG
+      amount: 5
+    - id: WeaponRifleLecterRubber
+      amount: 4
+    - id: WeaponShotgunEnforcerRubber
+      amount: 4
