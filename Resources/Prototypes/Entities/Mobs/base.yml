@@ -10,8 +10,6 @@
     drawdepth: Mobs
   - type: Physics
     bodyType: KinematicController
-  - type: Penetratable
-    stoppingPower: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -54,6 +52,8 @@
   components:
   - type: Damageable
     damageContainer: Biological
+  - type: Penetratable
+    stoppingPower: 1
   - type: Destructible
     thresholds:
     - trigger:
