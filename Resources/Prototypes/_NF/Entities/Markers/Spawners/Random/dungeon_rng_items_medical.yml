@@ -1,0 +1,631 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonClutterMedical
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - BoxFolderWhite
+    - BoxBodyBag
+    - BoxPillCanister
+    - BoxNitrileGloves
+    - ClothingEyesHudMedical
+    - HandheldHealthAnalyzer
+    - ClothingEyesGlassesChemical
+    - ClothingHeadsetMedical
+    - DiseaseSwab
+    - SpawnDungeonClutterSyringe
+    - SpawnDungeonClutterBeakerEmpty
+    - SpawnDungeonClutterPatientTransport
+    - SpawnDungeonClutterImplanter
+    - SpawnDungeonClutterHypospray
+    - SpawnDungeonLootToolsSurgery
+    - SpawnDungeonClutterMedipens
+    - SpawnDungeonClutterMedsSingle
+    - SpawnDungeonLootToolsSurgeryCrude
+    - SpawnDungeonLootToolsSurgery
+    - SpawnDungeonLootToolsSurgeryAdvanced
+    - SpawnDungeonLootClothesMed
+    - PillCanisterRandom
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootKitsFirstAid
+    - HandheldCrewMonitor
+    - SpawnDungeonLootChems
+    - SpawnDungeonClutterMedsFull
+    rareChance: 0.01
+
+# Tools
+- type: entity
+  name: random medkit
+  id: SpawnDungeonLootKitsFirstAid
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/firstaidkits.rsi
+        state: firstaid
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MedkitFilled
+    - MedkitFilled
+    - MedkitFilled
+    - MedkitBruteFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitRadiationFilled
+    chance: 0.75
+    offset: 0.0
+    rarePrototypes:
+    - MedkitAdvancedFilled
+    - MedkitCombatFilled
+    rareChance: 0.01
+
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsSurgeryCrude
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Surgery, Improvised"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: improv
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ScalpelShiv
+    - WelderMini
+    - SawImprov
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - WeaponShotgunHandmade
+    rareChance: 0.05
+
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsSurgery
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Surgery"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: saw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Scalpel
+    - Cautery
+    - Saw
+    - Drill
+    - Hemostat
+    - Retractor
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SawElectric
+    rareChance: 0.1
+
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsSurgeryAdvanced
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Surgery, Advanced"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: advanced
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ScalpelAdvanced
+    - ScalpelLaser
+    - Cautery
+    - SawElectric
+    - Drill
+    - Hemostat
+    - Retractor
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SawAdvanced
+    rareChance: 0.15
+
+- type: entity
+  name: random surgery kit
+  id: SpawnDungeonLootKitSurgery
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Back/Duffels/medical.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingBackpackDuffelSurgeryFilled
+    - ClothingBackpackDuffelSurgeryAdvancedFilled
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - ClothingBackpackDuffelSurgeryImpovFilled
+    - ClothingBackpackDuffelSyndicateFilledMedical
+    rareChance: 0.05
+
+- type: entity
+  name: random beaker
+  id: SpawnDungeonClutterBeakerEmpty
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Empty"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker_large.rsi
+        state: beakerlarge
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ChemistryEmptyBottle01
+    - BaseChemistryEmptyVial
+    - Beaker
+    - LargeBeaker
+    - CryostasisBeaker
+    - Jug
+    - Dropper
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - BluespaceBeaker
+    rareChance: 0.05
+
+- type: entity
+  name: random medipens
+  id: SpawnDungeonClutterMedipens
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medipen.rsi
+        state: firstaid
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ChemicalMedipen
+    - EmergencyMedipen
+    - AntiPoisonMedipen
+    - BruteAutoInjector
+    - BurnAutoInjector
+    - SpaceMedipen
+    - RadAutoInjector
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CombatMedipen
+    - Stimpack
+    - StimpackMini
+    - CognizineChemistryBottle
+    - OmnizineChemistryBottle
+    rareChance: 0.01
+
+- type: entity
+  name: random meds
+  id: SpawnDungeonClutterMedsFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Full"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medical.rsi
+        state: gauze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Brutepack
+    - Ointment
+    - Gauze
+    - Bloodpack
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - MedicatedSuture
+    - RegenerativeMesh
+    - AloeCream
+    rareChance: 0.01
+
+- type: entity
+  name: random meds
+  id: SpawnDungeonClutterMedsSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/medical.rsi
+        state: gauze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Brutepack1
+    - Ointment1
+    - Gauze1
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random patient transport
+  id: SpawnDungeonClutterPatientTransport
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/Morgue/bodybags.rsi
+        state: bag
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - EmergencyRollerBedSpawnFolded
+    - VehicleWheelchairFolded
+    - BodyBagFolded
+    - RollerBedSpawnFolded
+    - CheapRollerBedSpawnFolded
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - Stunprod
+    rareChance: 0.01
+
+- type: entity
+  name: random implanter
+  id: SpawnDungeonClutterImplanter
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/implanter.rsi
+        state: implanter0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Implanter
+    - Implanter
+    - MedicalTrackingImplanter
+    - MedicalTrackingImplanter
+    - MedicalTrackingImplanter
+    - MedicalTrackingImplanter
+    - LightImplanter
+    - SadTromboneImplanter
+    - TrackingImplanter
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - DnaScramblerImplanter
+    - DeathAcidifierImplanter
+    - FreedomImplanter
+    - MicroBombImplanter
+    - StorageImplanter
+    rareChance: 0.01
+
+- type: entity
+  name: random syringe
+  id: SpawnDungeonClutterSyringe
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/syringe.rsi
+        state: syringe_base0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Syringe
+    - Syringe
+    - Syringe
+    - Syringe
+    - Syringe
+    - BoxSyringe
+    - SyringeBicaridine
+    - SyringeDermaline
+    - SyringeEphedrine
+    - SyringeEthylredoxrazine
+    - SyringeHyronalin
+    - SyringeInaprovaline
+    - SyringeIpecac
+    - SyringePhalanximine
+    - SyringeStimulants
+    - SyringeSigynate
+    - SyringeSaline
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SyringeBluespace
+    rareChance: 0.05
+
+- type: entity
+  name: random hypospray
+  id: SpawnDungeonClutterHypospray
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Medical/hypospray.rsi
+        state: hypo
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - HypoMini
+    - HypoBrigmedic
+    - HypoMiniLimitedEdition
+    chance: 0.65
+    offset: 0.0
+    rarePrototypes:
+    - SyndiHypo
+    rareChance: 0.01
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/medical.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingHeadHatSurgcapPurple
+    - UniformScrubsColorPurple
+    - ClothingHeadNurseHat
+    - ClothingOuterHospitalGown
+    - ClothingOuterCoatLab
+    - ClothingMaskBreathMedical
+    - ClothingBeltMedical
+    - ClothingNeckStethoscope
+    - ClothingHandsGlovesLatex
+    - ClothingHandsGlovesNitrile
+    - ClothingMaskSterile
+    - ClothingUniformJumpsuitParamedic
+    - ClothingOuterCoatParamedicWB
+    - UniformScrubsColorPurple
+    - UniformScrubsColorBlue
+    - UniformScrubsColorGreen
+    - ClothingBeltMedical
+    - ClothingUniformJumpsuitMedicalDoctor
+    - ClothingBackpackMessengerMedical
+    - ClothingBackpackDuffelMedical
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitVoidParamed
+    rareChance: 0.01
+
+# Furniture/Lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: med_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: med_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerMedicalFilled
+    - LockerMedicineFilled
+    - LockerParamedicFilled
+    - LockerPsychologistFilled
+    - ClosetL3VirologyFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerChiefMedicalOfficerFilled
+    rareChance: 0.05
+
+# Machines
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/medical.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineMediDrobe
+    - VendingMachineChemDrobe
+    - VendingMachineRoboDrobe
+    - VendingMachineGeneDrobe
+    - VendingMachineViroDrobe
+    - VendingMachineRobotics
+    - SpawnDungeonMachineFrame
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContraband
+    - VendingMachineSyndieDrobe
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random chemicals
+  id: SpawnDungeonLootChems
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chemistry"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Specific/Chemistry/beaker.rsi
+        state: beaker
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - JugAluminium
+    - JugCarbon
+    - JugChlorine
+    - JugFluorine
+    - JugIodine
+    - JugPhosphorus
+    - JugSulfur
+    - JugSilicon
+    - JugOxygen
+    - JugNitrogen
+    - JugHydrogen
+    - JugLithium
+    - JugSodium
+    - JugPotassium
+    - JugRadium
+    - JugSugar
+    - JugEthanol
+    - JugIron
+    - JugCopper
+    - JugGold
+    - JugMercury
+    - JugSilver
+    - JugWeldingFuel
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CognizineChemistryBottle
+    - OmnizineChemistryBottle
+    rareChance: 0.01
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: medical
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Computers
+    - BodyScannerComputerCircuitboard
+    - CloningConsoleComputerCircuitboard
+    - MedicalRecordsComputerCircuitboard
+    # Lathes
+    - MedicalTechFabCircuitboard
+    # Machines
+    - ChemMasterMachineCircuitboard
+    - CentrifugeMachineCircuitboard
+    - ChemDispenserMachineCircuitboard
+    - CloningPodMachineCircuitboard
+    - CryoPodMachineCircuitboard
+    - DiagnoserMachineCircuitboard
+    - ElectrolysisUnitMachineCircuitboard
+    - HotplateMachineCircuitboard
+    - MedicalScannerMachineCircuitboard
+    - StasisBedMachineCircuitboard
+    - VaccinatorMachineCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - ComputerIFFCircuitboard
+    rareChance: 0.03
