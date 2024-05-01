@@ -13,8 +13,8 @@ public sealed class DCCVars
     /// Anti-EORG measure. Will add pacified to all players upon round end.
     /// Its not perfect, but gets the job done.
     /// </summary>
-    public static readonly CVarDef<bool> RoundEndPacifist =
-        CVarDef.Create("game.round_end_pacifist", false, CVar.SERVERONLY);
+    //public static readonly CVarDef<bool> RoundEndPacifist =
+    //    CVarDef.Create("game.round_end_pacifist", false, CVar.SERVERONLY);
 
     /// <summary>
     /// Disables all vision filters for species like Vulpkanin or Harpies. There are good reasons someone might want to disable these.
