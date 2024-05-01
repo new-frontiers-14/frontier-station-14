@@ -32,6 +32,8 @@
     damageModifierSet: StructuralMetallic
   - type: Physics
     bodyType: Static
+  - type: Penetratable
+    stoppingPower: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -530,6 +532,8 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Penetratable
+    stoppingPower: 3
   - type: Destructible
     thresholds:
     - trigger:
