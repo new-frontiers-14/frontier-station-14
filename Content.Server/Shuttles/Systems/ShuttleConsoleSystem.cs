@@ -37,6 +37,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -46,7 +47,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
-
+    private readonly HashSet<Entity<DockingComponent>> _docks = new();
     public override void Initialize()
     {
         base.Initialize();
@@ -83,6 +84,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<ShuttleConsoleComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
 
+
         InitializeFTL();
     }
 
@@ -97,6 +99,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     }
 
     private void OnDock(DockEvent ev)
+    {
+        RefreshShuttleConsoles();
+    }
+
+    private void OnDockAnchorChange(Entity<DockingComponent> entity, ref AnchorStateChangedEvent args)
     {
         RefreshShuttleConsoles();
     }

@@ -50,3 +50,39 @@
   components:
     - type: PriorityDock
       tag: DockTransit
+
+- type: entity
+  id: AirlockDockingMagnet #frontier
+  parent: AirlockShuttle
+  name: docking magnet
+  description: Necessary for connecting a spacecraft to salvage or asteroids. It can be spun while unanchored.
+  components:
+  - type: Docking
+  - type: Anchorable
+  - type: Rotatable
+    rotateWhileAnchored: false
+  - type: Transform
+    anchored: true        
+  - type: Weldable   
+    isWelded: true
+    time: 10000000
+  - type: Occluder
+    enabled: false
+  - type: Door
+    clickOpen: false
+    bumpOpen: false
+    occludes: false
+    openDrawDepth: -2
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/magnet.rsi
+    snapCardinals: false
+
+- type: entity
+  id: AirlockIronMass
+  name: iron mass
+  parent: AirlockDockingMagnet
+  description: A hunk of iron meant to be bolted down and attached to a docking magnet. It can be spun while unanchored.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/ironmass.rsi
+    snapCardinals: false 

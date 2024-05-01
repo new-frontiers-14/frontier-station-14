@@ -9,6 +9,9 @@ using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Events;
+using Content.Server.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -176,8 +179,11 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
-        private void OnAnchorChange(Entity<DockingComponent> entity, ref AnchorStateChangedEvent args)
+        public void OnAnchorChange(Entity<DockingComponent> entity, ref AnchorStateChangedEvent args)
         {
+
+            _console.RefreshShuttleConsoles(); // frontier
+
             if (!args.Anchored)
             {
                 Undock(entity);
