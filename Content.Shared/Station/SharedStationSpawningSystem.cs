@@ -3,14 +3,13 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Content.Shared.VulpLangauge;
 
 namespace Content.Shared.Station;
 
 public abstract class SharedStationSpawningSystem : EntitySystem
 {
     [Dependency] protected readonly InventorySystem InventorySystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
 
     /// <summary>
     /// Equips starting gear onto the given entity.
@@ -46,12 +45,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             {
                 _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
             }
-        }
-
-        if (HasComp<VulpGiveTranslatorComponent>(entity))
-        {
-            var vulpTranslatorEntity = EntityManager.SpawnEntity("VulpTranslator", coords);
-            _handsSystem.TryForcePickupAnyHand(entity, vulpTranslatorEntity, checkActionBlocker: false, handsComp: handsComponent);
         }
     }
 }
