@@ -17,11 +17,6 @@ entities:
     - type: MetaData
     - pos: -0.4375,-1.703125
       parent: invalid
-    - type: AutoDelete
-      delayToCheck: 60
-      delayToDelete: 2400
-      distanceToCheck: 40
-      isHumanoidNear: true
       type: Transform
     - chunks:
         0,0:
@@ -43,6 +38,11 @@ entities:
     - fixtures: {}
       type: Fixtures
     - type: OccluderTree
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: SpreaderGrid
     - type: Shuttle
     - type: GridPathfinding
