@@ -27,6 +27,11 @@ entities:
     components:
     - type: MetaData
       name: grid
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: Transform
       pos: -1.484375,-0.5
       parent: invalid

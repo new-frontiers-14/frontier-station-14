@@ -63,6 +63,11 @@ entities:
     - updateAccumulator: 0.10273647
       type: SpreaderGrid
     - type: Shuttle
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg

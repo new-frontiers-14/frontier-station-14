@@ -18,6 +18,11 @@ entities:
   - uid: 70
     components:
     - type: MetaData
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: Transform
       pos: 0.48260412,0.43276936
       parent: invalid
