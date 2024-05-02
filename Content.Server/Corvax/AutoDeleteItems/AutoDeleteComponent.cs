@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 public sealed partial class AutoDeleteComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool IsHumanoidNear = false;
+    public bool IsHumanoidNear;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool ReadyToDelete = false;
@@ -21,11 +21,11 @@ public sealed partial class AutoDeleteComponent : Component
     public TimeSpan NextTimeToCheck;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan DelayToCheck = TimeSpan.FromSeconds(10f);
+    public TimeSpan DelayToCheck;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan DelayToDelete = TimeSpan.FromSeconds(20f);
+    public TimeSpan DelayToDelete;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int DistanceToCheck = 5;
+    public int DistanceToCheck;
 }
