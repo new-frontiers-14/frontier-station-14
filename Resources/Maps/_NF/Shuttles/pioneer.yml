@@ -159,22 +159,19 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
-          -1,0:
-            0: 52428
+            0: 6007
           0,-1:
-            0: 65527
+            0: 65392
             1: 8
+          -1,0:
+            0: 34952
           0,1:
-            0: 1
             1: 14
-          -1,1:
-            0: 12
+          -1,-1:
+            0: 34944
+            1: 4
           0,-2:
             1: 12288
-          -1,-1:
-            1: 4
-            0: 52424
           -1,-2:
             1: 32768
         uniqueMixes:
@@ -194,7 +191,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -225,8 +222,6 @@ entities:
       devices:
       - 58
       - 133
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AccessReader
       enabled: False
     - type: Emagged
@@ -240,8 +235,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 121
@@ -354,7 +347,7 @@ entities:
   - uid: 56
     components:
     - type: Transform
-      pos: -0.61567664,2.7058928
+      pos: -0.4789027,3.3607204
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -561,44 +554,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
-- proto: DrinkMugMetal
+- proto: DrinkWaterJug
   entities:
-  - uid: 110
+  - uid: 47
     components:
     - type: Transform
-      pos: 0.26354554,3.9037092
+      pos: -0.6455693,3.214887
       parent: 1
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 20
-          name: null
-          reagents:
-          - data: null
-            ReagentId: Coffee
-            Quantity: 20
-- proto: DrinkVacuumFlask
-  entities:
-  - uid: 103
-    components:
-    - type: Transform
-      pos: 0.7635455,3.5480905
-      parent: 1
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          temperature: 293.15
-          canMix: False
-          canReact: True
-          maxVol: 30
-          name: null
-          reagents:
-          - data: null
-            ReagentId: Coffee
-            Quantity: 30
 - proto: EmergencyLight
   entities:
   - uid: 95
@@ -611,8 +573,6 @@ entities:
   entities:
   - uid: 135
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 129
     - type: Physics
@@ -632,25 +592,6 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
-- proto: FoodSnackMREBrownie
-  entities:
-  - uid: 104
-    components:
-    - type: Transform
-      pos: -0.31457946,2.7162092
-      parent: 1
-  - uid: 108
-    components:
-    - type: Transform
-      pos: 0.25513285,3.4821296
-      parent: 1
-- proto: FoodTinMRE
-  entities:
-  - uid: 109
-    components:
-    - type: Transform
-      pos: -0.30215788,2.4988184
-      parent: 1
 - proto: GasPassiveVent
   entities:
   - uid: 96
@@ -658,8 +599,6 @@ entities:
     - type: Transform
       pos: 1.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -689,8 +628,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasPressurePump
@@ -701,8 +638,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -713,8 +648,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasVentScrubber
@@ -725,8 +658,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -785,6 +716,24 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: OreBox
   entities:
   - uid: 124
@@ -899,20 +848,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 47
+  - uid: 103
     components:
     - type: Transform
-      anchored: True
       pos: -0.5,-2.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PoweredlightEmpty
   entities:
   - uid: 129
@@ -933,8 +879,6 @@ entities:
   entities:
   - uid: 107
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,1.5
@@ -1095,6 +1039,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-2.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 200
 - proto: SpawnPointLatejoin
   entities:
   - uid: 57
@@ -1160,23 +1106,31 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 64
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 78
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 90
     components:
     - type: Transform
       pos: 3.5,4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: TwoWayLever
   entities:
   - uid: 125
@@ -1200,96 +1154,70 @@ entities:
   entities:
   - uid: 2
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,2.5
       parent: 1
   - uid: 23
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-3.5
       parent: 1
   - uid: 25
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 1
   - uid: 33
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
   - uid: 36
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
   - uid: 49
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
   - uid: 68
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 1
   - uid: 69
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,2.5
       parent: 1
   - uid: 70
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,1.5
       parent: 1
   - uid: 73
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,0.5
       parent: 1
   - uid: 75
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,1.5
       parent: 1
   - uid: 81
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
   - uid: 138
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
@@ -1321,7 +1249,7 @@ entities:
   - uid: 105
     components:
     - type: Transform
-      pos: -0.16255164,3.2996428
+      pos: -0.21848601,3.2044704
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
