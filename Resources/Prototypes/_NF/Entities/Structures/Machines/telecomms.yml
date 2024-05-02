@@ -31,3 +31,23 @@
       - EncryptionKeySecurity
       - EncryptionKeyService
       - EncryptionKeyTraffic
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndicate
+  suffix: Syndicate
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndie
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledFreelance
+  suffix: Freelance
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyFreelance

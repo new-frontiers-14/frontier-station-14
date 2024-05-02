@@ -123,6 +123,8 @@
   - type: Pda
     id: ShriffIDCard
     state: pda-sheriff
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -151,6 +153,8 @@
   - type: Pda
     id: CadetIDCard
     state: pda-cadet
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -179,6 +183,8 @@
   - type: Pda
     id: DeputyIDCard
     state: pda-deputy
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -199,7 +205,7 @@
     state: pda-deputy
 
 - type: entity
-  parent: BasePDA
+  parent: BaseMedicalPDA
   id: BrigmedicNFPDA
   name: brigmedic PDA
   description: Whosoever bears this PDA heals the law.
@@ -207,6 +213,8 @@
   - type: Pda
     id: BrigmedicNFIDCard
     state: pda-brigmed
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -235,6 +243,8 @@
   - type: Pda
     id: SergeantIDCard
     state: pda-sergeant
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -263,6 +273,8 @@
   - type: Pda
     id: BailiffIDCard
     state: pda-bailiff
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -291,6 +303,8 @@
   - type: Pda
     id: DetectiveNFIDCard
     state: pda-detective
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
   - type: PdaBorderColor
     borderColor: "#774705"
   - type: Icon
@@ -307,13 +321,9 @@
     state: pda-sr
     penSlot:
       startingItem: PenCentcom
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: PdaBorderColor
     borderColor: "#789876"
-    accentHColor: "#447987"  
+    accentHColor: "#447987"
   - type: Sprite
     sprite: _NF/Objects/Devices/pda.rsi
     layers:
