@@ -1,6 +1,7 @@
 using Content.Server.Construction.Completions;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
+using FastAccessors;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Corvax.AutoDeleteItems;
@@ -32,8 +33,9 @@ public sealed class AutoDeleteSystem : EntitySystem
 
             if (autoDeleteComponent.NextTimeToCheck > _gameTiming.CurTime)
                 return;
+            _lookup.GetEntitiesInRange(xform.Coordinates, autoDeleteComponent.DistanceToCheck, humanoids);
 
-            if (_lookup.GetEntitiesInRangeInt(xform.Coordinates, autoDeleteComponent.DistanceToCheck, humanoids) > 0)
+            if (humanoids.Count > 0)
                 autoDeleteComponent.IsHumanoidNear = true;
             else
                 autoDeleteComponent.IsHumanoidNear = false;
