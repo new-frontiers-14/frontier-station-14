@@ -47,6 +47,11 @@ entities:
           version: 6
       type: MapGrid
     - type: Broadphase
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - bodyStatus: InAir
       angularDamping: 0.05
       linearDamping: 0.05

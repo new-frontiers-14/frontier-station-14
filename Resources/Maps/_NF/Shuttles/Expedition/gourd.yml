@@ -21,6 +21,11 @@ entities:
     components:
     - type: MetaData
       name: grid
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: Transform
       rot: -0.0008256337005150272 rad
       pos: -0.47552872,-6.9619565
