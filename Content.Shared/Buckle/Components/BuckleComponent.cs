@@ -25,7 +25,7 @@ public sealed partial class BuckleComponent : Component
     public bool Buckled;
 
     [ViewVariables]
-    //[AutoNetworkedField] - Космический костыль. Вернуть на место, когда у Resolve logMissing=false by default
+    [AutoNetworkedField]
     public EntityUid? LastEntityBuckledTo;
 
     /// <summary>
@@ -59,7 +59,7 @@ public sealed partial class BuckleComponent : Component
     /// <summary>
     /// The strap that this component is buckled to.
     /// </summary>
-    //[AutoNetworkedField] - Космический костыль. Вернуть на место, когда у Resolve logMissing=false by default
+    [AutoNetworkedField]
     [ViewVariables]
     public EntityUid? BuckledTo;
 
