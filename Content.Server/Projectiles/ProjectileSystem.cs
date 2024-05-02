@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
+using Content.Shared.Corvax.Penetration;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Projectiles;
@@ -18,9 +19,12 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
 
+    private EntityQuery<PenetratableComponent> _penetratableQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+        _penetratableQuery = GetEntityQuery<PenetratableComponent>();
         SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
     }
 
@@ -67,9 +71,16 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             _sharedCameraRecoil.KickCamera(target, direction);
         }
 
-        component.DamagedEntity = true;
+        if (component.PenetrationScore > 0 && _penetratableQuery.TryGetComponent(target, out var penetratable))
+        {
+            component.DamagedEntity = component.PenetrationScore < penetratable.StoppingPower;
 
-        if (component.DeleteOnCollide)
+            component.PenetrationScore -= penetratable.StoppingPower;
+        }
+        else
+            component.DamagedEntity = true;
+
+        if (component.DeleteOnCollide && component.DamagedEntity)
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp<TransformComponent>(uid, out var xform))
