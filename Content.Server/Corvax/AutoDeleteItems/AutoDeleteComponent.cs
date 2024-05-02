@@ -27,5 +27,5 @@ public sealed partial class AutoDeleteComponent : Component
     public TimeSpan DelayToDelete;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int DistanceToCheck;
+    public int DistanceToCheck = 1;
 }
