@@ -13,6 +13,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared.Projectiles;
 
 namespace Content.Shared.Execution;
 
@@ -47,11 +48,15 @@ public sealed class ExecutionSystem : EntitySystem
         SubscribeLocalEvent<ExecutionComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionsVerbs);
         SubscribeLocalEvent<ExecutionComponent, ExecutionDoAfterEvent>(OnExecutionDoAfter);
         SubscribeLocalEvent<ExecutionComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
+        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
     }
 
     private void OnGetInteractionsVerbs(EntityUid uid, ExecutionComponent comp, GetVerbsEvent<UtilityVerb> args)
     {
         if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
+            return;
+
+        if (!HasComp<GunComponent>(args.Using))
             return;
 
         var attacker = args.User;
@@ -107,8 +112,8 @@ public sealed class ExecutionSystem : EntitySystem
     private bool CanExecuteWithAny(EntityUid victim, EntityUid attacker)
     {
         // Use suicide.
-        if (victim == attacker)
-            return false;
+        //if (victim == attacker)
+        //    return false;
 
         // No point executing someone if they can't take damage
         if (!TryComp<DamageableComponent>(victim, out _))
@@ -200,6 +205,15 @@ public sealed class ExecutionSystem : EntitySystem
 
         var bonus = melee.Damage * execComp.DamageModifier - melee.Damage;
         args.Damage += bonus;
+    }
+
+    private void OnProjectileHit(EntityUid entity, ProjectileComponent component, ref ProjectileHitEvent e)
+    {
+        if (!TryComp<ExecutionComponent>(component.Weapon, out var execution) || !execution.Executing)
+            return;
+
+        var bonus = component.Damage * execution.DamageModifier - component.Damage;
+        e.Damage += bonus;
     }
 
     private void ShowExecutionInternalPopup(string locString,
