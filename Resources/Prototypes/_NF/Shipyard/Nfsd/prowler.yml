@@ -1,0 +1,26 @@
+- type: vessel
+  id: Prowler
+  name: NSF Бродяга
+  description: Среднегабаритный патрульный шаттл. Рекомендованный состав команды 3-6 человек.
+  price: 49220
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/prowler.yml
+
+- type: gameMap
+  id: Prowler
+  mapName: 'NSF Prowler'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/prowler.yml
+  minPlayers: 0
+  stations:
+    Prowler:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Бродяга {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

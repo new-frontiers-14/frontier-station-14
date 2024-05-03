@@ -1,0 +1,28 @@
+# - type: vessel
+  # id: Trident
+  # name: NSF Трезубец
+  # description: Среднегабаритный патрульный шаттл. Рекомендованный состав команды 3-6 человек.
+  # price: 49300
+  # category: Medium
+  # group: Security
+  # shuttlePath: /Maps/_NF/Shuttles/Nfsd/trident.yml
+
+# - type: gameMap
+  # id: Trident
+  # mapName: 'NSF Trident'
+  # mapPath: /Maps/_NF/Shuttles/Nfsd/trident.yml
+  # minPlayers: 0
+  # stations:
+    # Trident:
+      # stationProto: StandardFrontierSecurityVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: '{0} Трезубец {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # overflowJobs: []
+          # availableJobs:
+            # PrisonGuard: [ 0, 0 ]
+            # SecurityOfficer: [ 0, 0 ]

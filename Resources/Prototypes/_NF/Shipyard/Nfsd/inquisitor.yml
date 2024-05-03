@@ -1,0 +1,26 @@
+- type: vessel
+  id: Inquisitor
+  name: NSF Инквизитор
+  description: Малогабаритный патрульный шаттл. Рекомендованный состав команды 1-3 человека.
+  price: 29000
+  category: Small
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/inquisitor.yml
+
+- type: gameMap
+  id: Inquisitor
+  mapName: 'NSF Inquisitor'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/inquisitor.yml
+  minPlayers: 0
+  stations:
+    Inquisitor:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Инквизитор {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

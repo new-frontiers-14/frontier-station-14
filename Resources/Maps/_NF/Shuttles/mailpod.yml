@@ -123,38 +123,20 @@ entities:
       data:
         tiles:
           0,0:
-            0: 1
-            1: 30582
-          -1,0:
-            2: 4
-            1: 52424
+            0: 4403
+            1: 17408
           0,-1:
-            1: 25975
-            3: 4096
-            0: 512
-          -1,-1:
-            1: 52428
+            0: 13106
+          -1,0:
+            0: 34944
           0,1:
-            1: 7
+            1: 4
+          -1,-1:
+            1: 17476
           -1,1:
-            1: 12
+            1: 4
         uniqueMixes:
         - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
@@ -170,25 +152,10 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.14996
+          immutable: True
           moles:
-          - 21.824879
-          - 82.10312
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 23.710548
-          - 89.19683
           - 0
           - 0
           - 0
@@ -335,23 +302,15 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-  - uid: 64
+  - uid: 32
     components:
     - type: Transform
-      pos: 2.5,2.5
+      pos: 1.5,1.5
       parent: 1
   - uid: 73
     components:
     - type: Transform
       pos: 1.5,2.5
-      parent: 1
-- proto: CableTerminal
-  entities:
-  - uid: 32
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,1.5
       parent: 1
 - proto: ChairOfficeLight
   entities:

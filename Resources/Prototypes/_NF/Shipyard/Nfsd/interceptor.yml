@@ -1,0 +1,26 @@
+- type: vessel
+  id: Interceptor
+  name: NSF Перехватчик
+  description: Малогабаритный патрульный шаттл. Рекомендованный состав команды 1-2 человека.
+  price: 21350
+  category: Small
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/interceptor.yml
+
+- type: gameMap
+  id: Interceptor
+  mapName: 'NSF Interceptor'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/interceptor.yml
+  minPlayers: 0
+  stations:
+    Interceptor:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Перехватчик {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}
