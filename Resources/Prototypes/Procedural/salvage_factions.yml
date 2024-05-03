@@ -1,6 +1,6 @@
 - type: salvageFaction
   id: Xenos
-  cost: 4
+  cost: 3
   groups:
   - entries:
     - id: MobXeno
@@ -107,8 +107,8 @@
     prob: 0.001
   configs:
     DefenseStructure: CybersunDataMiner
-    Mining: Xenos # No idea what this thing does or where to look for it
-    Megafauna: MobSyndicateNavalCommanderA # Can't use spawner here
+    Mining: Syndicate
+    Megafauna: MobSyndicateNavalCommanderA
 
 - type: salvageFaction
   id: Cultists
@@ -152,5 +152,94 @@
     prob: 0.05
   configs:
     DefenseStructure: BloodCollector
-    Mining: Xenos # No idea what this thing does or where to look for it
+    Mining: Cultists
     Megafauna: MobBloodCultistAscended
+
+- type: salvageFaction
+  id: AberrantFlesh
+  cost: 1
+  groups:
+  - entries:
+    - id: MobFleshJaredExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: MobFleshGolemExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.5
+  - entries:
+    - id: MobFleshClampExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: MobFleshLoverExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: MobFleshJaredExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: MobFleshLoverExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: MobFleshGolemExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: MobFleshClampExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.25
+  configs:
+    DefenseStructure: FleshBlocker
+    Mining: AberrantFlesh
+    Megafauna: MobAbominationExpeditions
+
+- type: salvageFaction
+  id: Argocyte
+  cost: 4
+  groups:
+  - entries:
+    - id: MobArgocyteSkitter
+      amount: 2
+      maxAmount: 3
+    - id: MobArgocyteSwiper
+      amount: 1
+      maxAmount: 2
+  - entries:
+    - id: MobXenoPraetorian
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: MobArgocyteMolder
+      amount: 1
+      maxAmount: 2
+    - id: MobArgocytePouncer
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: MobArgocyteGlider
+      amount: 3
+    prob: 0.25
+  - entries:
+      - id: MobArgocyteHarvester
+        amount: 2
+    prob: 0.25
+  - entries:
+    - id: MobArgocyteEnforcer
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobArgocyteFounder
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobArgocyteCrawler
+      amount: 2
+    prob: 0.001
+  configs:
+    DefenseStructure: MobArgocyteBarrier
+    Mining: Argocyte
+    Megafauna: MobArgocyteLeviathing # Frontier
