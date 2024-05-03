@@ -64,15 +64,19 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
     {
         base.Started(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation))
-            return;
+        // Frontier - Affect all silicon beings in the sector, not just on-station.
+        // if (!TryGetRandomStation(out var chosenStation))
+        //     return;
+        // End Frontier
 
         var query = EntityQueryEnumerator<SiliconLawBoundComponent, TransformComponent, IonStormTargetComponent>();
         while (query.MoveNext(out var ent, out var lawBound, out var xform, out var target))
         {
-            // only affect law holders on the station
-            if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != chosenStation)
-                continue;
+            // Frontier - Affect all silicon beings in the sector, not just on-station.
+            // // only affect law holders on the station
+            // if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != chosenStation)
+            //     continue;
+            // End Frontier
 
             if (!RobustRandom.Prob(target.Chance))
                 continue;

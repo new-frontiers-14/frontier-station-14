@@ -65,105 +65,105 @@ entities:
             color: '#FFFFFFFF'
             id: Bot
           decals:
-            60: -1,-2
-            61: 0,-2
-            62: 0,-3
-            63: -1,-3
+            0: -1,-2
+            1: 0,-2
+            2: 0,-3
+            3: -1,-3
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
           decals:
-            64: 0,0
+            4: 0,0
         - node:
             cleanable: True
             color: '#FFFFFFFF'
             id: DirtHeavy
           decals:
-            103: -1,0
-            104: -3,1
-            105: -1,2
-            106: 2,1
-            107: 1,-1
-            108: 0,3
-            109: 0,8
-            110: 2,4
-            111: 2,2
-            112: 1,-4
-            113: 0,-4
-            114: -1,-4
-            115: 1,-4
-            116: 0,-4
-            117: -1,-4
-            118: -1,9
-            119: -1,10
-            120: -1,11
-            121: 0,11
-            122: 1,11
-            123: 1,10
-            124: 1,10
+            36: -1,0
+            37: -3,1
+            38: -1,2
+            39: 2,1
+            40: 1,-1
+            41: 0,3
+            42: 0,8
+            43: 2,4
+            44: 2,2
+            45: 1,-4
+            46: 0,-4
+            47: -1,-4
+            48: 1,-4
+            49: 0,-4
+            50: -1,-4
+            51: -1,9
+            52: -1,10
+            53: -1,11
+            54: 0,11
+            55: 1,11
+            56: 1,10
+            57: 1,10
         - node:
             cleanable: True
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
           decals:
-            77: -3,1
-            78: -2,0
-            79: -1,0
-            80: 0,0
-            81: 1,0
-            82: 2,0
-            83: 2,1
-            84: 0,-2
-            85: -1,-2
-            86: -1,-3
-            87: 0,-3
-            88: 2,2
-            89: 2,4
-            90: 2,3
-            91: 0,3
-            92: -3,2
-            93: -1,4
-            94: -1,5
-            95: -1,6
-            96: -1,7
-            97: -1,9
-            98: -1,10
-            99: -1,11
-            100: 0,11
-            101: 1,11
-            102: 1,10
-            125: 2,0
-            126: -2,0
-            127: 0,-2
-            128: -1,-3
-            129: -1,4
-            130: -1,5
-            131: -1,6
-            132: -1,7
-            133: -1,6
-            134: -1,6
-            135: -1,6
+            10: -3,1
+            11: -2,0
+            12: -1,0
+            13: 0,0
+            14: 1,0
+            15: 2,0
+            16: 2,1
+            17: 0,-2
+            18: -1,-2
+            19: -1,-3
+            20: 0,-3
+            21: 2,2
+            22: 2,4
+            23: 2,3
+            24: 0,3
+            25: -3,2
+            26: -1,4
+            27: -1,5
+            28: -1,6
+            29: -1,7
+            30: -1,9
+            31: -1,10
+            32: -1,11
+            33: 0,11
+            34: 1,11
+            35: 1,10
+            58: 2,0
+            59: -2,0
+            60: 0,-2
+            61: -1,-3
+            62: -1,4
+            63: -1,5
+            64: -1,6
+            65: -1,7
+            66: -1,6
+            67: -1,6
+            68: -1,6
         - node:
             color: '#FFFFFFFF'
             id: StandClear
           decals:
-            69: 1,-1
+            7: 1,-1
         - node:
             color: '#FFFFFFFF'
             id: StandClearGreyscale
           decals:
-            72: 0,8
-            73: 0,3
+            8: 0,8
+            9: 0,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleN
           decals:
-            65: 2,1
+            5: 2,1
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
-            68: 2,3
+            6: 2,3
     - type: GridAtmosphere
       version: 2
       data:
@@ -251,7 +251,7 @@ entities:
       pos: 1.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -93.89965
+      secondsUntilStateChange: -239.95091
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -642,96 +642,6 @@ entities:
     - type: Transform
       pos: 0.5,9.5
       parent: 2
-- proto: CannonBall
-  entities:
-  - uid: 205
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 206
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 207
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 208
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: CannonBallGlassshot
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 203
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: CannonBallGrapeshot
-  entities:
-  - uid: 198
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 199
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 200
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 210
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Catwalk
   entities:
   - uid: 80
@@ -989,54 +899,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,10.5
       parent: 2
-- proto: CratePirate
-  entities:
-  - uid: 197
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 209
-          - 208
-          - 207
-          - 206
-          - 205
-          - 204
-          - 203
-          - 202
-          - 201
-          - 200
-          - 199
-          - 198
-          - 210
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 149
@@ -1473,15 +1335,6 @@ entities:
     - type: Transform
       pos: 2.5,-2.5
       parent: 2
-- proto: PirateHandyFlag
-  entities:
-  - uid: 209
-    components:
-    - type: Transform
-      parent: 197
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: PlastitaniumWindow
   entities:
   - uid: 144
@@ -1677,19 +1530,26 @@ entities:
         - Pressed: Trigger
         75:
         - Pressed: Trigger
-- proto: SpawnPointLatejoin
+- proto: SpawnPointPirate
   entities:
   - uid: 158
     components:
     - type: Transform
-      pos: 0.5,6.5
+      pos: 0.5,7.5
       parent: 2
-- proto: SpawnPointPirate
+- proto: SpawnPointPirateCaptain
   entities:
-  - uid: 164
+  - uid: 156
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.5,6.5
+      parent: 2
+- proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 76
+    components:
+    - type: Transform
+      pos: 0.5,5.5
       parent: 2
 - proto: SubstationBasic
   entities:
@@ -1698,40 +1558,6 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 2
-- proto: SuitStoragePirateCap
-  entities:
-  - uid: 156
-    components:
-    - type: Transform
-      pos: -0.5,9.5
-      parent: 2
-- proto: SuitStorageWallmountEVAPirate
-  entities:
-  - uid: 76
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 14
