@@ -39,10 +39,13 @@
         Slash: 6
   - type: ReplacementAccent
     accent: genericAggressive
+  - type: TimedDespawn
+    lifetime: 1500 # 25 minutes until mobs despawn
 
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -68,6 +71,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -97,6 +101,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshClampExpeditions
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -121,6 +126,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -146,6 +152,7 @@
   parent: BaseMobFleshExpeditions
   id: MobAbominationExpeditions
   name: abomination
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
