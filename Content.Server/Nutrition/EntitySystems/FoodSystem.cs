@@ -273,6 +273,7 @@ public sealed class FoodSystem : EntitySystem
 
         /// Frontier - Food quality system
         var foodQuality = entity.Comp.Quality;
+        //var showFlavors = true; // Frontier
 
         foreach (var quality in foodQuality)
         {
@@ -310,6 +311,9 @@ public sealed class FoodSystem : EntitySystem
             var speedRegent = "Stimulants";
             var damagingRegent = "Toxin";
             var emoteId = "Laugh";
+
+            //var msgNasty = Loc.GetString("food-system-nasty", ("used", args.Used), ("target", args.Target));
+            //var msgToxin = Loc.GetString("food-system-toxin", ("used", args.Used), ("target", args.Target));
 
             TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream);
 
@@ -359,6 +363,9 @@ public sealed class FoodSystem : EntitySystem
             {
                 if (reverseFoodQuality)
                 {
+                    //showFlavors = false; // Frontier
+                    //_popup.PopupEntity(msgNasty, args.Target.Value, args.User);
+
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
@@ -371,6 +378,9 @@ public sealed class FoodSystem : EntitySystem
             {
                 if (reverseFoodQuality)
                 {
+                    //showFlavors = false; // Frontier
+                    //_popup.PopupEntity(msgToxin, args.Target.Value, args.User);
+
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
                     if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
@@ -402,7 +412,8 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
+            //if (showFlavors) // Frontier
+                _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
 
             _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
 
@@ -411,7 +422,8 @@ public sealed class FoodSystem : EntitySystem
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
+            //if (showFlavors) // Frontier
+                _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
 
             // log successful voluntary eating
             _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(args.User):target} ate {ToPrettyString(entity.Owner):food}");
