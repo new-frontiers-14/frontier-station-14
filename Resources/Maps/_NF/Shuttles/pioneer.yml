@@ -220,8 +220,8 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 58
-      - 133
+      - 35
+      - 48
     - type: AccessReader
       enabled: False
     - type: Emagged
@@ -248,14 +248,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
-      parent: 1
-- proto: AirSensor
-  entities:
-  - uid: 133
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -603,11 +595,11 @@ entities:
       color: '#990000FF'
 - proto: GasPipeBend
   entities:
-  - uid: 35
+  - uid: 104
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      pos: 1.5,-1.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -617,6 +609,30 @@ entities:
     components:
     - type: Transform
       pos: 1.5,3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 44
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 58
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 109
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,1.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -648,16 +664,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 111
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 58
+  - uid: 35
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
+      pos: 0.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 111
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -736,7 +762,7 @@ entities:
         - 0
 - proto: OreBox
   entities:
-  - uid: 124
+  - uid: 110
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -747,99 +773,6 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 44
-    components:
-    - type: MetaData
-      name: preflight checklist
-    - type: Transform
-      pos: -0.21699798,-2.269284
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-ce
-      stampedBy:
-      - stampedBorderless: False
-        stampedColor: '#C69B17FF'
-        stampedName: stamp-component-stamped-name-ce
-      - stampedBorderless: False
-        stampedColor: '#00BE00FF'
-        stampedName: stamp-component-stamped-name-approved
-      content: >-
-        [color=#1b67a5]█░░█░███[/color][color=#5b97bc]░███░█░█░█░██░░█░█░██░░██░░██░[/color]
-
-        [color=#1b67a5]██░█░░█░[/color][color=#5b97bc]██░░░█░█░█░█░█░█░█░█░█░█░█░█░█[/color]
-
-        [color=#1b67a5]█░██░░█░[/color][color=#5b97bc]░░██░███░█░██░░░█░░███░██░░█░█[/color]
-
-        [color=#1b67a5]█░░█░░█░[/color][color=#5b97bc]███░░█░█░█░█░░░░█░░█░█░█░█░██░[/color]
-
-
-        [head=1]=========================[/head]
-
-        [head=1]    Pioneer-class salvage ship[/head]
-
-        [head=1] [/head]
-
-        [head=1]       PREFLIGHT CHECKLIST[/head]
-
-        [head=1] [/head]
-
-        [head=1]=========================[/head]
-
-
-        [head=2]1. Power supply.[/head]
-
-        [head=3]1.1. Battery units.[/head]
-
-        [bullet/][ ] Check if the substation unit is anchored to the floor.
-
-        [bullet/][ ] Check if the APC unit's Main Breaker is toggled on.
-
-        [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
-
-        [head=3]1.2. P.A.C.M.A.N. generator unit.[/head]
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight. Note that [bold]raw plasma ore[/bold] can be used as fuel[bold]**[/bold].
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is set to HV output.
-
-        [bullet/][ ] Set Target Power for 10-11[bold]***[/bold] [bold]k[/bold]W.
-
-        [bullet/][ ] Start the P.A.C.M.A.N. generator unit.
-
-
-        [head=2]2. Atmospherics.[/head]
-
-        [head=3]2.1. Distribution Loop.[/head]
-
-        [bullet/][ ] Check if the air canister is anchored to connector port.
-
-        [head=3]2.2. Waste Loop.[/head]
-
-        [bullet/][ ] Enable waste loop pump.
-
-        [bullet/][ ] Set air alarm filtering to wide.
-
-
-        [head=2]3. Other checks.[/head]
-
-        [bullet/][ ] Check if the gyroscope is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the mini gravity generator is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the bow window shutters are closed.
-
-
-        __________________________________________________________________
-
-        [bold]*[/bold] - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (8.6 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-
-        [bold]**[/bold] - While the ship is not equipped with Ore Processing unit the power generation is sustainable due to the the ability of P.A.C.M.A.N. generator units accept [bold]raw plasma ore[/bold] as a fuel. Do note however that 1 unit of raw plasma ore equals to 5 solid plasma sheets, so in order to fully fill generator's fuel tank you only need 6 units of raw plasma ore.
-
-        [bold]***[/bold] - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 126
@@ -932,6 +865,13 @@ entities:
       count: 15
     - type: Item
       size: 15
+- proto: ShipyardPioneerInfo
+  entities:
+  - uid: 108
+    components:
+    - type: Transform
+      pos: -0.24669397,-2.2724097
+      parent: 1
 - proto: ShuttersWindow
   entities:
   - uid: 5
