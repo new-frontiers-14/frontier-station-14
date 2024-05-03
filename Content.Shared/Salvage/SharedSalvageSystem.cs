@@ -59,15 +59,15 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         switch (rating)
         {
             case DifficultyRating.Minimal:
-                return 1;
-            case DifficultyRating.Minor:
-                return 2;
-            case DifficultyRating.Moderate:
                 return 4;
-            case DifficultyRating.Hazardous:
+            case DifficultyRating.Minor:
+                return 6;
+            case DifficultyRating.Moderate:
                 return 8;
+            case DifficultyRating.Hazardous:
+                return 10;
             case DifficultyRating.Extreme:
-                return 16;
+                return 12;
             default:
                 throw new ArgumentOutOfRangeException(nameof(rating), rating, null);
         }
@@ -100,12 +100,10 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         // - Biome
         // - Lighting
         // - Atmos
+        var faction = GetMod<SalvageFactionPrototype>(rand, ref rating);
         var biome = GetMod<SalvageBiomeMod>(rand, ref rating);
         var air = GetBiomeMod<SalvageAirMod>(biome.ID, rand, ref rating);
         var dungeon = GetBiomeMod<SalvageDungeonModPrototype>(biome.ID, rand, ref rating);
-        var factionProtos = _proto.EnumeratePrototypes<SalvageFactionPrototype>().ToList();
-        factionProtos.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
-        var faction = factionProtos[rand.Next(factionProtos.Count)];
 
         var mods = new List<string>();
 
@@ -196,24 +194,27 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
     /// <summary>
     /// Get a list of WeightedRandomEntityPrototype IDs with the rewards for a certain difficulty.
+    /// Frontier: added uncommon and legendary reward tiers, limited amount of rewards to 1 per difficulty rating
     /// </summary>
     private string[] RewardsForDifficulty(DifficultyRating rating)
     {
         var common = "SalvageRewardCommon";
+        var uncommon = "SalvageRewardUncommon";
         var rare = "SalvageRewardRare";
         var epic = "SalvageRewardEpic";
+        var legendary = "SalvageRewardLegendary";
         switch (rating)
         {
             case DifficultyRating.Minimal:
-                return new string[] { common, common, common };
+                return new string[] { common };
             case DifficultyRating.Minor:
-                return new string[] { common, common, rare };
+                return new string[] { uncommon };
             case DifficultyRating.Moderate:
-                return new string[] { common, rare, rare };
+                return new string[] { rare };
             case DifficultyRating.Hazardous:
-                return new string[] { rare, rare, rare, epic };
+                return new string[] { epic };
             case DifficultyRating.Extreme:
-                return new string[] { rare, rare, epic, epic, epic };
+                return new string[] { legendary };
             default:
                 throw new NotImplementedException();
         }
