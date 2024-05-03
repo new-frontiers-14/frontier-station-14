@@ -273,35 +273,34 @@ public sealed class FoodSystem : EntitySystem
 
         /// Frontier - Food quality system
         var foodQuality = entity.Comp.Quality;
-        var foodFinalQuality = entity.Comp.FinalQuality;
 
         foreach (var quality in foodQuality)
         {
             if (quality == null)
                 continue;
             else if (quality == "High")
-                foodFinalQuality = "High";
+                entity.Comp.FinalQuality = "High";
             else if (quality == "Normal")
-                foodFinalQuality = "Normal";
+                entity.Comp.FinalQuality = "Normal";
             else if (quality == "Junk")
-                foodFinalQuality = "Junk";
+                entity.Comp.FinalQuality = "Junk";
             else if (quality == "Nasty")
-                foodFinalQuality = "Nasty";
+                entity.Comp.FinalQuality = "Nasty";
             else if (quality == "Toxin")
-                foodFinalQuality = "Toxin";
+                entity.Comp.FinalQuality = "Toxin";
             else if (quality == "Trash")
-                foodFinalQuality = "Trash";
+                entity.Comp.FinalQuality = "Trash";
 
             if (reverseFoodQuality)
             {
                 if (quality == "High")
-                    foodFinalQuality = "Toxin";
+                    entity.Comp.FinalQuality = "Toxin";
                 else if (quality == "Normal")
-                    foodFinalQuality = "Nasty";
+                    entity.Comp.FinalQuality = "Nasty";
                 else if (quality == "Nasty")
-                    foodFinalQuality = "Normal";
+                    entity.Comp.FinalQuality = "Normal";
                 else if (quality == "Toxin")
-                    foodFinalQuality = "High";
+                    entity.Comp.FinalQuality = "High";
             }
 
             // TODO: Add detection for fried food on nasty to update it to toxin for goblins.
@@ -314,7 +313,7 @@ public sealed class FoodSystem : EntitySystem
 
             TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream);
 
-            if (foodFinalQuality == "High")
+            if (entity.Comp.FinalQuality == "High")
             {
                 if (reverseFoodQuality)
                 {
@@ -328,7 +327,7 @@ public sealed class FoodSystem : EntitySystem
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
                 }
             }
-            else if (foodFinalQuality == "Normal")
+            else if (entity.Comp.FinalQuality == "Normal")
             {
                 if (reverseFoodQuality)
                 {
@@ -342,7 +341,7 @@ public sealed class FoodSystem : EntitySystem
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
                 }
             }
-            else if (foodFinalQuality == "Junk")
+            else if (entity.Comp.FinalQuality == "Junk")
             {
                 if (reverseFoodQuality)
                 {
@@ -356,7 +355,7 @@ public sealed class FoodSystem : EntitySystem
                         _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
                 }
             }
-            else if (foodFinalQuality == "Nasty")
+            else if (entity.Comp.FinalQuality == "Nasty")
             {
                 if (reverseFoodQuality)
                 {
@@ -368,7 +367,7 @@ public sealed class FoodSystem : EntitySystem
                     _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
                 }
             }
-            else if (foodFinalQuality == "Toxin")
+            else if (entity.Comp.FinalQuality == "Toxin")
             {
                 if (reverseFoodQuality)
                 {
@@ -384,7 +383,7 @@ public sealed class FoodSystem : EntitySystem
                         _vomit.Vomit(args.Target.Value);
                 }
             }
-            else if (foodFinalQuality == "Trash")
+            else if (entity.Comp.FinalQuality == "Trash")
             {
                 if (reverseFoodQuality)
                 {
