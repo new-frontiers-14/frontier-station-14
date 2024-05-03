@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Components;
@@ -146,7 +148,48 @@ namespace Content.Server.Physics.Controllers
             component.LastInputTick = Timing.CurTick;
             component.LastInputSubTick = 0;
         }
+        
+        // Corvax start
+        public override void UpdateBeforeSolve(bool prediction, float frameTime)
+        {
+            base.UpdateBeforeSolve(prediction, frameTime);
+            UpdatePilots();
+            HandleShuttleMovement(frameTime);
+        }
 
+        private void UpdatePilots()
+        {
+            var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
+            var shuttleQuery = GetEntityQuery<ShuttleComponent>();
+            var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+
+            while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
+            {
+                if (!IsPilotActive(pilot)) continue;
+
+                var consoleEnt = pilot.Console;
+                if (!TryComp<TransformComponent>(consoleEnt, out var xform)) continue;
+
+                var gridId = xform.GridUid;
+                if (!shuttleQuery.TryGetComponent(gridId, out var shuttleComponent) || !shuttleComponent.Enabled) continue;
+
+                if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
+                    pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+
+                pilots.Item2.Add((uid, pilot, mover, xform));
+                newPilots[gridId.Value] = pilots;
+            }
+
+            _shuttlePilots = newPilots;
+        }
+
+        private bool IsPilotActive(PilotComponent pilot)
+        {
+            // Determine if the pilot is currently active based on input.
+            return pilot.HeldButtons != ShuttleButtons.None;
+        }
+        // Corvax end
+        
         protected override void HandleShuttleInput(EntityUid uid, ShuttleButtons button, ushort subTick, bool state)
         {
             if (!TryComp<PilotComponent>(uid, out var pilot) || pilot.Console == null)
