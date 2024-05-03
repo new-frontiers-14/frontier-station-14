@@ -251,7 +251,7 @@
 
 - type: entity
   name: paper cone
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: FoodFrozenSnowconeTrash
   description: A crumpled paper cone used for an icy treat. Worthless.
   components:
@@ -264,7 +264,7 @@
 
 - type: entity
   name: popsicle stick
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: FoodFrozenPopsicleTrash
   description: Once held a delicious treat. Now, 'tis barren.
   components:

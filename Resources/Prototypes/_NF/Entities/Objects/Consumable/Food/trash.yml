@@ -1,0 +1,18 @@
+- type: entity
+  noSpawn: true
+  id: TrashSolutionInjector
+  abstract: true
+  components:
+  - type: FlavorProfile
+    flavors:
+    - funny
+  - type: Food
+    quality: Trash
+#    requiresSpecialDigestion: true # Frontier, Goblins
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: TrashJuice
+          Quantity: 1
