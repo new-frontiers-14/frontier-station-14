@@ -165,7 +165,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
     {
         if (_mobQuery.HasComponent(uid))
         {
-            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Alive)
+            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Dead) // Allow selling alive prisoners
             {
                 return false;
             }

@@ -168,6 +168,28 @@
         type: BankATMMenuBoundUserInterface
 
 - type: entity
+  suffix: Wallmount, BlackMarket
+  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureWallmount, BaseStructureComputer]
+  id: ComputerWallmountBlackMarketBankATM
+  description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/atm/wall_illegal_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.BankATMMenuUiKey.BlackMarket
+  - type: UserInterface
+    interfaces:
+      - key: enum.BankATMMenuUiKey.BlackMarket
+        type: BankATMMenuBoundUserInterface
+
+- type: entity
   name: station administration console
   parent: [ComputerBankATMBase, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseStructureComputer]
   id: StationAdminBankATM
