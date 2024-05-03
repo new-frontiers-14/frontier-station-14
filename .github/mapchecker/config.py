@@ -2,31 +2,36 @@
 ILLEGAL_MATCHES = [
     "DO NOT MAP",
     "DEBUG",
-	"CaptainSabre",
-	"ClothingBeltSheath",
-	"MagazinePistolHighCapacity",
-	"MagazinePistolHighCapacityRubber",
-	"EncryptionKeyCommand",
-	"SurveillanceCameraWireless",
-	"CrewMonitoringServer",
-	"APCHighCapacity",
-	"APCSuperCapacity",
-	"APCHyperCapacity",
-	"PDA",
-	"SpawnPointPassenger",
-	"Python",
-	"SalvageShuttleMarker",
-	"FTLPoint",
+    "Admeme",
+    "CaptainSabre",
+    "ClothingBeltSheath",
+    "MagazinePistolHighCapacity",
+    "MagazinePistolHighCapacityRubber",
+    "EncryptionKeyCommand",
+    "SurveillanceCameraWireless",
+    "CrewMonitoringServer",
+    "APCHighCapacity",
+    "APCSuperCapacity",
+    "APCHyperCapacity",
+    "PDA",
+    "SpawnPointPassenger",
+    "Python",
+    "SalvageShuttleMarker",
+    "FTLPoint",
 ]
 # List of matchers that are illegal to use, unless the map is a ship and the ship belongs to the keyed shipyard.
 CONDITIONALLY_ILLEGAL_MATCHES = {
     "Security": [  # These matchers are illegal unless the ship is part of the security shipyard.
         "Security",  # Anything with the word security in it should also only be appearing on security ships.
         "Plastitanium",  # Plastitanium walls should only be appearing on security ships.
-		"Kammerer", # Opportunity
-		"HighSecDoor",
+        "Kammerer", # Opportunity
+        "HighSecDoor",
     ],
-    "BlackMarket": [
+    "Syndicate": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
-    ]
+    ],
+	"BlackMarket": [
+        "Plastitanium",  # And also on blackmarket ships cause syndicate.
+        "ButtonFrameCautionSecurity",  # Decal.
+	]
 }

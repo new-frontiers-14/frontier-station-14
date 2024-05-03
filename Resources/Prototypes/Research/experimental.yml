@@ -4,8 +4,8 @@
   id: BasicRobotics
   name: research-technology-basic-robotics
   icon:
-    sprite: Mobs/Silicon/drone.rsi
-    state: drone
+    sprite: Structures/Machines/exosuit_fabricator.rsi
+    state: fab-idle
   discipline: Experimental
   tier: 1
   cost: 5000
@@ -141,18 +141,19 @@
   recipeUnlocks:
   - RPED
 
-# - type: technology # Frontier - The cancer-inator
-  # id: DeterrenceTechnologies
-  # name: research-technology-deterrence
-  # icon:
-    # sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
-    # state: base
-  # discipline: Experimental
-  # tier: 2
-  # cost: 7500
-  # recipeUnlocks:
-  # - WeaponParticleDecelerator
-  # - HoloprojectorField
+- type: technology
+  id: DeterrenceTechnologies
+  abstract: true # Frontier
+  name: research-technology-deterrence
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    state: base
+  discipline: Experimental
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - WeaponParticleDecelerator
+  - HoloprojectorField
 
 # Tier 3
 
@@ -170,18 +171,18 @@
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
 
-- type: technology
-  id: GravityManipulation
-  name: research-technology-gravity-manipulation
-  icon:
-    sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
-    state: base
-  discipline: Experimental
-  tier: 3
-  cost: 10000
-  recipeUnlocks:
-    - WeaponForceGun
-    - WeaponTetherGun
+#- type: technology # Frontier - too many physics issues, bugs and exploits, the less we look like gmod the better.
+#  id: GravityManipulation
+#  name: research-technology-gravity-manipulation
+#  icon:
+#    sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
+#    state: base
+#  discipline: Experimental
+#  tier: 3
+#  cost: 10000
+#  recipeUnlocks:
+#    - WeaponForceGun
+#    - WeaponTetherGun
 
 #- type: technology # Frontier - disabled because why the fuck are we adding a god damned FOURTH exploit to the game intentionally holy shit
 #  id: QuantumLeaping

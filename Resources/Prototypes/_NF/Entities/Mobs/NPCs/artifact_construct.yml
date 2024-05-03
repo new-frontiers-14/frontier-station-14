@@ -1,0 +1,147 @@
+﻿- type: entity
+  abstract: true
+  parent:
+    - MobAtmosNF
+    - BaseSimpleMob
+    - MobCombat
+    - FlyingMobBase
+  id: SimpleArtifactMobBase
+  suffix: AI
+  components:
+    - type: NpcFactionMember
+      factions:
+        - ArtifactConstruct
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+      blackboard:
+        NavClimb: !type:Bool
+          true
+        NavSmash: !type:Bool
+          true
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: Dead
+    - type: Climbing
+    - type: NameIdentifier
+      group: GenericNumber
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 0.7
+        80: 0.5
+    - type: ZombieImmune # Artifact constructs should not be able to become zombie
+
+- type: entity
+  parent: SimpleArtifactMobBase
+  id: BaseMobArtifactConstruct
+  name: artifact construct
+  abstract: true
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _NF/Mobs/Aliens/grim_forged.rsi
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 100
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: StatusEffects
+      allowed:
+        - SlowedDown
+        - Electrocution
+    - type: Tag
+      tags:
+        - DoorBumpOpener # Allow opening doors by bumping into them
+    - type: CombatMode
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 3
+      animation: WeaponArcPunch
+    - type: ReplacementAccent
+      accent: genericAggressive
+    - type: StaticPrice
+      price: 100
+    - type: Butcherable
+      spawned:
+        - id: ArtifactFragment
+          amount: 2
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2
+
+- type: entity
+  parent: BaseMobArtifactConstruct
+  id: MobGrimForged
+  name: Grimforged Construct
+  description: A towering golem crafted from twisted metal and ancient stones.
+  suffix: AI
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: move
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: flash
+          shader: unshaded
+        - map: [ "clownedon" ]
+          sprite: "_NF/Effects/creampie_64.rsi"
+          state: "creampie_grimforged"
+          visible: false
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: move
+        Dead:
+          Base: dead
+    - type: GenericVisualizer
+      visuals:
+        enum.CreamPiedVisuals.Creamed:
+          clownedon:
+            True: { visible: true }
+            False: { visible: false }
+    - type: SpamEmitSound
+      minInterval: 10
+      maxInterval: 60
+      sound:
+        path: /Audio/_NF/Ambience/monster-flange.ogg
+    - type: SoundWhileAlive
+    - type: AmbientSound
+      volume: -6
+      range: 8
+      sound:
+        path: /Audio/_NF/Ambience/force-field.ogg
+    - type: CreamPied
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: Stamina
+      critThreshold: 300
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLightLaser
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 40
+    - type: Battery
+      showExamineText: false
+      maxCharge: 55
+      startingCharge: 0
+    - type: Gun
+      showExamineText: false
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg

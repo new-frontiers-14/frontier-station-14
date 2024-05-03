@@ -116,7 +116,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
 
         if (station != null)
         {
-            var ev = new EntitySoldEvent(station.Value, toSell);
+            var ev = new EntitySoldEvent(toSell);
             RaiseLocalEvent(ref ev);
         }
 
@@ -165,7 +165,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
     {
         if (_mobQuery.HasComponent(uid))
         {
-            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Alive)
+            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Dead) // Allow selling alive prisoners
             {
                 return false;
             }

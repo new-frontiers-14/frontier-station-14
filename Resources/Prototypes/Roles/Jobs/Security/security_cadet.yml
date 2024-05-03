@@ -2,29 +2,29 @@
   id: SecurityCadet
   name: job-name-cadet
   description: job-description-cadet
-  playTimeTracker: JobSecurityCadet
+  playTimeTracker: JobSecurityCadetOld
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 36000 #10 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Frontier - 10 hrs
+      time: 54000 #15 hrs
       inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
-  supervisors: job-supervisors-hos # Frontier
+  supervisors: job-supervisors-security
   canBeAntag: false
   access:
   - Security
   - Brig
   - Maintenance
-  - Service # Frontier
-  - External # Frontier
-  - Mercenary # Frontier
-  - Captain # Frontier
+  - Service
+  - External
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant ]
+  setPreference: false # Frontier
 
 - type: startingGear
   id: SecurityCadetGear
@@ -35,10 +35,9 @@
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58Nonlethal
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolMk58
     pocket2: BookSecurity
-    gloves: ClothingHandsGlovesCombat # Frontier
   innerClothingSkirt: ClothingUniformJumpskirtColorRed
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackMessengerSecurityFilled # Frontier

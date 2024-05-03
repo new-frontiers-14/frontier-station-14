@@ -1,4 +1,4 @@
-﻿using Content.Server.DeviceNetwork;
+using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Medical.SuitSensors;
@@ -16,7 +16,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     [Dependency] private readonly SuitSensorSystem _sensors = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    //[Dependency] private readonly StationSystem _stationSystem = default!; // Frontier modification
+    [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
 
     private const float UpdateRate = 3f;
     private float _updateDiff;
@@ -26,7 +26,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<CrewMonitoringServerComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<CrewMonitoringServerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
-        SubscribeLocalEvent<CrewMonitoringServerComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<CrewMonitoringServerComponent, DeviceNetServerDisconnectedEvent>(OnDisconnected);
     }
 
     public override void Update(float frameTime)
@@ -40,72 +40,15 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         _updateDiff -= UpdateRate;
 
         var servers = EntityQueryEnumerator<CrewMonitoringServerComponent>();
-        List<EntityUid> activeServers = new();
 
         while (servers.MoveNext(out var id, out var server))
         {
-            //Make sure the server is disconnected when it becomes unavailable
-            if (!server.Available)
-            {
-                if (server.Active)
-                    DisconnectServer(id, server);
-
-                continue;
-            }
-
-            if (!server.Active)
+            if (!_singletonServerSystem.IsActiveServer(id))
                 continue;
 
-            activeServers.Add(id);
+            UpdateTimeout(id);
+            BroadcastSensorStatus(id, server);
         }
-
-        foreach (var activeServer in activeServers)
-        {
-            UpdateTimeout(activeServer);
-            BroadcastSensorStatus(activeServer);
-        }
-    }
-
-    /// <summary>
-    /// Returns the address of the currently active server for the given map (instead of station id) if there is one
-    /// </summary>
-    //public bool TryGetActiveServerAddress(EntityUid stationId, out string? address) // Frontier modification
-	public bool TryGetActiveServerAddress(MapId map, out string? address) // Frontier modification
-    {
-        var servers = EntityQueryEnumerator<CrewMonitoringServerComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
-        (EntityUid id, CrewMonitoringServerComponent server, DeviceNetworkComponent device)? last = default;
-
-        while (servers.MoveNext(out var uid, out var server, out var device, out var xform)) // Frontier modification
-        {
-			//if (!_stationSystem.GetOwningStation(uid)?.Equals(stationId) ?? true)
-            if (xform.MapID != map) //Frontier modification
-                continue;
-
-            if (!server.Available)
-            {
-                DisconnectServer(uid,server, device);
-                continue;
-            }
-
-            last = (uid, server, device);
-
-            if (server.Active)
-            {
-                address = device.Address;
-                return true;
-            }
-        }
-
-        //If there was no active server for the station make the last available inactive one active
-        if (last.HasValue)
-        {
-            ConnectServer(last.Value.id, last.Value.server, last.Value.device);
-            address = last.Value.device.Address;
-            return true;
-        }
-
-        address = null;
-        return address != null;
     }
 
     /// <summary>
@@ -127,17 +70,6 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     private void OnRemove(EntityUid uid, CrewMonitoringServerComponent component, ComponentRemove args)
     {
         component.SensorStatus.Clear();
-    }
-
-    /// <summary>
-    /// Disconnects the server losing power
-    /// </summary>
-    private void OnPowerChanged(EntityUid uid, CrewMonitoringServerComponent component, ref PowerChangedEvent args)
-    {
-        component.Available = args.Powered;
-
-        if (!args.Powered)
-            DisconnectServer(uid, component);
     }
 
     /// <summary>
@@ -173,30 +105,11 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         _deviceNetworkSystem.QueuePacket(uid, null, payload, device: device);
     }
 
-    private void ConnectServer(EntityUid uid, CrewMonitoringServerComponent? server = null, DeviceNetworkComponent? device = null)
-    {
-        if (!Resolve(uid, ref server, ref device))
-            return;
-
-        server.Active = true;
-
-        if (_deviceNetworkSystem.IsDeviceConnected(uid, device))
-            return;
-
-        _deviceNetworkSystem.ConnectDevice(uid, device);
-    }
-
     /// <summary>
-    /// Disconnects a server from the device network and clears the currently active server
+    /// Clears sensor data on disconnect
     /// </summary>
-    private void DisconnectServer(EntityUid uid, CrewMonitoringServerComponent? server = null, DeviceNetworkComponent? device = null)
+    private void OnDisconnected(EntityUid uid, CrewMonitoringServerComponent component, ref DeviceNetServerDisconnectedEvent _)
     {
-        if (!Resolve(uid, ref server, ref device))
-         return;
-
-        server.SensorStatus.Clear();
-        server.Active = false;
-
-        _deviceNetworkSystem.DisconnectDevice(uid, device, false);
+        component.SensorStatus.Clear();
     }
 }

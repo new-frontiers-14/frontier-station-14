@@ -6,6 +6,7 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -34,6 +35,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
 
     public override void Initialize()
     {
@@ -93,16 +95,15 @@ public sealed class DeadDropSystem : EntitySystem
         //dont ask me im just fulfilling FTL requirements.
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
         var mapId = Transform(user).MapID;
-        var coords = new MapCoordinates(dropLocation, mapId);
-        var location = Spawn(null, coords);
+        var mapUid = _mapManager.GetMapEntityId(mapId);
 
         if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
         {
-            _shuttle.FTLTravel(gridUids[0], shuttle, location, 5.5f, 35f);
+            _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 0f, 35f);
         }
 
         //tattle on the smuggler here, but obfuscate it a bit if possible to just the grid it was summoned from.
-        var channel = _prototypeManager.Index<RadioChannelPrototype>("Security");
+        var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
         var sender = Transform(user).GridUid ?? uid;
 
         _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);

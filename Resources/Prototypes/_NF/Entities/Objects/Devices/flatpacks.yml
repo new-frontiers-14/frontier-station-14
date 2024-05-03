@@ -135,45 +135,21 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: GyroscopeUnanchoredFlatpack
-  name: gyroscope flatpack
-  description: A flatpack used for constructing a gyroscope.
-  components:
-  - type: Flatpack
-    entity: GyroscopeUnanchored
-  - type: Sprite
-    layers:
-    - state: engineering_gyroscope
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: SmallGyroscopeUnanchoredFlatpack
+  id: SmallGyroscopeFlatpack
   name: small gyroscope flatpack
   description: A flatpack used for constructing a small gyroscope.
   components:
   - type: Flatpack
-    entity: SmallGyroscopeUnanchored
+    entity: SmallGyroscope
 
 - type: entity
   parent: BaseNFFlatpack
-  id: ThrusterUnanchoredFlatpack
-  name: thruster flatpack
-  description: A flatpack used for constructing a thruster.
-  components:
-  - type: Flatpack
-    entity: ThrusterUnanchored
-  - type: Sprite
-    layers:
-    - state: engineering_thruster
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: SmallThrusterUnanchoredFlatpack
+  id: SmallThrusterFlatpack
   name: small thruster flatpack
   description: A flatpack used for constructing a small thruster.
   components:
   - type: Flatpack
-    entity: SmallThrusterUnanchored
+    entity: SmallThruster
 
 # Science
 - type: entity
@@ -607,3 +583,62 @@
     entity: DawInstrument
   - type: StaticPrice
     price: 2000
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: NfsdTechFabFlatpack
+  name: nfsd tech fab flatpack
+  description: A flatpack used for constructing a nfsd tech fab.
+  components:
+  - type: Flatpack
+    entity: NfsdTechFab
+  - type: StaticPrice
+    price: 250
+
+# Hoverbikes
+- type: entity
+  parent: BaseNFFlatpack
+  id: HoverbikeFlatpack
+  name: hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeNFKeys
+  - type: StaticPrice
+    price: 2000
+  - type: Sprite
+    layers:
+    - state: command_airlock
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeMailcarrierFlatpack
+  name: mail carrier hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeMailcarrierKey
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeNfsdFlatpack
+  name: nfsd hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeNfsdKey
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeSyndicateFlatpack
+  name: syndicate hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeSyndicateKey
+  - type: StaticPrice
+    price: 750

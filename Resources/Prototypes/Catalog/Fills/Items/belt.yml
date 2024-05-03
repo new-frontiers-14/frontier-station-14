@@ -63,11 +63,10 @@
     contents:
       - id: Soap #Make a soap group and pick between when i'm not lazy
       - id: SprayBottleSpaceCleaner
-      #- name: GrenadeChem
-      #- name: GrenadeChem
+      - id: CleanerGrenade
+        amount: 2
       - id: FlashlightLantern
 #      - id: TrashBag # Frontier - Not used, too large.
-      - id: WetFloorSign # Frontier
       - id: Holoprojector # Frontier
       - id: LightReplacer # Frontier
 
@@ -191,3 +190,15 @@
     contents:
     - id: FoodShakerSalt
     - id: FoodShakerPepper
+
+- type: entity
+  id: ClothingNeckMantleSheriffFilled
+  parent: ClothingNeckMantleSheriff
+  suffix: Filled
+  components:
+   - type: StorageFill
+     contents:
+     - id: CigarGold
+       amount: 4
+     - id: FlippoEngravedLighter
+       amount: 1

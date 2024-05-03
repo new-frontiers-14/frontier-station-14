@@ -21,9 +21,10 @@
   - type: Tag
     tags:
     - WizardStaff
+  - type: Contraband
 
 - type: entity
-  name: red wizard staff
+  name: inert red wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeRed
   components:
@@ -31,9 +32,10 @@
     heldPrefix: animation
   - type: Sprite
     state: animation
+  - type: Contraband
 
 - type: entity
-  name: violet wizard staff
+  name: inert violet wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeViolet
   components:
@@ -41,9 +43,10 @@
     heldPrefix: chaos
   - type: Sprite
     state: chaos
+  - type: Contraband
 
 - type: entity
-  name: soap wizard staff
+  name: inert soap wizard staff
   parent: WizardStaffMeleeBase
   id: WizardStaffMeleeSoap
   components:
@@ -51,10 +54,11 @@
     heldPrefix: healing
   - type: Sprite
     state: healing
+  - type: Contraband
 
 # Blood Cult
 - type: entity
-  name: blood cult staff
+  name: inert cultist staff
   parent: WizardStaffMeleeRed
   id: WizardStaffMeleeBlood
   components:
@@ -68,3 +72,15 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Effects/bite.ogg
+  - type: Contraband
+
+- type: entity
+  name: cultist staff
+  parent: WizardStaffMeleeBlood
+  id: WizardStaffDarkBolt
+  suffix: "Dark bolt"
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    capacity: 10
+    count: 10

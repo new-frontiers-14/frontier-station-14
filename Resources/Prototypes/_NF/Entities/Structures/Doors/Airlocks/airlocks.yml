@@ -5,6 +5,16 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Standard/mercenary.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: Airlock
+  id: AirlockNfsd
+  suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi
 
 # Glass
 - type: entity
@@ -16,3 +26,27 @@
     sprite: _NF/Structures/Doors/Airlocks/Glass/mercenary.rsi
   - type: PaintableAirlock
     group: Glass
+  - type: Wires
+    layoutId: AirlockSecurity
+
+#Glass
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNfsdGlass
+  suffix: NFSD
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/nfsd.rsi
+  - type: PaintableAirlock
+    department: Security
+    group: Glass
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleTransit
+  suffix: External, PubTrans, Glass, Docking
+  components:
+    - type: PriorityDock
+      tag: DockTransit

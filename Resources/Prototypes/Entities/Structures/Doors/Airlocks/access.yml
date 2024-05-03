@@ -5,79 +5,90 @@
   suffix: Service, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Service"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsService ]
+  - type: Wires
+    layoutId: AirlockService
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockLawyerLocked
   suffix: Lawyer, Locked
   components:
-  - type: AccessReader
-    access: [["Lawyer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLawyer ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockTheatreLocked
   suffix: Theatre, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Theatre"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTheatre ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockChapelLocked
   suffix: Chapel, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Chapel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChapel ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockJanitorLocked
   suffix: Janitor, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Janitor"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJanitor ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockKitchenLocked
   suffix: Kitchen, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Kitchen"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsKitchen ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockBarLocked
   suffix: Bar, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Bar"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBar ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockServiceLocked
   id: AirlockHydroponicsLocked
   suffix: Hydroponics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHydroponics ]
 
 - type: entity
-  parent: Airlock
+  parent: AirlockCommandLocked
   id: AirlockServiceCaptainLocked
   suffix: Captain, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCaptain ]
 
 - type: entity
   parent: AirlockExternal
@@ -85,8 +96,9 @@
   suffix: External, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockExternal
@@ -94,8 +106,9 @@
   suffix: External, Cargo, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Cargo"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
 
 - type: entity
   parent: AirlockExternal
@@ -103,8 +116,9 @@
   suffix: External, Engineering, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Engineering"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 - type: entity
   parent: AirlockExternal
@@ -112,8 +126,9 @@
   suffix: External, Atmospherics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
 
 - type: entity
   parent: AirlockExternal
@@ -121,8 +136,9 @@
   suffix: External, Syndicate, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockExternal
@@ -130,8 +146,9 @@
   suffix: External, Nukeop, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 - type: entity
   parent: AirlockFreezer
@@ -139,8 +156,9 @@
   suffix: Kitchen, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Kitchen"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsKitchen ]
 
 - type: entity
   parent: AirlockFreezer
@@ -148,16 +166,18 @@
   suffix: Kitchen/Hydroponics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Kitchen"], ["Hydroponics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFreezer ]
 
 - type: entity
   parent: AirlockFreezer
   id: AirlockFreezerHydroponicsLocked
   suffix: Hydroponics, Locked
   components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHydroponics ]
 
 - type: entity
   parent: AirlockEngineering
@@ -165,8 +185,9 @@
   suffix: Engineering, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Engineering"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 - type: entity
   parent: AirlockAtmospherics
@@ -174,8 +195,9 @@
   suffix: Atmospherics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
 
 - type: entity
   parent: AirlockCargo
@@ -183,8 +205,9 @@
   suffix: Cargo, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Cargo"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
 
 - type: entity
   parent: AirlockCargo
@@ -192,16 +215,18 @@
   suffix: Salvage, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMining
   id: AirlockMiningLocked
   suffix: Mining(Salvage), Locked
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMedical
@@ -209,8 +234,9 @@
   suffix: Medical, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
 
 - type: entity
   parent: AirlockVirology
@@ -218,8 +244,9 @@
   suffix: Virology, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
 
 - type: entity
   parent: AirlockChemistry
@@ -227,8 +254,9 @@
   suffix: Chemistry, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Chemistry"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
 
 - type: entity
   parent: AirlockScience
@@ -236,8 +264,9 @@
   suffix: Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearch ]
 
 - type: entity
   parent: AirlockScience
@@ -245,18 +274,18 @@
   suffix: Medical/Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"], ["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsScience ]
 
 - type: entity
   parent: AirlockCentralCommand
   id: AirlockCentralCommandLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [["CentralCommand"]]
-  - type: Wires
-    layoutId: AirlockCommand
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
 
 - type: entity
   parent: AirlockCommand
@@ -264,18 +293,18 @@
   suffix: Command, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Command"]]
-  - type: Wires
-    layoutId: AirlockCommand
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
 
 - type: entity
   parent: AirlockCommand
   id: AirlockCaptainLocked
   suffix: Captain, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCaptain ]
 
 - type: entity
   parent: AirlockCommand
@@ -283,8 +312,9 @@
   suffix: ChiefMedicalOfficer, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ChiefMedicalOfficer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefMedicalOfficer ]
 
 - type: entity
   parent: AirlockCommand
@@ -292,16 +322,18 @@
   suffix: ChiefEngineer, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefEngineer ]
 
 - type: entity
   parent: AirlockCommand
   id: AirlockHeadOfSecurityLocked
   suffix: HeadOfSecurity, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfSecurity ]
 
 - type: entity
   parent: AirlockCommand
@@ -309,16 +341,18 @@
   suffix: ResearchDirector, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ResearchDirector"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearchDirector ]
 
 - type: entity
   parent: AirlockCommand
   id: AirlockHeadOfPersonnelLocked
   suffix: HeadOfPersonnel, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfPersonnel ]
 
 - type: entity
   parent: AirlockCommand
@@ -326,56 +360,54 @@
   suffix: Quartermaster, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Quartermaster"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsQuartermaster ]
 
 - type: entity
   parent: AirlockSecurity
   id: AirlockSecurityLocked
   suffix: Security, Locked
   components:
-  - type: AccessReader
-    access: [["Security"]]
-  - type: Wires
-    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
 
 - type: entity
   parent: AirlockSecurity
   id: AirlockDetectiveLocked
   suffix: Detective, Locked
   components:
-  - type: AccessReader
-    access: [["Detective"]]
-  - type: Wires
-    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDetective ]
 
 - type: entity
   parent: AirlockSecurity
   id: AirlockBrigLocked
   suffix: Brig, Locked
   components:
-  - type: AccessReader
-    access: [["Brig"]]
-  - type: Wires
-    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrig ]
 
 - type: entity
   parent: AirlockSecurity
   id: AirlockSecurityLawyerLocked
   suffix: Security/Lawyer, Locked
   components:
-  - type: AccessReader
-    access: [["Security"], ["Lawyer"]]
-  - type: Wires
-    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityLawyer ]
 
 - type: entity
   parent: AirlockSecurity
   id: AirlockArmoryLocked
   suffix: Armory, Locked
   components:
-  - type: AccessReader
-    access: [["Armory"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
   - type: Wires
     layoutId: AirlockArmory
 
@@ -384,8 +416,9 @@
   id: AirlockVaultLocked
   suffix: Vault, Locked
   components:
-  - type: AccessReader
-    access: [["Security", "Command"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsVault ]
 
 - type: entity
   parent: AirlockCommand
@@ -393,8 +426,9 @@
   suffix: EVA, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 # Glass Airlocks
 - type: entity
@@ -402,24 +436,29 @@
   id: AirlockServiceGlassLocked
   suffix: Service, Locked
   components:
-  - type: AccessReader
-    access: [["Service"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsService ]
+  - type: Wires
+    layoutId: AirlockService
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockLawyerGlassLocked
   suffix: Lawyer, Locked
   components:
-  - type: AccessReader
-    access: [["Lawyer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLawyer ]
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockTheatreGlassLocked
   suffix: Theatre, Locked
   components:
-  - type: AccessReader
-    access: [["Theatre"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTheatre ]
 
 - type: entity
   parent: AirlockGlass
@@ -427,8 +466,9 @@
   suffix: Bar, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Bar"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBar ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -436,8 +476,9 @@
   suffix: External, Glass, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -445,8 +486,9 @@
   suffix: External, Glass, Cargo, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Cargo"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -454,8 +496,9 @@
   suffix: External, Glass, Syndicate, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -463,8 +506,9 @@
   suffix: External, Glass, Nukeop, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -472,8 +516,9 @@
   suffix: External, Glass, Engineering, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Engineering"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 - type: entity
   parent: AirlockExternalGlass
@@ -481,43 +526,48 @@
   suffix: External, Glass, Atmospherics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockKitchenGlassLocked
   suffix: Kitchen, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Kitchen"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsKitchen ]
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockJanitorGlassLocked
   suffix: Janitor, Locked
   components:
-  - type: AccessReader
-    access: [["Janitor"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJanitor ]
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockHydroGlassLocked
   suffix: Hydroponics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHydroponics ]
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockServiceGlassLocked
   id: AirlockChapelGlassLocked
   suffix: Chapel, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Chapel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChapel ]
 
 - type: entity
   parent: AirlockEngineeringGlass
@@ -525,8 +575,9 @@
   suffix: Engineering, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Engineering"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 - type: entity
   parent: AirlockAtmosphericsGlass
@@ -534,8 +585,9 @@
   suffix: Atmospherics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
 
 - type: entity
   parent: AirlockCargoGlass
@@ -543,8 +595,9 @@
   suffix: Cargo, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Cargo"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
 
 - type: entity
   parent: AirlockCargoGlass
@@ -552,24 +605,27 @@
   suffix: Salvage, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMiningGlass
   id: AirlockMiningGlassLocked
   suffix: Mining(Salvage), Locked
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockChemistryGlass
   id: AirlockChemistryGlassLocked
   suffix: Chemistry, Locked
   components:
-  - type: AccessReader
-    access: [["Chemistry"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
 
 - type: entity
   parent: AirlockMedicalGlass
@@ -577,8 +633,9 @@
   suffix: Medical, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
 
 - type: entity
   parent: AirlockVirologyGlass
@@ -586,8 +643,9 @@
   suffix: Virology, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
 
 - type: entity
   parent: AirlockScienceGlass
@@ -595,8 +653,9 @@
   suffix: Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearch ]
 
 - type: entity
   parent: AirlockScienceGlass
@@ -604,18 +663,18 @@
   suffix: Medical/Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"], ["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsScience ]
 
 - type: entity
   parent: AirlockCentralCommandGlass
   id: AirlockCentralCommandGlassLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [["CentralCommand"]]
-  - type: Wires
-    layoutId: AirlockCommand
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -623,16 +682,18 @@
   suffix: Command, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Command"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
 
 - type: entity
   parent: AirlockCommandGlass
   id: AirlockCaptainGlassLocked
   suffix: Captain, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCaptain ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -640,8 +701,9 @@
   suffix: ChiefMedicalOfficer, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ChiefMedicalOfficer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefMedicalOfficer ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -649,8 +711,9 @@
   suffix: ChiefEngineer, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefEngineer ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -658,8 +721,9 @@
   suffix: HeadOfSecurity, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfSecurity ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -667,16 +731,18 @@
   suffix: ResearchDirector, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["ResearchDirector"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearchDirector ]
 
 - type: entity
   parent: AirlockCommandGlass
   id: AirlockHeadOfPersonnelGlassLocked
   suffix: HeadOfPersonnel, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfPersonnel ]
 
 - type: entity
   parent: AirlockCommandGlass
@@ -684,48 +750,54 @@
   suffix: Quartermaster, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Quartermaster"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsQuartermaster ]
 
 - type: entity
   parent: AirlockSecurityGlass
   id: AirlockSecurityGlassLocked
   suffix: Security, Locked
   components:
-  - type: AccessReader
-    access: [["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
 
 - type: entity
   parent: AirlockSecurityGlass
   id: AirlockDetectiveGlassLocked
   suffix: Detective, Locked
   components:
-  - type: AccessReader
-    access: [["Detective"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDetective ]
 
 - type: entity
   parent: AirlockSecurityGlass
   id: AirlockBrigGlassLocked
   suffix: Brig, Locked
   components:
-  - type: AccessReader
-    access: [["Brig"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrig ]
 
 - type: entity
   parent: AirlockSecurityGlass
   id: AirlockSecurityLawyerGlassLocked
   suffix: Security/Lawyer, Locked
   components:
-  - type: AccessReader
-    access: [["Security"], ["Lawyer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityLawyer ]
 
 - type: entity
   parent: AirlockSecurityGlass
   id: AirlockArmoryGlassLocked
   suffix: Armory, Locked
   components:
-  - type: AccessReader
-    access: [["Armory"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
 
 - type: entity
   parent: AirlockCommandGlassLocked
@@ -733,8 +805,9 @@
   suffix: EVA, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -742,8 +815,9 @@
   suffix: Syndicate, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -751,8 +825,9 @@
   suffix: Nukeop, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 # Maintenance Hatches
 - type: entity
@@ -761,8 +836,9 @@
   suffix: Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockMaintGlass
@@ -770,8 +846,9 @@
   suffix: Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockMaint
@@ -779,8 +856,9 @@
   suffix: Salvage, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Salvage"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: AirlockMaint
@@ -788,8 +866,9 @@
   suffix: Cargo, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Cargo"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
 
 - type: entity
   parent: AirlockMaint
@@ -797,8 +876,9 @@
   suffix: Command, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Command"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
 
 - type: entity
   parent: AirlockMaint
@@ -806,8 +886,9 @@
   suffix: Common, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockMaint
@@ -815,8 +896,9 @@
   suffix: Engineering, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Engineering"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
 
 - type: entity
   parent: AirlockMaint
@@ -824,78 +906,89 @@
   suffix: Atmospherics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Atmospherics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintBarLocked
   suffix: Bar, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Bar"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBar ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintChapelLocked
   suffix: Chapel, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Chapel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChapel ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintHydroLocked
   suffix: Hydroponics, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Hydroponics"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHydroponics ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintJanitorLocked
   suffix: Janitor, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Janitor"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsJanitor ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintLawyerLocked
   suffix: Lawyer, Locked
   components:
-  - type: AccessReader
-    access: [["Lawyer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLawyer ]
 
 - type: entity
   parent: AirlockMaint
   id: AirlockMaintServiceLocked
   suffix: Service, Locked
   components:
-  - type: AccessReader
-    access: [["Service"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsService ]
+  - type: Wires
+    layoutId: AirlockService
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintTheatreLocked
   suffix: Theatre, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Theatre"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTheatre ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintServiceLocked
   id: AirlockMaintKitchenLocked
   suffix: Kitchen, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Kitchen"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsKitchen ]
 
 - type: entity
   parent: AirlockMaint
@@ -903,8 +996,9 @@
   suffix: Interior, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockMaint
@@ -912,17 +1006,21 @@
   suffix: Medical, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+  - type: Wires
+    layoutId: AirlockMedical
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintMedLocked
   id: AirlockMaintChemLocked
   suffix: Chemistry, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Chemistry"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
 
 - type: entity
   parent: AirlockMaint
@@ -930,90 +1028,116 @@
   suffix: Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearch ]
+  - type: Wires
+    layoutId: AirlockScience
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintRnDLocked
   id: AirlockMaintRnDMedLocked
   suffix: Medical/Science, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Research"], ["Medical"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRnDMed ]
 
 - type: entity
   parent: AirlockMaint
   id: AirlockMaintSecLocked
   suffix: Security, Locked
   components:
-  - type: AccessReader
-    access: [["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintSecLocked
   id: AirlockMaintDetectiveLocked
   suffix: Detective, Locked
   components:
-  - type: AccessReader
-    access: [["Detective"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDetective ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintHOPLocked
   suffix: HeadOfPersonnel, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfPersonnel ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintCaptainLocked
   suffix: Captain, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCaptain ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintChiefEngineerLocked
   suffix: ChiefEngineer, Locked
   components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefEngineer ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintChiefMedicalOfficerLocked
   suffix: ChiefMedicalOfficer, Locked
   components:
-  - type: AccessReader
-    access: [["ChiefMedicalOfficer"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChiefMedicalOfficer ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintHeadOfSecurityLocked
   suffix: HeadOfSecurity, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfSecurity ]
 
 - type: entity
-  parent: AirlockMaint
+  parent: AirlockMaintCommandLocked
   id: AirlockMaintResearchDirectorLocked
   suffix: ResearchDirector, Locked
   components:
-  - type: AccessReader
-    access: [["ResearchDirector"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearchDirector ]
+
+- type: entity
+  parent: AirlockMaintCommandLocked
+  id: AirlockMaintQuartermasterLocked
+  suffix: Quartermaster, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsQuartermaster ]
 
 - type: entity
   parent: AirlockMaint
   id: AirlockMaintArmoryLocked
   suffix: Armory, Locked
   components:
-  - type: AccessReader
-    access: [["Armory"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
+  - type: Wires
+    layoutId: AirlockArmory
 
 - type: entity
   parent: AirlockSyndicate
@@ -1021,8 +1145,9 @@
   suffix: Syndicate, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockSyndicate
@@ -1030,8 +1155,9 @@
   suffix: Nukeop, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 # Shuttle airlocks
 - type: entity
@@ -1040,8 +1166,9 @@
   suffix: External, Docking, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockShuttleSyndicate
@@ -1049,8 +1176,9 @@
   suffix: External, Docking, Syndicate, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockShuttleSyndicate
@@ -1058,8 +1186,9 @@
   suffix: External, Docking, Nukeop, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -1067,24 +1196,27 @@
   suffix: External, Glass, Docking, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["External"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockGlassShuttleSyndicate
   id: AirlockExternalGlassShuttleSyndicateLocked
   suffix: Syndicate, Locked, Glass
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockGlassShuttleSyndicate
   id: AirlockExternalGlassShuttleNukeopLocked
   suffix: Nukeop, Locked, Glass
   components:
-  - type: AccessReader
-    access: [["NuclearOperative"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -1092,10 +1224,11 @@
   suffix: External, Emergency, Glass, Docking, Locked
   noSpawn: true # Frontier
   components:
-    - type: PriorityDock
-      tag: DockEmergency
-    - type: AccessReader
-      access: [["External"]]
+  - type: PriorityDock
+    tag: DockEmergency
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -1103,8 +1236,8 @@
   suffix: External, Arrivals, Glass, Docking
   noSpawn: true # Frontier
   components:
-    - type: PriorityDock
-      tag: DockArrivals
+  - type: PriorityDock
+    tag: DockArrivals
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -1112,7 +1245,7 @@
   suffix: External, Escape 3x4, Glass, Docking
   noSpawn: true # Frontier
   components:
-    - type: GridFill
+  - type: GridFill
 
 #HighSecDoors
 - type: entity
@@ -1120,8 +1253,9 @@
   id: HighSecCentralCommandLocked
   suffix: Central Command, Locked
   components:
-  - type: AccessReader
-    access: [["CentralCommand"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
 
 - type: entity
   parent: HighSecDoor
@@ -1129,21 +1263,35 @@
   suffix: Command, Locked
   noSpawn: true # Frontier
   components:
-  - type: AccessReader
-    access: [["Command"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
 
 - type: entity
   parent: HighSecDoor
   id: HighSecCaptainLocked
   suffix: Captain, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCaptain ]
 
 - type: entity
   parent: HighSecDoor
   id: HighSecArmoryLocked
   suffix: Armory, Locked
   components:
-  - type: AccessReader
-    access: [["Armory"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
+
+#Airtight hatch
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchSyndicate
+  suffix: Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]

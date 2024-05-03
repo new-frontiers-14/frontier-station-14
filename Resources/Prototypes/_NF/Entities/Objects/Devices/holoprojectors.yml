@@ -1,0 +1,26 @@
+- type: entity
+  parent: HoloprojectorSecurity
+  id: HoloprojectorNfsd
+  name: nfsd holobarrier projector
+  description: Creates a solid but fragile holographic barrier.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi
+    state: icon
+  - type: HolosignProjector
+    signProto: HolosignNfsd
+
+- type: entity
+  parent: HoloprojectorSecurityEmpty
+  id: HoloprojectorNfsdEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi
+    state: icon
+  - type: HolosignProjector
+    signProto: HolosignNfsd
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
