@@ -6,7 +6,7 @@ execution-verb-message = Использовать своё оружие, что�
 # weapon (the weapon used for the execution)
 
 execution-popup-gun-initial-internal = Вы приставляете ствол {THE($weapon)}к голове {$victim}.
-execution-popup-gun-initial-external = {$attacker} readies the muzzle of {THE($weapon)} against {$victim}'s head.
+execution-popup-gun-initial-external = {$attacker} приставляет ствол  {THE($weapon)} к голове {$victim}.
 execution-popup-gun-complete-internal = Вы стреляете {$victim} в голову!
 execution-popup-gun-complete-external = {$attacker} стреляет {$victim} в голову!
 execution-popup-gun-clumsy-internal = Вы промахиваетесь мимо головы {$victim} и стреляете себе в ногу!
