@@ -1,23 +1,23 @@
 - type: vessel
-  id: Interceptor
-  name: NSF Interceptor
-  description: A small security vessel specializing in crime scene forensics.
-  price: 21350
+  id: Inquisitor
+  name: NSF Inquisitor
+  description: A small detective-oriented ship with two cells for holding prisoners
+  price: 29000
   category: Small
   group: Security
-  shuttlePath: /Maps/_NF/Shuttles/Security/interceptor.yml
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/inquisitor.yml
 
 - type: gameMap
-  id: Interceptor
-  mapName: 'NSF Interceptor'
-  mapPath: /Maps/_NF/Shuttles/Security/interceptor.yml
+  id: Inquisitor
+  mapName: 'NSF Inquisitor'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/inquisitor.yml
   minPlayers: 0
   stations:
-    Interceptor:
+    Inquisitor:
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Interceptor {1}'
+          mapNameTemplate: 'Inquisitor {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
