@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Aliens/flesh.rsi
+    sprite: _NF/Mobs/Aliens/flesh.rsi
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -45,7 +45,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -71,7 +71,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -101,7 +101,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshClampExpeditions
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -126,12 +126,12 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: lover
+      state: golem2 # lover
   - type: DamageStateVisuals
     states:
       Alive:
@@ -152,7 +152,7 @@
   parent: BaseMobFleshExpeditions
   id: MobAbominationExpeditions
   name: abomination
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
