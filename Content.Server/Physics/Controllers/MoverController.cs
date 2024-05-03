@@ -295,6 +295,7 @@ namespace Content.Server.Physics.Controllers
             // We just mark off their movement and the shuttle itself does its own movement
             var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
             var shuttleQuery = GetEntityQuery<ShuttleComponent>();
+            
             while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
             {
                 var consoleEnt = pilot.Console;
@@ -316,7 +317,7 @@ namespace Content.Server.Physics.Controllers
 
                 if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
                 {
-                    pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+                    pilots = (shuttleComponent, new HashSet<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
                     newPilots[gridId.Value] = pilots;
                 }
 
