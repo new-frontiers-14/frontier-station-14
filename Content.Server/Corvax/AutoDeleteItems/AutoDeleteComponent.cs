@@ -9,6 +9,10 @@ public sealed partial class AutoDeleteComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool IsHumanoidNear;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField]
+    public bool IsSSDNear = false;
+
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool ReadyToDelete = false;
 
