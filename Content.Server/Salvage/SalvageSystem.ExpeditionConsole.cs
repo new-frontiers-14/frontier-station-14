@@ -36,7 +36,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        if (activeExpeditionCount >= 2)
+        if (activeExpeditionCount >= 15)
         {
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);

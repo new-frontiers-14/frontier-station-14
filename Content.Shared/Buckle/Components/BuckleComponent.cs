@@ -59,8 +59,8 @@ public sealed partial class BuckleComponent : Component
     /// <summary>
     /// The strap that this component is buckled to.
     /// </summary>
-    [ViewVariables]
     [AutoNetworkedField]
+    [ViewVariables]
     public EntityUid? BuckledTo;
 
     /// <summary>
