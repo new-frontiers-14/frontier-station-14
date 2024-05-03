@@ -735,6 +735,9 @@ namespace Content.Server.Mail
                 _handsSystem.PickupOrDrop(user, entity);
             }
 
+            if (TryComp<FoodComponent>(uid, out var food)) // Frontier
+                food.Quality = new string[] { "Mail", "Fiber", "Trash" };
+
             _tagSystem.AddTag(uid, "Trash");
             _tagSystem.AddTag(uid, "Recyclable");
             component.IsEnabled = false;

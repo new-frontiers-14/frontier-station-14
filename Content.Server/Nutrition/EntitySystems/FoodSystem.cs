@@ -273,7 +273,7 @@ public sealed class FoodSystem : EntitySystem
 
         /// Frontier - Food quality system
         var foodQuality = entity.Comp.Quality;
-        //var showFlavors = true; // Frontier
+        var showFlavors = true;
 
         foreach (var quality in foodQuality)
         {
@@ -289,7 +289,7 @@ public sealed class FoodSystem : EntitySystem
                 entity.Comp.FinalQuality = "Nasty";
             else if (quality == "Toxin")
                 entity.Comp.FinalQuality = "Toxin";
-            else if (quality == "Trash")
+            else if ((quality == "Trash") || (quality == "Mail") || (quality == "Fiber"))
                 entity.Comp.FinalQuality = "Trash";
 
             if (reverseFoodQuality)
@@ -312,8 +312,8 @@ public sealed class FoodSystem : EntitySystem
             var damagingRegent = "Toxin";
             var emoteId = "Laugh";
 
-            //var msgNasty = Loc.GetString("food-system-nasty", ("used", args.Used), ("target", args.Target));
-            //var msgToxin = Loc.GetString("food-system-toxin", ("used", args.Used), ("target", args.Target));
+            var msgNasty = Loc.GetString("food-system-nasty", ("used", args.Used), ("target", args.Target));
+            var msgToxin = Loc.GetString("food-system-toxin", ("used", args.Used), ("target", args.Target));
 
             TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream);
 
@@ -363,8 +363,8 @@ public sealed class FoodSystem : EntitySystem
             {
                 if (reverseFoodQuality)
                 {
-                    //showFlavors = false; // Frontier
-                    //_popup.PopupEntity(msgNasty, args.Target.Value, args.User);
+                    showFlavors = false;
+                    _popup.PopupEntity(msgNasty, args.Target.Value, args.User);
 
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
@@ -378,8 +378,8 @@ public sealed class FoodSystem : EntitySystem
             {
                 if (reverseFoodQuality)
                 {
-                    //showFlavors = false; // Frontier
-                    //_popup.PopupEntity(msgToxin, args.Target.Value, args.User);
+                    showFlavors = false;
+                    _popup.PopupEntity(msgToxin, args.Target.Value, args.User);
 
                     if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                         _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
@@ -405,6 +405,7 @@ public sealed class FoodSystem : EntitySystem
                     _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount), out _); // Add to blood
             }
         }
+        /// Frontier - Food quality system end
 
         var flavors = args.FlavorMessage;
 
@@ -412,7 +413,7 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            //if (showFlavors) // Frontier
+            if (showFlavors) // Frontier
                 _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
 
             _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
@@ -422,7 +423,7 @@ public sealed class FoodSystem : EntitySystem
         }
         else
         {
-            //if (showFlavors) // Frontier
+            if (showFlavors) // Frontier
                 _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
 
             // log successful voluntary eating
@@ -553,10 +554,23 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
-            // Frontier - Allow trash eating
-            if (!comp.TrashDigestion && component.Quality.Contains("Trash"))
+            // Frontier - Food system hack job
+            var foodQuality = component.Quality;
+            var allowEating = true;
+            foreach (var quality in foodQuality)
+            {
+                if (!comp.MailDigestion && quality == "Mail")
+                    allowEating = true;
+                else if (!comp.FiberDigestion && quality == "Fiber")
+                    allowEating = true;
+                else if (!comp.TrashDigestion && quality == "Trash")
+                    allowEating = true;
+                else
+                    allowEating = false;
+            }
+            if (allowEating)
                 return false;
-            // Frontier - Allow trash eating
+            // Frontier - Food system hack job
 
             // Find a stomach with a SpecialDigestible
             if (comp.SpecialDigestible == null)
