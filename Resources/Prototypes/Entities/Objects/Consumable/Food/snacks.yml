@@ -460,7 +460,7 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: FoodPacketTrash
   description: This is rubbish.
   abstract: true
@@ -480,19 +480,6 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 1
-  - type: FlavorProfile # Frontier, Goblins
-    flavors: # Frontier, Goblins
-      - funny # Frontier, Goblins
-  - type: Food # Frontier, Goblins
-    quality: Trash # Frontier, New Food Quality System
-#    requiresSpecialDigestion: true # Frontier, Goblins
-  - type: SolutionContainerManager # Frontier
-    solutions: # Frontier
-      food: # Frontier
-        maxVol: 1 # Frontier
-        reagents: # Frontier
-        - ReagentId: TrashJuice # Frontier
-          Quantity: 1 # Frontier
 
 - type: entity
   noSpawn: true
