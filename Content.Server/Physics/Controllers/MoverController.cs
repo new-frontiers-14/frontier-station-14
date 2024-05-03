@@ -21,7 +21,7 @@ namespace Content.Server.Physics.Controllers
         [Dependency] private readonly ThrusterSystem _thruster = default!;
         [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
-        private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+        private Dictionary<EntityUid, (ShuttleComponent, HashSet<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
         public override void Initialize()
         {
@@ -152,7 +152,7 @@ namespace Content.Server.Physics.Controllers
         {
             var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
             var shuttleQuery = GetEntityQuery<ShuttleComponent>();
-            var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+            var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, HashSet<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
 
             while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
             {
@@ -165,7 +165,7 @@ namespace Content.Server.Physics.Controllers
                 if (!shuttleQuery.TryGetComponent(gridId, out var shuttleComponent) || !shuttleComponent.Enabled) continue;
 
                 if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
-                    pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+                    pilots = (shuttleComponent, new HashSet<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
 
                 pilots.Item2.Add((uid, pilot, mover, xform));
                 newPilots[gridId.Value] = pilots;
@@ -282,15 +282,15 @@ namespace Content.Server.Physics.Controllers
 
             var horizIndex = vel.X > 0 ? 1 : 3; // east else west
             var vertIndex = vel.Y > 0 ? 2 : 0; // north else south
-            var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new (shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0;
-            var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new (0f, shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0;
+            var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new Vector2(shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0;
+            var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new Vector2(0f, shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0;
 
             return shuttle.BaseMaxLinearVelocity * vel * MathF.ReciprocalSqrtEstimate(horizComp + vertComp);
         }
 
         private void HandleShuttleMovement(float frameTime)
         {
-            var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+            var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, HashSet<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
 
             // We just mark off their movement and the shuttle itself does its own movement
             var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
