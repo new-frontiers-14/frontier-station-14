@@ -11,4 +11,7 @@ public sealed partial class MarketConsoleComponent : Component
 {
     [DataField]
     public string CashType = "Credit";
+
+    [DataField]
+    public int MaxCrateMachineDistance = 16;
 }

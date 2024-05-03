@@ -87,7 +87,7 @@ public sealed class MarketSystem : SharedMarketSystem
 
             _animationSystem.Play(uid, anim, AnimationKey);
         }
-        else if (state == CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
+        else if (state == CrateMachineVisualState.Closing && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
         {
             var closingState = new RSI.StateId(component.ClosingSpriteState);
             // Setup the opening animation to play

@@ -23,7 +23,7 @@ public sealed partial class MarketMenu : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        PurchaseCrate.OnPressed += OnPurchaseCrate;
+        PurchaseCrate.OnPressed += args => OnPurchaseCrate?.Invoke(args);
     }
 
     public void SetEnabled(bool enabled)

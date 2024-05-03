@@ -279,7 +279,7 @@ public sealed partial class CargoSystem
             return false;
 
 
-        var ev = new EntitySoldEvent(toSell);
+        var ev = new EntitySoldEvent(toSell, gridUid);
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)
@@ -405,4 +405,4 @@ public sealed partial class CargoSystem
 /// deleted but after the price has been calculated.
 /// </summary>
 [ByRefEvent]
-public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold);
+public readonly record struct EntitySoldEvent(HashSet<EntityUid> Sold, EntityUid Station);

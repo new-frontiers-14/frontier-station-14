@@ -5,6 +5,11 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: ItemPlacer
+      whitelist:
+        components:
+          - CrateGenericSteel
+    - type: CrateMachine
     - type: Sprite
       sprite: _NF/Structures/Machines/crate_machine.rsi
       snapCardinals: true
@@ -20,6 +25,7 @@
           map: ["enum.CrateMachineVisualLayers.Open"]
     - type: AnimationPlayer
     - type: Transform
+      anchored: true
     - type: Physics
       canCollide: false
       bodyType: Static
@@ -44,9 +50,4 @@
     - type: Tag
       tags:
         - Structure
-    - type: ItemPlacer
-      whitelist:
-        components:
-          - CrateGenericSteel
-    - type: CrateMachineComponent
 
