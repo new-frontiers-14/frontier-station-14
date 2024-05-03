@@ -63,8 +63,12 @@ namespace Content.Server.Physics.Controllers
         {
             base.UpdateBeforeSolve(prediction, frameTime);
 
-            var inputQueryEnumerator = AllEntityQuery<InputMoverComponent>();
+            // Existing code to update pilots and handle shuttle movement
+            UpdatePilots();
+            HandleShuttleMovement(frameTime);
 
+            // Existing code to handle mob movement
+            var inputQueryEnumerator = AllEntityQuery<InputMoverComponent>();
             while (inputQueryEnumerator.MoveNext(out var uid, out var mover))
             {
                 var physicsUid = uid;
@@ -95,16 +99,10 @@ namespace Content.Server.Physics.Controllers
                     continue;
                 }
 
-                HandleMobMovement(uid,
-                    mover,
-                    physicsUid,
-                    body,
-                    xformMover,
-                    frameTime);
+                HandleMobMovement(uid, mover, physicsUid, body, xformMover, frameTime);
             }
-
-            HandleShuttleMovement(frameTime);
         }
+
 
         public (Vector2 Strafe, float Rotation, float Brakes) GetPilotVelocityInput(PilotComponent component)
         {
@@ -150,13 +148,6 @@ namespace Content.Server.Physics.Controllers
         }
         
         // Corvax start
-        public override void UpdateBeforeSolve(bool prediction, float frameTime)
-        {
-            base.UpdateBeforeSolve(prediction, frameTime);
-            UpdatePilots();
-            HandleShuttleMovement(frameTime);
-        }
-
         private void UpdatePilots()
         {
             var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
