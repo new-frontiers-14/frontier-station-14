@@ -558,46 +558,46 @@ public sealed class FoodSystem : EntitySystem
         {
             // Frontier - Food system hack job
             var foodQuality = component.Quality;
-            var block = false;
+            var foodQualityblock = false;
             foreach (var quality in foodQuality)
             {
                 if (quality == "Mail" || quality == "Fiber" || quality == "Trash")
                 {
                     if (comp.MailDigestion && quality == "Mail")
                     {
-                        block = false;
+                        foodQualityblock = false;
+                        break;
+                    }
+                    else if (comp.FiberDigestion && quality == "Fiber")
+                    {
+                        foodQualityblock = false;
                         break;
                     }
                     else if (comp.TrashDigestion && quality == "Trash")
                     {
-                        block = false;
-                        break;
-                    }
-                    else if (comp.TrashDigestion && quality == "Trash")
-                    {
-                        block = false;
+                        foodQualityblock = false;
                         break;
                     }
                     else
-                        block = true;
+                        foodQualityblock = true;
                 }
             }
-            if (block)
+            if (foodQualityblock)
                 return false;
             // Frontier - Food system hack job
 
             // Find a stomach with a SpecialDigestible
-            //if (comp.SpecialDigestible == null)
-            //    continue;
+            if (comp.SpecialDigestible == null)
+                continue;
             // Check if the food is in the whitelist
-            //if (comp.SpecialDigestible.IsValid(food, EntityManager))
-            //    return true;
+            if (comp.SpecialDigestible.IsValid(food, EntityManager))
+                return true;
             // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
-            //return false;
+            return false;
         }
 
-        //if (component.RequiresSpecialDigestion)
-        //    return false;
+        if (component.RequiresSpecialDigestion)
+            return false;
 
         return digestible;
     }
