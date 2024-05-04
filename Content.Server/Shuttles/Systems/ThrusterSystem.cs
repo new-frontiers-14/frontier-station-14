@@ -133,18 +133,6 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
-    private DirectionFlag IndexToDirectionFlag(int index)
-    {
-        return index switch
-        {
-            0 => DirectionFlag.South,
-            1 => DirectionFlag.East,
-            2 => DirectionFlag.North,
-            3 => DirectionFlag.West,
-           _ => throw new ArgumentOutOfRangeException(nameof(index))
-        };
-    }
-
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
         component.Enabled ^= true;
@@ -285,7 +273,7 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Tries to enable the thruster and turn it on. If it's already enabled it does nothing.
     /// </summary>
-    public void EnableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null) 
+    public void EnableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null)
     {
         if (component.IsOn ||
             !Resolve(uid, ref xform))
@@ -323,7 +311,7 @@ public sealed class ThrusterSystem : EntitySystem
                     shape.Set(component.BurnPoly);
                     _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int) CollisionGroup.FullTileMask, body: physicsComponent);
                 }
-                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction), changedDirection);
+
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust += component.Thrust;
@@ -351,27 +339,32 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Refreshes the center of thrust for movement calculations.
     /// </summary>
-    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle, DirectionFlag changedDirection, DirectionFlag? originalChangedDirection = null)
+    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle)
     {
+        // TODO: Only refresh relevant directions.
         var center = Vector2.Zero;
         var thrustQuery = GetEntityQuery<ThrusterComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-        var index = GetFlagIndex(changedDirection);
-        var pop = shuttle.LinearThrusters[index];
-        var totalThrust = 0f;
-
-        foreach (var ent in pop)
+        foreach (var dir in new[]
+                     { Direction.South, Direction.East, Direction.North, Direction.West })
         {
-            if (!thrustQuery.TryGetComponent(ent, out var thruster) || !xformQuery.TryGetComponent(ent, out var xform))
-                continue;
+            var index = (int) dir / 2;
+            var pop = shuttle.LinearThrusters[index];
+            var totalThrust = 0f;
 
-            center += xform.LocalPosition * thruster.Thrust;
-            totalThrust += thruster.Thrust;
+            foreach (var ent in pop)
+            {
+                if (!thrustQuery.TryGetComponent(ent, out var thruster) || !xformQuery.TryGetComponent(ent, out var xform))
+                    continue;
+
+                center += xform.LocalPosition * thruster.Thrust;
+                totalThrust += thruster.Thrust;
+            }
+
+            center /= pop.Count * totalThrust;
+            shuttle.CenterOfThrust[index] = center;
         }
-
-        center /= pop.Count * totalThrust;
-        shuttle.CenterOfThrust[index] = center;
     }
 
     public void DisableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null, Angle? angle = null)
@@ -413,7 +406,6 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.BaseLinearThrust[direction] -= component.BaseThrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Remove(uid);
-                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction), changedDirection);
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust -= component.Thrust;
