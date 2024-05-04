@@ -72,6 +72,8 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             {
                 // Just because.
                 var gibs = _body.GibBody(target, body: body, gibOrgans: true);
+                foreach (var gib in gibs)
+                    Del(gib);
             }
             else if (TryComp(target, out DamageableComponent? dc))
             {
