@@ -38,6 +38,8 @@ using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Server.Fax;
+using Robust.Shared.Enums;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -231,6 +233,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
         _records.Synchronize(shuttleStation!.Value);
         _records.Synchronize(station);
+
+        //Sends vessel details to all dedicated faxes
+        //Sends vessel details to all dedicated faxes
+        if(_prefManager.GetPreferences(args.Session.UserId).SelectedCharacter is HumanoidCharacterProfile _profile)
+        {
+            var metaData = MetaData((EntityUid) shuttleStation);
+            name = metaData.EntityName;
+
+            TryComp<FingerprintComponent>(player, out var _fingerprintComponent);
+            TryComp<DnaComponent>(player, out var _dnaComponent);
+
+            var faxQuery = EntityQueryEnumerator<ShipyardRecordPaperComponent>();
+
+            while (faxQuery.MoveNext(out var faxUid, out var recordPaperComp))
+            {
+                var ev = new ShipyardRecordPaperTransmitEvent(name, _profile.Name, _profile.Species, _profile.Gender, _profile.Age, _fingerprintComponent!.Fingerprint!, _dnaComponent!.DNA!);
+                RaiseLocalEvent(faxUid, ref ev);
+            }
+        }
+
 
         //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
