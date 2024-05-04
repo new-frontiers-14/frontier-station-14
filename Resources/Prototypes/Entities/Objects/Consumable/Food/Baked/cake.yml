@@ -10,6 +10,7 @@
     flavors:
       - sweet
   - type: Food
+    quality: [ "High" ] # Frontier, New Food Quality System
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/cake.rsi
   - type: SolutionContainerManager
@@ -165,6 +166,8 @@
     state: brain
   - type: SliceableFood
     slice: FoodCakeBrainSlice
+  - type: Food # Frontier
+    quality: [ "Nasty" ] # Frontier, New Food Quality System
 
 
 - type: entity

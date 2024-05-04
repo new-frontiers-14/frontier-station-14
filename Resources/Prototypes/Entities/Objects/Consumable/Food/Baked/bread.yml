@@ -10,6 +10,7 @@
     flavors:
       - bread
   - type: Food
+    quality: [ "Normal" ] # Frontier, New Food Quality System
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/bread.rsi
   - type: Tag
@@ -452,8 +453,8 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat
@@ -487,8 +488,8 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat-slice
@@ -574,7 +575,8 @@
     flavors:
       - acid
       - bread
-  - type: Food
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: xenomeat
@@ -737,6 +739,8 @@
   id: FoodBreadGarlicSlice
   description: Alas, it is limited.
   components:
+  - type: Food # Frontier
+    quality: [ "High" ] # Frontier, New Food Quality System
   - type: FlavorProfile
     flavors:
       - bread
@@ -801,8 +805,8 @@
           Quantity: 4
         - ReagentId: Mold
           Quantity: 7
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 # Tastes like decaying fungus.
 
 - type: entity

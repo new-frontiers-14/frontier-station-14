@@ -67,8 +67,8 @@
     entity: FoodMeatRotten
     # once it would say bloated, turn into the rotten prototype
     stage: 1
-  - type: Food
-    quality: Nasty # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Nasty" ] # Frontier, New Food Quality System
 
 # bruh
 - type: Tag
@@ -157,7 +157,7 @@
       - ReagentId: CarpoToxin
         Quantity: 5
   - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: raw bacon
@@ -462,8 +462,8 @@
           Quantity: 4
         - ReagentId: Fat
           Quantity: 4
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider meat
@@ -484,6 +484,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatSpiderCutlet
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider leg
@@ -501,6 +503,8 @@
           Quantity: 10
         - ReagentId: Fat
           Quantity: 3
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: meatwheat clump
@@ -563,8 +567,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatXenoCutlet
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: raw rouny meat
@@ -594,6 +598,8 @@
     graph: RounySteak
     node: start
     defaultTarget: rouny steak
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: killer tomato meat
@@ -632,6 +638,8 @@
     damage:
       types:
         Blunt: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: meat clown
@@ -743,6 +751,8 @@
   - type: Construction
     graph: MeatSteak
     node: meat steak
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: bacon
@@ -774,6 +784,8 @@
   - type: Construction
     graph: Bacon
     node: bacon
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: cooked bear
@@ -803,6 +815,8 @@
   - type: Construction
     graph: BearSteak
     node: filet migrawr
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: penguin filet
@@ -831,6 +845,8 @@
   - type: Construction
     graph: PenguinSteak
     node: cooked penguin
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: cooked chicken
@@ -859,6 +875,8 @@
   - type: Construction
     graph: ChickenSteak
     node: cooked chicken
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: fried chicken
@@ -887,6 +905,8 @@
           Quantity: 5
         - ReagentId: Protein
           Quantity: 5
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: cooked duck
@@ -915,6 +935,8 @@
   - type: Construction
     graph: DuckSteak
     node: cooked duck
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: cooked crab
@@ -943,6 +965,8 @@
   - type: Construction
     graph: CrabSteak
     node: cooked crab
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: goliath steak
@@ -969,6 +993,8 @@
   - type: Construction
     graph: GoliathSteak
     node: goliath steak
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: rouny steak
@@ -1028,6 +1054,8 @@
   - type: Construction
     graph: LizardSteak
     node: lizard steak
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: boiled spider leg
@@ -1071,6 +1099,8 @@
           Quantity: 5
         - ReagentId: Protein
           Quantity: 5
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 # Cutlets
 
@@ -1263,8 +1293,8 @@
         reagents:
         - ReagentId: SulfuricAcid
           Quantity: 20
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: raw killer tomato cutlet
@@ -1301,6 +1331,8 @@
           Quantity: 1
         - ReagentId: Protein
           Quantity: 1
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 # Cooked
 
@@ -1325,6 +1357,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: bear cutlet
@@ -1350,6 +1384,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: penguin cutlet
@@ -1373,6 +1409,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: chicken cutlet
@@ -1396,6 +1434,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: duck cutlet
@@ -1419,6 +1459,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: lizard cutlet
@@ -1443,6 +1485,8 @@
           Quantity: 2
         - ReagentId: Protein
           Quantity: 2
+  - type: Food # Frontier
+    quality: [ "Normal" ] # Frontier, New Food Quality System
 
 - type: entity
   name: spider cutlet
@@ -1465,6 +1509,8 @@
           Quantity: 1
         - ReagentId: Protein
           Quantity: 1
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: xeno cutlet
@@ -1487,5 +1533,5 @@
           Quantity: 1
         - ReagentId: Protein
           Quantity: 1
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System

@@ -8,6 +8,7 @@
   - type: Item
     storedRotation: -90
   - type: Food
+    quality: [ "High" ] # Frontier, New Food Quality System
     trash: FoodBowlBig
     utensil: Spoon
   - type: SolutionContainerManager
@@ -603,8 +604,8 @@
           Quantity: 6
         - ReagentId: Flavorol
           Quantity: 5
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 # Soup
 
 - type: entity
@@ -1018,6 +1019,8 @@
     tags:
     - Meat
     - Soup
+  - type: Food # Frontier
+    quality: [ "Nasty" ] # Frontier, New Food Quality System
 
 - type: entity
   name: miso soup

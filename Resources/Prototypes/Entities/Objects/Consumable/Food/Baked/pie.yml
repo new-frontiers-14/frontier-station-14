@@ -25,7 +25,7 @@
         - ReagentId: Flavorol
           Quantity: 11
   - type: Food #All pies here made with a pie tin; unless you're some kind of savage, you're probably not destroying this when you eat or slice the pie!
-    quality: High # Frontier, New Food Quality System
+    quality: [ "High" ] # Frontier, New Food Quality System
     trash: FoodPlateTin
   - type: SliceableFood
     count: 4
@@ -57,8 +57,8 @@
           Quantity: 1
         - ReagentId: Flavorol
           Quantity: 1.5
-  - type: Food # Frontier, New Food Quality System
-    quality: High # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "High" ] # Frontier, New Food Quality System
 
 # Pie
 
@@ -330,6 +330,8 @@
     tags:
     - Meat
     - Pie
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: slice of xeno pie
@@ -349,6 +351,8 @@
     tags:
     - Meat
     - Pie
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 # Tastes like pie, meat, acid.
 
 - type: entity
@@ -440,7 +444,7 @@
         - ReagentId: Flavorol
           Quantity: 6
   - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 # Tastes like pie, mushrooms.
 
 - type: entity

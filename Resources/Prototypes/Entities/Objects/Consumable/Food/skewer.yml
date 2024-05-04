@@ -7,6 +7,7 @@
   abstract: true
   components:
   - type: Food
+    quality: [ "Normal" ] # Frontier, New Food Quality System
     trash: FoodKebabSkewer
   - type: Sprite
     sprite: Objects/Consumable/Food/skewer.rsi
@@ -128,8 +129,8 @@
           Quantity: 2
         - ReagentId: Flavorol
           Quantity: 5
-  - type: Food    
-    quality: Nasty # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Nasty" ] # Frontier, New Food Quality System
 
 - type: entity
   name: double rat kebab
@@ -152,8 +153,8 @@
           Quantity: 6
         - ReagentId: Flavorol
           Quantity: 10
-  - type: Food    
-    quality: Nasty # Frontier, New Food Quality System
+  - type: Food # Frontier
+    quality: [ "Nasty" ] # Frontier, New Food Quality System
           
 - type: entity
   name: fiesta kebab
