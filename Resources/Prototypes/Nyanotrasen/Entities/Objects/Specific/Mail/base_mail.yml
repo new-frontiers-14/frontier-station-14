@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem , TrashSolutionInjector ] # Frontier
   abstract: true
   id: BaseMail
   name: mail-item-name-unaddressed
@@ -8,8 +8,6 @@
     size: Normal
   - type: Mail
   - type: AccessReader
-  - type: Food # Frontier
-    quality: [ "Trash", "Mail" ] # Frontier, New Food Quality System
   - type: Sprite
     scale: 0.7, 0.7 # Frontier
     sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
