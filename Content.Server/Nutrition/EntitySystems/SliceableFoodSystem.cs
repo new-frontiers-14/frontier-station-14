@@ -58,6 +58,8 @@ namespace Content.Server.Nutrition.EntitySystems
                 return false;
             }
 
+            _solutionContainerSystem.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - (solution.Volume / FixedPoint2.New(component.Count))); // Frontier - You cannot eat a cake and leave it whole
+
             var sliceUid = Slice(uid, user, component, transform);
 
             var lostSolution = _solutionContainerSystem.SplitSolution(soln.Value, solution.Volume / FixedPoint2.New(component.Count));

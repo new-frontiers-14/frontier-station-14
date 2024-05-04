@@ -440,6 +440,8 @@ public sealed class FoodSystem : EntitySystem
 
         args.Repeat = !forceFeed;
 
+        _solutionContainer.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - transferAmount); // Frontier - You cannot eat a cake and leave it whole
+
         if (TryComp<StackComponent>(entity, out var stack))
         {
             //Not deleting whole stack piece will make troubles with grinding object
