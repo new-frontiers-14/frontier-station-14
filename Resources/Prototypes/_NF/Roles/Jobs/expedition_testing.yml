@@ -1,0 +1,62 @@
+# Basic easily obtainable gear for testing salvage expeditions
+- type: startingGear
+  id: ExpeditionTesterGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackMessengerExpeditionTester
+    shoes: ClothingShoesBootsSalvage
+    mask: ClothingMaskGasExplorer
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWebExpeditionTester
+    id: SalvagePDA
+    ears: ClothingHeadsetMining
+    belt: ClothingBeltExpeditionTester
+    suitstorage: WeaponCrusherGlaive
+    pocket1: WeaponShotgunSawn
+    pocket2: DoubleEmergencyOxygenTankFilled
+  satchel: ClothingBackpackMessengerExpeditionTester
+  duffelbag: ClothingBackpackMessengerExpeditionTester
+  messenger: ClothingBackpackMessengerExpeditionTester
+
+# Filled containers
+- type: entity
+  id: ClothingBeltExpeditionTester
+  parent: ClothingBeltSalvageWebbing
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+      - id: RemoteSignaller
+      - id: HandheldHealthAnalyzerUnpowered
+
+- type: entity
+  id: ClothingBackpackMessengerExpeditionTester
+  parent: ClothingBackpackMessengerSalvage
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxLethalshot
+        amount: 3
+      - id: ShellShotgun
+        amount: 2
+      - id: Ointment
+      - id: PillCanisterTricordrazine
+
+- type: entity
+  id: ClothingOuterVestWebExpeditionTester
+  parent: ClothingOuterVestWeb
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Gauze
+        amount: 1

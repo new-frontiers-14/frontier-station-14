@@ -50,3 +50,33 @@
   - type: SolutionInjectOnEmbed
     transferAmount: 3
     solution: melee
+  - type: InjectableSolution
+    solution: ammo
+
+- type: entity
+  parent: DartSindicateImpedrezene
+  id: DartAberrantFleshHorrorSpike
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 3
+        reagents:
+        - ReagentId: Impedrezene
+          Quantity: 3
+  - type: SolutionInjectOnEmbed
+    transferAmount: 3
+    solution: melee
+  - type: InjectableSolution
+    solution: ammo

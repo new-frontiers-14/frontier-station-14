@@ -156,90 +156,85 @@
     Megafauna: MobBloodCultistAscended
 
 - type: salvageFaction
-  id: AberrantFlesh
+  id: Flesh
   cost: 1
   groups:
   - entries:
-    - id: MobFleshJaredExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
-    - id: MobFleshGolemExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
     prob: 0.5
   - entries:
-    - id: MobFleshClampExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
-    - id: MobFleshLoverExpeditions
-      amount: 1
-      maxAmount: 3
-    prob: 0.25
-  - entries:
-    - id: MobFleshJaredExpeditions
-      amount: 1
-      maxAmount: 3
-    - id: MobFleshLoverExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
     prob: 0.25
   - entries:
-    - id: MobFleshGolemExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
-    - id: MobFleshClampExpeditions
+    - id: SpawnMobAberrantFleshExpeditions
       amount: 1
       maxAmount: 3
     prob: 0.25
+  - entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 2
+      maxAmount: 4
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 2
+      maxAmount: 4
+    prob: 0.1
   configs:
     DefenseStructure: FleshBlocker
-    Mining: AberrantFlesh
-    Megafauna: MobAbominationExpeditions
+    Mining: Flesh
+    Megafauna: MobHorrorExpeditions
 
 - type: salvageFaction
   id: Argocyte
   cost: 4
   groups:
   - entries:
-    - id: MobArgocyteSkitter
-      amount: 2
-      maxAmount: 3
-    - id: MobArgocyteSwiper
-      amount: 1
-      maxAmount: 2
+    - id: SpawnMobArgocyteTiny
+      amount: 3
+      maxAmount: 5
   - entries:
-    - id: MobXenoPraetorian
+    - id: SpawnMobArgocyteSmall
       amount: 1
       maxAmount: 2
     prob: 0.5
   - entries:
-    - id: MobArgocyteMolder
+    - id: SpawnMobArgocyteSmall
       amount: 1
       maxAmount: 2
-    - id: MobArgocytePouncer
+    - id: SpawnMobArgocyteSmall
       amount: 1
+      maxAmount: 2
     prob: 0.25
   - entries:
     - id: MobArgocyteGlider
       amount: 3
     prob: 0.25
   - entries:
-      - id: MobArgocyteHarvester
+      - id: SpawnMobArgocyteMedium
         amount: 2
     prob: 0.25
   - entries:
-    - id: MobArgocyteEnforcer
-      amount: 1
-    prob: 0.1
-  - entries:
-    - id: MobArgocyteFounder
+    - id: SpawnMobArgocyteBig
       amount: 1
     prob: 0.1
   - entries:
     - id: MobArgocyteCrawler
-      amount: 2
+      amount: 3
+      maxAmount: 4
     prob: 0.001
   configs:
-    DefenseStructure: MobArgocyteBarrier
+    DefenseStructure: ArgocyteEgg
     Mining: Argocyte
-    Megafauna: MobArgocyteLeviathing # Frontier
+    Megafauna: MobArgocyteLeviathing

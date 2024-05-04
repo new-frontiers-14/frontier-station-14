@@ -41,11 +41,22 @@
     accent: genericAggressive
   - type: TimedDespawn
     lifetime: 1500 # 25 minutes until mobs despawn
+  - type: Tool
+    speed: 3
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
 
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -69,9 +80,21 @@
         Slash: 8
 
 - type: entity
+  parent: MobFleshJaredExpeditions
+  id: MobFleshJaredOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: jared
+
+- type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -99,9 +122,47 @@
         Slash: 8
 
 - type: entity
+  parent: MobFleshGolemExpeditions
+  id: MobFleshGolemAltExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: golem2
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
+  parent: MobFleshGolemExpeditions
+  id: MobFleshGolemOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: golem
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshClampExpeditions
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -118,20 +179,48 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Dead
+      40: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.5
 
 - type: entity
+  parent: MobFleshClampExpeditions
+  id: MobFleshClampOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clamp
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: DartAberrantFleshHorrorSpike
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+
+- type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: golem2 # lover
+      state: lover
   - type: DamageStateVisuals
     states:
       Alive:
@@ -150,20 +239,18 @@
 
 - type: entity
   parent: BaseMobFleshExpeditions
-  id: MobAbominationExpeditions
-  name: abomination
-  #noSpawn: true
+  id: MobHorrorExpeditions
+  name: aberrant flesh horror
+  noSpawn: true
   components:
   - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Demons/abomination.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: abomination
+      state: horror
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: abomination
+        Base: horror
       Dead:
         Base: dead
   - type: MobState
@@ -173,10 +260,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      200: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.8
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -184,4 +271,4 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 10
+        Slash: 12
