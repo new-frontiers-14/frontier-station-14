@@ -1,0 +1,55 @@
+- type: entity
+  name: floor safe
+  parent: [ BaseStructureDynamic, BaseBagOpenClose ]
+  id: FloorSafe
+  suffix: Empty
+  description: A secure storge for all your valuebles.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,4
+    maxItemSize: Huge
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: _NF/Structures/Storage/floor_safe.rsi
+    state: floorsafe
+    noRot: true
+    layers:
+    - state: floorsafe
+    - state: floorsafe-open
+      map: ["openLayer"]
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+  #- type: Construction
+    #graph: FilingCabinet
+    #node: filingCabinet
+  - type: StaticPrice
+    price: 20
