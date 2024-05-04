@@ -183,6 +183,22 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: DartAberrantFleshHorrorSpikeCluster
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
 
 - type: entity
   parent: MobFleshClampExpeditions
@@ -200,7 +216,7 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: DartAberrantFleshHorrorSpike
+    proto: MobMawExpeditions
     capacity: 1
     count: 1
   - type: Gun
@@ -272,3 +288,49 @@
     damage:
       types:
         Slash: 12
+
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobMawExpeditions
+  noSpawn: true
+  components:
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: Ammo
+    muzzleFlash: null
+  - type: EmbeddableProjectile
+    removalTime: 0.5
+    sound: /Audio/Effects/bite.ogg
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: maw
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: maw
+      Dead:
+        Base: dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      16: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 4
+  - type: TimedDespawn
+    lifetime: 180

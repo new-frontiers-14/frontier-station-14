@@ -28,6 +28,8 @@
     solution: ammo
   - type: DrainableSolution
     solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 4
   - type: SolutionInjectOnEmbed
     transferAmount: 2
     solution: melee
@@ -47,6 +49,8 @@
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 3
+  - type: SolutionTransfer
+    maxTransferAmount: 4
   - type: SolutionInjectOnEmbed
     transferAmount: 3
     solution: melee
@@ -67,7 +71,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 15
+        Piercing: 10
   - type: SolutionContainerManager
     solutions:
       ammo:
@@ -77,6 +81,23 @@
           Quantity: 3
   - type: SolutionInjectOnEmbed
     transferAmount: 3
+  - type: SolutionTransfer
+    maxTransferAmount: 4
     solution: melee
   - type: InjectableSolution
     solution: ammo
+
+- type: entity
+  parent: ConjuredObject10
+  id: DartAberrantFleshHorrorSpikeCluster
+  name: bone spike  
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: CartridgeAmmo
+    muzzleFlash: null
+    proto: DartAberrantFleshHorrorSpike
+    count: 3
+    spread: 25
