@@ -270,22 +270,31 @@ namespace Content.Server.Physics.Controllers
         /// </summary>
         private Vector2 ObtainMaxVel(Vector2 vel, ShuttleComponent shuttle)
         {
-            if (vel.Length() == 0f)
+            // Use LengthSquared to avoid unnecessary square root computation
+            if (vel.LengthSquared() == 0f)
                 return Vector2.Zero;
 
-            // this math could PROBABLY be simplified for performance
-            // probably
-            //             __________________________________
-            //            / /    __   __ \2   /    __   __ \2
-            // O = I : _ /  |I * | 1/H | |  + |I * |  0  | |
-            //          V   \    |_ 0 _| /    \    |_1/V_| /
+            // Directly extract velocity components
+            float velX = vel.X;
+            float velY = vel.Y;
 
-            var horizIndex = vel.X > 0 ? 1 : 3; // east else west
-            var vertIndex = vel.Y > 0 ? 2 : 0; // north else south
-            var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new Vector2(shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0;
-            var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new Vector2(0f, shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0;
+            // Simplified index calculation based on the direction of velocity components
+            int horizIndex = velX > 0 ? 1 : 3;
+            int vertIndex = velY > 0 ? 2 : 0;
 
-            return shuttle.BaseMaxLinearVelocity * vel * MathF.ReciprocalSqrtEstimate(horizComp + vertComp);
+            // Calculate thrust factors only if the respective velocity component is non-zero
+            float horizThrustRatio = velX != 0 ? shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex] : 0;
+            float vertThrustRatio = velY != 0 ? shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex] : 0;
+
+            // Calculate normalized component values
+            float horizNormalized = velX * horizThrustRatio;
+            float vertNormalized = velY * vertThrustRatio;
+
+            // Calculate the normalization factor using the squared sum of the normalized components
+            float normalizationFactor = 1f / MathF.Sqrt(horizNormalized * horizNormalized + vertNormalized * vertNormalized);
+
+            // Apply the normalization factor to the entire vector and scale by maximum velocity
+            return new Vector2(velX * normalizationFactor, velY * normalizationFactor) * shuttle.BaseMaxLinearVelocity;
         }
 
         private void HandleShuttleMovement(float frameTime)
