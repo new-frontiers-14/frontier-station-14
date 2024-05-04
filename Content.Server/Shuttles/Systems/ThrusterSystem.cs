@@ -323,7 +323,7 @@ public sealed class ThrusterSystem : EntitySystem
                     shape.Set(component.BurnPoly);
                     _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int) CollisionGroup.FullTileMask, body: physicsComponent);
                 }
-                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction));
+                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction), changedDirection);
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust += component.Thrust;
@@ -351,10 +351,10 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Refreshes the center of thrust for movement calculations.
     /// </summary>
-    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle, DirectionFlag changedDirection)
+    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle, DirectionFlag changedDirection, DirectionFlag? originalChangedDirection = null)
     {
         var center = Vector2.Zero;
-       var thrustQuery = GetEntityQuery<ThrusterComponent>();
+        var thrustQuery = GetEntityQuery<ThrusterComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
 
         var index = GetFlagIndex(changedDirection);
@@ -413,7 +413,7 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.BaseLinearThrust[direction] -= component.BaseThrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Remove(uid);
-                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction));
+                RefreshCenter(uid, shuttleComponent, IndexToDirectionFlag(direction), changedDirection);
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust -= component.Thrust;
