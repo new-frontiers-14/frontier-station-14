@@ -311,7 +311,7 @@ public sealed class ThrusterSystem : EntitySystem
                     shape.Set(component.BurnPoly);
                     _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int) CollisionGroup.FullTileMask, body: physicsComponent);
                 }
-
+                RefreshCenter(uid, shuttleComponent, direction.ToDirectionFlag()); 
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust += component.Thrust;
@@ -339,32 +339,27 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Refreshes the center of thrust for movement calculations.
     /// </summary>
-    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle)
+    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle, DirectionFlag changedDirection)
     {
-        // TODO: Only refresh relevant directions.
         var center = Vector2.Zero;
-        var thrustQuery = GetEntityQuery<ThrusterComponent>();
+       var thrustQuery = GetEntityQuery<ThrusterComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-        foreach (var dir in new[]
-                     { Direction.South, Direction.East, Direction.North, Direction.West })
+        var index = GetFlagIndex(changedDirection);
+        var pop = shuttle.LinearThrusters[index];
+        var totalThrust = 0f;
+
+        foreach (var ent in pop)
         {
-            var index = (int) dir / 2;
-            var pop = shuttle.LinearThrusters[index];
-            var totalThrust = 0f;
+            if (!thrustQuery.TryGetComponent(ent, out var thruster) || !xformQuery.TryGetComponent(ent, out var xform))
+                continue;
 
-            foreach (var ent in pop)
-            {
-                if (!thrustQuery.TryGetComponent(ent, out var thruster) || !xformQuery.TryGetComponent(ent, out var xform))
-                    continue;
-
-                center += xform.LocalPosition * thruster.Thrust;
-                totalThrust += thruster.Thrust;
-            }
-
-            center /= pop.Count * totalThrust;
-            shuttle.CenterOfThrust[index] = center;
+            center += xform.LocalPosition * thruster.Thrust;
+            totalThrust += thruster.Thrust;
         }
+
+        center /= pop.Count * totalThrust;
+        shuttle.CenterOfThrust[index] = center;
     }
 
     public void DisableThruster(EntityUid uid, ThrusterComponent component, TransformComponent? xform = null, Angle? angle = null)
@@ -406,6 +401,7 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.BaseLinearThrust[direction] -= component.BaseThrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Remove(uid);
+                RefreshCenter(uid, shuttleComponent, angle.Value.GetCardinalDir().ToDirectionFlag());
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust -= component.Thrust;
