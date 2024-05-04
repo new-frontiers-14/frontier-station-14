@@ -8,6 +8,8 @@
     size: Normal
   - type: Mail
   - type: AccessReader
+  - type: Food # Frontier
+    quality: [ "Trash", "Mail" ] # Frontier, New Food Quality System
   - type: Sprite
     scale: 0.7, 0.7 # Frontier
     sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
@@ -94,15 +96,6 @@
       types:
         Blunt: 10
   - type: CargoSellBlacklist
-  - type: Food # Frontier
-    quality: Mail # Frontier, New Food Quality System
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: TrashJuice
-          Quantity: 1
 
 # This empty parcel is allowed to exist and evade the tests for the admin
 # mailto command.
