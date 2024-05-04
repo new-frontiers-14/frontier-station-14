@@ -8,6 +8,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server._NF.Salvage;
 
 namespace Content.Server.Worldgen.Systems.GC;
 
@@ -89,6 +90,13 @@ public sealed class GCQueueSystem : EntitySystem
             if (player.AttachedEntity.HasValue)
             {
                 var playerEntityUid = player.AttachedEntity.Value;
+                //if (HasComp<SalvageMobRestrictionsNFComponent>(playerEntityUid))
+                //{
+                //    // Salvage mobs are NEVER immune (even if they're from a different salvage, they shouldn't be here)
+                //    continue;
+                //}
+                //Transform(playerEntityUid).AttachParent(transform.ParentUid);
+
                 if (HasComp<GCAbleObjectComponent>(playerEntityUid))
                 {
                     // Mobs are NEVER immune (even if they're from a different grid, they shouldn't be here)
