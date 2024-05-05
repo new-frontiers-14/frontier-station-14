@@ -134,10 +134,7 @@ public sealed partial class VulpLanguageSystem : EntitySystem
         if (!EntityManager.HasComponent<VulpLanguageSpeakerComponent>(e.Sender))
             return;
 
-        if (!EntityManager.TryGetComponent<MindComponent>(e.Listener.GetMind(), out var mind))
-            return;
-
-        if (EntityManager.HasComponent<VulpLanguageSpeakerComponent>(mind.CurrentEntity))
+        if (EntityManager.HasComponent<VulpLanguageSpeakerComponent>(e.Listener))
             e.Understand = true;
     }
 }

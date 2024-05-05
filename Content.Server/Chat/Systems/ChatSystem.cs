@@ -17,6 +17,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Radio;
@@ -167,7 +168,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        EntityUid? languageSource = null,
+        string? languageMessage = null
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -234,7 +237,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, languageSource: languageSource, languageMessage: languageMessage);
                 return;
             }
         }
@@ -243,10 +246,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, languageSource: languageSource, languageMessage: languageMessage);
                 break;
             case InGameICChatType.Whisper:
-                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, languageSource: languageSource, languageMessage: languageMessage);
                 break;
             case InGameICChatType.Emote:
                 SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
@@ -372,7 +375,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         ChatTransmitRange range,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        EntityUid? languageSource = null,
+        string? languageMessage = null
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -380,7 +385,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var message = FormattedMessage.RemoveMarkup(originalMessage);
 
-        var languageMessage = LanguageTransformSpeech(source, message);
+        languageMessage ??= LanguageTransformSpeech(languageSource ?? source, message);
 
         message = TransformSpeech(source, message);
 
@@ -428,7 +433,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Local, message, CheckLanguageUnderstand(source, session) ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel);
+            _chatManager.ChatMessageToOne(ChatChannel.Local, message, CheckLanguageUnderstand(languageSource ?? source, session) ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel);
         }
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Local, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
@@ -466,7 +471,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         RadioChannelPrototype? channel,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        EntityUid? languageSource = null,
+        string? languageMessage = null
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -475,7 +482,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var message = FormattedMessage.RemoveMarkup(originalMessage);
 
-        var languageMessage = LanguageTransformSpeech(source, message);
+        languageMessage ??= LanguageTransformSpeech(languageSource ?? source, message);
 
         message = TransformSpeech(source, message);
 
@@ -532,7 +539,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
-            var understand = CheckLanguageUnderstand(source, session);
+            var understand = CheckLanguageUnderstand(languageSource ?? source, session);
 
             if (data.Range <= WhisperClearRange)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, understand ? wrappedMessage : wrappedLanguageMessage, source, false, session.Channel);
@@ -786,6 +793,14 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     public bool CheckLanguageUnderstand(EntityUid sender, ICommonSession listener)
     {
+        if (!EntityManager.TryGetComponent<MindComponent>(listener.GetMind(), out var mind) || mind.CurrentEntity is null)
+            return false;
+
+        return CheckLanguageUnderstand(sender, mind.CurrentEntity.Value);
+    }
+
+    public bool CheckLanguageUnderstand(EntityUid sender, EntityUid listener)
+    {
         var e = new CheckLanguageUnderstandEvent(sender, listener, false);
         RaiseLocalEvent(e);
 
@@ -958,10 +973,10 @@ public sealed class LanguageTransformEvent(EntityUid sender, string message) : E
     public string Message = message;
 }
 
-public sealed class CheckLanguageUnderstandEvent(EntityUid sender, ICommonSession listener, bool understand) : EntityEventArgs
+public sealed class CheckLanguageUnderstandEvent(EntityUid sender, EntityUid listener, bool understand) : EntityEventArgs
 {
     public EntityUid Sender = sender;
-    public ICommonSession Listener = listener;
+    public EntityUid Listener = listener;
     public bool Understand = understand;
 }
 
