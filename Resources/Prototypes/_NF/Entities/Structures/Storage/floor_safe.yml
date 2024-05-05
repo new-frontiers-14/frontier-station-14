@@ -5,10 +5,17 @@
   suffix: Empty
   description: A secure storge for all your valuebles.
   components:
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["Captain"]]
   - type: Storage
     grid:
     - 0,0,8,4
     maxItemSize: Huge
+  - type: Icon
+    sprite: _NF/Structures/Storage/floor_safe.rsi
+    state: floorsafe
   - type: Sprite
     drawdepth: FloorTiles
     sprite: _NF/Structures/Storage/floor_safe.rsi
@@ -18,6 +25,9 @@
     - state: floorsafe
     - state: floorsafe-open
       map: ["openLayer"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
