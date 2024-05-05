@@ -2,13 +2,12 @@
   name: floor safe
   parent: [ BaseStructureDynamic, BaseBagOpenClose ]
   id: FloorSafe
-  suffix: Empty
-  description: A secure storge for all your valuebles.
+  suffix: No access
+  description: A secure storge for all your contra... Khm. Valuebles.
   components:
   - type: Lock
   - type: LockVisuals
   - type: AccessReader
-    access: [["Captain"]]
   - type: Storage
     grid:
     - 0,0,8,4
@@ -55,11 +54,23 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetSteel1:
+          SheetPlasteel1:
             min: 1
             max: 2
-  #- type: Construction
-    #graph: FilingCabinet
-    #node: filingCabinet
+  - type: Construction
+    graph: FloorSafeGraph
+    node: FloorSafeNode
   - type: StaticPrice
     price: 20
+
+- type: entity
+  name: floor safe
+  parent: FloorSafe
+  id: FloorSafeCaptain
+  suffix: Captain
+  components:
+  - type: AccessReader
+    access: [["Captain"]]
+  - type: Construction
+    graph: FloorSafeGraph
+    node: FloorSafeCaptainNode

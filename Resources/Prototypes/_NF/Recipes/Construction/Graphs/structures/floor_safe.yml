@@ -1,0 +1,55 @@
+- type: constructionGraph
+  id: FloorSafeGraph
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:SpawnPrototype
+      prototype: SheetPlasteel1
+      amount: 10
+    - !type:SpawnPrototype
+      prototype: CableApcStack1
+      amount: 2
+    - !type:EmptyAllContainers
+    - !type:DeleteEntity
+
+    edges:
+    - to: FloorSafeNode
+      completed:
+      - !type:SnapToGrid {}
+      steps:
+      - material: Plasteel
+        amount: 10
+      - material: Cable
+        amount: 2
+        doAfter: 5
+
+    - to: FloorSafeCaptainNode
+      steps:
+      - material: Plasteel
+        amount: 10
+      - material: Cable
+        amount: 2
+        doAfter: 5
+
+  - node: FloorSafeNode
+    entity: FloorSafe
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 15
+      conditions:
+      - !type:Locked
+        locked: false
+
+  - node: FloorSafeCaptainNode
+    entity: FloorSafeCaptain
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 15
+      conditions:
+      - !type:Locked
+        locked: false

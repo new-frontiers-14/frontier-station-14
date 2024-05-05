@@ -65,3 +65,37 @@
     state: closed
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: floor safe (no access lock)
+  id: FloorSafeConstruction
+  graph: FloorSafeGraph
+  startNode: start
+  targetNode: FloorSafeNode
+  category: construction-category-structures
+  description: A secure storge for all your contrab... Khm. Valuebles.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _NF/Structures/Storage/floor_safe.rsi
+    state: floorsafe
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: floor safe (captain lock)
+  id: FloorSafeCaptainConstruction
+  graph: FloorSafeGraph
+  startNode: start
+  targetNode: FloorSafeCaptainNode
+  category: construction-category-structures
+  description: A secure storge for all your contrab... Khm. Valuebles.
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _NF/Structures/Storage/floor_safe.rsi
+    state: floorsafe
+  conditions:
+    - !type:TileNotBlocked
