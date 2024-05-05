@@ -263,20 +263,25 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
 
-                var textLengthCorrection = labelText.Length * 9.5f;
-                var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -textLengthCorrection : 0;
-                var blipCorrection = (RadarBlipSize * 0.7f);
-                var correctedUiPosition = uiPosition with
-                {
-                    X = uiPosition.X > Width / 2
-                        ? uiPosition.X + blipCorrection + sideCorrection
-                        : uiPosition.X + blipCorrection,
-                    Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
-                };
-
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
-                    handle.DrawString(Font, correctedUiPosition, labelText, color);
+                    var labelDimensions = handle.GetDimensions(Font, labelText, UIScale);
+                    // it does not take into account font descent. So we have to add that...
+
+                    // if text is to the right, pos += blipRadius
+                    // if text is to the left, pos += -textLength-blipRadius
+                    var textBlipOffset = RadarBlipSize * 0.7f * UIScale;
+                    var textRightAlignedOffset = -labelDimensions.X;
+                    var scaledUiPositionOffset = new Vector2()
+                    {
+                        X = uiPosition.X > Width / 2
+                            ? textRightAlignedOffset - textBlipOffset
+                            : textBlipOffset,
+                        Y = -labelDimensions.Y / 2f - Font.GetDescent(1f) / 4f // vertical centering and font descent
+                    };
+
+                    // it does not take into account font descent. So we have to remove that...
+                    handle.DrawString(Font, uiPosition * UIScale + scaledUiPositionOffset, labelText, UIScale, color);
                 }
 
                 blipDataList.Add(new BlipData
@@ -286,8 +291,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
                     Color = color
                 });
-
-
             }
 
             // Don't skip drawing blips if they're out of range.
