@@ -104,15 +104,19 @@
     - WeaponCaseShortDeckardExpedition
     - WeaponCaseShortLaserGunExpedition
     - WeaponCaseShortLaserGunExpedition
+    - WeaponCaseShort
     - WeaponCaseLongKammererExpedition
     - WeaponCaseLongRepeaterExpedition
+    - WeaponCaseLong
     #- WeaponCaseShortSvalinnExpedition
     chance: 0.7
     offset: 0.0
     rarePrototypes:
+    - WeaponCaseShort
     - WeaponCaseLongWT550Expedition
     - WeaponCaseLongAtreidesExpedition
     - WeaponCaseLongDrozdExpedition
+    - WeaponCaseLong
     - SpawnDungeonLootArmoryMelee
     rareChance: 0.05
 
@@ -133,6 +137,8 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - WeaponCaseShort
+    - WeaponCaseLong
     - WeaponCaseLongDrozdExpedition
     - WeaponCaseLongWT550Expedition
     - WeaponCaseLongAtreidesExpedition
@@ -148,6 +154,7 @@
     - WeaponCaseLongM90Expedition
     - WeaponCaseShortN1984Expedition
     - SpawnDungeonLootArmoryRare
+    - SpawnDungeonLootArmoryExplosives
     rareChance: 0.05
 
 - type: entity
@@ -292,13 +299,16 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - LockerMercenary
     - LockerMercenaryFilled
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - LockerSyndicatePersonal
     - LockerSyndicatePersonalFilled
+    - ClosetBomb
     - ClosetBombFilled
-    rareChance: 0.01
+    rareChance: 0.03
 
 - type: entity
   name: random crate
@@ -378,6 +388,7 @@
     - VendingMachineArcadia
     - VendingMachineSec
     - VendingMachineSecDrobe
+    - SpawnDungeonMachineFrame
     rareChance: 0.01
 
 - type: entity

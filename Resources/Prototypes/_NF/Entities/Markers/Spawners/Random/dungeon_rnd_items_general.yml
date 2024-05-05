@@ -106,6 +106,15 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - ClosetMaintenance
+    - WardrobeBlack
+    - WardrobeBlue
+    - WardrobeGreen
+    - WardrobeGrey
+    - WardrobeMixed
+    - WardrobePink
+    - WardrobeWhite
+    - WardrobeYellow
     - ClosetMaintenanceFilledRandom
     - WardrobeBlackFilled
     - WardrobeBlueFilled
@@ -136,16 +145,20 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - ClosetEmergency
+    - ClosetFire
     - ClosetEmergencyFilledRandom
     - ClosetFireFilled
-    - ClosetL3Filled
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - ClosetBomb
+    - ClosetRadiationSuit
+    - ClosetL3
     - ClosetBombFilled
     - ClosetRadiationSuitFilled
     - ClosetL3Filled
-    rareChance: 0.15
+    rareChance: 0.25
 
 # Machines
 - type: entity
