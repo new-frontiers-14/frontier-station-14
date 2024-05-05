@@ -55,7 +55,7 @@ public sealed class RadioSystem : EntitySystem
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            _netMan.ServerSendMessage(_chat.CheckLanguageUnderstand(args.MessageSource, uid) ? args.ChatMsg : args.LanguageChatMsg, actor.PlayerSession.Channel);
     }
 
     /// <summary>
@@ -111,20 +111,30 @@ public sealed class RadioSystem : EntitySystem
 
         name = FormattedMessage.EscapeText(name);
 
+        var languageMessage = _chat.LanguageTransformSpeech(messageSource, message);
+
         SpeechVerbPrototype speech;
+        SpeechVerbPrototype languageSpeech;
         if (mask != null
             && mask.Enabled
             && mask.SpeechVerb != null
             && _prototype.TryIndex<SpeechVerbPrototype>(mask.SpeechVerb, out var proto))
         {
             speech = proto;
+            languageSpeech = proto;
         }
-        else
+        else {
             speech = _chat.GetSpeechVerb(messageSource, message);
+            languageSpeech = _chat.GetSpeechVerb(messageSource, languageMessage);
+        }
 
         var content = escapeMarkup
             ? FormattedMessage.EscapeText(message)
             : message;
+
+        var languageContent = escapeMarkup
+            ? FormattedMessage.EscapeText(languageMessage)
+            : languageMessage;
 
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
@@ -135,6 +145,15 @@ public sealed class RadioSystem : EntitySystem
             ("name", name),
             ("message", content));
 
+        var wrappedLanguageMessage = Loc.GetString(languageSpeech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+            ("color", channel.Color),
+            ("fontType", languageSpeech.FontId),
+            ("fontSize", languageSpeech.FontSize),
+            ("verb", Loc.GetString(_random.Pick(languageSpeech.SpeechVerbStrings))),
+            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("name", name),
+            ("message", languageContent));
+
         // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
             ChatChannel.Radio,
@@ -143,7 +162,16 @@ public sealed class RadioSystem : EntitySystem
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, chatMsg);
+
+        var languageChat = new ChatMessage(
+            ChatChannel.Radio,
+            languageMessage,
+            wrappedLanguageMessage,
+            NetEntity.Invalid,
+            null);
+        var languageChatMsg = new MsgChatMessage { Message = languageChat };
+
+        var ev = new RadioReceiveEvent(message, languageMessage, messageSource, channel, chatMsg, languageChatMsg);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
