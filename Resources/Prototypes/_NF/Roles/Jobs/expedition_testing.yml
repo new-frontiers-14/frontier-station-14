@@ -18,6 +18,8 @@
   satchel: ClothingBackpackMessengerExpeditionTester
   duffelbag: ClothingBackpackMessengerExpeditionTester
   messenger: ClothingBackpackMessengerExpeditionTester
+  inhand:
+    - ToolboxEmergencyExpeditionTester
 
 # Filled containers
 - type: entity
@@ -27,14 +29,24 @@
   components:
   - type: StorageFill
     contents:
-      - id: Wrench
-      - id: Screwdriver
-      - id: Wirecutter
-      - id: Welder
-      - id: Multitool
-      - id: RemoteSignaller
-      - id: AppraisalTool
-      - id: HandheldHealthAnalyzerUnpowered
+    - id: CrowbarRed
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: MiningDrill
+
+- type: entity
+  id: ToolboxEmergencyExpeditionTester
+  parent: ToolboxEmergency
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: RemoteSignaller
+    - id: AppraisalTool
+    - id: HandheldHealthAnalyzerUnpowered
 
 - type: entity
   id: ClothingBackpackMessengerExpeditionTester
@@ -43,12 +55,12 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxLethalshot
-        amount: 3
-      - id: ShellShotgun
-        amount: 2
-      - id: Ointment
-      - id: PillCanisterTricordrazine
+    - id: BoxLethalshot
+      amount: 3
+    - id: ShellShotgun
+      amount: 2
+    - id: Ointment
+    - id: PillCanisterTricordrazine
 
 - type: entity
   id: ClothingOuterVestWebExpeditionTester
@@ -57,7 +69,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Brutepack
-        amount: 2
-      - id: Gauze
-        amount: 1
+    - id: Brutepack
+      amount: 2
+    - id: Gauze
+      amount: 1

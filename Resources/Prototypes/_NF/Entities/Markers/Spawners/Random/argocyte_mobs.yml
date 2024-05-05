@@ -1,3 +1,4 @@
+# Categorized
 - type: entity
   name: argocyte spawner
   id: SpawnMobArgocyteTiny
@@ -78,3 +79,35 @@
     rarePrototypes:
     - MobArgocyteFounder
     rareChance: 0.05
+
+# Full random
+- type: entity
+  name: argocyte spawner
+  id: ArgocyteAISpawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: founder
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteSlurva
+    - MobArgocyteBarrier
+    - MobArgocyteSkitter
+    - MobArgocyteSwiper
+    - MobArgocyteMolder
+    - MobArgocytePouncer
+    - MobArgocyteGlider
+    - MobArgocyteHarvester
+    - MobArgocyteCrawler
+    - MobArgocyteEnforcer
+    - MobArgocyteFounder
+    rarePrototypes:
+    - MobArgocyteLeviathing
+    rareChance: 0.10
