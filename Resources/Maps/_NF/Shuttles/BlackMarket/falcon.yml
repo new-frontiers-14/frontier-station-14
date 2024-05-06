@@ -136,10 +136,11 @@ entities:
             38: 2,-11
             39: 3,-12
             40: 3,-14
-            41: 2,-15
             42: 1,-15
             43: 2,-16
             44: 1,-16
+            92: 2,-15
+            93: 3,-15
         - node:
             cleanable: True
             color: '#000000FF'
@@ -235,10 +236,10 @@ entities:
             88: 1,-10
         - node:
             cleanable: True
-            color: '#000000FF'
+            color: '#FFFFFFFF'
             id: skull
           decals:
-            89: 2,-15
+            91: 2,-15
         - node:
             cleanable: True
             color: '#000000FF'
@@ -725,6 +726,20 @@ entities:
     components:
     - type: Transform
       pos: 2.8127913,-13.45843
+      parent: 3
+- proto: BoxBodyBag
+  entities:
+  - uid: 556
+    components:
+    - type: Transform
+      pos: -0.66122985,-13.492973
+      parent: 3
+- proto: BoxTrashbag
+  entities:
+  - uid: 558
+    components:
+    - type: Transform
+      pos: -0.31747985,-13.477348
       parent: 3
 - proto: ButtonFrameCaution
   entities:
@@ -1305,6 +1320,96 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-8.5
       parent: 3
+- proto: CannonBall
+  entities:
+  - uid: 548
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 549
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 550
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 551
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: CannonBallGlassshot
+  entities:
+  - uid: 543
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 545
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 546
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 547
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: CannonBallGrapeshot
+  entities:
+  - uid: 540
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 541
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 542
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 544
+    components:
+    - type: Transform
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: CarpetBlack
   entities:
   - uid: 140
@@ -1662,6 +1767,36 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 3
+- proto: CratePirateGrey
+  entities:
+  - uid: 539
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 3
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 540
+          - 541
+          - 542
+          - 543
+          - 544
+          - 545
+          - 546
+          - 547
+          - 548
+          - 262
+          - 549
+          - 550
+          - 551
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CurtainsBlackOpen
   entities:
   - uid: 185
@@ -1673,6 +1808,14 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-10.5
+      parent: 3
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 8
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-13.5
       parent: 3
 - proto: DonkpocketBoxSpawner
   entities:
@@ -1752,6 +1895,23 @@ entities:
     components:
     - type: Transform
       pos: 3.3521752,-6.789374
+      parent: 3
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 552
+    components:
+    - type: Transform
+      pos: -2.5,-14.5
+      parent: 3
+  - uid: 554
+    components:
+    - type: Transform
+      pos: 7.5,-12.5
+      parent: 3
+  - uid: 555
+    components:
+    - type: Transform
+      pos: 3.5,-3.5
       parent: 3
 - proto: FaxMachineShipAntag
   entities:
@@ -2455,6 +2615,14 @@ entities:
     - type: Transform
       pos: 6.5,-6.5
       parent: 3
+- proto: LockerWallMedicalFilled
+  entities:
+  - uid: 553
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-7.5
+      parent: 3
 - proto: MiningWindow
   entities:
   - uid: 13
@@ -2584,8 +2752,10 @@ entities:
   - uid: 262
     components:
     - type: Transform
-      pos: 4.5782022,-1.446425
-      parent: 3
+      parent: 539
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 84
@@ -2724,6 +2894,12 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-9.5
+      parent: 3
+  - uid: 557
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-13.5
       parent: 3
 - proto: Railing
   entities:
@@ -2986,10 +3162,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         192:
-        - Pressed: Toggle
         - Pressed: Trigger
         191:
-        - Pressed: Toggle
         - Pressed: Trigger
   - uid: 177
     components:
@@ -3023,10 +3197,8 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         192:
-        - Pressed: Toggle
         - Pressed: Trigger
         191:
-        - Pressed: Toggle
         - Pressed: Trigger
 - proto: Sink
   entities:
@@ -3049,6 +3221,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-11.5
+      parent: 3
+- proto: SpawnPointPirateCaptain
+  entities:
+  - uid: 538
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 3
+- proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 537
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
       parent: 3
 - proto: StoolBar
   entities:
@@ -3617,6 +3803,11 @@ entities:
     - type: Transform
       pos: 7.5,-12.5
       parent: 3
+  - uid: 536
+    components:
+    - type: Transform
+      pos: -2.5,-13.5
+      parent: 3
 - proto: WallMiningDiagonal
   entities:
   - uid: 5
@@ -3630,12 +3821,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,-18.5
-      parent: 3
-  - uid: 8
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,-13.5
       parent: 3
   - uid: 25
     components:
