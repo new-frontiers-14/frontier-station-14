@@ -265,23 +265,18 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
-                    var labelDimensions = handle.GetDimensions(Font, labelText, UIScale);
-                    // it does not take into account font descent. So we have to add that...
-
-                    // if text is to the right, pos += blipRadius
-                    // if text is to the left, pos += -textLength-blipRadius
-                    var textBlipOffset = RadarBlipSize * 0.7f * UIScale;
-                    var textRightAlignedOffset = -labelDimensions.X;
-                    var scaledUiPositionOffset = new Vector2()
+                    // Calculate unscaled offsets.
+                    var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                    var blipSize = RadarBlipSize * 0.7f;
+                    var labelOffset = new Vector2()
                     {
-                        X = uiPosition.X > Width / 2
-                            ? textRightAlignedOffset - textBlipOffset
-                            : textBlipOffset,
-                        Y = -labelDimensions.Y / 2f - Font.GetDescent(1f) / 4f // vertical centering and font descent
+                        X = uiPosition.X > Width / 2f
+                            ? -labelDimensions.X - blipSize // right align the text to left of the blip
+                            : blipSize, // left align the text to the right of the blip
+                        Y = -labelDimensions.Y / 2f
                     };
 
-                    // it does not take into account font descent. So we have to remove that...
-                    handle.DrawString(Font, uiPosition * UIScale + scaledUiPositionOffset, labelText, UIScale, color);
+                    handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, color);
                 }
 
                 blipDataList.Add(new BlipData
