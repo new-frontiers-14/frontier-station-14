@@ -7,6 +7,8 @@ using Content.Shared.Preferences;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
+using Content.Shared._NF.Bank.Events;
+using Robust.Server.Player;
 
 namespace Content.Server.Bank;
 
@@ -14,6 +16,7 @@ public sealed partial class BankSystem : EntitySystem
 {
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private ISawmill _log = default!;
 
@@ -84,6 +87,8 @@ public sealed partial class BankSystem : EntitySystem
 
         _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
+        var session = _playerManager.GetSessionById((NetUserId) user);
+        RaiseLocalEvent(new BalanceChangedEvent(session, bank.Balance));
     }
 
     /// <summary>

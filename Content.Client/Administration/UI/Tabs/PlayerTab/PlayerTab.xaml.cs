@@ -121,7 +121,8 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
                     player.Antag ? "YES" : "NO",
                     new StyleBoxFlat(useAltColor ? _altColor : _defaultColor),
                     player.Connected,
-                    player.PlaytimeString);
+                    player.PlaytimeString,
+                    player.Balance);
                 entry.PlayerEntity = player.NetEntity;
                 entry.OnKeyBindDown += args => OnEntryKeyBindDown?.Invoke(entry, args);
                 entry.ToolTip = Loc.GetString("player-tab-entry-tooltip");
