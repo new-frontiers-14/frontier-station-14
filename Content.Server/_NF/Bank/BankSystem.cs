@@ -39,6 +39,10 @@ public sealed partial class BankSystem : EntitySystem
         var mobUid = args.Mob;
         var bank = EnsureComp<BankAccountComponent>(mobUid);
         bank.Balance = args.Profile.BankBalance;
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
     }
 
@@ -87,8 +91,6 @@ public sealed partial class BankSystem : EntitySystem
 
         _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
-        var session = _playerManager.GetSessionById((NetUserId) user);
-        RaiseLocalEvent(new BalanceChangedEvent(session, bank.Balance));
     }
 
     /// <summary>
@@ -119,6 +121,10 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance -= amount;
         _log.Info($"{mobUid} withdrew {amount}");
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
         return true;
     }
@@ -145,6 +151,10 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance += amount;
         _log.Info($"{mobUid} deposited {amount}");
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
         return true;
     }

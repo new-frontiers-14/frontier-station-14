@@ -191,7 +191,7 @@ namespace Content.Server.Administration.Systems
         {
             if (ev.Amount == 0)
                 return;
-            UpdatePlayerList(ev.Session);
+            UpdatePlayerList(ev.Player);
         }
 
         public override void Shutdown()
