@@ -2080,6 +2080,78 @@ entities:
           ents: []
         bank-ATM-cashSlot: !type:ContainerSlot {}
     - type: ItemSlots
+- proto: DefaultStationBeaconAME
+  entities:
+  - uid: 738
+    components:
+    - type: Transform
+      pos: 3.5,-5.5
+      parent: 1
+- proto: DefaultStationBeaconArmory
+  entities:
+  - uid: 739
+    components:
+    - type: Transform
+      pos: 3.5,7.5
+      parent: 1
+- proto: DefaultStationBeaconBridge
+  entities:
+  - uid: 714
+    components:
+    - type: Transform
+      pos: 0.5,10.5
+      parent: 1
+- proto: DefaultStationBeaconCaptainsQuarters
+  entities:
+  - uid: 715
+    components:
+    - type: Transform
+      pos: -3.5,6.5
+      parent: 1
+- proto: DefaultStationBeaconCargoBay
+  entities:
+  - uid: 736
+    components:
+    - type: Transform
+      pos: 0.5,-11.5
+      parent: 1
+- proto: DefaultStationBeaconDorms
+  entities:
+  - uid: 716
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+- proto: DefaultStationBeaconEvac
+  entities:
+  - uid: 717
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
+      parent: 1
+    - type: NavMapBeacon
+      text: Docks
+- proto: DefaultStationBeaconEVAStorage
+  entities:
+  - uid: 733
+    components:
+    - type: Transform
+      pos: -3.5,-6.5
+      parent: 1
+- proto: DefaultStationBeaconKitchen
+  entities:
+  - uid: 735
+    components:
+    - type: Transform
+      pos: -1.5,3.5
+      parent: 1
+- proto: DefaultStationBeaconMedbay
+  entities:
+  - uid: 734
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 345
@@ -4249,6 +4321,14 @@ entities:
     - type: Transform
       pos: -1.5,-11.5
       parent: 1
+- proto: StationMap
+  entities:
+  - uid: 737
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-5.5
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 191
@@ -4361,7 +4441,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: aft camera
+      id: aft
   - uid: 473
     components:
     - type: Transform
@@ -4371,7 +4451,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
       nameSet: True
-      id: cargo hold camera
+      id: cargo bay
 - proto: SurveillanceCameraRouterGeneral
   entities:
   - uid: 620
