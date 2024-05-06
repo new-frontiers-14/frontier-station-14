@@ -213,12 +213,6 @@ namespace Content.Server.Database.Migrations.Postgres
                 column: "profile_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_player_user_id",
-                table: "player",
-                column: "user_id",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_preference_user_id",
                 table: "preference",
                 column: "user_id",
