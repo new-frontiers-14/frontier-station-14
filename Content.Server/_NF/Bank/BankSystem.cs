@@ -7,6 +7,8 @@ using Content.Shared.Preferences;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
+using Content.Shared._NF.Bank.Events;
+using Robust.Server.Player;
 
 namespace Content.Server.Bank;
 
@@ -14,6 +16,7 @@ public sealed partial class BankSystem : EntitySystem
 {
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private ISawmill _log = default!;
 
@@ -36,6 +39,10 @@ public sealed partial class BankSystem : EntitySystem
         var mobUid = args.Mob;
         var bank = EnsureComp<BankAccountComponent>(mobUid);
         bank.Balance = args.Profile.BankBalance;
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
     }
 
@@ -114,6 +121,10 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance -= amount;
         _log.Info($"{mobUid} withdrew {amount}");
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
         return true;
     }
@@ -140,6 +151,10 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance += amount;
         _log.Info($"{mobUid} deposited {amount}");
+        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
+        {
+            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
+        }
         Dirty(bank);
         return true;
     }
