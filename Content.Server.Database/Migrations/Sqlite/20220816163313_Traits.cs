@@ -27,11 +27,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         principalColumn: "profile_id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_trait_profile_id",
-                table: "trait",
-                column: "profile_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
