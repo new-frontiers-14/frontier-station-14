@@ -7,8 +7,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.PowerCell;
 using Content.Server.VulpLangauge;
 using Content.Shared.Inventory;
-using Content.Shared.Mind;
-using Content.Shared.Players;
 using Content.Shared.Storage;
 
 namespace Content.Server.Corvax.VulpLanguage;
@@ -134,7 +132,7 @@ public sealed partial class VulpLanguageSystem : EntitySystem
         if (!EntityManager.HasComponent<VulpLanguageSpeakerComponent>(e.Sender))
             return;
 
-        if (EntityManager.HasComponent<VulpLanguageSpeakerComponent>(e.Listener))
+        if (EntityManager.HasComponent<VulpLanguageListenerComponent>(e.Listener))
             e.Understand = true;
     }
 }
