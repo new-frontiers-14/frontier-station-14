@@ -3,21 +3,36 @@
   parent: CrateTradeBaseSecureNormal
   name: cargo trading crate
   description: Contains goods made in the Frontier sector, ready to be sold on a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
+  components:
+   - type: InflationCargoCrate
+     IsInflated: false
 
 - type: entity
   id: CrateTradeSecureHighFilled
   parent: CrateTradeBaseSecureHigh
   name: high value cargo trading crate
   description: Contains high value goods made in the Frontier sector, ready to be sold on a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
+  components:
+   - type: InflationCargoCrate
+     IsInflated: false
 
 - type: entity
   id: CrateTradeContrabandSecureNormalFilled
   parent: CrateTradeContrabandSecureNormal
+  components:
+   - type: InflationCargoCrate
+     IsInflated: false
 
 - type: entity
   id: CrateTradeContrabandSecureDonkFilled
   parent: CrateTradeContrabandSecureDonk
+  components:
+   - type: InflationCargoCrate
+     IsInflated: false
   
 - type: entity
   id: CrateTradeContrabandSecureCyberSunFilled
   parent: CrateTradeContrabandSecureCyberSun
+  components:
+   - type: InflationCargoCrate
+     IsInflated: false
