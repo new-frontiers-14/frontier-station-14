@@ -221,7 +221,7 @@ namespace Content.Server.Administration.Systems
             var name = data.UserName;
             var entityName = string.Empty;
             var identityName = string.Empty;
-            var balance = 0;
+            int balance = 0;
 
             if (session?.AttachedEntity != null)
             {
@@ -230,6 +230,10 @@ namespace Content.Server.Administration.Systems
                 if(EntityManager.TryGetComponent<BankAccountComponent>(session.AttachedEntity.Value, out var comp))
                 {
                     balance = comp.Balance;
+                }
+                else
+                {
+                    balance = int.MinValue; // Эквивалент отсутствующего баланса
                 }
             }
 
