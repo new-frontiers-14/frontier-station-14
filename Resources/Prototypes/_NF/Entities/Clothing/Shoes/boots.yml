@@ -31,3 +31,40 @@
     sprite: _NF/Clothing/Shoes/Boots/nfsd_cream_boots.rsi
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/nfsd_cream_boots.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsPunkRandomized
+  name: punk boots
+  description: Dis boots were made for stompin' n stompin' dey'll do.
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/punk.rsi
+    layers:
+    - state: base_boots_01
+      map: [ "boots" ]
+    - state: mask_null
+      map: [ "decor1" ]
+    - state: mask_null
+      map: [ "decor2" ]
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/punk.rsi
+    clothingVisuals:
+      shoes:
+      - state: base_boots_01
+        map: [ "boots" ]
+      - state: mask_null
+        map: [ "decor1" ]
+      - state: mask_null
+        map: [ "decor2" ]
+  - type: RandomSprite
+    available:
+    - boots:
+        base_boots_01: Cyberpunk
+      decor1:
+        decor_base_boots_01: Cyberpunk
+        mask_null: ""
+      decor2:
+        decor_base_boots_02: Cyberpunk
+        mask_null: ""
