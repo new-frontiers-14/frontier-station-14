@@ -277,11 +277,15 @@
     layers:
     - state: holograffiti11
       map: [ "graffiti" ]
+    - state: holograffiti11_highlight
+      map: [ "highlight" ]
       shader: unshaded
   - type: RandomSprite
     available:
     - graffiti:
         holograffiti11: Cyberpunk
+      highlight:
+        holograffiti11_highlight: Cyberpunk
 
 - type: entity
   id: HoloGraffiti12
@@ -342,3 +346,64 @@
     available:
     - graffiti:
         holograffiti14: Cyberpunk
+
+- type: entity
+  id: HoloGraffiti15
+  parent: HoloGraffiti01
+  name: holograffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti.rsi
+    layers:
+    - state: holograffiti15
+      map: [ "graffiti" ]
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti15: Cyberpunk
+
+- type: entity
+  id: HoloGraffiti16
+  parent: HoloGraffiti01
+  name: holograffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti.rsi
+    layers:
+    - state: holograffiti16
+      map: [ "graffiti" ]
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti16: Cyberpunk
+
+- type: entity
+  id: HoloGraffiti17
+  parent: HoloGraffiti01
+  name: holograffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti.rsi
+    layers:
+    - state: holograffiti17
+      map: [ "graffiti" ]
+    - state: holograffiti17_highlight
+      map: [ "highlight" ]
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti17: Cyberpunk
+      highlight:
+        holograffiti17_highlight: Cyberpunk
