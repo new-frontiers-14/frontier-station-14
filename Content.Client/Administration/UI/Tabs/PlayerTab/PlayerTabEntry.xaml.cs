@@ -10,7 +10,7 @@ public sealed partial class PlayerTabEntry : ContainerButton
 {
     public NetEntity? PlayerEntity;
 
-    public PlayerTabEntry(string username, string character, string identity, string job, string antagonist, StyleBox styleBox, bool connected, string overallPlaytime, int balance)
+    public PlayerTabEntry(string username, string character, string identity, string job, string antagonist, StyleBox styleBox, bool connected, string overallPlaytime, string balance)
     {
         RobustXamlLoader.Load(this);
 
