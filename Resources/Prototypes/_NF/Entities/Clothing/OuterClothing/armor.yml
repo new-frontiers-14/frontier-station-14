@@ -79,7 +79,6 @@
   parent: ClothingOuterArmorNfsd
   id: ClothingOuterArmorPunkGreen
   name: punk armor
-  description: get shot, maybe survive?
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_green.rsi
@@ -90,7 +89,6 @@
   parent: ClothingOuterArmorPunkGreen
   id: ClothingOuterArmorPunkOrange
   name: punk armor
-  description: get shot, maybe survive?
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_orange.rsi
@@ -101,9 +99,40 @@
   parent: ClothingOuterArmorPunkGreen
   id: ClothingOuterArmorPunkRed
   name: punk armor
-  description: get shot, maybe survive?
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_red.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_red.rsi
+
+- type: entity
+  parent: ClothingOuterVestWebMercenary
+  id: ClothingOuterArmorPunkRandomized
+  name: punk armor
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
+    layers:
+    - state: base_OuterClothing_armor_01
+      map: [ "armor" ]
+    - state: mask_null
+      map: [ "decor" ]
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: base_OuterClothing_armor_01
+        map: [ "armor" ]
+      - state: mask_null
+        map: [ "decor" ]
+  - type: RandomSprite
+    available:
+    - armor:
+        base_OuterClothing_armor_01: Cyberpunk
+        base_OuterClothing_armor_02: Cyberpunk
+        base_OuterClothing_armor_03: Cyberpunk
+        base_OuterClothing_armor_04: Cyberpunk
+      decor:
+        decor_base_OuterClothing_armor_01: Cyberpunk
+        mask_null: ""
