@@ -10,7 +10,7 @@ public sealed class InflationCargoCrateSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
 
-    private TimeSpan? Timer = TimeSpan.FromSeconds(10);
+    private TimeSpan? Timer = TimeSpan.FromMinutes(5);
     private TimeSpan? NextTimeToCheck = TimeSpan.FromSeconds(5);
 
     StaticPriceComponent? staticPriceComponent = null;
@@ -43,10 +43,12 @@ public sealed class InflationCargoCrateSystem : EntitySystem
 
                 if (numberCrates == 1)
                     modifier = 1;
-                else if (numberCrates >= 2 && numberCrates <= 5)
-                    modifier = 0.5;
-                else if (numberCrates >= 6 && numberCrates <= 10)
-                    modifier = 0.3;
+                else if (numberCrates >= 5 && numberCrates <= 19)
+                    modifier = 0.9;
+                else if (numberCrates >= 20 && numberCrates <= 40)
+                    modifier = 0.85;
+                else if (numberCrates >= 41)
+                    modifier = 0.82;
 
                 foreach (var iterator in _entManager.EntityQuery<TradeCrateComponent>(true))
                 {
