@@ -1,5 +1,4 @@
 using Robust.Shared.Timing;
-using Robust.Server.Player;
 using Content.Server.Chat.Systems;
 using Content.Shared._NF.Trade.Components;
 using Content.Shared.Cargo.Components;
@@ -9,7 +8,6 @@ namespace Content.Server.Corvax.AutoDeleteItems;
 public sealed class InflationCargoCrateSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     private TimeSpan? Timer = TimeSpan.FromSeconds(10);
@@ -25,6 +23,8 @@ public sealed class InflationCargoCrateSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        int numberCrates = 0;
 
         double modifier = 0;
 
