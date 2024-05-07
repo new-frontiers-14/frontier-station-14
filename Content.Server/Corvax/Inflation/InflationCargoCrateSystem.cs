@@ -41,7 +41,7 @@ public sealed class InflationCargoCrateSystem : EntitySystem
                     return;
                 }
 
-                if (numberCrates == 1)
+                if (numberCrates >= 1 && numberCrates <= 4)
                     modifier = 1;
                 else if (numberCrates >= 5 && numberCrates <= 19)
                     modifier = 0.9;
