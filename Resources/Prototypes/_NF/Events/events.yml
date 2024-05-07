@@ -205,3 +205,39 @@
       # maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
       # weight: 5
     # - type: MobReplacementRule
+
+# Have to keep this ones existing as abstract for no errors:
+- type: entity
+  id: LoneOpsSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  abstract: true
+  components:
+  - type: StationEvent
+    earliestStart: 35
+    weight: 5.5
+    minimumPlayers: 20
+    duration: 1
+  - type: LoadMapRule
+    mapPath: /Maps/Shuttles/striker.yml
+  - type: NukeopsRule
+    roundEndBehavior: Nothing
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointLoneNukeOperative
+      min: 1
+      max: 1
+      pickPlayer: false
+      startingGear: SyndicateLoneOperativeGearFull
+      components:
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - SyndicateNamesPrefix
+        - SyndicateNamesNormal
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindComponents:
+      - type: NukeopsRole
+        prototype: Nukeops
