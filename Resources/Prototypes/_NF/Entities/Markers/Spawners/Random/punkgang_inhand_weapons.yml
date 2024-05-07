@@ -1,0 +1,28 @@
+- type: entity
+  name: random melee weapon
+  id: SpawnInhandMeleeWeaponPunkGangLow
+  parent: MarkerBase
+  suffix: "Punk gang, Low"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/cult_blade.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - BrokenBottle
+    - ButchCleaver
+    - WeaponCrusherGlaive
+    - Screwdriver
+    - Crowbar
+    - BaseBallBat
+    - BaseBallBatPink
+    - BaseBallBatRed
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - Katana
+    rareChance: 0.05

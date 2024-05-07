@@ -1,0 +1,43 @@
+- type: entity
+  name: punk
+  abstract: true
+  parent: MobHumanoidHostileBase
+  id: MobPunkBase
+  components:
+  - type: NpcFactionMember
+    factions:
+    - StreetGangNF
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: ReplacementAccent
+    accent: streetpunk
+  - type: Advertise
+    pack: bloodcultisthumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
+  - type: AutoWakeUp
+  - type: MovementAlwaysTouching
+
+# Humans
+- type: entity
+  name: punk gangoon
+  parent: MobPunkBase
+  id: MobPunkGanger
+  #noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGear
+
+- type: entity
+  name: punk bruiser
+  parent: MobPunkBase
+  id: MobPunkGangerArmored
+  #noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerArmoredGear
