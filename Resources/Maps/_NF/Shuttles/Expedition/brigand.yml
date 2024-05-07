@@ -532,9 +532,7 @@ entities:
     - type: DeviceList
       devices:
       - 405
-      - 502
       - 339
-      - 497
       - 561
       - 485
   - uid: 515
@@ -1109,6 +1107,11 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
+  - uid: 187
+    components:
+    - type: Transform
+      pos: -2.5,-1.5
+      parent: 1
   - uid: 209
     components:
     - type: Transform
@@ -1263,11 +1266,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-1.5
-      parent: 1
-  - uid: 575
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
       parent: 1
   - uid: 576
     components:
@@ -2352,6 +2350,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,9.5
       parent: 1
+- proto: EncryptionKeyCommon
+  entities:
+  - uid: 226
+    components:
+    - type: Transform
+      parent: 220
+    - type: Physics
+      canCollide: False
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 709
@@ -2581,8 +2587,14 @@ entities:
   - uid: 41
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-1.5
+      pos: -0.5,-3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 69
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -2610,14 +2622,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 212
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,-1.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 218
     components:
     - type: Transform
@@ -2625,30 +2629,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 226
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-1.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 234
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 239
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 241
     components:
     - type: Transform
@@ -3223,14 +3203,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 238
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-1.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 240
     components:
     - type: Transform
@@ -3254,14 +3226,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 335
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 363
     components:
     - type: Transform
@@ -3388,17 +3352,6 @@ entities:
       - 515
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 497
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-1.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 436
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 561
     components:
     - type: Transform
@@ -3522,17 +3475,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-11.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 436
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 502
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-3.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
@@ -3693,13 +3635,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,3.5
       parent: 1
-- proto: IngotSilver
-  entities:
-  - uid: 220
-    components:
-    - type: Transform
-      pos: 2.5677426,-2.3932848
-      parent: 1
 - proto: LockerCaptainFilled
   entities:
   - uid: 441
@@ -3720,27 +3655,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,2.5
-      parent: 1
-- proto: MaterialCloth
-  entities:
-  - uid: 248
-    components:
-    - type: Transform
-      pos: 2.52299,-2.4356737
-      parent: 1
-- proto: MaterialDurathread
-  entities:
-  - uid: 332
-    components:
-    - type: Transform
-      pos: 2.476115,-2.4200487
-      parent: 1
-- proto: MaterialWoodPlank
-  entities:
-  - uid: 718
-    components:
-    - type: Transform
-      pos: 2.5650966,-2.4303508
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -3866,6 +3780,11 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 212
+    components:
+    - type: Transform
+      pos: 4.5,6.5
+      parent: 1
   - uid: 476
     components:
     - type: Transform
@@ -3958,37 +3877,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.54243,0.6934414
-      parent: 1
-- proto: SheetGlass
-  entities:
-  - uid: 472
-    components:
-    - type: Transform
-      pos: 2.55424,-2.4512987
-      parent: 1
-- proto: SheetPlastic
-  entities:
-  - uid: 245
-    components:
-    - type: Transform
-      pos: 2.42924,-2.4356737
-      parent: 1
-- proto: SheetSteel
-  entities:
-  - uid: 69
-    components:
-    - type: Transform
-      pos: 2.601115,-2.4356737
-      parent: 1
-  - uid: 676
-    components:
-    - type: Transform
-      pos: 2.4300063,-2.417889
-      parent: 1
-  - uid: 685
-    components:
-    - type: Transform
-      pos: 2.5312502,-2.453125
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
@@ -4338,10 +4226,10 @@ entities:
       parent: 1
 - proto: SuitStorageMercenary
   entities:
-  - uid: 504
+  - uid: 234
     components:
     - type: Transform
-      pos: 4.5,6.5
+      pos: 4.5,7.5
       parent: 1
 - proto: SuitStorageSalv
   entities:
@@ -4540,13 +4428,28 @@ entities:
     - type: Transform
       pos: -3.5,6.5
       parent: 1
-- proto: TelecomServerFilledShuttle
+- proto: TelecomServer
   entities:
-  - uid: 187
+  - uid: 220
     components:
     - type: Transform
       pos: 5.5,-1.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        key_slots: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 226
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: Thruster
   entities:
   - uid: 114
@@ -4654,13 +4557,6 @@ entities:
     components:
     - type: Transform
       pos: -0.35318303,-11.40045
-      parent: 1
-- proto: VendingMachineBountyVend
-  entities:
-  - uid: 503
-    components:
-    - type: Transform
-      pos: 4.5,7.5
       parent: 1
 - proto: VendingMachineClothing
   entities:
