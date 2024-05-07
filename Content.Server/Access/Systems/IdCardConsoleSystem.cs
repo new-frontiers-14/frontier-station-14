@@ -57,7 +57,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     private void OnWriteToShuttleDeedMessage(EntityUid uid, IdCardConsoleComponent component,
         SharedIdCardSystem.WriteToShuttleDeedMessage args)
     {
-        if (args.Session.AttachedEntity is not { Valid: true } player)
+        if (args.Actor is not { Valid: true } player)
             return;
 
         TryWriteToShuttleDeed(uid, args.ShuttleName, args.ShuttleSuffix, player, component);

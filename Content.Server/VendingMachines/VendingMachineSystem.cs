@@ -131,7 +131,7 @@ namespace Content.Server.VendingMachines
 
         private void OnBoundUIOpened(EntityUid uid, VendingMachineComponent component, BoundUIOpenedEvent args)
         {
-            if (args.Session.AttachedEntity is not { Valid: true } player)
+            if (args.Actor is not { Valid: true } player)
                 return;
 
             var balance = 0;

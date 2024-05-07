@@ -7,6 +7,7 @@ using Content.Shared.Preferences;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
+using Content.Shared.Preferences.Loadouts;
 
 namespace Content.Server.Bank;
 
@@ -69,13 +70,12 @@ public sealed partial class BankSystem : EntitySystem
             profile.Gender,
             bank.Balance,
             profile.Appearance,
-            profile.Clothing,
-            profile.Backpack,
             profile.SpawnPriority,
             profile.JobPriorities,
             profile.PreferenceUnavailable,
             profile.AntagPreferences,
-            profile.TraitPreferences);
+            profile.TraitPreferences,
+            new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState
         {

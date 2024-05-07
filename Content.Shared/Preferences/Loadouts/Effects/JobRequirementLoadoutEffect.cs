@@ -21,6 +21,7 @@ public sealed partial class JobRequirementLoadoutEffect : LoadoutEffect
         var playtimes = manager.GetPlayTimes(session);
         return JobRequirements.TryRequirementMet(Requirement, playtimes, out reason,
             collection.Resolve<IEntityManager>(),
-            collection.Resolve<IPrototypeManager>());
+            collection.Resolve<IPrototypeManager>(),
+            true); // Frontier: for now we just let assume whitelist? TODO: implement white list
     }
 }

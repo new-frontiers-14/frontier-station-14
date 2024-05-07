@@ -94,12 +94,12 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            // Frontier - This makes sure telepads spawn goods of linked computers only.
-            List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
+            // Frontier - This makes sure telepads spawn goods of linked computers only. //TODO: FIx This Again
+            // List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
 
             var xform = Transform(uid);
             var currentOrder = comp.CurrentOrders.First();
-            if (FulfillOrder(consoleUidList, currentOrder, xform.Coordinates, comp.PrinterOutput))
+            if (FulfillOrder(currentOrder, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
 
@@ -150,7 +150,7 @@ public sealed partial class CargoSystem
 
         foreach (var order in ent.Comp.CurrentOrders)
         {
-            TryFulfillOrder((station, data), order, db);
+            //TryFulfillOrder((station, data), order, db); //Frontier TODO: Fix this?
         }
     }
 
