@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Corvax.Language;
 using Content.Server.Speech.Components;
 
 namespace Content.Server.Speech.EntitySystems;
@@ -21,7 +22,7 @@ public sealed class ListeningSystem : EntitySystem
         PingListeners(ev.Source, ev.Message, ev.ObfuscatedMessage);
     }
 
-    public void PingListeners(EntityUid source, string message, string? obfuscatedMessage)
+    public void PingListeners(EntityUid source, LanguageMessage message, LanguageMessage? obfuscatedMessage)
     {
         // TODO whispering / audio volume? Microphone sensitivity?
         // for now, whispering just arbitrarily reduces the listener's max range.
@@ -32,7 +33,7 @@ public sealed class ListeningSystem : EntitySystem
 
         var attemptEv = new ListenAttemptEvent(source);
         var ev = new ListenEvent(message, source);
-        var obfuscatedEv = obfuscatedMessage == null ? null : new ListenEvent(obfuscatedMessage, source);
+        var obfuscatedEv = obfuscatedMessage == null ? null : new ListenEvent(obfuscatedMessage.Value, source);
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
         while (query.MoveNext(out var listenerUid, out var listener, out var xform))
