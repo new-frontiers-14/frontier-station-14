@@ -114,20 +114,13 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         SpeechVerbPrototype speech;
-        SpeechVerbPrototype? languageSpeech;
         if (mask != null
             && mask.Enabled
             && mask.SpeechVerb != null
             && _prototype.TryIndex<SpeechVerbPrototype>(mask.SpeechVerb, out var proto))
-        {
             speech = proto;
-            languageSpeech = proto;
-        }
         else
-        {
             speech = _chat.GetSpeechVerb(messageSource, message.OriginalMessage);
-            languageSpeech = message.Message is not null ? _chat.GetSpeechVerb(messageSource, message.Message) : null;
-        }
 
         var content = escapeMarkup
             ? FormattedMessage.EscapeText(message.OriginalMessage)
@@ -146,11 +139,11 @@ public sealed class RadioSystem : EntitySystem
             ("name", name),
             ("message", content));
 
-        var wrappedLanguageMessage = languageContent is not null ? Loc.GetString(languageSpeech!.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+        var wrappedLanguageMessage = languageContent is not null ? Loc.GetString(speech!.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
-            ("fontType", languageSpeech.FontId),
-            ("fontSize", languageSpeech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(languageSpeech.SpeechVerbStrings))),
+            ("fontType", speech.FontId),
+            ("fontSize", speech.FontSize),
+            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),
             ("message", languageContent)) : null;
