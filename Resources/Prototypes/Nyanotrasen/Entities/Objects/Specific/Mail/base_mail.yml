@@ -103,8 +103,10 @@
         reagents:
         - ReagentId: Nothing
           Quantity: 1
-  - type: TimedDespawn # Corvax-Frontier-Optimization
-    lifetime: 1500
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 1800
+      distanceToCheck: 4
 
 # This empty parcel is allowed to exist and evade the tests for the admin
 # mailto command.
