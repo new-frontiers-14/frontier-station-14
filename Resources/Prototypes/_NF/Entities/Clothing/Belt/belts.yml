@@ -135,28 +135,28 @@
     sprite: _NF/Clothing/Belt/punk.rsi
     layers:
     - state: base_belt_01
-      map: [ "belt" ]
+      map: [ "belt_main" ]
+    - state: decor_base_belt_01
+      map: [ "belt_decor" ]
     - state: mask_null
-      map: [ "decor" ]
-    - state: mask_null
-      map: [ "decor1" ]
+      map: [ "belt_overlay" ]
   - type: Clothing
     sprite: _NF/Clothing/Belt/punk.rsi
     clothingVisuals:
       belt:
       - state: base_belt_01
-        map: [ "belt" ]
+        map: [ "belt_main" ]
+      - state: decor_base_belt_01
+        map: [ "belt_decor" ]
       - state: mask_null
-        map: [ "decor" ]
-      - state: mask_null
-        map: [ "decor1" ]
+        map: [ "belt_overlay" ]
   - type: RandomSprite
     available:
-      - belt:
+      - belt_main:
           base_belt_01: Cyberpunk
-        decor:
+        belt_decor:
           decor_base_belt_01: Cyberpunk
-        decor1:
+        belt_overlay:
           decor_base_belt_02: Cyberpunk
           decor_base_belt_03: Cyberpunk
           decor_base_belt_04: Cyberpunk

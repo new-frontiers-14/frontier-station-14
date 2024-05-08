@@ -36,35 +36,35 @@
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsPunkRandomized
   name: punk boots
-  description: Dis boots were made for stompin' n stompin' dey'll do.
+  description: Dis boots were made for stompin' n stompin' on ya bucket dey'll do.
   suffix: Random visuals
   components:
   - type: Sprite
     sprite: _NF/Clothing/Shoes/Boots/punk.rsi
     layers:
     - state: base_boots_01
-      map: [ "boots" ]
+      map: [ "boots_main" ]
+    - state: decor_base_boots_01
+      map: [ "boots_decor" ]
     - state: mask_null
-      map: [ "decor1" ]
-    - state: mask_null
-      map: [ "decor2" ]
+      map: [ "boots_overlay" ]
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/punk.rsi
     clothingVisuals:
       shoes:
       - state: base_boots_01
-        map: [ "boots" ]
+        map: [ "boots_main" ]
       - state: mask_null
-        map: [ "decor1" ]
+        map: [ "boots_decor" ]
       - state: mask_null
-        map: [ "decor2" ]
+        map: [ "boots_overlay" ]
   - type: RandomSprite
     available:
-    - boots:
+    - boots_main:
         base_boots_01: Cyberpunk
-      decor1:
+      boots_decor:
         decor_base_boots_01: Cyberpunk
         mask_null: ""
-      decor2:
+      boots_overlay:
         decor_base_boots_02: Cyberpunk
         mask_null: ""

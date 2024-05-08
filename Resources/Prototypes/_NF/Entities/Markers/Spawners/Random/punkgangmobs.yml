@@ -1,0 +1,18 @@
+- type: entity
+  name: spawn punks
+  id: SpawnMobPunk
+  parent: MarkerBase
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Markers/jobs.rsi
+      state: mercenary
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobPunkGanger
+    rarePrototypes:
+    - PunkGangerArmoredGear
+    rareChance: 0.1
