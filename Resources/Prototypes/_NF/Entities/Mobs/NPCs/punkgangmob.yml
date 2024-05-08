@@ -1,5 +1,5 @@
 - type: entity
-  name: punk
+  name: space punk
   abstract: true
   parent: MobHumanoidHostileBase
   id: MobPunkBase
@@ -14,16 +14,27 @@
   - type: ReplacementAccent
     accent: streetpunk
   - type: Advertise
-    pack: bloodcultisthumanoidchatter
+    pack: spacepunkhumanoidchatter
     minimumWait: 30
     maximumWait: 120
     NextAdvertisementTime: 10
   - type: AutoWakeUp
   - type: MovementAlwaysTouching
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
 
 # Humans
 - type: entity
-  name: punk gangoon
   parent: MobPunkBase
   id: MobPunkGanger
   noSpawn: true
@@ -33,7 +44,6 @@
     - PunkGangerGear
 
 - type: entity
-  name: punk bruiser
   parent: MobPunkBase
   id: MobPunkGangerArmored
   noSpawn: true
