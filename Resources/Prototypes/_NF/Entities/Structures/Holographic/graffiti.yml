@@ -26,6 +26,11 @@
     - HoloGraffitiSimple08
     - HoloGraffitiSimple09
     - HoloGraffitiSimple10
+    - HoloGraffitiSimple11
+    - HoloGraffitiSimple12
+    - HoloGraffitiSimple13
+    - HoloGraffitiSimple14
+    - HoloGraffitiSimple15
     - HoloGraffitiHighlighted01
     - HoloGraffitiHighlighted02
     - HoloGraffitiHighlighted03
@@ -40,6 +45,7 @@
     - HoloGraffitiHighlighted12
     - HoloGraffitiHighlighted13
     - HoloGraffitiHighlighted14
+    - HoloGraffitiHighlighted15
     chance: 1.0
     offset: 0.0
 
@@ -74,6 +80,7 @@
     - state: holograffiti01
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -92,6 +99,7 @@
     - state: holograffiti02
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -110,6 +118,7 @@
     - state: holograffiti03
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -128,6 +137,7 @@
     - state: holograffiti04
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -146,6 +156,7 @@
     - state: holograffiti05
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -164,6 +175,7 @@
     - state: holograffiti06
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -182,6 +194,7 @@
     - state: holograffiti07
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -200,6 +213,7 @@
     - state: holograffiti08
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -218,6 +232,7 @@
     - state: holograffiti09
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -236,10 +251,106 @@
     - state: holograffiti10
       map: [ "graffiti" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
         holograffiti10: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple11
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti11
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti11: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple12
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti12
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti12: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple13
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti13
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti13: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple14
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti14
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti14: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple15
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti15
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti15: Cyberpunk
 
 # Graffiti highlighted
 - type: entity
@@ -254,9 +365,11 @@
     layers:
     - state: holograffiti01
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight01
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -276,9 +389,11 @@
     layers:
     - state: holograffiti02
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight02
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -298,9 +413,11 @@
     layers:
     - state: holograffiti03
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight03
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -320,9 +437,11 @@
     layers:
     - state: holograffiti04
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight04
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -342,9 +461,11 @@
     layers:
     - state: holograffiti05
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight05
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -364,9 +485,11 @@
     layers:
     - state: holograffiti06
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight06
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -386,9 +509,11 @@
     layers:
     - state: holograffiti07
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight07
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -408,9 +533,11 @@
     layers:
     - state: holograffiti08
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight08
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -430,9 +557,11 @@
     layers:
     - state: holograffiti09
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight09
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -452,9 +581,11 @@
     layers:
     - state: holograffiti10
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight10
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -474,9 +605,11 @@
     layers:
     - state: holograffiti11
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight11
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -496,9 +629,11 @@
     layers:
     - state: holograffiti12
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight12
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -518,9 +653,11 @@
     layers:
     - state: holograffiti13
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight13
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -540,12 +677,15 @@
     layers:
     - state: holograffiti14
       map: [ "graffiti" ]
+      scale: 0.75, 0.75
     - state: holograffiti_highlight14
       map: [ "highlight" ]
       shader: unshaded
+      scale: 0.75, 0.75
     - state: holograffiti_highlight14_1
       map: [ "highlight1" ]
       shader: unshaded
+      scale: 0.75, 0.75
   - type: RandomSprite
     available:
     - graffiti:
@@ -554,3 +694,34 @@
         holograffiti_highlight14: Cyberpunk
       highlight1:
         holograffiti_highlight14_1: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiHighlighted15
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti15
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight15
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight15_1
+      map: [ "highlight1" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti15: Cyberpunk
+      highlight:
+        holograffiti_highlight15: Cyberpunk
+      highlight1:
+        holograffiti_highlight15_1: Cyberpunk
