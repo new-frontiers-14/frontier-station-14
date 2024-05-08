@@ -26,6 +26,8 @@
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: InteractionOutline
   - type: Physics
+    bodyType: Dynamic
+    canCollide: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -36,7 +38,7 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - TableLayer
+        - MachineLayer
   - type: EntityStorage
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.
