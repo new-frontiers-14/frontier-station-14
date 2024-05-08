@@ -197,7 +197,7 @@
     Megafauna: MobHorrorExpeditions
 
 - type: salvageFaction
-  id: Argocyte
+  id: Argocytes
   cost: 4
   groups:
   - entries:
@@ -236,5 +236,44 @@
     prob: 0.001
   configs:
     DefenseStructure: ArgocyteEgg
-    Mining: Argocyte
+    Mining: Argocytes
     Megafauna: MobArgocyteLeviathing
+
+- type: salvageFaction
+  id: Dinosaurs
+  cost: 3
+  groups:
+  - entries:
+    - id: SpawnMobDinosaurSmall
+      amount: 1
+      maxAmount: 2
+    - id: SpawnMobDinosaurSmall
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: MobDinosaurDiloExpeditions
+      amount: 3
+    prob: 0.25
+  - entries:
+      - id: SpawnMobDinosaurMedium
+        amount: 2
+    prob: 0.25
+  - entries:
+    - id: SpawnMobDinosaurBig
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobDinosaurDiloExpeditions
+      amount: 5
+      maxAmount: 6
+    prob: 0.001
+  - entries:
+    - id: MobDinosaurRaptorExpeditions
+      amount: 3
+      maxAmount: 4
+    prob: 0.001
+  configs:
+    DefenseStructure: DinosaurEgg
+    Mining: Dinosaurs
+    Megafauna: MobDinosaurTrexExpeditions
