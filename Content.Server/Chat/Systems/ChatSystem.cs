@@ -255,7 +255,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
             {
-                SendEntityWhisper(source, message, language, range, channel, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, language, range, channel, nameOverride, hideLog, ignoreActionBlocker);
                 return;
             }
         }
