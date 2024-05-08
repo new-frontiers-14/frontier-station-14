@@ -1,24 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Content.Server.Database.Migrations.Postgres
+namespace Content.Server.Database.Migrations.Sqlite
 {
     /// <inheritdoc />
-    public partial class Loadouts : Migration
+    public partial class LoadoutsAndClothingRemovalFrontier : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "backpack",
+                table: "profile");
+
+            migrationBuilder.DropColumn(
+                name: "clothing",
+                table: "profile");
+
             migrationBuilder.CreateTable(
                 name: "profile_role_loadout",
                 columns: table => new
                 {
-                    profile_role_loadout_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    profile_id = table.Column<int>(type: "integer", nullable: false),
-                    role_name = table.Column<string>(type: "text", nullable: false)
+                    profile_role_loadout_id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    profile_id = table.Column<int>(type: "INTEGER", nullable: false),
+                    role_name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,16 +42,16 @@ namespace Content.Server.Database.Migrations.Postgres
                 name: "profile_loadout_group",
                 columns: table => new
                 {
-                    profile_loadout_group_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    profile_role_loadout_id = table.Column<int>(type: "integer", nullable: false),
-                    group_name = table.Column<string>(type: "text", nullable: false)
+                    profile_loadout_group_id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    profile_role_loadout_id = table.Column<int>(type: "INTEGER", nullable: false),
+                    group_name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_profile_loadout_group", x => x.profile_loadout_group_id);
                     table.ForeignKey(
-                        name: "FK_profile_loadout_group_profile_role_loadout_profile_role_loa~",
+                        name: "FK_profile_loadout_group_profile_role_loadout_profile_role_loadout_id",
                         column: x => x.profile_role_loadout_id,
                         principalTable: "profile_role_loadout",
                         principalColumn: "profile_role_loadout_id",
@@ -55,16 +62,16 @@ namespace Content.Server.Database.Migrations.Postgres
                 name: "profile_loadout",
                 columns: table => new
                 {
-                    profile_loadout_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    profile_loadout_group_id = table.Column<int>(type: "integer", nullable: false),
-                    loadout_name = table.Column<string>(type: "text", nullable: false)
+                    profile_loadout_id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    profile_loadout_group_id = table.Column<int>(type: "INTEGER", nullable: false),
+                    loadout_name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_profile_loadout", x => x.profile_loadout_id);
                     table.ForeignKey(
-                        name: "FK_profile_loadout_profile_loadout_group_profile_loadout_group~",
+                        name: "FK_profile_loadout_profile_loadout_group_profile_loadout_group_id",
                         column: x => x.profile_loadout_group_id,
                         principalTable: "profile_loadout_group",
                         principalColumn: "profile_loadout_group_id",
@@ -98,6 +105,20 @@ namespace Content.Server.Database.Migrations.Postgres
 
             migrationBuilder.DropTable(
                 name: "profile_role_loadout");
+
+            migrationBuilder.AddColumn<string>(
+                name: "backpack",
+                table: "profile",
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "clothing",
+                table: "profile",
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "");
         }
     }
 }
