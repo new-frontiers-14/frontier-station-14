@@ -28,7 +28,7 @@ namespace Content.Server.Explosion.EntitySystems
         private void OnListen(Entity<TriggerOnVoiceComponent> ent, ref ListenEvent args)
         {
             var component = ent.Comp;
-            var message = args.Message.Trim();
+            var message = args.Message.Message.Trim();
 
             if (component.IsRecording)
             {
@@ -39,7 +39,7 @@ namespace Content.Server.Explosion.EntitySystems
                     return;
 
                 if (message.Length >= component.MinLength && message.Length <= component.MaxLength)
-                    FinishRecording(ent, args.Source, args.Message);
+                    FinishRecording(ent, args.Source, args.Message.Message);
                 else if (message.Length > component.MaxLength)
                     _popupSystem.PopupEntity(Loc.GetString("popup-trigger-voice-record-failed-too-long"), ent);
                 else if (message.Length < component.MinLength)

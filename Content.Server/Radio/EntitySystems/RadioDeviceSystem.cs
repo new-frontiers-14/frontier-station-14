@@ -193,7 +193,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (HasComp<RadioSpeakerComponent>(args.Source))
             return; // no feedback loops please.
 
-        if (_recentlySent.Add((args.Message, args.Source)))
+        if (_recentlySent.Add((args.Message.OriginalMessage, args.Source)))
             _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid, frequency: component.Frequency);
     }
 
@@ -215,7 +215,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             ("originalName", nameEv.Name));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chat.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageSource: args.MessageSource, languageMessage: args.LanguageMessage);
+        _chat.TrySendInGameICMessage(uid, args.Message.OriginalMessage, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, language: args.Message.Language);
     }
 
     private void OnBeforeIntercomUiOpen(EntityUid uid, IntercomComponent component, BeforeActivatableUIOpenEvent args)

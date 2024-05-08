@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Corvax.Language;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Robust.Shared.Player;
@@ -97,9 +98,9 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
 public sealed class SurveillanceCameraSpeechSendEvent : EntityEventArgs
 {
     public EntityUid Speaker { get; }
-    public string Message { get; }
+    public LanguageMessage Message { get; }
 
-    public SurveillanceCameraSpeechSendEvent(EntityUid speaker, string message)
+    public SurveillanceCameraSpeechSendEvent(EntityUid speaker, LanguageMessage message)
     {
         Speaker = speaker;
         Message = message;

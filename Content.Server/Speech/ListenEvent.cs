@@ -1,11 +1,13 @@
+using Content.Server.Corvax.Language;
+
 namespace Content.Server.Speech;
 
 public sealed class ListenEvent : EntityEventArgs
 {
-    public readonly string Message;
+    public readonly LanguageMessage Message;
     public readonly EntityUid Source;
 
-    public ListenEvent(string message, EntityUid source)
+    public ListenEvent(LanguageMessage message, EntityUid source)
     {
         Message = message;
         Source = source;

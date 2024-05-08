@@ -70,7 +70,7 @@ namespace Content.Server.Speech
             if (currentTime - component.LastTimeSoundPlayed < cooldown)
                 return;
 
-            var sound = GetSpeechSound((uid, component), args.Message);
+            var sound = GetSpeechSound((uid, component), args.Message.OriginalMessage);
             component.LastTimeSoundPlayed = currentTime;
             _audio.PlayPvs(sound, uid);
         }
