@@ -28,7 +28,6 @@ public sealed class TransferMindOnDespawnSystem : EntitySystem
         if (!_protoManager.TryIndex<EntityPrototype>(component.EntityPrototype, out var entityProto))
             return;
 
-
         ///Spawn new entity on the same place where the animation ends and transfer the mind to the new entity
         var coords = Transform(uid).Coordinates;
         var dragon = EntityManager.SpawnAtPosition(entityProto.ID, coords);
