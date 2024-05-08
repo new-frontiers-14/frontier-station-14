@@ -159,22 +159,19 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
-          -1,0:
-            0: 52428
+            0: 6007
           0,-1:
-            0: 65527
+            0: 65392
             1: 8
+          -1,0:
+            0: 34952
           0,1:
-            0: 1
             1: 14
-          -1,1:
-            0: 12
+          -1,-1:
+            0: 34944
+            1: 4
           0,-2:
             1: 12288
-          -1,-1:
-            1: 4
-            0: 52424
           -1,-2:
             1: 32768
         uniqueMixes:
@@ -194,7 +191,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -223,10 +220,8 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 58
-      - 133
-    - type: AtmosDevice
-      joinedGrid: 1
+      - 35
+      - 48
     - type: AccessReader
       enabled: False
     - type: Emagged
@@ -240,8 +235,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 121
@@ -255,14 +248,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
-      parent: 1
-- proto: AirSensor
-  entities:
-  - uid: 133
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -354,7 +339,7 @@ entities:
   - uid: 56
     components:
     - type: Transform
-      pos: -0.61567664,2.7058928
+      pos: -0.4789027,3.3607204
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -561,44 +546,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
-- proto: DrinkMugMetal
+- proto: DrinkWaterJug
   entities:
-  - uid: 110
+  - uid: 47
     components:
     - type: Transform
-      pos: 0.26354554,3.9037092
+      pos: -0.6455693,3.214887
       parent: 1
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          temperature: 293.15
-          canMix: True
-          canReact: True
-          maxVol: 20
-          name: null
-          reagents:
-          - data: null
-            ReagentId: Coffee
-            Quantity: 20
-- proto: DrinkVacuumFlask
-  entities:
-  - uid: 103
-    components:
-    - type: Transform
-      pos: 0.7635455,3.5480905
-      parent: 1
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          temperature: 293.15
-          canMix: False
-          canReact: True
-          maxVol: 30
-          name: null
-          reagents:
-          - data: null
-            ReagentId: Coffee
-            Quantity: 30
 - proto: EmergencyLight
   entities:
   - uid: 95
@@ -611,8 +565,6 @@ entities:
   entities:
   - uid: 135
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 129
     - type: Physics
@@ -632,25 +584,6 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
-- proto: FoodSnackMREBrownie
-  entities:
-  - uid: 104
-    components:
-    - type: Transform
-      pos: -0.31457946,2.7162092
-      parent: 1
-  - uid: 108
-    components:
-    - type: Transform
-      pos: 0.25513285,3.4821296
-      parent: 1
-- proto: FoodTinMRE
-  entities:
-  - uid: 109
-    components:
-    - type: Transform
-      pos: -0.30215788,2.4988184
-      parent: 1
 - proto: GasPassiveVent
   entities:
   - uid: 96
@@ -658,17 +591,15 @@ entities:
     - type: Transform
       pos: 1.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
   entities:
-  - uid: 35
+  - uid: 104
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      pos: 1.5,-1.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -681,6 +612,30 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 44
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 58
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 109
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPort
   entities:
   - uid: 7
@@ -689,8 +644,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasPressurePump
@@ -701,8 +654,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -713,20 +664,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 111
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 58
+  - uid: 35
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
+      pos: 0.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 111
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -785,9 +742,27 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: OreBox
   entities:
-  - uid: 124
+  - uid: 110
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -798,99 +773,6 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 44
-    components:
-    - type: MetaData
-      name: preflight checklist
-    - type: Transform
-      pos: -0.21699798,-2.269284
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-ce
-      stampedBy:
-      - stampedBorderless: False
-        stampedColor: '#C69B17FF'
-        stampedName: stamp-component-stamped-name-ce
-      - stampedBorderless: False
-        stampedColor: '#00BE00FF'
-        stampedName: stamp-component-stamped-name-approved
-      content: >-
-        [color=#1b67a5]█░░█░███[/color][color=#5b97bc]░███░█░█░█░██░░█░█░██░░██░░██░[/color]
-
-        [color=#1b67a5]██░█░░█░[/color][color=#5b97bc]██░░░█░█░█░█░█░█░█░█░█░█░█░█░█[/color]
-
-        [color=#1b67a5]█░██░░█░[/color][color=#5b97bc]░░██░███░█░██░░░█░░███░██░░█░█[/color]
-
-        [color=#1b67a5]█░░█░░█░[/color][color=#5b97bc]███░░█░█░█░█░░░░█░░█░█░█░█░██░[/color]
-
-
-        [head=1]=========================[/head]
-
-        [head=1]    Pioneer-class salvage ship[/head]
-
-        [head=1] [/head]
-
-        [head=1]       PREFLIGHT CHECKLIST[/head]
-
-        [head=1] [/head]
-
-        [head=1]=========================[/head]
-
-
-        [head=2]1. Power supply.[/head]
-
-        [head=3]1.1. Battery units.[/head]
-
-        [bullet/][ ] Check if the substation unit is anchored to the floor.
-
-        [bullet/][ ] Check if the APC unit's Main Breaker is toggled on.
-
-        [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
-
-        [head=3]1.2. P.A.C.M.A.N. generator unit.[/head]
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight. Note that [bold]raw plasma ore[/bold] can be used as fuel[bold]**[/bold].
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is set to HV output.
-
-        [bullet/][ ] Set Target Power for 10-11[bold]***[/bold] [bold]k[/bold]W.
-
-        [bullet/][ ] Start the P.A.C.M.A.N. generator unit.
-
-
-        [head=2]2. Atmospherics.[/head]
-
-        [head=3]2.1. Distribution Loop.[/head]
-
-        [bullet/][ ] Check if the air canister is anchored to connector port.
-
-        [head=3]2.2. Waste Loop.[/head]
-
-        [bullet/][ ] Enable waste loop pump.
-
-        [bullet/][ ] Set air alarm filtering to wide.
-
-
-        [head=2]3. Other checks.[/head]
-
-        [bullet/][ ] Check if the gyroscope is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the mini gravity generator is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the bow window shutters are closed.
-
-
-        __________________________________________________________________
-
-        [bold]*[/bold] - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (8.6 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-
-        [bold]**[/bold] - While the ship is not equipped with Ore Processing unit the power generation is sustainable due to the the ability of P.A.C.M.A.N. generator units accept [bold]raw plasma ore[/bold] as a fuel. Do note however that 1 unit of raw plasma ore equals to 5 solid plasma sheets, so in order to fully fill generator's fuel tank you only need 6 units of raw plasma ore.
-
-        [bold]***[/bold] - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 126
@@ -899,20 +781,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 47
+  - uid: 103
     components:
     - type: Transform
-      anchored: True
       pos: -0.5,-2.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PoweredlightEmpty
   entities:
   - uid: 129
@@ -933,8 +812,6 @@ entities:
   entities:
   - uid: 107
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,1.5
@@ -988,6 +865,13 @@ entities:
       count: 15
     - type: Item
       size: 15
+- proto: ShipyardPioneerInfo
+  entities:
+  - uid: 108
+    components:
+    - type: Transform
+      pos: -0.24669397,-2.2724097
+      parent: 1
 - proto: ShuttersWindow
   entities:
   - uid: 5
@@ -1095,6 +979,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-2.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 200
 - proto: SpawnPointLatejoin
   entities:
   - uid: 57
@@ -1160,23 +1046,31 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 64
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 78
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 90
     components:
     - type: Transform
       pos: 3.5,4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: TwoWayLever
   entities:
   - uid: 125
@@ -1200,96 +1094,70 @@ entities:
   entities:
   - uid: 2
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,2.5
       parent: 1
   - uid: 23
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-3.5
       parent: 1
   - uid: 25
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 1
   - uid: 33
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
   - uid: 36
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
   - uid: 49
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
   - uid: 68
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 1
   - uid: 69
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,2.5
       parent: 1
   - uid: 70
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,1.5
       parent: 1
   - uid: 73
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,0.5
       parent: 1
   - uid: 75
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,1.5
       parent: 1
   - uid: 81
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
   - uid: 138
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
@@ -1321,7 +1189,7 @@ entities:
   - uid: 105
     components:
     - type: Transform
-      pos: -0.16255164,3.2996428
+      pos: -0.21848601,3.2044704
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:
