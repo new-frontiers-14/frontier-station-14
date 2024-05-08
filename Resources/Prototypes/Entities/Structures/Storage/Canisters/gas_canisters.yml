@@ -66,6 +66,7 @@
       damageModifierSet: Metallic
     - type: Physics
       bodyType: Dynamic
+      canCollide: true
     - type: Fixtures
       fixtures:
         fix1:
@@ -76,7 +77,7 @@
           mask:
           - SmallMobMask #this is so they can go under plastic flaps
           layer:
-          - TableLayer
+          - MachineLayer
     - type: AtmosDevice
       requireAnchored: false
       joinSystem: true
