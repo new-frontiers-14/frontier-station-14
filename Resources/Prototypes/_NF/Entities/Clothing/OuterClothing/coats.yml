@@ -298,6 +298,8 @@
       map: [ "jacket_main" ]
     - state: decor_base_OuterClothing_bomber_01
       map: [ "jacket_decor" ]
+    - state: mask_null
+      map: [ "jacket_overlay" ]
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
     clothingVisuals:
@@ -306,12 +308,24 @@
         map: [ "jacket_main" ]
       - state: decor_base_OuterClothing_bomber_01
         map: [ "jacket_decor" ]
+      - state: mask_null
+        map: [ "jacket_overlay" ]
+        shader: unshaded
   - type: RandomSprite
     available:
     - jacket_main:
         base_OuterClothing_bomber_01: Cyberpunk
+        base_OuterClothing_bomber_02: Cyberpunk
       jacket_decor:
         decor_base_OuterClothing_bomber_01: Cyberpunk
+        decor_base_OuterClothing_bomber_02: Cyberpunk
+      jacket_overlay:
+        overlay_base_OuterClothing_bomber_01: Cyberpunk
+        overlay_base_OuterClothing_bomber_02: Cyberpunk
+        overlay_base_OuterClothing_bomber_03: Cyberpunk
+        overlay_base_OuterClothing_bomber_04: Cyberpunk
+        overlay_base_OuterClothing_bomber_05: Cyberpunk
+        mask_null: ""
 
 - type: entity
   parent: ClothingOuterStorageBase
