@@ -287,16 +287,16 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatBomberRandomized
-  name: punk bomber jacket
+  name: punk jacket
   description: oi! what are ya lookin' at?
   suffix: Random visuals
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
     layers:
-    - state: base_OuterClothing_bomber_01
+    - state: base_OuterClothing_jacket_01
       map: [ "jacket_main" ]
-    - state: decor_base_OuterClothing_bomber_01
+    - state: decor_base_OuterClothing_jacket_01
       map: [ "jacket_decor" ]
     - state: mask_null
       map: [ "jacket_overlay" ]
@@ -304,9 +304,9 @@
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
     clothingVisuals:
       outerClothing:
-      - state: base_OuterClothing_bomber_01
+      - state: base_OuterClothing_jacket_01
         map: [ "jacket_main" ]
-      - state: decor_base_OuterClothing_bomber_01
+      - state: decor_base_OuterClothing_jacket_01
         map: [ "jacket_decor" ]
       - state: mask_null
         map: [ "jacket_overlay" ]
@@ -314,17 +314,21 @@
   - type: RandomSprite
     available:
     - jacket_main:
-        base_OuterClothing_bomber_01: Cyberpunk
-        base_OuterClothing_bomber_02: Cyberpunk
+        base_OuterClothing_jacket_01: Cyberpunk
+        base_OuterClothing_jacket_02: Cyberpunk
+        base_OuterClothing_jacket_03: Cyberpunk
+        base_OuterClothing_jacket_04: Cyberpunk
       jacket_decor:
-        decor_base_OuterClothing_bomber_01: Cyberpunk
-        decor_base_OuterClothing_bomber_02: Cyberpunk
+        decor_base_OuterClothing_jacket_01: Cyberpunk
+        decor_base_OuterClothing_jacket_02: Cyberpunk
       jacket_overlay:
-        overlay_base_OuterClothing_bomber_01: CyberpunkNeon
-        overlay_base_OuterClothing_bomber_02: CyberpunkNeon
-        overlay_base_OuterClothing_bomber_03: CyberpunkNeon
-        overlay_base_OuterClothing_bomber_04: CyberpunkNeon
-        overlay_base_OuterClothing_bomber_05: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_01: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_02: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_03: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_04: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_05: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_06: CyberpunkNeon
+        overlay_base_OuterClothing_jacket_07: CyberpunkNeon
         mask_null: ""
 
 - type: entity
@@ -345,7 +349,7 @@
     sprite: _NF/Clothing/OuterClothing/Coats/jacket_procedural.rsi
     clothingVisuals:
       outerClothing:
-      - state: base_OuterClothing_bomber_01
+      - state: base_OuterClothing_letterman
         map: [ "jacket_main" ]
       - state: decor_base_OuterClothing_letterman
         map: [ "jacket_decor" ]
