@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobElzuosa
+  name: Urist McElzuosa
+  abstract: true
+  components:
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: full
+  - type: HumanoidAppearance
+    species: Elzuosa
+  - type: Body
+    prototype: Elzuosa
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Elzuosa
+  - type: Thirst
+  - type: Bloodstream
+    bloodReagent: ElectroBlood # TODO Color Elzuosa blood based on their Elzuosa color or smth
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FDD023"
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodCakeSuppermatterSlice
+      amount: 5
+  - type: Insulated
+  - type: Electrified
+    requirePower: false
+    shockDamage: 2
+    shockTime: 2
+  - type: PointLight
+    enabled: true
+    radius: 2
+  - type: RgbLightController
+    cycleRate: 0.01
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: pat-success-elzuosa
+    interactSuccessSound: /Audio/Effects/sparks1.ogg
+    messagePerceivedByOthers: pat-success-elzuosa-others
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: SizeAttributeWhitelist # Frontier
+    short: true
+    shortscale: 0.8
+    shortDensity: 140
+    shortPseudoItem: true
+    shortCosmeticOnly: false
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobElzuosaDummy
+  noSpawn: true
+  components:
+  - type: HumanoidAppearance
+    species: Elzuosa
