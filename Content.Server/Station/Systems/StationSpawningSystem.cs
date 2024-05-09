@@ -29,7 +29,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Spawners.Components; // DeltaV
+using Content.Server.Spawners.Components;
+using Content.Shared.Bank.Components; // DeltaV
 
 namespace Content.Server.Station.Systems;
 
@@ -190,10 +191,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         // Run loadouts after so stuff like storage loadouts can get
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
+        var bankBalance = profile!.BankBalance; //Frontier
 
         if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
         {
             RoleLoadout? loadout = null;
+
             profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
 
             // Set to default if not present
@@ -221,9 +224,19 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     }
 
                     // Handle any extra data here.
-                    EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+
+                    //Frontier - we handle bank stuff so we are wrapping each item spawn inside our own cached check.
+                    //This way, we will spawn every item we can afford in the order that they were originally sorted.
+                    if (loadoutProto.Price < bankBalance)
+                    {
+                        bankBalance -= loadoutProto.Price;
+                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                    }
                 }
             }
+
+            var bank = EnsureComp<BankAccountComponent>(entity.Value);
+            bank.Balance = bankBalance;
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);

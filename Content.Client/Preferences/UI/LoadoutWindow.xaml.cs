@@ -28,6 +28,7 @@ public sealed partial class LoadoutWindow : FancyWindow
                 continue;
 
             var container = new LoadoutGroupContainer(loadout, protoManager.Index(group), session, collection);
+
             LoadoutGroupsContainer.AddTab(container, Loc.GetString(groupProto.Name));
             _groups.Add(container);
 
@@ -41,6 +42,19 @@ public sealed partial class LoadoutWindow : FancyWindow
                 OnLoadoutUnpressed?.Invoke(group, args);
             };
         }
+        var cost = 0;
+        foreach (var loadoutGroup in loadout.SelectedLoadouts)
+        {
+            foreach (var equipment in loadoutGroup.Value)
+            {
+                if (protoManager.TryIndex(equipment.Prototype, out var equipProto))
+                {
+                    cost += equipProto.Price;
+                }
+            }
+        }
+
+        Cost.Text = "Total Cost: $" + cost;
     }
 
     public override void Close()

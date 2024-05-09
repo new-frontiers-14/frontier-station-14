@@ -37,7 +37,7 @@ public sealed partial class LoadoutContainer : BoxContainer
         if (_protoManager.TryIndex(proto, out var loadProto))
         {
             var ent = _entManager.System<LoadoutSystem>().GetFirstOrNull(loadProto);
-
+            Price.Text = "$" + loadProto.Price;
             if (ent != null)
             {
                 _entity = _entManager.SpawnEntity(ent, MapCoordinates.Nullspace);

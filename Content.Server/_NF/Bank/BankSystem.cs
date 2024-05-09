@@ -22,22 +22,10 @@ public sealed partial class BankSystem : EntitySystem
     {
         base.Initialize();
         _log = Logger.GetSawmill("bank");
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<BankAccountComponent, ComponentGetState>(OnBankAccountChanged);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
         InitializeATM();
         InitializeStationATM();
-    }
-
-    // attaches the bank component directly on to the player's mob. Could be attached to something else on the player later.
-    // we may have to change this later depending on mind rework.
-    // then again, maybe the bank account should stay attached to the mob
-    private void OnPlayerSpawn (PlayerSpawnCompleteEvent args)
-    {
-        var mobUid = args.Mob;
-        var bank = EnsureComp<BankAccountComponent>(mobUid);
-        bank.Balance = args.Profile.BankBalance;
-        Dirty(bank);
     }
 
     // To ensure that bank account data gets saved, we are going to update the db every time the component changes

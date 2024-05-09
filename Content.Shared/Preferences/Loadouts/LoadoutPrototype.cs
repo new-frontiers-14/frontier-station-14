@@ -22,4 +22,11 @@ public sealed partial class LoadoutPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<LoadoutEffect> Effects = new();
+
+
+    /// <summary>
+    /// Frontier - the cost of the item simple as
+    /// </summary>
+    [DataField]
+    public int Price = 0;
 }
