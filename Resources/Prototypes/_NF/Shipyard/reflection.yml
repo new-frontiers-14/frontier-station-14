@@ -1,0 +1,32 @@
+# Author Info
+# Discord: slush6789
+#
+- type: vessel
+  id: reflection
+  name: NC Reflection
+  description: A small 'unorthadox' cruise ship with an excellent view designed for transporting crew between stations.
+  price: 36000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/reflection.yml
+
+- type: gameMap
+  id: reflection
+  mapName: 'NC Reflection'
+  mapPath: /Maps/_NF/Shuttles/reflection.yml
+  minPlayers: 0
+  stations:
+    reflection:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'NC Reflection {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            Passenger: [ 0, 0 ]
