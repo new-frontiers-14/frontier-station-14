@@ -113,29 +113,27 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30719
-            1: 34816
-          0,1:
-            0: 55
-            1: 72
+            0: 13079
+            1: 34944
           0,-1:
-            0: 65527
-            1: 8
-          0,-2:
-            0: 12288
-            1: 49152
+            0: 32563
+            1: 136
           -1,0:
-            0: 52462
-            1: 8704
+            0: 34828
+            1: 8736
+          0,1:
+            0: 3
+            1: 72
           -1,1:
-            0: 140
+            0: 8
             1: 66
           -1,-1:
-            1: 2
-            0: 61164
+            0: 52872
+            1: 34
+          0,-2:
+            1: 49152
           -1,-2:
             1: 24576
-            0: 32768
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -153,7 +151,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -182,8 +180,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 3
@@ -531,16 +527,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 63
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeStraight
   entities:
   - uid: 64
@@ -640,8 +632,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -652,16 +642,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 80
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -671,8 +657,6 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 82
@@ -681,8 +665,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorWallmountAPU
@@ -903,6 +885,8 @@ entities:
     - type: Transform
       pos: 1.5,4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: StasisBed
   entities:
   - uid: 120
@@ -918,6 +902,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 1
+- proto: SuitStorageWallmountBrigmedic
+  entities:
+  - uid: 161
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
+      parent: 1
+    - type: Physics
+      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 122
@@ -965,34 +959,46 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 130
     components:
     - type: Transform
       pos: -2.5,3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 131
     components:
     - type: Transform
       pos: 3.5,3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 132
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-4.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 133
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 134
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: VendingMachineMedical
   entities:
   - uid: 135
