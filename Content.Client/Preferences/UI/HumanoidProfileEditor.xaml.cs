@@ -527,6 +527,12 @@ namespace Content.Client.Preferences.UI
 
             foreach (var department in departments)
             {
+                // Frontier - With a little prototype magic, we can just hop skip and jump over this
+                // whole thing for departments we want to keep but hide in the character and loadout editor.
+                if (!department.Enabled)
+                    continue;
+                // End Frontier.
+
                 var departmentName = Loc.GetString($"department-{department.ID}");
 
                 if (!_jobCategories.TryGetValue(department.ID, out var category))
