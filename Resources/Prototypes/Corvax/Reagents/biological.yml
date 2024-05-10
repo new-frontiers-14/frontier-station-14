@@ -1,0 +1,26 @@
+- type: reagent
+  id: ElectroBlood
+  name: reagent-name-electroblood
+  group: Biological
+  desc: reagent-desc-electroblood
+  flavor: shocking
+  color: "#FDD023"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-electric
+  slippery: false
+  viscosity: 0.25
+  tileReactions:
+    - !type:SpillTileReaction
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 1.5
+    Poison:
+      effects:
+      - !type:Electrocute
+        probability: 0.35
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6

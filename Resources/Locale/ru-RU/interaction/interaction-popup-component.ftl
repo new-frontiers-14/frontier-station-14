@@ -74,3 +74,6 @@ petting-failure-tesla = Вы тянетесь погладить { $target }, н
 pat-success-generic = Вы гладите { $target } по пушистой голове.
 pat-success-generic-others = { CAPITALIZE($user) } гладит { $target } по пушистой голове.
 pat-success-generic-target = { CAPITALIZE($user) } гладит вашу пушистую голову.
+pat-success-elzuosa = вы обнимаете { $target }, чувствуя, как по вам проходит высоковольтный ток.
+pat-success-elzuosa-others = { CAPITALIZE($user) } обнимает { $target },  наэлектризовываясь.
+pat-success-elzuosa-target = { CAPITALIZE($user) } обнимает вас.
