@@ -226,3 +226,27 @@
       radius: 24
       floorPlacements: 80
       blobDrawProb: 0.75
+
+- type: entity
+  id: ScrapDebrisFortress
+  parent: BaseScrapDebris
+  name: Fortress Scrap
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 50
+      floorPlacements: 500
+
+- type: entity
+  id: ScrapDebrisBehemoth
+  parent: BaseScrapDebris
+  name: Behemoth Scrap
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 50
+      floorPlacements: 700

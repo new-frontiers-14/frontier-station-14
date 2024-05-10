@@ -7,7 +7,7 @@
       densityNoiseChannel: Density
     - type: SimpleDebrisSelector
       debrisTable:
-        ##- id: AsteroidDebrisSmall
+        - id: AsteroidDebrisSmall
         - id: AsteroidDebrisMedium
         - id: AsteroidDebrisLarge
           prob: 0.6
@@ -15,6 +15,82 @@
           prob: 0.3
         - id: AsteroidDebrisHuge
           prob: 0.15
+        - id: AsteroidSalvageFortress
+          prob: 0.05
+        - id: AsteroidSalvageBehemoth
+          prob: 0.05
+        - id: AsteroidDebrisIceSmall
+        - id: AsteroidDebrisIceMedium
+        - id: AsteroidDebrisIceLarge
+          prob: 0.6
+        - id: AsteroidDebrisIceLarger
+          prob: 0.3
+        - id: AsteroidDebrisIceHuge
+          prob: 0.15
+        - id: AsteroidFortressIce
+          prob: 0.05
+        - id: AsteroidBehemothIce
+          prob: 0.05
+        - id: AsteroidDebrisAndesiteSmall
+        - id: AsteroidDebrisAndesiteMedium
+        - id: AsteroidDebrisAndesiteLarge
+          prob: 0.6
+        - id: AsteroidDebrisAndesiteLarger
+          prob: 0.3
+        - id: AsteroidDebrisAndesiteHuge
+          prob: 0.15
+        - id: AsteroidFortressAndesite
+          prob: 0.05
+        - id: AsteroidBehemothAndesite
+          prob: 0.05
+        - id: AsteroidDebrisBasaltSmall
+        - id: AsteroidDebrisBasaltMedium
+        - id: AsteroidDebrisBasaltLarge
+          prob: 0.6
+        - id: AsteroidDebrisBasaltLarger
+          prob: 0.3
+        - id: AsteroidDebrisBasaltHuge
+          prob: 0.15
+        - id: AsteroidFortressBasalt
+          prob: 0.05
+        - id: AsteroidBehemothBasalt
+          prob: 0.05
+        - id: AsteroidDebrisSandSmall
+        - id: AsteroidDebrisSandMedium
+        - id: AsteroidDebrisSandLarge
+          prob: 0.6
+        - id: AsteroidDebrisSandLarger
+          prob: 0.3
+        - id: AsteroidDebrisSandHuge
+          prob: 0.15
+        - id: AsteroidFortressSand
+          prob: 0.05
+        - id: AsteroidBehemothSand
+          prob: 0.05
+        - id: AsteroidDebrisChromiteSmall
+        - id: AsteroidDebrisChromiteMedium
+        - id: AsteroidDebrisChromiteLarge
+          prob: 0.6
+        - id: AsteroidDebrisChromiteLarger
+          prob: 0.3
+        - id: AsteroidDebrisChromiteHuge
+          prob: 0.15
+        - id: AsteroidFortressChromite
+          prob: 0.05
+        - id: AsteroidBehemothChromite
+          prob: 0.05
+        - id: AsteroidDebrisRedSmall
+        - id: AsteroidDebrisRedMedium
+        - id: AsteroidDebrisRedLarge
+          prob: 0.6
+        - id: AsteroidDebrisRedLarger
+          prob: 0.3
+        - id: AsteroidDebrisRedHuge
+          prob: 0.15
+        - id: AsteroidFortressRed
+          prob: 0.05
+        - id: AsteroidBehemothRed
+          prob: 0.05
     - type: NoiseDrivenDebrisSelector
       noiseChannel: Wreck
       debrisTable:
@@ -30,6 +106,10 @@
           prob: 0.3
         - id: ScrapDebrisHuge
           prob: 0.15
+        - id: ScrapDebrisFortress
+          prob: 0.05
+        - id: ScrapDebrisBehemoth
+          prob: 0.05
 
     - type: NoiseRangeCarver
       ranges:
