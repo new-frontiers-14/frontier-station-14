@@ -838,3 +838,23 @@
   - type: ConditionalSpawner
     prototypes:
     - MobLuminousEntity
+    
+# корвакс спавнер
+
+- type: entity
+  name: luminous random spawner
+  id: SpawnMobLuminousRandom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: luminous_object
+      sprite: Mobs/Elemental/living_light/luminous_object.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobLuminousObject
+    - MobLuminousEntity
+    - MobLuminousObject
+      chance: 0.25
+      offset: 0.2
