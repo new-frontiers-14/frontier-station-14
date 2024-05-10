@@ -36,6 +36,8 @@
     - HoloGraffitiSimple18
     - HoloGraffitiSimple19
     - HoloGraffitiSimple20
+    - HoloGraffitiSimple21
+    - HoloGraffitiSimple22
     - HoloGraffitiHighlighted01
     - HoloGraffitiHighlighted02
     - HoloGraffitiHighlighted03
@@ -56,6 +58,7 @@
     - HoloGraffitiHighlighted18
     - HoloGraffitiHighlighted19
     - HoloGraffitiHighlighted20
+    - HoloGraffitiHighlighted21
     chance: 1.0
     offset: 0.0
 
@@ -71,8 +74,8 @@
   - type: Physics
     bodyType: Static
     canCollide: true
-  - type: TimedDespawn
-    lifetime: 5400 # 1.5 hours
+  #- type: TimedDespawn
+    #lifetime: 5400 # 1.5 hours
   - type: StaticPrice
     price: 0
 
@@ -456,6 +459,44 @@
     available:
     - graffiti:
         holograffiti20: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple21
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti21
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti21: Cyberpunk
+
+- type: entity
+  id: HoloGraffitiSimple22
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/simple.rsi
+    layers:
+    - state: holograffiti22
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti22: Cyberpunk
 
 # Graffiti highlighted
 - type: entity
@@ -952,3 +993,27 @@
         holograffiti20: Cyberpunk
       highlight:
         holograffiti_highlight20: CyberpunkNeon
+
+- type: entity
+  id: HoloGraffitiHighlighted21
+  parent: HoloGraffiti
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: true
+    sprite: _NF/Structures/Holo/graffiti/highlighted.rsi
+    layers:
+    - state: holograffiti21
+      map: [ "graffiti" ]
+      scale: 0.75, 0.75
+    - state: holograffiti_highlight21
+      map: [ "highlight" ]
+      shader: unshaded
+      scale: 0.75, 0.75
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti21: Cyberpunk
+      highlight:
+        holograffiti_highlight21: CyberpunkNeon

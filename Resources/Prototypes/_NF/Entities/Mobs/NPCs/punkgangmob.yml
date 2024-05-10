@@ -1,5 +1,5 @@
 - type: entity
-  name: space punk
+  name: punk
   abstract: true
   parent: MobHumanoidHostileBase
   id: MobPunkBase
@@ -36,18 +36,76 @@
 # Humans
 - type: entity
   parent: MobPunkBase
-  id: MobPunkGanger
+  id: MobPunkGangerMelee
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-    - PunkGangerGear
+    - PunkGangerGearMelee
 
 - type: entity
   parent: MobPunkBase
-  id: MobPunkGangerArmored
+  id: MobPunkGangerPistol
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-    - PunkGangerArmoredGear
+    - PunkGangerGearPistol
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  parent: MobPunkBase
+  id: MobPunkGangerShotgun
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearShotgun
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: MobPunkBase
+  id: MobPunkGangerArmoredMelee
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerArmoredGearMelee
+
+- type: entity
+  parent: MobPunkBase
+  id: MobPunkGangerArmoredElite
+  name: punk gang leader
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerArmoredEliteGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 6
+    count: 6
+  - type: Gun
+    showExamineText: false
+    minAngle: 10
+    maxAngle: 30
+    fireRate: 3
+    angleIncrease: 3
+    angleDecay: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg

@@ -154,3 +154,43 @@
         #overlay_base_OuterClothing_armor_03: CyberpunkNeon
         #overlay_base_OuterClothing_armor_04: CyberpunkNeon
         #mask_null: ""
+
+- type: entity
+  parent: ClothingOuterArmorBulletproof
+  id: ClothingOuterArmorElitePunkRandomized
+  name: punk heavy armor
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural_elite.rsi
+    layers:
+    - state: base_OuterClothing_armor_01
+      map: [ "armor_elite_main" ]
+    - state: mask_null
+      map: [ "armor_elite_decor" ]
+    - state: mask_null
+      map: [ "armor_elite_overlay" ]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural_elite.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: base_OuterClothing_armor_01
+        map: [ "armor_elite_main" ]
+      - state: mask_null
+        map: [ "armor_elite_decor" ]
+      - state: mask_null
+        map: [ "armor_elite_overlay" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    - armor_elite_main:
+        base_OuterClothing_armor_01: CyberpunkDark
+      armor_elite_decor:
+        decor_base_OuterClothing_armor_01: CyberpunkDark
+        decor_base_OuterClothing_armor_02: CyberpunkDark
+        decor_base_OuterClothing_armor_03: CyberpunkDark
+        decor_base_OuterClothing_armor_04: CyberpunkDark
+        decor_base_OuterClothing_armor_05: CyberpunkDark
+      armor_elite_overlay:
+        overlay_base_OuterClothing_armor_01: CyberpunkNeon

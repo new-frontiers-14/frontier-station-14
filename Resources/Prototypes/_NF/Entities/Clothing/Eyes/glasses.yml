@@ -73,9 +73,12 @@
 - type: entity
   parent: ClothingEyesPunkGoggles
   id: ClothingEyesPunkInfoShades
-  name: punk shades
+  name: punk infoshades
   description: How one can see anything in this with all the lights?
   components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:
