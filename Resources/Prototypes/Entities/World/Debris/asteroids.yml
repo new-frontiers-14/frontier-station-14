@@ -883,7 +883,7 @@
 - type: entity
   id: BaseAsteroidDebrisChromite
   parent: BaseDebris
-  name: песчаный астероид
+  name: Salvage Chromite Asteroid
   noSpawn: true
   components:
     - type: MapGrid
@@ -1038,6 +1038,174 @@
   id: AsteroidBehemothChromite
   parent: BaseAsteroidDebrisChromite
   name: Behemoth Chromite Asteroid
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 50
+      floorPlacements: 700
+
+# Красный астероид
+
+- type: entity
+  id: BaseAsteroidDebrisRed
+  parent: BaseDebris
+  name: Salvage Red Asteroid
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorAsteroidIronsand
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorAsteroidIronsand:
+          - id: IronRock
+            prob: 0.6
+            orGroup: rock
+          - id: IronRockMining
+            prob: 0.2
+            orGroup: rock
+          - id: CrystalSpawner
+            prob: 0.2
+            orGroup: rock
+          - id: SalvageMobSpawner
+            prob: 0.2
+            orGroup: rock
+          - id: SpawnMobBearSalvage
+            prob: 0.02
+          - id: SpawnMobSpiderSalvage
+            prob: 0.02
+          - id: SpawnMobKangarooSalvage
+            prob: 0.02
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.03
+          - id: SpawnMobPurpleSnake
+            prob: 0.02
+    - type: IFF
+      flags: HideLabel
+      color: "#f71414"
+
+- type: entity
+  id: AsteroidDebrisRedSmall
+  parent: BaseAsteroidDebrisRed
+  name: Asteroid Red Debris Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 8
+
+- type: entity
+  id: AsteroidDebrisRedMedium
+  parent: BaseAsteroidDebrisRed
+  name: Asteroid Red Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisRedLarge
+  parent: BaseAsteroidDebrisRed
+  name: Asteroid Red Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisRedLarger
+  parent: BaseAsteroidDebrisRed
+  name: Asteroid Red Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisRedHuge
+  parent: BaseAsteroidDebrisRed
+  name: Asteroid Red Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageRedSmall
+  parent: BaseAsteroidDebrisRed
+  name: Salvage Red Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageRedMedium
+  parent: BaseAsteroidDebrisRed
+  name: Salvage Red Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageRedLarge
+  parent: BaseAsteroidDebrisRed
+  name: Salvage Red Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageRedHuge
+  parent: BaseAsteroidDebrisRed
+  name: Salvage Red Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+- type: entity
+  id: AsteroidFortressRed
+  parent: BaseAsteroidDebrisRed
+  name: Fortress Red Asteroid
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 50
+      floorPlacements: 500
+
+- type: entity
+  id: AsteroidBehemothRed
+  parent: BaseAsteroidDebrisRed
+  name: Behemoth Red Asteroid
   noSpawn: true
   components:
     - type: MapGrid
