@@ -1,0 +1,29 @@
+- type: entity
+  name: gems bag
+  id: GemsBag
+  parent: BaseStorageItem
+  description: A bag made of polyester, covered with a layer of ash, for storing gems.
+  components:
+  - type: MagnetPickup
+  - type: Sprite
+    sprite: Corvax/Objects/Specific/Mining/gems_sbag.rsi
+    state: icon
+  - type: Clothing
+    sprite: Corvax/Objects/Specific/Mining/gems_sbag.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - Gems
+  - type: Dumpable
+  - type: StaticPrice
+    price: 100
