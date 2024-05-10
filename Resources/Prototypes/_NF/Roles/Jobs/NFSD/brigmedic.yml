@@ -13,14 +13,8 @@
   icon: "JobIconBrigmedic" # Frontier
   supervisors: job-supervisors-bailiff
   canBeAntag: false
-  access:
-  - Medical
-  - Security
-  - Brig
-  - Maintenance
-  - External
-  - Mercenary # Frontier
-  - Captain # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]

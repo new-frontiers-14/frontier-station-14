@@ -13,14 +13,8 @@
   icon: "JobIconSecurityOfficer" # Frontier
   supervisors: job-supervisors-sergeant
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service
-  - External
-  - Mercenary # Frontier
-  - Captain # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]

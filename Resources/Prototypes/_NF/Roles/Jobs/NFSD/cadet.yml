@@ -14,14 +14,8 @@
   icon: "JobIconSecurityCadet" # Frontier
   supervisors: job-supervisors-cadet
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service # Frontier
-  - External # Frontier
-  - Mercenary # Frontier
-  - Captain # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
