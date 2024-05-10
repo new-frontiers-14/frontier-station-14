@@ -24,7 +24,7 @@ public sealed class SpawnThrowArtifactItemCommand : IConsoleCommand
         if (console.Player is null || !_manager.TryGetComponent<MindComponent>(console.Player.GetMind(), out var mind) || mind.CurrentEntity is null)
             return;
 
-        var entity = _manager.SpawnEntity("ToyNuke", new EntityCoordinates(mind.CurrentEntity.Value, new()));
+        var entity = _manager.SpawnEntity("PlushieVulp", new EntityCoordinates(mind.CurrentEntity.Value, new()));
 
         _manager.AddComponent<ThrowArtifactComponent>(entity);
     }
