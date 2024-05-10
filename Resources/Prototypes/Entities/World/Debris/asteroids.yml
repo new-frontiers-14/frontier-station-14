@@ -200,20 +200,21 @@
   id: BaseAsteroidDebrisIce
   parent: BaseDebris
   name: Salvage Iced Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorIce
-      - FloorSnow
-      - FloorSnow
       blobDrawProb: 0.5
       radius: 6
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorSnow:
+        FloorIce:
+          - id: RandomArtifactSpawner20
+            prob: 0.1
+            orGroup: rock
           - id: WallRockSnow
             prob: 0.65
             orGroup: rock
@@ -374,13 +375,11 @@
   id: BaseAsteroidDebrisAndesite
   parent: BaseDebris
   name: Salvage Andesite Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorBasalt
-      - FloorCave
       - FloorCaveDrought
       blobDrawProb: 0.5
       radius: 6
@@ -388,6 +387,9 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorCaveDrought:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: WallRockAndesite
             prob: 0.45
             orGroup: rock
@@ -545,20 +547,21 @@
   id: BaseAsteroidDebrisBasalt
   parent: BaseDebris
   name: Salvage Basalt Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorBasalt
-      - FloorCave
-      - FloorCaveDrought
       blobDrawProb: 0.5
       radius: 6
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorCaveDrought:
+        FloorBasalt:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: WallRockBasalt
             prob: 0.55
             orGroup: rock
@@ -716,19 +719,21 @@
   id: BaseAsteroidDebrisSand
   parent: BaseDebris
   name: Salvage Sand Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorDesert
       - FloorLowDesert
       blobDrawProb: 0.5
       radius: 6
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorDesert:
+        FloorLowDesert:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: WallRockSand
             prob: 0.65
             orGroup: rock
@@ -884,19 +889,21 @@
   id: BaseAsteroidDebrisChromite
   parent: BaseDebris
   name: Salvage Chromite Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorDesert
-      - FloorLowDesert
+      - FloorChromite
       blobDrawProb: 0.5
       radius: 6
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorDesert:
+        FloorChromite:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: WallRockChromite
             prob: 0.65
             orGroup: rock
@@ -1052,7 +1059,7 @@
   id: BaseAsteroidDebrisRed
   parent: BaseDebris
   name: Salvage Red Asteroid
-  noSpawn: true
+  abstract: true
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -1064,6 +1071,9 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidIronsand:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
           - id: IronRock
             prob: 0.6
             orGroup: rock
