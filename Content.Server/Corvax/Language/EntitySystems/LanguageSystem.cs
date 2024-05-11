@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Content.Server.Corvax.Language.Components;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Robust.Shared.Player;
 
-namespace Content.Server.Corvax.Language;
+namespace Content.Server.Corvax.Language.EntitySystems;
 
 public sealed partial class LanguageSystem : EntitySystem
 {
