@@ -174,7 +174,7 @@
 - type: entity
   parent: BasePDA
   id: SecurityCadetPDA
-  name: cadet PDA
+  name: security cadet PDA
   description: Why isn't it red?
   components:
   - type: Pda
@@ -606,7 +606,7 @@
 - type: entity
   parent: BasePDA
   id: HoSPDA
-  name: sheriff PDA
+  name: head of security PDA
   description: Whosoever bears this PDA is the law.
   components:
   - type: Pda
@@ -621,7 +621,7 @@
 - type: entity
   parent: BasePDA
   id: WardenPDA
-  name: bailiff PDA
+  name: warden PDA
   description: The OS appears to have been jailbroken.
   components:
   - type: Pda
@@ -636,7 +636,7 @@
 - type: entity
   parent: BasePDA
   id: SecurityPDA
-  name: deputy PDA
+  name: security PDA
   description: Red to hide the stains of passenger blood.
   components:
   - type: Pda
@@ -667,7 +667,7 @@
     state: pda-centcom
 
 - type: entity
-  parent: [MusicBasePDA, CentcomPDA] # Frontier - Added MusicBasePDA parent
+  parent: [MusicBasePDA, CentcomPDA, BaseMedicalPDA] # Frontier - Added MusicBasePDA parent
   id: AdminPDA
   name: Admin PDA
   description: If you are not an admin please return this PDA to the nearest admin.
@@ -683,6 +683,7 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
+      - BountyContractsCartridge
 
 - type: entity
   parent: CentcomPDA

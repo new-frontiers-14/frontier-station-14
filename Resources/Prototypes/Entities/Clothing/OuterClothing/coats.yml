@@ -10,7 +10,7 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
   id: ClothingOuterCoatDetective
   name: detective trenchcoat
   description: A rugged canvas trenchcoat, designed and created by TX Fabrication Corp. Wearing it makes you feel for the plight of the Tibetans.
@@ -53,6 +53,7 @@
 
 - type: entity
   abstract: true
+  parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
   components:
   - type: Armor
@@ -68,6 +69,7 @@
 
 - type: entity
   abstract: true
+  parent: AllowSuitStorageClothing
   id: ClothingOuterArmorWarden
   components:
   - type: Armor
@@ -83,7 +85,7 @@
 - type: entity
   parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase]
   id: ClothingOuterCoatHoSTrench
-  name: sheriff's armored trenchcoat
+  name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
   components:
   - type: Sprite
@@ -318,8 +320,8 @@
 - type: entity
   parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase]
   id: ClothingOuterCoatWarden
-  name: bailiff's armored jacket
-  description: A sturdy, utilitarian jacket designed to protect a bailiff from any brig-bound threats.
+  name: warden's armored jacket
+  description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/warden.rsi
