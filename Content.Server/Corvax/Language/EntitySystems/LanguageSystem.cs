@@ -75,10 +75,12 @@ public sealed partial class LanguageSystem : EntitySystem
         return false;
     }
 
-    public LanguageMessage GetLanguageMessage(EntityUid entity, string message, string? language)
+    public LanguageMessage GetLanguageMessage(EntityUid entity, string message, string? language, string? transformedMessage = null)
     {
+        transformedMessage ??= message;
+
         if (language is null || _translator.TryUseTranslator(entity, message))
-            return message;
+            return transformedMessage;
 
         var words = GetWordRegex().Split(message);
 
@@ -128,7 +130,7 @@ public sealed partial class LanguageSystem : EntitySystem
             messageBuilder.Append(languageWord);
         }
 
-        return new(message, language, messageBuilder.ToString());
+        return new(transformedMessage, language, messageBuilder.ToString());
     }
 
     private static bool IsUpper(string str)
