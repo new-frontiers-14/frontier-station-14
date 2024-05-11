@@ -8,6 +8,8 @@ loadout-group-contractor-belt = Contractor belt
 loadout-group-contractor-shoes = Contractor shoes
 loadout-group-contractor-neck = Contractor neck
 loadout-group-contractor-id = Contractor ID
+loadout-group-contractor-backpack = Contractor backpack
+loadout-group-contractor-glasses = Contractor glasses
 
 # Security
 
