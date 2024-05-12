@@ -104,6 +104,12 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionComponent>(args.MapUid, out var component))
             return;
 
+        if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
+        {
+            data.CanFinish = true;
+            UpdateConsoles(data);
+        }
+
         // Someone FTLd there so start announcement
         if (component.Stage != ExpeditionStage.Added)
             return;
@@ -135,6 +141,8 @@ public sealed partial class SalvageSystem
         {
             return;
         }
+
+        station.CanFinish = false;
 
         // Check if any shuttles remain.
         var query = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
