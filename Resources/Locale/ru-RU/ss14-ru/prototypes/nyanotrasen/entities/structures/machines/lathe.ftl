@@ -1,6 +1,6 @@
-ent-ScienceTechFab = научный техфаб
+ent-ScienceTechFab = Научный техфаб
     .desc = Печатает снаряжение необходимое ученым.
-ent-ServiceTechFab = сервисный техваб
+ent-ServiceTechFab = Сервисный техфаб
     .desc = Печатает снаряжение необходимое сервисным работникам.
-ent-EngineeringTechFab = инженерный техфаб
+ent-EngineeringTechFab = Инженерный техфаб
     .desc = Печатает снаряжение необходимое инженерам.

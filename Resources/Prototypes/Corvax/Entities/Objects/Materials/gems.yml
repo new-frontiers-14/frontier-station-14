@@ -6,6 +6,31 @@
   - type: Sprite
     sprite: Corvax/Objects/Materials/gems.rsi
   - type: StaticPrice
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Tag
     tags:
     - Gems
@@ -73,7 +98,7 @@
   - type: WelderRefinable
     refineTime: 10
     refineResult:
-    - SheetUranium
+    - SheetUranium30
   - type: RadiationSource
     intensity: 3
   - type: StaticPrice
@@ -144,12 +169,11 @@
   - type: PointLight
     enabled: true
     color: "#f08818"
-    radius: 0.5
+    radius: 1
   - type: WelderRefinable
     refineTime: 10
     refineResult:
-    - IngotGold
-    - IngotGold
+    - IngotGold30
   - type: StaticPrice
     price: 700
 
@@ -166,11 +190,11 @@
   - type: PointLight
     enabled: true
     color: "#9741d4"
-    radius: 0.5
+    radius: 1
   - type: WelderRefinable
     refineTime: 10
     refineResult:
-    - SheetPlasma
+    - SheetPlasma30
   - type: StaticPrice
     price: 1000
 
@@ -201,7 +225,7 @@
   - type: PointLight
     enabled: true
     color: "#ed7626"
-    radius: 0.5
+    radius: 1
   - type: StaticPrice
     price: 1400
 
@@ -218,7 +242,7 @@
   - type: PointLight
     enabled: true
     color: "#4e52f7"
-    radius: 0.5
+    radius: 1
   - type: StaticPrice
     price: 1600
 
@@ -235,7 +259,7 @@
   - type: PointLight
     enabled: true
     color: "#df2d2d"
-    radius: 0.5
+    radius: 1
   - type: StaticPrice
     price: 1800
 

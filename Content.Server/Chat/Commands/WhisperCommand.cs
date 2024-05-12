@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Server.Corvax.Language;
+using Content.Server.Corvax.Language.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;

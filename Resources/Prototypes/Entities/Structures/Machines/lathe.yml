@@ -373,6 +373,7 @@
       - ClothingOuterHardsuitMaximPrototype # Frontier
       - ClothingHeadHelmetAncient # Frontier
       - ClothingOuterHardsuitAncientEVA # Frontier
+      - JetpackMining # Corvax-Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -391,8 +392,129 @@
   - type: Sprite
     sprite: Structures/Machines/protolathe_hypercon.rsi
   - type: Lathe
+    idleState: icon
+    runningState: building
     materialUseMultiplier: 0.5
     timeMultiplier: 1.5
+#    staticRecipes: Corvax-Frontier
+#    - LargeBeaker
+#    - Dropper
+#    - ClothingEyesGlassesChemical
+    dynamicRecipes:
+      - LargeBeaker
+      - Dropper
+      - ClothingEyesGlassesChemical
+      - PowerDrill
+      - MiningDrill
+      - AnomalyScanner
+      - AnomalyLocator
+      - AnomalyLocatorWide
+      - RCD
+      - RCDAmmo
+      - ShipyardRCD # Frontier
+      - ShipyardRCDAmmo # Frontier
+      - Scalpel
+      - Retractor
+      - Cautery
+      - Drill
+      - WeaponParticleDecelerator
+      - HoloprojectorField
+      - Saw
+      - Hemostat
+      - CryostasisBeaker
+      - SyringeCryostasis
+      - Syringe
+      - Implanter
+      - PillCanister
+      - ChemistryEmptyBottle01
+      - AdvancedCapacitorStockPart
+      - AdvancedMatterBinStockPart
+      - NanoManipulatorStockPart
+      - SuperCapacitorStockPart
+      - SuperMatterBinStockPart
+      - PicoManipulatorStockPart
+      - AdvMopItem
+      - WeaponSprayNozzle
+      - ClothingBackpackWaterTank
+      - MegaSprayBottle
+      - TimerTrigger
+      - ChemicalPayload
+      - FlashPayload
+      - Signaller
+      - SignallerAdvanced
+      - SignalTrigger
+      - VoiceTrigger
+      - Igniter
+      - HandHeldMassScanner
+      - PowerCellMicroreactor
+      - PowerCellMedium
+      - PowerCellHigh
+      - PowerCellMicroreactor
+      - WeaponPistolCHIMP
+      - WeaponGauntletGorilla
+      - SynthesizerInstrument
+      - RPED
+      - ClothingShoesBootsMagSci
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingShoesBootsSpeed
+      - NodeScanner
+      - HolofanProjector
+      - BluespaceBeaker
+      - SyringeBluespace
+      - WeaponCrusher
+      - WeaponCrusherDagger
+      - WeaponCrusherGlaive
+      - WeaponForceGun
+      - WeaponLaserSvalinn
+      - WeaponProtoKineticAccelerator
+      - WeaponTetherGun
+      - WeaponGrapplingGun
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - WelderExperimental
+      - JawsOfLife
+      - FauxTileAstroGrass
+      - FauxTileMowedAstroGrass
+      - FauxTileJungleAstroGrass
+      - FauxTileAstroIce
+      - FauxTileAstroSnow
+      - OreBagOfHolding
+      - DeviceQuantumSpinInverter
+      - UtilityBeltChiefEngineer
+      - JetpackVoid
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitAtmos # Frontier
+      - ClothingOuterHardsuitEngineering # Frontier
+      - ClothingOuterHardsuitSpatio # Frontier
+      - ClothingOuterHardsuitSalvage # Frontier
+      - ClothingOuterHardsuitClown # Frontier
+      - ClothingOuterHardsuitMime # Frontier
+      - ClothingOuterHardsuitCap # Frontier
+      - ClothingOuterHardsuitEngineeringWhite # Frontier
+      - ClothingOuterHardsuitMedical # Frontier
+      - ClothingOuterHardsuitRd # Frontier
+      - ClothingOuterHardsuitLuxury # Frontier
+      - ClothingOuterHardsuitMercenary # Frontier
+      - ClothingOuterHardsuitScaf # Frontier
+      - ClothingOuterHardsuitPilot # Frontier
+      - ClothingOuterHardsuitMaximPrototype # Frontier
+      - ClothingHeadHelmetAncient # Frontier
+      - ClothingOuterHardsuitAncientEVA # Frontier
+      - JetpackMining # Corvax-Frontier
+      - ClothingShoesBootsJetBoots # Corvax-Frontier
+      - WeaponMagmiteCrusher # Corvax-Frontier
+      - WeaponMagmiteCrusherGlaive # Corvax-Frontier
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+      - ExplosivePayload
+      - WeaponLaserCarbine
+      - WeaponAdvancedLaser
+      - WeaponLaserCannon
+      - WeaponXrayCannon
+      - ClothingOuterHardsuitPirateEVA # Frontier
   - type: LatheHeatProducing
   - type: Machine
     board: ProtolatheHyperConvectionMachineCircuitboard
@@ -1225,6 +1347,7 @@
       - IngotGold30
       - IngotSilver30
       - MaterialBananium10
+      - SheetMagmite30 # Corvax-Frontier
 
 - type: entity
   parent: BaseLathe

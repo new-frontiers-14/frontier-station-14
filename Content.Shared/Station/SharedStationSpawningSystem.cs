@@ -1,4 +1,4 @@
-using Content.Shared.Corvax.Language;
+using Content.Shared.Corvax.Language.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;

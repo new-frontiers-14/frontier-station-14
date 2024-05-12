@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Corvax.Language;
+﻿namespace Content.Server.Corvax.Language.Components;
 
 [RegisterComponent]
 public sealed partial class LanguageSpeakerComponent : Component
