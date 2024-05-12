@@ -396,3 +396,36 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["HeadOfSecurity"]]
+
+- type: entity
+  parent: VendingMachine
+  id: NonlethalVendingMachine
+  name: NonlethalVend
+  description: Try not to aim for the eyes!
+  components:
+    - type: VendingMachine
+      pack: NonlethalVendInventory
+      dispenseOnHitChance: 0.25
+      dispenseOnHitThreshold: 2
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+      ejectState: eject-unshaded
+      denyState: deny-unshaded
+      ejectDelay: 3
+    - type: Advertise
+      pack: LessLethalVendAds
+    - type: Sprite
+      sprite: _NF/Structures/Machines/VendingMachines/nonlethalvend.rsi
+      layers:
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.Base"]
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#ff033e"
