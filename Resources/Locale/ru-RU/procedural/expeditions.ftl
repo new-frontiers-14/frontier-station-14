@@ -32,6 +32,7 @@ salvage-expedition-type-Elimination = Устранение
 salvage-expedition-difficulty-Minimal = Минимальная
 salvage-expedition-difficulty-Minor = Средняя
 salvage-expedition-window-next = Следующее предложение
+salvage-expedition-window-finish = Завершить экспедицию
 # Expedition descriptions
 salvage-expedition-difficulty-players = Рекомендовано утилизаторов:
 #  С вас удержат налог в размере { $tax }% от добытых ресурсов.
@@ -53,6 +54,7 @@ salvage-expedition-announcement-countdown-seconds =
         [few] секунды
        *[other] секунд
     }.
+salvage-expedition-announcement-early-finish = Экспедиция завершена досрочно.
 salvage-expedition-reward-description = Награда за завершение миссии
 salvage-expedition-announcement-dungeon = Подземелье расположено от вас на { $direction }.
-salvage-expedition-completed = Экспедиция окончена.
+salvage-expedition-completed = Миссия выполнена.

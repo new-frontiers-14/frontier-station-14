@@ -30,6 +30,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
     private readonly SharedSalvageSystem _salvage;
 
     public event Action<ushort>? ClaimMission;
+    public event Action? FinishMission;
     private bool _claimed;
     private bool _cooldown;
     private TimeSpan _nextOffer;
@@ -266,6 +267,15 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
             Container.AddChild(box);
         }
+
+        Finish.OnPressed += _ =>
+        {
+            Finish.Disabled = true;
+
+            FinishMission?.Invoke();
+        };
+
+        Finish.Disabled = !state.CanFinish;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

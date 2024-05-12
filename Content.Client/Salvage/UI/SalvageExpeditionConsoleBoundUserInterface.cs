@@ -25,6 +25,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Index = index,
             });
         };
+        _window.FinishMission += () => SendMessage(new FinishSalvageMessage());
         _window.OnClose += Close;
         _window?.OpenCenteredLeft();
     }
