@@ -1,11 +1,13 @@
 ﻿using System.Buffers;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Corvax.Language.Components;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Corvax.Language.EntitySystems;
 
@@ -29,7 +31,7 @@ public sealed partial class LanguageSystem : EntitySystem
 
     [Dependency] private readonly LanguageTranslatorSystem _translator = default!;
 
-    private readonly Dictionary<string, string> _words = [];
+    private readonly Dictionary<string, Dictionary<string, string>> _dictionaries = [];
 
     private readonly SearchValues<char> _vowels = SearchValues.Create("ауоиэыяюеё");
 
@@ -88,6 +90,10 @@ public sealed partial class LanguageSystem : EntitySystem
 
         StringBuilder wordBuilder = new();
 
+        var dictionary = _dictionaries.GetOrNew(language);
+
+        var syllables = Syllables[language];
+
         foreach (var match in GetWordRegex().Matches(message).Cast<Match>())
         {
             var word = match.Value;
@@ -100,7 +106,9 @@ public sealed partial class LanguageSystem : EntitySystem
 
             var lowerWord = word.ToLower();
 
-            if (!_words.TryGetValue(lowerWord, out var languageWord))
+            ref var languageWord = ref CollectionsMarshal.GetValueRefOrAddDefault(dictionary, lowerWord, out var exists);
+
+            if (!exists)
             {
                 var syllablesCount = word.Count(letter => _vowels.Contains(char.ToLower(letter)));
 
@@ -110,22 +118,18 @@ public sealed partial class LanguageSystem : EntitySystem
                     _ => _random.Next(3, 5)
                 };
 
-                var syllables = Syllables[language];
-
                 for (var i = 0; i < syllablesCount; i++)
                     wordBuilder.Append(syllables[_random.Next(syllables.Length)]);
 
                 languageWord = wordBuilder.ToString();
 
                 wordBuilder.Clear();
-
-                _words.Add(lowerWord, languageWord);
             }
 
             if (IsUpper(word))
-                languageWord = languageWord.ToUpper();
+                languageWord = languageWord!.ToUpper();
             else if (char.IsUpper(word[0]))
-                languageWord = char.ToUpper(languageWord[0]) + languageWord[1..];
+                languageWord = char.ToUpper(languageWord![0]) + languageWord[1..];
 
             messageBuilder.Append(languageWord);
         }
