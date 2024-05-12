@@ -1,0 +1,98 @@
+- type: entity
+  id: BulletMagnaCharge
+  name: charge bolt
+  parent: BaseBullet
+  noSpawn: true
+  description: Marks a target for additional damage.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Corvax/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: magmabolt
+        shader: unshaded
+  - type: GatheringProjectile
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Blunt: 40
+        Slash: 10
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  parent: WeaponCrusher
+  id: WeaponMagmiteCrusher
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Melee/magmitecrusher.rsi
+    layers:
+    - state: icon
+    - state: icon-uncharged
+      visible: false
+      map: [ "empty-icon" ]
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -12
+  - type: PointLight
+    color: "#df7126"
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagnaCharge
+    capacity: 1
+    count: 1
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+        Slash: 6
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Structural: 60
+  - type: StaticPrice
+    price: 2850
+
+- type: entity
+  parent: WeaponMagmiteCrusher
+  id: WeaponMagmiteCrusherGlaive
+  name: crusher glaive
+  description: An early design of the proto-kinetic accelerator, in glaive form.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Melee/magmitecrusher_glaive.rsi
+  - type: UseDelay
+    delay: 1.9
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -16
+  - type: MeleeWeapon
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: StaticPrice
+    price: 2850

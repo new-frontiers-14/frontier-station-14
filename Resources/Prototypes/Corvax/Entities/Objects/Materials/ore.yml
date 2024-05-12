@@ -1,0 +1,28 @@
+- type: entity
+  parent: OreBase
+  id: MagmiteOre
+  name: magmite ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: MagmiteOre
+  - type: Sprite
+    sprite: Corvax/Objects/Materials/ore.rsi
+    state: magmite
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawMagmite: 500
+  - type: PointLight
+    radius: 1.2
+    energy: 0.8
+    castShadows: false
+    color: "#df7126"
+
+- type: entity
+  parent: MagmiteOre
+  id: MagmiteOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

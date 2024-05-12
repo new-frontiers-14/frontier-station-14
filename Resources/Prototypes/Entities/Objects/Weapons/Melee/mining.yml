@@ -11,6 +11,13 @@
     color: "#ffeead"
     enabled: false
     radius: 4
+  - type: Appearance # Corvax-Frontier
+  - type: GenericVisualizer # Corvax-Frontier
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
   - type: StaticPrice
     price: 255
 
@@ -23,7 +30,14 @@
       - Pickaxe
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher.rsi
-    state: icon
+    layers:
+    - state: icon
+    #- state: icon-lit Maybe later
+    #  shader: unshaded
+    #  visible: false
+    - state: icon-uncharged
+      visible: false
+      map: [ "empty-icon" ]
   - type: AmmoCounter
   - type: UseDelayOnShoot
   - type: UseDelay
@@ -82,7 +96,11 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_dagger.rsi
-    state: icon
+    layers:
+    - state: icon
+    #- state: icon-lit Maybe later
+    #  shader: unshaded
+    #  visible: false
   - type: MeleeWeapon
     autoAttack: true
     wideAnimationRotation: -135

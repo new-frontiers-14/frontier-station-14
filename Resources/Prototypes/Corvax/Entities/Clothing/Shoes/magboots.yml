@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingShoesBootsMagSyndie
+  id: ClothingShoesBootsJetBoots
+  name: jump boots
+  description: One moment and you are already here.
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/Shoes/Boots/jetboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Corvax/Clothing/Shoes/Boots/jetboots.rsi
+  - type: Magboots
+    toggleAction: ActionToggleJetBoots
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+    enabled: false
+  - type: NoSlip
+
+- type: entity
+  id: ActionToggleJetBoots
+  parent: ActionBaseToggleMagboots
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: Corvax/Clothing/Shoes/Boots/jetboots.rsi, state: icon }
+    iconOn: Corvax/Clothing/Shoes/Boots/jetboots.rsi/icon-on.png
