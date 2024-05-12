@@ -107,3 +107,113 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_gems
+
+- type: entity
+  id: AsteroidRockMagmite
+  parent: AsteroidRock
+  description: An ore vein rich with gems.
+  suffix: Magmite
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreMagmite
+  - type: Sprite
+    layers:
+    - state: rock_asteroid
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_asteroid_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_asteroid_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_asteroid_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_asteroid_west
+    - state: rock_magmite
+
+- type: entity
+  id: WallRockMagmite
+  parent: WallRock
+  description: An ore vein rich with gems.
+  suffix: Magmite
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreMagmite
+    - type: Sprite
+      layers:
+        - state: rock
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_west
+        - state: rock_magmite
+
+- type: entity
+  id: WallRockBasaltMagmite
+  parent: WallRockBasalt
+  description: An ore vein rich with gems.
+  suffix: Magmite
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreMagmite
+    - type: Sprite
+      layers:
+        - state: rock_wall
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_wall_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_wall_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_wall_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_wall_west
+        - state: rock_magmite
+
+- type: entity
+  id: WallRockAndesiteMagmite
+  parent: WallRockAndesite
+  description: An ore vein rich with gems.
+  suffix: Magmite
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreMagmite
+    - type: Sprite
+      layers:
+        - state: rock_andesite
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_andesite_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_andesite_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_andesite_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_andesite_west
+        - state: rock_magmite
+
+- type: entity
+  id: WallRockChromiteMagmite
+  parent: WallRockChromite
+  description: An ore vein rich with gems.
+  suffix: Magmite
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreMagmite
+    - type: Sprite
+      layers:
+        - state: rock_chromite
+        - map: [ "enum.EdgeLayer.South" ]
+          state: rock_chromite_south
+        - map: [ "enum.EdgeLayer.East" ]
+          state: rock_chromite_east
+        - map: [ "enum.EdgeLayer.North" ]
+          state: rock_chromite_north
+        - map: [ "enum.EdgeLayer.West" ]
+          state: rock_chromite_west
+        - state: rock_magmite
