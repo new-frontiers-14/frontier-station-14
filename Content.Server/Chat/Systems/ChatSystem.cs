@@ -5,6 +5,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Corvax.Language;
+using Content.Server.Corvax.Language.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
@@ -402,14 +403,12 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var message = FormattedMessage.RemoveMarkup(originalMessage);
 
-        var msg = _language.GetLanguageMessage(source, originalMessage, language);
+        var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
-        message = TransformSpeech(source, message);
-
-        if (message.Length == 0)
+        if (msg.OriginalMessage.Length == 0)
             return;
 
-        var speech = GetSpeechVerb(source, message);
+        var speech = GetSpeechVerb(source, msg.OriginalMessage);
 
         // get the entity's apparent name (if no override provided).
         string name;
@@ -434,7 +433,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
-            ("message", FormattedMessage.EscapeText(message)));
+            ("message", FormattedMessage.EscapeText(msg.OriginalMessage)));
 
         var wrappedLanguageMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
@@ -454,10 +453,10 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var color = understand ? LanguageSystem.GetLanguageColor(msg) : null;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Local, understand ? message : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel, color);
+            _chatManager.ChatMessageToOne(ChatChannel.Local, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel, color);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Local, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Local, msg.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
 
         var ev = new EntitySpokeEvent(source, msg, null, null);
         RaiseLocalEvent(source, ev, true);
@@ -467,7 +466,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!HasComp<ActorComponent>(source) || hideLog == true)
             return;
 
-        if (originalMessage == message)
+        if (originalMessage == msg.OriginalMessage)
         {
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user} as {name}: {originalMessage}.");
@@ -478,10 +477,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
+                    $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
             else
                 _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
+                    $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
         }
     }
 
@@ -499,17 +498,14 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-
         var message = FormattedMessage.RemoveMarkup(originalMessage);
 
-        var msg = _language.GetLanguageMessage(source, originalMessage, language);
+        var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
-        message = TransformSpeech(source, message);
-
-        if (message.Length == 0)
+        if (msg.OriginalMessage.Length == 0)
             return;
 
-        var obfuscatedMessage = ObfuscateMessageReadability(message, 0.2f);
+        var obfuscatedMessage = ObfuscateMessageReadability(msg.OriginalMessage, 0.2f);
 
         var obfuscatedLanguageMessage = ObfuscateMessageReadability(msg.Message, 0.2f);
 
@@ -530,7 +526,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", name), ("message", FormattedMessage.EscapeText(msg.OriginalMessage)));
 
         var wrappedObfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
@@ -564,7 +560,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             var color = understand ? LanguageSystem.GetLanguageColor(msg) : null;
 
             if (data.Range <= WhisperClearRange)
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? message : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, false, session.Channel, color);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, false, session.Channel, color);
             //If listener is too far, they only hear fragments of the message
             //Collisiongroup.Opaque is not ideal for this use. Preferably, there should be a check specifically with "Can Ent1 see Ent2" in mind
             else if (_interactionSystem.InRangeUnobstructed(source, listener, WhisperMuffledRange, Shared.Physics.CollisionGroup.Opaque)) //Shared.Physics.CollisionGroup.Opaque
@@ -574,12 +570,12 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? obfuscatedMessage : obfuscatedLanguageMessage, understand ? wrappedUnknownMessage : wrappedUnknownLanguageMessage, source, false, session.Channel, color);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, msg.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
 
         var ev = new EntitySpokeEvent(source, msg, channel, new(obfuscatedMessage, language, obfuscatedLanguageMessage));
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
-            if (originalMessage == message)
+            if (originalMessage == msg.OriginalMessage)
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Whisper from {ToPrettyString(source):user} as {name}: {originalMessage}.");
@@ -590,10 +586,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
+                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
                 else
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
+                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
             }
     }
 

@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Server.Corvax.Language;
+using Content.Server.Corvax.Language.EntitySystems;
 using Content.Server.Emp;
 using Content.Server.Radio.Components;
 using Content.Shared.Inventory.Events;

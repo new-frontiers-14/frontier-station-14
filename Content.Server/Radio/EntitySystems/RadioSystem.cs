@@ -18,7 +18,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared.IdentityManagement;
-using Content.Server.Corvax.Language; // Frontier
+using Content.Server.Corvax.Language.EntitySystems;
+using Content.Server.Corvax.Language;
 
 namespace Content.Server.Radio.EntitySystems;
 

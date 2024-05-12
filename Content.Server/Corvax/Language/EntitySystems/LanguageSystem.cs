@@ -1,17 +1,13 @@
 ﻿using System.Buffers;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Content.Server.PowerCell;
-using Content.Server.VulpLangauge;
-using Content.Shared.Inventory;
+using Content.Server.Corvax.Language.Components;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Storage;
 using Robust.Shared.Player;
 
-namespace Content.Server.Corvax.Language;
+namespace Content.Server.Corvax.Language.EntitySystems;
 
 public sealed partial class LanguageSystem : EntitySystem
 {
@@ -31,8 +27,7 @@ public sealed partial class LanguageSystem : EntitySystem
             "и", "о", "о", "у", "у", "с", "с"]}
     };
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly PowerCellSystem _power = default!;
+    [Dependency] private readonly LanguageTranslatorSystem _translator = default!;
 
     private readonly Dictionary<string, string> _words = [];
 
@@ -80,10 +75,12 @@ public sealed partial class LanguageSystem : EntitySystem
         return false;
     }
 
-    public LanguageMessage GetLanguageMessage(EntityUid entity, string message, string? language)
+    public LanguageMessage GetLanguageMessage(EntityUid entity, string message, string? language, string? transformedMessage = null)
     {
-        if (language is null || TrySpeakTranslated(entity, message))
-            return message;
+        transformedMessage ??= message;
+
+        if (language is null || _translator.TryUseTranslator(entity, message))
+            return transformedMessage;
 
         var words = GetWordRegex().Split(message);
 
@@ -109,7 +106,7 @@ public sealed partial class LanguageSystem : EntitySystem
 
                 syllablesCount = syllablesCount switch
                 {
-                    1 => 2,
+                    <= 1 => 2,
                     _ => _random.Next(3, 5)
                 };
 
@@ -133,30 +130,7 @@ public sealed partial class LanguageSystem : EntitySystem
             messageBuilder.Append(languageWord);
         }
 
-        return new(message, language, messageBuilder.ToString());
-    }
-
-    private bool TrySpeakTranslated(EntityUid entity, string message)
-    {
-        return TryGetTranslator(_inventory.GetHandOrInventoryEntities(entity), out var translator) && _power.TryUseCharge(translator.Value, 0.2f * message.Length);
-    }
-
-    private bool TryGetTranslator(IEnumerable<EntityUid> entities, [NotNullWhen(true)] out EntityUid? translator)
-    {
-        foreach (var entity in entities)
-        {
-            if (EntityManager.HasComponent<LanguageTranslatorComponent>(entity))
-            {
-                translator = entity;
-                return true;
-            }
-
-            if (EntityManager.TryGetComponent<StorageComponent>(entity, out var storage) && TryGetTranslator(storage.Container.ContainedEntities, out translator))
-                return true;
-        }
-
-        translator = null;
-        return false;
+        return new(transformedMessage, language, messageBuilder.ToString());
     }
 
     private static bool IsUpper(string str)
