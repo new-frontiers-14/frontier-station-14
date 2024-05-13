@@ -293,6 +293,41 @@ namespace Content.Server.Preferences.Managers
             return prefs;
         }
 
+        public async Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(session.UserId, out var prefsData))
+                return;
+
+            var loadTask = LoadPrefs();
+            _cachedPlayerPrefs[session.UserId] = prefsData;
+
+            await loadTask;
+            return;
+
+            async Task LoadPrefs()
+            {
+                var prefs = await _db.GetPlayerPreferencesAsync(session.UserId, cancel);
+
+                if (prefs != null)
+                {
+                    prefsData.Prefs = prefs;
+                    prefsData.PrefsLoaded = true;
+
+                    var msg = new MsgPreferencesAndSettings
+                    {
+                        Preferences = prefs,
+                        Settings = new GameSettings
+                        {
+                            MaxCharacterSlots = MaxCharacterSlots
+                        }
+                    };
+
+                    _netManager.ServerSendMessage(msg, session.Channel);
+                }
+            }
+        }
+
+
         private PlayerPreferences SanitizePreferences(ICommonSession session, PlayerPreferences prefs, IDependencyCollection collection)
         {
             // Clean up preferences in case of changes to the game,

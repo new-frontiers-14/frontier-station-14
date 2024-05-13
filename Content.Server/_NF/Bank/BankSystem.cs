@@ -143,10 +143,12 @@ public sealed partial class BankSystem : EntitySystem
     /// effectively a gigantic money exploit.
     /// So, this will have to stay cursed until I can find another way to refresh the character cache
     /// or the db gods themselves come up to smite me from below, whichever comes first
+    ///
+    /// EDIT 5/13/2024 THE DB GODS THEY CAME. THEY SMOTE. SAVE ME
     /// </summary>
     private void OnPlayerLobbyJoin (PlayerJoinedLobbyEvent args)
     {
         var cts = new CancellationToken();
-        _prefsManager.LoadData(args.PlayerSession, cts);
+        _prefsManager.RefreshPreferencesAsync(args.PlayerSession, cts);
     }
 }
