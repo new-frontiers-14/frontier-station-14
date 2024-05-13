@@ -115,11 +115,5 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             var ev = new StartingGearEquippedEvent(entity);
             RaiseLocalEvent(entity, ref ev, true);
         }
-
-        if (HasComp<VulpGiveTranslatorComponent>(entity))
-        {
-            var vulpTranslatorEntity = EntityManager.SpawnEntity("VulpTranslator", xform.Coordinates);
-            _handsSystem.TryForcePickupAnyHand(entity, vulpTranslatorEntity, checkActionBlocker: false, handsComp: handsComponent);
-        }
     }
 }
