@@ -1,5 +1,10 @@
 # Frontier
+job-name-bailiff = Bailiff
+job-name-brigmedic = Brigmedic
+job-name-cadet-nf = Cadet
 job-name-contractor = Contractor
+job-name-deputy = Deputy
+job-name-detective-nf = Detective
 job-name-ertmailcarrier = ERT Mail Carrier
 job-name-mercenary = Mercenary
 job-name-pilot = Pilot
@@ -7,6 +12,8 @@ job-name-pirate = Pirate
 job-name-pirate-captain = Pirate Captain
 job-name-pirate-first-mate = Pirate First Mate
 job-name-security-guard = Security Guard
+job-name-senior-officer = Sergeant
+job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 
