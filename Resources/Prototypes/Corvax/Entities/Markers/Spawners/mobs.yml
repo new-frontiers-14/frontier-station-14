@@ -50,7 +50,7 @@
 
 - type: entity
   name: Salvage Basalt Elemental Spawner
-  id: SalvageRockElementalSpawner
+  id: SalvageBasaltElementalSpawner
   parent: MarkerBase
   suffix: 25
   components:
@@ -83,6 +83,44 @@
         - WallRockBasaltSaltCrabSalvage
         - WallRockBasaltSilverCrabSalvage
         - WallRockBasaltUraniumCrabSalvage
+      chance: 0.25
+      offset: 0.2
+
+- type: entity
+  name: Salvage Rock Elemental Spawner
+  id: SalvageRockElementalSpawner
+  parent: MarkerBase
+  suffix: 25
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Corvax/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - WallRockBananiumGolemSalvage
+      - WallRockCoalGolemSalvage
+      - WallRockGoldGolemSalvage
+      - WallRockIronGolemSalvage
+      - WallRockMagmiteGolemSalvage
+      - WallRockPlasmaGolemSalvage
+      - WallRockQuartzGolemSalvage
+      - WallRockSaltGolemSalvage
+      - WallRockSilverGolemSalvage
+      - WallRockUraniumGolemSalvage
+      rareChance: 0.1 #frontier nerf
+      prototypes:
+        - WallRockBananiumCrabSalvage
+        - WallRockCoalCrabSalvage
+        - WallRockGoldCrabSalvage
+        - WallRockIronCrabSalvage
+        - WallRockMagmiteCrabSalvage
+        - WallRockPlasmaCrabSalvage
+        - WallRockQuartzCrabSalvage
+        - WallRockSaltCrabSalvage
+        - WallRockSilverCrabSalvage
+        - WallRockUraniumCrabSalvage
       chance: 0.25
       offset: 0.2
 
