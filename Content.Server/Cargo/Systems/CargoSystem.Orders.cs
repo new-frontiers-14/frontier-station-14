@@ -186,7 +186,18 @@ namespace Content.Server.Cargo.Systems
             _idCardSystem.TryFindIdCard(player, out var idCard);
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
-            _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
+            _audio.PlayPvs(component.ConfirmSound, uid);
+
+            var approverName = idCard.Comp?.FullName ?? Loc.GetString("access-reader-unknown-id");
+            var approverJob = idCard.Comp?.JobTitle ?? Loc.GetString("access-reader-unknown-id");
+            var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
+                ("productName", Loc.GetString(order.ProductName)),
+                ("orderAmount", order.OrderQuantity),
+                ("approverName", approverName),
+                ("approverJob", approverJob),
+                ("cost", cost));
+            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+            ConsolePopup(args.Session, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(tradeDestination.Value).EntityName)));
 
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,
@@ -382,7 +393,7 @@ namespace Content.Server.Cargo.Systems
         /// Updates all of the cargo-related consoles for a particular station.
         /// This should be called whenever orders change.
         /// </summary>
-        private void UpdateOrders(EntityUid dbUid)
+        private void UpdateOrders(EntityUid dbUid, StationCargoOrderDatabaseComponent _)
         {
             // Order added so all consoles need updating.
             var orderQuery = AllEntityQuery<CargoOrderConsoleComponent>();
@@ -417,7 +428,7 @@ namespace Content.Server.Cargo.Systems
             string description,
             string dest,
             StationCargoOrderDatabaseComponent component,
-            Entity<StationDataComponent> stationData
+            StationDataComponent stationData
         )
         {
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
@@ -439,7 +450,7 @@ namespace Content.Server.Cargo.Systems
         private bool TryAddOrder(EntityUid dbUid, CargoOrderData data, StationCargoOrderDatabaseComponent component)
         {
             component.Orders.Add(data);
-            UpdateOrders(dbUid);
+            UpdateOrders(dbUid, component);
             return true;
         }
 
@@ -457,7 +468,7 @@ namespace Content.Server.Cargo.Systems
             {
                 orderDB.Orders.RemoveAt(sequenceIdx);
             }
-            UpdateOrders(dbUid);
+            UpdateOrders(dbUid, orderDB);
         }
 
         public void ClearOrders(StationCargoOrderDatabaseComponent component)
