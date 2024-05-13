@@ -1,8 +1,9 @@
 - type: loadoutGroup
-  id: PilotJumpsuit
+  id: MercenaryJumpsuit
   name: loadout-group-contractor-jumpsuit
   loadouts: #First Section: Role specific freebies/discounts/rewards
-  - PilotClothingUniformJumpsuitPilot
+  - MercenaryClothingUniformJumpsuitMercenary
+  - MercenaryClothingUniformJumpskirtMercenary
 #Second Section: Contractor list
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
@@ -127,13 +128,13 @@
   - ContractorClothingUniformJumpsuitTshirtJeansPeach
 
 - type: loadoutGroup
-  id: PilotBackpack
+  id: MercenaryBackpack
   name: loadout-group-contractor-backpack
   loadouts:
-  - PilotClothingBackpackPilotFilled
-  - PilotClothingBackpackDuffelPilotFilled
-  - PilotClothingBackpackSatchelPilotFilled
-  - PilotClothingBackpackSatchelMessengerFilled
+  - MercenaryClothingBackpackMercenaryFilled
+  - MercenaryClothingBackpackDuffelMercenaryFilled
+  - MercenaryClothingBackpackSatchelMercenaryFilled
+  - MercenaryClothingBackpackMessengerMercenaryFilled
   - ContractorClothingBackpackFilled
   - ContractorClothingBackpackDuffelFilled
   - ContractorClothingBackpackSatchelFilled
@@ -192,11 +193,11 @@
   - ContractorClothingBackpackMessengerMimeFilled
   
 - type: loadoutGroup
-  id: PilotOuterClothing
+  id: MercenaryOuterClothing
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - PilotClothingOuterHardsuitPilot
+  - MercenaryClothingOuterVestWebMercenary
   - ContractorClothingOuterSuitEmergency
   - ContractorClothingOuterHardsuitEVA
   - ContractorClothingOuterHardsuitBasic
@@ -263,10 +264,10 @@
   - ContractorClothingOuterCoatSpaceAsshole
 
 - type: loadoutGroup
-  id: PilotShoes
+  id: MercenaryShoes
   name: loadout-group-contractor-shoes
   loadouts:
-  - PilotClothingShoesBootsPilot
+  - MercenaryClothingShoesBootsMercenary
   - ContractorClothingShoesColorBlack
   - ContractorClothingShoesClothwarp
   - ContractorClothingShoesTourist
@@ -323,11 +324,13 @@
   - ContractorClothingShoesBling
 
 - type: loadoutGroup
-  id: PilotHead
+  id: MercenaryHead
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
-  - PilotClothingHeadHatPilot
+  - MercenaryClothingHeadHelmetMercenary
+  - MercenaryClothingHeadBandMercenary
+  - MercenaryClothingHeadHatBeretMercenary
   - ContractorClothingHeadHelmetEVALarge
   - ContractorClothingHeadBandBlack
   - ContractorClothingHeadBandBlue
@@ -393,11 +396,12 @@
   - ContractorClothingHeadHatTophat
   
 - type: loadoutGroup
-  id: PilotGloves
+  id: MercenaryGloves
   name: loadout-group-contractor-gloves
   minLimit: 0
   loadouts:
-  - PilotClothingHandsGlovesPilot
+  - MercenaryClothingHandsGlovesMercFingerless
+  - MercenaryClothingHandsMercenaryGlovesCombat
   - ContractorClothingHandsGlovesColorYellow
   - ContractorClothingHandsGlovesLeather
   - ContractorClothingHandsGlovesFingerless
@@ -420,57 +424,10 @@
   - ContractorClothingHandsGlovesColorWhite
 
 - type: loadoutGroup
-  id: PilotNeck
-  name: loadout-group-contractor-neck
-  minLimit: 0
-  loadouts:
-  - PilotClothingNeckScarfPilot
-  - ContractorClothingNeckScarfStripedBlack
-  - ContractorClothingNeckScarfStripedBlue
-  - ContractorClothingNeckScarfStripedBrown
-  - ContractorClothingNeckScarfStripedGreen
-  - ContractorClothingNeckTieBH
-  - ContractorClothingNeckTieRed
-  - ContractorClothingNeckTieSci
-  - ContractorClothingNeckHeadphones
-  - ContractorClothingNeckCrucifix
-  - ContractorClothingNeckBellCollar
-  - ContractorClothingNeckStethoscope
-  - ContractorClothingOuterPoncho
-  - ContractorClothingOuterPonchoClassic
-  - ContractorClothingNeckCloakCap
-  - ContractorClothingNeckCloakMiner
-  - ContractorClothingNeckCloakMoth
-  - ContractorClothingNeckScarfChaplainStole
-  - ContractorClothingNeckStoleChaplain
-  - ContractorClothingNeckCloakTrans
-  - ContractorClothingNeckCloakAro
-  - ContractorClothingNeckCloakAce
-  - ContractorClothingNeckCloakBi
-  - ContractorClothingNeckCloakIntersex
-  - ContractorClothingNeckCloakEnby
-  - ContractorClothingNeckCloakPan
-  - ContractorClothingNeckCloakGay
-  - ContractorClothingNeckCloakLesbian
-  - ContractorBedsheetRainbow
-  - ContractorClothingNeckCloakCapFormal
-  - ContractorClothingNeckMantleCap
-  - ContractorClothingNeckCloakQm
-  - ContractorClothingNeckMantleQM
-  - ContractorClothingCloakCmo
-  - ContractorClothingNeckMantleCMO
-  - ContractorClothingNeckCloakRd
-  - ContractorClothingNeckMantleRD
-  - ContractorClothingNeckCloakCe
-  - ContractorClothingNeckMantleCE
-  - ContractorClothingNeckCloakVoid
-  - ContractorClothingNeckBling
-
-- type: loadoutGroup
-  id: PilotPDA
+  id: MercenaryPDA
   name: loadout-group-contractor-id
   loadouts:
-  - PilotPilotPDA
+  - MercenaryMercenaryPDA
   - ContractorClearPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
@@ -506,11 +463,11 @@
   - ContractorMimePDA
   
 - type: loadoutGroup
-  id: PilotGlasses
+  id: MercenaryGlasses
   name: loadout-group-contractor-glasses
   minLimit: 0
   loadouts:
-  - ClothingEyesGlassesPilot
+  - MercenaryClothingEyesGlassesMercenary
   - ContractorClothingEyesGlasses
   - ContractorClothingEyesGlassesCheapSunglasses
   - ContractorClothingEyesBlindfold
@@ -524,11 +481,11 @@
   - ContractorClothingEyesEyepatchHudMedical
 
 - type: loadoutGroup
-  id: PilotFace
+  id: MercenaryFace
   name: loadout-group-contractor-face
   minLimit: 0
   loadouts:
-  - PilotClothingMaskPilot
+  - MercenaryClothingMaskGasMercenary
   - ContractorClothingMaskSterile
   - ContractorClothingMaskGas
   - ContractorClothingMaskGasExplorer
@@ -539,3 +496,27 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+
+- type: loadoutGroup
+  id: MercenaryBelt
+  name: loadout-group-contractor-belt
+  minLimit: 0
+  loadouts:
+  - MercenaryClothingBeltMercenaryWebbing
+  - ContractorClothingBeltPlantFilled
+  - ContractorClothingBeltChefFilled
+  - ContractorClothingBeltStorageWaistbag
+  - ContractorClothingBeltMedical
+  - ContractorClothingBeltUtilityFilled
+  - ContractorClothingBeltSalvageWebbing
+  - ContractorBoxFolderClipboard
+  - ContractorClothingBeltPilotFilled
+  - ContractorClothingBeltBandolier
+  - ContractorClothingBeltHolster
+  - ContractorClothingBeltChaplainSash
+  - ContractorBooksBag
+  - ContractorChemBag
+  - ContractorOreBag
+  - ContractorPlantBag
+  - ContractorClothingBeltMartialBlack
+  - ContractorClothingBeltChampion
