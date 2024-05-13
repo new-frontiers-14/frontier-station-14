@@ -317,7 +317,7 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager
         var data = new PlayTimeData();
         _playTimeData.Add(session, data);
 
-        var playTimes = await _db.GetPlayTimes(session.UserId);
+        var playTimes = await _db.GetPlayTimes(session.UserId, cancel);
         cancel.ThrowIfCancellationRequested();
 
         foreach (var timer in playTimes)

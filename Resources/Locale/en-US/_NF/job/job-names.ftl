@@ -1,4 +1,5 @@
 # Frontier
+job-name-contractor = Contractor
 job-name-ertmailcarrier = ERT Mail Carrier
 job-name-mercenary = Mercenary
 job-name-pilot = Pilot

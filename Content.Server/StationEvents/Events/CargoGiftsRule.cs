@@ -70,7 +70,7 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
                     Loc.GetString(component.Description),
                     Loc.GetString(component.Dest),
                     cargoDb,
-                    (station.Value, stationData)
+                    stationData!
             ))
             {
                 break;

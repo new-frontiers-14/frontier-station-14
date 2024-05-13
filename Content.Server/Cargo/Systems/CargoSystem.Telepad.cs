@@ -3,17 +3,16 @@ using Content.Server.Cargo.Components;
 using Content.Server.Construction;
 using Content.Server.Paper;
 using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using System.Xml.Schema;
+using Content.Server.Station.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -28,40 +27,7 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<CargoTelepadComponent, PowerChangedEvent>(OnTelepadPowerChange);
         // Shouldn't need re-anchored event
         SubscribeLocalEvent<CargoTelepadComponent, AnchorStateChangedEvent>(OnTelepadAnchorChange);
-        SubscribeLocalEvent<FulfillCargoOrderEvent>(OnTelepadFulfillCargoOrder);
     }
-
-    private void OnTelepadFulfillCargoOrder(ref FulfillCargoOrderEvent args)
-    {
-        var query = EntityQueryEnumerator<CargoTelepadComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var tele, out var xform))
-        {
-            if (tele.CurrentState != CargoTelepadState.Idle)
-                continue;
-
-            if (!this.IsPowered(uid, EntityManager))
-                continue;
-
-            if (_station.GetOwningStation(uid, xform) != args.Station)
-                continue;
-
-            // todo cannot be fucking asked to figure out device linking rn but this shouldn't just default to the first port.
-            if (!TryComp<DeviceLinkSinkComponent>(uid, out var sinkComponent) ||
-                sinkComponent.LinkedSources.FirstOrNull() is not { } console ||
-                console != args.OrderConsole.Owner)
-                continue;
-
-            for (var i = 0; i < args.Order.OrderQuantity; i++)
-            {
-                tele.CurrentOrders.Add(args.Order);
-            }
-            tele.Accumulator = tele.Delay;
-            args.Handled = true;
-            args.FulfillmentEntity = uid;
-            return;
-        }
-    }
-
     private void UpdateTelepad(float frameTime)
     {
         var query = EntityQueryEnumerator<CargoTelepadComponent>();
@@ -78,6 +44,14 @@ public sealed partial class CargoSystem
                 continue;
             }
 
+            if (!TryComp<DeviceLinkSinkComponent>(uid, out var sinkComponent) ||
+                sinkComponent.LinkedSources.FirstOrNull() is not { } console ||
+                !HasComp<CargoOrderConsoleComponent>(console))
+            {
+                comp.Accumulator = comp.Delay;
+                continue;
+            }
+
             comp.Accumulator -= frameTime;
 
             // Uhh listen teleporting takes time and I just want the 1 float.
@@ -88,25 +62,24 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            if (comp.CurrentOrders.Count == 0)
+            var station = _station.GetOwningStation(console);
+
+            if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var orderDatabase) ||
+                orderDatabase.Orders.Count == 0)
             {
                 comp.Accumulator += comp.Delay;
                 continue;
             }
 
             // Frontier - This makes sure telepads spawn goods of linked computers only. //TODO: FIx This Again
-            // List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
+             List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
 
             var xform = Transform(uid);
-            var currentOrder = comp.CurrentOrders.First();
-            if (FulfillOrder(currentOrder, xform.Coordinates, comp.PrinterOutput))
+            if (FulfillNextOrder(consoleUidList, orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
+                UpdateOrders(station.Value, orderDatabase);
 
-                if (_station.GetOwningStation(uid) is { } station)
-                    UpdateOrders(station);
-
-                comp.CurrentOrders.Remove(currentOrder);
                 comp.CurrentState = CargoTelepadState.Teleporting;
                 _appearance.SetData(uid, CargoTelepadVisuals.State, CargoTelepadState.Teleporting, appearance);
             }
@@ -133,7 +106,7 @@ public sealed partial class CargoSystem
 
     private void OnShutdown(Entity<CargoTelepadComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.CurrentOrders.Count == 0)
+        //if (ent.Comp.CurrentOrders.Count == 0) //Frontier - todo: find a smarter way to maybe fix this otherwise its exploity by forcing crate spawn on rando station
             return;
 
         if (_station.GetStations().Count == 0)
@@ -148,10 +121,10 @@ public sealed partial class CargoSystem
             !TryComp<StationDataComponent>(station, out var data))
             return;
 
-        foreach (var order in ent.Comp.CurrentOrders)
-        {
+        //foreach (var order in ent.Comp.CurrentOrders)
+        //{
             //TryFulfillOrder((station, data), order, db); //Frontier TODO: Fix this?
-        }
+        //}
     }
 
     private void SetEnabled(EntityUid uid, CargoTelepadComponent component, ApcPowerReceiverComponent? receiver = null,
