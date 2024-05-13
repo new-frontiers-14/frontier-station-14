@@ -79,7 +79,7 @@ namespace Content.Server.Cargo.Systems
         private void OnInit(EntityUid uid, CargoOrderConsoleComponent orderConsole, ComponentInit args)
         {
             var station = _station.GetOwningStation(uid);
-            UpdateOrderState(orderConsole, station);
+            UpdateOrderState(uid, orderConsole, station);
         }
 
         private void Reset()
@@ -108,7 +108,7 @@ namespace Content.Server.Cargo.Systems
                     if (!_uiSystem.IsUiOpen(uid, CargoConsoleUiKey.Orders)) continue;
 
                     var station = _station.GetOwningStation(uid);
-                    UpdateOrderState(comp, station);
+                    UpdateOrderState(uid, comp, station);
                 }
             }
         }
@@ -273,6 +273,8 @@ namespace Content.Server.Cargo.Systems
             var bank = GetBankAccount(uid, component);
 
             if (!HasComp<BankAccountComponent>(player) && bank == null) return;
+
+
             if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
                 return;
 
@@ -302,22 +304,22 @@ namespace Content.Server.Cargo.Systems
         private void OnOrderUIOpened(EntityUid uid, CargoOrderConsoleComponent component, BoundUIOpenedEvent args)
         {
             var station = _station.GetOwningStation(uid);
-            UpdateOrderState(component, station);
+            UpdateOrderState(uid, component, station);
         }
 
         #endregion
 
-        private void UpdateOrderState(CargoOrderConsoleComponent component, EntityUid? station)
+        private void UpdateOrderState(EntityUid uid, CargoOrderConsoleComponent component, EntityUid? station)
         {
 
-            var uiUsers = _uiSystem.GetActorUis(component.Owner);
-
+            var uiUsers = _uiSystem.GetActors(uid, CargoConsoleUiKey.Orders);
+            Log.Info($"number of UI users is {uiUsers.Count()} ");
             foreach (var user in uiUsers)
             {
                 var balance = 0;
 
-                if (Transform(user.Entity).GridUid is EntityUid stationGrid &&
-                    TryComp<BankAccountComponent>(user.Entity, out var playerBank))
+                if (Transform(user).GridUid is EntityUid stationGrid &&
+                    TryComp<BankAccountComponent>(user, out var playerBank))
                 {
                     station = stationGrid;
                     balance = playerBank.Balance;
@@ -327,21 +329,23 @@ namespace Content.Server.Cargo.Systems
                     balance = stationBank.Balance;
                 }
 
+                Log.Error("recieved message and " + station.ToString() + MetaData(user).EntityName);
+
                 if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase, component))
                     return;
 
                 // Frontier - we only want to see orders made on the same computer, so filter them out
                 var filteredOrders = orderDatabase.Orders
-                    .Where(order => order.Computer == EntityManager.GetNetEntity(component.Owner)).ToList();
+                    .Where(order => order.Computer == EntityManager.GetNetEntity(uid)).ToList();
 
                 var state = new CargoConsoleInterfaceState(
-                    MetaData(user.Entity).EntityName,
+                    MetaData(user).EntityName,
                     GetOutstandingOrderCount(orderDatabase),
                     orderDatabase.Capacity,
                     balance,
                     filteredOrders);
 
-                _uiSystem.SetUiState(component.Owner, CargoConsoleUiKey.Orders, state);
+                _uiSystem.SetUiState(uid, CargoConsoleUiKey.Orders, state);
             }
         }
 
@@ -389,7 +393,7 @@ namespace Content.Server.Cargo.Systems
                 if (station != dbUid)
                     continue;
 
-                UpdateOrderState(comp, station);
+                UpdateOrderState(uid, comp, station);
             }
 
             var consoleQuery = AllEntityQuery<CargoShuttleConsoleComponent>();
