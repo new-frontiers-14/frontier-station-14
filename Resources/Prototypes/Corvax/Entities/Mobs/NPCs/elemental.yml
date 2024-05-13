@@ -662,8 +662,11 @@
   components:
   - type: Sprite
     sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
-    state: core
-    state: pulse
+    layers:
+    - state: core
+    - state: pulse
+      visible: false
+      map: ["decay"]
   - type: PointLight
     radius: 1.5
     energy: 3.5
