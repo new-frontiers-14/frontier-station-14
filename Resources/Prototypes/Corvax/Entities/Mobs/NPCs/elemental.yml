@@ -654,3 +654,17 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseAnomalyCore
+  id: GolemCore
+  suffix: Golem
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: golem_core
+  - type: PointLight
+    radius: 1.5
+    energy: 3.5
+    color: "#ffffff"
+    castShadows: false
