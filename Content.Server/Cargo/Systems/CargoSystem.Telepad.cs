@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Construction;
 using Content.Server.Paper;
@@ -10,6 +11,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using System.Xml.Schema;
+using Content.Server.Station.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -72,7 +75,7 @@ public sealed partial class CargoSystem
              List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
 
             var xform = Transform(uid);
-            if (FulfillNextOrder(orderDatabase, xform.Coordinates, comp.PrinterOutput))
+            if (FulfillNextOrder(consoleUidList, orderDatabase, xform.Coordinates, comp.PrinterOutput))
             {
                 _audio.PlayPvs(_audio.GetSound(comp.TeleportSound), uid, AudioParams.Default.WithVolume(-8f));
                 UpdateOrders(station.Value, orderDatabase);
@@ -103,7 +106,7 @@ public sealed partial class CargoSystem
 
     private void OnShutdown(Entity<CargoTelepadComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.CurrentOrders.Count == 0)
+        //if (ent.Comp.CurrentOrders.Count == 0) //Frontier - todo: find a smarter way to maybe fix this otherwise its exploity by forcing crate spawn on rando station
             return;
 
         if (_station.GetStations().Count == 0)
@@ -118,10 +121,10 @@ public sealed partial class CargoSystem
             !TryComp<StationDataComponent>(station, out var data))
             return;
 
-        foreach (var order in ent.Comp.CurrentOrders)
-        {
+        //foreach (var order in ent.Comp.CurrentOrders)
+        //{
             //TryFulfillOrder((station, data), order, db); //Frontier TODO: Fix this?
-        }
+        //}
     }
 
     private void SetEnabled(EntityUid uid, CargoTelepadComponent component, ApcPowerReceiverComponent? receiver = null,

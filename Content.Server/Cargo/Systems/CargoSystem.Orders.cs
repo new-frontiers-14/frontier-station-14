@@ -197,7 +197,7 @@ namespace Content.Server.Cargo.Systems
                 ("approverJob", approverJob),
                 ("cost", cost));
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-            ConsolePopup(args.Session, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(tradeDestination.Value).EntityName)));
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName)));
 
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,
@@ -212,7 +212,7 @@ namespace Content.Server.Cargo.Systems
             }
             _bankSystem.TryBankWithdraw(player, cost);
 
-            UpdateOrders(uid);
+            UpdateOrders(uid, orderDatabase);
         }
 
         // Frontier - consoleUid is required to find cargo pads
