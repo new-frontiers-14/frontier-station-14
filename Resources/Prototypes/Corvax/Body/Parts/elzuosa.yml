@@ -1,0 +1,93 @@
+- type: entity
+  id: PartElzuosa
+  parent: [BaseItem, BasePart]
+  name: "elzuosa body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ElectroBlood
+        Quantity: 10
+
+- type: entity
+  id: TorsoElzuosa
+  name: "elzuosa torso"
+  parent: [PartElzuosa, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ElectroBlood
+        Quantity: 20
+
+- type: entity
+  id: HeadElzuosa
+  name: "elzuosa head"
+  parent: [PartElzuosa, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ElectroBlood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmElzuosa
+  name: "left elzuosa arm"
+  parent: [PartElzuosa, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmElzuosa
+  name: "right elzuosa arm"
+  parent: [PartElzuosa, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandElzuosa
+  name: "left elzuosa hand"
+  parent: [PartElzuosa, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandElzuosa
+  name: "right elzuosa hand"
+  parent: [PartElzuosa, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegElzuosa
+  name: "left elzuosa leg"
+  parent: [PartElzuosa, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegElzuosa
+  name: "right elzuosa leg"
+  parent: [PartElzuosa, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: "r_leg"

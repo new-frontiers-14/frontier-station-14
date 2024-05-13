@@ -38,7 +38,7 @@ public sealed class SurveillanceCameraSpeakerSystem : EntitySystem
         if (time - component.LastSoundPlayed < cd
             && TryComp<SpeechComponent>(args.Speaker, out var speech))
         {
-            var sound = _speechSound.GetSpeechSound((args.Speaker, speech), args.Message);
+            var sound = _speechSound.GetSpeechSound((args.Speaker, speech), args.Message.OriginalMessage);
             _audioSystem.PlayPvs(sound, uid);
 
             component.LastSoundPlayed = time;
@@ -51,6 +51,6 @@ public sealed class SurveillanceCameraSpeakerSystem : EntitySystem
             ("originalName", nameEv.Name));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chatSystem.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, nameOverride: name);
+        _chatSystem.TrySendInGameICMessage(uid, args.Message.OriginalMessage, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, nameOverride: name, language: args.Message.Language);
     }
 }

@@ -12,14 +12,16 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public TimeSpan NextOffer;
     public bool Claimed;
     public bool Cooldown;
+    public bool CanFinish;
     public ushort ActiveMission;
     public List<SalvageMissionParams> Missions;
 
-    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions)
+    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, bool canFinish, ushort activeMission, List<SalvageMissionParams> missions)
     {
         NextOffer = nextOffer;
         Claimed = claimed;
         Cooldown = cooldown;
+        CanFinish = canFinish;
         ActiveMission = activeMission;
         Missions = missions;
     }
@@ -36,7 +38,7 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/terminal_insert_disc.ogg");
-    
+
     // Frontier - Adding error to the FTL warning - Hard to tell without it - PR 377
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
@@ -48,6 +50,9 @@ public sealed class ClaimSalvageMessage : BoundUserInterfaceMessage
 {
     public ushort Index;
 }
+
+[Serializable, NetSerializable]
+public sealed class FinishSalvageMessage : BoundUserInterfaceMessage;
 
 /// <summary>
 /// Added per station to store data on their available salvage missions.
@@ -66,6 +71,8 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("cooldown")]
     public bool Cooldown = false;
+
+    public bool CanFinish;
 
     /// <summary>
     /// Nexy time salvage missions are offered.

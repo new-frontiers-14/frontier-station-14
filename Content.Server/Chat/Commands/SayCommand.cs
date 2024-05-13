@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Corvax.Language.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
@@ -37,7 +38,8 @@ namespace Content.Server.Chat.Commands
                 return;
 
             IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>()
-                .TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player);
+                .TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player, language: IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().GetLanguage(playerEntity));
+
         }
     }
 }

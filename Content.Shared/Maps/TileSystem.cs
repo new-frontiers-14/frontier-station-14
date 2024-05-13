@@ -86,7 +86,7 @@ public sealed class TileSystem : EntitySystem
         return PryTile(tileRef);
     }
 
-	public bool PryTile(TileRef tileRef)
+    public bool PryTile(TileRef tileRef)
     {
         return PryTile(tileRef, false);
     }
@@ -99,6 +99,9 @@ public sealed class TileSystem : EntitySystem
             return false;
 
         var tileDef = (ContentTileDefinition) _tileDefinitionManager[tile.TypeId];
+
+        if (!tileDef.CanCrowbar)
+            return false;
 
         return DeconstructTile(tileRef);
     }

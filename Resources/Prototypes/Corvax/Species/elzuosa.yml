@@ -1,0 +1,121 @@
+- type: species
+  id: Elzuosa
+  name: species-name-elzuosa
+  roundStart: true
+  prototype: MobElzuosa
+  sprites: MobElzuosaSprites
+  defaultSkinTone: "#eb943d"
+  markingLimits: MobElzuosaMarkingLimits
+  dollPrototype: MobElzuosaDummy
+  skinColoration: Hues
+
+- type: speciesBaseSprites
+  id: MobElzuosaSprites
+  sprites:
+    Head: MobElzuosaHead
+    Snout: MobHumanoidAnyMarking
+    Chest: MobElzuosaTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobElzuosaEyes
+    LArm: MobElzuosaLArm
+    RArm: MobElzuosaRArm
+    LHand: MobElzuosaLHand
+    RHand: MobElzuosaRHand
+    LLeg: MobElzuosaLLeg
+    RLeg: MobElzuosaRLeg
+
+- type: markingPoints
+  id: MobElzuosaMarkingLimits
+  points:
+    Tail:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    HeadTop:
+      points: 1
+      required: false
+    HeadSide:
+      points: 1
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobElzuosaHead
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobElzuosaHeadMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobElzuosaEyes
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobElzuosaHeadFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobElzuosaTorso
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobElzuosaTorsoMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobElzuosaTorsoFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobElzuosaLLeg
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobElzuosaLHand
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobElzuosaLArm
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobElzuosaRLeg
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobElzuosaRHand
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobElzuosaRArm
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Elzuosa/parts.rsi
+    state: r_arm

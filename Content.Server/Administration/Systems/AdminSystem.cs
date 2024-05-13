@@ -9,8 +9,11 @@ using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._NF.Bank.Events;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
+using Content.Shared.Bank.Components;
+using Content.Shared.Bank.Events;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -84,6 +87,8 @@ namespace Content.Server.Administration.Systems
             SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
             SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
             SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+            SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged);
+
         }
 
         private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -182,6 +187,12 @@ namespace Content.Server.Administration.Systems
             _roundActivePlayers.Add(ev.Player.UserId);
             UpdatePlayerList(ev.Player);
         }
+        private void OnBalanceChanged(BalanceChangedEvent ev)
+        {
+            if (ev.Amount == 0)
+                return;
+            UpdatePlayerList(ev.Player);
+        }
 
         public override void Shutdown()
         {
@@ -210,11 +221,20 @@ namespace Content.Server.Administration.Systems
             var name = data.UserName;
             var entityName = string.Empty;
             var identityName = string.Empty;
+            int balance = 0;
 
             if (session?.AttachedEntity != null)
             {
                 entityName = EntityManager.GetComponent<MetaDataComponent>(session.AttachedEntity.Value).EntityName;
                 identityName = Identity.Name(session.AttachedEntity.Value, EntityManager);
+                if(EntityManager.TryGetComponent<BankAccountComponent>(session.AttachedEntity.Value, out var comp))
+                {
+                    balance = comp.Balance;
+                }
+                else
+                {
+                    balance = int.MinValue; // Эквивалент отсутствующего баланса
+                }
             }
 
             var antag = false;
@@ -235,7 +255,7 @@ namespace Content.Server.Administration.Systems
             }
 
             return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime, balance);
         }
 
         private void OnPanicBunkerChanged(bool enabled)

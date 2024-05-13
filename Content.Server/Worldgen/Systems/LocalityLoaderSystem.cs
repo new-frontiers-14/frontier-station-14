@@ -22,7 +22,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
 
     // Duration to reset the despawn timer to when a debris is loaded into a player's view.
-    private const float DebrisActiveDuration = 300; // 5 минут Corvax.
+    private const float DebrisActiveDuration = 1200; // 10 минут Corvax.
 
     public override void Initialize()
     {

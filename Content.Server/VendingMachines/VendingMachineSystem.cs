@@ -393,6 +393,17 @@ namespace Content.Server.VendingMachines
                 return;
             }
 
+            // Luna fix start
+            // Проверяем, доступен ли товар для продажи
+            var entry = GetEntry(uid, itemId, type, component);
+            if (entry == null || entry.Amount <= 0)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
+                Deny(uid, component);
+                return;
+            }
+            // Luna fix end
+
             if (IsAuthorized(uid, sender, component))
             {
                 if (_bankSystem.TryBankWithdraw(sender, totalPrice))

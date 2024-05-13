@@ -3,6 +3,7 @@ materials-glass = стекло
 materials-reinforced-glass = бронестекло
 materials-plasma-glass = плазменное стекло
 materials-reinforced-plasma-glass = плазменное бронестекло
+materials-magmite = магмитовая сталь
 # Metals
 materials-steel = сталь
 materials-gold = золото
@@ -33,3 +34,4 @@ materials-raw-plasma = руда плазмы
 materials-raw-uranium = руда урана
 materials-raw-bananium = руда бананиума
 materials-raw-salt = каменная соль
+materials-raw-magmite = магмитовая руда

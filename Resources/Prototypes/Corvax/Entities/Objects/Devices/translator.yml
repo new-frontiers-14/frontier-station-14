@@ -1,0 +1,29 @@
+- type: entity
+  id: Translator
+  parent: [ BaseItem, PowerCellSlotMediumItem ]
+  name: universal-translator
+  description: "universal-translator-desc"
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Devices/translator.rsi
+    layers:
+    - state: icon
+      map: ["enum.LanguageTranslatorVisuals.Layer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.LanguageTranslatorVisuals.Activated:
+        enum.LanguageTranslatorVisuals.Layer:
+          True: { state: icon }
+          False: { state: icon_off }
+  - type: LanguageTranslator
+
+- type: entity
+  id: EmptyTranslator
+  parent: Translator
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

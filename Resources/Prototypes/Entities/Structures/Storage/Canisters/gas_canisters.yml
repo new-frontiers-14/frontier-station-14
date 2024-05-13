@@ -65,15 +65,15 @@
       damageContainer: Inorganic
       damageModifierSet: Metallic
     - type: Physics
-      bodyType: KinematicController
-      canCollide: false
+      bodyType: Dynamic
+      canCollide: true
     - type: Fixtures
       fixtures:
         fix1:
           shape:
             !type:PhysShapeAabb
             bounds: "-0.25,-0.25,0.25,0.25"
-          density: 190
+          density: 400
           mask:
           - SmallMobMask #this is so they can go under plastic flaps
           layer:

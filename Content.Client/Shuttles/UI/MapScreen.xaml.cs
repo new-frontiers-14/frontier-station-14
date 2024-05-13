@@ -49,8 +49,8 @@ public sealed partial class MapScreen : BoxContainer
     private TimeSpan _pingCooldown = TimeSpan.FromSeconds(3);
     private TimeSpan _nextMapDequeue;
 
-    private float _minMapDequeue = 0.05f;
-    private float _maxMapDequeue = 0.25f;
+    private float _minMapDequeue = 0.01f;
+    private float _maxMapDequeue = 0.05f;
 
     private StyleBoxFlat _ftlStyle;
 

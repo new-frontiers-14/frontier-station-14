@@ -1,0 +1,281 @@
+- type: entity
+  id: BaseGem
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Materials/gems.rsi
+  - type: StaticPrice
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Gems
+
+- type: entity
+  id: GemRuby
+  parent: BaseGem
+  name: ruby
+  description: red and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: ruby
+    - state: shine
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GemSapphire
+  parent: BaseGem
+  name: sapphire
+  description: blue and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: sapphire
+    - state: shine
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GemEmerald
+  parent: BaseGem
+  name: emerald
+  description: green and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: emerald
+    - state: shine
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GemTopaz
+  parent: BaseGem
+  name: topaz
+  description: orange and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: topaz
+    - state: shine
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GemRuperiumBroken
+  parent: BaseGem
+  name: broken ruperium
+  description: green...
+  components:
+  - type: Sprite
+    state: rupee_broken
+  - type: WelderRefinable
+    refineTime: 10
+    refineResult:
+    - SheetUranium30
+  - type: RadiationSource
+    intensity: 3
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  id: GemRuperium
+  parent: GemRuperiumBroken
+  name: ruperium
+  description: green and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: rupee
+    - state: shine
+  - type: RadiationSource
+    enabled: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GemRuperiumBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: GemFrozenDiamond
+  parent: BaseGem
+  name: diamond
+  description: shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: diamond
+    - state: shine
+  - type: StaticPrice
+    price: 700
+
+- type: entity
+  id: GemHardenedShell
+  parent: BaseGem
+  name: hardened shell
+  description: yellow and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: magma
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#f08818"
+    radius: 1
+  - type: WelderRefinable
+    refineTime: 10
+    refineResult:
+    - IngotGold30
+  - type: StaticPrice
+    price: 700
+
+- type: entity
+  id: GemStabilizedBaroxuldium
+  parent: BaseGem
+  name: stabilized baroxuldium
+  description: purple and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: phoron
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#9741d4"
+    radius: 1
+  - type: WelderRefinable
+    refineTime: 10
+    refineResult:
+    - SheetPlasma30
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: GemCompactedDilithium
+  parent: BaseGem
+  name: compacted dilithium
+  description: purple and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: purple
+    - state: shine
+  - type: HandheldGPS
+  - type: StaticPrice
+    price: 1200
+
+- type: entity
+  id: GemDragonPearls
+  parent: BaseGem
+  name: dragon pearls
+  description: yellow and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: amber
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#ed7626"
+    radius: 1
+  - type: StaticPrice
+    price: 1400
+
+- type: entity
+  id: GemHollowCrystal
+  parent: BaseGem
+  name: hollow crystal
+  description: blue and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: void
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#4e52f7"
+    radius: 1
+  - type: StaticPrice
+    price: 1600
+
+- type: entity
+  id: GemBloodStone
+  parent: BaseGem
+  name: blood stone
+  description: red and shiny.
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#df2d2d"
+    radius: 1
+  - type: StaticPrice
+    price: 1800
+
+- type: entity
+  id: GemBluespaceDataCrystal
+  parent: BaseGem
+  name: bluespace data crystal
+  description: blue, glitters and dazzles.
+  components:
+  - type: Sprite
+    layers:
+    - state: data
+    - state: shine
+  - type: PointLight
+    enabled: true
+    color: "#5583f8"
+    radius: 4
+  - type: StaticPrice
+    price: 2000

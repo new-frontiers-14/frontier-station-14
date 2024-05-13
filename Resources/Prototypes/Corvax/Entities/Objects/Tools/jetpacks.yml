@@ -1,0 +1,31 @@
+#Empty blue
+- type: entity
+  id: JetpackMining
+  parent: BaseJetpack
+  name: jetpack
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Tanks/Jetpacks/mining.rsi
+  - type: Clothing
+    sprite: Corvax/Objects/Tanks/Jetpacks/mining.rsi
+    slots:
+      - Back
+      - suitStorage
+
+# Filled blue
+- type: entity
+  id: JetpackMiningFilled
+  parent: JetpackMining
+  name: jetpack
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        - 1.025689525 # oxygen
+        - 1.025689525 # nitrogen

@@ -50,7 +50,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private List<Entity<MapGridComponent>> _grids = new();
 
-    public ShuttleNavControl() : base(64f, 256f, 256f)
+    public ShuttleNavControl() : base(64f, 384f, 384f)
     {
         RobustXamlLoader.Load(this);
         _shuttles = EntManager.System<SharedShuttleSystem>();
