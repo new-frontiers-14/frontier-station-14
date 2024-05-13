@@ -209,8 +209,8 @@
   - ContractorClothingOuterCoatLab
   - ContractorClothingOuterCoatLabGene
   - ContractorClothingOuterCoatLabChem
-  - ContractorClothingOuterCoatLabRnd
-  - ContractorClothingOuterCoatLabRobo
+  # - ContractorClothingOuterCoatLabRnd
+  - ContractorClothingOuterCoatRobo
   - ContractorClothingOuterCoatLabViro
   - ContractorClothingOuterBioScientist
   - ContractorClothingOuterWinterCoat
@@ -534,7 +534,7 @@
   - ContractorClothingEyesEyepatchHudMedical
   
 - type: loadoutGroup
-  id: ContractorUtility
+  id: ContractorUtility # Right Hand - 1 only
   name: loadout-group-contractor-utility
   minLimit: 0
   loadouts:
@@ -554,7 +554,7 @@
   - ContractorHypoMini
   
 - type: loadoutGroup
-  id: ContractorFun
+  id: ContractorFun # Left Hand - 1 only
   name: loadout-group-contractor-fun
   minLimit: 0
   loadouts:
@@ -591,3 +591,46 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+
+- type: loadoutGroup
+  id: ContractorTrinkets
+  name: loadout-group-contractor-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ContractorCigPackBlue
+  - ContractorCigPackRed
+  - ContractorCigPackBlack
+  - ContractorCigPackGreen
+  - ContractorCigarCase
+  - ContractorNFAshtray
+  - ContractorSmokingPipeFilledTobacco
+  - ContractorVape
+  - ContractorCigarGoldCase
+  - ContractorMatchbox
+  - ContractorLighter
+  - ContractorFlippoLighter
+  - ContractorFlippoEngravedLighter
+  - ContractorDrinkFlaskOld
+  - ContractorDrinkShinyFlask
+  - ContractorDrinkFlask
+  - ContractorDrinkVacuumFlask
+  - ContractorFlashlightLantern
+  - ContractorBasketball
+  - ContractorFootball
+  - ContractorBeachBall
+  - ContractorCrayonBox
+  - ContractorSoapNT
+  # Frontier - try to mirror the upstream trinkets here, but only if they arent job role restricted in some weird way
+  - PlushieLizard
+  - ClothingNeckLGBTPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
