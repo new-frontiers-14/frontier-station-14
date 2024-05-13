@@ -6,6 +6,7 @@ using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Corvax.Respawn;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
@@ -230,6 +231,8 @@ namespace Content.Server.GameTicking
                     ), Loc.GetString("latejoin-arrival-sender"),
                     playDefaultSound: false);
             }
+
+            AddComp<RespawnResetComponent>(mob);
 
             // who tf is perma oWo
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

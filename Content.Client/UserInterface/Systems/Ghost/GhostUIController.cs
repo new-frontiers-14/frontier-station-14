@@ -12,6 +12,7 @@ using Robust.Shared.IoC;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Timing;
+using Content.Server.Corvax.Respawn;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -23,6 +24,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
+    [UISystemDependency] private readonly RespawnSystem? _respawn = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
     private bool _canUncryo = true; // Frontier. TODO: find a reliable way to update this, for now it just stays active all the time
@@ -75,7 +77,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
-            _system?.Player?.TimeOfDeath,
+            _respawn?.RespawnResetTime,
             _cfg.GetCVar(NF14CVars.RespawnTime),
             _canUncryo && _cfg.GetCVar(NF14CVars.CryoReturnEnabled));
     }
@@ -103,7 +105,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             return;
 
         Gui.Visible = true;
-        UpdateRespawn(component.TimeOfDeath);
+        UpdateRespawn(_respawn?.RespawnResetTime);
         UpdateGui();
     }
 
