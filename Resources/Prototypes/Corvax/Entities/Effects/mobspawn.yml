@@ -1,0 +1,256 @@
+﻿- type: entity
+  id: MobSpawnBananiumCrabSalvage
+  name: mobspawner bananium crab
+  suffix: salvage
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_bananium
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: TimedDespawn
+    lifetime: 2.1
+  - type: SpawnOnDespawn
+    prototype: MobBananiumCrabSalvage
+
+- type: entity
+  id: MobSpawnCoalCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner coal crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_coal
+  - type: SpawnOnDespawn
+    prototype: MobCoalCrabSalvage
+    
+- type: entity
+  id: MobSpawnGoldCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner gold crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_gold
+  - type: SpawnOnDespawn
+    prototype: MobGoldCrabSalvage
+    
+- type: entity
+  id: MobSpawnIronCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner iron crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_iron
+  - type: SpawnOnDespawn
+    prototype: MobIronCrabSalvage
+    
+- type: entity
+  id: MobSpawnMagmiteCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner magmite crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_magmite
+  - type: SpawnOnDespawn
+    prototype: MobMagmiteCrabSalvage
+    
+- type: entity
+  id: MobSpawnPlasmaCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner plasma crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_plasma
+  - type: SpawnOnDespawn
+    prototype: MobPlasmaCrabSalvage
+    
+- type: entity
+  id: MobSpawnQuartzCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner quartz crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_quartz
+  - type: SpawnOnDespawn
+    prototype: MobQuartzCrabSalvage
+    
+- type: entity
+  id: MobSpawnSaltCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner salt crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_salt
+  - type: SpawnOnDespawn
+    prototype: MobSaltCrabSalvage
+    
+- type: entity
+  id: MobSpawnSilverCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner silver crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_silver
+  - type: SpawnOnDespawn
+    prototype: MobSilverCrabSalvage
+    
+- type: entity
+  id: MobSpawnUraniumCrabSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner uranium crab
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: crab_uranium
+  - type: SpawnOnDespawn
+    prototype: MobUraniumCrabSalvage
+    
+- type: entity
+  id: MobSpawnBananiumGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner bananium golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobBananiumGolemSalvage
+    
+- type: entity
+  id: MobSpawnCoalGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner coal golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobCoalGolemSalvage
+    
+- type: entity
+  id: MobSpawnGoldGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner gold golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobGoldGolemSalvage
+    
+- type: entity
+  id: MobSpawnIronGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner iron golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobIronGolemSalvage
+    
+- type: entity
+  id: MobSpawnMagmiteGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner magmite golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobMagmiteGolemSalvage
+    
+- type: entity
+  id: MobSpawnPlasmaGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner plasma golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobPlasmaGolemSalvage
+    
+- type: entity
+  id: MobSpawnQuartzGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner quartz golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobQuartzGolemSalvage
+    
+- type: entity
+  id: MobSpawnSaltGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner salt golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobSaltGolemSalvage
+    
+- type: entity
+  id: MobSpawnSilverGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner silver golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobSilverGolemSalvage
+    
+- type: entity
+  id: MobSpawnUraniumGolemSalvage
+  parent: MobSpawnBananiumCrabSalvage
+  name: mobspawner uranium golem
+  suffix: salvage
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Effects/mobspawn.rsi
+    state: golem
+  - type: SpawnOnDespawn
+    prototype: MobUraniumGolemSalvage
