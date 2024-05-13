@@ -1,9 +1,7 @@
 - type: loadoutGroup
-  id: PilotJumpsuit
+  id: ContractorJumpsuit
   name: loadout-group-contractor-jumpsuit
-  loadouts: #First Section: Role specific freebies/discounts/rewards
-  - PilotClothingUniformJumpsuitPilot
-#Second Section: Contractor list
+  loadouts:
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
   - ContractorClothingUniformJumpsuitAtmos
@@ -127,13 +125,9 @@
   - ContractorClothingUniformJumpsuitTshirtJeansPeach
 
 - type: loadoutGroup
-  id: PilotBackpack
+  id: ContractorBackpack
   name: loadout-group-contractor-backpack
   loadouts:
-  - PilotClothingBackpackPilotFilled
-  - PilotClothingBackpackDuffelPilotFilled
-  - PilotClothingBackpackSatchelPilotFilled
-  - PilotClothingBackpackSatchelMessengerFilled
   - ContractorClothingBackpackFilled
   - ContractorClothingBackpackDuffelFilled
   - ContractorClothingBackpackSatchelFilled
@@ -192,11 +186,10 @@
   - ContractorClothingBackpackMessengerMimeFilled
   
 - type: loadoutGroup
-  id: PilotOuterClothing
+  id: ContractorOuterClothing
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - PilotClothingOuterHardsuitPilot
   - ContractorClothingOuterSuitEmergency
   - ContractorClothingOuterHardsuitEVA
   - ContractorClothingOuterHardsuitBasic
@@ -263,10 +256,32 @@
   - ContractorClothingOuterCoatSpaceAsshole
 
 - type: loadoutGroup
-  id: PilotShoes
+  id: ContractorBelt
+  name: loadout-group-contractor-belt
+  minLimit: 0
+  loadouts:
+  - ContractorClothingBeltPlantFilled
+  - ContractorClothingBeltChefFilled
+  - ContractorClothingBeltStorageWaistbag
+  - ContractorClothingBeltMedical
+  - ContractorClothingBeltUtilityFilled
+  - ContractorClothingBeltSalvageWebbing
+  - ContractorBoxFolderClipboard
+  - ContractorClothingBeltPilotFilled
+  - ContractorClothingBeltBandolier
+  - ContractorClothingBeltHolster
+  - ContractorClothingBeltChaplainSash
+  - ContractorBooksBag
+  - ContractorChemBag
+  - ContractorOreBag
+  - ContractorPlantBag
+  - ContractorClothingBeltMartialBlack
+  - ContractorClothingBeltChampion
+
+- type: loadoutGroup
+  id: ContractorShoes
   name: loadout-group-contractor-shoes
   loadouts:
-  - PilotClothingShoesBootsPilot
   - ContractorClothingShoesColorBlack
   - ContractorClothingShoesClothwarp
   - ContractorClothingShoesTourist
@@ -323,11 +338,10 @@
   - ContractorClothingShoesBling
 
 - type: loadoutGroup
-  id: PilotHead
+  id: ContractorHead
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
-  - PilotClothingHeadHatPilot
   - ContractorClothingHeadHelmetEVALarge
   - ContractorClothingHeadBandBlack
   - ContractorClothingHeadBandBlue
@@ -393,11 +407,10 @@
   - ContractorClothingHeadHatTophat
   
 - type: loadoutGroup
-  id: PilotGloves
+  id: ContractorGloves
   name: loadout-group-contractor-gloves
   minLimit: 0
   loadouts:
-  - PilotClothingHandsGlovesPilot
   - ContractorClothingHandsGlovesColorYellow
   - ContractorClothingHandsGlovesLeather
   - ContractorClothingHandsGlovesFingerless
@@ -420,11 +433,10 @@
   - ContractorClothingHandsGlovesColorWhite
 
 - type: loadoutGroup
-  id: PilotNeck
+  id: ContractorNeck
   name: loadout-group-contractor-neck
   minLimit: 0
   loadouts:
-  - PilotClothingNeckScarfPilot
   - ContractorClothingNeckScarfStripedBlack
   - ContractorClothingNeckScarfStripedBlue
   - ContractorClothingNeckScarfStripedBrown
@@ -467,10 +479,9 @@
   - ContractorClothingNeckBling
 
 - type: loadoutGroup
-  id: PilotPDA
+  id: ContractorPDA
   name: loadout-group-contractor-id
   loadouts:
-  - PilotPilotPDA
   - ContractorClearPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
@@ -506,11 +517,10 @@
   - ContractorMimePDA
   
 - type: loadoutGroup
-  id: PilotGlasses
+  id: ContractorGlasses
   name: loadout-group-contractor-glasses
   minLimit: 0
   loadouts:
-  - ClothingEyesGlassesPilot
   - ContractorClothingEyesGlasses
   - ContractorClothingEyesGlassesCheapSunglasses
   - ContractorClothingEyesBlindfold
@@ -522,13 +532,55 @@
   - ContractorClothingEyesHudMedical
   - ContractorClothingEyesEyepatchHudDiag
   - ContractorClothingEyesEyepatchHudMedical
-
+  
 - type: loadoutGroup
-  id: PilotFace
+  id: ContractorUtility # Right Hand - 1 only
+  name: loadout-group-contractor-utility
+  minLimit: 0
+  loadouts:
+  - ContractorAppraisalTool
+  - ContractorPickaxe
+  - ContractorHandheldGPSBasic
+  - ContractorRadioHandheld
+  - ContractorNetworkConfigurator
+  - ContractorHandheldHealthAnalyzerUnpowered
+  - ContractorAnomalyScanner
+  - ContractorBucket
+  - ContractorGeigerCounter
+  - ContractorWeaponProtoKineticAccelerator
+  - ContractorPinpointerUniversal
+  - ContractorShipyardRCD
+  - ContractorHandheldCrewMonitor
+  - ContractorHypoMini
+  
+- type: loadoutGroup
+  id: ContractorFun # Left Hand - 1 only
+  name: loadout-group-contractor-fun
+  minLimit: 0
+  loadouts:
+  - ContractorBriefcaseBrownFilled
+  - ContractorToolboxEmergency
+  - ContractorToolboxMechanical
+  - ContractorPlushieSharkGrey
+  - ContractorPlushieSharkBlue
+  - ContractorPlushieSharkPink
+  - ContractorHarmonicaInstrument
+  - ContractorSaxophoneInstrument
+  - ContractorAcousticGuitarInstrument
+  - ContractorCane
+  - ContractorLGBTQHandyFlag
+  - ContractorNTHandyFlag
+  - ContractorBalloonNT
+  - ContractorPonderingOrb
+  - ContractorPlushieRGBee
+  - ContractorDawInstrumentFlatpack
+  - ContractorHoverbikeFlatpack
+  
+- type: loadoutGroup
+  id: ContractorFace
   name: loadout-group-contractor-face
   minLimit: 0
   loadouts:
-  - PilotClothingMaskPilot
   - ContractorClothingMaskSterile
   - ContractorClothingMaskGas
   - ContractorClothingMaskGasExplorer
@@ -539,3 +591,46 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+
+- type: loadoutGroup
+  id: ContractorTrinkets
+  name: loadout-group-contractor-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ContractorCigPackBlue
+  - ContractorCigPackRed
+  - ContractorCigPackBlack
+  - ContractorCigPackGreen
+  - ContractorCigarCase
+  - ContractorNFAshtray
+  - ContractorSmokingPipeFilledTobacco
+  - ContractorVape
+  - ContractorCigarGoldCase
+  - ContractorMatchbox
+  - ContractorLighter
+  - ContractorFlippoLighter
+  - ContractorFlippoEngravedLighter
+  - ContractorDrinkFlaskOld
+  - ContractorDrinkShinyFlask
+  - ContractorDrinkFlask
+  - ContractorDrinkVacuumFlask
+  - ContractorFlashlightLantern
+  - ContractorBasketball
+  - ContractorFootball
+  - ContractorBeachBall
+  - ContractorCrayonBox
+  - ContractorSoapNT
+  # Frontier - try to mirror the upstream trinkets here, but only if they arent job role restricted in some weird way
+  - PlushieLizard
+  - ClothingNeckLGBTPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
