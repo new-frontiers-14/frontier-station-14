@@ -683,6 +683,24 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: BannerGoblin01
+  name: goblinkind banner
+  description: A banner displaying the ancient goblinkind logo.
+  graph: BannersGraph
+  startNode: start
+  targetNode: BannerGoblin01
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: banner_goblin
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
 # Altars
 - type: construction
   id: AltarToolbox
@@ -933,6 +951,23 @@
   icon:
     sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
     state: festival
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarMail
+  name: mail altar
+  description: Altar of the Gods.
+  graph: AltarsGraph
+  startNode: start
+  targetNode: AltarMailNode
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: mail
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

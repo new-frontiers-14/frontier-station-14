@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskGasExplorer
   id: ClothingMaskArcadia
   name: arcadia battle mask
   description: A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
@@ -8,15 +8,10 @@
     sprite: _NF/Clothing/Masks/arcadia.rsi
   - type: Clothing
     sprite: _NF/Clothing/Masks/arcadia.rsi
-  - type: BreathMask
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.80
-        Slash: 0.80
-        Piercing: 0.90
-        Heat: 0.90
+  - type: Tag
+    tags:
+    - ClothMade
+    - HidesHair
 
 - type: entity
   parent: ClothingMaskBase
@@ -45,3 +40,57 @@
   - type: Clothing
     sprite: _NF/Clothing/Masks/pilot.rsi
   - type: BreathMask
+
+- type: entity
+  parent: ClothingMaskGasSecurity
+  id: ClothingMaskGasNfsd
+  name: nfsd gas mask
+  description: A standard issue nfsd gas mask.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/nfsd.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/nfsd.rsi
+
+- type: entity
+  parent: ClothingMaskGasSecurity
+  id: ClothingMaskGasSheriff
+  name: nfsd sheriff gas mask
+  description: A gas mask worthy of a sheriff.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/nfsd_sheriff.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/nfsd_sheriff.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskPullableBase
+  id: ClothingMaskCultJanitor
+  name: cult leader mask
+  description: A close-fitting imposing breathing mask designed for cult leaders who value style.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Masks/cult_janitor_mask.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Masks/cult_janitor_mask.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+  - type: Contraband
+  - type: Tag
+    tags:
+    - ClothMade
+    - HidesHair

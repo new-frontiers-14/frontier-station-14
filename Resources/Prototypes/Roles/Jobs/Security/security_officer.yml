@@ -2,10 +2,11 @@
   id: SecurityOfficer
   name: job-name-security
   description: job-description-security
-  playTimeTracker: JobSecurityOfficer
+  playTimeTracker: JobSecurityOfficerOld
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000 # Frontier - 10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 #10 hrs
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
@@ -16,11 +17,11 @@
   - Maintenance
   - Service
   - External
-  - Mercenary # Frontier
-  - Captain # Frontier
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant ]
+  setPreference: false # Frontier
 
 - type: startingGear
   id: SecurityOfficerGear
@@ -28,15 +29,13 @@
     jumpsuit: ClothingUniformJumpsuitSec
     back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHelmetBasic
     outerClothing: ClothingOuterArmorBasic
     id: SecurityPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
-    gloves: ClothingHandsGlovesCombat # Frontier
+    pocket1: WeaponPistolMk58
   innerClothingSkirt: ClothingUniformJumpskirtSec
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackMessengerSecurityFilled # Frontier

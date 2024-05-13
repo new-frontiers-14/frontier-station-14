@@ -1,6 +1,8 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.GameObjects; // Frontier modification
+using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
@@ -16,7 +18,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
     {
         WallColor = new Color(192, 122, 196);
         TileColor = new(71, 42, 72);
-        _backgroundColor = Color.FromSrgb(TileColor.WithAlpha(_backgroundOpacity));
+        BackgroundColor = Color.FromSrgb(TileColor.WithAlpha(BackgroundOpacity));
 
         _trackedEntityLabel = new Label
         {
@@ -30,7 +32,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
         {
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor = _backgroundColor,
+                BackgroundColor = BackgroundColor,
             },
 
             Margin = new Thickness(5f, 10f),
@@ -43,9 +45,9 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
         this.AddChild(_trackedEntityPanel);
     }
 
-    protected override void Draw(DrawingHandleScreen handle)
+    protected override void FrameUpdate(FrameEventArgs args)
     {
-        base.Draw(handle);
+        base.FrameUpdate(args);
 
         if (Focus == null)
         {
@@ -63,7 +65,9 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
             if (!LocalizedNames.TryGetValue(netEntity, out var name))
                 name = "Unknown";
 
-            var message = name + "\nLocation: [x = " + MathF.Round(blip.Coordinates.X) + ", y = " + MathF.Round(blip.Coordinates.Y) + "]";
+            // Text location of the blip will display GPS coordinates for the purpose of being able to find a person via GPS
+            // Previously it displayed coordinates relative to the center of the station, which had no use.
+            var message = name + "\nLocation: [x = " + MathF.Round(blip.MapCoordinates.X) + ", y = " + MathF.Round(blip.MapCoordinates.Y) + "]"; // Frontier modification
 
             _trackedEntityLabel.Text = message;
             _trackedEntityPanel.Visible = true;

@@ -1,5 +1,6 @@
 - type: salvageFaction
   id: Xenos
+  cost: 4
   groups:
   - entries:
     - id: MobXeno
@@ -40,6 +41,7 @@
 
 - type: salvageFaction
   id: Carps
+  cost: 1
   groups:
   - entries:
     - id: MobCarpDungeon
@@ -64,3 +66,91 @@
     DefenseStructure: CarpStatue
     Mining: Carps
     Megafauna: MobDragonDungeon
+
+# Frontier
+- type: salvageFaction
+  id: Syndicate
+  cost: 9
+  groups:
+  - entries:
+    - id: SpawnMobSyndicateNavalDeckhand
+      amount: 2
+      maxAmount: 3
+    - id: SpawnMobSyndicateNavalEngineer
+      amount: 1
+  - entries:
+    - id: SpawnMobSyndicateNavalSaboteur
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: SpawnMobSyndicateNavalMedic
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: WeaponTurretSyndicate
+      amount: 1
+    prob: 0.25
+  - entries:
+      - id: SpawnMobSyndicateNavalOperator
+        amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobSyndicateNavalCaptain
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: SpawnMobSyndicateNavalHorror
+      amount: 0
+      maxAmount: 1
+    prob: 0.001
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Mining: Xenos # No idea what this thing does or where to look for it
+    Megafauna: MobSyndicateNavalCommanderA # Can't use spawner here
+
+- type: salvageFaction
+  id: Cultists
+  cost: 7
+  groups:
+  - entries:
+    - id: SpawnMobBloodCultLeech
+      amount: 2
+      maxAmount: 3
+    - id: SpawnMobBloodCultistZealotRanged
+      amount: 1
+  - entries:
+    - id: SpawnMobBloodCultistZealotMelee
+      amount: 1
+      maxAmount: 3
+    prob: 0.5
+  - entries:
+    - id: SpawnMobBloodCultistCaster
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: BloodCultTurret
+      amount: 1
+    - id: SpawnMobBloodCultistZealotRanged
+      amount: 1
+    prob: 0.25
+  - entries:
+      - id: SpawnMobBloodCultistAcolyte
+        amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobBloodCultistPriest
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: SpawnMobBloodCultistJanitor
+      amount: 1
+    - id: SpawnMobBloodCultistZealotMelee
+      amount: 1
+    prob: 0.05
+  configs:
+    DefenseStructure: BloodCollector
+    Mining: Xenos # No idea what this thing does or where to look for it
+    Megafauna: MobBloodCultistAscended

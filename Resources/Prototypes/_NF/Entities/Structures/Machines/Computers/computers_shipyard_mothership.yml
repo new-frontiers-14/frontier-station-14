@@ -1,0 +1,114 @@
+# Custom console
+- type: entity
+  id: BaseMothershipComputer
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  suffix: Mothership
+  description: Used on motherships to purchase and sell ships without returning to a station.
+  abstract: true
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Custom
+      type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardListing
+
+# The empress console
+- type: entity
+  id: EmpressMothershipComputer
+  parent: BaseMothershipComputer
+  name: empress shipyard console
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_nfsd
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    shuttles:
+    - Fighter
+    - Cleric
+    - Rogue
+
+# The mccargo console
+- type: entity
+  id: McCargoMothershipComputer
+  parent: BaseMothershipComputer
+  name: mccargo shipyard console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - McDelivery
+ 
+# The caduceus console
+- type: entity
+  id: CaduceusMothershipComputer
+  parent: BaseMothershipComputer
+  name: caduceus shipyard console
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_medical
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_medical
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShipyardListing
+    shuttles:
+    - Pulse
+    - Searchlight
+
+# The GASBENDA-A-A-AH (sick metal guitar riff) console
+- type: entity
+  id: GasbenderMothershipComputer
+  parent: BaseMothershipComputer
+  name: gasbender shipyard console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Pioneer
+    - Prospector
+    - Chisel
+
+# The crescent console
+- type: entity
+  id: CrescentMothershipComputer
+  parent: BaseMothershipComputer
+  name: crescent shipyard console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Bocadillo
+    - Pulse
+    - PTS
+    - Construct
+    - Pioneer
+    - Loader
+    - Legman
+    - Liquidator
+    - Mission
+    - Honker
+
+# The mail console
+- type: entity
+  id: MailCarrierMothershipComputer
+  parent: BaseMothershipComputer
+  name: mail carrier shipyard console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - MailPod
+    - MailTruck
+#  - type: AccessReader # Cannot lock it for mail since the inserted card will be missing from you
+#    access: [["Mail"]] # Cannot lock it for mail since the inserted card will be missing from you

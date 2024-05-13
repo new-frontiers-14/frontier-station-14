@@ -1,6 +1,7 @@
 using System.Numerics;
 using System.Threading;
 using Content.Server.DoAfter;
+using Content.Server.Inventory;
 using Content.Server.Resist;
 using Content.Server.Popups;
 using Content.Server.Item.PseudoItem;
@@ -17,17 +18,16 @@ using Content.Shared.Climbing.Events; // Added this.
 using Content.Shared.Carrying;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Pulling;
-using Content.Shared.Pulling.Components;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Item.PseudoItem;
-using Content.Shared.Mind.Components;
 using Content.Shared.Throwing;
-using Content.Shared.Physics.Pull;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Events;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
 
@@ -39,12 +39,13 @@ namespace Content.Server.Carrying
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly StandingStateSystem _standingState = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] private readonly SharedPullingSystem _pullingSystem = default!;
+        [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly EscapeInventorySystem _escapeInventorySystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
+        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
 
         public override void Initialize()
         {
@@ -116,7 +117,13 @@ namespace Content.Server.Carrying
         /// </summary>
         private void OnThrow(EntityUid uid, CarryingComponent component, BeforeThrowEvent args)
         {
-            args.ThrowStrength = 5f;
+            if (!TryComp<VirtualItemComponent>(args.ItemUid, out var virtItem) || !HasComp<CarriableComponent>(virtItem.BlockingEntity))
+                return;
+
+            args.ItemUid = virtItem.BlockingEntity;
+
+            // var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
+            // args.ThrowStrength = 5f * multiplier;
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -164,7 +171,7 @@ namespace Content.Server.Carrying
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, 1);
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape);
             }
         }
 
@@ -229,8 +236,7 @@ namespace Content.Server.Carrying
             var ev = new CarryDoAfterEvent();
             var args = new DoAfterArgs(EntityManager, carrier, length, ev, carried, target: carried)
             {
-                BreakOnTargetMove = true,
-                BreakOnUserMove = true,
+                BreakOnMove = true,
                 NeedHand = true
             };
             _doAfterSystem.TryStartDoAfter(args);
@@ -240,8 +246,8 @@ namespace Content.Server.Carrying
 
         private void Carry(EntityUid carrier, EntityUid carried)
         {
-            if (TryComp<SharedPullableComponent>(carried, out var pullable))
-                _pullingSystem.TryStopPull(pullable);
+            if (TryComp<PullableComponent>(carried, out var pullable))
+                _pullingSystem.TryStopPull(carrier, pullable);
 
             // Don't allow people to stack upon each other. They're too weak for that!
             if (TryComp<CarryingComponent>(carried, out var carryComp))
@@ -255,6 +261,9 @@ namespace Content.Server.Carrying
             ApplyCarrySlowdown(carrier, carried);
             var carriedComp = EnsureComp<BeingCarriedComponent>(carried);
             EnsureComp<KnockedDownComponent>(carried);
+
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
 
             carryingComp.Carried = carried;
             carriedComp.Carrier = carrier;
@@ -272,18 +281,19 @@ namespace Content.Server.Carrying
             Transform(carried).AttachToGridOrMap();
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
+            _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
         }
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
         {
-            var massRatio = 1;
-
-            if (massRatio == 0)
-                massRatio = 1;
-
-            var massRatioSq = Math.Pow(massRatio, 2);
-            var modifier = (1 - (0.15 / massRatioSq));
-            modifier = Math.Max(0.1, modifier);
+            // Carrying slowdown made static as a part of removing mass contests
+            // var massRatio = _contests.MassContest(carrier, carried);
+            // if (massRatio == 0)
+            //     massRatio = 1;
+            // var massRatioSq = Math.Pow(massRatio, 2);
+            // var modifier = (1 - (0.15 / massRatioSq));
+            // modifier = Math.Max(0.1, modifier);
+            var modifier = 0.7f; // 30% slowdown while carrying
             var slowdownComp = EnsureComp<CarryingSlowdownComponent>(carrier);
             _slowdown.SetModifier(carrier, (float) modifier, (float) modifier, slowdownComp);
         }
@@ -323,9 +333,17 @@ namespace Content.Server.Carrying
                 if (carrier is not { Valid: true } || carried is not { Valid: true })
                     continue;
 
+                // SOMETIMES - when an entity is inserted into disposals, or a cryosleep chamber - it can get re-parented without a proper reparent event
+                // when this happens, it needs to be dropped because it leads to weird behavior
+                if (Transform(carried).ParentUid != carrier)
+                {
+                    DropCarried(carrier, carried);
+                    continue;
+                }
+
                 // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
                 var xform = Transform(carried);
-                if (!xform.LocalPosition.EqualsApprox(Vector2.Zero))
+                if (!xform.LocalPosition.Equals(Vector2.Zero))
                 {
                     xform.LocalPosition = Vector2.Zero;
                 }
@@ -335,11 +353,11 @@ namespace Content.Server.Carrying
 
         public TimeSpan GetPickupDuration(EntityUid carrier, EntityUid carried)
         {
-            TimeSpan length = TimeSpan.FromSeconds(3);
+            TimeSpan length = TimeSpan.FromSeconds(6); // The default was 3 seconds; with the removal of mass contests was increased to 6 to make it less abusable
 
-            var mod = 1;
-            if (mod != 0)
-                length /= mod;
+            // var mod = _contests.MassContest(carrier, carried);
+            // if (mod != 0)
+            //     length /= mod;
 
             return length;
         }

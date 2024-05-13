@@ -33,16 +33,6 @@
 - type: entity
   noSpawn: true
   parent: ClothingBackpack
-  id: ClothingBackpackLawyerFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: RubberStampLawyer
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpack
   id: ClothingBackpackStcFilled
   components:
   - type: StorageFill
@@ -60,15 +50,90 @@
       - id: BoxSurvival
       - id: Lighter
       - id: CigPackGreen
-      
+
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSecurity
-  id: ClothingBackpackOfficerFilled
+  parent: ClothingBackpackERTMailCarrier
+  id: ClothingBackpackERTMailCarrierFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvivalEngineering
+        - id: WeaponMailLake
+        - id: BoxMailCapsulePrimed
+        - id: RubberStampCentcom
+        - id: PenCentcom
+        - id: BoxFolderCentCom
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpack
+  id: ClothingBackpackSrFilled
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
+      - id: BoxSurvival
+      - id: Flash
+      - id: RubberStampSr
+      - id: DoorRemoteCommand
+      - id: AccessConfigurator
+      - id: PhoneInstrument
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackNfsdBrown
+  id: ClothingBackpackNfsdBrownFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalNfsd
       - id: Flash
       - id: MagazinePistol
-      - id: BaseSecurityUplinkRadioOfficer # Frontier
+      - id: FrontierUplinkCoin10
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackNfsdBrownFilled
+  id: ClothingBackpackNfsdCreamFilled
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackNfsdBrown
+  id: ClothingBackpackNfsdBrownDetectiveFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalNfsd
+      - id: Flash
+      - id: ForensicPad
+      - id: MagazinePistol
+      - id: ForensicScanner
+      - id: FrontierUplinkCoin10
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackNfsdBrown
+  id: ClothingBackpackNfsdBrownRadioFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalNfsd
+      - id: Flash
+      - id: MagazinePistol
+      - id: BaseSecurityUplinkRadioOfficer
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackNfsdBrown
+  id: ClothingBackpackNfsdBrownSheriffFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalNfsd
+      - id: Flash
+      - id: MagazinePistol
+      - id: RubberStampSheriff
+      - id: DoorRemoteNfsd
+      - id: NfsdTechFabFlatpack
+      - id: BaseSecurityUplinkRadioSheriff
+      - id: ClothingNeckNfsdBadgeSheriff

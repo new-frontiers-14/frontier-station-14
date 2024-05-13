@@ -73,6 +73,19 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: NFSDCriminalRecordsComputerCircuitboard
+  name: nfsd criminal records computer board
+  description: A computer printed circuit board for a criminal records computer.
+  components:
+    - type: Sprite
+      state: cpu_nfsd
+    - type: ComputerBoard
+      prototype: ComputerCriminalRecords
+    - type: ComputerTabletopBoard # Frontier
+      prototype: ComputerTabletopCriminalRecords # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: StationRecordsComputerCircuitboard
   name: station records computer board
   description: A computer printed circuit board for a station records computer.
@@ -332,6 +345,30 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: AdvancedRadarConsoleCircuitboard # Frontier
+  name: advanced radar console computer board
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerAdvancedRadar
+  - type: ComputerTabletopBoard # Frontier
+    prototype: ComputerTabletopAdvancedRadar # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: NFSDAdvancedRadarConsoleCircuitboard # Frontier
+  name: nfsd advanced radar console computer board
+  components:
+  - type: Sprite
+    state: cpu_nfsd
+  - type: ComputerBoard
+    prototype: ComputerAdvancedRadar
+  - type: ComputerTabletopBoard # Frontier
+    prototype: ComputerTabletopAdvancedRadar # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: SolarControlComputerCircuitboard
   name: solar control computer board
   description: A computer printed circuit board for a solar control console.
@@ -453,7 +490,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerMassMediaCircuitboard
-  name: mass-media console board
+  name: news manager console board
   description: Write your message to the world!
   components:
     - type: Sprite

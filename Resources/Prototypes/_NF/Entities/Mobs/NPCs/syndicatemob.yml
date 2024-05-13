@@ -1,0 +1,717 @@
+- type: entity
+  name: Syndicate Naval Agent
+  abstract: true
+  noSpawn: true
+  parent: MobHumanoidHostileBase
+  id: MobSyndicateNavalBase
+  components:
+  - type: Body
+    prototype: HumanSyntheticOrgans # New set of synthetic organs grants elevated resistance to toxins and poisons
+    requiredLegs: 2
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  #- type: AutoImplant # muh loot! nooo
+    #implants:
+    #- DeathRattleImplant
+    #- DeathAcidifierImplantNF
+    #- DeathAcidifierImplant
+    #- MicroBombImplant
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Advertise
+    pack: syndicatehumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
+  - type: Buckle
+    disable: true
+  - type: AutoWakeUp
+
+# Humans
+# Syndicate Captain, "armed" with AP Python
+- type: entity
+  name: Syndicate Captain
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalCaptainA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnumAP
+      capacity: 1
+      count: 1
+    - type: Gun
+      showExamineText: false
+      fireRate: 0.75
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+
+- type: entity
+  name: Syndicate Captain
+  parent: MobSyndicateNavalCaptainA
+  id: MobSyndicateNavalCaptainB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGearB
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnum
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Captain
+  parent: MobSyndicateNavalCaptainA
+  id: MobSyndicateNavalCaptainC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGearC
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnum
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Captain
+  parent: MobSyndicateNavalCaptainA
+  id: MobSyndicateNavalCaptainD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainGearD
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnum
+      capacity: 1
+      count: 1
+
+# Syndicate Engineer, "armed" with shotgun
+- type: entity
+  name: Syndicate Engineer
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalEngineerA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: ShellShotgunSlug
+      capacity: 1
+      count: 1
+    - type: Gun
+      showExamineText: false
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+
+- type: entity
+  name: Syndicate Engineer
+  parent: MobSyndicateNavalEngineerA
+  id: MobSyndicateNavalEngineerB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGearB
+    - type: BasicEntityAmmoProvider
+      proto: ShellShotgun
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Engineer
+  parent: MobSyndicateNavalEngineerB
+  id: MobSyndicateNavalEngineerC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGearC
+
+- type: entity
+  name: Syndicate Engineer
+  parent: MobSyndicateNavalEngineerB
+  id: MobSyndicateNavalEngineerD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerGearD
+    - type: BasicEntityAmmoProvider
+      proto: PelletShotgunBeanbag
+      capacity: 1
+      count: 1
+
+# Syndicate "Medic", throws poisoned darts laced with 2u of Impedrezene (hallucinogenic, deals minor poison damage, makes you barf and slows you down)
+# Look for darts here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Throwable\throwable_weapons.yml
+- type: entity
+  name: Syndicate Medic
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalMedicA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 2
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: DartSindicateImpedrezene
+      capacity: 1
+      count: 1
+    - type: Gun
+      showExamineText: false
+      fireRate: 4
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot:
+        collection: BulletMiss
+
+- type: entity
+  name: Syndicate Medic
+  parent: MobSyndicateNavalMedicA
+  id: MobSyndicateNavalMedicB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGearB
+
+- type: entity
+  name: Syndicate Medic
+  parent: MobSyndicateNavalMedicA
+  id: MobSyndicateNavalMedicC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGearB
+    - type: BasicEntityAmmoProvider
+      proto: DartSindicateTranquilizer
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Medic
+  parent: MobSyndicateNavalMedicA
+  id: MobSyndicateNavalMedicD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicGearD
+    - type: BasicEntityAmmoProvider
+      proto: DartSindicateTranquilizer
+      capacity: 1
+      count: 1
+
+# Second Officer, "armed" with Advanced Laser Pistol
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalSecondOfficerA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearA
+    - type: HitscanBatteryAmmoProvider
+      proto: RedMediumLaser
+      fireCost: 100
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 600
+      startingCharge: 600
+    - type: Gun
+      showExamineText: false
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearB
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearC
+
+- type: entity
+  name: Syndicate Second Officer
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerGearD
+    - type: HitscanBatteryAmmoProvider
+      proto: RedLaser
+      fireCost: 50
+
+# Syndicate Security Operative, "armed" with Atreides SMG
+- type: entity
+  name: Syndicate Operative
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalOperatorA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1.5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 8
+      count: 8
+    - type: Gun
+      showExamineText: false
+      minAngle: 10
+      maxAngle: 30
+      fireRate: 8
+      angleIncrease: 3
+      angleDecay: 6
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+
+- type: entity
+  name: Syndicate Operative
+  parent: MobSyndicateNavalOperatorA
+  id: MobSyndicateNavalOperatorB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGearB
+
+- type: entity
+  name: Syndicate Operative
+  parent: MobSyndicateNavalOperatorA
+  id: MobSyndicateNavalOperatorC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGearC
+
+- type: entity
+  name: Syndicate Operative
+  parent: MobSyndicateNavalOperatorA
+  id: MobSyndicateNavalOperatorD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorGearD
+
+# Syndicate Grenadier, "armed" with china lake
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalGrenadierA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearA
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplantNF
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeFrag
+      capacity: 1
+      count: 1
+    - type: Gun
+      showExamineText: false
+      fireRate: 1
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearB
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeBlast
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearC
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeBaton
+      capacity: 1
+      count: 1
+
+- type: entity
+  name: Syndicate Grenadier
+  parent: MobSyndicateNavalGrenadierA
+  id: MobSyndicateNavalGrenadierD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalGrenadierGearD
+    - type: BasicEntityAmmoProvider
+      proto: GrenadeFlash
+      capacity: 2
+      count: 2
+
+# Syndicate Saboteur, "armed" with EMP Viper
+- type: entity
+  name: Syndicate Saboteur
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalSaboteurA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistolEmp
+      capacity: 4
+      count: 4
+    - type: Gun
+      showExamineText: false
+      fireRate: 6
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Syndicate Saboteur
+  parent: MobSyndicateNavalSaboteurA
+  id: MobSyndicateNavalSaboteurB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGearB
+
+- type: entity
+  name: Syndicate Saboteur
+  parent: MobSyndicateNavalSaboteurA
+  id: MobSyndicateNavalSaboteurC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGearC
+
+- type: entity
+  name: Syndicate Saboteur
+  parent: MobSyndicateNavalSaboteurA
+  id: MobSyndicateNavalSaboteurD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSaboteurGearD
+
+# Hostile Victim of Experimentation, "armed" with shiv
+- type: entity
+  name: Captive
+  parent: MobHumanoidHostileBase
+  id: MobExperimentationVictim
+  noSpawn: true
+  components:
+    - type: NameIdentifier
+      group: GenericNumber
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Loadout
+      prototypes:
+        - SyndicateVictimInsaneGear
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+
+# Syndicate Commander, "armed" with AK
+- type: entity
+  name: Syndicate Commander # Mega Fauna for Dungeons
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalCommanderA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCommanderGearA
+    - type: Stamina
+      critThreshold: 500 # Extra hard to incapacitate and loot
+    - type: AutoImplant
+      implants:
+      - DeathRattleImplant
+      #- DeathAcidifierImplantNF
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1.5
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: CartridgeLightRifle
+      capacity: 4
+      count: 4
+    - type: Gun
+      showExamineText: false
+      fireRate: 5
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+
+- type: entity
+  name: Syndicate Commander
+  parent: MobSyndicateNavalCommanderA
+  id: MobSyndicateNavalCommanderB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCommanderGearB
+    - type: BasicEntityAmmoProvider
+      proto: CartridgeRifle
+      capacity: 4
+      count: 4
+    - type: Gun
+      showExamineText: false
+      fireRate: 5
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+
+- type: entity
+  name: Syndicate Commander
+  parent: MobSyndicateNavalCommanderB
+  id: MobSyndicateNavalCommanderC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCommanderGearC
+
+- type: entity
+  name: Syndicate Commander
+  parent: MobSyndicateNavalCommanderB
+  id: MobSyndicateNavalCommanderD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCommanderGearD
+
+# Syndicate Deckhand, "armed" with Viper
+- type: entity
+  name: Syndicate Deckhand
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalDeckhandA
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGearA
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/_NF/Effects/silence.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletPistol
+      capacity: 4
+      count: 4
+    - type: Gun
+      showExamineText: false
+      fireRate: 0.5
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: Syndicate Deckhand
+  parent: MobSyndicateNavalDeckhandA
+  id: MobSyndicateNavalDeckhandB
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGearB
+
+- type: entity
+  name: Syndicate Deckhand
+  parent: MobSyndicateNavalDeckhandA
+  id: MobSyndicateNavalDeckhandC
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGearC
+
+- type: entity
+  name: Syndicate Deckhand
+  parent: MobSyndicateNavalDeckhandA
+  id: MobSyndicateNavalDeckhandD
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandGearD
+
+# Syndicate Mime, melee, "armed" with chainsaw
+- type: entity
+  name: Syndicate Mime
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalMime
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMimeGear
+    - type: Stamina
+      critThreshold: 500
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 6
+    - type: Advertise
+      pack: mimehumanoidchatter
+      minimumWait: 120 # 1 * 2
+      maximumWait: 240 # 2 * 60
+      NextAdvertisementTime: 0
+
+# Syndicate Chemwarrior, shoots healthy mixes of chems
+# Look for chems here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Ammunition\Projectiles\chem.yml
+- type: entity
+  name: Syndicate ChemwarriorA
+  parent: MobSyndicateNavalBase
+  id: MobSyndicateNavalChemwarriorA
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearA
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCold
+    capacity: 3
+    count: 3
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+
+- type: entity
+  name: Syndicate ChemwarriorB
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorB
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearB
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemDrugs
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: Syndicate ChemwarriorC
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorC
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearC
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemMute
+    capacity: 1
+    count: 1
+
+- type: entity
+  name: Syndicate ChemwarriorD
+  parent: MobSyndicateNavalChemwarriorA
+  id: MobSyndicateNavalChemwarriorD
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateNavalChemwarriorGearD
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemWeh
+    capacity: 1
+    count: 1

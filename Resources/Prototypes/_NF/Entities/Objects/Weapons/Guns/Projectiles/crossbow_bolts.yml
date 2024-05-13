@@ -111,3 +111,28 @@
   - type: Construction
     graph: CraftCrossbowBoltUraniumGlassShard
     node: CraftCrossbowBoltUraniumGlassShard
+
+- type: entity
+  parent:
+  - CrossbowBolt
+  - ConjuredObject10 # Despawns in 10 seconds
+  id: CrossbowBoltBloodDrinker
+  name: blood drinker bolt
+  description: A razor-sharp bolt with a serrated tip. Unquestionably unethical.
+  components:
+  - type: Sprite
+    layers:
+    - state: tail
+      color: darkred
+    - state: rod
+      color: black
+    - state: tip
+      color: darkred
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Slashing: 20
+        Bloodloss: 5

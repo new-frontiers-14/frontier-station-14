@@ -3,6 +3,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Explosion.Components;
 using Content.Server.Flash;
+using Content.Server.Pinpointer;
 using Content.Shared.Flash.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chemistry.Components;
@@ -33,6 +34,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Shared.Coordinates;
+using Content.Shared.Body.Components; // Frontier - Gib organs
+using Robust.Shared.Utility;
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -69,6 +72,7 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly BodySystem _body = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly NavMapSystem _navMap = default!;
         [Dependency] private readonly RadioSystem _radioSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -91,7 +95,7 @@ namespace Content.Server.Explosion.EntitySystems
             SubscribeLocalEvent<TriggerOnCollideComponent, StartCollideEvent>(OnTriggerCollide);
             SubscribeLocalEvent<TriggerOnActivateComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<TriggerImplantActionComponent, ActivateImplantEvent>(OnImplantTrigger);
-            SubscribeLocalEvent<TriggerOnStepTriggerComponent, StepTriggeredEvent>(OnStepTriggered);
+            SubscribeLocalEvent<TriggerOnStepTriggerComponent, StepTriggeredOffEvent>(OnStepTriggered);
             SubscribeLocalEvent<TriggerOnSlipComponent, SlipEvent>(OnSlipTriggered);
             SubscribeLocalEvent<TriggerWhenEmptyComponent, OnEmptyGunShotEvent>(OnEmptyTriggered);
 
@@ -175,6 +179,19 @@ namespace Content.Server.Explosion.EntitySystems
                     Del(item);
                 }
             }
+
+            if (component.DeleteOrgans) // Frontier - Gib organs
+            {
+                if (TryComp<BodyComponent>(xform.ParentUid, out var body))
+                {
+                    var organs = _body.GetBodyOrganComponents<TransformComponent>(xform.ParentUid, body);
+                    foreach (var (_, organ) in organs)
+                    {
+                        Del(organ.Owner);
+                    }
+                }
+            } // Frontier
+
             _body.GibBody(xform.ParentUid, true);
             args.Handled = true;
         }
@@ -246,7 +263,7 @@ namespace Content.Server.Explosion.EntitySystems
             args.Handled = Trigger(uid);
         }
 
-        private void OnStepTriggered(EntityUid uid, TriggerOnStepTriggerComponent component, ref StepTriggeredEvent args)
+        private void OnStepTriggered(EntityUid uid, TriggerOnStepTriggerComponent component, ref StepTriggeredOffEvent args)
         {
             Trigger(uid, args.Tripper);
         }

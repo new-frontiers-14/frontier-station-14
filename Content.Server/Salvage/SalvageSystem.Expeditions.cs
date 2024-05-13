@@ -20,6 +20,7 @@ using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
+using Robust.Shared.Map;
 
 namespace Content.Server.Salvage;
 
@@ -29,7 +30,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 4;
+    private const int MissionLimit = 5;
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private readonly JobQueue _salvageQueue = new();
@@ -279,7 +280,7 @@ public sealed partial class SalvageSystem
         return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions);
     }
 
-    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station)
+    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)
     {
         var cancelToken = new CancellationTokenSource();
         var job = new SpawnSalvageMissionJob(
@@ -295,7 +296,9 @@ public sealed partial class SalvageSystem
             _stationSystem,
             _metaData,
             this,
+            _transform,
             station,
+            coordinatesDisk,
             missionParams,
             cancelToken.Token);
 

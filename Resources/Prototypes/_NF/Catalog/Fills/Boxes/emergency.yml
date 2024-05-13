@@ -1,0 +1,20 @@
+- type: entity
+  name: survival box
+  parent: BoxSurvivalSecurity
+  id: BoxSurvivalNfsd
+  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
+  suffix: NFSD
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskGasNfsd
+      - id: DoubleEmergencyAirTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: EncryptionKeyTraffic
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank

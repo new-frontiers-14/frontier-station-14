@@ -1,0 +1,44 @@
+- type: job
+  id: StationRepresentative
+  name: job-name-sr
+  description: job-description-sr
+  playTimeTracker: JobHeadOfPersonnel
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:WhitelistRequirement
+  weight: 20
+  startingGear: SrGear
+  alwaysUseSpawner: true
+  icon: "JobIconHeadOfPersonnel"
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom 
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: SrGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSr
+    back: ClothingBackpackSrFilled
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatSrCap
+    id: SrPDA
+    gloves: ClothingHandsGlovesSr
+    ears: ClothingHeadsetAltCentCom
+    eyes: ClothingEyesGlassesSunglasses
+#    belt: BoxFolderQmClipboard # Bugged
+    neck: ClothingNeckCloakSr
+    outerClothing: ClothingOuterArmorSrCarapace
+    pocket1: WeaponDisabler
+  innerClothingSkirt: ClothingUniformJumpskirtSr
+  satchel: ClothingBackpackSatchelSrFilled
+  duffelbag: ClothingBackpackDuffelSrFilled
+  messenger: ClothingBackpackMessengerSrFilled

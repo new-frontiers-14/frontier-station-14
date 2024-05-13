@@ -22,3 +22,82 @@
     sprite: _NF/Clothing/Neck/Scarfs/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Neck/Scarfs/pilot.rsi
+
+- type: entity # Base Badge
+  parent: ClothingNeckBase
+  id: ClothingNeckNfsdBadge
+  name: nfsd badge
+  description: Respect my authority!
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_bronze_badge.rsi
+    layers: []
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_bronze_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurityCadet
+  suffix: Bronze - Cadet
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurity
+  suffix: Silver - Deputy
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+    
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurityBrigmedic
+  suffix: Silver - Brigmedic
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silvercross_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silvercross_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeDetective
+  suffix: Silver - Detective
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSeniorOfficer
+  suffix: Gold - Sergeant
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeWarden
+  suffix: Gold - Bailiff
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSheriff
+  suffix: Star - Sheriff
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_star_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_star_badge.rsi
+

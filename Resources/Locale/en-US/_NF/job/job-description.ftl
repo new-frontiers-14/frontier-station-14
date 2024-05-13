@@ -1,4 +1,9 @@
+job-description-ertmailcarrier = Nothing stops the mail.
 job-description-mercenary = Execute the bidding of anyone- for the right price. Enjoy being unbound from the confines of the law.
 job-description-pilot = Pilot spaceships from point A to B, outmaneuver pirates and dodge asteroids. You are a leaf on the solar wind, let others marvel at how you soar.
+job-description-pirate = Drink grog, follow orders, swab the deck, and adhere to your Captain and your code.
+job-description-pirate-captain = Lead a crew of ne'er-do-wells across the open space and plunder, respectfully, always following the code.
+job-description-pirate-first-mate = Assist your captain in any hijinks you find yourselves in.
 job-description-security-guard = Patrol the empty halls, whistle simple tunes you heard on radio, jingle your keychain and scurry away at the sight of danger.
 job-description-stc = Expertly de-conflict the space around the station and help the NFSD issue fines for overdocked ships.
+job-description-sr = Handle access reassignment fairly using your ID console, manage Frontier outpost, and keep Clippy safe.

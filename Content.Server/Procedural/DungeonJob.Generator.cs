@@ -351,7 +351,8 @@ public sealed partial class DungeonJob
                             grid.SetTile(tilePos, fallbackTile);
                         }
 
-                        var result = _decals.TryAddDecal(
+                        // var result =
+                        _decals.TryAddDecal(
                             decal.Id,
                             new EntityCoordinates(gridUid, position),
                             out _,
@@ -360,7 +361,10 @@ public sealed partial class DungeonJob
                             decal.ZIndex,
                             decal.Cleanable);
 
-                        DebugTools.Assert(result);
+                        // Frontier change
+                        // We disable the assertion here because generation of spaceplatform stops prematurely since it has holes.
+                        // Dont care if decals dont get placed because of holes, generation works fine if we ignore the assertion.
+                        // DebugTools.Assert(result);
                     }
                 }
 
@@ -431,6 +435,7 @@ public sealed partial class DungeonJob
                 }
 
                 room.Entrances.Add(entrancePos);
+                dungeon.Entrances.Add(entrancePos);
                 break;
             }
         }

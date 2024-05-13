@@ -4,6 +4,7 @@
   description: job-description-stc
   playTimeTracker: JobStc
   startingGear: StcGear
+  alwaysUseSpawner: true
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 72000 # 20 hrs
@@ -12,12 +13,14 @@
       time: 10800 # 3 hrs as sec
   canBeAntag: false
   icon: "JobIconStc" 
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
   setPreference: true
   access:
+  - Service
   - Maintenance
   - External
   - Frontier
+  - StationTrafficController
 
 - type: startingGear
   id: StcGear

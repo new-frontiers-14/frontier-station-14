@@ -15,7 +15,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Stacks;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -30,7 +29,6 @@ public sealed class PricingSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -232,6 +230,7 @@ public sealed class PricingSystem : EntitySystem
     public double GetPrice(EntityUid uid)
     {
         var ev = new PriceCalculationEvent();
+        ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
         RaiseLocalEvent(uid, ref ev);
 
         if (ev.Handled)

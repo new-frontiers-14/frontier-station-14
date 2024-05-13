@@ -89,7 +89,17 @@
 - type: entity
   parent: BaseSecurityUplinkRadio
   id: BaseSecurityUplinkRadioSheriff
-  suffix: Sheriff 15
+  suffix: Sheriff 20
+  components:
+  - type: Store
+    preset: StorePresetSecurityUplink
+    balance:
+      FrontierUplinkCoin: 20
+
+- type: entity
+  parent: BaseSecurityUplinkRadio
+  id: BaseSecurityUplinkRadioOfficer
+  suffix: Officer 15
   components:
   - type: Store
     preset: StorePresetSecurityUplink
@@ -97,11 +107,14 @@
       FrontierUplinkCoin: 15
 
 - type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadioOfficer
-  suffix: Officer 10
+  name: nfsd deployable barrier
+  id: NfsdDeployableBarrier
+  description: A deployable barrier. Swipe your ID card to lock/unlock it.
+  parent: DeployableBarrier
   components:
-  - type: Store
-    preset: StorePresetSecurityUplink
-    balance:
-      FrontierUplinkCoin: 10
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Security/nfsdbarrier.rsi
+    layers:
+    - state: idle
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]

@@ -310,6 +310,21 @@
         store: altar_cloth
         amount: 2
         doAfter: 2
+# Mail
+    - to: AltarMailNode
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - component: Mail
+        name: mail (any)
+        store: altar_component
+        icon:
+          sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
+          state: icon
+      - material: Cloth
+        store: altar_cloth
+        amount: 2
+        doAfter: 2
 # Space-Christian
     - to: AltarSpaceChristianNode
       conditions:
@@ -552,6 +567,20 @@
 
   - node: AltarConvertFestivalNode
     entity: AltarConvertFestival
+    edges:
+    - to: AltarFrameNode
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+  - node: AltarMailNode
+    entity: AltarMail
     edges:
     - to: AltarFrameNode
       conditions:

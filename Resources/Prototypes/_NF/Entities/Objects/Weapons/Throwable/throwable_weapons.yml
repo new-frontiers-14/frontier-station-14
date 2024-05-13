@@ -1,0 +1,52 @@
+- type: entity
+  parent:
+  - Dart
+  - ConjuredObject10 # Despawns in 10 seconds
+  id: DartSindicateImpedrezene
+  name: syndicate impedrezene dart
+  description: Try not to prick yourself.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Darts/dart_red.rsi
+    state: icon
+  - type: EmbeddableProjectile
+    removalTime: 0.5
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 2
+        reagents:
+        - ReagentId: Impedrezene
+          Quantity: 2
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnEmbed
+    transferAmount: 2
+    solution: melee
+  - type: InjectableSolution
+    solution: ammo
+
+- type: entity # 4 hits to KO a spaceman
+  parent: DartSindicateImpedrezene
+  id: DartSindicateTranquilizer
+  name: syndicate tranquilizer dart
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 3
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 3
+  - type: SolutionInjectOnEmbed
+    transferAmount: 3
+    solution: melee

@@ -1,0 +1,284 @@
+# Salvage expedition objective
+- type: entity
+  parent: CybersunDataMiner
+  id: BloodCollector
+  name: blood collector
+  description: A vile chamber filled with blood. Seems to hold more than it's volume.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/bloodcollector.rsi
+    layers:
+    - state: blood_collector
+    - state: unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+    castShadows: false
+    netsync: false
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/anomaly_generator.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Blood
+          Quantity: 1000
+
+# Wall for POI
+- type: entity
+  parent: BaseWall
+  id: WallCultIndestructible
+  name: cult wall
+  suffix: indestructible
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
+  - type: Icon
+    sprite: _NF/Structures/Specific/BloodCult/wall.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult
+
+# Blood Cult Airlock
+- type: entity
+  parent: AirlockGlass
+  id: AirlockBloodCult
+  suffix: Blood Cult
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/airlock.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+
+# Glowing Floor Thingy
+- type: entity
+  id: BloodCultGlowingFloor
+  name: blood cult glowing floor
+  parent: BaseRune
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
+      layers:
+      - state: floorglow
+        shader: unshaded
+
+- type: entity
+  id: BloodCultHoleFloor
+  name: blood cult floor hole
+  parent: FlashRuneTimer
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Specific/BloodCult/props.rsi
+      layers:
+      - state: prop-6
+
+# Mini gravity generator
+- type: entity
+  id: BloodCultGravityGeneratorMini
+  parent: [BaseStructureDisableToolUse, GravityGeneratorMini]
+  name: blood cult gravity generator
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/gravity_generator.rsi
+    snapCardinals: true
+    layers:
+      - state: on
+        map: ["enum.GravityGeneratorVisualLayers.Base"]
+      - sprite: _NF/Structures/Specific/BloodCult/gravity_generator_core.rsi
+        state: activated
+        shader: unshaded
+        map: ["enum.GravityGeneratorVisualLayers.Core"]
+        offset: "0,0.6"
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#ff0000"
+    castShadows: false
+    netsync: false
+
+# Wall Light
+- type: entity
+  name: blood cult light
+  description: "How is this thing glowing? Why?"
+  id: BloodCultAlwaysPoweredLight
+  suffix: Always powered
+  parent: AlwaysPoweredWallLight
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/light.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+  - type: PointLight
+    radius: 10
+    energy: 0.8
+    softness: 1
+    offset: "0, -0.5"
+    color: "#990000"
+
+# Props and decoration
+- type: entity
+  parent: CarpStatue
+  id: BloodCultProp01
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-1
+    - state: unshadedprop-1
+      shader: unshaded
+
+- type: entity
+  parent: Autolathe
+  id: BloodCultProp02
+  name: blood cult forge
+  description: A forge for weapon and armor production.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/forge.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - RitualDagger
+    - EldritchBlade
+    - UnholyHalberd
+    - WizardStaffMeleeBlood
+    - SpearBone
+    - ClothingHeadHelmetCultJanitor
+    - ClothingMaskCultJanitor
+    - ClothingOuterCoatCultJanitor
+    - ClothingHeadHelmetCult
+    - ClothingOuterArmorCult
+    - ClothingShoesCult
+    - ClothingHeadHatHoodCulthood
+    - ClothingOuterRobesCult
+    - ClothingHeadHelmetBone
+    - ClothingOuterArmorBone
+    - ClothingBackpackMessengerBloodCult
+    - PumpkinLanternSmall
+    - CandleRedInfinite
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp03
+  name: blood cult shrine
+  description: An occult shrine for imbuing objects with vile energies.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-3
+    - state: unshadedprop-3
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp04
+  name: blood cult workbench
+  description: An occult workbench with handy drawers. There is a severed hand in one.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-4
+    - state: unshaded-0
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp05
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-5
+    - state: unshaded-0
+      shader: unshaded
+
+- type: entity
+  parent: BloodCultProp01
+  id: BloodCultProp07
+  name: curious object
+  description: Huh, I wonder what this thing is and what does it do.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/props.rsi
+    layers:
+    - state: prop-7
+    - state: unshaded-0
+      shader: unshaded

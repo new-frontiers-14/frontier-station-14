@@ -26,6 +26,7 @@ using Content.Server.Power.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Spawners.EntitySystems;
+using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Damage;
@@ -33,6 +34,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -40,6 +42,7 @@ using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
@@ -71,6 +74,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+        [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
 
         private ISawmill _sawmill = default!;
 
@@ -442,7 +446,7 @@ namespace Content.Server.Mail
             foreach (var item in EntitySpawnCollection.GetSpawns(mailComp.Contents, _random))
             {
                 var entity = EntityManager.SpawnEntity(item, Transform(uid).Coordinates);
-                if (!container.Insert(entity))
+                if (!_containerSystem.Insert(entity, container))
                 {
                     _sawmill.Error($"Can't insert {ToPrettyString(entity)} into new mail delivery {ToPrettyString(uid)}! Deleting it.");
                     QueueDel(entity);
@@ -571,6 +575,12 @@ namespace Content.Server.Mail
                 }
 
                 if (!_mind.TryGetMind(receiver.Owner, out var mindId, out var mindComp))
+                {
+                    recipient = null;
+                    return false;
+                }
+
+                if (_entManager.TryGetComponent<MailDisabledComponent>(receiver.Owner, out var antag))
                 {
                     recipient = null;
                     return false;
@@ -747,11 +757,11 @@ namespace Content.Server.Mail
         public string Name;
         public string Job;
         public string JobIcon;
-        public HashSet<String> AccessTags;
+        public HashSet<ProtoId<AccessLevelPrototype>> AccessTags;
         public bool MayReceivePriorityMail;
         public string Ship;
 
-        public MailRecipient(string name, string job, string jobIcon, HashSet<String> accessTags, bool mayReceivePriorityMail, string ship)
+        public MailRecipient(string name, string job, string jobIcon, HashSet<ProtoId<AccessLevelPrototype>> accessTags, bool mayReceivePriorityMail, string ship)
         {
             Name = name;
             Job = job;

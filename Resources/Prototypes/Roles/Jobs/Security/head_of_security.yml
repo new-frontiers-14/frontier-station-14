@@ -2,69 +2,43 @@
   id: HeadOfSecurity
   name: job-name-hos
   description: job-description-hos
-  playTimeTracker: JobHeadOfSecurity
+  playTimeTracker: JobHeadOfSecurityOld
   requirements:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 10800 #3 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 36000 #10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 108000 # 30 hrs
     - !type:OverallPlaytimeRequirement
-      time: 50400
-    - !type:WhitelistRequirement
-    # - !type:RoleTimeRequirement
-      # role: JobWarden
-      # time: 21600 #6 hrs
-    # - !type:RoleTimeRequirement
-      # role: JobDetective
-      # time: 7200 #2 hrs
-    # - !type:RoleTimeRequirement
-      # role: JobSecurityOfficer
-      # time: 36000 #10 hrs
-    # - !type:DepartmentTimeRequirement
-      # department: Security
-      # time: 108000 # 30 hrs
+      time: 144000 #40 hrs
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   requireAdminNotify: true
-  supervisors: job-supervisors-hop # Frontier
-  whitelistRequired: true
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - HeadOfSecurity
-  - HeadOfPersonnel # Frontier - This should probably be removed after we confirm they can get into SR office + Bank
   - Command
   - Brig
-  - Frontier
   - Security
   - Armory
   - Maintenance
   - Service
   - External
   - Detective
-  - Mercenary # Frontier
-  - Bar # Frontier
-  - Janitor # Frontier
-  - Theatre # Frontier
-  - Kitchen # Frontier
-  - Chapel # Frontier
-  - Hydroponics # Frontier
-  - Chemistry # Frontier
-  - Engineering # Frontier
-  - Quartermaster # Frontier
-  - Research # Frontier
-  - Salvage # Frontier
-  - Cargo # Frontier
-  - Atmospherics # Frontier
-  - Medical # Frontier
-  - EmergencyShuttleRepealAll # Frontier
-  - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - ChiefMedicalOfficer # Frontier
-  - ResearchDirector # Frontier
-  - Pilot # Frontier
+  - Cryogenics
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, TrackingImplant ]
+    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  setPreference: false # Frontier
 
 - type: startingGear
   id: HoSGear
@@ -73,17 +47,13 @@
     back: ClothingBackpackHOSFilled
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterCoatHoSTrench
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
-    pocket2: HoloprojectorSecurity # Frontier
-    neck: ClothingNeckCloakHos # Frontier
-    suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
+    pocket1: WeaponPistolMk58
   innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled
   duffelbag: ClothingBackpackDuffelHOSFilled
-  messenger: ClothingBackpackMessengerHOSFilled # Frontier
