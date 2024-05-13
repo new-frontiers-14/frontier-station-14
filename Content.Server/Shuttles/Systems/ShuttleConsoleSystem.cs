@@ -373,9 +373,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 RemovePilot(pilot, pilotComponent);
         }
 
+        // Corvax-Frontier: Commented to fix stack overflow
+
         // Frontier - Adds EMP functionality - PR 526
         // This makes the Shuttle Console kick pilots like its removed, to make sure EMP in effect.
-        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
+        /*var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
         while (disabled.MoveNext(out var uid, out _, out var comp))
         {
             if (comp.TimeoutFromEmp <= _timing.CurTime)
@@ -386,7 +388,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             }
             else
                 comp.MainBreakerEnabled = true;
-        }
+        }*/
     }
 
     /// <summary>
