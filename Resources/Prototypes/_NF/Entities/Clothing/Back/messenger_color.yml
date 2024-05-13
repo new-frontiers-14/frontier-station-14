@@ -1,0 +1,180 @@
+# GENERIC
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackMessengerColorGrey
+  name: messenger bag
+  suffix: Color
+  description: A trendy looking messenger bag in a tasteful grey colors.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#777b83"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#777b83"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#777b83"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#777b83"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+# DEPARTMENTAL
+## Engineering
+- type: entity
+  parent: ClothingBackpackMessengerColorGrey
+  id: ClothingBackpackMessengerColorAtmospherics
+  name: atmospherics messenger bag
+  description: A tough messenger bag made of fire resistant fibers. Smells like plasma.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#f9c86f"
+    - state: icon-decor-accent
+      color: "#f4af73"
+    - state: icon-decor
+      color: "#69c7b6"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#f9c86f"
+      - state: decor-accent-equipped-BACKPACK
+        color: "#f4af73"
+      - state: decor-equipped-BACKPACK
+        color: "#69c7b6"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#f9c86f"
+      - state: decor-accent-inhand-left
+        color: "#f4af73"
+      - state: decor-inhand-left
+        color: "#69c7b6"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#f9c86f"
+      - state: decor-accent-inhand-right
+        color: "#f4af73"
+      - state: decor-inhand-right
+        color: "#69c7b6"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerColorGrey
+  id: ClothingBackpackMessengerColorEngineering
+  name: engineering messenger bag
+  description: A tough messenger bag with extra pockets.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#a48965"
+    - state: icon-sling
+      color: "#e78c2e"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#a48965"
+      - state: sling-equipped-BACKPACK
+        color: "#e78c2e"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#a48965"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#a48965"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+## Supply
+- type: entity
+  parent: ClothingBackpackMessengerColorGrey
+  id: ClothingBackpackMessengerColorCargo
+  name: cargo messenger bag
+  description: A robust messenger bag for stealing cargo's loot.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#d9b744"
+    - state: icon-base-top
+      color: "#aaaaaa"
+    - state: icon-sling
+      color: "#e78c2e"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#d9b744"
+      - state: base-top-equipped-BACKPACK
+        color: "#aaaaaa"
+      - state: sling-equipped-BACKPACK
+        color: "#e78c2e"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#d9b744"
+      - state: base-top-inhand-left
+        color: "#aaaaaa"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#d9b744"
+      - state: base-top-inhand-right
+        color: "#aaaaaa"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
