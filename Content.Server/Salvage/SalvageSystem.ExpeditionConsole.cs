@@ -101,7 +101,7 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionComponent>(map, out var expedition))
             return;
 
-        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(10);
+        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(15);
 
         if (expedition.EndTime <= newEndTime)
             return;
