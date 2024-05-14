@@ -105,6 +105,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         }
 
         DrawCircles(handle);
+        DrawNorthLine(handle, _angle.Value);
         var gridNent = EntManager.GetNetEntity(GridEntity);
         var mapPos = _xformSystem.ToMapCoordinates(_coordinates.Value);
         var ourGridMatrix = _xformSystem.GetWorldMatrix(gridXform.Owner);
