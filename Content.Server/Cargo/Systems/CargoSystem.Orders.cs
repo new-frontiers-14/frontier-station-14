@@ -324,7 +324,6 @@ namespace Content.Server.Cargo.Systems
         {
 
             var uiUsers = _uiSystem.GetActors(uid, CargoConsoleUiKey.Orders);
-            Log.Info($"number of UI users is {uiUsers.Count()} ");
             foreach (var user in uiUsers)
             {
                 var balance = 0;
@@ -339,8 +338,6 @@ namespace Content.Server.Cargo.Systems
                 {
                     balance = stationBank.Balance;
                 }
-
-                Log.Error("recieved message and " + station.ToString() + MetaData(user).EntityName);
 
                 if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase, component))
                     return;
