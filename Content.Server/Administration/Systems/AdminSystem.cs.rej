@@ -1,0 +1,19 @@
+diff a/Content.Server/Administration/Systems/AdminSystem.cs b/Content.Server/Administration/Systems/AdminSystem.cs	(rejected hunks)
+@@ -221,7 +221,7 @@ private PlayerInfo GetPlayerInfo(SessionData data, ICommonSession? session)
+             var name = data.UserName;
+             var entityName = string.Empty;
+             var identityName = string.Empty;
+-            int balance = 0;
++            ulong balance = 0;
+ 
+             if (session?.AttachedEntity != null)
+             {
+@@ -233,7 +233,7 @@ private PlayerInfo GetPlayerInfo(SessionData data, ICommonSession? session)
+                 }
+                 else
+                 {
+-                    balance = int.MinValue; // Эквивалент отсутствующего баланса
++                    balance = ulong.MinValue; // Эквивалент отсутствующего баланса
+                 }
+             }
+ 

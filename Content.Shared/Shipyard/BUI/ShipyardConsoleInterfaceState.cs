@@ -5,10 +5,10 @@ namespace Content.Shared.Shipyard.BUI;
 [NetSerializable, Serializable]
 public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
 {
-    public int Balance;
+    public ulong Balance;
     public readonly bool AccessGranted;
     public readonly string? ShipDeedTitle;
-    public int ShipSellValue;
+    public ulong ShipSellValue;
     public readonly bool IsTargetIdPresent;
     public readonly byte UiKey;
 
@@ -16,10 +16,10 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public readonly string ShipyardName;
 
     public ShipyardConsoleInterfaceState(
-        int balance,
+        ulong balance,
         bool accessGranted,
         string? shipDeedTitle,
-        int shipSellValue,
+        ulong shipSellValue,
         bool isTargetIdPresent,
         byte uiKey,
         List<string> shipyardPrototypes,

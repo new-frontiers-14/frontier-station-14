@@ -107,7 +107,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         return pads;
     }
 
-    private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount)
+    private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out ulong amount)
     {
         station ??= _station.GetOwningStation(gridUid);
         GetPalletGoods(gridUid, component, out var toSell, out amount);
@@ -126,7 +126,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         }
     }
 
-    private void GetPalletGoods(EntityUid gridUid, ContrabandPalletConsoleComponent console, out HashSet<EntityUid> toSell, out int amount)
+    private void GetPalletGoods(EntityUid gridUid, ContrabandPalletConsoleComponent console, out HashSet<EntityUid> toSell, out ulong amount)
     {
         amount = 0;
         toSell = new HashSet<EntityUid>();
@@ -155,7 +155,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
                     if (comp.Value == 0)
                         continue;
                     toSell.Add(ent);
-                    amount += comp.Value;
+                    amount += (ulong)comp.Value;
                 }
             }
         }
@@ -201,7 +201,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
             return;
         }
 
-        SellPallets(gridUid, component, null, out var price);
+        SellPallets(gridUid, component, null, out ulong price);
 
         var stackPrototype = _protoMan.Index<StackPrototype>(component.RewardType);
         _stack.Spawn(price, stackPrototype, uid.ToCoordinates());

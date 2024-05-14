@@ -1,0 +1,18 @@
+diff a/Content.Server/Shipyard/Systems/ShipyardSystem.Consoles.cs b/Content.Server/Shipyard/Systems/ShipyardSystem.Consoles.cs	(rejected hunks)
+@@ -473,13 +473,13 @@ private void OnItemSlotChanged(EntityUid uid, ShipyardConsoleComponent component
+             }
+         }
+ 
+-        int sellValue = 0;
++        ulong sellValue = 0;
+         if (deed?.ShuttleUid != null)
+-            sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
++            sellValue = (ulong) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
+ 
+         if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
+         {
+-            var tax = (int) (sellValue * 0.30f);
++            var tax = (ulong) (sellValue * 0.30f);
+             sellValue -= tax;
+         }
+ 

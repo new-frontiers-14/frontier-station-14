@@ -1,0 +1,10 @@
+diff a/Content.Server.Database/Migrations/Sqlite/SqliteServerDbContextModelSnapshot.cs b/Content.Server.Database/Migrations/Sqlite/SqliteServerDbContextModelSnapshot.cs	(rejected hunks)
+@@ -693,7 +693,7 @@ protected override void BuildModel(ModelBuilder modelBuilder)
+                         .HasColumnType("TEXT")
+                         .HasColumnName("backpack");
+ 
+-                    b.Property<int>("BankBalance")
++                    b.Property<ulong>("BankBalance")
+                         .HasColumnType("INTEGER")
+                         .HasColumnName("bank_balance");
+ 

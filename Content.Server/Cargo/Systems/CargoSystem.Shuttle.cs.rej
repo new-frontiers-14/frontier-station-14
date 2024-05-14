@@ -1,0 +1,14 @@
+diff a/Content.Server/Cargo/Systems/CargoSystem.Shuttle.cs b/Content.Server/Cargo/Systems/CargoSystem.Shuttle.cs	(rejected hunks)
+@@ -70,10 +70,10 @@ private void UpdatePalletConsoleInterface(EntityUid uid)
+         GetPalletGoods(uid, gridUid, out var toSell, out var amount);
+         if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+         {
+-            amount *= priceMod.Mod;
++            amount = (ulong)(amount * priceMod.Mod);
+         }
+         _uiSystem.SetUiState(bui,
+-            new CargoPalletConsoleInterfaceState((int) amount, toSell.Count, true));
++            new CargoPalletConsoleInterfaceState((ulong) amount, toSell.Count, true));
+     }
+ 
+     private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)

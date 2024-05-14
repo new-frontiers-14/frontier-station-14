@@ -1,0 +1,10 @@
+diff a/Content.Client/Administration/UI/Tabs/PlayerTab/PlayerTab.xaml.cs b/Content.Client/Administration/UI/Tabs/PlayerTab/PlayerTab.xaml.cs	(rejected hunks)
+@@ -122,7 +122,7 @@ private void RefreshPlayerList(IReadOnlyList<PlayerInfo> players)
+                     new StyleBoxFlat(useAltColor ? _altColor : _defaultColor),
+                     player.Connected,
+                     player.PlaytimeString,
+-                    player.Balance == int.MinValue ? "NO BALANCE" : player.Balance.ToString());
++                    player.Balance == ulong.MinValue ? "NO BALANCE" : player.Balance.ToString());
+                 entry.PlayerEntity = player.NetEntity;
+                 entry.OnKeyBindDown += args => OnEntryKeyBindDown?.Invoke(entry, args);
+                 entry.ToolTip = Loc.GetString("player-tab-entry-tooltip");

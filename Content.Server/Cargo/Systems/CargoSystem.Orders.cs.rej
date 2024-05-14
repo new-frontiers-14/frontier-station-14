@@ -1,0 +1,10 @@
+diff a/Content.Server/Cargo/Systems/CargoSystem.Orders.cs b/Content.Server/Cargo/Systems/CargoSystem.Orders.cs	(rejected hunks)
+@@ -315,7 +315,7 @@ private void UpdateOrderState(CargoOrderConsoleComponent component, EntityUid? s
+             }
+ 
+             var uiUser = bui.SubscribedSessions.FirstOrDefault();
+-            var balance = 0;
++            var balance = (ulong)0;
+ 
+             if (uiUser?.AttachedEntity is not { Valid: true } player)
+             {

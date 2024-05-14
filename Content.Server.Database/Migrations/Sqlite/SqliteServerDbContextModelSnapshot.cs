@@ -688,7 +688,7 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
-                    b.Property<int>("BankBalance")
+                    b.Property<ulong>("BankBalance")
                         .HasColumnType("INTEGER")
                         .HasColumnName("bank_balance");
 

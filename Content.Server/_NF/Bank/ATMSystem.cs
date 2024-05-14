@@ -145,12 +145,12 @@ public sealed partial class BankSystem
 
         if (BankATMMenuUiKey.BlackMarket == (BankATMMenuUiKey) args.UiKey)
         {
-            var tax = (int) (deposit * 0.30f);
+            var tax = (ulong) (deposit * 0.30f);
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
 
             while (query.MoveNext(out _, out var comp))
             {
-                _cargo.DeductFunds(comp, -tax);
+                _cargo.AddFunds(comp, tax);
             }
 
             deposit -= tax;
@@ -226,7 +226,7 @@ public sealed partial class BankSystem
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
     }
 
-    private void GetInsertedCashAmount(BankATMComponent component, out int amount)
+    private void GetInsertedCashAmount(BankATMComponent component, out ulong amount)
     {
         amount = 0;
         var cashEntity = component.CashSlot.ContainerSlot?.ContainedEntity;
@@ -237,7 +237,7 @@ public sealed partial class BankSystem
             return;
         }
 
-        amount = cashStack.Count;
+        amount = (ulong)cashStack.Count;
         return;
     }
 

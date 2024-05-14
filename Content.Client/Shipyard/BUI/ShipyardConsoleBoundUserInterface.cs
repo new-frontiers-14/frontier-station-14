@@ -13,9 +13,9 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 {
     private ShipyardConsoleMenu? _menu;
     private ShipyardRulesPopup? _rulesWindow;
-    public int Balance { get; private set; }
+    public ulong Balance { get; private set; }
 
-    public int? ShipSellValue { get; private set; }
+    public ulong? ShipSellValue { get; private set; }
 
     public ShipyardConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {

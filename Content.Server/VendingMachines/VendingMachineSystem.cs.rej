@@ -1,0 +1,10 @@
+diff a/Content.Server/VendingMachines/VendingMachineSystem.cs b/Content.Server/VendingMachines/VendingMachineSystem.cs	(rejected hunks)
+@@ -134,7 +134,7 @@ private void OnBoundUIOpened(EntityUid uid, VendingMachineComponent component, B
+             if (args.Session.AttachedEntity is not { Valid: true } player)
+                 return;
+ 
+-            var balance = 0;
++            var balance = (ulong) 0;
+ 
+             if (TryComp<BankAccountComponent>(player, out var bank))
+                 balance = bank.Balance;

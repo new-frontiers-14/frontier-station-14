@@ -1,0 +1,18 @@
+diff a/Content.Server/_NF/Bank/StationATMSystem.cs b/Content.Server/_NF/Bank/StationATMSystem.cs	(rejected hunks)
+@@ -189,14 +189,14 @@ private void OnDeposit(EntityUid uid, StationBankATMComponent component, Station
+             return;
+         }
+ 
+-        _cargo.DeductFunds(stationBank, -args.Amount);
++        _cargo.DeductFunds(stationBank, args.Amount);
+         ConsolePopup(args.Session, Loc.GetString("bank-atm-menu-deposit-successful"));
+         PlayConfirmSound(uid, component);
+         _log.Info($"{args.Session.UserId} {args.Session.Name} deposited {args.Amount}, '{args.Reason}': {args.Description}");
+ 
+         _adminLogger.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} deposited {args.Amount} to station bank account. '{args.Reason}': {args.Description}");
+ 
+-        SetInsertedCashAmount(component, args.Amount, out int leftAmount, out bool empty);
++        SetInsertedCashAmount(component, args.Amount, out ulong leftAmount, out bool empty);
+ 
+         // yeet and delete the stack in the cash slot after success if its worth 0
+         if (empty)

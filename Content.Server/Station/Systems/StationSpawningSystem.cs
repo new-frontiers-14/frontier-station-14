@@ -191,7 +191,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         // Run loadouts after so stuff like storage loadouts can get
         var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
-        var bankBalance = profile!.BankBalance; //Frontier
+        var bankBalance = (ulong)profile!.BankBalance; //Frontier
 
         if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
         {
@@ -227,9 +227,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
                     //Frontier - we handle bank stuff so we are wrapping each item spawn inside our own cached check.
                     //This way, we will spawn every item we can afford in the order that they were originally sorted.
-                    if (loadoutProto.Price < bankBalance)
+                    if ((ulong)loadoutProto.Price < bankBalance)
                     {
-                        bankBalance -= loadoutProto.Price;
+                        bankBalance = bankBalance - (ulong)loadoutProto.Price;
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
                     }
                 }

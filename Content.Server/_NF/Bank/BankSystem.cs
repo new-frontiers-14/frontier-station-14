@@ -80,7 +80,7 @@ public sealed partial class BankSystem : EntitySystem
     /// <param name="mobUid">The UID that the bank account is attached to, typically the player controlled mob</param>
     /// <param name="amount">The integer amount of which to decrease the bank account</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
-    public bool TryBankWithdraw(EntityUid mobUid, int amount)
+    public bool TryBankWithdraw(EntityUid mobUid, ulong amount)
     {
         if (amount <= 0)
         {
@@ -112,7 +112,7 @@ public sealed partial class BankSystem : EntitySystem
     /// <param name="mobUid">The UID that the bank account is connected to, typically the player controlled mob</param>
     /// <param name="amount">The integer amount of which to increase the bank account</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
-    public bool TryBankDeposit(EntityUid mobUid, int amount)
+    public bool TryBankDeposit(EntityUid mobUid, ulong amount)
     {
         if (amount <= 0)
         {

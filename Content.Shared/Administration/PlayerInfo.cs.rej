@@ -1,0 +1,10 @@
+diff a/Content.Shared/Administration/PlayerInfo.cs b/Content.Shared/Administration/PlayerInfo.cs	(rejected hunks)
+@@ -15,7 +15,7 @@ public sealed record PlayerInfo(
+         bool Connected,
+         bool ActiveThisRound,
+         TimeSpan? OverallPlaytime,
+-        int Balance)
++        ulong Balance)
+     {
+         private string? _playtimeString;
+ 

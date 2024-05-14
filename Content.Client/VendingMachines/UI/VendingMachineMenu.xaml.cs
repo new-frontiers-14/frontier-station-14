@@ -165,7 +165,7 @@ namespace Content.Client.VendingMachines.UI
             SetSizeAfterUpdate(longestEntry.Length, inventory.Count);
         }
 
-        public void UpdateBalance(int balance)
+        public void UpdateBalance(ulong balance)
         {
             BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance.ToString()));
         }
