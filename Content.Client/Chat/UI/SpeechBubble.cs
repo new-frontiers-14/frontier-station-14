@@ -66,10 +66,10 @@ namespace Content.Client.Chat.UI
                     return new TextSpeechBubble(message, senderEntity, "emoteBox");
 
                 case SpeechType.Say:
-                    return new FancyTextSpeechBubble(message, senderEntity, "sayBox", message.MessageColorOverride);
+                    return new FancyTextSpeechBubble(message, senderEntity, "sayBox");
 
                 case SpeechType.Whisper:
-                    return new FancyTextSpeechBubble(message, senderEntity, "whisperBox", message.MessageColorOverride);
+                    return new FancyTextSpeechBubble(message, senderEntity, "whisperBox");
 
                 case SpeechType.Looc:
                     return new TextSpeechBubble(message, senderEntity, "emoteBox", Color.FromHex("#48d1cc"));
