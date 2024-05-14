@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Brigand
+  name: NT Brigand
+  description: Civilian conversion of an old military light frigate from the early days of humanity's expansion to the stars, predating FTL technology.
+  price: 53550 # 46550$ on mapinit + 7000$ from 15% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/brigand.yml
+  
+- type: gameMap
+  id: Brigand
+  mapName: 'NT Brigand'
+  mapPath: /Maps/_NF/Shuttles/Expedition/brigand.yml
+  minPlayers: 0
+  stations: 
+    Brigand:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Brigand {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
