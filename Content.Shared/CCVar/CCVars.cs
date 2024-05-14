@@ -2043,7 +2043,7 @@ namespace Content.Shared.CCVar
 
         // Clippy!
         public static readonly CVarDef<string> TippyEntity =
-            CVarDef.Create("tippy.entity", "Tippy", CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("tippy.entity", "TippyClippy", CVar.SERVER | CVar.REPLICATED); // Frontier - Tippy<TippyClippy
 
         /*
          * DEBUG
