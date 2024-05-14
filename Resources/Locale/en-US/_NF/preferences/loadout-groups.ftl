@@ -18,7 +18,7 @@ loadout-group-contractor-trinkets = trinkets
 
 loadout-group-security-guard-jumpsuit = head
 loadout-group-security-guard-jumpsuit = jumpsuit
-loadout-group-security-gloves = gloves
+loadout-group-security-guard-gloves = gloves
 loadout-group-security-guard-head = head
 loadout-group-security-guard-outerclothing = outer clothing
 loadout-group-security-guard-shoes = shoes
