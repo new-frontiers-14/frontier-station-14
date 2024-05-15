@@ -1,0 +1,36 @@
+# Author Info
+# Discord: slush6789
+
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bullseye
+  name: NC Bullseye
+  description: A relatively small vessel where someone had the idea to strap a miniature restaurant to a firing range.
+  price: 31000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/bullseye.yml
+
+- type: gameMap
+  id: Bullseye
+  mapName: 'NC Bullseye'
+  mapPath: /Maps/_NF/Shuttles/bullseye.yml
+  minPlayers: 0
+  stations:
+    Bullseye:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bullseye {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Captain: [ 0, 0 ]
+            Botanist: [ 0, 0 ]
+            Chef: [ 0, 0 ]
+            Valet: [ 0, 0 ]
