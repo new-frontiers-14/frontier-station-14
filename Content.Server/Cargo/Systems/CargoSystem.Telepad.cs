@@ -11,6 +11,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using System.Xml.Schema;
+using Content.Server.Station.Components;
+using Robust.Shared.Random;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -21,6 +23,7 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<CargoTelepadComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<CargoTelepadComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<CargoTelepadComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+        SubscribeLocalEvent<CargoTelepadComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CargoTelepadComponent, PowerChangedEvent>(OnTelepadPowerChange);
         // Shouldn't need re-anchored event
         SubscribeLocalEvent<CargoTelepadComponent, AnchorStateChangedEvent>(OnTelepadAnchorChange);
@@ -68,8 +71,8 @@ public sealed partial class CargoSystem
                 continue;
             }
 
-            // Frontier - This makes sure telepads spawn goods of linked computers only.
-            List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
+            // Frontier - This makes sure telepads spawn goods of linked computers only. //TODO: FIx This Again
+             List<NetEntity> consoleUidList = sinkComponent.LinkedSources.Select(item => EntityManager.GetNetEntity(item)).ToList();
 
             var xform = Transform(uid);
             if (FulfillNextOrder(consoleUidList, orderDatabase, xform.Coordinates, comp.PrinterOutput))
@@ -99,6 +102,29 @@ public sealed partial class CargoSystem
     private void OnUpgradeExamine(EntityUid uid, CargoTelepadComponent component, UpgradeExamineEvent args)
     {
         args.AddPercentageUpgrade("cargo-telepad-delay-upgrade", component.Delay / component.BaseDelay);
+    }
+
+    private void OnShutdown(Entity<CargoTelepadComponent> ent, ref ComponentShutdown args)
+    {
+        //if (ent.Comp.CurrentOrders.Count == 0) //Frontier - todo: find a smarter way to maybe fix this otherwise its exploity by forcing crate spawn on rando station
+            return;
+
+        if (_station.GetStations().Count == 0)
+            return;
+
+        if (_station.GetOwningStation(ent) is not { } station)
+        {
+            station = _random.Pick(_station.GetStations().Where(HasComp<StationCargoOrderDatabaseComponent>).ToList());
+        }
+
+        if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var db) ||
+            !TryComp<StationDataComponent>(station, out var data))
+            return;
+
+        //foreach (var order in ent.Comp.CurrentOrders)
+        //{
+            //TryFulfillOrder((station, data), order, db); //Frontier TODO: Fix this?
+        //}
     }
 
     private void SetEnabled(EntityUid uid, CargoTelepadComponent component, ApcPowerReceiverComponent? receiver = null,

@@ -17,9 +17,9 @@
     sprite: Clothing/Head/Hardsuits/basic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/basic.rsi
-  - type: Tag
-    tags:
-    - HidesNose
+  - type: HideLayerClothing
+    slots:
+    - Snout
 
 #Atmospherics Hardsuit
 - type: entity
@@ -212,7 +212,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitWarden
-  name: bailiff's hardsuit helmet
+  name: warden's hardsuit helmet
   description: A modified riot helmet. Oddly comfortable.
   components:
   - type: BreathMask
@@ -307,8 +307,8 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitSecurityRed
-  name: sheriff's hardsuit helmet
-  description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the Sheriff.
+  name: head of security's hardsuit helmet
+  description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the HoS.
   components:
   - type: BreathMask
   - type: Sprite
@@ -417,6 +417,8 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.005
+#  - type: FireProtection # Frontier - Return after we update
+#    reduction: 0.2
   - type: Armor
     modifiers:
       coefficients:

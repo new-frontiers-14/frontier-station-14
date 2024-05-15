@@ -1,0 +1,26 @@
+- type: job
+  id: Deputy
+  name: job-name-deputy
+  description: job-description-deputy
+  playTimeTracker: JobSecurityOfficer
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # Frontier - 12 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # Frontier - 6 hrs
+  startingGear: DeputyGear
+  icon: "JobIconSecurityOfficer" # Frontier
+  supervisors: job-supervisors-sergeant
+  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: DeputyGear
+  equipment:
+    ears: ClothingHeadsetNfsdBrown # Frontier
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
