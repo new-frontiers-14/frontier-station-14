@@ -19,8 +19,6 @@ humanoid-profile-editor-pronouns-neuter-text = It / It
 humanoid-profile-editor-import-button = Import
 humanoid-profile-editor-export-button = Export
 humanoid-profile-editor-save-button = Save
-humanoid-profile-editor-clothing-label = Clothing:
-humanoid-profile-editor-backpack-label = Backpack:
 humanoid-profile-editor-spawn-priority-label = Spawn priority:
 humanoid-profile-editor-eyes-label = Eye color:
 humanoid-profile-editor-jobs-tab = Jobs
@@ -39,7 +37,7 @@ humanoid-profile-editor-preference-spawn-priority-arrivals = Arrivals
 humanoid-profile-editor-preference-spawn-priority-cryosleep = Cryosleep
 
 humanoid-profile-editor-jobs-amount-in-department-tooltip = Jobs in the {$departmentName} department
-humanoid-profile-editor-department-jobs-label = {$departmentName} jobs
+humanoid-profile-editor-department-jobs-label = {$departmentName}
 humanoid-profile-editor-antags-tab = Antags
 humanoid-profile-editor-antag-preference-yes-button = Yes
 humanoid-profile-editor-antag-preference-no-button = No
