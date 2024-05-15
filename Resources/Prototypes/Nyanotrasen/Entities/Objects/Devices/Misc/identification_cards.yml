@@ -23,17 +23,6 @@
 
 - type: entity
   parent: IDCardStandard
-  id: GladiatorIDCard
-  name: gladiator ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: orange #Placeholder?
-  - type: PresetIdCard
-    job: Gladiator
-
-- type: entity
-  parent: IDCardStandard
   id: ValetIDCard
   name: valet ID card
   components:
@@ -55,15 +44,3 @@
     - state: idsecurityofficer
   - type: PresetIdCard
     job: PrisonGuard
-
-- type: entity
-  parent: IDCardStandard
-  id: MartialArtistIDCard
-  name: martial artist ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idboxer
-  - type: PresetIdCard
-    job: MartialArtist
