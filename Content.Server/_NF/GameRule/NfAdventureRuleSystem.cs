@@ -46,7 +46,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private readonly HttpClient _httpClient = new();
 
     [ViewVariables]
-    private List<(EntityUid, int)> _players = new();
+    private List<(EntityUid, ulong)> _players = new();
+    private List<(EntityUid, long)> _sorted_out = new();
+
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,16 +64,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var profitText = Loc.GetString($"adventure-mode-profit-text");
         var lossText = Loc.GetString($"adventure-mode-loss-text");
         ev.AddLine(Loc.GetString("adventure-list-start"));
-        var allScore = new List<Tuple<string, int>>();
+        var allScore = new List<Tuple<string, long>>();
 
-        foreach (var player in _players)
+         foreach (var player in _players)
         {
             if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
                 continue;
 
-            var profit = bank.Balance - player.Item2;
+            _sorted_out.Add((player.Item1,  (long)(bank.Balance - player.Item2)));
+        }
+
+
+        foreach (var player in _sorted_out.OrderByDescending(o=>o.Item2).ToList())
+        {
+            if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
+                continue;
+            var profit = player.Item2;
             ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
-            allScore.Add(new Tuple<string, int>(meta.EntityName, profit));
+            allScore.Add(new Tuple<string, long>(meta.EntityName, player.Item2));
         }
 
         if (!(allScore.Count >= 1))

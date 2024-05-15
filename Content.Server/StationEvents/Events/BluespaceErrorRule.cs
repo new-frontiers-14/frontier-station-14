@@ -102,7 +102,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         var query = EntityQuery<StationBankAccountComponent>();
         foreach (var account in query)
         {
-            _cargo.DeductFunds(account, (int) -(gridValue * component.RewardFactor));
+            _cargo.AddFunds(account, (ulong) (gridValue * component.RewardFactor));
         }
     }
 }

@@ -238,7 +238,7 @@ namespace Content.Server.Mail
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
             while (query.MoveNext(out var station, out var account))
             {
-                _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
+                _cargoSystem.UpdateBankAccount(station, account, (ulong)component.Bounty);
                 return;
             }
         }

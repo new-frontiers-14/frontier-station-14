@@ -189,7 +189,7 @@ namespace Content.Client.Cargo.UI
             ShuttleCapacityLabel.Text = $"{count}/{capacity}";
         }
 
-        public void UpdateBankData(string name, int points)
+        public void UpdateBankData(string name, ulong points)
         {
             AccountNameLabel.Text = name;
             PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", points.ToString()));

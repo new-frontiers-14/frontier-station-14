@@ -25,7 +25,7 @@ public sealed class VesselPrototype : IPrototype
     ///     The price of the vessel
     /// </summary>
     [DataField("price", required: true)]
-    public int Price;
+    public ulong Price;
 
     /// <summary>
     ///     The category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)

@@ -174,7 +174,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     /// <param name="stationUid">The ID of the station that the shuttle is docked to</param>
     /// <param name="shuttleUid">The grid ID of the shuttle to be appraised and sold</param>
-    public bool TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out int bill)
+    public bool TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out ulong bill)
     {
         bill = 0;
 
@@ -226,7 +226,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             _station.DeleteStation(shuttleStationUid);
         }
 
-        bill = (int) _pricing.AppraiseGrid(shuttleUid);
+        bill = (ulong) _pricing.AppraiseGrid(shuttleUid);
         _mapManager.DeleteGrid(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
         return true;
