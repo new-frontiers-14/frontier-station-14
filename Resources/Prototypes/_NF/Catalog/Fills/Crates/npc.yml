@@ -35,9 +35,9 @@
         orGroup: MobCatGhost
 
 - type: entity
-  id: CrateNPCEmotionalSupportSafe # No pitbull
-  parent: CrateNPCEmotionalSupport
+  id: FillNPCEmotionalSupportSafe # No pitbull
   suffix: Safe
+  abstract: true
   components:
   - type: StorageFill
     contents:
@@ -65,3 +65,12 @@
       - id: MobChickenGhost
         prob: 1
         orGroup: MobCatGhost
+
+- type: entity
+  id: CrateNPCEmotionalSupportSafe
+  parent: [FillNPCEmotionalSupportSafe, CrateNPCEmotionalSupport]
+
+- type: entity
+  id: PetCarrierNPCEmotionalSupportSafe
+  parent: [FillNPCEmotionalSupportSafe, PetCarrier]
+  name: emotional support pet in a pet carrier

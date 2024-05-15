@@ -59,7 +59,7 @@
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
     interfaces:
-      - key: enum.BankATMMenuUiKey.ATM
+      enum.BankATMMenuUiKey.ATM:
         type: BankATMMenuBoundUserInterface
   - type: ItemSlots
   - type: ContainerContainer
@@ -84,7 +84,7 @@
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
     interfaces:
-      - key: enum.BankATMMenuUiKey.ATM
+      enum.BankATMMenuUiKey.ATM:
         type: WithdrawBankATMMenuBoundUserInterface
 
 - type: entity
@@ -164,7 +164,7 @@
     key: enum.BankATMMenuUiKey.BlackMarket
   - type: UserInterface
     interfaces:
-      - key: enum.BankATMMenuUiKey.BlackMarket
+      enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
 
 - type: entity
@@ -186,7 +186,7 @@
     key: enum.BankATMMenuUiKey.BlackMarket
   - type: UserInterface
     interfaces:
-      - key: enum.BankATMMenuUiKey.BlackMarket
+      enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
 
 - type: entity
@@ -222,8 +222,8 @@
     key: enum.BankATMMenuUiKey.ATM
   - type: UserInterface
     interfaces:
-    - key: enum.BankATMMenuUiKey.ATM
-      type: StationBankATMMenuBoundUserInterface
+      enum.BankATMMenuUiKey.ATM:
+        type: StationBankATMMenuBoundUserInterface
   - type: ItemSlots
   - type: ContainerContainer
     containers:

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHandsBase
+  parent: ClothingHandsGlovesCombat
   id: ClothingHandsGlovesArcadiaCombat
   name: arcadia combat gloves
   description: Combat gloves produced by Arcadia Industries.
@@ -8,16 +8,9 @@
     sprite: _NF/Clothing/Hands/Gloves/arcadia.rsi
   - type: Clothing
     sprite: _NF/Clothing/Hands/Gloves/arcadia.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-synthetic
-    fiberColor: fibers-black
-  - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: ClothingHandsGlovesLeather
   id: ClothingHandsGlovesPilot
   name: pilot gloves
   description: Driving gloves, but for spaceships!
@@ -26,12 +19,6 @@
     sprite: _NF/Clothing/Hands/Gloves/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Hands/Gloves/pilot.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
-  - type: Fiber
-    fiberMaterial: fibers-leather
-    fiberColor: fibers-brown
-  - type: FingerprintMask
 
 - type: entity
   parent: ClothingHandsGlovesCombat
@@ -54,6 +41,20 @@
     sprite: _NF/Clothing/Hands/Gloves/nfsd_cream.rsi
   - type: Clothing
     sprite: _NF/Clothing/Hands/Gloves/nfsd_cream.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesHop
+  id: ClothingHandsGlovesSr
+  suffix: Insulated
+  components:
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesForensic
+  id: ClothingHandsGlovesForensicNF
+  suffix: Insulated
+  components:
+  - type: Insulated
 
 # Gloves with fake guns visuals for NPCs
 - type: entity
@@ -170,11 +171,3 @@
     sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
   - type: Clothing
     sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
-
-- type: entity
-  parent: ClothingHandsGlovesHop
-  id: ClothingHandsGlovesSr
-  name: papercut-proof gloves
-  description: Perfect for dealing with paperwork and matters with bureaucracy.
-  components:
-  - type: Insulated
