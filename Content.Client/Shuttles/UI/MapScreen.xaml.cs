@@ -383,7 +383,7 @@ public sealed partial class MapScreen : BoxContainer
                 return 1;
 
             if (yMapPos is not null && xMapPos is null)
-                return 1;
+                return -1;
 
             if (xMapPos is null && yMapPos is null)
                 return 0;
