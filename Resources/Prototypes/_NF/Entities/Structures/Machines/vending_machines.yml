@@ -269,12 +269,12 @@
 #Interface
   - type: UserInterface
     interfaces:
-    - key: enum.VendingMachineUiKey.Key
-      type: VendingMachineBoundUserInterface
-    - key: enum.WiresUiKey.Key
-      type: WiresBoundUserInterface
-    - key: enum.InstrumentUiKey.Key # Added
-      type: InstrumentBoundUserInterface # Added
+      enum.VendingMachineUiKey.Key:
+        type: VendingMachineBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.InstrumentUiKey.Key: # Added
+        type: InstrumentBoundUserInterface # Added
 #Music
   - type: Instrument
     allowPercussion: true
