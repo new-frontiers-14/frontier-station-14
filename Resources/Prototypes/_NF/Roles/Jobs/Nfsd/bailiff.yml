@@ -1,0 +1,37 @@
+- type: job
+  id: Bailiff
+  name: job-name-bailiff
+  description: job-description-bailiff
+  playTimeTracker: JobWarden
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 108000 # Frontier - 30 hours
+    - !type:RoleTimeRequirement
+      role: JobSeniorOfficer
+      time: 21600 # Frontier - 6 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 32400 # 9 hrs
+  startingGear: BailiffGear
+  icon: "JobIconWarden" # Frontier
+  supervisors: job-supervisors-sheriff
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - Command
+  - Brig
+  - Security
+  - Mercenary # Frontier
+  - Captain # Frontier
+  - Armory
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ] # Frontier
+
+- type: startingGear
+  id: BailiffGear
+  equipment:
+    ears: ClothingHeadsetAltNfsdGreen # Frontier
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket2: HoloprojectorNfsd # Frontier

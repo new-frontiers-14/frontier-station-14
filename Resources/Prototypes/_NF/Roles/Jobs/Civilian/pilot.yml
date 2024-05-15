@@ -1,0 +1,18 @@
+- type: job
+  id: Pilot
+  name: job-name-pilot
+  description: job-description-pilot
+  playTimeTracker: JobPilot
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200
+  startingGear: PilotGear
+  icon: "JobIconPilot" 
+  supervisors: job-supervisors-hire
+  accessGroups: # Frontier
+  - GeneralAccess
+
+- type: startingGear
+  id: PilotGear
+  equipment:
+    ears: ClothingHeadsetAltPilot
