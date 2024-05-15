@@ -1,0 +1,335 @@
+File: D:\OtherGames\SpaceStation14\frontier fin\corvax-frontier-14\Content.Server\_NF\BountyContracts\BountyContractDataComponent.cs
+using Content.Shared._NF.BountyContracts;
+
+namespace Content.Server._NF.BountyContracts;
+
+/// <summary>
+///     Store all bounty contracts information.
+/// </summary>
+[RegisterComponent]
+[Access(typeof(BountyContractSystem))]
+public sealed partial class BountyContractDataComponent : Component
+{
+    /// <summary>
+    ///     Last registered contract id. Used to track contracts.
+    /// </summary>
+    [DataField("lastId")]
+    public uint LastId;
+
+    /// <summary>
+    ///     All open bounty contracts by their contract id.
+    /// </summary>
+    [DataField("contracts")]
+    public Dictionary<uint, BountyContract> Contracts = new();
+}
+
+File: D:\OtherGames\SpaceStation14\frontier fin\corvax-frontier-14\Content.Server\_NF\BountyContracts\BountyContractSystem.cs
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Server.CartridgeLoader;
+using Content.Server.Chat.Systems;
+using Content.Server.GameTicking.Events;
+using Content.Server.StationRecords.Systems;
+using Content.Shared._NF.BountyContracts;
+using Content.Shared.Access.Systems;
+using Robust.Shared.Map;
+
+namespace Content.Server._NF.BountyContracts;
+
+/// <summary>
+///     Used to control all bounty contracts placed by players.
+/// </summary>
+public sealed partial class BountyContractSystem : SharedBountyContractSystem
+{
+    private ISawmill _sawmill = default!;
+
+    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _sawmill = Logger.GetSawmill("bounty.contracts");
+
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+        InitializeUi();
+    }
+
+    private void OnRoundStarting(RoundStartingEvent ev)
+    {
+        // TODO: move to in-game server like RD?
+
+        // delete all existing data component
+        // just in case someone added it on map or previous round ended weird
+        var query = EntityQuery<BountyContractDataComponent>();
+        foreach (var bnt in query)
+        {
+            RemCompDeferred(bnt.Owner, bnt);
+        }
+
+        // use nullspace entity to store all information about contracts
+        var uid = Spawn(null, MapCoordinates.Nullspace);
+        EnsureComp<BountyContractDataComponent>(uid);
+    }
+
+    private BountyContractDataComponent? GetContracts()
+    {
+        // we assume that there is only one bounty database for round
+        // if it doesn't exist - game should work fine
+        // but players wouldn't able to create/get contracts
+        return EntityQuery<BountyContractDataComponent>().FirstOrDefault();
+    }
+
+    /// <summary>
+    ///     Try to create a new bounty contract and put it in bounties list.
+    /// </summary>
+    /// <param name="category">Bounty contract category (bounty head, construction, etc.)</param>
+    /// <param name="name">IC name for the contract bounty head. Can be players IC name or custom string.</param>
+    /// <param name="reward">Cash reward for completing bounty. Can be zero.</param>
+    /// <param name="description">IC description of players crimes, details, etc.</param>
+    /// <param name="vessel">IC name of last known bounty vessel. Can be station/ship name or custom string.</param>
+    /// <param name="dna">Optional DNA of the bounty head.</param>
+    /// <param name="author">Optional bounty poster IC name.</param>
+    /// <param name="postToRadio">Should radio message about contract be posted in general radio channel?</param>
+    /// <returns>New bounty contract. Null if contract creation failed.</returns>
+    public BountyContract? CreateBountyContract(BountyContractCategory category,
+        string name, int reward,
+        string? description = null, string? vessel = null,
+        string? dna = null, string? author = null,
+        bool postToRadio = true)
+    {
+        var data = GetContracts();
+        if (data == null)
+            return null;
+
+        // create a new contract
+        var contractId = data.LastId++;
+        var contract = new BountyContract(contractId, category, name, reward,
+            dna, vessel, description, author);
+
+        // try to save it
+        if (!data.Contracts.TryAdd(contractId, contract))
+        {
+            _sawmill.Error($"Failed to create bounty contract with {contractId}! LastId: {data.LastId}.");
+            return null;
+        }
+
+        if (postToRadio)
+        {
+            // TODO: move this to radio in future?
+            var sender = Loc.GetString("bounty-contracts-radio-name");
+            var target = !string.IsNullOrEmpty(contract.Vessel)
+                ? $"{contract.Name} ({contract.Vessel})"
+                : contract.Name;
+            var msg = Loc.GetString("bounty-contracts-radio-create",
+                ("target", target), ("reward", contract.Reward));
+            var color = Color.FromHex("#D7D7BE");
+            _chat.DispatchGlobalAnnouncement(sender, msg, false, colorOverride: color);
+        }
+
+        return contract;
+    }
+
+    /// <summary>
+    ///     Try to get a bounty contract by its id.
+    /// </summary>
+    public bool TryGetContract(uint contractId, [NotNullWhen(true)] out BountyContract? contract)
+    {
+        contract = null;
+        var data = GetContracts();
+        if (data == null)
+            return false;
+
+        return data.Contracts.TryGetValue(contractId, out contract);
+    }
+
+    /// <summary>
+    ///     Try to get all bounty contracts available.
+    /// </summary>
+    public IEnumerable<BountyContract> GetAllContracts()
+    {
+        var data = GetContracts();
+        if (data == null)
+            return Enumerable.Empty<BountyContract>();
+
+        return data.Contracts.Values;
+    }
+
+    /// <summary>
+    ///     Try to remove bounty contract by its id.
+    /// </summary>
+    /// <returns>True if contract was found and removed.</returns>
+    public bool RemoveBountyContract(uint contractId)
+    {
+        var data = GetContracts();
+        if (data == null)
+            return false;
+
+        if (!data.Contracts.Remove(contractId))
+        {
+            _sawmill.Warning($"Failed to remove bounty contract with {contractId}!");
+            return false;
+        }
+
+        return true;
+    }
+}
+
+File: D:\OtherGames\SpaceStation14\frontier fin\corvax-frontier-14\Content.Server\_NF\BountyContracts\BountyContractSystem.Ui.cs
+using System.Linq;
+using Content.Server.StationRecords;
+using Content.Shared._NF.BountyContracts;
+using Content.Shared.Access.Components;
+using Content.Shared.CartridgeLoader;
+using Content.Shared.PDA;
+using Content.Shared.StationRecords;
+
+namespace Content.Server._NF.BountyContracts;
+
+public sealed partial class BountyContractSystem
+{
+    [Dependency] private readonly EntityManager _entManager = default!;
+    private void InitializeUi()
+    {
+        SubscribeLocalEvent<BountyContractsCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractOpenCreateUiMsg>(OnOpenCreateUi);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractCloseCreateUiMsg>(OnCloseCreateUi);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryCreateMsg>(OnTryCreateContract);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractRefreshListUiMsg>(OnRefreshContracts);
+        SubscribeLocalEvent<CartridgeLoaderComponent, BountyContractTryRemoveUiMsg>(OnRemoveContract);
+    }
+
+    /// <summary>
+    ///     Show create contract menu on ui cartridge.
+    /// </summary>
+    private void CartridgeOpenCreateUi(EntityUid loaderUid)
+    {
+        var state = GetCreateState();
+        _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
+    }
+
+    /// <summary>
+    ///     Show list all contracts menu on ui cartridge.
+    /// </summary>
+    private void CartridgeOpenListUi(EntityUid loaderUid)
+    {
+        var state = GetListState(loaderUid);
+        _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
+    }
+
+    private void CartridgeRefreshListUi(EntityUid loaderUid)
+    {
+        // this will technically refresh it
+        // by sending list state again
+        CartridgeOpenListUi(loaderUid);
+    }
+
+    private BountyContractListUiState GetListState(EntityUid loaderUid)
+    {
+        var contracts = GetAllContracts().ToList();
+        var isAllowedCreate = IsAllowedCreateBounties(loaderUid);
+        var isAllowedRemove = IsAllowedDeleteBounties(loaderUid);
+
+        return new BountyContractListUiState(contracts, isAllowedCreate, isAllowedRemove);
+    }
+
+    private BountyContractCreateUiState GetCreateState()
+    {
+        var bountyTargets = new HashSet<BountyContractTargetInfo>();
+        var vessels = new HashSet<string>();
+
+        // TODO: This will show all Stations, not only NT stations
+        // TODO: Register all NT characters in some cache component on main station?
+        var allStations = EntityQuery<StationRecordsComponent, MetaDataComponent>();
+        foreach (var (records, meta) in allStations)
+        {
+            // get station IC name - it's vessel name
+            var name = meta.EntityName;
+            vessels.Add(name);
+
+            // get all characters registered on this station
+            var icRecords = _records.GetRecordsOfType<GeneralStationRecord>(records.Owner);
+            foreach (var (_, icRecord) in icRecords)
+            {
+                var target = new BountyContractTargetInfo
+                {
+                    Name = icRecord.Name,
+                    DNA = icRecord.DNA
+                };
+
+                // hashset will check if record is unique based on DNA field
+                bountyTargets.Add(target);
+            }
+        }
+
+        return new BountyContractCreateUiState(bountyTargets.ToList(), vessels.ToList());
+    }
+
+    private bool IsAllowedCreateBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    {
+        if (!Resolve(loaderUid, ref component) || component.ActiveProgram == null)
+            return false;
+
+        return _accessReader.IsAllowed(loaderUid, component.ActiveProgram.Value);
+    }
+
+    private bool IsAllowedDeleteBounties(EntityUid loaderUid, CartridgeLoaderComponent? component = null)
+    {
+        return IsAllowedCreateBounties(loaderUid, component);
+    }
+
+    private string? GetContractAuthor(EntityUid loaderUid, PdaComponent? component = null)
+    {
+        if (!Resolve(loaderUid, ref component))
+            return null;
+
+        TryComp<IdCardComponent>(component.ContainedId, out var id);
+        var name = id?.FullName ?? Loc.GetString("bounty-contracts-unknown-author-name");
+        var job = id?.JobTitle ?? Loc.GetString("bounty-contracts-unknown-author-job");
+        return Loc.GetString("bounty-contracts-author", ("name", name), ("job", job));
+    }
+
+    private void OnUiReady(EntityUid uid, BountyContractsCartridgeComponent component, CartridgeUiReadyEvent args)
+    {
+        CartridgeOpenListUi(args.Loader);
+    }
+
+    private void OnOpenCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractOpenCreateUiMsg args)
+    {
+        CartridgeOpenCreateUi(_entManager.GetEntity(args.Entity));
+    }
+
+    private void OnCloseCreateUi(EntityUid uid, CartridgeLoaderComponent component, BountyContractCloseCreateUiMsg args)
+    {
+        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
+    }
+
+    private void OnTryCreateContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryCreateMsg args)
+    {
+        if (!IsAllowedCreateBounties(_entManager.GetEntity(args.Entity)))
+            return;
+
+        var c = args.Contract;
+        var author = GetContractAuthor(_entManager.GetEntity(args.Entity));
+        CreateBountyContract(c.Category, c.Name, c.Reward, c.Description, c.Vessel, c.DNA, author);
+
+        CartridgeOpenListUi(_entManager.GetEntity(args.Entity));
+    }
+
+    private void OnRefreshContracts(EntityUid uid, CartridgeLoaderComponent component, BountyContractRefreshListUiMsg args)
+    {
+        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
+    }
+
+    private void OnRemoveContract(EntityUid uid, CartridgeLoaderComponent component, BountyContractTryRemoveUiMsg args)
+    {
+        if (!IsAllowedDeleteBounties(_entManager.GetEntity(args.Entity)))
+            return;
+
+        RemoveBountyContract(args.ContractId);
+        CartridgeRefreshListUi(_entManager.GetEntity(args.Entity));
+    }
+}
+

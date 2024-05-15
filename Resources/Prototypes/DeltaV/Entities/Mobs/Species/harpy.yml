@@ -22,13 +22,13 @@
       "Sax": {66: 0}
   - type: UserInterface
     interfaces:
-      - key: enum.InstrumentUiKey.Key
+      enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
-      - key: enum.VoiceMaskUIKey.Key
+      enum.VoiceMaskUIKey.Key:
         type: VoiceMaskBoundUserInterface
-      - key: enum.HumanoidMarkingModifierKey.Key
+      enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
-      - key: enum.StrippingUiKey.Key
+      enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
   - type: Sprite
     scale: 0.9, 0.9
@@ -114,6 +114,15 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
+    allowedEmotes:
+    - Squish
+    - Chitter
+    - Click
+    - Ring
+    - Pew
+    - Bang
+    - Rev
+    - Caw
   - type: Vocal
     sounds:
       Male: SoundsHarpy
