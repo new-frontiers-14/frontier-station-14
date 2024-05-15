@@ -55,6 +55,19 @@
       - id: Handcuffs
 
 - type: entity
+  id: ClothingBeltSecurityWebbingFilled
+  parent: ClothingBeltSecurityWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+
+- type: entity
   id: ClothingBeltJanitorFilled
   parent: ClothingBeltJanitor
   suffix: Filled
@@ -179,7 +192,6 @@
     contents:
         - id: WeaponRevolverInspector
         - id: SpeedLoaderMagnum
-        - id: SpeedLoaderMagnumRubber
 
 - type: entity
   id: ClothingBeltChefFilled
@@ -190,15 +202,3 @@
     contents:
     - id: FoodShakerSalt
     - id: FoodShakerPepper
-
-- type: entity
-  id: ClothingNeckMantleSheriffFilled
-  parent: ClothingNeckMantleSheriff
-  suffix: Filled
-  components:
-   - type: StorageFill
-     contents:
-     - id: CigarGold
-       amount: 4
-     - id: FlippoEngravedLighter
-       amount: 1

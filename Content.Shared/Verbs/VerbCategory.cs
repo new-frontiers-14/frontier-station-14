@@ -84,6 +84,8 @@ namespace Content.Shared.Verbs
 
         public static readonly VerbCategory SelectType = new("verb-categories-select-type", null);
 
+        public static readonly VerbCategory PowerLevel = new("verb-categories-power-level", null);
+
         public static readonly VerbCategory Pen =
             new("verb-categories-pen", "/Textures/Interface/pencil.png");
     }
