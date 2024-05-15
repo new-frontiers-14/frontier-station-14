@@ -62,8 +62,8 @@
     key: enum.M_EmpUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.M_EmpUiKey.Key
-      type: M_EmpBoundUserInterface
+      enum.M_EmpUiKey.Key:
+        type: M_EmpBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine

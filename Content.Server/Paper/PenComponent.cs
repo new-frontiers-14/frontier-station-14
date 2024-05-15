@@ -10,7 +10,7 @@ namespace Content.Server.Paper
         /// <summary>
         ///     Current pen mode. Can be switched by user verbs.
         /// </summary>
-        [DataField("pen")]
+        [DataField("mode")]
         public PenMode Pen = PenMode.PenWrite;
     }
 }

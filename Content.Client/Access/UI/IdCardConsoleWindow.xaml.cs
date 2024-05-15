@@ -63,6 +63,11 @@ namespace Content.Client.Access.UI
 
             foreach (var job in jobs)
             {
+                if (job.HideConsoleVisibility) // Frontier
+                {
+                    continue;
+                }
+
                 if (!job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference))
                 {
                     continue;

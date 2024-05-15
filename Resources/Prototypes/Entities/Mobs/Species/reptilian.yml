@@ -11,7 +11,6 @@
   - type: Puller
     needsHands: false
   - type: Thirst
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
     sprite: Mobs/Species/Reptilian/parts.rsi
     state: full
@@ -33,9 +32,9 @@
     proto: lizard
   - type: Vocal
     sounds:
-      Male: UnisexReptilian
-      Female: UnisexReptilian
-      Unsexed: UnisexReptilian
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -59,6 +58,7 @@
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
   - type: Wagging
+  - type: Carriable # Carrying system from nyanotrasen.
   - type: SizeAttributeWhitelist # Frontier
     tall: true
     tallscale: 1.2

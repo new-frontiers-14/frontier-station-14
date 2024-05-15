@@ -55,6 +55,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly StationSystem _stationSystem;
     private readonly SalvageSystem _salvage;
     private readonly SharedTransformSystem _xforms;
+    private readonly SharedMapSystem _map;
 
     public readonly EntityUid Station;
     public readonly EntityUid? CoordinatesDisk;
@@ -74,6 +75,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         MetaDataSystem metaData,
         SalvageSystem salvage,
         SharedTransformSystem xform,
+        SharedMapSystem map,
         EntityUid station,
         EntityUid? coordinatesDisk,
         SalvageMissionParams missionParams,
@@ -91,6 +93,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         _metaData = metaData;
         _salvage = salvage;
         _xforms = xform;
+        _map = map;
         Station = station;
         CoordinatesDisk = coordinatesDisk;
         _missionParams = missionParams;
@@ -100,9 +103,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     {
         Logger.DebugS("salvage", $"Spawning salvage mission with seed {_missionParams.Seed}");
         var config = _missionParams.MissionType;
-        var mapId = _mapManager.CreateMap();
-        var mapUid = _mapManager.GetMapEntityId(mapId);
-        _mapManager.AddUninitializedMap(mapId);
+        var mapUid = _map.CreateMap(out var mapId, runMapInit: false);
         MetaDataComponent? metadata = null;
         var grid = _entManager.EnsureComponent<MapGridComponent>(mapUid);
         var random = new Random(_missionParams.Seed);

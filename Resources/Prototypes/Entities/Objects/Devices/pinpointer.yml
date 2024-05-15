@@ -57,6 +57,11 @@
   - type: Sprite
     layers:
     - state: pinpointer-syndicate
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
   - type: Icon
     state: pinpointer-syndicate
   - type: Pinpointer
@@ -97,8 +102,13 @@
   - type: Sprite
     layers:
     - state: pinpointer-station
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
   - type: Icon
     state: pinpointer-station
   - type: Pinpointer
-    component: BecomesStation
+    component: ResearchServer
     targetName: the station

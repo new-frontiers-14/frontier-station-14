@@ -130,9 +130,10 @@ namespace Content.Server.DeltaV.Harpy
         private void CloseMidiUi(EntityUid uid)
         {
             if (HasComp<ActiveInstrumentComponent>(uid) &&
-                TryComp<ActorComponent>(uid, out var actor))
+                TryComp<ActorComponent>(uid, out var actor) &&
+                actor.PlayerSession.AttachedEntity is {} player)
             {
-                _instrument.ToggleInstrumentUi(uid, actor.PlayerSession);
+                _instrument.ToggleInstrumentUi(uid, player);
             }
         }
 

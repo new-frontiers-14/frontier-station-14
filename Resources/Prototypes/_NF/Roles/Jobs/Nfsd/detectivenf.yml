@@ -1,0 +1,34 @@
+- type: job
+  id: DetectiveNF
+  name: job-name-detective-nf
+  description: job-description-detective-nf
+  playTimeTracker: JobDetective
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # Frontier - 10 hrs
+  startingGear: DetectiveNFGear
+  icon: "JobIconDetective"
+  supervisors: job-supervisors-bailiff
+  canBeAntag: false
+  access:
+  - Maintenance
+  - External
+  - Command
+  - Brig
+  - Security
+  - Mercenary # Frontier
+  - Captain # Frontier
+  - Detective
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: DetectiveNFGear
+  equipment:
+    ears: ClothingHeadsetNfsdCream
+    pocket1: WeaponRevolverInspector
+    pocket2: SpeedLoaderMagnum
