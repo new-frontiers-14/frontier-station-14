@@ -1,7 +1,8 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
@@ -62,6 +63,7 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
             if (!_cargoSystem.AddAndApproveOrder(
                     station!.Value,
                     product.Product,
+                    product.Name,
                     product.Cost,
                     qty,
                     Loc.GetString(component.Sender),
