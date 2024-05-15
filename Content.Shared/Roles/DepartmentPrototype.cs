@@ -36,6 +36,12 @@ public sealed partial class DepartmentPrototype : IPrototype
     /// </summary>
     [DataField("weight")]
     public int Weight { get; private set; } = 0;
+
+    /// <summary>
+    /// Frontier - whether or not to show this department. Defaults to no.
+    /// </summary>
+    [DataField("enabled")]
+    public bool Enabled = false;
 }
 
 /// <summary>

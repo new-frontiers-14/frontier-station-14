@@ -1,0 +1,28 @@
+- type: job
+  id: Cadet
+  name: job-name-cadet-nf
+  description: job-description-cadet-nf
+  playTimeTracker: JobSecurityCadet
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # Frontier 10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # Frontier - 10 hrs
+      inverted: true # stop playing intern if you're good at security!
+  startingGear: CadetGear
+  icon: "JobIconSecurityCadet" # Frontier
+  supervisors: job-supervisors-cadet
+  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+
+- type: startingGear
+  id: CadetGear
+  equipment:
+    ears: ClothingHeadsetNfsdBrown # Frontier
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket2: BookSecurity

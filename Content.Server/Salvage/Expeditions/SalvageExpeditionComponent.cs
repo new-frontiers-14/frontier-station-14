@@ -40,16 +40,23 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
+    [DataField, AutoNetworkedField]
     public EntityUid? Stream = null;
 
     /// <summary>
     /// Sound that plays when the mission end is imminent.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("sound")]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Misc/tension_session.ogg")
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public SoundSpecifier Sound = new SoundCollectionSpecifier("ExpeditionEnd")
     {
         Params = AudioParams.Default.WithVolume(-5),
     };
+
+    /// <summary>
+    /// Song selected on MapInit so we can predict the audio countdown properly.
+    /// </summary>
+    [DataField]
+    public SoundPathSpecifier SelectedSong;
 
     /// <summary>
     /// The difficulty this mission had or, in the future, was selected.

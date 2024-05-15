@@ -18,7 +18,6 @@
       jar:
         maxVol: 120
   - type: Drink
-    isOpen: true
     solution: jar
   - type: Spillable
     solution: jar
@@ -36,8 +35,8 @@
     canChangeTransferAmount: true
   - type: UserInterface
     interfaces:
-    - key: enum.TransferAmountUiKey.Key
-      type: TransferAmountBoundUserInterface
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible

@@ -38,8 +38,8 @@
         ents: []
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: StaticPrice
     price: 70
 
@@ -140,6 +140,8 @@
       Durathread: 300
       Cloth: 100
       Steel: 100
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
 
 - type: entity
   abstract: true
@@ -158,6 +160,8 @@
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
   - type: PhysicalComposition # Frontier
     materialComposition:
       Durathread: 100

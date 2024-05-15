@@ -24,7 +24,7 @@ public sealed partial class VoiceMaskerComponent : Component
 
     [DataField]
     public EntityUid? ActionEntity;
-    
+
     // Frontier
     [DataField]
     [AutoNetworkedField]

@@ -216,7 +216,7 @@ namespace Content.Server._NF.M_Emp
         {
             var station = _station.GetOwningStation(uid);
             var stationName = station is null ? null : Name(station.Value);
-            var user = msg.Session.AttachedEntity;
+            var user = msg.Actor;
             if (!Exists(user))
                 return;
 

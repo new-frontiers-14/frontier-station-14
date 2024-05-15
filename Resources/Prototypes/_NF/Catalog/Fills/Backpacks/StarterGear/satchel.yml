@@ -1,55 +1,12 @@
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSatchelMercenary
+  parent: [ClothingBackpackSatchelMercenary, ClothingBackpackSatchelFilled]
   id: ClothingBackpackSatchelMercenaryFilled
-  components:
-    - type: StorageFill
-      contents:
-      - id: BoxSurvival
-      - id: Lighter
-      - id: CigPackBlack
-      - id: Flash
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackSatchel
-  id: ClothingBackpackSatchelReporterFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: ComputerMassMediaCircuitboard
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackSatchelMedical
-  id: ClothingBackpackSatchelPsychologistFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: RubberStampPsychologist
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackSatchel
-  id: ClothingBackpackSatchelStcFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: RubberStampStc
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackSatchelPilot
+  parent: [ClothingBackpackSatchelPilot, ClothingBackpackSatchelFilled]
   id: ClothingBackpackSatchelPilotFilled
-  components:
-    - type: StorageFill
-      contents:
-      - id: BoxSurvival
-      - id: Lighter
-      - id: CigPackGreen
 
 - type: entity
   noSpawn: true

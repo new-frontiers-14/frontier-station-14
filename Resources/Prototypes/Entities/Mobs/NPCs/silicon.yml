@@ -61,11 +61,11 @@
     group: GenericNumber
   - type: Repairable
     doAfterDelay: 8
+    fuelCost: 15
   - type: Pullable
   - type: Tag
     tags:
     - DoorBumpOpener
-    - ShoesRequiredStepTriggerImmune
   - type: MobState
     allowedStates:
       - Alive
@@ -106,6 +106,7 @@
   - type: TypingIndicator
     proto: robot
   - type: ZombieImmune
+  - type: StepTriggerImmune
 
 - type: entity
   parent: [ MobSiliconBase, BaseVehicle]
@@ -171,8 +172,8 @@
     - Cargo
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -370,8 +371,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]

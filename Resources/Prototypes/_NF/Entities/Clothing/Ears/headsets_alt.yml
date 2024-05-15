@@ -1,22 +1,5 @@
 ﻿- type: entity
   parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltSecurityWarden
-  name: bailiff's over-ear headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-#      - EncryptionKeySecurity
-      - EncryptionKeyCommand
-      - EncryptionKeyNfsd
-      - EncryptionKeyCommon
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/security.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/security.rsi
-
-- type: entity
-  parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltMercenary
   name: mercenary over-ear headset
   components:
@@ -46,27 +29,41 @@
     sprite: _NF/Clothing/Ears/Headsets/pilot.rsi
 
 - type: entity
-  parent: ClothingHeadsetAltSecurityWarden
-  id: ClothingHeadsetAltNfsdgreen
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltNfsdGreen
   name: nfsd over-ear headset
   components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+#      - EncryptionKeySecurity
+      - EncryptionKeyCommand
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetAltSecurityWarden
-  id: ClothingHeadsetAltNfsdbrown
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltNfsdBrown
   name: nfsd over-ear headset
   components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+#      - EncryptionKeySecurity
+      - EncryptionKeyCommand
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
 
 - type: entity
-  parent: ClothingHeadsetAltSecurity
+  parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltNfsdCreamandBrown
   name: sheriff's over-ear headset
   components:

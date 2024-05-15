@@ -130,8 +130,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             component.FryingOilThreshold,
             EntityManager.GetNetEntityArray(component.Storage.ContainedEntities.ToArray()));
 
-        if (!_uiSystem.TrySetUiState(uid, DeepFryerUiKey.Key, state))
-            _sawmill.Warning($"{ToPrettyString(uid)} was unable to set UI state.");
+        _uiSystem.SetUiState(uid, DeepFryerUiKey.Key, state);
     }
 
     /// <summary>
@@ -530,14 +529,14 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             if (!_containerSystem.Remove(removedItem, component.Storage))
                 return;
 
-            var user = args.Session.AttachedEntity;
+            var user = args.Actor;
 
             if (user != null)
             {
-                _handsSystem.TryPickupAnyHand(user.Value, removedItem);
+                _handsSystem.TryPickupAnyHand(user, removedItem);
 
                 _adminLogManager.Add(LogType.Action, LogImpact.Low,
-                    $"{ToPrettyString(user.Value)} took {ToPrettyString(args.Item)} out of {ToPrettyString(uid)}.");
+                    $"{ToPrettyString(user)} took {ToPrettyString(args.Item)} out of {ToPrettyString(uid)}.");
             }
 
             _audioSystem.PlayPvs(component.SoundRemoveItem, uid, AudioParamsInsertRemove);
@@ -586,17 +585,17 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
     private void OnScoopVat(EntityUid uid, DeepFryerComponent component, DeepFryerScoopVatMessage args)
     {
-        var user = args.Session.AttachedEntity;
+        var user = args.Actor;
 
         if (user == null ||
-            !TryGetActiveHandSolutionContainer(uid, user.Value, out var heldItem, out var heldSolution,
+            !TryGetActiveHandSolutionContainer(uid, user, out var heldItem, out var heldSolution,
                 out var transferAmount))
             return;
 
         if (!_solutionContainerSystem.TryGetSolution(component.Owner, component.Solution.Name, out var solution))
             return;
 
-        _solutionTransferSystem.Transfer(user.Value,
+        _solutionTransferSystem.Transfer(user,
             uid,
             solution.Value,
             heldItem.Value,
@@ -608,10 +607,10 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
     private void OnClearSlagStart(EntityUid uid, DeepFryerComponent component, DeepFryerClearSlagMessage args)
     {
-        var user = args.Session.AttachedEntity;
+        var user = args.Actor;
 
         if (user == null ||
-            !TryGetActiveHandSolutionContainer(uid, user.Value, out var heldItem, out var heldSolution,
+            !TryGetActiveHandSolutionContainer(uid, user, out var heldItem, out var heldSolution,
                 out var transferAmount))
             return;
 
@@ -621,7 +620,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             _popupSystem.PopupEntity(
                 Loc.GetString("deep-fryer-oil-no-slag"),
                 uid,
-                user.Value);
+                user);
 
             return;
         }
@@ -631,7 +630,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         var ev = new ClearSlagDoAfterEvent(heldSolution.Value.Comp.Solution, transferAmount);
 
         //JJ Comment - not sure I have DoAfterArgs configured correctly.
-        var doAfterArgs = new DoAfterArgs(EntityManager, user.Value, delay, ev, uid, uid, heldItem)
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, ev, uid, uid, heldItem)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -649,12 +648,12 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
         _containerSystem.EmptyContainer(component.Storage);
 
-        var user = args.Session.AttachedEntity;
+        var user = args.Actor;
 
         if (user != null)
         {
             _adminLogManager.Add(LogType.Action, LogImpact.Low,
-                $"{ToPrettyString(user.Value)} removed all items from {ToPrettyString(uid)}.");
+                $"{ToPrettyString(user)} removed all items from {ToPrettyString(uid)}.");
         }
 
         _audioSystem.PlayPvs(component.SoundRemoveItem, uid, AudioParamsInsertRemove);

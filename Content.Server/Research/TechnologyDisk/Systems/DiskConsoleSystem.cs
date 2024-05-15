@@ -119,7 +119,7 @@ public sealed class DiskConsoleSystem : EntitySystem
                        totalPoints >= component.PricePerRareDisk;
 
         var state = new DiskConsoleBoundUserInterfaceState(totalPoints, component.PricePerDisk, component.PricePerRareDisk, canPrint, canPrintRare);
-        _ui.TrySetUiState(uid, DiskConsoleUiKey.Key, state);
+        _ui.SetUiState(uid, DiskConsoleUiKey.Key, state);
     }
 
     private void OnShutdown(EntityUid uid, DiskConsolePrintingComponent component, ComponentShutdown args)

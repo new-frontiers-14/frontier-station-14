@@ -1,4 +1,5 @@
 # Nouns
+# Nouns
 seeds-noun-seeds = seeds
 seeds-noun-spores = spores
 
@@ -39,6 +40,8 @@ seeds-bluetomato-name = blue tomato
 seeds-bluetomato-display-name = blue tomato plant
 seeds-bloodtomato-name = blood tomato
 seeds-bloodtomato-display-name = blood tomato plant
+seeds-killertomato-name = tomato killer
+seeds-killertomato-display-name = tomato killer plant
 seeds-eggplant-name = eggplant
 seeds-eggplant-display-name = eggplants
 seeds-apple-name = apple
@@ -55,6 +58,8 @@ seeds-eggy-name = egg-plant
 seeds-eggy-display-name = egg-plants
 seeds-cannabis-name = cannabis
 seeds-cannabis-display-name = cannabis
+seeds-rainbow-cannabis-name = rainbow cannabis
+seeds-rainbow-cannabis-display-name = rainbow cannabis
 seeds-tobacco-name = tobacco
 seeds-tobacco-display-name = tobacco plant
 seeds-nettle-name = nettle
@@ -62,7 +67,7 @@ seeds-nettle-display-name = nettles
 seeds-deathnettle-name = death nettle
 seeds-deathnettle-display-name = death nettles
 seeds-chili-name = chili
-seeds-chili-display-name = chilis
+seeds-chili-display-name = chili peppers
 seeds-chilly-name = chilly
 seeds-chilly-display-name = chilly peppers
 seeds-poppy-name = poppy
@@ -110,3 +115,5 @@ seeds-pumpkin-name = pumpkin
 seeds-pumpkin-display-name = pumpkins
 seeds-cotton-name = cotton
 seeds-cotton-display-name = cotton plant
+seeds-pyrotton-name = pyrotton
+seeds-pyrotton-display-name = pyrotton plant
