@@ -1,0 +1,71 @@
+- type: entity
+  parent: BookBase
+  id: BookScienceTextbook
+  name: scientific academia vol.i
+  description: Volume One of the Science Textbook series.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_strong
+        color: "#542485"
+      - state: decor_wingette_circle
+        color: "#be69f0"
+      - state: icon_dna
+    - type: Paper
+      content: book-text-academia-volumeone
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookSciencePhilospher
+  name: cooking with the philospher's stone
+  description: A CentCom issued mixologist's book? All in the name of science, I guess.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_base
+        color: "#542485"
+      - state: decor_wingette_circle
+        color: "#be69f0"
+      - state: icon_bar
+    - type: Paper
+      content: book-text-science-philospher
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookScienceDwarven
+  name: dwarven guide to free thinking
+  description: A CentCom issued account of a fisherman's journey. They really expect you to read this?
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_base
+        color: "#542485"
+      - state: decor_wingette_circle
+        color: "#be69f0"
+      - state: icon_fish
+    - type: Paper
+      content: book-text-science-dwarven
+
+- type: entity
+  parent: BookScienceTextbook
+  id: BookScienceClown
+  name: honker's hilarious tight-five
+  description: A CentCom issued Standup Comedy Script..? This is getting ridiculous!
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_base
+        color: "#542485"
+      - state: decor_wingette_circle
+        color: "#be69f0"
+      - state: icon_banana
+    - type: Paper
+      content: book-text-science-clown

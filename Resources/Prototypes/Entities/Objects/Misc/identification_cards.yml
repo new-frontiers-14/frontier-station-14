@@ -24,9 +24,9 @@
     - WhitelistChameleon
   - type: StealTarget
     stealGroup: IDCard
-  - type: StaticPrice
+  - type: StaticPrice # Frontier
     price: 5 # The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Liltenhead moment
+  - type: CargoSellBlacklist # Frontier
 
 #IDs with layers
 
@@ -81,7 +81,7 @@
 - type: entity
   parent: PassengerIDCard
   id: SecurityCadetIDCard
-  name: cadet ID card
+  name: security cadet ID card
   components:
   - type: PresetIdCard
     job: SecurityCadet
@@ -126,7 +126,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityIDCard
-  name: deputy ID card
+  name: security ID card
   components:
   - type: Sprite
     layers:
@@ -138,7 +138,7 @@
 - type: entity
   parent: IDCardStandard
   id: WardenIDCard
-  name: bailiff ID card
+  name: warden ID card
   components:
     - type: Sprite
       layers:
@@ -425,7 +425,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoSIDCard
-  name: sheriff ID card
+  name: head of security ID card
   components:
   - type: Sprite
     layers:
@@ -445,8 +445,8 @@
     layers:
     - state: default
     - state: idbrigmedic
-  - type: PresetIdCard
-    job: Brigmedic
+  - type: PresetIdCard # Frontier
+    job: Brigmedic # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -607,7 +607,7 @@
     icons:
     # TODO figure out a better way of doing this.
     # Probably by adding a bool or icon-category data-field to the icon prototype?
-    - JobIconDetective
+#    - JobIconDetective
     - JobIconQuarterMaster
     - JobIconBotanist
     - JobIconBoxer
@@ -617,7 +617,7 @@
     - JobIconJanitor
     - JobIconChemist
     - JobIconStationEngineer
-    - JobIconSecurityOfficer
+#    - JobIconSecurityOfficer
     - JobIconChiefMedicalOfficer
     - JobIconRoboticist
     - JobIconChaplain
@@ -630,18 +630,17 @@
     - JobIconGeneticist
     - JobIconClown
     - JobIconCaptain
-    - JobIconHeadOfPersonnel
+#    - JobIconHeadOfPersonnel
     - JobIconVirologist
     - JobIconShaftMiner
     - JobIconPassenger
     - JobIconChiefEngineer
     - JobIconBartender
-    - JobIconHeadOfSecurity
-    - JobIconBrigmedic
+#    - JobIconHeadOfSecurity
     - JobIconMedicalDoctor
     - JobIconParamedic
     - JobIconChef
-    - JobIconWarden
+#    - JobIconWarden
     - JobIconResearchDirector
     - JobIconMime
     - JobIconMusician
@@ -650,7 +649,7 @@
     - JobIconMedicalIntern
     - JobIconTechnicalAssistant
     - JobIconServiceWorker
-    - JobIconSecurityCadet
+#    - JobIconSecurityCadet
     - JobIconZookeeper
     - JobIconVisitor
   - type: ActivatableUI
@@ -664,13 +663,13 @@
     default: PassengerIDCard
   - type: UserInterface
     interfaces:
-      - key: enum.AgentIDCardUiKey.Key
+      enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
-      - key: enum.ChameleonUiKey.Key
+      enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-  - type: StaticPrice
-    price: 200
-  - type: Contraband #frontier
+  - type: StaticPrice # Frontier
+    price: 200 # Frontier
+  - type: Contraband # Frontier
 
 - type: entity
   name: passenger ID card
@@ -683,6 +682,7 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -708,7 +708,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: Contraband #frontier
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -722,6 +722,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -812,7 +813,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: IDCardStandard
+  parent: EngineeringIDCard
   id: SeniorEngineerIDCard
   name: senior engineer ID card
   components:
@@ -822,7 +823,7 @@
     - state: idseniorengineer
 
 - type: entity
-  parent: IDCardStandard
+  parent: ResearchIDCard
   id: SeniorResearcherIDCard
   name: senior researcher ID card
   components:
@@ -832,7 +833,7 @@
     - state: idseniorresearcher
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedicalIDCard
   id: SeniorPhysicianIDCard
   name: senior physician ID card
   components:
@@ -842,7 +843,7 @@
     - state: idseniorphysician
 
 - type: entity
-  parent: IDCardStandard
+  parent: SecurityIDCard
   id: SeniorOfficerIDCard
   name: senior officer ID card
   components:
