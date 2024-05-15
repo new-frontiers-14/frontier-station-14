@@ -9,6 +9,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using FastAccessors;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -101,6 +102,15 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
+
+            if (profile is HumanoidCharacterProfile humanoid)
+                if (curPrefs.Characters.TryGetValue(slot, out var storedProfile) && storedProfile is HumanoidCharacterProfile storedHumanoid)
+                {
+                    if (humanoid.BankBalance != storedHumanoid.BankBalance)
+                        return;
+                }
+                else if (humanoid.BankBalance != HumanoidCharacterProfile.DefaultBalance)
+                    return;
 
             // Corvax-Sponsors-Start: Ensure removing sponsor markings if client somehow bypassed client filtering
             // WARN! It's not removing markings from DB!
