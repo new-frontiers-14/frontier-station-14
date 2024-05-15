@@ -56,7 +56,7 @@
   id: Autolathe
   parent: BaseLathe
   name: autolathe
-  description: It produces items using metal and glass.
+  description: It produces basic items using metal and glass.
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe.rsi
@@ -102,8 +102,8 @@
       - AirTank
       - GasAnalyzer
       - UtilityBelt
-#      - Fulton
-#      - FultonBeacon
+#      - Fulton # Frontier
+#      - FultonBeacon # Frontier
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -277,8 +277,6 @@
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
-      - RCD
-      - RCDAmmo
       - ShipyardRCD # Frontier
       - ShipyardRCDAmmo # Frontier
       - Scalpel
@@ -330,6 +328,7 @@
       - HolofanProjector
       - BluespaceBeaker
       - SyringeBluespace
+      - Jug
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
@@ -379,7 +378,6 @@
       - WeaponAdvancedLaser
       - WeaponLaserCannon
       - WeaponXrayCannon
-      - ClothingOuterHardsuitPirateEVA # Frontier
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -428,6 +426,7 @@
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
     - CondenserMachineCircuitBoard
+    - HotplateMachineCircuitboard
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
@@ -1140,7 +1139,7 @@
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple
-#      - Carpets
+      # Carpets
       - Carpet
       - CarpetBlack
       - CarpetPink
