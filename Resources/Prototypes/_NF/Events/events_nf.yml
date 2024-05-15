@@ -1,0 +1,25 @@
+- type: entity
+  id: BluespaceCargo
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    startDelay: 30
+    duration: 35
+  - type: BluespaceCargoRule
+
+- type: entity
+  id: BluespaceSyndicateCrate
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 1
+    startDelay: 30
+    duration: 35
+    earliestStart: 90
+    minimumPlayers: 20
+  - type: BluespaceSyndicateCrateRule
