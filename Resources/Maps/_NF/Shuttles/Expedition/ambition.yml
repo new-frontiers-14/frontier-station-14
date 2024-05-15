@@ -308,9 +308,6 @@ entities:
             259: -11,0
             260: -10,-1
             261: -11,-1
-            268: 1,-6
-            269: 2,-6
-            270: 3,-6
             271: 1,-5
             272: 2,-5
             273: 3,-5
@@ -447,6 +444,9 @@ entities:
             599: -2,-6
             600: -3,-12
             601: -3,-13
+            608: 1,-6
+            609: 2,-6
+            610: 3,-6
         - node:
             color: '#FFFF00FF'
             id: DirtLight
@@ -1261,6 +1261,7 @@ entities:
       name: map 22
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
@@ -14246,33 +14247,12 @@ entities:
     - type: Transform
       pos: 1.5,-10.5
       parent: 1
-- proto: SpawnPointAtmos
-  entities:
-  - uid: 2241
-    components:
-    - type: Transform
-      pos: -5.5,-12.5
-      parent: 1
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 2239
-    components:
-    - type: Transform
-      pos: -5.5,1.5
-      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 2340
     components:
     - type: Transform
       pos: -2.5,-10.5
-      parent: 1
-- proto: SpawnPointStationEngineer
-  entities:
-  - uid: 2306
-    components:
-    - type: Transform
-      pos: -5.5,-9.5
       parent: 1
 - proto: Spear
   entities:
