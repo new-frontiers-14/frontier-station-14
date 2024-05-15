@@ -2,10 +2,8 @@
   id: Cargo
   description: department-Cargo-description
   color: "#A46106"
-  roles:
-  - CargoTechnician
-  - Quartermaster
-  - SalvageSpecialist
+  weight: -90
+  primary: false
 
 - type: department
   id: Civilian
@@ -20,8 +18,7 @@
   - Chaplain
   - Chef
   - Clown
-  - HeadOfPersonnel
-  - Janitor
+#  - HeadOfPersonnel
   - Lawyer
   - Librarian
   - Mime
@@ -31,54 +28,51 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
-  - Valet ##nyanojobs below
-  - MartialArtist
-  - MailCarrier
-  - Gladiator
+  - Contractor # Frontier
   - Mercenary # Frontier
   - Pilot # Frontier
-  - StationTrafficController # Frontier
-  - StationRepresentative # Frontier
+  - Captain # Frontier
+  - ChiefEngineer # Frontier
+  - AtmosphericTechnician # Frontier
+  - StationEngineer # Frontier
+  - TechnicalAssistant # Frontier
+  - ResearchDirector # Frontier
+  - Scientist # Frontier
+  - ResearchAssistant # Frontier
+  - Quartermaster # Frontier
+  - CargoTechnician # Frontier
+  - SalvageSpecialist # Frontier
+  enabled: true
 
 - type: department
   id: Command
   description: department-Command-description
   color: "#334E6D"
   roles:
-  - Captain
   - CentralCommandOfficial
-  - ChiefEngineer
-  - ChiefMedicalOfficer
-  - HeadOfPersonnel
-  - HeadOfSecurity
-  - ResearchDirector
-  - Quartermaster
+  - HeadOfPersonnel # Not shown but needed here for playtime
+  - HeadOfSecurity # Not shown but needed here for playtime
+#  - ChiefMedicalOfficer
   - StationRepresentative # Frontier
   - Sheriff  # Frontier
+  - StationTrafficController # Frontier
   primary: false
   weight: 100
+  enabled: true
 
 - type: department
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"
-  roles:
-  - AtmosphericTechnician
-  - ChiefEngineer
-  - StationEngineer
-  - TechnicalAssistant
+  weight: -94
+  primary: false
 
 - type: department
   id: Medical
   description: department-Medical-description
   color: "#52B4E9"
-  roles:
-  - Chemist
-  - ChiefMedicalOfficer
-  - MedicalDoctor
-  - MedicalIntern
-  - Psychologist
-  - Paramedic
+  weight: -93
+  primary: false
 
 - type: department
   id: Security
@@ -92,33 +86,38 @@
   - SecurityOfficer # Frontier - No Longer Usable
   - Warden # Frontier - No Longer Usable
   - PrisonGuard ##nyano
-  - Prisoner ##nyano
   - Brigmedic # Frontier
-  - SecurityGuard # Frontier
+#  - SecurityGuard # Frontier
   - DetectiveNF # Frontier
   - Cadet # Frontier
   - Deputy # Frontier
   - Bailiff # Frontier
   - Sheriff # Frontier
   - SeniorOfficer # Frontier
+  enabled: true
 
 - type: department
   id: Science
   description: department-Science-description
   color: "#D381C9"
-  roles:
-  - ResearchDirector
-  - Scientist
-  - ResearchAssistant
+  weight: -92
+  primary: false
 
 - type: department
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
-  roles:
-  - Boxer
-  - Reporter
-  - Zookeeper
-  - Psychologist
+  weight: -91
   primary: false
+
+- type: department
+  id: Antag
+  description: department-Security-description
+  color: "#DE3A3A"
+  weight: -11
+  roles:
+  - PirateCaptain
+  - PirateFirstMate
+  - Pirate
+  - Prisoner ##nyano
+  enabled: true

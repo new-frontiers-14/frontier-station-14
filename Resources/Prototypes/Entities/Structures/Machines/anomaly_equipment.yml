@@ -27,8 +27,8 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-    - key: enum.ResearchClientUiKey.Key
-      type: ResearchClientBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: Machine
     board: AnomalyVesselCircuitboard
   - type: PointLight
@@ -300,8 +300,8 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      - key: enum.AnomalyGeneratorUiKey.Key
-        type: AnomalyGeneratorBoundUserInterface
+        enum.AnomalyGeneratorUiKey.Key:
+          type: AnomalyGeneratorBoundUserInterface
   - type: Appearance
   - type: ActiveRadio
     channels:
