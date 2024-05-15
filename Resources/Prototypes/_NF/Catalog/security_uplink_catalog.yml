@@ -900,21 +900,21 @@
         tags:
           - SecurityUplink
 
-- type: listing
-  id: UplinkSecuritySpeedloaderRubber
-  name:  uplink-security-speedloaderrubber-name
-  description: uplink-security-speedloaderrubber-desc
-  productEntity: SpeedLoaderMagnumRubber
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# - type: listing # Frontier - TODO: Restore rubber
+  # id: UplinkSecuritySpeedloaderRubber
+  # name:  uplink-security-speedloaderrubber-name
+  # description: uplink-security-speedloaderrubber-desc
+  # productEntity: SpeedLoaderMagnumRubber
+  # icon: { sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: base }
+  # cost:
+    # FrontierUplinkCoin: 1
+  # categories:
+    # - UplinkSecurityAmmo
+  # conditions:
+    # - !type:StoreWhitelistCondition
+      # whitelist:
+        # tags:
+          # - SecurityUplink
 
 - type: listing
   id: UplinkSecurityShotLethal
@@ -1207,23 +1207,23 @@
         - SeniorOfficer
         - Sheriff
 
-- type: listing
-  id: UplinkSecurityNonLethalArmory
-  name:  uplink-security-nonlethalarmory-name
-  description: uplink-security-nonlethalarmory-desc
-  productEntity: CrateArmoryNonLethalNfsd
-  icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# - type: listing
+  # id: UplinkSecurityNonLethalArmory
+  # name:  uplink-security-nonlethalarmory-name
+  # description: uplink-security-nonlethalarmory-desc
+  # productEntity: CrateArmoryNonLethalNfsd
+  # icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi, state: icon }
+  # cost:
+    # FrontierUplinkCoin: 10
+  # categories:
+    # - UplinkSecurityUtility
+  # conditions:
+    # - !type:StoreWhitelistCondition
+      # whitelist:
+        # tags:
+          # - SecurityUplink
+    # - !type:BuyerJobCondition
+      # whitelist:
+        # - Bailiff
+        # - SeniorOfficer
+        # - Sheriff
