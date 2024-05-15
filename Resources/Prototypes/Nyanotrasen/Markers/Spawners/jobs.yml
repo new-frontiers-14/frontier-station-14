@@ -1,16 +1,4 @@
 - type: entity
-  id: SpawnPointGladiator
-  parent: SpawnPointJobBase
-  name: gladiator
-  components:
-  - type: SpawnPoint
-    job_id: Gladiator
-  - type: Sprite
-    layers:
-      - state: green
-      - state: boxer #<- find texture
-
-- type: entity
   id: SpawnPointMailCarrier
   parent: SpawnPointJobBase
   name: mailcarrier
@@ -57,15 +45,3 @@
     layers:
       - state: green
       - state: prisonguard
-
-- type: entity
-  id: SpawnPointMartialArtist
-  parent: SpawnPointJobBase
-  name: martial artist
-  components:
-  - type: SpawnPoint
-    job_id: MartialArtist
-  - type: Sprite
-    layers:
-      - state: green
-      - state: boxer
