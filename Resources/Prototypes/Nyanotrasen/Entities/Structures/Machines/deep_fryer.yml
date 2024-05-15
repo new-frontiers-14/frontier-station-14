@@ -132,15 +132,14 @@
   - type: RefillableSolution
     solution: vat_oil
   - type: Drink
-    isOpen: true
     solution: vat_oil
   - type: Appearance
   - type: ActivatableUI
     key: enum.DeepFryerUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.DeepFryerUiKey.Key
-      type: DeepFryerBoundUserInterface
+      enum.DeepFryerUiKey.Key:
+        type: DeepFryerBoundUserInterface
   - type: Destructible
     thresholds:
     - trigger:

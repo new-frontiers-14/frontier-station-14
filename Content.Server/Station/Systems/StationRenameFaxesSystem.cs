@@ -1,6 +1,7 @@
 using Content.Server.Fax;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Shared.Fax.Components;
 
 namespace Content.Server.Station.Systems;
 
