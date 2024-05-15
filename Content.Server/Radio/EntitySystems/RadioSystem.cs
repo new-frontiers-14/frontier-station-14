@@ -166,7 +166,7 @@ public sealed class RadioSystem : EntitySystem
             null) : null;
         var languageChatMsg = languageChat is not null ? new MsgChatMessage { Message = languageChat } : null;
 
-        var ev = new RadioReceiveEvent(message, messageSource, channel, chatMsg, languageChatMsg);
+        var ev = new RadioReceiveEvent(message, messageSource, channel, chatMsg, radioSource, languageChatMsg);
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);

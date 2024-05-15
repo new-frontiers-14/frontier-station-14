@@ -9,6 +9,7 @@ using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.Events;
 using Robust.Server.Player;
+using Content.Shared.Preferences.Loadouts;
 
 namespace Content.Server.Bank;
 
@@ -24,7 +25,6 @@ public sealed partial class BankSystem : EntitySystem
     {
         base.Initialize();
         _log = Logger.GetSawmill("bank");
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<BankAccountComponent, ComponentGetState>(OnBankAccountChanged);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
         InitializeATM();
@@ -76,13 +76,12 @@ public sealed partial class BankSystem : EntitySystem
             profile.Gender,
             bank.Balance,
             profile.Appearance,
-            profile.Clothing,
-            profile.Backpack,
             profile.SpawnPriority,
             profile.JobPriorities,
             profile.PreferenceUnavailable,
             profile.AntagPreferences,
-            profile.TraitPreferences);
+            profile.TraitPreferences,
+            new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState
         {
@@ -170,10 +169,12 @@ public sealed partial class BankSystem : EntitySystem
     /// effectively a gigantic money exploit.
     /// So, this will have to stay cursed until I can find another way to refresh the character cache
     /// or the db gods themselves come up to smite me from below, whichever comes first
+    ///
+    /// EDIT 5/13/2024 THE DB GODS THEY CAME. THEY SMOTE. SAVE ME
     /// </summary>
     private void OnPlayerLobbyJoin (PlayerJoinedLobbyEvent args)
     {
         var cts = new CancellationToken();
-        _prefsManager.LoadData(args.PlayerSession, cts);
+        _prefsManager.RefreshPreferencesAsync(args.PlayerSession, cts);
     }
 }

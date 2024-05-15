@@ -15,7 +15,6 @@
         Bloodloss: 0.5
   - type: Thirst
     baseDecayRate: 0.0083
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full
@@ -99,7 +98,6 @@
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
-  - type: ShoesRequiredStepTriggerImmune # Frontier
   - type: IgniteOnHeatDamage
     fireStacks: 1
     threshold: 12
@@ -107,6 +105,8 @@
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: StepTriggerImmune # Frontier
 
 - type: entity
   parent: BaseSpeciesDummy

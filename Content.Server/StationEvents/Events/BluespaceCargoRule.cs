@@ -8,6 +8,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.GameTicking.Components;
 using Content.Shared.CCVar;
 
 namespace Content.Server.StationEvents.Events;

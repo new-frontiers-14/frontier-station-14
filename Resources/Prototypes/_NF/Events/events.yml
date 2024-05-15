@@ -1,26 +1,221 @@
+# - type: entity # Frontier -right now you never find them since they spawn on random grids.
+  # id: AnomalySpawn
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+  # - type: StationEvent
+    # weight: 8
+    # startDelay: 30
+    # duration: 35
+  # - type: AnomalySpawnRule
+
 - type: entity
-  id: BluespaceCargo
+  id: BreakerFlip
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 7
+    duration: 1
+    minimumPlayers: 15
+  - type: BreakerFlipRule
+
+- type: entity
+  id: FalseAlarm
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 15
+    duration: 1
+  - type: FalseAlarmRule
+
+- type: entity
+  id: GasLeak
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-gas-leak-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-gas-leak-end-announcement
+    minimumPlayers: 5
+    weight: 5
+    startDelay: 20
+  - type: GasLeakRule
+
+- type: entity
+  id: MouseMigration
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    startDelay: 10
+    earliestStart: 15
+    weight: 6
+    duration: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobMouse
+      prob: 0.02
+    - id: MobMouse1
+      prob: 0.02
+    - id: MobMouse2
+      prob: 0.02
+    - id: MobMouseCancer
+      prob: 0.001
+
+- type: entity
+  id: CockroachMigration
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    startDelay: 10
+    weight: 6
+    duration: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobCockroach
+      prob: 0.03
+    - id: MobMothroach
+      prob: 0.008
+
+- type: entity
+  id: PowerGridCheck
   parent: BaseGameRule
   noSpawn: true
   components:
   - type: StationEvent
     weight: 5
-    startDelay: 30
-    duration: 35
-  - type: BluespaceCargoRule
+    startAnnouncement: station-event-power-grid-check-start-announcement
+    endAnnouncement: station-event-power-grid-check-end-announcement
+    startAudio:
+      path: /Audio/Announcements/power_off.ogg
+      params:
+       volume: -4
+    startDelay: 24
+    duration: 60
+    maxDuration: 60 # Frontier 120<60
+  - type: PowerGridCheckRule
 
 - type: entity
-  id: BluespaceSyndicateCrate
+  id: RandomSentience
   parent: BaseGameRule
   noSpawn: true
   components:
   - type: StationEvent
+    weight: 6
+    duration: 1
+    maxOccurrences: 3 # this event has diminishing returns on interesting-ness, so we cap it
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    weight: 1
-    startDelay: 30
-    duration: 35
-    earliestStart: 90
+  - type: RandomSentienceRule
+
+- type: entity
+  parent: BaseGameRule
+  id: SolarFlare
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 8
+    startAnnouncement: station-event-solar-flare-start-announcement
+    endAnnouncement: station-event-solar-flare-end-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    duration: 120
+    maxDuration: 240
+  - type: SolarFlareRule
+    onlyJamHeadsets: true
+    affectedChannels:
+    - Common
+    extraChannels:
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Traffic # Frontier
+    - Nfsd # Frontier
+    extraCount: 2
+    lightBreakChancePerSecond: 0.0003
+    doorToggleChancePerSecond: 0.001
+
+- type: entity
+  id: VentClog
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-clog-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    minimumPlayers: 15
+    weight: 5
+    startDelay: 50
+    duration: 60
+  - type: VentClogRule
+
+- type: entity
+  id: MassHallucinations
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 7
+    duration: 150
+    maxDuration: 300
+    reoccurrenceDelay: 30
+  - type: MassHallucinationsRule
+    minTimeBetweenIncidents: 0.1
+    maxTimeBetweenIncidents: 300
+    maxSoundDistance: 7
+    sounds:
+      collection: Paracusia
+
+- type: entity
+  noSpawn: true
+  parent: BaseGameRule
+  id: IonStorm
+  components:
+  - type: StationEvent
+    weight: 8
+    reoccurrenceDelay: 20
+    duration: 1
+  - type: IonStormRule
+
+# - type: entity # Frontier - Restore this ones we add a blacklist on it for critical machines
+  # id: MimicVendorRule
+  # parent: BaseGameRule
+  # noSpawn: true
+  # components:
+    # - type: StationEvent
+      # earliestStart: 0
+      # minimumPlayers: 20
+      # maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
+      # weight: 5
+    # - type: MobReplacementRule
+
+# Have to keep this ones existing as abstract for no errors:
+- type: entity
+  id: LoneOpsSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  abstract: true
+  components:
+  - type: StationEvent
+    earliestStart: 35
+    weight: 5.5
     minimumPlayers: 20
   - type: BluespaceSyndicateCrateRule
     
@@ -42,3 +237,28 @@
 #    maxDuration: 2400
 #  - type: RandomShipyardErrorRule
 # Corvax-end
+
+    duration: 1
+  - type: LoadMapRule
+    mapPath: /Maps/Shuttles/striker.yml
+  - type: NukeopsRule
+    roundEndBehavior: Nothing
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointLoneNukeOperative
+      min: 1
+      max: 1
+      pickPlayer: false
+      startingGear: SyndicateLoneOperativeGearFull
+      components:
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - SyndicateNamesPrefix
+        - SyndicateNamesNormal
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindComponents:
+      - type: NukeopsRole
+        prototype: Nukeops
