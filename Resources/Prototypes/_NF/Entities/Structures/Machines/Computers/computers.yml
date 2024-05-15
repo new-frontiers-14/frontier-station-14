@@ -56,8 +56,8 @@
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface
     interfaces:
-    - key: enum.CargoPalletConsoleUiKey.Sale
-      type: CargoPalletConsoleBoundUserInterface
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleBoundUserInterface
   - type: MarketModifier
     mod: 1.00
   - type: Computer
@@ -147,7 +147,7 @@
     key: enum.ContrabandPalletConsoleUiKey.Contraband
   - type: UserInterface
     interfaces:
-      - key: enum.ContrabandPalletConsoleUiKey.Contraband
+      enum.ContrabandPalletConsoleUiKey.Contraband:
         type: ContrabandPalletConsoleBoundUserInterface
   - type: Computer
     board: Null
@@ -185,7 +185,7 @@
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.IFFConsoleUiKey.Key
+      enum.IFFConsoleUiKey.Key:
         type: IFFConsoleBoundUserInterface
   - type: Computer
     board: Null
