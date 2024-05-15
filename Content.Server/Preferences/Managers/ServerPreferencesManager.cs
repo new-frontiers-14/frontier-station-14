@@ -112,9 +112,9 @@ namespace Content.Server.Preferences.Managers
             var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(message.MsgChannel.UserId, out var prototypes)
                 ? prototypes.ToArray()
                 : [];
-            profile.EnsureValid(_cfg, _protos, sponsorPrototypes);
+            profile.EnsureValid(session, _dependencies, sponsorPrototypes);
             // Corvax-Sponsors-End
-			
+
             var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
             {
                 [slot] = profile
@@ -190,7 +190,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
-                        new[] {new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random())},
+                        new[] { new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random()) },
                         0, Color.Transparent)
                 };
 
@@ -206,31 +206,8 @@ namespace Content.Server.Preferences.Managers
 
                 async Task LoadPrefs()
                 {
-<<<<<<< HEAD
-                    var prefs = await GetOrCreatePreferencesAsync(session.UserId);
-                    // Corvax-Sponsors-Start: Remove sponsor markings from expired sponsors
-                    foreach (var (_, profile) in prefs.Characters)
-                    {
-                        var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes)
-                            ? prototypes.ToArray()
-                            : [];
-                        profile.EnsureValid(_cfg, _protos, sponsorPrototypes);
-                    }
-                    // Corvax-Sponsors-End
-                    prefsData.Prefs = prefs;
-                    prefsData.PrefsLoaded = true;
-
-                    var msg = new MsgPreferencesAndSettings();
-                    msg.Preferences = prefs;
-                    msg.Settings = new GameSettings
-                    {
-                        MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId),  // Corvax-Sponsors
-                    };
-                    _netManager.ServerSendMessage(msg, session.Channel);
-=======
                     var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
                     prefsData.Prefs = prefs;
->>>>>>> upstream/master
                 }
             }
         }
@@ -307,41 +284,6 @@ namespace Content.Server.Preferences.Managers
 
             return prefs;
         }
-
-        /// <summary>
-        /// Retrieves preferences for the given username from storage or returns null.
-        /// Creates and saves default preferences if they are not found, then returns them.
-        /// </summary>
-        public PlayerPreferences? GetPreferencesOrNull(NetUserId? userId)
-        {
-            if (userId == null)
-                return null;
-
-<<<<<<< HEAD
-            // Corvax-Sponsors-Start
-            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(userId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
-            return SanitizePreferences(prefs, sponsorPrototypes);
-            // Corvax-Sponsors-End
-        }
-
-        private PlayerPreferences SanitizePreferences(PlayerPreferences prefs, string[] sponsorPrototypes)
-=======
-            if (_cachedPlayerPrefs.TryGetValue(userId.Value, out var pref))
-                return pref.Prefs;
-            return null;
-        }
-
-        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel)
-        {
-            var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
-            if (prefs is null)
-            {
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(), cancel);
-            }
-
-            return prefs;
-        }
-
         public async Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel)
         {
             if (!_cachedPlayerPrefs.TryGetValue(session.UserId, out var prefsData))
@@ -375,21 +317,39 @@ namespace Content.Server.Preferences.Managers
                 }
             }
         }
+        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel)
+        {
+            var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
+            if (prefs is null)
+            {
+                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(), cancel);
+            }
 
+            return prefs;
+        }
+        /// <summary>
+        /// Retrieves preferences for the given username from storage or returns null.
+        /// Creates and saves default preferences if they are not found, then returns them.
+        /// </summary>
+        public PlayerPreferences? GetPreferencesOrNull(NetUserId? userId)
+        {
+            if (userId == null)
+                return null;
+
+            if (_cachedPlayerPrefs.TryGetValue(userId.Value, out var pref))
+                return pref.Prefs;
+            return null;
+        }
 
         private PlayerPreferences SanitizePreferences(ICommonSession session, PlayerPreferences prefs, IDependencyCollection collection)
->>>>>>> upstream/master
         {
             // Clean up preferences in case of changes to the game,
             // such as removed jobs still being selected.
 
+            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetServerPrototypes(session.UserId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
-<<<<<<< HEAD
-                return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(_cfg, _protos, sponsorPrototypes));
-=======
-                return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection));
->>>>>>> upstream/master
+                return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection, sponsorPrototypes));
             }), prefs.SelectedCharacterIndex, prefs.AdminOOCColor);
         }
 

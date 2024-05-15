@@ -79,7 +79,8 @@ public sealed partial class GunSystem : SharedGunSystem
         var toMap = toCoordinates.ToMapPos(EntityManager, TransformSystem);
         var mapDirection = toMap - fromMap.Position;
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
-
+        var direction = fromCoordinates.ToMapPos(EntityManager, TransformSystem) - toCoordinates.ToMapPos(EntityManager, TransformSystem);
+        var worldAngle = direction.ToAngle().Opposite();
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
             ? fromCoordinates.WithEntityId(gridUid, EntityManager)
@@ -112,7 +113,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         shotProjectiles.AddRange(cartridgeBullets);
                         cartridgeBullets.Clear();
                         SetCartridgeSpent(ent.Value, cartridge, true);
-                        MuzzleFlash(gunUid, cartridge, user);
+                        MuzzleFlash(gunUid, cartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
 
                         if (cartridge.DeleteOnSpawn)
@@ -134,7 +135,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 case AmmoComponent newAmmo:
                     result = true;
                     shotProjectiles.Add(ent!.Value);
-                    MuzzleFlash(gunUid, newAmmo, user);
+                    MuzzleFlash(gunUid, newAmmo, worldAngle, user);
                     Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                     break;
                 case HitscanPrototype hitscan:

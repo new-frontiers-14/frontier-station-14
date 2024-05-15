@@ -278,47 +278,42 @@ public sealed class RadioDeviceSystem : EntitySystem
     // Corvax-Frontier-Start
     #region Handheld Radio
 
-    private void OnBeforeHandheldRadioUiOpen(Entity<RadioMicrophoneComponent> microphone, ref BeforeActivatableUIOpenEvent args)
+    private void OnBeforeHandheldRadioUiOpen(EntityUid uid, RadioMicrophoneComponent component, BeforeActivatableUIOpenEvent args)
     {
-        UpdateHandheldRadioUi(microphone);
+        UpdateHandheldRadioUi(uid, component);
     }
 
-    private void OnToggleHandheldRadioMic(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioMicMessage args)
+    private void OnToggleHandheldRadioMic(EntityUid uid, RadioMicrophoneComponent component, ToggleHandheldRadioMicMessage args)
     {
-        if (args.Session.AttachedEntity is not { } user)
+        SetMicrophoneEnabled(uid, args.Actor, args.Enabled, true, component);
+        UpdateHandheldRadioUi(uid, component);
+    }
+
+    private void OnToggleHandheldRadioSpeaker(EntityUid uid, RadioMicrophoneComponent component, ToggleHandheldRadioSpeakerMessage args)
+    {
+        if (!TryComp<RadioSpeakerComponent>(uid, out var speakerComponent))
             return;
 
-        SetMicrophoneEnabled(microphone, user, args.Enabled, true);
-        UpdateHandheldRadioUi(microphone);
+        SetSpeakerEnabled(uid, args.Actor, args.Enabled, true, speakerComponent);
+        UpdateHandheldRadioUi(uid, component);
     }
 
-    private void OnToggleHandheldRadioSpeaker(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioSpeakerMessage args)
+    private void OnChangeHandheldRadioFrequency(EntityUid uid, RadioMicrophoneComponent component, SelectHandheldRadioFrequencyMessage args)
     {
-        if (args.Session.AttachedEntity is not { } user)
-            return;
-
-        SetSpeakerEnabled(microphone, user, args.Enabled, true);
-        UpdateHandheldRadioUi(microphone);
+        component.Frequency = args.Frequency;
+        UpdateHandheldRadioUi(uid, component);
     }
 
-    private void OnChangeHandheldRadioFrequency(Entity<RadioMicrophoneComponent> microphone, ref SelectHandheldRadioFrequencyMessage args)
+    private void UpdateHandheldRadioUi(EntityUid uid, RadioMicrophoneComponent component)
     {
-        if (args.Session.AttachedEntity is not { })
-            return;
+        if (!TryComp<RadioSpeakerComponent>(uid, out var speakerComponent))
+            speakerComponent = null;
 
-        microphone.Comp.Frequency = args.Frequency;
-        UpdateHandheldRadioUi(microphone);
-    }
-
-    private void UpdateHandheldRadioUi(Entity<RadioMicrophoneComponent> radio)
-    {
-        var speakerComp = CompOrNull<RadioSpeakerComponent>(radio);
-        var frequency = radio.Comp.Frequency;
-
-        var micEnabled = radio.Comp.Enabled;
-        var speakerEnabled = speakerComp?.Enabled ?? false;
+        var micEnabled = component.Enabled;
+        var speakerEnabled = speakerComponent?.Enabled ?? false;
+        var frequency = component.Frequency;
         var state = new HandheldRadioBoundUIState(micEnabled, speakerEnabled, frequency);
-        _ui.TrySetUiState(radio, HandheldRadioUiKey.Key, state);
+        _ui.SetUiState(uid, HandheldRadioUiKey.Key, state);
     }
 
     #endregion

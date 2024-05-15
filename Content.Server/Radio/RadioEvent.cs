@@ -5,7 +5,7 @@ using Content.Shared.Radio;
 namespace Content.Server.Radio;
 
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(LanguageMessage Message, EntityUid MessageSource, RadioChannelPrototype Channel, MsgChatMessage ChatMsg, MsgChatMessage? LanguageChatMsg);
+public readonly record struct RadioReceiveEvent(LanguageMessage Message, EntityUid MessageSource, RadioChannelPrototype Channel, MsgChatMessage ChatMsg, EntityUid RadioSource, MsgChatMessage? LanguageChatMsg);
 
 /// <summary>
 /// Use this event to cancel sending message per receiver

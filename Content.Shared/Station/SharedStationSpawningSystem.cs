@@ -119,7 +119,8 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         if (HasComp<GiveTranslatorComponent>(entity))
         {
-            var translatorEntity = EntityManager.SpawnEntity("Translator", coords);
+            var coords = _xformSystem.GetMapCoordinates(entity);
+            var translatorEntity = EntityManager.SpawnEntity("Translator",  coords);
             _handsSystem.TryForcePickupAnyHand(entity, translatorEntity, checkActionBlocker: false, handsComp: handsComponent);
         }
     }

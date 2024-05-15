@@ -64,13 +64,12 @@ namespace Content.Client.Preferences
 
         public void UpdateCharacter(ICharacterProfile profile, int slot)
         {
-            // Corvax-Sponsors-Start
-            var sponsorPrototypes = _sponsorsManager?.Prototypes.ToArray() ?? [];
-            profile.EnsureValid(_cfg, _prototypes, sponsorPrototypes);
-            // Corvax-Sponsors-End
             var collection = IoCManager.Instance!;
-            profile.EnsureValid(_playerManager.LocalSession!, collection);
-            var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};
+            // Corvax-Sponsors-Start
+            var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+            profile.EnsureValid(_playerManager.LocalSession!, collection, sponsorPrototypes);
+            // Corvax-Sponsors-End
+            var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) { [slot] = profile };
             Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor);
             var msg = new MsgUpdateCharacter
             {

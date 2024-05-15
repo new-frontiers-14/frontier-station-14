@@ -380,7 +380,7 @@ namespace Content.Shared.Preferences
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
-        public void EnsureValid(IConfigurationManager configManager, IPrototypeManager prototypeManager, string[] sponsorPrototypes)
+        public void EnsureValid(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes)
         {
             var configManager = collection.Resolve<IConfigurationManager>();
             var prototypeManager = collection.Resolve<IPrototypeManager>();
@@ -550,10 +550,10 @@ namespace Content.Shared.Preferences
             }
         }
 
-        public ICharacterProfile Validated(IConfigurationManager configManager, IPrototypeManager prototypeManager, string[] sponsorPrototypes)
+        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes)
         {
             var profile = new HumanoidCharacterProfile(this);
-            profile.EnsureValid(configManager, prototypeManager, sponsorPrototypes); // Corvax-Sponsors
+            profile.EnsureValid(session, collection, sponsorPrototypes); // Corvax-Sponsors
             return profile;
         }
 
