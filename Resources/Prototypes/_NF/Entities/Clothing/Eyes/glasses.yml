@@ -38,13 +38,11 @@
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesGlassesMeson
   id: ClothingEyesPunkGoggles
   name: punk goggles
   description: How one can see anything in this with all the lights?
   components:
-  - type: FlashImmunity
-  - type: EyeProtection
   - type: VisionCorrection
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
@@ -71,14 +69,11 @@
           decor_base_glasses_01: CyberpunkDark
 
 - type: entity
-  parent: ClothingEyesPunkGoggles
+  parent: ClothingEyesHudMedical
   id: ClothingEyesPunkInfoShades
   name: punk infoshades
   description: How one can see anything in this with all the lights?
   components:
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:
