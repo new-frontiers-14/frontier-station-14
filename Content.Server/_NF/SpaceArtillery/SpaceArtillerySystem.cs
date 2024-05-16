@@ -375,27 +375,30 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 			EntityCoordinates targetCordinates;
 			targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
 
-			///Checks if armaments on grid are activated, or its a harmless armament
-			if(TryComp<SpaceArtilleryGridComponent>(_gridUid, out var componentGrid))
-			{
-				if(componentGrid.IsActive == true || component.IsDestructive == false)
-				{
-					///Fires the armament, sending signal to gun system
-					_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-				}
-				else
-				{
-					OnMalfunction(uid,component);
-				}
-			}
-			else if(component.IsDestructive == false)
-			{
-				///Fires the armament, sending signal to gun system
-				_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
-			}
+            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
 
-		}
-	}
+            // Unused grid system to enable/disable multiple armaments connected to a grid at the same time
+
+            ///Checks if armaments on grid are activated, or its a harmless armament
+            //if(TryComp<SpaceArtilleryGridComponent>(_gridUid, out var componentGrid))
+            //{
+            //	if(componentGrid.IsActive == true || component.IsDestructive == false)
+            //	{
+            //		///Fires the armament, sending signal to gun system
+            //		_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+            //	}
+            //	else
+            //	{
+            //		OnMalfunction(uid,component);
+            //	}
+            //}
+            //else if(component.IsDestructive == false)
+            //{
+            //	///Fires the armament, sending signal to gun system
+            //	_gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+            //}
+        }
+    }
 
     private void GetInsertedCoolantAmount(SpaceArtilleryComponent component, out int amount)
     {
