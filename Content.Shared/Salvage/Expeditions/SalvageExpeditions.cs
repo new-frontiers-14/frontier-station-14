@@ -12,14 +12,16 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public TimeSpan NextOffer;
     public bool Claimed;
     public bool Cooldown;
+    public bool CanFinish; // Frontier
     public ushort ActiveMission;
     public List<SalvageMissionParams> Missions;
 
-    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions)
+    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, bool canFinish, ushort activeMission, List<SalvageMissionParams> missions)
     {
         NextOffer = nextOffer;
         Claimed = claimed;
         Cooldown = cooldown;
+        CanFinish = canFinish; // Frontier
         ActiveMission = activeMission;
         Missions = missions;
     }
@@ -49,6 +51,9 @@ public sealed class ClaimSalvageMessage : BoundUserInterfaceMessage
     public ushort Index;
 }
 
+[Serializable, NetSerializable] // Frontier
+public sealed class FinishSalvageMessage : BoundUserInterfaceMessage;
+
 /// <summary>
 /// Added per station to store data on their available salvage missions.
 /// </summary>
@@ -66,6 +71,9 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("cooldown")]
     public bool Cooldown = false;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("canFinish")]
+    public bool CanFinish; // Frontier
 
     /// <summary>
     /// Nexy time salvage missions are offered.

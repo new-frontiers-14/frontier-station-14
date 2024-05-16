@@ -8,6 +8,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
+using Content.Server.Salvage.Expeditions; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -24,6 +25,21 @@ public sealed partial class SalvageSystem
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
         var station = _station.GetOwningStation(uid);
+
+        // Frontier
+        var activeExpeditionCount = 0;
+        var expeditionQuery = AllEntityQuery<SalvageExpeditionDataComponent, MetaDataComponent>();
+        while (expeditionQuery.MoveNext(out var expeditionUid, out _, out _))
+            if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
+                activeExpeditionCount++;
+
+        if (activeExpeditionCount >= 15)
+        {
+            PlayDenySound(uid, component);
+            _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
+            return;
+        }
+        // Frontier
 
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
@@ -74,6 +90,30 @@ public sealed partial class SalvageSystem
         UpdateConsoles(data);
     }
 
+    private void OnSalvageFinishMessage(EntityUid entity, SalvageExpeditionConsoleComponent component, FinishSalvageMessage e) // Frontier
+    {
+        if (!TryComp<SalvageExpeditionDataComponent>(_station.GetOwningStation(entity), out var data) || !data.CanFinish)
+            return;
+
+        data.CanFinish = false;
+        UpdateConsoles(data);
+
+        var map = Transform(entity).MapUid;
+
+        if (!TryComp<SalvageExpeditionComponent>(map, out var expedition))
+            return;
+
+        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(15);
+
+        if (expedition.EndTime <= newEndTime)
+            return;
+
+        expedition.EndTime = newEndTime;
+        expedition.Stage = ExpeditionStage.FinalCountdown;
+
+        Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish"));
+    }
+
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
     {
         UpdateConsole(console);
@@ -111,7 +151,8 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
+            //state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, false, 0, new List<SalvageMissionParams>()); // Frontier
         }
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);

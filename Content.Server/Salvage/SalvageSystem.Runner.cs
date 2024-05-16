@@ -45,6 +45,14 @@ public sealed partial class SalvageSystem
             return;
         }
 
+        // Frontier
+        if (TryComp<SalvageExpeditionDataComponent>(salvage.Station, out var data))
+        {
+            data.CanFinish = true;
+            UpdateConsoles(data);
+        }
+        // Frontier
+
         // TODO: This is terrible but need bluespace harnesses or something.
         var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
 
@@ -135,6 +143,8 @@ public sealed partial class SalvageSystem
         {
             return;
         }
+
+        station.CanFinish = false; // Frontier
 
         // Check if any shuttles remain.
         var query = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
