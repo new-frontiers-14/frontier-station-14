@@ -1,9 +1,7 @@
 <Project>
   <Import Project="RobustToolbox/Directory.Packages.props" />
   <ItemGroup>
-    <!--
-    Remove EF Core packages from Robust. They're only used by Robust.Benchmarks anyways.
-    -->
+    <!-- Remove EF Core packages from Robust. They're only used by Robust.Benchmarks anyways. -->
     <PackageVersion Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageVersion Remove="Microsoft.EntityFrameworkCore.Design" />
     <PackageVersion Include="CsvHelper" Version="30.0.1" />
@@ -17,6 +15,7 @@
     <PackageVersion Include="Microsoft.Build.Framework" Version="17.8.3" />
     <PackageVersion Include="Mono.Cecil" Version="0.11.5" />
     <PackageVersion Include="Pidgin" Version="2.5.0" />
+    <PackageVersion Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
   <PropertyGroup>
     <!--
