@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <Import Project="RobustToolbox/Directory.Packages.props" />
   <ItemGroup>
     <!--
@@ -6,6 +6,7 @@
     -->
     <PackageVersion Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageVersion Remove="Microsoft.EntityFrameworkCore.Design" />
+
     <PackageVersion Include="CsvHelper" Version="30.0.1" />
     <PackageVersion Include="ImGui.NET" Version="1.87.3" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
@@ -14,18 +15,5 @@
     <PackageVersion Include="OpenTK" Version="4.7.2" />
     <PackageVersion Include="Veldrid" Version="4.8.0" />
     <PackageVersion Include="Veldrid.SPIRV" Version="1.0.15" />
-    <PackageVersion Include="Microsoft.Build.Framework" Version="17.8.3" />
-    <PackageVersion Include="Mono.Cecil" Version="0.11.5" />
-    <PackageVersion Include="Pidgin" Version="2.5.0" />
   </ItemGroup>
-  <PropertyGroup>
-    <!--
-    We actually set ManagePackageVersionsCentrally manually in another import file.
-    Since .NET SDK 8.0.300, ManagePackageVersionsCentrally is automatically set if Directory.Packages.props exists.
-    https://github.com/NuGet/NuGet.Client/pull/5572
-    We actively negate this here, as we have some packages in tree we don't want such automatic behavior for.
-    We use Directory.Build.props to get copy the state *after* our MSBuild config but before Nuget's config.
-    -->
-    <ManagePackageVersionsCentrally />
-  </PropertyGroup>
 </Project>
