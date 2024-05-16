@@ -1,0 +1,1215 @@
+
+# Actual Space weapons
+- type: entity
+  id: Artillery_Gun_630
+  name: artillery gun 630cal
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Fires 630 caliber shells. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 1000000
+    startingCharge: 1000000
+  - type: ExaminableBattery
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 1
+    proto: CartridgeShellArmorPiercing
+    whitelist:
+      tags:
+      - CartridgeShell
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 2000
+    powerUsePassive: 3000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: false
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+
+- type: entity
+  id: Artillery_Gun_630_WallMounted
+  name: artillery gun 630cal wallmounted
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Fires 630 caliber shells. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+    - Wall
+  - type: Airtight
+  - type: Occluder
+    boundingBox: "-0.1,-0.5,0.5,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 600
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery_wallmount.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 1000000
+    startingCharge: 1000000
+  - type: ExaminableBattery
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 1
+    proto: CartridgeShellArmorPiercing
+    whitelist:
+      tags:
+      - CartridgeShell
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 2000
+    powerUsePassive: 3000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: false
+    linearRecoilGrid: 300
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+  - type: RadiationBlocker
+    resistance: 8
+
+
+- type: entity
+  id: Mounted_Machine_Gun_50
+  name: mounted machine gun 50
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Puts down suppressive fire. With enough shots turns hull into swiss cheese. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Battery
+    maxCharge: 0
+    startingCharge: 0
+  - type: Appearance
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 60
+    proto: CartridgeMachineGunArmorPiercing
+    whitelist:
+      tags:
+      - CartridgeMachineGun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Gun
+    fireRate: 5
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 0
+    powerUsePassive: 0
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+    isPowerRequiredForSignal: false
+  - type: BatterySelfRecharger
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: IntrinsicUI
+    uis:
+      - key: enum.RadarConsoleUiKey.Key
+        toggleAction: ActionSpaceArtilleryShowRadar
+  - type: RadarConsole
+
+- type: entity
+  id: Mounted_Machine_Gun_50_WallMounted
+  name: mounted machine gun 50 wallmounted
+  parent: ConstructibleMachine
+  description: It's like from 20th century second planet wars! Puts down suppressive fire. With enough shots turns hull into swiss cheese. Old and reliable.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery_wallmount.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 90
+  - type: Battery
+    maxCharge: 200000
+    startingCharge: 200000
+  - type: ExaminableBattery
+  - type: Appearance
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 120
+    proto: CartridgeMachineGunArmorPiercing
+    whitelist:
+      tags:
+      - CartridgeMachineGun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Gun
+    fireRate: 5
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 1500
+    powerUsePassive: 500
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+    isPowerRequiredForSignal: true
+  - type: BatterySelfRecharger
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Tag
+    tags:
+    - Wall
+  - type: Airtight
+  - type: Occluder
+    boundingBox: "-0.1,-0.5,0.5,0.5"
+  - type: RadiationBlocker
+    resistance: 8
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
+
+- type: entity
+  id: Railgun_WallMounted
+  name: railgun 1000 cal wallmounted
+  parent: ConstructibleMachine
+  description: A rather new invention. Fires 1000 caliber solid rails. Wrecks through hull. You don't want to be on the receiving end.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+    - Wall
+  - type: Airtight
+  - type: Occluder
+    boundingBox: "-0.1,-0.5,0.5,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 600
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery_wallmount.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 1000000
+    startingCharge: 1000000
+  - type: ExaminableBattery
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 1
+    proto: CartridgeRailArmorPiercing
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 14000
+    powerUsePassive: 6000
+    powerUseActive: 500000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: true
+    isCoolantRequiredToFire: true
+    coolantConsumed: 30
+    maxCoolantStored: 120
+    linearRecoilGrid: 900
+    angularInstabilityGrid: 30
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: ApcPowerReceiver
+    powerLoad: 6000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+  - type: RadiationBlocker
+    resistance: 8
+
+- type: entity
+  id: Military_Laser
+  name: military laser
+  parent: ConstructibleMachine
+  description: Highly focused laser beam designed to melt through hull.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+    delay: 9999
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: HitscanBatteryAmmoProvider
+    proto: Focused_Pulse
+    fireCost: 25000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 70
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    isCoolantRequiredToFire: true
+    coolantConsumed: 10
+    isPowerRequiredToFire: true
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+- type: entity
+  id: Mining_Laser
+  name: mining laser
+  parent: ConstructibleMachine
+  description: Laser Beam utilising crystaline plasma to melt rock down into usable chunks with uncanny precision. Requires coolant to function.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/mining_laser.rsi
+    granularLayersRendering: true
+    layers:
+    - state: capacitor
+      renderingStrategy: Default
+    - state: chair
+      renderingStrategy: Default
+    - state: turret
+      renderingStrategy: Default
+  - type: Anchorable
+    delay: 9999
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: HitscanBatteryAmmoProvider
+    proto: Mining
+    fireCost: 5000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 70
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    isCoolantRequiredToFire: true
+    coolantStored: 90
+    isPowerRequiredToFire: true
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+#Need to resolve issue which allows launcher to fire ANY bullet
+- type: entity
+  id: Pneumatic_Launcher
+  name: pneumatic launcher
+  parent: ConstructibleMachine
+  description: Utilises internal piston and pressure mechanisms to launch small and medium items forward at large speeds.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: Storage
+    capacity: 120
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ContainerAmmoProvider
+    container: storagebase
+  - type: PneumaticCannon
+    gasUsage: 0
+    baseProjectileSpeed: 70
+    toolModifyPower: Screwing
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 70
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 2000
+    powerUsePassive: 1000
+    powerUseActive: 10000
+    isPowerRequiredForSignal: true
+    isPowerRequiredToFire: true
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,1.2"
+    maxBuckleDistance: 1.5
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: Battery
+    maxCharge: 300000
+    startingCharge: 300000
+  - type: ExaminableBattery
+  - type: BatterySelfRecharger
+
+#Boosters category
+- type: entity
+  id: Booster_Basic
+  name: Basic Booster
+  parent: ConstructibleMachine
+  description: Standard construction booster utilising compresed ion wave to rappidly propel vessel in space with power. Requires quick cooling using coolant.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+    delay: 10
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBoosterWave
+    fireCost: 20000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 35
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    isDestructive: false
+    isCoolantRequiredToFire: true
+    coolantConsumed: 1
+    coolantStored: 90
+    isPowerRequiredToFire: true
+    powerUseActive: 5000
+    powerUsePassive: 500
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+    linearRecoilGrid: 300
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+- type: entity
+  id: Booster_Security
+  name: Security Booster
+  parent: ConstructibleMachine
+  description: Security model of the basic booster. Has increased efficiency and impulse force. Requires quick cooling using coolant.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+    delay: 10
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBoosterWave
+    fireCost: 10000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 35
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    isDestructive: false
+    isCoolantRequiredToFire: true
+    coolantConsumed: 1
+    coolantStored: 90
+    isPowerRequiredToFire: true
+    powerUseActive: 2500
+    powerUsePassive: 500
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+    linearRecoilGrid: 600
+    velocityLimitRecoilGrid: 40
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+- type: entity
+  id: Booster_Security_Chase
+  name: Security Chase Booster
+  parent: ConstructibleMachine
+  description: Massive security booster. Perfect at drifting in space and rappidly burning NFSD's budget. Due to strong impulse it's more unstable than smaller cousin. Requires quick cooling using coolant.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _NF/Objects/SpaceArtillery/space_artillery.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+    delay: 10
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+  - type: Appearance
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: ExaminableBattery
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBoosterWave
+    fireCost: 10000
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      SpaceArtillery-CoolantSlot: !type:ContainerSlot {}
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 35
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    isDestructive: false
+    isCoolantRequiredToFire: true
+    coolantConsumed: 3
+    coolantStored: 90
+    isPowerRequiredToFire: true
+    powerUseActive: 2500
+    powerUsePassive: 500
+    SpaceArtillery-CoolantSlot:
+            name:  SpaceArtillery-CoolantSlot
+            insertSound: /Audio/Machines/scanning.ogg
+            ejectSound: /Audio/Machines/tray_eject.ogg
+            ejectOnBreak: true
+            swap: false
+            whitelist:
+                components:
+                - Stack
+    linearRecoilGrid: 2400
+    velocityLimitRecoilGrid: 60
+    angularInstabilityGrid: 30
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: BatterySelfRecharger
+
+#Deployable weaponry
+#WARNING CURRENTLY VERY BUGGED. NEED TO RESOLVE THE ISSUE OF ACTING LIKE ITEM
+- type: entity
+  name: General Purpose Machine Gun .35 cal
+  parent: BaseItem
+  id: WeaponGPMG
+  description: Designed for tearing through armored cover of vessels. Utilises .35 caliber ammunition with explosive tip.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: 60
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    projectileSpeed: 70
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: MultiHandedItem
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBox
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: UseDelay
+    delay: 1
+  - type: SpaceArtillery
+    isArmed: true
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.8"
+    maxBuckleDistance: 1
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: ExtensionCableReceiver
+  - type: Battery
+    maxCharge: 0
+    startingCharge: 0
+  - type: BatterySelfRecharger
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 45
+
+
+# Old code attempt at internal mass scanner
+- type: entity
+  id: ActionSpaceArtilleryShowRadar
+  name: Mass Scanner Interface
+  description: View a mass scanner interface.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
+    iconOn: Structures/Machines/parts.rsi/box_2.png
+    keywords: [ "AI", "console", "interface" ]
+    priority: -10
+    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
