@@ -73,7 +73,7 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     public bool Cooldown = false;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("canFinish")]
-    public bool CanFinish; // Frontier
+    public bool CanFinish = false; // Frontier
 
     /// <summary>
     /// Nexy time salvage missions are offered.
