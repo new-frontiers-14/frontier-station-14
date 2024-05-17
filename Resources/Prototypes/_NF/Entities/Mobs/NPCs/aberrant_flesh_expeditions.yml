@@ -1,3 +1,4 @@
+# BASE
 - type: entity
   parent: MobNonHumanHostileBase
   id: BaseMobFleshExpeditions
@@ -8,7 +9,6 @@
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Aliens/flesh.rsi
-  - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -19,7 +19,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Dead
+      70: Dead
   - type: Stamina
     critThreshold: 50
   - type: Butcherable
@@ -28,7 +28,6 @@
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 100
-  - type: CombatMode
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -36,11 +35,9 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 6
+        Slash: 8
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: TimedDespawn
-    lifetime: 1500 # 25 minutes until mobs despawn
   - type: Tool
     speed: 3
     qualities:
@@ -53,6 +50,7 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
 
+# MOBS
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
@@ -70,14 +68,6 @@
         Base: dead
       Dead:
         Base: dead
-  - type: MeleeWeapon
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 8
 
 - type: entity
   parent: MobFleshJaredExpeditions
@@ -112,14 +102,6 @@
     thresholds:
       0: Alive
       50: Dead
-  - type: MeleeWeapon
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 8
 
 - type: entity
   parent: MobFleshGolemExpeditions
@@ -212,7 +194,7 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: clamp
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 6
+    rechargeCooldown: 4
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
@@ -253,10 +235,12 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 2.5
 
+# EXPEDITION BOSS
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobHorrorExpeditions
   name: aberrant flesh horror
+  description: Not so shambling mass of flesh with menacing bone spikes protruding from its unnaturally elongated fingers.
   noSpawn: true
   components:
   - type: Sprite
@@ -289,9 +273,13 @@
       types:
         Slash: 12
 
+# FUNNY LITTLE GUY
+# embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobMawExpeditions
+  name: aberrant flesh maw
+  description: Don't put your fingers in it. Unless?..
   noSpawn: true
   components:
   - type: DamageOtherOnHit
@@ -301,7 +289,7 @@
   - type: Ammo
     muzzleFlash: null
   - type: EmbeddableProjectile
-    removalTime: 0.5
+    removalTime: 1
     sound: /Audio/Effects/bite.ogg
   - type: Sprite
     layers:
@@ -320,7 +308,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      16: Dead
+      12: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 0
     baseSprintSpeed: 0
@@ -333,4 +321,4 @@
       types:
         Slash: 4
   - type: TimedDespawn
-    lifetime: 180
+    lifetime: 120

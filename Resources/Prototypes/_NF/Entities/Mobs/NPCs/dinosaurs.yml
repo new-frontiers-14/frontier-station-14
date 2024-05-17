@@ -1,4 +1,5 @@
 # Based on https://github.com/space-wizards/space-station-14/pull/26883 by @Vonsant, all credits goes to him
+# BASE
 - type: entity
   parent: MobNonHumanHostileBase
   id: BaseMobDinosaurExpeditions
@@ -9,43 +10,19 @@
   - type: NpcFactionMember
     factions:
     - DinosaursNF
-  - type: Insulated
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Dinosaurs/anki.rsi
-  - type: MovementAlwaysTouching
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      75: Dead
-  - type: Stamina
-    critThreshold: 50
   - type: Butcherable
     spawned:
     - id: FoodMeatChicken
       amount: 12
-  - type: CombatMode
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 6
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.40
+          radius: 0.40 # Lowered the value, to allow them to fit through the airlocks
         density: 1000
         mask:
           - MobMask
@@ -76,42 +53,8 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
 
-- type: entity
-  parent: BaseMobDinosaurExpeditions
-  id: MobDinosaurAnkiExpeditions
-  name: ankylosaurus
-  noSpawn: true
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Dinosaurs/anki.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: anki
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      250: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: anki
-      Critical:
-        Base: anki_dead
-      Dead:
-        Base: anki_dead
-  - type: MeleeWeapon
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 8
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 2
-    baseWalkSpeed: 2
-
+# MOBS
+# Sorted by health pool (less health ~= faster and harder hitting)
 - type: entity
   parent: BaseMobDinosaurExpeditions
   id: MobDinosaurCompyExpeditions
@@ -176,7 +119,7 @@
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcBite
     damage:
       types:
         Slash: 6
@@ -187,28 +130,28 @@
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
-  id: MobDinosaurKentroExpeditions
-  name: kentrosaurus
+  id: MobDinosaurRaptorExpeditions
+  name: velociraptor
   noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: _NF/Mobs/Dinosaurs/kentro.rsi
+    sprite: _NF/Mobs/Dinosaurs/raptor.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: kentro
+      state: raptor
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      80: Dead
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: kentro
+        Base: raptor
       Critical:
-        Base: kentro_dead
+        Base: raptor_dead
       Dead:
-        Base: kentro_dead
+        Base: raptor_dead
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -216,10 +159,10 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Piercing: 10
+        Slash: 12
   - type: MovementSpeedModifier
-    baseSprintSpeed : 2.5
-    baseWalkSpeed: 2.5
+    baseSprintSpeed : 6.5
+    baseWalkSpeed: 6.5
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -259,28 +202,28 @@
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
-  id: MobDinosaurRaptorExpeditions
-  name: velociraptor
+  id: MobDinosaurKentroExpeditions
+  name: kentrosaurus
   noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: _NF/Mobs/Dinosaurs/raptor.rsi
+    sprite: _NF/Mobs/Dinosaurs/kentro.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: raptor
+      state: kentro
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      150: Dead
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: raptor
+        Base: kentro
       Critical:
-        Base: raptor_dead
+        Base: kentro_dead
       Dead:
-        Base: raptor_dead
+        Base: kentro_dead
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -288,10 +231,82 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 12
+        Piercing: 10
   - type: MovementSpeedModifier
-    baseSprintSpeed : 6.5
-    baseWalkSpeed: 6.5
+    baseSprintSpeed : 2.5
+    baseWalkSpeed: 2.5
+
+- type: entity
+  parent: BaseMobDinosaurExpeditions
+  id: MobDinosaurTrikeExpeditions
+  name: triceratops
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Dinosaurs/trike.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: trike
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: trike
+      Critical:
+        Base: trike_dead
+      Dead:
+        Base: trike_dead
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 15
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3
+    baseWalkSpeed: 3
+
+- type: entity
+  parent: BaseMobDinosaurExpeditions
+  id: MobDinosaurAnkiExpeditions
+  name: ankylosaurus
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Dinosaurs/anki.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: anki
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: anki
+      Critical:
+        Base: anki_dead
+      Dead:
+        Base: anki_dead
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 2
+    baseWalkSpeed: 2
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -366,6 +381,7 @@
     baseSprintSpeed : 3
     baseWalkSpeed: 3
 
+# EXPEDITION BOSS
 - type: entity
   parent: BaseMobDinosaurExpeditions
   id: MobDinosaurTrexExpeditions
@@ -381,7 +397,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Dead
+      450: Dead
   - type: DamageStateVisuals
     states:
       Alive:
@@ -402,39 +418,3 @@
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5
     baseWalkSpeed: 4.5
-
-- type: entity
-  parent: BaseMobDinosaurExpeditions
-  id: MobDinosaurTrikeExpeditions
-  name: triceratops
-  noSpawn: true
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Dinosaurs/trike.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: trike
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: trike
-      Critical:
-        Base: trike_dead
-      Dead:
-        Base: trike_dead
-  - type: MeleeWeapon
-    soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    angle: 0
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 15
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 3
