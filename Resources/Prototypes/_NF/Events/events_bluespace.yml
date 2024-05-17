@@ -9,11 +9,12 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-bluespace-cache-end-announcement
     earliestStart: 100
-    minimumPlayers: 25
+    minimumPlayers: 30
     weight: 5
     startDelay: 10
     duration: 1350
     maxDuration: 1560
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/cache.yml
     rewardFactor: 3.3
@@ -29,11 +30,12 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-bluespace-vault-end-announcement
     earliestStart: 100
-    minimumPlayers: 25
+    minimumPlayers: 30
     weight: 5
     startDelay: 10
     duration: 1020
     maxDuration: 1350
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/vault.yml
     rewardFactor: 0.7
@@ -49,11 +51,12 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-bluespace-vault-end-announcement
     earliestStart: 100
-    minimumPlayers: 25
+    minimumPlayers: 30
     weight: 5
     startDelay: 10
     duration: 590
     maxDuration: 780
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/vaultsmall.yml
     rewardFactor: 3
@@ -126,11 +129,12 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-bluespace-ship-end-announcement
     earliestStart: 100
-    minimumPlayers: 30
+    minimumPlayers: 35
     weight: 2
     startDelay: 10
     duration: 900
     maxDuration: 1200
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/datacarrier.yml
 
@@ -145,11 +149,12 @@
       path: /Audio/Misc/notice1.ogg
     endAnnouncement: station-event-bluespace-syndicate-ftl-interception-end-announcement
     earliestStart: 80
-    minimumPlayers: 40
+    minimumPlayers: 45
     weight: 1
     startDelay: 10
     duration: 1800
     maxDuration: 2400
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/syndieftlintercept.yml
 
@@ -164,11 +169,12 @@
       path: /Audio/Misc/notice1.ogg
     endAnnouncement: station-event-bluespace-wizardfederation-scout-end-announcement
     earliestStart: 100
-    minimumPlayers: 40
+    minimumPlayers: 45
     weight: 1
     startDelay: 10
     duration: 900
     maxDuration: 1200
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/wizardprobealt.yml
 
@@ -183,10 +189,11 @@
       path: /Audio/Misc/notice1.ogg
     endAnnouncement: station-event-bluespace-bloodmoon-end-announcement
     earliestStart: 80
-    minimumPlayers: 40
+    minimumPlayers: 45
     weight: 1
     startDelay: 10
     duration: 1800
     maxDuration: 2400
+    maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPath: /Maps/_NF/Bluespace/bloodmoon.yml
