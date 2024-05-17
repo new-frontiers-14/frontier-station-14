@@ -31,21 +31,6 @@ public sealed partial class BankSystem : EntitySystem
         InitializeStationATM();
     }
 
-    // attaches the bank component directly on to the player's mob. Could be attached to something else on the player later.
-    // we may have to change this later depending on mind rework.
-    // then again, maybe the bank account should stay attached to the mob
-    private void OnPlayerSpawn (PlayerSpawnCompleteEvent args)
-    {
-        var mobUid = args.Mob;
-        var bank = EnsureComp<BankAccountComponent>(mobUid);
-        bank.Balance = args.Profile.BankBalance;
-        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
-        {
-            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
-        }
-        Dirty(bank);
-    }
-
     // To ensure that bank account data gets saved, we are going to update the db every time the component changes
     // I at first wanted to try to reduce database calls, however notafet suggested I just do it every time the account changes
     // TODO: stop it from running 5 times every time
