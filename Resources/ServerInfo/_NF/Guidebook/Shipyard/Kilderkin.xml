@@ -1,12 +1,14 @@
 <Document>
-  # PIONEER-CLASS SALVAGE SHUTTLE
+  # KILDERKIN-CLASS SERVICE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="MiningDrill"/>
-  <GuideEntityEmbed Entity="OreBag"/>
-  </Box>  
-    [color=#a4885c]Ship Size:[/color] Small (Micro)
+  <GuideEntityEmbed Entity="BoozeDispenser"/>
+  <GuideEntityEmbed Entity="soda_dispenser"/>
+  <GuideEntityEmbed Entity="VendingMachineBooze"/>
+  <GuideEntityEmbed Entity="DrinkKegWood"/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
 	
-	[color=#a4885c]Recommended Crew:[/color] 1
+	[color=#a4885c]Recommended Crew:[/color] 2-4
 	
 	[color=#a4885c]Power Gen Type:[/color] Plasma
 	
@@ -14,9 +16,9 @@
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-	[color=#a4885c]Available Roles:[/color] Salvage Specialist
+	[color=#a4885c]Available Roles:[/color] Pilot, Mercenary, Bartender, Botanist
 	
-  "A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet."
+  "A medium-sized space bar. In addition to the bar is equipped with hydroponics."
   
   # Piloting
   <Box>
@@ -41,10 +43,12 @@
   
   ## 1.1. Battery units
   <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
   
+  - Check if the SMES unit is anchored to the floor.
   - Check if the substation unit is anchored to the floor.
   - Check if the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
@@ -55,11 +59,11 @@
   <GuideEntityEmbed Entity="SheetPlasma"/>
   </Box>
   
-  - Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check if the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power to 10-11** [bold]k[/bold]W.
-  - Start the P.A.C.M.A.N. generator unit.
+  - Check if P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check if P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+  - Check if P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power to 13** [bold]k[/bold]W on each  generator unit.
+  - Start P.A.C.M.A.N. generator units.
   
   ## 2. Atmospherics
   
@@ -67,9 +71,12 @@
   <Box>
   <GuideEntityEmbed Entity="AirCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
   
   - Check if the air canister is anchored to connector port.
+  - Check if the distribution pump is set to normal pressure.
+  - Enable the distribution pump.
   
   ## 2.2. Waste Loop
   <Box>
@@ -83,19 +90,17 @@
   
   ## 3. Other checks
   <Box>
-  <GuideEntityEmbed Entity="SmallGyroscope"/>
+  <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="ShuttersWindow"/>
   </Box>
   
   - Check if the gyroscope is anchored, powered, and enabled.
   - Check if the mini gravity generator is anchored, powered, and enabled.
-  - Check if the bow window shutters are closed.
   
   ## Sidenotes
   
-  * - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (8.6 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+  * - Kilderkin-class service ships are equipped with a two APC units that can be used to appraise the ship's total power consumption. Unmodifued Kilderkin-class ship requires 24.2 kW of power to remain operational.
   
-  ** - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
+  ** - Kilderkin-class service ships have higher power demand than single standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with two P.A.C.M.A.N. generator units, recommended target power output for each P.A.C.M.A.N. generator unit is 13 kW.
 
 </Document>
