@@ -105,7 +105,7 @@ public sealed partial class SalvageSystem
             return;
 
         // Frontier
-        if (TryComp<SalvageExpeditionDataComponent>(salvage.Station, out var data))
+        if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
             data.CanFinish = true;
             UpdateConsoles(data);
