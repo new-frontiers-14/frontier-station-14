@@ -1,22 +1,24 @@
 <Document>
-  # PIONEER-CLASS SALVAGE SHUTTLE
+  # GASBENDER-CLASS ENGINEERING SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="MiningDrill"/>
-  <GuideEntityEmbed Entity="OreBag"/>
-  </Box>  
-    [color=#a4885c]Ship Size:[/color] Small (Micro)
+  <GuideEntityEmbed Entity="PowerDrill"/>
+  <GuideEntityEmbed Entity="JawsOfLife"/>
+  <GuideEntityEmbed Entity="ShipyardRCD"/>
+  <GuideEntityEmbed Entity="HolofanProjector"/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
 	
-	[color=#a4885c]Recommended Crew:[/color] 1
+	[color=#a4885c]Recommended Crew:[/color] 3-6
 	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
+	[color=#a4885c]Power Gen Type:[/color] AME
 	
 	[color=#a4885c]Expeditions:[/color] None
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-	[color=#a4885c]Available Roles:[/color] Salvage Specialist
+	[color=#a4885c]Available Roles:[/color] Pilot, Chief Engineer, Atmospheric Technician, Station Engineer, Borg
 	
-  "A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet."
+  "The Gasbender is a medium-sized engineering vessel outfitted for deep space construction projects. Features atmospherics setup with mixing/ignition chamber. Designed to work in pair with smaller salvage ship."
   
   # Piloting
   <Box>
@@ -41,35 +43,47 @@
   
   ## 1.1. Battery units
   <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
   
+  - Check if the SMES unit is anchored to the floor.
   - Check if the substation unit is anchored to the floor.
   - Check if the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
   
-  ## 1.2. P.A.C.M.A.N. generator unit
+  ## 1.2. AME generator unit.
   <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
   </Box>
   
-  - Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check if the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power to 10-11** [bold]k[/bold]W.
-  - Start the P.A.C.M.A.N. generator unit.
+  - Check if the AME core is properly shielded.
+  - Check if the AME controller unit is anchored to the floor.
+  - Check the AME controller unit Fuel Status.
+  - Check the AME controller unit Injection Amount.
+  - Toggle Injection.
   
   ## 2. Atmospherics
   
   ## 2.1. Distribution Loop
   <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
   
-  - Check if the air canister is anchored to connector port.
+  - Check if the O2 output pump is set to normal pressure.
+  - Enable the O2 output pump.
+  - Check if the N2 output pump is set to normal pressure.
+  - Enable N2 output pump.
+  - Check if the gas mixer is set to the correct mixing ratio.
+  - Check if the gas mixer is set to normal pressure.
+  - Enable gas mixer.
+  - Check if the distribution pump is set to normal pressure.
+  - Enable distribution pump.
   
   ## 2.2. Waste Loop
   <Box>
@@ -83,19 +97,17 @@
   
   ## 3. Other checks
   <Box>
-  <GuideEntityEmbed Entity="SmallGyroscope"/>
+  <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="ShuttersWindow"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
   </Box>
   
   - Check if the gyroscope is anchored, powered, and enabled.
   - Check if the mini gravity generator is anchored, powered, and enabled.
-  - Check if the bow window shutters are closed.
+  - Check if the blast doors are closed.
   
   ## Sidenotes
   
-  * - Pioneer-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (8.6 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-  
-  ** - Pioneer-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
+  * - Gasbender-class service ships are equipped with a five APC units that can be used to appraise the ship's total power consumption. Unmodifued Gasbender-class ship requires 38 kW of power to remain operational.
 
 </Document>
