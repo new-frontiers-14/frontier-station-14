@@ -30,7 +30,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
-using Content.Shared.Bank.Components; // DeltaV
+using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.Events;
+using FastAccessors.Monads;
+using Robust.Server.Player; // DeltaV
 
 namespace Content.Server.Station.Systems;
 
@@ -44,6 +47,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
@@ -237,6 +241,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             var bank = EnsureComp<BankAccountComponent>(entity.Value);
             bank.Balance = bankBalance;
+            if (_playerManager.TryGetSessionByEntity(entity.Value, out var player))
+            {
+                RaiseLocalEvent(new BalanceChangedEvent(bankBalance, player));
+            }
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);

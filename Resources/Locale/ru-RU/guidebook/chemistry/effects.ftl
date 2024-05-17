@@ -36,7 +36,7 @@ reagent-effect-guidebook-foam-area-reaction-effect =
         [1] Создаёт
        *[other] создают
     } большое количество пены
-reagent-effect-guidebook-foam-area-reaction-effect =
+reagent-effect-guidebook-smoke-area-reaction-effect =
     { $chance ->
         [1] Создаёт
        *[other] создают
@@ -306,6 +306,11 @@ reagent-effect-guidebook-cause-zombie-infection =
         [1] Заражает
        *[other] заражают
     } человека зомби-вирусом
+reagent-effect-guidebook-reduce-rotting =
+    { $chance ->
+        [1] Регенерирует
+       *[other] регенерируют
+    } { NATURALFIXED($time, 3) } { MANY("second", $time) } гниения
 reagent-effect-guidebook-innoculate-zombie-infection =
     { $chance ->
         [1] Лечит

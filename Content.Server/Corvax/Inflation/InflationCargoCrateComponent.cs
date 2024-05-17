@@ -2,6 +2,6 @@
 [AutoGenerateComponentState]
 public sealed partial class InflationCargoCrateComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField("isInflated"), ViewVariables(VVAccess.ReadWrite)]
     public bool IsInflated = false;
 }
