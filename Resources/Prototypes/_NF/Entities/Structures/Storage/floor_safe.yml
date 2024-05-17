@@ -8,6 +8,7 @@
   - type: Lock
   - type: LockVisuals
   - type: AccessReader
+  - type: Anchorable
   - type: Storage
     grid:
     - 0,0,8,4
@@ -19,7 +20,7 @@
     drawdepth: FloorTiles
     sprite: _NF/Structures/Storage/floor_safe.rsi
     state: floorsafe
-    noRot: true
+    #noRot: true
     layers:
     - state: floorsafe
     - state: floorsafe-open
@@ -27,12 +28,19 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        openLayer:
+          True: { visible: false }
+          False: { visible: true }
   - type: UserInterface
     interfaces:
     - key: enum.StorageUiKey.Key
       type: StorageBoundUserInterface
   - type: Transform
-    noRot: true
+    #noRot: true
   - type: Fixtures
   - type: InteractionOutline
   - type: ContainerContainer
