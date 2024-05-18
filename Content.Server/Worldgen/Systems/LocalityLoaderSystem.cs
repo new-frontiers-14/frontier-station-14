@@ -3,10 +3,7 @@ using Robust.Server.GameObjects;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Shared.Humanoid; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
-using Robust.Server.GameObjects; // Frontier
 using Robust.Shared.Spawners; // Frontier
-using Content.Server._NF.Salvage; // Frontier
-using System.Linq; // Frontier
 using System.Numerics; // Frontier
 
 namespace Content.Server.Worldgen.Systems;
@@ -96,7 +93,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 
         while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
         {
-            if (xform.GridUid == null || xform.MapUid == entity)
+            if (xform.GridUid == null || xform.MapUid == null)
                 continue;
 
             // Can't parent directly to map as it runs grid traversal.
