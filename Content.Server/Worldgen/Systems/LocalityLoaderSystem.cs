@@ -5,6 +5,9 @@ using Content.Shared.Humanoid; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Robust.Server.GameObjects; // Frontier
 using Robust.Shared.Spawners; // Frontier
+using Content.Server._NF.Salvage; // Frontier
+using System.Linq; // Frontier
+using System.Numerics; // Frontier
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -14,6 +17,8 @@ namespace Content.Server.Worldgen.Systems;
 public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
     [Dependency] private readonly TransformSystem _xformSys = default!;
+
+    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new(); // Forntier
 
     private const float DebrisActiveDuration = 5*60; // Frontier - Duration to reset the despawn timer to when a debris is loaded into a player's view.
 
@@ -87,10 +92,17 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        _detachEnts.Clear();
 
-        while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-            if (xform.MapUid is not null && xform.GridUid == entity)
-                _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+        while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+        {
+            if (xform.GridUid == null || xform.MapUid == entity)
+                continue;
+
+            // Can't parent directly to map as it runs grid traversal.
+            _detachEnts.Add(((mobUid, xform), xform.MapUid!.Value, _xformSys.GetWorldPosition(xform)));
+            _xformSys.DetachParentToNull(mobUid, xform);
+        }
     }
     // Frontier
 }
