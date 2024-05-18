@@ -3,6 +3,7 @@
   name: job-name-chemist
   description: job-description-chemist
   playTimeTracker: JobChemist
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
@@ -15,16 +16,8 @@
 - type: startingGear
   id: ChemistGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitChemistry
-    back: ClothingBackpackChemistryFilled
-    shoes: ClothingShoesColorWhite
-    outerClothing: ClothingOuterCoatLabChem
     id: ChemistryPDA
     ears: ClothingHeadsetMedical
     belt: ChemBag
     pocket1: HandLabeler
-    # the purple glasses?
-  innerClothingSkirt: ClothingUniformJumpskirtChemistry
-  satchel: ClothingBackpackSatchelChemistryFilled
-  duffelbag: ClothingBackpackDuffelChemistryFilled
-  messenger: ClothingBackpackMessengerChemistryFilled # Frontier
+    eyes: ClothingEyesGlassesChemical
