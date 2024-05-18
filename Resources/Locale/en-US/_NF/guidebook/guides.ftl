@@ -1,6 +1,7 @@
 guide-entry-nf14 = New Frontier
 guide-entry-bank = NT Galactic Bank
 guide-entry-shipyard = Shipyard
+guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-harbormaster = Harbormaster
