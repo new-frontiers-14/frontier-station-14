@@ -47,7 +47,13 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
             if (comp.UnanchorOnHit && HasComp<AnchorableComponent>(hit))
             {
-                _transform.Unanchor(hit, Transform(hit));
+                if (comp.Whitelist != null) // Frontier
+                {
+                    if (comp.Whitelist.IsValid(hit, EntityManager) == true)
+                        _transform.Unanchor(hit, Transform(hit));
+                }
+                else // Frontier
+                    _transform.Unanchor(hit, Transform(hit));
             }
 
             RemComp<MeleeThrownComponent>(hit);
