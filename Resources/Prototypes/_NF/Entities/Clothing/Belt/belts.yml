@@ -26,30 +26,47 @@
     # TODO: Fill this out more.
     whitelist:
       tags:
-        - Book
-        - Smokable
-        - Flare
-        - Matchstick
-        - Flashlight
-        - Trash
-        - CigPack
-        - Radio
-        - Crayon
-        - Bottle
-        - WeaponMeleeStake
-        - Censer
-        - ReligiousSymbol
-        - Crucifix
+      - ObjectOfSpiritualSignificance
+      - Censer
+      - ReligiousSymbol
+      - Crucifix
+      - WeaponMeleeStake
+      - Book
+      - Smokable
+      - Matchstick
+      - Flashlight
+      - Trash
+      - CigPack
+      - Radio
+      - Crayon
+      - Bottle
+      - DrinkBottle
+      components:
+      - BibleComponent
+      - Drink
+      - Smokable
+      - MeleeWeapon
+      - HandheldLight
+      - ExpendableLight
+      - ToggleableLightVisuals
+      - Paper
+      - Stamp
   - type: ItemMapper
     mapLayers:
       book:
         whitelist:
           tags:
           - Book
+          components:
+          - BibleComponent
+          - Paper
       bottle:
         whitelist:
           tags:
           - Bottle
+          - DrinkBottle
+          components:
+          - Drink
       censer:
         whitelist:
           tags:
@@ -97,3 +114,29 @@
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
+
+- type: entity
+  parent: ClothingBeltBase
+  id: ClothingBeltCultForceField
+  name: cult runic belt buckle
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/cult_force_field.rsi
+    shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/cult_force_field.rsi
+  - type: Reflect
+    enabled: true
+    reflectProb: .1
+    spread: 90
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltCultWebbing
+  name: cult webbing
+  description: A webbing with pockets lined with waterproof (water, huh?)  material.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/cult_webbing.rsi

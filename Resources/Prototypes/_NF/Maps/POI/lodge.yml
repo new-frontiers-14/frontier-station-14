@@ -1,7 +1,7 @@
 - type: gameMap
   id: Lodge
   mapName: 'Expeditionary Lodge'
-  mapPath: /Maps/_NF/POI/cove.yml
+  mapPath: /Maps/_NF/POI/lodge.yml
   minPlayers: 0
   stations:
     Lodge:
@@ -9,3 +9,10 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Expiditionary Lodge'
+        - type: StationJobs
+          overflowJobs:
+          - Pilot
+          - Mercenary
+          availableJobs:
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]

@@ -1,0 +1,396 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/skub.rsi
+        scale: 0.7, 0.7
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootMaterialsValuableSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootClothesEngi
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootCircuitBoard
+    - SpawnDungeonLootToolbox
+    rareChance: 0.05
+
+# Engineering Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsBasicEngineering
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/wrench.rsi
+        state: icon
+      - sprite: Objects/Tools/crowbar.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Wirecutter
+    - Screwdriver
+    - Crowbar
+    - Multitool
+    - NetworkConfigurator
+    - trayScanner
+    - WelderIndustrial
+    - SprayPainter
+    - GasAnalyzer
+    - AppraisalTool
+    - FlashlightLantern
+    - ClothingEyesGlassesMeson
+    - ClothingHandsGlovesColorYellow
+    - GeigerCounter
+    - Lantern
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - WelderIndustrialAdvanced
+    - ClothingEyesHudDiagnostic
+    - ClothingEyesGlassesThermal
+    rareChance: 0.01
+
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsAdvancedEngineering
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Chief Engineer"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/drill.rsi
+        state: drill_screw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PowerDrill
+    - JawsOfLife
+    - WelderExperimental
+    - HolofanProjector
+    - RPED
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    #- RCD
+    - ShipyardRCD
+    - ShipyardRCDAmmo
+    - SyndicateJawsOfLife
+    rareChance: 0.01
+
+- type: entity
+  name: random toolbox
+  id: SpawnDungeonLootToolbox
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Tools/Toolboxes/toolbox_yellow.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ToolboxElectricalFilled
+    - ToolboxEmergencyFilled
+    - ToolboxMechanicalFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ToolboxSyndicateFilled
+    rareChance: 0.02
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitEngineeringHazard
+    - ClothingOuterVestHazard
+    - ClothingShoesBootsWork
+    - ClothingHeadHatHardhatOrange
+    - ClothingBackpackDuffelEngineering
+    - ClothingBackpackMessengerEngineering
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitEngineering
+    - ClothingOuterHardsuitAtmos
+    rareChance: 0.01
+
+# Furniture/Lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure
+      - sprite: Structures/Storage/closet.rsi
+        state: eng_secure_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerEngineerFilled
+    - LockerWeldingSuppliesFilled
+    - LockerElectricalSuppliesFilled
+    - LockerAtmosphericsFilled
+    - ClosetToolFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LockerChiefEngineerFilled
+    - LockerChiefEngineerFilled
+    - LockerChiefEngineerFilled
+    - LockerChiefEngineerFilled
+    - SuitStorageCE
+    - SuitStorageEngi
+    - SuitStorageEngi
+    - SuitStorageAtmos
+    rareChance: 0.01
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: engi
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Autolathe
+    - Protolathe
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - EngineeringTechFab
+    - CircuitImprinter
+    - MachineFlatpacker
+    - SpawnDungeonMachineFrame
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - TilePrinterNF
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    rareChance: 0.01
+
+- type: entity
+  name: random vendomats
+  id: SpawnDungeonVendomatsEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineAtmosDrobe
+    - VendingMachineEngiDrobe
+    - VendingMachineVendomat
+    - VendingMachineEngivend
+    - VendingMachineRobotics
+    - VendingMachineYouTool
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContraband
+    - VendingMachineSyndieDrobe
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random parts
+  id: SpawnDungeonLootPartsEngi
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/stock_parts.rsi
+        state: bluespace_matter_bin
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # T1
+    - MicroManipulatorStockPart
+    - MatterBinStockPart
+    - CapacitorStockPart
+    # T2
+    - AdvancedCapacitorStockPart
+    - NanoManipulatorStockPart
+    - AdvancedMatterBinStockPart
+    # T3
+    - SuperCapacitorStockPart
+    - PicoManipulatorStockPart
+    - SuperMatterBinStockPart
+    # Engi related things
+    - SpawnDungeonLootPowerCell
+    - ProximitySensor
+    - RemoteSignaller
+    - Igniter
+    - DrinkSpaceLube
+    - VoiceTrigger
+    - TimerTrigger
+    - SciFlash
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    #- HandheldStationMap
+    # T4
+    - QuadraticCapacitorStockPart
+    - FemtoManipulatorStockPart
+    - BluespaceMatterBinStockPart
+    rareChance: 0.05
+
+- type: entity
+  name: random power cell
+  id: SpawnDungeonLootPowerCell
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Power/power_cells.rsi
+        state: hyper
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PowerCellMedium
+    - PowerCellHigh
+    - PowerCellHyper
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - PowerCellMicroreactor
+    - PowerCellPotato
+    rareChance: 0.01
+
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: science
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Computers
+    - PowerComputerCircuitboard
+    - SolarControlComputerCircuitboard
+    - AlertsComputerCircuitboard
+    # Lathes
+    - CircuitImprinterMachineCircuitboard
+    - EngineeringTechFabCircuitboard
+    - ProtolatheMachineCircuitboard
+    - AutolatheMachineCircuitboard
+    - FlatpackerMachineCircuitboard
+    - TilePrinterNFMachineCircuitboard
+    # Machines
+    - ShredderMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
+    - PortableScrubberMachineCircuitBoard
+    - HellfireHeaterMachineCircuitBoard
+    - HellfireFreezerMachineCircuitBoard
+    - ThermomachineHeaterMachineCircuitBoard
+    - ThermomachineFreezerMachineCircuitBoard
+    - PortableGeneratorJrPacmanMachineCircuitboard
+    - PortableGeneratorPacmanMachineCircuitboard
+    - PortableGeneratorSuperPacmanMachineCircuitboard
+    - EmitterCircuitboard
+    - CondenserMachineCircuitBoard
+    - TurboItemRechargerCircuitboard
+    - GyroscopeMachineCircuitboard
+    - CellRechargerCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - ThrusterMachineCircuitboard
+    - StationMapCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - AutolatheHyperConvectionMachineCircuitboard
+    - ProtolatheHyperConvectionMachineCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.05

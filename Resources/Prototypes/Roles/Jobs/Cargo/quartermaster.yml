@@ -3,40 +3,22 @@
   name: job-name-qm
   description: job-description-qm
   playTimeTracker: JobQuartermaster
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  supervisors: job-supervisors-captain
-  canBeAntag: false
-  access:
-  - Cargo
-  - Salvage
-  - Quartermaster
-  - Maintenance
-  - Command
-  - Brig
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  supervisors: job-supervisors-hire # Frontier
+#  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: QuartermasterGear
   equipment:
-    head: ClothingHeadHatQMsoft
-    jumpsuit: ClothingUniformJumpsuitQM
-    back: ClothingBackpackQuartermasterFilled
-    shoes: ClothingShoesColorBrown
     id: QuartermasterPDA
     ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
-  innerClothingSkirt: ClothingUniformJumpskirtQM
-  satchel: ClothingBackpackSatchelQuartermasterFilled
-  duffelbag: ClothingBackpackDuffelQuartermasterFilled
-  messenger: ClothingBackpackMessengerQuartermasterFilled # Frontier

@@ -54,31 +54,43 @@ public sealed partial class VesselListControl : BoxContainer
 
     private int DefaultComparison(NetEntity x, NetEntity y)
     {
-        var xContainsHop = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfPersonnel");
-        var yContainsHop = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfPersonnel");
+        var xContainsSR = _gameTicker.JobsAvailable[x].ContainsKey("StationRepresentative");
+        var yContainsSR = _gameTicker.JobsAvailable[y].ContainsKey("StationRepresentative");
 
-        var xContainsHos = _gameTicker.JobsAvailable[x].ContainsKey("HeadOfSecurity");
-        var yContainsHos = _gameTicker.JobsAvailable[y].ContainsKey("HeadOfSecurity");
+        var xContainsSheriff = _gameTicker.JobsAvailable[x].ContainsKey("Sheriff");
+        var yContainsSheriff = _gameTicker.JobsAvailable[y].ContainsKey("Sheriff");
 
-        // Prioritize "HeadOfPersonnel"
-        switch (xContainsHop)
+        var xContainsPirateCaptain = _gameTicker.JobsAvailable[x].ContainsKey("PirateCaptain");
+        var yContainsPirateCaptain = _gameTicker.JobsAvailable[y].ContainsKey("PirateCaptain");
+
+        // Prioritize "StationRepresentative"
+        switch (xContainsSR)
         {
-            case true when !yContainsHop:
+            case true when !yContainsSR:
                 return -1;
-            case false when yContainsHop:
+            case false when yContainsSR:
                 return 1;
         }
 
-        // If both or neither contain "HeadOfPersonnel", prioritize "HeadOfSecurity"
-        switch (xContainsHos)
+        // If both or neither contain "StationRepresentative", prioritize "Sheriff"
+        switch (xContainsSheriff)
         {
-            case true when !yContainsHos:
+            case true when !yContainsSheriff:
                 return -1;
-            case false when yContainsHos:
+            case false when yContainsSheriff:
                 return 1;
         }
 
-        // If both or neither contain "HeadOfPersonnel" and "HeadOfSecurity", sort by jobCountComparison
+        // If both or neither contain "StationRepresentative", "Sheriff" prioritize "PirateCaptain"
+        switch (xContainsPirateCaptain)
+        {
+            case true when !yContainsPirateCaptain:
+                return -1;
+            case false when yContainsPirateCaptain:
+                return 1;
+        }
+
+        // If both or neither contain "StationRepresentative" and "Sheriff", sort by jobCountComparison
         var jobCountComparison = -(int) (_gameTicker.JobsAvailable[x].Values.Sum(a => a ?? 0) -
                                          _gameTicker.JobsAvailable[y].Values.Sum(b => b ?? 0));
         var nameComparison = string.Compare(_gameTicker.StationNames[x], _gameTicker.StationNames[y], StringComparison.Ordinal);

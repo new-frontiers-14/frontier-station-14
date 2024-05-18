@@ -1,0 +1,177 @@
+- type: entity
+  name: Blood Cult Priest Spawner
+  suffix: AI, Hostile, Caster
+  id: SpawnMobBloodCultistPriest
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Helmets/cult.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Basic/staves.rsi
+        state: animation-inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistPriest
+
+- type: entity
+  name: Blood Cult Acolyte
+  suffix: AI, Hostile, Melee
+  id: SpawnMobBloodCultistAcolyte
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Helmets/cult.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Melee/cult_blade.rsi
+        state: inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistAcolyte
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: AI, Hostile, Melee
+  id: SpawnMobBloodCultistZealotMelee
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hoods/cult.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Melee/cult_dagger.rsi
+        state: inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistZealotMelee
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: AI, Hostile, Ranged
+  id: SpawnMobBloodCultistZealotRanged
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hoods/cult.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi
+        state: inhand-left
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistZealotRanged
+
+- type: entity
+  name: Blood Cult Zealot
+  suffix: AI, Hostile, Caster
+  id: SpawnMobBloodCultistCaster
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: Clothing/Head/Hoods/cult.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Basic/staves.rsi
+        state: animation-inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistCaster
+
+- type: entity
+  name: Blood Cult Leech
+  suffix: AI, Hostile, Melee, Fast
+  id: SpawnMobBloodCultLeech
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/BloodCult/bloodcultleech.rsi
+        state: leech
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultLeech
+
+- type: entity
+  name: Ascended Cultist
+  suffix: AI, Hostile, Caster, Megafauna
+  id: SpawnMobBloodCultistAscended
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
+        state: ascended_cultist
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistAscended
+
+- type: entity
+  name: Blood Cult Janitor
+  suffix: AI, Hostile, Melee
+  id: SpawnMobBloodCultistJanitor
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Species/Human/parts.rsi
+        state: full
+      - sprite: _NF/Clothing/Masks/cult_janitor_mask.rsi
+        state: equipped-MASK
+      - sprite: _NF/Clothing/Head/Helmets/cult_janitor.rsi
+        state: equipped-HELMET
+      - sprite: Clothing/Shoes/Specific/cult.rsi
+        state: equipped-FEET
+      - sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Melee/cult_blade.rsi
+        state: inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobBloodCultistJanitor

@@ -13,23 +13,18 @@
       time: 10800 # 3 hrs as sec
   canBeAntag: false
   icon: "JobIconStc" 
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-sr
   setPreference: true
   access:
+  - Service
   - Maintenance
   - External
   - Frontier
+  - StationTrafficController
 
 - type: startingGear
   id: StcGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
-    back: ClothingBackpackStcFilled
-    shoes: ClothingShoesColorBlack
     id: StcPDA
     ears: ClothingHeadsetAltCommand
-    belt: BoxFolderClipboard
-  innerClothingSkirt: ClothingUniformJumpskirtDetectiveGrey
-  satchel: ClothingBackpackSatchelStcFilled
-  duffelbag: ClothingBackpackDuffelStcFilled
-  messenger: ClothingBackpackMessengerStcFilled # Frontier
+    pocket1: RubberStampStc

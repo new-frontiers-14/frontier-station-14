@@ -14,17 +14,17 @@
     sprite:  /Textures/Structures/Storage/orebox.rsi
     state: orebox
   product: OreBox
-  #cost: 500
-  cost: 1000  # Frontier
-  category: Cargo
+  cost: 1000 # Frontier - original price 500
+  category: cargoproduct-category-name-cargo
   group: market
 
-# - type: cargoProduct # Frontier - Moved to cargo locker
-  # id: CargoLuxuryHardsuit
-  # icon:
-    # sprite: Clothing/Head/Hardsuits/luxury.rsi
-    # state: icon
-  # product: CrateCargoLuxuryHardsuit
-  # cost: 15000
-  # category: Cargo
-  # group: market
+- type: cargoProduct
+  id: CargoLuxuryHardsuit
+  abstract: true # Frontier - Moved to cargo locker
+  icon:
+    sprite: Clothing/Head/Hardsuits/luxury.rsi
+    state: icon
+  product: CrateCargoLuxuryHardsuit
+  cost: 15000
+  category: cargoproduct-category-name-cargo
+  group: market

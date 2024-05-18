@@ -9,29 +9,27 @@
   startingGear: ValetGear
   alwaysUseSpawner: true
   icon: "JobIconServiceWorker"
-  supervisors: job-supervisors-everyone
+  supervisors: job-supervisors-sr
+  canBeAntag: false
   access:
-  - Service
-  - Bar
-  - Kitchen
-  - Cargo
   - Maintenance
-  - Janitor
   - External # Frontier
-  - Mail # Frontier
+  - Service
+  - Frontier # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: ValetGear
   equipment:
     head: ClothingHeadHatBellhop
-    jumpsuit: ClothingUniformJumpsuitValet
+  # jumpsuit: ClothingUniformJumpsuitValet
     outerClothing: ClothingOuterVestValet
     gloves: ClothingHandsGlovesColorWhite
-    back: ClothingBackpackFilled
-    shoes: ClothingShoesColorBlack
     id: ValetPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtValet
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
-  messenger: ClothingBackpackMessengerFilled # Frontier
+  # innerClothingSkirt: ClothingUniformJumpskirtValet
+  # satchel: ClothingBackpackSatchelFilled
+  # duffelbag: ClothingBackpackDuffelFilled
+  # messenger: ClothingBackpackMessengerFilled # Frontier

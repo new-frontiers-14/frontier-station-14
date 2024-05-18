@@ -54,13 +54,12 @@ public abstract class SharedPinpointerSystem : EntitySystem
         var daArgs = new DoAfterArgs(_endMan, args.User, TimeSpan.FromSeconds(component.RetargetDoAfter),
             new PinpointerDoAfterEvent(), uid, args.Target, uid)
         {
-            BreakOnUserMove = true,
             BreakOnDamage = true,
             BreakOnWeightlessMove = true,
             CancelDuplicate = true,
             BreakOnHandChange = true,
             NeedHand = true,
-            BreakOnTargetMove = true
+            BreakOnMove = true,
         };
         _doAfter.TryStartDoAfter(daArgs);
     }

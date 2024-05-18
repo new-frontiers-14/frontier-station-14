@@ -3,32 +3,19 @@
   name: job-name-bartender
   description: job-description-bartender
   playTimeTracker: JobBartender
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: BartenderGear
   icon: "JobIconBartender"
-  supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Maintenance
-  - Bar
-  - External # Frontier
-  extendedAccess:
-  - Kitchen
-  - Hydroponics
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: BartenderGear
   equipment:
-    head: ClothingHeadHatTophat
-    jumpsuit: ClothingUniformJumpsuitBartender
-    outerClothing: ClothingOuterVest
-    back: ClothingBackpackFilled
     shoes: ClothingShoesColorBlack
     id: BartenderPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtBartender
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
-  messenger: ClothingBackpackMessengerFilled # Frontier

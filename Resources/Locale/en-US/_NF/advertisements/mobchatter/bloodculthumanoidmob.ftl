@@ -15,6 +15,6 @@ advertisement-bloodcultisthumanoid-14 = There will be no mercy, unbeliever.
 advertisement-bloodcultisthumanoid-15 = Hey, nice jacket!
 advertisement-bloodcultisthumanoid-16 = Death to the followers of False Gods!
 advertisement-bloodcultisthumanoid-17 = Yes-yes, blood. Need more blood. More, yes.
-advertisement-bloodcultisthumanoid-18 = Void take you1
+advertisement-bloodcultisthumanoid-18 = Void take you!
 advertisement-bloodcultisthumanoid-19 = *hums*
 advertisement-bloodcultisthumanoid-20 = I will make a flute out of your collarbone!
