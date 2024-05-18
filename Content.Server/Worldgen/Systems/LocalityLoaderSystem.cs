@@ -66,8 +66,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
                         if ((_xformSys.GetWorldPosition(loaderXform) - _xformSys.GetWorldPosition(xform)).Length() > loadable.LoadingDistance)
                             continue;
 
-                        //ResetTimedDespawn(uid); // Frontier - Reset the TimedDespawnComponent's lifetime when loaded
-
                         RaiseLocalEvent(uid, new LocalStructureLoadedEvent());
                         RemCompDeferred<LocalityLoaderComponent>(uid);
                         done = true;
