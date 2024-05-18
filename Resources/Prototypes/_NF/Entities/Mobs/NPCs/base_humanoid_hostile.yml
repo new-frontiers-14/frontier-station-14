@@ -98,7 +98,8 @@
     pack: syndicatehumanoidchatter # Don't have neutral one
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 0
+    nextAdvertisementTime: 0
+  - type: SalvageMobRestrictionsNF
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -132,7 +133,6 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
-    - ShoesRequiredStepTriggerImmune
   - type: HTN
     rootTask:
        task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
@@ -166,4 +166,6 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
+  - type: SalvageMobRestrictionsNF
+  - type: StepTriggerImmune
   - type: Contraband

@@ -7,6 +7,9 @@ using Content.Shared.Preferences;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
+using Content.Shared.Preferences.Loadouts;
+using Content.Shared._NF.Bank.Events;
+using Robust.Server.Player;
 
 namespace Content.Server.Bank;
 
@@ -14,6 +17,7 @@ public sealed partial class BankSystem : EntitySystem
 {
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private ISawmill _log = default!;
 
@@ -21,22 +25,10 @@ public sealed partial class BankSystem : EntitySystem
     {
         base.Initialize();
         _log = Logger.GetSawmill("bank");
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<BankAccountComponent, ComponentGetState>(OnBankAccountChanged);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
         InitializeATM();
         InitializeStationATM();
-    }
-
-    // attaches the bank component directly on to the player's mob. Could be attached to something else on the player later.
-    // we may have to change this later depending on mind rework.
-    // then again, maybe the bank account should stay attached to the mob
-    private void OnPlayerSpawn (PlayerSpawnCompleteEvent args)
-    {
-        var mobUid = args.Mob;
-        var bank = EnsureComp<BankAccountComponent>(mobUid);
-        bank.Balance = args.Profile.BankBalance;
-        Dirty(bank);
     }
 
     // To ensure that bank account data gets saved, we are going to update the db every time the component changes
@@ -69,13 +61,12 @@ public sealed partial class BankSystem : EntitySystem
             profile.Gender,
             bank.Balance,
             profile.Appearance,
-            profile.Clothing,
-            profile.Backpack,
             profile.SpawnPriority,
             profile.JobPriorities,
             profile.PreferenceUnavailable,
             profile.AntagPreferences,
-            profile.TraitPreferences);
+            profile.TraitPreferences,
+            new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState
         {
@@ -84,6 +75,8 @@ public sealed partial class BankSystem : EntitySystem
 
         _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
+        var session = _playerManager.GetSessionById((NetUserId) user);
+        RaiseLocalEvent(new BalanceChangedEvent(session, bank.Balance));
     }
 
     /// <summary>
@@ -155,10 +148,12 @@ public sealed partial class BankSystem : EntitySystem
     /// effectively a gigantic money exploit.
     /// So, this will have to stay cursed until I can find another way to refresh the character cache
     /// or the db gods themselves come up to smite me from below, whichever comes first
+    ///
+    /// EDIT 5/13/2024 THE DB GODS THEY CAME. THEY SMOTE. SAVE ME
     /// </summary>
     private void OnPlayerLobbyJoin (PlayerJoinedLobbyEvent args)
     {
         var cts = new CancellationToken();
-        _prefsManager.LoadData(args.PlayerSession, cts);
+        _prefsManager.RefreshPreferencesAsync(args.PlayerSession, cts);
     }
 }

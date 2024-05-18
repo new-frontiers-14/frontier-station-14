@@ -19,6 +19,7 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
+using Content.Server.GameTicking.Components;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
@@ -54,10 +55,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         SubscribeLocalEvent<RoundStartingEvent>(OnStartup);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawningEvent);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextEvent);
     }
 
-    private void OnRoundEndTextEvent(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
     {
         var profitText = Loc.GetString($"adventure-mode-profit-text");
         var lossText = Loc.GetString($"adventure-mode-loss-text");
@@ -159,9 +159,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             // We should figure out if it is possible to add this grid to the latejoin listing.
             // Hey turns out we can! (This is kinda copypasted from the lodge with some values filled in.)
-            if (_prototypeManager.TryIndex<GameMapPrototype>("nfsd", out var stationProto))
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Nfsd", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["nfsd"], nfsdUids);
+                _station.InitializeNewStation(stationProto.Stations["Nfsd"], nfsdUids);
             }
 
             var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
@@ -189,15 +189,20 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(churchUids[0], factionColor);
         }
 
-        if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
+        if (_map.TryLoad(mapId, lpbravo, out var lpbravoUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(2150f, 4850f)
             }))
         {
-            var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
-            _meta.SetEntityName(depotUid4s[0], "Listening Point Bravo", meta);
-            _shuttle.SetIFFColor(depotUid4s[0], lpbravoColor);
-            _shuttle.AddIFFFlag(depotUid4s[0], IFFFlags.HideLabel);
+            if (_prototypeManager.TryIndex<GameMapPrototype>("LPBravo", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["LPBravo"], lpbravoUids);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(lpbravoUids[0]);
+            _meta.SetEntityName(lpbravoUids[0], "Listening Point Bravo", meta);
+            _shuttle.SetIFFColor(lpbravoUids[0], lpbravoColor);
+            _shuttle.AddIFFFlag(lpbravoUids[0], IFFFlags.HideLabel);
         }
 
         // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
