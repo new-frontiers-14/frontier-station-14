@@ -21,8 +21,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 
     // Frontier
     private EntityQuery<SpaceDebrisComponent> _debrisQuery;
-    private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = []; 
-    //private const float DebrisActiveDuration = 5*60; // Duration to reset the despawn timer to when a debris is loaded into a player's view.
+    private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
 
     public override void Initialize()
     {
@@ -80,20 +79,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     }
 
     // Frontier
-    //private void ResetTimedDespawn(EntityUid uid)
-    //{
-    //    if (TryComp<TimedDespawnComponent>(uid, out var timedDespawn))
-    //    {
-    //        timedDespawn.Lifetime = DebrisActiveDuration;
-    //    }
-    //    else
-    //    {
-    //        // Add TimedDespawnComponent if it does not exist
-    //        timedDespawn = AddComp<TimedDespawnComponent>(uid);
-    //        timedDespawn.Lifetime = DebrisActiveDuration;
-    //    }
-    //}
-
     private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
     {
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
