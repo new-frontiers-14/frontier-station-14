@@ -23,14 +23,14 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     private EntityQuery<SpaceDebrisComponent> _debrisQuery;
     private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = []; 
     private const float DebrisActiveDuration = 5*60; // Duration to reset the despawn timer to when a debris is loaded into a player's view.
-    // Frontier
 
-    public override void Initialize()  // Frontier
+    public override void Initialize()
     {
         _debrisQuery = GetEntityQuery<SpaceDebrisComponent>();
         SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
         EntityManager.EntityDeleted += OnEntityDeleted;
     }
+    // Frontier
 
     /// <inheritdoc />
     public override void Update(float frameTime)
