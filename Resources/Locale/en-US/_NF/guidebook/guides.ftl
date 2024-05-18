@@ -3,6 +3,7 @@ guide-entry-bank = NT Galactic Bank
 guide-entry-shipyard = Shipyard
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-brigand = Brigand
+guide-entry-shipyard-bullseye = Bullseye
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-kilderkin = Kilderkin
