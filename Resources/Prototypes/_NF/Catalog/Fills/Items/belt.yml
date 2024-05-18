@@ -49,8 +49,17 @@
 
 - type: entity
   id: ClothingBeltSalvageWebbingFilledNF
-  parent: [ ClothingBeltSalvageWebbing, ClothingBeltUtility ]
-  suffix: Filled
+  parent: ClothingBeltSalvageWebbing
+  suffix: Filled, Engineering
+  components:
+  - type: StorageFill
+    contents:
+      - id: Crowbar
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
 
 - type: entity
   id: ClothingBeltChaplainSashFilled
@@ -63,6 +72,5 @@
       - id: Censer
       - id: Bible
       - id: Lantern
-      - id: ChaplainHolywaterBottleFilled
-      - id: WoodenStake
-        amount: 2
+      - id: ChaplainHolywaterFlaskFilled
+      - id: UrnMortuary
