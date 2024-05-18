@@ -1,6 +1,5 @@
 - type: entity
   name: Wizard
-  suffix: AI
   abstract: true
   parent:
   - MobHumanoidHostileBase
@@ -14,34 +13,31 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: AutoImplant
-    implants:
-    - DeathAcidifierImplantNF
+  #- type: AutoImplant # muh loot! nooo
+    #implants:
+    #- DeathAcidifierImplantNF
   - type: Reflect
     enabled: true
     reflectProb: .35
     spread: 90
-# Immunity to Heat damage from being lit on fire
   - type: Flammable
     fireSpread: true
     canResistFire: true
     damage:
       types:
         Heat: 0
-# Mad stamina
   - type: Stamina
     critThreshold: 400
-# Narrow dmg thresholds
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
-      120: Dead
+      120: Critical
+      160: Dead
   - type: Advertise
     pack: wizardhumanoidchatter
-    minimumWait: 120 # 1 * 2
-    maximumWait: 240 # 2 * 60
-    NextAdvertisementTime: 0
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
   - type: AutoWakeUp
   - type: MovementAlwaysTouching
 
@@ -51,6 +47,7 @@
   name: Blue Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardBlue
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -60,6 +57,7 @@
     capacity: 2
     count: 2
   - type: Gun
+    showExamineText: false
     fireRate: 1
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -74,35 +72,17 @@
   name: Red Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardRed
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - NPCWizardRedGear
-# Will keep it here for later use
-#  - type: SolutionContainerManager
-#    solutions:
-#      chamber:
-#        maxVol: 2000 #100 shots
-#        reagents:
-#        - ReagentId: Phlogiston
-#          Quantity: 40
-#        - ReagentId: ChlorineTrifluoride
-#          Quantity: 40
-#        - ReagentId: Napalm
-#          Quantity: 1920
-#  - type: SolutionAmmoProvider
-#    solutionId: chamber
-#    proto: BulletWaterShot
-#  - type: SolutionTransfer
-#    transferAmount: 20
-#    maxTransferAmount: 50
-#    minTransferAmount: 20
-#    canChangeTransferAmount: false
   - type: BasicEntityAmmoProvider
     proto: BulletFireBolt
     capacity: 1
     count: 1
   - type: Gun
+    showExamineText: false
     fireRate: 1
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
@@ -113,6 +93,7 @@
   name: Violet Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardViolet
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -122,6 +103,7 @@
     capacity: 8
     count: 8
   - type: Gun
+    showExamineText: false
     fireRate: 6
     soundGunshot:
       path: /Audio/Magic/fireball.ogg
@@ -134,9 +116,9 @@
 # Look for soap here: \Resources\Prototypes\_NF\Entities\Objects\Specific\Wizard\conjured_items.yml
 - type: entity
   name: Soap Wizard
-  suffix: AI
   parent: MobWizFedlBase
   id: MobWizFedWizardSoap
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -146,6 +128,7 @@
     capacity: 1
     count: 1
   - type: Gun
+    showExamineText: false
     fireRate: 1
     soundGunshot:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -153,9 +136,9 @@
 # Wizards in hardsuits
 - type: entity
   name: Blue Wizard
-  suffix: AI, Hardsuit
   parent: MobWizFedWizardBlue
   id: MobWizFedWizardBlueHardsuit
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -163,9 +146,9 @@
 
 - type: entity
   name: Red Wizard
-  suffix: AI, Hardsuit
   parent: MobWizFedWizardRed
   id: MobWizFedWizardRedHardsuit
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -173,9 +156,9 @@
 
 - type: entity
   name: Violet Wizard
-  suffix: AI, Hardsuit
   parent: MobWizFedWizardViolet
   id: MobWizFedWizardVioletHardsuit
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -186,6 +169,7 @@
   suffix: AI, Hardsuit
   parent: MobWizFedWizardSoap
   id: MobWizFedWizardSoapHardsuit
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -194,7 +178,7 @@
 # Conjured Creatures
 - type: entity
   name: Blue Curacao Elemental
-  suffix: AI
+  noSpawn: true
   parent:
   - MobNonHumanHostileBase
   id: WaterElementalConjured
@@ -214,7 +198,7 @@
   - type: PointLight
     radius: 2.0
     energy: 3.5
-    color: "#75b1f0" # Edited through the LiquidAnomalySystem
+    color: "#75b1f0"
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -231,7 +215,7 @@
         Slash: 15
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 5
+    transferAmount: 10
   - type: TimedDespawn
     lifetime: 30
   - type: Ammo

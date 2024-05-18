@@ -1,0 +1,675 @@
+# An assortment of randomised dungeon loot spawners to be used instead of static spawns
+# Base
+- type: entity
+  parent: MarkerBase
+  id: MarkerBasePlaceFree
+  abstract: true
+  placement:
+    mode: PlaceFree # So one had an option to scatter loot around in more natural fashion
+  components:
+  - type: Transform
+    anchored: false
+
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootBureaucracy
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Bureaucracy"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: labeler1
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - PaperOffice
+    - Paper
+    - Paper
+    - Paper
+    - ClothingEyesGlasses
+    - ClothingEyesGlassesJamjar
+    - HandLabeler
+    - NewtonCradle
+    - DrinkSpaceGlue
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - FolderSpawner
+    - SpawnDungeonLootBureaucracyPen
+    chance: 1
+    offset: 0.0
+
+# Tools
+- type: entity
+  name: random pen
+  id: SpawnDungeonLootBureaucracyPen
+  noSpawn: true
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: luxury_pen
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - Pen
+    - LuxuryPen
+    - LuxuryPen
+    - LuxuryPen
+    - PenCap
+    - PenHop
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - PenExplodingBox
+    - HypopenBox
+    rareChance: 0.01
+
+# Clothes
+
+# Furniture/lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersGeneral
+  parent: MarkerBase
+  suffix: "Dungeon, Generic"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: generic
+      - sprite: Structures/Storage/closet.rsi
+        state: generic_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetMaintenanceFilledRandom
+    - WardrobeBlackFilled
+    - WardrobeBlueFilled
+    - WardrobeGreenFilled
+    - WardrobeGreyFilled
+    - WardrobeMixedFilled
+    - WardrobePinkFilled
+    - WardrobeWhiteFilled
+    - WardrobeYellowFilled
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersProtectiveGear
+  parent: MarkerBase
+  suffix: "Dungeon, Protective Gear"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: fire
+      - sprite: Structures/Storage/closet.rsi
+        state: fire_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClosetEmergencyFilledRandom
+    - ClosetFireFilled
+    - ClosetL3Filled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClosetBombFilled
+    - ClosetRadiationSuitFilled
+    - ClosetL3Filled
+    rareChance: 0.15
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLathe
+  parent: MarkerBase
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - TilePrinterNF
+    - SalvageTechfabNF
+    - ScienceTechFab
+    - ServiceTechFab
+    - EngineeringTechFab
+    - Autolathe
+    - Protolathe
+    - CircuitImprinter
+    - ExosuitFabricator
+    - Biofabricator
+    - AmmoTechFab
+    - MedicalTechFab
+    - UniformPrinter
+    - MachineFlatpacker
+    - SpawnDungeonMachineFrame
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrial
+    - AutolatheHyperConvection
+    - ProtolatheHyperConvection
+    rareChance: 0.03
+
+- type: entity
+  name: random vendomat # drinks, smokes, toy, decor
+  id: SpawnDungeonVendomatsRecreational
+  parent: MarkerBase
+  suffix: "Dungeon, Recreational"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpaceVillainArcade
+    - SpaceVillainArcadeFilled
+    - BlockGameArcade
+    - VendingMachineBooze
+    - VendingMachineCigs
+    - VendingMachineCoffee
+    - VendingMachineCola
+    - VendingMachineColaBlack
+    - VendingMachineColaRed
+    - VendingMachineSpaceUp
+    - VendingMachineSoda
+    - VendingMachineStarkist
+    - VendingMachineShamblersJuice
+    - VendingMachinePwrGame
+    - VendingMachineDrGibb
+    - VendingMachineSovietSoda
+    - VendingMachineGames
+    - VendingMachineHappyHonk
+    - VendingMachineCuddlyCritterVend
+    - VendingMachineAutoTuneVend
+    - VendingMachinePottedPlantVend
+    - WaterCooler
+    - SpawnDungeonMachineFrame
+    #- VendingMachineChang # No food vendomats in expeds - buy from food ships or die
+    #- VendingMachineDonut
+    #- VendingMachineDiscount
+    #- VendingMachineSnack
+    #- VendingMachineSustenance
+    #- VendingMachineSnackBlue
+    #- VendingMachineSnackOrange
+    #- VendingMachineSnackGreen
+    #- VendingMachineSnackTeal
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineChemicalsSyndicate
+    - VendingMachineArcadia
+    rareChance: 0.05
+
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsClothes
+  parent: MarkerBase
+  suffix: "Dungeon, Clothes"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineClothing
+    - VendingMachineWinter
+    - VendingMachineHydrobe
+    - VendingMachineTheater
+    - VendingMachineLawDrobe
+    - VendingBarDrobe
+    - VendingMachineChapel
+    - VendingMachineCargoDrobe
+    - VendingMachineMediDrobe
+    - VendingMachineChemDrobe
+    - VendingMachineCuraDrobe
+    - VendingMachineAtmosDrobe
+    - VendingMachineEngiDrobe
+    - VendingMachineChefDrobe
+    - VendingMachineJaniDrobe
+    - VendingMachineSciDrobe
+    - VendingMachineRoboDrobe
+    - VendingMachineGeneDrobe
+    - VendingMachineViroDrobe
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineMagivend
+    - VendingMachineArcadia
+    - VendingMachineSyndieDrobe
+    - SpawnDungeonMachineFrame
+    rareChance: 0.03
+
+- type: entity
+  name: random vendomat
+  id: SpawnDungeonVendomatsTools
+  parent: MarkerBase
+  suffix: "Dungeon, Tools"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineVendomat
+    - VendingMachineEngivend
+    - VendingMachineRobotics
+    - VendingMachineYouTool
+    - VendingMachineSalvage
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - LessLethalVendingMachine
+    - VendingMachineFlatpackVend
+    - VendingMachineExpeditionaryFlatpackVend
+    - VendingMachineAmmo
+    - VendingMachineSyndieContraband
+    - VendingMachineSec
+    - VendingMachineArcadia
+    - SpawnDungeonMachineFrame
+    rareChance: 0.03
+
+- type: entity
+  name: random machine frame
+  id: SpawnDungeonMachineFrame
+  parent: MarkerBase
+  suffix: Dungeon
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MachineFrameDestroyed
+    - UnfinishedMachineFrame
+    - MachineFrame
+    chance: 1
+    offset: 0.0
+
+# Other
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoard
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, General"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: generic
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Spawners
+    - SpawnDungeonLootCircuitBoardSalvage
+    - SpawnDungeonLootCircuitBoardEngi
+    - SpawnDungeonLootCircuitBoardScience
+    - SpawnDungeonLootCircuitBoardMed
+    - RandomBoards # /Resources/Prototypes/Nyanotrasen/Markers/Spawners/Random/devices.yml
+    # Boards
+    - SalvageTechFabCircuitboardNF
+    - ScienceTechFabCircuitboard
+    - ServiceTechFabCircuitboard
+    - EngineeringTechFabCircuitboard
+    - AmmoTechFabCircuitboard
+    - MedicalTechFabCircuitboard
+    - OreProcessorIndustrialMachineCircuitboard
+    - MicrowaveMachineCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - DawInstrumentMachineCircuitboard
+    - ComputerIFFCircuitboard
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SecurityTechFabCircuitboard
+    rareChance: 0.01
+
+- type: entity
+  name: random spesos
+  id: SpawnDungeonLootSpesos
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Economy/cash.rsi
+        state: cash_500
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpaceCash10
+    - SpaceCash100
+    - SpaceCash500
+    - SpaceCash1000
+    - SpaceCash1000
+    - SpaceCash2500
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - SpaceCash5000
+    - SpaceCash10000
+    - SpaceCash20000
+    - SpaceCash30000
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsBasicFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Basic"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/Sheets/metal.rsi
+        state: plasteel_3
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SheetSteel
+    - SheetSteel
+    - SheetGlass
+    - SheetGlass
+    - SheetPlastic
+    - SheetPlastic
+    - SheetPGlass
+    - SheetUGlass
+    - SheetPlasma
+    - SheetUranium
+    - MaterialCloth
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SheetPaper
+    - MaterialWoodPlank
+    - PartRodMetal
+    - CableHVStack
+    - CableMVStack
+    - CableApcStack
+    - SheetRGlass
+    rareChance: 0.05
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsValuableFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Valuable"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/ingots.rsi
+        state: gold_3
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - IngotGold
+    - IngotSilver
+    - SheetRPGlass
+    - SheetRUGlass
+    - SheetPlasteel
+    - MaterialDurathread
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - MaterialDiamond
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsBasicSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Basic, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/Sheets/metal.rsi
+        state: plasteel
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SheetGlass1
+    - SheetRGlass1
+    - SheetPGlass1
+    - SheetUGlass1
+    - SheetSteel1
+    - SheetPaper1
+    - SheetPlasma1
+    - SheetPlastic1
+    - SheetUranium1
+    - MaterialCloth1
+    - MaterialWoodPlank1
+    - PartRodMetal1
+    - CableHVStack1
+    - CableMVStack1
+    - CableApcStack1
+    - ShardGlass
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium1
+    - MaterialBones1
+    rareChance: 0.01
+
+- type: entity
+  name: random materials
+  id: SpawnDungeonLootMaterialsValuableSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Valuable, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Materials/ingots.rsi
+        state: gold
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - IngotGold1
+    - IngotSilver1
+    - SheetRPGlass1
+    - SheetRUGlass1
+    - SheetPlasteel1
+    - MaterialDurathread1
+    - ShardGlass
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - MaterialDiamond1
+    - MaterialBananium1
+    - MaterialBones1
+    rareChance: 0.01
+
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresFull
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Full"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GoldOre
+    - SteelOre
+    - PlasmaOre
+    - SilverOre
+    - SpaceQuartz
+    - UraniumOre
+    - Coal
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - BananiumOre
+    rareChance: 0.05
+
+- type: entity
+  name: random ores
+  id: SpawnDungeonLootOresSingle
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Single"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Materials/ore.rsi
+        state: plasma
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GoldOre1
+    - SteelOre1
+    - PlasmaOre1
+    - SilverOre1
+    - SpaceQuartz1
+    - UraniumOre1
+    - Coal1
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - BananiumOre1
+    rareChance: 0.05
+
+- type: entity
+  name: random vehicle crate
+  id: SpawnDungeonLootCrateVehicle
+  parent: MarkerBase
+  suffix: "Dungeon"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/livestock.rsi
+        state: base
+      - sprite: _NF/Objects/Vehicles/hoverbike.rsi
+        state: vehicle
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateFunATV
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - CrateFunHoverbikeNF
+    rareChance: 0.35
+
+- type: entity
+  name: random canister
+  id: SpawnDungeonLootCanister
+  parent: MarkerBase
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/canister.rsi
+        state: greenys
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - AirCanister
+    - AmmoniaCanister
+    - CarbonDioxideCanister
+    - NitrogenCanister
+    - NitrousOxideCanister
+    - OxygenCanister
+    - PlasmaCanister
+    - StorageCanister
+    - WaterVaporCanister
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - FrezonCanister
+    - LiquidCarbonDioxideCanister
+    - LiquidNitrogenCanister
+    - LiquidOxygenCanister
+    - TritiumCanister
+    rareChance: 0.01

@@ -8,16 +8,9 @@
       time: 10800
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
-  supervisors: job-supervisors-service
-  canBeAntag: false
-  access:
-  - Service
-  - Maintenance
-  - Bar
-  - Kitchen
-  - External # Frontier
-  extendedAccess:
-  - Hydroponics
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: ServiceWorkerGear

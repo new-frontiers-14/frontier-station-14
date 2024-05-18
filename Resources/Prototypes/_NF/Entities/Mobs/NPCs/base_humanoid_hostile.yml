@@ -43,7 +43,6 @@
 
 # Human NPC, uses equipment, immune to vacuum/low pressure
 # but otherwise should be the same as base line human mob
-# Going to use this prototype later for other mobs
 - type: entity
   name: Human NPC
   suffix: AI, Hostile
@@ -69,31 +68,31 @@
       160: Dead
   - type: Stamina
     critThreshold: 130
-# Missing stuff from BaseMobSpeciesOrganic
   - type: Flashable
   - type: Blindable
   - type: Butcherable
-    butcheringType: Spike # TODO human.
+    butcheringType: Spike
     spawned:
       - id: FoodMeatHuman
         amount: 5
 # AI package
   - type: HTN
     rootTask:
-       task: SimpleHumanoidHostileCompound
-# Alt root tasks
-#      task: MeleeCombatCompound
-#      task: SimpleRangedHostileCompound
+       task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool # They use this option too much for my liking, but without this mobs usually get stuck on spawn in expeds
+      NavClimb: !type:Bool
         false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
   - type: NpcFactionMember
     factions:
       - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
   - type: MobPrice
-    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
-    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+    price: 1500
+    deathPenalty: 0.5
   - type: Contraband
   - type: Advertise
     pack: syndicatehumanoidchatter # Don't have neutral one
@@ -136,13 +135,10 @@
     - ShoesRequiredStepTriggerImmune
   - type: HTN
     rootTask:
-       task: SimpleHumanoidHostileCompound
-# Alt root tasks
-#      task: MeleeCombatCompound
-#      task: SimpleRangedHostileCompound
+       task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
-        true
+      NavClimb: !type:Bool
+        false
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
@@ -168,6 +164,6 @@
         Base: dead
   - type: Carriable # Carrying system from nyanotrasen.
   - type: MobPrice
-    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
-    deathPenalty: 0.5 # However they really ought to be living and intact, otherwise they're worth 2x less.
+    price: 1500
+    deathPenalty: 0.5
   - type: Contraband

@@ -1,15 +1,21 @@
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Dataset;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
+    [ValidatePrototypeId<EntityPrototype>]
+    public const string CoordinatesDisk = "CoordinatesDisk";
+
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     private const float ShuttleFTLMassThreshold = 50f;
@@ -53,11 +59,18 @@ public sealed partial class SalvageSystem
         }
         // end of Frontier proximity check
 
-        SpawnMission(missionparams, station.Value);
+        // Frontier  change - disable coordinate disks for expedition missions
+        //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
+        SpawnMission(missionparams, station.Value, null);
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
+
+        // Frontier  change - disable coordinate disks for expedition missions
+        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
+        //_audio.PlayPvs(component.PrintSound, uid);
+
         UpdateConsoles(data);
     }
 

@@ -21,45 +21,11 @@
   alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity" # Frontier
   requireAdminNotify: true
-  supervisors: job-supervisors-centcom # Frontier
+  supervisors: job-supervisors-centcom
   whitelistRequired: true
   canBeAntag: false
-  access:
-  - HeadOfSecurity
-  - HeadOfPersonnel # Frontier - This should probably be removed after we confirm they can get into SR office + Bank
-  - Command
-  - Brig
-  - Frontier
-  - Security
-  - Armory
-  - Maintenance
-  - Service
-  - External
-  - Detective
-  - Mercenary # Frontier
-  - Bar # Frontier
-  - Janitor # Frontier
-  - Theatre # Frontier
-  - Kitchen # Frontier
-  - Chapel # Frontier
-  - Hydroponics # Frontier
-  - Chemistry # Frontier
-  - Engineering # Frontier
-  - Quartermaster # Frontier
-  - Research # Frontier
-  - Salvage # Frontier
-  - Cargo # Frontier
-  - Atmospherics # Frontier
-  - Medical # Frontier
-  - EmergencyShuttleRepealAll # Frontier
-  - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - ChiefMedicalOfficer # Frontier
-  - ResearchDirector # Frontier
-  - Pilot # Frontier
-  - Lawyer # Frontier
-  - Cryogenics # Frontier
-  - Mail # Frontier
+  accessGroups:
+  - AllAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -71,21 +37,21 @@
   id: SheriffGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNfsdTacGray # Frontier
-    back: ClothingBackpacknfsdsheriffFilled # Frontier
-    shoes: ClothingShoesBootsNFSDBrownFilled # Frontier
+    back: ClothingBackpackNfsdBrownSheriffFilled # Frontier
+    shoes: ClothingShoesBootsNfsdBrownFilled # Frontier
     outerClothing: ClothingOuterCoatNfsdFormalSheriff # Frontier
-    eyes: ClothingEyesGlassesNFSD # Frontier
+    eyes: ClothingEyesGlassesNfsd # Frontier
     head: ClothingHeadHatNfsdCampaignFilled # Frontier
-    id: NfsdSheriff # Frontier
+    id: SheriffPDA # Frontier
     mask: ClothingMaskGasSheriff # Frontier
     gloves: ClothingHandsGlovesCombatNfsdCream # Frontier
-    ears: ClothingHeadsetAltNFSDCreamandBrown # Frontier
+    ears: ClothingHeadsetAltNfsdCreamandBrown # Frontier
     belt: ClothingBeltNfsdWebbingFilled # Frontier
     pocket1: WeaponPistolMk58Nonlethal
-    pocket2: HoloprojectorNFSD # Frontier
+    pocket2: HoloprojectorNfsd # Frontier
     neck: ClothingNeckMantleSheriffFilled # Frontier
     suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
   innerClothingSkirt: ClothingUniformJumpskirtNfsd # Frontier
-  satchel: ClothingBackpackSatchelnfsdsheriffFilled # Frontier
-  duffelbag: ClothingBackpackDuffelnfsdsheriffFilled # Frontier
-  messenger: ClothingBackpackMessengerHOSFilled # Frontier
+  satchel: ClothingBackpackSatchelNfsdBrownSheriffFilled
+  duffelbag: ClothingBackpackDuffelNfsdBrownSheriffFilled
+  messenger: ClothingBackpackMessengerNfsdBrownSheriffFilled

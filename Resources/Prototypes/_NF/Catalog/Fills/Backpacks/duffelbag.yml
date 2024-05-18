@@ -9,3 +9,40 @@
       - id: WeaponLauncherChinaLakeEmp
       - id: GrenadeEmp
         amount: 8
+
+- type: entity
+  parent: ClothingBackpackDuffelMime
+  id: ClothingBackpackDuffelSurgeryImpovFilled
+  name: improvised surgical duffel bag
+  description: "This looks like set of improvised surgical tools put together by someone."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ScalpelShiv
+      - id: WelderMini
+      - id: SawImprov
+      - id: ClothingHandsGlovesFingerless
+      - id: PillSpaceDrugs
+        amount: 3
+      - id: Plunger
+      - id: Spoon
+      - id: FoodCondimentPacketKetchup
+      - id: PowerCellMedium
+      - id: CableApcStack1
+        amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelMedical
+  id: ClothingBackpackDuffelSurgeryAdvancedFilled
+  name: advanced surgical duffel bag
+  description: "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding advanced surgical tools."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ScalpelAdvanced
+      - id: ScalpelLaser
+      - id: Cautery
+      - id: SawElectric
+      - id: Drill
+      - id: Hemostat
+      - id: Retractor

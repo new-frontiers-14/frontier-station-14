@@ -38,9 +38,25 @@
   components:
   - type: Pda
     id: ValetIDCard
-    state: pda-internservice
+    state: pda-valet
+  - type: PdaBorderColor
+    borderColor: "#860000"
+    accentVColor: "#F2F2F2"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda-internservice
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-valet
 
 - type: entity
   parent: BasePDA

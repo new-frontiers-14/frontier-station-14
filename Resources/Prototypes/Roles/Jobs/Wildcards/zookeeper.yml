@@ -8,11 +8,9 @@
       time: 10800
   startingGear: ZookeeperGear
   icon: "JobIconZookeeper"
-  supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Maintenance
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: ZookeeperGear

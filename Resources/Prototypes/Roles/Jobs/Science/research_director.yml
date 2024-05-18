@@ -9,21 +9,17 @@
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
-  requireAdminNotify: true
-  supervisors: job-supervisors-captain
-  canBeAntag: false
-  access:
-  - Research
-  - Command
-  - Maintenance
-  - ResearchDirector
-  - External # Frontier
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+#  requireAdminNotify: true
+  supervisors: job-supervisors-hire # Frontier
+#  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
+#  special:
+#  - !type:AddImplantSpecial
+#    implants: [ MindShieldImplant ]
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: CommandStaff
 
 - type: startingGear
   id: ResearchDirectorGear

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: AutolatheMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: autolathe machine board
@@ -90,25 +90,6 @@
       state: security
     - type: MachineBoard
       prototype: SecurityTechFab
-      requirements:
-        MatterBin: 2
-        Manipulator: 2
-      tagRequirements:
-        GlassBeaker:
-          Amount: 2
-          DefaultPrototype: Beaker
-          ExamineName: Glass Beaker
-
-- type: entity
-  id: NFSDTechFabCircuitboard
-  parent: BaseMachineCircuitboard
-  name: nfsd techfab machine board
-  description: A machine printed circuit board for an nfsd techfab.
-  components:
-    - type: Sprite
-      state: nfsd
-    - type: MachineBoard
-      prototype: NFSDTechFab
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -470,7 +451,7 @@
   id: PortableScrubberMachineCircuitBoard
   parent: BaseMachineCircuitboard
   name: portable scrubber machine board
-  description: A PCB for a portable scrubber.
+  description: A machine printed circuit board for a portable scrubber.
   components:
   - type: Sprite
     state: engineering
@@ -482,6 +463,22 @@
     materialRequirements:
       Cable: 5
       Glass: 2
+
+- type: entity
+  id: SpaceHeaterMachineCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: space heater machine board
+  description: A machine printed circuit board for a space heater.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: SpaceHeater
+    requirements:
+      MatterBin: 1
+      Capacitor: 2
+    materialRequirements:
+      Cable: 5
 
 - type: entity
   id: CloningPodMachineCircuitboard
@@ -1070,6 +1067,9 @@
       materialRequirements:
         Glass: 2
         Cable: 2
+    - type: Tag
+      tags:
+      - MicrowaveMachineBoard
 
 - type: entity
   id: FatExtractorMachineCircuitboard
@@ -1357,6 +1357,20 @@
     materialRequirements:
       Steel: 5
       CableHV: 2
+
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ReagentGrinderIndustrialMachineCircuitboard
+  name: industrial reagent grinder machine board
+  components:
+  - type: MachineBoard
+    prototype: ReagentGrinderIndustrial
+    requirements:
+      MatterBin: 1
+      Manipulator: 3
+    materialRequirements:
+      Glass: 1
 
 - type: entity
   parent: BaseMachineCircuitboard

@@ -2,7 +2,6 @@
   name: Syndicate Naval Agent
   abstract: true
   noSpawn: true
-#  parent: BaseMobHuman
   parent: MobHumanoidHostileBase
   id: MobSyndicateNavalBase
   components:
@@ -12,21 +11,21 @@
   - type: NpcFactionMember
     factions:
       - Syndicate
-  - type: AutoImplant
-    implants:
-    - DeathRattleImplant
-    - DeathAcidifierImplantNF
-#    - DeathAcidifierImplant
-#    - MicroBombImplant
+  #- type: AutoImplant # muh loot! nooo
+    #implants:
+    #- DeathRattleImplant
+    #- DeathAcidifierImplantNF
+    #- DeathAcidifierImplant
+    #- MicroBombImplant
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: syndicatehumanoidchatter
-    minimumWait: 20
-    maximumWait: 120 # 2 * 60
-    NextAdvertisementTime: 5
+    minimumWait: 30
+    maximumWait: 120
+    NextAdvertisementTime: 10
   - type: Buckle
     disable: true
   - type: AutoWakeUp
@@ -42,10 +41,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalCaptainGearA
-    - type: Reflect
-      enabled: true
-      reflectProb: .05
-      spread: 90
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 0.75
       rechargeSound:
@@ -55,8 +50,8 @@
       capacity: 1
       count: 1
     - type: Gun
+      showExamineText: false
       fireRate: 0.75
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -123,8 +118,8 @@
       capacity: 1
       count: 1
     - type: Gun
+      showExamineText: false
       fireRate: 2
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -188,8 +183,8 @@
       capacity: 1
       count: 1
     - type: Gun
+      showExamineText: false
       fireRate: 4
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -254,8 +249,8 @@
       maxCharge: 600
       startingCharge: 600
     - type: Gun
+      showExamineText: false
       fireRate: 1
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
@@ -313,7 +308,7 @@
       capacity: 8
       count: 8
     - type: Gun
-      useKey: false
+      showExamineText: false
       minAngle: 10
       maxAngle: 30
       fireRate: 8
@@ -376,7 +371,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      useKey: false
+      showExamineText: false
       fireRate: 1
       selectedMode: SemiAuto
       availableModes:
@@ -444,12 +439,11 @@
       capacity: 4
       count: 4
     - type: Gun
+      showExamineText: false
       fireRate: 6
-      useKey: false
       selectedMode: FullAuto
       availableModes:
       - FullAuto
-      - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
@@ -484,11 +478,8 @@
 
 # Hostile Victim of Experimentation, "armed" with shiv
 - type: entity
-  name: Captive #Victim of Experimentation
+  name: Captive
   parent: MobHumanoidHostileBase
-#  - MobBloodstream
-#  - MobFlammable
-#  - BaseMobSpecies
   id: MobExperimentationVictim
   noSpawn: true
   components:
@@ -521,7 +512,7 @@
     - type: AutoImplant
       implants:
       - DeathRattleImplant
-      - DeathAcidifierImplantNF
+      #- DeathAcidifierImplantNF
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 1.5
       rechargeSound:
@@ -531,8 +522,8 @@
       capacity: 4
       count: 4
     - type: Gun
+      showExamineText: false
       fireRate: 5
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -552,8 +543,8 @@
       capacity: 4
       count: 4
     - type: Gun
+      showExamineText: false
       fireRate: 5
-      useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -598,12 +589,11 @@
       capacity: 4
       count: 4
     - type: Gun
+      showExamineText: false
       fireRate: 0.5
-      useKey: false
       selectedMode: FullAuto
       availableModes:
       - FullAuto
-      - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
@@ -647,7 +637,7 @@
       prototypes:
         - SyndicateNavalMimeGear
     - type: Stamina
-      critThreshold: 500 # Extra hard to incapacitate and loot
+      critThreshold: 500
     - type: MovementSpeedModifier
       baseWalkSpeed: 4
       baseSprintSpeed: 6
@@ -677,8 +667,8 @@
     capacity: 3
     count: 3
   - type: Gun
+    showExamineText: false
     fireRate: 4
-    useKey: false
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

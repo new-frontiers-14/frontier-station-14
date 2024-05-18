@@ -131,6 +131,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotOffset = _random.NextVector2(3000f, 5000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
         var caseysOffset = _random.NextVector2(2250f, 4600f);
+
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
                 Offset = depotOffset
@@ -190,7 +191,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, lpbravo, out var depotUid4s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2150f, 3900f)
+                Offset = _random.NextVector2(2150f, 4850f)
             }))
         {
             var meta = EnsureComp<MetaDataComponent>(depotUid4s[0]);
@@ -221,7 +222,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
             {
-                Offset = _random.NextVector2(2250f, 4600f)
+                Offset = _random.NextVector2(10000f, 15000f)
             }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>("Cove", out var stationProto))

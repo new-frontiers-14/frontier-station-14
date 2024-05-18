@@ -28,7 +28,7 @@ public sealed class EmpSystem : SharedEmpSystem
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
         SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
-        SubscribeLocalEvent<EmpDisabledComponent, ThrusterToggleAttemptEvent>(OnThrusterToggle);
+        //SubscribeLocalEvent<EmpDisabledComponent, ThrusterToggleAttemptEvent>(OnThrusterToggle);
         SubscribeLocalEvent<EmpDisabledComponent, ShuttleToggleAttemptEvent>(OnShuttleConsoleToggle);
     }
 
@@ -138,10 +138,10 @@ public sealed class EmpSystem : SharedEmpSystem
         args.Cancelled = true;
     }
 
-    private void OnThrusterToggle(EntityUid uid, EmpDisabledComponent component, ref ThrusterToggleAttemptEvent args)
-    {
-        args.Cancelled = true;
-    }
+    //private void OnThrusterToggle(EntityUid uid, EmpDisabledComponent component, ref ThrusterToggleAttemptEvent args)
+    //{
+    //    args.Cancelled = true;
+    //}
 
     private void OnShuttleConsoleToggle(EntityUid uid, EmpDisabledComponent component, ref ShuttleToggleAttemptEvent args)
     {

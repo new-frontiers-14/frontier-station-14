@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: MagnusCrowe (https://github.com/magnuscrowe)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bocakillo
+  name: Bocakillo
+  description: A tiny plastitanium vessel suited to a crew of 2 to 3 pirates. Has two broadside cannons and a rear-facing disposals launcher. Runs on plasma.
+  price: 35000 #Cheap
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
+
+- type: gameMap
+  id: Bocakillo
+  mapName: 'Bocakillo'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
+  minPlayers: 0
+  stations:
+    Bocakillo:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bocadillo {1}' #Sneaky spoofed name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pirate: [ 0, 0 ]

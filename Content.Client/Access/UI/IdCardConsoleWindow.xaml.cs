@@ -22,7 +22,7 @@ namespace Content.Client.Access.UI
 
         private readonly IdCardConsoleBoundUserInterface _owner;
 
-        private readonly Dictionary<string, Button> _accessButtons = new();
+        private AccessLevelControl _accessButtons = new();
         private readonly List<string> _jobPrototypeIds = new();
 
         private string? _lastFullName;
@@ -74,36 +74,18 @@ namespace Content.Client.Access.UI
 
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
 
-            foreach (var access in accessLevels)
+            _accessButtons.Populate(accessLevels, prototypeManager);
+            AccessLevelControlContainer.AddChild(_accessButtons);
+
+            foreach (var (id, button) in _accessButtons.ButtonsList)
             {
-                if (!prototypeManager.TryIndex<AccessLevelPrototype>(access, out var accessLevel))
-                {
-                    _logMill.Error($"Unable to find accesslevel for {access}");
-                    continue;
-                }
-
-                var newButton = new Button
-                {
-                    Text = GetAccessLevelName(accessLevel),
-                    ToggleMode = true,
-                };
-                AccessLevelGrid.AddChild(newButton);
-                _accessButtons.Add(accessLevel.ID, newButton);
-                newButton.OnPressed += _ => SubmitData();
+                button.OnPressed += _ => SubmitData();
             }
-        }
-
-        private static string GetAccessLevelName(AccessLevelPrototype prototype)
-        {
-            if (prototype.Name is { } name)
-                return Loc.GetString(name);
-
-            return prototype.ID;
         }
 
         private void ClearAllAccess()
         {
-            foreach (var button in _accessButtons.Values)
+            foreach (var button in _accessButtons.ButtonsList.Values)
             {
                 if (button.Pressed)
                 {
@@ -127,7 +109,7 @@ namespace Content.Client.Access.UI
             // this is a sussy way to do this
             foreach (var access in job.Access)
             {
-                if (_accessButtons.TryGetValue(access, out var button) && !button.Disabled)
+                if (_accessButtons.ButtonsList.TryGetValue(access, out var button) && !button.Disabled)
                 {
                     button.Pressed = true;
                 }
@@ -142,7 +124,7 @@ namespace Content.Client.Access.UI
 
                 foreach (var access in groupPrototype.Tags)
                 {
-                    if (_accessButtons.TryGetValue(access, out var button) && !button.Disabled)
+                    if (_accessButtons.ButtonsList.TryGetValue(access, out var button) && !button.Disabled)
                     {
                         button.Pressed = true;
                     }
@@ -215,15 +197,10 @@ namespace Content.Client.Access.UI
 
             JobPresetOptionButton.Disabled = !interfaceEnabled;
 
-            foreach (var (accessName, button) in _accessButtons)
-            {
-                button.Disabled = !interfaceEnabled;
-                if (interfaceEnabled)
-                {
-                    button.Pressed = state.TargetIdAccessList?.Contains(accessName) ?? false;
-                    button.Disabled = (!state.AllowedModifyAccessList?.Contains(accessName)) ?? true;
-                }
-            }
+            _accessButtons.UpdateState(state.TargetIdAccessList?.ToList() ??
+                                       new List<ProtoId<AccessLevelPrototype>>(),
+                                       state.AllowedModifyAccessList?.ToList() ??
+                                       new List<ProtoId<AccessLevelPrototype>>());
 
             var jobIndex = _jobPrototypeIds.IndexOf(state.TargetIdJobPrototype);
             if (jobIndex >= 0)
@@ -281,7 +258,7 @@ namespace Content.Client.Access.UI
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
                 // Iterate over the buttons dictionary, filter by `Pressed`, only get key from the key/value pair
-                _accessButtons.Where(x => x.Value.Pressed).Select(x => x.Key).ToList(),
+                _accessButtons.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key).ToList(),
                 jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
         }
 

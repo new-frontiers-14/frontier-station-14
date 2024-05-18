@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Salvage.Expeditions;
 
 [Prototype("salvageFaction")]
-public sealed partial class SalvageFactionPrototype : IPrototype
+public sealed partial class SalvageFactionPrototype : IPrototype, ISalvageMod
 {
     [IdDataField] public string ID { get; } = default!;
 

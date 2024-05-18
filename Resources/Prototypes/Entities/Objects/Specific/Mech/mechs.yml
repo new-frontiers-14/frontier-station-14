@@ -49,6 +49,8 @@
       types:
         Blunt: 25 #thwack
         Structural: 20
+    soundHit:
+      collection: MetalThud
   - type: Puller
     needsHands: false
   - type: InputMover
@@ -65,9 +67,6 @@
     bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
-  - type: Wires #we just want the panel
-    boardName: wires-board-name-mech
-    layoutId: Mech
   - type: Fixtures
     fixtures:
       fix1:

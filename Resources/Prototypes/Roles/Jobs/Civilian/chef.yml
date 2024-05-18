@@ -8,15 +8,9 @@
       time: 10800
   startingGear: ChefGear
   icon: "JobIconChef"
-  supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Maintenance
-  - Kitchen
-  - External # Frontier
-  extendedAccess:
-  - Hydroponics
-  - Bar #Nyano - Summary: After this line, Professional Che is a component to be added. Very important.
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
   special: 
   - !type:AddComponentSpecial
     components:

@@ -9,21 +9,10 @@
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  supervisors: job-supervisors-captain
-  canBeAntag: false
-  access:
-  - Cargo
-  - Salvage
-  - Quartermaster
-  - Maintenance
-  - Command
-  - Brig
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  supervisors: job-supervisors-hire # Frontier
+#  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: QuartermasterGear

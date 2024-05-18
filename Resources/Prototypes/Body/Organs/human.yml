@@ -7,6 +7,7 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
   - type: Food
+#    quality: Nasty # Frontier
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -53,7 +54,21 @@
   - type: Tag
     tags:
       - Meat
-
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan

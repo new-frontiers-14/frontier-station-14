@@ -8,11 +8,9 @@
       time: 10800
   startingGear: ClownGear
   icon: "JobIconClown"
-  supervisors: job-supervisors-hop
-  access:
-  - Theatre
-  - Maintenance
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
   special:
   - !type:AddComponentSpecial
     components:
@@ -26,7 +24,6 @@
     - type: SleepEmitSound
       snore: /Audio/Voice/Misc/silly_snore.ogg
       interval: 10
-      chance: 1.0
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
 

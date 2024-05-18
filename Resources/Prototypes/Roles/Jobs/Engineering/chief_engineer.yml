@@ -9,23 +9,17 @@
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
-  requireAdminNotify: true
-  supervisors: job-supervisors-captain
-  canBeAntag: false
-  access:
-  - Maintenance
-  - Engineering
-  - Command
-  - External
-  - ChiefEngineer
-  - Atmospherics
-  - Brig
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+#  requireAdminNotify: true
+  supervisors: job-supervisors-hire # Frontier
+#  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
+#  special:
+#  - !type:AddImplantSpecial
+#    implants: [ MindShieldImplant ]
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: CommandStaff
 
 - type: startingGear
   id: ChiefEngineerGear

@@ -44,7 +44,7 @@
   - type: Advertise
     pack: AstroVendAds
   - type: Sprite
-    sprite: _NF/Structures/astrovend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/astrovend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -121,7 +121,7 @@
   - type: Advertise
     pack: SyndieDrobeAds
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/syndicateArmor.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/contravend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -155,7 +155,7 @@
 #  - type: Advertise
 #    pack: BountyVendAds
   - type: Sprite
-    sprite: _NF/Structures/bountyvend.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/bountyvend.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -188,7 +188,7 @@
     - type: Advertise
       pack: ArcadiaDrobeAds
     - type: Sprite
-      sprite: _NF/Structures/arcadiadrobe.rsi
+      sprite: _NF/Structures/Machines/VendingMachines/arcadiadrobe.rsi
       layers:
       - state: "off"
         map: ["enum.VendingMachineVisualLayers.Base"]
@@ -322,17 +322,17 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDDrobe
+  id: VendingMachineNfsdDrobe
   name: NFSDDrobe
   description: A vending machine for NFSD and NFSD clothing!
   components:
   - type: VendingMachine
-    pack: NFSDDrobeInventory
+    pack: NfsdDrobeInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    pack: NFSDDrobeAds
+    pack: NfsdDrobeAds
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/nfsddrobe.rsi
     layers:
@@ -348,19 +348,19 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
-  id: VendingMachineNFSDTec
-  name: NFSDTec
+  id: VendingMachineNfsdTech
+  name: NFSDTech
   description: A vending machine for NFSD and NFSD tech!
   components:
   - type: VendingMachine
-    pack: NFSDTecInventory
+    pack: NfsdTechInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
   - type: Advertise
-    pack: NFSDDrobeAds
+    pack: NfsdDrobeAds
   - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/nfsdtec.rsi
+    sprite: _NF/Structures/Machines/VendingMachines/nfsdtech.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -371,3 +371,28 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Security"]]
+
+- type: entity
+  parent: [BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart] # Frontier
+  id: VendingMachineCartNfsd
+  suffix: NFSD
+  components:
+  - type: VendingMachine
+    pack: PTechNfsdInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]

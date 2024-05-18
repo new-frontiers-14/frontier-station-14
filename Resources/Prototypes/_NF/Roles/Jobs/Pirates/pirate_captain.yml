@@ -1,0 +1,41 @@
+- type: job
+  id: PirateCaptain
+  name: job-name-pirate-captain
+  description: job-description-pirate-captain
+  playTimeTracker: JobPirateCaptain
+  requirements:
+    - !type:WhitelistRequirement
+    - !type:OverallPlaytimeRequirement
+      time: 172800 # Frontier - 48 hours
+  startingGear: NFPirateCaptainGear
+  alwaysUseSpawner: true
+  canBeAntag: true
+  icon: "JobIconMercenary" 
+  supervisors: job-supervisors-hire
+  setPreference: true
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MailDisabled
+  - !type:AddImplantSpecial
+    implants: [ FreelanceTrackingImplant ]
+
+- type: startingGear
+  id: NFPirateCaptainGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    back: ClothingBackpackPirateFilled
+    head: ClothingHeadHatPirate
+    ears: ClothingHeadsetAltFreelancer
+    shoes: ClothingShoesBootsLaceup
+    id: PiratePDA
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+    pocket2: EnergyCutlass
+    outerClothing: ClothingOuterCoatPirate
+  innerClothingSkirt: ClothingUniformJumpskirtColorLightBrown
+  satchel: ClothingBackpackPirateFilled
+  duffelbag: ClothingBackpackPirateFilled
+  messenger: ClothingBackpackMessengerMercenaryFilled

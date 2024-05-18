@@ -11,7 +11,7 @@
       time: 36000 # Frontier - 10 hrs
   startingGear: DetectiveNFGear
   icon: "JobIconDetective"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-bailiff
   canBeAntag: false
   access:
   - Security
@@ -19,9 +19,9 @@
   - Maintenance
   - Service
   - Detective
-  - External # Frontier
-  - Mercenary # Frontier
-  - Captain # Frontier
+  - External
+  - Mercenary
+  - Captain
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -30,16 +30,16 @@
   id: DetectiveNFGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
-    back: ClothingBackpackFilledDetective
+    back: ClothingBackpackNfsdBrownDetectiveFilled
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesNfsd
     head: ClothingHeadHatFedoraBrown
     outerClothing: ClothingOuterVestDetective
-    id: DetectivePDA
-    ears: ClothingHeadsetSecurity
+    id: DetectiveNFPDA
+    ears: ClothingHeadsetNfsdCream
     belt: ClothingBeltHolsterFilled
-    gloves: ClothingHandsGlovesCombat # Frontier
+    gloves: ClothingHandsGlovesCombatNfsdBrown # Frontier
   innerClothingSkirt: ClothingUniformJumpskirtDetective
-  satchel: ClothingBackpackSatchelFilledDetective
-  duffelbag: ClothingBackpackDuffelFilledDetective
-  messenger: ClothingBackpackMessengerSecurityFilledDetective # Frontier
+  satchel: ClothingBackpackSatchelNfsdBrownDetectiveFilled
+  duffelbag: ClothingBackpackDuffelNfsdBrownDetectiveFilled
+  messenger: ClothingBackpackMessengerNfsdBrownDetectiveFilled
