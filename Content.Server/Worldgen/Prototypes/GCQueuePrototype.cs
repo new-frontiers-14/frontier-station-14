@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Worldgen.Prototypes;
 
@@ -23,7 +23,7 @@ public sealed class GCQueuePrototype : IPrototype
     ///     The maximum amount of time that can be spent processing this queue.
     /// </summary>
     [DataField("maximumTickTime")]
-    public TimeSpan MaximumTickTime { get; } = TimeSpan.FromMilliseconds(1);
+    public TimeSpan MaximumTickTime { get; } = TimeSpan.FromMilliseconds(5); // Frontier 1<5
 
     /// <summary>
     ///     The minimum depth before entities in the queue actually get processed for deletion.
@@ -38,4 +38,3 @@ public sealed class GCQueuePrototype : IPrototype
     [DataField("trySkipQueue")]
     public bool TrySkipQueue { get; }
 }
-
