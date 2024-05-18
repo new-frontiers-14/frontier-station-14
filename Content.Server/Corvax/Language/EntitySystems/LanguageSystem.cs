@@ -129,7 +129,7 @@ public sealed partial class LanguageSystem : EntitySystem
             if (IsUpper(word))
                 languageWord = languageWord!.ToUpper();
             else if (char.IsUpper(word[0]))
-                languageWord = char.ToUpper(languageWord![0]) + languageWord[1..];
+                languageWord = char.ToUpper(languageWord![0]).ToString() + languageWord[1..];
 
             messageBuilder.Append(languageWord);
         }
