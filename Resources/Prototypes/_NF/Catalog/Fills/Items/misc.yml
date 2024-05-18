@@ -21,3 +21,16 @@
 - type: entity
   id: ClothingShoesBootsNfsdCreamFilled
   parent: [ClothingShoesBootsNfsdCream, ClothingShoesBootsCombatFilled]
+
+- type: entity
+  parent: ChemistryEmptyBottle04
+  id: ChaplainHolywaterBottleFilled
+  name: holy water bottle
+  description: Blessed be this holy water by the deity of your choosing.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Holywater
+          Quantity: 30
