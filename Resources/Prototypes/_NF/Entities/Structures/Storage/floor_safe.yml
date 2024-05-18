@@ -8,17 +8,15 @@
   - type: Lock
   - type: LockVisuals
   - type: AccessReader
-  - type: Anchorable
+  #- type: SubFloorHide
   - type: Storage
     grid:
-    - 0,0,8,4
-    maxItemSize: Huge
-  - type: Icon
-    sprite: _NF/Structures/Storage/floor_safe.rsi
-    state: floorsafe
+    - 0,0,11,4
+    maxItemSize: Normal
   - type: Sprite
-    drawdepth: FloorTiles
     sprite: _NF/Structures/Storage/floor_safe.rsi
+    drawdepth: FloorTiles # FloorTiles, ThinPipe, ThinWire
+    #visible: false
     state: floorsafe
     #noRot: true
     layers:
@@ -28,19 +26,16 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Open:
-        openLayer:
-          True: { visible: false }
-          False: { visible: true }
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: Transform
+    bodyType: Static
+    anchored: true
     #noRot: true
+  - type: Physics
+    canCollide: false
   - type: Fixtures
   - type: InteractionOutline
   - type: ContainerContainer
@@ -53,7 +48,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -62,7 +57,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetPlasteel1:
+          SheetSteel1:
             min: 1
             max: 2
   - type: Construction
