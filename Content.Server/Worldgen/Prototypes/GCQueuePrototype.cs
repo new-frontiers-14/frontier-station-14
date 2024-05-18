@@ -1,4 +1,4 @@
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 
 namespace Content.Server.Worldgen.Prototypes;
 
@@ -38,3 +38,4 @@ public sealed class GCQueuePrototype : IPrototype
     [DataField("trySkipQueue")]
     public bool TrySkipQueue { get; }
 }
+
