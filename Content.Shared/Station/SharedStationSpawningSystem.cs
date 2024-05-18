@@ -1,9 +1,7 @@
-using Content.Shared.Corvax.Language.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Roles;
-using Content.Shared.VulpLangauge;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Collections;
@@ -115,13 +113,6 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         {
             var ev = new StartingGearEquippedEvent(entity);
             RaiseLocalEvent(entity, ref ev, true);
-        }
-
-        if (HasComp<GiveTranslatorComponent>(entity))
-        {
-            var coords = _xformSystem.GetMapCoordinates(entity);
-            var translatorEntity = EntityManager.SpawnEntity("Translator",  coords);
-            _handsSystem.TryForcePickupAnyHand(entity, translatorEntity, checkActionBlocker: false, handsComp: handsComponent);
         }
     }
 }
