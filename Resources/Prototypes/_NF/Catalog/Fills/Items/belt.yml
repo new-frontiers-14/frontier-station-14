@@ -46,3 +46,23 @@
       - id: Stunbaton
       - id: Handcuffs
       - id: Handcuffs
+
+- type: entity
+  id: ClothingBeltSalvageWebbingFilledNF
+  parent: [ ClothingBeltSalvageWebbing, ClothingBeltUtility ]
+  suffix: Filled
+
+- type: entity
+  id: ClothingBeltChaplainSashFilled
+  parent: ClothingBeltChaplainSash
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingNeckCrucifix
+      - id: Censer
+      - id: Bible
+      - id: Lantern
+      - id: ChaplainHolywaterBottleFilled
+      - id: WoodenStake
+        amount: 2
