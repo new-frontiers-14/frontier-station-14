@@ -23,14 +23,14 @@
           density: 80
           mask:
             - MachineMask
-    # - type: SurveillanceCameraMicrophone
-      # blacklist:
-        # components:
-          # - SurveillanceCamera
-          # - SurveillanceCameraMonitor
-          # - RadioSpeaker
-    # - type: ActiveListener
-      # range: 10
+    - type: SurveillanceCameraMicrophone
+      blacklist:
+        components:
+          - SurveillanceCamera
+          - SurveillanceCameraMonitor
+          - RadioSpeaker
+    - type: ActiveListener
+      range: 6 # Frontier 10>6
     - type: UserInterface
       interfaces:
         enum.SurveillanceCameraSetupUiKey.Camera:
