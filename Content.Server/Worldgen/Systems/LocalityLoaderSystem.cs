@@ -1,10 +1,5 @@
-using Content.Server.Worldgen.Components;
+﻿using Content.Server.Worldgen.Components;
 using Robust.Server.GameObjects;
-using Content.Server._NF.Worldgen.Components.Debris; // Frontier
-using Content.Shared.Humanoid; // Frontier
-using Content.Shared.Mobs.Components; // Frontier
-using Robust.Server.GameObjects; // Frontier
-using Robust.Shared.Spawners; // Frontier
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -14,13 +9,6 @@ namespace Content.Server.Worldgen.Systems;
 public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
     [Dependency] private readonly TransformSystem _xformSys = default!;
-
-    private const float DebrisActiveDuration = 5*60; // Frontier - Duration to reset the despawn timer to when a debris is loaded into a player's view.
-
-    public override void Initialize()  // Frontier
-    {
-        SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
-    }
 
     /// <inheritdoc />
     public override void Update(float frameTime)
@@ -57,8 +45,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
                         if ((_xformSys.GetWorldPosition(loaderXform) - _xformSys.GetWorldPosition(xform)).Length() > loadable.LoadingDistance)
                             continue;
 
-                        ResetTimedDespawn(uid); // Frontier - Reset the TimedDespawnComponent's lifetime when loaded
-
                         RaiseLocalEvent(uid, new LocalStructureLoadedEvent());
                         RemCompDeferred<LocalityLoaderComponent>(uid);
                         done = true;
@@ -68,34 +54,10 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
             }
         }
     }
-
-    // Frontier
-    private void ResetTimedDespawn(EntityUid uid)
-    {
-        if (TryComp<TimedDespawnComponent>(uid, out var timedDespawn))
-        {
-            timedDespawn.Lifetime = DebrisActiveDuration;
-        }
-        else
-        {
-            // Add TimedDespawnComponent if it does not exist
-            timedDespawn = AddComp<TimedDespawnComponent>(uid);
-            timedDespawn.Lifetime = DebrisActiveDuration;
-        }
-    }
-
-    private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
-    {
-        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-
-        while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-            if (xform.MapUid is not null && xform.GridUid == entity)
-                _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
-    }
-    // Frontier
 }
 
 /// <summary>
-///     An event fired on a loadable entity when a local loader enters its vicinity.
+///     A directed fired on a loadable entity when a local loader enters it's vicinity.
 /// </summary>
 public record struct LocalStructureLoadedEvent;
+
