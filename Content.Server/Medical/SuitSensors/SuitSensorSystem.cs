@@ -335,6 +335,7 @@ public sealed class SuitSensorSystem : EntitySystem
         var userJob = Loc.GetString("suit-sensor-component-unknown-job");
         var userJobIcon = "JobIconNoId";
         var userJobDepartments = new List<string>();
+        var userJobPrototype = "";
 		var userLocationName = Loc.GetString("suit-sensor-location-unknown"); // Frontier modification
 
         if (_idCardSystem.TryFindIdCard(sensor.User.Value, out var card))
@@ -345,6 +346,8 @@ public sealed class SuitSensorSystem : EntitySystem
                 userJob = card.Comp.JobTitle;
             if (card.Comp.JobIcon != null)
                 userJobIcon = card.Comp.JobIcon;
+            if (card.Comp.JobPrototype is not null)
+                userJobPrototype = card.Comp.JobPrototype;
 
             foreach (var department in card.Comp.JobDepartments)
                 userJobDepartments.Add(Loc.GetString(department));
@@ -367,7 +370,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         // finally, form suit sensor status
 		// will additonally check the grid and name if it exists, as well if its expedition
-        var status = new SuitSensorStatus(GetNetEntity(uid), userName, userJob, userJobIcon, userJobDepartments, userLocationName);
+        var status = new SuitSensorStatus(GetNetEntity(uid), userName, userJob, userJobIcon, userJobDepartments, userJobPrototype, userLocationName);
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
@@ -449,6 +452,7 @@ public sealed class SuitSensorSystem : EntitySystem
             [SuitSensorConstants.NET_JOB] = status.Job,
             [SuitSensorConstants.NET_JOB_ICON] = status.JobIcon,
             [SuitSensorConstants.NET_JOB_DEPARTMENTS] = status.JobDepartments,
+            [SuitSensorConstants.NET_JOB_PROTOTYPE] = status.JobPrototype,
             [SuitSensorConstants.NET_IS_ALIVE] = status.IsAlive,
             [SuitSensorConstants.NET_SUIT_SENSOR_UID] = status.SuitSensorUid,
         };
@@ -481,6 +485,7 @@ public sealed class SuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB, out string? job)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_ICON, out string? jobIcon)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments)) return null;
+        if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_PROTOTYPE, out string? jobPrototype)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
 		if (!payload.TryGetValue(SuitSensorConstants.NET_LOCATION_NAME, out string? location)) return null; // Frontier modification
@@ -490,7 +495,7 @@ public sealed class SuitSensorSystem : EntitySystem
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
 
-        var status = new SuitSensorStatus(suitSensorUid, name, job, jobIcon, jobDepartments, location)
+        var status = new SuitSensorStatus(suitSensorUid, name, job, jobIcon, jobDepartments, jobPrototype, location)
         {
             IsAlive = isAlive.Value,
             TotalDamage = totalDamage,

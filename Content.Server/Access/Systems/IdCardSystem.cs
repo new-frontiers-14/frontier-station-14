@@ -161,6 +161,16 @@ public sealed class IdCardSystem : SharedIdCardSystem
         return true;
     }
 
+    public bool TryChangeJobPrototype(EntityUid entity, JobPrototype job, IdCardComponent? card = null)
+    {
+        if (!Resolve(entity, ref card))
+            return false;
+
+        card.JobPrototype = job.ID;
+
+        return true;
+    }
+
     /// <summary>
     /// Attempts to change the full name of a card.
     /// Returns true/false.

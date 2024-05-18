@@ -231,6 +231,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         _cardSystem.TryChangeFullName(cardId, characterName, card);
         _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
+        _cardSystem.TryChangeJobPrototype(cardId, jobPrototype, card);
 
         if (_prototypeManager.TryIndex<StatusIconPrototype>(jobPrototype.Icon, out var jobIcon))
         {
