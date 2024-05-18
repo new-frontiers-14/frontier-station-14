@@ -100,7 +100,7 @@ public partial class BaseShuttleControl : MapGridControl
             var textDimensions = handle.GetDimensions(Font, text, UIScale);
 
             handle.DrawCircle(origin, scaledRadius, color, false);
-            handle.DrawString(Font, ScalePosition(new Vector2(0f, -radius)) - new Vector2(0f, textDimensions.Y), text, color);
+            handle.DrawString(Font, ScalePosition(new Vector2(0f, -radius)) - new Vector2(0f, textDimensions.Y), text, UIScale, color);
         }
 
         const int gridLinesRadial = 8;
@@ -113,6 +113,14 @@ public partial class BaseShuttleControl : MapGridControl
             var lineColor = Color.MediumSpringGreen.WithAlpha(0.02f);
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
         }
+    }
+
+    protected void DrawNorthLine(DrawingHandleScreen handle, Angle angle)
+    {
+        var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
+        var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
+        var lineColor = Color.Red.WithAlpha(0.02f);
+        handle.DrawLine(origin, origin + aExtent, lineColor);
     }
 
     protected void DrawGrid(DrawingHandleScreen handle, Matrix3 matrix, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
