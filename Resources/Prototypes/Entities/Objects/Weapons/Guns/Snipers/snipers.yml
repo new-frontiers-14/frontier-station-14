@@ -38,15 +38,59 @@
   - type: StaticPrice
     price: 500
 
-- type: entity
+- type: entity #Frontier
   name: Kardashev-Mosin
   parent: BaseWeaponSniper
   id: WeaponSniperMosin
-  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo. Now with new shiney bayonet!
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: StaticPrice
+    state: base
+  - type: AmmoCounter
+  - type: Gun
+    useKey: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: CartridgeLightRifle
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Piercing: 10
+       Slash: 5
+    angle: 0
+    wideAnimationRotation: -135
+  - type: DisarmMalus
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: -135
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 5
+        Piercing: 10
+  - type: Sharp
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     price: 210
 
 - type: entity
