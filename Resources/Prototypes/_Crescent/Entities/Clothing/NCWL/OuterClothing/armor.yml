@@ -1,0 +1,152 @@
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorNCWLCarapace
+  name: kommissar's trenchcoat
+  description: A kevlar-intervowen durathread trenchcoat with a synthfleece-trim collar. Looks badass.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/kommissarcoat.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/kommissarcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorNCWLCarapaceKapitan
+  name: kapitan's armored overcoat
+  description: A communard overcoat overlaid with a kevlar vest.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/commsofficercoat.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/commsofficercoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.75
+        Heat: 0.90
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorNCWLCarapaceDoktor
+  name: doktor's armored jacket
+  description: A communard paramedic's jacket. Layered with kevlar nanoweave.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/doktorlabcoat.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/doktorlabcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.90
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: GroupExamine
+
+## hardsuits
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitNCWLInfantry
+  name: homeguard infanteer's hardsuit
+  description: An armored hardsuit of communard design. Comes with ballistic gel and kevlar padding. Spaceworthy.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/infantryhardsuit.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/infantryhardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.8
+        Piercing: 0.75
+        Heat: 0.4
+        Caustic: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNCWLInfantry
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitNCWLJuggernaut
+  name: homeguard juggernaut's hardsuit
+  description: An heavily armored, spaceworthy hardsuit commonly known by Homeguard Liquidation teams. Just looking at this makes you want to kick some ass.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/commienaut.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/commienaut.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.45
+        Heat: 0.3
+        Caustic: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNCWLJuggernaut
+
+##softsuits
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterNCWLEVA
+  name: union EVA suit
+  description: A spaceworthy suit for the working man. Comes in communard colors.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/softsuit.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/OuterClothing/softsuit.rsi
+  - type: Tag
+    tags:
+    - SuitEVA
