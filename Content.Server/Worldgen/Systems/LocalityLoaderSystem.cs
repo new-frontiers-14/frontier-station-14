@@ -79,7 +79,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     {
         if (entity != null)
         {
-            // Uhh yeah don't delete mobs or whatever
             var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
             _detachEnts.Clear();
 
