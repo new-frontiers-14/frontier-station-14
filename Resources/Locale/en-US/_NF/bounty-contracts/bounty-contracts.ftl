@@ -15,7 +15,7 @@ bounty-contracts-program-name = Bounty Contracts
 
 ## Radio Announcements
 bounty-contracts-radio-name = Bounty Contracts Service
-bounty-contracts-radio-create = New bounty placed for "{$target}". Reward: {$reward}$.
+bounty-contracts-radio-create = New bounty placed for "{$target}". Reward: {$reward} credits..
 
 ## UI - List contracts
 bounty-contracts-ui-list-no-contracts = No bounties posted yet...
