@@ -7,6 +7,7 @@ using Robust.Shared.Spawners; // Frontier
 using System.Numerics; // Frontier
 using System.Linq; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
+using Robust.Shared.Map;
 
 using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates); // Frontier
 
@@ -20,6 +21,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     [Dependency] private readonly TransformSystem _xformSys = default!;
 
     // Frontier
+    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new(); // Frontier
     private EntityQuery<SpaceDebrisComponent> _debrisQuery;
     private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
 
@@ -27,7 +29,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     {
         _debrisQuery = GetEntityQuery<SpaceDebrisComponent>();
         SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
-        EntityManager.EntityDeleted += OnEntityDeleted;
     }
     // Frontier
 
@@ -79,32 +80,29 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     // Frontier
     private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
     {
-        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        if (entity != null)
+        {
+            // Uhh yeah don't delete mobs or whatever
+            var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+            _detachEnts.Clear();
 
-        List<EntityPosition> positions = [];
-
-        while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-            if (xform.MapUid is not null && xform.GridUid == entity)
+            while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
             {
-                positions.Add((mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform))));
+                if (xform.GridUid == null || entity != (xform.GridUid.Value) || xform.MapUid == null)
+                    continue;
 
-                _xformSys.DetachParentToNull(mob, xform);
+                // Can't parent directly to map as it runs grid traversal.
+                _detachEnts.Add(((mobUid, xform), xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+                _xformSys.DetachParentToNull(mobUid, xform);
             }
 
-        _terminatingDebris.Add((entity, positions));
-    }
+            //Del(e.Entity);
 
-    private void OnEntityDeleted(Entity<MetaDataComponent> entity)
-    {
-        var debris = _terminatingDebris.FirstOrDefault(debris => debris.Debris == entity.Owner);
-
-        if (debris.Debris == EntityUid.Invalid)
-            return;
-
-        foreach (var position in debris.Entity)
-            _xformSys.SetCoordinates(position.Entity, position.Coordinates);
-
-        _terminatingDebris.Remove(debris);
+            foreach (var detachEnt in _detachEnts)
+            {
+                _xformSys.SetCoordinates(detachEnt.Entity.Owner, new EntityCoordinates(detachEnt.MapUid, detachEnt.LocalPosition));
+            }
+        }
     }
     // Frontier
 }
