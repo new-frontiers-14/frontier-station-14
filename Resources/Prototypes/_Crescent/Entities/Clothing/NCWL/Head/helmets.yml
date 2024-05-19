@@ -1,0 +1,73 @@
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetNCWLBasic
+  name: homeguard ballistic helmet
+  description: A kevlar-plated nanoweave infantry helmet. Standard issue for communards.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/Head/ncwlhelmet.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/Head/ncwlhelmet.rsi
+
+## hardsuit helmets
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitNCWLInfantry
+  noSpawn: true
+  name: homeguard infanteer's hardsuit helmet
+  description: Spaceworthy protection for your fragile skull. A communard design.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/Head/infantryhelm.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/Head/infantryhelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitNCWLJuggernaut
+  noSpawn: true
+  name: homeguard juggernaut's hardsuit helmet
+  description: Spaceworthy protection for your fragile skull. A communard design.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/Head/ncwljuggernauthelm.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/Head/ncwljuggernauthelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.8
+        Heat: 0.9
+
+## softsuit helmets
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetNCWLEVA
+  name: union EVA helmet
+  description: A working man's helmet. Designed for EVA.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Crescent/Clothing/NCWL/Head/ncwlsofthelm.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/NCWL/Head/ncwlsofthelm.rsi

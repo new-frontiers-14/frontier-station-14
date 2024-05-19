@@ -1,1 +1,1 @@
-bluespace-syndicate-crate-event-announcement = We received a report that a crate containing syndicate items has shown up in some area, please notify the security team if you found said crate.
+bluespace-syndicate-crate-event-announcement = We received a report that a crate containing Imperial contraband has been smuggled into your system, please notify the Homeguard if you have located said crate.

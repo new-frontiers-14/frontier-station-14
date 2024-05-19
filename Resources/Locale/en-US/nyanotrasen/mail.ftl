@@ -10,9 +10,9 @@ mail-desc-priority-inactive = The anti-tamper lock's [color=#886600]yellow prior
 mail-unlocked = Anti-tamper system unlocked.
 mail-unlocked-by-emag = Anti-tamper system *BZZT*.
 mail-unlocked-reward = Anti-tamper system unlocked.
-mail-penalty-lock = ANTI-TAMPER LOCK BROKEN. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
-mail-penalty-fragile = INTEGRITY COMPROMISED. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
-mail-penalty-expired = DELIVERY PAST DUE. STATION BANK ACCOUNT PENALIZED BY {$credits} SPESOS.
+mail-penalty-lock = ANTI-TAMPER LOCK BROKEN. STATION BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
+mail-penalty-fragile = INTEGRITY COMPROMISED. STATION BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
+mail-penalty-expired = DELIVERY PAST DUE. STATION BANK ACCOUNT PENALIZED BY {$credits} CREDITS.
 mail-item-name-unaddressed = mail
 mail-item-name-addressed = mail ({$recipient})
 
