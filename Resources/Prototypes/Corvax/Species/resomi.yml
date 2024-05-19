@@ -1,0 +1,94 @@
+- type: species
+  id: Resomi
+  name: species-name-resomi
+  roundStart: false #true not yet
+  prototype: MobHumanoidResomi
+  sprites: MobHumanoidResomiSprites
+  defaultSkinTone: "#a0a0a0"
+  markingLimits: MobResomiMarkingLimits
+  dollPrototype: MobHumanoidResomiDummy
+  skinColoration: Hues
+ 
+- type: speciesBaseSprites
+  id: MobHumanoidResomiSprites
+  sprites:
+    Eyes: MobHumanoidEyesResomi
+    Head: MobHumanoidResomiHead
+    Snout: MobHumanoidAnyMarking
+    Chest: MobHumanoidResomiTorso
+    HeadTop: MobHumanoidAnyMarking 
+    HeadSide: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobResomiMarkingLimits
+  onlyWhitelisted: false
+  points:
+    Hair:
+      points: 0
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 0
+      required: false
+    HeadTop:
+      points: 0
+      required: false
+    HeadSide:
+      points: 0
+      required: false
+    Head:
+      points: 0
+      required: false
+    Chest:
+      points: 0
+      required: false
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiHead
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiHeadMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiHeadFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiTorso
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: torso2_m
+    
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiTorsoMale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: torso2_m
+
+- type: humanoidBaseSprite
+  id: MobHumanoidResomiTorsoFemale
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: torso2_f
+
+- type: humanoidBaseSprite
+  id: MobHumanoidEyesResomi
+  baseSprite:
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: eyes
