@@ -96,8 +96,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
                 _xformSys.DetachParentToNull(mobUid, xform);
             }
 
-            //Del(e.Entity);
-
             foreach (var detachEnt in _detachEnts)
             {
                 _xformSys.SetCoordinates(detachEnt.Entity.Owner, new EntityCoordinates(detachEnt.MapUid, detachEnt.LocalPosition));
