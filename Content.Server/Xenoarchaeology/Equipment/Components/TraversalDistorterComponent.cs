@@ -23,7 +23,7 @@ public sealed partial class TraversalDistorterComponent : Component
     public float PartRatingBiasChance = 1.1f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public BiasDirection BiasDirection = BiasDirection.In;
+    public BiasDirection BiasDirection = BiasDirection.Up;
 
     public TimeSpan NextActivation = default!;
     public TimeSpan ActivationDelay = TimeSpan.FromSeconds(1);
@@ -31,6 +31,6 @@ public sealed partial class TraversalDistorterComponent : Component
 
 public enum BiasDirection : byte
 {
-    In, //down the tree, towards depth 0
-    Out //up the tree, away from depth 0
+    Up, //Towards depth 0
+    Down, //Away from depth 0
 }

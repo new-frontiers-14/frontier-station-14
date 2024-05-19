@@ -1,0 +1,49 @@
+- type: body
+  name: "resomi"
+  id: Resomi
+  root: torso
+  slots:
+    head:
+      part: HeadHumanoidResomi
+      connections:
+      - torso
+      organs:
+        brain: OrganResomiBrain
+        eyes: OrganResomiEyes
+    torso:
+      part: TorsoHumanoidResomi
+      organs:
+        heart: OrganResomiHeart
+        lungs: OrganResomiLungs
+        stomach: OrganResomiStomach
+        liver: OrganResomiLiver
+        kidneys: OrganResomiKidneys
+      connections:
+      - left arm
+      - right arm
+      - left leg
+      - right leg
+    right arm:
+      part: RightArmHumanoidResomi
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmHumanoidResomi
+      connections:
+      - left hand
+    right hand:
+      part: RightHandHumanoidResomi
+    left hand:
+      part: LeftHandHumanoidResomi
+    right leg:
+      part: RightLegHumanoidResomi
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegHumanoidResomi
+      connections:
+      - left foot
+    right foot:
+      part: RightFootHumanoidResomi
+    left foot:
+      part: LeftFootHumanoidResomi
