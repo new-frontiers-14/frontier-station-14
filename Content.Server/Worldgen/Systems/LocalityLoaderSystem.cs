@@ -3,10 +3,7 @@ using Robust.Server.GameObjects;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Shared.Humanoid; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
-using Robust.Shared.Spawners; // Frontier
 using System.Numerics; // Frontier
-using System.Linq; // Frontier
-using Content.Server.Worldgen.Components; // Frontier
 using Robust.Shared.Map; // Frontier
 
 using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates); // Frontier
