@@ -7,7 +7,7 @@ using Robust.Shared.Spawners; // Frontier
 using System.Numerics; // Frontier
 using System.Linq; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
-using Robust.Shared.Map;
+using Robust.Shared.Map; // Frontier
 
 using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates); // Frontier
 
@@ -106,6 +106,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 }
 
 /// <summary>
-///     An event fired on a loadable entity when a local loader enters its vicinity.
+///     A directed fired on a loadable entity when a local loader enters it's vicinity.
 /// </summary>
 public record struct LocalStructureLoadedEvent;
