@@ -223,11 +223,29 @@
 
 # EXPEDITION BOSS
 - type: entity
-  name: Queen
-  parent: MobXenoQueen
+  parent: BaseMobXenoExpeditions
   id: MobXenoQueenDungeon
-  suffix: Ghost
+  name: Queen
+  suffix: AI/Ghost, Hostile
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Xenos/queen.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.8
+  - type: MeleeWeapon
+    damage:
+     groups:
+       Brute: 20
   - type: Tag
     tags:
     - CannotSuicide
