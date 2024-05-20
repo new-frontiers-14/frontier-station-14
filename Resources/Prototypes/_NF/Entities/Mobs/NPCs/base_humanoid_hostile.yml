@@ -23,6 +23,7 @@
   - type: PassiveDamage # Slight passive regen.
     allowedStates:
     - Alive
+    - Critical
     damageCap: 400
     damage:
       groups:
@@ -52,7 +53,7 @@
   - MobAtmosNF
   - MobBloodstream
   - MobFlammable
-  - MobLaserReflect
+  #- MobLaserReflect
   - BaseMobSpecies
   id: MobHumanoidHostileBase
   components:
@@ -69,6 +70,10 @@
       160: Dead
   - type: Stamina
     critThreshold: 130
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: Flashable
   - type: Blindable
   - type: Butcherable
@@ -108,14 +113,48 @@
   suffix: AI, Hostile
   abstract: true
   parent:
+  - BaseMob
+  - MobDamageable
+  - MobCombat
   - MobAtmosNF
-  - SimpleSpaceMobBase
+  - MobBloodstream
+  - MobFlammable
+  #- SimpleSpaceMobBase
   id: MobNonHumanHostileBase
   components:
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: Internals
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+  - type: Buckle
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
   - type: MovementAlwaysTouching
   - type: NoSlip
   - type: ZombieImmune
   - type: Hands
+  - type: Puller
+  - type: Climbing
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: MobState
     allowedStates:
     - Alive
@@ -124,15 +163,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      160: Dead
+      80: Critical
+      120: Dead
   - type: Stamina
-    critThreshold: 120
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
+    critThreshold: 100
   - type: HTN
     rootTask:
        task: SimpleHumanoidHostileCompound # Alt root tasks: MeleeCombatCompound, SimpleRangedHostileCompound
@@ -147,7 +181,7 @@
 #        true
   - type: NpcFactionMember
     factions:
-      - SimpleHostile
+    - SimpleHostile
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
@@ -169,3 +203,12 @@
   - type: SalvageMobRestrictionsNF
   - type: StepTriggerImmune
   - type: Contraband
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener

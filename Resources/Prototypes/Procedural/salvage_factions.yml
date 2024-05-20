@@ -3,18 +3,18 @@
   cost: 3
   groups:
   - entries:
-    - id: MobXeno
+    - id: MobXenoBurrowerExpeditions # Frontier
       amount: 2
       maxAmount: 3
-    - id: MobXenoDrone
+    - id: MobXenoDroneExpeditions # Frontier
       amount: 1
   - entries:
-    - id: MobXenoPraetorian
+    - id: MobXenoPraetorianExpeditions # Frontier
       amount: 1
       maxAmount: 2
     prob: 0.5
   - entries:
-    - id: MobXenoDrone
+    - id: MobXenoDroneExpeditions # Frontier
       amount: 0
       maxAmount: 2
     prob: 0.25
@@ -23,13 +23,17 @@
       amount: 3
     prob: 0.25
   - entries:
-      - id: MobXenoSpitter
+      - id: MobXenoSpitterExpeditions # Frontier
         amount: 2
     prob: 0.25
   - entries:
-    - id: MobXenoRavager
+    - id: MobXenoRavagerExpeditions # Frontier
       amount: 1
     prob: 0.1
+  - entries: # Frontier
+    - id: MobXenoRunnerExpeditions # Frontier
+      amount: 3 # Frontier
+    prob: 0.05 # Frontier
 #  - entries:
 #    - id: MobXenoRouny
 #      amount: 1
@@ -44,21 +48,26 @@
   cost: 1
   groups:
   - entries:
-    - id: MobCarpDungeon
+    - id: MobCarpExpeditions # Frontier
       amount: 1
       maxAmount: 4
   - entries:
-    - id: MobCarpMagic
+    - id: MobCarpMagicExpeditions # Frontier
       amount: 1
       maxAmount: 3
     prob: 0.1
-#  - entries:
-#    - id: MobCarpHolo
-#      amount: 1
-#      maxAmount: 2
-#    prob: 0.25'
   - entries:
-    - id: MobCarpRainbow # carp version of rouny...
+    - id: MobSharkExpeditions # Frontier
+      amount: 1
+      maxAmount: 2
+    prob: 0.1
+  - entries: # Frontier
+    - id: MobCarpHoloExpeditions # Frontier
+      amount: 1 # Frontier
+      maxAmount: 1 # Frontier
+    prob: 0.05 # Frontier
+  - entries:
+    - id: MobCarpRainbowExpeditions # Frontier
       amount: 1
       maxAmount: 1
     prob: 0.05
@@ -67,7 +76,7 @@
     Mining: Carps
     Megafauna: MobDragonDungeon
 
-# Frontier
+# Frontier (everything below)
 - type: salvageFaction
   id: Syndicate
   cost: 9
@@ -218,7 +227,7 @@
       maxAmount: 2
     prob: 0.25
   - entries:
-    - id: MobArgocyteGlider
+    - id: MobArgocyteGliderExpeditions
       amount: 3
     prob: 0.25
   - entries:
@@ -230,14 +239,14 @@
       amount: 1
     prob: 0.1
   - entries:
-    - id: MobArgocyteCrawler
+    - id: MobArgocyteCrawlerExpeditions
       amount: 3
       maxAmount: 4
     prob: 0.001
   configs:
     DefenseStructure: ArgocyteEgg
     Mining: Argocytes
-    Megafauna: MobArgocyteLeviathing
+    Megafauna: MobArgocyteLeviathingExpeditions
 
 - type: salvageFaction
   id: Dinosaurs
