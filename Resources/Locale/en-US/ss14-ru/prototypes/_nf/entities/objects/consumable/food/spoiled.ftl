@@ -19,6 +19,6 @@ ent-FoodSoupMeatballMoldy = moldy food
 ent-FoodNoodlesMoldy = moldy food
   .desc = { ent-FoodSpoiledMoldy.desc }
 ent-FoodNoodlesMeatballMoldy = moldy food
-  .desc = { ent-FoodSpoiledMoldy.desc }}
+  .desc = { ent-FoodSpoiledMoldy.desc }
 ent-FoodSaladCaesarMoldy = moldy food
   .desc = { ent-FoodSpoiledMoldy.desc }
