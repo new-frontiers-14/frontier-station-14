@@ -1,3 +1,3 @@
-ent-RandomDungeonPortableGeneratorSpawner = random portable generator spawner
-    .suffix = Dungeon
+ent-RandomDungeonPortableGeneratorSpawner = случайный портативный генератор
+    .suffix = Экспедиция
     .desc = { ent-MarkerBase.desc }

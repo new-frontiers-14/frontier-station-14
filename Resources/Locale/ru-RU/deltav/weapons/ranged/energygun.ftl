@@ -1,1 +1,1 @@
-energygun-examine-fire-mode = Активирован { $mode } режим огня
+energygun-examine-fire-mode = Установлен тип снаряда: { $mode }

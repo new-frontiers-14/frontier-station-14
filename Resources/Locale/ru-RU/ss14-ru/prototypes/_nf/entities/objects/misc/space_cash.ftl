@@ -1,0 +1,11 @@
+ent-SpaceCash5000Expedition = кредиты (5000)
+    .desc = { ent-SpaceCash5000.desc }
+ent-SpaceCash10000Expedition = кредиты (10000)
+    .desc = { ent-SpaceCash10000.desc }
+ent-SpaceCash15000Expedition = кредиты (15000)
+    .suffix = 15000
+    .desc = { ent-SpaceCash.desc }
+ent-SpaceCash20000Expedition = кредиты (20000)
+    .desc = { ent-SpaceCash20000.desc }
+ent-SpaceCash25000Expedition = кредиты (25000)
+    .desc = { ent-SpaceCash.desc }

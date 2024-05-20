@@ -1,2 +1,2 @@
-ent-CrateSpaceCleaner = { ent-CrateGenericSteel }
-    .desc = { ent-CrateGenericSteel.desc }
+ent-CrateSpaceCleaner = bulk space cleaner crate
+    .desc = For a large mess.

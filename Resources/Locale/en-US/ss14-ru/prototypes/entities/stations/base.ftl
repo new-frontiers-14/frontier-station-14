@@ -1,5 +1,7 @@
 ent-BaseStation = { "" }
     .desc = { "" }
+ent-BaseRandomStation = { "" }
+    .desc = { "" }
 ent-BaseStationCargo = { "" }
     .desc = { "" }
 ent-BaseStationJobsSpawning = { "" }
@@ -23,6 +25,8 @@ ent-BaseStationExpeditions = { "" }
 ent-BaseStationMagnet = { "" }
     .desc = { "" }
 ent-BaseStationSiliconLawCrewsimov = { "" }
+    .desc = { "" }
+ent-BaseStationNews = { "" }
     .desc = { "" }
 ent-BaseStationAllEventsEligible = { "" }
     .desc = { "" }

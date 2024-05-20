@@ -14,7 +14,3 @@ ent-VendingMachineRestockAutoTuneVend = AutoTuneVend restock box
     .desc = A box containing music and stuff for the Auto Tune vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
 ent-VendingMachineRestockPottedPlantVend = Plant-O-Matic restock box
     .desc = A box containing potted plants for the Plant-O-Matic vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-ent-VendingMachineRestockNFSDDrobe = NFSDDrobe restock box
-    .desc = nfsddrobe restock box - may explode on contact with appendages.
-ent-VendingMachineRestockNFSDTec = NFSDTec restock box
-    .desc = nfsdtec restock box - may unleash a singulo on contact with appendages

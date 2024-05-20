@@ -1,1 +1,1 @@
-humanoid-profile-editor-preference-messenger = Посыльный
+humanoid-profile-editor-preference-messenger = Мессенджер

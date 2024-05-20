@@ -1,0 +1,15 @@
+ent-SpawnDungeonLootClutterScience = случайных хлам
+    .suffix = Экспедиция, Наука
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootClothesScience = случайная одежда
+    .suffix = Экспедиция, Наука
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonFurnitureScience = случайная фурнитура
+    .suffix = Экспедиция, Наука
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnDungeonLootRnDDisk = случайный диск
+    .suffix = Экспедиция
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootCircuitBoardScience = случайная плата
+    .suffix = Экспедиция, Наука
+    .desc = { ent-MarkerBasePlaceFree.desc }

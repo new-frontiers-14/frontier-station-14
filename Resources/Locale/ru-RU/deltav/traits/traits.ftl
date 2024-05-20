@@ -1,5 +1,5 @@
-trait-scottish-accent-name = Дварфийский акцент
-trait-scottish-accent-desc = Вы слишком долго находились в окружении дворфов.
+trait-scottish-accent-name = Британский акцент
+trait-scottish-accent-desc = Fer tha folk who come frae Hielan clan.
 trait-ultravision-name = Ультрафиолетовое зрение
 trait-ultravision-desc =
     Будь то с помощью специальных бионических глаз, случайной мутации,

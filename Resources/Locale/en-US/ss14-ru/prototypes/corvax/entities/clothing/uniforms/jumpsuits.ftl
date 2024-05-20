@@ -6,3 +6,5 @@ ent-ClothingUniformJumpsuitCentcomOfficerBlack = special operations officer unif
     .desc = Special Operations Officer uniform, nothing like that. Although... If you have time to read this, it's too late...
 ent-ClothingUniformJumpsuitCentcomAdmiral = admiral's uniform
     .desc = A uniform worn by those with the rank Admiral in the Nanotrasen Navy.
+ent-ClothingUniformJumpskirtElegantMaid = elegant maid uniform
+    .desc = Call me master and bring me some beer.

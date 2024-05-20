@@ -8,3 +8,7 @@ ent-ClothingBeltNfsd = пояс ДСБФ
     .desc = Пояс для тактических операций.
 ent-ClothingBeltNfsdWebbing = РПС ДСБФ
     .desc = Тактический боевой разгрузочный жилет.
+ent-ClothingBeltCultForceField = рунический пояс культиста
+    .desc = { ent-ClothingBeltBase.desc }
+ent-ClothingBeltCultWebbing = РПС культиста
+    .desc = Разгрузочный жилет, обладающий влагозащитными карманами.

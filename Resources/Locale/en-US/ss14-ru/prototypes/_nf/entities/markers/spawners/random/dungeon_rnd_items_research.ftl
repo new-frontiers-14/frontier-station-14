@@ -1,0 +1,15 @@
+ent-SpawnDungeonLootClutterScience = random clutter
+    .suffix = Dungeon, Science
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootClothesScience = random clothes
+    .suffix = Dungeon, Science
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonFurnitureScience = random furniture
+    .suffix = Dungeon, Science
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnDungeonLootRnDDisk = random disk
+    .suffix = Dungeon
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootCircuitBoardScience = random machine board
+    .suffix = Dungeon, Sciense
+    .desc = { ent-MarkerBasePlaceFree.desc }

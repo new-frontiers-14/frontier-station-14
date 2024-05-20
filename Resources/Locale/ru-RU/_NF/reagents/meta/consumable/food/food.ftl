@@ -1,2 +1,2 @@
-reagent-name-flavorol = флаверол
-reagent-desc-flavorol = Все витамины, минералы и углеводы, необходимые организму в чистом виде.
+reagent-name-flavorol = витамикс
+reagent-desc-flavorol = Все необходимые витамины, минералы и углеводы в чистом виде.

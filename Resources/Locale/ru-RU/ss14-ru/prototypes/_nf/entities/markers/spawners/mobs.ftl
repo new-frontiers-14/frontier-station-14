@@ -1,6 +1,6 @@
-ent-SpawnMobArcIndShredder = Arcadia Industries Shredder Spawner
+ent-SpawnMobArcIndShredder = Спавнер Аркадианского Шреддера
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobArcIndHoloparasiteGuardian = Arcadia Industries Guardian Spawner
+ent-SpawnMobArcIndHoloparasiteGuardian = Спавнер Аркадианского голопаразита
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobArcIndBlaster = Arcadia Industries Blaster Spawner
+ent-SpawnMobArcIndBlaster = Спавнер мобильной пусковой установки
     .desc = { ent-MarkerBase.desc }
