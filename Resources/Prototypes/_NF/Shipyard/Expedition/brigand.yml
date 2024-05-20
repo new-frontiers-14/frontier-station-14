@@ -10,24 +10,24 @@
 #
 - type: vessel
   id: Brigand
-  name: NT Brigand
-  description: Civilian conversion of an old military light frigate from the early days of humanity's expansion to the stars, predating FTL technology.
-  price: 53550 # 46550$ on mapinit + 7000$ from 15% markup
+  name: NME Разбойник
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 63550 # 46550$ on mapinit + 7000$ from 15% markup
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/brigand.yml
-  
+
 - type: gameMap
   id: Brigand
-  mapName: 'NT Brigand'
+  mapName: 'NME Разбойник'
   mapPath: /Maps/_NF/Shuttles/Expedition/brigand.yml
   minPlayers: 0
-  stations: 
+  stations:
     Brigand:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Brigand {1}'
+          mapNameTemplate: 'Разбойник {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
