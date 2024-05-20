@@ -1,0 +1,27 @@
+- type: vessel
+  id: Skat
+  name: NSF Скат
+  description: Патрульный шаттл. Был разработан НТ при поддержке "Drunk Masters", в связи с чем, мостик шаттла доверху забит алкоголем.
+  price: 75000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Nfsd/skat.yml
+
+- type: gameMap
+  id: Skat
+  mapName: 'NSF Скат'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Nfsd/skat.yml
+  minPlayers: 0
+  stations:
+    Skat:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Скат {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Prisoner: [ 0, 0 ]

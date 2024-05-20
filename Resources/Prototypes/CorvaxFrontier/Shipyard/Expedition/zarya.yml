@@ -1,0 +1,30 @@
+- type: vessel
+  id: Zarya
+  name: NVE Заря
+  description: Штурмовое судно Zarya, произведено частной военно-производственной компаний Vitezstvi. Рекомендуемый состав команды 3-8 человек.
+  price: 120000 # 15% tax
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Expedition/zarya.yml
+
+- type: gameMap
+  id: Zarya
+  mapName: 'NVE Заря'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Expedition/zarya.yml
+  minPlayers: 0
+  stations:
+    Zarya:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Заря {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Paramedic: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
