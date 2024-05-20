@@ -1,2 +1,2 @@
-ent-N14ContrabandCrateSpawner = Contraband Crate Spawner
+ent-N14ContrabandCrateSpawner = Спавнер контрабандного ящика
     .desc = { ent-MarkerBase.desc }

@@ -1,7 +1,7 @@
 ent-ClothingHeadBandBase = { ent-BaseFoldable }
-  .desc = { ent-BaseFoldable.desc }
+  .desc = { ent-ClothingHeadBaseButcherable.desc }
 ent-ClothingHeadBandBlack = black bandana
-  .desc = { ent-ClothingMaskBandBlack.desc }
+  .desc = { ent-ClothingHeadBandBase.desc }
 ent-ClothingHeadBandBlue = blue bandana
   .desc = { ent-ClothingMaskBandBlue.desc }
 ent-ClothingHeadBandBotany = botany bandana

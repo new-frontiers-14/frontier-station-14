@@ -1,17 +1,17 @@
 ## UI
 
-shipyard-console-invalid-vessel = Не удается приобрести судно:
-shipyard-console-menu-title = Меню верфи
+shipyard-console-invalid-vessel = Не удалось приобрести шаттл:
+shipyard-console-menu-title = Меню Верфи
 shipyard-console-docking = Шаттл { $vessel } капитана { $owner } в пути, расчётное время прибытия 10 секунд.
-shipyard-console-leaving = Шаттл { $vessel } капитана { $owner } продано { $player }.
-shipyard-console-docking-secret = Обнаружено незарегистрированное судно, заходящее в ваш сектор.
-shipyard-console-leaving-secret = Обнаружено незарегистрированное судно, покидающее ваш сектор.
-shipyard-commands-purchase-desc = Запускает и закрепляет на FTL указанный шаттл из файла сетки.
+shipyard-console-leaving = Шаттл { $vessel } капитана { $owner } продан { $player }.
+shipyard-console-docking-secret = Обнаружен незарегистрированный шаттл, заходящий сектор.
+shipyard-console-leaving-secret = Обнаружен незарегистрированный шаттл, покидающий сектор.
+shipyard-commands-purchase-desc = Прикрепляет шаттл к стыковочным докам станции.
 shipyard-console-no-idcard = Нет ID карты
-shipyard-console-already-deeded = ID карта уже есть
-shipyard-console-invalid-station = Недействительная станция
-shipyard-console-no-bank = Банковский счет не найден
-shipyard-console-no-deed = Судовой документ не найден
-shipyard-console-sale-reqs = Судно должно быть пришвартовано, а весь экипаж высажен на сушу
-shipyard-console-deed-label = Зарегистрированное судно:
-shipyard-console-appraisal-label = Предполагаемая стоимость шаттла:{ " " }
+shipyard-console-already-deeded = Уже имеется шаттл
+shipyard-console-invalid-station = Неправильная станция
+shipyard-console-no-bank = Отсутствует банковский аккаунт
+shipyard-console-no-deed = Отсутствует шаттл для продажи
+shipyard-console-sale-reqs = Весь экипаж должен покинуть пристыкованный шаттл
+shipyard-console-deed-label = Зарегистрированный шаттл:
+shipyard-console-appraisal-label = Примерная стоимость шаттла:{ " " }

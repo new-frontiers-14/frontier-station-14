@@ -34,3 +34,6 @@ ent-MailMusicianInstrumentSmall = { ent-BaseMail }
 ent-MailPassengerMoney = { ent-BaseMail }
     .suffix = passengermoney
     .desc = { ent-BaseMail.desc }
+ent-MailBoomboxAsshole = { ent-BaseMail }
+    .suffix = Boombox
+    .desc = { ent-BaseMail.desc }

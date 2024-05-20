@@ -1,39 +1,36 @@
 # Frontier
-job-name-bailiff = Инструктор
-job-name-brigmedic = Бригмедик
-job-name-cadet-nf = Кадет
-job-name-contractor = Авантюрист
-job-name-deputy = Помощник Шерифа
-job-name-detective-nf = Детектив
+job-name-bailiff = бейлиф
+job-name-brigmedic = коронер
+job-name-cadet-nf = кадет
+job-name-contractor = авантюрист
+job-name-deputy = рейнджер
+job-name-detective-nf = детектив
 job-name-ertmailcarrier = ОБР почтальон
-job-name-mercenary = Наёмник
-job-name-pilot = Пилот
-job-name-pirate = Пират
-job-name-pirate-captain = Пиратский Капитан
-job-name-pirate-first-mate = Пиратский Боцман
-job-name-security-guard = Охранник
-job-name-senior-officer = Сержант
-job-name-sheriff = Шериф
-job-name-stc = Диспетчер Фронтира
-job-name-sr = Представитель Фронтира
-
+job-name-mercenary = наёмник
+job-name-pilot = пилот
+job-name-pirate = Pirate
+job-name-pirate-captain = пиратский капитан
+job-name-pirate-first-mate = пиратский боцман
+job-name-security-guard = охранник аванпоста
+job-name-senior-officer = сержант
+job-name-sheriff = шериф
+job-name-stc = диспетчер фронтира
+job-name-sr = представитель фрронтира
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ОБР почтальон
-JobMercenary = Наёмник
-JobPilot = Пилот
-JobPirate = Пират
-JobPirateCaptain = Пиратский Капитан
-JobPirateFirstMate = Пиратский Боцман
-JobSecurityGuard = Охранник
-JobSTC = Диспетчер Фронтира
-
+JobMercenary = наёмник
+JobPilot = пилот
+JobPirate = пират
+JobPirateCaptain = пиратский капитан
+JobPirateFirstMate = пиратский боцман
+JobSecurityGuard = охранник аванпоста
+JobSTC = Station Traffic Controller
 # Upstream Removed
-job-name-senior-engineer = Старший Инженер
-job-name-senior-researcher = Научный Руководитель
-job-name-senior-physician = Ведущий Врач
-job-name-senior-officer = Сержант
-
-JobSeniorEngineer = Старший Инженер
-JobSeniorOfficer = Сержант
-JobSeniorPhysician = Ведущий Врач
-JobSeniorResearcher = Научный Руководитель
+job-name-senior-engineer = старший инженер
+job-name-senior-researcher = научный руководитель
+job-name-senior-physician = ведущий врач
+job-name-senior-officer = сержант
+JobSeniorEngineer = старший инженер
+JobSeniorOfficer = сержант
+JobSeniorPhysician = ведущий врач
+JobSeniorResearcher = научный руководитель

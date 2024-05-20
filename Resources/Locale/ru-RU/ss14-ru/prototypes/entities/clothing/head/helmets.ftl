@@ -1,5 +1,7 @@
 ent-ClothingHeadHelmetBasic = шлем
     .desc = Стандартная защитная экипировка. Защищает голову от ударов.
+ent-ClothingHeadHelmetMercenary = mercenary helmet
+    .desc = The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
 ent-ClothingHeadHelmetBombSuit = сапёрный шлем
     .desc = Тяжёлый шлем, предназначенный для защиты от осколков и давления, создаваемого взрывом.
 ent-ClothingHeadHelmetSwat = шлем спецназа

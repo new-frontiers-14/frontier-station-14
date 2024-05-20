@@ -1,10 +1,10 @@
 ent-ClothingHeadsetSecuritySafe = гарнитура ДСБФ
-    .suffix = Безопасная
+    .suffix = пустая
     .desc = { ent-ClothingHeadsetSecurity.desc }
 ent-ClothingHeadsetNfsdSafe = { ent-ClothingHeadsetSecuritySafe }
     .desc = { ent-ClothingHeadsetSecuritySafe.desc }
 ent-ClothingHeadsetNfsd = гарнитура ДСБФ
-    .desc = This is used by your elite sheriff's department force.
+    .desc = Используется представителями ДСБФ.
 ent-ClothingHeadsetNfsdGreen = { ent-ClothingHeadsetNfsd }
     .desc = { ent-ClothingHeadsetNfsd.desc }
 ent-ClothingHeadsetNfsdBrown = { ent-ClothingHeadsetNfsd }
