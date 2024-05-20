@@ -191,7 +191,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
 
-
         // Draw other grids... differently
         foreach (var grid in _grids)
         {
