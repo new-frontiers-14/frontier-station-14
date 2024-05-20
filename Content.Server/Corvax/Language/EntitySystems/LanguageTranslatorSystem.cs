@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
 using Content.Shared.Actions;
 using Content.Shared.Corvax.Language.Components;
@@ -15,6 +16,7 @@ public sealed class LanguageTranslatorSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly PowerCellSystem _power = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     public override void Initialize()
@@ -66,12 +68,29 @@ public sealed class LanguageTranslatorSystem : EntitySystem
     {
         component.Activated = !component.Activated;
 
-        _appearance.SetData(entity, LanguageTranslatorVisuals.Activated, component.Activated);
+        UpdateVisuals(new(entity, component));
     }
 
     public bool TryUseTranslator(EntityUid entity, string message)
     {
-        return TryGetTranslator(_inventory.GetHandOrInventoryEntities(entity), out var translator) && translator.Value.Comp.Activated && _power.TryUseCharge(translator.Value, 0.2f * message.Length);
+        if (!TryGetTranslator(_inventory.GetHandOrInventoryEntities(entity), out var translator) || !translator.Value.Comp.Activated)
+            return false;
+
+        if (_power.TryUseCharge(translator.Value, 0.2f * message.Length))
+        {
+            UpdateVisuals(translator.Value);
+
+            return true;
+        }
+
+        if (_power.TryGetBatteryFromSlot(entity, out var battery, out var batteryComponent))
+        {
+            _battery.SetCharge(battery.Value, 0, batteryComponent);
+
+            UpdateVisuals(translator.Value);
+        }
+
+        return false;
     }
 
     private bool TryGetTranslator(IEnumerable<EntityUid> entities, [NotNullWhen(true)] out Entity<LanguageTranslatorComponent>? translator)
@@ -90,5 +109,10 @@ public sealed class LanguageTranslatorSystem : EntitySystem
 
         translator = null;
         return false;
+    }
+
+    public void UpdateVisuals(Entity<LanguageTranslatorComponent> entity)
+    {
+        _appearance.SetData(entity, LanguageTranslatorVisuals.Enabled, entity.Comp.Activated && _power.TryGetBatteryFromSlot(entity, out var battery) && battery.CurrentCharge > 0);
     }
 }
