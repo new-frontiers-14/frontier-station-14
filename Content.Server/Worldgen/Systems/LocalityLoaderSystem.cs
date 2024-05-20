@@ -96,16 +96,13 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 
             while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
             {
-                if (xform.GridUid == null || entity != (xform.GridUid.Value) || xform.MapUid == null)
+                if (xform.GridUid == null || entity != xform.GridUid.Value || xform.MapUid == null)
                     continue;
 
                 // Can't parent directly to map as it runs grid traversal.
                 _detachEnts.Add(((mobUid, xform), xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
                 _xformSys.DetachParentToNull(mobUid, xform);
             }
-
-            // Go and cleanup the active debris
-            Del(entity);
 
             foreach (var detachEnt in _detachEnts)
             {
