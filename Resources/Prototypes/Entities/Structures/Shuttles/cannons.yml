@@ -57,8 +57,8 @@
 - type: entity
   id: ShuttleGunSvalinnMachineGun
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: LSE-400c "Svalinn machine gun"
-  description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire
+  name: SHI-L 400c plasma bolt repeater
+  description: A stationary shuttle weapon commonly found on civilian models, boasts an extremely high rate of fire. Effective against organic targets and electronics.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -363,3 +363,63 @@
     count: 10
   - type: Machine
     board: ShuttleGunKineticCircuitboard
+
+## Missile Pods
+
+- type: entity
+  id: ShuttleGunMissileRack
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: NT-6 48mm "Sumitomo" missile rack
+  description: A massive, ship-mounted missile rack with a unique feeding rack. Requires manual reloading after full firing. Requires a rocket clip.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/missile.rsi
+    layers:
+    - state: exp-2100g
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 0.3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunDusterCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineGrenade
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg

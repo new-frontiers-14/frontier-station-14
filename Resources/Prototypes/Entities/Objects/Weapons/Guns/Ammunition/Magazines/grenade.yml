@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineGrenade
-  name: grenade cartridge
+  name: missile cartridge
   parent: BaseItem
   abstract: true
   components:
@@ -41,21 +41,21 @@
 
 - type: entity
   id: MagazineGrenadeEmpty
-  name: grenade cartridge
+  name: empty missile cartridge
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
     
 - type: entity
   id: MagazineGrenadeFrag
-  name: frag grenade cartridge
+  name: frag missile cartridge
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFrag
 
 - type: entity
-  id: MagazineGrenadeEMP
+  id: EMP missile cartridge
   name: EMP grenade cartridge
   parent: BaseMagazineGrenade
   components:
@@ -64,7 +64,7 @@
 
 - type: entity
   id: MagazineGrenadeFlash
-  name: flash grenade cartridge
+  name: flash missile cartridge
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
@@ -72,7 +72,7 @@
 
 - type: entity
   id: MagazineGrenadeBlast
-  name: blast grenade cartridge
+  name: high-yield explosive missile cartridge
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
@@ -80,7 +80,7 @@
 
 - type: entity
   id: MagazineGrenadeBaton
-  name: baton grenade cartridge
+  name: low-yield explosive missile cartridge
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
