@@ -3,7 +3,6 @@ ent-ClothingBackpackDuffelSurgeryFilled = хирургический вещме�
 ent-ClothingBackpackDuffelCBURNFilled = { ent-ClothingBackpackDuffelCBURN }
     .suffix = Заполненный
     .desc = { ent-ClothingBackpackDuffelCBURN.desc }
-	
 ent-ClothingBackpackDuffelSyndicateFilledMedical = хирургический вещмешок Синдиката
     .desc = Большой вещевой мешок с полным набором хирургических инструментов.
 ent-ClothingBackpackDuffelSyndicateFilledShotgun = набор "Бульдог"
@@ -20,15 +19,12 @@ ent-ClothingBackpackDuffelSyndicateFilledCarbine = набор "М-90gl"
     .desc = Универсальная боевая винтовка с подствольным гранатометом, в комплекте с 3 магазинами и 6 гранатами различной мощности.
 ent-ClothingBackpackDuffelSyndicateAmmoFilled = набор боеприпасов
     .desc = Перезаряжаю! Содержит 4 магазина для C-20r, 4 барабана для Бульдога и 2 короба патронов для L6 SAW.
-
 ent-ClothingBackpackDuffelSyndicateCostumeCentcom = вещмешок с костюмом представителя Центкома
     .desc = Содержит полный комплект униформы представителя Центкома, гарнитуру и планшет. Гарнитура поставляется без ключа шифрования.
     .suffix = НЕ МАППИТЬ
-	
 ent-ClothingBackpackDuffelSyndicateCostumeClown = { ent-ClothingBackpackDuffelClown }
     .desc = { ent-ClothingBackpackDuffelClown.desc }
     .suffix = Синдикат
-	
 ent-ClothingBackpackDuffelSyndicateCarpSuit = { ent-ClothingBackpackDuffelSyndicate }
     .suffix = вещмешок костюма карпа
     .desc = { ent-ClothingBackpackDuffelSyndicate.desc }
@@ -41,7 +37,6 @@ ent-ClothingBackpackDuffelSyndicateC4tBundle = { ent-ClothingBackpackDuffelSyndi
 ent-ClothingBackpackChameleonFill = { ent-ClothingBackpackDuffelSyndicate }
     .suffix = Заполненный, Хамелеон
     .desc = { ent-ClothingBackpackChameleon.desc }
-	
 ent-ClothingBackpackDuffelSyndicateEVABundle = набор EVA Синдиката
     .desc = Содержит одобренный Синдикатом костюм EVA.
 ent-ClothingBackpackDuffelSyndicateHardsuitBundle = набор скафандров Синдиката
@@ -60,4 +55,3 @@ ent-ClothingBackpackDuffelSyndicateMedicalBundleFilled = набор медика
     .desc = Все, что нужно для возвращения в строй ваших товарищей: главным образом, боевая аптечка, дефибриллятор и три боевых медипена.
 ent-ClothingBackpackDuffelSyndicateDecoyKitFilled = набор обманок
     .desc = Содержит отвлекающие устройства, как звуковые, так и визуальные. Скоро появятся и обонятельные.
-
