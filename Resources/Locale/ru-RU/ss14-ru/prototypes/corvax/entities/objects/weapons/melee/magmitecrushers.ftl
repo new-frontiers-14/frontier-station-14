@@ -1,6 +1,6 @@
-ent-BulletMagnaCharge = charge bolt
-    .desc = Marks a target for additional damage.
+ent-BulletMagnaCharge = магмитовый снаряд
+    .desc = Помечает цели для нанесения повышенного урона.
 ent-WeaponMagmiteCrusher = { ent-WeaponCrusher }
     .desc = { ent-WeaponCrusher.desc }
-ent-WeaponMagmiteCrusherGlaive = crusher glaive
-    .desc = An early design of the proto-kinetic accelerator, in glaive form.
+ent-WeaponMagmiteCrusherGlaive = магмитовая глефа
+    .desc = Ранняя версия протокинетического ускорителя в виде глефы.

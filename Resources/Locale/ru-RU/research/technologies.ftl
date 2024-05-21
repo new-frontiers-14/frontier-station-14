@@ -1,5 +1,6 @@
 research-discipline-none = Отсутствует
 research-discipline-industrial = Промышленность
+research-discipline-biochemical = Биохимия
 research-discipline-arsenal = Арсенал
 research-discipline-experimental = Экспериментальное
 research-discipline-civilian-services = Обслуживание персонала
