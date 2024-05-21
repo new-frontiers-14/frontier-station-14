@@ -33,6 +33,9 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Rock
   - type: SoundOnGather
+  - type: Reflect
+    reflectProb: 0.5
+    spread: 75
   - type: Gatherable
     whitelist:
       tags:
@@ -400,6 +403,9 @@
     - type: Icon
       sprite: Structures/Walls/rock.rsi
       state: rock
+    - type: Reflect
+      reflectProb: 0.5
+      spread: 75
     - type: SmoothEdge
     - type: Sprite
       sprite: Structures/Walls/rock.rsi
