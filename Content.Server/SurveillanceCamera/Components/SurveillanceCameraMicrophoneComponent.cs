@@ -22,5 +22,5 @@ public sealed partial class SurveillanceCameraMicrophoneComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("range")]
-    public int Range { get; private set; } = 10;
+    public int Range { get; private set; } = 6; //Frontier: 10>6
 }
