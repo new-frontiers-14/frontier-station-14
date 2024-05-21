@@ -1,6 +1,6 @@
-ent-MagmiteOre = magmite ore
-    .suffix = Full
+ent-MagmiteOre = магмитовая руда
+    .suffix = Полный
     .desc = { ent-OreBase.desc }
 ent-MagmiteOre1 = { ent-MagmiteOre }
-    .suffix = Single
+    .suffix = Один
     .desc = { ent-MagmiteOre.desc }
