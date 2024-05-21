@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
 using Content.Shared.Actions;
@@ -9,6 +10,7 @@ using Content.Shared.Storage;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Corvax.Language.EntitySystems;
 
@@ -27,6 +29,10 @@ public sealed class LanguageTranslatorSystem : EntitySystem
         SubscribeLocalEvent<LanguageTranslatorComponent, ToggleActionEvent>(OnToggleAction);
 
         SubscribeLocalEvent<LanguageTranslatorComponent, GetVerbsEvent<ActivationVerb>>(OnGetVerbs);
+
+        SubscribeLocalEvent<BatteryComponent, ChargeChangedEvent>(OnChargeChanged);
+        SubscribeLocalEvent<BatteryComponent, EntGotInsertedIntoContainerMessage>(OnInsert);
+        SubscribeLocalEvent<BatteryComponent, EntGotRemovedFromContainerMessage>(OnRemove);
     }
 
     private void OnActivateInWorld(EntityUid entity, LanguageTranslatorComponent component, ActivateInWorldEvent e)
@@ -71,24 +77,37 @@ public sealed class LanguageTranslatorSystem : EntitySystem
         UpdateVisuals(new(entity, component));
     }
 
+    private void OnChargeChanged(EntityUid entity, BatteryComponent component, ChargeChangedEvent e)
+    {
+        TryUpdateVisuals(Transform(entity).ParentUid);
+    }
+
+    private void OnInsert(EntityUid entity, BatteryComponent component, EntGotInsertedIntoContainerMessage e)
+    {
+        TryUpdateVisuals(e.Container.Owner);
+    }
+
+    private void OnRemove(EntityUid entity, BatteryComponent component, EntGotRemovedFromContainerMessage e)
+    {
+        TryUpdateVisuals(e.Container.Owner);
+    }
+
+    private void TryUpdateVisuals(EntityUid entity)
+    {
+        if (TryComp<LanguageTranslatorComponent>(entity, out var translatorComponent))
+            UpdateVisuals(new(entity, translatorComponent));
+    }
+
     public bool TryUseTranslator(EntityUid entity, string message)
     {
         if (!TryGetTranslator(_inventory.GetHandOrInventoryEntities(entity), out var translator) || !translator.Value.Comp.Activated)
             return false;
 
         if (_power.TryUseCharge(translator.Value, 0.2f * message.Length))
-        {
-            UpdateVisuals(translator.Value);
-
             return true;
-        }
 
-        if (_power.TryGetBatteryFromSlot(entity, out var battery, out var batteryComponent))
-        {
+        if (_power.TryGetBatteryFromSlot(translator.Value, out var battery, out var batteryComponent))
             _battery.SetCharge(battery.Value, 0, batteryComponent);
-
-            UpdateVisuals(translator.Value);
-        }
 
         return false;
     }
