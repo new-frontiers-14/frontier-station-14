@@ -8,7 +8,7 @@ If you want to host or create content for SC, this is the repo you need. It cont
 
 ## Links
 
-[Discord](https://discord.gg/tpuAT7d3zm/)
+[Discord](https://discord.gg/e6n9n9xgHN)
 
 
 ## Contributing
