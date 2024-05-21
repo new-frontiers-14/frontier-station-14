@@ -1,67 +1,13 @@
-- type: entity
-  id: ShuttleGunBase
-  name: shittle gun
-  abstract: true
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Appearance
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Anchorable
-  - type: Pullable
-  - type: Rotatable
-  - type: Physics
-    bodyType: Static
-  - type: ContainerContainer
-  - type: Gun
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 450
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Electronic
-  - type: Transform
-    anchored: true
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-    - Trigger
-    - Toggle
-    - On
-    - Off
-  - type: AutoShootGun
-  - type: GunSignalControl
-  - type: StaticPrice
-    price: 1500
-
-# ---- Laser weapon branch ----
-# naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
-# example: LSE-100e "Clown destroyer" (powered by the wiring, very weak)
+#lasers
 
 - type: entity
-  id: ShuttleGunSvalinnMachineGun
+  id: ShuttleGunPlasmaRepeater
   parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: Svalinn machine gun
+  name: SHI-L 400c plasma bolt repeater
   description: A stationary shuttle weapon commonly found on civilian models, boasts an extremely high rate of fire. Effective against organic targets and electronics.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    sprite: _Crescent/Objects/ShuttleWeapons/lasersmall.rsi
     layers:
     - state: lse-400c
     - state: mag-unshaded-9
@@ -108,7 +54,7 @@
   - type: MagazineAmmoProvider
 
 - type: entity
-  id: ShuttleGunPerforator
+  id: ShuttleGunPlasmaCannonPLACEHOLDER
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-1200c "Perforator"
   description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
@@ -158,162 +104,10 @@
             - PowerCage
   - type: MagazineAmmoProvider
 
-# ---- Launchers ----
-# naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
-# example: EXP-100c "Poppy"
+##mining turret
 
 - type: entity
-  id: ShuttleGunFriendship
-  parent: [ShuttleGunBase, ConstructibleMachine]
-  name: EXP-320g "Friendship"
-  description: A small stationary grenade launcher that holds 2 grenades.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
-    layers:
-    - state: exp-320g
-    - state: mag-7
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      ballistic-ammo: !type:Container
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-        - !type:ChangeConstructionNodeBehavior
-          node: machineFrame
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-  - type: Gun
-    projectileSpeed: 80
-    fireRate: 1
-    angleDecay: 45
-    minAngle: 0
-    maxAngle: 15
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
-      params:
-        pitch: 0.8
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - Grenade
-    capacity: 2
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: Machine
-    board: ShuttleGunFriendshipCircuitboard
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-
-- type: entity
-  id: ShuttleGunDuster
-  parent: [ShuttleGunBase, ConstructibleMachine]
-  name: EXP-2100g "Duster"
-  description: A powerful stationary grenade launcher. A cartridge is required for use.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
-    layers:
-    - state: exp-2100g
-    - state: mag-7
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 350
-      behaviors:
-        - !type:ChangeConstructionNodeBehavior
-          node: machineFrame
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-  - type: Gun
-    projectileSpeed: 40
-    fireRate: 0.3
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-      params:
-        variation: 0.05
-        pitch: 0.8
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: Machine
-    board: ShuttleGunDusterCircuitboard
-  - type: MagazineAmmoProvider
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineGrenade
-        insertSound:
-          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-          params:
-            pitch: 2
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-
-# ---- Other weapon ----
-
-- type: entity
-  id: ShuttleGunPirateCannon
-  parent: ShuttleGunBase
-  name: pirate ship cannon
-  description: Kaboom!
-  components:
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shuttles/pirate_cannon.rsi
-    layers:
-    - state: base
-  - type: Gun
-    fireRate: 1
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CannonBall
-    capacity: 1
-    proto: CannonBall
-    soundInsert:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-
-- type: entity
-  id: ShuttleGunKinetic
+  id: ShuttleGunKineticPLACEHOLDER
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: PTK-800 "Matter Dematerializer"
   description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
@@ -363,3 +157,162 @@
     count: 10
   - type: Machine
     board: ShuttleGunKineticCircuitboard
+
+## Missile Pods
+
+- type: entity
+  id: ShuttleGunMissileRack
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: NT-6 48mm "Sumitomo" missile rack
+  description: A massive, ship-mounted missile rack with a unique feeding mechanism. Requires a rocket magazine to operate.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Objects/ShuttleWeapons/missile.rsi
+    layers:
+    - state: rocket
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 0.3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunDusterCircuitboard
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineGrenade
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+
+#50 cal
+
+- type: entity
+  id: SHISlugthrowerTurret
+  name: SHI 50c ballistic slugthrower
+  parent: ConstructibleMachine
+  description: An outdated, gas-operated slugthrower. Usually found mounted on outdated civilian models. Ballistic-fed.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 600
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Crescent/Objects/ShuttleWeapons/50cal.rsi
+    layers:
+    - state: space_artillery
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: true
+    increment: 90
+  - type: Battery
+    maxCharge: 200000
+    startingCharge: 200000
+  - type: ExaminableBattery
+  - type: Appearance
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - SpaceArtilleryFire
+      - SpaceArtilleryToggleSafety
+      - SpaceArtilleryOnSafety
+      - SpaceArtilleryOffSafety
+  - type: DeviceLinkSource
+    ports:
+      - SpaceArtilleryDetectedFiring
+      - SpaceArtilleryDetectedMalfunction
+      - SpaceArtilleryDetectedSafetyChange
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    capacity: 120
+    proto: CartridgeMachineGunArmorPiercing
+    whitelist:
+      tags:
+      - CartridgeMachineGun
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Gun
+    fireRate: 5
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/50cal.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+  - type: SpaceArtillery
+    isArmed: true
+    powerChargeRate: 1500
+    powerUsePassive: 500
+    isPowerRequiredForMount: false
+    isPowerRequiredToFire: false
+    isPowerRequiredForSignal: true
+  - type: BatterySelfRecharger
+  - type: Actions
+  - type: CombatMode
+    IsInCombatMode: true
+  - type: Tag
+    tags:
+    - Wall
+  - type: Airtight
+  - type: Occluder
+    boundingBox: "-0.1,-0.5,0.5,0.5"
+  - type: RadiationBlocker
+    resistance: 8
+  - type: ApcPowerReceiver
+    powerLoad: 3000
+  - type: ExtensionCableReceiver
