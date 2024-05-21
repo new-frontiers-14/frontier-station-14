@@ -2,8 +2,8 @@ using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
-using Content.Server.Station.Systems;
 using Content.Shared.Fax.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.Paper;
 using Content.Shared.Shipyard.Components;
 
@@ -16,11 +16,11 @@ public sealed class FaxMultiaddressSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<FaxMultiaddressComponent, DeviceNetworkPacketEvent>(OnDeviceNetworkPacket);
     }
 
-    private void OnStationInitialized(StationInitializedEvent e)
+    private void OnRoundStarted(RoundStartedEvent e)
     {
         Spawn("FaxMultiaddress");
     }
