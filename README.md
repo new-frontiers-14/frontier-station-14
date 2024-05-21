@@ -1,4 +1,4 @@
-<p align="center"> <img alt="Sector Crescent" width="880" height="300" src="(https://cdn.discordapp.com/attachments/1194347665492815953/1194348274174414868/logo.png?ex=664d91c2&is=664c4042&hm=862e288a3f458ff81dd2adb8f05bd140dc5e5ea639fb67b68f2b54ff2b28a28a&)" /></p>
+<p align="center"> <img alt="Sector Crescent" width="880" height="300" src="https://github.com/ilikeships/Sector-Crescent/blob/master/Resources/Textures/Logo/logo.png?raw=true" /></p>
 
 Sector Crescent is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
 
