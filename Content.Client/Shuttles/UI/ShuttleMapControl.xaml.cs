@@ -217,7 +217,10 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
             var mapCoords = _shuttles.GetMapCoordinates(mapObj);
 
-            var relativePos = matty.Transform(mapCoords.Position);
+            if (mapCoords is null)
+                continue;
+
+            var relativePos = matty.Transform(mapCoords.Value.Position);
             relativePos = relativePos with { Y = -relativePos.Y };
             var uiPosition = ScalePosition(relativePos);
 
