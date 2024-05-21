@@ -107,6 +107,15 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
+            if (profile is HumanoidCharacterProfile humanoid)
+                if (curPrefs.Characters.TryGetValue(slot, out var storedProfile) && storedProfile is HumanoidCharacterProfile storedHumanoid)
+                {
+                    if (humanoid.BankBalance != storedHumanoid.BankBalance)
+                        return;
+                }
+                else if (humanoid.BankBalance != HumanoidCharacterProfile.DefaultBalance)
+                    return;
+
             // Corvax-Sponsors-Start: Ensure removing sponsor markings if client somehow bypassed client filtering
             // WARN! It's not removing markings from DB!
             var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(message.MsgChannel.UserId, out var prototypes)
