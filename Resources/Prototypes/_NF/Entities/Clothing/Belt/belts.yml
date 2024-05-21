@@ -26,32 +26,47 @@
     # TODO: Fill this out more.
     whitelist:
       tags:
-        - Book
-        - Smokable
-        - Flare
-        - Matchstick
-        - Flashlight
-        - Trash
-        - CigPack
-        - Radio
-        - Crayon
-        - Bottle
-        - WeaponMeleeStake
-        - Censer
-        - ReligiousSymbol
-        - Crucifix
-        - Spear
-        - Wooden
+      - ObjectOfSpiritualSignificance
+      - Censer
+      - ReligiousSymbol
+      - Crucifix
+      - WeaponMeleeStake
+      - Book
+      - Smokable
+      - Matchstick
+      - Flashlight
+      - Trash
+      - CigPack
+      - Radio
+      - Crayon
+      - Bottle
+      - DrinkBottle
+      components:
+      - BibleComponent
+      - Drink
+      - Smokable
+      - MeleeWeapon
+      - HandheldLight
+      - ExpendableLight
+      - ToggleableLightVisuals
+      - Paper
+      - Stamp
   - type: ItemMapper
     mapLayers:
       book:
         whitelist:
           tags:
           - Book
+          components:
+          - BibleComponent
+          - Paper
       bottle:
         whitelist:
           tags:
           - Bottle
+          - DrinkBottle
+          components:
+          - Drink
       censer:
         whitelist:
           tags:
@@ -99,6 +114,9 @@
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
+  - type: Tag
+    tags:
+    - CatWearable # Frontier
 
 - type: entity
   parent: ClothingBeltBase
