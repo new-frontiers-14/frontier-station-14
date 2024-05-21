@@ -13,24 +13,24 @@ salvage-expedition-window-details = Подробности:
 salvage-expedition-window-hostiles = Враги:
 salvage-expedition-window-duration = Продолжительность:
 salvage-expedition-window-biome = Биом:
-salvage-expedition-window-rewards = Rewards:
-salvage-expedition-window-claimed = Claimed
-salvage-expedition-window-claim = Claim
+salvage-expedition-window-rewards = Награда:
+salvage-expedition-window-claimed = Получено
+salvage-expedition-window-claim = Получить
 salvage-expedition-window-modifiers = Модификаторы:
 # Expedition descriptions
-salvage-expedition-desc-mining = Collect resources inside the area.
-#  You will be taxed {$tax}% of the resources collected.
+salvage-expedition-desc-mining = Соберите ресурсы в зоне.
+#  Вы получити {$tax}% от собранных ресурсов.
 salvage-expedition-desc-structure =
     { $count ->
-        [one] Destroy { $count } { $structure } inside the area.
-       *[other] Destroy { $count } { $structure }s inside the area.
+        [one] Уничтожить { $count } { $structure } в зоне экспедиции.
+       *[other] Уничтожить { $count } { $structure } в зоне экспедиции.
     }
-salvage-expedition-desc-elimination = Kill a large and dangerous creature inside the area.
-salvage-expedition-type-Mining = Mining
-salvage-expedition-type-Destruction = Destruction
-salvage-expedition-type-Elimination = Elimination
-salvage-expedition-difficulty-Minimal = Minimal
-salvage-expedition-difficulty-Minor = Minor
+salvage-expedition-desc-elimination = Убейте большое опасное существо.
+salvage-expedition-type-Mining = Добыча
+salvage-expedition-type-Destruction = Уничтожение
+salvage-expedition-type-Elimination = Устранение
+salvage-expedition-difficulty-Minimal = Минимальная
+salvage-expedition-difficulty-Minor = Лёгкая
 offering-window-claimed = Принято
 offering-window-claim = Принять
 salvage-expedition-window-next = Следующее предложение
