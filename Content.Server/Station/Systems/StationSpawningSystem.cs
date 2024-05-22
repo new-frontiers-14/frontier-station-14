@@ -33,7 +33,9 @@ using Content.Server.Spawners.Components;
 using Content.Shared.Bank.Components;
 using Content.Shared._NF.Bank.Events;
 using FastAccessors.Monads;
-using Robust.Server.Player; // DeltaV
+using Robust.Server.Player;
+using Content.Shared.Corvax.Language.Components;
+using Content.Shared.Hands.EntitySystems; // DeltaV
 
 namespace Content.Server.Station.Systems;
 
@@ -54,6 +56,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     [Dependency] private readonly ArrivalsSystem _arrivalsSystem = default!;
     [Dependency] private readonly ContainerSpawnPointSystem _containerSpawnPointSystem = default!;
@@ -237,6 +241,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
                     }
                 }
+            }
+
+            if (HasComp<GiveTranslatorComponent>(entity.Value))
+            {
+                var coords = _transform.GetMapCoordinates(entity.Value);
+                var translatorEntity = EntityManager.SpawnEntity("Translator", coords);
+                _hands.TryForcePickupAnyHand(entity.Value, translatorEntity, checkActionBlocker: false);
             }
 
             var bank = EnsureComp<BankAccountComponent>(entity.Value);
