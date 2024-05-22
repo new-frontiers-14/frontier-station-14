@@ -102,7 +102,10 @@ namespace Content.Server.Access.Systems
             _cardSystem.TryChangeJobIcon(uid, jobIcon, idCard);
 
             if (TryFindJobProtoFromIcon(jobIcon, out var job))
+            {
                 _cardSystem.TryChangeJobDepartment(uid, job, idCard);
+                _cardSystem.TryChangeJobPrototype(uid, job, idCard);
+            }
         }
 
         private bool TryFindJobProtoFromIcon(StatusIconPrototype jobIcon, [NotNullWhen(true)] out JobPrototype? job)

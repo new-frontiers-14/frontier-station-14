@@ -39,6 +39,8 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
             return;
         _updateDiff -= UpdateRate;
 
+        Dictionary<string, SuitSensorStatus> sensors = [];
+
         var servers = EntityQueryEnumerator<CrewMonitoringServerComponent>();
 
         while (servers.MoveNext(out var id, out var server))
@@ -48,7 +50,12 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
 
             UpdateTimeout(id);
             BroadcastSensorStatus(id, server);
+
+            foreach (var sensor in server.SensorStatus)
+                sensors[sensor.Key] = sensor.Value;
         }
+
+        RaiseLocalEvent(new SensorStatusUpdateEvent(sensors));
     }
 
     /// <summary>
@@ -113,3 +120,5 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         component.SensorStatus.Clear();
     }
 }
+
+public sealed record SensorStatusUpdateEvent(Dictionary<string, SuitSensorStatus> SensorStatus);

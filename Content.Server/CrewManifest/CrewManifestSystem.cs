@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.EUI;
+using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
@@ -34,13 +35,16 @@ public sealed class CrewManifestSystem : EntitySystem
     /// </summary>
     private readonly Dictionary<EntityUid, CrewManifestEntries> _cachedEntries = new();
 
+    private CrewManifestEntries? _entries;
+
     private readonly Dictionary<EntityUid, Dictionary<ICommonSession, CrewManifestEui>> _openEuis = new();
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<AfterGeneralRecordCreatedEvent>(AfterGeneralRecordCreated);
-        SubscribeLocalEvent<RecordModifiedEvent>(OnRecordModified);
-        SubscribeLocalEvent<RecordRemovedEvent>(OnRecordRemoved);
+        //SubscribeLocalEvent<AfterGeneralRecordCreatedEvent>(AfterGeneralRecordCreated);
+        //SubscribeLocalEvent<RecordModifiedEvent>(OnRecordModified);
+        //SubscribeLocalEvent<RecordRemovedEvent>(OnRecordRemoved);
+        SubscribeLocalEvent<SensorStatusUpdateEvent>(OnSensorStatusUpdate);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeNetworkEvent<RequestCrewManifestMessage>(OnRequestCrewManifest);
 
@@ -60,6 +64,7 @@ public sealed class CrewManifestSystem : EntitySystem
 
         _openEuis.Clear();
         _cachedEntries.Clear();
+        _entries = null;
     }
 
     private void OnRequestCrewManifest(RequestCrewManifestMessage message, EntitySessionEventArgs args)
@@ -94,6 +99,39 @@ public sealed class CrewManifestSystem : EntitySystem
         UpdateEuis(ev.Key.OriginStation);
     }
 
+    private void OnSensorStatusUpdate(SensorStatusUpdateEvent e)
+    {
+        var entries = new CrewManifestEntries();
+
+        var entriesSort = new List<(JobPrototype? job, CrewManifestEntry entry)>();
+        foreach (var recordObject in e.SensorStatus.Values)
+        {
+            if (!recordObject.IsAlive)
+                continue;
+
+            var entry = new CrewManifestEntry(recordObject.Name, recordObject.Job, recordObject.JobIcon, recordObject.JobPrototype!);
+
+            JobPrototype? job = null;
+
+            if (recordObject.JobPrototype is not null)
+                _prototypeManager.TryIndex(recordObject.JobPrototype, out job);
+
+            entriesSort.Add((job, entry));
+        }
+
+        entriesSort.Sort((a, b) =>
+        {
+            var cmp = JobUIComparer.Instance.Compare(a.job, b.job);
+            if (cmp != 0)
+                return cmp;
+
+            return string.Compare(a.entry.Name, b.entry.Name, StringComparison.CurrentCultureIgnoreCase);
+        });
+
+        entries.Entries = entriesSort.Select(x => x.entry).ToArray();
+        _entries = entries;
+    }
+
     private void OnBoundUiClose(EntityUid uid, CrewManifestViewerComponent component, BoundUIClosedEvent ev)
     {
         if (!Equals(ev.UiKey, component.OwnerKey))
@@ -115,8 +153,7 @@ public sealed class CrewManifestSystem : EntitySystem
     /// <returns>The name and crew manifest entries (unordered) of the station.</returns>
     public (string name, CrewManifestEntries? entries) GetCrewManifest(EntityUid station)
     {
-        var valid = _cachedEntries.TryGetValue(station, out var manifest);
-        return (valid ? MetaData(station).EntityName : string.Empty, valid ? manifest : null);
+        return (_entries is not null ? MetaData(station).EntityName : string.Empty, _entries);
     }
 
     private void UpdateEuis(EntityUid station)

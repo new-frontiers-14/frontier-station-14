@@ -6,13 +6,14 @@ namespace Content.Shared.Medical.SuitSensor;
 [Serializable, NetSerializable]
 public sealed class SuitSensorStatus
 {
-    public SuitSensorStatus(NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, string locationName)
+    public SuitSensorStatus(NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, string jobPrototype, string locationName)
     {
         SuitSensorUid = suitSensorUid;
         Name = name;
         Job = job;
         JobIcon = jobIcon;
         JobDepartments = jobDepartments;
+        JobPrototype = jobPrototype;
 		LocationName = locationName;
     }
 
@@ -22,6 +23,7 @@ public sealed class SuitSensorStatus
     public string Job;
     public string JobIcon;
     public List<string> JobDepartments;
+    public string JobPrototype;
     public bool IsAlive;
     public int? TotalDamage;
     public int? TotalDamageThreshold;
@@ -60,6 +62,7 @@ public static class SuitSensorConstants
     public const string NET_JOB = "job";
     public const string NET_JOB_ICON = "jobIcon";
     public const string NET_JOB_DEPARTMENTS = "jobDepartments";
+    public const string NET_JOB_PROTOTYPE = "jobPrototype";
     public const string NET_IS_ALIVE = "alive";
     public const string NET_TOTAL_DAMAGE = "vitals";
     public const string NET_TOTAL_DAMAGE_THRESHOLD = "vitalsThreshold";
