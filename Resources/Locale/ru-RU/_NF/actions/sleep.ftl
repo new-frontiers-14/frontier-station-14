@@ -1,1 +1,1 @@
-popup-sleep-in-bag = {CAPITALIZE($entity) } сворачивается клубочком и засыпает.
+popup-sleep-in-bag = { THE($entity) } сворачивается клубочком и засыпает.

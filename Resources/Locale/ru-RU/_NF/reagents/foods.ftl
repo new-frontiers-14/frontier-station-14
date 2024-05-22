@@ -1,1 +1,1 @@
-reagent-name-flaverol = флаверол
+reagent-name-flaverol = Витамикс

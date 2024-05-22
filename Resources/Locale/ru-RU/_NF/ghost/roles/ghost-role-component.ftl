@@ -1,10 +1,10 @@
 ghost-role-information-emotional-support-name = Ручная зверушка
-ghost-role-information-emotional-support-description = Вы - ручная зверушка! Преданная своему хозяину, обязательно подбадривай его!
-ghost-role-information-emotional-support-rules = Вы - ручная зверушка! Преданная своему хозяину, обязательно подбадривай его!
+ghost-role-information-emotional-support-description = Вы - ручная зверушка! Будьте преданы своему хозяину!
+ghost-role-information-emotional-support-rules = Подбадривай хозяина, будь ему лучшим другом!
 ghost-role-information-clippy-name = Клиппи
 ghost-role-information-clippy-description = Представитель станции, преданный работник, пахнет картоном и бумагой.
 ghost-role-information-clarpy-name = Кларпи
-ghost-role-information-clarpy-description = Заблокируйте вашу почту! Разыскивается Nanotrasen за преступления против мышей.
+ghost-role-information-clarpy-description = Заблокируйте вашу почту! Разыскивается NanoTrasen за преступления против мышей.
 ghost-role-information-crispy-name = Хрустик
 ghost-role-information-crispy-description = Ты будешь гореть в аду.
 ghost-role-information-mistake-name = ?????

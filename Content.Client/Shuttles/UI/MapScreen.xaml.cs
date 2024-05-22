@@ -49,8 +49,8 @@ public sealed partial class MapScreen : BoxContainer
     private TimeSpan _pingCooldown = TimeSpan.FromSeconds(3);
     private TimeSpan _nextMapDequeue;
 
-    private float _minMapDequeue = 0.05f;
-    private float _maxMapDequeue = 0.25f;
+    private float _minMapDequeue = 0.01f;
+    private float _maxMapDequeue = 0.05f;
 
     private StyleBoxFlat _ftlStyle;
 
@@ -379,7 +379,16 @@ public sealed partial class MapScreen : BoxContainer
             var yMapPos = _shuttles.GetMapCoordinates(y.mapobj);
             var xMapPos = _shuttles.GetMapCoordinates(x.mapobj);
 
-            return (yMapPos.Position - shuttlePos).Length().CompareTo((xMapPos.Position - shuttlePos).Length());
+            if (xMapPos is not null && yMapPos is null)
+                return 1;
+
+            if (yMapPos is not null && xMapPos is null)
+                return -1;
+
+            if (xMapPos is null && yMapPos is null)
+                return 0;
+
+            return (yMapPos!.Value.Position - shuttlePos).Length().CompareTo((xMapPos!.Value.Position - shuttlePos).Length());
         });
     }
 
@@ -418,8 +427,11 @@ public sealed partial class MapScreen : BoxContainer
 
         var coordinates = _shuttles.GetMapCoordinates(mapObject);
 
+        if (coordinates is null)
+            return;
+
         // If it's our map then scroll, otherwise just set position there.
-        MapRadar.SetMap(coordinates.MapId, coordinates.Position, recentering: true);
+        MapRadar.SetMap(coordinates.Value.MapId, coordinates.Value.Position, recentering: true);
     }
 
     public void SetMap(MapId mapId, Vector2 position)

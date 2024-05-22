@@ -1,0 +1,15 @@
+ent-DoorElectronicsFrontier = { ent-DoorElectronics }
+    .suffix = Frontier, Locked
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsFrontierBridge = { ent-DoorElectronics }
+    .suffix = Theatre, Locked
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsFrontierCommand = { ent-DoorElectronics }
+    .suffix = Chapel, Locked
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsMailCarrier = { ent-DoorElectronics }
+    .suffix = Mail, Locked
+    .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsMercenary = { ent-DoorElectronics }
+    .suffix = Mercenary, Locked
+    .desc = { ent-DoorElectronics.desc }

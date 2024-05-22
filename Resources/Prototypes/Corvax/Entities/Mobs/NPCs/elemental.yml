@@ -1,0 +1,755 @@
+- type: entity
+  abstract: true
+  id: MobElementalBaseSalvage
+  components:
+  - type: LagCompensation
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: Clickable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: MovedByPressure
+  - type: Physics
+    bodyType: KinematicController # Same for all inheritors
+  - type: StatusEffects
+    allowed:
+    - KnockedDown
+    - SlowedDown
+  - type: Pullable
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Stamina
+    critThreshold: 150
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:TriggerBehavior
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Input
+    context: "human"
+  - type: InputMover
+  - type: MobMover
+  - type: ZombieImmune
+  - type: MovementIgnoreGravity
+
+- type: entity
+  abstract: true
+  id: MobOreElementalSalvage
+  name: ore crab
+  parent: [ MobElementalBaseSalvage, MobCombat ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/orecrab.rsi
+    state: uranium_crab
+  - type: HTN
+    rootTask:
+      task: XenoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 7
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Damageable
+    damageContainer: StructuralInorganic
+
+# Крабики
+
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobBananiumCrabSalvage
+  description: An ore crab made from Bananium.
+  components:
+  - type: Sprite
+    state: bananium_crab
+  - type: RadiationSource
+    intensity: 2
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobCoalCrabSalvage
+  description: An ore crab made from Coal.
+  components:
+  - type: Sprite
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobGoldCrabSalvage
+  description: An ore crab made from Gold.
+  components:
+  - type: Sprite
+    state: gold_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobIronCrabSalvage
+  description: An ore crab made from Iron.
+  components:
+  - type: Sprite
+    state: iron_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobMagmiteCrabSalvage
+  description: An ore crab made from Magmite.
+  components:
+  - type: Sprite
+    state: magmite_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MagmiteOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobPlasmaCrabSalvage
+  description: An ore crab made from Plasma.
+  components:
+  - type: Sprite
+    state: plasma_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobQuartzCrabSalvage
+  description: An ore crab made from Quartz.
+  components:
+  - type: Sprite
+    state: quartz_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpaceQuartz1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobSaltCrabSalvage
+  description: An ore crab made from Salt.
+  components:
+  - type: Sprite
+    state: salt_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobSilverCrabSalvage
+  description: An ore crab made from Silver.
+  components:
+  - type: Sprite
+    state: silver_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SilverOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobUraniumCrabSalvage
+  description: An ore crab made from Uranium.
+  components:
+  - type: Sprite
+    state: uranium_crab
+  - type: RadiationSource
+    intensity: 2
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          UraniumOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Элементали
+
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobBananiumGolemSalvage
+  name: ore golem
+  description: An ore golem made from Bananium.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: bananium_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: RadiationSource
+    intensity: 3
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobCoalGolemSalvage
+  name: ore golem
+  description: An ore golem made from Coal.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: coal_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobGoldGolemSalvage
+  name: ore golem
+  description: An ore golem made from Gold.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: gold_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobIronGolemSalvage
+  name: ore golem
+  description: An ore golem made from Iron.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: iron_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobMagmiteGolemSalvage
+  name: ore golem
+  description: An ore golem made from Magmite.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: magmite_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MagmiteOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobPlasmaGolemSalvage
+  name: ore golem
+  description: An ore golem made from Plasma.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: plasma_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobQuartzGolemSalvage
+  name: ore golem
+  description: An ore golem made from Quartz.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: quartz_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpaceQuartz1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobSaltGolemSalvage
+  name: ore golem
+  description: An ore golem made from Salt.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: salt_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobSilverGolemSalvage
+  name: ore golem
+  description: An ore golem made from Silver.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: silver_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SilverOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+        
+- type: entity
+  parent: MobOreElementalSalvage
+  id: MobUraniumGolemSalvage
+  name: ore golem
+  description: An ore golem made from Uranium.
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    state: uranium_golem
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 15
+  - type: RadiationSource
+    intensity: 3
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          UraniumOre1:
+            min: 5
+            max: 10
+          GolemCore:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseAnomalyCore
+  id: GolemCore
+  suffix: Golem
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Mobs/Elemental/golems.rsi
+    layers:
+    - state: core
+    - state: pulse
+      visible: false
+      map: ["decay"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.5
+    color: "#ffffff"
+    castShadows: false

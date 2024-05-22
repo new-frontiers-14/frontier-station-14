@@ -1,18 +1,14 @@
 ent-ClothingShoesBootsMagCombatFilled = { ent-ClothingShoesBootsMagCombat }
-
-  .desc = { ent-ClothingShoesBootsMagCombat.desc }
+    .desc = { ent-ClothingShoesBootsMagCombat.desc }
 ent-ClothingShoesBootsMagNfsdFilled = { ent-ClothingShoesBootsMagNfsd }
-
-  .desc = { ent-ClothingShoesBootsMagNfsd.desc }
+    .desc = { ent-ClothingShoesBootsMagNfsd.desc }
 ent-ClothingShoesBootsMagPirateFilled = { ent-ClothingShoesBootsMagPirate }
-
-  .desc = { ent-ClothingShoesBootsMagPirate.desc }
+    .desc = { ent-ClothingShoesBootsMagPirate.desc }
 ent-ClothingShoesBootsMagMercenaryFilled = { ent-ClothingShoesBootsMagMercenary }
-
-  .desc = { ent-ClothingShoesBootsMagMercenary.desc }
+    .desc = { ent-ClothingShoesBootsMagMercenary.desc }
 ent-ClothingShoesBootsNfsdBrownFilled = { ent-ClothingShoesBootsNfsdBrown }
-
-  .desc = { ent-ClothingShoesBootsNfsdBrown.desc }
+    .desc = { ent-ClothingShoesBootsNfsdBrown.desc }
 ent-ClothingShoesBootsNfsdCreamFilled = { ent-ClothingShoesBootsNfsdCream }
-
-  .desc = { ent-ClothingShoesBootsNfsdCream.desc }
+    .desc = { ent-ClothingShoesBootsNfsdCream.desc }
+ent-ChaplainHolywaterBottleFilled = бутыль святой воды
+    .desc = Испей эту святую воду во благословение выбранного тобой божества.

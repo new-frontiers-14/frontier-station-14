@@ -11,6 +11,7 @@ using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Player;
@@ -26,10 +27,10 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
     [Dependency] private readonly WorldControllerSystem _world = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<LoadedChunkComponent> _loadedQuery;
     private EntityQuery<WorldControllerComponent> _mapQuery;
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -39,9 +40,8 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _xformQuery = GetEntityQuery<TransformComponent>();
-        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         _mapQuery = GetEntityQuery<WorldControllerComponent>();
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -158,13 +158,13 @@ public sealed class HTNSystem : EntitySystem
         _planQueue.Process();
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
 
-        while(query.MoveNext(out var uid, out _, out var comp))
+        while (query.MoveNext(out var uid, out _, out var comp))
         {
             // If we're over our max count or it's not MapInit then ignore the NPC.
             if (count >= maxUpdates)
                 break;
 
-            if (!IsNPCActive(comp))
+            if (!IsNPCActive(uid))
                 continue;
 
             if (comp.PlanningJob != null)
@@ -255,12 +255,16 @@ public sealed class HTNSystem : EntitySystem
         }
     }
 
-    private bool IsNPCActive(HTNComponent component)
+    private bool IsNPCActive(EntityUid entity)
     {
-        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform) || !_mapQuery.TryGetComponent(xform.MapUid, out var worldComponent))
+        var transform = Transform(entity);
+
+        if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
             return true;
 
-        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid.Value, worldComponent));
+        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
+
+        return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)

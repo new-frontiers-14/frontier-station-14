@@ -35,3 +35,5 @@ materials-raw-uranium = руда урана
 materials-raw-bananium = руда бананиума
 materials-raw-salt = каменная соль
 materials-raw-magmite = магмитовая руда
+# Material Reclaimer
+material-reclaimer-upgrade-process-rate = скорость выполнения

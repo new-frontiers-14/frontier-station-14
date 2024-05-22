@@ -1,1 +1,2 @@
-shuttle-console-designation = Обозначение:
+shuttle-console-designation = Точка назначения:
+shuttle-console-designation-unknown = Неизвестно

@@ -1,12 +1,13 @@
-reagent-name-atomicpunch = атомный дар
-reagent-desc-atomicpunch = НЕ сделает вас неуязвимым к пулям; включает изотопы!
-reagent-name-pinkdrink = розовый напиток
-reagent-desc-pinkdrink = Целый цивилизации были уничтожены в попытках выяснить, действительно ли этот напиток имеет розовый вкус...
-reagent-name-bubbletea = баблти
-reagent-desc-bubbletea = Трубочка не включена в комплект.
-reagent-name-the-martinez = М значит Мартинес
-reagent-desc-the-martinez = Легенда эджраннеров. Запомнен напитком, забыт пьяницей.
-reagent-name-holywater = святые угодники
-reagent-desc-holywater = Вода, освященная какими-то иными силами.
-reagent-name-lean = лин
-reagent-desc-lean = Отвратительная смесь газировки, алкоголя и сиропа от кашля.
+reagent-name-atomicpunch = атомный удар
+reagent-desc-atomicpunch = НЕ сделает вас неуязвимым для пуль; изотопы включены!
+reagent-name-pinkdrink = розовый бархат
+reagent-desc-pinkdrink = Целые цивилизации разрушились, пытаясь решить, действительно ли этот напиток на вкус розовый...
+reagent-name-bubbletea = бабл-ти
+reagent-desc-bubbletea = Большая трубочка не прилагается.
+reagent-name-the-martinez = Мартинез
+reagent-desc-the-martinez = Легенда эджраннеров. Запомненный напитком, забытый пьяницей.
+reagent-name-holywater = святая вода
+reagent-desc-holywater = Вода, освященная какими-то потусторонними силами.
+reagent-name-lean = сироп
+reagent-desc-lean = Отвратительная смесь содовой, алкоголя и сиропа от кашля.
+

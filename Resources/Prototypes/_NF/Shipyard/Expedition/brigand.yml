@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Brigand
+  name: NME Разбойник
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 63550 # 46550$ on mapinit + 7000$ from 15% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/brigand.yml
+
+- type: gameMap
+  id: Brigand
+  mapName: 'NME Разбойник'
+  mapPath: /Maps/_NF/Shuttles/Expedition/brigand.yml
+  minPlayers: 0
+  stations:
+    Brigand:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Разбойник {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]

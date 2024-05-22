@@ -1,4 +1,4 @@
-ent-FoodDonutBase = { ent-VendPriceFoodBase100 }
+ent-FoodDonutBase = { ent-FoodInjectableBase }
   .desc = Goes great with robust coffee.
 ent-FoodDonutPlain = plain donut
     .desc = { ent-FoodDonutBase.desc }

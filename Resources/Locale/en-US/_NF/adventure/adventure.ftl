@@ -9,10 +9,6 @@ adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos
 
-guide-entry-adventure = New Frontiers Program
-guide-entry-bank = NT Galactic Bank
-guide-entry-shipyard = Frontier Shipyards
-
 shipyard-rules-default1 =
     Thank you for your interest in Nanotrasen Security Forces.
     By purchasing a Security vessel, you agree to enforce Space Law

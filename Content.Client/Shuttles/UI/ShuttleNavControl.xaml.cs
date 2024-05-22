@@ -50,7 +50,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private List<Entity<MapGridComponent>> _grids = new();
 
-    public ShuttleNavControl() : base(64f, 256f, 256f)
+    public ShuttleNavControl() : base(64f, 384f, 384f)
     {
         RobustXamlLoader.Load(this);
         _shuttles = EntManager.System<SharedShuttleSystem>();
@@ -147,6 +147,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         Matrix3.Multiply(posMatrix, ourEntMatrix, out var ourWorldMatrix);
         var ourWorldMatrixInvert = ourWorldMatrix.Invert();
 
+        var rot = ourEntRot + _rotation.Value;
+
+        DrawNorthLine(handle, rot);
+
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
         if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
@@ -178,7 +182,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
-        var rot = ourEntRot + _rotation.Value;
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
 
@@ -263,20 +266,20 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
 
-                var textLengthCorrection = labelText.Length * 9.5f;
-                var sideCorrection = isOutsideRadarCircle && uiPosition.X > Width / 2 ? -textLengthCorrection : 0;
-                var blipCorrection = (RadarBlipSize * 0.7f);
-                var correctedUiPosition = uiPosition with
-                {
-                    X = uiPosition.X > Width / 2
-                        ? uiPosition.X + blipCorrection + sideCorrection
-                        : uiPosition.X + blipCorrection,
-                    Y = uiPosition.Y - 10 // Wanted to use half the label height, but this makes text jump when visibility changes.
-                };
-
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
-                    handle.DrawString(Font, correctedUiPosition, labelText, color);
+                    // Calculate unscaled offsets.
+                    var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                    var blipSize = RadarBlipSize * 0.7f;
+                    var labelOffset = new Vector2()
+                    {
+                        X = uiPosition.X > Width / 2f
+                            ? -labelDimensions.X - blipSize // right align the text to left of the blip
+                            : blipSize, // left align the text to the right of the blip
+                        Y = -labelDimensions.Y / 2f
+                    };
+
+                    handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, color);
                 }
 
                 blipDataList.Add(new BlipData
@@ -286,8 +289,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
                     Color = color
                 });
-
-
             }
 
             // Don't skip drawing blips if they're out of range.

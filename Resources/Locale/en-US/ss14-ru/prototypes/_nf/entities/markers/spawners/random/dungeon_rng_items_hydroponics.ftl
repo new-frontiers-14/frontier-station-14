@@ -1,0 +1,15 @@
+ent-SpawnDungeonLootClutterHydroponics = random clutter
+    .suffix = Dungeon, Hydroponics
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootToolsHydroponics = random tool
+    .suffix = Dungeon, Hydroponics
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootClothesHydroponics = random clothes
+    .suffix = Dungeon, Hydroponics
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootChemsHydroponics = random chemicals
+    .suffix = Dungeon, Hydroponics
+    .desc = { ent-MarkerBasePlaceFree.desc }
+ent-SpawnDungeonLootSeed = random seed
+    .suffix = Dungeon, Hydroponics
+    .desc = { ent-MarkerBasePlaceFree.desc }

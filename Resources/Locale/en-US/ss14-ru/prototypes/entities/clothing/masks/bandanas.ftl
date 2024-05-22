@@ -1,5 +1,5 @@
-ent-ClothingMaskBandanaBase = { ent-BaseFoldable }
-  .desc = { ent-BaseFoldable.desc }
+ent-ClothingMaskBandanaBase = { ent-ClothingMaskBaseButcherable }
+  .desc = { ent-ClothingMaskBaseButcherable.desc }
 ent-ClothingMaskBandBlack = black bandana
     .desc = A black bandana to make you look cool.
 ent-ClothingMaskBandBlue = blue bandana

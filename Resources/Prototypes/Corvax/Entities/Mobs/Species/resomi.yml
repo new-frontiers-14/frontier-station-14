@@ -1,0 +1,115 @@
+- type: entity
+  save: false
+  name: Urist McResomi
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobHumanoidResomi
+  abstract: true
+  components:
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,19,9
+  - type: MultiHandedItem
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Input
+    context: "human"
+  - type: MobMover
+  - type: InputMover
+  - type: Alerts
+  - type: Eye
+    visMask:
+      - 9
+  - type: CameraRecoil
+  - type: Examiner
+  - type: CanHostGuardian 
+  - type: Respirator
+    damage:
+     types:
+      Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Temperature
+    heatDamageThreshold: 350
+    coldDamageThreshold: 230
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold : 0.1 
+    heatDamage:
+      types:
+        Heat : 0.2 
+  - type: Bloodstream
+    bloodMaxVolume: 180
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Resomi
+  - type: HumanoidAppearance
+    species: Resomi
+  - type: Hunger
+    starvationDamage:
+      types:
+        Cold: 0.5
+        Bloodloss: 0.5
+  - type: Thirst
+  - type: Icon
+    sprite: Corvax/Mobs/Species/Resomi/parts.rsi
+    state: full
+  - type: Body
+    prototype: Resomi
+    requiredLegs: 2
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Vocal
+    sounds:
+      Male: MaleResomi
+      Female: FemaleResomi
+      Unsexed: MaleResomi
+  - type: Inventory 
+    speciesId: resomi
+
+- type: entity
+  save: false
+  name: Urist McResomi
+  parent: MobHumanDummy
+  id: MobHumanoidResomiDummy
+  noSpawn: true
+  description: A dummy Resomi meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Resomi

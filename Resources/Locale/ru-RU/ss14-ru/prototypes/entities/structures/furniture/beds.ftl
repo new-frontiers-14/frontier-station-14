@@ -10,5 +10,5 @@ ent-WebBed = паутинная кровать
     .desc = Не оторваться.
 ent-PsychBed = кушетка психолога
     .desc = Кровать с мягкой обивкой для оказания психологической помощи пациентам.
-ent-WebNest = web nest
-    .desc = You got webbed.
+ent-WebNest = паутинное гнездо
+    .desc = Вас опаутинили.

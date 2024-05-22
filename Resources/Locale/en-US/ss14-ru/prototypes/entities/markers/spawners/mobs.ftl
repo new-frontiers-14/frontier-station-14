@@ -118,3 +118,5 @@ ent-SpawnMobLuminousObject = luminous object spawner
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobLuminousEntity = luminous entity spawner
     .desc = { ent-MarkerBase.desc }
+ent-SpawnMobLuminousRandom = luminous random spawner
+    .desc = { ent-MarkerBase.desc }

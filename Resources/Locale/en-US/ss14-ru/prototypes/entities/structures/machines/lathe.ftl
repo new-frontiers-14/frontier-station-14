@@ -1,7 +1,7 @@
 ent-BaseLathe = lathe
   .desc = { ent-ConstructibleMachine.desc }
 ent-Autolathe = autolathe
-    .desc = It produces items using metal and glass.
+    .desc = It produces basic items using metal and glass.
 ent-AutolatheHyperConvection = hyper convection autolathe
     .desc = A highly-experimental autolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
 ent-Protolathe = protolathe
@@ -10,6 +10,8 @@ ent-ProtolatheHyperConvection = hyper convection protolathe
     .desc = A highly-experimental protolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
 ent-CircuitImprinter = circuit imprinter
     .desc = Prints circuit boards for machines.
+ent-CircuitImprinterHyperConvection = hyper convection circuit imprinter
+    .desc = A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
 ent-ExosuitFabricator = exosuit fabricator
     .desc = Creates parts for robotics and other mechanical needs
 ent-Biofabricator = biofabricator

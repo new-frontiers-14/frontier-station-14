@@ -6,7 +6,6 @@ using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.GameStates;
@@ -201,9 +200,9 @@ namespace Content.Client.Ghost
             _console.RemoteExecuteCommand(null, "ghostroles");
         }
 
-        public void ToggleGhostVisibility()
+        public void ToggleGhostVisibility(bool? visibility = null)
         {
-            GhostVisibility = !GhostVisibility;
+            GhostVisibility = visibility ?? !GhostVisibility;
         }
     }
 }
