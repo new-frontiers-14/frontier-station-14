@@ -48,6 +48,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [ViewVariables]
     private List<(EntityUid, int)> _players = new();
 
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -62,16 +63,26 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var profitText = Loc.GetString($"adventure-mode-profit-text");
         var lossText = Loc.GetString($"adventure-mode-loss-text");
         ev.AddLine(Loc.GetString("adventure-list-start"));
-        var allScore = new List<Tuple<string, int>>();
+        var _sorted_out = new List<(EntityUid, long)>();
+        var allScore = new List<Tuple<string, long>>();
+
 
         foreach (var player in _players)
         {
             if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
                 continue;
 
-            var profit = bank.Balance - player.Item2;
-            ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
-            allScore.Add(new Tuple<string, int>(meta.EntityName, profit));
+            _sorted_out.Add((player.Item1,  (long)(bank.Balance - player.Item2)));
+        }
+
+
+        foreach (var player in _sorted_out.OrderByDescending(o=>o.Item2).ToList())
+        {
+            if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
+                continue;
+            var profit = player.Item2;
+            ev.AddLine($"- {meta.EntityName} {profitText} {profit} Кредитов");
+            allScore.Add(new Tuple<string, long>(meta.EntityName, player.Item2));
         }
 
         if (!(allScore.Count >= 1))
@@ -83,7 +94,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2.ToString()} Кредитов";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
@@ -92,7 +103,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         highScore.Reverse();
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2.ToString()} Кредитов";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }

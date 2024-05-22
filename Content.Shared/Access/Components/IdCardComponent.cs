@@ -36,6 +36,8 @@ public sealed partial class IdCardComponent : Component
     [AutoNetworkedField]
     public List<LocId> JobDepartments = new();
 
+    public string JobPrototype;
+
     /// <summary>
     /// Determines if accesses from this card should be logged by <see cref="AccessReaderComponent"/>
     /// </summary>

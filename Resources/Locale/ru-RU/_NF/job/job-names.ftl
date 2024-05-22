@@ -14,8 +14,8 @@ job-name-pirate-first-mate = пиратский боцман
 job-name-security-guard = охранник аванпоста
 job-name-senior-officer = сержант
 job-name-sheriff = шериф
-job-name-stc = диспетчер фронтира
-job-name-sr = представитель фрронтира
+job-name-stc = диспетчер аванпоста
+job-name-sr = представитель фронтира
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ОБР почтальон
 JobMercenary = наёмник

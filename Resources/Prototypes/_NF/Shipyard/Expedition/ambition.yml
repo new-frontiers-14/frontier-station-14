@@ -1,0 +1,35 @@
+# Author Info
+# GitHub: Cu1r (https://github.com/Cu1r/)
+# Discord: cu1r
+#
+- type: vessel
+  id: Ambition
+  name: UAC Амбициозный
+  description: Промышленная газодобывающая платформа, расчитанная на экипаж 8+ человек.
+  price: 140000
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+
+- type: gameMap
+  id: Ambition
+  mapName: 'UAC Ambition'
+  mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+  minPlayers: 0
+  stations:
+    Ambition:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Амбициозный {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]

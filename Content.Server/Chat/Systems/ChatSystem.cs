@@ -435,6 +435,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("fontSize", speech.FontSize),
             ("message", FormattedMessage.EscapeText(msg.OriginalMessage)));
 
+        var color = LanguageSystem.GetLanguageColor(msg);
+
+        if (color is not null)
+            wrappedMessage = InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
+
         var wrappedLanguageMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
@@ -451,9 +456,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var understand = _language.IsUnderstandLanguage(session, msg);
 
-            var color = understand ? LanguageSystem.GetLanguageColor(msg) : null;
-
-            _chatManager.ChatMessageToOne(ChatChannel.Local, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel, color);
+            _chatManager.ChatMessageToOne(ChatChannel.Local, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel);
         }
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Local, msg.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
@@ -534,6 +537,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
             ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
 
+        var color = LanguageSystem.GetLanguageColor(msg);
+
+        if (color is not null)
+        {
+            wrappedMessage = InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
+            wrappedObfuscatedMessage = InjectTagInsideTag(wrappedObfuscatedMessage, "Message", "color", color.Value.ToHex());
+            wrappedUnknownMessage = InjectTagInsideTag(wrappedUnknownMessage, "Message", "color", color.Value.ToHex());
+        }
+
         var wrappedLanguageMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", name), ("message", FormattedMessage.EscapeText(msg.Message)));
 
@@ -557,17 +569,15 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var understand = _language.IsUnderstandLanguage(session, msg);
 
-            var color = understand ? LanguageSystem.GetLanguageColor(msg) : null;
-
             if (data.Range <= WhisperClearRange)
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, false, session.Channel, color);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, false, session.Channel);
             //If listener is too far, they only hear fragments of the message
             //Collisiongroup.Opaque is not ideal for this use. Preferably, there should be a check specifically with "Can Ent1 see Ent2" in mind
             else if (_interactionSystem.InRangeUnobstructed(source, listener, WhisperMuffledRange, Shared.Physics.CollisionGroup.Opaque)) //Shared.Physics.CollisionGroup.Opaque
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? obfuscatedMessage : obfuscatedLanguageMessage, understand ? wrappedObfuscatedMessage : wrappedObfuscatedLanguageMessage, source, false, session.Channel, color);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? obfuscatedMessage : obfuscatedLanguageMessage, understand ? wrappedObfuscatedMessage : wrappedObfuscatedLanguageMessage, source, false, session.Channel);
             //If listener is too far and has no line of sight, they can't identify the whisperer's identity
             else
-                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? obfuscatedMessage : obfuscatedLanguageMessage, understand ? wrappedUnknownMessage : wrappedUnknownLanguageMessage, source, false, session.Channel, color);
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, understand ? obfuscatedMessage : obfuscatedLanguageMessage, understand ? wrappedUnknownMessage : wrappedUnknownLanguageMessage, source, false, session.Channel);
         }
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, msg.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
@@ -714,6 +724,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             case ChatTransmitRange.NoGhosts:
                 initialResult = (data.Observer && !_adminManager.IsAdmin(session)) ? MessageRangeCheckResult.Disallowed : MessageRangeCheckResult.Full;
                 break;
+            // Frontier - prevent TVs from spamming the poor, poor admins
+            case ChatTransmitRange.GhostRangeLimitNoAdminCheck:
+                initialResult = (data.Observer && data.Range < 0) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full;
+                break;
+            // End Frontier
         }
         var insistHideChat = data.HideChatOverride ?? false;
         var insistNoHideChat = !(data.HideChatOverride ?? true);
@@ -1029,5 +1044,7 @@ public enum ChatTransmitRange : byte
     /// Hidden from the chat window.
     HideChat,
     /// Ghosts can't hear or see it at all. Regular players can if in-range.
-    NoGhosts
+    NoGhosts,
+    /// Frontier: Normal, ghosts are still range-limited, and won't spam admins
+    GhostRangeLimitNoAdminCheck,
 }
