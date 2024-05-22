@@ -1,0 +1,32 @@
+- type: job
+  id: AdministratorNCWL
+  name: job-name-administrator
+  description: job-description-administrator
+  playTimeTracker: JobAdministratorNCWL
+  weight: 60
+  startingGear: AdministratorGear
+  alwaysUseSpawner: true
+  icon: "JobIconHeadOfPersonnel"
+  requireAdminNotify: true
+  requirements:
+    - !type:WhitelistRequirement
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: AdministratorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCWLCommunications
+    back: ClothingBackpackSatchelLeatherFilledNCWLAdministrator
+    shoes: ClothingShoesBootsLaceup
+    head: ClothingHeadHatNCWLBeretAdmiral
+    id: AdministratorPDA
+    ears: ClothingHeadsetNCWL
+    belt: WeaponRevolverPythonAP

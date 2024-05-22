@@ -1,0 +1,35 @@
+- type: job
+  id: KapitanNCWL
+  name: job-name-kapitan
+  description: job-description-kapitan
+  playTimeTracker: JobKapitanNCWL
+  weight: 20
+  startingGear: KapitanGear
+  alwaysUseSpawner: true
+  icon: "JobIconCommsOfficer"
+  requireAdminNotify: false
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: KapitanGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCWL
+    back: ClothingBackpackNCWLFilledSanitar
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatNCWLBeret
+    outerClothing: ClothingOuterArmorNCWLCarapaceKapitan
+    id: KapitanPDA
+    ears: ClothingHeadsetNCWL
+    belt: ClothingBeltNCWLWebbing
+    pocket1: WeaponPistolHKUSP
+    gloves: ClothingHandsGlovesFingerless
+  duffelbag: ClothingBackpackDuffelNCWLFilledSanitar
+  satchel: ClothingBackpackSatchelNCWLFilledSanitar
