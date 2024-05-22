@@ -38,11 +38,11 @@
   - type: StaticPrice
     price: 500
 
-- type: entity #Frontier
+- type: entity # Frontier - Mosin rework (PR#1391)
   name: Kardashev-Mosin
   parent: BaseWeaponSniper
   id: WeaponSniperMosin
-  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo. Now with new shiney bayonet!
+  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo. Now with new shiny bayonet!
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
@@ -90,7 +90,7 @@
     - suitStorage
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
   - type: DisarmMalus
-    malus: 0.225
+    malus: 0.225 # End Frontier
 
 
 - type: entity
