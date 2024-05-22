@@ -20,7 +20,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics; //Frontier modification
-using Content.Server.Salvage.Expeditions; // Frontier modification
+using Content.Server.Salvage.Expeditions;
+using Content.Server.CryoSleep; // Frontier modification
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -34,6 +35,7 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     // [Dependency] private readonly StationSystem _stationSystem = default!; // Frontier
+    [Dependency] private readonly CryoSleepSystem _cryo = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!; // Frontier
     [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
@@ -74,6 +76,9 @@ public sealed class SuitSensorSystem : EntitySystem
             if (!CheckSensorAssignedStation(uid, sensor))
                 continue;
 			*/
+
+            if (sensor.User is not null && _cryo.IsBodyStored(sensor.User.Value))
+                continue;
 
             // TODO: This would cause imprecision at different tick rates.
             sensor.NextUpdate = curTime + sensor.UpdateRate;

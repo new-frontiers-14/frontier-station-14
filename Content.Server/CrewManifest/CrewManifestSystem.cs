@@ -109,6 +109,9 @@ public sealed class CrewManifestSystem : EntitySystem
         var entriesSort = new List<(JobPrototype? job, CrewManifestEntry entry)>();
         foreach (var recordObject in e.SensorStatus.Values)
         {
+            if (!recordObject.IsAlive)
+                continue;
+
             var entry = new CrewManifestEntry(recordObject.Name, recordObject.Job, recordObject.JobIcon, recordObject.JobPrototype!);
 
             JobPrototype? job = null;
