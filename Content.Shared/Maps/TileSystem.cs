@@ -6,7 +6,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Tiles;
+using Content.Shared.Tiles; // Frontier
 
 namespace Content.Shared.Maps;
 
@@ -160,11 +160,13 @@ public sealed class TileSystem : EntitySystem
         var gridUid = tileRef.GridUid;
         var mapGrid = Comp<MapGridComponent>(gridUid);
 
+        // Frontier
         var ev = new FloorTileAttemptEvent();
         RaiseLocalEvent(mapGrid);
 
         if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && tileDef.ID == "Plating")
             return false;
+        // Frontier
 
         const float margin = 0.1f;
         var bounds = mapGrid.TileSize - margin * 2;

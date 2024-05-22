@@ -714,6 +714,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             case ChatTransmitRange.NoGhosts:
                 initialResult = (data.Observer && !_adminManager.IsAdmin(session)) ? MessageRangeCheckResult.Disallowed : MessageRangeCheckResult.Full;
                 break;
+            // Frontier - prevent TVs from spamming the poor, poor admins
+            case ChatTransmitRange.GhostRangeLimitNoAdminCheck:
+                initialResult = (data.Observer && data.Range < 0) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full;
+                break;
+            // End Frontier
         }
         var insistHideChat = data.HideChatOverride ?? false;
         var insistNoHideChat = !(data.HideChatOverride ?? true);
@@ -1029,5 +1034,7 @@ public enum ChatTransmitRange : byte
     /// Hidden from the chat window.
     HideChat,
     /// Ghosts can't hear or see it at all. Regular players can if in-range.
-    NoGhosts
+    NoGhosts,
+    /// Frontier: Normal, ghosts are still range-limited, and won't spam admins
+    GhostRangeLimitNoAdminCheck,
 }
