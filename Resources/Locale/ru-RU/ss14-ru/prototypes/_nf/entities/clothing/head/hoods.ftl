@@ -8,5 +8,4 @@ ent-ClothingHeadHatHoodWinterSyndieUnremoveable = зимний капюшон
 ent-ClothingHeadHatHoodBloodCulthood = шлем культа
     .desc = { ent-ClothingHeadBase.desc }
 ent-ClothingHeadHatHoodBloodCulthoodUnremoveable = шлем культа
-
-  .desc = { ent-ClothingHeadHatHoodBloodCulthood.desc }
+    .desc = { ent-ClothingHeadHatHoodBloodCulthood.desc }

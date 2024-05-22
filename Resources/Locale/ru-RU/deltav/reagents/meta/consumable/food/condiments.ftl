@@ -3,4 +3,4 @@ reagent-desc-pesto = Комбинация соли, трав, чеснока, м
 reagent-name-tomatosauce = томатный соус
 reagent-desc-tomatosauce = Измельченные томаты с солью и травами.
 reagent-name-bechamel = бешамель
-reagent-desc-bechamel = Классический белый соус
+reagent-desc-bechamel = Классический белый соус, больше всего известный как ингредиент лазаньи.

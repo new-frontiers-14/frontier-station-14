@@ -1,2 +1,2 @@
-tool-quality-digging-name = Копать
+tool-quality-digging-name = Копает
 tool-quality-digging-tool-name = Лопата

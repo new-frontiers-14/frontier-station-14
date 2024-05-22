@@ -76,7 +76,7 @@
       collection: FemaleHumanGaspSound
 
 - type: emoteSounds
-  id: UnisexReptilian
+  id: MaleReptilian
   params:
     variation: 0.125
   sounds:
@@ -94,6 +94,24 @@
       collection: Weh
     DefaultDeathgasp: # Corvax-Frontier
       collection: MaleHumanGaspSound
+
+- type: emoteSounds
+  id: FemaleReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Weh:
+      collection: Weh
 
 - type: emoteSounds
   id: MaleSlime
@@ -174,6 +192,17 @@
       collection: FemaleHumanGaspSound
   params:
     variation: 0.125
+
+- type: emoteSounds
+  id: UnisexVox
+  sounds:
+    Scream:
+      path: /Audio/Voice/Vox/shriek1.ogg
+    Laugh:
+      path: /Audio/Voice/Vox/vox_laugh.ogg
+  params:
+    variation: 0.125
+    # We need vox sounds for the other emotes
 
 - type: emoteSounds
   id: UnisexDiona
@@ -328,6 +357,26 @@
   params:
     variation: 0.05
   sounds:
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+
+- type: emoteSounds
+  id: UnisexSiliconSyndicate
+  params:
+    variation: 0.05
+  sounds:
+    Laugh:
+      path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
     Beep:
       path: /Audio/Machines/twobeep.ogg
     Chime:

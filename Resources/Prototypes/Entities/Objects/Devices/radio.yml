@@ -4,33 +4,50 @@
   parent: BaseItem
   id: RadioHandheld
   components:
+    - type: RadioMicrophone
+      broadcastChannel: Handheld
+      toggleOnInteract: false
+      frequency: 1330
+    - type: RadioSpeaker
+      channels:
+        - Handheld
+      toggleOnInteract: false
+    - type: Speech
+      speechVerb: Robotic
+    - type: Sprite
+      sprite: Objects/Devices/communication.rsi
+      layers:
+        - state: walkietalkie
+        - state: walkietalkie-on
+      state: walkietalkie
+    - type: Item
+      sprite: Objects/Devices/communication.rsi
+      heldPrefix: walkietalkie
+    - type: ActivatableUI
+      key: enum.HandheldRadioUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.HandheldRadioUiKey.Key:
+          type: HandheldRadioBoundUserInterface
+    - type: Tag
+      tags:
+        - Radio
+    - type: StaticPrice
+      price: 55
+
+- type: entity
+  name: security radio
+  description: A handy security radio.
+  parent: RadioHandheld
+  id: RadioHandheldSecurity
+  components:
   - type: RadioMicrophone
-    broadcastChannel: Handheld
-    toggleOnInteract: false
-    frequency: 1330
+    broadcastChannel: Security
   - type: RadioSpeaker
     channels:
-    - Handheld
-    toggleOnInteract: false
-  - type: Speech
-    speechVerb: Robotic
+    - Security
   - type: Sprite
-    sprite: Objects/Devices/communication.rsi
-    layers:
-    - state: walkietalkie
-    - state: walkietalkie-on
-    state: walkietalkie
+    sprite: Objects/Devices/securityhandy.rsi
   - type: Item
-    sprite: Objects/Devices/communication.rsi
+    sprite: Objects/Devices/securityhandy.rsi
     heldPrefix: walkietalkie
-  - type: ActivatableUI
-    key: enum.HandheldRadioUiKey.Key
-  - type: UserInterface
-    interfaces:
-      - key: enum.HandheldRadioUiKey.Key
-        type: HandheldRadioBoundUserInterface
-  - type: Tag
-    tags:
-    - Radio
-  - type: StaticPrice
-    price: 55

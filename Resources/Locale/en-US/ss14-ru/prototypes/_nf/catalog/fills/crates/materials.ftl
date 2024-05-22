@@ -1,2 +1,2 @@
-ent-CrateMaterials = { ent-CrateGenericSteel }
-    .desc = { ent-CrateGenericSteel.desc }
+ent-CrateMaterials = materials crate
+    .desc = 1 stack of glass, plastic, steel, plasma and plasteel.

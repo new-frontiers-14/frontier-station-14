@@ -5,3 +5,7 @@ ent-ClothingHeadHatHoodBioArmoredSyndicate = bio hood
     .suffix = Syndicate
 ent-ClothingHeadHatHoodWinterSyndieUnremoveable = syndicate coat hood
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
+ent-ClothingHeadHatHoodBloodCulthood = cult hood
+    .desc = { ent-ClothingHeadBase.desc }
+ent-ClothingHeadHatHoodBloodCulthoodUnremoveable = cult hood
+  .desc = { ent-ClothingHeadHatHoodBloodCulthood.desc }

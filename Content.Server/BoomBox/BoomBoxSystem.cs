@@ -6,7 +6,6 @@ using System;
 using System.Timers;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using AudioComponent = Robust.Shared.Audio.Components.AudioComponent;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Containers;
 using Content.Shared.Tag;
@@ -181,7 +180,7 @@ public sealed class BoomBoxSystem : EntitySystem
 
 
         var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart);
-        _userInterface.TrySetUiState(uid, BoomBoxUiKey.Key, state);
+        _userInterface.SetUiState(uid, BoomBoxUiKey.Key, state);
     }
 
     private void MinusVol(EntityUid uid, BoomBoxComponent? component = null)

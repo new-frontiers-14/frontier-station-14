@@ -12,3 +12,7 @@ ent-ScrapDebrisExtraLargeScattered = Scrap Debris Extra Large Scattered
     .desc = { ent-BaseScrapDebris.desc }
 ent-ScrapDebrisHuge = Scrap Debris Huge
     .desc = { ent-BaseScrapDebris.desc }
+ent-ScrapDebrisFortress = Fortress Scrap
+    .desc = { ent-BaseScrapDebris.desc }
+ent-ScrapDebrisBehemoth = Behemoth Scrap
+    .desc = { ent-BaseScrapDebris.desc }

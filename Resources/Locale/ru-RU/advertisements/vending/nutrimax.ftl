@@ -5,5 +5,5 @@ advertisement-nutrimax-4 = Мы любим большие растения.
 advertisement-nutrimax-5 = Мягкая почва...
 advertisement-nutrimax-6 = Теперь и с вёдрами!
 advertisement-nutrimax-7 = Чем больше растение, тем лучше!
-thankyou-nutrimax-1 = Время рассады!
-thankyou-nutrimax-2 = Замеси эту почву!
+thankyou-nutrimax-1 = Пора сажать!
+thankyou-nutrimax-2 = Заройтесь в земле!

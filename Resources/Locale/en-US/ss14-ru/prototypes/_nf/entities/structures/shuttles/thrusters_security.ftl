@@ -1,0 +1,15 @@
+ent-ThrusterSecurity = thruster
+  .suffix = Security
+  .desc = { ent-Thruster.desc }
+ent-DebugThrusterSecurity = thruster
+  .suffix = DEBUG, Security
+  .desc = { ent-DebugThruster.desc }
+ent-GyroscopeSecurity = { ent-Gyroscope }
+  .suffix = Security
+  .desc = { ent-Gyroscope.desc }
+ent-DebugGyroscopeSecurity = gyroscope
+  .suffix = DEBUG, Security
+  .desc = { ent-DebugGyroscope.desc }
+ent-SmallGyroscopeSecurity = small gyroscope
+    .suffix = Security
+    .desc = { ent-GyroscopeSecurity.desc }

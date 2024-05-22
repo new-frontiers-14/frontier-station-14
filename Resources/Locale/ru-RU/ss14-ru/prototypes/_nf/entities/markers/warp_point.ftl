@@ -1,3 +1,3 @@
 ent-WarpPointShip = { ent-WarpPoint }
-    .suffix = ship
+    .suffix = шаттл
     .desc = { ent-WarpPoint.desc }

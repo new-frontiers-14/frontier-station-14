@@ -1,5 +1,3 @@
-ent-SpawnPointGladiator = gladiator
-    .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointMailCarrier = mailcarrier
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointPrisoner = prisoner
@@ -7,6 +5,4 @@ ent-SpawnPointPrisoner = prisoner
 ent-SpawnPointValet = valet
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointPrisonGuard = prison guard
-    .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointMartialArtist = martial artist
     .desc = { ent-SpawnPointJobBase.desc }

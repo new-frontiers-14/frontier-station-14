@@ -1,0 +1,28 @@
+- type: vessel
+  id: Pot
+  name: NMS Каструля
+  description: Среднегабаритный шахтерский шаттл. Рекомендованный состав команды 1-5 человек.
+  price: 60000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Pot.yml
+
+- type: gameMap
+  id: Pot
+  mapName: 'NMS Каструля'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Pot.yml
+  minPlayers: 0
+  stations:
+    Pot:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Каструля {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pilot: [ 0, 0 ]
+            SalvageSpecialist: [ 0, 0 ]

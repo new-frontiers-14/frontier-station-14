@@ -12,4 +12,4 @@ admin-explosion-eui-label-directional = Направленный
 admin-explosion-eui-label-angle = Угол
 admin-explosion-eui-label-spread = Радиус
 admin-explosion-eui-label-distance = Дистанция
-admin-explosion-eui-label-spawn = Скидыщ!
+admin-explosion-eui-label-spawn = Бабах!

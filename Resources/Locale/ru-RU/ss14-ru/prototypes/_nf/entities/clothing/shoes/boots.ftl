@@ -1,5 +1,9 @@
 ent-ClothingShoesBootsPilot = ботинки пилота
     .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
+ent-ClothingShoesBootsNfsdBrown = ботинки ДСБФ
+    .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
+ent-ClothingShoesBootsNfsdCream = ботинки ДСБФ
+    .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
 ent-ClothingShoesBootsNFSDBrown = ботинки ДСБФ
     .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
 ent-ClothingShoesBootsNFSDCream = ботинки ДСБФ

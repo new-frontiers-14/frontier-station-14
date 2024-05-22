@@ -1,2 +1,2 @@
-ent-SalvageLiquidCanisterSpawner = Salvage Liquid Canister Spawner
+ent-SalvageLiquidCanisterSpawner = Спавнер случайной канистры
     .desc = { ent-MarkerBase.desc }
