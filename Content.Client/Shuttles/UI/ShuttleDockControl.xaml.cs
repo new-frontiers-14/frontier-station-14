@@ -105,7 +105,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         }
 
         DrawCircles(handle);
-        DrawNorthLine(handle, _angle.Value);
+        DrawNorthLine(handle, _angle.Value); // Frontier Corvax: north line drawing
         var gridNent = EntManager.GetNetEntity(GridEntity);
         var mapPos = _xformSystem.ToMapCoordinates(_coordinates.Value);
         var ourGridMatrix = _xformSystem.GetWorldMatrix(gridXform.Owner);

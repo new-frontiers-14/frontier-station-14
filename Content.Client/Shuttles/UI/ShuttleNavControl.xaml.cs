@@ -147,8 +147,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         Matrix3.Multiply(posMatrix, ourEntMatrix, out var ourWorldMatrix);
         var ourWorldMatrixInvert = ourWorldMatrix.Invert();
 
+        // Frontier Corvax: north line drawing
         var rot = ourEntRot + _rotation.Value;
-
         DrawNorthLine(handle, rot);
 
         // Draw our grid in detail
