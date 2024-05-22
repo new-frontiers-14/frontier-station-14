@@ -29,3 +29,4 @@ comp-pda-ui-unknown = Неизвестно
 comp-pda-ui-unassigned = Не назначено
 pda-notification-message = [font size=12][bold]КПК[/bold] { $header }: [/font]
     "{ $message }"
+comp-pda-ui-balance = Баланс: [color=white]{ $balance }[/color]

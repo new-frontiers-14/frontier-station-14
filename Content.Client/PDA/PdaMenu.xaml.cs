@@ -32,7 +32,7 @@ namespace Content.Client.PDA
         private string _stationName = Loc.GetString("comp-pda-ui-unknown");
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        
+        private string _balance = Loc.GetString("comp-pda-ui-balance", ("balance", 0));
 
         private int _currentView;
 
@@ -115,6 +115,11 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_alertLevel);
             };
 
+            BalanceButton.OnPressed += _ =>
+            {
+                _clipboard.SetText(_balance);
+            };
+
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
@@ -126,7 +131,7 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_instructions);
             };
 
-            
+
 
 
             HideAllViews();
@@ -161,7 +166,9 @@ namespace Content.Client.PDA
             _stationName = state.StationName ?? Loc.GetString("comp-pda-ui-unknown");
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
-            
+
+            _balance = Loc.GetString("comp-pda-ui-balance", ("balance", state.Balance));
+            BalanceLabel.SetMarkup(_balance);
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
