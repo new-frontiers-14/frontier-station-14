@@ -223,20 +223,25 @@ public abstract class SharedChatSystem : EntitySystem
 
     public static string InjectTagInsideTag(ChatMessage message, string outerTag, string innerTag, string? tagParameter)
     {
-        var rawmsg = message.WrappedMessage;
-        var tagStart = rawmsg.IndexOf($"[{outerTag}]");
-        var tagEnd = rawmsg.IndexOf($"[/{outerTag}]");
+        return InjectTagInsideTag(message.WrappedMessage, outerTag, innerTag, tagParameter);
+    }
+
+    public static string InjectTagInsideTag(string message, string outerTag, string innerTag, string? tagParameter)
+    {
+        var tagStart = message.IndexOf($"[{outerTag}]");
+        var tagEnd = message.IndexOf($"[/{outerTag}]");
         if (tagStart < 0 || tagEnd < 0) //If the outer tag is not found, the injection is not performed
-            return rawmsg;
+            return message;
         tagStart += outerTag.Length + 2;
 
-        string innerTagProcessed = tagParameter != null ? $"[{innerTag}={tagParameter}]" : $"[{innerTag}]";
+        var innerTagProcessed = tagParameter != null ? $"[{innerTag}={tagParameter}]" : $"[{innerTag}]";
 
-        rawmsg = rawmsg.Insert(tagEnd, $"[/{innerTag}]");
-        rawmsg = rawmsg.Insert(tagStart, innerTagProcessed);
+        message = message.Insert(tagEnd, $"[/{innerTag}]");
+        message = message.Insert(tagStart, innerTagProcessed);
 
-        return rawmsg;
+        return message;
     }
+
     public static string GetStringInsideTag(ChatMessage message, string tag)
     {
         var rawmsg = message.WrappedMessage;

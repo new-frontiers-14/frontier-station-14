@@ -140,6 +140,11 @@ public sealed class RadioSystem : EntitySystem
             ("name", name),
             ("message", content));
 
+        var color = LanguageSystem.GetLanguageColor(message);
+
+        if (color is not null)
+            wrappedMessage = SharedChatSystem.InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
+
         var wrappedLanguageMessage = languageContent is not null ? Loc.GetString(speech!.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("fontType", speech.FontId),
