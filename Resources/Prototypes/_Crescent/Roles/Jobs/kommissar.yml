@@ -1,0 +1,29 @@
+- type: job
+  id: KommissarNCWL
+  name: job-name-kommissar
+  description: job-description-kommissar
+  playTimeTracker: JobKommissarNCWL
+  requirements:
+    - !type:WhitelistRequirement
+  weight: 20
+  startingGear: KommissarGear
+  alwaysUseSpawner: true
+  icon: "JobIconCommissar"
+  requireAdminNotify: true
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+
+- type: startingGear
+  id: KommissarGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCWLKommissar
+    back: ClothingBackpackSatchelLeatherFilledNCWL
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadHatNCWLKommissarHat
+    outerClothing: ClothingOuterArmorNCWLCarapace
+    id: KommissarPDA
+    ears: ClothingHeadsetNCWL
+    belt: WeaponPistolHKUSP
+    gloves: ClothingHandsGlovesFingerless
