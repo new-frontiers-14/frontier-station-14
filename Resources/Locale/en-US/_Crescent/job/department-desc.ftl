@@ -1,0 +1,1 @@
+﻿department-NCWL-description = Maintain the Head of State's interests within Taypan.
