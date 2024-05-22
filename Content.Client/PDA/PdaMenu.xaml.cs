@@ -32,7 +32,7 @@ namespace Content.Client.PDA
         private string _stationName = Loc.GetString("comp-pda-ui-unknown");
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        private string _balance = 0;
+        private string _balance = Loc.GetString("comp-pda-ui-unknown");
 
 
         private int _currentView;
