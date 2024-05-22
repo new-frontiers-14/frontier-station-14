@@ -167,11 +167,10 @@ namespace Content.Server.PDA
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             ulong balance = 0;
-            if (actor_uid != null){
-                if (TryComp<BankAccountComponent>(actor_uid, out var bank)) {
+            if (actor_uid != null)
+                if (TryComp<BankAccountComponent>(actor_uid, out var bank))
                     balance = (ulong)bank.Balance;
-                }
-            }
+
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
