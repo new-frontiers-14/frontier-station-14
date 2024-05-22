@@ -1,7 +1,5 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
 using Content.Server.EUI;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Station.Components;
@@ -12,7 +10,6 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
 using Content.Shared.GameTicking;
-using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Configuration;
@@ -38,7 +35,7 @@ public sealed class CrewManifestSystem : EntitySystem
     /// </summary>
     private readonly Dictionary<EntityUid, CrewManifestEntries> _cachedEntries = new();
 
-    private CrewManifestEntries? _entries = new();
+    private CrewManifestEntries? _entries;
 
     private readonly Dictionary<EntityUid, Dictionary<ICommonSession, CrewManifestEui>> _openEuis = new();
 

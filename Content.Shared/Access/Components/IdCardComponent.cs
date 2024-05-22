@@ -1,6 +1,5 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
-using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
