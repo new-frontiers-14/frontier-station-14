@@ -350,12 +350,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gunUid, ref shotEv);
 
-        // Removed physical recoil in space
-        //if (userImpulse && TryComp<PhysicsComponent>(user, out var userPhysics))
-        //{
-        //    if (_gravity.IsWeightless(user, userPhysics))
-        //        CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
-        //}
+        if (userImpulse && TryComp<PhysicsComponent>(user, out var userPhysics))
+        {
+            if (_gravity.IsWeightless(user, userPhysics))
+                CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
+        }
 
         Dirty(gunUid, gun);
     }
@@ -484,7 +483,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var toMap = toCoordinates.ToMapPos(EntityManager, TransformSystem);
         var shotDirection = (toMap - fromMap).Normalized();
 
-        const float impulseStrength = 5.0f;
+        const float impulseStrength = 25.0f;
         var impulseVector =  shotDirection * impulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics);
     }
