@@ -45,8 +45,6 @@ namespace Content.Shared.Maps
         [DataField]
         public PrototypeFlags<ToolQualityPrototype> DeconstructTools { get; set; } = new();
 
-        public bool CanCrowbar => DeconstructTools.Contains(PryingToolQuality);
-
         // Delta V
         [DataField("canShovel")] public bool CanShovel { get; private set; }
         //Delta V
