@@ -10,6 +10,7 @@ using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.Events;
 using Robust.Server.Player;
 using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Database;
 
 namespace Content.Server.Bank;
 
@@ -103,6 +104,8 @@ public sealed partial class BankSystem : EntitySystem
             return false;
         }
 
+        _adminLogger.Add(LogType.Balance, LogImpact.Medium, $"Balance change from {ToPrettyString(mobUid)}, old balance: {bank.Balance}, withdrew: {amount}");
+
         bank.Balance -= amount;
         _log.Info($"{mobUid} withdrew {amount}");
         if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
@@ -132,6 +135,8 @@ public sealed partial class BankSystem : EntitySystem
             _log.Info($"{mobUid} has no bank account");
             return false;
         }
+
+        _adminLogger.Add(LogType.Balance, LogImpact.Medium, $"Balance change from {ToPrettyString(mobUid)}, old balance: {bank.Balance}, deposited: {amount}");
 
         bank.Balance += amount;
         _log.Info($"{mobUid} deposited {amount}");

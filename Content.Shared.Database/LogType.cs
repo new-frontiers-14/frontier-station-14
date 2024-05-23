@@ -102,5 +102,6 @@ public enum LogType
     ATMUsage = 200,
     ShipYardUsage = 201,
 
-    UpdateCharacter = 300
+    UpdateCharacter = 300,
+    Balance = 301
 }

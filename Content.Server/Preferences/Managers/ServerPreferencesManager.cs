@@ -7,6 +7,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Database;
 using Content.Server.Humanoid;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -114,7 +115,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     if (humanoid.BankBalance != storedHumanoid.BankBalance)
                     {
-                        _log.Add(Shared.Database.LogType.UpdateCharacter, Shared.Database.LogImpact.High,
+                        _log.Add(LogType.UpdateCharacter, LogImpact.High,
                             $"Character update with wrong balance from {message.MsgChannel.UserName}, current balance: {storedHumanoid.BankBalance}, tried to set: {humanoid.BankBalance}");
 
                         return;
@@ -122,13 +123,13 @@ namespace Content.Server.Preferences.Managers
                 }
                 else if (humanoid.BankBalance != HumanoidCharacterProfile.DefaultBalance)
                 {
-                    _log.Add(Shared.Database.LogType.UpdateCharacter, Shared.Database.LogImpact.High,
+                    _log.Add(LogType.UpdateCharacter, LogImpact.High,
                         $"Character creation with wrong balance from {message.MsgChannel.UserName}, default balance: {HumanoidCharacterProfile.DefaultBalance}, tried to set: {humanoid.BankBalance}");
 
                     return;
                 }
 
-            _log.Add(Shared.Database.LogType.UpdateCharacter, Shared.Database.LogImpact.Low, $"Successful character update from {message.MsgChannel.UserName}");
+            _log.Add(LogType.UpdateCharacter, LogImpact.Low, $"Successful character update from {message.MsgChannel.UserName}");
 
             // Corvax-Sponsors-Start: Ensure removing sponsor markings if client somehow bypassed client filtering
             // WARN! It's not removing markings from DB!
