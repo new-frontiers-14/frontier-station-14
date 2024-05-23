@@ -168,8 +168,8 @@ namespace Content.Server.PDA
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             ulong balance = 0;
             if (actor_uid != null)
-                if (TryComp<BankAccountComponent>(actor_uid, out var bank))
-                    balance = (ulong)bank.Balance;
+                if (TryComp<BankAccountComponent>(actor_uid, out var account))
+                    balance = account.Balance;
 
             var state = new PdaUpdateState(
                 programs,
