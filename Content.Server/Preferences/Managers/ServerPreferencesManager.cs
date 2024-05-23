@@ -3,9 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
+using Content.Server.Administration.Logs;
 using Content.Server.Database;
 using Content.Server.Humanoid;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -31,6 +33,7 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IDependencyCollection _dependencies = default!;
         [Dependency] private readonly IPrototypeManager _protos = default!;
+        [Dependency] private readonly IAdminLogManager _log = default!;
         private IServerSponsorsManager? _sponsors; // Corvax-Sponsors
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
@@ -111,10 +114,22 @@ namespace Content.Server.Preferences.Managers
                 if (curPrefs.Characters.TryGetValue(slot, out var storedProfile) && storedProfile is HumanoidCharacterProfile storedHumanoid)
                 {
                     if (humanoid.BankBalance != storedHumanoid.BankBalance)
+                    {
+                        _log.Add(LogType.UpdateCharacter, LogImpact.High,
+                            $"Character update with wrong balance from {message.MsgChannel.UserName}, current balance: {storedHumanoid.BankBalance}, tried to set: {humanoid.BankBalance}");
+
                         return;
+                    }
                 }
                 else if (humanoid.BankBalance != HumanoidCharacterProfile.DefaultBalance)
+                {
+                    _log.Add(LogType.UpdateCharacter, LogImpact.High,
+                        $"Character creation with wrong balance from {message.MsgChannel.UserName}, default balance: {HumanoidCharacterProfile.DefaultBalance}, tried to set: {humanoid.BankBalance}");
+
                     return;
+                }
+
+            _log.Add(LogType.UpdateCharacter, LogImpact.Low, $"Successful character update from {message.MsgChannel.UserName}");
 
             // Corvax-Sponsors-Start: Ensure removing sponsor markings if client somehow bypassed client filtering
             // WARN! It's not removing markings from DB!
