@@ -1,7 +1,8 @@
 using System.Runtime.InteropServices;
 using Content.Shared.Corvax.Respawn;
-using Content.Shared.Mind;
+using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
+using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -9,7 +10,7 @@ namespace Content.Server.Corvax.Respawn;
 
 public sealed class RespawnSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<NetUserId, TimeSpan> _respawnResetTimes = [];
@@ -17,6 +18,7 @@ public sealed class RespawnSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
 
     private void OnMobStateChanged(MobStateChangedEvent e)
@@ -27,16 +29,36 @@ public sealed class RespawnSystem : EntitySystem
         if (!HasComp<RespawnResetComponent>(e.Target))
             return;
 
-        if (!_mind.TryGetMind(e.Target, out _, out var mind) || mind.UserId is null)
+        if (!_player.TryGetSessionByEntity(e.Target, out var session))
             return;
 
-        ref var respawnTime = ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnResetTimes, mind.UserId.Value, out _);
+        ResetRespawnTime(session.UserId);
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent e)
+    {
+        foreach (var player in _respawnResetTimes.Keys)
+            SendRespawnResetTime(player, null);
+
+        _respawnResetTimes.Clear();
+    }
+
+    public void ResetRespawnTime(NetUserId player)
+    {
+        ref var respawnTime = ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnResetTimes, player, out _);
 
         respawnTime = _timing.CurTime;
+
+        SendRespawnResetTime(player, _timing.CurTime);
+    }
+
+    private void SendRespawnResetTime(NetUserId player, TimeSpan? time)
+    {
+        RaiseNetworkEvent(new RespawnResetEvent(time), _player.GetSessionById(player));
     }
 
     public TimeSpan? GetRespawnResetTime(NetUserId user)
     {
-        return _respawnResetTimes.GetValueOrDefault(user);
+        return _respawnResetTimes.TryGetValue(user, out var time) ? time : null;
     }
 }

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server.Corvax.Respawn;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
@@ -21,6 +22,7 @@ namespace Content.Server.GameTicking
     public sealed partial class GameTicker
     {
         [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+        [Dependency] private readonly RespawnSystem _respawn = default!;
 
         public const float PresetFailedCooldownIncrease = 30f;
 
@@ -303,6 +305,10 @@ namespace Content.Server.GameTicking
                 _mind.Visit(mindId, ghost, mind);
             else
                 _mind.TransferTo(mindId, ghost, mind: mind);
+
+            if (mind.UserId is not null)
+                _respawn.ResetRespawnTime(mind.UserId.Value);
+
             return true;
         }
 
