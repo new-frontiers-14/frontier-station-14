@@ -10,7 +10,7 @@ public abstract partial class SharedPuddleSystem
 
     private const string FluorosulfuricAcid = "FluorosulfuricAcid"; // Frontier
     private const string Vomit = "Vomit"; // Frontier
-    private const string InsectBlood = "InsectBloodt"; // Frontier
+    private const string InsectBlood = "InsectBlood"; // Frontier
     private const string AmmoniaBlood = "AmmoniaBlood"; // Frontier
     private const string ZombieBlood = "ZombieBlood"; // Frontier
     private const string Blood = "Blood"; // Frontier
