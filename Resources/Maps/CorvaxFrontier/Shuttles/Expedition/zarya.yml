@@ -26,10 +26,10 @@ entities:
       pos: -0.53125,-0.5
       parent: invalid
     - type: AutoDelete
-      delayToCheck: 60
-      delayToDelete: 2400
       distanceToCheck: 40
-      isHumanoidNear: true
+      delayToDelete: 2400
+      delayToCheck: 60
+      isHumanoidNear: True
     - type: MapGrid
       chunks:
         0,0:
@@ -1213,6 +1213,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-11.5
       parent: 2
+    - type: DeviceLinkSink
+      links:
+      - 1134
   - uid: 25
     components:
     - type: Transform
@@ -1273,20 +1276,22 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,-8.5
       parent: 2
-- proto: AirlockMercenary
-  entities:
-  - uid: 34
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,3.5
-      parent: 2
-- proto: AirlockMercenaryGlass
+- proto: AirlockMercenaryGlassLocked
   entities:
   - uid: 35
     components:
     - type: Transform
       pos: -10.5,-5.5
+      parent: 2
+    - type: DeviceLinkSink
+      links:
+      - 1129
+- proto: AirlockMercenaryLocked
+  entities:
+  - uid: 34
+    components:
+    - type: Transform
+      pos: 8.5,3.5
       parent: 2
 - proto: AirlockScienceGlass
   entities:
@@ -2309,6 +2314,7 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1298
+      - 1134
   - uid: 201
     components:
     - type: Transform
@@ -2318,6 +2324,7 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1298
+      - 1134
   - uid: 202
     components:
     - type: Transform
@@ -2327,6 +2334,7 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1298
+      - 1134
   - uid: 203
     components:
     - type: Transform
@@ -7510,6 +7518,18 @@ entities:
     - type: Transform
       pos: -10.5,-13.5
       parent: 2
+- proto: LockerSalvageSpecialistFilledHardsuit
+  entities:
+  - uid: 1638
+    components:
+    - type: Transform
+      pos: 2.5,-12.5
+      parent: 2
+  - uid: 1639
+    components:
+    - type: Transform
+      pos: -1.5,-12.5
+      parent: 2
 - proto: MachineAPE
   entities:
   - uid: 990
@@ -8452,6 +8472,9 @@ entities:
     - type: Transform
       pos: -9.5,-5.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        35: []
   - uid: 1130
     components:
     - type: MetaData
@@ -8507,6 +8530,15 @@ entities:
     - type: Transform
       pos: 0.5,-8.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        200:
+        - Pressed: Close
+        201:
+        - Pressed: Close
+        202:
+        - Pressed: Close
+        24: []
   - uid: 1672
     components:
     - type: Transform
@@ -9189,18 +9221,6 @@ entities:
     components:
     - type: Transform
       pos: -10.5,-16.5
-      parent: 2
-- proto: SuitStorageSalv
-  entities:
-  - uid: 1638
-    components:
-    - type: Transform
-      pos: -1.5,-12.5
-      parent: 2
-  - uid: 1639
-    components:
-    - type: Transform
-      pos: 2.5,-12.5
       parent: 2
 - proto: Table
   entities:
