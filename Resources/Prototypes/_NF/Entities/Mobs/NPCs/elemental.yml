@@ -1,3 +1,141 @@
+# Upstream
+- type: entity
+  parent: MobOreCrab
+  id: MobBananiumCrab
+  description: An ore crab made from bananium.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: bananium_crab
+  - type: RadiationSource
+    intensity: 2
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobCoalCrab
+  description: An ore crab made from coal.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: coal_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobGoldCrab
+  description: An ore crab made from gold.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: gold_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50 # Gold soft u know
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobPlasmaCrab
+  description: An ore crab made from plasma.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: plasma_crab
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#E592E7FF" # Same as plasma ore
+
+- type: entity
+  parent: MobOreCrab
+  id: MobSaltCrab
+  description: An ore crab made from salt. # delicious, don't try to lick this
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: salt_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Frontier
 - type: entity
   abstract: true
   id: MobOreCrabNF
@@ -32,31 +170,6 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           BananiumOre1:
-            min: 1
-            max: 3
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
-- type: entity
-  parent: MobOreCrabNF
-  id: MobCoalCrabNF
-  description: An ore crab made from coal.
-  components:
-  - type: Sprite
-    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
-    state: coal_crab
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Coal1:
             min: 1
             max: 3
       - !type:DoActsBehavior
