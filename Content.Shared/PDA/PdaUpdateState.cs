@@ -17,6 +17,7 @@ namespace Content.Shared.PDA
         public bool HasUplink;
         public bool CanPlayMusic;
         public string? Address;
+        public int Balance;
 
         public PdaUpdateState(
             List<NetEntity> programs,
@@ -26,6 +27,7 @@ namespace Content.Shared.PDA
             bool hasPai,
             bool hasBook,
             PdaIdInfoText pdaOwnerInfo,
+            int balance,
             string? stationName,
             bool hasUplink = false,
             bool canPlayMusic = false,
@@ -41,6 +43,7 @@ namespace Content.Shared.PDA
             CanPlayMusic = canPlayMusic;
             StationName = stationName;
             Address = address;
+            Balance = balance;
         }
     }
 
