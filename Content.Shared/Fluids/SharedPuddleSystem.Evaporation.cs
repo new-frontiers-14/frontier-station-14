@@ -17,9 +17,9 @@ public abstract partial class SharedPuddleSystem
     private const string Slime = "Slime"; // Frontier
     private const string CopperBlood = "CopperBlood"; // Frontier
     private const string Sap = "Sap"; // Frontier
-    private const string SpaceLube = "SpaceLube"; // Frontier
+    private const string JuiceTomato = "JuiceTomato"; // Frontier
 
-    public static readonly string[] EvaporationReagents = [Water, Vomit, InsectBlood, AmmoniaBlood, ZombieBlood, Blood, Slime, CopperBlood, FluorosulfuricAcid, Sap, SpaceLube]; // Frontier
+    public static readonly string[] EvaporationReagents = [Water, Vomit, InsectBlood, AmmoniaBlood, ZombieBlood, Blood, Slime, CopperBlood, FluorosulfuricAcid, Sap, JuiceTomato]; // Frontier
 
     public bool CanFullyEvaporate(Solution solution)
     {
