@@ -29,7 +29,7 @@
     drawdepth: Mobs
   - type: NpcFactionMember
     factions:
-    - SimpleHostile # Because AI stupid ass hell right now
+    - SimpleNeutral
   - type: MovedByPressure
   - type: Physics
     bodyType: KinematicController # Same for all inheritors
@@ -74,7 +74,6 @@
   - type: ZombieImmune
   - type: ClothingRequiredStepTriggerImmune
     slots: All
-  - type: MovementIgnoreGravity # Or they just can't do something
 
 - type: entity
   abstract: true
@@ -96,8 +95,8 @@
       types:
         Blunt: 6
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 3.5
+    baseWalkSpeed : 2
+    baseSprintSpeed : 2.5
   - type: NpcFactionMember
     factions:
       - SimpleHostile
@@ -115,7 +114,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 40
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -164,16 +163,12 @@
   id: MobUraniumCrab
   description: An ore crab made from uranium.
   components:
-#  - type: FactionException
-#  - type: NPCRetaliation
-#    attackMemoryLength: 10 # Who asked for this? Why?
-#  - type: NpcFactionMember
-#    factions:
-#      - SimpleNeutral
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 5
+  - type: FactionException
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: NpcFactionMember
+    factions:
+      - SimpleNeutral
   - type: RadiationSource
     intensity: 2
     slope: 0.3
@@ -201,6 +196,7 @@
 - type: entity
   parent: MobOreCrab
   id: MobSilverCrab
+  name: ore crab
   description: An ore crab made from silver.
   components:
   - type: Sprite
@@ -213,7 +209,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 80
+        damage: 70
       behaviors:
       - !type:PlaySoundBehavior
         sound:
