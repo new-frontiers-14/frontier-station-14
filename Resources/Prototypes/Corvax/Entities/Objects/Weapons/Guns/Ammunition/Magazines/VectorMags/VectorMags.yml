@@ -1,0 +1,160 @@
+- type: Tag
+  id: MagazineVector22
+    
+- type: entity     #Vector
+  id: MagazineVector22
+  name: Магазин Вектора .22LR
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineVector22
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector22
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector22
+    capacity: 25
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector22mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineVector22Empty
+  name: Магазин Вектора .22LR
+  suffix: Пустой
+  parent: MagazineVector22
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: Tag
+  id: MagazineVector45
+    
+- type: entity     #Vector
+  id: MagazineVector45
+  name: "Магазин Вектора .45ACP"
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineVector45
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+    capacity: 13
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector45mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineVector45Empty
+  name: Магазин Вектора .45ACP
+  suffix: Пустой
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineVector45Incendiary
+  name: Магазин Вектора .45ACP (Зажигательные)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Incendiary
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineVector45Practice
+  name: Магазин Вектора .45ACP (Учебные)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Practice
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineVector45Uranium
+  name: Магазин Вектора .45ACP (Урановые)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Uranium
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

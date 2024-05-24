@@ -91,6 +91,7 @@
       - Wrench
       - Crowbar
       - Multitool
+      - Translator # Corvax-Frontier
       - NetworkConfigurator
       - SprayPainter
       - FlashlightLantern
@@ -267,11 +268,14 @@
   - type: Lathe
     idleState: icon
     runningState: building
-    staticRecipes:
-    - LargeBeaker
-    - Dropper
-    - ClothingEyesGlassesChemical
+#    staticRecipes: Corvax-Frontier
+#    - LargeBeaker
+#    - Dropper
+#    - ClothingEyesGlassesChemical
     dynamicRecipes:
+      - LargeBeaker
+      - Dropper
+      - ClothingEyesGlassesChemical
       - PowerDrill
       - MiningDrill
       - AnomalyScanner
@@ -371,6 +375,7 @@
       - ClothingOuterHardsuitMaximPrototype # Frontier
       - ClothingHeadHelmetAncient # Frontier
       - ClothingOuterHardsuitAncientEVA # Frontier
+      - JetpackMining # Corvax-Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -388,8 +393,129 @@
   - type: Sprite
     sprite: Structures/Machines/protolathe_hypercon.rsi
   - type: Lathe
+    idleState: icon
+    runningState: building
     materialUseMultiplier: 0.5
     timeMultiplier: 1.5
+#    staticRecipes: Corvax-Frontier
+#    - LargeBeaker
+#    - Dropper
+#    - ClothingEyesGlassesChemical
+    dynamicRecipes:
+      - LargeBeaker
+      - Dropper
+      - ClothingEyesGlassesChemical
+      - PowerDrill
+      - MiningDrill
+      - AnomalyScanner
+      - AnomalyLocator
+      - AnomalyLocatorWide
+      - RCD
+      - RCDAmmo
+      - ShipyardRCD # Frontier
+      - ShipyardRCDAmmo # Frontier
+      - Scalpel
+      - Retractor
+      - Cautery
+      - Drill
+      - WeaponParticleDecelerator
+      - HoloprojectorField
+      - Saw
+      - Hemostat
+      - CryostasisBeaker
+      - SyringeCryostasis
+      - Syringe
+      - Implanter
+      - PillCanister
+      - ChemistryEmptyBottle01
+      - AdvancedCapacitorStockPart
+      - AdvancedMatterBinStockPart
+      - NanoManipulatorStockPart
+      - SuperCapacitorStockPart
+      - SuperMatterBinStockPart
+      - PicoManipulatorStockPart
+      - AdvMopItem
+      - WeaponSprayNozzle
+      - ClothingBackpackWaterTank
+      - MegaSprayBottle
+      - TimerTrigger
+      - ChemicalPayload
+      - FlashPayload
+      - Signaller
+      - SignallerAdvanced
+      - SignalTrigger
+      - VoiceTrigger
+      - Igniter
+      - HandHeldMassScanner
+      - PowerCellMicroreactor
+      - PowerCellMedium
+      - PowerCellHigh
+      - PowerCellMicroreactor
+      - WeaponPistolCHIMP
+      - WeaponGauntletGorilla
+      - SynthesizerInstrument
+      - RPED
+      - ClothingShoesBootsMagSci
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingShoesBootsSpeed
+      - NodeScanner
+      - HolofanProjector
+      - BluespaceBeaker
+      - SyringeBluespace
+      - WeaponCrusher
+      - WeaponCrusherDagger
+      - WeaponCrusherGlaive
+      - WeaponForceGun
+      - WeaponLaserSvalinn
+      - WeaponProtoKineticAccelerator
+      - WeaponTetherGun
+      - WeaponGrapplingGun
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - WelderExperimental
+      - JawsOfLife
+      - FauxTileAstroGrass
+      - FauxTileMowedAstroGrass
+      - FauxTileJungleAstroGrass
+      - FauxTileAstroIce
+      - FauxTileAstroSnow
+      - OreBagOfHolding
+      - DeviceQuantumSpinInverter
+      - UtilityBeltChiefEngineer
+      - JetpackVoid
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitAtmos # Frontier
+      - ClothingOuterHardsuitEngineering # Frontier
+      - ClothingOuterHardsuitSpatio # Frontier
+      - ClothingOuterHardsuitSalvage # Frontier
+      - ClothingOuterHardsuitClown # Frontier
+      - ClothingOuterHardsuitMime # Frontier
+      - ClothingOuterHardsuitCap # Frontier
+      - ClothingOuterHardsuitEngineeringWhite # Frontier
+      - ClothingOuterHardsuitMedical # Frontier
+      - ClothingOuterHardsuitRd # Frontier
+      - ClothingOuterHardsuitLuxury # Frontier
+      - ClothingOuterHardsuitMercenary # Frontier
+      - ClothingOuterHardsuitScaf # Frontier
+      - ClothingOuterHardsuitPilot # Frontier
+      - ClothingOuterHardsuitMaximPrototype # Frontier
+      - ClothingHeadHelmetAncient # Frontier
+      - ClothingOuterHardsuitAncientEVA # Frontier
+      - JetpackMining # Corvax-Frontier
+      - ClothingShoesBootsJetBoots # Corvax-Frontier
+      - WeaponMagmiteCrusher # Corvax-Frontier
+      - WeaponMagmiteCrusherGlaive # Corvax-Frontier
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+      - ExplosivePayload
+      - WeaponLaserCarbine
+      - WeaponAdvancedLaser
+      - WeaponLaserCannon
+      - WeaponXrayCannon
+      - ClothingOuterHardsuitPirateEVA # Frontier
   - type: LatheHeatProducing
   - type: Machine
     board: ProtolatheHyperConvectionMachineCircuitboard
@@ -732,6 +858,14 @@
     idleState: icon
     runningState: icon
     staticRecipes:
+      #CorvaxFrontier Start
+      - MagazineBoxVector45
+      - MagazineBoxVector22
+      - MagazineVector45
+      - MagazineVector45Empty
+      - MagazineVector22
+      - MagazineVector22Empty
+      #CorvaxFrontier End
       - BoxLethalshot
       - BoxShotgunFlare
       - BoxShotgunPractice
@@ -779,6 +913,14 @@
       - WeaponLaserCarbinePractice
       - Zipties
     dynamicRecipes:
+      #CorvaxFrontier Start
+      - MagazineBoxVector45Practice
+      - MagazineBoxVector45Incendiary
+      - MagazineBoxVector45Uranium
+      - MagazineVector45Practice
+      - MagazineVector45Incendiary
+      - MagazineVector45Uranium
+      #CorvaxFrontier End
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
@@ -924,9 +1066,9 @@
       - ClothingMaskSterile
       - DiseaseSwab
       - Beaker
-      - LargeBeaker
-      - Dropper
-      - Jug
+#      - LargeBeaker
+#      - Dropper
+#      - Jug
       - Syringe
       - Implanter
       - PillCanister
@@ -950,7 +1092,7 @@
       - Drill
       - Saw
       - Hemostat
-      - ClothingEyesGlassesChemical
+#      - ClothingEyesGlassesChemical
       # Frontier Start
       - ClothingOuterSuitEmergency
       - ClothingOuterHardsuitVoidParamed
@@ -960,8 +1102,12 @@
       - CryostasisBeaker
       - BluespaceBeaker
       - SyringeBluespace
+      - LargeBeaker
+      - Dropper
       - Jug
+      - ClothingEyesGlassesChemical
       - SyringeCryostasis
+      - HandheldCrewMonitor # Corvax-Frontier
       # Frontier Start
       - ClothingOuterHardsuitMedical
       # Frontier End
@@ -1247,6 +1393,7 @@
       - IngotGold30
       - IngotSilver30
       - MaterialBananium10
+      - SheetMagmite30 # Corvax-Frontier
 
 - type: entity
   parent: BaseLathe

@@ -1,0 +1,89 @@
+- type: entity     #FrontierCorvax
+  name: Вектор .22
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunVector22
+  description: Вектора 
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
+  - type: Gun
+    fireRate: 18
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/Vector22.ogg
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Магазин Вектора .22
+        startingItem: MagazineVector22
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineVector22
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeVector22
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeVector22
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity     #Vector
+  name: Вектор .45 ACP
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunVector45
+  description: Гражданская версия уже легендарного и забытого пистолета-пулемёта. Использует патроны калибра .45 ACP. Автоматический огонь в комплект не входит.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi
+  - type: Gun
+    fireRate: 3.8
+    selectedMode: SemiAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/Vector45.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVector45
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineVector45
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeVector45
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeVector45
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

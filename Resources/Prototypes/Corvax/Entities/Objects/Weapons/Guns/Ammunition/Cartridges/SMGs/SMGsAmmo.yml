@@ -1,0 +1,90 @@
+- type: Tag
+  id: CartridgeVector22
+
+- type: entity     #Vector
+  id: CartridgeVector22
+  name: Патрон (.22 LR)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector22
+  - type: CartridgeAmmo
+    proto: BulletVector22
+
+- type: Tag
+  id: CartridgeVector45
+
+- type: entity     #Vector
+  id: CartridgeVector45
+  name: Патрон .45ACP
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector45
+  - type: CartridgeAmmo
+    proto: BulletVector45
+
+- type: Tag
+  id: CartridgeVector45Incendiary
+
+- type: entity
+  id: CartridgeVector45Incendiary
+  name: Патрон .45ACP (Зажигательный)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector45Incendiary
+  - type: CartridgeAmmo
+    proto: BulletVector45Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: Tag
+  id: CartridgeVector45Practice
+
+- type: entity
+  id: CartridgeVector45Practice
+  name: Патрон .45ACP (Учебный)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector45Practice
+  - type: CartridgeAmmo
+    proto: BulletVector45Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: Tag
+  id: CartridgeVector45Uranium
+
+- type: entity
+  id: CartridgeVector45Uranium
+  name: Патрон .45ACP (Урановый)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector45Uranium
+  - type: CartridgeAmmo
+    proto: BulletVector45Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
