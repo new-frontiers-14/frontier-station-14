@@ -305,10 +305,6 @@ namespace Content.Server.GameTicking
                 _mind.Visit(mindId, ghost, mind);
             else
                 _mind.TransferTo(mindId, ghost, mind: mind);
-
-            if (mind.UserId is not null)
-                _respawn.ResetRespawnTime(mind.UserId.Value);
-
             return true;
         }
 

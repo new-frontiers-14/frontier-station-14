@@ -1,7 +1,9 @@
 using System.Runtime.InteropServices;
 using Content.Shared.Corvax.Respawn;
 using Content.Shared.GameTicking;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -18,6 +20,7 @@ public sealed class RespawnSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<MindContainerComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
 
@@ -26,13 +29,21 @@ public sealed class RespawnSystem : EntitySystem
         if (e.NewMobState != MobState.Dead)
             return;
 
-        if (!HasComp<RespawnResetComponent>(e.Target))
-            return;
-
         if (!_player.TryGetSessionByEntity(e.Target, out var session))
             return;
 
-        ResetRespawnTime(session.UserId);
+        ResetRespawnTime(e.Target, session.UserId);
+    }
+
+    private void OnMindRemoved(EntityUid entity, MindContainerComponent component, MindRemovedMessage e)
+    {
+        if (e.Mind.Comp.UserId is null)
+            return;
+
+        if (TryComp<MobStateComponent>(entity, out var state) && state.CurrentState == MobState.Dead)
+            return;
+
+        ResetRespawnTime(entity, e.Mind.Comp.UserId.Value);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent e)
@@ -43,8 +54,11 @@ public sealed class RespawnSystem : EntitySystem
         _respawnResetTimes.Clear();
     }
 
-    public void ResetRespawnTime(NetUserId player)
+    private void ResetRespawnTime(EntityUid entity, NetUserId player)
     {
+        if (!HasComp<RespawnResetComponent>(entity))
+            return;
+
         ref var respawnTime = ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnResetTimes, player, out _);
 
         respawnTime = _timing.CurTime;
