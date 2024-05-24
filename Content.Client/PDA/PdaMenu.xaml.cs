@@ -19,6 +19,7 @@ namespace Content.Client.PDA
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         private readonly ClientGameTicker _gameTicker;
+        private TimeSpan shuttleEvacTimeSpan;
 
         public const int HomeView = 0;
         public const int ProgramListView = 1;
@@ -33,7 +34,7 @@ namespace Content.Client.PDA
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
         private string _balance = Loc.GetString("comp-pda-ui-unknown");
-
+        private string _timeLeftShuttle = Loc.GetString("comp-pda-ui-unknown");
 
         private int _currentView;
 
@@ -171,7 +172,15 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                    ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+
+            var shuttleEvacTime = (state.EvacShuttleTime ?? TimeSpan.Zero) - _gameTiming.CurTime;
+            shuttleEvacTimeSpan = (state.EvacShuttleTime ?? TimeSpan.Zero);
+            if (state.EvacShuttleTime != null)
+                _timeLeftShuttle = Loc.GetString("comp-pda-ui-station-time",
+                    ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
+
+            ShuttleLeftTimeLabel.SetMarkup(_timeLeftShuttle);
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
@@ -309,7 +318,7 @@ namespace Content.Client.PDA
 
         /// <summary>
         /// Changes the current view to the given view number
-        /// </summary>
+        /// 12</summary>
         public void ChangeView(int view)
         {
             if (ViewContainer.ChildCount <= view)
@@ -346,6 +355,12 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+
+            var shuttleEvacTime = shuttleEvacTimeSpan - _gameTiming.CurTime;
+            _timeLeftShuttle = Loc.GetString("comp-pda-ui-station-time",
+                   ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
+
+            ShuttleLeftTimeLabel.SetMarkup(_timeLeftShuttle);
         }
     }
 }

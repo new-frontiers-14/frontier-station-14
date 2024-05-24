@@ -7,6 +7,9 @@ using Content.Server.Instruments;
 using Content.Server.Light.EntitySystems;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
+using Content.Server.RoundEnd;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Components;
@@ -21,20 +24,27 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Shared.CCVar;
+using Robust.Shared.Timing;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.PDA
 {
     public sealed class PdaSystem : SharedPdaSystem
     {
+        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
         [Dependency] private readonly InstrumentSystem _instrument = default!;
         [Dependency] private readonly RingerSystem _ringer = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly StoreSystem _store = default!;
+        [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttleSystem = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly UserInterfaceSystem _ui = default!;
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
         public override void Initialize()
         {
@@ -168,7 +178,16 @@ namespace Content.Server.PDA
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             var balance = 0;
             if (actor_uid != null && TryComp<BankAccountComponent>(actor_uid, out var account))
-                    balance = account.Balance;
+                balance = account.Balance;
+
+            TimeSpan shuttleTime;
+            var station = _station.GetOwningStation(uid);
+            if (!TryComp<StationEmergencyShuttleComponent>(station, out var stationEmergencyShuttleComponent) && _roundEndSystem.ExpectedCountdownEnd != null)
+                shuttleTime = _roundEndSystem.ExpectedCountdownEnd ?? TimeSpan.Zero + _gameTiming.CurTime;
+
+            else
+                shuttleTime = new TimeSpan(0, 0, (int)(_cfg.GetCVar(CCVars.EmergencyShuttleDockTime) * 60));
+
 
             var state = new PdaUpdateState(
                 programs,
@@ -186,6 +205,7 @@ namespace Content.Server.PDA
                     StationAlertColor = pda.StationAlertColor
                 },
                 balance,
+                shuttleTime,
                 pda.StationName,
                 showUplink,
                 hasInstrument,

@@ -62,11 +62,11 @@ namespace Content.Client.Options.UI.Tabs
 
         private void OnApplyButtonPressed(BaseButton.ButtonEventArgs args)
         {
-            _cfg.SetCVar(CVars.NetBufferSize, (int) NetInterpRatioSlider.Value - _stateMan.MinBufferSize);
-            _cfg.SetCVar(CVars.NetPredictTickBias, (int) NetPredictTickBiasSlider.Value);
-            _cfg.SetCVar(CVars.NetPVSEntityBudget, (int) NetPvsSpawnSlider.Value);
-            _cfg.SetCVar(CVars.NetPVSEntityEnterBudget, (int) NetPvsEntrySlider.Value);
-            _cfg.SetCVar(CVars.NetPVSEntityExitBudget, (int) NetPvsLeaveSlider.Value);
+            _cfg.SetCVar(CVars.NetBufferSize, (int)NetInterpRatioSlider.Value - _stateMan.MinBufferSize);
+            _cfg.SetCVar(CVars.NetPredictTickBias, (int)NetPredictTickBiasSlider.Value);
+            _cfg.SetCVar(CVars.NetPVSEntityBudget, (int)NetPvsSpawnSlider.Value);
+            _cfg.SetCVar(CVars.NetPVSEntityEnterBudget, (int)NetPvsEntrySlider.Value);
+            _cfg.SetCVar(CVars.NetPVSEntityExitBudget, (int)NetPvsLeaveSlider.Value);
             _cfg.SetCVar(CVars.NetPredict, NetPredictCheckbox.Pressed);
 
             _cfg.SaveToFile();
