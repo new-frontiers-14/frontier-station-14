@@ -177,7 +177,7 @@ namespace Content.Client.PDA
             var shuttleEvacTime = (state.EvacShuttleTime ?? TimeSpan.Zero) - _gameTiming.CurTime;
             shuttleEvacTimeSpan = (state.EvacShuttleTime ?? TimeSpan.Zero);
             if (state.EvacShuttleTime != null)
-                _timeLeftShuttle = Loc.GetString("comp-pda-ui-station-time",
+                _timeLeftShuttle = Loc.GetString("comp-pda-ui-left-time",
                     ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
 
             ShuttleLeftTimeLabel.SetMarkup(_timeLeftShuttle);
@@ -357,7 +357,7 @@ namespace Content.Client.PDA
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
 
             var shuttleEvacTime = shuttleEvacTimeSpan - _gameTiming.CurTime;
-            _timeLeftShuttle = Loc.GetString("comp-pda-ui-station-time",
+            _timeLeftShuttle = Loc.GetString("comp-pda-ui-left-time",
                    ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
 
             ShuttleLeftTimeLabel.SetMarkup(_timeLeftShuttle);
