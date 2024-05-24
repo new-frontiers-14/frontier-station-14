@@ -17,7 +17,7 @@ using Content.Server.Corvax.Respawn;
 namespace Content.Client.UserInterface.Systems.Ghost;
 
 // TODO hud refactor BEFORE MERGE fix ghost gui being too far up
-public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
+public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>, IOnSystemChanged<RespawnSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
@@ -66,6 +66,21 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.PlayerDetached -= OnPlayerDetached;
         system.GhostWarpsResponse -= OnWarpsResponse;
         system.GhostRoleCountUpdated -= OnRoleCountUpdated;
+    }
+
+    public void OnSystemLoaded(RespawnSystem system)
+    {
+        system.RespawnReseted += OnRespawnReseted;
+    }
+
+    public void OnSystemUnloaded(RespawnSystem system)
+    {
+        system.RespawnReseted -= OnRespawnReseted;
+    }
+
+    private void OnRespawnReseted()
+    {
+        UpdateGui();
     }
 
     public void UpdateGui()
