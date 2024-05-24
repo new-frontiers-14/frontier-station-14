@@ -306,7 +306,7 @@
       radius: 23
       floorPlacements: 250
 
-# Andesite 
+# Andesite
 
 - type: entity
   id: BaseAsteroidDebrisNFAndesite
@@ -522,6 +522,9 @@
           - id: WallBasaltCobblebrick
             prob: 0.1
             orGroup: rock
+    - type: IFF
+      flags: HideLabel
+      color: "#b5b5b5"
 
 - type: entity
   id: AsteroidDebrisNFBasaltMedium
@@ -829,7 +832,7 @@
             orGroup: rock
     - type: IFF
       flags: HideLabel
-      color: "#7d75bf"
+      color: "#8178cc"
 
 - type: entity
   id: AsteroidDebrisNFChromiteMedium
@@ -925,7 +928,7 @@
 
 - type: entity
   id: BaseRockAsteroidDebrisNF
-  parent: BaseDebrisNF
+  parent: BaseAsteroidDebrisNF
   name: Asteroid Rock Debris
   abstract: true
   components:
@@ -981,11 +984,9 @@
           - id: WallNecropolis
             prob: 0.1
             orGroup: rock
-    - type: GCAbleObject
-      queue: SpaceDebris
     - type: IFF
       flags: HideLabel
-      color: "#d67e27"
+      color: "#6b4f34"
 
 - type: entity
   id: AsteroidRockDebrisNFMedium
