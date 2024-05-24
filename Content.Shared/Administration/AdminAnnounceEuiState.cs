@@ -7,6 +7,7 @@ namespace Content.Shared.Administration
     {
         Station,
         Server,
+        Antag, // Frontier
     }
 
     [Serializable, NetSerializable]
