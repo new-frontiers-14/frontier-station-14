@@ -9,10 +9,10 @@
     - type: Transform
       noRot: true
     - type: Sprite
-      sprite: Structures/Storage/canister.rsi
+      sprite: _NF\Structures\Storage\canister.rsi
       noRot: true
       layers:
-        - state: grey
+        - state: air
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -111,9 +111,8 @@
   name: storage canister
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: yellow
+        - state: empty
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -142,7 +141,7 @@
         behaviors:
         - !type:PlaySoundBehavior
           sound:
-            collection: MetalBreak
+            path: /Audio/Effects/metalbreak.ogg
         - !type:SpawnEntitiesBehavior
           spawn:
             StorageCanisterBroken:
@@ -161,9 +160,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain air mixture. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/canister.rsi # Frontier
     layers:
-      - state: grey
+      - state: air
   - type: GasCanister
     gasMixture:
       volume: 1000
@@ -202,9 +200,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain oxygen. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/canister.rsi # Frontier
     layers:
-      - state: blue
+      - state: oxygen
   - type: GasCanister
     gasMixture:
       volume: 1000
@@ -257,9 +254,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain nitrogen. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: red
+        - state: nitrogen
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -314,9 +310,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain carbon dioxide. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: black
+        - state: co2
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -375,9 +370,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain plasma. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: orange
+        - state: plasma
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -421,7 +415,7 @@
   components:
     - type: Sprite
       layers:
-        - state: green
+        - state: tritium
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -465,9 +459,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain water vapor. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: water_vapor
+        - state: watervapour
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -511,7 +504,7 @@
   components:
     - type: Sprite
       layers:
-        - state: greenys
+        - state: ammonia
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -557,9 +550,8 @@
   description: A canister that can contain any type of gas. This one is supposed to contain nitrous oxide. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
       layers:
-        - state: redws
+        - state: nitrousoxide
     - type: GasCanister
       gasMixture:
         volume: 1000
@@ -615,7 +607,7 @@
       - 0 # CO2
       - 0 # Plasma
       - 0 # Tritium
-      - 0 # Water vapor
+      - 0 #  Water vapor
       - 0 # Ammonia
       - 0 # N2O
       - 1871.71051 # Frezon
@@ -681,8 +673,8 @@
       damageModifierSet: Metallic
     - type: InteractionOutline
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi
-      state: grey-1
+      sprite: _NF\Structures\Storage\canister.rsi
+      state: air-1
     - type: Physics
       bodyType: Dynamic
     - type: Fixtures
@@ -705,96 +697,98 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: StorageCanisterBroken
-  noSpawn: true
+  name: broken storage canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: yellow-1
+      state: empty-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: AirCanisterBroken
-  noSpawn: true
+  name: broken air canister
+  noSpawn: false
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/canister.rsi # Frontier
-    state: grey-1
+    state: air-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: OxygenCanisterBroken
-  noSpawn: true
+  name: broken oxygen canister
+  noSpawn: false
   components:
   - type: Sprite
-    sprite: _NF/Structures/Storage/canister.rsi # Frontier
-    state: blue-1
+    state: oxygen-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrogenCanisterBroken
-  noSpawn: true
+  name: broken nitrogen canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: red-1
+      state: nitrogen-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: CarbonDioxideCanisterBroken
-  noSpawn: true
+  name: broken carbon dioxide canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: black-1
+      state: co2-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: PlasmaCanisterBroken
-  noSpawn: true
+  name: broken plasma canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: orange-1
+      state: plasma-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: TritiumCanisterBroken
-  noSpawn: true
+  name: broken tritium canister
+  noSpawn: false
   components:
     - type: Sprite
-      state: green-1
+      state: tritium-1
 
 - type: entity
   parent: GasCanisterBrokenBase
-  id: WaterVaporCanisterBroken
-  name: broken water vapor canister
-  noSpawn: true
+  id: WaterVapourCanisterBroken
+  name: broken water vapour canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: water_vapor-1
+      state: watervapour-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: AmmoniaCanisterBroken
-  noSpawn: true
+  name: broken ammonia canister
+  noSpawn: false
   components:
     - type: Sprite
-      state: greenys-1
+      state: ammonia-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrousOxideCanisterBroken
-  noSpawn: true
+  name: broken nitrous oxide canister
+  noSpawn: false
   components:
     - type: Sprite
-      sprite: _NF/Structures/Storage/canister.rsi # Frontier
-      state: redws-1
+      state: nitrousoxide-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: FrezonCanisterBroken
-  noSpawn: true
+  name: broken frezon canister
+  noSpawn: false
   components:
   - type: Sprite
     state: frezon-1
