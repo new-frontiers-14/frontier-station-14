@@ -1,0 +1,49 @@
+#ncwl
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWL
+  suffix: NCWL, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLGeneral"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWLCommand
+  suffix: NCWL Command, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLCommand"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWLKommissar
+  suffix: Kommissar, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLKommissar"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWLAdministrator
+  suffix: Union Administrator, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLAdministrator"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWLArmory
+  suffix: NCWL Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLArmory"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCWLJail
+  suffix: NCWL Jail, Locked
+  components:
+  - type: AccessReader
+    access: [["NCWLJail"]]

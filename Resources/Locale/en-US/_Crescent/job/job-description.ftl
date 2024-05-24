@@ -6,5 +6,6 @@ job-description-sanitar = Listen to your superiors. Patrol Union airspace. Guard
 job-description-artificer = Listen to your superiors. Tend to the ailing communard infrastructure. Guard the interests of the State.
 job-description-doktor = Listen to your superiors. Tend to the ailing health of your fellow communards. Guard the interests of the State.
 job-description-administrator = Coordinate the Union. Tend to the unwashed citizenry. Guard the interests of the State.
+job-description-kadet = Listen to your superiors. Learn proper procedure. Guard the interests of the State.
 
 #syndicate#

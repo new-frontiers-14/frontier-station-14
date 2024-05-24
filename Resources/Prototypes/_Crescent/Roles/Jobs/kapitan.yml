@@ -3,7 +3,10 @@
   name: job-name-kapitan
   description: job-description-kapitan
   playTimeTracker: JobKapitanNCWL
-  weight: 20
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 16000
+  weight: 25
   startingGear: KapitanGear
   alwaysUseSpawner: true
   icon: "JobIconCommsOfficer"
@@ -15,6 +18,9 @@
   - Maintenance
   - Service
   - External
+  - NCWLGeneral
+  - NCWLJail
+  - NCWLArmory
   - Mercenary # Frontier
   - Captain # Frontier
 

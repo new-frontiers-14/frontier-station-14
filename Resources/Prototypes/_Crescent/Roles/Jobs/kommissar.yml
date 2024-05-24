@@ -12,8 +12,18 @@
   requireAdminNotify: true
   supervisors: job-supervisors-highcomm 
   canBeAntag: false
-  accessGroups:
-  - AllAccess
+  access:
+  - Command
+  - Maintenance
+  - NCWLGeneral
+  - Service
+  - NCWLKommissar
+  - NCWLJail
+  - NCWLArmory
+  - NCWLCommand
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
 
 - type: startingGear
   id: KommissarGear

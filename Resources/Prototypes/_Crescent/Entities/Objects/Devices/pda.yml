@@ -19,7 +19,7 @@
 - type: entity
   parent: BasePDA
   id: SanitarPDA
-  name: Sanitar's PDA
+  name: Efreitor's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -88,6 +88,22 @@
   components:
   - type: Pda
     id: NCWLIDCardKapitan
+    state: pda-militiaman
+  - type: PdaBorderColor
+    borderColor: "#3d251e"
+    accentHColor: "#d4d4d4"
+    accentVColor: "#d4d4d4"
+  - type: Icon
+    state: pda-militiaman
+
+- type: entity
+  parent: BasePDA
+  id: KadetPDA
+  name: Kadet Efreitor's PDA
+  description: Brown for communard.
+  components:
+  - type: Pda
+    id: NCWLIDCardKadet
     state: pda-militiaman
   - type: PdaBorderColor
     borderColor: "#3d251e"
