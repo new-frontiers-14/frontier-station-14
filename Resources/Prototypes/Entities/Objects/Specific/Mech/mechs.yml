@@ -97,6 +97,22 @@
   - type: NpcFactionMember # Frontier
     factions: # Frontier
     - NanoTrasen # Frontier
+  - type: Destructible # Frontier
+    thresholds: # Frontier
+    - trigger: # Frontier
+        !type:DamageTrigger # Frontier
+        damage: 550 # Frontier
+      behaviors: # Frontier
+      - !type:SpawnEntitiesBehavior # Frontier
+        spawn: # Frontier
+          SheetSteel1: # Frontier
+            min: 5 # Frontier
+            max: 15 # Frontier
+      - !type:DoActsBehavior # Frontier
+        acts: [ "Destruction" ] # Frontier
+      - !type:PlaySoundBehavior # Frontier
+        sound: # Frontier
+          collection: MetalBreak # Frontier
 
 - type: entity
   id: MechRipley
