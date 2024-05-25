@@ -1280,8 +1280,8 @@
 - type: entity
   id: ShuttleGunSvalinnMachineGunCircuitboard
   parent: BaseMachineCircuitboard
-  name: LSE-400c "Svalinn machine gun" machine board
-  description: A machine printed circuit board for an LSE-400c "Svalinn machine gun"
+  name: SHI-L 400c plasma bolt repeater machine board
+  description: A machine printed circuit board for an SHI-L 400c plasma bolt repeater.
   components:
   - type: Sprite
     state: security
@@ -1331,13 +1331,13 @@
 - type: entity
   id: ShuttleGunDusterCircuitboard
   parent: BaseMachineCircuitboard
-  name: EXP-2100g "Duster" machine board
-  description: A machine printed circuit board for an EXP-2100g "Duster"
+  name: "Sumitomo" machine board
+  description: A machine printed circuit board for a ship-mounted missile rack.
   components:
   - type: Sprite
     state: security
   - type: MachineBoard
-    prototype: ShuttleGunDuster
+    prototype: ShuttleGunMissileRack
     requirements:
       MatterBin: 6
       Manipulator: 4
