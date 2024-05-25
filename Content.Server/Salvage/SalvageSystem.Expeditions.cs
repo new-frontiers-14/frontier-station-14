@@ -23,6 +23,7 @@ using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 
@@ -166,6 +167,9 @@ public sealed partial class SalvageSystem
         {
             // Update offers
             if (comp.NextOffer > currentTime || comp.Claimed)
+                continue;
+
+            if (HasComp<FTLComponent>(uid))
                 continue;
 
             comp.Cooldown = false;
