@@ -1,0 +1,59 @@
+- type: entity     #Vector
+  id: BulletVector22
+  name: Пуля (.22 авто)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 7
+        Blunt: 3
+
+- type: entity     #Vector
+  id: BulletVector45
+  name: Пуля (.45 ACP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+        Blunt: 5
+
+- type: entity
+  id: BulletVector45Incendiary
+  parent: BaseBulletIncendiary
+  name: Пуля .45ACP (Зажигательная)
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+        Heat: 16
+
+- type: entity
+  id: BulletVector45Practice
+  name: Пуля .45ACP (Учебная)
+  parent: BaseBulletPractice
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  id: BulletVector45Uranium
+  name: Пуля .45ACP (Урановая)
+  parent: BaseBulletUranium
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        Blunt: 3
+        Radiation: 10

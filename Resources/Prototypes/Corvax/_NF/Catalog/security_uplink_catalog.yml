@@ -1,0 +1,31 @@
+- type: listing
+  id: UplinkSecurityVectorMagazines45
+  name:  Магазины для Вектора .45
+  description: Заводские магазины со стандартными патронами для Вектора .45ACP
+  productEntity: BoxMagazineVector45
+  icon: { sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector45mag.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityVector45
+  name:  Вектор .45
+  description: Гражданская версия уже легендарного и забытого пистолета-пулемёта. Использует патроны калибра .45ACP. Автоматический огонь в комплект не входит.
+  productEntity: WeaponSubMachineGunVector45
+  icon: { sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

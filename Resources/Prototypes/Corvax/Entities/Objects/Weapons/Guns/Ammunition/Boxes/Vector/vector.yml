@@ -1,0 +1,125 @@
+- type: entity
+  parent: BaseItem
+  id: MagazineBoxVector45
+  name: Коробка патронов .45ACP
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+    proto: CartridgeVector45
+    capacity: 25
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Boxes/Vector/Vector45.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: MagazineBoxVector45
+  id: MagazineBoxVector45Incendiary
+  name: Коробка патронов .45ACP (Зажигательные)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Incendiary
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: MagazineBoxVector45
+  id: MagazineBoxVector45Practice
+  name: Коробка патронов .45ACP (Учебные)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Practice
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: MagazineBoxVector45
+  id: MagazineBoxVector45Uranium
+  name: Коробка патронов .45ACP (Урановые)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Uranium
+    whitelist:
+      tags:
+        - CartridgeVector45
+        - CartridgeVector45Uranium
+        - CartridgeVector45Practice
+        - CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  parent: BaseItem
+  id: MagazineBoxVector22
+  name: Коробка патронов (.22 авто)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector22
+    proto: CartridgeVector22
+    capacity: 60
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Boxes/Vector/Vector22.rsi
+    layers:
+    - state: 22LR
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
