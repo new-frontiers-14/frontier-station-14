@@ -1,0 +1,34 @@
+- type: job
+  id: DoktorNCWL
+  name: job-name-doktor
+  description: job-description-doktor
+  playTimeTracker: JobDoktorNCWL
+  weight: 22
+  startingGear: DoktorGear
+  alwaysUseSpawner: true
+  icon: "JobIconDoktor"
+  requireAdminNotify: false
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - NCWLGeneral
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: DoktorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCWLMedic
+    back: ClothingBackpackDuffelNCWLFilledSanitar
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatNCWLCapsoftMedical
+    id: DoktorPDA
+    ears: ClothingHeadsetNCWL
+    belt: ClothingBeltMedicalFilled
+    pocket1: WeaponPistolHKUSP
+  duffelbag: ClothingBackpackDuffelNCWLFilledSanitar
+  satchel: ClothingBackpackSatchelNCWLFilledSanitar

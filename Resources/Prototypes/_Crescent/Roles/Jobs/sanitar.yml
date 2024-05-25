@@ -1,0 +1,26 @@
+- type: job
+  id: SanitarNCWL
+  name: job-name-sanitar
+  description: job-description-sanitar
+  playTimeTracker: JobSanitarNCWL
+  weight: 20
+  startingGear: SanitarGear
+  alwaysUseSpawner: true
+  icon: "JobIconSanitar"
+  requireAdminNotify: false
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - NCWLGeneral
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: SanitarGear
+  equipment:
+    ears: ClothingHeadsetNCWL
+    pocket1: WeaponPistolHKUSP

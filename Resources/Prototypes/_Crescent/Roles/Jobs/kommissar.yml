@@ -5,15 +5,25 @@
   playTimeTracker: JobKommissarNCWL
   requirements:
     - !type:WhitelistRequirement
-  weight: 20
+  weight: 55
   startingGear: KommissarGear
   alwaysUseSpawner: true
   icon: "JobIconCommissar"
   requireAdminNotify: true
   supervisors: job-supervisors-highcomm 
   canBeAntag: false
-  accessGroups:
-  - AllAccess
+  access:
+  - Command
+  - Maintenance
+  - NCWLGeneral
+  - Service
+  - NCWLKommissar
+  - NCWLJail
+  - NCWLArmory
+  - NCWLCommand
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
 
 - type: startingGear
   id: KommissarGear

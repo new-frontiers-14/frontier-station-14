@@ -1,0 +1,26 @@
+- type: job
+  id: KadetNCWL
+  name: job-name-kadet
+  description: job-description-kadet
+  playTimeTracker: JobKadetNCWL
+  weight: 10
+  startingGear: KadetGear
+  alwaysUseSpawner: true
+  icon: "JobIconKadet"
+  requireAdminNotify: false
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  - NCWLGeneral
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: KadetGear
+  equipment:
+    ears: ClothingHeadsetNCWL
+    belt: WeaponPistolHKUSP

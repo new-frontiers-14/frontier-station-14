@@ -1,0 +1,35 @@
+- type: job
+  id: ArtificerNCWL
+  name: job-name-artificer
+  description: job-description-artificer
+  playTimeTracker: JobArtificerNCWL
+  weight: 20
+  startingGear: ArtificerGear
+  alwaysUseSpawner: true
+  icon: "JobIconArtificer"
+  requireAdminNotify: false
+  supervisors: job-supervisors-highcomm 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - NCWLGeneral
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: ArtificerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCWLArtificer
+    back: ClothingBackpackDuffelNCWLFilledArtificer
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatNCWLBeret
+    id: ArtificerPDA
+    ears: ClothingHeadsetNCWL
+    belt: ClothingBeltUtilityEngineering
+    pocket1: WeaponPistolHKUSP
+    gloves: ClothingHandsGlovesFingerless
+  duffelbag: ClothingBackpackDuffelNCWLFilledArtificer
+  satchel: ClothingBackpackSatchelNCWLFilledArtificer
