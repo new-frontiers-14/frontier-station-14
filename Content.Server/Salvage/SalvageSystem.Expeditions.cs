@@ -169,11 +169,11 @@ public sealed partial class SalvageSystem
             if (comp.NextOffer > currentTime || comp.Claimed)
                 continue;
 
-            if (HasComp<FTLComponent>(uid))
-                continue;
+            if (!HasComp<FTLComponent>(_station.GetLargestGrid(Comp<StationDataComponent>(uid))))
+                comp.Cooldown = false;
 
-            comp.Cooldown = false;
             comp.NextOffer += TimeSpan.FromSeconds(_cooldown);
+
             GenerateMissions(comp);
             UpdateConsoles(comp);
         }
