@@ -3,8 +3,11 @@ using Robust.Server.GameObjects;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Shared.Humanoid; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
-using Robust.Server.GameObjects; // Frontier
-using Robust.Shared.Spawners; // Frontier
+using System.Numerics; // Frontier
+using Robust.Shared.Map; // Frontier
+using Content.Server._NF.Salvage; // Frontier
+
+using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates); // Frontier
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -15,12 +18,17 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
 {
     [Dependency] private readonly TransformSystem _xformSys = default!;
 
-    private const float DebrisActiveDuration = 5*60; // Frontier - Duration to reset the despawn timer to when a debris is loaded into a player's view.
+    // Frontier
+    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new(); // Frontier
+    private EntityQuery<SpaceDebrisComponent> _debrisQuery;
+    private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
 
-    public override void Initialize()  // Frontier
+    public override void Initialize()
     {
+        _debrisQuery = GetEntityQuery<SpaceDebrisComponent>();
         SubscribeLocalEvent<SpaceDebrisComponent, EntityTerminatingEvent>(OnDebrisDespawn);
     }
+    // Frontier
 
     /// <inheritdoc />
     public override void Update(float frameTime)
@@ -57,8 +65,6 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
                         if ((_xformSys.GetWorldPosition(loaderXform) - _xformSys.GetWorldPosition(xform)).Length() > loadable.LoadingDistance)
                             continue;
 
-                        ResetTimedDespawn(uid); // Frontier - Reset the TimedDespawnComponent's lifetime when loaded
-
                         RaiseLocalEvent(uid, new LocalStructureLoadedEvent());
                         RemCompDeferred<LocalityLoaderComponent>(uid);
                         done = true;
@@ -70,32 +76,44 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     }
 
     // Frontier
-    private void ResetTimedDespawn(EntityUid uid)
-    {
-        if (TryComp<TimedDespawnComponent>(uid, out var timedDespawn))
-        {
-            timedDespawn.Lifetime = DebrisActiveDuration;
-        }
-        else
-        {
-            // Add TimedDespawnComponent if it does not exist
-            timedDespawn = AddComp<TimedDespawnComponent>(uid);
-            timedDespawn.Lifetime = DebrisActiveDuration;
-        }
-    }
-
     private void OnDebrisDespawn(EntityUid entity, SpaceDebrisComponent component, EntityTerminatingEvent e)
     {
-        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        if (entity != null)
+        {
+            // Handle mobrestrictions getting deleted
+            var query = AllEntityQuery<SalvageMobRestrictionsNFComponent>();
 
-        while (mobQuery.MoveNext(out var mob, out _, out _, out var xform))
-            if (xform.MapUid is not null && xform.GridUid == entity)
-                _xformSys.SetCoordinates(mob, new(xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+            while (query.MoveNext(out var salvUid, out var salvMob))
+            {
+                if (entity == salvMob.LinkedGridEntity)
+                {
+                    QueueDel(salvUid);
+                }
+            }
+
+            var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+            _detachEnts.Clear();
+
+            while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+            {
+                if (xform.GridUid == null || entity != xform.GridUid.Value || xform.MapUid == null)
+                    continue;
+
+                // Can't parent directly to map as it runs grid traversal.
+                _detachEnts.Add(((mobUid, xform), xform.MapUid.Value, _xformSys.GetWorldPosition(xform)));
+                _xformSys.DetachParentToNull(mobUid, xform);
+            }
+
+            foreach (var detachEnt in _detachEnts)
+            {
+                _xformSys.SetCoordinates(detachEnt.Entity.Owner, new EntityCoordinates(detachEnt.MapUid, detachEnt.LocalPosition));
+            }
+        }
     }
     // Frontier
 }
 
 /// <summary>
-///     An event fired on a loadable entity when a local loader enters its vicinity.
+///     A directed fired on a loadable entity when a local loader enters it's vicinity.
 /// </summary>
 public record struct LocalStructureLoadedEvent;
