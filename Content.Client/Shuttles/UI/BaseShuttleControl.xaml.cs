@@ -115,11 +115,12 @@ public partial class BaseShuttleControl : MapGridControl
         }
     }
 
+    // Frontier Corvax: north line drawing
     protected void DrawNorthLine(DrawingHandleScreen handle, Angle angle)
     {
         var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
         var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
-        var lineColor = Color.Red.WithAlpha(0.02f);
+        var lineColor = Color.Red.WithAlpha(0.1f);
         handle.DrawLine(origin, origin + aExtent, lineColor);
     }
 

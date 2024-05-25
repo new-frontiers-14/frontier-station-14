@@ -14,5 +14,5 @@ public sealed partial class LanguageTranslatorComponent : Component
 public enum LanguageTranslatorVisuals
 {
     Layer,
-    Activated
+    Enabled
 }

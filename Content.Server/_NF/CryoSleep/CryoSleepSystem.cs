@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.DoAfter;
 using Content.Server.EUI;
@@ -312,6 +313,11 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             _doAfter.Cancel(component.CryosleepDoAfter);
 
         return true;
+    }
+
+    public bool IsBodyStored(EntityUid entity)
+    {
+        return _storedBodies.Any(body => body.Value?.Body == entity);
     }
 
     private bool IsOccupied(CryoSleepComponent component)

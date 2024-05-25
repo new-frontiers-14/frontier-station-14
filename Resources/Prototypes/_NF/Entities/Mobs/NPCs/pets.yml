@@ -1,6 +1,6 @@
 - type: entity
   name: MobCatClippy
-  parent: MobCatGhost
+  parent: [MobCatGhost, ShowSecurityIcons]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
@@ -13,12 +13,27 @@
     nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
     implants:
+    - MindShieldImplant
     - MedicalTrackingImplant
   - type: Butcherable
     spawned:
     - id: FoodMeatCat
       amount: 1
 #    - id: MaterialHideClippy
+  - type: IntrinsicRadioTransmitter
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Service
+  - type: ActiveRadio
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Service
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
 
 - type: entity
   name: MobCatClarpy
@@ -52,6 +67,91 @@
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Freelance
+  - type: ActiveRadio
+    channels:
+    - Freelance
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PirateNF
+
+- type: entity
+  name: Cappy
+  parent: MobCatGhost
+  id: MobCatCappy
+  description: First cat to shoot a gun.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nfsdcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nfsdcat
+      Critical:
+        Base: nfsdcat_dead
+      Dead:
+        Base: nfsdcat_dead
+  - type: GhostRole
+    name: ghost-role-information-cappy-name
+    description: ghost-role-information-cappy-description
+    requirements:
+    - !type:WhitelistRequirement
+  - type: Loadout
+    prototypes: [ MobCappyGear ]
+  - type: ReplacementAccent
+    accent: nfsdCat
+  - type: RandomMetadata
+    nameSegments: [names_cat_cappy] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplant
+    - LightImplant
+  - type: FlashImmunity
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Nfsd
+  - type: ActiveRadio
+    channels:
+#    - Common # Honestly not sure the cat has a real need for this
+#    - Traffic # Honestly not sure the cat has a real need for this
+    - Nfsd
+  - type: Inventory
+    templateId: nfsdpet
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggle
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0 # Declawed cat
+  - type: StaminaDamageOnHit
+    damage: 18
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: Speech
+    speechSounds: NfsdCat
+    speechVerb: SmallMob
+  - type: Vocal
+    sounds:
+      Male: NfsdCat
+      Female: NfsdCat
+      Unsexed: NfsdCat
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/_NF/Animals/nfsdcat_meow.ogg
 
 - type: entity
   name: MobCatMistake

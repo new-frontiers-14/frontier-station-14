@@ -22,7 +22,7 @@ def search_files(search_string, directory_path):
 
 def main():
     # Путь к директории, в которой нужно искать файлы
-    directory_path = r"D:\OtherGames\SpaceStation14\перевод\corvax-frontier-14\Resources\Locale\ru-RU"
+    directory_path = r"D:\OtherGames\SpaceStation14\перевод\corvax-frontier-14\Resources\Locale"
 
     # Создание графического интерфейса
     root = tk.Tk()
