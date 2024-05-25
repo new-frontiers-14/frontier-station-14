@@ -23,16 +23,95 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
+- type: entity
+  parent: SyndieDuffelGiftBox
+  id: SyndieMessengerGiftBox
+  name: syndicate naval operative bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
+
+- type: entity
+  parent: SyndieMessengerGiftBox
+  id: CultistMessengerGiftBox
+  name: blood cultist bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
 # Syndicate NPCs Loot
 # Syndicate Naval Captain Loot
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCaptainLootA
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
       - id: WeaponRevolverPythonAP
@@ -133,13 +212,10 @@
 
 # Syndicate Naval Commander Loot
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCommanderLootA
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
       - id: WeaponRifleAk
@@ -300,37 +376,21 @@
   parent: ClothingBackpackSyndicateDeckhandLootA
   id: ClothingBackpackSyndicateSaboteurLootA
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootB
   id: ClothingBackpackSyndicateSaboteurLootB
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootC
   id: ClothingBackpackSyndicateSaboteurLootC
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootD
   id: ClothingBackpackSyndicateSaboteurLootD
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 # Syndicate Naval Medic Loot
 - type: entity
@@ -560,14 +620,11 @@
 # Blood Cult NPCs Loot
 # Blood Cultist Zealot (Ranged) Loot
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: CultistMessengerGiftBox
   id: ClothingBackpackBloodCultZealotLootA
   name: cultist gear bundle
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/bloodcult.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
     - id: CrossbowImprovised
