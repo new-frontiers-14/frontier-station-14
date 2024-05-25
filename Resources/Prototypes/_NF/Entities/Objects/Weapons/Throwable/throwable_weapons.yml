@@ -20,17 +20,17 @@
   - type: SolutionContainerManager
     solutions:
       ammo:
-        maxVol: 2
+        maxVol: 3
         reagents:
         - ReagentId: Impedrezene
-          Quantity: 2
+          Quantity: 3
   - type: RefillableSolution
     solution: ammo
   - type: DrainableSolution
     solution: ammo
   - type: SolutionInjectOnEmbed
-    transferAmount: 2
-    solution: melee
+    transferAmount: 3
+    solution: ammo
   - type: InjectableSolution
     solution: ammo
 
@@ -49,4 +49,4 @@
           Quantity: 3
   - type: SolutionInjectOnEmbed
     transferAmount: 3
-    solution: melee
+    solution: ammo

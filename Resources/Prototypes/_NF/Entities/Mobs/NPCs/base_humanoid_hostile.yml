@@ -56,6 +56,7 @@
   id: MobHumanoidHostileBase
   components:
   - type: MovementAlwaysTouching
+  - type: MovementIgnoreGravity
   - type: MobMover
   - type: NoSlip
   - type: StandingState
@@ -113,6 +114,7 @@
   id: MobNonHumanHostileBase
   components:
   - type: MovementAlwaysTouching
+  - type: MovementIgnoreGravity
   - type: NoSlip
   - type: ZombieImmune
   - type: Hands
