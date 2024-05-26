@@ -47,3 +47,61 @@
   components:
   - type: AccessReader
     access: [["NCWLJail"]]
+
+#syndicate#
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSP
+  suffix: NCSP General, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateBasic"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPCommand
+  suffix: NCSP Command, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateCommand"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPRingleader
+  suffix: NCSP Ringleader, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateRingleader"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPGorlex
+  suffix: NCSP Gorlex, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateGorlex"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPInterdyne
+  suffix: NCSP Interdyne, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateInterdyne"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPSaws
+  suffix: NCSP SAWs, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateSaws"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsNCSPRamzi
+  suffix: NCSP Ramzi, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateRamzi"]]

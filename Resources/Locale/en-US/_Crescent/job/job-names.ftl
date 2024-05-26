@@ -9,3 +9,4 @@ job-name-kapitan = Unionkapitan
 job-name-kadet = Cadet
 
 #syndicate#
+job-name-ringleader = Ringleader
