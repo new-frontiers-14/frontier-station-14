@@ -84,6 +84,7 @@ public sealed partial class InjectorComponent : Component
     [DataField]
     public InjectorToggleMode ToggleState = InjectorToggleMode.Draw;
 
+    // Frontier
     /// <summary>
     /// Reagents that are allowed to be within this injector.
     /// If a solution has both allowed and non-allowed reagents, only allowed reagents will be drawn into this injector.
