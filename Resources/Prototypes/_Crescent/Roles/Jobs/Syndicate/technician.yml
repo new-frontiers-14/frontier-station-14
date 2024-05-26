@@ -1,0 +1,31 @@
+- type: job
+  id: TechnicianNCSP
+  name: job-name-technician
+  description: job-description-technician
+  playTimeTracker: JobTechnicianNCSP
+  weight: 18
+  startingGear: TechnicianGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndieNewblood"
+  requireAdminNotify: false
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - SyndicateBasic
+  - SyndicateGorlex
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: TechnicianGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndicate
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatSyndicateArmaments
+    id: InfanteerPDA
+    ears: ClothingHeadsetNCSP
+    pocket1: WeaponPistolHKUSP

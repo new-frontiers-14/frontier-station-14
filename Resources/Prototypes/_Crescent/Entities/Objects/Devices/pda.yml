@@ -3,7 +3,7 @@
 - type: entity
   parent: BasePDA
   id: KommissarPDA
-  name: Kommissar's PDA
+  name: kommissar's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -19,7 +19,7 @@
 - type: entity
   parent: BasePDA
   id: SanitarPDA
-  name: Efreitor's PDA
+  name: efreitor's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -35,7 +35,7 @@
 - type: entity
   parent: BasePDA
   id: ArtificerPDA
-  name: Artificer's PDA
+  name: artificer's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -51,7 +51,7 @@
 - type: entity
   parent: BasePDA
   id: DoktorPDA
-  name: Doktor's PDA
+  name: doktor's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -67,7 +67,7 @@
 - type: entity
   parent: BasePDA
   id: AdministratorPDA
-  name: Administrator's PDA
+  name: administrator's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -83,7 +83,7 @@
 - type: entity
   parent: BasePDA
   id: KapitanPDA
-  name: Kapitan's PDA
+  name: kapitan's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -99,7 +99,7 @@
 - type: entity
   parent: BasePDA
   id: KadetPDA
-  name: Kadet Efreitor's PDA
+  name: kadet efreitor's PDA
   description: Brown for communard.
   components:
   - type: Pda
@@ -117,7 +117,7 @@
 - type: entity
   parent: BasePDA
   id: RingleaderPDA
-  name: Ringleader's PDA
+  name: ringleader's PDA
   description: Red for Syndicate.
   components:
   - type: Pda
@@ -128,3 +128,140 @@
     accentHColor: "#d4d4d4"
   - type: Icon
     state: pda-syndiofficer
+
+- type: entity
+  parent: BasePDA
+  id: LieutenantPDA
+  name: lieutenant's PDA
+  description: Red for Syndicate.
+  components:
+  - type: Pda
+    id: NCSPIDCardLieutenant
+    state: pda-syndiofficer
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+    accentHColor: "#d4d4d4"
+  - type: Icon
+    state: pda-syndiofficer
+
+- type: entity
+  parent: BasePDA
+  id: InfanteerPDA
+  name: infanteer's PDA
+  description: Red for Syndicate. Has the Gorlex logo stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardInfanteer
+    state: pda-syndi
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+  - type: Icon
+    state: pda-syndi
+
+- type: entity
+  parent: BasePDA
+  id: TechnicianPDA
+  name: artillery technician's PDA
+  description: Red for Syndicate. Has the Gorlex logo stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardInfanteer
+    state: pda-syndi
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+  - type: Icon
+    state: pda-syndi
+
+- type: entity
+  parent: BasePDA
+  id: RipperdocPDA
+  name: ripperdoc's PDA
+  description: Red for Syndicate. Has the Interdyne Pharmaceutics logo stamped at the back. Has a thumbdrive version of a health analyzer wired crudely at one end.
+  components:
+  - type: Pda
+    id: NCSPIDCardRipperdoc
+    state: pda-syndimedic
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+    accentHColor: "#d4d4d4"
+    accentVColor: "#d4d4d4"
+  - type: Icon
+    state: pda-syndimedic
+  - type: HealthAnalyzer
+    scanDelay: 1
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+
+- type: entity
+  parent: BasePDA
+  id: ChemcookPDA
+  name: chemcook's PDA
+  description: Red for Syndicate. Has the Interdyne Pharmaceutics logo stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardChemcook
+    state: pda-syndimedic
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+    accentHColor: "#d4d4d4"
+    accentVColor: "#d4d4d4"
+  - type: Icon
+    state: pda-syndimedic
+
+- type: entity
+  parent: BasePDA
+  id: OperativePDA
+  name: operative's PDA
+  description: Red for Syndicate. Has the name 'Halflight Media' stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardOperative
+    state: pda-syndi
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+  - type: Icon
+    state: pda-syndi
+
+- type: entity
+  parent: BasePDA
+  id: IntelligenceOfficerPDA
+  name: intelligence officer's PDA
+  description: Red for Syndicate. Has the name 'Halflight Media' stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardIntelligenceOfficer
+    state: pda-syndiofficer
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+    accentHColor: "#d4d4d4"
+  - type: Icon
+    state: pda-syndiofficer
+
+- type: entity
+  parent: BasePDA
+  id: ForemanPDA
+  name: foreman's PDA
+  description: Red for Syndicate. Has the name 'SAWS' stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardForeman
+    state: pda-syndiofficer
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+    accentHColor: "#d4d4d4"
+  - type: Icon
+    state: pda-syndiofficer
+
+- type: entity
+  parent: BasePDA
+  id: ShipbreakerPDA
+  name: shipbreaker's PDA
+  description: Red for Syndicate. Has the name 'SAWS' stamped at the back.
+  components:
+  - type: Pda
+    id: NCSPIDCardShipbreaker
+    state: pda-syndi
+  - type: PdaBorderColor
+    borderColor: "#DC143C"
+  - type: Icon
+    state: pda-syndi

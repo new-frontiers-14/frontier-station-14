@@ -1,0 +1,30 @@
+- type: job
+  id: ChemcookNCSP
+  name: job-name-chemcook
+  description: job-description-chemcook
+  playTimeTracker: JobChemcookNCSP
+  weight: 16
+  startingGear: ChemcookGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndieChemcook"
+  requireAdminNotify: false
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - SyndicateBasic
+  - SyndicateInterdyne
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: ChemcookGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndicateEnviro
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatSyndicateDoctor
+    id: ChemcookPDA
+    ears: ClothingHeadsetNCSP
