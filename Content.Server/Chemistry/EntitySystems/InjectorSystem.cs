@@ -330,6 +330,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
             return;
         }
 
+        // Frontier - Reagent Whitelist
         var applicableTargetSolution = targetSolution.Comp.Solution;
         // If a whitelist exists, remove all non-whitelisted reagents from the target solution temporarily
         Solution temporarilyRemovedSolution = new();
@@ -342,6 +343,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
             }
             temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentPrototypeWhitelistArray);
         }
+        // Frontier - Reagent Whitelist
 
         // Get transfer amount. May be smaller than _transferAmount if not enough room, also make sure there's room in the injector
         var realTransferAmount = FixedPoint2.Min(injector.Comp.TransferAmount, applicableTargetSolution.Volume,
@@ -366,7 +368,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
         // Move units from attackSolution to targetSolution
         var removedSolution = SolutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
 
-        // Add back non-whitelisted reagents to the target solution
+        // Add back non-whitelisted reagents to the target solution, Frontier - Reagent Whitelist
         applicableTargetSolution.AddSolution(temporarilyRemovedSolution, null);
 
         if (!SolutionContainers.TryAddSolution(soln.Value, removedSolution))
