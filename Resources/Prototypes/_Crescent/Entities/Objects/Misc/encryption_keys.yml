@@ -12,3 +12,18 @@
     layers:
     - state: crypt_gray
     - state: common_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeySyndies
+  name: ncsp encryption key
+  description: An encryption key used by the Syndicate.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Syndicate
+    defaultChannel: Common
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: common_label

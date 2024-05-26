@@ -9,3 +9,4 @@ job-description-administrator = Coordinate the Union. Tend to the unwashed citiz
 job-description-kadet = Listen to your superiors. Learn proper procedure. Guard the interests of the State.
 
 #syndicate#
+job-description-ringleader = Coordinate the NCSP. Approve and uphold contracts.

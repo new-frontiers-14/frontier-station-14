@@ -1,0 +1,38 @@
+- type: job
+  id: RingleaderNCSP
+  name: job-name-ringleader
+  description: job-description-ringleader
+  playTimeTracker: JobRingleaderNCSP
+  requirements:
+    - !type:WhitelistRequirement
+  weight: 55
+  startingGear: RingleaderGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndieRingleader"
+  requireAdminNotify: true
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+  - SyndicateBasic
+  - SyndicateCommand
+  - SyndicateRingleader
+  - SyndicateGorlex
+
+- type: startingGear
+  id: RingleaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndicateOfficer
+    back: ClothingBackpackSatchelLeatherFilledNCWL
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatSyndicateOfficer
+    outerClothing: ClothingOuterArmorSyndicateRingmaster
+    id: RingleaderPDA
+    ears: ClothingHeadsetNCSP
+    belt: WeaponPistolHKUSP
+    gloves: ClothingHandsGlovesFingerless
