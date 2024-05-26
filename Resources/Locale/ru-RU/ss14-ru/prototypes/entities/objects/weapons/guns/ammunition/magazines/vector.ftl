@@ -1,0 +1,10 @@
+ent-MagazineVector45 = магазин (.22 LR)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineVector45 = магазин (.45 APC)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineVector45Incendiary = магазин (.45 APC зажигательные)
+    .desc = { ent-MagazineVector45 .desc }
+ent-MagazineVector45Practice = магазин (.45 APC учебные)
+    .desc = { ent-MagazineVector45 .desc }
+ent-MagazineVector45Uranium =магазин (.45 APC урановые)
+    .desc = { ent-MagazineVector45 .desc }

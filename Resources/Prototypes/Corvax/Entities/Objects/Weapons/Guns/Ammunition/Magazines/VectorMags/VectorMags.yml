@@ -1,9 +1,6 @@
-- type: Tag
+- type: entity #Vector
   id: MagazineVector22
-    
-- type: entity     #Vector
-  id: MagazineVector22
-  name: Магазин Вектора .22LR
+  name: magazine (.22 LR)
   parent: BaseItem
   components:
   - type: Tag
@@ -36,9 +33,8 @@
 
 - type: entity
   id: MagazineVector22Empty
-  name: Магазин Вектора .22LR
-  suffix: Пустой
   parent: MagazineVector22
+  suffix: Empty
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -47,12 +43,9 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
 
-- type: Tag
+- type: entity #Vector
   id: MagazineVector45
-    
-- type: entity     #Vector
-  id: MagazineVector45
-  name: "Магазин Вектора .45ACP"
+  name: magazine (.45 APC)
   parent: BaseItem
   components:
   - type: Tag
@@ -64,9 +57,6 @@
     whitelist:
       tags:
         - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
     capacity: 13
   - type: Item
     size: Small
@@ -88,9 +78,8 @@
 
 - type: entity
   id: MagazineVector45Empty
-  name: Магазин Вектора .45ACP
-  suffix: Пустой
   parent: MagazineVector45
+  suffix: Empty
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -101,17 +90,9 @@
 
 - type: entity
   id: MagazineVector45Incendiary
-  name: Магазин Вектора .45ACP (Зажигательные)
+  name: magazine (.45 APC incendiary)
   parent: MagazineVector45
   components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeVector45Incendiary
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: incendiary
@@ -121,17 +102,9 @@
 
 - type: entity
   id: MagazineVector45Practice
-  name: Магазин Вектора .45ACP (Учебные)
+  name: magazine (.45 APC practice)
   parent: MagazineVector45
   components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeVector45Practice
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: practice
@@ -141,17 +114,9 @@
 
 - type: entity
   id: MagazineVector45Uranium
-  name: Магазин Вектора .45ACP (Урановые)
+  name: magazine (.45 APC uranium)
   parent: MagazineVector45
   components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeVector45Uranium
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: uranium

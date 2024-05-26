@@ -1,8 +1,8 @@
-- type: entity     #FrontierCorvax
-  name: Вектор .22
+- type: entity #FrontierCorvax
+  name: Vector (.22)
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunVector22
-  description: Вектора 
+  description: Vector.
   components:
   - type: Sprite
     sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
@@ -23,7 +23,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Магазин Вектора .22
+        name: Magazine
         startingItem: MagazineVector22
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -44,11 +44,11 @@
     zeroVisible: true
   - type: Appearance
 
-- type: entity     #Vector
-  name: Вектор .45 ACP
+- type: entity #Vector
+  name: Vector (.45 APC)
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunVector45
-  description: Гражданская версия уже легендарного и забытого пистолета-пулемёта. Использует патроны калибра .45 ACP. Автоматический огонь в комплект не входит.
+  description: A civilian version of the already legendary and forgotten submachine gun. Uses caliber cartridges .45 ACP. Automatic fire is not included in the package.
   components:
   - type: Sprite
     sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi

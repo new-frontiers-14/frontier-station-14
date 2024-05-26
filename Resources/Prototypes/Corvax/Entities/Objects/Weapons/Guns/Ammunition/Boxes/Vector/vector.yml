@@ -1,16 +1,13 @@
 - type: entity
   parent: BaseItem
   id: MagazineBoxVector45
-  name: Коробка патронов .45ACP
+  name: ammunition box (.45 APC)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
         - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
     proto: CartridgeVector45
     capacity: 25
   - type: Item
@@ -34,16 +31,10 @@
 - type: entity
   parent: MagazineBoxVector45
   id: MagazineBoxVector45Incendiary
-  name: Коробка патронов .45ACP (Зажигательные)
+  name: ammunition box (.45 APC incendiary)
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeVector45Incendiary
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -55,16 +46,10 @@
 - type: entity
   parent: MagazineBoxVector45
   id: MagazineBoxVector45Practice
-  name: Коробка патронов .45ACP (Учебные)
+  name: ammunition box (.45 APC practice)
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeVector45Practice
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -76,16 +61,10 @@
 - type: entity
   parent: MagazineBoxVector45
   id: MagazineBoxVector45Uranium
-  name: Коробка патронов .45ACP (Урановые)
+  name: ammunition box (.45 APC uranium)
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeVector45Uranium
-    whitelist:
-      tags:
-        - CartridgeVector45
-        - CartridgeVector45Uranium
-        - CartridgeVector45Practice
-        - CartridgeVector45Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -97,7 +76,7 @@
 - type: entity
   parent: BaseItem
   id: MagazineBoxVector22
-  name: Коробка патронов (.22 авто)
+  name: ammunition box (.22 LR)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
