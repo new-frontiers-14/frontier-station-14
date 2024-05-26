@@ -1,0 +1,33 @@
+- type: job
+  id: InfanteerNCSP
+  name: job-name-infanteer
+  description: job-description-infanteer
+  playTimeTracker: JobInfanteerNCSP
+  weight: 20
+  startingGear: InfanteerGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndiePrivateer"
+  requireAdminNotify: false
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - SyndicateBasic
+  - SyndicateGorlex
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: InfanteerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndicate
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHelmetSyndicateBasic
+    id: InfanteerPDA
+    ears: ClothingHeadsetNCSP
+    belt: ClothingBeltSyndicateWebbing
+    pocket1: WeaponPistolHKUSP
+    gloves: ClothingHandsGlovesFingerless

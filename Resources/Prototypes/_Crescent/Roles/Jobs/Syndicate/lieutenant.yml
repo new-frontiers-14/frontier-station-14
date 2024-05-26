@@ -1,0 +1,33 @@
+- type: job
+  id: LieutenantNCSP
+  name: job-name-lieutenant
+  description: job-description-lieutenant
+  playTimeTracker: JobLieutenantNCSP
+  weight: 45
+  startingGear: LieutenantGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndieLieutenant"
+  requireAdminNotify: true
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+  - SyndicateBasic
+  - SyndicateCommand
+  - SyndicateGorlex
+
+- type: startingGear
+  id: LieutenantGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndicateOfficer
+    back: ClothingBackpackSatchelLeatherFilledNCWL
+    shoes: ClothingShoesBootsCombat
+    outerClothing: ClothingOuterArmorSyndicateLieutenant
+    id: LieutenantPDA
+    ears: ClothingHeadsetNCSP
+    belt: WeaponPistolHKUSP

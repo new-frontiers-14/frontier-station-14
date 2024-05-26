@@ -10,3 +10,12 @@ job-description-kadet = Listen to your superiors. Learn proper procedure. Guard 
 
 #syndicate#
 job-description-ringleader = Coordinate the NCSP. Approve and uphold contracts.
+job-description-ringleader = Assist your Ringleader to coordinate the NCSP. Approve and uphold contracts.
+job-description-infanteer = Follow your contracts. Hunt bounties. Sell to the highest bidder.
+job-description-technician = Follow your contracts. Hunt bounties. Maintain your vessel's artillery.
+job-description-ripperdoc = Follow your contracts. Tend to your fellow mercenaries.
+job-description-chemcook = Produce narcotics and medicine for your fellow mercenaries.
+job-description-operative = Sabotage enemy vessels and gather intelligence for the Syndicate.
+job-description-intelligenceofficer = Represent the interests of the Clique. Sabotage the enemies of the Syndicate.
+job-description-shipbreaker = Repair Syndicate vessels, take the others apart for scrap.
+job-description-foreman = Coordinate the SAWs. Lead pirate boardings. Scrap vessels.

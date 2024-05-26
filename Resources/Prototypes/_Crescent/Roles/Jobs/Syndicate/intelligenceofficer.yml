@@ -1,0 +1,37 @@
+- type: job
+  id: IntelligenceOfficerNCSP
+  name: job-name-intelligenceofficer
+  description: job-description-intelligenceofficer
+  playTimeTracker: JobIntelligenceOfficerNCSP
+  weight: 14
+  startingGear: IntelligenceOfficerGear
+  alwaysUseSpawner: true
+  icon: "JobIconSyndieIntelligenceOfficer"
+  requireAdminNotify: true
+  supervisors: job-supervisors-ncsp 
+  canBeAntag: false
+  requirements:
+    - !type:WhitelistRequirement
+  access:
+  - Command
+  - Maintenance
+  - SyndicateBasic
+  - SyndicateRamzi
+  - SyndicateCommand
+  - Service
+  - External
+  - Mercenary # Frontier
+  - Captain # Frontier
+
+- type: startingGear
+  id: IntelligenceOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHosFormal
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatSyndieMAA
+    id: IntelligenceOfficerPDA
+    mask: ClothingMaskNCWLBalaclava
+    hands: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterCoatSyndieCap
+    ears: ClothingHeadsetNCSP
+    pocket1: WeaponPistolHKUSP
