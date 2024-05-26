@@ -12,19 +12,19 @@
   id: gasbender
   name: NE Газовый Гигант
   description: Крупногабаритный инженерный шаттл. Рекомендованный размер команды 3-6 человек.
-  price: 90500
+  price: 78400
   category: Medium
-  group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/gasbender.yml
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/gasbender.yml
 
 - type: gameMap
   id: gasbender
   mapName: 'NE Газовый Гигант'
-  mapPath: /Maps/_NF/Shuttles/gasbender.yml
+  mapPath: /Maps/_NF/Shuttles/Expedition/gasbender.yml
   minPlayers: 0
   stations:
     gasbender:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Газовый Гигант {1}'
@@ -34,8 +34,6 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
+            Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
-            ChiefEngineer: [ 0, 0 ]
-            AtmosphericTechnician: [ 0, 0 ]
-            StationEngineer: [ 0, 0 ]
-            Borg: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
