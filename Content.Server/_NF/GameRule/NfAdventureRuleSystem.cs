@@ -123,6 +123,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
+        var trade = "/Maps/_NF/POI/trade.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -131,6 +132,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var depotOffset = _random.NextVector2(3000f, 5000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
         var caseysOffset = _random.NextVector2(2250f, 4600f);
+        var tradeOffset = _random.NextVector2(1500f, 3000f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
@@ -292,6 +294,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(labUids[0]);
             _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
             _shuttle.SetIFFColor(labUids[0], factionColor);
+        }
+
+        if (_map.TryLoad(mapId, trade, out var tradeUids, new MapLoadOptions
+        {
+            Offset = -tradeOffset
+        }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(tradeUids[0]);
+            _meta.SetEntityName(tradeUids[0], "Trade Outpost", meta);
+            _shuttle.SetIFFColor(tradeUids[0], depotColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
