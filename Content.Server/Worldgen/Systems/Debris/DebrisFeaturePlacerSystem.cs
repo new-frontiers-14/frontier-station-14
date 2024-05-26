@@ -229,7 +229,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             owned.OwningController = uid;
             owned.LastKey = point;
 
-            EnsureComp<SpaceDebrisComponent>(ent); // Frontier
+            EnsureComp<_NF.Worldgen.Components.Debris.SpaceDebrisComponent>(ent); // Frontier
         }
 
         if (failures > 0)

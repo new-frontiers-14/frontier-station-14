@@ -7,7 +7,8 @@ using Content.Shared.Mobs.Components; // Frontier
 using System.Numerics; // Frontier
 using Robust.Shared.Map; // Frontier
 using Content.Server._NF.Salvage; // Frontier
-using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates); // Frontier
+using EntityPosition = (Robust.Shared.GameObjects.EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates);
+using Robust.Shared.Spawners; // Frontier
 
 namespace Content.Server.Worldgen.Systems;
 
@@ -22,7 +23,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new(); // Frontier
     private EntityQuery<SpaceDebrisComponent> _debrisQuery;
     private readonly List<(EntityUid Debris, List<EntityPosition> Entity)> _terminatingDebris = [];
-
+    private const float DebrisActiveDuration = 1200; // 10 минут Corvax.
     public override void Initialize()
     {
         _debrisQuery = GetEntityQuery<SpaceDebrisComponent>();
