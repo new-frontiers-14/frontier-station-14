@@ -1,9 +1,6 @@
 using Content.Shared._NF.Chemistry.Events;
-using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._NF.Chemistry.UI
