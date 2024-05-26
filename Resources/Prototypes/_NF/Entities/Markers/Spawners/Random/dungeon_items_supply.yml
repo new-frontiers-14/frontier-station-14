@@ -25,10 +25,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootOresFull
-    - ClothingOuterHardsuitSalvage
-    - ClothingOuterHardsuitMaximPrototype
-    - ClothingOuterHardsuitLuxury
-    - ClothingOuterHardsuitSpatio
+    - SpawnDungeonLootHardsuitsSalvage
     rareChance: 0.01
 
 # Tools
@@ -159,9 +156,38 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - SuitStorageSalv
-    - SuitStorageQuartermaster
+    - SpawnDungeonLootSuitStorageUnitsSalvage
     rareChance: 0.03
+
+- type: entity
+  name: random suit storage unit
+  id: SpawnDungeonLootSuitStorageUnitsSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SuitStorageBase
+    - SuitStorageEVAAlternate
+    - SuitStorageBasic
+    - SuitStorageSalv
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SuitStorageNTSRA
+    - SuitStorageMining
+    - SuitStorageQuartermaster
+    rareChance: 0.05
 
 # Machines
 - type: entity
