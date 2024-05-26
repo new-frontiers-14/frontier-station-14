@@ -53,6 +53,7 @@
     - WeaponCrusher
     - WeaponCrusherGlaive
     - WeaponProtoKineticAccelerator
+    - WeaponProtoKineticAcceleratorSawn
     - OreBag
     - RadioHandheld
     - HandheldGPSBasic
@@ -66,11 +67,8 @@
     rarePrototypes:
     - OreBagOfHolding
     - HandHeldMassScanner
-    - ClothingOuterHardsuitSalvage
-    - ClothingOuterHardsuitMaximPrototype
-    - ClothingOuterHardsuitLuxury
-    - ClothingOuterHardsuitSpatio
-    rareChance: 0.01
+    - SpawnDungeonLootHardsuitsSalvage
+    rareChance: 0.05
 
 # Clothes
 - type: entity
@@ -104,8 +102,34 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - ClothingOuterHardsuitSpatio
+    - SpawnDungeonLootHardsuitsSalvage
     rareChance: 0.01
+
+- type: entity
+  name: random hardsuits
+  id: SpawnDungeonLootHardsuitsSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvage"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingOuterHardsuitSpatio
+    - ClothingOuterHardsuitSalvage
+    - ClothingOuterHardsuitLuxury
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitMaximPrototype
+    rareChance: 0.05
 
 # Lockers
 - type: entity
