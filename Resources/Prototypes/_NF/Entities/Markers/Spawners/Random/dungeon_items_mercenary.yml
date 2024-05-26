@@ -19,6 +19,7 @@
     - SpawnDungeonLootClothesMercenary
     - SpawnDungeonLootArmorMercenary
     - SpawnDungeonLootShieldsMercenary
+    - SpawnDungeonLootMeleeT2
     - ClothingMaskGasMercenary
     - ClothingOuterCoatBHTrench
     - ClothingHeadHatBH
@@ -30,7 +31,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootHardsuitsMercenary
-    - SpawnDungeonLootArmoryMelee
+    - SpawnDungeonLootGunT2
     rareChance: 0.05
 
 - type: entity
@@ -82,7 +83,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory"
+  suffix: "Dungeon, Loose, T1"
   components:
   - type: Sprite
     layers:
@@ -114,13 +115,13 @@
   name: random weapon
   id: SpawnDungeonLootVaultGuns
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Vault"
+  suffix: "Dungeon, Vault, T2"
   components:
   - type: Sprite
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+      - sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -146,20 +147,19 @@
   name: random weapon
   id: SpawnDungeonLootArmoryMelee
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Armory, Melee"
+  suffix: "Dungeon, Melee, T1-T2"
   components:
   - type: Sprite
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Weapons/Melee/katana.rsi
+      - sprite: Objects/Weapons/Melee/combat_knife.rsi
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
   - type: RandomSpawner
     prototypes:
-    - SpawnDungeonLootMeleeT1
     - SpawnDungeonLootMeleeT1
     - SpawnDungeonLootMeleeT2
     chance: 0.95
@@ -172,13 +172,13 @@
   name: random weapon
   id: SpawnDungeonLootArmoryRare
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Vault, Rare"
+  suffix: "Dungeon, Vault, T3"
   components:
   - type: Sprite
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Weapons/Melee/e_sword.rsi
+      - sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -204,7 +204,7 @@
   name: random weapon
   id: SpawnDungeonLootArmoryExplosives
   parent: MarkerBasePlaceFree
-  suffix: "Dungeon, Explosives"
+  suffix: "Dungeon, Explosives, T1-T2"
   components:
   - type: Sprite
     layers:
@@ -217,12 +217,16 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseShortSeismicCharge
-    chance: 1
+    - SpawnDungeonLootExplosivesT1
+    - SpawnDungeonLootExplosivesT2
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - WeaponCaseShortC4
-    rareChance: 0.01
+    - SpawnDungeonLootExplosivesT3
+    - SpawnDungeonLootExplosivesT3
+    - SpawnDungeonLootExplosivesT3
+    - SpawnDungeonLootExplosivesT4
+    rareChance: 0.05
 
 - type: entity
   name: random shields
