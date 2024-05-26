@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
-using Content.Server.GameTicking.Events;
+using Content.Server.Corvax.Respawn; // Corvax
 using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
@@ -252,6 +252,8 @@ namespace Content.Server.GameTicking
                     Loc.GetString("latejoin-arrival-sender"),
                     playDefaultSound: false);
             }
+
+            AddComp<RespawnResetComponent>(mob);
 
             // who tf is perma oWo
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

@@ -55,11 +55,8 @@ public sealed partial class GhostGui : UIWidget
 
     public void UpdateRespawn(TimeSpan? todd)
     {
-        if (todd != null)
-        {
-            _timeOfDeath = todd;
-            _minTimeToRespawn = _configurationManager.GetCVar(NF14CVars.RespawnTime);
-        }
+        _timeOfDeath = todd;
+        _minTimeToRespawn = _configurationManager.GetCVar(NF14CVars.RespawnTime);
     }
 
     public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn, bool canUncryo)
@@ -90,8 +87,8 @@ public sealed partial class GhostGui : UIWidget
     {
         if (_timeOfDeath is null)
         {
-            GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", "disabled"));
-            GhostRespawnButton.Disabled = true;
+            GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-allowed");
+            GhostRespawnButton.Disabled = false;
             return;
         }
 
