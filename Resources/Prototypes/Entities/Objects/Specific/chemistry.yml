@@ -375,6 +375,27 @@
     - Trash
 
 - type: entity
+  parent: Dropper
+  name: Service Selective Dropper
+  id: serviceSelectiveDropper
+  components:
+  - type: Injector
+    transferAmount: 5
+    toggleState: Draw
+  - type: Tag
+    tags:
+    - Syringe
+  - type: UserInterface
+    interfaces:
+      enum.ReagentWhitelistChangeUIKey.Key:
+        type: ChangeReagentWhitelistBoundUserInterface
+  - type: ReagentWhitelistChange
+    allowedReagentGroup:
+      - Foods
+      - Botanical
+      - Drinks
+
+- type: entity
   parent: BaseSyringe
   id: PrefilledSyringe
   components:

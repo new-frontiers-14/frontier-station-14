@@ -34,58 +34,56 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         _injectorEntity = owner.Owner;
         _owner = owner;
 
-        // For debuging purposes only, replace before merging
-        Title = "Reagent Filter";
+        Title = Loc.GetString("ui-change-reagent-whitelist-title");
 
         ReagentList.OnItemSelected += ReagentListSelected;
         ReagentList.OnItemDeselected += ReagentListDeselected;
         SearchBar.OnTextChanged += (_) => UpdateReagentPrototypes(SearchBar.Text);
-        AddButton.OnPressed += ChangeWhitelistedReagent;
+        ApplyButton.OnPressed += ChangeWhitelistedReagent;
 
         UpdateReagentPrototypes();
-        UpdateAddButton();
+        UpdateApplyButton();
     }
 
     /// <summary>
-    ///     Execute a console command that asks the server to add the selected reagent.
+    ///     Change the Entity's InjectorComponent's ReagentWhitelist to only include the selected reagent
     /// </summary>
     private void ChangeWhitelistedReagent(BaseButton.ButtonEventArgs obj)
     {
         if (_selectedReagent == null)
             return;
 
-        _owner.ChangeReagentWhitelist(_selectedReagent);
-
+        _owner.ChangeReagentWhitelist(_selectedReagent.ID);
+        _owner.Close();
     }
 
     private void ReagentListSelected(ItemList.ItemListSelectedEventArgs obj)
     {
         _selectedReagent = (ReagentPrototype) obj.ItemList[obj.ItemIndex].Metadata!;
-        UpdateAddButton();
+        UpdateApplyButton();
     }
 
     private void ReagentListDeselected(ItemList.ItemListDeselectedEventArgs obj)
     {
         _selectedReagent = null;
-        UpdateAddButton();
+        UpdateApplyButton();
     }
 
     /// <summary>
     ///     Set the Text and enabled/disabled status of the button that actually adds the reagent.
     /// </summary>
-    private void UpdateAddButton()
+    private void UpdateApplyButton()
     {
-        AddButton.Disabled = true;
+        ApplyButton.Disabled = true;
         if (_selectedReagent == null)
         {
-            AddButton.Text = Loc.GetString("admin-add-reagent-window-add-invalid-reagent");
+            ApplyButton.Text = Loc.GetString("ui-change-reagent-whitelist-apply-missing-reagent");
             return;
         }
 
-        AddButton.Text = Loc.GetString("admin-add-reagent-window-add",
+        ApplyButton.Text = Loc.GetString("ui-change-reagent-whitelist-apply",
             ("reagent", _selectedReagent.ID));
-
-        AddButton.Disabled = false;
+        ApplyButton.Disabled = false;
     }
 
     /// <summary>
