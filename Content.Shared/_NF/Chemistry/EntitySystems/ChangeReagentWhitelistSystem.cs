@@ -3,6 +3,7 @@ using Content.Shared._NF.Chemistry.Components;
 using Content.Shared._NF.Chemistry.Events;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Verbs;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -15,6 +16,8 @@ namespace Content.Shared._NF.Chemistry.EntitySystems;
 public sealed class ReagentWhitelistChangeSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
     [NetSerializable, Serializable]
     public enum ReagentWhitelistChangeUIKey : byte
     {
@@ -37,8 +40,7 @@ public sealed class ReagentWhitelistChangeSystem : EntitySystem
         var @event = args;
         args.Verbs.Add(new InteractionVerb()
         {
-            // For debuging purposes only, replace before merging
-            Text = "Set Reagent Filter",
+            Text = Loc.GetString("comp-change-reagent-whitelist-verb-filter"),
             //Icon = new SpriteSpecifier(),
             Act = () =>
             {
@@ -50,14 +52,24 @@ public sealed class ReagentWhitelistChangeSystem : EntitySystem
 
     private void OnReagentWhitelistChange(Entity<ReagentWhitelistChangeComponent> ent, ref ReagentWhitelistChangeMessage args)
     {
-        if (!TryComp<InjectorComponent>(ent.Owner, out var injectorComp) || injectorComp.ReagentWhitelist is null)
+        if (!TryComp<InjectorComponent>(ent.Owner, out var injectorComp))
         {
             return;
         }
 
-        if (!ent.Comp.AllowedReagentGroups.Contains(args.NewReagentProto))
+        if (!_prototypeManager.TryIndex(args.NewReagentProto, out var protoComp))
         {
             return;
+        }
+
+        if (!ent.Comp.AllowedReagentGroups.Contains(protoComp.Group))
+        {
+            return;
+        }
+
+        if (injectorComp.ReagentWhitelist is null)
+        {
+            injectorComp.ReagentWhitelist = new();
         }
         injectorComp.ReagentWhitelist.Clear();
         injectorComp.ReagentWhitelist.Add(args.NewReagentProto);
