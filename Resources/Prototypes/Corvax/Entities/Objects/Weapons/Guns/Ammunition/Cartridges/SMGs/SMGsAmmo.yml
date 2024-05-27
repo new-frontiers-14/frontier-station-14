@@ -1,0 +1,66 @@
+- type: entity #Vector
+  id: CartridgeVector22
+  name: cartridge (.22 LR)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector22
+  - type: CartridgeAmmo
+    proto: BulletVector22
+
+- type: entity #Vector
+  id: CartridgeVector45
+  name: cartridge (.45 APC)
+  parent: BaseCartridgePistol
+  components:
+  - type: Tag
+    tags:
+      - CartridgeVector45
+  - type: CartridgeAmmo
+    proto: BulletVector45
+
+- type: entity
+  id: CartridgeVector45Incendiary
+  name: cartridge (.45 APC incendiary)
+  parent: CartridgeVector45
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector45Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity
+  id: CartridgeVector45Practice
+  name: cartridge (.45 APC practice)
+  parent: CartridgeVector45
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector45Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: entity
+  id: CartridgeVector45Uranium
+  name: cartridge (.45 APC uranium)
+  parent: CartridgeVector45
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector45Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"

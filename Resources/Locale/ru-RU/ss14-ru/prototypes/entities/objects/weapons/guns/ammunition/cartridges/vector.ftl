@@ -1,0 +1,10 @@
+ent-CartridgeVector22 = патрон (.22 LR)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgeVector45 = патрон (.45 APC)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgeVector45Incendiary = патрон (.45 APC зажигательный)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgeVector45Practice = патрон (.45 APC учебный)
+    .desc = { ent-BaseCartridgePistol.desc }
+ent-CartridgeVector45Uranium = патрон (.45 APC урановый)
+    .desc = { ent-BaseCartridgePistol.desc } 

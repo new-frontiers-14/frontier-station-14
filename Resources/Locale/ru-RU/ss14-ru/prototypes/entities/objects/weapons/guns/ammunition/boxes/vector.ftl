@@ -1,0 +1,10 @@
+ent-MagazineBoxVector22 = коробка патронов (.22 LR)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxVector45 = коробка патронов (.45 APC)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxVector45Incendiary = коробка патронов (.45 APC зажигательные)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxVector45Practice = коробка патронов (.45 APC учебные)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineBoxVector45Uranium = коробка патронов (.45 APC урановые)
+    .desc = { ent-BaseItem.desc }
