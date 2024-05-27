@@ -184,6 +184,7 @@ namespace Content.Server.PDA
                     StationAlertLevel = pda.StationAlertLevel,
                     StationAlertColor = pda.StationAlertColor
                 },
+                balance, // Frontier
                 pda.StationName,
                 showUplink,
                 hasInstrument,
@@ -197,7 +198,7 @@ namespace Content.Server.PDA
             if (!PdaUiKey.Key.Equals(args.UiKey))
                 return;
 
-            UpdatePdaUi(ent.Owner, ent.Comp);
+            UpdatePdaUi(ent.Owner, ent.Comp, args.Actor); // Frontier
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaRequestUpdateInterfaceMessage msg)
