@@ -25,3 +25,7 @@ ent-WeaponAdvancedLaserExpedition = { ent-WeaponAdvancedLaser }
     .desc = { ent-WeaponAdvancedLaser.desc }
 ent-WeaponSniperRepeaterExpedition = { ent-WeaponSniperRepeater }
     .desc = { ent-WeaponSniperRepeater.desc }
+ent-WeaponSubMachineGunVector22Expedition = { ent-WeaponSubMachineGunVector22 }
+    .desc = { ent-WeaponSubMachineGunVector22.desc }
+ent-WeaponSubMachineGunVector45Expedition = { ent-WeaponSubMachineGunVector45 }
+    .desc = { ent-WeaponSubMachineGunVector45.desc }

@@ -1,6 +1,6 @@
-- type: entity     #Vector
+- type: entity #FrontierCorvax
   id: BulletVector22
-  name: Пуля (.22 авто)
+  name: Пуля (.22 LR)
   parent: BaseBullet
   noSpawn: true
   components:
@@ -10,7 +10,7 @@
         Piercing: 7
         Blunt: 3
 
-- type: entity     #Vector
+- type: entity #FrontierCorvax
   id: BulletVector45
   name: Пуля (.45 ACP)
   parent: BaseBullet
@@ -22,10 +22,10 @@
         Piercing: 15
         Blunt: 5
 
-- type: entity
+- type: entity #FrontierCorvax
   id: BulletVector45Incendiary
   parent: BaseBulletIncendiary
-  name: Пуля .45ACP (Зажигательная)
+  name: Пуля .45 ACP (Зажигательная)
   noSpawn: true
   components:
   - type: Projectile
@@ -34,9 +34,9 @@
         Blunt: 3
         Heat: 16
 
-- type: entity
+- type: entity #FrontierCorvax
   id: BulletVector45Practice
-  name: Пуля .45ACP (Учебная)
+  name: Пуля .45 ACP (Учебная)
   parent: BaseBulletPractice
   noSpawn: true
   components:
@@ -45,9 +45,9 @@
       types:
         Blunt: 1
 
-- type: entity
+- type: entity #FrontierCorvax
   id: BulletVector45Uranium
-  name: Пуля .45ACP (Урановая)
+  name: Пуля .45 ACP (Урановая)
   parent: BaseBulletUranium
   noSpawn: true
   components:

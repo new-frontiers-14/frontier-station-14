@@ -67,3 +67,10 @@ ent-WeaponCaseShortEnergyCutlassExpedition = { ent-WeaponCaseShort }
 ent-WeaponCaseShortEnergySwordDoubleExpedition = { ent-WeaponCaseShort }
     .suffix = Экспедиция, Двухклинковый энергомеч
     .desc = { ent-WeaponCaseShort.desc }
+ent-WeaponCaseWeaponSubMachineGunVector22Expedition = { ent-WeaponCaseLong }
+    .suffix = Экспедиция, Вектор .22 LR
+    .desc = { ent-WeaponCaseLong.desc }
+ent-WeaponCaseWeaponSubMachineGunVector45Expedition = { ent-WeaponCaseLong }
+    .suffix = Экспедиция, Вектор .45 ACP
+    .desc = { ent-WeaponCaseLong.desc }
+
