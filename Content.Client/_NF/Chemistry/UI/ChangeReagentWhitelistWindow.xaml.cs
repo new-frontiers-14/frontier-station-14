@@ -35,9 +35,22 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
         ReagentList.OnItemDeselected += ReagentListDeselected;
         SearchBar.OnTextChanged += (_) => UpdateReagentPrototypes(SearchBar.Text);
         ApplyButton.OnPressed += ChangeWhitelistedReagent;
+        ResetButton.OnPressed += ResetWhitelistReagent;
+
+        ResetButton.Text = Loc.GetString("ui-change-reagent-whitelist-resetbutton-text");
 
         UpdateReagentPrototypes();
         UpdateApplyButton();
+    }
+
+
+    /// <summary>
+    ///     Reset the Entity's InjectorComponent's ReagentWhitelist to nullify the reagent whitelist
+    ///</summary>
+    private void ResetWhitelistReagent(BaseButton.ButtonEventArgs obj)
+    {
+        _owner.ResetReagentWhitelist();
+        _owner.Close();
     }
 
     /// <summary>

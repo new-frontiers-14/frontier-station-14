@@ -28,6 +28,7 @@ public sealed class ReagentWhitelistChangeSystem : EntitySystem
 
         SubscribeLocalEvent<ReagentWhitelistChangeComponent, GetVerbsEvent<InteractionVerb>>(AddChangeFilterVerb);
         SubscribeLocalEvent<ReagentWhitelistChangeComponent, ReagentWhitelistChangeMessage>(OnReagentWhitelistChange);
+        SubscribeLocalEvent<ReagentWhitelistChangeComponent, ReagentWhitelistResetMessage>(OnReagentWhitelistReset);
     }
 
     private void AddChangeFilterVerb(Entity<ReagentWhitelistChangeComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
@@ -72,5 +73,15 @@ public sealed class ReagentWhitelistChangeSystem : EntitySystem
         }
         injectorComp.ReagentWhitelist.Clear();
         injectorComp.ReagentWhitelist.Add(args.NewReagentProto);
+    }
+
+    private void OnReagentWhitelistReset(Entity<ReagentWhitelistChangeComponent> ent, ref ReagentWhitelistResetMessage args)
+    {
+        if (!TryComp<InjectorComponent>(ent.Owner, out var injectorComp))
+        {
+            return;
+        }
+
+        injectorComp.ReagentWhitelist = null;
     }
 }

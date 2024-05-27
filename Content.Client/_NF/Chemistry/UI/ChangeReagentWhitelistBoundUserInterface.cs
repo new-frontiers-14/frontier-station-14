@@ -32,5 +32,10 @@ namespace Content.Client._NF.Chemistry.UI
         {
             SendMessage(new ReagentWhitelistChangeMessage(newReagentProto));
         }
+
+        public void ResetReagentWhitelist()
+        {
+            SendMessage(new ReagentWhitelistResetMessage());
+        }
     }
 }
