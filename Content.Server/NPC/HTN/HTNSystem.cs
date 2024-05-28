@@ -26,11 +26,12 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    // Frontier
     [Dependency] private readonly WorldControllerSystem _world = default!;
-    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
-
+    [Dependency] private readonly TransformSystem _transform = default!;
     private EntityQuery<WorldControllerComponent> _mapQuery;
-    private EntityQuery<LoadedChunkComponent> _loadedQuery; // Frontier
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
 
