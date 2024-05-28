@@ -1,0 +1,35 @@
+- type: vessel
+  id: Anchor
+  name: KC Anchor
+  description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
+  price: 135020
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+  
+- type: gameMap
+  id: Anchor
+  mapName: 'KC Anchor'
+  mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+  minPlayers: 0
+  stations: 
+    Anchor:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Anchor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            ServiceWorker: [ 0, 0 ]
+            ChiefEngineer: [ 0, 0 ]
+            Chaplain: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
+            AtmosphericTechnician: [ 0, 0 ]
+            Bartender: [ 0, 0 ]
+            Chef: [ 0, 0 ]
