@@ -1,4 +1,4 @@
-- type: entity #Vector
+- type: entity #FrontierCorvax
   id: CartridgeVector22
   name: cartridge (.22 LR)
   parent: BaseCartridgePistol
@@ -9,9 +9,9 @@
   - type: CartridgeAmmo
     proto: BulletVector22
 
-- type: entity #Vector
+- type: entity #FrontierCorvax
   id: CartridgeVector45
-  name: cartridge (.45 APC)
+  name: cartridge (.45 ACP)
   parent: BaseCartridgePistol
   components:
   - type: Tag
@@ -20,9 +20,9 @@
   - type: CartridgeAmmo
     proto: BulletVector45
 
-- type: entity
+- type: entity #FrontierCorvax
   id: CartridgeVector45Incendiary
-  name: cartridge (.45 APC incendiary)
+  name: cartridge (.45 ACP incendiary)
   parent: CartridgeVector45
   components:
   - type: CartridgeAmmo
@@ -35,9 +35,9 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#ff6e52"
 
-- type: entity
+- type: entity #FrontierCorvax
   id: CartridgeVector45Practice
-  name: cartridge (.45 APC practice)
+  name: cartridge (.45 ACP practice)
   parent: CartridgeVector45
   components:
   - type: CartridgeAmmo
@@ -50,9 +50,9 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#dbdbdb"
 
-- type: entity
+- type: entity #FrontierCorvax
   id: CartridgeVector45Uranium
-  name: cartridge (.45 APC uranium)
+  name: cartridge (.45 ACP uranium)
   parent: CartridgeVector45
   components:
   - type: CartridgeAmmo

@@ -1,7 +1,8 @@
-- type: entity #Vector
+- type: entity #FrontierCorvax
   id: MagazineVector22
   name: magazine (.22 LR)
   parent: BaseItem
+  description: A ridiculously large magazine with ridiculously small and ridiculous .22 ammo
   components:
   - type: Tag
     tags:
@@ -31,7 +32,7 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
+- type: entity #FrontierCorvax
   id: MagazineVector22Empty
   parent: MagazineVector22
   suffix: Empty
@@ -43,10 +44,11 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
 
-- type: entity #Vector
+- type: entity #FrontierCorvax
   id: MagazineVector45
-  name: magazine (.45 APC)
+  name: magazine (.45 ACP)
   parent: BaseItem
+  description: Standard magazine for 13 small (big and slow) friends in .45 ACP
   components:
   - type: Tag
     tags:
@@ -76,7 +78,7 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
+- type: entity #FrontierCorvax
   id: MagazineVector45Empty
   parent: MagazineVector45
   suffix: Empty
@@ -88,9 +90,9 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
 
-- type: entity
+- type: entity #FrontierCorvax
   id: MagazineVector45Incendiary
-  name: magazine (.45 APC incendiary)
+  name: magazine (.45 ACP incendiary)
   parent: MagazineVector45
   components:
   - type: Sprite
@@ -100,9 +102,9 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-- type: entity
+- type: entity #FrontierCorvax
   id: MagazineVector45Practice
-  name: magazine (.45 APC practice)
+  name: magazine (.45 ACP practice)
   parent: MagazineVector45
   components:
   - type: Sprite
@@ -112,9 +114,9 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-- type: entity
+- type: entity #FrontierCorvax
   id: MagazineVector45Uranium
-  name: magazine (.45 APC uranium)
+  name: magazine (.45 ACP uranium)
   parent: MagazineVector45
   components:
   - type: Sprite
