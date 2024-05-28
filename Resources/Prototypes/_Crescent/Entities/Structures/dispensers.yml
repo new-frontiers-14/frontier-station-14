@@ -1,0 +1,84 @@
+- type: entity
+  id: BaseDispenser
+  parent: BaseMachinePowered
+  name: dispenser
+  description: Dispenser
+  abstract: true
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/empty.rsi
+    snapCardinals: true
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: Repairable
+    doAfterDelay: 8
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-dispenser
+    layoutId: Dispenser
+  - type: Anchorable
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: Actions
+  - type: Appearance
+  - type: WiresVisuals
+
+- type: entity
+  parent: BaseDispenser
+  id: TestDispenser
+  name: test dispenser
+  description: Test Dispenser
+  components:
+  - type: Dispenser
+    defaultItem: SpoonPlastic
+    inventory:
+      SpoonPlastic: ForkPlastic
+      ForkPlastic: KnifePlastic
+      FoodPlatePlastic: FoodCondimentPacketHotsauce
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/vendomat.rsi
+    layers:
+    - state: "off"
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9dc5c9"
