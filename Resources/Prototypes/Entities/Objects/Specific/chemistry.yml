@@ -376,9 +376,19 @@
 
 - type: entity
   parent: Dropper
+  description: Used to transfer small amounts of chemical a specified reagent between containers.
   name: Service Selective Dropper
   id: ServiceSelectiveDropper
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
+    layers:
+      - state: dropper
+      - state: dropper1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
   - type: Injector
     transferAmount: 5
     toggleState: Draw
