@@ -51,10 +51,7 @@ public partial class SharedGunSystem
 
     private void OnRevolverInteractUsing(EntityUid uid, RevolverAmmoProviderComponent component, InteractUsingEvent args)
     {
-        if (args.Handled)
-            return;
-
-        if (component?.Whitelist?.IsValid(args.Used, EntityManager) != true) // Frontier: better revolver reloading
+        if (args.Handled || component?.Whitelist?.IsValid(args.Used, EntityManager) != true) // Frontier: better revolver reloading
             return; // Frontier: better revolver reloading
 
         if (TryRevolverInsert(uid, component, args.Used, args.User))
@@ -118,7 +115,7 @@ public partial class SharedGunSystem
 
         if (GetRevolverUnspentCount(component) == 0)
         {
-            // NOTE: revolver may be full of unspent cases, string used considers this "empty".
+            // NOTE: the revolver hay be full of unspent cases.  Is this considered "empty", or do we need a new string?
             Popup(
                 Loc.GetString("gun-ballistic-transfer-empty",
                     ("entity", uid)),
@@ -144,8 +141,8 @@ public partial class SharedGunSystem
             if (ent == null)
                 continue;
 
-            if (ballisticTarget?.Whitelist?.IsValid(ent.Value) != true ||
-                revolverTarget?.Whitelist?.IsValid(ent.Value) != true)
+            if (ballisticTarget is not null && ballisticTarget.Whitelist?.IsValid(ent.Value) != true ||
+                revolverTarget is not null && revolverTarget.Whitelist?.IsValid(ent.Value) != true)
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",

@@ -144,8 +144,8 @@ public abstract partial class SharedGunSystem
                 continue;
 
             // Frontier: better revolver reloading
-            if (ballisticTarget?.Whitelist?.IsValid(ent.Value) != true ||
-                revolverTarget?.Whitelist?.IsValid(ent.Value) != true)
+            if (ballisticTarget is not null && ballisticTarget?.Whitelist?.IsValid(ent.Value) != true ||
+                revolverTarget is not null && revolverTarget?.Whitelist?.IsValid(ent.Value) != true)
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",
