@@ -1,42 +1,30 @@
 - type: entity #FrontierCorvax
   id: BulletVector22
-  name: Пуля (.22 LR)
+  name: bullet (.22 LR)
   parent: BaseBullet
   noSpawn: true
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 7
-        Blunt: 3
+        Piercing: 5
+        Blunt: 4
 
 - type: entity #FrontierCorvax
-  id: BulletVector45
-  name: Пуля (.45 ACP)
-  parent: BaseBullet
-  noSpawn: true
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 15
-        Blunt: 5
-
-- type: entity #FrontierCorvax
-  id: BulletVector45Incendiary
+  id: BulletVector22Incendiary
   parent: BaseBulletIncendiary
-  name: Пуля .45 ACP (Зажигательная)
+  name: bullet .22 LR (incendiary)
   noSpawn: true
   components:
   - type: Projectile
     damage:
       types:
         Blunt: 3
-        Heat: 16
+        Heat: 6
 
 - type: entity #FrontierCorvax
-  id: BulletVector45Practice
-  name: Пуля .45 ACP (Учебная)
+  id: BulletVector22Practice
+  name: bullet .22 LR (practice)
   parent: BaseBulletPractice
   noSpawn: true
   components:
@@ -46,14 +34,76 @@
         Blunt: 1
 
 - type: entity #FrontierCorvax
-  id: BulletVector45Uranium
-  name: Пуля .45 ACP (Урановая)
+  id: BulletVector22Uranium
+  name: bullet .22 LR (uranium)
   parent: BaseBulletUranium
   noSpawn: true
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 3
         Blunt: 3
-        Radiation: 10
+        Radiation: 9
+
+- type: entity #FrontierCorvax
+  id: BulletVector45
+  name: bullet (.45 ACP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17
+        Blunt: 6
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Incendiary
+  parent: BaseBulletIncendiary
+  name: bullet .45 ACP (incendiary)
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+        Heat: 14
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Practice
+  name: bullet .45 ACP (practice)
+  parent: BaseBulletPractice
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Uranium
+  name: bullet .45 ACP (uranium)
+  parent: BaseBulletUranium
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6
+        Blunt: 3
+        Radiation: 14
+
+- type: entity
+  id: BulletVector45AP
+  name: bullet (.45 ACP AP)
+  parent: BaseBulletAP
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12
+        Blunt: 3        # 20% decrease
+    penetrationScore: 2
+    ignoreResistances: true
