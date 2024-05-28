@@ -10,6 +10,51 @@
     proto: BulletVector22
 
 - type: entity #FrontierCorvax
+  id: CartridgeVector22Incendiary
+  name: cartridge (.22 LR incendiary)
+  parent: CartridgeVector22
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector22Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity #FrontierCorvax
+  id: CartridgeVector22Practice
+  name: cartridge (.22 LR practice)
+  parent: CartridgeVector22
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector22Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: entity #FrontierCorvax
+  id: CartridgeVector22Uranium
+  name: cartridge (.22 LR uranium)
+  parent: CartridgeVector22
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector22Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity #FrontierCorvax
   id: CartridgeVector45
   name: cartridge (.45 ACP)
   parent: BaseCartridgePistol
@@ -64,3 +109,18 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#65fe08"
+
+- type: entity #FrontierCorvax
+  id: CartridgeVector45AP
+  name: cartridge (.45 ACP AP)
+  parent: CartridgeVector45
+  components:
+  - type: CartridgeAmmo
+    proto: BulletVector45AP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#330707"
