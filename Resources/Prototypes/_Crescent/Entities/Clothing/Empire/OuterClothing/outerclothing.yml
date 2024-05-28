@@ -1,0 +1,152 @@
+#hardsuits
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitImperialWorker
+  name: imperial mining hardsuit
+  description: A modular worker's hardsuit, bears the colors of the Kaiser and House von Ferrok.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateworker.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateworker.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Heat: 0.9
+        Radiation: 0.4
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitImperialWorker
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitImperialSoldier
+  name: imperial 'JANNISSARY' mk I combat hardsuit
+  description: A modular soldier's hardsuit, bears the colors of the Kaiser and House Olywir.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatesoldier.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatesoldier.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.7
+        Radiation: 0.9
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitImperialSoldier
+
+# armor
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorImperialTrooperArmor
+  name: imperial man-at-arms vest
+  description: A Type III Imperial trooper vest.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatearmor.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatearmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.6
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorImperialArmorPrestige
+  name: imperial prestige armor vest
+  description: A Type IV Imperial trooper vest with rank stripes and enhanced kevlar composite.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatearmorprestige.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandatearmorprestige.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.55
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+#coats
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatImperialAdjutant
+  name: adjutant's formal coat
+  description: An ornate, durathread-reinforced officer's coat.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateadjutant.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateadjutant.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatImperialGovernor
+  name: governor's formal coat
+  description: An ornate coat bedecked in Imperial livery and medals, clearly intended for the Imperial Governor.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandategovernor.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandategovernor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.90
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatImperialParade
+  name: imperial military parade jacket
+  description: An ornate military jacket, intended for a formal parade.
+  components:
+  - type: Sprite
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateparade.rsi
+  - type: Clothing
+    sprite: _Crescent/Clothing/Empire/OuterClothing/mandateparade.rsi
