@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: ThatOneGoblin25
+# Discord: thedaarkgoblin
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: Eagle
+  name: NM Eagle
+  description: "A modern, medium-sized medical & engineering vessel. Focusing on responding to shuttle distress, Eagle bears the motto 'Recover, Restore, Repair!'."
+  price: 57550 
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/eagle.yml
+
+- type: gameMap
+  id: Eagle
+  mapName: 'NM Eagle'
+  mapPath: /Maps/_NF/Shuttles/eagle.yml
+  minPlayers: 0
+  stations:
+    Eagle:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Eagle {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Chemist: [ 0, 0 ]
+            MedicalDoctor: [ 0, 0 ]
+            Paramedic: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            StationEngineer: [ 0, 0 ]
