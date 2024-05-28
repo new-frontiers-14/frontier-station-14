@@ -16,6 +16,7 @@ using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
 using Content.Server.Worldgen.Systems; // Frontier
+using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.NPC.HTN;
 
@@ -25,13 +26,11 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
-
-    // Frontier
     [Dependency] private readonly WorldControllerSystem _world = default!;
-    private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
+
     private EntityQuery<WorldControllerComponent> _mapQuery;
-    // Frontier
+    private EntityQuery<LoadedChunkComponent> _loadedQuery; // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -41,11 +40,8 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Frontier
-        _xformQuery = GetEntityQuery<TransformComponent>();
-        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
-        _mapQuery = GetEntityQuery<WorldControllerComponent>();
-        // Frontier
+        _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Frontier
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Frontier
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -168,7 +164,7 @@ public sealed class HTNSystem : EntitySystem
             if (count >= maxUpdates)
                 break;
 
-            if (!IsNPCActive(comp)) // Frontier
+            if (!IsNPCActive(uid))  // Frontier
                 continue;
 
             if (comp.PlanningJob != null)
@@ -259,12 +255,16 @@ public sealed class HTNSystem : EntitySystem
         }
     }
 
-    private bool IsNPCActive(HTNComponent component) // Frontier
+    private bool IsNPCActive(EntityUid entity) // Frontier
     {
-        if (!_xformQuery.TryGetComponent(component.Owner, out TransformComponent? xform) || !_mapQuery.TryGetComponent(xform.MapUid, out var worldComponent))
+        var transform = Transform(entity);
+
+        if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
             return true;
 
-        return _loadedQuery.HasComponent(_world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored(), xform.MapUid.Value, worldComponent));
+        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
+
+        return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
