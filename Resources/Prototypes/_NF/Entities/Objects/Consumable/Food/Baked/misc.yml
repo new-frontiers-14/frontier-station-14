@@ -1,0 +1,30 @@
+- type: entity
+  name: divine cookie
+  parent: FoodBakedBase
+  id: FoodBakedCookieDivine
+  description: This cookie looks incredibly delicious. Whoever made it must really appreciate you.
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    state: cookie-sugar
+  - type: FlavorProfile
+    flavors:
+    - sublime
+    - magical
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Omnizine
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 3
+  - type: PointLight
+    color: "#FFFFCC"
+    radius: 1.25
+    energy: 0.75

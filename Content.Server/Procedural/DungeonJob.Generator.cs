@@ -435,6 +435,7 @@ public sealed partial class DungeonJob
                 }
 
                 room.Entrances.Add(entrancePos);
+                dungeon.Entrances.Add(entrancePos);
                 break;
             }
         }

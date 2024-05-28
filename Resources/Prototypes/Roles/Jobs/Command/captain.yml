@@ -3,6 +3,7 @@
   name: job-name-captain
   description: job-description-captain
   playTimeTracker: JobCaptain
+  setPreference: false # Frontier
   # requirements:
     # - !type:RoleTimeRequirement
       # role: JobHeadOfPersonnel
@@ -25,10 +26,10 @@
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
-  requireAdminNotify: true
-  joinNotifyCrew: true
-  supervisors: job-supervisors-centcom
-  canBeAntag: false
+#  requireAdminNotify: true
+#  joinNotifyCrew: true
+#  supervisors: job-supervisors-centcom
+#  canBeAntag: false
   access:
   - Captain # Just making sure in the case of any error that this role cannot be used for any bad doing.
   - Maintenance # Frontier
@@ -45,17 +46,8 @@
 - type: startingGear
   id: CaptainGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCaptain
-    back: ClothingBackpackCaptainFilled
     shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCaptain
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCaptain
-    outerClothing: ClothingOuterArmorCaptainCarapace
     id: CaptainPDA
-    # ears: ClothingHeadsetAltCommand
-    ears: ClothingHeadsetGrey
-  innerClothingSkirt: ClothingUniformJumpskirtCaptain
-  satchel: ClothingBackpackSatchelCaptainFilled
-  duffelbag: ClothingBackpackDuffelCaptainFilled
-  messenger: ClothingBackpackMessengerCaptainFilled # Frontier
+    ears: ClothingHeadsetAltCommand

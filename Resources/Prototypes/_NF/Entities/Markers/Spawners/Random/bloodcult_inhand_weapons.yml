@@ -1,0 +1,70 @@
+- type: entity
+  name: random melee weapon
+  id: SpawnInhandMeleeWeaponBloodCultLow
+  parent: MarkerBase
+  suffix: "Blood cult, Low"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/cult_blade.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - RitualDagger
+    - RitualDagger
+    - RitualDagger
+    - RitualDagger
+    - RitualDagger
+    - RitualDagger
+    - Machete
+    - ButchCleaver
+    - WeaponCrusherGlaive
+    - SpearBone
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - UnholyHalberd
+    - EldritchBlade
+    - Katana
+    - FireAxe
+    - BrokenBottle
+    rareChance: 0.01
+
+- type: entity
+  name: random melee weapon
+  id: SpawnInhandMeleeWeaponBloodCultHigh
+  parent: MarkerBase
+  suffix: "Blood cult, High"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/cult_blade.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+    - EldritchBlade
+    - EldritchBlade
+    - EldritchBlade
+    - EldritchBlade
+    - EldritchBlade
+    - EldritchBlade
+    - EldritchBlade
+    - UnholyHalberd
+    - FireAxe
+    - SpearBone
+    - SpearUranium
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - RitualDagger
+    - Machete
+    - ButchCleaver
+    - WeaponCrusherGlaive
+    - BrokenBottle
+    rareChance: 0.01

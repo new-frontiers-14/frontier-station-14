@@ -31,6 +31,7 @@
         - AppraisalTool
         - JawsOfLife
         - GPS
+        - WeldingMask
       components:
         - SprayPainter
         - NetworkConfigurator
@@ -41,6 +42,7 @@
         - Geiger
         - TrayScanner
         - GasAnalyzer
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       drill:
@@ -225,6 +227,7 @@
         - JanicartKeys
       components:
         - LightReplacer
+        - SmokeOnTrigger
     maxItemSize: Large
   - type: ItemMapper
     mapLayers:
@@ -267,10 +270,12 @@
         - PillCanister
         - Radio
         - DiscreteHealthAnalyzer
+        - SurgeryTool
       components:
         - Hypospray
         - Injector
         - Pill
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -343,6 +348,7 @@
       components:
         - Seed
         - Smokable
+        - HandLabeler
   - type: ItemMapper
     mapLayers:
       hatchet:
@@ -469,12 +475,20 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
+        - CombatKnife
+        - Truncheon
       components:
         - Stunbaton
         - FlashOnTrigger
         - SmokeOnTrigger
         - Flash
         - Handcuff
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+        - DoorRemote
+        - Whistle
+        - HolosignProjector
+        - BalloonPopper
   - type: ItemMapper
     mapLayers:
       flashbang:
@@ -511,6 +525,8 @@
         name: Sabre
         insertVerbText: sheath-insert-verb
         ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
         whitelist:
           tags:
           - CaptainSabre
@@ -592,9 +608,10 @@
         - Gun
         - BallisticAmmoProvider
         - CartridgeAmmo
+  - type: Contraband #frontier
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: ClothingBeltStorageBase #Frontier - ClothingBeltSecurity<ClothingBeltStorageBase
   id: ClothingBeltSecurityWebbing
   name: security webbing
   description: Unique and versatile chest rig, can hold security gear.
@@ -686,3 +703,4 @@
     whitelist:
       tags:
       - WizardWand
+  - type: Contraband #frontier

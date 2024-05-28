@@ -152,6 +152,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadBase
@@ -167,6 +168,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadBase
@@ -182,6 +184,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - CatWearable # Frontier
 
 - type: entity
   parent: ClothingHeadBase
@@ -197,6 +200,33 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+  - type: Storage
+    grid:
+      - 0,0,1,1
+    whitelist:
+      components:
+        - Welder
+        - Cigar
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: ClothingHeadHatNfsdCampaign
+  id: ClothingHeadHatNfsdCampaignFilled
+  name: nfsd campaign hat
+  description: yee-haw partner.
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlippoEngravedLighter
+      - id: CigarGold 
+        amount: 3
 
 - type: entity
   parent: ClothingHeadBase
@@ -212,4 +242,15 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - CatWearable # Frontier
 
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatSrCap
+  name: station representative's cap
+  description: A cap issued to Frontier Outpost's station representative. Try not to lose it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/sr_cap.rsi

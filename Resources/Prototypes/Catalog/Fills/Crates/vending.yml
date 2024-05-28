@@ -24,14 +24,23 @@
   id: CrateVendingMachineRestockClothesFilled
   parent: CratePlasticBiodegradable # Frontier
   name: clothing restock crate
-  description: Contains a pair of restock boxes, one for the ClothesMate and one for the AutoDrobe.
+  description: Contains a restock box for the clothes vending machines.
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockClothes
-        amount: 7 # Frontier
+        amount: 2 # Frontier
+
+- type: entity
+  id: CrateVendingMachineRestockAutoDrobeFilled
+  parent: CratePlasticBiodegradable # Frontier
+  name: AutoDrobe restock crate
+  description: Contains a restock box for the AutoDrobe.
+  components:
+  - type: StorageFill
+    contents:
       - id: VendingMachineRestockCostumes
-        amount: 1 # Frontier
+        amount: 2 # Frontier
 
 - type: entity
   id: CrateVendingMachineRestockCondimentStationFilled

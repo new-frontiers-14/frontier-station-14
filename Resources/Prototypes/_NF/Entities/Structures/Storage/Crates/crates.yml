@@ -101,7 +101,7 @@
         layer:
         - MachineLayer
   - type: StaticPrice
-    price: 10000
+    price: 7500
   - type: Contraband
     value: 5
 
@@ -129,7 +129,7 @@
         layer:
         - MachineLayer
   - type: StaticPrice
-    price: 20000
+    price: 15000
   - type: Contraband
     value: 5
 
@@ -157,6 +157,53 @@
         layer:
         - MachineLayer
   - type: StaticPrice
-    price: 20000
+    price: 15000
   - type: Contraband
     value: 5
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateNfsdBrigmedic
+  name: brigmedic crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/nfsd_brigmed.rsi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateNfsdSecure1
+  name: nfsd crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateNfsdSecure2
+  name: nfsd crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: CratePirate
+  id: CratePirateGrey
+  name: pirate chest
+  description: A space pirate chest, not for station lubbers.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi

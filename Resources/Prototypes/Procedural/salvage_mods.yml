@@ -1,6 +1,7 @@
 # Markers
 - type: entity
   id: SalvageShuttleMarker
+  name: Salvage shuttle marker
   parent: FTLPoint
 
 # Biome mods -> at least 1 required
@@ -16,15 +17,16 @@
 - type: salvageBiomeMod
   id: Snow
   biome: Snow
+  cost: 1 # Frontier
 
 - type: salvageBiomeMod
   id: Caves
   cost: 1
   biome: Caves
-  
+
 - type: salvageBiomeMod
   id: Shadow
-  cost: 2
+#  cost: 2 # Frontier
   biome: Shadow
 
 #- type: salvageBiomeMod
@@ -80,8 +82,8 @@
 - type: salvageTimeMod
   id: RushTime
   desc: Rush
-  minDuration: 420
-  maxDuration: 465
+  minDuration: 630 # Frontier
+  maxDuration: 840 # Frontier
   cost: 1
 
 # Misc mods
@@ -89,152 +91,140 @@
   id: LongDistance
   desc: Long distance
 
-# Dungeons
-#  For now just simple 1-dungeon setups
-- type: salvageDungeonMod
-  id: Experiment
-  proto: Experiment
-  biomes:
-    - Caves
-    - Shadow
-    #- LowDesert
-    - Snow
-    - Grasslands
-
-- type: salvageDungeonMod
-  id: LavaBrig
-  proto: LavaBrig
-  biomes:
-    - Lava
-    - Shadow
-
+# Frontier - Duplicate, using NF variant
 # Air mixtures
-- type: salvageAirMod
-  id: Space
-  desc: No atmosphere
-  space: true
-  cost: 1
-  biomes:
-  - Caves
-  - Lava
+#- type: salvageAirMod
+#  id: Space
+#  desc: No atmosphere
+#  space: true
+#  cost: 1
+#  biomes:
+#  - Caves
+#  - Lava
 
-- type: salvageAirMod
-  id: Breathable
-  gases:
-  - 21.824779 # oxygen
-  - 82.10312 # nitrogen
-  - 0 # carbon dioxide
-  - 0 # plasma
-  - 0 # tritium
-  - 0 # water vapor
-  - 0 # miasma
-  - 0 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  - Shadow
-  #- LowDesert
-  - Snow
-  - Grasslands
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Breathable
+#  gases:
+#  - 21.824779 # oxygen
+#  - 82.10312 # nitrogen
+#  - 0 # carbon dioxide
+#  - 0 # plasma
+#  - 0 # tritium
+#  - 0 # water vapor
+#  - 0 # miasma
+#  - 0 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  - Shadow
+#  #- LowDesert
+#  - Snow
+#  - Grasslands
 
-- type: salvageAirMod
-  id: Sleepy
-  cost: 1
-  desc: Dangerous atmosphere
-  gases:
-  - 21.824779 # oxygen
-  - 72.10312 # nitrogen
-  - 0 # carbon dioxide
-  - 0 # plasma
-  - 0 # tritium
-  - 0 # water vapor
-  - 0 # miasma
-  - 8 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  #- LowDesert
-  - Snow
-  - Grasslands
-  - Lava
-  - Shadow
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Sleepy
+#  cost: 1
+#  desc: Dangerous atmosphere
+#  gases:
+#  - 21.824779 # oxygen
+#  - 72.10312 # nitrogen
+#  - 0 # carbon dioxide
+#  - 0 # plasma
+#  - 0 # tritium
+#  - 0 # water vapor
+#  - 0 # miasma
+#  - 8 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  #- LowDesert
+#  - Snow
+#  - Grasslands
+#  - Lava
+#  - Shadow
 
-- type: salvageAirMod
-  id: Poisoned
-  cost: 2
-  desc: Dangerous atmosphere
-  gases:
-  - 21.824779 # oxygen
-  - 77.10312 # nitrogen
-  - 8 # carbon dioxide
-  - 0 # plasma
-  - 0 # tritium
-  - 0 # water vapor
-  - 0 # miasma
-  - 0 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  #- LowDesert
-  - Shadow
-  - Snow
-  - Grasslands
-  - Lava
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Poisoned
+#  cost: 2
+#  desc: Dangerous atmosphere
+#  gases:
+#  - 21.824779 # oxygen
+#  - 77.10312 # nitrogen
+#  - 8 # carbon dioxide
+#  - 0 # plasma
+#  - 0 # tritium
+#  - 0 # water vapor
+#  - 0 # miasma
+#  - 0 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  #- LowDesert
+#  - Shadow
+#  - Snow
+#  - Grasslands
+#  - Lava
 
-- type: salvageAirMod
-  id: Poison
-  cost: 3
-  desc: Toxic atmosphere
-  gases:
-  - 21.824779 # oxygen
-  - 55.649558 # nitrogen
-  - 20.453562 # carbon dioxide
-  - 0 # plasma
-  - 0 # tritium
-  - 0 # water vapor
-  - 0 # miasma
-  - 0 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  - Snow
-  - Lava
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Poison
+#  cost: 3
+#  desc: Toxic atmosphere
+#  gases:
+#  - 21.824779 # oxygen
+#  - 55.649558 # nitrogen
+#  - 20.453562 # carbon dioxide
+#  - 0 # plasma
+#  - 0 # tritium
+#  - 0 # water vapor
+#  - 0 # miasma
+#  - 0 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  - Snow
+#  - Lava
 
-- type: salvageAirMod
-  id: Plasma
-  cost: 4
-  desc: Toxic atmosphere
-  gases:
-  - 0 # oxygen
-  - 21.824779 # nitrogen
-  - 41.824779 # carbon dioxide
-  - 15.453562 # plasma
-  - 0 # tritium
-  - 2.9 # water vapor
-  - 0 # miasma
-  - 0.1 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  - Lava
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Plasma
+#  cost: 4
+#  desc: Toxic atmosphere
+#  gases:
+#  - 0 # oxygen
+#  - 21.824779 # nitrogen
+#  - 41.824779 # carbon dioxide
+#  - 15.453562 # plasma
+#  - 0 # tritium
+#  - 2.9 # water vapor
+#  - 0 # miasma
+#  - 0.1 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  - Lava
 
-- type: salvageAirMod
-  id: Burnable
-  cost: 5
-  desc: Volatile atmosphere
-  gases:
-  - 28.824779 # oxygen
-  - 28.824779 # nitrogen
-  - 28.824779 # carbon dioxide
-  - 15.453562 # plasma
-  - 0.1 # tritium
-  - 1.9 # water vapor
-  - 0 # miasma
-  - 0 # nitrous oxide
-  - 0 # frezon
-  biomes:
-  - Caves
-  - Lava
+# Frontier - Duplicate, using NF variant
+#- type: salvageAirMod
+#  id: Burnable
+#  cost: 5
+#  desc: Volatile atmosphere
+#  gases:
+#  - 28.824779 # oxygen
+#  - 28.824779 # nitrogen
+#  - 28.824779 # carbon dioxide
+#  - 15.453562 # plasma
+#  - 0.1 # tritium
+#  - 1.9 # water vapor
+#  - 0 # miasma
+#  - 0 # nitrous oxide
+#  - 0 # frezon
+#  biomes:
+#  - Caves
+#  - Lava
 
 # Temperatures
 
@@ -300,4 +290,138 @@
   cost: 3
   temperature: 123.15 # -150C
   biomes:
-  - Snow
+    - Snow
+
+# Air mixtures
+- type: salvageAirMod
+  id: Space
+  desc: No atmosphere
+  space: true
+  cost: 2
+  biomes:
+    - Caves
+    - Lava
+
+- type: salvageAirMod
+  id: Breathable
+  cost: 0
+  gases:
+    - 21.824779 # oxygen
+    - 82.10312 # nitrogen
+
+- type: salvageAirMod
+  id: Sleepy
+  cost: 1
+  desc: Dangerous atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 72.10312 # nitrogen
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 10 # nitrous oxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+
+- type: salvageAirMod
+  id: Poisoned
+  cost: 2
+  desc: Dangerous atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 77.10312 # nitrogen
+    - 10 # carbon dioxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+
+- type: salvageAirMod
+  id: Poison
+  cost: 3
+  desc: Toxic atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 82.10312 # carbon dioxide
+  biomes:
+    - Caves
+    - Snow
+    - Lava
+
+- type: salvageAirMod
+  id: Plasma
+  cost: 4
+  desc: Toxic atmosphere
+  gases:
+    - 0
+    - 0
+    - 0
+    - 103.927899 # plasma
+  biomes:
+    - Caves
+    - Lava
+
+- type: salvageAirMod
+  id: Burnable
+  cost: 5
+  desc: Volatile atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 0
+    - 82.10312 # plasma
+  biomes:
+    - Caves
+    - Lava
+
+# Weather mods -> not required
+#- type: salvageWeatherMod
+#  id: SnowfallHeavy
+#  weather: SnowfallHeavy
+#  cost: 1
+#
+#- type: salvageWeatherMod
+#  id: Rain
+#  weather: Rain
+
+# Dungeons
+#  For now just simple 1-dungeon setups
+- type: salvageDungeonMod
+  id: Experiment
+  proto: Experiment
+  biomes:
+    #- LowDesert
+    - Grasslands
+
+- type: salvageDungeonMod
+  id: LavaBrig
+  proto: LavaBrig
+  biomes:
+    - Lava
+
+- type: salvageDungeonMod
+  id: Mineshaft
+  proto: Mineshaft
+  biomes:
+    - Caves
+
+- type: salvageDungeonMod
+  id: SnowyLabs
+  proto: SnowyLabs
+  biomes:
+    - Snow
+
+- type: salvageDungeonMod
+  id: Haunted
+  proto: Haunted
+  biomes:
+    - Caves
