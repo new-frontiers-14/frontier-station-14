@@ -62,68 +62,68 @@
     gridPath: /Maps/_NF/Bluespace/vaultsmall.yml
     rewardFactor: 3
 
-# - type: entity # Need rework
-  # id: BluespaceAsteroid
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-bluespace-asteroid-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-bluespace-asteroid-end-announcement
-    # earliestStart: 100
-    # minimumPlayers: 25
-    # weight: 2
-    # startDelay: 10
-    # duration: 1500
-    # maxDuration: 1800
-    # maxOccurrences: 1 # Only once per shift possible
-  # - type: BluespaceErrorRule
-    # gridPath: /Maps/_NF/Bluespace/asteroidvault.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
+ - type: entity # Need rework
+   id: BluespaceAsteroid
+   parent: BaseGameRule
+   noSpawn: true
+   components:
+   - type: StationEvent
+     startAnnouncement: station-event-bluespace-asteroid-start-announcement
+     startAudio:
+       path: /Audio/Announcements/attention.ogg
+     endAnnouncement: station-event-bluespace-asteroid-end-announcement
+     earliestStart: 100
+     minimumPlayers: 25
+     weight: 2
+     startDelay: 10
+     duration: 1500
+     maxDuration: 1800
+     maxOccurrences: 1 # Only once per shift possible
+   - type: BluespaceErrorRule
+     gridPath: /Maps/_NF/Bluespace/asteroidvault.yml
+     rewardFactor: 0.5 # Filler to make the bank go up
 
-# - type: entity # Need rework
-  # id: BluespaceAsteroidBunker
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-bluespace-asteroid-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-bluespace-asteroid-end-announcement
-    # earliestStart: 100
-    # minimumPlayers: 25
-    # weight: 2
-    # startDelay: 10
-    # duration: 2100
-    # maxDuration: 2400
-    # maxOccurrences: 1 # Only once per shift possible
-  # - type: BluespaceErrorRule
-    # gridPath: /Maps/_NF/Bluespace/asteroidbunker.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
+ - type: entity # Need rework
+   id: BluespaceAsteroidBunker
+   parent: BaseGameRule
+   noSpawn: true
+   components:
+   - type: StationEvent
+     startAnnouncement: station-event-bluespace-asteroid-start-announcement
+     startAudio:
+       path: /Audio/Announcements/attention.ogg
+     endAnnouncement: station-event-bluespace-asteroid-end-announcement
+     earliestStart: 100
+     minimumPlayers: 25
+     weight: 2
+     startDelay: 10
+     duration: 2100
+     maxDuration: 2400
+     maxOccurrences: 1 # Only once per shift possible
+   - type: BluespaceErrorRule
+     gridPath: /Maps/_NF/Bluespace/asteroidbunker.yml
+     rewardFactor: 0.5 # Filler to make the bank go up
 
-# - type: entity # Need rework
-  # id: BluespaceCargoniaShip
-  # parent: BaseGameRule
-  # noSpawn: true
-  # components:
-  # - type: StationEvent
-    # startAnnouncement: station-event-bluespace-ship-start-announcement
-    # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-bluespace-ship-end-announcement
-    # earliestStart: 100
-    # minimumPlayers: 15
-    # weight: 2
-    # startDelay: 10
-    # duration: 900
-    # maxDuration: 1200
-    # maxOccurrences: 1 # Only once per shift possible
-  # - type: BluespaceErrorRule
-    # gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
+ - type: entity # Need rework
+   id: BluespaceCargoniaShip
+   parent: BaseGameRule
+   noSpawn: true
+   components:
+   - type: StationEvent
+     startAnnouncement: station-event-bluespace-ship-start-announcement
+     startAudio:
+       path: /Audio/Announcements/attention.ogg
+     endAnnouncement: station-event-bluespace-ship-end-announcement
+     earliestStart: 100
+     minimumPlayers: 15
+     weight: 2
+     startDelay: 10
+     duration: 900
+     maxDuration: 1200
+     maxOccurrences: 1 # Only once per shift possible
+   - type: BluespaceErrorRule
+     gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
+     rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceDataCarrier
