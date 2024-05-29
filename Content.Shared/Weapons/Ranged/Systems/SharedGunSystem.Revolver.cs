@@ -246,7 +246,8 @@ public partial class SharedGunSystem
                 return false;
             }
 
-            for (var i = Math.Min(ev.Ammo.Count - 1, component.Capacity - 1); i >= 0; i--)
+            // Rotate around until we've covered the whole cylinder or there are no more unspent bullets to transfer.
+            for (var i = 0; i < component.Capacity && ev.Ammo.Count > 0; i++)
             {
                 var index = (component.CurrentIndex + i) % component.Capacity;
 
@@ -266,11 +267,8 @@ public partial class SharedGunSystem
                 }
 
                 component.AmmoSlots[index] = ent.Value;
-                Containers.Insert(ent.Value, component.AmmoContainer);
+                component.Chambers[index] = true;
                 SetChamber(index, component, uid);
-
-                if (ev.Ammo.Count == 0)
-                    break;
             }
 
             DebugTools.Assert(ammo.Count == 0);
@@ -537,7 +535,7 @@ public partial class SharedGunSystem
         {
             // Frontier: better revolver reloading
             var currentIndex = component.CurrentIndex;
-            var shotsToRemove = int.Min(args.Shots, GetRevolverUnspentCount(component));
+            var shotsToRemove = Math.Min(args.Shots, GetRevolverUnspentCount(component));
             var removedShots = 0;
 
             // Rotate around until we've covered the whole cylinder or there are no more unspent bullets to transfer.
