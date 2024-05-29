@@ -61,6 +61,8 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<PdaComponent, PdaShowUplinkMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaLockUplinkMessage>(OnUiMessage);
 
+            SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnEmergencyChanged);
+
             SubscribeLocalEvent<PdaComponent, CartridgeLoaderNotificationSentEvent>(OnNotification);
 
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
@@ -110,6 +112,11 @@ namespace Content.Server.PDA
         }
 
         private void OnStationRenamed(StationRenamedEvent ev)
+        {
+            UpdateAllPdaUisOnStation();
+        }
+
+        private void OnEmergencyChanged(RoundEndSystemChangedEvent ev)
         {
             UpdateAllPdaUisOnStation();
         }
@@ -176,17 +183,17 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
-            var balance = 0;
-            if (actor_uid != null && TryComp<BankAccountComponent>(actor_uid, out var account))
+            int? balance = null;
+            if (actor_uid is not null && TryComp<BankAccountComponent>(actor_uid, out var account))
                 balance = account.Balance;
 
             TimeSpan shuttleTime;
             var station = _station.GetOwningStation(uid);
-            if (!TryComp<StationEmergencyShuttleComponent>(station, out var stationEmergencyShuttleComponent) && _roundEndSystem.ExpectedCountdownEnd != null)
-                shuttleTime = _roundEndSystem.ExpectedCountdownEnd ?? TimeSpan.Zero + _gameTiming.CurTime;
+            if (!TryComp<StationEmergencyShuttleComponent>(station, out var stationEmergencyShuttleComponent) && _roundEndSystem.ExpectedCountdownEnd is not null)
+                shuttleTime = _roundEndSystem.ExpectedCountdownEnd.Value;
 
             else
-                shuttleTime = new TimeSpan(0, 0, (int)(_cfg.GetCVar(CCVars.EmergencyShuttleDockTime) * 60));
+                shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.EmergencyShuttleDockTime));
 
 
             var state = new PdaUpdateState(

@@ -17,7 +17,7 @@ namespace Content.Shared.PDA
         public bool HasUplink;
         public bool CanPlayMusic;
         public string? Address;
-        public int Balance;
+        public int? Balance;
         public TimeSpan? EvacShuttleTime;
 
         public PdaUpdateState(
@@ -28,7 +28,7 @@ namespace Content.Shared.PDA
             bool hasPai,
             bool hasBook,
             PdaIdInfoText pdaOwnerInfo,
-            int balance,
+            int? balance,
             TimeSpan? evacShuttleTime,
             string? stationName,
             bool hasUplink = false,
