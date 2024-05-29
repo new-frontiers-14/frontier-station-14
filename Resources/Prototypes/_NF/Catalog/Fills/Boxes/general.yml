@@ -120,3 +120,25 @@
     contents:
       - id: EncryptionKeyNfsd
         amount: 4
+
+- type: entity
+  name: exterior lighttube box
+  parent: BoxCardboard
+  id: BoxExteriorLightTube
+  description: This box is shaped on the inside so that only light tubes and bulbs fit.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ExteriorLightTube
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+        color: "cyan"
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    whitelist:
+      components:
+      - LightBulb
