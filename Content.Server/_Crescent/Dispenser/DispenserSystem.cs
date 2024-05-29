@@ -17,7 +17,7 @@ namespace Content.Server.Dispenser
 
         private void OnActivateInWorld(EntityUid uid, DispenserComponent component, ActivateInWorldEvent args)
         {
-            if (args.Handled)
+            if (args.Handled || component.Dispensing)
             {
                 return;
             }
@@ -35,7 +35,7 @@ namespace Content.Server.Dispenser
 
         private void OnInteractUsing(EntityUid uid, DispenserComponent component, InteractUsingEvent args)
         {
-            if (args.Handled)
+            if (args.Handled || component.Dispensing)
             {
                 return;
             }
