@@ -21,9 +21,9 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
     {
         {"BufferRange", 10f},
         {"FollowCloseRange", 3f},
-        {"FollowRange", 7f},
+        {"FollowRange", 10f},
         {"IdleRange", 7f},
-        {"InteractRange", SharedInteractionSystem.InteractionRange},
+        {"InteractRange", 3f},
         {"MaximumIdleTime", 7f},
         {MedibotInjectRange, 4f},
         {MeleeMissChance, 0.3f},
@@ -33,7 +33,7 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
         {"MovementRange", 1.5f},
         {"RangedRange", 10f},
         {"RotateSpeed", float.MaxValue},
-        {"VisionRadius", 10f},
+        {"VisionRadius", 15f},
     };
 
     /// <summary>
