@@ -247,7 +247,7 @@ public partial class SharedGunSystem
             }
 
             // Rotate around until we've covered the whole cylinder or there are no more unspent bullets to transfer.
-            for (var i = 0; i < component.Capacity && ev.Ammo.Count > 0; i++)
+            for (var i = 0; i < component.Capacity && ev.Ammo.Count > 0; i++) // Frontier: cover the entire cylinder if needed for partial speedloader inserts
             {
                 var index = (component.CurrentIndex + i) % component.Capacity;
 
