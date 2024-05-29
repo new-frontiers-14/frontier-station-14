@@ -116,7 +116,7 @@ public abstract partial class SharedGunSystem
         }
         // End Frontier
 
-        if (GetBallisticShots(component) == 0)
+        if (component.Entities.Count + component.UnspawnedCount == 0)
         {
             Popup(
                 Loc.GetString("gun-ballistic-transfer-empty",
@@ -143,9 +143,8 @@ public abstract partial class SharedGunSystem
             if (ent == null)
                 continue;
 
-            // Frontier: better revolver reloading
-            if (ballisticTarget is not null && ballisticTarget?.Whitelist?.IsValid(ent.Value) != true ||
-                revolverTarget is not null && revolverTarget?.Whitelist?.IsValid(ent.Value) != true)
+            if (ballisticTarget is not null && ballisticTarget?.Whitelist?.IsValid(ent.Value) != true || // Frontier: better revolver reloading
+                revolverTarget is not null && revolverTarget?.Whitelist?.IsValid(ent.Value) != true) // Frontier: better revolver reloading
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",
@@ -156,7 +155,7 @@ public abstract partial class SharedGunSystem
 
                 SimulateInsertAmmo(ent.Value, uid, Transform(uid).Coordinates);
 
-                validAmmoType = false;
+                validAmmoType = false; // Frontier: do not retry reloading if the ammo type is different.
             }
             else
             {
@@ -164,7 +163,6 @@ public abstract partial class SharedGunSystem
                 Audio.PlayPredicted(component.SoundInsert, uid, args.User);
                 SimulateInsertAmmo(ent.Value, args.Target.Value, Transform(args.Target.Value).Coordinates);
             }
-            // End Frontier
 
             if (IsClientSide(ent.Value))
                 Del(ent.Value);
@@ -178,7 +176,7 @@ public abstract partial class SharedGunSystem
         else if (revolverTarget is not null)
             moreSpace = GetRevolverCount(revolverTarget) < revolverTarget.Capacity;
         // End Frontier
-        var moreAmmo = GetBallisticShots(component) > 0;
+        var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
         args.Repeat = moreSpace && moreAmmo && validAmmoType; // Frontier: do not repeat reload attempts with invalid ammo.
     }
 

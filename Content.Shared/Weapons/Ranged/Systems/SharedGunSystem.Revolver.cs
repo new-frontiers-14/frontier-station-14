@@ -212,7 +212,7 @@ public partial class SharedGunSystem
 
     public bool TryRevolverInsert(EntityUid revolverUid, RevolverAmmoProviderComponent component, EntityUid uid, EntityUid? user)
     {
-        if (component.Whitelist?.IsValid(uid, EntityManager) != true)
+        if (component.Whitelist?.IsValid(uid, EntityManager) != true) // Frontier: no null, consistency with BallisticAmmoProvider
             return false;
 
         // If it's a speedloader try to get ammo from it.
@@ -247,7 +247,7 @@ public partial class SharedGunSystem
             }
 
             // Rotate around until we've covered the whole cylinder or there are no more unspent bullets to transfer.
-            for (var i = 0; i < component.Capacity && ev.Ammo.Count > 0; i++) // Frontier: cover the entire cylinder if needed for partial speedloader inserts
+            for (var i = 0; i < component.Capacity && ev.Ammo.Count > 0; i++) // Frontier: speedloader partial reload fix
             {
                 var index = (component.CurrentIndex + i) % component.Capacity;
 
@@ -267,7 +267,7 @@ public partial class SharedGunSystem
                 }
 
                 component.AmmoSlots[index] = ent.Value;
-                component.Chambers[index] = true;
+                Containers.Insert(ent.Value, component.AmmoContainer);
                 SetChamber(index, component, uid);
             }
 
@@ -541,18 +541,18 @@ public partial class SharedGunSystem
             // Rotate around until we've covered the whole cylinder or there are no more unspent bullets to transfer.
             for (var i = 0; i < component.Capacity && removedShots < shotsToRemove; i++)
             {
-                // Remove the last rounds to be fired without cycling the action, as when removing rounds from a pop-out cylinder.
-                // This will keep any unspent bullets closer to the currently indexed chamber.
+                // Remove the last rounds to be fired without cycling the action.
+                // If the gun had a live round to start, it should have a live round when finished if any unspent rounds remain.
                 var index = (currentIndex + (component.Capacity - 1) - i) % component.Capacity;
                 var chamber = component.Chambers[index];
-                EntityUid? ent = null;
 
                 // Only take live rounds, leave the empties where they are.
                 if (chamber == true)
                 {
                     // Get current cartridge, or spawn a new one if it doesn't exist.
-                    ent = component.AmmoSlots[index]!;
-                    if (ent == null) {
+                    EntityUid? ent = component.AmmoSlots[index]!;
+                    if (ent == null)
+                    {
                         ent = Spawn(component.FillPrototype, args.Coordinates);
 
                         if (!_netManager.IsClient)
@@ -561,17 +561,14 @@ public partial class SharedGunSystem
                             Containers.Insert(ent.Value, component.AmmoContainer);
                         }
                     }
+
+                    // Add the cartridge to our set and remove the bullet from the gun.
+                    args.Ammo.Add((ent.Value, EnsureComp<AmmoComponent>(ent.Value)));
+                    Containers.Remove(ent.Value, component.AmmoContainer);
+                    component.AmmoSlots[index] = null;
+                    component.Chambers[index] = null;
+                    removedShots++;
                 }
-
-                // Chamber empty or spent.
-                if (ent == null)
-                    continue;
-
-                // We found an unspent cartridge.  Add it to our set and remove the bullet from the gun.
-                args.Ammo.Add((ent.Value, EnsureComp<AmmoComponent>(ent.Value)));
-                component.AmmoSlots[index] = null;
-                component.Chambers[index] = null;
-                removedShots++;
             }
             // End Frontier
         }
