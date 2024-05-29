@@ -44,6 +44,9 @@
       Unsexed: Cat
   - type: Inventory
     speciesId: cat
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
 
 - type: entity
   id: BaseEmotionalGhostDog
@@ -67,11 +70,8 @@
   - type: RandomMetadata
     nameSegments: [names_cat]
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: cat
-      Dead:
         Base: cat
 
 - type: entity
@@ -82,11 +82,8 @@
   - type: RandomMetadata
     nameSegments: [names_cat_calico]
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: cat2
-      Dead:
         Base: cat2
 
 - type: entity
@@ -97,11 +94,8 @@
   - type: RandomMetadata
     nameSegments: [names_cat_caracal]
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: caracal_flop
-      Dead:
         Base: caracal_flop
 
 - type: entity
@@ -112,11 +106,8 @@
   - type: RandomMetadata
     nameSegments: [names_cat_space]
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: spacecat
-      Dead:
         Base: spacecat
 
 - type: entity
@@ -127,13 +118,8 @@
   - type: RandomMetadata
     nameSegments: [names_cat_bingus]
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: bingus
-      Critical:
-        Base: bingus
-      Dead:
         Base: bingus
 
 - type: entity
