@@ -5,7 +5,7 @@
   - MobFlammable
   - FlyingMobBase
   id: MobDragonPet
-  name: small space dragon
+  name: space baby dragon
   description: A flying leviathan, loosely related to space carps.
   components:
   - type: Body
@@ -18,7 +18,7 @@
       60: 0.7
       80: 0.5
   - type: MobPrice
-    price: 000
+    price: 600
   - type: Perishable
   - type: Bloodstream
     bloodMaxVolume: 650
@@ -39,9 +39,8 @@
     - enum.DamageStateVisualLayers.Base:
         alive: Rainbow
   - type: Sprite
-    sprite: Mobs/Aliens/Carps/dragon.rsi
+    sprite: _NF/Mobs/Pets/baby_dragon.rsi
     noRot: true
-    scale: 0.6, 0.6
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
