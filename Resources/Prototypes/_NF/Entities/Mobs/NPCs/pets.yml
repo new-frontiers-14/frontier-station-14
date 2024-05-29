@@ -1,14 +1,26 @@
 - type: entity
+  id: MobPetNF
+  abstract: true
+  components:
+  - type: GhostRole
+    requirements:
+    - !type:WhitelistRequirement
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+
+- type: entity
   name: Clippy
-  parent: [MobCatGhost, ShowSecurityIcons]
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
-    requirements:
-    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
@@ -22,16 +34,10 @@
     - id: FoodMeatCat
       amount: 1
 #    - id: MaterialHideClippy
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Service
   - type: ActiveRadio
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Service
   - type: NpcFactionMember
     factions:
@@ -40,7 +46,7 @@
 
 - type: entity
   name: Clarpy
-  parent: MobCatGhost
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClarpy
   description: First cat to gain a bounty.
   components:
@@ -61,8 +67,6 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
-    requirements:
-    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -72,8 +76,6 @@
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
     channels:
     - Freelance
   - type: ActiveRadio
@@ -86,7 +88,7 @@
 
 - type: entity
   name: Cappy
-  parent: MobCatGhost
+  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
   id: MobCatCappy
   description: First cat to shoot a gun.
   components:
@@ -107,8 +109,6 @@
   - type: GhostRole
     name: ghost-role-information-cappy-name
     description: ghost-role-information-cappy-description
-    requirements:
-    - !type:WhitelistRequirement
   - type: Loadout
     prototypes: [ MobCappyGear ]
   - type: ReplacementAccent
@@ -121,16 +121,10 @@
     - TrackingImplant
     - LightImplant
   - type: FlashImmunity
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: ActiveRadio
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: Inventory
     templateId: nfsdpet
@@ -142,10 +136,6 @@
         Piercing: 0 # Declawed cat
   - type: StaminaDamageOnHit
     damage: 18
-  - type: NpcFactionMember
-    factions:
-      - Cat
-      - PetsNT
   - type: Speech
     speechSounds: NfsdCat
     speechVerb: SmallMob
