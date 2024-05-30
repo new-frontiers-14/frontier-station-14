@@ -55,7 +55,7 @@ namespace Content.Server.Body.Components
         public bool RemoveEmpty = false;
 
         /// <summary>
-        ///     How many Poison can this metabolizer process at once?
+        ///     How many poisons can this metabolizer process at once?
         ///     Used to nerf 'stacked poisons' where having 5+ different poisons in a syringe, even at low
         ///     quantity, would be muuuuch better than just one poison acting.
         /// </summary>
