@@ -147,6 +147,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         Matrix3.Multiply(posMatrix, ourEntMatrix, out var ourWorldMatrix);
         var ourWorldMatrixInvert = ourWorldMatrix.Invert();
 
+        // Frontier Corvax: north line drawing
+        var rot = ourEntRot + _rotation.Value;
+        DrawNorthLine(handle, rot);
+
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
         if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
@@ -178,7 +182,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
 
-        var rot = ourEntRot + _rotation.Value;
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
 

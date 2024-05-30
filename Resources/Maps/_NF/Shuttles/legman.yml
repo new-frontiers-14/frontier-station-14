@@ -153,23 +153,21 @@ entities:
       data:
         tiles:
           0,0:
-            0: 32767
+            0: 2047
             1: 32768
-          1,0:
-            0: 17
-            1: 4352
-          -1,0:
-            0: 52974
-            1: 8192
           0,-1:
-            0: 65527
+            0: 65330
             1: 8
+          -1,0:
+            0: 3276
+            1: 8192
+          1,0:
+            1: 4352
+          -1,-1:
+            0: 51336
+            1: 546
           1,-1:
             1: 16
-            0: 4352
-          -1,-1:
-            1: 546
-            0: 60620
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -187,7 +185,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -219,8 +217,6 @@ entities:
       - 122
       - 114
       - 121
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 148
@@ -231,8 +227,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 61
@@ -617,7 +611,6 @@ entities:
       solutions:
         drink:
           temperature: 293.15
-          canMix: True
           canReact: True
           maxVol: 20
           name: null
@@ -671,8 +664,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -710,8 +701,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasPressurePump
@@ -724,8 +713,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
   - uid: 133
@@ -735,8 +722,6 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -747,8 +732,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasVentScrubber
@@ -758,8 +741,6 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 78
@@ -862,127 +843,26 @@ entities:
   entities:
   - uid: 57
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 74
     - type: Physics
       canCollide: False
   - uid: 71
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 74
     - type: Physics
       canCollide: False
   - uid: 88
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 74
     - type: Physics
       canCollide: False
-  - uid: 159
-    components:
-    - type: Transform
-      pos: -0.90263844,-0.4524182
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-ce
-      stampedBy:
-      - stampedBorderless: False
-        stampedColor: '#C69B17FF'
-        stampedName: stamp-component-stamped-name-ce
-      - stampedBorderless: False
-        stampedColor: '#00BE00FF'
-        stampedName: stamp-component-stamped-name-approved
-      content: >-
-        [color=#1b67a5]█░░█░███[/color][color=#5b97bc]░███░█░█░█░██░░█░█░██░░██░░██░[/color]
-
-        [color=#1b67a5]██░█░░█░[/color][color=#5b97bc]██░░░█░█░█░█░█░█░█░█░█░█░█░█░█[/color]
-
-        [color=#1b67a5]█░██░░█░[/color][color=#5b97bc]░░██░███░█░██░░░█░░███░██░░█░█[/color]
-
-        [color=#1b67a5]█░░█░░█░[/color][color=#5b97bc]███░░█░█░█░█░░░░█░░█░█░█░█░██░[/color]
-
-
-        [head=1]=========================[/head]
-
-        [head=1]    Legman-class service ship[/head]
-
-        [head=1] [/head]
-
-        [head=1]       PREFLIGHT CHECKLIST[/head]
-
-        [head=1] [/head]
-
-        [head=1]=========================[/head]
-
-
-        [head=2]1. Power supply.[/head]
-
-        [head=3]1.1. Battery units.[/head]
-
-        [bullet/][ ] Check if the substation unit is anchored to the floor.
-
-        [bullet/][ ] Check if the APC unit's Main Breaker is toggled on.
-
-        [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
-
-        [head=3]1.2. P.A.C.M.A.N. generator unit.[/head]
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is set to HV output.
-
-        [bullet/][ ] Set Target Power for 9-10[bold]**[/bold] [bold]k[/bold]W.
-
-        [bullet/][ ] Start the P.A.C.M.A.N. generator unit.
-
-
-        [head=2]2. Atmospherics.[/head]
-
-        [head=3]2.1. Distribution Loop.[/head]
-
-        [bullet/][ ] Check if the air canister is anchored to connector port.
-
-        [bullet/][ ] Check if the distribution pump is set to normal pressure.
-
-        [bullet/][ ] Enable the distribution pump.
-
-        [head=3]2.2. Waste Loop.[/head]
-
-        [bullet/][ ] Enable the waste loop pump.
-
-        [bullet/][ ] Disable Auto Mode on the Air Alarm in the Engine Room.
-
-        [bullet/][ ] Set the Air Alarm in the Engine Room to Filtering (Wide).
-
-
-        [head=2]3. Other checks.[/head]
-
-        [bullet/][ ] Check if the gyroscope is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the mini gravity generator is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the bow window shutters are closed.
-
-
-        __________________________________________________________________
-
-        [bold]*[/bold] - Legman-class service ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-
-        [bold]**[/bold] - Legman-class service ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
 - proto: PaperWrittenAMEScribbles
   entities:
   - uid: 134
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 132
     - type: Physics
@@ -1020,7 +900,6 @@ entities:
   - uid: 150
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1029,7 +908,6 @@ entities:
   - uid: 151
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1038,7 +916,6 @@ entities:
   - uid: 152
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1047,7 +924,6 @@ entities:
   - uid: 153
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1056,7 +932,6 @@ entities:
   - uid: 154
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1065,26 +940,22 @@ entities:
   - uid: 156
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
     - type: Physics
       canCollide: False
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 3
+  - uid: 26
     components:
     - type: Transform
-      anchored: True
       pos: -1.5,-0.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PottedPlantRandom
   entities:
   - uid: 162
@@ -1096,16 +967,12 @@ entities:
   entities:
   - uid: 81
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
   - uid: 82
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,0.5
@@ -1121,6 +988,13 @@ entities:
       count: 15
     - type: Item
       size: 15
+- proto: ShipyardLegmanInfo
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      pos: -0.6833,-0.24577266
+      parent: 1
 - proto: ShuttleWindow
   entities:
   - uid: 6
@@ -1191,6 +1065,33 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 200
+- proto: SmallThruster
+  entities:
+  - uid: 27
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-2.5
+      parent: 1
+    - type: Thruster
+      originalPowerLoad: 500
+  - uid: 29
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-3.5
+      parent: 1
+    - type: Thruster
+      originalPowerLoad: 500
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 4.5,3.5
+      parent: 1
+    - type: Thruster
+      originalPowerLoad: 500
 - proto: SpawnPointLatejoin
   entities:
   - uid: 142
@@ -1198,26 +1099,11 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 1
-- proto: SpawnPointPilot
-  entities:
-  - uid: 144
-    components:
-    - type: Transform
-      pos: -1.5,1.5
-      parent: 1
-- proto: SpawnPointReporter
-  entities:
-  - uid: 135
-    components:
-    - type: Transform
-      pos: 3.5,0.5
-      parent: 1
 - proto: StrangePill
   entities:
   - uid: 155
     components:
     - type: MetaData
-      flags: InContainer
       name: heart medication
     - type: Transform
       parent: 149
@@ -1274,116 +1160,77 @@ entities:
       parent: 1
 - proto: Thruster
   entities:
-  - uid: 26
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-2.5
-      parent: 1
-  - uid: 27
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-3.5
-      parent: 1
   - uid: 28
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-3.5
       parent: 1
-  - uid: 29
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: WallShuttle
   entities:
   - uid: 2
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-3.5
       parent: 1
   - uid: 13
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
   - uid: 18
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,3.5
       parent: 1
   - uid: 46
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 2.5,3.5
       parent: 1
   - uid: 68
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-0.5
       parent: 1
   - uid: 69
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
   - uid: 76
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,0.5
       parent: 1
   - uid: 83
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-3.5
       parent: 1
   - uid: 112
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 2.5,-2.5
       parent: 1
   - uid: 129
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
   - uid: 146
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,-1.5
       parent: 1
   - uid: 147
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,2.5
       parent: 1
@@ -1444,6 +1291,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 1
+  - uid: 144
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
 - proto: WindowReinforcedDirectional
   entities:
   - uid: 17
@@ -1463,6 +1315,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
+      parent: 1
+  - uid: 159
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
       parent: 1
 - proto: Wrench
   entities:
