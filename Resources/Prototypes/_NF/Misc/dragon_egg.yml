@@ -1,15 +1,14 @@
 - type: entity
   parent: FoodEggBase
   id: DragonEgg
-  name: Egg
-  description: Dragon
-  suffix: Dragon
+  name: dragon egg
+  description: How many did you kill just to get one of this eggs.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/dragonegg.rsi
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
     state: icon
   - type: Item
-    sprite: _NF/Objects/Consumable/Food/dragonegg.rsi
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
     size: Large
   - type: MultiHandedItem
   - type: Food
@@ -44,7 +43,7 @@
     description: Description baby dragon
     rules: rules you are a pet follow mom
   - type: GhostRoleMobSpawner
-    prototype: MobDragonPet
+    prototype: MobSpawnBabyDragon
   - type: SolutionContainerManager
     solutions:
       food:
@@ -60,7 +59,7 @@
           ReagentId: Vitamin
           Quantity: 12
   - type: StaticPrice
-    price: 15000
+    price: 20000
 
 - type: entity
   name: dragon eggshells
@@ -69,7 +68,7 @@
   description: You're walkin' on 'em bud.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/dragonegg.rsi
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
     state: broken
   - type: Food
   - type: Item
@@ -87,3 +86,31 @@
     - Egg
     - Trash
   - type: SpaceGarbage
+
+- type: entity #This is only for the hatching animation since this is an in between from picking the ghost role and becoming the dragon
+  id: MobSpawnBabyDragon
+  name: mobspawner dragon
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _NF/Effects/dragonspawn.rsi
+    state: dragon
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: TimedDespawn
+    lifetime: 3.5
+  - type: TransferMindOnDespawn
+    entityPrototype: MobDragonPet
