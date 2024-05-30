@@ -26,5 +26,5 @@ ent-ClothingOuterHardsuitNfsdCombat = боевой комбинезон ДСБФ
     .desc = Среднебронированный патрульный скафандр ДСБФ.
 ent-ClothingOuterHardsuitNfsdCommand = командный скафандр ДСБФ
     .desc = Среднебронированный патрульный скафандр ДСБФ.
-ent-ClothingOuterHardsuitScaf = СКАФандр
+ent-ClothingOuterHardsuitScaf = СКУФандр
     .desc = Зелено-коричневый боевой скафандр. Старый, но не бесполезный.
