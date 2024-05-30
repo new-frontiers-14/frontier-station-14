@@ -279,18 +279,8 @@ public sealed class FoodSystem : EntitySystem
         {
             if (quality == null)
                 continue;
-            else if (quality == "High")
-                entity.Comp.FinalQuality = "High";
-            else if (quality == "Normal")
-                entity.Comp.FinalQuality = "Normal";
-            else if (quality == "Junk")
-                entity.Comp.FinalQuality = "Junk";
-            else if (quality == "Nasty")
-                entity.Comp.FinalQuality = "Nasty";
-            else if (quality == "Toxin")
-                entity.Comp.FinalQuality = "Toxin";
-            else if ((quality == "Trash") || (quality == "Mail") || (quality == "Fiber"))
-                entity.Comp.FinalQuality = "Trash";
+            else
+                entity.Comp.FinalQuality = quality;
 
             if (reverseFoodQuality)
             {
