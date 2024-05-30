@@ -11,6 +11,8 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
   - type: Clothing
     sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
     quickEquip: false
@@ -68,7 +70,9 @@
     - suitStorage
     - Belt
   - type: Gun
-    fireRate: 3.8
+    minAngle: 2
+    maxAngle: 8
+    fireRate: 4.2
     selectedMode: SemiAuto
     soundGunshot:
       path: /Audio/Corvax/Weapons/Guns/Gunshots/Vector45.ogg
