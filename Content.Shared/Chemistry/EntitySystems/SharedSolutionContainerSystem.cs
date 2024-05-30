@@ -297,8 +297,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     /// <summary>
     ///     Removes part of the solution in the container.
     /// </summary>
-    /// <param name="targetUid"></param>
-    /// <param name="solutionHolder"></param>
+    /// <param name="soln">The container to remove solution from.</param>
     /// <param name="quantity">the volume of solution to remove.</param>
     /// <returns>The solution that was removed.</returns>
     public Solution SplitSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity)
@@ -307,6 +306,22 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         var solution = comp.Solution;
 
         var splitSol = solution.SplitSolution(quantity);
+        UpdateChemicals(soln);
+        return splitSol;
+    }
+
+    /// <summary>
+    ///    Splits a solution removing reagents evenly.
+    /// </summary>
+    /// <param name="soln">The container to split the solution from.</param>
+    /// <param name="quantity">The amount of each reagent to split.</param>
+    /// <returns></returns>
+    public Solution SplitSolutionReagentsEvenly(Entity<SolutionComponent> soln, FixedPoint2 quantity)
+    {
+        var (uid, comp) = soln;
+        var solution = comp.Solution;
+
+        var splitSol = solution.SplitSolutionReagentsEvenly(quantity);
         UpdateChemicals(soln);
         return splitSol;
     }

@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Containers;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -38,7 +38,14 @@ public sealed partial class CryoPodComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("beakerTransferAmount")]
-    public float BeakerTransferAmount = 1f;
+    public float BeakerTransferAmount = .25f;
+
+    /// <summary>
+    /// How potent (multiplier) the reagents are when transferred from the beaker to the mob.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("PotencyAmount")]
+    public float PotencyAmount = 2f;
 
     /// <summary>
     ///     Delay applied when inserting a mob in the pod.
