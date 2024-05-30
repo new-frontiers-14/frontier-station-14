@@ -159,7 +159,7 @@ namespace Content.Server.Body.Systems
                     continue;
                 }
 
-                // we're done here entirely if this is true
+                // Already processed all poisons, skip to the next reagent.
                 if (poisons >= ent.Comp1.MaxPoisonProcessable && proto.Metabolisms.ContainsKey("Poison"))
                     continue;
 
