@@ -383,7 +383,7 @@ public sealed class FoodSystem : EntitySystem
                         _vomit.Vomit(args.Target.Value);
                 }
             }
-            else if (entity.Comp.FinalQuality == "Trash")
+            else if (entity.Comp.FinalQuality == "Trash" || entity.Comp.FinalQuality == "Mail" || entity.Comp.FinalQuality == "Fiber")
             {
                 if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                 {
