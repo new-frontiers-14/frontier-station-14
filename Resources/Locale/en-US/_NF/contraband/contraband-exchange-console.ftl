@@ -1,7 +1,7 @@
 
 #Contraband Exchange Console
 contraband-pallet-console-menu-title = Contraband Exchange
-contraband-console-menu-points-amount = {$amount} FUC
+contraband-console-menu-points-amount = {$amount} Requisition Slips
 contraband-pallet-menu-no-goods-text = No contraband detected
 contraband-pallet-menu-appraisal-label = Estimated Value:{" "}
 contraband-pallet-menu-count-label = Number of items:{" "}
