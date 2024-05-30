@@ -1,23 +1,23 @@
 - type: vessel
-  id: Metastable
-  name: TC Metastable
-  description: An incredibly compressed variation of a standard Nanotransen station. Intended to service other ships with anything they might need.
-  price: 95000
-  category: Medium
+  id: Crown
+  name: SBI Crown
+  description: "A refurbished and repainted older model of the NSF Templar for Civilian and Mercenary use, mind the gap."
+  price: 20000
+  category: Small
   group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/metastable.yml
+  shuttlePath: /Maps/_NF/Shuttles/crown.yml
 
 - type: gameMap
-  id: Metastable
-  mapName: 'TC Metastable'
-  mapPath: /Maps/_NF/Shuttles/metastable.yml
+  id: Crown
+  mapName: 'SBI Crown'
+  mapPath: /Maps/_NF/Shuttles/crown.yml
   minPlayers: 0
   stations:
-    Metastable:
+    Crown:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Metastable {1}'
+          mapNameTemplate: 'Crown {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
