@@ -609,7 +609,7 @@ namespace Content.Shared.Chemistry.Components
         /// <summary>
         /// splits the solution taking the specified amount of reagents proportionally to their quantity.
         /// </summary>
-        /// <param name="toTake">The amount of solution to remove and return</param>
+        /// <param name="toTake">The total amount of solution to remove and return.</param>
         /// <returns>a new solution of equal proportions to the original solution</returns>
         public Solution SplitSolution(FixedPoint2 toTake)
         {
