@@ -1,6 +1,5 @@
 using Content.Server.Body.Systems;
 using Content.Shared.Damage;
-using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Body.Components
@@ -70,24 +69,6 @@ namespace Content.Server.Body.Components
 
         [ViewVariables]
         public RespiratorStatus Status = RespiratorStatus.Inhaling;
-
-        [DataField("cycleDelay")]
-        public float CycleDelay = 2.0f;
-
-        public float AccumulatedFrametime;
-
-        // below - CPR
-
-        /// <summary>
-        ///    How many times can we ignore the crit cardiac arrest?
-        /// </summary>
-        [ViewVariables]
-        public int BreatheInCritCounter = 0;
-
-        [DataField("CPRSound")]
-        public SoundSpecifier CPRSound { get; set; } = new SoundPathSpecifier("/Audio/Effects/CPR.ogg");
-
-        public bool IsReceivingCPR = false;
     }
 }
 

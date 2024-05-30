@@ -35,7 +35,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtChiefEngineer
   name: chief engineer's jumpskirt
-  description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer. It has minor radiation shielding.
+  description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/ce.rsi
@@ -166,8 +166,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoS
-  name: sheriff's jumpskirt
-  description: It's bright red and rather crisp, much like the department's victims tend to be. Its sturdy fabric provides minor protection from slash and pierce damage.
+  name: head of security's jumpskirt
+  description: It's bright red and rather crisp, much like security's victims tend to be.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos.rsi
@@ -177,8 +177,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoSAlt
-  name: sheriff's turtleneck
-  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Sheriff. Its sturdy fabric provides minor protection from slash and pierce damage.
+  name: head of security's turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos_alt.rsi
@@ -188,8 +188,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtHoSParadeMale
-  name: sheriff's parade uniform
-  description: A sheriff's luxury-wear, for special occasions.
+  name: head of security's parade uniform
+  description: A head of security's luxury-wear, for special occasions.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
@@ -263,7 +263,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: ClothingUniformBase
   id: ClothingUniformJumpskirtPrisoner
   name: prisoner jumpskirt
   description: Busted.
@@ -338,7 +338,7 @@
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtScientist
   name: scientist jumpskirt
-  description: It's made of a special fiber that provides minor protection against explosives. It has markings that denote the wearer as a scientist.
+  description: It's made of a special fiber that increases perceived intelligence and decreases personal ethics. It has markings that denote the wearer as a scientist.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/scientist.rsi
@@ -359,7 +359,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSec
-  name: deputy jumpskirt
+  name: security jumpskirt
   description: A jumpskirt made of strong material, providing robust protection.
   components:
   - type: Sprite
@@ -370,7 +370,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtWarden
-  name: bailiff's jumpskirt
+  name: warden's uniform
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
@@ -629,8 +629,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSeniorOfficer
-  name: sergeant jumpskirt
-  description: A sign of skill and prestige within the sheriff's department.
+  name: senior officer jumpskirt
+  description: A sign of skill and prestige within the security department.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/senior_officer.rsi
@@ -640,7 +640,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSecGrey
-  name: grey deputy jumpskirt
+  name: grey security jumpskirt
   description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
   components:
   - type: Sprite
@@ -768,3 +768,14 @@
       - state: equipped-INNERCLOTHING-jumpskirt
       - state: equipped-INNERCLOTHING-shirt
         color: "#b30000"
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtOldDress
+  name: old dress
+  description: A worn-looking dress from a very long time ago.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/olddress.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/olddress.rsi

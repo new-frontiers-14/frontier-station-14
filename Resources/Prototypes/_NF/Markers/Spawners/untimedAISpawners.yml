@@ -1,5 +1,5 @@
 - type: entity
-  name: NPC Xeno Spawner
+  name: Xeno Spawner
   suffix: Easy
   id: XenoAISpawnerEasy
   parent: MarkerBase
@@ -13,15 +13,15 @@
     - type: RandomSpawner
       prototypes:
         - MobXeno
-        - MobXenoDroneNPC
+        - MobXenoDrone
       rarePrototypes:
-        - MobXenoPraetorianNPC
-        - MobXenoRunnerNPC
-        - MobXenoSpitterNPC
+        - MobXenoPraetorian
+        - MobXenoRunner
+        - MobXenoSpitter
       rareChance: 0.10
 
 - type: entity
-  name: NPC Xeno Spawner
+  name: Xeno Spawner
   suffix: Medium
   id: XenoAISpawnerMedium
   parent: MarkerBase
@@ -35,17 +35,17 @@
     - type: RandomSpawner
       prototypes:
         - MobXeno
-        - MobXenoPraetorianNPC
-        - MobXenoDroneNPC
-        - MobXenoRunnerNPC
-        - MobXenoSpitterNPC
+        - MobXenoPraetorian
+        - MobXenoDrone
+        - MobXenoRunner
+        - MobXenoSpitter
       rarePrototypes:
-        - MobXenoRavagerNPC
-        - MobXenoRounyNPC
+        - MobXenoRavager
+        - MobXenoRouny
       rareChance: 0.10
 
 - type: entity
-  name: NPC Xeno Spawner
+  name: Xeno Spawner
   suffix: Hard
   id: XenoAISpawnerHard
   parent: MarkerBase
@@ -58,19 +58,19 @@
         - state: ai
     - type: RandomSpawner
       prototypes:
-        - MobXenoPraetorianNPC
-        - MobXenoRunnerNPC
-        - MobXenoSpitterNPC
-        - MobXenoRavagerNPC
+        - MobXenoPraetorian
+        - MobXenoRunner
+        - MobXenoSpitter
+        - MobXenoRavager
       rarePrototypes:
         - MobXenoQueen
-        - MobXenoRounyNPC
-        - MobXenoDroneNPC
+        - MobXenoRouny
+        - MobXenoDrone
         - MobXeno
       rareChance: 0.10
 
 - type: entity
-  name: NPC Xeno Spawner
+  name: Xeno Spawner
   suffix: Queen
   id: XenoAISpawnerQueen
   parent: MarkerBase

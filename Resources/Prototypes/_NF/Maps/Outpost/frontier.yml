@@ -15,9 +15,13 @@
 #            prefixCreator: '14'
         - type: StationJobs
           overflowJobs:
-            - Passenger
+            - Contractor
+            - Pilot
+            - Mercenary
           availableJobs:
-            Passenger: [ -1, -1 ]
+            Contractor: [ -1, -1 ]
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]
             StationRepresentative: [ 1, 1 ]
             SecurityGuard: [ 1, 1 ]
             StationTrafficController: [ 1, 1 ]
@@ -25,5 +29,5 @@
             Janitor: [ 1, 1 ]
             MailCarrier: [ 1, 1 ]
 # Others:
-            Borg: [ 0, 0 ]
-            Chaplain: [ 0, 0 ] # Remove this when we fix bible user spawn in some other way.
+#            Borg: [ 0, 0 ]
+#            Chaplain: [ 0, 0 ] # Remove this when we fix bible user spawn in some other way.

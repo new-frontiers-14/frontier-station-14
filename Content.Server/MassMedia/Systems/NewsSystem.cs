@@ -41,7 +41,9 @@ public sealed class NewsSystem : SharedNewsSystem
         base.Initialize();
 
         // News writer
-        SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+        // Frontier: News is shared across the sector.  No need to create shuttle-local news caches.
+        // SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+        // End Frontier
 
         // New writer bui messages
         Subs.BuiEvents<NewsWriterComponent>(NewsWriterUiKey.Key, subs =>
@@ -75,14 +77,17 @@ public sealed class NewsSystem : SharedNewsSystem
 
     #region Writer Event Handlers
 
-    private void OnMapInit(Entity<NewsWriterComponent> ent, ref MapInitEvent args)
-    {
-        var station = _station.GetOwningStation(ent);
-        if (!station.HasValue)
-            return;
+    // Frontier: News is shared across the sector.  No need to create shuttle-local news caches.
+    // private void OnMapInit(Entity<NewsWriterComponent> ent, ref MapInitEvent args)
+    // {
+    //     var station = _station.GetOwningStation(ent);
+    //     if (!station.HasValue) {
+    //         return;
+    //     }
 
-        EnsureComp<StationNewsComponent>(station.Value);
-    }
+    //     EnsureComp<StationNewsComponent>(station.Value);
+    // }
+    // End Frontier
 
     private void OnWriteUiDeleteMessage(Entity<NewsWriterComponent> ent, ref NewsWriterDeleteMessage msg)
     {
@@ -92,15 +97,12 @@ public sealed class NewsSystem : SharedNewsSystem
         if (msg.ArticleNum >= articles.Count)
             return;
 
-        if (msg.Session.AttachedEntity is not { } actor)
-            return;
-
         var article = articles[msg.ArticleNum];
-        if (CheckDeleteAccess(article, ent, actor))
+        if (CheckDeleteAccess(article, ent, msg.Actor))
         {
             _adminLogger.Add(
                 LogType.Chat, LogImpact.Medium,
-                $"{ToPrettyString(actor):actor} deleted news article {article.Title} by {article.Author}: {article.Content}"
+                $"{ToPrettyString(msg.Actor):actor} deleted news article {article.Title} by {article.Author}: {article.Content}"
                 );
 
             articles.RemoveAt(msg.ArticleNum);
@@ -138,14 +140,11 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!TryGetArticles(ent, out var articles))
             return;
 
-        if (msg.Session.AttachedEntity is not { } author)
-            return;
-
-        if (!_accessReader.FindStationRecordKeys(author, out _))
+        if (!_accessReader.FindStationRecordKeys(msg.Actor, out _))
             return;
 
         string? authorName = null;
-        if (_idCardSystem.TryFindIdCard(author, out var idCard))
+        if (_idCardSystem.TryFindIdCard(msg.Actor, out var idCard))
             authorName = idCard.Comp.FullName;
 
         var title = msg.Title.Trim();
@@ -164,7 +163,7 @@ public sealed class NewsSystem : SharedNewsSystem
         _adminLogger.Add(
             LogType.Chat,
             LogImpact.Medium,
-            $"{ToPrettyString(author):actor} created news article {article.Title} by {article.Author}: {article.Content}"
+            $"{ToPrettyString(msg.Actor):actor} created news article {article.Title} by {article.Author}: {article.Content}"
             );
 
         articles.Add(article);
@@ -235,27 +234,37 @@ public sealed class NewsSystem : SharedNewsSystem
 
     private bool TryGetArticles(EntityUid uid, [NotNullWhen(true)] out List<NewsArticle>? articles)
     {
-        if (_station.GetOwningStation(uid) is not { } station ||
-            !TryComp<StationNewsComponent>(station, out var stationNews))
-        {
-            articles = null;
-            return false;
-        }
+        // Frontier: Get sector-wide article set instead of set for this station.
+        // if (_station.GetOwningStation(uid) is not { } station ||
+        //     !TryComp<StationNewsComponent>(station, out var stationNews))
+        // {
+        //     articles = null;
+        //     return false;
+        // }
+        // articles = stationNews.Articles;
+        // return true;
 
-        articles = stationNews.Articles;
-        return true;
+        // Any SectorNewsComponent will have a complete article set, we ensure one exists before returning the complete set.
+        var query = EntityQueryEnumerator<SectorNewsComponent>();
+        if (query.MoveNext(out var _)) {
+            articles = SectorNewsComponent.Articles;
+            return true;
+        }
+        articles = null;
+        return false;
+        // End Frontier
     }
 
     private void UpdateWriterUi(Entity<NewsWriterComponent> ent)
     {
-        if (!_ui.TryGetUi(ent, NewsWriterUiKey.Key, out var ui))
+        if (!_ui.HasUi(ent, NewsWriterUiKey.Key))
             return;
 
         if (!TryGetArticles(ent, out var articles))
             return;
 
         var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish);
-        _ui.SetUiState(ui, state);
+        _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
     private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)

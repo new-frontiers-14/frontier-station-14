@@ -3,6 +3,7 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
@@ -15,12 +16,6 @@
 - type: startingGear
   id: ReporterGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitReporter
-    back: ClothingBackpackReporterFilled # Frontier
     shoes: ClothingShoesColorWhite
     id: ReporterPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpsuitJournalist
-  satchel: ClothingBackpackSatchelReporterFilled # Frontier
-  duffelbag: ClothingBackpackDuffelReporterFilled # Frontier
-  messenger: ClothingBackpackMessengerFilled # Frontier
