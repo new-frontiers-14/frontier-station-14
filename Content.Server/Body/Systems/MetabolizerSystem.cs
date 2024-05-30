@@ -220,8 +220,9 @@ namespace Content.Server.Body.Systems
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
 
-                    // We have processed a reagent, so count it towards the cap
-                    poisons += proto.Metabolisms.ContainsKey("Poison") ? 1 : 0;
+                    // We have processed a poison, so count it towards the cap
+                    if (proto.Metabolisms.ContainsKey("Poison"))
+                        poisons++;
                 }
             }
 
