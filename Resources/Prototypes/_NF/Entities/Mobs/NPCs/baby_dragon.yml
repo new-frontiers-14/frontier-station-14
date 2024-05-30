@@ -1,7 +1,6 @@
 - type: entity
   parent:
   - SimpleSpaceMobBase
-  - SimpleMobBase
   - FlyingMobBase
   id: MobDragonPet
   name: space baby dragon
@@ -17,10 +16,38 @@
       60: 0.7
       80: 0.5
   - type: MobPrice
-    price: 600
+    price: 2000
   - type: Perishable
+  - type: Hunger
+    thresholds:
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926 # Guy needs to eat and drink
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - StaminaModifier
   - type: Bloodstream
     bloodMaxVolume: 650
+  - type: FloatingVisuals
   - type: NpcFactionMember
     factions:
     - Dragon
@@ -97,7 +124,7 @@
     - id: FoodMeatDragon
       amount: 1
   - type: InteractionPopup
-    successChance: 0.25 # It's no goose, but you better smell like carp.
+    successChance: 0.85 # It's no goose, but you better smell like carp.
     interactSuccessString: petting-success-dragon
     interactFailureString: petting-failure-dragon
     interactFailureSound:

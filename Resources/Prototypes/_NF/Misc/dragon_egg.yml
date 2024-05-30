@@ -42,6 +42,8 @@
     name: ghost-role-information-baby-dragon-name
     description: ghost-role-information-baby-dragon-description
     rules: ghost-role-information-baby-dragon-rules
+    requirements:
+    - !type:WhitelistRequirement
   - type: GhostRoleMobSpawner
     prototype: MobSpawnBabyDragon
   - type: SolutionContainerManager
@@ -100,6 +102,9 @@
   - type: Sprite
     sprite: _NF/Effects/dragonspawn.rsi
     state: dragon
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Nyanotrasen/shogi_piece_clack.ogg
   - type: Fixtures
     fixtures:
       portalFixture:
