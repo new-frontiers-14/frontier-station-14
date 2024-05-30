@@ -206,6 +206,18 @@ public sealed class FoodSystem : EntitySystem
         return (true, true);
     }
 
+    public enum Quality // Frontier
+    {
+        Toxin,
+        Nasty,
+        Normal,
+        High,
+        Junk,
+        Mail,
+        Fiber,
+        Trash
+    }
+
     private void OnDoAfter(Entity<FoodComponent> entity, ref ConsumeDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
