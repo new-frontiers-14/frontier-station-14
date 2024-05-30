@@ -1,10 +1,21 @@
 - type: entity
-  name: box of magazines .45ACP
+  name: box of magazines .45 ACP
   parent: BoxMagazine
   id: BoxMagazineVector45
-  description: A box full of magazines .45ACP.
+  description: A box full of magazines .45 ACP.
   components:
   - type: StorageFill
     contents:
       - id: MagazineVector45
+        amount: 3
+
+- type: entity
+  name: box of magazines .22 LR
+  parent: BoxMagazine
+  id: BoxMagazineVector22
+  description: A box full of magazines .22 LR.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineVector22
         amount: 3

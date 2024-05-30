@@ -14,16 +14,16 @@
         tags:
           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityVector45 
-  name:  uplink-security-vector-name
-  description: uplink-security-vector-desc
-  productEntity: WeaponSubMachineGunVector45
-  icon: { sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi, state: icon }
+- type: listing 
+  id: UplinkMagazineMagnum
+  name: uplink-security-magazine-magnum-name
+  description: uplink-security-magazine-magnum-desc
+  productEntity: MagazineMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red }
   cost:
-    FrontierUplinkCoin: 7
+    FrontierUplinkCoin: 2
   categories:
-    - UplinkSecurityWeapons
+    - UplinkSecurityAmmo
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
