@@ -227,7 +227,6 @@ namespace Content.Server.Body.Systems
             }
 
             _solutionContainerSystem.UpdateChemicals(soln.Value);
-            return;
         }
     }
 
