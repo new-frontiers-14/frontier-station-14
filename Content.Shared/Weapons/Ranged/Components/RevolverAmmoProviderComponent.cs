@@ -60,6 +60,6 @@ public sealed partial class RevolverAmmoProviderComponent : AmmoProviderComponen
     /// DoAfter delay for filling a bullet into another ballistic ammo provider.
     /// </summary>
     [DataField("fillDelay")]
-    public TimeSpan FillDelay = TimeSpan.FromSeconds(0.5);
+    public TimeSpan FillDelay = TimeSpan.FromSeconds(0.7); // Assume revolvers are harder to reload, and so should take more time.
     // End Frontier
 }

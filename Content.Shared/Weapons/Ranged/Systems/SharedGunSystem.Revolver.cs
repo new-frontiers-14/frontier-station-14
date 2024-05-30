@@ -69,12 +69,25 @@ public partial class SharedGunSystem
             Deleted(args.Target))
             return;
 
-        if (TryComp<BallisticAmmoProviderComponent>(args.Target, out var ballisticComponent) && ballisticComponent.Whitelist is not null ||
-        TryComp<RevolverAmmoProviderComponent>(args.Target, out var revolverComponent) && revolverComponent.Whitelist is not null)
+        // Ensure the target of interaction has a valid component.
+        var validComponent = false;
+        TimeSpan fillDelay = component.FillDelay;
+        if (TryComp<BallisticAmmoProviderComponent>(args.Target, out var ballisticComponent) && ballisticComponent.Whitelist is not null)
+        {
+            validComponent = true;
+            fillDelay = ballisticComponent.FillDelay;
+        }
+        else if (TryComp<RevolverAmmoProviderComponent>(args.Target, out var revolverComponent) && revolverComponent.Whitelist is not null)
+        {
+            validComponent = true;
+            fillDelay = revolverComponent.FillDelay;
+        }
+
+        if (validComponent)
         {
             args.Handled = true;
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.FillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, fillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid)
             {
                 BreakOnMove = true,
                 BreakOnDamage = false,

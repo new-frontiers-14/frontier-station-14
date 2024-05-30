@@ -69,12 +69,26 @@ public abstract partial class SharedGunSystem
             return;
         }
 
-        if (TryComp<BallisticAmmoProviderComponent>(args.Target, out var ballisticComponent) && ballisticComponent.Whitelist is not null || // Frontier: better revolver reloading
-        TryComp<RevolverAmmoProviderComponent>(args.Target, out var revolverComponent) && revolverComponent.Whitelist is not null) // Frontier: better revolver reloading
+        // Frontier: better revolver reloading
+        // Ensure the target of interaction has a valid component.
+        var validComponent = false;
+        TimeSpan fillDelay = component.FillDelay; // Default value should not be used.
+        if (TryComp<BallisticAmmoProviderComponent>(args.Target, out var ballisticComponent) && ballisticComponent.Whitelist is not null)
+        {
+            validComponent = true;
+            fillDelay = ballisticComponent.FillDelay;
+        }
+        else if (TryComp<RevolverAmmoProviderComponent>(args.Target, out var revolverComponent) && revolverComponent.Whitelist is not null)
+        {
+            validComponent = true;
+            fillDelay = revolverComponent.FillDelay;
+        }
+
+        if (validComponent) // End Frontier
         {
             args.Handled = true;
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.FillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, fillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid) // Frontier: component.FillDelay<fillDelay
             {
                 BreakOnMove = true,
                 BreakOnDamage = false,
