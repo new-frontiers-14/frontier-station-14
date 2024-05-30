@@ -1,12 +1,11 @@
 - type: entity
   parent:
-  - BaseSimpleMob
-  - MobBloodstream
-  - MobFlammable
+  - SimpleSpaceMobBase
+  - SimpleMobBase
   - FlyingMobBase
   id: MobDragonPet
   name: space baby dragon
-  description: A flying leviathan, loosely related to space carps.
+  description: Even a flying leviathan starts off small and from an egg.
   components:
   - type: Body
     prototype: Animal
@@ -25,8 +24,12 @@
   - type: NpcFactionMember
     factions:
     - Dragon
+    - PetsNT
   - type: Speech
     speechVerb: SmallMob
+  - type: HTN
+    rootTask:
+      task: MouseCompound
   - type: CombatMode
   - type: MobMover
   - type: InputMover
@@ -108,8 +111,8 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 3
-        Slash: 3
+        Piercing: 5
+        Slash: 5
   - type: Puller
     needsHands: false
   - type: ReplacementAccent
@@ -117,3 +120,27 @@
   - type: Tag
     tags:
     - CannotSuicide
+    - DoorBumpOpener
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: BabyDragonsSparkGun
+
+- type: entity
+  noSpawn: true
+  id: BabyDragonsSparkGun
+  name: baby dragon's spark
+  description: For dragon's breathing
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BabyDragonSpark
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundEmpty: null
+    projectileSpeed: 15

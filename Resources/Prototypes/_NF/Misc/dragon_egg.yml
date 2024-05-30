@@ -39,9 +39,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: GhostRole
-    name: Baby dragon
-    description: Description baby dragon
-    rules: rules you are a pet follow mom
+    name: ghost-role-information-baby-dragon-name
+    description: ghost-role-information-baby-dragon-description
+    rules: ghost-role-information-baby-dragon-rules
   - type: GhostRoleMobSpawner
     prototype: MobSpawnBabyDragon
   - type: SolutionContainerManager
@@ -90,6 +90,7 @@
 - type: entity #This is only for the hatching animation since this is an in between from picking the ghost role and becoming the dragon
   id: MobSpawnBabyDragon
   name: mobspawner dragon
+  noSpawn: true
   components:
   - type: Transform
     anchored: True

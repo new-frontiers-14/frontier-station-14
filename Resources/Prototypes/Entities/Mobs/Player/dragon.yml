@@ -143,14 +143,14 @@
   components:
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
-  # - type: GenericAntag
-    # rule: Dragon
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
   - type: GuideHelp
     guides:
     - MinorAntagonists
+# - type: GenericAntag
+  # rule: Dragon
 
 - type: entity
   noSpawn: true
@@ -199,6 +199,9 @@
     damage:
       groups:
         Brute: 12
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: DragonsBreathGun
   - type: SalvageMobRestrictionsNF # Frontier
 
 - type: entity
