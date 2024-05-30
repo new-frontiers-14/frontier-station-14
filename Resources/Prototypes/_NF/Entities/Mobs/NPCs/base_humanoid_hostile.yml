@@ -43,6 +43,32 @@
     reflects:
       - Energy
 
+- type: entity
+  save: false
+  id: MobEnhancedMovement
+  abstract: true
+  components:
+  - type: MovementAlwaysTouching
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: StepTriggerImmune
+  - type: Climbing
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    speedModifier: 10.0
+  - type: Access
+    groups:
+    - AllAccess
+
 # Human NPC, uses equipment, immune to vacuum/low pressure
 # but otherwise should be the same as base line human mob
 - type: entity
@@ -54,12 +80,11 @@
   - MobBloodstream
   - MobFlammable
   #- MobLaserReflect
+  - MobEnhancedMovement
   - BaseMobSpecies
   id: MobHumanoidHostileBase
   components:
-  - type: MovementAlwaysTouching
   - type: MobMover
-  - type: NoSlip
   - type: StandingState
   - type: RandomHumanoidAppearance
     randomizeName: true
@@ -79,8 +104,8 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatHuman
-        amount: 5
+    - id: FoodMeatHuman
+      amount: 5
 # AI package
   - type: HTN
     rootTask:
@@ -94,7 +119,7 @@
         true
   - type: NpcFactionMember
     factions:
-      - SimpleHostile
+    - SimpleHostile
   - type: Carriable # Carrying system from nyanotrasen.
   - type: MobPrice
     price: 1500
@@ -119,7 +144,7 @@
   - MobAtmosNF
   - MobBloodstream
   - MobFlammable
-  #- SimpleSpaceMobBase
+  - MobEnhancedMovement
   id: MobNonHumanHostileBase
   components:
   - type: Reactive
@@ -143,12 +168,9 @@
   - type: StandingState
   - type: InputMover
   - type: MobMover
-  - type: MovementAlwaysTouching
-  - type: NoSlip
   - type: ZombieImmune
   - type: Hands
   - type: Puller
-  - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
   - type: SlowOnDamage
@@ -201,12 +223,7 @@
     price: 1500
     deathPenalty: 0.5
   - type: SalvageMobRestrictionsNF
-  - type: StepTriggerImmune
   - type: Contraband
-  - type: Tool
-    speed: 1.5
-    qualities:
-      - Prying
   - type: Tag
     tags:
     - CanPilot
