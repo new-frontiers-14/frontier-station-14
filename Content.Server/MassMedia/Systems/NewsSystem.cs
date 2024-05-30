@@ -11,7 +11,6 @@ using Content.Shared.Access.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Database;
-using Content.Shared.GameTicking;
 using Content.Shared.MassMedia.Components;
 using Content.Shared.MassMedia.Systems;
 using Robust.Server.GameObjects;
@@ -21,6 +20,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StationRecords;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.GameTicking; // Frontier
 
 namespace Content.Server.MassMedia.Systems;
 
