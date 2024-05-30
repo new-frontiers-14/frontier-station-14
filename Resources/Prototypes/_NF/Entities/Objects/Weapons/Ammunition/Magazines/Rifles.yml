@@ -1,6 +1,6 @@
 - type: entity #made By VividPups added in with PR 1770
-  id: MagazineSVT
-  name: "10 rounder SVT magazine (.30 rifle)"
+  id: 10roundmagazine
+  name: "10 round magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
   components:
   - type: Tag
@@ -13,18 +13,18 @@
     sprite: _NF/Objects/Weapons/Ammunition/svt40.rsi
 
 - type: entity
-  id: MagazineSVTempty
-  name: "10 rounder SVT magazine (.30 rifle any)"
+  id: 10roundmagazineempty
+  name: "10 round magazine (.30 rifle any)"
   suffix: empty
-  parent: MagazineSVT
+  parent: 10roundmagazine
   components:
   - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
-  id: MagazineSVTUranium
-  name: "10 rounder SVT magazine (.30 rifle uranium)"
-  parent: MagazineSVT
+  id: 10roundmagazineUranium
+  name: "10 round magazine (.30 rifle uranium)"
+  parent: 10roundmagazine
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleUranium
@@ -36,9 +36,9 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 # type: entity  to be added back when Rubber rounds are added. 
- # id: MagazineSVTRubber
-  #name: "10 Rounder SVT magazine (.30 rifle rubber)"
-  #parent: MagazineSVT
+ # id: 10roundmagazineRubber
+  #name: "10 round magazine(.30 rifle rubber)"
+  #parent: 10roundmagazine
   #components:
   # type: BallisticAmmoProvider
   # proto: CartridgeLightRifleRubber
@@ -50,9 +50,9 @@
     #map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineSVTPractice
-  name: "10 rounder SVT magazine (.30 rifle practice)"
-  parent: MagazineSVT
+  id: 10roundmagazinePractice
+  name: "10 round magazine (.30 rifle practice)"
+  parent: 10roundmagazine
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -64,9 +64,9 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineSVTIncendiary 
-  name: "10 rounder SVT magazine (.30 rifle incendiary)"
-  parent: MagazineSVT
+  id: 10roundmagazineIncendiary 
+  name: "10 round magazine (.30 rifle incendiary)"
+  parent: 10roundmagazine
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleIncendiary
