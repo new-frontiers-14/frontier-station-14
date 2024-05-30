@@ -27,7 +27,7 @@ public sealed class NF14CVars
     /// The time in seconds after which a cryosleeping body is considered expired and can be deleted from the storage map.
     /// </summary>
     public static readonly CVarDef<float> CryoExpirationTime =
-        CVarDef.Create("nf14.uncryo.maxtime", 60 * 60f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
 
     /*
      *  Public Transit
