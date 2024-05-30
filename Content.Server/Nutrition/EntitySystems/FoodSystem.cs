@@ -556,35 +556,39 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
-            // Frontier - Food system hack job
+            // Frontier - Food System
             var foodQuality = component.Quality;
-            var foodQualityblock = false;
+            bool foodQualityBlock = false;
+
+            // Map each quality to the corresponding component property for digestion capability
+            var digestionMap = new Dictionary<string, bool>
+            {
+                {"Mail", comp.MailDigestion},
+                {"Fiber", comp.FiberDigestion},
+                {"Trash", comp.TrashDigestion}
+            };
+
             foreach (var quality in foodQuality)
             {
-                if (quality == "Mail" || quality == "Fiber" || quality == "Trash")
+                if (digestionMap.ContainsKey(quality))
                 {
-                    if (comp.MailDigestion && quality == "Mail")
+                    // Set foodQualityBlock based on whether the specific digestion capability is true
+                    // If the component can digest this type of quality, set to false and break out of the loop
+                    if (digestionMap[quality])
                     {
-                        foodQualityblock = false;
-                        break;
-                    }
-                    else if (comp.FiberDigestion && quality == "Fiber")
-                    {
-                        foodQualityblock = false;
-                        break;
-                    }
-                    else if (comp.TrashDigestion && quality == "Trash")
-                    {
-                        foodQualityblock = false;
+                        foodQualityBlock = false;
                         break;
                     }
                     else
-                        foodQualityblock = true;
+                    {
+                        // If the component cannot digest this quality, set to true
+                        foodQualityBlock = true;
+                    }
                 }
             }
-            if (foodQualityblock)
+            if (foodQualityBlock)
                 return false;
-            // Frontier - Food system hack job
+            // Frontier - Food System
 
             // Find a stomach with a SpecialDigestible
             if (comp.SpecialDigestible == null)
