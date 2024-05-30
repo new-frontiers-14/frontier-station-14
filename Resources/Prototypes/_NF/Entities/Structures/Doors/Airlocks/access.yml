@@ -1,66 +1,208 @@
 # Airlocks
 - type: entity
-  parent: AirlockCommand
+  parent: AirlockCommandLocked
   id: AirlockFrontierLocked
   suffix: Frontier, Locked
   components:
-  - type: AccessReader
-    access: [["Frontier"]]
-  - type: Wires
-    layoutId: AirlockCommand
-    
-- type: entity
-  parent: AirlockCommandGlass
-  id: AirlockFrontierGlassLocked
-  suffix: Frontier, Locked
-  components:
-  - type: AccessReader
-    access: [["Frontier"]]
-  - type: Wires
-    layoutId: AirlockCommand
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontier ]
 
 - type: entity
-  parent: AirlockCommand
+  parent: AirlockServiceLocked
+  id: AirlockSeviceFrontierLocked
+  suffix: Frontier, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontier ]
+
+- type: entity
+  parent: AirlockCommandLocked
+  id: AirlockFrontierBridgeLocked
+  suffix: Frontier Bridge, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierBridge ]
+
+- type: entity
+  parent: AirlockMaintCommandLocked
+  id: AirlockMaintFrontierBridgeLocked
+  suffix: Frontier Bridge, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierBridge ]
+
+- type: entity
+  parent: AirlockCommandLocked
   id: AirlockFrontierCommandLocked
   suffix: Frontier Command, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
-  - type: Wires
-    layoutId: AirlockCommand
-    
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
 - type: entity
-  parent: AirlockCommandGlass
-  id: AirlockFrontierCommandGlassLocked
+  parent: HighSecDoor
+  id: HighSecFrontierCommandLocked
   suffix: Frontier Command, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
-  - type: Wires
-    layoutId: AirlockCommand
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockMailCarrierLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMailCarrier ]
 
 - type: entity
   parent: AirlockMercenary
   id: AirlockMercenaryLocked
   suffix: Mercenary, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"], ["Mercenary"]]
-  - type: Wires
-    layoutId: AirlockMercenary
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]
+
+- type: entity
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdGlassLocked
+  suffix: NFSD, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdLocked
+  suffix: NFSD, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdBrigLocked
+  suffix: NFSD Brig, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrig ]
+
+- type: entity
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdBrigGlassLocked
+  suffix: NFSD Brig, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrig ]
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdDetectiveLocked
+  suffix: NFSD Detective, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDetective ]
+
+- type: entity
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdDetectiveGlassLocked
+  suffix: NFSD Detective, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDetective ]
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdLawyerLocked
+  suffix: NFSD Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityLawyer ]
+
+- type: entity
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdLawyerGlassLocked
+  suffix: NFSD Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityLawyer ]
+
+- type: entity
+  parent: AirlockNfsd
+  id: AirlockNfsdArmoryLocked
+  suffix: NFSD Armory, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
+
+- type: entity
+  parent: AirlockNfsdGlass
+  id: AirlockNfsdArmoryGlassLocked
+  suffix: NFSD Armory, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsArmory ]
+
+# Glass Airlocks
+- type: entity
+  parent: AirlockCommandGlassLocked
+  id: AirlockFrontierGlassLocked
+  suffix: Frontier, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontier ]
+
+- type: entity
+  parent: AirlockCommandGlassLocked
+  id: AirlockFrontierBridgeGlassLocked
+  suffix: Frontier Bridge, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierBridge ]
+
+- type: entity
+  parent: AirlockCommandGlassLocked
+  id: AirlockFrontierCommandGlassLocked
+  suffix: Frontier Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMailCarrierGlassLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMailCarrier ]
 
 - type: entity
   parent: AirlockMercenaryGlass
   id: AirlockMercenaryGlassLocked
   suffix: Mercenary, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"], ["Mercenary"]]
-    
-- type: entity
-  parent: AirlockGlassShuttle
-  id: AirlockExternalGlassShuttleTransit
-  suffix: External, PubTrans, Glass, Docking
-  components:
-    - type: PriorityDock
-      tag: DockTransit
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]

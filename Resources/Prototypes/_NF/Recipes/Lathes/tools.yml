@@ -1,0 +1,20 @@
+﻿- type: entity
+  name: Shipyard RCD Ammo
+  parent: BaseItem
+  id: ShipyardRCDAmmo
+  description: Ammo cartridge for a Shipyard RCD.
+  components:
+    - type: RCDAmmo
+      isShipyardRCDAmmo: true
+    - type: Sprite
+      sprite: Objects/Tools/rcd.rsi
+      state: ammo-shipyard
+    - type: Item
+      sprite: Objects/Tools/rcd.rsi
+      heldPrefix: ammo-shipyard
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 1000
+        Plastic: 1000
+    - type: StaticPrice
+      price: 100

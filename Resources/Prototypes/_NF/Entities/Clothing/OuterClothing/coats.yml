@@ -50,3 +50,97 @@
     sprite: _NF/Clothing/OuterClothing/Misc/cardinal_robe.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodCardinalHood
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNfsdBomber
+  name: nfsd bomber
+  description: Lookin slick Tom.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNfsdBomberBrigmed
+  name: nfsd brigmedic bomber
+  description: Blood may stain.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNfsdFormal
+  name: nfsd formal coat
+  description: Snazzy.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNfsdFormalSheriff
+  name: nfsd sheriff's formal coat
+  description: Snazzier.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNfsdLongCoat
+  name: nfsd long coat
+  description: Big iron on his hip..
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
+
+# Bloodcult Robes
+- type: entity
+  parent: [ ClothingOuterStorageBase, ClothingOuterArmorBulletproof ]
+  id: ClothingOuterCoatCultJanitor
+  name: cult leader armored robes
+  description: Regal robes fitting for a cult leader.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
+  - type: Contraband
+
+- type: entity
+  parent: [ ClothingOuterStorageToggleableBase, ClothingOuterArmorBasic ]
+  id: ClothingOuterCoatBloodCultRobes
+  name: cult robes
+  description: There's no cult without classic red/crimson cult robes with bulletproof vests.
+  suffix: Frontier
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodBloodCulthood
+  - type: Contraband
+
+- type: entity
+  parent: ClothingOuterWinterHoP
+  id: ClothingOuterJacketSr
+  name: station representative's jacket
+  description: The upper part of the station representative's uniform.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi

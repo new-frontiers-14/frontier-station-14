@@ -80,13 +80,13 @@
 
 - type: entity
   parent: SecuredVendingMachineRestock
-  id: VendingMachineRestockCircuitVend
-  name: CircuitVend restock box
-  description: A box full of boards for various computers. Load it into a CircuitVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  id: VendingMachineRestockFlatpackVend
+  name: FlatpackVend restock box
+  description: A box full of flatpacks for various computers. Load it into a FlatpackVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
   components:
   - type: VendingMachineRestock
     canRestock:
-    - CircuitVendInventory
+    - FlatpackVendInventory
   - type: Sprite
     layers:
     - state: base

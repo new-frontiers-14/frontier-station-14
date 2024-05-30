@@ -3,16 +3,15 @@
   name: job-name-musician
   description: job-description-musician
   playTimeTracker: JobMusician
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: MusicianGear
   icon: "JobIconMusician"
-  supervisors: job-supervisors-hire
-  access:
-  - Maintenance # TODO Remove maint access for all gimmick jobs once access work is completed
-  - Theatre
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: MikuDay
@@ -22,11 +21,7 @@
   id: MusicianGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
-    back: ClothingBackpackMusicianFilled
     eyes: ClothingEyesGlassesSunglasses
     shoes: ClothingShoesBootsLaceup
     id: MusicianPDA
     ears: ClothingHeadsetService
-  satchel: ClothingBackpackSatchelMusicianFilled
-  duffelbag: ClothingBackpackDuffelMusicianFilled
-  messenger: ClothingBackpackMessengerMusicianFilled # Frontier

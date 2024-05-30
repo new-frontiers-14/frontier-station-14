@@ -13,3 +13,64 @@
       - id: RemoteSignaller
       - id: InflatableWallStack5
       - id: InflatableDoorStack1
+
+- type: entity
+  id: ClothingBeltNfsdFilled
+  parent: [ClothingBeltNfsd, ClothingBeltSecurityFilled]
+
+- type: entity
+  id: ClothingBeltNfsdWebbingFilledBrigmedic
+  parent: ClothingBeltNfsdWebbing
+  suffix: Filled, Brigmedic
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+
+- type: entity
+  id: ClothingBeltNfsdWebbingFilled
+  parent: ClothingBeltNfsdWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeFlashBang
+      - id: TearGasGrenade
+      - id: Stunbaton
+      - id: Handcuffs
+      - id: Handcuffs
+
+- type: entity
+  id: ClothingBeltSalvageWebbingFilledNF
+  parent: ClothingBeltSalvageWebbing
+  suffix: Filled, Engineering
+  components:
+  - type: StorageFill
+    contents:
+      - id: Crowbar
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+
+- type: entity
+  id: ClothingBeltChaplainSashFilled
+  parent: ClothingBeltChaplainSash
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingNeckCrucifix
+      - id: Censer
+      - id: Bible
+      - id: Lantern
+      - id: ChaplainHolywaterFlaskFilled
+      - id: UrnMortuary

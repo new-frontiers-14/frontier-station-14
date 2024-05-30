@@ -5,3 +5,14 @@
   components:
     - type: FaxMachine
       useStationName: true
+    - type: PowerSwitch
+
+- type: entity
+  parent: FaxMachineShip
+  id: FaxMachineShipAntag
+  suffix: Ship, Antag
+  components:
+    - type: FaxMachine
+      useStationName: true
+    - type: ApcPowerReceiver
+      powerDisabled: true #starts off

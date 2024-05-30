@@ -1,0 +1,15 @@
+- type: entity
+  parent: DoorRemoteDefault
+  id: DoorRemoteNfsd
+  name: nfsd door remote
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#79644b"
+    - state: door_remotescreencolour
+      color: "#4b653e"
+  - type: Access
+    groups:
+    - Security

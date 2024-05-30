@@ -1,0 +1,40 @@
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFrontier
+  suffix: Frontier, Locked
+  components:
+  - type: AccessReader
+    access: [["Frontier"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFrontierBridge
+  suffix: Theatre, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"], ["HeadOfPersonnel"], ["StationTrafficController"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFrontierCommand
+  suffix: Chapel, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMailCarrier
+  suffix: Mail, Locked
+  components:
+  - type: AccessReader
+    access: [["Mail"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMercenary
+  suffix: Mercenary, Locked
+  components:
+  - type: AccessReader
+    access: [["Mercenary"], ["Captain"]]

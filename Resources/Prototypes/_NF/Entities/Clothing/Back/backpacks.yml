@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/arcadia.rsi
-    
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackPilot
@@ -15,3 +15,39 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Backpacks/pilot.rsi
+
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTMailCarrier
+  name: ERT mail carrier backpack
+  description: A spacious backpack with lots of pockets, worn by Mail Carrier's of an Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/ertmailcarrier.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackClippy
+  name: Clippy's backpack
+  description: Made from a real Clippy.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/clippy.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: CatMeows
+
+- type: entity
+  parent: ClothingBackpackSecurity
+  id: ClothingBackpackNfsdBrown
+  name: nfsd backpack
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_brown.rsi
+
+- type: entity
+  parent: ClothingBackpackNfsdBrown
+  id: ClothingBackpackNfsdCream
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Backpacks/nfsd_cream.rsi

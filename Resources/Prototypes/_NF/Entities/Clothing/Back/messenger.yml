@@ -84,24 +84,6 @@
 
 - type: entity
   parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerSecurity
-  name: security messenger bag
-  description: A robust messenger bag for security related needs.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/security.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerBrigmedic
-  name: brigmedic messenger bag
-  description: A sterile messenger bag for medical related needs.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/brigmedic.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
   id: ClothingBackpackMessengerCaptain
   name: captain's messenger bag
   description: An exclusive messenger bag for Nanotrasen officers.
@@ -176,11 +158,13 @@
         - state: icon
         - state: icon-unlit
           shader: unshaded
+    - type: Clothing
+      equippedPrefix: holding
 
 - type: entity
   parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerMailman
-  name: mailman messenger bag
+  id: ClothingBackpackMessengerMailCarrier
+  name: mail carrier messenger bag
   description: A robust messenger bag for waging war against mail.
   components:
     - type: Sprite
@@ -203,3 +187,26 @@
   components:
     - type: Sprite
       sprite: _NF/Clothing/Back/Messenger/mime.rsi
+
+- type: entity
+  parent: ClothingBackpackMessenger
+  id: ClothingBackpackMessengerNfsdBrown
+  name: nfsd messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/nfsd_brown.rsi
+
+- type: entity
+  parent: ClothingBackpackMessenger
+  id: ClothingBackpackMessengerNfsdCream
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/nfsd_cream.rsi
+
+- type: entity
+  parent: ClothingBackpackMessenger
+  id: ClothingBackpackMessengerBloodCult
+  name: cultist messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/bloodcult.rsi

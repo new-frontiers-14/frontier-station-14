@@ -36,12 +36,22 @@ public sealed class RCDAmmoSystem : EntitySystem
         if (args.Handled || !args.CanReach || !_timing.IsFirstTimePredicted)
             return;
 
-        if (args.Target is not {Valid: true} target ||
+        if (args.Target is not { Valid: true } target ||
             !HasComp<RCDComponent>(target) ||
             !TryComp<LimitedChargesComponent>(target, out var charges))
             return;
 
         var user = args.User;
+
+        // ## Frontier - Shipyard RCD ammo only fits in shipyard RCD.
+        // At this point RCDComponent is guaranteed
+        EnsureComp<RCDComponent>(target, out var rcdComponent);
+        if (rcdComponent.IsShipyardRCD && !comp.IsShipyardRCDAmmo || !rcdComponent.IsShipyardRCD && comp.IsShipyardRCDAmmo)
+        {
+            _popup.PopupClient(Loc.GetString("rcd-component-wrong-ammo-type"), target, user);
+            return;
+        }
+
         args.Handled = true;
         var count = Math.Min(charges.MaxCharges - charges.Charges, comp.Charges);
         if (count <= 0)
@@ -53,7 +63,7 @@ public sealed class RCDAmmoSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("rcd-ammo-component-after-interact-refilled"), target, user);
         _charges.AddCharges(target, count, charges);
         comp.Charges -= count;
-        Dirty(comp);
+        Dirty(uid, comp);
 
         // prevent having useless ammo with 0 charges
         if (comp.Charges <= 0)

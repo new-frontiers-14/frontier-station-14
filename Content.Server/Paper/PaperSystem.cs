@@ -77,11 +77,7 @@ namespace Content.Server.Paper
         private void BeforeUIOpen(EntityUid uid, PaperComponent paperComp, BeforeActivatableUIOpenEvent args)
         {
             paperComp.Mode = PaperAction.Read;
-
-            if (!TryComp<ActorComponent>(args.User, out var actor))
-                return;
-
-            UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+            UpdateUserInterface(uid, paperComp);
         }
 
         private void OnExamined(EntityUid uid, PaperComponent paperComp, ExaminedEvent args)
@@ -116,18 +112,8 @@ namespace Content.Server.Paper
             var editable = paperComp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
             if (_tagSystem.HasTag(args.Used, "Write") && editable)
             {
-                bool write = true;
-
-                if (TryComp<PenComponent>(args.Used, out var penComp))
-                {
-                    // If a pen in sign mod, dont try to write.
-                    if (penComp.Pen == PenMode.PenSign)
-                    {
-                        write = false;
-                    }
-                }
-
-                if (write)
+                if (TryComp<PenComponent>(args.Used, out var penComp) && penComp.Pen == PenMode.PenSign);
+                else // Frontier - Else the rest
                 {
                     var writeEvent = new PaperWriteEvent(uid, args.User);
                     RaiseLocalEvent(args.Used, ref writeEvent);
@@ -135,8 +121,8 @@ namespace Content.Server.Paper
                         return;
 
                     paperComp.Mode = PaperAction.Write;
-                    _uiSystem.TryOpen(uid, PaperUiKey.Key, actor.PlayerSession);
-                    UpdateUserInterface(uid, paperComp, actor.PlayerSession);
+                    _uiSystem.OpenUi(uid, PaperUiKey.Key, args.User);
+                    UpdateUserInterface(uid, paperComp);
                     args.Handled = true;
                     return;
                 }
@@ -145,37 +131,16 @@ namespace Content.Server.Paper
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
-                var actionOther = "stamps";
-                var actionSelf = "stamp";
-
-                if (stampComp.StampedPersonal)
-                {
-                    stampComp.StampedIdUser = args.User;
-
-                    var userName = Loc.GetString("stamp-component-unknown-name");
-                    var userJob = Loc.GetString("stamp-component-unknown-job");
-                    if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
-                    {
-                        if (card.Comp.FullName != null)
-                            userName = card.Comp.FullName;
-                        if (card.Comp.JobTitle != null)
-                            userJob = card.Comp.JobTitle;
-                    }
-                    //string stampedName = userJob + " - " + userName;
-                    string stampedName = userName;
-                    stampComp.StampedName = stampedName;
-
-                    actionOther = "signs";
-                    actionSelf = "sign";
-                }
+                if (stampComp.StampedPersonal) // Frontier
+                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
 
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                        ("action", actionOther), ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
                 _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
                 var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                        ("action", actionSelf), ("target", args.Target), ("stamp", args.Used));
+                        ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
@@ -206,9 +171,8 @@ namespace Content.Server.Paper
                 if (TryComp<MetaDataComponent>(uid, out var meta))
                     _metaSystem.SetEntityDescription(uid, "", meta);
 
-                if (args.Session.AttachedEntity != null)
-                    _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                        $"{ToPrettyString(args.Session.AttachedEntity.Value):player} has written on {ToPrettyString(uid):entity} the following text: {args.Text}");
+                _adminLogger.Add(LogType.Chat, LogImpact.Low,
+                    $"{ToPrettyString(args.Actor):player} has written on {ToPrettyString(uid):entity} the following text: {args.Text}");
 
                 _audio.PlayPvs(paperComp.Sound, uid);
             }
@@ -262,33 +226,20 @@ namespace Content.Server.Paper
             _appearance.SetData(uid, PaperVisuals.Status, status, appearance);
         }
 
-        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null, ICommonSession? session = null)
+        public void UpdateUserInterface(EntityUid uid, PaperComponent? paperComp = null)
         {
             if (!Resolve(uid, ref paperComp))
                 return;
 
-            if (_uiSystem.TryGetUi(uid, PaperUiKey.Key, out var bui))
-                _uiSystem.SetUiState(bui, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode), session);
+            _uiSystem.SetUiState(uid, PaperUiKey.Key, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode));
         }
 
         private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
         {
             if (stampComp.StampedPersonal)
             {
-                stampComp.StampedIdUser = args.User;
-
-                var userName = Loc.GetString("stamp-component-unknown-name");
-                var userJob = Loc.GetString("stamp-component-unknown-job");
-                if (_idCardSystem.TryFindIdCard(stampComp.StampedIdUser!.Value, out var card))
-                {
-                    if (card.Comp.FullName != null)
-                        userName = card.Comp.FullName;
-                    if (card.Comp.JobTitle != null)
-                        userJob = card.Comp.JobTitle;
-                }
-                //string stampedName = userJob + " - " + userName;
-                string stampedName = userName;
-                stampComp.StampedName = stampedName;
+                if (stampComp.StampedPersonal) // Frontier
+                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
             }
         }
 

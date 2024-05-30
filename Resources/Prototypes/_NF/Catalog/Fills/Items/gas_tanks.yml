@@ -1,0 +1,36 @@
+# Moles calculation
+#
+#   moles = 1000 / (8.31446261 * 293.15 / volume)
+#
+#   More practically:
+#
+#   moles = volume * 0.41027581
+#
+#   Yes, you do need all those digits or your pressure wont end up exactly 1000
+#
+#
+# The number 1000 comes from the default MaxReleasePressure for a GasCanister,
+# which is 10 * Atmospherics.OneAtmosphere, rounded down.
+#
+# 8.31446261 is the universal gas constant
+#
+# 293.15 is our default atmospheric temperature
+#
+
+# If you change the mole amounts, you can calculate the new gas supply times with:
+# minutes = (moles / outputPressure) * 325
+
+- type: entity
+  id: DoubleEmergencyAirTankFilled
+  parent: DoubleEmergencyAirTank
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 101.3
+      air:
+        # 6 minutes due to output pressure
+        volume: 5
+        moles:
+          - 0.4472067919 # 22% oxygen
+          - 1.5855513531 # 78% nitrogen
+        temperature: 293.15

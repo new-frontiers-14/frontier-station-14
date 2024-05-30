@@ -1,15 +1,21 @@
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Dataset;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
+    [ValidatePrototypeId<EntityPrototype>]
+    public const string CoordinatesDisk = "CoordinatesDisk";
+
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     private const float ShuttleFTLMassThreshold = 50f;
@@ -53,11 +59,18 @@ public sealed partial class SalvageSystem
         }
         // end of Frontier proximity check
 
-        SpawnMission(missionparams, station.Value);
+        // Frontier  change - disable coordinate disks for expedition missions
+        //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
+        SpawnMission(missionparams, station.Value, null);
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
+
+        // Frontier  change - disable coordinate disks for expedition missions
+        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
+        //_audio.PlayPvs(component.PrintSound, uid);
+
         UpdateConsoles(data);
     }
 
@@ -83,7 +96,7 @@ public sealed partial class SalvageSystem
             if (station != component.Owner)
                 continue;
 
-            _ui.TrySetUiState(uid, SalvageConsoleUiKey.Expedition, state, ui: uiComp);
+            _ui.SetUiState((uid, uiComp), SalvageConsoleUiKey.Expedition, state);
         }
     }
 
@@ -101,7 +114,7 @@ public sealed partial class SalvageSystem
             state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
         }
 
-        _ui.TrySetUiState(component, SalvageConsoleUiKey.Expedition, state);
+        _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
     private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
     {

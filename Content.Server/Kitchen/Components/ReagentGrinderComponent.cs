@@ -13,40 +13,42 @@ namespace Content.Server.Kitchen.Components
     /// it contained, juice an apple and get "apple juice".
     /// </summary>
     [Access(typeof(ReagentGrinderSystem)), RegisterComponent]
-    public sealed partial class ReagentGrinderComponent : Component
-    {
-        [ViewVariables(VVAccess.ReadWrite)]
+    public sealed partial class ReagentGrinderComponent : Component {
+        [DataField]
         public int StorageMaxEntities = 6;
 
-        [DataField("baseStorageMaxEntities"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public int BaseStorageMaxEntities = 4;
 
         [DataField("machinePartStorageMax", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
         public string MachinePartStorageMax = "MatterBin";
 
-        [DataField("storagePerPartRating")]
+        [DataField]
         public int StoragePerPartRating = 4;
 
-        [DataField("workTime"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public TimeSpan WorkTime = TimeSpan.FromSeconds(3.5); // Roughly matches the grind/juice sounds.
 
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public float WorkTimeMultiplier = 1;
 
         [DataField("machinePartWorkTime", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
         public string MachinePartWorkTime = "Manipulator";
 
-        [DataField("partRatingWorkTimeMultiplier")]
+        [DataField]
         public float PartRatingWorkTimerMulitplier = 0.6f;
 
-        [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public SoundSpecifier ClickSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
 
-        [DataField("grindSound"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public SoundSpecifier GrindSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/blender.ogg");
 
-        [DataField("juiceSound"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public SoundSpecifier JuiceSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/juicer.ogg");
+
+        [DataField]
+        public GrinderAutoMode AutoMode = GrinderAutoMode.Off;
 
         public EntityUid? AudioStream;
     }

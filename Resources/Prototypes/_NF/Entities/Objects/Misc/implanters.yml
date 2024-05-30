@@ -2,8 +2,26 @@
 
 - type: entity
   id: MedicalTrackingImplanter
-  name: medical insurance tracking implanter
+  name: medical tracking implanter
   parent: BaseImplantOnlyImplanter
   components:
     - type: Implanter
       implant: MedicalTrackingImplant
+
+- type: entity
+  id: FreelanceTrackingImplanter
+  name: freelance tracking implanter
+  suffix: Freelance
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: FreelanceTrackingImplant
+
+- type: entity
+  id: DeathAcidifierImplanterNF
+  name: death acidifier implanter
+  suffix: All
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathAcidifierImplantNF

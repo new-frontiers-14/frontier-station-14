@@ -1,0 +1,77 @@
+#These are intentionally all very mediocre as locational damage does not exist yet. Without it, armor values will stack in a way that makes it really god damn hard to determine how effective something is, along with making players extremely tanky.
+#When it DOES exist, the values here should be totally reworked - probably just port them from SS13.
+
+#ERT Mail Carrier Helmet
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetERTMailCarrier
+  name: ERT mail carrier helmet
+  description: An in-atmosphere helmet worn by mail members of the Nanotrasen Emergency Response Team. Has dark purple highlights.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/ert_mailcarrier.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/ert_mailcarrier.rsi
+
+# Syndicate Bomb Suit Helmet
+- type: entity
+  parent: ClothingHeadHelmetBombSuit
+  id: ClothingHeadHelmetBombSuitSyndie
+  name: syndicate bombsuit helmet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: Contraband
+
+# Syndicate NPC helmets, unremoveable
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSyndieUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetNfsd
+  name: nfsd helmet
+  description: an nfsd issued helmet to protect your head
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/nfsd.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/nfsd.rsi
+
+# Bloodcult Janitor Helmet
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetCultJanitor
+  name: cult leader helmet
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/cult_janitor.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/cult_janitor.rsi
+  - type: Contraband
+  - type: Tag
+    tags:
+    - ClothMade
+    - HidesHair
+    - WhitelistChameleon

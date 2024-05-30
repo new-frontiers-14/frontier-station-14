@@ -1,0 +1,240 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootToolsSalvage
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootToolsBasicEngineering
+    - SpawnDungeonLootClothesSalvage
+    - SpawnDungeonLootOresSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootCircuitBoardSalvage
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootOresFull
+    - ClothingOuterHardsuitSalvage
+    - ClothingOuterHardsuitMaximPrototype
+    - ClothingOuterHardsuitLuxury
+    - ClothingOuterHardsuitSpatio
+    rareChance: 0.01
+
+# Tools
+- type: entity
+  name: random tool
+  id: SpawnDungeonLootToolsSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCrusherDagger
+    - WeaponCrusher
+    - WeaponCrusherGlaive
+    - WeaponProtoKineticAccelerator
+    - OreBag
+    - RadioHandheld
+    - HandheldGPSBasic
+    - Floodlight
+    - Pickaxe
+    - AppraisalTool
+    - MiningDrill
+    - ClothingHeadsetMining
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - OreBagOfHolding
+    - HandHeldMassScanner
+    - ClothingOuterHardsuitSalvage
+    - ClothingOuterHardsuitMaximPrototype
+    - ClothingOuterHardsuitLuxury
+    - ClothingOuterHardsuitSpatio
+    rareChance: 0.01
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvage"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingUniformJumpsuitSalvageSpecialist
+    - ClothingNeckCloakMiner
+    - ClothingNeckMantleQM
+    - ClothingBeltSalvageWebbing
+    - ClothingShoesBootsSalvage
+    - ClothingNeckScarfStripedBrown
+    - ClothingHeadHatQMsoft
+    - ClothingHeadBandBrown
+    - ClothingHeadsetMining
+    - ClothingBackpackDuffelSalvage
+    - ClothingBackpackMessengerSalvage
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - ClothingOuterHardsuitSpatio
+    rareChance: 0.01
+
+# Lockers
+- type: entity
+  name: random locker
+  id: SpawnDungeonLootLockersSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: mining
+      - sprite: Structures/Storage/closet.rsi
+        state: mining_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - LockerSalvageSpecialistFilled
+    - WardrobeCargoFilled
+    - LockerQuarterMasterFilled
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SuitStorageSalv
+    - SuitStorageQuartermaster
+    rareChance: 0.03
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootLatheSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/techfab.rsi
+        state: icon
+      - sprite: Structures/Machines/techfab.rsi
+        state: cargo
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - SalvageTechfabNF
+    - Autolathe
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrial
+    - OreProcessor
+    rareChance: 0.05
+
+- type: entity
+  name: random vendomats
+  id: SpawnDungeonVendomatsSalvage
+  parent: MarkerBase
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineYouTool
+    - VendingMachineSalvage
+    - VendingMachineSalvage
+    - VendingMachineWinter
+    - VendingMachineCargoDrobe
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContraband
+    - VendingMachineSyndieDrobe
+    - VendingMachineArcadia
+    rareChance: 0.01
+
+# Other
+- type: entity
+  name: random machine board
+  id: SpawnDungeonLootCircuitBoardSalvage
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/module.rsi
+        state: supply
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Computers
+    - ComputerIFFCircuitboard
+    # Lathes
+    - SalvageTechFabCircuitboardNF
+    - AutolatheMachineCircuitboard
+    - OreProcessorMachineCircuitboard
+    # Machines
+    - MaterialReclaimerMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
+    - TurboItemRechargerCircuitboard
+    - GyroscopeMachineCircuitboard
+    - MiniGravityGeneratorCircuitboard
+    - ThrusterMachineCircuitboard
+    - ShuttleGunKineticCircuitboard
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - OreProcessorIndustrialMachineCircuitboard
+    - AmmoTechFabCircuitboard
+    - ShuttleGunSvalinnMachineGunCircuitboard
+    - SecurityTechFabCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.03
