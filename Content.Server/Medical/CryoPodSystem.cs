@@ -118,7 +118,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                 var solutionToInject = _solutionContainerSystem.SplitSolutionReagentsEvenly(containerSolution.Value, cryoPod.BeakerTransferAmount);
 
                 //  for every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections
-                solutionToInject.ScaleSolution(cryoPod.PotencyAmount);
+                solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
 
                 _bloodstreamSystem.TryAddToChemicals(patient.Value, solutionToInject, bloodstream);
                 _reactiveSystem.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);

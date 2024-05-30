@@ -34,7 +34,7 @@ public sealed partial class CryoPodComponent : Component
     public TimeSpan? NextInjectionTime;
 
     /// <summary>
-    /// How many units to transfer per tick from the beaker to the mob?
+    /// How many units of each reagent to transfer per tick from the beaker to the mob?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("beakerTransferAmount")]
@@ -45,7 +45,7 @@ public sealed partial class CryoPodComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("PotencyAmount")]
-    public float PotencyAmount = 2f;
+    public float PotencyMultiplier = 2f;
 
     /// <summary>
     ///     Delay applied when inserting a mob in the pod.
