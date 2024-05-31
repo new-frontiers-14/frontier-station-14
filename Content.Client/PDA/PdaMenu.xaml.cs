@@ -112,9 +112,14 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_stationName);
             };
 
-            StationAlertLevelButton.OnPressed += _ =>
+            TimeLeftShuttleButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_alertLevel);
+            };
+
+            StationAlertLevelButton.OnPressed += _ =>
+            {
+                _clipboard.SetText(_timeLeftShuttle);
             };
 
             BalanceButton.OnPressed += _ =>
@@ -166,7 +171,7 @@ namespace Content.Client.PDA
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
 
-            if (state.Balance is not null) 
+            if (state.Balance is not null)
             {
                 _balance = Loc.GetString("comp-pda-ui-balance", ("balance", state.Balance.Value));
                 BalanceLabel.SetMarkup(_balance);
@@ -175,13 +180,13 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                        ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
 
-            shuttleEvacTimeSpan = (state.EvacShuttleTime ?? TimeSpan.Zero);
+            shuttleEvacTimeSpan = state.EvacShuttleTime ?? TimeSpan.Zero;
             var shuttleEvacTime = shuttleEvacTimeSpan - _gameTiming.CurTime;
             if (state.EvacShuttleTime is not null)
                 _timeLeftShuttle = Loc.GetString("comp-pda-ui-left-time",
-                        ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
+                    ("time", shuttleEvacTime.ToString("hh\\:mm\\:ss")));
 
             ShuttleLeftTimeLabel.SetMarkup(_timeLeftShuttle);
 
