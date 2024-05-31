@@ -1,12 +1,12 @@
 - type: entity
-  id: BaseSpeedLoaderRifle
+  id: BaseRevolverSpeedLoaderRifle
   name: "speed loader (.20 rifle)"
   parent: BaseItem
   abstract: true
   components:
   - type: Tag
     tags:
-      - SpeedLoaderRifle
+      - RevolverSpeedLoaderRifle
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     whitelist:
@@ -20,9 +20,9 @@
         ents: []
 
 - type: entity
-  id: SpeedLoaderRifle
+  id: RevolverSpeedLoaderRifle
   name: "speed loader (.20 rifle)"
-  parent: BaseSpeedLoaderRifle
+  parent: BaseRevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle
@@ -40,9 +40,9 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderRifleEmpty
+  id: RevolverSpeedLoaderRifleEmpty
   name: "speed loader (.20 rifle any)"
-  parent: SpeedLoaderRifle
+  parent: RevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -53,17 +53,17 @@
         map: [ "enum.GunVisualLayers.Base" ]
 
 - type: entity
-  id: SpeedLoaderRifleIncendiary
+  id: RevolverSpeedLoaderRifleIncendiary
   name: "speed loader (.20 rifle incendiary)"
-  parent: SpeedLoaderRifle
+  parent: RevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleIncendiary
 
 - type: entity
-  id: SpeedLoaderRiflePractice
+  id: RevolverSpeedLoaderRiflePractice
   name: "speed loader (.20 rifle practice)"
-  parent: BaseSpeedLoaderRifle
+  parent: BaseRevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRiflePractice
@@ -81,9 +81,9 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderRifleUranium
+  id: RevolverSpeedLoaderRifleUranium
   name: "speed loader (.20 rifle uranium)"
-  parent: BaseSpeedLoaderRifle
+  parent: BaseRevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleUranium
