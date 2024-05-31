@@ -112,12 +112,12 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_stationName);
             };
 
-            TimeLeftShuttleButton.OnPressed += _ =>
+            StationAlertLevelButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_alertLevel);
             };
 
-            StationAlertLevelButton.OnPressed += _ =>
+            ShuttleLeftTimeButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_timeLeftShuttle);
             };
