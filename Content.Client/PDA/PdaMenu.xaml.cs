@@ -36,7 +36,6 @@ namespace Content.Client.PDA
         private string _timeLeftShuttle = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
         private string _balance = Loc.GetString("comp-pda-ui-unknown");
-        
 
         private int _currentView;
 
