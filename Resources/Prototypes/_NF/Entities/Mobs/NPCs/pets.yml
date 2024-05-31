@@ -6,10 +6,6 @@
     requirements:
     - !type:WhitelistRequirement
   - type: IntrinsicRadioReceiver
-  - type: NpcFactionMember
-    factions:
-      - Cat
-      - PetsNT
 
 - type: entity
   name: Clippy
@@ -145,6 +141,10 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
 
 - type: entity
   name: Mistake
@@ -184,3 +184,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 8
     baseSprintSpeed : 8
+  - type: NpcFactionMember
+    factions:
+      - Cat
