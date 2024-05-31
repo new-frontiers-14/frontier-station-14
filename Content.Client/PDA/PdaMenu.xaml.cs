@@ -27,7 +27,6 @@ namespace Content.Client.PDA
 
         private TimeSpan shuttleEvacTimeSpan;
         
-        
         private string _pdaOwner = Loc.GetString("comp-pda-ui-unknown");
         private string _owner = Loc.GetString("comp-pda-ui-unknown");
         private string _jobTitle = Loc.GetString("comp-pda-ui-unassigned");
@@ -35,7 +34,8 @@ namespace Content.Client.PDA
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _timeLeftShuttle = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        private string _balance = Loc.GetString("comp-pda-ui-unknown");
+        private string _balance = Loc.GetString("comp-pda-ui-unknown");\
+
 
         private int _currentView;
 
