@@ -130,6 +130,10 @@
         Piercing: 0 # Declawed cat
   - type: StaminaDamageOnHit
     damage: 18
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
   - type: Speech
     speechSounds: NfsdCat
     speechVerb: SmallMob
@@ -141,10 +145,6 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
-  - type: NpcFactionMember
-    factions:
-      - Cat
-      - PetsNT
 
 - type: entity
   name: Mistake
