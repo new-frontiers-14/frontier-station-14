@@ -166,7 +166,8 @@ namespace Content.Client.PDA
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
 
-            if (state.Balance is not null) {
+            if (state.Balance is not null) 
+            {
                 _balance = Loc.GetString("comp-pda-ui-balance", ("balance", state.Balance.Value));
                 BalanceLabel.SetMarkup(_balance);
             }
