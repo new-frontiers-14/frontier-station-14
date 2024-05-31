@@ -19,7 +19,6 @@ namespace Content.Client.PDA
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         private readonly ClientGameTicker _gameTicker;
-        private TimeSpan shuttleEvacTimeSpan;
 
         public const int HomeView = 0;
         public const int ProgramListView = 1;
@@ -27,6 +26,7 @@ namespace Content.Client.PDA
         public const int ProgramContentView = 3;
 
 
+        private TimeSpan shuttleEvacTimeSpan;
         private string _pdaOwner = Loc.GetString("comp-pda-ui-unknown");
         private string _owner = Loc.GetString("comp-pda-ui-unknown");
         private string _jobTitle = Loc.GetString("comp-pda-ui-unassigned");
@@ -35,6 +35,7 @@ namespace Content.Client.PDA
         private string _timeLeftShuttle = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
         private string _balance = Loc.GetString("comp-pda-ui-unknown");
+        
 
         private int _currentView;
 
