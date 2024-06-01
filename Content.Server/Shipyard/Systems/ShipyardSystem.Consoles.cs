@@ -39,6 +39,7 @@ using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Server.Database;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -105,7 +106,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!GetAvailableShuttles(uid).Contains(vessel.ID))
+        if (!GetAvailableShuttles(uid,null, null, targetId).Contains(vessel.ID))
         {
             PlayDenySound(uid, component);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
@@ -254,7 +255,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, name, sellValue, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -358,7 +359,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         SendSellMessage(uid, deed.ShuttleOwner!, GetFullName(deed), channel, player, false);
 
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
@@ -398,7 +399,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var fullName = deed != null ? GetFullName(deed) : null;
-        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void ConsolePopup(EntityUid uid, string text)
@@ -453,43 +454,38 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
+        if (uiComp.CurrentSingleUser is not { Valid: true } player)
+            return;
 
-        var uiUsers = _ui.GetActorUis(uid);
+        if (!TryComp<BankAccountComponent>(player, out var bank))
+            return;
 
-        foreach (var user in uiUsers)
+        var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+
+        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
         {
-            if (user.Entity is not { Valid: true } player)
-                continue;
-
-            if (!TryComp<BankAccountComponent>(player, out var bank))
-                continue;
-
-            var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
-
-            if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+            if (Deleted(deed!.ShuttleUid))
             {
-                if (Deleted(deed!.ShuttleUid))
-                {
-                    RemComp<ShuttleDeedComponent>(targetId!.Value);
-                    continue;
-                }
+                RemComp<ShuttleDeedComponent>(targetId!.Value);
+                return;
             }
-
-            int sellValue = 0;
-            if (deed?.ShuttleUid != null)
-                sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
-
-            if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key ||
-                ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
-            {
-                var tax = (int) (sellValue * 0.30f);
-                sellValue -= tax;
-            }
-
-            var fullName = deed != null ? GetFullName(deed) : null;
-            RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue,
-                (ShipyardConsoleUiKey) uiComp.Key);
         }
+
+        int sellValue = 0;
+        if (deed?.ShuttleUid != null)
+            sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
+
+        if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key ||
+            ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
+        {
+            var tax = (int) (sellValue * 0.30f);
+            sellValue -= tax;
+        }
+
+        var fullName = deed != null ? GetFullName(deed) : null;
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId,
+            (ShipyardConsoleUiKey) uiComp.Key);
+
     }
 
     public bool FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)
@@ -513,7 +509,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <summary>
     ///   Returns all shuttle prototype IDs the given shipyard console can offer.
     /// </summary>
-    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null, ShipyardListingComponent? listing = null)
+    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null,
+        ShipyardListingComponent? listing = null, EntityUid? targetId = null)
     {
         var availableShuttles = new List<string>();
 
@@ -530,30 +527,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        // Add all prototypes matching the ui key
-        if (key != null && key != ShipyardConsoleUiKey.Custom && ShipyardGroupMapping.TryGetValue(key.Value, out var group))
+        TryComp<AccessComponent>(targetId, out var accessReaderComponent);
+        var shuttles = _prototypeManager.EnumeratePrototypes<VesselPrototype>().Where(x =>
         {
-            var protos = _prototypeManager.EnumeratePrototypes<VesselPrototype>();
-            foreach (var proto in protos)
-            {
-                if (proto.Group == group)
-                    availableShuttles.Add(proto.ID);
-            }
-        }
+            return
+                // if the listing contains the shuttle, add it to the list or
+                ((listing?.Shuttles.Contains(x.ID) ?? false) ||
 
-        // Add all prototypes specified in ShipyardListing
-        if (listing != null || TryComp(uid, out listing))
-        {
-            foreach (var shuttle in listing.Shuttles)
-            {
-                availableShuttles.Add(shuttle);
-            }
-        }
+                // if the shuttle is in the group that the console is looking for
+                (key != null && key != ShipyardConsoleUiKey.Custom &&
+                 ShipyardGroupMapping.TryGetValue(key.Value, out var group) && x.Group == group)) &&
 
-        return availableShuttles;
+                // and the user has the required access, add it to the list
+                (string.IsNullOrEmpty(x.Access) || (accessReaderComponent?.Tags.Contains(x.Access) ?? false));
+
+        }).Select(x=>x.ID).ToList();
+
+        return shuttles;
     }
 
-    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, bool isTargetIdPresent, ShipyardConsoleUiKey uiKey)
+    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey)
     {
         var listing = TryComp<ShipyardListingComponent>(uid, out var comp) ? comp : null;
 
@@ -562,9 +555,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             access,
             shipDeed,
             shipSellValue,
-            isTargetIdPresent,
+            targetId.HasValue,
             ((byte)uiKey),
-            GetAvailableShuttles(uid, uiKey, listing),
+            GetAvailableShuttles(uid, uiKey, listing, targetId),
             uiKey.ToString());
 
         _ui.SetUiState(uid, uiKey, newState);
