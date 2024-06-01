@@ -55,7 +55,7 @@
 - type: entity
   id: SpeedLoaderRifleHeavyIncendiary
   name: "speed loader (.20 rifle incendiary)"
-  parent: SpeedLoaderRifleHeavy
+  parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleIncendiary
@@ -96,6 +96,26 @@
         map: [ "enum.GunVisualLayers.Mag" ]
   - type: MagazineVisuals
     magState: uranium
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderRifleHeavyRubber
+  name: "speed loader (.20 rifle rubber)"
+  parent: BaseSpeedLoaderHeavyRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleRubber
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: rubber-8
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: rubber
     steps: 9
     zeroVisible: false
   - type: Appearance
