@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseRevolverSpeedLoaderRifle
+  id: BaseSpeedLoaderHeavyRifle
   name: "speed loader (.20 rifle)"
   parent: BaseItem
   abstract: true
@@ -20,14 +20,14 @@
         ents: []
 
 - type: entity
-  id: RevolverSpeedLoaderRifle
+  id: SpeedLoaderRifleHeavy
   name: "speed loader (.20 rifle)"
-  parent: BaseRevolverSpeedLoaderRifle
+  parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/argenti_speed_loader.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/HeavyRifle/argenti_speed_loader.rsi
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
@@ -40,20 +40,20 @@
   - type: Appearance
 
 - type: entity
-  id: RevolverSpeedLoaderRifleEmpty
+  id: SpeedLoaderRifleHeavyEmpty
   name: "speed loader (.20 rifle any)"
   parent: RevolverSpeedLoaderRifle
   components:
   - type: BallisticAmmoProvider
     proto: null
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/argenti_speed_loader.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/HeavyRifle/argenti_speed_loader.rsi
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
 
 - type: entity
-  id: RevolverSpeedLoaderRifleIncendiary
+  id: SpeedLoaderRifleHeavyIncendiary
   name: "speed loader (.20 rifle incendiary)"
   parent: RevolverSpeedLoaderRifle
   components:
@@ -61,14 +61,14 @@
     proto: CartridgeRifleIncendiary
 
 - type: entity
-  id: RevolverSpeedLoaderRiflePractice
+  id: SpeedLoaderRifleHeavyPractice
   name: "speed loader (.20 rifle practice)"
-  parent: BaseRevolverSpeedLoaderRifle
+  parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRiflePractice
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/argenti_speed_loader.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/HeavyRifle/argenti_speed_loader.rsi
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
@@ -81,14 +81,14 @@
   - type: Appearance
 
 - type: entity
-  id: RevolverSpeedLoaderRifleUranium
+  id: SpeedLoaderRifleHeavyUranium
   name: "speed loader (.20 rifle uranium)"
-  parent: BaseRevolverSpeedLoaderRifle
+  parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifleUranium
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/argenti_speed_loader.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Speedloaders/HeavyRifle/argenti_speed_loader.rsi
     layers:
       - state: base
         map: [ "enum.GunVisualLayers.Base" ]
