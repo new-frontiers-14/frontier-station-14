@@ -5,20 +5,22 @@
   description: The civilian grade Argenti Type 20 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well. Uses .20 rifle ammo.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Argenti-Revolver.rsi
+    scale: 0.75 , 0.75
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Argenti-Revolver.rsi
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Gun
-    fireRate: 2
+    fireRate: 2.5
     resetOnHandSelected: false
   - type: RevolverAmmoProvider
     whitelist:
       tags:
         - CartridgeRifle
+        - SpeedLoaderRifleHeavy
+    capacity: 8
     proto: CartridgeRifle
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
@@ -28,13 +30,10 @@
   suffix: Non-lethal
   components:
   - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeRifle
+    capacity: 8
     proto: CartridgeRifleRubber
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
 
 - type: entity
   parent: WeaponRevolverDeckard
