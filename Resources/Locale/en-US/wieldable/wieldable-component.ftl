@@ -1,4 +1,4 @@
-﻿### Locale for wielding items; i.e. two-handing them
+### Locale for wielding items; i.e. two-handing them
 
 wieldable-verb-text-wield = Wield
 wieldable-verb-text-unwield = Unwield

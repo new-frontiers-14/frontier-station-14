@@ -20,7 +20,7 @@
     maxAngle: 16
     fireRate: 8
     angleIncrease: 3
-    angleDecay: 16
+    angleDecay: 16  
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -81,7 +81,7 @@
 
 - type: entity
   name: C-20r sub machine gun
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunC20r
   description: An illegal firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
   components:
@@ -95,6 +95,8 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Gun
+    minAngle: 21
+    maxAngle: 32  
     shotsPerBurst: 5
     availableModes:
     - SemiAuto
@@ -113,7 +115,7 @@
 
 - type: entity
   name: Drozd
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunDrozd
   description: An excellent fully automatic Heavy SMG. An illegal firearm often used by Syndicate agents.
   components:
@@ -127,6 +129,8 @@
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
     - type: Gun
+      minAngle: 21
+      maxAngle: 32  
       fireRate: 6
       selectedMode: FullAuto
       soundGunshot:
@@ -232,7 +236,7 @@
     minAngle: 1
     maxAngle: 6
     angleIncrease: 1.5
-    angleDecay: 6
+    angleDecay: 6  
     selectedMode: FullAuto
     shotsPerBurst: 5
     availableModes:
