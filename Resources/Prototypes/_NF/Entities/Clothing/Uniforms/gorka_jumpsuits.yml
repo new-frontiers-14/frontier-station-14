@@ -662,7 +662,11 @@
     - state: icon-base-top-jumpsuit
       color: "#3e3e48"
     - state: icon-decor-department
-      color: "#224153"
+      color: "#2d4c5e"
+    - state: icon-decor-department-head
+      color: "#aeb7bd"
+    - state: icon-decor-epaulets
+      color: "#ffce5b"
   - type: Item
     inhandVisuals:
       left:
@@ -671,24 +675,36 @@
       - state: inhand-left-base-top-jumpsuit
         color: "#3e3e48"
       - state: inhand-left-decor-department
-        color: "#224153"
+        color: "#2d4c5e"
+      - state: inhand-left-decor-department-head
+        color: "#aeb7bd"
+      - state: inhand-left-decor-epaulets
+        color: "#ffce5b"
       right:
       - state: inhand-right-base-bottom
         color: "#3e3e48"
       - state: inhand-right-base-top-jumpsuit
         color: "#3e3e48"
       - state: inhand-right-decor-department
-        color: "#224153"
+        color: "#2d4c5e"
+      - state: inhand-right-decor-department-head
+        color: "#aeb7bd"
+      - state: inhand-right-decor-epaulets
+        color: "#ffce5b"
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
     clothingVisuals:
       jumpsuit:
       - state: equipped-base-bottom
         color: "#3e3e48"
-      - state: equipped-base-top-jumpsuit
+      - state: equipped-base-top-jumpsuit-tac
         color: "#3e3e48"
       - state: equipped-decor-department
-        color: "#224153"
+        color: "#2d4c5e"
+      - state: equipped-decor-department-head
+        color: "#aeb7bd"
+      - state: equipped-decor-epaulets
+        color: "#ffce5b"
 
 - type: entity
   parent: ClothingUniformJumpsuitHoP
@@ -704,10 +720,14 @@
     - state: icon-base-top-jumpsuit
       color: "#2c6a30"
     - state: icon-decor-department
-      color: "#2c6a30"
+      color: "#09300b"
     - state: icon-decor-department-head
       color: "#fbe6b8"
     - state: icon-decor-epaulets
+      color: "#eca615"
+    - state: icon-belt
+      color: "#fbe6b8"
+    - state: icon-belt-buckle
       color: "#eca615"
   - type: Item
     inhandVisuals:
@@ -717,10 +737,14 @@
       - state: inhand-left-base-top-jumpsuit
         color: "#2c6a30"
       - state: inhand-left-decor-department
-        color: "#2c6a30"
+        color: "#09300b"
       - state: inhand-left-decor-department-head
         color: "#fbe6b8"
       - state: inhand-left-decor-epaulets
+        color: "#eca615"
+      - state: inhand-left-belt
+        color: "#fbe6b8"
+      - state: inhand-left-belt-buckle
         color: "#eca615"
       right:
       - state: inhand-right-base-bottom
@@ -728,10 +752,14 @@
       - state: inhand-right-base-top-jumpsuit
         color: "#2c6a30"
       - state: inhand-right-decor-department
-        color: "#2c6a30"
+        color: "#09300b"
       - state: inhand-right-decor-department-head
         color: "#fbe6b8"
       - state: inhand-right-decor-epaulets
+        color: "#eca615"
+      - state: inhand-right-belt
+        color: "#fbe6b8"
+      - state: inhand-right-belt-buckle
         color: "#eca615"
   - type: Clothing
     sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
@@ -742,10 +770,14 @@
       - state: equipped-base-top-jumpsuit
         color: "#2c6a30"
       - state: equipped-decor-department
-        color: "#2c6a30"
+        color: "#09300b"
       - state: equipped-decor-department-head
         color: "#fbe6b8"
       - state: equipped-decor-epaulets
+        color: "#eca615"
+      - state: equipped-belt
+        color: "#fbe6b8"
+      - state: equipped-belt-buckle
         color: "#eca615"
 
 ## ENGINEERING
@@ -1460,6 +1492,47 @@
         color: "#dcdcdc"
 
 - type: entity
+  parent: ClothingUniformJumpsuitHydroponics
+  id: ClothingUniformJumpsuitGorkaHydroponics
+  suffix: Gorka
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
+    layers:
+    - state: icon-base-bottom
+      color: "#6ad427"
+    - state: icon-base-top-jumpsuit
+      color: "#6ad427"
+    - state: icon-decor-department
+      color: "#3164ff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-bottom
+        color: "#6ad427"
+      - state: inhand-left-base-top-jumpsuit
+        color: "#6ad427"
+      - state: inhand-left-decor-department
+        color: "#3164ff"
+      right:
+      - state: inhand-right-base-bottom
+        color: "#6ad427"
+      - state: inhand-right-base-top-jumpsuit
+        color: "#6ad427"
+      - state: inhand-right-decor-department
+        color: "#3164ff"
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-base-bottom
+        color: "#6ad427"
+      - state: equipped-base-top-jumpsuit
+        color: "#6ad427"
+      - state: equipped-decor-department
+        color: "#3164ff"
+
+- type: entity
   parent: ClothingUniformJumpsuitMailCarrier
   id: ClothingUniformJumpsuitGorkaMailCarrier
   suffix: Gorka
@@ -1579,59 +1652,6 @@
         color: "#784f1e"
 
 - type: entity
-  parent: ClothingUniformJumpsuitPilot
-  id: ClothingUniformJumpsuitGorkaPilotTac
-  suffix: Gorka, Tac
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
-    layers:
-    - state: icon-base-bottom
-      color: "#496ea0"
-    - state: icon-base-top-jumpsuit
-      color: "#496ea0"
-    - state: icon-belt
-      color: "#784f1e"
-    - state: icon-belt-buckle
-    - state: icon-decor-shoulder-patch
-      color: "#784f1e"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-base-bottom
-        color: "#496ea0"
-      - state: inhand-left-base-top-jumpsuit
-        color: "#496ea0"
-      - state: inhand-left-belt
-        color: "#784f1e"
-      - state: inhand-left-belt-buckle
-      - state: inhand-left-decor-shoulder-patch
-        color: "#784f1e"
-      right:
-      - state: inhand-right-base-bottom
-        color: "#496ea0"
-      - state: inhand-right-base-top-jumpsuit
-        color: "#496ea0"
-      - state: inhand-right-belt
-        color: "#784f1e"
-      - state: inhand-right-belt-buckle
-      - state: inhand-right-decor-shoulder-patch
-        color: "#784f1e"
-  - type: Clothing
-    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
-    clothingVisuals:
-      jumpsuit:
-      - state: equipped-base-bottom
-        color: "#496ea0"
-      - state: equipped-top-jumpsuit-tac
-        color: "#496ea0"
-      - state: equipped-belt
-        color: "#784f1e"
-      - state: equipped-belt-buckle
-      - state: equipped-decor-shoulder-patch
-        color: "#784f1e"
-
-- type: entity
   parent: ClothingUniformJumpsuitMercenary
   id: ClothingUniformJumpsuitGorkaTurtleneckMercenary
   suffix: Gorka
@@ -1729,3 +1749,69 @@
       - state: equipped-belt-buckle
       - state: equipped-decor-shoulder-patch
         color: "#2e687a"
+
+- type: entity
+  parent: ClothingUniformJumpsuitMercenary
+  id: ClothingUniformJumpsuitGorkaTurtleneckMercenaryCaptain
+  name: mercenary captain jumpsuit
+  suffix: Gorka
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
+    layers:
+    - state: icon-base-bottom
+      color: "#3e3e48"
+    - state: icon-base-top-turtleneck
+      color: "#b5b56e"
+    - state: icon-belt
+      color: "#3e3e48"
+    - state: icon-belt-buckle
+      color: "#ffce5b"
+    - state: icon-decor-shoulder-patch
+      color: "#a52f29"
+    - state: icon-decor-epaulets
+      color: "#ffce5b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-bottom
+        color: "#3e3e48"
+      - state: inhand-left-base-top-turtleneck
+        color: "#b5b56e"
+      - state: inhand-left-belt
+        color: "#3e3e48"
+      - state: inhand-left-belt-buckle
+        color: "#ffce5b"
+      - state: inhand-left-decor-shoulder-patch
+        color: "#a52f29"
+      - state: inhand-left-decor-epaulets
+        color: "#ffce5b"
+      right:
+      - state: inhand-right-base-bottom
+        color: "#3e3e48"
+      - state: inhand-right-base-top-turtleneck
+        color: "#b5b56e"
+      - state: inhand-right-belt
+        color: "#3e3e48"
+      - state: inhand-right-belt-buckle
+        color: "#ffce5b"
+      - state: inhand-right-decor-shoulder-patch
+        color: "#a52f29"
+      - state: inhand-right-decor-epaulets
+        color: "#ffce5b"
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/gorka.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-base-bottom
+        color: "#3e3e48"
+      - state: equipped-base-top-turtleneck-alt
+        color: "#b5b56e"
+      - state: equipped-belt
+        color: "#3e3e48"
+      - state: equipped-belt-buckle
+        color: "#ffce5b"
+      - state: equipped-decor-shoulder-patch
+        color: "#a52f29"
+      - state: equipped-decor-epaulets
+        color: "#ffce5b"
