@@ -1,10 +1,30 @@
 - type: entity
-  id: MagazinePistolSubMachineGunEmp
-  name: SMG magazine (.35 auto emp)
-  parent: BaseMagazinePistolSubMachineGun
+  id: MagazinePistolCaselessRifleRubber
+  name: "pistol magazine (.25 caseless rubber)"
+  parent: BaseMagazinePistolCaselessRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolEmp
+    proto: CartridgeCaselessRifleRubber
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineCaselessRifleRubber
+  name: "magazine (.25 caseless rubber)"
+  parent: BaseMagazineCaselessRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifleRubber
   - type: Sprite
     layers:
     - state: rubber
@@ -13,26 +33,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazinePistolRubber
-  name: pistol magazine (.35 auto rubber)
-  parent: BaseMagazinePistol
+  id: MagazineCaselessRifleShortRubber
+  name: "short magazine (.25 caseless rubber)"
+  parent: BaseMagazineCaselessRifleShort
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolRubber
-  - type: Sprite
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: MagazinePistolSubMachineGunRubber
-  name: SMG magazine (.35 auto rubber)
-  parent: BaseMagazinePistolSubMachineGun
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolRubber
+    proto: CartridgeCaselessRifleRubber
+    capacity: 20
   - type: Sprite
     layers:
     - state: rubber
