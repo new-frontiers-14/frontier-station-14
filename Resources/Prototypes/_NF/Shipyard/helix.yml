@@ -1,40 +1,39 @@
-# Author Info
-# GitHub: ???
-# Discord: ???
+# # Author Info
+# # GitHub: ???
+# # Discord: ???
 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
 
-# Shuttle Notes:
-#
-- type: vessel
-  id: Helix
-  name: NM Helix
-  description: A medium, modular hospital. Standard issue equipped with chem lab, cloning, and treatment ward
-  price: 44600 # +5800 from 15% markup
-  category: Medium
-  group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/helix.yml
+# # Shuttle Notes:
+# #
+# - type: vessel
+  # id: Helix
+  # name: NM Helix
+  # description: A medium, modular hospital. Standard issue equipped with chem lab, cloning, and treatment ward
+  # price: 44600 # +5800 from 15% markup
+  # category: Medium
+  # group: Civilian
+  # shuttlePath: /Maps/_NF/Shuttles/helix.yml
 
-- type: gameMap
-  id: Helix
-  mapName: 'NM Helix'
-  mapPath: /Maps/_NF/Shuttles/helix.yml
-  minPlayers: 0
-  stations:
-    Helix:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Helix {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          overflowJobs: []
-          availableJobs:
-            Paramedic: [ 0, 0 ]
-            ChiefMedicalOfficer: [ 0, 0 ]
-            MedicalDoctor: [ 0, 0 ]
-            Chemist: [ 0, 0 ]
+# - type: gameMap
+  # id: Helix
+  # mapName: 'NM Helix'
+  # mapPath: /Maps/_NF/Shuttles/helix.yml
+  # minPlayers: 0
+  # stations:
+    # Helix:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Helix {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # overflowJobs: []
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]
