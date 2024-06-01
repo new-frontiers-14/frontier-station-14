@@ -3,8 +3,6 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Access.Components;
 
@@ -60,7 +58,7 @@ public sealed partial class IdCardConsoleComponent : Component
         //"ChiefMedicalOfficer",
         "Command",
         //"Cryogenics",
-        //"Engineering",
+        "Engineering",
         "External",
         "Frontier", // Frontier
         "HeadOfPersonnel",
