@@ -219,12 +219,12 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 // Corvax-Frontier spawns sindipost Charlie
         if (_map.TryLoad(mapId, Charlie, out var lpcharlieUids, new MapLoadOptions
             {
-                Offset = _random.NextVector2(4150f, 4850f)
+                Offset = _random.NextVector2(6150f, 10650f)
             }))
         {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Charlie", out var stationProto))
+            if (_prototypeManager.TryIndex<GameMapPrototype>("charlie", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["Charlie"], lpcharlieUids);
+                _station.InitializeNewStation(stationProto.Stations["charlie"], lpcharlieUids);
             }
 
             var meta = EnsureComp<MetaDataComponent>(lpcharlieUids[0]);
