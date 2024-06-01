@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
@@ -209,7 +209,7 @@ public sealed partial class BlockingSystem : EntitySystem
             _fixtureSystem.TryCreateFixture(user,
                 component.Shape,
                 BlockingComponent.BlockFixtureID,
-                hard: true,
+                hard: false, // Frontier - True to false, mobs AI abuse.
                 collisionLayer: (int) CollisionGroup.WallLayer,
                 body: physicsComponent);
         }
