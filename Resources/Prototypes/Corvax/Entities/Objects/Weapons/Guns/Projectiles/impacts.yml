@@ -1,0 +1,17 @@
+- type: entity
+  id: BulletImpactEffectPlasma
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Corvax/Effects/arcs.rsi
+      state: magma
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu

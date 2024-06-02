@@ -1,0 +1,38 @@
+- type: entity
+  id: WeaponMagmitePlasmaCutter
+  parent: BaseItem
+  name: magmite plasmacutter
+  description: "A magmitic version of a conventional plasma cutter."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Salvage/magmite_plasma_cutter.rsi
+    layers:
+    - state: icon
+    - state: icon-uncharged
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: MagmaPulse
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagmaPlasmacutterCharge
+    capacity: 1
+    count: 1
+  - type: StaticPrice
+    price: 3000

@@ -1,0 +1,1 @@
+clothing-hardsuits-jetpack = Джетпак
