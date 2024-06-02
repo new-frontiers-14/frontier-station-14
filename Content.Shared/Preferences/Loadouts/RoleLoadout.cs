@@ -74,7 +74,15 @@ public sealed class RoleLoadout
             {
                 var loadout = loadouts[i];
 
+                // Old prototype or otherwise invalid.
                 if (!protoManager.TryIndex(loadout.Prototype, out var loadoutProto))
+                {
+                    loadouts.RemoveAt(i);
+                    continue;
+                }
+
+                // Malicious client maybe, check the group even has it.
+                if (!groupProto.Loadouts.Contains(loadout.Prototype))
                 {
                     loadouts.RemoveAt(i);
                     continue;
