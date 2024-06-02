@@ -129,10 +129,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(3000f, 5000f);
+        var depotOffset = _random.NextVector2(4500f, 6000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
         var caseysOffset = _random.NextVector2(2250f, 4600f);
-        var tradeOffset = _random.NextVector2(1500f, 3000f);
+        var tradeOffset = _random.NextVector2(1500f, 2500f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
