@@ -301,6 +301,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             Offset = -tradeOffset
         }))
         {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Trade", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["Trade"], tradeUids);
+            }
             var meta = EnsureComp<MetaDataComponent>(tradeUids[0]);
             _meta.SetEntityName(tradeUids[0], "Trade Outpost", meta);
             _shuttle.SetIFFColor(tradeUids[0], depotColor);
