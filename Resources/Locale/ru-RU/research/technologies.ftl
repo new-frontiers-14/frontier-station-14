@@ -72,4 +72,6 @@ research-technology-surgical-tools = Хирургические инструме
 research-technology-virology = Вирусология
 research-technology-chemical-dispensary = Химический раздатчик
 research-technology-crew-monitoring = Мониторинг экипажа
-research-technology-advanced-salvage = Продвинутое утилизаторское снаряжение
+research-technology-advanced-salvage = Продвинутое утилизаторское вооружение
+research-technology-advanced-jet-boots = Продвинутые реактивные ботинки
+research-technology-advanced-salvage-equipment = Продвинутое утилизаторское снаряжение

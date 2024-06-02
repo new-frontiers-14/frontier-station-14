@@ -1,0 +1,54 @@
+- type: entity
+  id: BulletMagmaCharge
+  name: charge bolt
+  parent: BaseBullet
+  noSpawn: true
+  description: Marks a target for additional damage.
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Corvax/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: magmabolt
+        shader: unshaded
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Blunt: 40
+        Slash: 10
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+        Structural: 50
+    penetrationScore: 4
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: BulletMagmaPlasmacutterCharge
+  name: charge bolt
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Corvax/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: plasmacharge
+        shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectPlasma
+    damage:
+      types:
+        Blunt: 0
+        Structural: 50
+    penetrationScore: 6
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4

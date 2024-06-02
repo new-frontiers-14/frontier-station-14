@@ -1,38 +1,4 @@
 - type: entity
-  id: BulletMagnaCharge
-  name: charge bolt
-  parent: BaseBullet
-  noSpawn: true
-  description: Marks a target for additional damage.
-  components:
-  - type: Reflective
-    reflective:
-    - NonEnergy
-  - type: Sprite
-    noRot: false
-    sprite: Corvax/Objects/Weapons/Guns/Projectiles/magic.rsi
-    layers:
-      - state: magmabolt
-        shader: unshaded
-  - type: GatheringProjectile
-  - type: DamageMarkerOnCollide
-    whitelist:
-      components:
-        - MobState
-    damage:
-      types:
-        Blunt: 40
-        Slash: 10
-  - type: Projectile
-    impactEffect: BulletImpactEffectKinetic
-    damage:
-      types:
-        Blunt: 0
-  # Short lifespan
-  - type: TimedDespawn
-    lifetime: 0.4
-
-- type: entity
   parent: WeaponCrusher
   id: WeaponMagmiteCrusher
   components:
@@ -50,7 +16,7 @@
   - type: PointLight
     color: "#df7126"
   - type: BasicEntityAmmoProvider
-    proto: BulletMagnaCharge
+    proto: BulletMagmaCharge
     capacity: 1
     count: 1
   - type: MeleeWeapon
