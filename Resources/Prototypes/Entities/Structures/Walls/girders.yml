@@ -17,9 +17,9 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 60
         mask:
-        - MachineMask
+        - TableMask # was MachineMask before Corvax Anti-Tweak
         layer:
-        - GlassAirlockLayer
+        - TableLayer # was GlassAirlockLayer before Corvax Anti-Tweak
   - type: InteractionOutline
   - type: Construction
     graph: Girder
@@ -54,6 +54,7 @@
           collection: MetalBreak
   - type: StaticPrice
     price: 10
+  - type: Climbable # Corvax Anti-Tweak
 
 - type: entity
   id: ReinforcedGirder
