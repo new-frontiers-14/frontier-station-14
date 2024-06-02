@@ -15,6 +15,11 @@ public sealed class MiniAuthManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    public void Initialize()
+    {
+
+    }
+
     private readonly HttpClient _http = new();
 
     public async Task<bool> IsPlayerConnected(string address, Guid player)
