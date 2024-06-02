@@ -2,6 +2,8 @@ using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Content.Server._NF.Auth;
+using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -47,6 +49,9 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+
+        //frontier
+        [Dependency] private readonly MiniAuthManager _authManager = default!;
 
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
@@ -228,6 +233,17 @@ namespace Content.Server.Connection
                 }
             }
 
+            //Frontier
+            if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
+            {
+                var serverList = _cfg.GetCVar(CCVars.ServerAuthList);
+                foreach (var server in serverList)
+                {
+                    if (await _authManager.IsPlayerConnected(server, userId))
+                        return (ConnectionDenyReason.Connected, "Account Already Connected to Official Servers", null);
+                }
+            }
+            // end Frontier
             return null;
         }
 
