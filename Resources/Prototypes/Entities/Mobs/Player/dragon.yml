@@ -174,26 +174,6 @@
     projectileSpeed: 5
 
 - type: entity
-  noSpawn: true
-  id: DragonsBreathGun
-  name: dragon's lung
-  description: For dragon's breathing
-  components:
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 5
-    rechargeSound:
-      path: /Audio/Animals/space_dragon_roar.ogg
-  - type: BasicEntityAmmoProvider
-    proto: ProjectileDragonsBreath
-    capacity: 1
-    count: 1
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Animals/space_dragon_roar.ogg
-    soundEmpty: null
-    projectileSpeed: 5
-
-- type: entity
   parent: BaseMobDragon
   id: MobDragonDungeon
   suffix: Dungeon
