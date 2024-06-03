@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -15,6 +16,7 @@ public sealed class MiniAuthManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     private readonly HttpClient _http = new();
+    private readonly ISawmill _sawmill = default!;
 
     public async Task<bool> IsPlayerConnected(string address, Guid player)
     {
@@ -28,7 +30,16 @@ public sealed class MiniAuthManager
 
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
         using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
-        Logger.Debug(response.StatusCode.ToString());
+
+        if (response.StatusCode == HttpStatusCode.NotFound)
+            return connected;
+
+        if (!response.IsSuccessStatusCode)
+        {
+            _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
+            return connected;
+        }
+
         var status = await response.Content.ReadFromJsonAsync<ServerApi.InfoResponse>(linkedToken.Token);
         //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
         if (status == null)
