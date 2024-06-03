@@ -311,7 +311,8 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     }
 
     /// <summary>
-    ///    Splits a solution removing a specified amount of each reagent, if available.
+    /// Frontier
+    /// Splits a solution removing a specified amount of each reagent, if available.
     /// </summary>
     /// <param name="soln">The container to split the solution from.</param>
     /// <param name="quantity">The amount of each reagent to split.</param>
