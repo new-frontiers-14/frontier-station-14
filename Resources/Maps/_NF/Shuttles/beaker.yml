@@ -104,7 +104,7 @@ entities:
             18: -2,-10
             19: -2,-11
             20: -3,-11
-            71: 4,-7
+            69: 4,-7
         - node:
             color: '#FFFFFFFF'
             id: LoadingArea
@@ -150,7 +150,7 @@ entities:
             color: '#FFFFFFFF'
             id: WarnBox
           decals:
-            72: 4,-7
+            70: 4,-7
         - node:
             color: '#002CFFFF'
             id: WarnBoxGreyscale
@@ -377,6 +377,16 @@ entities:
       parent: 1
 - proto: AirlockExternal
   entities:
+  - uid: 83
+    components:
+    - type: Transform
+      pos: -6.5,2.5
+      parent: 1
+  - uid: 84
+    components:
+    - type: Transform
+      pos: -5.5,-9.5
+      parent: 1
   - uid: 87
     components:
     - type: Transform
@@ -389,6 +399,26 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,1.5
       parent: 1
+  - uid: 104
+    components:
+    - type: Transform
+      pos: 7.5,2.5
+      parent: 1
+  - uid: 105
+    components:
+    - type: Transform
+      pos: 5.5,-10.5
+      parent: 1
+  - uid: 106
+    components:
+    - type: Transform
+      pos: -4.5,-10.5
+      parent: 1
+  - uid: 107
+    components:
+    - type: Transform
+      pos: 6.5,-9.5
+      parent: 1
   - uid: 114
     components:
     - type: Transform
@@ -396,53 +426,15 @@ entities:
       parent: 1
 - proto: AirlockHatchMaintenance
   entities:
-  - uid: 83
-    components:
-    - type: Transform
-      pos: -6.5,2.5
-      parent: 1
-  - uid: 84
-    components:
-    - type: Transform
-      pos: 7.5,2.5
-      parent: 1
-  - uid: 104
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-9.5
-      parent: 1
-  - uid: 105
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-10.5
-      parent: 1
-  - uid: 106
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,-10.5
-      parent: 1
-  - uid: 107
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,-9.5
-      parent: 1
-- proto: AirlockMaint
-  entities:
   - uid: 108
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-8.5
+      pos: 5.5,-8.5
       parent: 1
   - uid: 109
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,-8.5
+      pos: -4.5,-8.5
       parent: 1
 - proto: AirlockShuttle
   entities:
@@ -462,7 +454,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -2201.606
+      secondsUntilStateChange: -2297.7021
       state: Opening
   - uid: 115
     components:
