@@ -1,0 +1,96 @@
+- type: entity
+  name: oxygen survival box
+  parent: BoxCardboard
+  id: BoxSurvivalNFOxygen
+  description: It's a box with basic oxygen internals inside.
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: Flare
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+
+- type: entity
+  name: nitrogen survival box
+  parent: BoxCardboard
+  id: BoxSurvivalNFNitrogen
+  description: It's a box with basic nitrogen internals inside.
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmergencyNitrogenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: Flare
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+
+- type: entity
+  name: extended-oxygen survival box
+  parent: BoxCardboard
+  id: BoxSurvivalNFOxygenExtended
+  description: It's a box with extended internals inside.
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: CrowbarRed
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank
+
+- type: entity
+  name: extended-nitrogen survival box
+  parent: BoxCardboard
+  id: BoxSurvivalNFNitrogenExtended
+  description: It's a box with extended nitrogen internals inside.
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: CrowbarRed
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank
+
+- type: entity
+  name: survival box
+  parent: BoxSurvivalSecurity
+  id: BoxSurvivalNfsd
+  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
+  suffix: NFSD
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskGasNfsd
+      - id: DoubleEmergencyAirTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: EncryptionKeyTraffic
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank

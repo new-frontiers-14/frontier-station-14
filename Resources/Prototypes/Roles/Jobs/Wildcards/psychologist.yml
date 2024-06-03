@@ -3,28 +3,20 @@
   name: job-name-psychologist
   description: job-description-psychologist
   playTimeTracker: JobPsychologist
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: PsychologistGear
   icon: "JobIconPsychologist"
-  supervisors: job-supervisors-cmo
-  access:
-  - Medical
-  - Maintenance
-  - External # Frontier
-  extendedAccess:
-  - Chemistry
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: PsychologistGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
-    back: ClothingBackpackPsychologistFilled # Frontier
     shoes: ClothingShoesLeather
     id: PsychologistPDA
     ears: ClothingHeadsetMedical
-  innerClothingSkirt: ClothingUniformJumpsuitPsychologist
-  satchel: ClothingBackpackSatchelPsychologistFilled # Frontier
-  duffelbag: ClothingBackpackDuffelPsychologistFilled # Frontier
-  messenger: ClothingBackpackMessengerFilled # Frontier

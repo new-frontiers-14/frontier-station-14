@@ -70,7 +70,7 @@ namespace Content.Server._NF.M_Emp
         public TimeSpan Recharging = TimeSpan.FromSeconds(60);
 
         [DataField("M_EmpChannel", customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
-        public string M_EmpChannel = "Security";
+        public string M_EmpChannel = "Nfsd";
 
         /// <summary>
         /// Current how much charge the generator currently has

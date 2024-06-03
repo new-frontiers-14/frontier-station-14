@@ -1,4 +1,4 @@
-# Duffel bag - gift box
+# BASE
 - type: entity
   parent: BaseItem
   id: SyndieDuffelGiftBox
@@ -23,16 +23,95 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate NPCs Loot
-# Syndicate Naval Captain Loot
 - type: entity
   parent: SyndieDuffelGiftBox
+  id: SyndieMessengerGiftBox
+  name: syndicate naval operative bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
+
+- type: entity
+  parent: SyndieMessengerGiftBox
+  id: CultistMessengerGiftBox
+  name: blood cultist bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
+# SYNDICATE NPC LOOT
+## Captain
+- type: entity
+  parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCaptainLootA
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
       - id: WeaponRevolverPythonAP
@@ -79,7 +158,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Second Officer Loot
+## Second Officer
 - type: entity
   parent: ClothingBackpackSyndicateCaptainLootA
   id: ClothingBackpackSyndicateSecondOfficerLootA
@@ -87,7 +166,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponLaserSvalinn
+      - id: WeaponLaserSvalinnExpedition
       - id: PowerCellHyperPrinted
       - id: PowerCellHyperPrinted
       - id: SpaceCash2500
@@ -131,15 +210,12 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Commander Loot
+## Commander
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: SyndieMessengerGiftBox
   id: ClothingBackpackSyndicateCommanderLootA
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
       - id: WeaponRifleAk
@@ -187,7 +263,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Security Operative Loot
+## Operative
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateOperativeLootA
@@ -195,7 +271,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponSubMachineGunAtreides
+      - id: WeaponSubMachineGunAtreidesExpedition
       - id: MagazinePistolSubMachineGun
       - id: MagazinePistolSubMachineGun
       - id: SpaceCash1000
@@ -210,7 +286,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponSubMachineGunWt550
+      - id: WeaponSubMachineGunWt550Expedition
       - id: MagazinePistolSubMachineGunTopMounted
       - id: SpaceCash1000
       - id: SpaceCash500
@@ -243,7 +319,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Deckhand Loot
+## Deckhand
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateDeckhandLootA
@@ -265,7 +341,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponPistolMk58
+      - id: WeaponPistolMk58Expedition
       - id: MagazinePistol
       - id: SpaceCash1000
     sound:
@@ -295,44 +371,28 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Saboteur Loot
+## Saboteur
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootA
   id: ClothingBackpackSyndicateSaboteurLootA
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootB
   id: ClothingBackpackSyndicateSaboteurLootB
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootC
   id: ClothingBackpackSyndicateSaboteurLootC
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
 - type: entity
   parent: ClothingBackpackSyndicateDeckhandLootD
   id: ClothingBackpackSyndicateSaboteurLootD
   noSpawn: true
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-    state: icon
 
-# Syndicate Naval Medic Loot
+## Medic
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateMedicLootA
@@ -394,7 +454,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Engineer Loot
+## Engineer
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateEngineerLootA
@@ -405,7 +465,7 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponShotgunKammerer
+      - id: WeaponShotgunKammererExpedition
       - id: SyndicateJawsOfLife
       - id: BoxShotgunSlug
       - id: SpaceCash1000
@@ -420,7 +480,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: WeaponShotgunKammerer
+      - id: WeaponShotgunKammererExpedition
       - id: JawsOfLife
       - id: SpaceCash1000
     sound:
@@ -449,7 +509,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Chemwarrior
+## Chemwarrior
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateChemwarriorLootA
@@ -504,7 +564,7 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Syndicate Naval Grenadier
+## Grenadier
 - type: entity
   parent: SyndieDuffelGiftBox
   id: ClothingBackpackSyndicateGrenadierLootA
@@ -557,22 +617,19 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
-# Blood Cult NPCs Loot
-# Blood Cultist Zealot (Ranged) Loot
+# BLOOD CULT NPC LOOT
+## Zealot (Ranged) Loot
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: CultistMessengerGiftBox
   id: ClothingBackpackBloodCultZealotLootA
   name: cultist gear bundle
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/messenger.rsi
-    state: icon
   - type: SpawnItemsOnUse
     items:
-      - id: CrossbowImprovised
-#      - id: ClothingBeltQuiverCrossbowFilledBolt
-      - id: SpaceCash1000
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledBolt
+    - id: SpaceCash1000
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -583,9 +640,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: CrossbowImprovised
-      - id: ClothingBeltQuiverCrossbowFilledUranium
-      - id: SpaceCash1000
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledUranium
+    - id: SpaceCash1000
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -596,8 +653,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: ClothingBeltQuiverCrossbowFilledPlasma
-      - id: SpaceCash1000
+    - id: ClothingBeltQuiverCrossbowFilledPlasma
+    - id: SpaceCash500
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -608,6 +665,87 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: SpaceCash1000
+    - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+## Generic rewards
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.08
+    - id: Tourniquet
+      amount: 1
+      prob: 0.05
+    - id: MaterialBones
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash500
+      prob: 0.5
+    - id: Bloodpack
+      prob: 0.06
+    - id: BruteAutoInjector
+      amount: 1
+      prob: 0.02
+    - id: MaterialBones
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.04
+    - id: EmergencyMedipen
+      amount: 1
+      prob: 0.02
+    - id: MaterialBones1
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.02
+    - id: Gauze1
+      amount: 1
+      prob: 0.01
+    - id: MaterialBones1
+      prob: 0.05
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

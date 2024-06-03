@@ -63,7 +63,7 @@ public sealed partial class CryoSleepSystem
             return ReturnToBodyStatus.CryopodMissing;
 
         var body = storedBody.Value.Body;
-        if (IsOccupied(cryoComp) || !cryoComp.BodyContainer.Insert(body, EntityManager))
+        if (IsOccupied(cryoComp) || !_container.Insert(body, cryoComp.BodyContainer))
             return ReturnToBodyStatus.Occupied;
 
         _storedBodies.Remove(id.Value);

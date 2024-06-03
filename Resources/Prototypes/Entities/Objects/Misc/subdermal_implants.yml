@@ -102,7 +102,7 @@
       - Critical
       - Dead
     - type: Rattle
-      radioChannel: "NFSD"
+      radioChannel: "Nfsd"
 
 #Traitor implants
 
@@ -127,7 +127,7 @@
           ents: [ ]
     - type: UserInterface
       interfaces:
-        - key: enum.StorageUiKey.Key
+        enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
 
 - type: entity
@@ -161,8 +161,8 @@
       Telecrystal: 0
   - type: UserInterface
     interfaces:
-    - key: enum.StoreUiKey.Key
-      type: StoreBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -190,7 +190,6 @@
       implantAction: ActionActivateScramImplant
     - type: TriggerImplantAction
     - type: ScramImplant
-      teleportAttempts: 10 # small amount of risk of being teleported into space and lets you teleport off shuttles
 
 - type: entity
   parent: BaseSubdermalImplant

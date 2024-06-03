@@ -7,11 +7,13 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.Chat;
+using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Map;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Spawners;
@@ -157,6 +159,7 @@ public sealed partial class SalvageSystem
         while (query.MoveNext(out var uid, out var comp))
         {
             var remaining = comp.EndTime - _timing.CurTime;
+            var audioLength = _audio.GetAudioLength(comp.SelectedSong.Path.ToString());
 
             if (comp.Stage < ExpeditionStage.FinalCountdown && remaining < TimeSpan.FromSeconds(45))
             {
@@ -164,13 +167,14 @@ public sealed partial class SalvageSystem
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-seconds", ("duration", TimeSpan.FromSeconds(45).Seconds)));
             }
-            else if (comp.Stage < ExpeditionStage.MusicCountdown && remaining < TimeSpan.FromMinutes(2))
+            else if (comp.Stream == null && remaining < audioLength)
             {
-                // TODO: Some way to play audio attached to a map for players.
-                comp.Stream = _audio.PlayGlobal(comp.Sound, Filter.BroadcastMap(Comp<MapComponent>(uid).MapId), true).Value.Entity;
+                var audio = _audio.PlayPvs(comp.Sound, uid).Value;
+                comp.Stream = audio.Entity;
+                _audio.SetMapAudio(audio);
                 comp.Stage = ExpeditionStage.MusicCountdown;
                 Dirty(uid, comp);
-                Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", TimeSpan.FromMinutes(2).Minutes)));
+                Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", audioLength.Minutes)));
             }
             else if (comp.Stage < ExpeditionStage.Countdown && remaining < TimeSpan.FromMinutes(5))
             {
@@ -202,12 +206,10 @@ public sealed partial class SalvageSystem
 
                             //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
                             var mapId = _gameTicker.DefaultMap;
+                            var mapUid = _mapManager.GetMapEntityId(mapId);
                             var dropLocation = _random.NextVector2(750, 2750);
-                            var coords = new MapCoordinates(dropLocation, mapId);
-                            var location = Spawn(null, coords);
-                            var despawn = EnsureComp<TimedDespawnComponent>(location);
-                            despawn.Lifetime = 600;
-                            _shuttle.FTLTravel(shuttleUid, shuttle, location, ftlTime);
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 5.5f, 50f);
                         }
 
                         break;

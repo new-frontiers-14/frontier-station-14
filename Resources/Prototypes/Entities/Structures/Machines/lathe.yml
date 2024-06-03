@@ -33,18 +33,15 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-autolathe
-    layoutId: Autolathe
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-    - key: enum.LatheUiKey.Key
-      type: LatheBoundUserInterface
-    - key: enum.ResearchClientUiKey.Key
-      type: ResearchClientBoundUserInterface
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: Transform
     anchored: true
   - type: Pullable
@@ -59,7 +56,7 @@
   id: Autolathe
   parent: BaseLathe
   name: autolathe
-  description: It produces items using metal and glass.
+  description: It produces basic items using metal and glass.
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe.rsi
@@ -105,8 +102,8 @@
       - AirTank
       - GasAnalyzer
       - UtilityBelt
-#      - Fulton
-#      - FultonBeacon
+#      - Fulton # Frontier
+#      - FultonBeacon # Frontier
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -115,15 +112,18 @@
       - Syringe
       - HandLabeler
       - LightTube
+      - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
       - LightBulb
+      - LedLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
       - DrinkGlass
       - DrinkShotGlass
       - DrinkGlassCoupeShaped
+      - CustomDrinkJug
       - FoodPlate
       - FoodPlateSmall
       - FoodPlatePlastic
@@ -158,70 +158,73 @@
       - APCElectronics
       - SMESMachineCircuitboard
       - SubstationMachineCircuitboard
+      - WallmountSubstationElectronics
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
-      # Frontier Start
-      - Durathread
-      - Plasteel
-      - ClothingOuterSuitEmergency
-      - ClothingHeadHelmetEVA
-      - ClothingHeadHelmetEVALarge
-      - ClothingOuterHardsuitEVA
-      # Frontier End
+      - HandheldStationMap
+      - ClothingHeadHatWelding
+      - Durathread # Frontier
+      - Plasteel # Frontier
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingHeadHelmetEVA # Frontier
+      - ClothingHeadHelmetEVALarge # Frontier
+      - ClothingOuterHardsuitEVA # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
-       - CartridgePistol
-       - CartridgeMagnum
-       - ShellShotgun
-       - ShellShotgunFlare
-       - ShellTranquilizer
-       - CartridgeLightRifle
-       - CartridgeRifle
-       - MagazineBoxPistol
-       - MagazineBoxMagnum
-       - MagazineBoxRifle
-       - MagazineBoxLightRifle
-       - GrenadeBlast
-       # Frontier Start
-       - ClothingHeadHelmetCosmonaut
-       - ClothingHeadHelmetSyndicate
-       - ClothingOuterHardsuitSyndicate
-       # Frontier End
+      - BoxLethalshot
+      - BoxShotgunFlare
+      - MagazineBoxLightRifle
+      - MagazineBoxMagnum
+      - MagazineBoxPistol
+      - MagazineBoxRifle
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - MagazinePistolSubMachineGun
+      - MagazinePistolSubMachineGunEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazineShotgun
+      - MagazineShotgunEmpty
+      - ShellTranquilizer
+      - SpeedLoaderMagnum
+      - SpeedLoaderMagnumEmpty
+      - SpeedLoaderRifleHeavy # Frontier
+      - SpeedLoaderRifleHeavyEmpty # Frontier
     emagDynamicRecipes:
-      - CartridgePistolRubber
-      - CartridgeMagnumRubber
-      - ShellShotgunBeanbag
-      - CartridgeRifleRubber
-      - CartridgeLightRifleRubber
-      - MagazineBoxPistolRubber
-      - MagazineBoxMagnumRubber
-      - MagazineBoxRifleRubber
-      - MagazineBoxLightRifleRubber
-      - ShellShotgunIncendiary
-      - CartridgePistolIncendiary
-      - CartridgeMagnumIncendiary
-      - CartridgeLightRifleIncendiary
-      - CartridgeRifleIncendiary
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxRifleIncendiary
-      - ShellShotgunUranium
-      - CartridgePistolUranium
-      - CartridgeMagnumUranium
-      - CartridgeLightRifleUranium
-      - CartridgeRifleUranium
-      - MagazineBoxPistolUranium
-      - MagazineBoxMagnumUranium
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxRifleUranium
-      - PowerCageSmall
-      - PowerCageMedium
-      - PowerCageHigh
-      - MagazineGrenadeEmpty
+      - BoxBeanbag
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
+      - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunBeanbag
+      - MagazineShotgunIncendiary
+      - MagazineShotgunIncendiary
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary # Frontier
+      - SpeedLoaderRifleHeavyUranium # Frontier
 
 - type: entity
   id: AutolatheHyperConvection
@@ -259,9 +262,6 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: ProtolatheMachineCircuitboard
-  - type: Wires
-    boardName: wires-board-name-protolathe
-    layoutId: Protolathe
   - type: MaterialStorage
     whitelist:
       tags:
@@ -281,8 +281,6 @@
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
-      - RCD
-      - RCDAmmo
       - ShipyardRCD # Frontier
       - ShipyardRCDAmmo # Frontier
       - Scalpel
@@ -317,10 +315,13 @@
       - SignalTrigger
       - VoiceTrigger
       - Igniter
+      - HandHeldMassScanner
+      - PowerCellMicroreactor
       - PowerCellMedium
       - PowerCellHigh
       - PowerCellMicroreactor
       - WeaponPistolCHIMP
+      - ClothingMaskWeldingGas
       - WeaponGauntletGorilla
       - SynthesizerInstrument
       - RPED
@@ -331,6 +332,7 @@
       - HolofanProjector
       - BluespaceBeaker
       - SyringeBluespace
+      - Jug
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
@@ -346,31 +348,33 @@
       - WelderExperimental
       - JawsOfLife
       - FauxTileAstroGrass
+      - FauxTileMowedAstroGrass
+      - FauxTileJungleAstroGrass
       - FauxTileAstroIce
+      - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - UtilityBeltChiefEngineer
       - JetpackVoid
-      # Frontier Start
-      - ClothingShoesBootsMagAdv
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitAtmos
-      - ClothingOuterHardsuitEngineering
-      - ClothingOuterHardsuitSpatio
-      - ClothingOuterHardsuitSalvage
-      - ClothingOuterHardsuitClown
-      - ClothingOuterHardsuitMime
-      - ClothingOuterHardsuitCap
-      - ClothingOuterHardsuitEngineeringWhite
-      - ClothingOuterHardsuitMedical
-      - ClothingOuterHardsuitRd
-      - ClothingOuterHardsuitLuxury
-      - ClothingOuterHardsuitMercenary
-      - ClothingOuterHardsuitPilot
-      - ClothingOuterHardsuitMaximPrototype
-      - ClothingHeadHelmetAncient
-      - ClothingOuterHardsuitAncientEVA
-      # Frontier End
+      - ClothingShoesBootsMagAdv # Frontier
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitAtmos # Frontier
+      - ClothingOuterHardsuitEngineering # Frontier
+      - ClothingOuterHardsuitSpatio # Frontier
+      - ClothingOuterHardsuitSalvage # Frontier
+      - ClothingOuterHardsuitClown # Frontier
+      - ClothingOuterHardsuitMime # Frontier
+      - ClothingOuterHardsuitCap # Frontier
+      - ClothingOuterHardsuitEngineeringWhite # Frontier
+      - ClothingOuterHardsuitMedical # Frontier
+      - ClothingOuterHardsuitRd # Frontier
+      - ClothingOuterHardsuitLuxury # Frontier
+      - ClothingOuterHardsuitMercenary # Frontier
+      - ClothingOuterHardsuitScaf # Frontier
+      - ClothingOuterHardsuitPilot # Frontier
+      - ClothingOuterHardsuitMaximPrototype # Frontier
+      - ClothingHeadHelmetAncient # Frontier
+      - ClothingOuterHardsuitAncientEVA # Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -378,10 +382,6 @@
       - WeaponAdvancedLaser
       - WeaponLaserCannon
       - WeaponXrayCannon
-      # Frontier Start
-      - ClothingOuterHardsuitPirateEVA
-      - ClothingOuterHardsuitSundie
-      # Frontier End
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -430,9 +430,16 @@
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
     - CondenserMachineCircuitBoard
+    - HotplateMachineCircuitboard
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - MicrowaveMachineCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - ElectricGrillMachineCircuitboard
+    - BoozeDispenserMachineCircuitboard
+    - SodaDispenserMachineCircuitboard
+    - SpaceHeaterMachineCircuitBoard
     # Frontier Start
     - TilePrinterNFMachineCircuitboard
     - SalvageTechFabCircuitboardNF
@@ -468,6 +475,7 @@
       - HotplateMachineCircuitboard
       - MicrowaveMachineCircuitboard
       - ElectricGrillMachineCircuitboard
+      - CircuitImprinterHyperConvectionMachineCircuitboard
       - FatExtractorMachineCircuitboard
       - FlatpackerMachineCircuitboard
       - SheetifierMachineCircuitboard
@@ -507,29 +515,43 @@
       - AnomalySynchronizerCircuitboard
       - APECircuitboard
       - ArtifactAnalyzerMachineCircuitboard
-      - TraversalDistorterMachineCircuitboard
       - ArtifactCrusherMachineCircuitboard
       - BoozeDispenserMachineCircuitboard
       - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
-    # Begin Nyano additions
-      - DoorElectronics
-      - FireAlarmElectronics
-      - FirelockElectronics
-      - IntercomElectronics
-      - MailingUnitElectronics
-      - StationMapElectronics
-      - DeepFryerMachineCircuitboard
-    # End Nyano additions
+      - ReagentGrinderIndustrialMachineCircuitboard
+      - DoorElectronics # Nyano
+      - FireAlarmElectronics # Nyano
+      - FirelockElectronics # Nyano
+      - IntercomElectronics # Nyano
+      - MailingUnitElectronics # Nyano
+      - StationMapElectronics # Nyano
+      - DeepFryerMachineCircuitboard # Nyano
       - SmallThrusterMachineCircuitboard # Frontier
       - SmallGyroscopeMachineCircuitboard # Frontier
+      - JukeboxCircuitBoard
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
+
+- type: entity
+  id: CircuitImprinterHyperConvection
+  parent: CircuitImprinter
+  name: hyper convection circuit imprinter
+  description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
+  - type: Lathe
+    materialUseMultiplier: 0.5
+    timeMultiplier: 1.5
+  - type: LatheHeatProducing
+  - type: Machine
+    board: CircuitImprinterHyperConvectionMachineCircuitboard
 
 - type: entity
   id: ExosuitFabricator
@@ -557,7 +579,6 @@
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
-    - BorgModuleGPS
     - BorgModuleRadiationDetection
     - BorgModuleTool
     - BorgModuleAppraisal
@@ -607,6 +628,7 @@
     - BorgModuleMining
     - BorgModuleGrapplingGun
     - BorgModuleAdvancedTool
+    - BorgModuleGPS
     - BorgModuleRCD
     - BorgModuleArtifact
     - BorgModuleAnomaly
@@ -714,104 +736,110 @@
     idleState: icon
     runningState: icon
     staticRecipes:
+      - BoxLethalshot
+      - BoxShotgunFlare
+      - BoxShotgunPractice
+      - BoxShotgunSlug
       - ClothingEyesHudSecurity
       - Flash
-      - Handcuffs
-      - Zipties
-      - Stunbaton
       - ForensicPad
-      - RiotShield
-      - ShellShotgun
-      - ShellShotgunSlug
-      - ShellShotgunFlare
-      - ShellTranquilizer
-      - MagazinePistol
-      - MagazinePistolSubMachineGun
-      - MagazinePistolSubMachineGunTopMounted
-      - MagazineRifle
-      - MagazineLightRifle
-      - MagazineBoxPistol
-      - MagazineBoxMagnum
-      - MagazineBoxRifle
+      - Handcuffs
       - MagazineBoxLightRifle
+      - MagazineBoxLightRiflePractice
+      - MagazineBoxMagnum
+      - MagazineBoxMagnumPractice
+      - MagazineBoxPistol
+      - MagazineBoxPistolPractice
+      - MagazineBoxRifle
+      - MagazineBoxRiflePractice
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - MagazinePistolSubMachineGun
+      - MagazinePistolSubMachineGunEmpty
+      - MagazinePistolSubMachineGunTopMounted
+      - MagazinePistolSubMachineGunTopMountedEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazineShotgun
+      - MagazineShotgunEmpty
+      - MagazineShotgunSlug
+      - RiotShield
       - SpeedLoaderMagnum
+      - SpeedLoaderMagnumEmpty
+      - SpeedLoaderRifleHeavy # Frontier
+      - SpeedLoaderRifleHeavyEmpty # Frontier
+      - Stunbaton
+      - TargetClown
       - TargetHuman
       - TargetSyndicate
-      - TargetClown
-      - MagazineBoxLightRiflePractice
-      - MagazineBoxMagnumPractice
-      - MagazineBoxPistolPractice
-      - MagazineBoxRiflePractice
-      - ShellShotgunPractice
-      - WeaponLaserCarbinePractice
       - WeaponDisablerPractice
-      # Frontier Start      
+      # Frontier Start
       - ThrusterSecurityMachineCircuitboard
       - ClothingOuterSuitEmergency
       - ClothingHeadHelmetEVA
       - ClothingHeadHelmetEVALarge
       - ClothingOuterHardsuitEVAPrisoner
       # Frontier End
+      - WeaponLaserCarbinePractice
+      - Zipties
     dynamicRecipes:
-      - CartridgeLightRifleIncendiary
-      - CartridgeMagnumIncendiary
-      - CartridgePistolIncendiary
-      - CartridgeRifleIncendiary
-      - CartridgeLightRifleUranium
-      - CartridgeMagnumUranium
-      - CartridgePistolUranium
-      - CartridgeRifleUranium
-      - CartridgeLightRifleRubber
-      - CartridgeMagnumRubber
-      - CartridgePistolRubber
-      - CartridgeRifleRubber
-      - ClothingEyesGlassesSecurity
+      - BoxBeanbag
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
       - ExplosivePayload
       - FlashPayload
-      - HoloprojectorSecurity
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxRifleIncendiary
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxMagnumUranium
-      - MagazineBoxPistolUranium
-      - MagazineBoxRifleUranium
-      - MagazineBoxLightRifleRubber
-      - MagazineBoxMagnumRubber
-      - MagazineBoxPistolRubber
-      - MagazineBoxRifleRubber
-      - MagazineGrenadeEmpty
+      - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
-      - ShellShotgunBeanbag
-      - ShellShotgunIncendiary
-      - ShellShotgunUranium
+      - HoloprojectorSecurity
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+#      - MagazineBoxLightRifleRubber # Frontier - Restore This Later
+#      - MagazineBoxMagnumRubber # Frontier - Restore This Later
+#      - MagazineBoxPistolRubber # Frontier - Restore This Later
+#      - MagazineBoxRifleRubber # Frontier - Restore This Later
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunBeanbag
+      - MagazineShotgunIncendiary
+      - PortableRecharger
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
+      - ShellTranquilizer
+      - ShuttleGunDusterCircuitboard
+      - ShuttleGunFriendshipCircuitboard
+      - ShuttleGunPerforatorCircuitboard
+      - ShuttleGunSvalinnMachineGunCircuitboard
       - Signaller
       - SignalTrigger
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary # Frontier
+      - SpeedLoaderRifleHeavyUranium # Frontier
       - TelescopicShield
       - TimerTrigger
       - Truncheon
       - VoiceTrigger
-      - WeaponDisablerPractice
       - WeaponAdvancedLaser
+#      - WeaponDisabler
 #      - WeaponDisablerSMG
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
-      - PowerCageSmall
-      - PowerCageMedium
-      - PowerCageHigh
-      - ShuttleGunSvalinnMachineGunCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunDusterCircuitboard
-      # Frontier Start
-      - ClothingOuterHardsuitSecurity
-      - ClothingOuterHardsuitSecuritypatrol
-      - ClothingOuterHardsuitWarden
-      - ClothingOuterHardsuitBrigmedic
-      # Frontier End
   - type: MaterialStorage
     whitelist:
       tags:
@@ -844,22 +872,32 @@
       idleState: icon
       runningState: icon
       staticRecipes:
-        - CartridgePistol
-        - CartridgeMagnum
-        - ShellShotgun
-        - ShellShotgunSlug
-        - ShellShotgunFlare
-        - ShellTranquilizer
-        - CartridgeLightRifle
-        - CartridgeRifle
-        - MagazineBoxPistol
-        - MagazineBoxMagnum
-        - MagazineBoxRifle
+        - BoxLethalshot
+        - BoxShotgunFlare
+        - BoxShotgunSlug
         - MagazineBoxLightRifle
+        - MagazineBoxMagnum
+        - MagazineBoxPistol
+        - MagazineBoxRifle
+        - MagazineLightRifle
+        - MagazineLightRifleEmpty
+        - MagazinePistol
+        - MagazinePistolEmpty
+        - MagazineRifle
+        - MagazineRifleEmpty
+        - MagazineShotgun
+        - MagazineShotgunEmpty
+        - MagazineShotgunSlug
+        - ShellTranquilizer
+        - SpeedLoaderMagnum
+        - SpeedLoaderMagnumEmpty
+        - SpeedLoaderRifleHeavy # Frontier
+        - SpeedLoaderRifleHeavyEmpty # Frontier
     - type: MaterialStorage
       whitelist:
         tags:
           - Sheet
+          - RawMaterial
           - Ingot
 
 - type: entity
@@ -995,6 +1033,8 @@
       - ClothingUniformJumpskirtDetective
       - ClothingUniformJumpsuitEngineering
       - ClothingUniformJumpskirtEngineering
+      - ClothingUniformJumpsuitSeniorEngineer
+      - ClothingUniformJumpskirtSeniorEngineer
       - ClothingHeadHatHopcap
       - ClothingUniformJumpsuitHoP
       - ClothingUniformJumpskirtHoP
@@ -1022,11 +1062,15 @@
       - ClothingHeadHatBeretSeniorPhysician
       - ClothingUniformJumpsuitMedicalDoctor
       - ClothingUniformJumpskirtMedicalDoctor
+      - ClothingUniformJumpsuitSeniorPhysician
+      - ClothingUniformJumpskirtSeniorPhysician
       - ClothingUniformJumpsuitMime
       - ClothingUniformJumpskirtMime
       - ClothingUniformJumpsuitMusician
       - ClothingUniformJumpsuitParamedic
       - ClothingUniformJumpskirtParamedic
+      - ClothingUniformJumpsuitSeniorOfficer
+      - ClothingUniformJumpskirtSeniorOfficer
       - ClothingUniformJumpsuitPrisoner
       - ClothingUniformJumpskirtPrisoner
       - ClothingHeadHatQMsoft
@@ -1041,6 +1085,8 @@
       - ClothingUniformJumpskirtResearchDirector
       - ClothingUniformJumpsuitScientist
       - ClothingUniformJumpskirtScientist
+      - ClothingUniformJumpsuitSeniorResearcher
+      - ClothingUniformJumpskirtSeniorResearcher
       - ClothingHeadHatBeretSecurity
       - ClothingUniformJumpsuitSec
       - ClothingUniformJumpskirtSec
@@ -1058,7 +1104,8 @@
       - ClothingOuterWinterCE
       - ClothingOuterWinterCMO
       - ClothingOuterWinterHoP
-      - ClothingOuterWinterHoS
+      - ClothingOuterWinterHoSUnarmored
+      - ClothingOuterWinterWardenUnarmored
       - ClothingOuterWinterQM
       - ClothingOuterWinterRD
       - ClothingNeckMantleCap
@@ -1102,30 +1149,40 @@
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple
-  - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - ClothingHeadHatCentcomcap
-      - ClothingHeadHatCentcom
-      - ClothingUniformJumpsuitCentcomAgent
-      - ClothingUniformJumpsuitCentcomFormal
-      - ClothingUniformJumpskirtCentcomFormalDress
-      - ClothingUniformJumpsuitCentcomOfficer
-      - ClothingUniformJumpsuitCentcomOfficial
-      - ClothingHeadHatSyndieMAA
-      - ClothingHeadHatSyndie
-      - ClothingUniformJumpsuitOperative
-      - ClothingUniformJumpskirtOperative
-      - ClothingUniformJumpsuitSyndieFormal
-      - ClothingUniformJumpskirtSyndieFormalDress
-      - ClothingHeadPyjamaSyndicateBlack
-      - ClothingUniformJumpsuitPyjamaSyndicateBlack
-      - ClothingHeadPyjamaSyndicatePink
-      - ClothingUniformJumpsuitPyjamaSyndicatePink
-      - ClothingHeadPyjamaSyndicateRed
-      - ClothingUniformJumpsuitPyjamaSyndicateRed
-      - ClothingOuterWinterCentcom
-      - ClothingOuterWinterSyndie
-      - ClothingOuterWinterSyndieCap
+      # Carpets
+      - Carpet
+      - CarpetBlack
+      - CarpetPink
+      - CarpetBlue
+      - CarpetGreen
+      - CarpetOrange
+      - CarpetPurple
+      - CarpetCyan
+      - CarpetWhite
+#  - type: EmagLatheRecipes # Frontier
+#    emagStaticRecipes: # Frontier
+#      - ClothingHeadHatCentcomcap # Frontier
+#      - ClothingHeadHatCentcom # Frontier
+#      - ClothingUniformJumpsuitCentcomAgent # Frontier
+#      - ClothingUniformJumpsuitCentcomFormal # Frontier
+#      - ClothingUniformJumpskirtCentcomFormalDress # Frontier
+#      - ClothingUniformJumpsuitCentcomOfficer # Frontier
+#      - ClothingUniformJumpsuitCentcomOfficial # Frontier
+#      - ClothingHeadHatSyndieMAA # Frontier
+#      - ClothingHeadHatSyndie # Frontier
+#      - ClothingUniformJumpsuitOperative # Frontier
+#      - ClothingUniformJumpskirtOperative # Frontier
+#      - ClothingUniformJumpsuitSyndieFormal # Frontier
+#      - ClothingUniformJumpskirtSyndieFormalDress # Frontier
+#      - ClothingHeadPyjamaSyndicateBlack # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicateBlack # Frontier
+#      - ClothingHeadPyjamaSyndicatePink # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicatePink # Frontier
+#      - ClothingHeadPyjamaSyndicateRed # Frontier
+#      - ClothingUniformJumpsuitPyjamaSyndicateRed # Frontier
+#      - ClothingOuterWinterCentcom # Frontier
+#      - ClothingOuterWinterSyndie # Frontier
+#      - ClothingOuterWinterSyndieCap # Frontier
   - type: MaterialStorage
     whitelist:
       tags:

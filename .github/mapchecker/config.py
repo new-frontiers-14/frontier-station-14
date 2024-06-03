@@ -21,13 +21,30 @@ ILLEGAL_MATCHES = [
 ]
 # List of matchers that are illegal to use, unless the map is a ship and the ship belongs to the keyed shipyard.
 CONDITIONALLY_ILLEGAL_MATCHES = {
+    "Civilian": [
+		"ButtonFrameCautionSecurity",  # Decal.
+    ],
+    "Scrap": [
+		"ButtonFrameCautionSecurity",  # Decal.
+    ],
+    "Expedition": [
+		"ButtonFrameCautionSecurity",  # Decal.
+    ],
+    "Custom": [
+		"ButtonFrameCautionSecurity",  # Decal.
+    ],
     "Security": [  # These matchers are illegal unless the ship is part of the security shipyard.
         "Security",  # Anything with the word security in it should also only be appearing on security ships.
         "Plastitanium",  # Plastitanium walls should only be appearing on security ships.
         "Kammerer", # Opportunity
         "HighSecDoor",
     ],
-    "BlackMarket": [
+    "Syndicate": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
-    ]
+	"ButtonFrameCautionSecurity",  # Decal.
+    ],
+	"BlackMarket": [
+        "Plastitanium",  # And also on blackmarket ships cause syndicate.
+        "ButtonFrameCautionSecurity",  # Decal.
+	]
 }

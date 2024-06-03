@@ -1,68 +1,47 @@
 - type: entity
-  parent: ClothingHeadsetSecurity
-  id: ClothingHeadsetSecuritySafe # Ask SR or Sheriff for keys
-  suffix: Safe
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
-
-- type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetNFSD
-  name: nfsd headset
-  description: This is used by your elite sheriff's department force.
+  id: ClothingHeadsetCommon
+  suffix: Common
   abstract: true
   components:
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNFSD
       - EncryptionKeyCommon
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDgreen # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  parent: [ClothingHeadsetCommon, ClothingHeadsetSecurity]
+  id: ClothingHeadsetSecurityCommon # Ask SR or Sheriff for keys
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDbrown # Ask SR or Sheriff for keys
+  parent: [ClothingHeadsetCommon, ClothingHeadsetNfsdBrown]
+  id: ClothingHeadsetNfsdBrownCommon # Ask SR or Sheriff for keys
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetNfsdGreen]
+  id: ClothingHeadsetNfsdGreenCommon # Ask SR or Sheriff for keys
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetNfsdCream]
+  id: ClothingHeadsetNfsdCreamCommon # Ask SR or Sheriff for keys
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetNfsdBrown # Ask SR or Sheriff for keys
   name: nfsd headset
-  description: A headset for deputy sheriff's.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
 
 - type: entity
-  parent: ClothingHeadsetNFSD
-  id: ClothingHeadsetNFSDcb # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  
-- type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDgreenSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdBrown
+  id: ClothingHeadsetNfsdGreen # Ask SR or Sheriff for keys
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
@@ -70,23 +49,22 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDbrownSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdBrown
+  id: ClothingHeadsetNfsdCream # Ask SR or Sheriff for keys
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
 
 - type: entity
-  parent: ClothingHeadsetSecuritySafe
-  id: ClothingHeadsetNFSDcbSafe # Ask SR or Sheriff for keys
-  name: nfsd headset
-  description: A headset for deputy sheriff's.
+  parent: ClothingHeadsetNfsdCream
+  id: ClothingHeadsetNfsdCreamMed # Ask SR or Sheriff for keys
+  noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNfsd
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
