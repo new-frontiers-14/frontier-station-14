@@ -2,9 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.IO;
+//using System.IO;
 using System.Net.Http.Headers;
-using System.Text.Json;
 using Content.Server.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -14,11 +13,6 @@ namespace Content.Server._NF.Auth;
 public sealed class MiniAuthManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-
-    public void Initialize()
-    {
-
-    }
 
     private readonly HttpClient _http = new();
 
@@ -35,7 +29,7 @@ public sealed class MiniAuthManager
                 linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
                 _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
                 var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token)
-                            ?? throw new InvalidDataException();
+                            ?? throw new NotImplementedException();
                 foreach (var connectedPlayer in status.Players)
                 {
                     if (connectedPlayer.UserId == player)
