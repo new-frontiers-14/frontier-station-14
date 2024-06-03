@@ -34,7 +34,6 @@ public sealed class MiniAuthManager
             Name = player.ToString()
         };
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
-        _http.DefaultRequestHeaders.Add("Actor", JsonSerializer.Serialize(actor));
         using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
 
         if (response.StatusCode == HttpStatusCode.NotFound)
