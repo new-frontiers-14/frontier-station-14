@@ -13,6 +13,7 @@ namespace Content.Server._NF.Auth;
 public sealed class MiniAuthManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+
     private readonly HttpClient _http = new();
     private readonly ISawmill _sawmill = default!;
 
@@ -33,36 +34,38 @@ public sealed class MiniAuthManager
         linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
 
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
-        using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
 
-        if (response.StatusCode == HttpStatusCode.NotFound)
-            return connected;
-
-        if (response.IsSuccessStatusCode)
+        //We need to do a try catch here because theres essentially no way to guarantee our json response is proper.
+        //Throughout all of this, we want it to fail to deny, not fail to allow, so if any step of our auth goes wrong,
+        //people can still connect.
+        try
         {
-            //We need to do a try catch here because theres essentially no way to guarantee our json response is proper.
-            //Throughout all of this, we want it to fail to deny, not fail to allow, so if any step of our auth goes wrong,
-            //people can still connect.
-            try
+            using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
+
+            if (response.StatusCode == HttpStatusCode.NotFound || !response.IsSuccessStatusCode)
             {
-                var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
-                foreach (var connectedPlayer in status!.Players)
+                _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
+                return connected;
+            }
+
+            var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
+
+            foreach (var connectedPlayer in status!.Players)
+            {
+                if (connectedPlayer.UserId == player)
                 {
-                    if (connectedPlayer.UserId == player)
-                        connected = true;
+                    connected = true;
+                    break;
                 }
             }
-            catch (Exception)
-            {
-                _sawmill.Error("Bad data received from auth server", response.StatusCode);
-            }
         }
-        else
+        catch (Exception)
         {
-            _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
+            _sawmill.Error("Bad data received from auth server");
         }
         return connected;
     }
+
     /// <summary>
     /// Record used to send the response for the info endpoint.
     /// Frontier - This is a direct copy of ServerAPI.InfoResponse to match the json format. they kept it private so i just copied it
