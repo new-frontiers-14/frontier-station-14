@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Net.Http.Json;
 //using System.IO;
 using System.Net.Http.Headers;
-using Content.Server.Administration;
 using Content.Shared.CCVar;
+using JetBrains.Annotations;
 using Robust.Shared.Configuration;
 
 namespace Content.Server._NF.Auth;
@@ -40,7 +40,7 @@ public sealed class MiniAuthManager
             return connected;
         }
         _sawmill.Info(response.StatusCode.ToString());
-        var status = await response.Content.ReadFromJsonAsync<ServerApi.InfoResponse>(linkedToken.Token);
+        var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
         //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
         if (status == null)
             return connected;
@@ -52,5 +52,33 @@ public sealed class MiniAuthManager
         }
 
         return connected;
+    }
+    /// <summary>
+    /// Record used to send the response for the info endpoint.
+    /// </summary>
+    [UsedImplicitly]
+    private sealed record InfoResponse //frontier - public to maybe reuse
+    {
+        public required int RoundId { get; init; }
+        public required List<Player> Players { get; init; }
+        public required List<string> GameRules { get; init; }
+        public required string? GamePreset { get; init; }
+        public required MapInfo? Map { get; init; }
+        public required string? MOTD { get; init; }
+        public required Dictionary<string, object> PanicBunker { get; init; }
+
+        public sealed class Player
+        {
+            public required Guid UserId { get; init; }
+            public required string Name { get; init; }
+            public required bool IsAdmin { get; init; }
+            public required bool IsDeadminned { get; init; }
+        }
+
+        public sealed class MapInfo
+        {
+            public required string Id { get; init; }
+            public required string Name { get; init; }
+        }
     }
 }
