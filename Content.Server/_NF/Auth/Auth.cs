@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -16,6 +17,7 @@ public sealed class MiniAuthManager
 
     public async Task<bool> IsPlayerConnected(string address, Guid player)
     {
+        var connected = false;
         var statusAddress = "http://" + address.Split("//")[1] + "/admin/info";
 
         var cancel = new CancellationToken();
@@ -27,15 +29,15 @@ public sealed class MiniAuthManager
 
         var status = await _http.GetFromJsonAsync<InfoResponse>(statusAddress, linkedToken.Token);
         if (status == null)
-            return false;
+            return connected;
 
         foreach (var connectedPlayer in status.Players)
         {
             if (connectedPlayer.UserId == player)
-                return true;
+                connected = true;
         }
 
-        return false;
+        return connected;
     }
 
     /// <summary>
