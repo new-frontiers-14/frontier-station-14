@@ -58,7 +58,7 @@
 
 # Gloves with fake guns visuals for NPCs
 - type: entity
-  parent: ClothingHandsGlovesSyntheticBase
+  parent: ClothingHandsGlovesCombat
   id: ClothingHandsGlovesColorBlackSMG
   name: combat gloves
   suffix: smg
@@ -66,15 +66,19 @@
   noSpawn: true
   components:
   - type: Unremoveable
-  - type: GloveHeatResistance
-    heatResistance: 1400
-  - type: Insulated
-  - type: Fiber
-    fiberColor: fibers-black
   - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_smg.rsi
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#535353"
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_smg.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -83,10 +87,14 @@
   suffix: ak
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_ak.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_ak.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -95,10 +103,14 @@
   suffix: china lake
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_china_lake.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_china_lake.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -107,10 +119,14 @@
   suffix: pistol
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_pistol.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_pistol.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -119,10 +135,14 @@
   suffix: python
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_python.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_python.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -131,10 +151,14 @@
   suffix: shotgun
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_shotgun.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_shotgun.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -143,10 +167,14 @@
   suffix: spray nozzle
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_spray_nozzle.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_spray_nozzle.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -155,10 +183,14 @@
   suffix: crossbow
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_crossbow.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_crossbow.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -167,7 +199,11 @@
   suffix: laser pistol
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+        state: inhand-left
