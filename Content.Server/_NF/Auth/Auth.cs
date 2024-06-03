@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 //using System.IO;
 using System.Net.Http.Headers;
-using Content.Server.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 
@@ -28,7 +27,7 @@ public sealed class MiniAuthManager
             {
                 linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
                 _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
-                var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token)
+                var status = await _http.GetFromJsonAsync<InfoResponse>(statusAddress, linkedToken.Token)
                             ?? throw new NotImplementedException();
                 foreach (var connectedPlayer in status.Players)
                 {
@@ -45,5 +44,33 @@ public sealed class MiniAuthManager
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Record used to recieve the response for the info endpoint.
+    /// </summary>
+    private sealed class InfoResponse
+    {
+        public required int RoundId { get; init; }
+        public required List<Player> Players { get; init; }
+        public required List<string> GameRules { get; init; }
+        public required string? GamePreset { get; init; }
+        public required MapInfo? Map { get; init; }
+        public required string? MOTD { get; init; }
+        public required Dictionary<string, object> PanicBunker { get; init; }
+
+        public sealed class Player
+        {
+            public required Guid UserId { get; init; }
+            public required string Name { get; init; }
+            public required bool IsAdmin { get; init; }
+            public required bool IsDeadminned { get; init; }
+        }
+
+        public sealed class MapInfo
+        {
+            public required string Id { get; init; }
+            public required string Name { get; init; }
+        }
     }
 }
