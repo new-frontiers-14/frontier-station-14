@@ -15,7 +15,6 @@ public sealed class MiniAuthManager
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private readonly HttpClient _http = new();
-    private readonly ISawmill _sawmill = default!;
 
     /// <summary>
     /// Frontier function to ping a server and check to see if the given player is currently connected to the given server.
@@ -53,7 +52,6 @@ public sealed class MiniAuthManager
         }
         catch (Exception e)
         {
-            _sawmill.Error("Bad data received from auth server:" + e.Message);
         }
         return connected;
     }
