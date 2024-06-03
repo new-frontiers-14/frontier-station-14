@@ -30,10 +30,6 @@
   - type: Loadout
     prototypes:
       - BloodCultistPriestGear
-  - type: Reflect
-    enabled: true
-    reflectProb: .3
-    spread: 90
   - type: HitscanBatteryAmmoProvider
     proto: BloodCultLaser
     fireCost: 100
@@ -60,10 +56,6 @@
   - type: Loadout
     prototypes:
       - BloodCultistJanitorGear
-  - type: Reflect
-    enabled: true
-    reflectProb: .3
-    spread: 90
   - type: Stamina
     critThreshold: 500
   - type: BasicEntityAmmoProvider
@@ -91,10 +83,6 @@
   - type: Loadout
     prototypes:
       - BloodCultistAcolyteGear
-  - type: Reflect
-    enabled: true
-    reflectProb: .3
-    spread: 90
   - type: HTN
     rootTask:
        task: MeleeCombatCompound
@@ -116,10 +104,6 @@
   - type: Loadout
     prototypes:
       - BloodCultistZealotMeleeGear
-  - type: Reflect
-    enabled: true
-    reflectProb: .1
-    spread: 90
   - type: HTN
     rootTask:
        task: MeleeCombatCompound
@@ -192,15 +176,13 @@
   components:
   - type: NpcFactionMember
     factions:
-      - BloodCultNF
-  - type: MovementIgnoreGravity
-  - type: MovementAlwaysTouching
+    - BloodCultNF
   - type: CanMoveInAir
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Reflect
     enabled: true
-    reflectProb: .4
+    reflectProb: .3
     spread: 90
   - type: Sprite
     drawdepth: Mobs
@@ -270,7 +252,7 @@
   components:
   - type: NpcFactionMember
     factions:
-      - BloodCultNF
+    - BloodCultNF
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Sprite
@@ -316,7 +298,7 @@
   components:
   - type: NpcFactionMember
     factions:
-      - BloodCultNF
+    - BloodCultNF
   - type: MovementIgnoreGravity
   - type: Advertise
     pack: bloodcultisthumanoidchatter
@@ -371,7 +353,7 @@
   components:
   - type: NpcFactionMember
     factions:
-      - NanoTrasen
+    - NanoTrasen
   - type: TimedDespawn
     lifetime: 80
 
