@@ -666,7 +666,7 @@ public sealed partial class ServerApi : IPostInjectInit
     /// <summary>
     /// Record used to send the response for the info endpoint.
     /// </summary>
-    private sealed class InfoResponse
+    public sealed class InfoResponse //frontier - public to maybe reuse
     {
         public required int RoundId { get; init; }
         public required List<Player> Players { get; init; }
