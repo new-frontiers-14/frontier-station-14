@@ -27,8 +27,10 @@ public sealed class MiniAuthManager
         linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
 
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
-
-        var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
+        using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
+        Logger.Debug(response.StatusCode.ToString());
+        var status = await response.Content.ReadFromJsonAsync<ServerApi.InfoResponse>(linkedToken.Token);
+        //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
         if (status == null)
             return connected;
 
