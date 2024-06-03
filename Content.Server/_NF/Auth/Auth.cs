@@ -34,23 +34,21 @@ public sealed class MiniAuthManager
         if (response.StatusCode == HttpStatusCode.NotFound)
             return connected;
 
-        if (!response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
+        {
+            response.StatusCode.ToString();
+            var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
+            foreach (var connectedPlayer in status!.Players)
+            {
+                if (connectedPlayer.UserId == player)
+                    connected = true;
+            }
+        }
+        else
         {
             _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
-            return connected;
         }
-        _sawmill.Info(response.StatusCode.ToString());
-        var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
         //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
-        if (status == null)
-            return connected;
-
-        foreach (var connectedPlayer in status.Players)
-        {
-            if (connectedPlayer.UserId == player)
-                connected = true;
-        }
-
         return connected;
     }
     /// <summary>
