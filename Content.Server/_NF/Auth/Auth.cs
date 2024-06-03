@@ -39,8 +39,8 @@ public sealed class MiniAuthManager
             _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
             return connected;
         }
-
-        var status = await response.Content.ReadFromJsonAsync<ServerApi.InfoResponse>(linkedToken.Token);
+        _sawmill.Info(response.StatusCode.ToString());
+        using var status = await response.Content.ReadFromJsonAsync<ServerApi.InfoResponse>(linkedToken.Token);
         //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
         if (status == null)
             return connected;
