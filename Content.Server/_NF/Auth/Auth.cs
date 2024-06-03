@@ -36,7 +36,6 @@ public sealed class MiniAuthManager
 
         if (response.IsSuccessStatusCode)
         {
-            response.StatusCode.ToString();
             var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
             foreach (var connectedPlayer in status!.Players)
             {
