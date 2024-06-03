@@ -20,26 +20,19 @@ public sealed class MiniAuthManager
 
         var cancel = new CancellationToken();
 
-        try
-        {
-            using (var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cancel))
-            {
-                linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
-                _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
-                var status = await _http.GetFromJsonAsync<InfoResponse>(statusAddress, linkedToken.Token)
-                            ?? throw new NotImplementedException();
-                foreach (var connectedPlayer in status.Players)
-                {
-                    if (connectedPlayer.UserId == player)
-                        return true;
-                }
-            }
+        var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cancel);
+        linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
 
-            cancel.ThrowIfCancellationRequested();
-        }
-        catch
-        {
+        _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
+
+        var status = await _http.GetFromJsonAsync<InfoResponse>(statusAddress, linkedToken.Token);
+        if (status == null)
             return false;
+
+        foreach (var connectedPlayer in status.Players)
+        {
+            if (connectedPlayer.UserId == player)
+                return true;
         }
 
         return false;
@@ -48,7 +41,7 @@ public sealed class MiniAuthManager
     /// <summary>
     /// Record used to recieve the response for the info endpoint.
     /// </summary>
-    private sealed class InfoResponse
+    private sealed record InfoResponse
     {
         public required int RoundId { get; init; }
         public required List<Player> Players { get; init; }
