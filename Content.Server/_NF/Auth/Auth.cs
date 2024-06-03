@@ -40,15 +40,7 @@ public sealed class MiniAuthManager
         //people can still connect.
         try
         {
-            using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
-
-            if (response.StatusCode == HttpStatusCode.NotFound || !response.IsSuccessStatusCode)
-            {
-                _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
-                return connected;
-            }
-
-            var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
+            var status = await _http.GetFromJsonAsync<InfoResponse>(statusAddress, linkedToken.Token);
 
             foreach (var connectedPlayer in status!.Players)
             {
@@ -59,9 +51,9 @@ public sealed class MiniAuthManager
                 }
             }
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            _sawmill.Error("Bad data received from auth server");
+            _sawmill.Error("Bad data received from auth server:" + e.Message);
         }
         return connected;
     }
