@@ -18,7 +18,7 @@ public sealed class MiniAuthManager
     public async Task<bool> IsPlayerConnected(string address, Guid player)
     {
         var connected = false;
-        var statusAddress = "http://" + address.Split("//")[1] + "/admin/info";
+        var statusAddress = "http://" + address + "/admin/info";
 
         var cancel = new CancellationToken();
 
