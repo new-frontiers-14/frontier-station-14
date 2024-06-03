@@ -1,15 +1,15 @@
 - type: vessel
   id: Zarya
-  name: NVE Заря
+  name: VMF Заря # Vitezstvi Military Force
   description: Штурмовое судно Zarya, произведено частной военно-производственной компаний Vitezstvi. Рекомендуемый состав команды 3-8 человек.
-  price: 125900 # 15% tax
+  price: 125000 # 33% tax
   category: Medium
   group: Expedition
   shuttlePath: /Maps/CorvaxFrontier/Shuttles/Expedition/zarya.yml
 
 - type: gameMap
   id: Zarya
-  mapName: 'NVE Заря'
+  mapName: 'VMF Заря'
   mapPath: /Maps/CorvaxFrontier/Shuttles/Expedition/zarya.yml
   minPlayers: 0
   stations:
@@ -24,7 +24,6 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            Paramedic: [ 0, 0 ]
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
             Mercenary: [ 0, 0 ]
-            SalvageSpecialist: [ 0, 0 ]
-            StationEngineer: [ 0, 0 ]

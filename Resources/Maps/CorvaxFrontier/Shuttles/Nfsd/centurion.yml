@@ -16,10 +16,17 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Центурион
+    - type: BecomesStation
+      id: Centurion
     - type: Transform
       pos: -0.5,-0.5
       parent: invalid
+    - type: AutoDelete
+      delayToCheck: 60
+      delayToDelete: 2400
+      distanceToCheck: 40
+      isHumanoidNear: true
     - type: MapGrid
       chunks:
         0,0:
@@ -6920,7 +6927,7 @@ entities:
     - type: Transform
       pos: 9.418163,-2.6138601
       parent: 1
-- proto: HarrierMothershipComputer
+- proto: CenturionMothershipComputer
   entities:
   - uid: 912
     components:
