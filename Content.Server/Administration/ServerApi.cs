@@ -452,7 +452,7 @@ public sealed partial class ServerApi : IPostInjectInit
     /// <summary>
     ///     Handles fetching information.
     /// </summary>
-    private async Task InfoHandler(IStatusHandlerContext context)
+    private async Task InfoHandler(IStatusHandlerContext context) //frontier - we had an actor here and never used it so we drop it for now until im compelled to re-add it
     {
         /*
         Information to display
