@@ -237,7 +237,7 @@ namespace Content.Server.Connection
             if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
             {
                 var serverListString = _cfg.GetCVar(CCVars.ServerAuthList);
-                var serverList = serverListString.Split(",");
+                var serverList = serverListString.Split(", ").ToImmutableList();
                 foreach (var server in serverList)
                 {
                     if (await _authManager.IsPlayerConnected(server, userId))
