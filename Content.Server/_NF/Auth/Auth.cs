@@ -43,7 +43,7 @@ public sealed class MiniAuthManager
     /// <summary>
     /// Record used to recieve the response for the info endpoint.
     /// </summary>
-    private sealed record InfoResponse
+    private sealed class InfoResponse
     {
         public required int RoundId { get; init; }
         public required List<Player> Players { get; init; }
