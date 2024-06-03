@@ -14,12 +14,6 @@ loadout-group-contractor-face = mask
 loadout-group-contractor-utility = tools
 loadout-group-contractor-fun = fun
 loadout-group-contractor-trinkets = trinkets
-# Security
-
-loadout-group-security-guard-jumpsuit = head
-loadout-group-security-guard-jumpsuit = jumpsuit
-loadout-group-security-guard-gloves = gloves
-loadout-group-security-guard-head = head
-loadout-group-security-guard-outerclothing = outer clothing
-loadout-group-security-guard-shoes = shoes
-loadout-group-security-guard-id = ID
+loadout-group-contractor-survival-box = survival box
+loadout-group-contractor-encryption-key = encryption keys
+loadout-group-contractor-implanter = implanters
