@@ -12,7 +12,7 @@ namespace Content.Server._NF.Auth;
 public sealed class MiniAuthManager
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly HttpClient _http = new();
+    private readonly HttpClient _http = new();
 
     public async Task<bool> IsPlayerConnected(string address, Guid player)
     {
