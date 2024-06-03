@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 //using System.IO;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
@@ -27,8 +28,13 @@ public sealed class MiniAuthManager
 
         var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cancel);
         linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
-
+        var actor = new Actor()
+        {
+            Guid = player,
+            Name = player.ToString()
+        };
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
+        _http.DefaultRequestHeaders.Add("Actor", JsonSerializer.Serialize(actor));
         using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
 
         if (response.StatusCode == HttpStatusCode.NotFound)
@@ -78,4 +84,11 @@ public sealed class MiniAuthManager
             public required string Name { get; init; }
         }
     }
+
+    private sealed class Actor
+    {
+        public required Guid Guid { get; init; }
+        public required string Name { get; init; }
+    }
+
 }
