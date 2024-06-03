@@ -20,6 +20,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StationRecords;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.GameTicking; // Frontier
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -43,6 +44,8 @@ public sealed class NewsSystem : SharedNewsSystem
         // News writer
         // Frontier: News is shared across the sector.  No need to create shuttle-local news caches.
         // SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         // End Frontier
 
         // New writer bui messages
@@ -59,6 +62,14 @@ public sealed class NewsSystem : SharedNewsSystem
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeMessageEvent>(OnReaderUiMessage);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeUiReadyEvent>(OnReaderUiReady);
     }
+ 
+    // Frontier: article lifecycle management
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        // A new round is starting, clear any articles from the previous round.
+        SectorNewsComponent.Articles.Clear();
+    }
+    // End Frontier
 
     public override void Update(float frameTime)
     {
