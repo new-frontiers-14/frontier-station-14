@@ -234,6 +234,9 @@ namespace Content.Server.Connection
             }
 
             //Frontier
+            //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
+            //the requesting player against the list of players logged in to other servers. It is intended to be failsafe.
+            //In the case of Admins, it shares the same bypass setting as the soft_max_player_limit
             if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
             {
                 var serverListString = _cfg.GetCVar(CCVars.ServerAuthList);

@@ -1,15 +1,12 @@
-using System.Collections.Immutable;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
-//using System.IO;
 using System.Net.Http.Headers;
-using System.Text.Json;
 using Content.Shared.CCVar;
-using JetBrains.Annotations;
 using Robust.Shared.Configuration;
+using JetBrains.Annotations;
 
 namespace Content.Server._NF.Auth;
 
@@ -19,20 +16,22 @@ public sealed class MiniAuthManager
     private readonly HttpClient _http = new();
     private readonly ISawmill _sawmill = default!;
 
+    /// <summary>
+    /// Frontier function to ping a server and check to see if the given player is currently connected to the given server.
+    /// Servers using this function must share an admin_api token as defined in their respective server_config.toml
+    /// </summary>
+    /// <param name="address">The address of the server to ping.</param>
+    /// <param name="player">the GUID of the player to check for connection.</param>
+    /// <returns>True if the response from the server is successful and the player is connected. False in any case of error, timeout, or failure.</returns>
     public async Task<bool> IsPlayerConnected(string address, Guid player)
     {
         var connected = false;
         var statusAddress = "http://" + address + "/admin/info";
 
         var cancel = new CancellationToken();
-
         var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(cancel);
         linkedToken.CancelAfter(TimeSpan.FromSeconds(10));
-        var actor = new Actor()
-        {
-            Guid = player,
-            Name = player.ToString()
-        };
+
         _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("SS14Token", _cfg.GetCVar(CCVars.AdminApiToken));
         using var response = await _http.GetAsync(statusAddress, linkedToken.Token);
 
@@ -41,25 +40,35 @@ public sealed class MiniAuthManager
 
         if (response.IsSuccessStatusCode)
         {
-            var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
-            foreach (var connectedPlayer in status!.Players)
+            //We need to do a try catch here because theres essentially no way to guarantee our json response is proper.
+            //Throughout all of this, we want it to fail to deny, not fail to allow, so if any step of our auth goes wrong,
+            //people can still connect.
+            try
             {
-                if (connectedPlayer.UserId == player)
-                    connected = true;
+                var status = await response.Content.ReadFromJsonAsync<InfoResponse>(linkedToken.Token);
+                foreach (var connectedPlayer in status!.Players)
+                {
+                    if (connectedPlayer.UserId == player)
+                        connected = true;
+                }
+            }
+            catch (Exception)
+            {
+                _sawmill.Error("Bad data received from auth server", response.StatusCode);
             }
         }
         else
         {
             _sawmill.Error("Auth server returned bad response {StatusCode}!", response.StatusCode);
         }
-        //var status = await _http.GetFromJsonAsync<ServerApi.InfoResponse>(statusAddress, linkedToken.Token);
         return connected;
     }
     /// <summary>
     /// Record used to send the response for the info endpoint.
+    /// Frontier - This is a direct copy of ServerAPI.InfoResponse to match the json format. they kept it private so i just copied it
     /// </summary>
     [UsedImplicitly]
-    private sealed record InfoResponse //frontier - public to maybe reuse
+    private sealed record InfoResponse
     {
         public required int RoundId { get; init; }
         public required List<Player> Players { get; init; }
@@ -83,11 +92,4 @@ public sealed class MiniAuthManager
             public required string Name { get; init; }
         }
     }
-
-    private sealed class Actor
-    {
-        public required Guid Guid { get; init; }
-        public required string Name { get; init; }
-    }
-
 }
