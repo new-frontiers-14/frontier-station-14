@@ -1,16 +1,9 @@
 - type: entity
-  id: AdminHandTeleporter
-  parent: BaseItem
-  name: hand teleporter [admeme]
+  id: HandTeleporterAdmin
+  parent: HandTeleporter
+  suffix: Admeme
   description: "An upgraded Teleporter that can ignore some restrictions the original had, but is strongly restricted to experienced CC users."
   components:
-  - type: Sprite
-    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
-    layers:
-    - state: icon
   - type: HandTeleporter
     firstPortalPrototype: "AdminPortalStart"
     secondPortalPrototype: "AdminPortalEnd"
-  - type: Tag
-    tags:
-    - HighRiskItem
