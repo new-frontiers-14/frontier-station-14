@@ -1,11 +1,4 @@
-- type: entity
-  id: CartridgePistolEmp
-  name: cartridge (.35 auto emp)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolEmp
-
+# Upstream
 - type: entity
   id: CartridgePistolRubber
   name: cartridge (.35 auto rubber)
@@ -20,3 +13,12 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
+
+# Frontier
+- type: entity
+  id: CartridgePistolEmp
+  name: cartridge (.35 auto emp)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPistolEmp
