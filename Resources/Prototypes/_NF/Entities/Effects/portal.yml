@@ -28,13 +28,13 @@
     RandomTeleport: false
 
 - type: entity
-  id: AdminPortalRed
+  id: AdminPortalStart
   parent: BaseAdminPortal
-  description: This one looks more like a special redspace portal.
+  description: This one looks more like a special bluespace portal.
   components:
   - type: Sprite
     layers:
-    - state: portal-red
+    - state: portal-artifact
   - type: PointLight
     color: OrangeRed
     radius: 3
@@ -42,13 +42,13 @@
     netsync: false
 
 - type: entity
-  id: AdminPortalBlue
+  id: AdminPortalEnd
   parent: BaseAdminPortal
   description: This one looks more like a special bluespace portal.
   components:
   - type: Sprite
     layers:
-    - state: portal-blue
+    - state: portal-artifact
   - type: PointLight
     color: SkyBlue
     radius: 3
