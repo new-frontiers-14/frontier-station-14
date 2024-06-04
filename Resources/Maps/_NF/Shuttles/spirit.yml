@@ -165,30 +165,30 @@ entities:
         tiles:
           0,0:
             0: 13175
-            2: 34944
+            1: 34944
           0,-1:
             0: 32547
-            2: 8
-          -1,0:
             1: 8
-            2: 1088
+          -1,0:
+            2: 8
+            1: 1088
           0,1:
             0: 3
-            2: 64
+            1: 64
           -1,1:
-            2: 128
+            1: 128
           1,0:
             0: 1
-            2: 306
+            1: 306
           1,-1:
             0: 4352
-            2: 8225
+            1: 8225
           0,-2:
             0: 8192
-            2: 16384
+            1: 16384
           -1,-2:
             0: 32768
-            2: 16384
+            1: 16384
           -1,-1:
             0: 34952
         uniqueMixes:
@@ -208,10 +208,10 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
-          - 21.823984
-          - 82.09976
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -223,10 +223,10 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
-          - 0
-          - 0
+          - 21.823984
+          - 82.09976
           - 0
           - 0
           - 0
@@ -285,7 +285,7 @@ entities:
       pos: -0.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -770.24713
+      secondsUntilStateChange: -830.6309
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1134,6 +1134,11 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
+  - uid: 45
+    components:
+    - type: Transform
+      pos: 2.5,-4.5
+      parent: 1
   - uid: 54
     components:
     - type: Transform
@@ -1148,6 +1153,16 @@ entities:
     components:
     - type: Transform
       pos: -0.5,1.5
+      parent: 1
+  - uid: 83
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 1
+  - uid: 85
+    components:
+    - type: Transform
+      pos: 5.5,0.5
       parent: 1
   - uid: 111
     components:
@@ -1195,24 +1210,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-2.5
-      parent: 1
-  - uid: 45
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-4.5
-      parent: 1
-  - uid: 83
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-4.5
-      parent: 1
-  - uid: 85
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,0.5
       parent: 1
 - proto: WarpPointShip
   entities:
