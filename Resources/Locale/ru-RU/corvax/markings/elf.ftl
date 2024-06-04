@@ -1,0 +1,10 @@
+marking-ElfsEars = Эльфийские уши
+marking-ElfsEars-elfs = Уши
+marking-ElfsLongerEars = Эльфийские уши (Длинные)
+marking-ElfsLongerEars-elfs_longer = Уши
+marking-ElfsBroadEars = Эльфийские уши (Широкие)
+marking-ElfsBroadEars-elfs_broad = Уши
+marking-ElfsRibbonsEars = Эльфийские уши (Ленточные)
+marking-ElfsRibbonsEars-elfs_ribbons = Уши
+marking-ElfsWideEars = Эльфийские уши (Большие)
+marking-ElfsWideEars-elfs_wide = Уши

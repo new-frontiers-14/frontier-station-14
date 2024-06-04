@@ -121,6 +121,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private void OnStartup(RoundStartingEvent ev)
     {
+        var Charlie = "/Maps/CorvaxFrontier/POI/charlie.yml";//Corvax-Frontier
         var depotMap = "/Maps/_NF/POI/cargodepot.yml";
         var tinnia = "/Maps/_NF/POI/tinnia.yml";
         var caseys = "/Maps/_NF/POI/caseyscasino.yml";
@@ -215,7 +216,22 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(lpbravoUids[0], lpbravoColor);
             _shuttle.AddIFFFlag(lpbravoUids[0], IFFFlags.HideLabel);
         }
+// Corvax-Frontier spawns sindipost Charlie
+        if (_map.TryLoad(mapId, Charlie, out var lpcharlieUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(6150f, 10650f)
+            }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("charlie", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["charlie"], lpcharlieUids);
+            }
 
+            var meta = EnsureComp<MetaDataComponent>(lpcharlieUids[0]);
+            _meta.SetEntityName(lpcharlieUids[0], "Синдикатовcкий аванпост Чарли", meta);
+            _shuttle.SetIFFColor(lpcharlieUids[0], lpbravoColor);
+            _shuttle.AddIFFFlag(lpcharlieUids[0], IFFFlags.HideLabel);
+        }
         // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
         //     {
         //         Offset = _random.NextVector2(2150f, 3900f)

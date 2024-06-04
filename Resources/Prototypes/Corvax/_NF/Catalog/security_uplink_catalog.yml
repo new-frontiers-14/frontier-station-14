@@ -1,0 +1,31 @@
+- type: listing
+  id: UplinkSecurityVectorMagazines45
+  name: uplink-security-vector-magazines-name
+  description: uplink-security-vector-magazines-desc
+  productEntity: BoxMagazineVector45
+  icon: { sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector45mag.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing 
+  id: UplinkMagazineMagnum
+  name: uplink-security-magazine-magnum-name
+  description: uplink-security-magazine-magnum-desc
+  productEntity: MagazineMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

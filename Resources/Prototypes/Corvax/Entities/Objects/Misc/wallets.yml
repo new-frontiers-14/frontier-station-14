@@ -1,0 +1,114 @@
+- type: entity
+  abstract: true
+  parent: BaseStorageItem
+  id: BaseWallet
+  name: wallet
+  description: "A personal friend for storing your cash."
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/wallets.rsi
+    layers:
+    - state: "brown"
+    - state: "null"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      visible: false
+  - type: Icon
+    sprite: Corvax/Objects/Misc/wallets.rsi
+    state: brown
+  - type: Item
+    size: Small
+  - type: Pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    bookSlot: # Why!?
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+    idSlot:
+      name: access-id-card-component-default
+      whitelist:
+        components:
+        - IdCard
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      PDA-pai: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: [ ]
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+    whitelist:
+      components:
+      - Cash
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    - Belt
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: StaticPrice
+    price: 500
+  - type: CargoSellBlacklist # Liltenhead moment
+  - type: ExplosionResistance
+    damageCoefficient: 0
+
+- type: entity
+  parent: BaseWallet
+  id: BrownWallet
+  name: brown wallet
+  components:
+  - type: Icon
+    state: brown
+
+- type: entity
+  parent: BaseWallet
+  id: BlueWallet
+  name: blue wallet
+  components:
+  - type: Sprite
+    layers:
+    - state: "blue"
+    - state: "null"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      visible: false
+  - type: Icon
+    state: blue
+
+- type: entity
+  parent: BaseWallet
+  id: BlackWallet
+  name: black wallet
+  components:
+  - type: Sprite
+    layers:
+    - state: "black"
+    - state: "null"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      visible: false
+  - type: Icon
+    state: black

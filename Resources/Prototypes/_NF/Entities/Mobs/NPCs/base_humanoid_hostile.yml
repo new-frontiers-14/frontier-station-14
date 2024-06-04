@@ -86,6 +86,8 @@
         true
       NavPry: !type:Bool
         true
+      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+        true
   - type: NpcFactionMember
     factions:
       - SimpleHostile
@@ -99,7 +101,29 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     nextAdvertisementTime: 0
-  - type: SalvageMobRestrictionsNF
+  - type: SalvageMobRestrictions
+  - type: Tool # Open door from xeno.yml.
+    speed: 1.5
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    speedModifier: 10.0
+  - type: Access
+    groups:
+    - AllAccess
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -143,8 +167,8 @@
         true
       NavPry: !type:Bool
         true
-#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
-#        true
+      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+        true
   - type: NpcFactionMember
     factions:
       - SimpleHostile
@@ -166,6 +190,23 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
-  - type: SalvageMobRestrictionsNF
+  - type: SalvageMobRestrictions
   - type: StepTriggerImmune
   - type: Contraband
+  - type: Tool # Open door from xeno.yml.
+    speed: 1.5
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    speedModifier: 10.0
+  - type: Access
+    groups:
+    - AllAccess

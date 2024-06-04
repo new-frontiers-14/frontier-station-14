@@ -280,7 +280,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var prevention = new ShotAttemptedEvent
         {
             User = user,
-            Used = gunUid
+            Used = (gunUid, gun)
         };
         RaiseLocalEvent(gunUid, ref prevention);
         if (prevention.Cancelled)

@@ -47,7 +47,7 @@
 - type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponShotgunBulldog
   description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells. An illegal firearm often used by Syndicate agents.
   components:
@@ -67,6 +67,7 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
     selectedMode: FullAuto
@@ -104,7 +105,7 @@
 
 - type: entity
   name: double-barreled shotgun
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponShotgunDoubleBarreled
   description: An immortal classic. A civilian grade shotgun. Uses .50 shotgun shells.
   components:
@@ -114,8 +115,8 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
-    heldPrefix: db
+    sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
   - type: BallisticAmmoProvider
@@ -139,7 +140,7 @@
 
 - type: entity
   name: Enforcer
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponShotgunEnforcer
   description: A premium combat shotgun based on the Kammerer design, featuring an upgraded clip capacity. .50 shotgun shells. On the receiver is a label that says 'for authorized use only.'
   components:
@@ -148,9 +149,9 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
-    heldPrefix: enforcer
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -162,7 +163,7 @@
 
 - type: entity
   name: Kammerer
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponShotgunKammerer
   description: When an old Remington design meets modern materials, this is the result. A civilian grade shotgun, favored by militia forces throughout many worlds. Uses .50 shotgun shells.
   components:
@@ -170,12 +171,12 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
-    heldPrefix: pump
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: BallisticAmmoProvider
     capacity: 4
   - type: Tag
@@ -194,8 +195,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
     size: Small
-    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
-    heldPrefix: sawn
+    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     fireRate: 4
   - type: BallisticAmmoProvider
@@ -206,10 +206,8 @@
     deconstructionTarget: null
 
 - type: entity
-  name: sawn-off shogun
   parent: WeaponShotgunSawn
   id: WeaponShotgunSawnEmpty
-  description: Groovy! Uses .50 shotgun shells. A modified civilian grade shotgun.
   suffix: Empty
   components:
   - type: BallisticAmmoProvider
@@ -245,7 +243,7 @@
 
 - type: entity
   name: blunderbuss
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponShotgunBlunderbuss
   suffix: Pirate
   description: Deadly at close range, an illegal shotgun often found at the side of a pirate.
@@ -256,6 +254,7 @@
     - 0,0,4,0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
   - type: BallisticAmmoProvider
@@ -265,7 +264,7 @@
 
 - type: entity
   name: improvised shotgun
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
   id: WeaponShotgunImprovised
   description: A shitty, but legal, hand-made shotgun that uses .50 shotgun shells. It can only hold one round in the chamber.
   components:
@@ -277,8 +276,8 @@
     size: Normal
     shape:
     - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
-    heldPrefix: improvised
+    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
   - type: BallisticAmmoProvider

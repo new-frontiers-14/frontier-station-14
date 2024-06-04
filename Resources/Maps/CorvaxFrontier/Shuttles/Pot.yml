@@ -19,10 +19,10 @@ entities:
       pos: -0.032076478,5.0928283
       parent: invalid
     - type: AutoDelete
-      delayToCheck: 60
-      delayToDelete: 2400
       distanceToCheck: 40
-      isHumanoidNear: true
+      delayToDelete: 2400
+      delayToCheck: 60
+      isHumanoidNear: True
     - type: MapGrid
       chunks:
         0,0:
@@ -410,6 +410,12 @@ entities:
       parent: 1
 - proto: AirlockExternal
   entities:
+  - uid: 49
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-6.5
+      parent: 1
   - uid: 230
     components:
     - type: Transform
@@ -421,6 +427,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,-8.5
+      parent: 1
+  - uid: 332
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,-6.5
       parent: 1
 - proto: AirlockShuttle
   entities:
@@ -463,6 +475,12 @@ entities:
     - type: Transform
       pos: 1.5,-13.5
       parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,-6.5
+      parent: 1
   - uid: 110
     components:
     - type: Transform
@@ -498,6 +516,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,-8.5
+      parent: 1
+  - uid: 331
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-6.5
       parent: 1
 - proto: BlastDoor
   entities:
@@ -1987,24 +2011,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 312
-  - uid: 331
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,-5.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 312
-  - uid: 332
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 10.5,-5.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 313
   - uid: 333
     components:
     - type: Transform
@@ -2270,9 +2276,6 @@ entities:
         330:
         - On: On
         - Off: Off
-        331:
-        - Off: Off
-        - On: On
         328:
         - On: Off
         - Off: On
@@ -2290,9 +2293,6 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         333:
-        - Off: Off
-        - On: On
-        332:
         - Off: Off
         - On: On
         329:
@@ -2317,6 +2317,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-3.5
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 395
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
       parent: 1
 - proto: SpawnPointPilot
   entities:
@@ -2589,11 +2596,6 @@ entities:
     - type: Transform
       pos: -3.5,-7.5
       parent: 1
-  - uid: 24
-    components:
-    - type: Transform
-      pos: -4.5,-6.5
-      parent: 1
   - uid: 25
     components:
     - type: Transform
@@ -2697,11 +2699,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-6.5
-      parent: 1
-  - uid: 49
-    components:
-    - type: Transform
-      pos: 10.5,-6.5
       parent: 1
   - uid: 50
     components:
@@ -2939,12 +2936,5 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-6.5
-      parent: 1
-- proto: SpawnPointLatejoin
-  entities:
-  - uid: 395
-    components:
-    - type: Transform
-      pos: 2.5,-11.5
       parent: 1
 ...

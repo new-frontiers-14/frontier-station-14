@@ -173,6 +173,12 @@
       - ClothingOuterHardsuitEVA # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
+      - MagazineVector22 #CorvaxFrontier
+      - MagazineVector22Empty #CorvaxFrontier
+      - MagazineVector45 #CorvaxFrontier
+      - MagazineVector45Empty #CorvaxFrontier
+      - MagazineBoxVector45 #CorvaxFrontier
+      - MagazineBoxVector22 #CorvaxFrontier
       - BoxLethalshot
       - BoxShotgunFlare
       - MagazineBoxLightRifle
@@ -192,6 +198,8 @@
       - ShellTranquilizer
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
+      - SpeedLoaderRifleHeavy # Frontier
+      - SpeedLoaderRifleHeavyEmpty # Frontier
     emagDynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -199,6 +207,14 @@
       - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
+      - MagazineBoxVector22Incendiary #CorvaxFrontier
+      - MagazineBoxVector22Uranium #CorvaxFrontier
+      - MagazineVector22Incendiary #CorvaxFrontier
+      - MagazineVector22Uranium #CorvaxFrontier
+      - MagazineBoxVector45Incendiary #CorvaxFrontier
+      - MagazineBoxVector45Uranium #CorvaxFrontier
+      - MagazineVector45Incendiary #CorvaxFrontier
+      - MagazineVector45Uranium #CorvaxFrontier
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
       - MagazineBoxMagnumIncendiary
@@ -222,6 +238,8 @@
       - PowerCageSmall
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary # Frontier
+      - SpeedLoaderRifleHeavyUranium # Frontier
 
 - type: entity
   id: AutolatheHyperConvection
@@ -508,6 +526,7 @@
       - ClothingShoesBootsJetBoots # Corvax-Frontier
       - WeaponMagmiteCrusher # Corvax-Frontier
       - WeaponMagmiteCrusherGlaive # Corvax-Frontier
+      - WeaponMagmitePlasmaCutter # Corvax-Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -858,6 +877,14 @@
     idleState: icon
     runningState: icon
     staticRecipes:
+      #CorvaxFrontier Start
+      - MagazineBoxVector45
+      - MagazineBoxVector22
+      - MagazineVector45
+      - MagazineVector45Empty
+      - MagazineVector22
+      - MagazineVector22Empty
+      #CorvaxFrontier End
       - BoxLethalshot
       - BoxShotgunFlare
       - BoxShotgunPractice
@@ -890,6 +917,8 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
+      - SpeedLoaderRifleHeavy # Frontier
+      - SpeedLoaderRifleHeavyEmpty # Frontier
       - Stunbaton
       - TargetClown
       - TargetHuman
@@ -905,6 +934,20 @@
       - WeaponLaserCarbinePractice
       - Zipties
     dynamicRecipes:
+      #CorvaxFrontier Start
+      - MagazineBoxVector22Practice
+      - MagazineBoxVector22Incendiary
+      - MagazineBoxVector22Uranium
+      - MagazineVector22Practice
+      - MagazineVector22Incendiary
+      - MagazineVector22Uranium
+      - MagazineBoxVector45Practice
+      - MagazineBoxVector45Incendiary
+      - MagazineBoxVector45Uranium
+      - MagazineVector45Practice
+      - MagazineVector45Incendiary
+      - MagazineVector45Uranium
+      #CorvaxFrontier End
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
@@ -948,6 +991,8 @@
       - SignalTrigger
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary # Frontier
+      - SpeedLoaderRifleHeavyUranium # Frontier
       - TelescopicShield
       - TimerTrigger
       - Truncheon
@@ -990,6 +1035,12 @@
       idleState: icon
       runningState: icon
       staticRecipes:
+        - MagazineVector22
+        - MagazineVector22Empty
+        - MagazineVector45
+        - MagazineVector45Empty
+        - MagazineBoxVector45
+        - MagazineBoxVector22
         - BoxLethalshot
         - BoxShotgunFlare
         - BoxShotgunSlug
@@ -1009,6 +1060,8 @@
         - ShellTranquilizer
         - SpeedLoaderMagnum
         - SpeedLoaderMagnumEmpty
+        - SpeedLoaderRifleHeavy # Frontier
+        - SpeedLoaderRifleHeavyEmpty # Frontier
     - type: MaterialStorage
       whitelist:
         tags:

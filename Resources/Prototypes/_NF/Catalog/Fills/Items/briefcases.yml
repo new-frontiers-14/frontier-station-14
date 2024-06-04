@@ -1,0 +1,85 @@
+- type: entity
+  parent: BaseItem
+  id: SpaceCashExpedition
+  name: syndicate naval operative bundle
+  abstract: true
+  noSpawn: true
+  suffix: Money
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+  - type: CargoSellBlacklist # We dont want this to be sold by mistake, and so you cannot sell this on a cargo depo
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCash5000Expedition
+  name: spesos (5000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash5000
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 5000
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCash10000Expedition
+  name: spesos (10000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10000
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 10000
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCash15000Expedition
+  name: spesos (15000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash15000
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 15000
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCash20000Expedition
+  name: spesos (20000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash20000
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 20000
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCash25000Expedition
+  name: spesos (25000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash25000
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 25000
