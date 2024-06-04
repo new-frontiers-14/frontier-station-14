@@ -4,8 +4,9 @@
   id: BaseMail
   name: mail-item-name-unaddressed
   components:
-#  - type: Item # Frontier
+  - type: Item # Frontier
 #    size: Normal # Frontier
+    storedRotation: -90
   - type: Mail
   - type: AccessReader
   - type: Sprite
@@ -19,7 +20,7 @@
       map: ["enum.MailVisualLayers.FragileStamp"]
       visible: false
     - map: ["enum.MailVisualLayers.JobStamp"]
-      scale: 0.7, 0.7 # Frontier 0.5<0.7
+      scale: 0.75, 0.75 # Frontier 0.5<0.75
       offset: 0.275, 0.2
     - state: locked
       map: ["enum.MailVisualLayers.Lock"]
