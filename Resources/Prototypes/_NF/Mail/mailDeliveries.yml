@@ -1,0 +1,92 @@
+- type: mailDeliveryPool
+  id: RandomNFMailDeliveryPool
+  everyone:
+    # Food/Drink Consumables
+    MailNFBakedGoods: 1
+    MailNFCake: 1
+    MailNFCheese: 1
+    MailNFCookies: 1
+    MailNFDonkPockets: 1
+    MailMoffins: 0.5
+    MailNFMuffins: 1
+    MailNFSnacks: 1
+    MailNFSodaPwrGame: 0.2 # Mmm, ads
+    MailNFSodaRedBool: 0.2
+    MailNFSodaSpaceCola: 0.2
+    MailNFSodaSpaceMountainWind: 0.2
+    MailNFSodaSpaceUp: 0.2
+    MailNFUnusualFood: 1
+    MailNFUnusualProduce: 1
+    # Booze/Smoke Consumables
+    MailNFAlcohol: 0.5
+    MailSake: 0.05 # MailNFAlcohol has ~10 bottles, should be about a tenth of MailNFAlcohol's weight.
+    MailNFCigarettes: 0.5
+    MailCigars: 0.45
+    MailNFGoldCigars: 0.05
+    MailNFJoints: 0.5
+    # Outfits - these should share one share of the weights
+    MailWinterCoat: 1.5
+    MailCosplayArc: 0.5
+    MailCosplayGeisha: 0.5
+    MailCosplayMaid: 0.5
+    MailCosplayNurse: 0.5
+    MailCosplaySchoolgirl: 0.5
+    MailCosplayWizard: 0.5
+    MailNoir: 0.5
+    # Accessories - should share one 
+    MailFishingCap: 0.5
+    MailFlowers: 1
+    MailSunglasses: 1
+    # Fun
+    MailNFBible: 1
+    MailNFBikeHorn: 0.5
+    MailCrayon: 1
+    MailFigurine: 1
+    MailNFFigurineBulk: 1
+    MailNFPAI: 1
+    MailNFPlushie: 1
+    MailSkub: 0.5
+    MailNFSoaps: 0.95
+    MailNFSoapsOmega: 0.05 # Rare variant
+    MailBlockGameDIY: 1
+    MailSpaceVillainDIY: 1
+    # Useful
+    MailNFCallForHelp: 0.6
+    MailFlashlight: 1
+    MailNFMoney: 1
+    MailNFT2ComponentBox: 0.3
+    MailNFT3ComponentBox: 0.6
+    MailNFT4ComponentBox: 0.1
+    MailNFPen: 1
+    # Weapons
+    MailHighlander: 0.12
+    MailHighlanderDulled: 1
+    MailKatana: 1
+    MailKnife: 1
+    MailNFGladiator: 0.1
+    MailNFConscript: 0.1
+    # Pranks
+    MailNFSmoke: 1
+    MailRestraints: 1
+    MailVagueThreat: 0.4
+    
+
+  # Department and job-specific mail can have slightly higher weights,
+  # since they'll be merged with the everyone pool.
+  departments:
+    Security:
+      MailSecurityDonuts: 3
+      MailSecurityFlashlight: 2
+      MailSecurityNonlethalsKit: 2
+      MailSecuritySpaceLaw: 1
+      MailSecurityNFMusket: 1
+
+  jobs:
+    StationRepresentative:
+      MailHoPBureaucracy: 2
+      MailHoPSupplement: 3
+      MailNFGoldCigars: 0.45
+    Sheriff:
+      MailSecurityNonlethalsKit: 2
+      MailNFGoldCigars: 0.45
+

@@ -1,0 +1,1013 @@
+# Altered Nyano mail tables
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFAlcohol
+  suffix: alcohol, extended
+  isFragile: true
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkAbsintheBottleFull
+      orGroup: Drink
+    - id: DrinkBlueCuracaoBottleFull
+      orGroup: Drink
+    - id: DrinkCoffeeLiqueurBottleFull
+      orGroup: Drink
+    - id: DrinkGinBottleFull
+      orGroup: Drink
+    - id: DrinkMelonLiquorBottleFull
+      orGroup: Drink
+    - id: DrinkRumBottleFull
+      orGroup: Drink
+    - id: DrinkTequilaBottleFull
+      orGroup: Drink
+    - id: DrinkVermouthBottleFull
+      orGroup: Drink
+    - id: DrinkVodkaBottleFull
+      orGroup: Drink
+    - id: DrinkWhiskeyBottleFull
+      orGroup: Drink
+    - id: DrinkWineBottleFull
+      orGroup: Drink
+    - id: DrinkChampagneBottleFull
+      orGroup: Drink
+      prob: 0.5
+    - id: DrinkGildlagerBottleFull
+      orGroup: Drink
+      prob: 0.5
+    - id: DrinkPatronBottleFull
+      orGroup: Drink
+      prob: 0.5
+    - id: DrinkGlass
+      amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFBible
+  suffix: bible, random
+  components:
+  - type: Mail
+    contents:
+    - id: Bible
+      orGroup: Book
+      prob: 0.9
+    - id: Weejurnum
+      orGroup: Book
+      prob: 0.1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFBikeHorn
+  suffix: bike horn, random
+  components:
+  - type: Mail
+    contents:
+    - id: BikeHorn
+      orGroup: Horn
+      prob: 0.75
+    - id: CluwneHorn
+      orGroup: Horn
+      prob: 0.25
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCake
+  suffix: cake, extended
+  components:
+  - type: Mail
+    isFragile: true
+    isPriority: true
+    contents:
+    - id: FoodCakeApple
+      orGroup: Cake
+    - id: FoodCakeBirthday
+      orGroup: Cake
+    - id: FoodCakeBlueberry
+      orGroup: Cake
+    - id: FoodCakeCarrot
+      orGroup: Cake
+    - id: FoodCakeCheese
+      orGroup: Cake
+    - id: FoodCakeChocolate
+      orGroup: Cake
+    - id: FoodCakeChristmas
+      orGroup: Cake
+    - id: FoodCakeClown
+      orGroup: Cake
+    - id: FoodCakeLemon
+      orGroup: Cake
+    - id: FoodCakeLime
+      orGroup: Cake
+    - id: FoodCakeOrange
+      orGroup: Cake
+    - id: FoodCakePumpkin
+      orGroup: Cake
+    - id: FoodCakeVanilla
+      orGroup: Cake
+    # Uncommon
+    - id: FoodMothMothmallow
+      orGroup: Cake
+      prob: 0.5
+    - id: FoodCakeSlime
+      orGroup: Cake
+      prob: 0.5
+    # Rare
+    - id: FoodCakeLemoon
+      orGroup: Cake
+      prob: 0.25
+    - id: FoodCakeSuppermatter
+      orGroup: Cake
+      prob: 0.25
+    - id: FoodCakeBrain
+      orGroup: Cake
+      prob: 0.25
+    # Ultra rare
+    - id: FoodCakeSpaceman
+      orGroup: Cake
+      prob: 0.05
+    - id: KnifePlastic
+    - id: ForkPlastic
+      amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCallForHelp
+  suffix: call-for-help
+  components:
+  - type: Mail
+    contents:
+    - id: PaperMailNFCallForHelp1
+      orGroup: Paper
+    - id: PaperMailNFCallForHelp2
+      orGroup: Paper
+    - id: PaperMailNFCallForHelp3
+      orGroup: Paper
+    - id: PaperMailNFCallForHelp4
+      orGroup: Paper
+    - id: PaperMailNFCallForHelp5
+      orGroup: Paper
+    - id: FlashlightLantern
+      orGroup: Gift
+    - id: Crowbar
+      orGroup: Gift
+      prob: 0.5
+    - id: CrowbarRed
+      orGroup: Gift
+      prob: 0.5
+    - id: ClothingMaskGas
+      orGroup: Gift
+    - id: WeaponFlareGun
+      orGroup: Gift
+      prob: 0.25
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCheese
+  suffix: cheese, extended
+  components:
+  - type: Mail
+    isFragile: true
+    isPriority: true
+    contents:
+    - id: FoodCheese
+      orGroup: Cheese
+      prob: 0.5
+    - id: FoodChevre
+      orGroup: Cheese
+      prob: 0.5
+    - id: KnifePlastic
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCigarettes
+  suffix: cigs, random
+  components:
+  - type: Mail
+    contents:
+    - id: CigPackBlack
+      orGroup: Cigs
+    - id: CigPackBlue
+      orGroup: Cigs
+    - id: CigPackGreen
+      orGroup: Cigs
+    - id: CigPackRed
+      orGroup: Cigs
+    - id: CheapLighter
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFGoldCigars
+  suffix: cigars, premium
+  components:
+  - type: Mail
+    contents:
+    - id: CigarGoldCase
+      orGroup: Cigars
+    - id: FlippoLighter
+      orGroup: Lighter
+      prob: 0.95
+    - id: FlippoEngravedLighter
+      orGroup: Lighter
+      prob: 0.05
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCookies
+  suffix: cookies, random
+  components:
+  - type: Mail
+    # What, you want to eat stale cookies?
+    isPriority: true
+    contents:
+      # Cookie 1
+    - id: FoodBakedCookie
+      orGroup: Cookie1
+    - id: FoodBakedCookieOatmeal
+      orGroup: Cookie1
+    - id: FoodBakedCookieRaisin
+      orGroup: Cookie1
+    - id: FoodBakedCookieSugar
+      orGroup: Cookie1
+      # Cookie 2
+    - id: FoodBakedCookie
+      orGroup: Cookie2
+    - id: FoodBakedCookieOatmeal
+      orGroup: Cookie2
+    - id: FoodBakedCookieRaisin
+      orGroup: Cookie2
+    - id: FoodBakedCookieSugar
+      orGroup: Cookie2
+      # Cookie 3
+    - id: FoodBakedCookie
+      orGroup: Cookie3
+    - id: FoodBakedCookieOatmeal
+      orGroup: Cookie3
+    - id: FoodBakedCookieRaisin
+      orGroup: Cookie3
+    - id: FoodBakedCookieSugar
+      orGroup: Cookie3
+      # Cookie 4
+    - id: FoodBakedCookie
+      orGroup: Cookie4
+    - id: FoodBakedCookieOatmeal
+      orGroup: Cookie4
+    - id: FoodBakedCookieRaisin
+      orGroup: Cookie4
+    - id: FoodBakedCookieSugar
+      orGroup: Cookie4
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFMoney
+  suffix: money, extended
+  components:
+  - type: Mail
+    contents:
+      # Expected value: 1955 spesos
+    - id: SpaceCash100
+      orGroup: Cash
+      prob: 0.05
+    - id: SpaceCash500
+      orGroup: Cash
+      prob: 0.1
+    - id: SpaceCash1000
+      orGroup: Cash
+      prob: 0.4
+    - id: SpaceCash2500
+      orGroup: Cash
+      prob: 0.3
+    - id: SpaceCash5000
+      orGroup: Cash
+      prob: 0.15
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFMuffins
+  suffix: muffins, random
+  components:
+  - type: Mail
+    isPriority: true
+    contents:
+      # Muffin 1
+    - id: FoodBakedMuffinBerry
+      orGroup: Muffin1
+    - id: FoodBakedMuffinCherry
+      orGroup: Muffin1
+    - id: FoodBakedMuffinBluecherry
+      orGroup: Muffin1
+    - id: FoodBakedMuffin
+      orGroup: Muffin1
+      # Muffin 2
+    - id: FoodBakedMuffinBerry
+      orGroup: Muffin2
+    - id: FoodBakedMuffinCherry
+      orGroup: Muffin2
+    - id: FoodBakedMuffinBluecherry
+      orGroup: Muffin2
+    - id: FoodBakedMuffin
+      orGroup: Muffin2
+      # Muffin 3
+    - id: FoodBakedMuffinBerry
+      orGroup: Muffin3
+    - id: FoodBakedMuffinCherry
+      orGroup: Muffin3
+    - id: FoodBakedMuffinBluecherry
+      orGroup: Muffin3
+    - id: FoodBakedMuffin
+      orGroup: Muffin3
+
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFPlushie
+  suffix: plushie, extended
+  components:
+  - type: Mail
+    contents:
+      # These are all grouped up now to guarantee at least one item received.
+      # The downside is you're not going to get half a dozen plushies anymore.
+    - id: PlushieBee
+      orGroup: Plushie
+    - id: PlushieRGBee
+      prob: 0.5
+      orGroup: Plushie
+    - id: PlushieNuke
+      orGroup: Plushie
+    - id: PlushieRouny
+      orGroup: Plushie
+    - id: PlushieLizard
+      orGroup: Plushie
+    - id: PlushieSpaceLizard
+      orGroup: Plushie
+    - id: PlushieRatvar
+      orGroup: Plushie
+    - id: PlushieNar
+      orGroup: Plushie
+    - id: PlushieCarp
+      orGroup: Plushie
+    - id: PlushieSlime
+      orGroup: Plushie
+    - id: PlushieSnake
+      orGroup: Plushie
+    - id: PlushieMoffRandom
+      orGroup: Plushie
+    - id: PlushieMoff
+      prob: 0.5
+      orGroup: Plushie
+    - id: PlushieMoffsician
+      prob: 0.5
+      orGroup: Plushie
+    - id: PlushieMoffbar
+      prob: 0.5
+      orGroup: Plushie
+      # Rare loot, drops should be special.
+    - id: PlushieSlips
+      prob: 0.05
+      orGroup: Plushie
+    - id: PlushieJester
+      prob: 0.05
+      orGroup: Plushie
+    - id: PlushieTrystan
+      prob: 0.05
+      orGroup: Plushie
+
+# Random snacks, replaces MailChocolate (lousy animal organs)
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSnacks
+  suffix: snacks, random
+  components:
+  - type: Mail
+    contents:
+    # Snack 1
+    - id: FoodSnackChocolate
+      orGroup: Snack1
+    - id: FoodSnackPopcorn
+      orGroup: Snack1
+    - id: FoodSnackChips
+      orGroup: Snack1
+    - id: FoodSnackBoritos
+      orGroup: Snack1
+    - id: FoodSnackSus
+      orGroup: Snack1
+    - id: FoodSnackPistachios
+      orGroup: Snack1
+    - id: FoodSnackRaisins
+      orGroup: Snack1
+    - id: FoodSnackCheesie
+      orGroup: Snack1
+    - id: FoodSnackEnergy
+      orGroup: Snack1
+    - id: FoodSnackCnDs
+      orGroup: Snack1
+    - id: FoodSnackSemki
+      orGroup: Snack1
+    - id: FoodSnackSyndi
+      orGroup: Snack1
+      prob: 0.5
+    # Snack 2
+    - id: FoodSnackChocolate
+      orGroup: Snack2
+    - id: FoodSnackPopcorn
+      orGroup: Snack2
+    - id: FoodSnackChips
+      orGroup: Snack2
+    - id: FoodSnackBoritos
+      orGroup: Snack2
+    - id: FoodSnackSus
+      orGroup: Snack2
+    - id: FoodSnackPistachios
+      orGroup: Snack2
+    - id: FoodSnackRaisins
+      orGroup: Snack2
+    - id: FoodSnackCheesie
+      orGroup: Snack2
+    - id: FoodSnackEnergy
+      orGroup: Snack2
+    - id: FoodSnackCnDs
+      orGroup: Snack2
+    - id: FoodSnackSemki
+      orGroup: Snack2
+    - id: FoodSnackSyndi
+      orGroup: Snack2
+      prob: 0.5
+    # Snack 3
+    - id: FoodSnackChocolate
+      orGroup: Snack3
+    - id: FoodSnackPopcorn
+      orGroup: Snack3
+    - id: FoodSnackChips
+      orGroup: Snack3
+    - id: FoodSnackBoritos
+      orGroup: Snack3
+    - id: FoodSnackSus
+      orGroup: Snack3
+    - id: FoodSnackPistachios
+      orGroup: Snack3
+    - id: FoodSnackRaisins
+      orGroup: Snack3
+    - id: FoodSnackCheesie
+      orGroup: Snack3
+    - id: FoodSnackEnergy
+      orGroup: Snack3
+    - id: FoodSnackCnDs
+      orGroup: Snack3
+    - id: FoodSnackSemki
+      orGroup: Snack3
+    - id: FoodSnackSyndi
+      orGroup: Snack3
+      prob: 0.5
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFVagueThreat
+  suffix: vague-threat
+  components:
+  - type: Mail
+    contents:
+    - id: PaperMailNFVagueThreat1
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat2
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat3
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat4
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat5
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat6
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat7
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat8
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat9
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat10
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat11
+      orGroup: Paper
+    - id: PaperMailNFVagueThreat12
+      orGroup: Paper
+    - id: KitchenKnife
+      orGroup: ThreateningObject
+    - id: ButchCleaver
+      orGroup: ThreateningObject
+    - id: CombatKnife
+      orGroup: ThreateningObject
+    - id: SurvivalKnife
+      orGroup: ThreateningObject
+    - id: SoapHomemade
+      orGroup: ThreateningObject
+    - id: FoodMeat
+      orGroup: ThreateningObject
+    - id: OrganHumanHeart
+      orGroup: ThreateningObject
+
+# Frontier Mail (Pony Express?)
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSmoke
+  suffix: smoke
+  components:
+  - type: Mail
+    contents:
+    - id: DelayedSmoke
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFT2ComponentBox
+  suffix: T2 components
+  components:
+  - type: Mail
+    contents:
+    - id: BoxT2ComponentsAssorted
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFT3ComponentBox
+  suffix: T3 components
+  components:
+  - type: Mail
+    contents:
+    - id: BoxT3ComponentsAssorted
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFT4ComponentBox
+  suffix: T4 components
+  components:
+  - type: Mail
+    contents:
+    - id: BoxT4ComponentsAssorted
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFDonkPockets
+  suffix: donk pockets, random
+  components:
+  - type: Mail
+    contents:
+    - id: FoodBoxDonkpocket
+      orGroup: Donk
+      prob: 0.4 # Higher probability, useful for chefs.
+    - id: FoodBoxDonkpocketSpicy
+      orGroup: Donk
+      prob: 0.1
+    - id: FoodBoxDonkpocketTeriyaki
+      orGroup: Donk
+      prob: 0.1
+    - id: FoodBoxDonkpocketPizza
+      orGroup: Donk
+      prob: 0.1
+    - id: FoodBoxDonkpocketStonk
+      orGroup: Donk
+      prob: 0.05
+    - id: FoodBoxDonkpocketCarp
+      orGroup: Donk
+      prob: 0.05
+    - id: FoodBoxDonkpocketBerry
+      orGroup: Donk
+      prob: 0.1
+    - id: FoodBoxDonkpocketHonk
+      orGroup: Donk
+      prob: 0.05
+    - id: FoodBoxDonkpocketDink
+      orGroup: Donk
+      prob: 0.05 # Bad luck.
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSodaPwrGame
+  suffix: Pwrgame
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkPwrGameCan
+      amount: 3
+    - id: PaperMailNFPwrGameAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSodaRedBool
+  suffix: Red Bool
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkEnergyDrinkCan
+      amount: 3
+    - id: PaperMailNFRedBoolAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSodaSpaceCola
+  suffix: Space Cola
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkColaBottleFull
+    - id: PaperMailNFSpaceColaAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSodaSpaceMountainWind
+  suffix: Space Mountain Wind
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkSpaceMountainWindBottleFull
+    - id: PaperMailNFSpaceMountainWindAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSodaSpaceUp
+  suffix: Space Up
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkSpaceUpBottleFull
+    - id: PaperMailNFSpaceUpAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFJoints
+  suffix: joints
+  components:
+  - type: Mail
+    contents:
+    # Smokeable 1
+    - id: Joint
+      orGroup: Smokeable1
+      prob: 0.35
+    - id: JointRainbow
+      orGroup: Smokeable1
+      prob: 0.15
+    - id: Blunt
+      orGroup: Smokeable1
+      prob: 0.35
+    - id: BluntRainbow
+      orGroup: Smokeable1
+      prob: 0.15
+    # Smokeable 2
+    - id: Joint
+      orGroup: Smokeable2
+      prob: 0.35
+    - id: JointRainbow
+      orGroup: Smokeable2
+      prob: 0.15
+    - id: Blunt
+      orGroup: Smokeable2
+      prob: 0.35
+    - id: BluntRainbow
+      orGroup: Smokeable2
+      prob: 0.15
+
+# Catchall for food that can't otherwise be created outside of random spawners
+# Mmm, mail food
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFUnusualFood
+  suffix: unusual food
+  components:
+  - type: Mail
+    isPriority: true
+    isFragile: true
+    contents:
+    - id: FoodMealNachos
+      orGroup: Food
+    - id: FoodMealNachosCheesy
+      orGroup: Food
+    - id: FoodMealNachosCuban
+      orGroup: Food
+    - id: FoodMealMint
+      orGroup: Food
+    - id: FoodMealEggplantParm
+      orGroup: Food
+    - id: FoodMealPotatoYaki
+      orGroup: Food
+    - id: FoodMealCornedbeef
+      orGroup: Food
+    - id: FoodMealBearsteak
+      orGroup: Food
+    - id: FoodMealPigblanket
+      orGroup: Food
+    - id: FoodMealEggsbenedict
+      orGroup: Food
+    - id: FoodMealOmelette
+      orGroup: Food
+    - id: FoodMealFriedegg
+      orGroup: Food
+    - id: FoodMealMilkape
+      orGroup: Food
+    - id: FoodMealMemoryleek
+      orGroup: Food
+    - id: DisgustingSweptSoup
+      orGroup: Food
+    - id: FoodBreadVolcanic
+      orGroup: Food
+    - id: FoodBakedWaffleSoylent
+      orGroup: Food
+    - id: FoodBakedWaffleRoffle
+      orGroup: Food
+    - id: FoodPieCherry
+      orGroup: Food
+    - id: FoodPieFrosty
+      orGroup: Food
+    - id: FoodPizzaSassysage
+      orGroup: Food
+    - id: FoodPizzaArnold
+      orGroup: Food
+      prob: 0.05
+    - id: FoodMeatGoliathCooked
+      orGroup: Food
+    - id: FoodMeatRounyCooked
+      orGroup: Food
+    - id: FoodMeatLizardCooked
+      orGroup: Food
+    - id: FoodMeatSpiderlegCooked
+      orGroup: Food
+    - id: FoodMeatMeatballCooked
+      orGroup: Food
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFBakedGoods
+  suffix: baked goods
+  components:
+  - type: Mail
+    isPriority: true
+    isFragile: true
+    contents:
+    - id: FoodBakedBunHoney
+      orGroup: Food
+    - id: FoodBakedBunHotX
+      orGroup: Food
+    - id: FoodBakedBunMeat
+      orGroup: Food
+    - id: FoodBakedPretzel
+      orGroup: Food
+    - id: FoodBakedCannoli
+      orGroup: Food
+    - id: FoodDonutPlain
+      orGroup: Food
+    - id: FoodDonutJellyPlain
+      orGroup: Food
+    - id: FoodDonutHomer
+      orGroup: Food
+    - id: FoodDonutChaos
+      orGroup: Food
+    - id: FoodDonutMeat
+      orGroup: Food
+    - id: FoodDonutPink
+      orGroup: Food
+    - id: FoodDonutSpaceman
+      orGroup: Food
+    - id: FoodDonutApple
+      orGroup: Food
+    - id: FoodDonutCaramel
+      orGroup: Food
+    - id: FoodDonutChocolate
+      orGroup: Food
+    - id: FoodDonutBlumpkin
+      orGroup: Food
+    - id: FoodDonutBungo
+      orGroup: Food
+    - id: FoodDonut
+      orGroup: Food
+    - id: FoodDonutSweetpea
+      orGroup: Food
+    - id: FoodDonutJellyHomer
+      orGroup: Food
+    - id: FoodDonutJellyPink
+      orGroup: Food
+    - id: FoodDonutJellySpaceman
+      orGroup: Food
+    - id: FoodDonutJellyApple
+      orGroup: Food
+    - id: FoodDonutJellyCaramel
+      orGroup: Food
+    - id: FoodDonutJellyChocolate
+      orGroup: Food
+    - id: FoodDonutJellyBlumpkin
+      orGroup: Food
+    - id: FoodDonutJellyBungo
+      orGroup: Food
+    - id: FoodDonutJelly
+      orGroup: Food
+    - id: FoodDonutJellySweetpea
+      orGroup: Food
+    - id: FoodDonutJellySlugcat
+      orGroup: Food
+    - id: FoodFrozenSandwich # ah yes, baked goods
+      orGroup: Food
+    - id: FoodFrozenFreezy
+      orGroup: Food
+    - id: FoodFrozenSundae
+      orGroup: Food
+    - id: FoodFrozenCornuto
+      orGroup: Food
+    - id: FoodFrozenPopsicleOrange
+      orGroup: Food
+    - id: FoodFrozenPopsicleBerry
+      orGroup: Food
+    - id: FoodFrozenPopsicleJumbo
+      orGroup: Food
+    - id: FoodFrozenSnowcone
+      orGroup: Food
+    - id: FoodFrozenSnowconeBerry
+      orGroup: Food
+    - id: FoodFrozenSnowconeFruit
+      orGroup: Food
+    - id: FoodFrozenSnowconeClown
+      orGroup: Food
+    - id: FoodFrozenSnowconeMime
+      orGroup: Food
+    - id: FoodFrozenSnowconeRainbow
+      orGroup: Food
+    - id: FoodFrozenSnowconeMime
+      orGroup: Food
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFUnusualProduce
+  suffix: unusual produce
+  components:
+  - type: Mail
+    isPriority: true
+    isFragile: true
+    contents:
+    - id: FoodLaughinPeaPod
+      orGroup: Produce
+      amount: 3
+    - id: FoodMimana
+      orGroup: Produce
+      amount: 3
+    - id: FoodLemoon
+      orGroup: Produce
+      amount: 3
+    - id: FoodBlueTomato
+      orGroup: Produce
+      amount: 3
+    - id: FoodBloodTomato
+      orGroup: Produce
+      amount: 3
+    - id: FoodLily
+      orGroup: Produce
+      amount: 3
+      prob: 0.5
+    - id: FoodAmbrosiaDeus
+      orGroup: Produce
+      amount: 2
+      prob: 0.5
+    - id: FoodSpacemansTrumpet
+      orGroup: Produce
+      prob: 0.5
+    - id: FoodKoibean
+      orGroup: Produce
+      amount: 3
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSoaps
+  suffix: soap sampler
+  components:
+  - type: Mail
+    contents:
+    - id: BoxSoapsAssorted
+    - id: PaperMailNTSoapAd1
+      orGroup: Ad
+    - id: PaperMailNTSoapAd2
+      orGroup: Ad
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSoapsOmega
+  suffix: soap sampler, omega
+  components:
+  - type: Mail
+    contents:
+    - id: BoxSoapsAssortedOmega
+    - id: PaperMailNTSoapAd1
+      orGroup: Ad
+    - id: PaperMailNTSoapAd2
+      orGroup: Ad
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSecurityNFMusket
+  suffix: musket
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingHeadHatPwig
+    - id: Musket
+    - id: CartridgeAntiMateriel
+      amount: 2
+    - id: PaperMailNTMusket
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFFigurineBulk
+  suffix: figurine, bulk
+  components:
+  - type: Mail
+    contents:
+    - id: MysteryFigureBoxBulk
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFPAI
+  suffix: PAI, extended
+  components:
+  - type: Mail
+    contents:
+    - id: PersonalAI
+      orGroup: PAI
+      prob: 0.99
+    - id: SyndicatePersonalAI
+      orGroup: PAI
+      prob: 0.01
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFPen
+  suffix: fancy pen
+  components:
+  - type: Mail
+    contents:
+    - id: LuxuryPen
+      orGroup: Pen
+      prob: 0.5
+    - id: PenHop
+      orGroup: Pen
+      prob: 0.22
+    - id: PenCap
+      orGroup: Pen
+      prob: 0.22
+    - id: CyberPen
+      orGroup: Pen
+      prob: 0.03
+    - id: PenCentcom
+      orGroup: Pen
+      prob: 0.03
+    - id: PaperMailNFPaperPusherAd
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFGladiator
+  suffix: gladiator
+  components:
+  - type: Mail
+    contents:
+    - id: SpearBone
+    - id: ClothingOuterArmorGladiator
+    - id: ClothingHeadHatGladiator
+    - id: ClothingUniformJumpsuitGladiator
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFConscript
+  suffix: conscript
+  components:
+  - type: Mail
+    contents:
+    - id: Kardashev-MosinNonlethal # Avoiding lethal on-station shootouts.
+    - id: ClothingHeadHatUshanka
+    - id: SyndicateWhistle
+    - id: PaperMailNTConscript

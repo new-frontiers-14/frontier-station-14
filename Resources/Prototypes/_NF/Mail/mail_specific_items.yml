@@ -1,0 +1,315 @@
+# Pranks: admin items or effects put into an envelope, released when opened or damaged.
+- type: entity
+  id: DelayedSmoke
+  name: delayed smoke
+  suffix: "Smoke (10s, delayed)"
+  parent: BaseItem
+  components:
+  - type: DelayedItem
+    item: AdminInstantEffectSmoke10
+
+# Papers (letters, ad copy)
+- type: entity
+  id: PaperMailNFCallForHelp1
+  # noSpawn: true
+  suffix: "call for help 1, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Help![/head]
+      [head=1]They're coming![/head]
+      [head=1]Take this![/head]
+
+- type: entity
+  id: PaperMailNFCallForHelp2
+  # noSpawn: true
+  suffix: "call for help 2, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Check disposals![/head]
+
+- type: entity
+  id: PaperMailNFCallForHelp3
+  # noSpawn: true
+  suffix: "call for help 3, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]GET ME OUT![/head]
+
+- type: entity
+  id: PaperMailNFCallForHelp4
+  # noSpawn: true
+  suffix: "call for help 4, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Check maintenance![/head]
+
+- type: entity
+  id: PaperMailNFCallForHelp5
+  # noSpawn: true
+  suffix: "call for help 5, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Save me, please![/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat1
+  # noSpawn: true
+  suffix: "vague mail threat 1, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]I know what you did.[/head]
+      [head=2]You don't know what I'm going to do to you.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat2
+  # noSpawn: true
+  suffix: "vague mail threat 2, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]I'm coming for you.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat3
+  # noSpawn: true
+  suffix: "vague mail threat 3, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]You're next.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat4
+  # noSpawn: true
+  suffix: "vague mail threat 4, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]We see you.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat5
+  # noSpawn: true
+  suffix: "vague mail threat 5, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]I hope your affairs are in order.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat6
+  # noSpawn: true
+  suffix: "vague mail threat 6, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]It's only a matter of time.[/head]
+      [head=2]Enjoy it while it lasts.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat7
+  # noSpawn: true
+  suffix: "vague mail threat 7, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]Who should we mail your pieces to?[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat8
+  # noSpawn: true
+  suffix: "vague mail threat 8, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]Do you prefer to die slowly or quickly?[/head]
+      [head=1]Just kidding.[/head]
+      [head=1]We don't care what you think.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat9
+  # noSpawn: true
+  suffix: "vague mail threat 9, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]I think your head would look nice on my mantel.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat10
+  # noSpawn: true
+  suffix: "vague mail threat 10, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]You should have paid up.[/head]
+      [head=1]It's too late now.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat11
+  # noSpawn: true
+  suffix: "vague mail threat 11, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]Your family will miss you, but don't worry.[/head]
+      [head=1]We'll take care of them too.[/head]
+
+- type: entity
+  id: PaperMailNFVagueThreat12
+  # noSpawn: true
+  suffix: "vague mail threat 12, formatted"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]I have a bet that you're going to die today.[/head]
+      [head=2]I'm not afraid of cheating.[/head]
+
+- type: entity
+  id: PaperMailNFPwrGameAd
+  # noSpawn: true
+  suffix: "pwrgame ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Drink PwrGame.[/head]
+      [head=2]Proudly sponsoring the Frontier Block Game Championship for 15 years.[/head]
+
+- type: entity
+  id: PaperMailNFRedBoolAd
+  # noSpawn: true
+  suffix: "red bool ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]Try NEW Reformulated Red Bool![/head]
+      [head=3]Over [bold]1.5g[/bold] of caffeine!  Punch your heart into overdrive![/head]
+
+- type: entity
+  id: PaperMailNFSpaceColaAd
+  # noSpawn: true
+  suffix: "space cola ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=1]The classic taste you love, Space Cola.[/head]
+      [head=2]Certified lead-free.[/head]
+
+- type: entity
+  id: PaperMailNFSpaceMountainWindAd
+  # noSpawn: true
+  suffix: "space mountain wind ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=3]When it's time to game, there's one choice.[/head]
+      [head=1]Space Mountain Wind.[/head]
+
+- type: entity
+  id: PaperMailNFSpaceUpAd
+  # noSpawn: true
+  suffix: "space up ad"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=3]The crisp refreshing taste of lemons and limes.[/head]
+      [head=1]Space Up![/head]
+      [head=3]Why not ask for a Sui Dream from your local bartender?[/head]
+
+- type: entity
+  id: PaperMailNTSoapAd1
+  # noSpawn: true
+  suffix: "soap ad 1"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=3]Hello,[/head]
+
+      You have been selected to receive a complimentary sampler of scented soaps that Nanotrasen has to offer.
+      Why not enjoy a nice warm shower with our scented soaps?  Tested and effective vs. vent crud and mold.
+
+      We hope you enjoy.
+      [head=3][italic]Christopher Cleanman[/italic][/head]
+      Vice President, NT Habs - Toiletries Department
+
+- type: entity
+  id: PaperMailNTSoapAd2
+  # noSpawn: true
+  suffix: "soap ad 2"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]GREETINGS FRONTIER CITIZEN[/head]
+
+      OUR REPORTS INDICATE THAT YOUR PREVIOUS FAILED HYGIENE INSPECTION HAS REDUCED SECTOR EFFICIENCY BY 0.02%.
+      ENCLOSED IS A SELECTION OF HYGIENE PRODUCTS SUITABLE FOR USE BY ORGANICS.
+      WE HOPE THAT THIS SITUATION IS RESOLVED PROMPTLY.
+
+      [italic]THIS IS AN AUTOMATED MESSAGE.  DO NOT REPLY.[/italic]
+
+- type: entity
+  id: PaperMailNTConscript
+  # noSpawn: true
+  suffix: "conscript"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]NOT ONE STEP BACK.[/head]
+      [head=2]FOR THE FRONTIER.[/head]
+
+- type: entity
+  id: PaperMailNTMusket
+  # noSpawn: true
+  suffix: "musket"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]Use a musket for sector defense,[/head]
+      [head=2]like the founding fathers intended.[/head]
+
+- type: entity
+  id: PaperMailNFPaperPusherAd
+  # noSpawn: true
+  suffix: "paper pusher"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      [head=2]A Gift[/head]
+      Here is a pen for any letters you write or forms you need filled.
+      May you write well, neatly, and with style.
+
+      [italic]Frontier Paper Pusher's Club[/italic]
+
