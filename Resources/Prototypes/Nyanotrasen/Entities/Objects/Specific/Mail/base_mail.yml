@@ -4,8 +4,8 @@
   id: BaseMail
   name: mail-item-name-unaddressed
   components:
-  - type: Item
-    size: Normal
+#  - type: Item # Frontier
+#    size: Normal # Frontier
   - type: Mail
   - type: AccessReader
   - type: Sprite
@@ -19,7 +19,7 @@
       map: ["enum.MailVisualLayers.FragileStamp"]
       visible: false
     - map: ["enum.MailVisualLayers.JobStamp"]
-      scale: 0.5, 0.5
+      scale: 0.7, 0.7 # Frontier 0.5<0.7
       offset: 0.275, 0.2
     - state: locked
       map: ["enum.MailVisualLayers.Lock"]
@@ -92,7 +92,8 @@
     damage:
       types:
         Blunt: 10
-  - type: CargoSellBlacklist
+  - type: CargoSellBlacklist # Frontier
+
   - type: Food # Frontier - Moth food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
