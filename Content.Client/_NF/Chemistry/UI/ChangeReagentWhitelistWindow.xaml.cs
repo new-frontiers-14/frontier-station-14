@@ -121,13 +121,13 @@ public sealed partial class ChangeReagentWhitelistWindow : DefaultWindow
                 continue;
             }
 
-            ItemList.Item regentItem = new(ReagentList)
+            ItemList.Item reagentItem = new(ReagentList)
             {
                 Metadata = reagent,
                 Text = reagent.ID
             };
 
-            ReagentList.Add(regentItem);
+            ReagentList.Add(reagentItem);
         }
     }
 }
