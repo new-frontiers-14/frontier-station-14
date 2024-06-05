@@ -45,6 +45,14 @@
       board: [ DoorElectronicsFrontierCommand ]
 
 - type: entity
+  parent: [ AirlockEngineering, AirlockFrontierCommandLocked]
+  id: AirlockFrontierCommandEngineeringLocked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
+- type: entity
   parent: HighSecDoor
   id: HighSecFrontierCommandLocked
   suffix: Frontier Command, Locked
@@ -184,6 +192,22 @@
   parent: AirlockCommandGlassLocked
   id: AirlockFrontierCommandGlassLocked
   suffix: Frontier Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
+- type: entity
+  parent: [ AirlockEngineeringGlass, AirlockFrontierCommandGlassLocked]
+  id: AirlockFrontierCommandEngineeringGlassLocked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
+
+- type: entity
+  parent: [ AirlockAtmosphericsGlass, AirlockFrontierCommandGlassLocked]
+  id: AirlockFrontierCommandAtmosphericsGlassLocked
   components:
   - type: ContainerFill
     containers:
