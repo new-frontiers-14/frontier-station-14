@@ -4,9 +4,9 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Content.Shared.Abilities;
 
-namespace Content.Client.DeltaV.Overlays;
+namespace Content.Client.Nyanotrasen.Overlays;
 
-public sealed partial class UltraVisionOverlay : Overlay
+public sealed partial class DogVisionOverlay : Overlay
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -15,18 +15,18 @@ public sealed partial class UltraVisionOverlay : Overlay
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
-    private readonly ShaderInstance _ultraVisionShader;
+    private readonly ShaderInstance _dogVisionShader;
 
-    public UltraVisionOverlay()
+    public DogVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _ultraVisionShader = _prototypeManager.Index<ShaderPrototype>("UltraVision").Instance().Duplicate();
+        _dogVisionShader = _prototypeManager.Index<ShaderPrototype>("DogVision").Instance().Duplicate();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (_playerManager.LocalEntity is not { Valid: true } player
-            || !_entityManager.HasComponent<UltraVisionComponent>(player))
+            || !_entityManager.HasComponent<DogVisionComponent>(player))
         {
             return false;
         }
@@ -39,12 +39,12 @@ public sealed partial class UltraVisionOverlay : Overlay
         if (ScreenTexture is null)
             return;
 
-        _ultraVisionShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        _dogVisionShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
         worldHandle.SetTransform(Matrix3.Identity);
-        worldHandle.UseShader(_ultraVisionShader);
+        worldHandle.UseShader(_dogVisionShader);
         worldHandle.DrawRect(viewport, Color.White);
         worldHandle.UseShader(null); // important - as of writing, construction overlay breaks without this
     }
