@@ -68,6 +68,20 @@
     groups:
     - AllAccess
 
+- type: entity
+  save: false
+  id: MobHumanoidSimplifiedInvetory
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoid
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   name: Human NPC
@@ -201,20 +215,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: ascended_cultist
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: ascended_cultist
-      Critical:
-        Base: crit
-      Dead:
-        Base: dead
   - type: Carriable # Carrying system from nyanotrasen.
   - type: MobPrice
     price: 1500

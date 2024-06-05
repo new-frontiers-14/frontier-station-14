@@ -1,0 +1,273 @@
+# BASE
+## BACK - for gear and cash
+- type: entity
+  parent: BaseItem
+  id: MercenaryDuffelGiftBox
+  name: mercanary gear bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Duffels/mercenary.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+## BELT - for ammo and mags
+- type: entity
+  parent: BaseItem
+  id: MercenaryWebbingBox
+  name: mercanary ammo bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/mercwebbing.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+# MERCENARY NPC LOOT
+## TIER 1
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier1Pistol
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash1000
+      prob: 0.45
+    - id: WeaponPistolMk58Expedition
+      prob: 0.9
+    - id: ClothingOuterVestWebMercenary
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMecranaryTier1Pistol
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazinePistol
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.9
+    - id: MagazinePistolEmpty
+      prob: 0.8
+    - id: MagazinePistolEmpty
+      amount: 2
+      prob: 0.4
+    - id: MagazineBoxPistol
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier1Mosin
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash1000
+      prob: 0.45
+    - id: WeaponSniperMosinExpedition
+      prob: 0.9
+    - id: ClothingOuterVestWebMercenary
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMecranaryTier1Mosin
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazineBoxLightRifle
+      prob: 0.9
+    - id: MagazineBoxLightRifleBig
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+## TIER 2
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier2Shotgun
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash1000
+      prob: 0.45
+    - id: WeaponShotgunDoubleBarreledExpedition
+      prob: 0.9
+    - id: ClothingOuterArmorBasicSlim
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMecranaryTier2Shotgun
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BoxLethalshot
+      prob: 0.9
+    - id: BoxLethalshot
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier2Revolver
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.65
+    - id: SpaceCash1000
+      prob: 0.45
+    - id: WeaponRevolverArgenti
+      prob: 0.9
+    - id: WeaponRevolverArgenti
+      prob: 0.3
+    - id: ClothingOuterCoatBHTrench
+      prob: 0.4
+    - id: ClothingHeadHatBH
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltWebbingMecranaryTier2Revolver
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpeedLoaderRifleHeavy
+      prob: 0.9
+    - id: SpeedLoaderRifleHeavy
+      prob: 0.6
+    - id: SpeedLoaderRifleHeavy
+      prob: 0.1
+    - id: MagazineBoxRifle
+      prob: 0.9
+    - id: MagazineBoxRifleBig
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+## TIER 3
+
+## TIER 4
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier4Captain
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#C09F72"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#C09F72"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#C09F72"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#C09F72"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash2500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.65
+    - id: SpaceCash1000
+      prob: 0.45
+    - id: SpaceCash1000
+      prob: 0.15
+    - id: WeaponSniperRepeaterExpedition
+      prob: 0.9
+    - id: ClothingOuterArmorBulletproof
+      prob: 0.4
+    - id: MagazineBoxMagnum
+      prob: 0.9
+    - id: MagazineBoxMagnum
+      prob: 0.4
+    - id: MagazineBoxMagnum
+      prob: 0.2
+    - id: AmmoTechFabCircuitboard
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
