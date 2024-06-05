@@ -168,8 +168,8 @@ namespace Content.Client.PDA
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
 
-            _balance = Loc.GetString("comp-pda-ui-balance", ("balance", state.Balance)); // Frontier
-            BalanceLabel.SetMarkup(_balance); // Frontier
+            _balance = state.Balance.ToString(); // Frontier
+            BalanceLabel.SetMarkup(Loc.GetString("comp-pda-ui-balance", ("balance", _balance))); // Frontier
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
