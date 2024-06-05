@@ -83,17 +83,6 @@
       state: inhand-right
     - sprite: Objects/Weapons/Melee/shields.rsi
       state: buckler-inhand-left
-  - type: BasicEntityAmmoProvider
-    proto: BulletPistol
-    capacity: 4
-    count: 4
-  - type: Gun
-    showExamineText: false
-    fireRate: 0.5
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
   name: mercenary soldier
@@ -111,7 +100,7 @@
       state: human
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
-      color: "#404029"
+      color: "#d3bf86"
     - sprite: Clothing/Shoes/Boots/mercboots.rsi
       state: equipped-FEET
     - sprite: Clothing/Hands/Gloves/mercbattle.rsi
@@ -152,7 +141,7 @@
       state: human
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
-      color: "#404029"
+      color: "#d3bf86"
     - sprite: Clothing/Shoes/Boots/mercboots.rsi
       state: equipped-FEET
     - sprite: Clothing/Hands/Gloves/mercbattle.rsi
@@ -303,7 +292,53 @@
       state: metal-inhand-left
 
 ## Tier 3
-
+- type: entity
+  name: mercenary specialist
+  parent: MobMercenaryBase
+  id: MobMercenarySpecialistMedic
+  #noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearTier3Medic
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#2e687a"
+    - sprite: Clothing/Shoes/Boots/combatboots.rsi
+      state: equipped-FEET
+    - sprite: Clothing/Hands/Gloves/fingerless.rsi
+      state: equipped-HAND
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/medicalsecurity.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/light_riot.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+      state: electric-inhand-right
+    - sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+      state: inhand-right-3
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
 
 ## Tier 4 - Boss
 - type: entity
