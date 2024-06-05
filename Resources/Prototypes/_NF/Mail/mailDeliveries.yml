@@ -7,7 +7,6 @@
     MailNFCheese: 1
     MailNFCookies: 1
     MailNFDonkPockets: 1
-    MailMoffins: 0.5
     MailNFMuffins: 1
     MailNFSnacks: 1
     MailNFSodaPwrGame: 0.2 # Mmm, ads
@@ -24,8 +23,8 @@
     MailCigars: 0.45
     MailNFGoldCigars: 0.05
     MailNFJoints: 0.5
-    # Outfits - these should share one share of the weights
-    MailWinterCoat: 1.5
+    # Outfits
+    MailWinterCoat: 0.5
     MailCosplayArc: 0.5
     MailCosplayGeisha: 0.5
     MailCosplayMaid: 0.5
@@ -33,7 +32,8 @@
     MailCosplaySchoolgirl: 0.5
     MailCosplayWizard: 0.5
     MailNoir: 0.5
-    # Accessories - should share one 
+    MailNFUnusualClothing: 0.5
+    # Accessories
     MailFishingCap: 0.5
     MailFlowers: 1
     MailSunglasses: 1
@@ -41,6 +41,7 @@
     MailNFBible: 1
     MailNFBikeHorn: 0.5
     MailCrayon: 1
+    MailNFDAW: 0.1
     MailFigurine: 1
     MailNFFigurineBulk: 1
     MailNFPAI: 1
@@ -52,12 +53,16 @@
     MailSpaceVillainDIY: 1
     # Useful
     MailNFCallForHelp: 0.6
+    MailNFCircuitboardIndustrial: 0.5
+    MailNFCircuitboardService: 0.5
     MailFlashlight: 1
+    MailNFHoverbike: 0.1
     MailNFMoney: 1
+    MailNFPen: 1
     MailNFT2ComponentBox: 0.3
     MailNFT3ComponentBox: 0.6
     MailNFT4ComponentBox: 0.1
-    MailNFPen: 1
+    MailNFUnicycle: 0.5
     # Weapons
     MailHighlander: 0.12
     MailHighlanderDulled: 1
@@ -69,6 +74,7 @@
     MailNFSmoke: 1
     MailRestraints: 1
     MailVagueThreat: 0.4
+    MailNFCritter: 1
     
 
   # Department and job-specific mail can have slightly higher weights,
@@ -78,13 +84,12 @@
       MailSecurityDonuts: 3
       MailSecurityFlashlight: 2
       MailSecurityNonlethalsKit: 2
+      MailSecurityNFHudNfsdMed: 1
       MailSecuritySpaceLaw: 1
       MailSecurityNFMusket: 1
 
   jobs:
     StationRepresentative:
-      MailHoPBureaucracy: 2
-      MailHoPSupplement: 3
       MailNFGoldCigars: 0.45
     Sheriff:
       MailSecurityNonlethalsKit: 2

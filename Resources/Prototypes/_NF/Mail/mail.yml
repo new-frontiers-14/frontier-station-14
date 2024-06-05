@@ -214,6 +214,7 @@
     - id: FlippoLighter
       orGroup: Lighter
       prob: 0.95
+      # Rare
     - id: FlippoEngravedLighter
       orGroup: Lighter
       prob: 0.05
@@ -225,7 +226,6 @@
   suffix: cookies, random
   components:
   - type: Mail
-    # What, you want to eat stale cookies?
     isPriority: true
     contents:
       # Cookie 1
@@ -308,6 +308,9 @@
       orGroup: Muffin1
     - id: FoodBakedMuffin
       orGroup: Muffin1
+    - id: FoodMothMoffin
+      orGroup: Muffin1
+      prob: 0.5
       # Muffin 2
     - id: FoodBakedMuffinBerry
       orGroup: Muffin2
@@ -317,6 +320,9 @@
       orGroup: Muffin2
     - id: FoodBakedMuffin
       orGroup: Muffin2
+    - id: FoodMothMoffin
+      orGroup: Muffin2
+      prob: 0.5
       # Muffin 3
     - id: FoodBakedMuffinBerry
       orGroup: Muffin3
@@ -326,6 +332,9 @@
       orGroup: Muffin3
     - id: FoodBakedMuffin
       orGroup: Muffin3
+    - id: FoodMothMoffin
+      orGroup: Muffin3
+      prob: 0.5
 
 
 - type: entity
@@ -766,92 +775,136 @@
     isFragile: true
     contents:
     - id: FoodBakedBunHoney
+      amount: 2
       orGroup: Food
     - id: FoodBakedBunHotX
+      amount: 2
       orGroup: Food
     - id: FoodBakedBunMeat
+      amount: 2
       orGroup: Food
     - id: FoodBakedPretzel
+      amount: 2
       orGroup: Food
     - id: FoodBakedCannoli
+      amount: 2
       orGroup: Food
     - id: FoodDonutPlain
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyPlain
+      amount: 2
       orGroup: Food
     - id: FoodDonutHomer
+      amount: 2
       orGroup: Food
     - id: FoodDonutChaos
+      amount: 2
       orGroup: Food
     - id: FoodDonutMeat
+      amount: 2
       orGroup: Food
     - id: FoodDonutPink
+      amount: 2
       orGroup: Food
     - id: FoodDonutSpaceman
+      amount: 2
       orGroup: Food
     - id: FoodDonutApple
+      amount: 2
       orGroup: Food
     - id: FoodDonutCaramel
+      amount: 2
       orGroup: Food
     - id: FoodDonutChocolate
+      amount: 2
       orGroup: Food
     - id: FoodDonutBlumpkin
+      amount: 2
       orGroup: Food
     - id: FoodDonutBungo
+      amount: 2
       orGroup: Food
     - id: FoodDonut
+      amount: 2
       orGroup: Food
     - id: FoodDonutSweetpea
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyHomer
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyPink
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellySpaceman
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyApple
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyCaramel
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyChocolate
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyBlumpkin
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellyBungo
+      amount: 2
       orGroup: Food
     - id: FoodDonutJelly
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellySweetpea
+      amount: 2
       orGroup: Food
     - id: FoodDonutJellySlugcat
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSandwich # ah yes, baked goods
+      amount: 2
       orGroup: Food
     - id: FoodFrozenFreezy
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSundae
+      amount: 2
       orGroup: Food
     - id: FoodFrozenCornuto
+      amount: 2
       orGroup: Food
     - id: FoodFrozenPopsicleOrange
+      amount: 2
       orGroup: Food
     - id: FoodFrozenPopsicleBerry
+      amount: 2
       orGroup: Food
     - id: FoodFrozenPopsicleJumbo
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowcone
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeBerry
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeFruit
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeClown
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeMime
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeRainbow
+      amount: 2
       orGroup: Food
     - id: FoodFrozenSnowconeMime
+      amount: 2
       orGroup: Food
 
 - type: entity
@@ -939,6 +992,17 @@
 - type: entity
   noSpawn: true
   parent: BaseMail
+  id: MailSecurityNFHudNfsdMed
+  suffix: musket
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingEyesHudNfsdMed
+
+# Could add spessman battle rules here
+- type: entity
+  noSpawn: true
+  parent: BaseMail
   id: MailNFFigurineBulk
   suffix: figurine, bulk
   components:
@@ -971,19 +1035,19 @@
     contents:
     - id: LuxuryPen
       orGroup: Pen
-      prob: 0.5
+      prob: 0.4
     - id: PenHop
       orGroup: Pen
-      prob: 0.22
+      prob: 0.2
     - id: PenCap
       orGroup: Pen
-      prob: 0.22
+      prob: 0.2
     - id: CyberPen
       orGroup: Pen
-      prob: 0.03
+      prob: 0.1
     - id: PenCentcom
       orGroup: Pen
-      prob: 0.03
+      prob: 0.1
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1007,7 +1071,237 @@
   components:
   - type: Mail
     contents:
-    - id: Kardashev-MosinNonlethal # Avoiding lethal on-station shootouts.
+    - id: Kardashev-MosinNonlethal
     - id: ClothingHeadHatUshanka
     - id: SyndicateWhistle
     - id: PaperMailNTConscript
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFHoverbike
+  suffix: conscript
+  components:
+  - type: Mail
+    contents:
+    - id: HoverbikeFlatpack
+    - id: Multitool
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFDAW
+  suffix: conscript
+  components:
+  - type: Mail
+    contents:
+    - id: DawInstrumentFlatpack
+    - id: Multitool
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCircuitboardIndustrial
+  suffix: conscript
+  components:
+  - type: Mail
+    contents:
+    - id: ThermomachineFreezerCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: ThermomachineHeaterCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: HellfireFreezerCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: HellfireHeaterCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: CryoPodMachineCircuitboard # Medical as well
+      orGroup: Board
+      prob: 0.5
+    - id: ChemMasterMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: ChemDispenserMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: StasisBedMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: BiomassReclaimerMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: BiofabricatorMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: TurboItemRechargerCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: AutolatheHyperConvectionMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: ProtolatheHyperConvectionMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: HotplateMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: CircuitImprinterHyperConvectionMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: SheetifierMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: RadarConsoleCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: OreProcessorIndustrialMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: GasRecyclerMachineCircuitboard
+      orGroup: Board
+      prob: 0.1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCircuitboardService
+  suffix: conscript
+  components:
+  - type: Mail
+    contents:
+    - id: ComputerTelevisionCircuitboard
+      orGroup: Board
+    - id: ReagentGrinderMachineCircuitboard
+      orGroup: Board
+    - id: ReagentGrinderIndustrialMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: SurveillanceWirelessCameraMovableCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: MicrowaveMachineCircuitboard
+      orGroup: Board
+    - id: ElectricGrillMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: FatExtractorMachineCircuitboard
+      orGroup: Board
+      prob: 0.25
+    - id: SeedExtractorMachineCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: BoozeDispenserMachineCircuitboard
+      orGroup: Board
+    - id: SodaDispenserMachineCircuitboard
+      orGroup: Board
+    - id: MassMediaCircuitboard
+      orGroup: Board
+      prob: 0.5
+    - id: TelecomServerCircuitboard
+      orGroup: Board
+      prob: 0.25
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFUnusualClothing
+  suffix: unusual clothes
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpsuitGalaxyBlue
+        orGroup: Clothes
+      - id: ClothingUniformJumpsuitGalaxyRed
+        orGroup: Clothes
+      - id: ClothingKimonoPink
+        orGroup: Clothes
+      - id: ClothingKimonoBlue
+        orGroup: Clothes
+      - id: ClothingUniformMartialGi
+        orGroup: Clothes
+      - id: ClothingUniformKendoHakama
+        orGroup: Clothes
+      - id: UniformJabroni # HMMM
+        orGroup: Clothes
+      - id: ClothingNeckBling
+        orGroup: Clothes
+      - id: ClothingShoesBling
+        orGroup: Clothes
+      - id: ClothingNeckCloakAdmin
+        orGroup: Clothes
+      - id: ClothingHeadHatFancyCrown
+        orGroup: Clothes
+      - id: ClothingHeadHatCone
+        orGroup: Clothes
+      - id: ClothingHeadHatRichard
+        orGroup: Clothes
+      - id: ClothingHeadHatAnimalHeadslime
+        orGroup: Clothes
+      - id: ClothingHeadHatDogEars
+        orGroup: Clothes
+      - id: ClothingHeadHatCatEars
+        orGroup: Clothes
+      - id: ClothingEyesGlassesOutlawGlasses
+        orGroup: Clothes
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFUnicycle
+  suffix: unicycle
+  components:
+  - type: Mail
+    contents:
+      - id: VehicleUnicycleFolded
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCritter
+  suffix: critter
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      # Bugs (weight: 2)
+      - id: MobCockroach
+        orGroup: Critter
+        prob: 0.45
+      - id: MobSlug
+        orGroup: Critter
+        prob: 0.45
+      - id: MobArgocyteSlurva # honorary bug?
+        orGroup: Critter
+        prob: 0.45
+      - id: MobBee
+        orGroup: Critter
+        prob: 0.45
+      - id: MobMothroach
+        orGroup: Critter
+        prob: 0.2 # Uncommon
+      # Small reptiles (weight: 1)
+      - id: MobLizard
+        orGroup: Critter
+        prob: 0.34
+      - id: MobSnake
+        orGroup: Critter
+        prob: 0.33
+      - id: MobFrog
+        orGroup: Critter
+        prob: 0.33
+      # Small mammals (weight: 1)
+      - id: MobMouse
+        orGroup: Critter
+        prob: 0.33
+      - id: MobMouse1
+        orGroup: Critter
+        prob: 0.33
+      - id: MobMouse2
+        orGroup: Critter
+        prob: 0.33
+      - id: MobMouseCancer
+        orGroup: Critter
+        prob: 0.01 # Rare

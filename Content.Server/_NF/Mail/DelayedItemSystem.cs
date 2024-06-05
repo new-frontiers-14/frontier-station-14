@@ -5,7 +5,7 @@ using Robust.Shared.Containers;
 namespace Content.Server.Mail
 {
     /// <summary>
-    /// A placeholder for another entity, spawned when dropped or placed in someone's hands.
+    /// A placeholder for another entity, spawned when taken out of a container, with the placeholder deleted shortly after.
     /// Useful for storing instant effect entities, e.g. smoke, in the mail.
     /// </summary>
     public sealed class DelayedItemSystem : EntitySystem
@@ -17,55 +17,39 @@ namespace Content.Server.Mail
             SubscribeLocalEvent<DelayedItemComponent, DropAttemptEvent>(OnDropAttempt);
             SubscribeLocalEvent<DelayedItemComponent, GotEquippedHandEvent>(OnHandEquipped);
             SubscribeLocalEvent<DelayedItemComponent, DamageChangedEvent>(OnDamageChanged);
-            //SubscribeLocalEvent<DelayedItemComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
             SubscribeLocalEvent<DelayedItemComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
         }
 
         /// <summary>
-        /// MoveEvent handler - item has been dropped or placed on the ground, replace with delayed item.
+        /// EntGotRemovedFromContainerMessage handler - spawn the intended entity after removed from a container.
         /// </summary>
         private void OnRemovedFromContainer(EntityUid uid, DelayedItemComponent component, ContainerModifiedMessage args)
         {
-            ReplaceItemInContainer(uid, component, args.Container);
+            Spawn(component.Item, Transform(uid).Coordinates);
         }
 
         /// <summary>
-        /// HandSelectedEvent handler - item has put into a player's hand, replace with delayed item.
+        /// GotEquippedHandEvent handler - destroy the placeholder.
         /// </summary>
         private void OnHandEquipped(EntityUid uid, DelayedItemComponent component, EquippedHandEvent args)
         {
-            //ReplaceItem(uid, component);
-            DeleteEntity(uid);
-        }
-
-        private void OnDropAttempt(EntityUid uid, DelayedItemComponent component, DropAttemptEvent args)
-        {
-            //ReplaceItem(uid, component);
-            DeleteEntity(uid);
-        }
-
-        /// <summary>
-        /// HandSelectedEvent handler - item has put into a player's hand, replace with delayed item.
-        /// </summary>
-        private void OnDamageChanged(EntityUid uid, DelayedItemComponent component, DamageChangedEvent args)
-        {
-            //ReplaceItem(uid, component);
-            Spawn(component.Item, Transform(uid).Coordinates);
             EntityManager.DeleteEntity(uid);
         }
 
         /// <summary>
-        /// Replacement mechanism.  Delays spawning a particular item, deletes the delaying component.
+        /// OnDropAttempt handler - destroy the placeholder.
         /// </summary>
-        private void ReplaceItemInContainer(EntityUid uid, DelayedItemComponent component, BaseContainer container)
+        private void OnDropAttempt(EntityUid uid, DelayedItemComponent component, DropAttemptEvent args)
         {
-            //EntityManager.SpawnInContainerOrDrop(component.Item, container.Owner, container.ID, Transform(uid));
-            //EntityManager.Spawn(component.Item, Transform(uid).Coordinates);
-            Spawn(component.Item, Transform(uid).Coordinates);
+            EntityManager.DeleteEntity(uid);
         }
 
-        private void DeleteEntity(EntityUid uid)
+        /// <summary>
+        /// OnDamageChanged handler - item has taken damage (e.g. inside the envelope), spawn the intended entity outside of any container and delete the placeholder.
+        /// </summary>
+        private void OnDamageChanged(EntityUid uid, DelayedItemComponent component, DamageChangedEvent args)
         {
+            Spawn(component.Item, Transform(uid).Coordinates);
             EntityManager.DeleteEntity(uid);
         }
     }

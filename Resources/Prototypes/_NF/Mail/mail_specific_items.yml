@@ -1,15 +1,15 @@
 # Pranks: admin items or effects put into an envelope, released when opened or damaged.
 - type: entity
   id: DelayedSmoke
+  parent: BaseItem
+  noSpawn: true
   name: delayed smoke
   suffix: "Smoke (10s, delayed)"
-  parent: BaseItem
   components:
   - type: DelayedItem
     item: AdminInstantEffectSmoke10
 
 # Papers (letters, ad copy)
-# TODO: look into center tag
 - type: entity
   id: PaperMailNFCallForHelp1
   # noSpawn: true
