@@ -244,7 +244,7 @@ namespace Content.Server.Connection
                 foreach (var server in serverList)
                 {
                     if (await _authManager.IsPlayerConnected(server, userId))
-                        return (ConnectionDenyReason.Connected, "Account Already Connected to Official Servers", null);
+                        return (ConnectionDenyReason.Connected, Loc.GetString("multiauth-already-connected"), null);
                 }
             }
             // end Frontier
