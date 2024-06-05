@@ -2,7 +2,9 @@
   name: syndicate naval agent
   abstract: true
   noSpawn: true
-  parent: MobHumanoidHostileBase
+  parent:
+  - MobHumanoidHostileBase
+  - MobHumanoidInvetory
   id: MobSyndicateNavalBase
   components:
   - type: Body
@@ -635,6 +637,8 @@
     rechargeCooldown: 2
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
+  - type: Inventory
+    templateId: human
   - type: BasicEntityAmmoProvider
     proto: SplatterChemCold
     capacity: 3

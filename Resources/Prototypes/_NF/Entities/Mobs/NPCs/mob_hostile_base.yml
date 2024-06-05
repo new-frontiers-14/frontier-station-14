@@ -70,11 +70,25 @@
 
 - type: entity
   save: false
-  id: MobHumanoidSimplifiedInvetory
+  id: MobHumanoidInvetory
   abstract: true
   components:
   - type: Inventory
     templateId: hostilehumanoid
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
+- type: entity
+  save: false
+  id: MobHumanoidInvetorySimplified
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoidsimplified
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface

@@ -1,7 +1,9 @@
 - type: entity
   name: Blood Cultist
   abstract: true
-  parent: MobHumanoidHostileBase
+  parent:
+  - MobHumanoidHostileBase
+  - MobHumanoidInvetory
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -27,6 +29,8 @@
   id: MobBloodCultistPriest
   noSpawn: true
   components:
+  - type: Inventory
+    templateId: human
   - type: Loadout
     prototypes:
       - BloodCultistPriestGear
@@ -53,6 +57,8 @@
   id: MobBloodCultistJanitor
   noSpawn: true
   components:
+  - type: Inventory
+    templateId: human
   - type: Loadout
     prototypes:
       - BloodCultistJanitorGear
