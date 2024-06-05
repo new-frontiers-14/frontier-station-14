@@ -153,10 +153,10 @@
       orGroup: Paper
     - id: FlashlightLantern
       orGroup: Gift
-    - id: Crowbar
+    - id: JawsOfLife
       orGroup: Gift
       prob: 0.5
-    - id: CrowbarRed
+    - id: WelderIndustrial
       orGroup: Gift
       prob: 0.5
     - id: ClothingMaskGas
@@ -264,6 +264,23 @@
       orGroup: Cookie4
     - id: FoodBakedCookieSugar
       orGroup: Cookie4
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFKnife
+  suffix: knife, extended
+  components:
+  - type: Mail
+    contents:
+    - id: KukriKnife
+      orGroup: Knife
+    - id: Machete
+      orGroup: Knife
+    - id: CombatKnife
+      orGroup: Knife
+    - id: SurvivalKnife
+      orGroup: Knife
 
 - type: entity
   noSpawn: true
@@ -1197,6 +1214,8 @@
       orGroup: Board
     - id: SodaDispenserMachineCircuitboard
       orGroup: Board
+    - id: JukeboxCircuitBoard
+      orGroup: Board
     - id: MassMediaCircuitboard
       orGroup: Board
       prob: 0.5
@@ -1305,3 +1324,13 @@
       - id: MobMouseCancer
         orGroup: Critter
         prob: 0.01 # Rare
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFPowerCell
+  suffix: power cell
+  components:
+  - type: Mail
+    contents:
+      - id: PowerCellMicroreactor
