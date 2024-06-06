@@ -125,17 +125,14 @@
         visible: false
   - type: LightweightDrunk
   - type: InteractionPopup # Corvax-Frontier-Vulpkanin
-  - type: Perishable
-  - type: Damageable
-    damageModifierSet: Vulpkanin
-  - type: TemperatureProtection
-    coefficient: 0.1
-  - type: DogVision
-  - type: InteractionPopup # Frontier
     successChance: 1
     interactSuccessString: pat-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: pat-success-generic-others
+  - type: Perishable
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: DogVision
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulpkanin
