@@ -4,6 +4,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server._NF.Auth;
 using Content.Server.Administration;
+using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
