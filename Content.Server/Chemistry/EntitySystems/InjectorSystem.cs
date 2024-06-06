@@ -336,12 +336,14 @@ public sealed class InjectorSystem : SharedInjectorSystem
         Solution temporarilyRemovedSolution = new();
         if (injector.Comp.ReagentWhitelist is { } reagentWhitelist)
         {
-            string[] reagentPrototypeWhitelistArray = new string[reagentWhitelist.Count];
-            for (var i = 0; i < reagentWhitelist.Count; ++i)
+            string[] reagentWhitelistArray = new string[reagentWhitelist.Count];
+            int i = 0;
+            foreach (var reagent in reagentWhitelist)
             {
-                reagentPrototypeWhitelistArray[i] = reagentWhitelist[i];
+                reagentWhitelistArray[i] = reagent;
+                ++i;
             }
-            temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentPrototypeWhitelistArray);
+            temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentWhitelistArray);
         }
         // Frontier - Reagent Whitelist
 
