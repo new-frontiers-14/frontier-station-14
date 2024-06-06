@@ -5,7 +5,7 @@
   suffix: ATM
   components:
   - type: NavMapBeacon
-    text: ATM
+    defaultText: station-beacon-atm
     color: "#0077C1"
 
 - type: entity
@@ -14,16 +14,16 @@
   suffix: Shipyard
   components:
   - type: NavMapBeacon
-    text: Shipyard
+    defaultText: station-beacon-shipyard
     color: "#0077C1"
-    
+
 - type: entity
   parent: DefaultStationBeaconCommand
   id: DefaultStationBeaconFrontierSROffice
   suffix: SR's Office
   components:
   - type: NavMapBeacon
-    text: SR's Office
+    defaultText: station-beacon-sr-office
 
 - type: entity
   parent: DefaultStationBeaconCommand
@@ -31,4 +31,101 @@
   suffix: SR's Quarters
   components:
   - type: NavMapBeacon
-    text: SR's Quarters
+    defaultText: station-beacon-sr-quarters
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconFrontierCargobayOne
+  suffix: Cargobay 1
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cargobay-one
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconFrontierCargobayTwo
+  suffix: Cargobay 2
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cargobay-two
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconFrontierCargobayThree
+  suffix: Cargobay 3
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cargobay-three
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconFrontierCargobayFour
+  suffix: Cargobay 4
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cargobay-four
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierShops
+  suffix: Shops
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-shops
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierVend
+  suffix: Vending Machines
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-vending-machines
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierCafe
+  suffix: Cafe
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-cafe
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierTransitShuttle
+  suffix: Bus Stop
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-transit-shuttle
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierDock
+  suffix: Dock
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-dock
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierNFSD
+  suffix: NFSD
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nfsd    
+    color: "#f1b223"
+
+- type: entity
+  parent: DefaultStationBeaconFrontierNFSD
+  id: DefaultStationBeaconFrontierNFSDBrig
+  suffix: NFSD Brig
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nfsd-brig
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierConference
+  suffix: Conference Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-conference
