@@ -65,11 +65,16 @@ namespace Content.Server.Mail.Components
         [DataField("isPriority")]
         public bool IsPriority = false;
 
+        // Frontier: large mail
         /// <summary>
         /// Whether this parcel is large.
         /// </summary>
+        /// <remarks>
+        /// Ideally, this would be set automatically from the entity type.
+        /// </remarks>
         [DataField("isLarge")]
-        public bool IsLarge = true;
+        public bool IsLarge = false;
+        // End Frontier: large mail
 
         /// <summary>
         /// What will be packaged when the mail is spawned.

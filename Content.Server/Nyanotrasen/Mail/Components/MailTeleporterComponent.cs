@@ -110,7 +110,7 @@ namespace Content.Server.Mail.Components
         /// What's the bonus for delivering a large package intact?
         /// </summary>
         [DataField("largeBonus")]
-        public int LargeBonus = 5000; // Frontier 500<5000
+        public int LargeBonus = 5000;
 
         /// <summary>
         /// What's the malus for failing to deliver a large package?
