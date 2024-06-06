@@ -119,7 +119,6 @@ public sealed partial class RCDMenu : RadialMenu
         SendRCDSystemMessageAction += bui.SendRCDSystemMessage;
     }
 
-
     private static string OopsConcat(string a, string b)
     {
         // This exists to prevent Roslyn being clever and compiling something that fails sandbox checks.

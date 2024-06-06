@@ -3,6 +3,8 @@ using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
+using Content.Server._NF.Auth;
+using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -49,8 +51,13 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+		
         private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
 		
+
+        //frontier
+        [Dependency] private readonly MiniAuthManager _authManager = default!;
+
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
 
@@ -237,6 +244,21 @@ namespace Content.Server.Connection
                 }
             }
 
+            //Frontier
+            //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
+            //the requesting player against the list of players logged in to other servers. It is intended to be failsafe.
+            //In the case of Admins, it shares the same bypass setting as the soft_max_player_limit
+            if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
+            {
+                var serverListString = _cfg.GetCVar(CCVars.ServerAuthList);
+                var serverList = serverListString.Split(",");
+                foreach (var server in serverList)
+                {
+                    if (await _authManager.IsPlayerConnected(server, userId))
+                        return (ConnectionDenyReason.Connected, Loc.GetString("multiauth-already-connected"), null);
+                }
+            }
+            // end Frontier
             return null;
         }
 
