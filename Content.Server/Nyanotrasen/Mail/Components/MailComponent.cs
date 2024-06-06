@@ -66,6 +66,12 @@ namespace Content.Server.Mail.Components
         public bool IsPriority = false;
 
         /// <summary>
+        /// Whether this parcel is large.
+        /// </summary>
+        [DataField("isLarge")]
+        public bool IsLarge = true;
+
+        /// <summary>
         /// What will be packaged when the mail is spawned.
         /// </summary>
         [DataField("contents")]

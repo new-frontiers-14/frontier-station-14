@@ -74,13 +74,14 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFCake
   suffix: cake, extended
   components:
   - type: Mail
     isFragile: true
     isPriority: true
+    isLarge: true
     contents:
     - id: FoodCakeApple
       orGroup: Cake
@@ -994,11 +995,12 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailSecurityNFMusket
   suffix: musket
   components:
   - type: Mail
+    isLarge: true
     contents:
     - id: ClothingHeadHatPwig
     - id: Musket
@@ -1069,11 +1071,12 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFGladiator
   suffix: gladiator
   components:
   - type: Mail
+    isLarge: true
     contents:
     - id: SpearBone
     - id: ClothingOuterArmorGladiator
@@ -1082,11 +1085,12 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFConscript
   suffix: conscript
   components:
   - type: Mail
+    isLarge: true
     contents:
     - id: Kardashev-MosinNonlethal
     - id: ClothingHeadHatUshanka
@@ -1095,11 +1099,13 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFDAW
   suffix: conscript
   components:
   - type: Mail
+    isLarge: true
+    isFragile: true
     contents:
     - id: DawInstrumentFlatpack
     - id: Multitool
@@ -1257,11 +1263,12 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFUnicycle
   suffix: unicycle
   components:
   - type: Mail
+    isLarge: true
     contents:
       - id: VehicleUnicycleFolded
 

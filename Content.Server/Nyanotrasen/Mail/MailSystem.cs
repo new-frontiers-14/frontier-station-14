@@ -247,11 +247,11 @@ namespace Content.Server.Mail
         {
             if (!args.IsInDetailsRange)
             {
-                args.PushMarkup(Loc.GetString("mail-desc-far"));
+                args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-far" : "mail-desc-far")); // Frontier: large switch
                 return;
             }
 
-            args.PushMarkup(Loc.GetString("mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation)));
+            args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-close" : "mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation)));
 
             if (component.IsFragile)
                 args.PushMarkup(Loc.GetString("mail-desc-fragile"));
@@ -469,6 +469,14 @@ namespace Content.Server.Mail
             mailComp.Recipient = recipient.Name;
             mailComp.RecipientStation = recipient.Ship; // Frontier
 
+            // Frontier: Large mail bonus
+            if (mailComp.IsLarge)
+            {
+                mailComp.Bounty += component.LargeBonus;
+                mailComp.Penalty += component.LargeMalus;
+            }
+            // End Frontier
+
             if (mailComp.IsFragile)
             {
                 mailComp.Bounty += component.FragileBonus;
@@ -491,7 +499,7 @@ namespace Content.Server.Mail
 
             _appearanceSystem.SetData(uid, MailVisuals.JobIcon, recipient.JobIcon);
 
-            _metaDataSystem.SetEntityName(uid, Loc.GetString("mail-item-name-addressed",
+            _metaDataSystem.SetEntityName(uid, Loc.GetString(mailComp.IsLarge ? "mail-large-item-name-addressed" : "mail-item-name-addressed", // Frontier: IsLarge switch
                 ("recipient", recipient.Name)));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);
