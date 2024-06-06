@@ -2,6 +2,8 @@ using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Content.Server._NF.Auth;
+using Content.Server.Administration;
 using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -13,7 +15,6 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-
 
 namespace Content.Server.Connection
 {
@@ -49,15 +50,19 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+
         private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
-		
+
+        //frontier
+        [Dependency] private readonly MiniAuthManager _authManager = default!;
+
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
 
         public void Initialize()
         {
             _sawmill = _logManager.GetSawmill("connections");
-			
+
             IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Corvax-Sponsors
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
@@ -187,7 +192,7 @@ namespace Content.Server.Connection
                 }
 
                 var minOverallHours = _cfg.GetCVar(CCVars.PanicBunkerMinOverallHours);
-                var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
+                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
                 var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalHours > minOverallHours;
 
                 // Use the custom reason if it exists & they don't have the minimum time
@@ -212,10 +217,11 @@ namespace Content.Server.Connection
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             // Corvax-Queue-Start
             var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
             if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
-                // Corvax-Queue-End
+            // Corvax-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -237,6 +243,21 @@ namespace Content.Server.Connection
                 }
             }
 
+            //Frontier
+            //This is our little chunk that serves as a dAuth. It takes in a comma separated list of IP:PORT, and checks
+            //the requesting player against the list of players logged in to other servers. It is intended to be failsafe.
+            //In the case of Admins, it shares the same bypass setting as the soft_max_player_limit
+            if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
+            {
+                var serverListString = _cfg.GetCVar(CCVars.ServerAuthList);
+                var serverList = serverListString.Split(",");
+                foreach (var server in serverList)
+                {
+                    if (await _authManager.IsPlayerConnected(server, userId))
+                        return (ConnectionDenyReason.Connected, Loc.GetString("multiauth-already-connected"), null);
+                }
+            }
+            // end Frontier
             return null;
         }
 

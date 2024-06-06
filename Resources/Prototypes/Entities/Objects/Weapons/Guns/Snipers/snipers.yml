@@ -39,16 +39,63 @@
     price: 500
   - type: Execution
 
-- type: entity
+- type: entity # Frontier - Mosin rework (PR#1391)
   name: Kardashev-Mosin
   parent: [BaseWeaponSniper, BaseGunWieldable]
   id: WeaponSniperMosin
-  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo. Now with new shiny bayonet!
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: StaticPrice
-    price: 210
+    state: base
+  - type: AmmoCounter
+  - type: Wieldable
+  - type: MeleeRequiresWield
+  - type: GunRequiresWield
+  - type: Gun
+    useKey: true
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: CartridgeLightRifle
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Slash: 10
+       Piercing: 5
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: -135
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 5
+        Piercing: 10
+  - type: Sharp
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+  - type: DisarmMalus
+    malus: 0.225 # End Frontier
+
 
 - type: entity
   name: Hristov

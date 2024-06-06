@@ -28,14 +28,14 @@
       Parched: 200
       Dead: 0
     baseDecayRate: 0.15
+  - type: Inventory # Allows vulps to wear properly shaped helmets
+    speciesId: vulpkanin
   - type: Icon
     sprite: Corvax/Mobs/Species/Vulpkanin/parts.rsi
     state: full
   - type: Body
     prototype: Vulpkanin
     requiredLegs: 2
-  - type: Inventory
-    speciesId: reptilian # whyyy
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
@@ -53,8 +53,8 @@
       Male: MaleVulpkanin
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
-  - type: VulpLanguageSpeaker # Corvax-Frontier-Vulpkanin
-  - type: VulpLanguageListener # Corvax-Frontier-Vulpkanin
+#  - type: VulpLanguageSpeaker # Corvax-Frontier-Vulpkanin
+#  - type: VulpLanguageListener # Corvax-Frontier-Vulpkanin
   - type: LanguageSpeaker
     language: "vulpkanin"
   - type: GiveTranslator
@@ -119,12 +119,20 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "DeltaV/Effects/creampie.rsi"
+        state: "creampie_vulpkanin"
+        visible: false
   - type: LightweightDrunk
   - type: InteractionPopup # Corvax-Frontier-Vulpkanin
     successChance: 1
     interactSuccessString: pat-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: pat-success-generic-others
+  - type: Perishable
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: DogVision
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Vulpkanin

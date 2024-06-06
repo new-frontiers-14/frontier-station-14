@@ -26,6 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
+using Content.Shared.Bank.Components; // Frontier
 
 namespace Content.Server.PDA
 {
@@ -58,11 +59,8 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<PdaComponent, PdaShowMusicMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaShowUplinkMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaLockUplinkMessage>(OnUiMessage);
-
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnEmergencyChanged);
-
             SubscribeLocalEvent<PdaComponent, CartridgeLoaderNotificationSentEvent>(OnNotification);
-
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
         }
@@ -158,7 +156,9 @@ namespace Content.Server.PDA
         /// <summary>
         /// Send new UI state to clients, call if you modify something like uplink.
         /// </summary>
-        public void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null, EntityUid? actor_uid = null)
+		
+        public void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null, EntityUid? actor_uid = null) // Frontier
+
         {
             if (!Resolve(uid, ref pda, false))
                 return;
@@ -181,9 +181,9 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
-            int? balance = null;
-            if (actor_uid is not null && TryComp<BankAccountComponent>(actor_uid, out var account))
-                balance = account.Balance;
+            var balance = 0; // frontier
+            if (actor_uid != null && TryComp<BankAccountComponent>(actor_uid, out var account)) // frontier
+                balance = account.Balance; // frontier
 
             TimeSpan shuttleTime;
             var station = _station.GetOwningStation(uid);
@@ -192,7 +192,6 @@ namespace Content.Server.PDA
 
             else
                 shuttleTime = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.EmergencyShuttleDockTime));
-
 
             var state = new PdaUpdateState(
                 programs,
@@ -209,7 +208,7 @@ namespace Content.Server.PDA
                     StationAlertLevel = pda.StationAlertLevel,
                     StationAlertColor = pda.StationAlertColor
                 },
-                balance,
+                balance, // Frontier
                 shuttleTime,
                 pda.StationName,
                 showUplink,
@@ -224,7 +223,7 @@ namespace Content.Server.PDA
             if (!PdaUiKey.Key.Equals(args.UiKey))
                 return;
 
-            UpdatePdaUi(ent.Owner, ent.Comp, args.Actor);
+            UpdatePdaUi(ent.Owner, ent.Comp, args.Actor); // Frontier
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaRequestUpdateInterfaceMessage msg)

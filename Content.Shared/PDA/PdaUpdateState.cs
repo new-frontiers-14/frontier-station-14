@@ -17,9 +17,8 @@ namespace Content.Shared.PDA
         public bool HasUplink;
         public bool CanPlayMusic;
         public string? Address;
-        public int? Balance;
+        public int Balance; // Frontier
         public TimeSpan? EvacShuttleTime;
-
         public PdaUpdateState(
             List<NetEntity> programs,
             NetEntity? activeUI,
@@ -28,7 +27,7 @@ namespace Content.Shared.PDA
             bool hasPai,
             bool hasBook,
             PdaIdInfoText pdaOwnerInfo,
-            int? balance,
+            int balance, // Frontier
             TimeSpan? evacShuttleTime,
             string? stationName,
             bool hasUplink = false,
@@ -45,8 +44,8 @@ namespace Content.Shared.PDA
             CanPlayMusic = canPlayMusic;
             StationName = stationName;
             Address = address;
-            Balance = balance;
-            EvacShuttleTime = evacShuttleTime;
+            Balance = balance; // Frontier
+            EvacShuttleTime = evacShuttleTime; // Frontier
         }
     }
 
