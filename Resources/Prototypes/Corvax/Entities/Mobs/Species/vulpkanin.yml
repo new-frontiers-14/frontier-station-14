@@ -125,26 +125,11 @@
         visible: false
   - type: LightweightDrunk
   - type: InteractionPopup # Corvax-Frontier-Vulpkanin
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-      path: /Audio/Weapons/pierce.ogg
-    angle: 30
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Blunt: 2
-        Slash: 3
   - type: Perishable
   - type: Damageable
     damageModifierSet: Vulpkanin
   - type: TemperatureProtection
     coefficient: 0.1
-  - type: Vocal
-    sounds:
-      Male: MaleVulpkanin
-      Female: FemaleVulpkanin
-      Unsexed: MaleVulpkanin
   - type: DogVision
   - type: InteractionPopup # Frontier
     successChance: 1
@@ -179,6 +164,17 @@
     shortDensity: 140
     shortPseudoItem: true
     shortCosmeticOnly: false
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobVulpkaninDummy
+  noSpawn: true
+  description: A dummy vulpkanin meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Vulpkanin
 
 - type: entity
   save: false
