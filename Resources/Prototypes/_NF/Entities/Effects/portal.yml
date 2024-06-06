@@ -1,0 +1,16 @@
+- type: entity
+  id: BasePortalAdmin
+  parent: BasePortal
+  abstract: true
+  description: This one looks more like a special bluespace portal.
+  components:
+  - type: Portal
+    canTeleportToOtherMaps: true
+
+- type: entity
+  id: PortalAdminStart
+  parent: [BasePortalAdmin, PortalArtifact]
+
+- type: entity
+  id: PortalAdminEnd
+  parent: [BasePortalAdmin, PortalArtifact]
