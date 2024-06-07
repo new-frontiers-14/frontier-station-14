@@ -1,7 +1,7 @@
 namespace Content.Server._NF.Materials.Components;
 
 [RegisterComponent]
-public sealed partial class RodMetalComponent : Component
+public sealed partial class ConstructionMaterialsComponent : Component
 {
 
 }

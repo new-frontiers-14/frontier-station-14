@@ -24,11 +24,11 @@
     whitelist:
       tags:
       - Ingot
-      - RawMaterial
       - RodMetal1
       - Sheet
+      - CableCoil
       components:
-      - RodMetal   
+      - ConstructionMaterials
   - type: Dumpable
   - type: StaticPrice
     price: 55.5
@@ -46,6 +46,7 @@
     layers:
     - state: icon
     - state: icon-bluespace-overlay
+    - state: icon-bluespace-overlay-unshaded
       shader: unshaded
   - type: Item
     size: Ginormous
@@ -53,10 +54,12 @@
       left:
       - state: inhand-left
       - state: inhand-left-bluespace-overlay
+      - state: inhand-left-bluespace-overlay-unshaded
         shader: unshaded
       right:
       - state: inhand-right
       - state: inhand-right-bluespace-overlay
+      - state: inhand-right-bluespace-overlay-unshaded
         shader: unshaded
   - type: Clothing
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
@@ -67,6 +70,7 @@
       belt:
       - state: equipped-BELT
       - state: equipped-BELT-bluespace-overlay
+      - state: equipped-BELT-bluespace-overlay-unshaded
         shader: unshaded
   - type: Storage
     grid:
