@@ -1,0 +1,26 @@
+- type: vessel
+  id: Blade
+  name: NSF Blade
+  description: A medium sized pursuit vessel equipped with the state of the art M EMP System, enough furnishings to provide a comfortable pursuit experience, and a forward facing docking mechanism for staging boarding operations. 
+  price: 40000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/blade.yml
+
+- type: gameMap
+  id: Blade
+  mapName: 'NSF Blade'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/blade.yml
+  minPlayers: 0
+  stations:
+    Blade:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Blade {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}
