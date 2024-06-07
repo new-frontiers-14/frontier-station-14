@@ -29,6 +29,19 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+    
+- type: entity
+  parent: ClothingOuterHardsuitMercenary
+  id: ClothingOuterHardsuitPrivateSecurity # stats are of merc hardsuit
+  name: private security hardsuit
+  description: A special suit that protects from the danger of space, employed by private security forces.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/private_security.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/private_security.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPrivateSecurity
 
 # Pilot Hardsuit - Spationaut stats
 - type: entity
