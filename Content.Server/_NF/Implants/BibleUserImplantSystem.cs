@@ -27,6 +27,7 @@ public sealed class BibleUserImplantSystem : EntitySystem
         Dirty(args.Implanted.Value, bibleUserComp);
     }
 
+    // Currently permanent, but should support removal if/when a viable solution is found.
     private void OnRemove(EntityUid uid, BibleUserImplantComponent component, EntGotRemovedFromContainerMessage args)
     {
         if (!TryComp<SubdermalImplantComponent>(uid, out var implanted) || implanted.ImplantedEntity == null)
