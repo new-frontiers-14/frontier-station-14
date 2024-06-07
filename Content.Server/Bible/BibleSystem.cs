@@ -254,7 +254,8 @@ namespace Content.Server.Bible
             var (uid, component) = ent;
             if (component.AlreadySummoned || component.SpecialItemPrototype == null)
                 return;
-            if (component.RequiresBibleUser && !HasComp<BibleUserComponent>(user)) {
+            if (component.RequiresBibleUser && !HasComp<BibleUserComponent>(user))
+            {
                 _popupSystem.PopupEntity(Loc.GetString("bible-summon-request-failed"), user, user, PopupType.Small); // Frontier: better summon feedback
                 return;
             }
