@@ -8,6 +8,7 @@
   components:
   - type: Mail
     contents:
+      # 12.5 overall weight, 8% base chance
     - id: DrinkAbsintheBottleFull
       orGroup: Drink
     - id: DrinkBlueCuracaoBottleFull
@@ -81,8 +82,8 @@
   - type: Mail
     isFragile: true
     isPriority: true
-    isLarge: true
     contents:
+      # 14.8 total weight, ~6.8% base chance
     - id: FoodCakeApple
       orGroup: Cake
     - id: FoodCakeBirthday
@@ -117,13 +118,13 @@
       orGroup: Cake
       prob: 0.5
     # Rare
+    - id: FoodCakeBrain
+      orGroup: Cake
+      prob: 0.25
     - id: FoodCakeLemoon
       orGroup: Cake
       prob: 0.25
     - id: FoodCakeSuppermatter
-      orGroup: Cake
-      prob: 0.25
-    - id: FoodCakeBrain
       orGroup: Cake
       prob: 0.25
     # Ultra rare
@@ -137,34 +138,26 @@
 - type: entity
   noSpawn: true
   parent: BaseMail
-  id: MailNFCallForHelp
-  suffix: call-for-help
+  id: MailNFPowerTool
+  suffix: power tool
   components:
   - type: Mail
     contents:
-    - id: PaperMailNFCallForHelp1
+    - id: PaperMailNFPowerTool
       orGroup: Paper
-    - id: PaperMailNFCallForHelp2
-      orGroup: Paper
-    - id: PaperMailNFCallForHelp3
-      orGroup: Paper
-    - id: PaperMailNFCallForHelp4
-      orGroup: Paper
-    - id: PaperMailNFCallForHelp5
-      orGroup: Paper
-    - id: FlashlightLantern
-      orGroup: Gift
     - id: JawsOfLife
       orGroup: Gift
-      prob: 0.5
+      prob: 0.33
+    - id: PowerDrill
+      orGroup: Gift
+      prob: 0.33
     - id: WelderIndustrial
       orGroup: Gift
-      prob: 0.5
-    - id: ClothingMaskGas
+      prob: 0.30
+      # Rare
+    - id: WelderIndustrialAdvanced
       orGroup: Gift
-    - id: WeaponFlareGun
-      orGroup: Gift
-      prob: 0.25
+      prob: 0.04
 
 - type: entity
   noSpawn: true
@@ -194,12 +187,23 @@
     contents:
     - id: CigPackBlack
       orGroup: Cigs
+      prob: 0.19
     - id: CigPackBlue
       orGroup: Cigs
+      prob: 0.19
     - id: CigPackGreen
       orGroup: Cigs
+      prob: 0.19
     - id: CigPackRed
       orGroup: Cigs
+      prob: 0.19
+    - id: CigPackMixed
+      orGroup: Cigs
+      prob: 0.19
+      # Rare
+    - id: CigPackSyndicate
+      orGroup: Cigs
+      prob: 0.05
     - id: CheapLighter
 
 - type: entity
@@ -291,22 +295,25 @@
   components:
   - type: Mail
     contents:
-      # Expected value: 1955 spesos
+      # Expected value: 2965 spesos
     - id: SpaceCash100
       orGroup: Cash
-      prob: 0.05
+      prob: 0.025
     - id: SpaceCash500
       orGroup: Cash
-      prob: 0.1
+      prob: 0.075
     - id: SpaceCash1000
       orGroup: Cash
-      prob: 0.4
+      prob: 0.3
     - id: SpaceCash2500
       orGroup: Cash
-      prob: 0.3
+      prob: 0.35
     - id: SpaceCash5000
       orGroup: Cash
       prob: 0.15
+    - id: SpaceCash10000
+      orGroup: Cash
+      prob: 0.1
 
 - type: entity
   noSpawn: true
@@ -363,6 +370,7 @@
   components:
   - type: Mail
     contents:
+      # Total weight: 13.15, ~7.60% base chance
       # These are all grouped up now to guarantee at least one item received.
       # The downside is you're not going to get half a dozen plushies anymore.
     - id: PlushieBee
@@ -622,6 +630,7 @@
       orGroup: Donk
       prob: 0.05 # Bad luck.
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -634,6 +643,7 @@
       amount: 3
     - id: PaperMailNFPwrGameAd
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -646,6 +656,7 @@
       amount: 3
     - id: PaperMailNFRedBoolAd
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -657,6 +668,7 @@
     - id: DrinkColaBottleFull
     - id: PaperMailNFSpaceColaAd
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -668,6 +680,7 @@
     - id: DrinkSpaceMountainWindBottleFull
     - id: PaperMailNFSpaceMountainWindAd
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -713,9 +726,23 @@
     - id: BluntRainbow
       orGroup: Smokeable2
       prob: 0.15
+    # Smokeable 3
+    - id: Joint
+      orGroup: Smokeable3
+      prob: 0.35
+    - id: JointRainbow
+      orGroup: Smokeable3
+      prob: 0.15
+    - id: Blunt
+      orGroup: Smokeable3
+      prob: 0.35
+    - id: BluntRainbow
+      orGroup: Smokeable3
+      prob: 0.15
 
 # Catchall for food that can't otherwise be created outside of random spawners
 # Mmm, mail food
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -731,8 +758,6 @@
     - id: FoodMealNachosCheesy
       orGroup: Food
     - id: FoodMealNachosCuban
-      orGroup: Food
-    - id: FoodMealMint
       orGroup: Food
     - id: FoodMealEggplantParm
       orGroup: Food
@@ -772,16 +797,22 @@
       orGroup: Food
       prob: 0.05
     - id: FoodMeatGoliathCooked
+      amount: 2
       orGroup: Food
     - id: FoodMeatRounyCooked
+      amount: 2
       orGroup: Food
     - id: FoodMeatLizardCooked
+      amount: 2
       orGroup: Food
     - id: FoodMeatSpiderlegCooked
+      amount: 2
       orGroup: Food
     - id: FoodMeatMeatballCooked
+      amount: 3
       orGroup: Food
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -924,7 +955,11 @@
     - id: FoodFrozenSnowconeMime
       amount: 2
       orGroup: Food
+    - id: FoodMealMint # unlucky
+      amount: 2
+      orGroup: Food
 
+# TODO: Probably needs a buff.
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -1000,7 +1035,6 @@
   suffix: musket
   components:
   - type: Mail
-    isLarge: true
     contents:
     - id: ClothingHeadHatPwig
     - id: Musket
@@ -1040,6 +1074,7 @@
     - id: PersonalAI
       orGroup: PAI
       prob: 0.99
+      # Ultra rare
     - id: SyndicatePersonalAI
       orGroup: PAI
       prob: 0.01
@@ -1076,7 +1111,6 @@
   suffix: gladiator
   components:
   - type: Mail
-    isLarge: true
     contents:
     - id: SpearBone
     - id: ClothingOuterArmorGladiator
@@ -1090,7 +1124,6 @@
   suffix: conscript
   components:
   - type: Mail
-    isLarge: true
     contents:
     - id: Kardashev-MosinNonlethal
     - id: ClothingHeadHatUshanka
@@ -1099,12 +1132,31 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMailLarge
-  id: MailNFDAW
-  suffix: conscript
+  parent: BaseMail
+  id: MailNFIFFBoard
+  suffix: iff board
   components:
   - type: Mail
-    isLarge: true
+    contents:
+    - id: ComputerIFFCircuitboard
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFThrongler
+  suffix: throngler
+  components:
+  - type: Mail
+    contents:
+    - id: ThronglerToy
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFDAW
+  suffix: DAW
+  components:
+  - type: Mail
     isFragile: true
     contents:
     - id: DawInstrumentFlatpack
@@ -1113,8 +1165,143 @@
 - type: entity
   noSpawn: true
   parent: BaseMail
+  id: MailNFInstrumentSmall
+  suffix: instrument, expanded
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+    - id: TrumpetInstrument
+      orGroup: Instrument
+    - id: RecorderInstrument
+      orGroup: Instrument
+    - id: ClarinetInstrument
+      orGroup: Instrument
+    - id: FluteInstrument
+      orGroup: Instrument
+    - id: HarmonicaInstrument
+      orGroup: Instrument
+    - id: OcarinaInstrument
+      orGroup: Instrument
+    - id: PanFluteInstrument
+      orGroup: Instrument
+    - id: KalimbaInstrument
+      orGroup: Instrument
+    - id: WoodblockInstrument
+      orGroup: Instrument
+    - id: BikeHornInstrument
+      orGroup: Instrument
+    - id: MusicBoxInstrument
+      orGroup: Instrument
+    - id: MicrophoneInstrument
+      orGroup: Instrument
+    - id: MusicalLungInstrument
+      orGroup: Instrument
+    # Uncommon
+    - id: PhoneInstrument
+      orGroup: Instrument
+      prob: 0.25
+    # Rare
+    - id: BananaPhoneInstrument
+      orGroup: Instrument
+      prob: 0.1
+    # Ultra-rare
+    - id: PhoneInstrumentSyndicate
+      orGroup: Instrument
+      prob: 0.05
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFInstrumentLarge
+  suffix: instrument, large
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+    - id: TromboneInstrument
+      orGroup: Instrument
+    - id: FrenchHornInstrument
+      orGroup: Instrument
+    - id: SaxophoneInstrument
+      orGroup: Instrument
+    - id: EuphoniumInstrument
+      orGroup: Instrument
+    - id: AcousticGuitarInstrument
+      orGroup: Instrument
+    - id: ElectricGuitarInstrument
+      orGroup: Instrument
+    - id: BassGuitarInstrument
+      orGroup: Instrument
+    - id: RockGuitarInstrument
+      orGroup: Instrument
+    - id: BanjoInstrument
+      orGroup: Instrument
+    - id: ViolinInstrument
+      orGroup: Instrument
+    - id: CelloInstrument
+      orGroup: Instrument
+    - id: ViolaInstrument
+      orGroup: Instrument
+    - id: BagpipeInstrument # Fury.
+      orGroup: Instrument
+    - id: SynthesizerInstrument
+      orGroup: Instrument
+    - id: AccordionInstrument
+      orGroup: Instrument
+    - id: GlockenspielInstrument
+      orGroup: Instrument
+    - id: XylophoneInstrument
+      orGroup: Instrument
+    # Uncommon
+    - id: Rickenbacker4003Instrument
+      orGroup: Instrument
+      prob: 0.25
+    # Rare
+    - id: Rickenbacker4001Instrument
+      orGroup: Instrument
+      prob: 0.1
+
+- type: entity
+  noSpawn: True
+  parent: BaseMailLarge
+  id: MailNFInstrumentFlatpack
+  suffix: instrument, flatpack
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+    - id: TubaInstrumentFlatpack
+      orGroup: Instrument
+    - id: HarpInstrumentFlatpack
+      orGroup: Instrument
+    - id: ContrabassInstrumentFlatpack
+      orGroup: Instrument
+    - id: VibraphoneInstrumentFlatpack
+      orGroup: Instrument
+    - id: MarimbaInstrumentFlatpack
+      orGroup: Instrument
+    - id: TomDrumsInstrumentFlatpack
+      orGroup: Instrument
+    - id: TimpaniInstrumentFlatpack
+      orGroup: Instrument
+    - id: TaikoInstrumentFlatpack
+      orGroup: Instrument
+    - id: MinimoogInstrumentFlatpack
+      orGroup: Instrument
+    - id: ChurchOrganInstrumentFlatpack
+      orGroup: Instrument
+    - id: PianoInstrumentFlatpack
+      orGroup: Instrument
+    - id: UprightPianoInstrumentFlatpack
+      orGroup: Instrument
+    - id: Multitool # For the flatpack
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
   id: MailNFCircuitboardIndustrial
-  suffix: conscript
+  suffix: industrial circuitboard
   components:
   - type: Mail
     contents:
@@ -1180,7 +1367,7 @@
   noSpawn: true
   parent: BaseMail
   id: MailNFCircuitboardService
-  suffix: conscript
+  suffix: service circuitboard
   components:
   - type: Mail
     contents:
@@ -1222,7 +1409,7 @@
   noSpawn: true
   parent: BaseMail
   id: MailNFUnusualClothing
-  suffix: unusual clothes
+  suffix: unusual clothing
   components:
   - type: Mail
     contents:
@@ -1268,7 +1455,6 @@
   suffix: unicycle
   components:
   - type: Mail
-    isLarge: true
     contents:
       - id: VehicleUnicycleFolded
 
@@ -1284,19 +1470,23 @@
       # Bugs (weight: 2)
       - id: MobCockroach
         orGroup: Critter
-        prob: 0.45
+        prob: 0.36
       - id: MobSlug
         orGroup: Critter
-        prob: 0.45
+        prob: 0.36
       - id: MobArgocyteSlurva # honorary bug?
         orGroup: Critter
-        prob: 0.45
+        prob: 0.36
       - id: MobBee
         orGroup: Critter
-        prob: 0.45
+        prob: 0.36
+      - id: MobButterFly
+        orGroup: Critter
+        prob: 0.36
+        # Uncommon
       - id: MobMothroach
         orGroup: Critter
-        prob: 0.2 # Uncommon
+        prob: 0.2
       # Small reptiles (weight: 1)
       - id: MobLizard
         orGroup: Critter

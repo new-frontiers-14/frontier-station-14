@@ -247,11 +247,11 @@ namespace Content.Server.Mail
         {
             if (!args.IsInDetailsRange)
             {
-                args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-far" : "mail-desc-far")); // Frontier: large switch
+                args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-far" : "mail-desc-far")); // Frontier: IsLarge switch
                 return;
             }
 
-            args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-close" : "mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation)));
+            args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-close" : "mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation))); // Frontier: IsLarge switch
 
             if (component.IsFragile)
                 args.PushMarkup(Loc.GetString("mail-desc-fragile"));
