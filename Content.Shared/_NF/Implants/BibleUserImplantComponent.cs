@@ -8,8 +8,4 @@ namespace Content.Shared.Implants.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class BibleUserImplantComponent : Component
 {
-    /// <summary>
-    /// Set to true if the implant caused the user to be pacified.
-    /// </summary>
-    public bool PacifiedUser = false;
 }
