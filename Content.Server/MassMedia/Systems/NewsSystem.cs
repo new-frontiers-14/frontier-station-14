@@ -20,6 +20,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StationRecords;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.GameTicking; // Frontier
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -41,7 +42,11 @@ public sealed class NewsSystem : SharedNewsSystem
         base.Initialize();
 
         // News writer
-        SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+        // Frontier: News is shared across the sector.  No need to create shuttle-local news caches.
+        // SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        // End Frontier
 
         // New writer bui messages
         Subs.BuiEvents<NewsWriterComponent>(NewsWriterUiKey.Key, subs =>
@@ -57,6 +62,14 @@ public sealed class NewsSystem : SharedNewsSystem
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeMessageEvent>(OnReaderUiMessage);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeUiReadyEvent>(OnReaderUiReady);
     }
+ 
+    // Frontier: article lifecycle management
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        // A new round is starting, clear any articles from the previous round.
+        SectorNewsComponent.Articles.Clear();
+    }
+    // End Frontier
 
     public override void Update(float frameTime)
     {
@@ -75,14 +88,17 @@ public sealed class NewsSystem : SharedNewsSystem
 
     #region Writer Event Handlers
 
-    private void OnMapInit(Entity<NewsWriterComponent> ent, ref MapInitEvent args)
-    {
-        var station = _station.GetOwningStation(ent);
-        if (!station.HasValue)
-            return;
+    // Frontier: News is shared across the sector.  No need to create shuttle-local news caches.
+    // private void OnMapInit(Entity<NewsWriterComponent> ent, ref MapInitEvent args)
+    // {
+    //     var station = _station.GetOwningStation(ent);
+    //     if (!station.HasValue) {
+    //         return;
+    //     }
 
-        EnsureComp<StationNewsComponent>(station.Value);
-    }
+    //     EnsureComp<StationNewsComponent>(station.Value);
+    // }
+    // End Frontier
 
     private void OnWriteUiDeleteMessage(Entity<NewsWriterComponent> ent, ref NewsWriterDeleteMessage msg)
     {
@@ -229,15 +245,25 @@ public sealed class NewsSystem : SharedNewsSystem
 
     private bool TryGetArticles(EntityUid uid, [NotNullWhen(true)] out List<NewsArticle>? articles)
     {
-        if (_station.GetOwningStation(uid) is not { } station ||
-            !TryComp<StationNewsComponent>(station, out var stationNews))
-        {
-            articles = null;
-            return false;
-        }
+        // Frontier: Get sector-wide article set instead of set for this station.
+        // if (_station.GetOwningStation(uid) is not { } station ||
+        //     !TryComp<StationNewsComponent>(station, out var stationNews))
+        // {
+        //     articles = null;
+        //     return false;
+        // }
+        // articles = stationNews.Articles;
+        // return true;
 
-        articles = stationNews.Articles;
-        return true;
+        // Any SectorNewsComponent will have a complete article set, we ensure one exists before returning the complete set.
+        var query = EntityQueryEnumerator<SectorNewsComponent>();
+        if (query.MoveNext(out var _)) {
+            articles = SectorNewsComponent.Articles;
+            return true;
+        }
+        articles = null;
+        return false;
+        // End Frontier
     }
 
     private void UpdateWriterUi(Entity<NewsWriterComponent> ent)

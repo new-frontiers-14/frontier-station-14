@@ -34,6 +34,8 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
+using Content.Server.Administration.Logs; // Frontier
+using Content.Shared.Database; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -56,6 +58,8 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
 
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+
+        [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
 
         private ISawmill _sawmill = default!;
 
@@ -407,6 +411,9 @@ namespace Content.Server.VendingMachines
                         }
 
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
+
+                        _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
+                            $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
                     }
                 }
             }
