@@ -11,6 +11,7 @@
   name: mercenary hardsuit helmet
   description: Lightly armored hardsuit helmet for mercenary needs.
   components:
+  - type: BreathMask
   - type: Sprite
     sprite: _NF/Clothing/Head/Hardsuits/mercenary.rsi
   - type: Clothing
@@ -27,6 +28,19 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMercenary
+  id: ClothingHeadHelmetHardsuitPrivateSecurity
+  name: private security hardsuit helmet
+  description: Lightly armored hardsuit helmet for private security needs.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hardsuits/private_security.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hardsuits/private_security.rsi
+  - type: PointLight
+    color: "#ffff00"
 
 #Pilot Hardsuit
 - type: entity
