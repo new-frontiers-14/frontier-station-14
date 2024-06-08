@@ -68,6 +68,7 @@
     groups:
     - AllAccess
 
+# Inventories
 - type: entity
   save: false
   id: MobHumanoidInvetory
@@ -96,6 +97,58 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
 
+# AI packages
+- type: entity
+  id: MobHumanoidHostileAISimpleMelee
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+#        true
+
+- type: entity
+  id: MobHumanoidHostileAISimpleRanged
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+#        true
+
+- type: entity
+  id: MobHumanoidHostileAIComplex
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+#        true
+
 # Human NPC, uses equipment, immune to vacuum/low pressure
 - type: entity
   name: Human NPC
@@ -107,6 +160,7 @@
   - MobFlammable
   - MobEnhancedMovement
   - BaseMobSpecies
+  - MobHumanoidHostileAIComplex
   id: MobHumanoidHostileBase
   components:
   - type: MobMover
@@ -131,17 +185,6 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-# AI package
-  - type: HTN
-    rootTask:
-       task: SimpleHumanoidHostileCompound # Alt tasks: MeleeCombatCompound, SimpleRangedHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -170,6 +213,7 @@
   - MobBloodstream
   - MobFlammable
   - MobEnhancedMovement
+  - MobHumanoidHostileAIComplex
   id: MobNonHumanHostileBase
   components:
   - type: Reactive
@@ -214,18 +258,6 @@
       120: Dead
   - type: Stamina
     critThreshold: 100
-  - type: HTN
-    rootTask:
-       task: SimpleHumanoidHostileCompound # Alt tasks: MeleeCombatCompound, SimpleRangedHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
-#        true
   - type: NpcFactionMember
     factions:
     - SimpleHostile

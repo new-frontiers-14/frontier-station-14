@@ -5,6 +5,7 @@
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
+  - MobHumanoidHostileAISimpleRanged
   id: MobSyndicateNavalBase
   components:
   - type: Body
@@ -460,7 +461,9 @@
 # Hostile Victim of Experimentation, "armed" with shiv
 - type: entity
   name: captive
-  parent: MobHumanoidHostileBase
+  parent:
+  - MobHumanoidHostileBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobExperimentationVictim
   noSpawn: true
   components:
@@ -604,7 +607,9 @@
 # Syndicate Mime, melee, "armed" with chainsaw
 - type: entity
   name: syndicate mime
-  parent: MobSyndicateNavalBase
+  parent:
+  - MobSyndicateNavalBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobSyndicateNavalMime
   noSpawn: true
   components:

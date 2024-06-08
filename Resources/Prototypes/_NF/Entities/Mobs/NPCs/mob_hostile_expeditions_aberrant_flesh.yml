@@ -1,6 +1,8 @@
 # BASE
 - type: entity
-  parent: MobNonHumanHostileBase
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidHostileAISimpleMelee
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -131,7 +133,9 @@
         Base: dead
 
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent:
+  - BaseMobFleshExpeditions
+  - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
   noSpawn: true
   components:

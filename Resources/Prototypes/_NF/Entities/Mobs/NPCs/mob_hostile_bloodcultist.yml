@@ -25,7 +25,9 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Priest
-  parent: MobBloodCultistBase
+  parent:
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistPriest
   noSpawn: true
   components:
@@ -53,7 +55,9 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Janitor
-  parent: MobBloodCultistBase
+  parent:
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistJanitor
   noSpawn: true
   components:
@@ -61,7 +65,7 @@
     templateId: human
   - type: Loadout
     prototypes:
-      - BloodCultistJanitorGear
+    - BloodCultistJanitorGear
   - type: Stamina
     critThreshold: 500
   - type: BasicEntityAmmoProvider
@@ -82,50 +86,36 @@
 # Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
   name: Blood Cult Acolyte
-  parent: MobBloodCultistBase
+  parent: 
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistAcolyte
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-      - BloodCultistAcolyteGear
-  - type: HTN
-    rootTask:
-       task: MeleeCombatCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
+    - BloodCultistAcolyteGear
 
 # Blood Cult Acolyte, melee mob armed with ritual dagger (12 slash)
 - type: entity
   name: Blood Cult Zealot
-  parent: MobBloodCultistBase
+  parent: 
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-      - BloodCultistZealotMeleeGear
-  - type: HTN
-    rootTask:
-       task: MeleeCombatCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
+    - BloodCultistZealotMeleeGear
 
 # Blood Cult Zealot, ranged mob, crossbow bolt deals 20 slash and 5 bloodloss
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
   name: Blood Cult Zealot
-  parent: MobBloodCultistBase
+  parent: 
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
   noSpawn: true
   components:
@@ -152,7 +142,9 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: Blood Cult Zealot
-  parent: MobBloodCultistBase
+  parent: 
+  - MobBloodCultistBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
   noSpawn: true
   components:
@@ -177,7 +169,9 @@
 - type: entity
   name: Ascended Cultist # Megafauna
   noSpawn: true
-  parent: MobNonHumanHostileBase
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -254,6 +248,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobPassiveRegen
+  - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultLeech
   components:
   - type: NpcFactionMember
@@ -300,6 +295,8 @@
   parent: 
   - MobNonHumanHostileBase
   - FlyingMobBase
+  - MobPassiveRegen
+  - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultDrainedOne
   components:
   - type: NpcFactionMember

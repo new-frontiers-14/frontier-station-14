@@ -5,6 +5,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
+  - MobHumanoidHostileAISimpleRanged
   id: MobMercenaryBase
   components:
   - type: Damageable
@@ -54,7 +55,9 @@
 ## Tier 1
 - type: entity
   name: mercenary soldier
-  parent: MobMercenaryBase
+  parent:
+  - MobMercenaryBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobMercenarySoldierKnife
   noSpawn: true
   components:
@@ -279,7 +282,9 @@
 
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
+  parent:
+  - MobMercenaryBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobMercenaryBreacherMachete
   noSpawn: true
   components:
