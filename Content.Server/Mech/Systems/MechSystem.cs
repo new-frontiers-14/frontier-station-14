@@ -21,6 +21,9 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.Mobs; // Frontier
 
 namespace Content.Server.Mech.Systems;
 
@@ -35,6 +38,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -228,6 +232,17 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
+        // Frontier - Make AI Attack mechs based on user.
+        if (TryComp<MobStateComponent>(args.User, out var state))
+            EnsureComp<MobStateComponent>(uid);
+        if (TryComp<NpcFactionMemberComponent>(args.User, out var faction))
+        {
+            var factionMech = EnsureComp<NpcFactionMemberComponent>(uid);
+            if (faction.Factions != null)
+                factionMech.Factions = faction.Factions;
+        }
+        // Frontier
+
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);
 
@@ -256,6 +271,9 @@ public sealed partial class MechSystem : SharedMechSystem
             var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
         }
+
+        if (TryComp<MobStateComponent>(component.PilotSlot.ContainedEntity, out var state) && state.CurrentState != MobState.Alive) // Frontier - Eject players from mechs when they go crit
+            TryEject(uid, component);
     }
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
