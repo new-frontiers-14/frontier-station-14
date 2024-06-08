@@ -187,12 +187,13 @@
   equipment: ContractorBible
   effects:
   - !type:GroupLoadoutEffect
-    proto: ContractorT2
+    proto: ContractorT1
   price: 2500
 
 - type: startingGear
   id: ContractorBible
   inhand:
     - Bible
-  back:
-    - BibleUserImplanter
+  storage:
+    back:
+      - BibleUserImplanter
