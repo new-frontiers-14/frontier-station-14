@@ -38,7 +38,6 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
