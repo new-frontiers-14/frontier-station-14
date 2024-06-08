@@ -52,14 +52,14 @@ public abstract class SharedDevourSystem : EntitySystem
         {
             switch (targetState.CurrentState)
             {
-                case MobState.Critical:
+                /*case MobState.Critical:
                 case MobState.Dead:
 
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.DevourTime, new DevourDoAfterEvent(), uid, target: target, used: uid)
                     {
                         BreakOnMove = true,
                     });
-                    break;
+                    break;*/ //Frontier - Disabled due to unfairness.
                 default:
                     _popupSystem.PopupClient(Loc.GetString("devour-action-popup-message-fail-target-alive"), uid,uid);
                     break;
