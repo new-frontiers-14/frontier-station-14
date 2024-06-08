@@ -232,7 +232,7 @@ public sealed partial class MechSystem : SharedMechSystem
         }
 
         // Frontier - Make AI Attack mechs based on user.
-        if (TryComp<MobStateComponent>(args.User, out var state))
+        if (TryComp<MobStateComponent>(args.User, out var _))
             EnsureComp<MobStateComponent>(uid);
         if (TryComp<NpcFactionMemberComponent>(args.User, out var faction))
         {
