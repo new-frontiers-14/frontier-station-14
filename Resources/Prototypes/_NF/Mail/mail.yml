@@ -1520,3 +1520,16 @@
   - type: Mail
     contents:
       - id: PowerCellMicroreactor
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailStationRepNFStationPet
+  suffix: station pet
+  components:
+  - type: Mail
+    - isFragile: true
+    contents:
+      - id: MaterialWoodPlank10
+      - id: PaperMailNFIkea
+      - id: DelayedPetCarrierNPCEmotionalSupportSafe

@@ -245,13 +245,14 @@ namespace Content.Server.Mail
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)
         {
+            MailEntityStrings mailEntityStrings = component.IsLarge ? MailConstants.MailLarge : MailConstants.Mail; //Frontier: mail types stored per type (large mail)
             if (!args.IsInDetailsRange)
             {
-                args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-far" : "mail-desc-far")); // Frontier: IsLarge switch
+                args.PushMarkup(Loc.GetString(mailEntityStrings.DescFar)); // Frontier: mail constants struct
                 return;
             }
 
-            args.PushMarkup(Loc.GetString(component.IsLarge ? "mail-large-desc-close" : "mail-desc-close", ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation))); // Frontier: IsLarge switch
+            args.PushMarkup(Loc.GetString(mailEntityStrings.DescClose, ("name", component.Recipient), ("job", component.RecipientJob), ("station", component.RecipientStation))); // Frontier: mail constants struct
 
             if (component.IsFragile)
                 args.PushMarkup(Loc.GetString("mail-desc-fragile"));
@@ -470,6 +471,7 @@ namespace Content.Server.Mail
             mailComp.RecipientStation = recipient.Ship; // Frontier
 
             // Frontier: Large mail bonus
+            MailEntityStrings mailEntityStrings = mailComp.IsLarge ? MailConstants.MailLarge : MailConstants.Mail;
             if (mailComp.IsLarge)
             {
                 mailComp.Bounty += component.LargeBonus;
@@ -499,7 +501,7 @@ namespace Content.Server.Mail
 
             _appearanceSystem.SetData(uid, MailVisuals.JobIcon, recipient.JobIcon);
 
-            _metaDataSystem.SetEntityName(uid, Loc.GetString(mailComp.IsLarge ? "mail-large-item-name-addressed" : "mail-item-name-addressed", // Frontier: IsLarge switch
+            _metaDataSystem.SetEntityName(uid, Loc.GetString(mailEntityStrings.NameAddressed, // Frontier: move constant to MailEntityString
                 ("recipient", recipient.Name)));
 
             var accessReader = EnsureComp<AccessReaderComponent>(uid);

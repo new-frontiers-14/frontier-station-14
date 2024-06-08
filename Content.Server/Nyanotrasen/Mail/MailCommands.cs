@@ -59,7 +59,7 @@ public sealed class MailToCommand : IConsoleCommand
 
         // Frontier: Large Mail
         bool isLarge = false;
-        if (args.Length >= 4 && !Boolean.TryParse(args[4], out isLarge))
+        if (args.Length > 4 && !Boolean.TryParse(args[4], out isLarge))
         {
             shell.WriteError(Loc.GetString("shell-invalid-bool"));
             return;
@@ -115,7 +115,7 @@ public sealed class MailToCommand : IConsoleCommand
 
         mailComponent.IsFragile = isFragile;
         mailComponent.IsPriority = isPriority;
-        mailComponent.IsPriority = isPriority;
+        mailComponent.IsLarge = isLarge;
 
         _mailSystem.SetupMail(mailUid, teleporterComponent, recipient.Value);
 

@@ -4,10 +4,22 @@
   parent: BaseItem
   noSpawn: true
   name: delayed smoke
-  suffix: "Smoke (10s, delayed)"
+  suffix: "(10s)"
   components:
   - type: DelayedItem
     item: AdminInstantEffectSmoke10
+
+# Miscellaneous Items
+
+# Delay the emotional support pet so they don't suffocate.
+- type: entity
+  id: DelayedPetCarrierNPCEmotionalSupportSafe
+  parent: BaseItem
+  noSpawn: true
+  name: delayed emotional support pet
+  components:
+  - type: DelayedItem
+    item: PetCarrierNPCEmotionalSupportSafe
 
 # Papers (letters, ad copy)
 - type: entity
@@ -329,3 +341,19 @@
             [head=3]Sincerely,
                [italic]The Frontier Paper Pusher's Club[/italic][/head]
 
+- type: entity
+  id: PaperMailNFPetBedAssemblyManual
+  # noSpawn: true
+  suffix: "pet bed assembly manual"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+
+      [head=1]HÖGANÄS[/head]
+
+      [head=2](There is a black and white picture of a pet bed on the first page.)[/head]
+
+      [head=3](On the next few pages, you see a list of materials and a happy stick figure assembling furniture.)[/head]
+
+      [head=3](On the pages after that, you see a set of instructions to assemble a pet bed.  You're sure you don't need them, how hard could it be?)[/head]
