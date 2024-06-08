@@ -50,5 +50,5 @@ public sealed partial class LoadoutPrototype : IPrototype
     /// Currently, if not defaulted, this will be the fallback entity used to get the description if an override is not provided here.
     /// </remarks>
     [DataField]
-    public EntProtoId PreviewEntity = default!;
+    public EntProtoId? PreviewEntity = default!;
 }

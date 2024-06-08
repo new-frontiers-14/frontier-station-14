@@ -40,7 +40,7 @@ public sealed partial class LoadoutContainer : BoxContainer
             Price.Text = "$" + loadProto.Price;
 
             bool hasDescription = !string.IsNullOrEmpty(loadProto.Description);
-            bool hasEntity = !string.IsNullOrEmpty(loadProto.PreviewEntity.Id);
+            bool hasEntity = !string.IsNullOrEmpty(loadProto.PreviewEntity?.Id);
 
             EntProtoId? ent = null;
             if (!hasEntity || !hasDescription) {
