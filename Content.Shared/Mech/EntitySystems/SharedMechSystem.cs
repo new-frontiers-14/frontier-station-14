@@ -392,9 +392,9 @@ public abstract class SharedMechSystem : EntitySystem
         UpdateAppearance(uid, component);
 
         // Frontier - Make NPC AI attack Mechs
-        if (TryComp<MobStateComponent>(uid, out var state))
+        if (TryComp<MobStateComponent>(uid, out var _))
             RemComp<MobStateComponent>(uid);
-        if (TryComp<NpcFactionMemberComponent>(uid, out var faction))
+        if (TryComp<NpcFactionMemberComponent>(uid, out var _))
             RemComp<NpcFactionMemberComponent>(uid);
         // Frontier
 
