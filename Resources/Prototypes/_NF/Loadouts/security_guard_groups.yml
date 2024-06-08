@@ -1,6 +1,6 @@
 - type: loadoutGroup
   id: SecurityGuardGloves
-  name: loadout-group-security-guard-gloves
+  name: loadout-group-contractor-gloves
   loadouts:
   - CombatGloves
   - ColorBlackGloves
@@ -8,7 +8,7 @@
 
 - type: loadoutGroup
   id: SecurityGuardHead
-  name: loadout-group-security-guard-head
+  name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
   - SecurityBeret
@@ -16,21 +16,29 @@
 
 - type: loadoutGroup
   id: SecurityGuardJumpsuit
-  name: loadout-group-security-guard-jumpsuit
+  name: loadout-group-contractor-jumpsuit
   loadouts:
   - SecurityGuardJumpsuit
   - SecurityGuardJumpskirt
 
 - type: loadoutGroup
+  id: SecurityGuardBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - SecurityGuardBackpack
+  - SecurityGuardSatchel
+  - SecurityGuardDuffel
+
+- type: loadoutGroup
   id: SecurityGuardOuterClothing
-  name: loadout-group-security-guard-outerclothing
+  name: loadout-group-contractor-outerclothing
   loadouts:
   - ArmorVest
   - ArmorVestSlim
 
 - type: loadoutGroup
   id: SecurityGuardShoes
-  name: loadout-group-security-guard-shoes
+  name: loadout-group-contractor-shoes
   loadouts:
   - LeatherShoes
   - CombatBoots
@@ -38,13 +46,20 @@
 
 - type: loadoutGroup
   id: SecurityGuardBelt
-  name: loadout-group-security-belt
+  name: loadout-group-contractor-belt
   loadouts:
   - SecurityBelt
   - SecurityWebbing
 
 - type: loadoutGroup
   id: SecurityGuardPDA
-  name: loadout-group-security-belt
+  name: loadout-group-contractor-id
   loadouts:
   - SecurityGuardSecurityGuardPDA
+
+- type: loadoutGroup
+  id: SecurityGuardFace
+  name: loadout-group-contractor-face
+  minLimit: 0
+  loadouts:
+  - SecurityClothingMaskGasSecurity
