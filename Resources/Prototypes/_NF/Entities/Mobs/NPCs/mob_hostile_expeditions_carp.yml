@@ -2,12 +2,23 @@
 - type: entity
   parent:
   - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleMelee
   id: BaseMobCarpExpeditions
   name: planetary space carp
   description: It's a planetary space carp.
   abstract: true
   components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -61,6 +72,7 @@
       types:
         Piercing: 5
         Slash: 5
+        Structural: 20
   - type: TypingIndicator
     proto: alien
 

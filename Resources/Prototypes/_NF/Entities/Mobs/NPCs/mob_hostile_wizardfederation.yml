@@ -182,6 +182,18 @@
   - MobHumanoidHostileAISimpleMelee
   id: WaterElementalConjured
   components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
   - type: MovementAlwaysTouching
   - type: NoSlip
   - type: NpcFactionMember
@@ -212,6 +224,7 @@
     damage:
       types:
         Slash: 15
+        Structural: 20
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10

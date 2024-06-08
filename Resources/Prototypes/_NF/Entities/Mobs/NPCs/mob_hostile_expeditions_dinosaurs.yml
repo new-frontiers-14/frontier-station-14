@@ -7,6 +7,18 @@
   description: Enigmatic behemoths from a bygone era, known for their imposing stature and formidable presence.
   abstract: true
   components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
   - type: NpcFactionMember
     factions:
     - DinosaursNF
@@ -83,6 +95,7 @@
     damage:
       types:
         Slash: 8
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2
     baseWalkSpeed: 2
@@ -120,6 +133,7 @@
       types:
         Slash: 6
         Caustic: 1
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 5.5
     baseWalkSpeed: 5.5
@@ -156,6 +170,7 @@
     damage:
       types:
         Slash: 12
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 6.5
     baseWalkSpeed: 6.5
@@ -192,6 +207,7 @@
     damage:
       types:
         Blunt: 6
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 4
     baseWalkSpeed: 4
@@ -228,6 +244,7 @@
     damage:
       types:
         Piercing: 10
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2.5
     baseWalkSpeed: 2.5
@@ -264,6 +281,7 @@
     damage:
       types:
         Blunt: 15
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 3
     baseWalkSpeed: 3
@@ -300,6 +318,7 @@
     damage:
       types:
         Slash: 8
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2
     baseWalkSpeed: 2
@@ -336,6 +355,7 @@
     damage:
       types:
         Blunt: 12
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5
     baseWalkSpeed: 4.5
@@ -373,6 +393,7 @@
       types:
         Blunt: 12
         Piercing: 8
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 3
     baseWalkSpeed: 3
@@ -411,6 +432,7 @@
       types:
         Slash: 12
         Piercing: 8
+        Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5
     baseWalkSpeed: 4.5

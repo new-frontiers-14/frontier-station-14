@@ -2,12 +2,23 @@
 - type: entity
   parent:
   - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleMelee
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
   abstract: true
   components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Aliens/flesh.rsi
@@ -38,6 +49,7 @@
     damage:
       types:
         Slash: 8
+        Structural: 20
   - type: ReplacementAccent
     accent: genericAggressive
 
