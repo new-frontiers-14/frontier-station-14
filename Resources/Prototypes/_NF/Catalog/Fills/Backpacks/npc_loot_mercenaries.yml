@@ -18,11 +18,6 @@
     quickEquip: false
     slots:
     - back
-  - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash10
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 ## BELT - for ammo and mags
 - type: entity
@@ -43,11 +38,6 @@
     quickEquip: false
     slots:
     - belt
-  - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash10
-    sound:
-      path: /Audio/Items/jumpsuit_equip.ogg
 
 # MERCENARY NPC LOOT
 ## TIER 1
@@ -58,16 +48,20 @@
   components:
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash500
       prob: 0.65
     - id: SpaceCash1000
       prob: 0.45
+    # Weapons
     - id: WeaponPistolMk58Expedition
       prob: 0.9
+    # Armor
     - id: ClothingOuterVestWebMercenary
       prob: 0.4
+    # Items
     - id: ClothingNeckIFFNeutral
       prob: 0.2
     sound:
@@ -101,16 +95,20 @@
   components:
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash500
       prob: 0.9
     - id: SpaceCash500
       prob: 0.65
     - id: SpaceCash1000
       prob: 0.45
+    # Weapons
     - id: WeaponSniperMosin
       prob: 0.9
+    # Armor
     - id: ClothingOuterVestWebMercenary
       prob: 0.4
+    # Items
     - id: ClothingNeckIFFNeutral
       prob: 0.2
     sound:
@@ -138,16 +136,20 @@
   components:
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
       prob: 0.65
     - id: SpaceCash1000
       prob: 0.45
+    # Weapons
     - id: WeaponShotgunDoubleBarreled
       prob: 0.9
+    # Armor
     - id: ClothingOuterArmorBasicSlim
       prob: 0.4
+    # Items
     - id: ClothingNeckIFFNeutral
       prob: 0.2
     sound:
@@ -174,20 +176,24 @@
   components:
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash500
       prob: 0.65
     - id: SpaceCash1000
       prob: 0.45
+    # Weapons
     - id: WeaponRevolverArgenti
       prob: 0.9
     - id: WeaponRevolverArgenti
       prob: 0.3
+    # Armor
     - id: ClothingOuterCoatBHTrench
       prob: 0.4
     - id: ClothingHeadHatBH
       prob: 0.4
+    # Items
     - id: ClothingNeckIFFNeutral
       prob: 0.2
     sound:
@@ -227,19 +233,51 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash1000
       prob: 0.9
     - id: SpaceCash1000
       prob: 0.65
     - id: SpaceCash1000
       prob: 0.45
-    - id: SpawnDungeonLootKitsFirstAid
-      prob: 0.45
+    # Weapons
     - id: WeaponLaserGun
       prob: 0.9
     - id: SawElectric
       prob: 0.7
+    # Armor
+    # Items
+    - id: SpawnDungeonLootKitsFirstAid
+      prob: 0.45
     - id: ClothingNeckIFFNeutral
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltMecranaryTier3Medic
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/emt.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: Brutepack
+      prob: 0.6
+    - id: Ointment
+      prob: 0.6
+    - id: Bloodpack
+      prob: 0.7
+    - id: Gauze
+      amount: 1
+      prob: 0.9
+    - id: EmergencyMedipen
+      prob: 0.7
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: EmergencyMedipen
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -283,6 +321,7 @@
         color: "#eeeeee"
   - type: SpawnItemsOnUse
     items:
+    # Cash
     - id: SpaceCash2500
       prob: 0.9
     - id: SpaceCash1000
@@ -291,10 +330,13 @@
       prob: 0.45
     - id: SpaceCash1000
       prob: 0.15
+    # Weapons
     - id: WeaponSniperRepeaterExpedition
       prob: 0.9
+    # Armor
     - id: ClothingOuterArmorBulletproof
       prob: 0.4
+    # Items
     - id: MagazineBoxMagnum
       prob: 0.9
     - id: MagazineBoxMagnum

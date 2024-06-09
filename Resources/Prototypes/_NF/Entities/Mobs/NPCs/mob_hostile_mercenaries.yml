@@ -63,7 +63,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobHumanoidMercenaryGearTier1Knife
+    - MobHumanoidMercenaryGearMeleeT1
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -72,18 +72,12 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#d3bf86" #"#404029"
-    - sprite: Clothing/Hands/Gloves/mercbattle.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/merc_helmet.rsi
       state: equipped-HELMET
-    - sprite: Objects/Tools/Hydroponics/hatchet.rsi
-      state: inhand-right
-    - sprite: Objects/Weapons/Melee/shields.rsi
-      state: buckler-inhand-left
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
@@ -99,7 +93,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobHumanoidMercenaryGearTier1Pistol
+    - MobHumanoidMercenaryGearRangedT1
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -108,16 +102,12 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#d3bf86"
-    - sprite: Clothing/Hands/Gloves/mercbattle.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/merc_helmet.rsi
       state: equipped-HELMET
-    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
-      state: inhand-right
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
@@ -144,7 +134,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobHumanoidMercenaryGearTier1Mosin
+    - MobHumanoidMercenaryGearRangedAltT1
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -153,16 +143,12 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#d3bf86"
-    - sprite: Clothing/Hands/Gloves/mercbattle.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/merc.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/merc_helmet.rsi
       state: equipped-HELMET
-    - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-      state: wielded-inhand-right
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
@@ -184,13 +170,15 @@
 ## Tier 2
 - type: entity
   name: mercenary breacher
-  parent: MobMercenaryBase
-  id: MobMercenaryBreacherShotgun
+  parent:
+  - MobMercenaryBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobMercenaryBreacherMachete
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
-    - MobHumanoidMercenaryGearTier2Shotgun
+    - MobHumanoidMercenaryGearMeleeT2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -199,16 +187,87 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#3d5c87"
-    - sprite: Clothing/Hands/Gloves/fingerless.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/gas.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/security.rsi
       state: equipped-HELMET
-    - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
-      state: wielded-inhand-right
+    - sprite: Clothing/Belt/militarywebbing.rsi
+      state: equipped-BELT
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  name: mercenary breacher
+  parent: MobMercenaryBase
+  id: MobMercenarySoldierRevolver
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/neckgaiter.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+      state: equipped-EYES
+    - sprite: Clothing/Head/Hats/hoshat.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeRifle
+    capacity: 8
+    count: 8
+  - type: Gun
+    showExamineText: false
+    fireRate: 2.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: mercenary breacher
+  parent: MobMercenaryBase
+  id: MobMercenaryBreacherShotgun
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedAltT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gas.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
@@ -231,95 +290,6 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
 
-- type: entity
-  name: mercenary breacher
-  parent: MobMercenaryBase
-  id: MobMercenarySoldierRevolver
-  noSpawn: true
-  components:
-  - type: Loadout
-    prototypes:
-    - MobHumanoidMercenaryGearTier2Revolver
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      state: equipped-INNERCLOTHING
-      color: "#3d5c87"
-    - sprite: Clothing/Hands/Gloves/fingerless.rsi
-      state: equipped-HAND
-    - sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
-      state: equipped-OUTERCLOTHING
-    - sprite: Clothing/Mask/neckgaiter.rsi
-      state: equipped-MASK
-    - sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-      state: equipped-EYES
-    - sprite: Clothing/Head/Hats/hoshat.rsi
-      state: equipped-HELMET
-    - sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
-      state: inhand-right
-    - sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
-      state: inhand-left
-    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
-      state: equipped-NECK-off
-    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
-      state: equipped-NECK-on
-      color: "#a9b6bd"
-      shader: unshaded
-  - type: BasicEntityAmmoProvider
-    proto: CartridgeRifle
-    capacity: 8
-    count: 8
-  - type: Gun
-    showExamineText: false
-    fireRate: 2.5
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
-
-- type: entity
-  name: mercenary breacher
-  parent:
-  - MobMercenaryBase
-  - MobHumanoidHostileAISimpleMelee
-  id: MobMercenaryBreacherMachete
-  noSpawn: true
-  components:
-  - type: Loadout
-    prototypes:
-    - MobHumanoidMercenaryGearTier2Machete
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      state: equipped-INNERCLOTHING
-      color: "#3d5c87"
-    - sprite: Clothing/Hands/Gloves/fingerless.rsi
-      state: equipped-HAND
-    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
-      state: equipped-OUTERCLOTHING
-    - sprite: Clothing/Mask/gas.rsi
-      state: equipped-MASK
-    - sprite: Clothing/Head/Helmets/security.rsi
-      state: equipped-HELMET
-    - sprite: Clothing/Belt/militarywebbing.rsi
-      state: equipped-BELT
-    - sprite: Objects/Weapons/Melee/machete.rsi
-      state: inhand-right
-    - sprite: Objects/Weapons/Melee/shields.rsi
-      state: metal-inhand-left
-    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
-      state: equipped-NECK-off
-    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
-      state: equipped-NECK-on
-      color: "#a9b6bd"
-      shader: unshaded
-
 ## Tier 3
 - type: entity
   name: mercenary specialist
@@ -329,7 +299,7 @@
   components:
   - type: Loadout
     prototypes:
-    - MobHumanoidMercenaryGearTier3Medic
+    - MobHumanoidMercenaryGearRangedT3
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -338,18 +308,12 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#2e687a"
-    - sprite: Clothing/Hands/Gloves/fingerless.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/medicalsecurity.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Helmets/light_riot.rsi
       state: equipped-HELMET
-    - sprite: Objects/Specific/Medical/Surgery/saw.rsi
-      state: electric-inhand-right
-    - sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
-      state: inhand-left-3
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
@@ -391,8 +355,6 @@
     - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       state: equipped-INNERCLOTHING
       color: "#d3bf86"
-    - sprite: Clothing/Hands/Gloves/fingerless.rsi
-      state: equipped-HAND
     - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
       state: equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/gassecurity.rsi
@@ -403,8 +365,6 @@
       state: equipped-BELT
     - sprite: Clothing/Neck/mantles/qmmantle.rsi
       state: equipped-NECK
-    - sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
-      state: wielded-inhand-right
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
       state: equipped-NECK-off
     - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
