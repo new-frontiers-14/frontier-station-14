@@ -42,7 +42,7 @@
         Slash: 15
         Structural: 30
     soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      collection: MetalThud
   - type: Advertise
     pack: mercanaryhumanoidchatter
     minimumWait: 30
@@ -82,6 +82,7 @@
       state: equipped-HELMET
     - sprite: Objects/Tools/lantern.rsi
       state: on-equipped-BELT
+      shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2.5
@@ -153,6 +154,10 @@
       state: equipped-head
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-unshaded
+      shader: unshaded
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
   - type: PointLight
     radius: 3
     energy: 1
@@ -177,6 +182,10 @@
       state: equipped-head
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-unshaded
+      shader: unshaded
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
     rechargeSound:
@@ -271,6 +280,61 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+- type: entity
+  name: hauler
+  #noSpawn: true
+  parent:
+  - MobExplorerBase
+  id: MobExplorerHauler
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearMechT3
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: hauler
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: hauler
+      Critical:
+        Base: hauler-broken
+      Dead:
+        Base: hauler-broken
+  - type: RotationVisuals
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 100
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Stamina
+    critThreshold: 600
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.75
+    baseSprintSpeed: 4
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+    soundHit:
+      collection: MetalThud
 
 # Tier 4 - Boss
 - type: entity
