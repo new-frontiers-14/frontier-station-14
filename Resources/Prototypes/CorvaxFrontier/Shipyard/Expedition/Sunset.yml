@@ -1,0 +1,29 @@
+- type: vessel
+  id: Sunset
+  name: NLE Закат
+  description: Крупногабаритный экспедиционный шаттл, ранее был использовался для выполнения разведывательных задач. Рекомендуемый состав команды 3-8 человек.
+  price: 135000 # 33% tax
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Expedition/Sunset.yml
+
+- type: gameMap
+  id: Sunset
+  mapName: 'NLE Закат'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Expedition/Sunset.yml
+  minPlayers: 0
+  stations:
+    Sunset:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Закат {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
