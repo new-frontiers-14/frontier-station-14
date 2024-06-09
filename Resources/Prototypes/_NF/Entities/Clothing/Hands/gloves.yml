@@ -207,3 +207,103 @@
         color: "#535353"
       - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
         state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedGlaive
+  name: wielded weapon
+  suffix: crusher glaive
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponDrill
+  name: wielded weapon
+  suffix: mining drill
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Tools/handdrill.rsi
+        state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedPickaxe
+  name: wielded weapon
+  suffix: Pickaxe
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Melee/pickaxe.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponPkaFlashlight
+  name: wielded weapon
+  suffix: PKA, flashlifght
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+        state: inhand-right
+      - sprite: Objects/Tools/flashlight.rsi
+        state: inhand-left
+      - sprite: Objects/Tools/flashlight.rsi
+        state: inhand-left-light
+        shader: unshaded
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedPka
+  name: wielded weapon
+  suffix: PKA
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponSawnOffPkaDagger
+  name: wielded weapon
+  suffix: sawn-off PKA, crusher dagger
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-right
+      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+        state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponSawnOffPkas
+  name: wielded weapon
+  suffix: double sawn-off PKAs
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-left
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-right
