@@ -19,6 +19,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.NPC.Components; // Frontier
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -388,6 +390,14 @@ public abstract class SharedMechSystem : EntitySystem
         RemoveUser(uid, pilot);
         _container.RemoveEntity(uid, pilot);
         UpdateAppearance(uid, component);
+
+        // Frontier - Make NPC AI attack Mechs
+        if (TryComp<MobStateComponent>(uid, out var _))
+            RemComp<MobStateComponent>(uid);
+        if (TryComp<NpcFactionMemberComponent>(uid, out var _))
+            RemComp<NpcFactionMemberComponent>(uid);
+        // Frontier
+
         return true;
     }
 
