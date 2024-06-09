@@ -55,6 +55,7 @@
     energy: 1
     autoRot: true
     netsync: false
+    color: "#47f8ff"
 
 # Variations
 ## Tier 1
@@ -86,7 +87,6 @@
   - type: PointLight
     radius: 3
     energy: 2.5
-    color: "#FFC458"
 
 - type: entity
   name: explorer
@@ -226,7 +226,10 @@
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
     - sprite: Clothing/Head/Hardsuits/salvage.rsi
-      state: on-equipped-HELMET
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
   - type: MeleeWeapon
     autoAttack: true
     angle: 0
@@ -260,11 +263,10 @@
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
     - sprite: Clothing/Head/Hardsuits/luxury.rsi
-      state: on-equipped-HELMET
-  - type: PointLight
-    radius: 7
-    energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
     rechargeSound:
@@ -280,6 +282,10 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/cone.png
 
 - type: entity
   name: hauler
@@ -334,6 +340,10 @@
         Structural: 20
     soundHit:
       collection: MetalThud
+  - type: PointLight
+    radius: 5
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
 
 # Tier 4 - Boss
 - type: entity
@@ -352,11 +362,10 @@
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
     - sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
-      state: on-equipped-HELMET
-  - type: PointLight
-    radius: 7
-    energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.375
     rechargeSound:
@@ -374,3 +383,7 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/cone.png

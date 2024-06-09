@@ -148,3 +148,24 @@
       - state: equipped-NECK-on
         color: "#0055cc"
         shader: unshaded
+
+- type: entity
+  parent: ClothingNeckIFFNeutral
+  id: ClothingNeckIFFCyan
+  suffix: Cyan
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+    layers:
+    - state: icon-off
+    - state: icon-on
+      color: "#47f8ff"
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK-off
+      - state: equipped-NECK-on
+        color: "#47f8ff"
+        shader: unshaded
