@@ -150,7 +150,7 @@ store-category-pirateammo = Ammunition
 store-category-pirateexplosives = Explosives
 
 uplink-pirate-hardsuit-name = Pirate HardSuit
-uplink-security-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
 uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
 uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
 uplink-pirate-crate-captain-name = Pirate Captain's Crate
