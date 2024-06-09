@@ -456,7 +456,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -2688.489
+      secondsUntilStateChange: -2733.3945
       state: Opening
   - uid: 115
     components:
@@ -1793,20 +1793,6 @@ entities:
     - type: Transform
       pos: 2.1264925,-4.3604836
       parent: 1
-- proto: LockableButtonEngineering
-  entities:
-  - uid: 119
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-8.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        240:
-        - Pressed: Toggle
-        262:
-        - Pressed: Toggle
 - proto: LockerChemistry
   entities:
   - uid: 278
@@ -2268,6 +2254,20 @@ entities:
     - type: DeviceLinkSink
       links:
       - 119
+- proto: SignalButton
+  entities:
+  - uid: 119
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-8.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        240:
+        - Pressed: Toggle
+        262:
+        - Pressed: Toggle
 - proto: SignChemistry1
   entities:
   - uid: 175
