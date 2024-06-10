@@ -119,6 +119,16 @@ public sealed partial class NPCSteeringComponent : Component
     /// </summary>
     [DataField("doAfterId")]
     public DoAfterId? DoAfterId = null;
+
+    /// <summary>
+    /// Frontier - how many times the AI attempted to scan for paths before a shuffle to attack targets
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public float ObstacleShuffleCounter = 0;
+
+    /// <summary>
+    /// Frontier - how many times the AI can attempt to scan for paths before a shuffle to attack targets
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public float ObstacleShuffleCounterEnd = 30;
 }
 
 public enum SteeringStatus : byte
