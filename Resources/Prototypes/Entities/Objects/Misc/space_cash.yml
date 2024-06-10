@@ -28,12 +28,17 @@
     - cash_100
     - cash_500
     - cash_1000
-    - cash_1000000
-    layerFunction:
-      !type:ThresholdStackLayerFunction
-        thresholds: [10, 100, 500, 1000, 1000000]
+    - cash_5000 # Frontier: larger denominations
+    - cash_10000 # Frontier: larger denominations
+    - cash_25000 # Frontier: larger denominations
+    - cash_50000 # Frontier: larger denominations
+    - cash_100000 # Frontier: larger denominations
+    - cash_250000 # Frontier: larger denominations (cash_1000000<cash_250000)
+    layerFunction: # Frontier: multicolour cash
+      !type:ThresholdStackLayerFunction # Frontier
+        thresholds: [10, 100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000] # Frontier
   - type: Sprite
-    sprite: Objects/Economy/cash.rsi
+    sprite: _NF/Objects/Economy/cash.rsi # Frontier: larger denominations
     state: cash
     layers:
     - state: cash
