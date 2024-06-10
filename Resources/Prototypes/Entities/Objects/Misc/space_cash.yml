@@ -29,9 +29,9 @@
     - cash_500
     - cash_1000
     - cash_1000000
-    amountConverter:
-      !type:MinimumMapConverter
-        requirements: [1, 10, 100, 500, 1000, 1000000]
+    layerFunction:
+      !type:ThresholdStackLayerFunction
+        thresholds: [10, 100, 500, 1000, 1000000]
   - type: Sprite
     sprite: Objects/Economy/cash.rsi
     state: cash

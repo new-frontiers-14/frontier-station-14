@@ -56,31 +56,25 @@ namespace Content.Client.Stack
             if (args.Sprite == null || comp.LayerStates.Count < 1)
                 return;
 
+            StackLayerData data = new StackLayerData(); // Frontier: use structure to store StackLayerData
+
             // Skip processing if no actual
-            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.Actual, out var actual, args.Component))
+            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.Actual, out data.Actual, args.Component))
                 return;
 
-            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.MaxCount, out var maxCount, args.Component))
-                maxCount = comp.LayerStates.Count;
+            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.MaxCount, out data.MaxCount, args.Component))
+                data.MaxCount = comp.LayerStates.Count;
 
-            if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out var hidden, args.Component))
-                hidden = false;
+            if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out data.Hidden, args.Component))
+                data.Hidden = false;
 
-            // Frontier: adjust count
-            StackAmount stackAmount = new StackAmount
-            {
-                Amount = actual,
-                MaxCount = maxCount,
-                Hidden = hidden
-            };
-            if (comp.AmountConverter is not null)
-                comp.AmountConverter.Convert(ref stackAmount);
-            // End Frontier
+            if (comp.LayerFunction is not null) // Frontier: use stack layer function to modify appearance if provided.
+                comp.LayerFunction.Apply(ref data); // Frontier
 
             if (comp.IsComposite)
-                _counterSystem.ProcessCompositeSprite(uid, stackAmount.Amount, stackAmount.MaxCount, comp.LayerStates, stackAmount.Hidden, sprite: args.Sprite); // Frontier: use stackAmount object
+                _counterSystem.ProcessCompositeSprite(uid, data.Actual, data.MaxCount, comp.LayerStates, data.Hidden, sprite: args.Sprite);
             else
-                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, stackAmount.Amount, stackAmount.MaxCount, comp.LayerStates, stackAmount.Hidden, sprite: args.Sprite); // Frontier: use stackAmount object
+                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, data.Actual, data.MaxCount, comp.LayerStates, data.Hidden, sprite: args.Sprite);
         }
     }
 }
