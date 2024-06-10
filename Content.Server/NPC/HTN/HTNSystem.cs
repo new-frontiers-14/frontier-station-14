@@ -17,6 +17,10 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Worldgen; // Frontier
+using Content.Server.Worldgen.Components; // Frontier
+using Content.Server.Worldgen.Systems; // Frontier
+using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.NPC.HTN;
 
@@ -26,11 +30,12 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    // Frontier
     [Dependency] private readonly WorldControllerSystem _world = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-
     private EntityQuery<WorldControllerComponent> _mapQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -40,8 +45,8 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _mapQuery = GetEntityQuery<WorldControllerComponent>();
-        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
+        _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Frontier
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Frontier
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -164,7 +169,7 @@ public sealed class HTNSystem : EntitySystem
             if (count >= maxUpdates)
                 break;
 
-            if (!IsNPCActive(uid))
+            if (!IsNPCActive(uid))  // Frontier
                 continue;
 
             if (comp.PlanningJob != null)
@@ -255,7 +260,7 @@ public sealed class HTNSystem : EntitySystem
         }
     }
 
-    private bool IsNPCActive(EntityUid entity)
+    private bool IsNPCActive(EntityUid entity) // Frontier
     {
         var transform = Transform(entity);
 
