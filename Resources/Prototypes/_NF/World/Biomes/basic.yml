@@ -1,0 +1,133 @@
+﻿- type: spaceBiome
+  id: AsteroidsStandardNF
+  priority: 0 # This probably shouldn't get selected.
+  noiseRanges: {}
+  chunkComponents:
+    - type: DebrisFeaturePlacerController
+      densityNoiseChannel: Density
+    - type: SimpleDebrisSelector
+      debrisTable:
+        - id: AsteroidDebrisNFMedium
+        - id: AsteroidDebrisNFIceMedium
+        - id: AsteroidDebrisNFAndesiteMedium
+        - id: AsteroidDebrisNFBasaltMedium
+        - id: AsteroidDebrisNFSandMedium
+        - id: AsteroidDebrisNFChromiteMedium
+        - id: AsteroidRockDebrisNFMedium
+        - id: AsteroidDebrisNFLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFIceLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFAndesiteLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFBasaltLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFSandLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFChromiteLarge
+          prob: 0.6
+        - id: AsteroidRockDebrisNFLarge
+          prob: 0.6
+        - id: AsteroidDebrisNFLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFIceLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFAndesiteLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFBasaltLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFSandLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFChromiteLarger
+          prob: 0.3
+        - id: AsteroidRockDebrisNFLarger
+          prob: 0.3
+        - id: AsteroidDebrisNFHuge
+          prob: 0.15
+        - id: AsteroidDebrisNFIceHuge
+          prob: 0.15
+        - id: AsteroidDebrisNFAndesiteHuge
+          prob: 0.15
+        - id: AsteroidDebrisNFBasaltHuge
+          prob: 0.15
+        - id: AsteroidDebrisNFSandHuge
+          prob: 0.15
+        - id: AsteroidDebrisNFChromiteHuge
+          prob: 0.15
+        - id: AsteroidRockDebrisNFHuge
+          prob: 0.15
+        - id: AsteroidSalvageNFSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFIceSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFAndesiteSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFBasaltSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFSandSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFChromiteSmall
+          prob: 0.1
+        - id: AsteroidRockSalvageNFSmall
+          prob: 0.1
+        - id: AsteroidSalvageNFMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFIceMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFAndesiteMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFBasaltMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFSandMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFChromiteMedium
+          prob: 0.08
+        - id: AsteroidRockSalvageNFMedium
+          prob: 0.08
+        - id: AsteroidSalvageNFLarge
+          prob: 0.05
+        - id: AsteroidSalvageNFIceLarge
+          prob: 0.05
+        - id: AsteroidSalvageNFAndesiteLarge
+          prob: 0.05
+        - id: AsteroidSalvageNFBasaltLarge
+          prob: 0.05
+        - id: AsteroidSalvageNFSandLarge
+          prob: 0.05
+        - id: AsteroidSalvageNFChromiteLarge
+          prob: 0.05
+        - id: AsteroidRockSalvageNFLarge
+          prob: 0.03
+        - id: AsteroidSalvageNFHuge
+          prob: 0.03
+        - id: AsteroidSalvageNFIceHuge
+          prob: 0.03
+        - id: AsteroidSalvageNFAndesiteHuge
+          prob: 0.03
+        - id: AsteroidSalvageNFBasaltHuge
+          prob: 0.03
+        - id: AsteroidSalvageNFSandHuge
+          prob: 0.03
+        - id: AsteroidSalvageNFChromiteHuge
+          prob: 0.03
+        - id: AsteroidRockSalvageNFHuge
+          prob: 0.03
+    - type: NoiseDrivenDebrisSelector
+      noiseChannel: Wreck
+      debrisTable:
+        - id: ScrapDebrisSmall
+          prob: 1
+        - id: ScrapDebrisMedium
+          prob: 1
+        - id: ScrapDebrisLarge
+          prob: 0.6
+        - id: ScrapDebrisExtraLarge
+          prob: 0.3
+        - id: ScrapDebrisExtraLargeScattered
+          prob: 0.3
+        - id: ScrapDebrisHuge
+          prob: 0.15
+    - type: NoiseRangeCarver
+      ranges:
+        - 0.4, 0.6
+      noiseChannel: Carver

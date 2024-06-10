@@ -1,3 +1,42 @@
+# BASE
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackMessengerContractor
+  name: contractor messenger bag
+  description: A trendy looking messenger bag in tasteful colors.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#777b83"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#777b83"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#777b83"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#777b83"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackMessenger
@@ -7,15 +46,85 @@
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/messenger.rsi
 
+# DEPARTMENTAL
+## Command
 - type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerEngineering
-  name: engineering messenger bag
-  description: A tough messenger bag with extra pockets.
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerCaptain
+  name: captain's messenger bag
+  description: An exclusive messenger bag for Nanotrasen officers.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/engineering.rsi
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#3c6381"
+    - state: icon-sling
+      color: "#d6a033"
+    - state: icon-clasp
+      color: "#f6d56a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#3c6381"
+      - state: sling-equipped-BACKPACK
+        color: "#d6a033"
+      - state: clasp-equipped-BACKPACK
+        color: "#f6d56a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#3c6381"
+      - state: clasp-inhand-left
+        color: "#f6d56a"
+      right:
+      - state: base-inhand-right
+        color: "#3c6381"
+      - state: clasp-inhand-right
+        color: "#f6d56a"
 
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerSr
+  name: station representative's messenger bag
+  description: An exclusive messenger bag for Nanotrasen officers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#2c6a30"
+    - state: icon-sling
+      color: "#fbe6b8"
+    - state: icon-clasp
+      color: "#eca615"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#2c6a30"
+      - state: sling-equipped-BACKPACK
+        color: "#fbe6b8"
+      - state: clasp-equipped-BACKPACK
+        color: "#eca615"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#2c6a30"
+      - state: clasp-inhand-left
+        color: "#eca615"
+      right:
+      - state: base-inhand-right
+        color: "#2c6a30"
+      - state: clasp-inhand-right
+        color: "#eca615"
+
+## Engineering
 - type: entity
   parent: ClothingBackpackMessenger
   id: ClothingBackpackMessengerAtmospherics
@@ -26,17 +135,183 @@
     sprite: _NF/Clothing/Back/Messenger/atmospherics.rsi
 
 - type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerClown
-  name: clown messenger bag
-  description: For fast running from security.
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerEngineering
+  name: engineering messenger bag
+  description: A tough messenger bag with extra pockets.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/clown.rsi
-  - type: Storage
-    storageOpenSound:
-      collection: BikeHorn
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#c9a569"
+    - state: icon-base-top
+      color: "#f4af73"
+    - state: icon-decor-accent
+      color: "#ffde15"
+    - state: icon-sling
+      color: "#67593f"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#c9a569"
+      - state: base-top-equipped-BACKPACK
+        color: "#f4af73"
+      - state: decor-accent-equipped-BACKPACK
+        color: "#f4af73"
+      - state: sling-equipped-BACKPACK
+        color: "#67593f"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#c9a569"
+      - state: base-top-inhand-left
+        color: "#f4af73"
+      - state: decor-accent-inhand-left
+        color: "#ffde15"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#c9a569"
+      - state: base-top-inhand-right
+        color: "#f4af73"
+      - state: decor-accent-inhand-right
+        color: "#ffde15"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
 
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerChiefEngineer
+  name: chief engineer's messenger bag
+  description: A tough messenger bag with extra pockets.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#a48965"
+    - state: icon-sling
+      color: "#e78c2e"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#a48965"
+      - state: sling-equipped-BACKPACK
+        color: "#e78c2e"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#a48965"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#a48965"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+## Supply
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerCargo
+  name: cargo messenger bag
+  description: A robust messenger bag for stealing cargo's loot.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#d9b744"
+    - state: icon-base-top
+      color: "#aaaaaa"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#d9b744"
+      - state: base-top-equipped-BACKPACK
+        color: "#aaaaaa"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#d9b744"
+      - state: base-top-inhand-left
+        color: "#aaaaaa"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#d9b744"
+      - state: base-top-inhand-right
+        color: "#aaaaaa"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerSalvage
+  name: salvage messenger bag
+  description: A robust messenger bag for stashing your loot.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#766245"
+    - state: icon-sling
+      color: "#5f539a"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#766245"
+      - state: sling-equipped-BACKPACK
+        color: "#5f539a"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#766245"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#766245"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+## Medical
 - type: entity
   parent: ClothingBackpackMessenger
   id: ClothingBackpackMessengerMedical
@@ -73,6 +348,7 @@
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/genetics.rsi
 
+## Science
 - type: entity
   parent: ClothingBackpackMessenger
   id: ClothingBackpackMessengerScience
@@ -82,102 +358,18 @@
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/science.rsi
 
+## Civilian
 - type: entity
   parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerCaptain
-  name: captain's messenger bag
-  description: An exclusive messenger bag for Nanotrasen officers.
+  id: ClothingBackpackMessengerClown
+  name: clown messenger bag
+  description: For fast running from security.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/captain.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerHydroponics
-  name: hydroponics messenger bag
-  description: A messenger bag made of all natural fibers.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/hydroponics.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerCargo
-  name: cargo messenger bag
-  description: A robust messenger bag for stealing cargo's loot.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/cargo.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerSalvage
-  name: salvage messenger bag
-  description: A robust messenger bag for stashing your loot.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/salvage.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerPilot
-  name: pilot messenger bag
-  description: A robust messenger bag for shuttle parts.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/pilot.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerMercenary
-  name: mercenary messenger bag
-  description: A robust messenger bag for war crimes.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/mercenary.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerSyndicate
-  name: syndicate messenger bag
-  description: A robust messenger bag for waging war against oppressors.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/syndicate.rsi
-
-- type: entity
-  parent: ClothingBackpackHolding
-  id: ClothingBackpackMessengerHolding
-  name: messenger bag of holding
-  description: A messenger bag that opens into a localized pocket of bluespace.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/holding.rsi
-      state: icon
-      layers:
-        - state: icon
-        - state: icon-unlit
-          shader: unshaded
-    - type: Clothing
-      equippedPrefix: holding
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerMailCarrier
-  name: mail carrier messenger bag
-  description: A robust messenger bag for waging war against mail.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/mailman.rsi
-
-- type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerJanitor
-  name: janitor messenger bag
-  description: A robust messenger bag for waging war against dirt.
-  components:
-    - type: Sprite
-      sprite: _NF/Clothing/Back/Messenger/janitor.rsi
+    sprite: _NF/Clothing/Back/Messenger/clown.rsi
+  - type: Storage
+    storageOpenSound:
+      collection: BikeHorn
 
 - type: entity
   parent: ClothingBackpackMessenger
@@ -189,24 +381,826 @@
       sprite: _NF/Clothing/Back/Messenger/mime.rsi
 
 - type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerHydroponics
+  name: hydroponics messenger bag
+  description: A messenger bag made of all natural fibers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#548ddc"
+    - state: icon-base-top
+      color: "#69c05b"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#548ddc"
+      - state: base-top-equipped-BACKPACK
+        color: "#69c05b"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#548ddc"
+      - state: base-top-inhand-left
+        color: "#69c05b"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#548ddc"
+      - state: base-top-inhand-right
+        color: "#69c05b"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerJanitor
+  name: janitor messenger bag
+  description: A robust messenger bag for waging war against dirt.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ebdc36"
+    - state: icon-sling
+      color: "#8c347f"
+    - state: icon-clasp
+      color: "#8c347f"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#ebdc36"
+      - state: sling-equipped-BACKPACK
+        color: "#8c347f"
+      - state: clasp-equipped-BACKPACK
+        color: "#8c347f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#ebdc36"
+      - state: clasp-inhand-left
+        color: "#8c347f"
+      right:
+      - state: base-inhand-right
+        color: "#ebdc36"
+      - state: clasp-inhand-right
+        color: "#8c347f"
+
+- type: entity
   parent: ClothingBackpackMessenger
+  id: ClothingBackpackMessengerMailCarrier
+  name: mail carrier messenger bag
+  description: A robust messenger bag for waging war against mail.
+  components:
+    - type: Sprite
+      sprite: _NF/Clothing/Back/Messenger/mailman.rsi
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerChaplain
+  name: chaplain messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#535353"
+    - state: icon-sling
+      color: "#535353"
+    - state: icon-clasp
+      color: "#f6d56a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#535353"
+      - state: sling-equipped-BACKPACK
+        color: "#535353"
+      - state: clasp-equipped-BACKPACK
+        color: "#f6d56a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#535353"
+      - state: clasp-inhand-left
+        color: "#f6d56a"
+      right:
+      - state: base-inhand-right
+        color: "#535353"
+      - state: clasp-inhand-right
+        color: "#f6d56a"
+
+## Wild cards
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerPilot
+  name: pilot messenger bag
+  description: A robust messenger bag for shuttle parts.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e2516"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#3e2516"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#3e2516"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#3e2516"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerMercenary
+  name: mercenary messenger bag
+  description:  A robust messenger bag for war crimes.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a36"
+    - state: icon-sling
+      color: "#6a6a36"
+    - state: icon-clasp
+      color: "#bbbb7a"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: sling-equipped-BACKPACK
+        color: "#6a6a36"
+      - state: clasp-equipped-BACKPACK
+        color: "#bbbb7a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#6a6a36"
+      - state: clasp-inhand-left
+        color: "#bbbb7a"
+      right:
+      - state: base-inhand-right
+        color: "#6a6a36"
+      - state: clasp-inhand-right
+        color: "#bbbb7a"
+
+## Holding
+- type: entity
+  parent: ClothingBackpackHolding
+  id: ClothingBackpackMessengerHolding
+  name: messenger bag of holding
+  description: A messenger bag that opens into a localized pocket of bluespace.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/holding.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: icon-unlit
+      shader: unshaded
+  - type: Clothing
+    equippedPrefix: holding
+
+## Antagonists / Contraband
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerSyndicate
+  name: syndicate messenger bag
+  description: A robust messenger bag for waging war against oppressors.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#424242"
+    - state: icon-sling
+      color: "#7f0101"
+    - state: icon-clasp
+      color: "#7f0101"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#424242"
+      - state: sling-equipped-BACKPACK
+        color: "#7f0101"
+      - state: clasp-equipped-BACKPACK
+        color: "#7f0101"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#424242"
+      - state: clasp-inhand-left
+        color: "#7f0101"
+      right:
+      - state: base-inhand-right
+        color: "#424242"
+      - state: clasp-inhand-right
+        color: "#7f0101"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerBloodCult
+  name: cultist messenger bag
+  description: A watertight messenger bag for loyal Nar'Sie followers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerArcadia
+  name: arcadia messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#bab0b0"
+    - state: icon-base-top
+      color: "#ffffff"
+    - state: icon-decor
+      color: "#c12d30"
+    - state: icon-sling
+      color: "#7d282c"
+    - state: icon-clasp
+      color: "#1f1f1f"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#bab0b0"
+      - state: base-top-equipped-BACKPACK
+        color: "#ffffff"
+      - state: decor-equipped-BACKPACK
+        color: "#c12d30"
+      - state: sling-equipped-BACKPACK
+        color: "#7d282c"
+      - state: clasp-equipped-BACKPACK
+        color: "#1f1f1f"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#bab0b0"
+      - state: base-top-inhand-left
+        color: "#ffffff"
+      - state: decor-inhand-left
+        color: "#c12d30"
+      - state: clasp-inhand-left
+        color: "#1f1f1f"
+      right:
+      - state: base-inhand-right
+        color: "#bab0b0"
+      - state: base-top-inhand-right
+        color: "#ffffff"
+      - state: decor-inhand-right
+        color: "#c12d30"
+      - state: clasp-inhand-right
+        color: "#1f1f1f"
+
+## NFSD
+- type: entity
+  parent: ClothingBackpackMessengerContractor
   id: ClothingBackpackMessengerNfsdBrown
   name: nfsd messenger bag
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/nfsd_brown.rsi
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#63492a"
+    - state: icon-base-top
+      color: "#c2ae98"
+    - state: icon-sling
+      color: "#47603b"
+    - state: icon-clasp
+      color: "#e1af4e"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#63492a"
+      - state: base-top-equipped-BACKPACK
+        color: "#c2ae98"
+      - state: sling-equipped-BACKPACK
+        color: "#47603b"
+      - state: clasp-equipped-BACKPACK
+        color: "#e1af4e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#63492a"
+      - state: base-top-inhand-left
+        color: "#c2ae98"
+      - state: clasp-inhand-left
+        color: "#e1af4e"
+      right:
+      - state: base-inhand-right
+        color: "#63492a"
+      - state: base-top-inhand-right
+        color: "#c2ae98"
+      - state: clasp-inhand-right
+        color: "#e1af4e"
 
 - type: entity
-  parent: ClothingBackpackMessenger
+  parent: ClothingBackpackMessengerContractor
   id: ClothingBackpackMessengerNfsdCream
+  name: nfsd messenger bag
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/nfsd_cream.rsi
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#c2ae98"
+    - state: icon-decor
+      color: "#47603b"
+    - state: icon-sling
+      color: "#47603b"
+    - state: icon-clasp
+      color: "#e1af4e"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#c2ae98"
+      - state: decor-equipped-BACKPACK
+        color: "#47603b"
+      - state: sling-equipped-BACKPACK
+        color: "#47603b"
+      - state: clasp-equipped-BACKPACK
+        color: "#e1af4e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#c2ae98"
+      - state: decor-inhand-left
+        color: "#47603b"
+      - state: clasp-inhand-left
+        color: "#e1af4e"
+      right:
+      - state: base-inhand-right
+        color: "#c2ae98"
+      - state: decor-inhand-right
+        color: "#47603b"
+      - state: clasp-inhand-right
+        color: "#e1af4e"
+
+## Security
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerSecurity
+  name: security messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#6a6a6a"
+    - state: icon-decor
+      color: "#e6000d"
+    - state: icon-sling
+      color: "#bf0000"
+    - state: icon-clasp
+      color: "#cdcdcd"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#6a6a6a"
+      - state: decor-equipped-BACKPACK
+        color: "#e6000d"
+      - state: sling-equipped-BACKPACK
+        color: "#bf0000"
+      - state: clasp-equipped-BACKPACK
+        color: "#cdcdcd"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#6a6a6a"
+      - state: decor-inhand-left
+        color: "#e6000d"
+      - state: clasp-inhand-left
+        color: "#cdcdcd"
+      right:
+      - state: base-inhand-right
+        color: "#6a6a6a"
+      - state: decor-inhand-right
+        color: "#e6000d"
+      - state: clasp-inhand-right
+        color: "#cdcdcd"
+
+## Color variants (to match colored jumpsuits)
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorBlack
+  name: black messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#535353"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#535353"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#535353"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#535353"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
 
 - type: entity
-  parent: ClothingBackpackMessenger
-  id: ClothingBackpackMessengerBloodCult
-  name: cultist messenger bag
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorBlue
+  name: blue messenger bag
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Back/Messenger/bloodcult.rsi
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#0089EF"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#0089EF"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#0089EF"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#0089EF"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorGreen
+  name: green messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#5ABF2F"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#5ABF2F"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#5ABF2F"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#5ABF2F"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorOrange
+  name: orange messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#EF8100"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#EF8100"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#EF8100"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#EF8100"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorRed
+  name: red messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#940000"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#940000"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#940000"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#940000"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorPurple
+  name: purple messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#9C0DE1"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#9C0DE1"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#9C0DE1"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#9C0DE1"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorBrownLight
+  name: light brown messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#C09F72"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#C09F72"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#C09F72"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#C09F72"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorBrown
+  name: brown messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#723A02"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#723A02"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#723A02"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#a17229"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+- type: entity
+  parent: ClothingBackpackMessengerContractor
+  id: ClothingBackpackMessengerColorWhite
+  name: white messenger bag
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#ffffff"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#776756"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#ffffff"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#776756"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#ffffff"
+      - state: clasp-inhand-left
+        color: "#776756"
+      right:
+      - state: base-inhand-right
+        color: "#ffffff"
+      - state: clasp-inhand-right
+        color: "#776756"

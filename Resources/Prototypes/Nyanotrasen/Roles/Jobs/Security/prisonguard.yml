@@ -3,6 +3,7 @@
   name: job-name-guard
   description: job-description-guard
   playTimeTracker: JobPrisonGuard
+  setPreference: false # Frontier - Restore this ones we have a jail
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -37,9 +38,9 @@
     id: GuardPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal # Frontier
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     gloves: ClothingHandsGlovesCombat # Frontier
-  innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackSecurityFilled
+  # innerClothingSkirt: ClothingUniformJumpsuitPrisonGuard
+  # satchel: ClothingBackpackSatchelSecurityFilled
+  # duffelbag: ClothingBackpackDuffelSecurityFilled
+  # messenger: ClothingBackpackSecurityFilled
