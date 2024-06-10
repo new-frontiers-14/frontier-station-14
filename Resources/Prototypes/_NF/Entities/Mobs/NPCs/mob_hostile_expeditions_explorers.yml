@@ -51,10 +51,10 @@
   - type: AutoWakeUp
   - type: PointLight
     enabled: true
+    autoRot: false
+    netsync: false
     radius: 3
     energy: 1
-    autoRot: true
-    netsync: false
     color: "#47f8ff"
 
 # Variations
@@ -84,9 +84,6 @@
     - sprite: Objects/Tools/lantern.rsi
       state: on-equipped-BELT
       shader: unshaded
-  - type: PointLight
-    radius: 3
-    energy: 2.5
 
 - type: entity
   name: explorer
@@ -129,9 +126,13 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 3
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 ## Tier 2
 - type: entity
@@ -158,10 +159,15 @@
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
+      color: "#47f8ff"
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 3
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 - type: entity
   name: explorer
@@ -186,6 +192,7 @@
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
+      color: "#47f8ff"
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
     rechargeSound:
@@ -204,9 +211,13 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 3
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 # Tier 3
 - type: entity
@@ -230,6 +241,7 @@
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
+      color: "#47f8ff"
   - type: MeleeWeapon
     autoAttack: true
     angle: 0
@@ -243,9 +255,13 @@
       types:
         Structural: 25
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 7
     energy: 3
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 - type: entity
   name: explorer
@@ -267,6 +283,7 @@
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
+      color: "#47f8ff"
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
     rechargeSound:
@@ -283,13 +300,17 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 7
     energy: 3
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 - type: entity
   name: hauler
-  #noSpawn: true
+  noSpawn: true
   parent:
   - MobExplorerBase
   id: MobExplorerHauler
@@ -341,9 +362,13 @@
     soundHit:
       collection: MetalThud
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 5
     energy: 2
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
 
 # Tier 4 - Boss
 - type: entity
@@ -366,6 +391,7 @@
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
+      color: "#47f8ff"
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.375
     rechargeSound:
@@ -378,12 +404,16 @@
     showExamineText: false
     fireRate: 8
     selectedMode: FullAuto
-    minAngle: 31
-    maxAngle: 45
+    minAngle: 41
+    maxAngle: 55
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
     radius: 7
     energy: 3
     mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
