@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: Emeralddragon2
+# Discord: Emeraldragon2
+
+# Maintainer Info
+# GitHub: Emeralddragon2
+# Discord: Emeralddragon2
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: StudyHall
+  name: NT Study Hall
+  description: A ship designed to provide an education space for teachers and students.
+  price: 39000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/studyhall.yml
+
+- type: gameMap
+  id: StudyHall
+  mapName: 'NT Study Hall'
+  mapPath: /Maps/_NF/Shuttles/studyhall.yml
+  minPlayers: 0
+  stations:
+    StudyHall:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'StudyHall {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
