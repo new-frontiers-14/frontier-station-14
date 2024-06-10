@@ -66,10 +66,21 @@ namespace Content.Client.Stack
             if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out var hidden, args.Component))
                 hidden = false;
 
+            // Frontier: adjust count
+            StackAmount stackAmount = new StackAmount
+            {
+                Amount = actual,
+                MaxCount = maxCount,
+                Hidden = hidden
+            };
+            if (comp.AmountConverter is not null)
+                comp.AmountConverter.Convert(ref stackAmount);
+            // End Frontier
+
             if (comp.IsComposite)
-                _counterSystem.ProcessCompositeSprite(uid, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
+                _counterSystem.ProcessCompositeSprite(uid, stackAmount.Amount, stackAmount.MaxCount, comp.LayerStates, stackAmount.Hidden, sprite: args.Sprite); // Frontier: use stackAmount object
             else
-                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
+                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, stackAmount.Amount, stackAmount.MaxCount, comp.LayerStates, stackAmount.Hidden, sprite: args.Sprite); // Frontier: use stackAmount object
         }
     }
 }
