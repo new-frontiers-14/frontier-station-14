@@ -209,8 +209,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
             {
-                //Frontier - track purchased items
-                int equippedItems = 0;
+                //Frontier - track purchased items (list, few items)
+                List<ProtoId<LoadoutPrototype>> equippedItems = new();
                 foreach (var items in group.Value)
                 {
                     if (!_prototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -234,16 +234,22 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= loadoutProto.Price;
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-                        equippedItems++;
+                        equippedItems.Add(loadoutProto.ID);
                     }
                 }
 
                 //Frontier - if we're short on minimum count, equip fallback items in order until we meet it.
                 if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
-                    equippedItems < groupPrototype.MinLimit)
+                    equippedItems.Count < groupPrototype.MinLimit)
                 {
-                    foreach(var fallback in groupPrototype.Fallbacks)
+                    foreach (var fallback in groupPrototype.Fallbacks)
                     {
+                        // Do not duplicate items in loadout
+                        if (equippedItems.Contains(fallback))
+                        {
+                            continue;
+                        }
+
                         if (!_prototypeManager.TryIndex(fallback, out var loadoutProto))
                         {
                             Log.Error($"Unable to find loadout prototype for fallback {fallback}");
@@ -257,8 +263,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
 
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-                        equippedItems++;
-                        if (equippedItems >= groupPrototype.MinLimit)
+                        equippedItems.Add(fallback);
+                        // Minimum number of items equipped, no need to load more prototypes.
+                        if (equippedItems.Count >= groupPrototype.MinLimit)
                         {
                             break;
                         }
