@@ -4,6 +4,8 @@
   loadouts:
   - DetectiveNFClothingUniformJumpsuitDetectiveNF
   - DetectiveNFClothingUniformJumpskirtDetectiveNF
+  fallbacks:
+  - DetectiveNFClothingUniformJumpsuitDetectiveNF
 
 - type: loadoutGroup
   id: DetectiveNFBackpack
@@ -13,6 +15,8 @@
   - DetectiveNFClothingBackpackDuffelDetectiveNFFilled
   - DetectiveNFClothingBackpackSatchelDetectiveNFFilled
   - DetectiveNFClothingBackpackMessengerFilled
+  fallbacks:
+  - DetectiveNFClothingBackpackDetectiveNFFilled
   
 - type: loadoutGroup
   id: DetectiveNFOuterClothing
@@ -25,6 +29,8 @@
   id: DetectiveNFShoes
   name: loadout-group-contractor-shoes
   loadouts:
+  - NfsdClothingShoesBootsBrown
+  fallbacks:
   - NfsdClothingShoesBootsBrown
 
 - type: loadoutGroup
@@ -39,6 +45,8 @@
   name: loadout-group-contractor-gloves
   loadouts:
   - DetectiveNFClothingHandsGlovesDetectiveNF
+  fallbacks:
+  - DetectiveNFClothingHandsGlovesDetectiveNF
 
 - type: loadoutGroup
   id: DetectiveNFNeck
@@ -52,9 +60,13 @@
   name: loadout-group-contractor-id
   loadouts:
   - DetectiveNFDetectiveNFPDA
+  fallbacks:
+  - DetectiveNFDetectiveNFPDA
   
 - type: loadoutGroup
   id: DetectiveNFGlasses
   name: loadout-group-contractor-glasses
   loadouts:
+  - NfsdClothingEyesGlasses
+  fallbacks:
   - NfsdClothingEyesGlasses

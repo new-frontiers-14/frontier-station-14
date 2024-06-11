@@ -209,6 +209,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
             {
+                //Frontier - track purchased items
+                int equippedItems = 0;
                 foreach (var items in group.Value)
                 {
                     if (!_prototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -232,6 +234,34 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     {
                         bankBalance -= loadoutProto.Price;
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems++;
+                    }
+                }
+
+                //Frontier - if we're short on minimum count, equip fallback items in order until we meet it.
+                if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
+                    equippedItems < groupPrototype.MinLimit)
+                {
+                    foreach(var fallback in groupPrototype.Fallbacks)
+                    {
+                        if (!_prototypeManager.TryIndex(fallback, out var loadoutProto))
+                        {
+                            Log.Error($"Unable to find loadout prototype for fallback {fallback}");
+                            continue;
+                        }
+
+                        if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
+                        {
+                            Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for fallback loadout {loadoutProto}");
+                            continue;
+                        }
+
+                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems++;
+                        if (equippedItems >= groupPrototype.MinLimit)
+                        {
+                            break;
+                        }
                     }
                 }
             }
