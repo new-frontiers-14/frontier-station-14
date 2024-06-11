@@ -11,7 +11,7 @@ public sealed partial class ThresholdStackLayerFunction : StackLayerFunction
     public List<int> Thresholds;
 
     /// <summary>
-    /// Sets Actual to the index of the largest threshold under Actual.
+    /// Sets Actual to the number of thresholds that Actual exceeds from the beginning of the list.
     /// Sets MaxCount to the total number of thresholds plus one (for values under thresholds).
     /// </summary>
     public override void Apply(ref StackLayerData data)
