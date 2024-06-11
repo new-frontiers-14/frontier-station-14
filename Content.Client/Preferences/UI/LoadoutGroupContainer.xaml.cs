@@ -77,7 +77,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             var enabled = loadout.IsValid(session, loadoutProto, collection, out var reason);
             var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
             loadoutContainer.Select.Pressed = pressed;
-            loadoutContainer.Text = loadoutSystem.GetName(loadProto);
+            loadoutContainer.Text = string.IsNullOrEmpty(loadProto.Name) ? loadoutSystem.GetName(loadProto) : loadProto.Name; // Frontier: allow overriding loadout names
 
             loadoutContainer.Select.OnPressed += args =>
             {

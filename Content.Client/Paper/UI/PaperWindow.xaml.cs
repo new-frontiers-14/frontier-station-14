@@ -253,10 +253,7 @@ namespace Content.Client.Paper.UI
             StampDisplay.RemoveStamps();
             foreach(var stamper in state.StampedBy)
             {
-                if (stamper.StampedBorderless)
-                    StampDisplay.AddStamp(new StampWidget(true) { StampInfo = stamper });
-                else
-                    StampDisplay.AddStamp(new StampWidget { StampInfo = stamper });
+                StampDisplay.AddStamp(new StampWidget { StampInfo = stamper });
             }
         }
 

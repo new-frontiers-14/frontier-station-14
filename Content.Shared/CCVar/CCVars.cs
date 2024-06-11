@@ -2045,6 +2045,11 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> TippyEntity =
             CVarDef.Create("tippy.entity", "TippyClippy", CVar.SERVER | CVar.REPLICATED); // Frontier - Tippy<TippyClippy
 
+        public static readonly CVarDef<string> ServerAuthList =
+            CVarDef.Create("frontier.auth_servers", "", CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> AllowMultiConnect =
+            CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
         /*
          * DEBUG
          */
