@@ -47,9 +47,6 @@ namespace Content.Server.Abilities.Oni
                     heldComp.maxAngleAdded = gun.MaxAngle * GunInaccuracyFactor;
                 }
 
-                // TODO: Max out the min/maxAngle at 90 (no shooting behind - L6 SAW)
-                // TODO: Make sure previous step didn't result in a negative minAngleAdded/maxAngleAdded
-
                 gun.MinAngle += heldComp.minAngleAdded;
                 gun.AngleIncrease += heldComp.angleIncreaseAdded;
                 gun.MaxAngle += heldComp.maxAngleAdded;
