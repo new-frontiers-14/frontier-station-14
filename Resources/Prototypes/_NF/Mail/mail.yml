@@ -4,9 +4,9 @@
   parent: BaseMail
   id: MailNFAlcohol
   suffix: alcohol, extended
-  isFragile: true
   components:
   - type: Mail
+    isFragile: true
     contents:
       # 12.5 overall weight, 8% base chance
     - id: DrinkAbsintheBottleFull
@@ -158,7 +158,7 @@
       prob: 0.10
     - id: WelderExperimental
       orGroup: Gift
-      prob: 0.4
+      prob: 0.04
 
 - type: entity
   noSpawn: true
@@ -331,7 +331,7 @@
       amount: 2
     - id: ClothingOuterArmorKendoBogu
       amount: 2
-    - id: ClothingOuterArmorKendoMen
+    - id: ClothingHeadHelmetKendoMen
       amount: 2
     - id: Shinai
       amount: 2
@@ -1414,16 +1414,16 @@
   components:
   - type: Mail
     contents:
-    - id: ThermomachineFreezerCircuitboard
+    - id: ThermomachineFreezerMachineCircuitBoard
       orGroup: Board
       prob: 0.5
-    - id: ThermomachineHeaterCircuitboard
+    - id: ThermomachineHeaterMachineCircuitBoard
       orGroup: Board
       prob: 0.5
-    - id: HellfireFreezerCircuitboard
+    - id: HellfireFreezerMachineCircuitBoard
       orGroup: Board
       prob: 0.25
-    - id: HellfireHeaterCircuitboard
+    - id: HellfireHeaterMachineCircuitBoard
       orGroup: Board
       prob: 0.25
     - id: CryoPodMachineCircuitboard # Medical as well
@@ -1507,7 +1507,7 @@
       orGroup: Board
     - id: JukeboxCircuitBoard
       orGroup: Board
-    - id: MassMediaCircuitboard
+    - id: ComputerMassMediaCircuitboard
       orGroup: Board
       prob: 0.5
     - id: TelecomServerCircuitboard
@@ -1589,7 +1589,7 @@
       - id: MobBee
         orGroup: Critter
         prob: 0.36
-      - id: MobButterFly
+      - id: MobButterfly
         orGroup: Critter
         prob: 0.36
         # Uncommon
