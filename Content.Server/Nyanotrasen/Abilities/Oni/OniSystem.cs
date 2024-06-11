@@ -4,6 +4,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
+using Content.Shared.Wieldable.Components;
 
 namespace Content.Server.Abilities.Oni
 {
@@ -28,21 +29,38 @@ namespace Content.Server.Abilities.Oni
 
             if (TryComp<GunComponent>(args.Entity, out var gun))
             {
-                gun.MinAngle *= 20f;
-                gun.AngleIncrease *= 20f;
-                gun.MaxAngle *= 20f;
+                // Frontier: adjust penalty for wielded malus
+                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus))
+                {
+                    //GunWieldBonus values are stored as negative.
+                    heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * 19.0;
+                    heldComp.angleIncreaseAdded = (gun.AngleIncrease + bonus.AngleIncrease) * 19.0;
+                    heldComp.maxAngleAdded = (gun.MaxAngle + bonus.MaxAngle) * 19.0;
+                }
+                else
+                {
+                    heldComp.minAngleAdded = gun.MinAngle * 19.0;
+                    heldComp.angleIncreaseAdded = gun.AngleIncrease * 19.0;
+                    heldComp.maxAngleAdded = gun.MaxAngle * 19.0;
+                }
+                gun.MinAngle += heldComp.minAngleAdded;
+                gun.AngleIncrease += heldComp.angleIncreaseAdded;
+                gun.MaxAngle += heldComp.maxAngleAdded;
+                // End Frontier
             }
         }
 
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
-
-            if (TryComp<GunComponent>(args.Entity, out var gun))
+            // Frontier: store angle manipulation in HeldByOniComponent
+            if (TryComp<GunComponent>(args.Entity, out var gun) &&
+                TryComp<HeldByOniComponent>(args.Entity, out var heldByOni))
             {
-                gun.MinAngle /= 20f;
-                gun.AngleIncrease /= 20f;
-                gun.MaxAngle /= 20f;
+                gun.MinAngle -= heldByOni.minAngleAdded;
+                gun.AngleIncrease -= heldByOni.angleIncreaseAdded;
+                gun.MaxAngle -= heldByOni.maxAngleAdded;
             }
+            // End Frontier
 
             RemComp<HeldByOniComponent>(args.Entity);
         }
