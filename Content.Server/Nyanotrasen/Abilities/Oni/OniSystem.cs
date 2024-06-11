@@ -12,6 +12,8 @@ namespace Content.Server.Abilities.Oni
     {
         [Dependency] private readonly ToolSystem _toolSystem = default!;
 
+        private const double GunInaccuracyFactor = 17.0; // Frontier (20x<18x -> 10% buff)
+
         public override void Initialize()
         {
             base.Initialize();
@@ -33,15 +35,15 @@ namespace Content.Server.Abilities.Oni
                 if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus))
                 {
                     //GunWieldBonus values are stored as negative.
-                    heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * 19.0;
-                    heldComp.angleIncreaseAdded = (gun.AngleIncrease + bonus.AngleIncrease) * 19.0;
-                    heldComp.maxAngleAdded = (gun.MaxAngle + bonus.MaxAngle) * 19.0;
+                    heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * GunInaccuracyFactor;
+                    heldComp.angleIncreaseAdded = (gun.AngleIncrease + bonus.AngleIncrease) * GunInaccuracyFactor;
+                    heldComp.maxAngleAdded = (gun.MaxAngle + bonus.MaxAngle) * GunInaccuracyFactor;
                 }
                 else
                 {
-                    heldComp.minAngleAdded = gun.MinAngle * 19.0;
-                    heldComp.angleIncreaseAdded = gun.AngleIncrease * 19.0;
-                    heldComp.maxAngleAdded = gun.MaxAngle * 19.0;
+                    heldComp.minAngleAdded = gun.MinAngle * GunInaccuracyFactor;
+                    heldComp.angleIncreaseAdded = gun.AngleIncrease * GunInaccuracyFactor;
+                    heldComp.maxAngleAdded = gun.MaxAngle * GunInaccuracyFactor;
                 }
                 gun.MinAngle += heldComp.minAngleAdded;
                 gun.AngleIncrease += heldComp.angleIncreaseAdded;
@@ -52,7 +54,7 @@ namespace Content.Server.Abilities.Oni
 
         private void OnEntRemoved(EntityUid uid, OniComponent component, EntRemovedFromContainerMessage args)
         {
-            // Frontier: store angle manipulation in HeldByOniComponent
+            // Frontier: angle manipulation stored in HeldByOniComponent
             if (TryComp<GunComponent>(args.Entity, out var gun) &&
                 TryComp<HeldByOniComponent>(args.Entity, out var heldByOni))
             {
