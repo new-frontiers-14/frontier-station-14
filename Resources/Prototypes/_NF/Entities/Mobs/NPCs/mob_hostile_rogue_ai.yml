@@ -310,7 +310,7 @@
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
-  id: MobRogueSiliconScrapAlt
+  id: MobRogueSiliconScrapThreads
   #noSpawn: true
   suffix: Threads
   components:
@@ -346,7 +346,6 @@
         rightLeg:
           mask_null: ""
         decor:
-          leg_thruster: ""
           leg_treads: ""
         overlay:
           overlay_openbrain: ""
@@ -356,6 +355,83 @@
         overlayUnshaded:
           overlay_critdmg: ""
           mask_null: ""
+
+- type: entity
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobRogueSiliconScrapThrusters
+  #noSpawn: true
+  suffix: Thrusters
+  components:
+  - type: RandomSprite
+    available:
+      - body:
+          body_generic: ""
+          body_light: ""
+        head:
+          head_generic: ""
+          head_heavy: ""
+          head_light: ""
+          head_sturdy: ""
+        eyes:
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+        leftArm:
+          l_arm_generic: ""
+          l_arm_heavy: ""
+          l_arm_light: ""
+          l_arm_sturdy: ""
+          mask_null: ""
+        rightArm:
+          r_arm_generic: ""
+          r_arm_heavy: ""
+          r_arm_light: ""
+          r_arm_sturdy: ""
+          mask_null: ""
+        leftLeg:
+          mask_null: ""
+        rightLeg:
+          mask_null: ""
+        decor:
+          leg_thruster: ""
+        overlay:
+          overlay_openbrain: ""
+          overlay_openmodule: ""
+          overlay_openwires: ""
+          mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
+          mask_null: ""
+  - type: PointLight
+    radius: 2.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  parent:
+  - MobRogueSiliconScrapThrusters
+  id: MobRogueSiliconScrapThrustersRanged
+  #noSpawn: true
+  suffix: Thrusters
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.7
+    minAngle: 5
+    maxAngle: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent:
@@ -625,6 +701,18 @@
     radius: 3.5
     color: orange
     energy: 0.5
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.8
+    minAngle: 0
+    maxAngle: 5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.2
 
 - type: entity
   parent:
