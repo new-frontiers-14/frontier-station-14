@@ -51,7 +51,7 @@
   components:
   - type: Damageable
     damageContainer: Silicon
-    damageModifierSet: FlimsyMetallic
+    damageModifierSet: MobRogueSiliconDamageModifierSet
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -69,7 +69,7 @@
     thresholds:
       0: Alive
       100: Critical
-      350: Dead
+      250: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
