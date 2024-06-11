@@ -43,20 +43,18 @@
     - id: DrinkGlass
       amount: 2
 
+# TODO: turn this into a full piety kit
 - type: entity
   noSpawn: true
-  parent: BaseMail
-  id: MailNFBible
-  suffix: bible, random
+  parent: BaseMailLarge
+  id: MailNFWeejurnum
+  suffix: weejurnum
   components:
   - type: Mail
     contents:
-    - id: Bible
-      orGroup: Book
-      prob: 0.9
     - id: Weejurnum
-      orGroup: Book
-      prob: 0.1
+    - id: ClothingOuterRobesWeedChurch
+    - id: ClothingHeadWeedChurchBishop
 
 - type: entity
   noSpawn: true
@@ -278,14 +276,28 @@
   components:
   - type: Mail
     contents:
+      # Non-kitchen, non-contraband knives and swords, both rolled into one.
     - id: KukriKnife
       orGroup: Knife
+      prob: 0.2
     - id: Machete
       orGroup: Knife
+      prob: 0.2
     - id: CombatKnife
       orGroup: Knife
+      prob: 0.2
     - id: SurvivalKnife
       orGroup: Knife
+      prob: 0.2
+    - id: Katana
+      orGroup: Knife
+      prob: 0.1
+    - id: Claymore
+      orGroup: Knife
+      prob: 0.1
+    - id: Claymore
+      orGroup: Knife
+      prob: 0.1
 
 - type: entity
   noSpawn: true
@@ -504,6 +516,32 @@
       orGroup: Snack3
     - id: FoodSnackSyndi
       orGroup: Snack3
+      prob: 0.5
+    # Snack 4
+    - id: FoodSnackChocolate
+      orGroup: Snack4
+    - id: FoodSnackPopcorn
+      orGroup: Snack4
+    - id: FoodSnackChips
+      orGroup: Snack4
+    - id: FoodSnackBoritos
+      orGroup: Snack4
+    - id: FoodSnackSus
+      orGroup: Snack4
+    - id: FoodSnackPistachios
+      orGroup: Snack4
+    - id: FoodSnackRaisins
+      orGroup: Snack4
+    - id: FoodSnackCheesie
+      orGroup: Snack4
+    - id: FoodSnackEnergy
+      orGroup: Snack4
+    - id: FoodSnackCnDs
+      orGroup: Snack4
+    - id: FoodSnackSemki
+      orGroup: Snack4
+    - id: FoodSnackSyndi
+      orGroup: Snack4
       prob: 0.5
 
 - type: entity
@@ -791,25 +829,25 @@
       orGroup: Food
     - id: FoodPieFrosty
       orGroup: Food
-    - id: FoodPizzaSassysage
+    - id: FoodPizzaSassysage # ideally, this comes in a pizza box
       orGroup: Food
-    - id: FoodPizzaArnold
+    - id: FoodPizzaArnold # ideally, this comes in a pizza box
       orGroup: Food
       prob: 0.05
     - id: FoodMeatGoliathCooked
-      amount: 2
+      amount: 3
       orGroup: Food
     - id: FoodMeatRounyCooked
-      amount: 2
+      amount: 3
       orGroup: Food
     - id: FoodMeatLizardCooked
-      amount: 2
+      amount: 3
       orGroup: Food
     - id: FoodMeatSpiderlegCooked
-      amount: 2
+      amount: 3
       orGroup: Food
     - id: FoodMeatMeatballCooked
-      amount: 3
+      amount: 4
       orGroup: Food
 
 # TODO: Probably needs a buff.
@@ -972,33 +1010,34 @@
     contents:
     - id: FoodLaughinPeaPod
       orGroup: Produce
-      amount: 3
+      amount: 5
     - id: FoodMimana
       orGroup: Produce
-      amount: 3
+      amount: 5
     - id: FoodLemoon
       orGroup: Produce
-      amount: 3
+      amount: 5
     - id: FoodBlueTomato
       orGroup: Produce
-      amount: 3
+      amount: 5
     - id: FoodBloodTomato
       orGroup: Produce
-      amount: 3
+      amount: 5
+    - id: FoodKoibean
+      orGroup: Produce
+      amount: 5
     - id: FoodLily
       orGroup: Produce
-      amount: 3
+      amount: 5
       prob: 0.5
     - id: FoodAmbrosiaDeus
       orGroup: Produce
-      amount: 2
+      amount: 5
       prob: 0.5
     - id: FoodSpacemansTrumpet
       orGroup: Produce
-      prob: 0.5
-    - id: FoodKoibean
-      orGroup: Produce
-      amount: 3
+      amount: 5
+      prob: 0.25
 
 - type: entity
   noSpawn: true
@@ -1129,6 +1168,18 @@
     - id: ClothingHeadHatUshanka
     - id: SyndicateWhistle
     - id: PaperMailNTConscript
+
+- type: entity
+  noSpawn: True
+  parent: BaseMailLarge
+  id: MailNFBoxer
+  suffix: boxer
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingHandsGlovesBoxingRigged
+    - id: ClothingBeltChampion
+    - id: PaperMailNTBoxer
 
 - type: entity
   noSpawn: true
@@ -1531,5 +1582,47 @@
     - isFragile: true
     contents:
       - id: MaterialWoodPlank10
-      - id: PaperMailNFIkea
+      - id: PaperMailNFFurnitureManual
       - id: DelayedPetCarrierNPCEmotionalSupportSafe
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFCombatMedkit
+  suffix: combat medkit
+  components:
+  - type: Mail
+    contents:
+      - id: MedkitCombatFilled
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCognizine
+  suffix: cognizine syringe
+  components:
+  - type: Mail
+    contents:
+      - id: SyringeCognizine # 15u cognizine, 3 friends should be enough.
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFNecrosol
+  suffix: necrosol bottle
+  components:
+  - type: Mail
+    contents:
+      - id: NecrosolChemistryBottle
+      - id: Syringe
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFOmnizine
+  suffix: omnizine bottle
+  components:
+  - type: Mail
+    contents:
+      - id: OmnizineChemistryBottle
+      - id: Syringe

@@ -2,13 +2,13 @@
   id: RandomNFMailDeliveryPool
   everyone:
     # Food/Drink Consumables
-    MailNFBakedGoods: 1
-    MailNFCake: 1
-    MailNFCheese: 1
-    MailNFCookies: 1
-    MailNFDonkPockets: 1
-    MailNFMuffins: 1
-    MailNFSnacks: 1
+    MailNFBakedGoods: 0.8
+    MailNFCake: 0.8
+    MailNFCheese: 0.8
+    MailNFCookies: 0.8
+    MailNFDonkPockets: 0.8
+    MailNFMuffins: 0.8
+    MailNFSnacks: 0.8
     MailNFSodaPwrGame: 0.2 # Mmm, ads
     MailNFSodaRedBool: 0.2
     MailNFSodaSpaceCola: 0.2
@@ -23,60 +23,62 @@
     MailCigars: 0.45
     MailNFGoldCigars: 0.05
     MailNFJoints: 0.5
-    # Outfits
-    MailWinterCoat: 0.5
-    MailCosplayArc: 0.5
-    MailCosplayGeisha: 0.5
-    MailCosplayMaid: 0.5
-    MailCosplayNurse: 0.5
-    MailCosplaySchoolgirl: 0.5
-    MailCosplayWizard: 0.5
-    MailNoir: 0.5
-    MailNFUnusualClothing: 0.5
-    # Accessories
-    MailFishingCap: 0.5
-    MailFlowers: 1
+    # Clothing
+    MailWinterCoat: 0.3
+    MailCosplayArc: 0.3
+    MailCosplayGeisha: 0.3
+    MailCosplayMaid: 0.3
+    MailCosplayNurse: 0.3
+    MailCosplaySchoolgirl: 0.3
+    MailCosplayWizard: 0.6
+    MailFishingCap: 0.3
+    MailFlowers: 0.3
+    MailNoir: 0.3
     MailSunglasses: 1
+    MailNFUnusualClothing: 3 # Many items in here
     # Fun
-    MailNFBible: 1
+    # MailBible: 0.9 # Removed until we have some reliable way of getting BibleUserComponent
     MailNFBikeHorn: 0.5
-    MailBlockGameDIY: 1
+    MailBlockGameDIY: 0.6
     MailNFDAW: 0.1
-    MailNFFigurineBulk: 1
-    MailNFInstrumentSmall: 1
-    MailNFInstrumentLarge: 1
-    MailNFInstrumentFlatpack: 1
+    MailNFFigurineBulk: 0.6
+    MailNFInstrumentSmall: 1.5
+    MailNFInstrumentLarge: 1.5
+    MailNFInstrumentFlatpack: 1.5
     MailNFPAI: 1
     MailNFPlushie: 1
-    MailSkub: 0.5
-    MailNFSoaps: 0.95
+    MailSkub: 0.6
+    MailNFSoaps: 0.75
     MailNFSoapsOmega: 0.05 # Rare variant
-    MailSpaceVillainDIY: 1
+    MailSpaceVillainDIY: 0.6
     MailNFThrongler: 0.1
+    MailNFUnicycle: 0.5
+    MailNFWeejurnum: 0.1
     # Useful
     MailNFCallForHelp: 0.6
-    MailNFCircuitboardIndustrial: 0.5
-    MailNFCircuitboardService: 0.5
+    MailNFCircuitboardIndustrial: 1
+    MailNFCircuitboardService: 1
+    MailNFCognizine: 0.5
+    MailNFCombatMedkit: 0.5
     MailNFIFFBoard: 0.25
     MailNFMoney: 1
+    MailNFNecrosol: 0.5
+    MailNFOmnizine: 0.5
     MailNFPen: 1
     MailNFPowerCell: 0.5
-    MailNFT2ComponentBox: 0.3
-    MailNFT3ComponentBox: 0.6
-    MailNFT4ComponentBox: 0.1
-    MailNFUnicycle: 0.5
+    MailNFT2ComponentBox: 0.6
+    MailNFT3ComponentBox: 1.2
+    MailNFT4ComponentBox: 0.2
     # Weapons
-    MailHighlander: 0.12
-    MailHighlanderDulled: 1
-    MailKatana: 1
     MailNFKnife: 1
     MailNFGladiator: 0.1
     MailNFConscript: 0.1
+    MailNFBoxer: 0.1
     # Pranks
     MailNFCritter: 1
     MailRestraints: 1 # TODO: figure out what to do with this.
     MailNFSmoke: 1
-    MailVagueThreat: 0.4
+    MailNFVagueThreat: 0.4
 
   # Department and job-specific mail can have slightly higher weights,
   # since they'll be merged with the everyone pool.
@@ -88,6 +90,7 @@
       MailSecurityNFHudNfsdMed: 1
       MailSecuritySpaceLaw: 1
       MailSecurityNFMusket: 1
+      MailNFCombatMedkit: 1.5 # 2 weight total
 
   jobs:
     StationRepresentative:

@@ -342,14 +342,21 @@
                [italic]The Frontier Paper Pusher's Club[/italic][/head]
 
 - type: entity
+<<<<<<< Updated upstream
   id: PaperMailNFPetBedAssemblyManual
   # noSpawn: true
   suffix: "pet bed assembly manual"
+=======
+  id: PaperMailNTBoxer
+  # noSpawn: true
+  suffix: "boxer"
+>>>>>>> Stashed changes
   parent: Paper
   components:
   - type: Paper
     content: |2
 
+<<<<<<< Updated upstream
       [head=1]HÖGANÄS[/head]
 
       [head=2](There is a black and white picture of a pet bed on the first page.)[/head]
@@ -357,3 +364,35 @@
       [head=3](On the next few pages, you see a list of materials and a happy stick figure assembling furniture.)[/head]
 
       [head=3](On the pages after that, you see a set of instructions to assemble a pet bed.  You're sure you don't need them, how hard could it be?)[/head]
+=======
+          [head=2]You've gotta defend your belt, champ.
+      [/head]
+            [head=1]They're coming for you.[/head]
+
+      [head=2]This should help.  Knock 'em out.[/head]
+
+- type: entity
+  id: SyringeCognizine
+  parent: Syringe
+  name: cognizine syringe
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 15
+        reagents:
+        - ReagentId: Cognizine
+          Quantity: 15 # Surely three friends is enough.
+
+- type: entity
+  id: NecrosolChemistryBottle
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Necrosol
+          Quantity: 30
+>>>>>>> Stashed changes

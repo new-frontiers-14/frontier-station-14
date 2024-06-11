@@ -69,9 +69,6 @@ namespace Content.Server.Mail.Components
         /// <summary>
         /// Whether this parcel is large.
         /// </summary>
-        /// <remarks>
-        /// Ideally, this would be set automatically from the entity type.
-        /// </remarks>
         [DataField("isLarge")]
         public bool IsLarge = false;
         // End Frontier: large mail
