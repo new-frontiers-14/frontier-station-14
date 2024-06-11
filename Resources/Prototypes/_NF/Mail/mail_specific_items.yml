@@ -9,6 +9,16 @@
   - type: DelayedItem
     item: AdminInstantEffectSmoke10
 
+- type: entity
+  id: DelayedEMP
+  parent: BaseItem
+  noSpawn: true
+  name: delayed EMP
+  suffix: "(4m)"
+  components:
+  - type: DelayedItem
+    item: AdminInstantEffectEMP
+
 # Miscellaneous Items
 
 # Delay the emotional support pet so they don't suffocate.
@@ -25,20 +35,20 @@
 # TODO: these should really be based on localization strings.
 - type: entity
   id: PaperMailNFPowerTool
+  name: Hazard Fraught advertisement
   # noSpawn: true
   suffix: "power tool ad, formatted"
   parent: Paper
   components:
   - type: Paper
-    # TODO: FORMAT ME.
     content: |2
 
                     [head=1]Hazard Fraught Tools[/head]
 
+                  [head=2]Discount Tools at Quality Prices![/head]
 
-                                            [head=1]Discount Tools at Quality Prices![/head]
-
-                                            [head=2]Fax us for a catalog at- ERROR: UNEXPECTED EOF[/head]
+                                [head=2]Fax us for a catalog at-
+                      [color=#990000]ERROR: UNEXPECTED EOF[/color][/head]
 
 - type: entity
   id: PaperMailNFVagueThreat1
@@ -192,19 +202,21 @@
 
 - type: entity
   id: PaperMailNFPwrGameAd
+  name: pwr game advertisement
   # noSpawn: true
-  suffix: "pwrgame ad"
+  suffix: "pwr game ad"
   parent: Paper
   components:
   - type: Paper
     content: |2
 
-                            [head=1]Drink PwrGame![/head]
+                            [head=1]Drink Pwr Game![/head]
 
       [head=3]Proud sponsor of the NT Block Game Championship.[/head]
 
 - type: entity
   id: PaperMailNFRedBoolAd
+  name: red bool advertisement
   # noSpawn: true
   suffix: "red bool ad"
   parent: Paper
@@ -220,6 +232,7 @@
 
 - type: entity
   id: PaperMailNFSpaceColaAd
+  name: space cola advertisement
   # noSpawn: true
   suffix: "space cola ad"
   parent: Paper
@@ -233,6 +246,7 @@
 
 - type: entity
   id: PaperMailNFSpaceMountainWindAd
+  name: space mountain wind advertisement
   # noSpawn: true
   suffix: "space mountain wind ad"
   parent: Paper
@@ -246,6 +260,7 @@
 
 - type: entity
   id: PaperMailNFSpaceUpAd
+  name: space up advertisement
   # noSpawn: true
   suffix: "space up ad"
   parent: Paper
@@ -344,17 +359,21 @@
 
 - type: entity
   id: PaperMailNFPetBedAssemblyManual
+  name: pet bed assembly manual
   # noSpawn: true
   suffix: "pet bed assembly manual"
+  parent: Paper
+  components:
   - type: Paper
-    content: |2
+    content: |2 # TODO: FORMAT ME
+      
       [head=1]HÖGANÄS[/head]
 
-      [head=2](There is a black and white picture of a pet bed on the first page.)[/head]
+      [italic](There is a black and white picture of a pet bed on the first page.)[/italic]
 
-      [head=3](On the next few pages, you see a list of materials and a happy stick figure assembling furniture.)[/head]
+      [italic](On the next few pages, you see a list of materials and a happy stick figure assembling furniture.)[/italic]
 
-      [head=3](On the pages after that, you see a set of instructions to assemble a pet bed.  You're sure you don't need them, how hard could it be?)[/head]
+      [italic](On the pages after that, you see a set of instructions to assemble a pet bed.  You're sure you don't need them, how hard could it be?)[/italic]
 
 - type: entity
   id: PaperMailNTBoxer
@@ -366,9 +385,9 @@
     content: |2
           [head=2]You've gotta defend your belt, champ.
       [/head]
-            [head=1]They're coming for you.[/head]
+                [head=1]They're coming for you.[/head]
 
-      [head=2]This should help.  Knock 'em out.[/head]
+                  [head=2]This should help.  Knock 'em out.[/head]
 
 - type: entity
   id: SyringeCognizine
@@ -399,11 +418,56 @@
 - type: entity
   id: PaperMailNFPipebombIntern
   # noSpawn: true
-  suffix: "boxer"
+  suffix: "pipe bomb intern"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [bold]hey uh, they told me to send you a pipebomb I guess?
+
+      this is all i could find around here, hope that works
+
+      thanks, craig[/bold]
+
+- type: entity
+  id: PaperMailNFAntivirus
+  name: Snortin Antivirus receipt
+  # noSpawn: true
+  suffix: "antivirus ad"
   parent: Paper
   components:
   - type: Paper
     content: |2
 
-          [head=3]hey uh, they said something about sending you a pipebomb?[/head]
-          [head=3]this is all i could find around here[/head]
+          [head=1]Invoice[/head][head=3]
+          Snortin Antivirus Software[/head]
+
+      [head=3]Order #41003
+      [bold][bullet/][/bold] 1x Snortin Total-275 Antivirus Install Disk[/head]
+
+      [head=3]Total: 947381 Spesos[/head]
+
+      Thank you for making purchase from Snortin Antivirus Software.
+      We assuring you that our product is greatest.
+      Please sending payment at earliest convenience.
+
+- type: entity
+  id: PaperMailNFEMPPreparedness
+  # noSpawn: true
+  name: EMP preparedness response form
+  suffix: "emp preparedness"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+
+        [head=1]EMP Preparedness Response[/head]
+
+      You have been selected to receive a NT EMP Preparedness kit as a test.  Note that this is only a test.  In a real emergency, follow the instructions of your vessel's command staff.
+
+      As the recipient of this, please note [bold]any improvements[/bold] that could be made towards the EMP preparedness of the vessel you were aboard when opening and submit this form to your serving Captain or Station Representative.
+
+      [bold]Date of Test:[/bold]
+      [bold]Number of affected items:[/bold]
+      [bold]Perceived severity of incident:[/bold]
+      [bold]Suggested improvements:[/bold]

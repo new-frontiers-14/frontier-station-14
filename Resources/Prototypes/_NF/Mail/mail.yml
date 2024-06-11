@@ -135,7 +135,7 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFPowerTool
   suffix: power tool
   components:
@@ -151,11 +151,14 @@
       prob: 0.33
     - id: WelderIndustrial
       orGroup: Gift
-      prob: 0.30
+      prob: 0.20
       # Rare
     - id: WelderIndustrialAdvanced
       orGroup: Gift
-      prob: 0.04
+      prob: 0.10
+    - id: WelderIndustrialExperimental
+      orGroup: Gift
+      prob: 0.4
 
 - type: entity
   noSpawn: true
@@ -279,25 +282,53 @@
       # Non-kitchen, non-contraband knives and swords, both rolled into one.
     - id: KukriKnife
       orGroup: Knife
-      prob: 0.2
-    - id: Machete
+    - id: Machete # A little large for an envelope but we'll live
       orGroup: Knife
-      prob: 0.2
     - id: CombatKnife
       orGroup: Knife
-      prob: 0.2
     - id: SurvivalKnife
       orGroup: Knife
-      prob: 0.2
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFSword
+  suffix: sword
+  components:
+  - type: Mail
+    contents:
     - id: Katana
-      orGroup: Knife
-      prob: 0.1
+      orGroup: Sword
     - id: Claymore
-      orGroup: Knife
-      prob: 0.1
-    - id: Claymore
-      orGroup: Knife
-      prob: 0.1
+      orGroup: Sword
+    - id: PlasteelArmingSword
+      orGroup: Sword
+    - id: CaneSheathFilled
+      orGroup: Sword
+    - id: Cutlass
+      orGroup: Sword
+    - id: Kanabou # ah yes, swords
+      orGroup: Sword
+    - id: CaptainSabre # Little dangerous between the reflect and the damage
+      orGroup: Sword
+      prob: 0.5
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFKendoKit
+  suffix: kendo kit
+  components:
+  - type: Mail
+    contents: # A lot of stuff here, seems spammy.
+    - id: ClothingUniformKendoHakama
+      amount: 2
+    - id: ClothingOuterArmorKendoBogu
+      amount: 2
+    - id: ClothingOuterArmorKendoMen
+      amount: 2
+    - id: Shinai
+      amount: 2
 
 - type: entity
   noSpawn: true
@@ -601,6 +632,17 @@
   - type: Mail
     contents:
     - id: DelayedSmoke
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFEMP
+  suffix: emp
+  components:
+  - type: Mail
+    contents:
+    - id: DelayedEMP
+    - id: PaperMailNFEMPPreparedness
 
 - type: entity
   noSpawn: true
@@ -1128,19 +1170,19 @@
     contents:
     - id: LuxuryPen
       orGroup: Pen
-      prob: 0.4
+      prob: 0.3
     - id: PenHop
       orGroup: Pen
-      prob: 0.2
+      prob: 0.225
     - id: PenCap
       orGroup: Pen
-      prob: 0.2
+      prob: 0.225
     - id: CyberPen
       orGroup: Pen
-      prob: 0.1
+      prob: 0.125
     - id: PenCentcom
       orGroup: Pen
-      prob: 0.1
+      prob: 0.125
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1220,7 +1262,6 @@
   suffix: instrument, expanded
   components:
   - type: Mail
-    isFragile: true
     contents:
     - id: TrumpetInstrument
       orGroup: Instrument
@@ -1268,7 +1309,6 @@
   suffix: instrument, large
   components:
   - type: Mail
-    isFragile: true
     contents:
     - id: TromboneInstrument
       orGroup: Instrument
@@ -1579,11 +1619,11 @@
   suffix: station pet
   components:
   - type: Mail
-    - isFragile: true
+    isFragile: true
     contents:
-      - id: MaterialWoodPlank10
       - id: PaperMailNFPetBedAssemblyManual
-      - id: DelayedPetCarrierNPCEmotionalSupportSafe
+      - id: MaterialWoodPlank10
+      - id: DelayedPetCarrierNPCEmotionalSupportSafe # Last item - issues with DelayedItemComponent and hand placement
 
 - type: entity
   noSpawn: true
@@ -1612,6 +1652,7 @@
   suffix: necrosol bottle
   components:
   - type: Mail
+    isFragile: true
     contents:
       - id: NecrosolChemistryBottle
       - id: Syringe
@@ -1623,6 +1664,7 @@
   suffix: omnizine bottle
   components:
   - type: Mail
+    isFragile: true
     contents:
       - id: OmnizineChemistryBottle
       - id: Syringe
@@ -1639,3 +1681,33 @@
       - id: SmokingPipeFilledTobacco
       - id: DrinkAtomicBombGlass
       - id: PaperMailNFPipebombIntern
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailStationRepNFNukeDisk
+  suffix: nuke disk
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: NukeDiskFake
+        orGroup: Disk
+        prob: 0.9
+      - id: NukeDisk
+        orGroup: Disk
+        prob: 0.1
+      - id: PaperMailNFAntivirus
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFSkub
+  suffix: skub, extended
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: Skub
+      - id: ClothingHeadHatSkub
+      - id: ClothingOuterSkub
