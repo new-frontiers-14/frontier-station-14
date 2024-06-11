@@ -156,7 +156,7 @@
     - id: WelderIndustrialAdvanced
       orGroup: Gift
       prob: 0.10
-    - id: WelderIndustrialExperimental
+    - id: WelderExperimental
       orGroup: Gift
       prob: 0.4
 
@@ -200,7 +200,13 @@
       prob: 0.19
     - id: CigPackMixed
       orGroup: Cigs
-      prob: 0.19
+      prob: 0.09 # Pool shared with CigPackMixedMedical, CigPackMixedNasty
+    - id: CigPackMixedMedical
+      orGroup: Cigs
+      prob: 0.05
+    - id: CigPackMixedNasty
+      orGroup: Cigs
+      prob: 0.05
       # Rare
     - id: CigPackSyndicate
       orGroup: Cigs
