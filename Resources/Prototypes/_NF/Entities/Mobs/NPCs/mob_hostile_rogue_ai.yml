@@ -1,10 +1,51 @@
-# Base
+# BASE
+## AI packages
+- type: entity
+  id: MobRogueSiliconAISimpleMelee
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+- type: entity
+  id: MobRogueSiliconAISimpleRanged
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+
+## Mob base
 - type: entity
   name: autonomous unit
   abstract: true
   parent:
   - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleRanged
+  - MobRogueSiliconAISimpleRanged
+  - MobPassiveRegenStrong
   id: MobRogueSiliconBase
   components:
   - type: Damageable
@@ -27,7 +68,7 @@
     thresholds:
       0: Alive
       100: Critical
-      200: Dead
+      350: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -78,7 +119,8 @@
       collection: FootstepBorg
 
 - type: entity
-  parent: MobRogueSiliconBase
+  parent:
+  - MobRogueSiliconBase
   id: MobRogueSiliconScrapBase
   name: scrap unit
   abstract: true
@@ -116,7 +158,7 @@
     thresholds:
       0: Alive
       60: Critical
-      80: Dead
+      240: Dead
   - type: Stamina
     critThreshold: 600
 
@@ -147,7 +189,7 @@
     thresholds:
       0: Alive
       30: Critical
-      50: Dead
+      180: Dead
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
@@ -175,12 +217,12 @@
     range: 5
     sound: /Audio/Effects/shuttle_thruster.ogg
 
-# Variations
+# VARIATIONS
 ## Tier 1
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
-  - MobHumanoidHostileAISimpleMelee
+  - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
   #noSpawn: true
   components:
@@ -240,7 +282,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
-  - MobHumanoidHostileAISimpleMelee
+  - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapAlt
   #noSpawn: true
   suffix: Threads
@@ -290,7 +332,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
-  - MobHumanoidHostileAISimpleMelee
+  - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
   #noSpawn: true
   suffix: Claw
@@ -419,7 +461,7 @@
 - type: entity
   parent:
   - MobRogueSiliconBase
-  - MobHumanoidHostileAISimpleMelee
+  - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
   #noSpawn: true
@@ -452,14 +494,14 @@
     thresholds:
       0: Alive
       80: Critical
-      100: Dead
+      240: Dead
   - type: Stamina
     critThreshold: 600
 
 - type: entity
   parent:
   - MobRogueSiliconBase
-  - MobHumanoidHostileAISimpleMelee
+  - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
   #noSpawn: true
@@ -494,7 +536,7 @@
     thresholds:
       0: Alive
       80: Critical
-      100: Dead
+      160: Dead
   - type: Stamina
     critThreshold: 600
   - type: StaminaDamageOnHit
@@ -538,15 +580,73 @@
       state: leg_thruster
     - sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
       state: wielded-inhand-right
-  - type: ProjectileBatteryAmmoProvider
-    proto: RedMediumLaser
-    fireCost: 100
+  #- type: ProjectileBatteryAmmoProvider
+    #proto: RedMediumLaser
+    #fireCost: 100
   - type: PointLight
     radius: 3.5
     color: orange
     energy: 0.5
 
 ## Tier 3
+- type: entity
+  parent:
+  - MobRogueSiliconBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobRogueSiliconTesla
+  name: tesla unit
+  #noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: base
+      color: "#8ca1a3"
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: decor_02
+      color: "#c96d25"
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: eyes
+      color: "#990000"
+      shader: unshaded
+    - sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
+      state: inhand-right
+  - type: DamageStateVisuals
+    rotate: true
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      240: Dead
+  - type: Stamina
+    critThreshold: 600
+  - type: ProjectileBatteryAmmoProvider
+    proto: TeslaGunBullet
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: Gun
+    projectileSpeed: 10
+    showExamineText: false
+    fireRate: 0.75
+    minAngle: 0
+    maxAngle: 15
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: PointLight
+    radius: 1
+    energy: 1.5
+    color: "#47f8ff"
 
 ## Tier 4 Boss
 - type: entity
@@ -584,13 +684,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      250: Dead
+      150: Critical
+      400: Dead
   - type: Stamina
     critThreshold: 600
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 20
+    proto: RedLaserPractice # RedLaser
+    fireCost: 10
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
@@ -600,12 +700,15 @@
   - type: Gun
     showExamineText: false
     fireRate: 8
-    minAngle: 30
-    maxAngle: 45
+    minAngle: 3
+    maxAngle: 15
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.2
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg
@@ -622,7 +725,7 @@
 - type: entity
   parent: MobRogueSiliconBase
   id: MobRogueSiliconBoss
-  name: one star unit
+  name: demolisher unit
   #noSpawn: true
   components:
   - type: Sprite
@@ -641,8 +744,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical
-      400: Dead
+      200: Critical
+      600: Dead
   - type: Stamina
     critThreshold: 600
   - type: BasicEntityAmmoProvider
@@ -650,6 +753,7 @@
     capacity: 10
     count: 10
   - type: Gun
+    projectileSpeed: 10
     showExamineText: false
     fireRate: 1
     minAngle: 30

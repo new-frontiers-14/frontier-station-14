@@ -34,6 +34,25 @@
 
 - type: entity
   save: false
+  id: MobPassiveRegenStrong
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -3
+        Burn: -3
+        Airloss: -10
+        Toxin: -10
+        Genetic: -10
+
+- type: entity
+  save: false
   id: MobLaserReflect
   abstract: true
   components:
