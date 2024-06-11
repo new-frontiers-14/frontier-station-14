@@ -229,7 +229,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
                     //Frontier - we handle bank stuff so we are wrapping each item spawn inside our own cached check.
                     //This way, we will spawn every item we can afford in the order that they were originally sorted.
-                    //TODO: fall back to some default if you can't afford your current loadout.
                     if (loadoutProto.Price <= bankBalance)
                     {
                         bankBalance -= loadoutProto.Price;
