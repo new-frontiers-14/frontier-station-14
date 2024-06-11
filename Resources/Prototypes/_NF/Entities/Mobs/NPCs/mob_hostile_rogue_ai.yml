@@ -312,7 +312,6 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThreads
   #noSpawn: true
-  suffix: Threads
   components:
   - type: RandomSprite
     available:
@@ -358,11 +357,10 @@
 
 - type: entity
   parent:
-  - MobRogueSiliconDroneBase
+  - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThrusters
   #noSpawn: true
-  suffix: Thrusters
   components:
   - type: RandomSprite
     available:
@@ -409,13 +407,24 @@
     radius: 2.5
     color: orange
     energy: 0.5
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30 # Lowered the value, to allow them to fit through the airlocks
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
 
 - type: entity
   parent:
   - MobRogueSiliconScrapThrusters
   id: MobRogueSiliconScrapThrustersRanged
   #noSpawn: true
-  suffix: Thrusters
   components:
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
@@ -439,7 +448,6 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
   #noSpawn: true
-  suffix: Claw
   components:
   - type: MeleeWeapon
     attackRate: 1.0
@@ -731,6 +739,7 @@
       state: body_generic
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: head_heavy
+      color: "#d6b328"
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: head_heavy_eye
       color: "#990000"
@@ -743,6 +752,8 @@
       state: l_leg_generic
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: r_leg_generic
+    - sprite: Clothing/Neck/mantles/qmmantle.rsi
+      state: equipped-NECK
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: overlay_r_arm_claws
   - type: DamageStateVisuals
