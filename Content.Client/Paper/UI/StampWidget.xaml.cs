@@ -23,9 +23,10 @@ public sealed partial class StampWidget : PanelContainer
 
     public StampDisplayInfo StampInfo {
         set {
-            StampedByLabel.Text = Loc.GetString(value.StampedName);
+            StampedByLabel.Text = value.Type is StampType.Signature ? value.StampedName : Loc.GetString(value.StampedName);
             StampedByLabel.FontColorOverride = value.StampedColor;
             ModulateSelfOverride = value.StampedColor;
+            PanelOverride = value.Type is StampType.Signature ? null : _borderTexture;
         }
     }
 
@@ -36,23 +37,6 @@ public sealed partial class StampWidget : PanelContainer
         var borderImage = resCache.GetResource<TextureResource>(
                 "/Textures/Interface/Paper/paper_stamp_border.svg.96dpi.png");
         _borderTexture = new StyleBoxTexture {
-            Texture = borderImage,
-        };
-        _borderTexture.SetPatchMargin(StyleBoxTexture.Margin.All, 7.0f);
-        PanelOverride = _borderTexture;
-
-        var prototypes = IoCManager.Resolve<IPrototypeManager>();
-        _stampShader = prototypes.Index<ShaderPrototype>("PaperStamp").InstanceUnique();
-    }
-
-    public StampWidget(bool borderless)
-    {
-        RobustXamlLoader.Load(this);
-        var resCache = IoCManager.Resolve<IResourceCache>();
-        var borderImage = resCache.GetResource<TextureResource>(
-                "/Textures/Interface/Paper/paper_stamp_noborder.svg.96dpi.png");
-        _borderTexture = new StyleBoxTexture
-        {
             Texture = borderImage,
         };
         _borderTexture.SetPatchMargin(StyleBoxTexture.Margin.All, 7.0f);
