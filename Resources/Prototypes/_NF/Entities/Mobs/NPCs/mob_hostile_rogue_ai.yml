@@ -68,8 +68,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      250: Dead
+      80: Critical
+      140: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -89,6 +89,12 @@
   - type: Repairable
     doAfterDelay: 10
     allowSelfRepair: true
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
@@ -100,7 +106,8 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Blunt: 10
+        Heat: 2
+        Blunt: 8
         Structural: 20
     soundHit:
       collection: MetalThud
@@ -153,6 +160,9 @@
       map: [ "decor" ]
     - state: mask_null
       map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -162,12 +172,29 @@
     thresholds:
       0: Alive
       60: Critical
-      240: Dead
+      120: Dead
   - type: Stamina
     critThreshold: 600
 
 - type: entity
-  parent: MobRogueSiliconBase
+  id: MobRogueSiliconProjectileBatteryAmmo
+  abstract: true
+  components:
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletEnergyGunLaser
+    fireCost: 100
+
+- type: entity
+  id: MobRogueSiliconHitscanBatteryAmmo
+  abstract: true
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 100
+
+- type: entity
+  parent:
+  - MobRogueSiliconBase
   id: MobRogueSiliconDroneBase
   name: drone
   abstract: true
@@ -196,18 +223,9 @@
     thresholds:
       0: Alive
       30: Critical
-      180: Dead
+      90: Dead
   - type: Stamina
     critThreshold: 600
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
-    fireCost: 100
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 100
-  - type: Battery
-    maxCharge: 300
-    startingCharge: 300
   - type: Gun
     showExamineText: false
     fireRate: 0.75
@@ -231,7 +249,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -246,11 +264,11 @@
           head_sturdy: ""
           head_servo: ""
         eyes:
-          head_generic_eye: ""
-          head_heavy_eye: ""
-          head_light_eye: ""
-          head_sturdy_eye: ""
-          head_servo_eye: ""
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+          head_servo_eye: Emagged
         leftArm:
           l_arm_generic: ""
           l_arm_heavy: ""
@@ -280,18 +298,20 @@
         decor:
           mask_null: ""
         overlay:
-          overlay_critdmg: ""
           overlay_openbrain: ""
           overlay_openmodule: ""
           overlay_openwires: ""
           mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
+          mask_null: ""        
 
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapAlt
-  noSpawn: true
+  #noSpawn: true
   suffix: Threads
   components:
   - type: RandomSprite
@@ -307,11 +327,11 @@
           head_sturdy: ""
           head_servo: ""
         eyes:
-          head_generic_eye: ""
-          head_heavy_eye: ""
-          head_light_eye: ""
-          head_sturdy_eye: ""
-          head_servo_eye: ""
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+          head_servo_eye: Emagged
         leftArm:
           l_arm_generic: ""
           l_arm_heavy: ""
@@ -326,14 +346,20 @@
           r_arm_sturdy: ""
           r_arm_servo: ""
           mask_null: ""
+        leftLeg:
+          mask_null: ""
+        rightLeg:
+          mask_null: ""
         decor:
           leg_thruster: ""
           leg_treads: ""
         overlay:
-          overlay_critdmg: ""
           overlay_openbrain: ""
           overlay_openmodule: ""
           overlay_openwires: ""
+          mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
           mask_null: ""
 
 - type: entity
@@ -341,7 +367,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
-  noSpawn: true
+  #noSpawn: true
   suffix: Claw
   components:
   - type: MeleeWeapon
@@ -366,10 +392,10 @@
           head_light: ""
           head_sturdy: ""
         eyes:
-          head_generic_eye: ""
-          head_heavy_eye: ""
-          head_light_eye: ""
-          head_sturdy_eye: ""
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
         leftArm:
           l_arm_generic: ""
           l_arm_heavy: ""
@@ -397,9 +423,11 @@
           overlay_r_arm_claws: ""
 
 - type: entity
-  parent: MobRogueSiliconDroneBase
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneLethals
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -411,16 +439,18 @@
       color: "#990000"
     - sprite: _NF/Mobs/RogueSilicons/drones.rsi
       state: decor_department_accent
-      color: "#ffff00"
+      color: "#000000"
     - sprite: _NF/Mobs/RogueSilicons/drones.rsi
       state: base_eyes
       shader: unshaded
       color: "#990000"
 
 - type: entity
-  parent: MobRogueSiliconDroneBase
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneNonLethals
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -442,9 +472,11 @@
     fireCost: 100
 
 - type: entity
-  parent: MobRogueSiliconDroneBase
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneScience
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -471,7 +503,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -500,13 +532,6 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Critical
-      240: Dead
-  - type: Stamina
-    critThreshold: 600
 
 - type: entity
   parent:
@@ -514,7 +539,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -527,6 +552,10 @@
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: head_sturdy
       color: "#0055cc"
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_sturdy_eye
+      color: "#0055cc"
+      shader: unshaded
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: overlay_meson
       shader: unshaded
@@ -545,13 +574,6 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      80: Critical
-      160: Dead
-  - type: Stamina
-    critThreshold: 600
   - type: StaminaDamageOnHit
     damage: 10
     sound: /Audio/Weapons/egloves.ogg
@@ -569,10 +591,12 @@
       path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
-  parent: MobRogueSiliconDroneBase
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconHunter
   name: hunter unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -586,6 +610,10 @@
       state: head_light
       color: "#990000"
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_light_eye
+      color: "#990000"
+      shader: unshaded
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: overlay_thermal
       shader: unshaded
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
@@ -594,15 +622,62 @@
       state: r_arm_light
     - sprite: _NF/Mobs/RogueSilicons/robots.rsi
       state: leg_thruster
+    - sprite: Clothing/Neck/mantles/hosmantle.rsi
+      state: equipped-NECK
     - sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
       state: wielded-inhand-right
-  #- type: ProjectileBatteryAmmoProvider
-    #proto: RedMediumLaser
-    #fireCost: 100
   - type: PointLight
     radius: 3.5
     color: orange
     energy: 0.5
+
+- type: entity
+  parent:
+  - MobRogueSiliconBase
+  id: MobRogueSiliconCatcher
+  name: catcher unit
+  #noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: body_generic
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_heavy
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_heavy_eye
+      color: "#990000"
+      shader: unshaded
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: l_arm_heavy
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: r_arm_heavy
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: l_leg_generic
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: r_leg_generic
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: overlay_r_arm_claws
+  - type: DamageStateVisuals
+    rotate: true
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: BasicEntityAmmoProvider
+    proto: Bola
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.075
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
 
 ## Tier 3
 - type: entity
@@ -611,7 +686,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconTesla
   name: tesla unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -640,7 +715,7 @@
     thresholds:
       0: Alive
       110: Critical
-      240: Dead
+      160: Dead
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
@@ -669,10 +744,12 @@
 
 ## Tier 4 Boss
 - type: entity
-  parent: MobRogueSiliconBase
+  parent:
+  - MobRogueSiliconDroneBase
+  - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconGuardian
   name: guardian unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -713,17 +790,11 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaserPractice # RedLaser
     fireCost: 10
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 100
-  - type: Battery
-    maxCharge: 300
-    startingCharge: 300
   - type: Gun
     showExamineText: false
     fireRate: 8
-    minAngle: 3
-    maxAngle: 15
+    minAngle: 1
+    maxAngle: 10
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -731,14 +802,6 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
       params:
         variation: 0.2
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/_NF/Effects/silence.ogg
-  - type: SoundWhileAlive
-  - type: AmbientSound
-    volume: -9
-    range: 5
-    sound: /Audio/Effects/shuttle_thruster.ogg
   - type: PointLight
     radius: 2
     energy: 2.5
@@ -748,7 +811,7 @@
   parent: MobRogueSiliconBase
   id: MobRogueSiliconBoss
   name: demolisher unit
-  noSpawn: true
+  #noSpawn: true
   components:
   - type: Loadout
     prototypes:
