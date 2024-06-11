@@ -4,11 +4,7 @@
   parent: WeaponSniperMosin
   suffix: Non-lethal
   components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CartridgeLightRifle
-    capacity: 10
+  - type: BallisticAmmoProvider # Inherit whitelist, capacity from parent
     proto: CartridgeLightRifleRubber
 
 # Frontier

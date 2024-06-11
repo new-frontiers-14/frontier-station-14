@@ -1,6 +1,7 @@
 using Content.Shared.Preferences.Loadouts.Effects;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Preferences.Loadouts;
 
@@ -29,4 +30,25 @@ public sealed partial class LoadoutPrototype : IPrototype
     /// </summary>
     [DataField]
     public int Price = 0;
+
+    /// <summary>
+    /// Frontier - optional name of the loadout as it appears in the menu
+    /// </summary>
+    [DataField]
+    public string Name = "";
+
+    /// <summary>
+    /// Frontier - optional description of the loadout as it appears in the menu
+    /// </summary>
+    [DataField]
+    public string Description = "";
+
+    /// <summary>
+    /// Frontier - optional entity to use for its sprite in the loadout as it appears in the menu
+    /// </summary>
+    /// <remarks>
+    /// Currently, if not defaulted, this will be the fallback entity used to get the description if an override is not provided here.
+    /// </remarks>
+    [DataField]
+    public EntProtoId? PreviewEntity = default!;
 }
