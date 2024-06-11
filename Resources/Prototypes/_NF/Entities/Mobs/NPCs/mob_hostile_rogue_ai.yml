@@ -100,7 +100,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Blunt: 15
+        Blunt: 10
         Structural: 20
     soundHit:
       collection: MetalThud
@@ -231,7 +231,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -291,7 +291,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapAlt
-  #noSpawn: true
+  noSpawn: true
   suffix: Threads
   components:
   - type: RandomSprite
@@ -341,7 +341,7 @@
   - MobRogueSiliconScrapBase
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
-  #noSpawn: true
+  noSpawn: true
   suffix: Claw
   components:
   - type: MeleeWeapon
@@ -399,7 +399,7 @@
 - type: entity
   parent: MobRogueSiliconDroneBase
   id: MobRogueSiliconDroneLethals
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -420,7 +420,7 @@
 - type: entity
   parent: MobRogueSiliconDroneBase
   id: MobRogueSiliconDroneNonLethals
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -444,7 +444,7 @@
 - type: entity
   parent: MobRogueSiliconDroneBase
   id: MobRogueSiliconDroneScience
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -471,7 +471,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -514,7 +514,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -572,7 +572,7 @@
   parent: MobRogueSiliconDroneBase
   id: MobRogueSiliconHunter
   name: hunter unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -611,7 +611,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconTesla
   name: tesla unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -672,7 +672,7 @@
   parent: MobRogueSiliconBase
   id: MobRogueSiliconGuardian
   name: guardian unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -748,7 +748,7 @@
   parent: MobRogueSiliconBase
   id: MobRogueSiliconBoss
   name: demolisher unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
