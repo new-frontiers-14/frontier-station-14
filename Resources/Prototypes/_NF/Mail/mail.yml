@@ -1575,14 +1575,14 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
-  id: MailStationRepNFStationPet
+  id: MailCommandNFStationPet
   suffix: station pet
   components:
   - type: Mail
     - isFragile: true
     contents:
       - id: MaterialWoodPlank10
-      - id: PaperMailNFFurnitureManual
+      - id: PaperMailNFPetBedAssemblyManual
       - id: DelayedPetCarrierNPCEmotionalSupportSafe
 
 - type: entity
@@ -1626,3 +1626,16 @@
     contents:
       - id: OmnizineChemistryBottle
       - id: Syringe
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCommandNFPipebombIntern
+  suffix: pipe and bomb
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: SmokingPipeFilledTobacco
+      - id: DrinkAtomicBombGlass
+      - id: PaperMailNFPipebombIntern

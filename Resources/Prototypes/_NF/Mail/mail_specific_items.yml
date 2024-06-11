@@ -22,6 +22,7 @@
     item: PetCarrierNPCEmotionalSupportSafe
 
 # Papers (letters, ad copy)
+# TODO: these should really be based on localization strings.
 - type: entity
   id: PaperMailNFPowerTool
   # noSpawn: true
@@ -342,21 +343,11 @@
                [italic]The Frontier Paper Pusher's Club[/italic][/head]
 
 - type: entity
-<<<<<<< Updated upstream
   id: PaperMailNFPetBedAssemblyManual
   # noSpawn: true
   suffix: "pet bed assembly manual"
-=======
-  id: PaperMailNTBoxer
-  # noSpawn: true
-  suffix: "boxer"
->>>>>>> Stashed changes
-  parent: Paper
-  components:
   - type: Paper
     content: |2
-
-<<<<<<< Updated upstream
       [head=1]HÖGANÄS[/head]
 
       [head=2](There is a black and white picture of a pet bed on the first page.)[/head]
@@ -364,7 +355,15 @@
       [head=3](On the next few pages, you see a list of materials and a happy stick figure assembling furniture.)[/head]
 
       [head=3](On the pages after that, you see a set of instructions to assemble a pet bed.  You're sure you don't need them, how hard could it be?)[/head]
-=======
+
+- type: entity
+  id: PaperMailNTBoxer
+  # noSpawn: true
+  suffix: "boxer"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
           [head=2]You've gotta defend your belt, champ.
       [/head]
             [head=1]They're coming for you.[/head]
@@ -395,4 +394,16 @@
         reagents:
         - ReagentId: Necrosol
           Quantity: 30
->>>>>>> Stashed changes
+
+# Placeholder for an arm-on-use, flashbang fakeout pipebomb
+- type: entity
+  id: PaperMailNFPipebombIntern
+  # noSpawn: true
+  suffix: "boxer"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+
+          [head=3]hey uh, they said something about sending you a pipebomb?[/head]
+          [head=3]this is all i could find around here[/head]
