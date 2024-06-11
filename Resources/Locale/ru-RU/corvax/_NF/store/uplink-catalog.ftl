@@ -1,3 +1,7 @@
+uplink-security-enforser-name = Енфорсер
+uplink-security-enforser-desc = Табельное оружие закрепленное за сотрудниками ДСБФ.
+uplink-security-dominator-name = Доминатор
+uplink-security-dominator-desc = Продвинутая версия обычного станнера, хранящая больший заряд и наносящая больше оглушения при попаданиях.
 uplink-security-vector-magazines-name = Магазины для Вектора .45
 uplink-security-vector-magazines-desc = Заводские магазины со стандартными патронами для Вектора .45ACP.
 uplink-security-vector-name = Вектор (.45)

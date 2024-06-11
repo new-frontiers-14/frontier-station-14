@@ -1,4 +1,36 @@
 - type: listing
+  id: UplinkSecurityEnforser
+  name:  uplink-security-enforser-name
+  description: uplink-security-enforser-desc
+  productEntity: WeaponPistolEnforser
+  icon: { sprite: Corvax/Objects/Weapons/Guns/Pistols/enforser.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityDominator
+  name:  uplink-security-dominator-name
+  description: uplink-security-dominator-desc
+  productEntity: WeaponDominator
+  icon: { sprite: Corvax/Objects/Weapons/Guns/Battery/dominator.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
   id: UplinkSecurityVectorMagazines45
   name: uplink-security-vector-magazines-name
   description: uplink-security-vector-magazines-desc
