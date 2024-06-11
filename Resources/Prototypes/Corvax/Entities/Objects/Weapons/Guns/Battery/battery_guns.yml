@@ -1,0 +1,40 @@
+- type: entity
+  name: dominator
+  parent: BaseWeaponBatterySmall
+  id: WeaponDominator
+  description: "An advanced version of a conventional disabler that stores a larger charge and causes more stun when hit."
+  suffix: Pistol
+  components:
+  - type: Tag
+    tags:
+      - Taser
+      - Sidearm
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Battery/dominator.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Guns/Battery/dominator.rsi
+    quickEquip: false
+    slots:
+      - suitStorage
+      - Belt
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/taser.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDominator
+    fireCost: 50
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: GuideHelp
+    guides:
+    - Security

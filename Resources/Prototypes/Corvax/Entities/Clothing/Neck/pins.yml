@@ -141,3 +141,58 @@
     clothingVisuals:
       neck:
       - state: vit-equipped
+
+- type: entity
+  parent: ClothingNeckPinBase
+  id: BaseClothingNeckStarBadge
+  name: bronze badge
+  description: "Bronze badge of distinction."
+  abstract: true
+  components:
+  - type: CargoSellBlacklist
+
+- type: entity
+  parent: BaseClothingNeckStarBadge
+  id: ClothingNeckStarBronzeBadge
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    layers:
+    - state: bronze
+  - type: Clothing
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    clothingVisuals:
+      neck:
+      - state: bronze-equipped
+
+- type: entity
+  parent: BaseClothingNeckStarBadge
+  id: ClothingNeckStarSilverBadge
+  name: silver badge
+  description: "Silver badge of distinction."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    layers:
+    - state: silver
+  - type: Clothing
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    clothingVisuals:
+      neck:
+      - state: silver-equipped
+
+- type: entity
+  parent: BaseClothingNeckStarBadge
+  id: ClothingNeckStarGoldBadge
+  name: gold badge
+  description: "Golden badge of distinction."
+  components:
+  - type: Sprite
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    layers:
+    - state: gold
+  - type: Clothing
+    sprite: Corvax/Clothing/Neck/Misc/pins.rsi
+    clothingVisuals:
+      neck:
+      - state: gold-equipped
