@@ -40,10 +40,11 @@
 
 ## Mob base
 - type: entity
-  name: autonomous unit
+  name: hivemind unit
   abstract: true
   parent:
   - MobNonHumanHostileBase
+  - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
   - MobPassiveRegenStrong
   id: MobRogueSiliconBase
@@ -125,6 +126,9 @@
   name: scrap unit
   abstract: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT1
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/RogueSilicons/robots.rsi
@@ -168,6 +172,9 @@
   name: drone
   abstract: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT1
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -466,6 +473,9 @@
   name: servo unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -506,6 +516,9 @@
   name: herder unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -561,6 +574,9 @@
   name: hunter unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -597,6 +613,9 @@
   name: tesla unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT3
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -655,6 +674,9 @@
   name: guardian unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT4
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -728,6 +750,9 @@
   name: demolisher unit
   #noSpawn: true
   components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT4
   - type: Sprite
     drawdepth: Mobs
     layers:
