@@ -4,13 +4,14 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
-using Content.Shared.Wieldable.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Server.Abilities.Oni
 {
     public sealed class OniSystem : EntitySystem
     {
         [Dependency] private readonly ToolSystem _toolSystem = default!;
+        [Dependency] private readonly SharedGunSystem _gunSystem = default!;
 
         private const double GunInaccuracyFactor = 17.0; // Frontier (20x<18x -> 10% buff)
 
@@ -45,9 +46,14 @@ namespace Content.Server.Abilities.Oni
                     heldComp.angleIncreaseAdded = gun.AngleIncrease * GunInaccuracyFactor;
                     heldComp.maxAngleAdded = gun.MaxAngle * GunInaccuracyFactor;
                 }
+
+                // TODO: Max out the min/maxAngle at 90 (no shooting behind - L6 SAW)
+                // TODO: Make sure previous step didn't result in a negative minAngleAdded/maxAngleAdded
+
                 gun.MinAngle += heldComp.minAngleAdded;
                 gun.AngleIncrease += heldComp.angleIncreaseAdded;
                 gun.MaxAngle += heldComp.maxAngleAdded;
+                _gunSystem.RefreshModifiers(args.Entity); // Make sure values propagate to modified values (this also dirties the gun for us)
                 // End Frontier
             }
         }
@@ -56,11 +62,12 @@ namespace Content.Server.Abilities.Oni
         {
             // Frontier: angle manipulation stored in HeldByOniComponent
             if (TryComp<GunComponent>(args.Entity, out var gun) &&
-                TryComp<HeldByOniComponent>(args.Entity, out var heldByOni))
+                TryComp<HeldByOniComponent>(args.Entity, out var heldComp))
             {
-                gun.MinAngle -= heldByOni.minAngleAdded;
-                gun.AngleIncrease -= heldByOni.angleIncreaseAdded;
-                gun.MaxAngle -= heldByOni.maxAngleAdded;
+                gun.MinAngle -= heldComp.minAngleAdded;
+                gun.AngleIncrease -= heldComp.angleIncreaseAdded;
+                gun.MaxAngle -= heldComp.maxAngleAdded;
+                _gunSystem.RefreshModifiers(args.Entity); // Make sure values propagate to modified values (this also dirties the gun for us)
             }
             // End Frontier
 
