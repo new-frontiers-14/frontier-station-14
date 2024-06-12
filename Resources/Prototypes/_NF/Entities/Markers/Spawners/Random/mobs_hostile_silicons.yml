@@ -1,0 +1,137 @@
+- type: entity
+  name: drone spawner
+  id: SpawnMobRogueDronesT1
+  parent: MarkerBase
+  suffix: AI, Hostile, T1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconDroneLethals
+    - MobRogueSiliconDroneNonLethals
+    - MobRogueSiliconDroneScience
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: scrap unit spawner
+  id: SpawnMobRogueScapT1
+  parent: MarkerBase
+  suffix: AI, Hostile, T1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: body_generic
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_sturdy
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_generic_eye
+      color: "#990000"
+      shader: unshaded
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: l_arm_light
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: r_arm_sturdy
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: l_leg_light
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: r_leg_generic
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconScrap
+    - MobRogueSiliconScrapThreads
+    - MobRogueSiliconScrapThrusters
+    - MobRogueSiliconScrapThrustersRanged
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconScrapFlayer
+    - SpawnMobRogueSiliconsT2
+    rareChance: 0.05
+
+- type: entity
+  name: rogue unit spawner
+  id: SpawnMobRogueSiliconsT2
+  parent: MarkerBase
+  suffix: AI, Hostile, T2
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: body_light
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: head_light
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: overlay_thermal
+      shader: unshaded
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: l_arm_light
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: r_arm_light
+    - sprite: _NF/Mobs/RogueSilicons/robots.rsi
+      state: leg_thruster
+    - sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconServo
+    - MobRogueSiliconHerder
+    - MobRogueSiliconHunter
+    - MobRogueSiliconCatcher
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobRogueSiliconsT3
+    rareChance: 0.05
+
+- type: entity
+  name: rogue unit spawner
+  id: SpawnMobRogueSiliconsT3
+  parent: MarkerBase
+  suffix: AI, Hostile, T3
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: base
+      color: "#8ca1a3"
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: decor_02
+      color: "#c96d25"
+    - sprite: _NF/Mobs/RogueSilicons/ancient.rsi
+      state: eyes
+      color: "#990000"
+      shader: unshaded
+    - sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
+      state: inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconTesla
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobRogueSiliconGuardian
+    rareChance: 0.05
