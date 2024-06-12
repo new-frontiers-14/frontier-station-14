@@ -23,7 +23,7 @@
   - type: ShowJobIcons
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesHudMedical, ClothingEyesHudNfsd]
   id: ClothingEyesHudNfsdMed
   name: brigmedic hud
   description: An eye display that looks like a mixture of medical and nfsd huds.
@@ -35,9 +35,6 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: ClothingEyesHudSecurity
