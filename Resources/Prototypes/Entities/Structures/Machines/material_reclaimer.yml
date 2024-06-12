@@ -66,6 +66,7 @@
       components:
       - PhysicalComposition
       - SpaceGarbage
+      - Logs # Frontier
       tags:
       - Trash
       - Recyclable
@@ -77,6 +78,8 @@
       - Brain
       tags:
       - HighRiskItem
+      - Bucket # Frontier
+      - GlassBeaker # Frontier
     soundCooldown: 0
     sound:
       path: /Audio/Ambience/Objects/crushing.ogg
@@ -94,7 +97,7 @@
   - type: SolutionContainerManager
     solutions:
       output:
-        maxVol: 100
+        maxVol: 1000 # Frontier 100<1000
   - type: DrainableSolution
     solution: output
   - type: ExaminableSolution
