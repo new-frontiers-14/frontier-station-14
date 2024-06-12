@@ -1,0 +1,80 @@
+- type: entity
+  parent: BaseStorageItem
+  id: ConstructionBag
+  name: construction bag
+  description: A robust bag for construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
+  components:
+  - type: MagnetPickup
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+      - Ingot
+      - RodMetal1
+      - Sheet
+      - CableCoil
+      components:
+      - ConstructionMaterials
+    blacklist:
+      tags:
+      - PrizeTicket
+  - type: Dumpable
+  - type: StaticPrice
+    price: 55.5
+
+- type: entity
+  parent: ConstructionBag
+  id: ConstructionBagOfHolding
+  name: construction bag of holding
+  description: A robust bag of holding for rich construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
+  components:
+  - type: MagnetPickup
+    range: 2
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
+    layers:
+    - state: icon
+    - state: icon-bluespace-overlay
+    - state: icon-bluespace-overlay-unshaded
+      shader: unshaded
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-bluespace-overlay
+      - state: inhand-left-bluespace-overlay-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-bluespace-overlay
+      - state: inhand-right-bluespace-overlay-unshaded
+        shader: unshaded
+  - type: Clothing
+    sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+      - state: equipped-BELT-bluespace-overlay
+      - state: equipped-BELT-bluespace-overlay-unshaded
+        shader: unshaded
+  - type: Storage
+    grid:
+    - 0,0,19,9

@@ -21,6 +21,7 @@ shipyard-rules-default2 =
 shuttle-ftl-proximity = Nearby objects too massive for FTL!
 
 changelog-tab-title-Upstream = Upstream Changelog
+multiauth-already-connected = Already connected to Frontier Official servers.
 
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
