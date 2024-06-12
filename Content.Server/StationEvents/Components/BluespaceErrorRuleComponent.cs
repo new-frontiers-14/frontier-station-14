@@ -34,5 +34,5 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// How much the grid is appraised at upon entering into existence, set after starting the event
     /// </summary>
     [DataField("startingValue")]
-    public double StartingValue = 0;
+    public double startingValue = 0;
 }
