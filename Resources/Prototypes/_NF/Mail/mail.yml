@@ -1729,3 +1729,23 @@
       - id: Skub
       - id: ClothingHeadHatSkub
       - id: ClothingOuterSkub
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFBuildABuddy
+  suffix: Build-a-Buddy
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: BuildABuddyGoblin
+        orGroup: Box
+      - id: BuildABuddyHuman
+        orGroup: Box
+      - id: BuildABuddyMoth
+        orGroup: Box
+      - id: BuildABuddyReptillian
+        orGroup: Box
+      - id: DrinkSpaceGlue
+      - id: PaperMailNFBuildABuddy

@@ -1,36 +1,3 @@
-# Pranks: admin items or effects put into an envelope, released when opened or damaged.
-- type: entity
-  id: DelayedSmoke
-  parent: BaseItem
-  noSpawn: true
-  name: delayed smoke
-  suffix: "(10s)"
-  components:
-  - type: DelayedItem
-    item: AdminInstantEffectSmoke10
-
-- type: entity
-  id: DelayedEMP
-  parent: BaseItem
-  noSpawn: true
-  name: delayed EMP
-  suffix: "(4m)"
-  components:
-  - type: DelayedItem
-    item: AdminInstantEffectEMP
-
-# Miscellaneous Items
-
-# Delay the emotional support pet so they don't suffocate.
-- type: entity
-  id: DelayedPetCarrierNPCEmotionalSupportSafe
-  parent: BaseItem
-  noSpawn: true
-  name: delayed emotional support pet
-  components:
-  - type: DelayedItem
-    item: PetCarrierNPCEmotionalSupportSafe
-
 # Papers (letters, ad copy)
 # TODO: these should really be based on localization strings.
 - type: entity
@@ -365,7 +332,7 @@
   parent: Paper
   components:
   - type: Paper
-    content: |2 # TODO: FORMAT ME
+    content: |2
       
       [head=1]HÖGANÄS[/head]
 
@@ -388,32 +355,6 @@
                 [head=1]They're coming for you.[/head]
 
                   [head=2]This should help.  Knock 'em out.[/head]
-
-- type: entity
-  id: SyringeCognizine
-  parent: Syringe
-  name: cognizine syringe
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 15
-        reagents:
-        - ReagentId: Cognizine
-          Quantity: 15 # Surely three friends is enough.
-
-- type: entity
-  id: NecrosolChemistryBottle
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Necrosol
-          Quantity: 30
-
 # Placeholder for an arm-on-use, flashbang fakeout pipebomb
 - type: entity
   id: PaperMailNFPipebombIntern
@@ -471,3 +412,25 @@
       [bold]Number of affected items:[/bold]
       [bold]Perceived severity of incident:[/bold]
       [bold]Suggested improvements:[/bold]
+
+- type: entity
+  id: PaperMailNFBuildABuddy
+  # noSpawn: true
+  name: Build-a-Buddy adoption letter
+  suffix: "build-a-buddy"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+
+      [head=1]Note of Adoption[/head]
+
+      Congratulations on becoming the owner of your very own Build-a-Buddy!
+
+      We hope that your new friend can serve as a shoulder to cry on in the depths of space.
+
+      Collect the whole set!
+      [bold][bullet/][/bold] Greta the Goblin
+      [bold][bullet/][/bold] Harry the Human
+      [bold][bullet/][/bold] Matthew the Goblin
+      [bold][bullet/][/bold] Rosie the Reptillian
