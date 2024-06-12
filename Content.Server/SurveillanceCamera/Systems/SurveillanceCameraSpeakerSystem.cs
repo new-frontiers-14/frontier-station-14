@@ -50,7 +50,8 @@ public sealed class SurveillanceCameraSpeakerSystem : EntitySystem
         var name = Loc.GetString("speech-name-relay", ("speaker", Name(uid)),
             ("originalName", nameEv.Name));
 
+        // Frontier: Do not send TV messages to admins that are out of range. (GhostRangeLimit>GhostRangeLimitNoAdminCheck)
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chatSystem.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimit, nameOverride: name);
+        _chatSystem.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Speak, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name);
     }
 }

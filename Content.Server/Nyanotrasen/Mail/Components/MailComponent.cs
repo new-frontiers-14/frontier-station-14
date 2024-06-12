@@ -75,7 +75,7 @@ namespace Content.Server.Mail.Components
         /// The amount that cargo will be awarded for delivering this mail.
         /// </summary>
         [DataField("bounty")]
-        public int Bounty = 750;
+        public int Bounty = 7500; // Frontier 750<7500
 
         /// <summary>
         /// Penalty if the mail is destroyed.

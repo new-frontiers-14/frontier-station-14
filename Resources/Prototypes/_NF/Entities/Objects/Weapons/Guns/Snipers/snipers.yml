@@ -1,0 +1,28 @@
+# Upstream
+- type: entity
+  id: Kardashev-MosinNonlethal
+  parent: WeaponSniperMosin
+  suffix: Non-lethal
+  components:
+  - type: BallisticAmmoProvider # Inherit whitelist, capacity from parent
+    proto: CartridgeLightRifleRubber
+
+# Frontier
+- type: entity
+  name: N2524 Pattern Repeater
+  parent: [BaseWeaponSniper, BaseGunWieldable]
+  id: WeaponSniperRepeater
+  description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability and stopping power. Uses .45 magnum ammo.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi    
+  - type: StaticPrice
+    price: 500
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+    capacity: 7
+    proto: CartridgeMagnum
