@@ -55,8 +55,19 @@ public sealed class BoomBoxSystem : EntitySystem
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxMinusVolMessage>(OnMinusVolButtonPressed);
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxStartMessage>(OnStartButtonPressed);
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxStopMessage>(OnStopButtonPressed);
+        SubscribeLocalEvent<BoomBoxComponent, BoomBoxSetTimeMessage>(OnSetTimeMessage);
     }
 
+    private void OnSetTimeMessage(EntityUid uid, BoomBoxComponent component, BoomBoxSetTimeMessage args)
+    {
+        if (component.Stream != null)
+        {
+            _audioSystem.SetPlaybackPosition(component.Stream, args.PlaybackPosition);
+            component.PlaybackPosition = args.PlaybackPosition; // Обновление позиции воспроизведения
+        }
+
+        UpdateUserInterface(uid, component); // Обновление интерфейса
+    }
 
     // This method makes it possible to insert cassettes into the boombox
     private void OnComponentInit(EntityUid uid, BoomBoxComponent component, ComponentInit args)
@@ -141,8 +152,6 @@ public sealed class BoomBoxSystem : EntitySystem
         UpdateUserInterface(uid, component);
     }
 
-    // ----------------------------------------------------------------------------------------------------------------
-
     private void UpdateUserInterface(EntityUid uid, BoomBoxComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -178,8 +187,7 @@ public sealed class BoomBoxSystem : EntitySystem
             canStop = false;
         }
 
-
-        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart);
+        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart, component.PlaybackPosition);
         _userInterface.SetUiState(uid, BoomBoxUiKey.Key, state);
     }
 

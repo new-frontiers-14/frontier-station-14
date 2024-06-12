@@ -15,17 +15,31 @@ public sealed class BoomBoxUiState : BoundUserInterfaceState
     public bool CanMinusVol { get; }
     public bool CanStop { get; }
     public bool CanStart { get; }
+    public float PlaybackPosition { get; }
 
     public BoomBoxUiState(
         bool canPlusVol,
         bool canMinusVol,
         bool canStop,
-        bool canStart)
+        bool canStart,
+        float playbackPosition)
     {
         CanPlusVol = canPlusVol;
         CanMinusVol = canMinusVol;
         CanStop = canStop;
         CanStart = canStart;
+        PlaybackPosition = playbackPosition;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class BoomBoxSetTimeMessage : BoundUserInterfaceMessage
+{
+    public float PlaybackPosition { get; }
+
+    public BoomBoxSetTimeMessage(float playbackPosition)
+    {
+        PlaybackPosition = playbackPosition;
     }
 }
 

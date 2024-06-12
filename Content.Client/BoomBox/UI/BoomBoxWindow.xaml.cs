@@ -13,6 +13,9 @@ public sealed partial class BoomBoxWindow : DefaultWindow
     public event Action? PlusVolButtonPressed;
     public event Action? StartButtonPressed;
     public event Action? StopButtonPressed;
+    public event Action<float>? PlaybackSliderChanged;
+
+    private bool _isSliderDragging = false;
 
     public BoomBoxWindow()
     {
@@ -22,6 +25,7 @@ public sealed partial class BoomBoxWindow : DefaultWindow
         PlusVolButton.OnPressed += _ => PlusVolButtonPressed?.Invoke();
         StartButton.OnPressed += _ => StartButtonPressed?.Invoke();
         StopButton.OnPressed += _ => StopButtonPressed?.Invoke();
+        PlaybackSlider.OnValueChanged += args => PlaybackSliderChanged?.Invoke(args.Value);
     }
 
     public void UpdateState(BoomBoxUiState state)
@@ -30,5 +34,6 @@ public sealed partial class BoomBoxWindow : DefaultWindow
         PlusVolButton.Disabled = !state.CanPlusVol;
         StartButton.Disabled = !state.CanStart;
         StopButton.Disabled = !state.CanStop;
+        PlaybackSlider.SetValueWithoutEvent(state.PlaybackPosition);
     }
 }

@@ -1,7 +1,7 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                Title="{Loc 'boombox-ui-window'}"
-               MinSize="256 80"
-               SetSize="256 80">
+               MinSize="256 130"
+               SetSize="256 130">чё
     <BoxContainer Orientation="Vertical" VerticalExpand="True">
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
             <Button Name="MinusVolButton"
@@ -21,5 +21,8 @@
                     HorizontalExpand="True"
                     Disabled="True" />
         </BoxContainer>
+    </BoxContainer>
+    <BoxContainer Orientation="Vertical">
+        <Slider Name="PlaybackSlider" HorizontalExpand="True" Margin="60"/>
     </BoxContainer>
 </DefaultWindow>
