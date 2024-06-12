@@ -71,6 +71,12 @@ public sealed class SlurredSystem : SharedSlurredSystem
                     'a' => "ah",
                     'u' => "oo",
                     'c' => "k",
+                    // Corvax-Localization Start
+                    'о' => "а",
+                    'к' => "кх",
+                    'щ' => "шч",
+                    'ц' => "тс",
+                    // Corvax-Localization End
                     _ => $"{character}",
                 };
 
@@ -90,7 +96,7 @@ public sealed class SlurredSystem : SharedSlurredSystem
                 }
             }
 
-            if (!_random.Prob(scale * 3/20))
+            if (!_random.Prob(scale * 3 / 20))
             {
                 sb.Append(character);
                 continue;
