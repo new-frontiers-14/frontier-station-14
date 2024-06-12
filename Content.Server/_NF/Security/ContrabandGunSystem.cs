@@ -41,11 +41,11 @@ public sealed class ContrabandGunSystem : EntitySystem
         {
             Act = () =>
             {
-                _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
+                _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
                 _useDelay.TryResetDelay((uid, useDelay));
             },
-            Text = Loc.GetString("price-gun-verb-text"),
-            Message = Loc.GetString("price-gun-verb-message", ("object", Identity.Entity(args.Target, EntityManager)))
+            Text = Loc.GetString("contraband-price-gun-verb-text"),
+            Message = Loc.GetString("contraband-price-gun-verb-message", ("object", Identity.Entity(args.Target, EntityManager)))
         };
 
         args.Verbs.Add(verb);
@@ -63,11 +63,11 @@ public sealed class ContrabandGunSystem : EntitySystem
         {
             //double price = _pricingSystem.GetPrice(args.Target.Value);
             double price = contraband.Value;
-            _popupSystem.PopupEntity(Loc.GetString("price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
         }
         else
         {
-            _popupSystem.PopupEntity(Loc.GetString("price-gun-bounty-complete"), args.User, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result-none"), args.User, args.User);
         }
 
         _useDelay.TryResetDelay((uid, useDelay));
