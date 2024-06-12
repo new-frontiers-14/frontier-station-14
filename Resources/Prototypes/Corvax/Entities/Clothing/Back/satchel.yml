@@ -19,3 +19,16 @@
   components:
   - type: Sprite
     sprite: Corvax/Back/Satchels/ce.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelHolding
+  id: ClothingBackpackSatchelHoldingExtended
+  noSpawn: true
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: Construction
+    graph: clothingBackpackSatchelHoldingExtended
+    node: bluespace3

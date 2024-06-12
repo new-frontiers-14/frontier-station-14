@@ -1,0 +1,87 @@
+- type: constructionGraph
+  id: clothingBackpackHoldingExtended
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: bluespace1
+          steps:
+            - tag: BackpackHolding
+              name: bag of holding
+              icon:
+                sprite: Clothing/Back/Backpacks/holding.rsi
+                state: holding
+            - tag: DataCrystal
+              name: bluespace data crystal
+              icon:
+                sprite: Corvax/Objects/Materials/gems.rsi
+                state: data
+              doAfter: 10
+    - node: bluespace1
+      entity: ClothingBackpackHoldingExtended
+
+- type: constructionGraph
+  id: clothingBackpackDuffelHoldingExtended
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: bluespace2
+          steps:
+            - tag: BackpackDuffelHolding
+              name: duffelbag of holding
+              icon:
+                sprite: Clothing/Back/Duffels/holding.rsi
+                state: icon
+            - tag: DataCrystal
+              name: bluespace data crystal
+              icon:
+                sprite: Corvax/Objects/Materials/gems.rsi
+                state: data
+              doAfter: 10
+    - node: bluespace2
+      entity: ClothingBackpackDuffelHoldingExtended
+
+- type: constructionGraph
+  id: clothingBackpackSatchelHoldingExtended
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: bluespace3
+          steps:
+            - tag: BackpackSatchelHolding
+              name: satchel of holding
+              icon:
+                sprite: Clothing/Back/Satchels/holding.rsi
+                state: icon
+            - tag: DataCrystal
+              name: bluespace data crystal
+              icon:
+                sprite: Corvax/Objects/Materials/gems.rsi
+                state: data
+              doAfter: 10
+    - node: bluespace3
+      entity: ClothingBackpackSatchelHoldingExtended
+
+- type: constructionGraph
+  id: clothingBackpackMessengerHoldingExtended
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: bluespace4
+          steps:
+            - tag: BackpackMessengerHolding
+              name: messenger bag of holding
+              icon:
+                sprite: _NF/Clothing/Back/Messenger/holding.rsi
+                state: icon
+            - tag: DataCrystal
+              name: bluespace data crystal
+              icon:
+                sprite: Corvax/Objects/Materials/gems.rsi
+                state: data
+              doAfter: 10
+    - node: bluespace4
+      entity: ClothingBackpackMessengerHoldingExtended

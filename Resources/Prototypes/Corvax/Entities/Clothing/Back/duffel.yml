@@ -19,3 +19,16 @@
   components:
   - type: Sprite
     sprite: Corvax/Back/Duffels/ce.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffelHolding
+  id: ClothingBackpackDuffelHoldingExtended
+  noSpawn: true
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: Construction
+    graph: clothingBackpackDuffelHoldingExtended
+    node: bluespace2

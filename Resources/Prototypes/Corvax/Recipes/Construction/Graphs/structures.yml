@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: AtmosDeviceFanTinyGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: FanTiny
+      steps:
+      - material: Plasteel
+        amount: 20
+        doAfter: 10
+      - material: Cable
+        amount: 15
+        doAfter: 2.5
+  - node: FanTiny
+    entity: AtmosDeviceFanTiny
+    edges:
+      - to: start
+        completed:
+        - !type:SpawnPrototype
+              prototype: SheetPlasteel
+              amount: 10
+        - !type:DeleteEntity {}
+        steps:
+          - tool: Welding
+            doAfter: 5

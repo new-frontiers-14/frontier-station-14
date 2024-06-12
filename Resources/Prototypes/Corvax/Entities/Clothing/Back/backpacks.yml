@@ -32,3 +32,16 @@
   components:
   - type: Sprite
     sprite: Corvax/Back/Backpacks/ce.rsi
+
+- type: entity
+  parent: ClothingBackpackHolding
+  id: ClothingBackpackHoldingExtended
+  noSpawn: true
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: Construction
+    graph: clothingBackpackHoldingExtended
+    node: bluespace1

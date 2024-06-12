@@ -61,3 +61,41 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkCombatHypospray
+  name:  uplink-combat-hypospray-name
+  description: uplink-combat-hypospray-desc
+  productEntity: CombatHypospray
+  icon: { sprite: Corvax/Objects/Specific/Medical/combat_hypospray.rsi, state: hypo }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
+
+- type: listing
+  id: UplinkFAKCombatMedkit
+  name:  uplink-FAK-Combat-name
+  description: uplink-FAK-Combat-desc
+  productEntity: FAKCombatMedkitFilled
+  icon: { sprite: Corvax/Objects/Specific/Medical/firstaidkits.rsi, state: fak-combat }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic

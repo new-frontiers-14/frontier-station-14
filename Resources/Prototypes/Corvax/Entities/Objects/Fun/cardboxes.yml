@@ -1,0 +1,107 @@
+- type: entity
+  id: PokerCardBox
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  name: card bin
+  suffix: Empty
+  description: Its bin for poker cards. What secrets lie at the bottom of its endless stack?
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/cardbox.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: card1
+      map: ["card1"]
+      visible: false
+    - state: card2
+      map: ["card2"]
+      visible: false
+    - state: card3
+      map: ["card3"]
+      visible: false
+    - state: card4
+      map: ["card4"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,8,5
+    maxItemSize: Huge
+    whitelist:
+      tags:
+        - PokerCard
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Small
+  - type: ItemCounter
+    count:
+      tags: [PokerCard]
+    composite: true
+    layerStates:
+    - card1
+    - card2
+    - card3
+    - card4
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: CargoSellBlacklist
+
+- type: entity
+  id: PokerCardClassicBox
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  name: card bin
+  suffix: Empty
+  description: Its bin for poker cards. What secrets lie at the bottom of its endless stack?
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/cardbox_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: card1
+      map: ["card1"]
+      visible: false
+    - state: card2
+      map: ["card2"]
+      visible: false
+    - state: card3
+      map: ["card3"]
+      visible: false
+    - state: card4
+      map: ["card4"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,8,5
+    maxItemSize: Huge
+    whitelist:
+      tags:
+        - PokerCardClassic
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Small
+  - type: ItemCounter
+    count:
+      tags: [PokerCardClassic]
+    composite: true
+    layerStates:
+    - card1
+    - card2
+    - card3
+    - card4
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: CargoSellBlacklist

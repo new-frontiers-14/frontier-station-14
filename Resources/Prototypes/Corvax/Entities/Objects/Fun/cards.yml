@@ -1,0 +1,3861 @@
+- type: entity
+  name: playable card
+  parent: BaseItem
+  id: BasePokerCard
+  description: A poker card with you can play.
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BasePokerCardFlipped
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - PokerCard
+  - type: Appearance
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+  - type: CargoSellBlacklist
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: BasePokerCardFlipped
+  description: A poker card with you can play.
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BasePokerCard
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+  - type: CargoSellBlacklist
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoClub
+  description: A poker card with you can play. Its two of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeClub
+  description: A poker card with you can play. Its three of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourClub
+  description: A poker card with you can play. Its four of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveClub
+  description: A poker card with you can play. Its five of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixClub
+  description: A poker card with you can play. Its six of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenClub
+  description: A poker card with you can play. Its seven of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightClub
+  description: A poker card with you can play. Its eight of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineClub
+  description: A poker card with you can play. Its nine of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenClub
+  description: A poker card with you can play. Its ten of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackClub
+  description: A poker card with you can play. Its jack of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenClub
+  description: A poker card with you can play. Its queen of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingClub
+  description: A poker card with you can play. Its king of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceClub
+  description: A poker card with you can play. Its ace of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoSpade
+  description: A poker card with you can play. Its two of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeSpade
+  description: A poker card with you can play. Its three of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourSpade
+  description: A poker card with you can play. Its four of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveSpade
+  description: A poker card with you can play. Its five of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixSpade
+  description: A poker card with you can play. Its six of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenSpade
+  description: A poker card with you can play. Its seven of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightSpade
+  description: A poker card with you can play. Its eight of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineSpade
+  description: A poker card with you can play. Its nine of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenSpade
+  description: A poker card with you can play. Its ten of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackSpade
+  description: A poker card with you can play. Its jack of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenSpade
+  description: A poker card with you can play. Its queen of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingSpade
+  description: A poker card with you can play. Its king of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceSpade
+  description: A poker card with you can play. Its ace of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoHeart
+  description: A poker card with you can play. Its two of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeHeart
+  description: A poker card with you can play. Its three of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourHeart
+  description: A poker card with you can play. Its four of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveHeart
+  description: A poker card with you can play. Its five of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixHeart
+  description: A poker card with you can play. Its six of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenHeart
+  description: A poker card with you can play. Its seven of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightHeart
+  description: A poker card with you can play. Its eight of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineHeart
+  description: A poker card with you can play. Its nine of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenHeart
+  description: A poker card with you can play. Its ten of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+ 
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackHeart
+  description: A poker card with you can play. Its jack of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenHeart
+  description: A poker card with you can play. Its queen of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingHeart
+  description: A poker card with you can play. Its king of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceHeart
+  description: A poker card with you can play. Its ace of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoDiamond
+  description: A poker card with you can play. Its two of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTwoDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTwoDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeDiamond
+  description: A poker card with you can play. Its three of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardThreeDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardThreeDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourDiamond
+  description: A poker card with you can play. Its four of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFourDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFourDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveDiamond
+  description: A poker card with you can play. Its five of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardFiveDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixDiamond
+  description: A poker card with you can play. Its six of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardFiveDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSixDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSixDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenDiamond
+  description: A poker card with you can play. Its seven of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardSevenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardSevenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightDiamond
+  description: A poker card with you can play. Its eight of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardEightDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardEightDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineDiamond
+  description: A poker card with you can play. Its nine of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardNineDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardNineDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenDiamond
+  description: A poker card with you can play. Its ten of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardTenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardTenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackDiamond
+  description: A poker card with you can play. Its jack of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardJackDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardJackDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenDiamond
+  description: A poker card with you can play. Its queen of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardQueenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardQueenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingDiamond
+  description: A poker card with you can play. Its king of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardKingDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardKingDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceDiamond
+  description: A poker card with you can play. Its ace of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardAceDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardAceDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardRedJoker
+  description: A poker card with you can play. Its red joker.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardRedJokerFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: joker_red
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardRedJokerFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardRedJoker
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardBlackJoker
+  description: A poker card with you can play. Its black joker.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardBlackJokerFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: joker_black
+
+- type: entity
+  name: playable card
+  parent: BasePokerCard
+  id: PokerCardBlackJokerFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardBlackJoker
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BaseItem
+  id: BasePokerCardClassic
+  description: A poker card with you can play.
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BasePokerCardClassicFlipped
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - PokerCardClassic
+  - type: Appearance
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+  - type: CargoSellBlacklist
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: BasePokerCardClassicFlipped
+  description: A poker card with you can play.
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: BasePokerCardClassic
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+  - type: CargoSellBlacklist
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoClub
+  description: A poker card with you can play. Its two of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeClub
+  description: A poker card with you can play. Its three of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourClub
+  description: A poker card with you can play. Its four of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveClub
+  description: A poker card with you can play. Its five of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixClub
+  description: A poker card with you can play. Its six of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenClub
+  description: A poker card with you can play. Its seven of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightClub
+  description: A poker card with you can play. Its eight of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineClub
+  description: A poker card with you can play. Its nine of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenClub
+  description: A poker card with you can play. Its ten of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackClub
+  description: A poker card with you can play. Its jack of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenClub
+  description: A poker card with you can play. Its queen of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingClub
+  description: A poker card with you can play. Its king of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceClub
+  description: A poker card with you can play. Its ace of clubs.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceClubFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: club
+    - state: black_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceClubFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceClub
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoSpade
+  description: A poker card with you can play. Its two of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeSpade
+  description: A poker card with you can play. Its three of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourSpade
+  description: A poker card with you can play. Its four of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveSpade
+  description: A poker card with you can play. Its five of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixSpade
+  description: A poker card with you can play. Its six of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenSpade
+  description: A poker card with you can play. Its seven of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightSpade
+  description: A poker card with you can play. Its eight of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineSpade
+  description: A poker card with you can play. Its nine of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenSpade
+  description: A poker card with you can play. Its ten of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackSpade
+  description: A poker card with you can play. Its jack of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenSpade
+  description: A poker card with you can play. Its queen of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingSpade
+  description: A poker card with you can play. Its king of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceSpade
+  description: A poker card with you can play. Its ace of spades.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceSpadeFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: spade
+    - state: black_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceSpadeFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceSpade
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoHeart
+  description: A poker card with you can play. Its two of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeHeart
+  description: A poker card with you can play. Its three of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourHeart
+  description: A poker card with you can play. Its four of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveHeart
+  description: A poker card with you can play. Its five of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixHeart
+  description: A poker card with you can play. Its six of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenHeart
+  description: A poker card with you can play. Its seven of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightHeart
+  description: A poker card with you can play. Its eight of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineHeart
+  description: A poker card with you can play. Its nine of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenHeart
+  description: A poker card with you can play. Its ten of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+ 
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackHeart
+  description: A poker card with you can play. Its jack of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenHeart
+  description: A poker card with you can play. Its queen of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingHeart
+  description: A poker card with you can play. Its king of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceHeart
+  description: A poker card with you can play. Its ace of hearts.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceHeartFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: heart
+    - state: red_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceHeartFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceHeart
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoDiamond
+  description: A poker card with you can play. Its two of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_two
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTwoDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTwoDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeDiamond
+  description: A poker card with you can play. Its three of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_three
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicThreeDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicThreeDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourDiamond
+  description: A poker card with you can play. Its four of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_four
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFourDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFourDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveDiamond
+  description: A poker card with you can play. Its five of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_five
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicFiveDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixDiamond
+  description: A poker card with you can play. Its six of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicFiveDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_six
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSixDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSixDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenDiamond
+  description: A poker card with you can play. Its seven of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_seven
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicSevenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicSevenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightDiamond
+  description: A poker card with you can play. Its eight of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_eight
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicEightDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicEightDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineDiamond
+  description: A poker card with you can play. Its nine of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_nine
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicNineDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicNineDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenDiamond
+  description: A poker card with you can play. Its ten of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_ten
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicTenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicTenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackDiamond
+  description: A poker card with you can play. Its jack of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_jack
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicJackDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicJackDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenDiamond
+  description: A poker card with you can play. Its queen of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_queen
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicQueenDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicQueenDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingDiamond
+  description: A poker card with you can play. Its king of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_king
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicKingDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicKingDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceDiamond
+  description: A poker card with you can play. Its ace of diamonds.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceDiamondFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: diamond
+    - state: red_ace
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicAceDiamondFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicAceDiamond
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicRedJoker
+  description: A poker card with you can play. Its red joker.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicRedJokerFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: joker_red
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicRedJokerFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicRedJoker
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicBlackJoker
+  description: A poker card with you can play. Its black joker.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicBlackJokerFlipped
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: joker_black
+
+- type: entity
+  name: playable card
+  parent: BasePokerCardClassic
+  id: PokerCardClassicBlackJokerFlipped
+  description: A poker card with you can play.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PokerCardClassicBlackJoker
+  - type: Sprite
+    sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
+    scale: 0.5,0.5
+    layers:
+    - state: background
+    - state: cover
+    - state: logo

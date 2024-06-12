@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseItem
+  id: CombatHypospray
+  name: combat hypospray
+  description: Combat hypospray designed for the administration of drugs in a combat situation.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Specific/Medical/combat_hypospray.rsi
+    layers:
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+  - type: Item
+    sprite: Corvax/Objects/Specific/Medical/combat_hypospray.rsi
+    state: hypo
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+    transferAmount: 20
+  - type: UseDelay
+    delay: 10
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: fill
+  - type: StaticPrice
+    price: 2000
