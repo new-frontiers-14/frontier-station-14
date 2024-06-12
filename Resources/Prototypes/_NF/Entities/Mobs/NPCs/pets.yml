@@ -1,6 +1,15 @@
 - type: entity
-  name: MobCatClippy
-  parent: [MobCatGhost, ShowSecurityIcons]
+  id: MobPetNF
+  abstract: true
+  components:
+  - type: GhostRole
+#    requirements:
+#    - !type:WhitelistRequirement
+  - type: IntrinsicRadioReceiver
+
+- type: entity
+  name: Clippy
+  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
@@ -20,16 +29,11 @@
     - id: FoodMeatCat
       amount: 1
 #    - id: MaterialHideClippy
-  - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Service
   - type: ActiveRadio
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Service
   - type: NpcFactionMember
     factions:
@@ -37,8 +41,8 @@
       - PetsNT
 
 - type: entity
-  name: MobCatClarpy
-  parent: MobCatGhost
+  name: Clarpy
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClarpy
   description: First cat to gain a bounty.
   components:
@@ -68,7 +72,6 @@
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
-  - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
     - Freelance
@@ -82,7 +85,7 @@
 
 - type: entity
   name: Cappy
-  parent: MobCatGhost
+  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
   id: MobCatCappy
   description: First cat to shoot a gun.
   components:
@@ -96,10 +99,6 @@
     states:
       Alive:
         Base: nfsdcat
-      Critical:
-        Base: nfsdcat_dead
-      Dead:
-        Base: nfsdcat_dead
   - type: GhostRole
     name: ghost-role-information-cappy-name
     description: ghost-role-information-cappy-description
@@ -115,16 +114,11 @@
     - TrackingImplant
     - LightImplant
   - type: FlashImmunity
-  - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: ActiveRadio
     channels:
-#    - Common # Honestly not sure the cat has a real need for this
-#    - Traffic # Honestly not sure the cat has a real need for this
     - Nfsd
   - type: Inventory
     templateId: nfsdpet
@@ -153,7 +147,7 @@
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
 
 - type: entity
-  name: MobCatMistake
+  name: Mistake
   parent: MobCatGhost
   id: MobCatMistake
   description: ???
@@ -168,10 +162,6 @@
     states:
       Alive:
         Base: mistakecat
-      Critical:
-        Base: mistakecat_dead
-      Dead:
-        Base: mistakecat_dead
   - type: GhostRole
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
@@ -190,3 +180,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 8
     baseSprintSpeed : 8
+  - type: NpcFactionMember
+    factions:
+      - Cat
