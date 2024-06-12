@@ -10,7 +10,7 @@ public sealed partial class StationBankATMMenu : FancyWindow
 {
     public Action? WithdrawRequest;
     public Action? DepositRequest;
-    public int Amount;
+    public ulong Amount;
     private readonly List<string> _reasonStrings = new();
     public string? Reason;
     public string? Description;
@@ -34,12 +34,12 @@ public sealed partial class StationBankATMMenu : FancyWindow
     {
         SetReasonText(args.Id);
     }
-    public void SetBalance(int amount)
+    public void SetBalance(ulong amount)
     {
         BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
-    public void SetDeposit(int amount)
+    public void SetDeposit(ulong amount)
     {
         DepositButton.Disabled = amount <= 0;
         DepositLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
@@ -63,10 +63,10 @@ public sealed partial class StationBankATMMenu : FancyWindow
 
     private void OnAmountChanged(LineEdit.LineEditEventArgs args)
     {
-        if (int.TryParse(args.Text, out var amount))
+        if (ulong.TryParse(args.Text, out var amount))
         {
             Amount = amount;
-        }    
+        }
     }
 
     private void OnDescChanged(LineEdit.LineEditEventArgs args)

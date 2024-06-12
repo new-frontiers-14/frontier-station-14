@@ -19,7 +19,7 @@ public sealed partial class CargoPalletMenu : FancyWindow
         AppraiseButton.OnPressed += OnAppraisePressed;
     }
 
-    public void SetAppraisal(int amount)
+    public void SetAppraisal(ulong amount)
     {
         AppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }

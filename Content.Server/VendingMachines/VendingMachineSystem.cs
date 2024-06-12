@@ -138,7 +138,7 @@ namespace Content.Server.VendingMachines
             if (args.Actor is not { Valid: true } player)
                 return;
 
-            var balance = 0;
+            ulong balance = 0;
 
             if (TryComp<BankAccountComponent>(player, out var bank))
                 balance = bank.Balance;
@@ -146,7 +146,7 @@ namespace Content.Server.VendingMachines
             UpdateVendingMachineInterfaceState(uid, component, balance);
         }
 
-        private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, int balance)
+        private void UpdateVendingMachineInterfaceState(EntityUid uid, VendingMachineComponent component, ulong balance)
         {
             var state = new VendingMachineInterfaceState(GetAllInventory(uid, component), balance);
 
@@ -307,7 +307,7 @@ namespace Content.Server.VendingMachines
         /// <param name="itemId">The prototype ID of the item</param>
         /// <param name="throwItem">Whether the item should be thrown in a random direction after ejection</param>
         /// <param name="vendComponent"></param>
-        public bool TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, int balance, VendingMachineComponent? vendComponent = null)
+        public bool TryEjectVendorItem(EntityUid uid, InventoryType type, string itemId, bool throwItem, ulong balance, VendingMachineComponent? vendComponent = null)
         {
             if (!Resolve(uid, ref vendComponent))
                 return false;
@@ -382,12 +382,12 @@ namespace Content.Server.VendingMachines
             if (TryComp<MarketModifierComponent>(component.Owner, out var modifier))
                 price *= modifier.Mod;
 
-            var totalPrice = (int) price;
+            var totalPrice = (ulong) price;
 
             // This block exists to allow the VendPrice flag to set a vending machine item price.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
-            if (priceVend != null && totalPrice <= (int) priceVend)
-                totalPrice = (int) priceVend;
+            if (priceVend != null && totalPrice <= (ulong) priceVend)
+                totalPrice = (ulong) priceVend;
             // This block exists to allow the VendPrice flag to set a vending machine item price.
 
             if (totalPrice > bank.Balance)
@@ -407,7 +407,7 @@ namespace Content.Server.VendingMachines
 
                         foreach (var stationBankComp in stationQuery)
                         {
-                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
+                            _cargo.AddFunds(stationBankComp, (ulong) (Math.Floor(totalPrice * 0.45f)));
                         }
 
                         UpdateVendingMachineInterfaceState(uid, component, bank.Balance);

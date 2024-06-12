@@ -10,7 +10,7 @@ public sealed partial class BankATMMenu : FancyWindow
 {
     public Action? WithdrawRequest;
     public Action? DepositRequest;
-    public int Amount;
+    public ulong Amount;
     public BankATMMenu()
     {
         RobustXamlLoader.Load(this);
@@ -20,12 +20,12 @@ public sealed partial class BankATMMenu : FancyWindow
         WithdrawEdit.OnTextChanged += OnAmountChanged;
     }
 
-    public void SetBalance(int amount)
+    public void SetBalance(ulong amount)
     {
         BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
-    public void SetDeposit(int amount)
+    public void SetDeposit(ulong amount)
     {
         DepositButton.Disabled = amount <= 0;
         DepositLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
@@ -50,7 +50,7 @@ public sealed partial class BankATMMenu : FancyWindow
     {
         if (int.TryParse(args.Text, out var amount))
         {
-            Amount = amount;
-        }    
+            Amount = (ulong)amount;
+        }
     }
 }

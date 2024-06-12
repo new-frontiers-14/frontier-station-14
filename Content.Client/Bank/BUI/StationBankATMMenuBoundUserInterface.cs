@@ -35,7 +35,7 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
 
     private void OnWithdraw()
     {
-        if (_menu?.Amount is not int amount)
+        if (_menu?.Amount is not ulong amount)
             return;
 
         SendMessage(new StationBankWithdrawMessage(amount, _menu.Reason, _menu.Description));
@@ -43,7 +43,7 @@ public sealed class StationBankATMMenuBoundUserInterface : BoundUserInterface
 
     private void OnDeposit()
     {
-        if (_menu?.Amount is not int amount)
+        if (_menu?.Amount is not ulong amount)
             return;
 
         SendMessage(new StationBankDepositMessage(amount, _menu.Reason, _menu.Description));

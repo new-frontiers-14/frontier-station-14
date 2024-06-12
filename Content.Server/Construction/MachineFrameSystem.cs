@@ -201,12 +201,14 @@ public sealed class MachineFrameSystem : EntitySystem
 
         var progress = component.MaterialProgress[type];
         var requirement = component.MaterialRequirements[type];
-        var needed = requirement - progress;
 
-        if (needed <= 0)
+        if (requirement < progress) {
             return false;
+        }
 
-        var count = stack.Count;
+        var needed = (ulong)(requirement - progress);
+
+        var count = (ulong)stack.Count;
         if (count < needed)
         {
             if (!_container.TryRemoveFromContainer(used))
@@ -215,11 +217,11 @@ public sealed class MachineFrameSystem : EntitySystem
             if (!_container.Insert(used, component.PartContainer))
                 return true;
 
-            component.MaterialProgress[type] += count;
+            component.MaterialProgress[type] += (int)count; // может ебнуть
             return true;
         }
 
-        var splitStack = _stack.Split(used, needed, Transform(uid).Coordinates, stack);
+        var splitStack = _stack.Split(used, (int)needed, Transform(uid).Coordinates, stack);
 
         if (splitStack == null)
             return false;
@@ -227,7 +229,7 @@ public sealed class MachineFrameSystem : EntitySystem
         if (!_container.Insert(splitStack.Value, component.PartContainer))
             return true;
 
-        component.MaterialProgress[type] += needed;
+        component.MaterialProgress[type] += (int)needed;
         if (IsComplete(component))
             _popupSystem.PopupEntity(Loc.GetString("machine-frame-component-on-complete"), uid);
 

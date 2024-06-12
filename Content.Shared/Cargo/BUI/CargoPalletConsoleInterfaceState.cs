@@ -8,7 +8,7 @@ public sealed class CargoPalletConsoleInterfaceState : BoundUserInterfaceState
     /// <summary>
     /// estimated apraised value of all the entities on top of pallets on the same grid as the console
     /// </summary>
-    public int Appraisal;
+    public ulong Appraisal;
 
     /// <summary>
     /// number of entities on top of pallets on the same grid as the console
@@ -20,7 +20,7 @@ public sealed class CargoPalletConsoleInterfaceState : BoundUserInterfaceState
     /// </summary>
     public bool Enabled;
 
-    public CargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled)
+    public CargoPalletConsoleInterfaceState(ulong appraisal, int count, bool enabled)
     {
         Appraisal = appraisal;
         Count = count;

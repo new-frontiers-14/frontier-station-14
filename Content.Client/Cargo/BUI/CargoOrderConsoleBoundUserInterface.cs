@@ -27,7 +27,7 @@ namespace Content.Client.Cargo.BUI
         public string? AccountName { get; private set; }
 
         [ViewVariables]
-        public int BankBalance { get; private set; }
+        public ulong BankBalance { get; private set; }
 
         [ViewVariables]
         public int OrderCapacity { get; private set; }

@@ -10,7 +10,7 @@ public sealed partial class WithdrawBankATMMenu : FancyWindow
 {
     public Action? WithdrawRequest;
     public Action? DepositRequest;
-    public int Amount;
+    public ulong Amount;
     public WithdrawBankATMMenu()
     {
         RobustXamlLoader.Load(this);
@@ -19,7 +19,7 @@ public sealed partial class WithdrawBankATMMenu : FancyWindow
         WithdrawEdit.OnTextChanged += OnAmountChanged;
     }
 
-    public void SetBalance(int amount)
+    public void SetBalance(ulong amount)
     {
         BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
     }
@@ -36,9 +36,9 @@ public sealed partial class WithdrawBankATMMenu : FancyWindow
 
     private void OnAmountChanged(LineEdit.LineEditEventArgs args)
     {
-        if (int.TryParse(args.Text, out var amount))
+        if (ulong.TryParse(args.Text, out var amount))
         {
             Amount = amount;
-        }    
+        }
     }
 }

@@ -8,7 +8,7 @@ public sealed class BankATMMenuInterfaceState : BoundUserInterfaceState
     /// <summary>
     /// bank balance of the character using the atm
     /// </summary>
-    public int Balance;
+    public ulong Balance;
 
     /// <summary>
     /// are the buttons enabled
@@ -18,9 +18,9 @@ public sealed class BankATMMenuInterfaceState : BoundUserInterfaceState
     /// <summary>
     /// how much cash is inserted
     /// </summary>
-    public int Deposit;
+    public ulong Deposit;
 
-    public BankATMMenuInterfaceState(int balance, bool enabled, int deposit)
+    public BankATMMenuInterfaceState(ulong balance, bool enabled, ulong deposit)
     {
         Balance = balance;
         Enabled = enabled;
