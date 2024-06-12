@@ -50,7 +50,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         if (component.GridUid is not EntityUid gridUid)
             return;
 
-        component.StartingValue = _pricing.AppraiseGrid(gridUid);
+        component.startingValue = _pricing.AppraiseGrid(gridUid);
         _shuttle.SetIFFColor(gridUid, component.Color);
         var offset = _random.NextVector2(1350f, 2200f);
         var mapId = GameTicker.DefaultMap;
