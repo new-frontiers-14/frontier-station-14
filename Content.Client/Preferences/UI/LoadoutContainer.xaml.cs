@@ -36,17 +36,28 @@ public sealed partial class LoadoutContainer : BoxContainer
 
         if (_protoManager.TryIndex(proto, out var loadProto))
         {
-            var ent = _entManager.System<LoadoutSystem>().GetFirstOrNull(loadProto);
+            // Frontier: overrideable prototype fields (description, name, icon [via entity])
             Price.Text = "$" + loadProto.Price;
-            if (ent != null)
+
+            bool hasDescription = !string.IsNullOrEmpty(loadProto.Description);
+            bool hasEntity = !string.IsNullOrEmpty(loadProto.PreviewEntity?.Id);
+
+            EntProtoId? ent = null;
+            if (!hasEntity || !hasDescription) {
+                ent = _entManager.System<LoadoutSystem>().GetFirstOrNull(loadProto);
+            }
+            var finalEnt = hasEntity ? loadProto.PreviewEntity : ent;
+            if (finalEnt != null)
             {
-                _entity = _entManager.SpawnEntity(ent, MapCoordinates.Nullspace);
+                _entity = _entManager.SpawnEntity(finalEnt, MapCoordinates.Nullspace);
                 Sprite.SetEntity(_entity);
 
                 var spriteTooltip = new Tooltip();
-                spriteTooltip.SetMessage(FormattedMessage.FromUnformatted(_entManager.GetComponent<MetaDataComponent>(_entity.Value).EntityDescription));
+                var description = hasDescription ? loadProto.Description : _entManager.GetComponent<MetaDataComponent>(_entity.Value).EntityDescription; 
+                spriteTooltip.SetMessage(FormattedMessage.FromUnformatted(description));
                 Sprite.TooltipSupplier = _ => spriteTooltip;
             }
+            // End Frontier
         }
     }
 
