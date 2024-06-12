@@ -168,8 +168,7 @@ public sealed partial class NPCSteeringSystem
 
                     // TODO: This is a hack around grilles and windows.
                     // Frontier - AI edit
-                    if (component.ObstacleShuffleCounter <= component.ObstacleShuffleCounterEnd) { } // Check if counter is less than or equal to 20
-                    else
+                    if (component.ObstacleShuffleCounterEnd <= component.ObstacleShuffleCounter) // Check if counter is less than or equal to 20
                     {
                         _random.Shuffle(obstacleEnts);
                         component.ObstacleShuffleCounter = 0; // Reset the counter
