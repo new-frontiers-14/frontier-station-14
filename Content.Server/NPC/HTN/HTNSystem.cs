@@ -13,6 +13,10 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Worldgen; // Frontier
+using Content.Server.Worldgen.Components; // Frontier
+using Content.Server.Worldgen.Systems; // Frontier
+using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.NPC.HTN;
 
@@ -22,6 +26,12 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    // Frontier
+    [Dependency] private readonly WorldControllerSystem _world = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    private EntityQuery<WorldControllerComponent> _mapQuery;
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -31,6 +41,8 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Frontier
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Frontier
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -153,6 +165,9 @@ public sealed class HTNSystem : EntitySystem
             if (count >= maxUpdates)
                 break;
 
+            if (!IsNPCActive(uid))  // Frontier
+                continue;
+
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -239,6 +254,18 @@ public sealed class HTNSystem : EntitySystem
             Update(comp, frameTime);
             count++;
         }
+    }
+
+    private bool IsNPCActive(EntityUid entity) // Frontier
+    {
+        var transform = Transform(entity);
+
+        if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
+            return true;
+
+        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
+
+        return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
     }
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
