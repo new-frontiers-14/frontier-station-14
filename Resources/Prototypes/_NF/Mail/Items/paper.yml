@@ -14,7 +14,7 @@
 
                   [head=2]Discount Tools at Quality Prices![/head]
 
-                                [head=2]Fax us for a catalog at-
+                                [head=2]Fax us for a catalog at
                       [color=#990000]ERROR: UNEXPECTED EOF[/color][/head]
 
 - type: entity
@@ -250,6 +250,10 @@
   parent: Paper
   components:
   - type: Paper
+    stampedBy:
+    - stampedColor: '#333333FF'
+      stampedName: Christopher Cleanman
+      stampType: Signature
     content: |2
       [head=3]Hello Valued Customer,[/head]
       You have been selected to receive a complimentary sampler of scented soaps that Nanotrasen has to offer.
@@ -259,8 +263,7 @@
       We hope you enjoy.
 
       Sincerely,
-            [head=3][italic]Christopher Cleanman[/italic][/head]
-            Vice President, NT Habs - Toiletries Department
+            Christopher Cleanman, Vice President, NT Habs - Toiletries Dept.
 
 - type: entity
   id: PaperMailNTSoapAd2
@@ -363,12 +366,16 @@
   parent: Paper
   components:
   - type: Paper
+    stampedBy:
+    - stampedColor: '#333333FF'
+      stampedName: craig
+      stampType: Signature
     content: |2
       [bold]hey uh, they told me to send you a pipebomb I guess?
 
       this is all i could find around here, hope that works
 
-      thanks, craig[/bold]
+      thanks[/bold]
 
 - type: entity
   id: PaperMailNFAntivirus
@@ -408,7 +415,7 @@
 
       As the recipient of this, please note [bold]any improvements[/bold] that could be made towards the EMP preparedness of the vessel you were aboard when opening and submit this form to your serving Captain or Station Representative.
 
-      [bold]Date of Test:[/bold]
+      [bold]Date of test:[/bold]
       [bold]Number of affected items:[/bold]
       [bold]Perceived severity of incident:[/bold]
       [bold]Suggested improvements:[/bold]

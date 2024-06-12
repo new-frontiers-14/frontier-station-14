@@ -11,13 +11,23 @@
     item: AdminInstantEffectSmoke10
 
 - type: entity
+  id: AdminInstantEffectEMP7
+  noSpawn: true
+  suffix: EMP, 7 meters
+  parent: AdminInstantEffectBase
+  components:
+  - type: EmpOnTrigger
+    range: 7
+    energyConsumption: 50000
+
+- type: entity
   id: DelayedEMP
   parent: BaseItem
   noSpawn: true
-  name: delayed EMP
+  name: delayed EMP (7 meters)
   components:
   - type: DelayedItem
-    item: AdminInstantEffectEMP
+    item: AdminInstantEffectEMP7
 
 # Miscellaneous Items
 
@@ -47,6 +57,7 @@
 - type: entity
   id: NecrosolChemistryBottle
   parent: BaseChemistryBottleFilled
+  name: necrosol bottle
   components:
   - type: SolutionContainerManager
     solutions:
