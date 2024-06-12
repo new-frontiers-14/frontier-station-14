@@ -167,14 +167,7 @@ public sealed partial class NPCSteeringSystem
                     var destructibleQuery = GetEntityQuery<DestructibleComponent>();
 
                     // TODO: This is a hack around grilles and windows.
-                    // Frontier - AI edit
-                    if (component.ObstacleShuffleCounterEnd <= component.ObstacleShuffleCounter) // Check if counter is less than or equal to ObstacleShuffleCounterEnd
-                    {
-                        _random.Shuffle(obstacleEnts);
-                        component.ObstacleShuffleCounter = 0; // Reset the counter
-                    }
-                    component.ObstacleShuffleCounter += 1; // Increment the counter
-                    // Frontier - AI edit end
+                    _random.Shuffle(obstacleEnts);
                     var attackResult = false;
 
                     foreach (var ent in obstacleEnts)
