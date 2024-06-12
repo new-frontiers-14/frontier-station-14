@@ -1,0 +1,15 @@
+- type: entity
+  name: FAK combat
+  description: An improved combat kit for treating wounds.
+  parent: Medkit
+  id: FAKCombatMedkit
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Specific/Medical/firstaidkits.rsi
+    state: fakcombat
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,7,1
+  - type: Item
+    heldPrefix: "fakcombat"

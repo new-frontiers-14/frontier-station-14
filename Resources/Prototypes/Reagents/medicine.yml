@@ -64,6 +64,7 @@
     amount: -10
   - !type:PlantAdjustHealth
     amount: 1
+  pricePerUnit: 2 # Corvax-Frontier
 
 - type: reagent
   id: Diphenhydramine
@@ -87,6 +88,7 @@
         damage:
           types:
             Poison: -3
+  pricePerUnit: 6 # Corvax-Frontier 
 
 - type: reagent
   id: Ethylredoxrazine
@@ -107,6 +109,7 @@
         damage:
           types:
             Poison: -0.5
+  pricePerUnit: 1 # Corvax-Frontier 
 
 - type: reagent
   id: Arithrazine
@@ -125,6 +128,7 @@
             Radiation: -3
           groups:
             Brute: 0.5
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: Bicaridine
@@ -159,6 +163,7 @@
         - !type:ReagentThreshold
           min: 15
       - !type:Drunk
+  pricePerUnit: 5 # Corvax-Frontier 
 
 - type: reagent
   id: Cryoxadone
@@ -189,6 +194,7 @@
               Brute: -4
               Burn: -6
               Toxin: -4
+  pricePerUnit: 3 # Corvax-Frontier 
 
 - type: reagent
   id: Doxarubixadone
@@ -208,6 +214,7 @@
           damage:
             types:
              Cellular: -2
+  pricePerUnit: 3.5 # Corvax-Frontier 
 
 - type: reagent
   id: Dermaline
@@ -240,6 +247,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 10
+  pricePerUnit: 6 # Corvax-Frontier 
 
 - type: reagent
   id: Dexalin
@@ -297,6 +305,7 @@
           types:
             Asphyxiation: 5
             Cold: 3
+  pricePerUnit: 4 # Corvax-Frontier 
 
 # this ones a doozy
 - type: reagent
@@ -359,6 +368,7 @@
         key: KnockedDown
         time: 0.75
         type: Remove
+  pricePerUnit: 0.5 # Corvax-Frontier 
 
 - type: reagent
   id: Hyronalin
@@ -388,6 +398,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+  pricePerUnit: 4 # Corvax-Frontier 
 
 - type: reagent
   id: Ipecac
@@ -405,6 +416,7 @@
         - !type:ReagentThreshold
           min: 4
         probability: 0.3
+  pricePerUnit: 1 # Corvax-Frontier 
 
 - type: reagent
   id: Inaprovaline
@@ -427,6 +439,7 @@
             Asphyxiation: -5
       - !type:ModifyBleedAmount
         amount: -0.25
+  pricePerUnit: 1 # Corvax-Frontier 
 
 - type: reagent
   id: Kelotane
@@ -460,6 +473,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 25
+  pricePerUnit: 2 # Corvax-Frontier 
 
 - type: reagent
   id: Leporazine
@@ -494,6 +508,7 @@
       - !type:AdjustReagent
         reagent: Fresium
         amount: -5
+  pricePerUnit: 3 # Corvax-Frontier 
 
 - type: reagent
   id: Barozine
@@ -564,6 +579,7 @@
             Radiation: 1
       - !type:ChemVomit
         probability: 0.05
+  pricePerUnit: 8 # Corvax-Frontier 
 
 - type: reagent
   id: PolypyryliumOligomers
@@ -607,6 +623,7 @@
           conditions:
             - !type:ReagentThreshold
               min: 10
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: AmbuzolPlus
@@ -624,6 +641,7 @@
           conditions:
             - !type:ReagentThreshold
               min: 5
+  pricePerUnit: 150 # Corvax-Frontier 
 
 - type: reagent
   id: PulpedBananaPeel
@@ -670,6 +688,7 @@
         damage:
           types:
             Caustic: -5
+  pricePerUnit: 2 # Corvax-Frontier 
 
 - type: reagent
   id: Stellibinin
@@ -721,6 +740,7 @@
         key: SeeingRainbows
         time: 15.0
         type: Remove
+  pricePerUnit: 2 # Corvax-Frontier 
 
 - type: reagent
   id: TranexamicAcid
@@ -744,6 +764,7 @@
         damage:
           types:
             Bloodloss: 3
+  pricePerUnit: 2 # Corvax-Frontier 
 
 - type: reagent
   id: Tricordrazine
@@ -768,6 +789,7 @@
             Heat: -0.33
             Shock: -0.33
             Cold: -0.33
+  pricePerUnit: 0.1 # Corvax-Frontier 
 
 - type: reagent
   id: Lipozine
@@ -803,6 +825,7 @@
             Toxin: -2
             Airloss: -2
             Brute: -2
+  pricePerUnit: 1 # Corvax-Frontier AAHHAHAHAHAHAHAHAHAH
 
 - type: reagent
   id: Ultravasculine
@@ -846,6 +869,7 @@
           min: 1
         reagent: Ultravasculine
         amount: 0.5
+  pricePerUnit: 5 # Corvax-Frontier 
 
 - type: reagent
   id: Oculine
@@ -859,6 +883,7 @@
     Medicine:
       effects:
       - !type:ChemHealEyeDamage
+  pricePerUnit: 2 # Corvax-Frontier 
 
 - type: reagent
   id: Cognizine
@@ -875,6 +900,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 5
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: Ethyloxyephedrine
@@ -961,6 +987,7 @@
         - !type:ReagentThreshold
           min: 30
         probability: 0.02
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: Lacerinol
@@ -984,6 +1011,7 @@
         damage:
           types:
             Cold: 3
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: Puncturase
@@ -1008,6 +1036,7 @@
         damage:
           types:
             Blunt: 5
+  pricePerUnit: 20 # Corvax-Frontier 
 
 - type: reagent
   id: Bruizine
@@ -1031,6 +1060,7 @@
         damage:
           types:
             Poison: 4
+  pricePerUnit: 10 # Corvax-Frontier 
 
 - type: reagent
   id: Holywater
@@ -1105,6 +1135,7 @@
           min: 20
         emote: Scream
         probability: 0.2
+  pricePerUnit: 15 # Corvax-Frontier
 
 - type: reagent
   id: Insuzine
@@ -1148,6 +1179,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
+  pricePerUnit: 15 # Corvax-Frontier
           
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"
