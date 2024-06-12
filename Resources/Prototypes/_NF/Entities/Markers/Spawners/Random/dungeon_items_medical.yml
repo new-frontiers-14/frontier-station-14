@@ -68,15 +68,22 @@
     - MedkitFilled
     - MedkitFilled
     - MedkitFilled
+    - Medkit
     - MedkitBruteFilled
+    - MedkitBrute
     - MedkitBurnFilled
+    - MedkitBurn
     - MedkitToxinFilled
+    - MedkitToxin
     - MedkitRadiationFilled
+    - MedkitRadiation
     chance: 0.75
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
+    - MedkitAdvanced
     - MedkitCombatFilled
+    - MedkitCombat
     rareChance: 0.01
 
 - type: entity
@@ -433,7 +440,8 @@
     chance: 0.65
     offset: 0.0
     rarePrototypes:
-    - SyndiHypo
+    # - SyndiHypo #  # A bit less Syndicate loot
+     - Hypospray
     rareChance: 0.01
 
 # Clothes
@@ -499,6 +507,11 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - LockerMedical
+    - LockerMedicine
+    - LockerParamedic
+    - LockerMedical
+    - ClosetL3Virology
     - LockerMedicalFilled
     - LockerMedicineFilled
     - LockerParamedicFilled
@@ -507,6 +520,7 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - LockerChiefMedicalOfficer
     - LockerChiefMedicalOfficerFilled
     rareChance: 0.05
 
@@ -532,13 +546,13 @@
     - VendingMachineRoboDrobe
     - VendingMachineGeneDrobe
     - VendingMachineViroDrobe
-    - VendingMachineRobotics
     - SpawnDungeonMachineFrame
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - VendingMachineSyndieContraband
-    - VendingMachineSyndieDrobe
+#    - VendingMachineSyndieContraband # A bit less Syndicate loot
+#    - VendingMachineSyndieDrobe # A bit less Syndicate loot
+    - VendingMachineRobotics
     rareChance: 0.01
 
 # Other
@@ -587,6 +601,10 @@
     rarePrototypes:
     - CognizineChemistryBottle
     - OmnizineChemistryBottle
+    - PaxChemistryBottle
+    - MuteToxinChemistryBottle
+    - ToxinChemistryBottle
+    - LeadChemistryBottle
     rareChance: 0.01
 
 - type: entity
