@@ -606,11 +606,12 @@ namespace Content.Shared.Chemistry.Components
 
             return sol;
         }
+
         /// <summary>
-        /// splits the solution taking the specified amount of reagents proportionally to their quantity.
+        /// Splits a solution, taking the specified amount of reagents proportionally to their quantity.
         /// </summary>
         /// <param name="toTake">The total amount of solution to remove and return.</param>
-        /// <returns>a new solution of equal proportions to the original solution</returns>
+        /// <returns>A new solution of equal proportions to the original.</returns>
         public Solution SplitSolution(FixedPoint2 toTake)
         {
             if (toTake <= FixedPoint2.Zero)
@@ -674,58 +675,49 @@ namespace Content.Shared.Chemistry.Components
             return newSolution;
         }
 
+        // Frontier: cryogenics per-reagent filter function (#1443)
         /// <summary>
-        /// Frontier
-        /// splits the solution taking up to the specified amount of each reagent from the solution.
-        /// If the solution has less of a reagent than the specified amount, it will take all of that reagent.
+        /// Splits a solution, taking the specified amount of each reagent from the solution.
+        /// If any reagent in the solution has less volume than specified, it will all be transferred into the new solution.
         /// </summary>
-        /// <param name="toTakePer">How much of each reagent to take</param>
-        /// <returns>a new solution containing the reagents taken from the original solution</returns>
+        /// <param name="toTakePer">How much of each reagent to take.</param>
+        /// <returns>A new solution containing the reagents taken from the original solution.</returns>
         public Solution SplitSolutionReagentsEvenly(FixedPoint2 toTakePer)
         {
-            var splitSolution = new Solution();
-
             if (toTakePer <= FixedPoint2.Zero)
-                return splitSolution;
-            var reagentsCount = Contents.Count;
-            var reagentsToRemove = new List<ReagentQuantity>();
-            for (var i = 0; i < reagentsCount; i++)
+                return new Solution();
+
+            var origVol = Volume;
+            Solution newSolution = new Solution(Contents.Count) { Temperature = Temperature };
+
+            for (var i = Contents.Count - 1; i >= 0; i--) // iterate backwards because of remove swap.
             {
-                var currentReagent = Contents[i];
+                var (reagent, quantity) = Contents[i];
 
-                if (currentReagent.Quantity <= FixedPoint2.Zero)
+                if (quantity > toTakePer)
                 {
-                    reagentsToRemove.Add(currentReagent);
-                    continue;
-                }
-
-                if (currentReagent.Quantity <= toTakePer)
-                {
-                    splitSolution.AddReagent(currentReagent);
-                    reagentsToRemove.Add(currentReagent);
+                    Contents[i] = new ReagentQuantity(reagent, quantity - toTakePer);
+                    newSolution.Contents.Add(new ReagentQuantity(reagent, toTakePer));
+                    Volume -= toTakePer;
                 }
                 else
                 {
-                    splitSolution.AddReagent(currentReagent.Reagent, toTakePer);
-                    RemoveReagent(currentReagent.Reagent, toTakePer);
+                    Contents.RemoveSwap(i);
+                    newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
+                    Volume -= quantity;
                 }
             }
 
-            foreach (var reagent in reagentsToRemove)
-            {
-                RemoveReagent(reagent);
-            }
-            if (Volume == FixedPoint2.Zero)
-                RemoveAllSolution();
-
+            newSolution.Volume = origVol - Volume;
             _heatCapacityDirty = true;
-            splitSolution._heatCapacityDirty = true;
+            newSolution._heatCapacityDirty = true;
 
             ValidateSolution();
-            splitSolution.ValidateSolution();
+            newSolution.ValidateSolution();
 
-            return splitSolution;
+            return newSolution;
         }
+        // End Frontier
 
         /// <summary>
         /// Variant of <see cref="SplitSolution(FixedPoint2)"/> that doesn't return a new solution containing the removed reagents.

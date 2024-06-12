@@ -310,8 +310,8 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         return splitSol;
     }
 
+    // Frontier: cryogenics filtering functions (#1443)
     /// <summary>
-    /// Frontier
     /// Splits a solution removing a specified amount of each reagent, if available.
     /// </summary>
     /// <param name="soln">The container to split the solution from.</param>
@@ -326,6 +326,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         UpdateChemicals(soln);
         return splitSol;
     }
+    // End Frontier
 
     public Solution SplitStackSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity, int stackCount)
     {

@@ -142,7 +142,7 @@ namespace Content.Server.Body.Systems
             var list = solution.Contents.ToArray();
             _random.Shuffle(list);
 
-            int poisons = 0; // frontier modified
+            int reagents = 0;
             foreach (var (reagent, quantity) in list)
             {
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
@@ -158,10 +158,11 @@ namespace Content.Server.Body.Systems
 
                     continue;
                 }
-                // frontier modified
-                // Already processed all poisons, skip to the next reagent.
-                if (poisons >= ent.Comp1.MaxPoisonsProcessable && proto.Metabolisms.ContainsKey("Poison"))
+
+                // Frontier: process all reagents, but limit poisons.  If we've processed all the poisons we should, skip to the next reagent.
+                if (reagents >= ent.Comp1.MaxReagentsProcessable && proto.Metabolisms.ContainsKey("Poison"))
                     continue;
+                // End Frontier
 
 
                 // loop over all our groups and see which ones apply
@@ -219,10 +220,10 @@ namespace Content.Server.Body.Systems
                 if (mostToRemove > FixedPoint2.Zero)
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
-                    // frontier modified
-                    // We have processed a poison, so count it towards the cap
+                    // Frontier: We have processed a poison, so count it towards the cap
                     if (proto.Metabolisms.ContainsKey("Poison"))
-                        poisons++;
+                        reagents++;
+                    // End Frontier
                 }
             }
 
