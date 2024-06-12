@@ -41,13 +41,13 @@ public sealed class InflationCargoCrateSystem : EntitySystem
                     return;
                 }
 
-                if (numberCrates >= 1 && numberCrates <= 4)
+                if (numberCrates >= 1 && numberCrates <= 19)
                     modifier = 1;
-                else if (numberCrates >= 5 && numberCrates <= 19)
+                else if (numberCrates >= 20 && numberCrates <= 39)
                     modifier = 0.9;
-                else if (numberCrates >= 20 && numberCrates <= 40)
+                else if (numberCrates >= 40 && numberCrates <= 69)
                     modifier = 0.85;
-                else if (numberCrates >= 41)
+                else if (numberCrates >= 70)
                     modifier = 0.82;
 
                 foreach (var iterator in _entManager.EntityQuery<TradeCrateComponent>(true))
