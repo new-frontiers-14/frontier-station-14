@@ -1,3 +1,4 @@
+using Content.Server._NF.Auth;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -103,6 +104,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
+                IoCManager.Resolve<MiniAuthManager>();
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();

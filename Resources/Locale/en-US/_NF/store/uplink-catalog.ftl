@@ -6,6 +6,7 @@ store-category-secweapons = Weapons
 store-category-secutility = Utility
 store-category-secammo = Ammunition
 store-category-secexplosives = Explosives
+store-category-secbundles = Bundles
 
 
 uplink-security-hardsuit-name = Security HardSuit
@@ -142,6 +143,14 @@ uplink-security-breachingcharge-box-name = Breaching Charge Box
 uplink-security-breachingcharge-box-desc = A box containing 4 breaching charges.
 uplink-security-hoverbike-name = NFSD Hoverbike Flatpack
 uplink-security-hoverbike-desc = Flatpack containing NFSD issued turbine with bike handles. Keys already slotted in the ignition. Very safe.
+uplink-security-trackingdart-bundle-name = Tracking Darts Bundle
+uplink-security-trackingdart-bundle-desc = A bundle containing a Lake type launcher 5 tracking darts and 5 pinpointers.
+uplink-security-emp-bundle-name = EMP Bundle
+uplink-security-emp-bundle-desc = A bundle containing a Lake type launcher and 12 EMP grenades.
+uplink-security-emp-ammo-name = EMP Projectile Ammo
+uplink-security-emp-ammo-desc = A a box containing 4 EMP projectile grenades.
+uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
+uplink-security-trackingdart-ammo-desc = A a box containing 4 tracking darts.
 
 store-category-piratehardsuits = EVA Suits
 store-category-pirateweapons = Weapons
