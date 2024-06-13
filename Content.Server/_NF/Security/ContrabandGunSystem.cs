@@ -34,9 +34,6 @@ public sealed class ContrabandGunSystem : EntitySystem
         if (!TryComp<ContrabandComponent>(args.Target, out var contraband))
             return;
 
-        // Calc contraband points
-        var price = contraband.Value;
-
         var verb = new UtilityVerb()
         {
             Act = () =>
