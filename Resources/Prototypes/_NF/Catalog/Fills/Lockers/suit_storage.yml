@@ -80,6 +80,22 @@
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
 
+- type: entity
+  id: SuitStoragePrivateSecurity
+  parent: SuitStorageBase
+  suffix: Private Security
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitPrivateSecurity
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagCombat # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
 #SCAF hardsuit
 - type: entity
   id: SuitStorageScaf
@@ -111,7 +127,6 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-    access: [["Captain"], ["Pilot"]]
 
 #Clown hardsuit
 - type: entity

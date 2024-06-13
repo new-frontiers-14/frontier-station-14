@@ -1,0 +1,113 @@
+- type: entity
+  name: mercenary spawner
+  id: SpawnMobMercenaryT1
+  parent: MarkerBase
+  suffix: AI, Hostile, T1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#404029"
+    - sprite: Clothing/Shoes/Boots/mercboots.rsi
+      state: equipped-FEET
+    - sprite: Clothing/Hands/Gloves/mercbattle.rsi
+      state: equipped-HAND
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenarySoldierKnife
+    - MobMercenarySoldierPistol
+    - MobMercenarySoldierMosin
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobMercenaryT2
+    rareChance: 0.05
+
+- type: entity
+  name: mercenary spawner
+  id: SpawnMobMercenaryT2
+  parent: MarkerBase
+  suffix: AI, Hostile, T2
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/Shoes/Boots/combatboots.rsi
+      state: equipped-FEET
+    - sprite: Clothing/Hands/Gloves/fingerless.rsi
+      state: equipped-HAND
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gas.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenaryBreacherShotgun
+    - MobMercenarySoldierRevolver
+    - MobMercenaryBreacherMachete
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobMercenaryT3
+    rareChance: 0.1
+
+- type: entity
+  name: mercenary spawner
+  id: SpawnMobMercenaryT3
+  parent: MarkerBase
+  suffix: AI, Hostile, T3
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#2e687a"
+    - sprite: Clothing/Shoes/Boots/combatboots.rsi
+      state: equipped-FEET
+    - sprite: Clothing/Hands/Gloves/fingerless.rsi
+      state: equipped-HAND
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/medicalsecurity.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/light_riot.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+      state: electric-inhand-right
+    - sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+      state: inhand-right-3
+  - type: RandomSpawner
+    prototypes:
+    - MobMercenarySpecialistMedic
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobMercenarySpecialistMedic
+    rareChance: 0.05
