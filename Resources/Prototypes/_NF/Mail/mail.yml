@@ -1751,3 +1751,112 @@
         orGroup: Box
       - id: DrinkSpaceGlue
       - id: PaperMailNFBuildABuddy
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayWizard
+  suffix: cosplay-wizard, extended
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingOuterWizard
+    - id: ClothingHeadHatWizard
+    - id: ClothingShoesWizard
+    - id: WizardStaffMeleeBase
+      orGroup: Staff
+      prob: 0.9
+    - id: RGBStaff
+      orGroup: Staff
+      prob: 0.1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayMaid
+  suffix: cosplay-maid, extended
+  components:
+  - type: Mail
+    contents:
+      - id: UniformMaid
+        orGroup: Uniform
+      - id: ClothingUniformJumpskirtJanimaid
+        orGroup: Uniform
+      - id: ClothingUniformJumpskirtJanimaidmini
+        orGroup: Uniform
+      - id: MegaSprayBottle
+      - id: ClothingHandsGlovesColorWhite
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFTacticalMaid
+  suffix: tactical maid
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpskirtTacticalMaid
+      - id: ClothingHeadHatTacticalMaidHeadband
+      - id: MegaSprayBottle
+      - id: ClothingHandsTacticalMaidGloves
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayNurse
+  suffix: cosplay-nurse, extended
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpskirtNurse
+      - id: ClothingHeadNurseHat
+      - id: SyringeOpporozidone
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCommandNFPremiumAlcohol
+  suffix: premium alcohol
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: DrinkPremiumVodkaBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumGinBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumTequilaBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumWhiskeyBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumRumBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumAbsintheBottleFull
+        orGroup: Bottle
+      - id: DrinkGlassCoupeShaped
+        amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCommandNFPlatinumCigars
+  suffix: cigars, ultra-premium
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: DrinkPremiumVodkaBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumGinBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumTequilaBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumWhiskeyBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumRumBottleFull
+        orGroup: Bottle
+      - id: DrinkPremiumAbsintheBottleFull
+        orGroup: Bottle
+      - id: DrinkGlassCoupeShaped
+        amount: 2
+
