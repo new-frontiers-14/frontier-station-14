@@ -66,6 +66,7 @@
       components:
       - PhysicalComposition
       - SpaceGarbage
+      - Log # Frontier
       tags:
       - Trash
       - Recyclable
@@ -94,7 +95,7 @@
   - type: SolutionContainerManager
     solutions:
       output:
-        maxVol: 100
+        maxVol: 1000 # Frontier 100<1000
   - type: DrainableSolution
     solution: output
   - type: ExaminableSolution

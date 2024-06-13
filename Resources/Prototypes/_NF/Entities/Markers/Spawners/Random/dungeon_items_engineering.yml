@@ -122,12 +122,16 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - ToolboxElectrical
     - ToolboxElectricalFilled
+    - ToolboxEmergency
     - ToolboxEmergencyFilled
+    - ToolboxMechanical
     - ToolboxMechanicalFilled
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - ToolboxSyndicate
     - ToolboxSyndicateFilled
     rareChance: 0.02
 
@@ -181,6 +185,11 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - LockerEngineer
+    - LockerWeldingSupplies
+    - LockerElectricalSupplies
+    - LockerAtmospherics
+    - ClosetTool
     - LockerEngineerFilled
     - LockerWeldingSuppliesFilled
     - LockerElectricalSuppliesFilled
@@ -189,15 +198,42 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - LockerChiefEngineer
+    - LockerChiefEngineer
     - LockerChiefEngineerFilled
     - LockerChiefEngineerFilled
-    - LockerChiefEngineerFilled
-    - LockerChiefEngineerFilled
-    - SuitStorageCE
-    - SuitStorageEngi
+    - SpawnDungeonLootSuitStorageUnitsEngi
+    rareChance: 0.01
+
+- type: entity
+  name: random suit storage unit
+  id: SpawnDungeonLootSuitStorageUnitsEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SuitStorageBase
+    - SuitStorageEVAAlternate
+    - SuitStorageBasic
     - SuitStorageEngi
     - SuitStorageAtmos
-    rareChance: 0.01
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SuitStorageNTSRA
+    - SuitStorageCE
+    rareChance: 0.05
 
 # Machines
 - type: entity
@@ -255,13 +291,13 @@
     - VendingMachineEngiDrobe
     - VendingMachineVendomat
     - VendingMachineEngivend
-    - VendingMachineRobotics
     - VendingMachineYouTool
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - VendingMachineSyndieContraband
-    - VendingMachineSyndieDrobe
+#    - VendingMachineSyndieContraband # A bit less Syndicate loot
+#    - VendingMachineSyndieDrobe # A bit less Syndicate loot
+    - VendingMachineRobotics
     rareChance: 0.01
 
 # Other
