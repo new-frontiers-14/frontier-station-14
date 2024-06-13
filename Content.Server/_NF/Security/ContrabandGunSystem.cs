@@ -41,7 +41,7 @@ public sealed class ContrabandGunSystem : EntitySystem
         {
             Act = () =>
             {
-                _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
+                _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", contraband.Value)), args.User, args.User);
                 _useDelay.TryResetDelay((uid, useDelay));
             },
             Text = Loc.GetString("contraband-price-gun-verb-text"),
