@@ -69,22 +69,6 @@
           - PirateUplink
 
 - type: listing
-  id: UplinkPirateCrateFilledAmmo
-  name:  uplink-pirate-crateammo-name
-  description: uplink-pirate-crateammo-desc
-  productEntity: CratePirateChestAmmo
-  icon: { sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi, state: crate_icon }
-  cost:
-    Doubloon: 5
-  categories:
-    - UplinkPirateUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
-
-- type: listing
   id: UplinkPirateSatchelFilled
   name:  uplink-pirate-satchel-name
   description: uplink-pirate-satchel-desc
@@ -182,19 +166,101 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkFlintlock
+  name:  uplink-pirate-flintlock-name
+  description: uplink-pirate-flintlock-desc
+  productEntity: WeaponPistolFlintlock
+  icon: { sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
     - !type:BuyerJobCondition
       whitelist:
         - PirateCaptain
 
+- type: listing
+  id: UplinkEnergyCutlass
+  name:  uplink-pirate-ecutlass-name
+  description: uplink-pirate-ecutlass-desc
+  productEntity: EnergyCutlass
+  icon: { sprite: Objects/Weapons/Melee/e_cutlass.rsi, state: e_cutlass }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkPirateShotgunAmmo
+  name:  uplink-pirate-shotgunammo-name
+  description: uplink-pirate-shotgunammo-desc
+  productEntity: BoxMagazineShotgun
+  icon: { sprite: Objects/Storage/boxes.rsi, state: shellslug }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRevolverAmmo
+  name:  uplink-pirate-revolverammo-name
+  description: uplink-pirate-revolverammo-desc
+  productEntity: MagazineBoxMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateFlintlockAmmo
+  name:  uplink-pirate-flintlockammo-name
+  description: uplink-pirate-flintlockammo-desc
+  productEntity: MagazineBoxAntiMateriel
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
 
 - type: listing
   id: UplinkPirateCannonball
   name:  uplink-pirate-cannonball-name
   description: uplink-pirate-cannonball-desc
-  productEntity: CannonBall
+  productEntity: CratePirateChestCannonBall
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball }
   cost:
-    Doubloon: 1
+    Doubloon: 2
   categories:
     - UplinkPirateAmmo
   conditions:
@@ -207,10 +273,10 @@
   id: UplinkPirateGrapeshot
   name:  uplink-pirate-grapeshot-name
   description: uplink-pirate-grapeshot-desc
-  productEntity: CannonBallGrapeshot
+  productEntity: CratePirateChestGrapeShot
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: grapeshot }
   cost:
-    Doubloon: 1
+    Doubloon: 2
   categories:
     - UplinkPirateAmmo
   conditions:
@@ -223,10 +289,10 @@
   id: UplinkPirateGlassshot
   name:  uplink-pirate-glassshot-name
   description: uplink-pirate-glassshot-desc
-  productEntity: CannonBallGlassshot
+  productEntity: CratePirateChestGlassShot
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: glassshot }
   cost:
-    Doubloon: 1
+    Doubloon: 2
   categories:
     - UplinkPirateAmmo
   conditions:
