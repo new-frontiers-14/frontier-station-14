@@ -58,9 +58,7 @@ public sealed class ContrabandGunSystem : EntitySystem
 
         if (TryComp<ContrabandComponent>(args.Target, out var contraband))
         {
-            //double price = _pricingSystem.GetPrice(args.Target.Value);
-            double price = contraband.Value;
-            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", $"{price:F2}")), args.User, args.User);
+            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.Value)), args.User, args.User);
         }
         else
         {
