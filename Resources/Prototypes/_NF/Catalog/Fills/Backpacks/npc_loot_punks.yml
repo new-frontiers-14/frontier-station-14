@@ -1,7 +1,48 @@
+# BASE
+- type: entity
+  parent: SyndieMessengerGiftBox
+  id: PunkMessengerGiftBox
+  name: punk bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#EF8100"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#EF8100"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#EF8100"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#EF8100"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
 
 # Punks: generic rewards
 - type: entity
-  parent: SyndieDuffelGiftBox
+  parent: PunkMessengerGiftBox
   id: ClothingBackpackPunkLootA
   name: punk gear bundle
   noSpawn: true
