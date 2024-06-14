@@ -1,10 +1,13 @@
 using Content.Server.Bible.Components;
+using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Damage;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -38,7 +41,8 @@ namespace Content.Server.Bible
         {
             base.Initialize();
 
-            SubscribeLocalEvent<BibleComponent, AfterInteractEvent>(OnAfterInteract);
+            SubscribeLocalEvent<BibleComponent, MixingAttemptEvent>(OnMixingAttempt); // Frontier: restrict solution blessing to bible users
+            SubscribeLocalEvent<BibleComponent, AfterInteractEvent>(OnAfterInteract, before: [typeof(ReactionMixerSystem)]); // Frontier: add before parameter
             SubscribeLocalEvent<SummonableComponent, GetVerbsEvent<AlternativeVerb>>(AddSummonVerb);
             SubscribeLocalEvent<SummonableComponent, GetItemActionsEvent>(GetSummonAction);
             SubscribeLocalEvent<SummonableComponent, SummonActionEvent>(OnSummon);
@@ -91,6 +95,19 @@ namespace Content.Server.Bible
             }
         }
 
+        // Frontier: only bible users can bless water/blood
+        private void OnMixingAttempt(EntityUid uid, BibleComponent component, ref MixingAttemptEvent args)
+        {
+            // Block water/blood blessing attempts by non-bible users
+            if (component.BlockMix)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("bible-bless-solution-failed"), component.LastInteractingUser, component.LastInteractingUser, PopupType.Small);
+                args.Cancelled = true;
+                return;
+            }
+        }
+        // End Frontier
+
         private void OnAfterInteract(EntityUid uid, BibleComponent component, AfterInteractEvent args)
         {
             if (!args.CanReach)
@@ -99,12 +116,24 @@ namespace Content.Server.Bible
             if (!TryComp(uid, out UseDelayComponent? useDelay) || _delay.IsDelayed((uid, useDelay)))
                 return;
 
-            if (args.Target == null || args.Target == args.User || !_mobStateSystem.IsAlive(args.Target.Value))
+            // Frontier: only bible users can bless water/blood
+            if (args.Target == null)
             {
                 return;
             }
 
-            if (!HasComp<BibleUserComponent>(args.User))
+            // In case the user is trying to mix something, store who's using it and whether or not they're a bible user.
+            component.LastInteractingUser = args.User;
+            var hasBibleUserComponent = HasComp<BibleUserComponent>(args.User);
+            component.BlockMix = !hasBibleUserComponent;
+
+            if (args.Target == args.User || !_mobStateSystem.IsAlive(args.Target.Value))
+            {
+                return;
+            }
+            // End Frontier
+
+            if (!hasBibleUserComponent) // Frontier: cache bible component lookup
             {
                 _popupSystem.PopupEntity(Loc.GetString("bible-sizzle"), args.User, args.User);
 
@@ -226,7 +255,10 @@ namespace Content.Server.Bible
             if (component.AlreadySummoned || component.SpecialItemPrototype == null)
                 return;
             if (component.RequiresBibleUser && !HasComp<BibleUserComponent>(user))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("bible-summon-request-failed"), user, user, PopupType.Small); // Frontier: better summon feedback
                 return;
+            }
             if (!Resolve(user, ref position))
                 return;
             if (component.Deleted || Deleted(uid))
