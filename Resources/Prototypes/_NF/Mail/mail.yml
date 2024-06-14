@@ -66,10 +66,10 @@
     contents:
     - id: BikeHorn
       orGroup: Horn
-      prob: 0.75
+      prob: 0.95
     - id: CluwneHorn
       orGroup: Horn
-      prob: 0.25
+      prob: 0.05
 
 - type: entity
   noSpawn: true
@@ -288,7 +288,7 @@
       # Non-kitchen, non-contraband knives and swords, both rolled into one.
     - id: KukriKnife
       orGroup: Knife
-    - id: Machete # A little large for an envelope but we'll live
+    - id: Machete # A little large for an envelope but "we'll live"
       orGroup: Knife
     - id: CombatKnife
       orGroup: Knife
@@ -315,9 +315,11 @@
       orGroup: Sword
     - id: Kanabou # ah yes, swords
       orGroup: Sword
-    - id: CaptainSabre # Little dangerous between the reflect and the damage
+    - id: PlasteelArmingSword
       orGroup: Sword
-      prob: 0.2
+    - id: ClothingBeltSheathFilled # Little dangerous between the reflect and the damage
+      orGroup: Sword
+      prob: 0.1
 
 - type: entity
   noSpawn: true
@@ -345,12 +347,6 @@
   - type: Mail
     contents:
       # Expected value: 2965 spesos
-    - id: SpaceCash100
-      orGroup: Cash
-      prob: 0.025
-    - id: SpaceCash500
-      orGroup: Cash
-      prob: 0.075
     - id: SpaceCash1000
       orGroup: Cash
       prob: 0.3
@@ -363,6 +359,12 @@
     - id: SpaceCash10000
       orGroup: Cash
       prob: 0.1
+    - id: SpaceCash20000
+      orGroup: Cash
+      prob: 0.075
+    - id: SpaceCash30000
+      orGroup: Cash
+      prob: 0.025
 
 - type: entity
   noSpawn: true
@@ -473,9 +475,6 @@
       prob: 0.05
       orGroup: Plushie
     - id: PlushieJester
-      prob: 0.05
-      orGroup: Plushie
-    - id: PlushieTrystan
       prob: 0.05
       orGroup: Plushie
 
@@ -1145,7 +1144,7 @@
   noSpawn: true
   parent: BaseMail
   id: MailSecurityNFHudNfsdMed
-  suffix: musket
+  suffix: nfsd med hud
   components:
   - type: Mail
     contents:
@@ -1188,19 +1187,19 @@
     contents:
     - id: LuxuryPen
       orGroup: Pen
-      prob: 0.3
+      prob: 0.55
     - id: PenHop
       orGroup: Pen
       prob: 0.225
     - id: PenCap
       orGroup: Pen
       prob: 0.225
-    - id: CyberPen
-      orGroup: Pen
-      prob: 0.125
-    - id: PenCentcom
-      orGroup: Pen
-      prob: 0.125
+#    - id: CyberPen # Have to remove this consider you can fuck with notes using them too easy.
+#      orGroup: Pen
+#      prob: 0.125
+#    - id: PenCentcom
+#      orGroup: Pen
+#      prob: 0.125
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1245,7 +1244,7 @@
   noSpawn: true
   parent: BaseMail
   id: MailNFIFFBoard
-  suffix: iff board
+  suffix: IFF board
   components:
   - type: Mail
     contents:
@@ -1310,15 +1309,15 @@
     # Uncommon
     - id: PhoneInstrument
       orGroup: Instrument
-      prob: 0.25
+      prob: 0.1
     # Rare
     - id: BananaPhoneInstrument
       orGroup: Instrument
-      prob: 0.1
+      prob: 0.05
     # Ultra-rare
     - id: PhoneInstrumentSyndicate
       orGroup: Instrument
-      prob: 0.05
+      prob: 0.01
 
 - type: entity
   noSpawn: true
@@ -1507,12 +1506,12 @@
       orGroup: Board
     - id: JukeboxCircuitBoard
       orGroup: Board
-    - id: ComputerMassMediaCircuitboard
-      orGroup: Board
-      prob: 0.5
     - id: TelecomServerCircuitboard
       orGroup: Board
       prob: 0.25
+    - id: ComputerMassMediaCircuitboard
+      orGroup: Board
+      prob: 0.1
 
 - type: entity
   noSpawn: true
@@ -1534,8 +1533,8 @@
         orGroup: Clothes
       - id: ClothingUniformKendoHakama
         orGroup: Clothes
-      - id: UniformJabroni # HMMM
-        orGroup: Clothes
+#      - id: UniformJabroni # ERP Update real
+#        orGroup: Clothes
       - id: ClothingNeckBling
         orGroup: Clothes
       - id: ClothingShoesBling
@@ -1629,6 +1628,15 @@
   - type: Mail
     contents:
       - id: PowerCellMicroreactor
+        orGroup: PowerCell
+        prob: 0.60
+      - id: PowerCellAntiqueProto
+        orGroup: PowerCell
+        prob: 0.20
+      - id: PowerCellHyper
+        orGroup: PowerCell
+        prob: 0.20
+        amount: 2
 
 - type: entity
   noSpawn: true
@@ -1646,12 +1654,17 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
-  id: MailNFCombatMedkit
-  suffix: combat medkit
+  id: MailNFMedkit
+  suffix: medkit
   components:
   - type: Mail
     contents:
+      - id: MedkitAdvancedFilled
+        orGroup: Medkit
+        prob: 0.75
       - id: MedkitCombatFilled
+        orGroup: Medkit
+        prob: 0.25
 
 - type: entity
   noSpawn: true
@@ -1666,7 +1679,7 @@
 - type: entity
   noSpawn: true
   parent: BaseMail
-  id: MailNFNecrosol
+  id: MailNFNecrosol # Not sure about keeping this, but its probably fine
   suffix: necrosol bottle
   components:
   - type: Mail
@@ -1710,11 +1723,6 @@
     isFragile: true
     contents:
       - id: NukeDiskFake
-        orGroup: Disk
-        prob: 0.9
-      - id: NukeDisk
-        orGroup: Disk
-        prob: 0.1
       - id: PaperMailNFAntivirus
 
 - type: entity
