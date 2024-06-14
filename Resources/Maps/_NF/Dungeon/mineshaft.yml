@@ -17,7 +17,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -108,8 +111,6 @@ entities:
     - type: RadiationGridResistance
     - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:
@@ -1630,23 +1631,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 32.5,8.5
       parent: 2
-- proto: ClosetMaintenanceFilledRandom
-  entities:
-  - uid: 453
-    components:
-    - type: Transform
-      pos: 12.5,12.5
-      parent: 2
-  - uid: 685
-    components:
-    - type: Transform
-      pos: 31.5,6.5
-      parent: 2
-  - uid: 686
-    components:
-    - type: Transform
-      pos: 16.5,13.5
-      parent: 2
 - proto: ClothingHeadHatCardborg
   entities:
   - uid: 834
@@ -1654,29 +1638,17 @@ entities:
     - type: Transform
       pos: 48.485527,19.798538
       parent: 2
-- proto: ClothingHeadHatHoodCulthood
+- proto: ClothingOuterCoatBloodCultRobes
   entities:
-  - uid: 166
-    components:
-    - type: Transform
-      pos: 25.413336,7.589584
-      parent: 2
-  - uid: 171
-    components:
-    - type: Transform
-      pos: 25.308355,7.6870356
-      parent: 2
-- proto: ClothingOuterRobesCult
-  entities:
-  - uid: 172
-    components:
-    - type: Transform
-      pos: 25.728281,7.5071254
-      parent: 2
   - uid: 173
     components:
     - type: Transform
-      pos: 25.570808,7.6870356
+      pos: 25.73339,7.6782207
+      parent: 2
+  - uid: 453
+    components:
+    - type: Transform
+      pos: 25.35839,7.5844707
       parent: 2
 - proto: ClothingShoesCult
   entities:
@@ -4133,6 +4105,16 @@ entities:
     - type: Transform
       pos: 9.641493,26.93952
       parent: 2
+  - uid: 1146
+    components:
+    - type: Transform
+      pos: 43.071445,7.5844707
+      parent: 2
+  - uid: 1147
+    components:
+    - type: Transform
+      pos: 31.897333,9.553221
+      parent: 2
 - proto: SpawnDungeonLootArmoryMelee
   entities:
   - uid: 633
@@ -4144,6 +4126,11 @@ entities:
     components:
     - type: Transform
       pos: 16.55768,27.758963
+      parent: 2
+  - uid: 686
+    components:
+    - type: Transform
+      pos: 27.504795,8.568846
       parent: 2
   - uid: 1114
     components:
@@ -4288,6 +4275,16 @@ entities:
     - type: Transform
       pos: 9.68271,27.517063
       parent: 2
+  - uid: 1167
+    components:
+    - type: Transform
+      pos: 29.000204,29.211117
+      parent: 2
+  - uid: 1168
+    components:
+    - type: Transform
+      pos: 30.093954,30.101742
+      parent: 2
 - proto: SpawnDungeonLootCrateVehicle
   entities:
   - uid: 1128
@@ -4342,6 +4339,48 @@ entities:
     - type: Transform
       pos: 21.60741,19.545755
       parent: 2
+- proto: SpawnDungeonLootHardsuitsSalvage
+  entities:
+  - uid: 1174
+    components:
+    - type: Transform
+      pos: 2.6711109,24.604685
+      parent: 2
+  - uid: 1175
+    components:
+    - type: Transform
+      pos: 9.749503,28.042185
+      parent: 2
+  - uid: 1176
+    components:
+    - type: Transform
+      pos: 27.37028,13.665397
+      parent: 2
+  - uid: 1177
+    components:
+    - type: Transform
+      pos: 4.350164,15.649772
+      parent: 2
+  - uid: 1178
+    components:
+    - type: Transform
+      pos: 38.47734,7.2882957
+      parent: 2
+  - uid: 1179
+    components:
+    - type: Transform
+      pos: 3.5162325,19.523912
+      parent: 2
+  - uid: 1180
+    components:
+    - type: Transform
+      pos: 23.672161,20.539537
+      parent: 2
+  - uid: 1181
+    components:
+    - type: Transform
+      pos: 23.515911,19.477037
+      parent: 2
 - proto: SpawnDungeonLootKitsFirstAid
   entities:
   - uid: 447
@@ -4382,6 +4421,23 @@ entities:
     components:
     - type: Transform
       pos: 8.5,3.5
+      parent: 2
+- proto: SpawnDungeonLootLockersGeneral
+  entities:
+  - uid: 166
+    components:
+    - type: Transform
+      pos: 12.5,12.5
+      parent: 2
+  - uid: 171
+    components:
+    - type: Transform
+      pos: 31.5,6.5
+      parent: 2
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 16.5,13.5
       parent: 2
 - proto: SpawnDungeonLootLockersSalvage
   entities:
@@ -4427,6 +4483,121 @@ entities:
     - type: Transform
       pos: 40.106476,34.5133
       parent: 2
+  - uid: 1136
+    components:
+    - type: Transform
+      pos: 6.942868,2.1289403
+      parent: 2
+  - uid: 1137
+    components:
+    - type: Transform
+      pos: 20.263952,0.61331534
+      parent: 2
+  - uid: 1138
+    components:
+    - type: Transform
+      pos: 30.178347,4.3945656
+      parent: 2
+  - uid: 1139
+    components:
+    - type: Transform
+      pos: 30.662722,4.4883156
+      parent: 2
+  - uid: 1140
+    components:
+    - type: Transform
+      pos: 37.374958,0.41019034
+      parent: 2
+  - uid: 1144
+    components:
+    - type: Transform
+      pos: 39.05582,7.4438457
+      parent: 2
+  - uid: 1145
+    components:
+    - type: Transform
+      pos: 39.99332,7.6469707
+      parent: 2
+  - uid: 1149
+    components:
+    - type: Transform
+      pos: 13.206279,9.318846
+      parent: 2
+  - uid: 1150
+    components:
+    - type: Transform
+      pos: 18.440655,9.178221
+      parent: 2
+  - uid: 1151
+    components:
+    - type: Transform
+      pos: 7.8738413,8.834471
+      parent: 2
+  - uid: 1152
+    components:
+    - type: Transform
+      pos: 8.233216,9.115721
+      parent: 2
+  - uid: 1156
+    components:
+    - type: Transform
+      pos: 40.54449,20.615065
+      parent: 2
+  - uid: 1157
+    components:
+    - type: Transform
+      pos: 43.57966,20.552565
+      parent: 2
+  - uid: 1158
+    components:
+    - type: Transform
+      pos: 43.54841,21.458815
+      parent: 2
+  - uid: 1159
+    components:
+    - type: Transform
+      pos: 48.64216,19.44319
+      parent: 2
+  - uid: 1160
+    components:
+    - type: Transform
+      pos: 46.345284,20.09944
+      parent: 2
+  - uid: 1165
+    components:
+    - type: Transform
+      pos: 37.452457,26.710098
+      parent: 2
+  - uid: 1166
+    components:
+    - type: Transform
+      pos: 37.249332,26.491348
+      parent: 2
+  - uid: 1169
+    components:
+    - type: Transform
+      pos: 9.436994,27.429867
+      parent: 2
+  - uid: 1170
+    components:
+    - type: Transform
+      pos: 0.37048578,30.372002
+      parent: 2
+  - uid: 1171
+    components:
+    - type: Transform
+      pos: 0.6517358,30.528252
+      parent: 2
+  - uid: 1172
+    components:
+    - type: Transform
+      pos: 6.167361,33.700127
+      parent: 2
+  - uid: 1173
+    components:
+    - type: Transform
+      pos: 11.651735,32.918877
+      parent: 2
 - proto: SpawnDungeonLootMaterialsValuableFull
   entities:
   - uid: 405
@@ -4438,6 +4609,61 @@ entities:
     components:
     - type: Transform
       pos: 15.612305,19.363096
+      parent: 2
+  - uid: 1134
+    components:
+    - type: Transform
+      pos: 8.675267,2.9414403
+      parent: 2
+  - uid: 1135
+    components:
+    - type: Transform
+      pos: 8.456517,2.4883153
+      parent: 2
+  - uid: 1141
+    components:
+    - type: Transform
+      pos: 37.562458,0.66019034
+      parent: 2
+  - uid: 1142
+    components:
+    - type: Transform
+      pos: 41.789116,4.2851906
+      parent: 2
+  - uid: 1143
+    components:
+    - type: Transform
+      pos: 38.43082,6.7250957
+      parent: 2
+  - uid: 1154
+    components:
+    - type: Transform
+      pos: 13.616608,21.375952
+      parent: 2
+  - uid: 1155
+    components:
+    - type: Transform
+      pos: 40.278866,20.44319
+      parent: 2
+  - uid: 1161
+    components:
+    - type: Transform
+      pos: 46.689034,19.63069
+      parent: 2
+  - uid: 1162
+    components:
+    - type: Transform
+      pos: 37.311832,26.663223
+      parent: 2
+  - uid: 1163
+    components:
+    - type: Transform
+      pos: 37.405582,26.506973
+      parent: 2
+  - uid: 1164
+    components:
+    - type: Transform
+      pos: 37.749332,26.616348
       parent: 2
 - proto: SpawnDungeonLootOresFull
   entities:
@@ -4495,10 +4721,25 @@ entities:
       parent: 2
 - proto: SpawnDungeonLootPartsEngi
   entities:
+  - uid: 685
+    components:
+    - type: Transform
+      pos: 19.753965,7.5063457
+      parent: 2
   - uid: 1095
     components:
     - type: Transform
       pos: 19.447327,7.5770164
+      parent: 2
+  - uid: 1148
+    components:
+    - type: Transform
+      pos: 18.285215,7.7250957
+      parent: 2
+  - uid: 1153
+    components:
+    - type: Transform
+      pos: 8.52099,7.3500957
       parent: 2
 - proto: SpawnDungeonLootToolbox
   entities:
