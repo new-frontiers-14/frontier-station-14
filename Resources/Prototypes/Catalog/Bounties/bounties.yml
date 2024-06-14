@@ -782,7 +782,7 @@
   description: bounty-description-pirate
   entries:
   - name: bounty-item-researchDisk
-    amount: 5
+    amount: 7
     whitelist:
       id:
       - ResearchDisk
@@ -822,14 +822,25 @@
 
 - type: pirateBounty
   id: BountyCaptainChemVend
-  reward: 1
+  reward: 3
   description: bounty-description-pirate
   entries:
   - name: bounty-item-chemVend
-    amount: 3
+    amount: 1
     whitelist:
       id:
       - VendingMachineChemicals
+
+- type: pirateBounty
+  id: BountyVendingMachine
+  reward: 6
+  description: bounty-description-pirate
+  entries:
+  - name: bounty-item-vendingmachine
+    amount: 3
+    whitelist:
+      id:
+      - VendingMachine
 
 - type: pirateBounty
   id: BountyCaptainMercSuit
@@ -1029,6 +1040,18 @@
     whitelist:
       id:
       - MaterialDiamond
+
+- type: pirateBounty
+  id: BountyGold
+  reward: 4
+  description: bounty-description-pirate
+  entries:
+  - name: bounty-item-gold
+    amount: 5
+    whitelist:
+      id:
+      - OreGold
+      - IngotGold
 
 - type: pirateBounty
   id: BountyPlasmaCanister
