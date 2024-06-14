@@ -1187,19 +1187,21 @@
     contents:
     - id: LuxuryPen
       orGroup: Pen
-      prob: 0.55
+      prob: 0.54
     - id: PenHop
       orGroup: Pen
       prob: 0.225
     - id: PenCap
       orGroup: Pen
       prob: 0.225
-#    - id: CyberPen # Have to remove this consider you can fuck with notes using them too easy.
-#      orGroup: Pen
-#      prob: 0.125
-#    - id: PenCentcom
-#      orGroup: Pen
-#      prob: 0.125
+    # Ultra-rare
+    # Give the less-adventurous players a chance to rewrite documents.
+    - id: CyberPen
+      orGroup: Pen
+      prob: 0.005
+    - id: PenCentcom
+      orGroup: Pen
+      prob: 0.005
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1769,7 +1771,10 @@
     - id: ClothingShoesWizard
     - id: WizardStaffMeleeBase
       orGroup: Staff
-      prob: 0.9
+      prob: 0.6
+    - id: PonderingOrb
+      orGroup: Staff
+      prob: 0.3
     - id: RGBStaff
       orGroup: Staff
       prob: 0.1
