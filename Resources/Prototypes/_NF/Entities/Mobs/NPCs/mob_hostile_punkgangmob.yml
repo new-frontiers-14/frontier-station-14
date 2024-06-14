@@ -1,42 +1,51 @@
 - type: entity
   name: punk
   abstract: true
-  parent: MobHumanoidHostileBase
+  parent:
+  - MobHumanoidHostileBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobPunkBase
   components:
   - type: NpcFactionMember
     factions:
     - StreetGangNF
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      130: Dead
+  - type: Stamina
+    critThreshold: 100
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 10
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
   - type: ReplacementAccent
     accent: streetpunk
   - type: Advertise
     pack: spacepunkhumanoidchatter
     minimumWait: 30
     maximumWait: 120
-    NextAdvertisementTime: 10
+    nextAdvertisementTime: 10
   - type: AutoWakeUp
-  - type: MovementAlwaysTouching
-  - type: HTN
-    rootTask:
-       task: SimpleHumanoidHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        false
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
 
 # Humans
 - type: entity
   parent: MobPunkBase
-  id: MobPunkGangerMelee
+  id:
+  - MobPunkGangerMelee
+  - MobHumanoidHostileAISimpleMelee
   noSpawn: true
   components:
   - type: Loadout
@@ -78,7 +87,9 @@
 
 - type: entity
   parent: MobPunkBase
-  id: MobPunkGangerArmoredMelee
+  id:
+  - MobPunkGangerArmoredMelee
+  - MobHumanoidHostileAISimpleMelee
   noSpawn: true
   components:
   - type: Loadout
