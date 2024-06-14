@@ -8,7 +8,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client.Stack
 {
     [UsedImplicitly]
-    public sealed class StackSystem : SharedStackSystem
+    public sealed partial class StackSystem : SharedStackSystem // Frontier: add partial to class def'n
     {
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly ItemCounterSystem _counterSystem = default!;
@@ -68,8 +68,8 @@ namespace Content.Client.Stack
             if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out data.Hidden, args.Component))
                 data.Hidden = false;
 
-            if (comp.LayerFunction is not null) // Frontier: use stack layer function to modify appearance if provided.
-                comp.LayerFunction.Apply(ref data); // Frontier
+            if (comp.LayerFunction != StackLayerFunction.None) // Frontier: use stack layer function to modify appearance if provided.
+                ApplyLayerFunction(uid, comp, ref data); // Frontier: definition in _NF/Stack/StackSystem.Layers.cs
 
             if (comp.IsComposite)
                 _counterSystem.ProcessCompositeSprite(uid, data.Actual, data.MaxCount, comp.LayerStates, data.Hidden, sprite: args.Sprite);

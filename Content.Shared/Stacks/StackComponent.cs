@@ -83,8 +83,8 @@ namespace Content.Shared.Stacks
         /// <summary>
         /// An optional function to adjust the layers used for a stack's appearance.
         /// </summary>
-        [DataField("layerFunction")]
-        public StackLayerFunction? LayerFunction;
+        [DataField]
+        public StackLayerFunction LayerFunction = StackLayerFunction.None;
         // End Frontier
     }
 
