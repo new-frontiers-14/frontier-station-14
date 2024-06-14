@@ -1,0 +1,302 @@
+- type: listing
+  id: UplinkPirateHardsuit
+  name:  uplink-pirate-hardsuit-name
+  description: uplink-pirate-hardsuit-desc
+  productEntity: ClothingOuterHardsuitPirateEVA
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateHardsuitCaptain
+  name:  uplink-pirate-hardsuit-captain-name
+  description: uplink-pirate-hardsuit-captain-desc
+  productEntity: ClothingOuterHardsuitPirateCap
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkPirateCaptainCrateFilled
+  name:  uplink-pirate-crate-captain-name
+  description: uplink-pirate-crate-captain-desc
+  productEntity: CratePirateChestCaptain
+  icon: { sprite: Structures/Storage/Crates/piratechest.rsi, state: crate_icon }
+  cost:
+    Doubloon: 8
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkPirateCrateFilled
+  name:  uplink-pirate-crate-name
+  description: uplink-pirate-crate-desc
+  productEntity: CratePirateChest
+  icon: { sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi, state: crate_icon }
+  cost:
+    Doubloon: 8
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateSatchelFilled
+  name:  uplink-pirate-satchel-name
+  description: uplink-pirate-satchel-desc
+  productEntity: ClothingBackpackPirateFilled
+  icon: { sprite: Clothing/Back/Satchels/leather.rsi, state: icon }
+  cost:
+    Doubloon: 6
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateMagboots
+  name:  uplink-pirate-magboots-name
+  description: uplink-pirate-magboots-desc
+  productEntity: ClothingShoesBootsMagPirate
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateHoverbike
+  name:  uplink-pirate-hoverbike-name
+  description: uplink-pirate-hoverbike-desc
+  productEntity: VehicleHoverbikePirateKey
+  icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: keys }
+  cost:
+    Doubloon: 10
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkPirateBlunderbuss
+  name:  uplink-pirate-blunderbuss-name
+  description: uplink-pirate-blunderbuss-desc
+  productEntity: WeaponShotgunBlunderbuss
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi, state: icon }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRevolver
+  name:  uplink-pirate-revolver-name
+  description: uplink-pirate-revolver-desc
+  productEntity: WeaponRevolverPirate
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi, state: icon }
+  cost:
+    Doubloon: 1
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateCannon
+  name:  uplink-pirate-cannon-name
+  description: uplink-pirate-cannon-desc
+  productEntity: WeaponLauncherPirateCannon
+  icon: { sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi, state: icon }
+  cost:
+    Doubloon: 6
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkFlintlock
+  name:  uplink-pirate-flintlock-name
+  description: uplink-pirate-flintlock-desc
+  productEntity: WeaponPistolFlintlock
+  icon: { sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkEnergyCutlass
+  name:  uplink-pirate-ecutlass-name
+  description: uplink-pirate-ecutlass-desc
+  productEntity: EnergyCutlass
+  icon: { sprite: Objects/Weapons/Melee/e_cutlass.rsi, state: e_cutlass }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
+  id: UplinkPirateShotgunAmmo
+  name:  uplink-pirate-shotgunammo-name
+  description: uplink-pirate-shotgunammo-desc
+  productEntity: BoxLethalshot
+  icon: { sprite: Objects/Storage/boxes.rsi, state: shelllethal }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRevolverAmmo
+  name:  uplink-pirate-revolverammo-name
+  description: uplink-pirate-revolverammo-desc
+  productEntity: MagazineBoxMagnum
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateFlintlockAmmo
+  name:  uplink-pirate-flintlockammo-name
+  description: uplink-pirate-flintlockammo-desc
+  productEntity: MagazineBoxAntiMateriel
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi, state: base }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateCannonball
+  name:  uplink-pirate-cannonball-name
+  description: uplink-pirate-cannonball-desc
+  productEntity: CratePirateChestCannonBall
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateGrapeshot
+  name:  uplink-pirate-grapeshot-name
+  description: uplink-pirate-grapeshot-desc
+  productEntity: CratePirateChestGrapeShot
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: grapeshot }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateGlassshot
+  name:  uplink-pirate-glassshot-name
+  description: uplink-pirate-glassshot-desc
+  productEntity: CratePirateChestGlassShot
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: glassshot }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
