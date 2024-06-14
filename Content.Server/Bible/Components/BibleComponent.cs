@@ -41,5 +41,20 @@ namespace Content.Server.Bible.Components
 
         [DataField("locPrefix")]
         public string LocPrefix = "bible";
+
+        // Frontier: prevent non-bible users from blessing water/blood.
+
+        /// <summary>
+        /// Whether or not a mixing attempt from this bible should be blocked.
+        /// </summary>
+        [ViewVariables]
+        public bool BlockMix = false;
+
+        /// <summary>
+        /// The last user that interacted using the bible.
+        /// </summary>
+        [ViewVariables]
+        public EntityUid LastInteractingUser;
+        //End Frontier
     }
 }
