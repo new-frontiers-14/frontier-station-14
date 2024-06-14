@@ -209,8 +209,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
             {
-                //Frontier - track purchased items (list, few items)
-                List<ProtoId<LoadoutPrototype>> equippedItems = new();
+                List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
                 foreach (var items in group.Value)
                 {
                     if (!_prototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -270,6 +269,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         }
                     }
                 }
+                // End Frontier
             }
 
             var bank = EnsureComp<BankAccountComponent>(entity.Value);

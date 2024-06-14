@@ -32,11 +32,11 @@ public sealed partial class LoadoutGroupPrototype : IPrototype
     [DataField(required: true)]
     public List<ProtoId<LoadoutPrototype>> Loadouts = new();
 
-    // Frontier: handle broke characters.
+    // Frontier: handle unaffordable loadouts
     /// <summary>
     /// Fallback loadouts to be selected in case a character cannot afford them.
     /// </summary>
-    [DataField(required: false)]
+    [DataField]
     public List<ProtoId<LoadoutPrototype>> Fallbacks = new();
     // End Frontier
 }
