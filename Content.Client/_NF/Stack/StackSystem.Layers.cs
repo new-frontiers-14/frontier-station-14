@@ -12,6 +12,7 @@ namespace Content.Client.Stack
         public int MaxCount;
         public bool Hidden;
     }
+
     public sealed partial class StackSystem : SharedStackSystem
     {
         // Modifies a given stack component to adjust the layers to display.
@@ -35,7 +36,7 @@ namespace Content.Client.Stack
         /// Sets Actual to the number of thresholds that Actual exceeds from the beginning of the list.
         /// Sets MaxCount to the total number of thresholds plus one (for values under thresholds).
         /// </summary>
-        private void ApplyThreshold(ThresholdStackLayerFunctionComponent comp, ref StackLayerData data)
+        private static void ApplyThreshold(ThresholdStackLayerFunctionComponent comp, ref StackLayerData data)
         {
             // We must stop before we run out of thresholds or layers, whichever's smaller. 
             data.MaxCount = Math.Min(comp.Thresholds.Count + 1, data.MaxCount);

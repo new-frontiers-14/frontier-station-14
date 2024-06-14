@@ -8,7 +8,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client.Stack
 {
     [UsedImplicitly]
-    public sealed partial class StackSystem : SharedStackSystem // Frontier: add partial to class def'n
+    public sealed partial class StackSystem : SharedStackSystem // Frontier: add partial to class definition
     {
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly ItemCounterSystem _counterSystem = default!;
