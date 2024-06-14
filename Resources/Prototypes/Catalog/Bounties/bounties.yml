@@ -715,8 +715,11 @@
   - name: bounty-item-mail
     amount: 10
     whitelist:
-      tag:
+      components:
       - Mail
+    blacklist:
+      tag:
+      - Trash
 
 - type: pirateBounty
   id: BountyPDA
@@ -726,7 +729,7 @@
   - name: bounty-item-pda
     amount: 8
     whitelist:
-      components:
+      id:
       - BasePDA
 
 - type: pirateBounty
@@ -737,7 +740,7 @@
   - name: bounty-item-extinguisher
     amount: 5
     whitelist:
-      components:
+      id:
       - FireExtinguisher
 
 - type: pirateBounty
@@ -748,7 +751,7 @@
   - name: bounty-item-captainGloves
     amount: 5
     whitelist:
-      components:
+      id:
       - ClothingHandsGlovesCaptain
 
 - type: pirateBounty
@@ -759,7 +762,7 @@
   - name: bounty-item-gyro
     amount: 4
     whitelist:
-      components:
+      id:
       - ShuttleGyroscope
 
 - type: pirateBounty
@@ -770,7 +773,7 @@
   - name: bounty-item-defib
     amount: 5
     whitelist:
-      components:
+      id:
       - BaseDefibrillator
 
 - type: pirateBounty
@@ -781,7 +784,7 @@
   - name: bounty-item-researchDisk
     amount: 5
     whitelist:
-      components:
+      id:
       - ResearchDisk
 
 - type: pirateBounty
@@ -792,7 +795,7 @@
   - name: bounty-item-alcohol
     amount: 4
     whitelist:
-      components:
+      id:
       - BoozeDispenser
 
 - type: pirateBounty
@@ -803,7 +806,7 @@
   - name: bounty-item-thruster
     amount: 4
     whitelist:
-      components:
+      id:
       - BaseThruster
 
 - type: pirateBounty
@@ -814,7 +817,7 @@
   - name: bounty-item-gravGen
     amount: 4
     whitelist:
-      components:
+      id:
       - GravityGenerator
 
 - type: pirateBounty
@@ -825,7 +828,7 @@
   - name: bounty-item-chemVend
     amount: 3
     whitelist:
-      components:
+      id:
       - VendingMachineChemicals
 
 - type: pirateBounty
@@ -836,7 +839,7 @@
   - name: bounty-item-mercSuit
     amount: 2
     whitelist:
-      components:
+      id:
       - ClothingOuterHardsuitMercenary
 
 - type: pirateBounty
@@ -847,7 +850,7 @@
   - name: bounty-item-cappy
     amount: 10
     whitelist:
-      components:
+      id:
       - MobCatCappy
 
 - type: pirateBounty
@@ -858,7 +861,7 @@
   - name: bounty-item-cultistNeck
     amount: 4
     whitelist:
-      components:
+      id:
       - ClothingNeckAmuletBloodCult
 
 - type: pirateBounty
@@ -869,7 +872,7 @@
   - name: bounty-item-nfsdCampaign
     amount: 4
     whitelist:
-      components:
+      id:
       - ClothingHeadHatNfsdSmallCampaign
       - ClothingHeadHatNfsdCampaign
 
@@ -881,7 +884,7 @@
   - name: bounty-item-scafsuit
     amount: 3
     whitelist:
-      components:
+      id:
       - ClothingOuterHardsuitScaf
 
 - type: pirateBounty
@@ -892,7 +895,7 @@
   - name: bounty-item-rtg
     amount: 2
     whitelist:
-      components:
+      id:
       - GeneratorRTG
 
 - type: pirateBounty
@@ -903,7 +906,7 @@
   - name: bounty-item-mercgas
     amount: 4
     whitelist:
-      components:
+      id:
       - ClothingMaskGasMercenary
 
 - type: pirateBounty
@@ -914,7 +917,7 @@
   - name: bounty-item-rdhardsuit
     amount: 3
     whitelist:
-      components:
+      id:
       - ClothingOuterHardsuitRd
 
 - type: pirateBounty
@@ -925,7 +928,7 @@
   - name: bounty-item-mk58
     amount: 2
     whitelist:
-      components:
+      id:
       - WeaponPistolMk58
 
 - type: pirateBounty
@@ -936,7 +939,7 @@
   - name: bounty-item-artifactanalyzer
     amount: 4
     whitelist:
-      components:
+      id:
       - MachineArtifactAnalyzer
 
 - type: pirateBounty
@@ -947,7 +950,7 @@
   - name: bounty-item-hotplate
     amount: 5
     whitelist:
-      components:
+      id:
       - ChemistryHotplate
 
 - type: pirateBounty
@@ -958,7 +961,7 @@
   - name: bounty-item-deepfryer
     amount: 4
     whitelist:
-      components:
+      id:
       - KitchenDeepFryer
 
 - type: pirateBounty
@@ -969,7 +972,7 @@
   - name: bounty-item-keycommon
     amount: 5
     whitelist:
-      components:
+      id:
       - EncryptionKeyCommon
 
 - type: pirateBounty
@@ -980,7 +983,7 @@
   - name: bounty-item-medicalfabboard
     amount: 3
     whitelist:
-      components:
+      id:
       - MedicalTechFabCircuitboard
 
 - type: pirateBounty
@@ -991,7 +994,7 @@
   - name: bounty-item-hypo
     amount: 6
     whitelist:
-      components:
+      id:
       - Hypospray
 
 - type: pirateBounty
@@ -1002,7 +1005,7 @@
   - name: bounty-item-orebox
     amount: 3
     whitelist:
-      components:
+      id:
       - OreBox
 
 - type: pirateBounty
@@ -1013,7 +1016,7 @@
   - name: bounty-item-autolathe
     amount: 3
     whitelist:
-      components:
+      id:
       - Autolathe
 
 - type: pirateBounty
@@ -1024,7 +1027,7 @@
   - name: bounty-item-diamond
     amount: 5
     whitelist:
-      components:
+      id:
       - MaterialDiamond
 
 - type: pirateBounty
@@ -1035,7 +1038,7 @@
   - name: bounty-item-plasmacanister
     amount: 5
     whitelist:
-      components:
+      id:
       - PlasmaCanister
 
 - type: pirateBounty
@@ -1046,7 +1049,7 @@
   - name: bounty-item-contracrate
     amount: 1
     whitelist:
-      components:
+      id:
       - CrateTradeContrabandSecureNormal
 
 - type: pirateBounty
@@ -1057,5 +1060,5 @@
   - name: bounty-item-hydrotray
     amount: 2
     whitelist:
-      components:
+      id:
       - hydroponicsTray
