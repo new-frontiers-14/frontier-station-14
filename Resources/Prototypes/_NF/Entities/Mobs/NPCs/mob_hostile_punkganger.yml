@@ -3,7 +3,6 @@
   abstract: true
   parent:
   - MobHumanoidHostileBase
-  - MobHumanoidHostileAISimpleRanged
   id: MobPunkBase
   components:
   - type: NpcFactionMember
@@ -53,7 +52,9 @@
     - PunkGangerGearMelee
 
 - type: entity
-  parent: MobPunkBase
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerPistol
   noSpawn: true
   components:
@@ -73,7 +74,9 @@
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
-  parent: MobPunkBase
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerShotgun
   noSpawn: true
   components:
@@ -84,6 +87,13 @@
     proto: ShellShotgun
     capacity: 1
     count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
 - type: entity
   parent:
@@ -97,7 +107,9 @@
     - PunkGangerArmoredGearMelee
 
 - type: entity
-  parent: MobPunkBase
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerArmoredElite
   name: punk gang leader
   noSpawn: true
