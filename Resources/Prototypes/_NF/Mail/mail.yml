@@ -43,7 +43,19 @@
     - id: DrinkGlass
       amount: 2
 
-# TODO: turn this into a full piety kit
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFBible
+  suffix: bible, extended
+  components:
+  - type: Mail
+    contents:
+    - id: Bible
+    - id: ClothingHeadHatBishopMitre
+    - id: ClothingOuterCoatBishop
+    - id: BibleUserImplanter
+
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
@@ -55,6 +67,7 @@
     - id: Weejurnum
     - id: ClothingOuterRobesWeedChurch
     - id: ClothingHeadWeedChurchBishop
+    - id: BibleUserImplanter
 
 - type: entity
   noSpawn: true
@@ -285,7 +298,6 @@
   components:
   - type: Mail
     contents:
-      # Non-kitchen, non-contraband knives and swords, both rolled into one.
     - id: KukriKnife
       orGroup: Knife
     - id: Machete # A little large for an envelope but "we'll live"
@@ -346,7 +358,7 @@
   components:
   - type: Mail
     contents:
-      # Expected value: 2965 spesos
+      # Expected value: 5175 spesos
     - id: SpaceCash1000
       orGroup: Cash
       prob: 0.3
@@ -727,7 +739,7 @@
       orGroup: Donk
       prob: 0.05 # Bad luck.
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -740,7 +752,7 @@
       amount: 3
     - id: PaperMailNFPwrGameAd
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -753,7 +765,7 @@
       amount: 3
     - id: PaperMailNFRedBoolAd
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -765,7 +777,7 @@
     - id: DrinkColaBottleFull
     - id: PaperMailNFSpaceColaAd
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -777,7 +789,7 @@
     - id: DrinkSpaceMountainWindBottleFull
     - id: PaperMailNFSpaceMountainWindAd
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -837,9 +849,9 @@
       orGroup: Smokeable3
       prob: 0.15
 
-# Catchall for food that can't otherwise be created outside of random spawners
+# Catchalls for food that only exist in random spawners
 # Mmm, mail food
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -909,7 +921,7 @@
       amount: 4
       orGroup: Food
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -1056,7 +1068,7 @@
       amount: 2
       orGroup: Food
 
-# TODO: Probably needs a buff.
+# Needs a buff?
 - type: entity
   noSpawn: true
   parent: BaseMail
@@ -1187,21 +1199,21 @@
     contents:
     - id: LuxuryPen
       orGroup: Pen
-      prob: 0.54
+      prob: 0.50
     - id: PenHop
       orGroup: Pen
-      prob: 0.225
+      prob: 0.25
     - id: PenCap
       orGroup: Pen
-      prob: 0.225
+      prob: 0.25
+    # TODO: come up with a slightly less powerful version of these
     # Ultra-rare
-    # Give the less-adventurous players a chance to rewrite documents.
-    - id: CyberPen
-      orGroup: Pen
-      prob: 0.005
-    - id: PenCentcom
-      orGroup: Pen
-      prob: 0.005
+    # - id: CyberPen
+    #   orGroup: Pen
+    #   prob: 0.005
+    # - id: PenCentcom
+    #   orGroup: Pen
+    #   prob: 0.005
     - id: PaperMailNFPaperPusherAd
 
 - type: entity
@@ -1856,3 +1868,13 @@
     contents:
       - id: CigarPlatinumCase
       - id: FlippoEngravedLighter
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFATV
+  suffix: ATV
+  components:
+  - type: Mail
+    contents:
+      - id: VehicleATVNF
