@@ -1,0 +1,415 @@
+# BASE
+- type: entity
+  parent: MobNonHumanHostileBase
+  id: BaseMobArgocyteExpeditions
+  name: argocyte
+  description: A dangerous alien found on the wrong side of planets, known for their propensity for munching on ruins.
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+      task: XenoCompound # Will use this one for now, untill upstream makes custom AI for argocytes
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+  - type: Bloodstream
+    bloodReagent: FluorosulfuricAcid
+    bloodMaxVolume: 75
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 5
+        Structural: 20
+  - type: Body
+    prototype: Animal
+  - type: TypingIndicator
+    proto: alien
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
+    molsPerSecondPerUnitMass: 0.0005
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+
+# VARIANTS
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteSlurvaExpeditions
+  name: slurva
+  description: A pathetic creature, incapable of doing much.
+  components:
+  - type: Sprite
+    layers:
+    - state: slurva
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slurva
+      Dead:
+        Base: slurva_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteBarrierExpeditions
+  name: barrier
+  components:
+  - type: Sprite
+    layers:
+    - state: barrier
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: barrier
+      Dead:
+        Base: barrier_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteSkitterExpeditions
+  name: skitter
+  description: A devious little alien... Make sure they don't run off with your rations!
+  components:
+  - type: Sprite
+    layers:
+    - state: skitter
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: skitter
+      Dead:
+        Base: skitter_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 3
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteSwiperExpeditions
+  name: swiper
+  description: Where did that stack of steel go?
+  components:
+  - type: Sprite
+    layers:
+    - state: swiper
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: swiper
+      Dead:
+        Base: swiper_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteMolderExpeditions
+  name: molder
+  components:
+  - type: Sprite
+    layers:
+    - state: molder
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molder
+      Dead:
+        Base: molder_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocytePouncerExpeditions
+  name: pouncer
+  components:
+  - type: Sprite
+    layers:
+    - state: pouncer
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pouncer
+      Dead:
+        Base: pouncer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 2.5
+        Slash: 7.5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteGliderExpeditions
+  name: glider
+  components:
+  - type: Sprite
+    layers:
+    - state: glider
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: glider
+      Dead:
+        Base: glider_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3.5
+        Slash: 3.5
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 5
+    baseWalkSpeed: 4.5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteHarvesterExpeditions
+  name: harvester
+  components:
+  - type: Sprite
+    layers:
+    - state: harvester
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: harvester
+      Dead:
+        Base: harvester_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+        Slash: 8
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteCrawlerExpeditions
+  name: crawler
+  description: Deadly, pack-animals that maul unsuspecting travelers.
+  components:
+  - type: Sprite
+    layers:
+      - state: crawler
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: crawler
+      Dead:
+        Base: crawler_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 6
+        Slash: 4
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 6.5
+    baseWalkSpeed: 5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteEnforcerExpeditions
+  name: enforcer
+  components:
+  - type: Sprite
+    layers:
+      - state: enforcer
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: enforcer
+      Dead:
+        Base: enforcer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+        Slash: 8
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed: 3
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteFounderExpeditions
+  name: founder
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+    layers:
+      - state: founder
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: founder
+      Dead:
+        Base: founder_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+        Structural: 25
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3
+    baseWalkSpeed: 3
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteLeviathingExpeditions
+  name: leviathing
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+    layers:
+      - state: leviathing
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: leviathing
+      Dead:
+        Base: leviathing_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
+        Structural: 50
