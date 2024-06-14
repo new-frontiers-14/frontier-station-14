@@ -46,3 +46,40 @@
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
 
+- type: entity
+  parent: ClothingEyesHudMedical
+  id: ClothingEyesPunkInfoShades
+  name: punk infoshades
+  description: How one can see anything in this with all the lights?
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
+    layers:
+    - state: base_glasses_02
+      map: [ "shades_main" ]
+    - state: decor_base_glasses_02
+      map: [ "shades_decor" ]
+      shader: unshaded
+  - type: Clothing
+    sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
+    clothingVisuals:
+      eyes:
+      - state: base_glasses_02
+        map: [ "shades_main" ]
+      - state: decor_base_glasses_02
+        map: [ "shades_decor" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+      - shades_main:
+          base_glasses_02: CyberpunkNeon
+        shades_decor:
+          decor_base_glasses_02: CyberpunkNeon
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
