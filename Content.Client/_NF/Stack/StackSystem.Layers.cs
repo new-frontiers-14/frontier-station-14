@@ -21,7 +21,7 @@ namespace Content.Client.Stack
             switch (comp.LayerFunction)
             {
                 case StackLayerFunction.Threshold:
-                    if (TryComp<ThresholdStackLayerFunctionComponent>(uid, out var threshold))
+                    if (TryComp<StackLayerThresholdComponent>(uid, out var threshold))
                     {
                         ApplyThreshold(threshold, ref data);
                         return true;
@@ -36,7 +36,7 @@ namespace Content.Client.Stack
         /// Sets Actual to the number of thresholds that Actual exceeds from the beginning of the list.
         /// Sets MaxCount to the total number of thresholds plus one (for values under thresholds).
         /// </summary>
-        private static void ApplyThreshold(ThresholdStackLayerFunctionComponent comp, ref StackLayerData data)
+        private static void ApplyThreshold(StackLayerThresholdComponent comp, ref StackLayerData data)
         {
             // We must stop before we run out of thresholds or layers, whichever's smaller. 
             data.MaxCount = Math.Min(comp.Thresholds.Count + 1, data.MaxCount);
