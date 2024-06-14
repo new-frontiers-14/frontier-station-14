@@ -503,7 +503,7 @@
 # Essentially a rubber hammer but with explosion noises and RSI
 - type: entity
   name: The Throngler
-  parent: BaseItem
+  parent: ToyHammer
   id: ThronglerToy
   suffix: Toy
   description: Why would you make this?
@@ -513,9 +513,6 @@
       state: icon
     - type: StaminaDamageOnHit
       damage: 0.8
-    - type: Appearance
-    - type: DisarmMalus
-      malus: 0
     - type: MeleeWeapon
       wideAnimationRotation: -135
       attackRate: 10
@@ -526,3 +523,8 @@
         path: /Audio/Effects/explosion_small1.ogg
       soundNoDamage:
         path: /Audio/Effects/explosion_small1.ogg
+    - type: Item
+      size: Ginormous
+      sprite: Objects/Weapons/Melee/Throngler-in-hand.rsi
+    - type: DisarmMalus
+      malus: 0
