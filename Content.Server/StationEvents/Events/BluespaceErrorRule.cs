@@ -31,39 +31,42 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
 
-    protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule,
-        GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
+        // Select a random grid path
+        var selectedGridPath = _random.Pick(component.GridPaths);
         var shuttleMap = _mapManager.CreateMap();
         var options = new MapLoadOptions
         {
             LoadMap = true,
         };
 
-        if (!_map.TryLoad(shuttleMap, component.GridPath, out var gridUids, options))
+        if (!_map.TryLoad(shuttleMap, selectedGridPath, out var gridUids, options))
             return;
+
         component.GridUid = gridUids[0];
         if (component.GridUid is not EntityUid gridUid)
             return;
+
         component.startingValue = _pricing.AppraiseGrid(gridUid);
         _shuttle.SetIFFColor(gridUid, component.Color);
         var offset = _random.NextVector2(1350f, 2200f);
         var mapId = GameTicker.DefaultMap;
         var mapUid = _mapManager.GetMapEntityId(mapId);
+
         if (TryComp<ShuttleComponent>(component.GridUid, out var shuttle))
         {
             _shuttle.FTLToCoordinates(gridUid, shuttle, new EntityCoordinates(mapUid, offset), 0f, 0f, 30f);
         }
-
     }
 
     protected override void Ended(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, component, gameRule, args);
 
-        if(!EntityManager.TryGetComponent<TransformComponent>(component.GridUid, out var gridTransform))
+        if (!EntityManager.TryGetComponent<TransformComponent>(component.GridUid, out var gridTransform))
         {
             Log.Error("bluespace error objective was missing transform component");
             return;
@@ -71,7 +74,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         if (gridTransform.GridUid is not EntityUid gridUid)
         {
-            Log.Error( "bluespace error has no associated grid?");
+            Log.Error("bluespace error has no associated grid?");
             return;
         }
 
@@ -98,12 +101,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
         }
 
-
         var query = EntityQuery<StationBankAccountComponent>();
         foreach (var account in query)
         {
-            _cargo.DeductFunds(account, (int) -(gridValue * component.RewardFactor));
+            _cargo.DeductFunds(account, (int)-(gridValue * component.RewardFactor));
         }
     }
 }
-
