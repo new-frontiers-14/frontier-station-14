@@ -1,2 +1,2 @@
-food-system-nasty = This food gross.
-food-system-toxin = This food bad.
+food-system-nasty = That food was gross.
+food-system-toxin = That food was bad.

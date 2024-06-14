@@ -1,0 +1,21 @@
+- type: reagent
+  id : Tramoxadone
+  name: reagent-name-tramoxadone
+  group: Medicine
+  desc: reagent-desc-tramoxadone
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#880077"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        damage:
+          types:
+            Blunt: -2
+            Piercing: -2
+            Slash: -2

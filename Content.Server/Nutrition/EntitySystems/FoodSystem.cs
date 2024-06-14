@@ -206,6 +206,18 @@ public sealed class FoodSystem : EntitySystem
         return (true, true);
     }
 
+    public enum Quality // Frontier
+    {
+        Toxin,
+        Nasty,
+        Normal,
+        High,
+        Junk,
+        Mail,
+        Fiber,
+        Trash
+    }
+
     private void OnDoAfter(Entity<FoodComponent> entity, ref ConsumeDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
@@ -279,18 +291,8 @@ public sealed class FoodSystem : EntitySystem
         {
             if (quality == null)
                 continue;
-            else if (quality == "High")
-                entity.Comp.FinalQuality = "High";
-            else if (quality == "Normal")
-                entity.Comp.FinalQuality = "Normal";
-            else if (quality == "Junk")
-                entity.Comp.FinalQuality = "Junk";
-            else if (quality == "Nasty")
-                entity.Comp.FinalQuality = "Nasty";
-            else if (quality == "Toxin")
-                entity.Comp.FinalQuality = "Toxin";
-            else if ((quality == "Trash") || (quality == "Mail") || (quality == "Fiber"))
-                entity.Comp.FinalQuality = "Trash";
+            else
+                entity.Comp.FinalQuality = quality;
 
             if (reverseFoodQuality)
             {
@@ -393,7 +395,7 @@ public sealed class FoodSystem : EntitySystem
                         _vomit.Vomit(args.Target.Value);
                 }
             }
-            else if (entity.Comp.FinalQuality == "Trash")
+            else if (entity.Comp.FinalQuality == "Trash" || entity.Comp.FinalQuality == "Mail" || entity.Comp.FinalQuality == "Fiber")
             {
                 if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
                 {
@@ -556,35 +558,39 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
-            // Frontier - Food system hack job
+            // Frontier - Food System
             var foodQuality = component.Quality;
-            var foodQualityblock = false;
+            bool foodQualityBlock = false;
+
+            // Map each quality to the corresponding component property for digestion capability
+            var digestionMap = new Dictionary<string, bool>
+            {
+                {"Mail", comp.MailDigestion},
+                {"Fiber", comp.FiberDigestion},
+                {"Trash", comp.TrashDigestion}
+            };
+
             foreach (var quality in foodQuality)
             {
-                if (quality == "Mail" || quality == "Fiber" || quality == "Trash")
+                if (digestionMap.ContainsKey(quality))
                 {
-                    if (comp.MailDigestion && quality == "Mail")
+                    // Set foodQualityBlock based on whether the specific digestion capability is true
+                    // If the component can digest this type of quality, set to false and break out of the loop
+                    if (digestionMap[quality])
                     {
-                        foodQualityblock = false;
-                        break;
-                    }
-                    else if (comp.FiberDigestion && quality == "Fiber")
-                    {
-                        foodQualityblock = false;
-                        break;
-                    }
-                    else if (comp.TrashDigestion && quality == "Trash")
-                    {
-                        foodQualityblock = false;
+                        foodQualityBlock = false;
                         break;
                     }
                     else
-                        foodQualityblock = true;
+                    {
+                        // If the component cannot digest this quality, set to true
+                        foodQualityBlock = true;
+                    }
                 }
             }
-            if (foodQualityblock)
+            if (foodQualityBlock)
                 return false;
-            // Frontier - Food system hack job
+            // Frontier - Food System
 
             // Find a stomach with a SpecialDigestible
             if (comp.SpecialDigestible == null)
