@@ -148,8 +148,58 @@
 
 - type: entity
   noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayWizard
+  suffix: cosplay-wizard, extended
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingOuterWizard
+    - id: ClothingHeadHatWizard
+    - id: ClothingShoesWizard
+    - id: WizardStaffMeleeBase
+      orGroup: Staff
+      prob: 0.6
+    - id: PonderingOrb
+      orGroup: Staff
+      prob: 0.3
+    - id: RGBStaff
+      orGroup: Staff
+      prob: 0.1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayMaid
+  suffix: cosplay-maid, extended
+  components:
+  - type: Mail
+    contents:
+      - id: UniformMaid
+        orGroup: Uniform
+      - id: ClothingUniformJumpskirtJanimaid
+        orGroup: Uniform
+      - id: ClothingUniformJumpskirtJanimaidmini
+        orGroup: Uniform
+      - id: MegaSprayBottle
+      - id: ClothingHandsGlovesColorWhite
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFCosplayNurse
+  suffix: cosplay-nurse, extended
+  components:
+  - type: Mail
+    contents:
+      - id: ClothingUniformJumpskirtNurse
+      - id: ClothingHeadNurseHat
+      - id: SyringeOpporozidone
+
+- type: entity
+  noSpawn: true
   parent: BaseMailLarge
-  id: MailNFPowerTool
+  id: MailNFPowerTool 
   suffix: power tool
   components:
   - type: Mail
@@ -335,23 +385,6 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMailLarge
-  id: MailNFKendoKit
-  suffix: kendo kit
-  components:
-  - type: Mail
-    contents: # A lot of stuff here, seems spammy.
-    - id: ClothingUniformKendoHakama
-      amount: 2
-    - id: ClothingOuterArmorKendoBogu
-      amount: 2
-    - id: ClothingHeadHelmetKendoMen
-      amount: 2
-    - id: Shinai
-      amount: 2
-
-- type: entity
-  noSpawn: true
   parent: BaseMail
   id: MailNFMoney
   suffix: money, extended
@@ -436,6 +469,21 @@
       orGroup: Muffin4
       prob: 0.5
 
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFPAI
+  suffix: PAI, extended
+  components:
+  - type: Mail
+    contents:
+    - id: PersonalAI
+      orGroup: PAI
+      prob: 0.99
+      # Ultra rare
+    - id: SyndicatePersonalAI
+      orGroup: PAI
+      prob: 0.01
 
 - type: entity
   noSpawn: true
@@ -650,6 +698,18 @@
       orGroup: ThreateningObject
     - id: OrganHumanHeart
       orGroup: ThreateningObject
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSecurityNFSpaceLaw
+  suffix: spacelaw, extended
+  components:
+  - type: Mail
+    contents:
+    - id: HyperlinkBookSpaceLaw
+    - id: HyperlinkBookNfsdSop
+    - id: PaperMailNFSpaceLaw
 
 # Frontier Mail (Pony Express?)
 - type: entity
@@ -1172,22 +1232,6 @@
   - type: Mail
     contents:
     - id: MysteryFigureBoxBulk
-
-- type: entity
-  noSpawn: true
-  parent: BaseMail
-  id: MailNFPAI
-  suffix: PAI, extended
-  components:
-  - type: Mail
-    contents:
-    - id: PersonalAI
-      orGroup: PAI
-      prob: 0.99
-      # Ultra rare
-    - id: SyndicatePersonalAI
-      orGroup: PAI
-      prob: 0.01
 
 - type: entity
   noSpawn: true
@@ -1738,19 +1782,6 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
-  id: MailNFSkub
-  suffix: skub, extended
-  components:
-  - type: Mail
-    isFragile: true
-    contents:
-      - id: Skub
-      - id: ClothingHeadHatSkub
-      - id: ClothingOuterSkub
-
-- type: entity
-  noSpawn: true
-  parent: BaseMailLarge
   id: MailNFBuildABuddy
   suffix: Build-a-Buddy
   components:
@@ -1773,44 +1804,6 @@
 - type: entity
   noSpawn: true
   parent: BaseMail
-  id: MailNFCosplayWizard
-  suffix: cosplay-wizard, extended
-  components:
-  - type: Mail
-    contents:
-    - id: ClothingOuterWizard
-    - id: ClothingHeadHatWizard
-    - id: ClothingShoesWizard
-    - id: WizardStaffMeleeBase
-      orGroup: Staff
-      prob: 0.6
-    - id: PonderingOrb
-      orGroup: Staff
-      prob: 0.3
-    - id: RGBStaff
-      orGroup: Staff
-      prob: 0.1
-
-- type: entity
-  noSpawn: true
-  parent: BaseMail
-  id: MailNFCosplayMaid
-  suffix: cosplay-maid, extended
-  components:
-  - type: Mail
-    contents:
-      - id: UniformMaid
-        orGroup: Uniform
-      - id: ClothingUniformJumpskirtJanimaid
-        orGroup: Uniform
-      - id: ClothingUniformJumpskirtJanimaidmini
-        orGroup: Uniform
-      - id: MegaSprayBottle
-      - id: ClothingHandsGlovesColorWhite
-
-- type: entity
-  noSpawn: true
-  parent: BaseMail
   id: MailNFTacticalMaid
   suffix: tactical maid
   components:
@@ -1820,18 +1813,6 @@
       - id: ClothingHeadHatTacticalMaidHeadband
       - id: MegaSprayBottle
       - id: ClothingHandsTacticalMaidGloves
-
-- type: entity
-  noSpawn: true
-  parent: BaseMail
-  id: MailNFCosplayNurse
-  suffix: cosplay-nurse, extended
-  components:
-  - type: Mail
-    contents:
-      - id: ClothingUniformJumpskirtNurse
-      - id: ClothingHeadNurseHat
-      - id: SyringeOpporozidone
 
 # These could use separate sprites.  That would be a nice touch.
 - type: entity
@@ -1879,3 +1860,190 @@
   - type: Mail
     contents:
       - id: VehicleATVNF
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFKendoKit
+  suffix: kendo kit
+  components:
+  - type: Mail
+    contents: # A lot of stuff here, seems spammy.
+    - id: ClothingUniformKendoHakama
+      amount: 2
+    - id: ClothingOuterArmorKendoBogu
+      amount: 2
+    - id: ClothingHeadHelmetKendoMen
+      amount: 2
+    - id: Shinai
+      amount: 2
+
+# Base Nyano mail
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSake
+  suffix: osake
+  components:
+  - type: Mail
+    contents:
+    - id: DrinkSakeCup
+      amount: 2
+    - id: DrinkTokkuri
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailBlockGameDIY
+  suffix: blockgamediy
+  components:
+  - type: Mail
+    contents:
+    - id: BlockGameArcadeComputerCircuitboard
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCigars
+  suffix: Cigars
+  components:
+  - type: Mail
+    contents:
+    - id: CigarCase
+    - id: Lighter
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCosplayArc
+  suffix: cosplay-arc
+  components:
+  - type: Mail
+    openSound: /Audio/Nyanotrasen/Voice/Felinid/cat_wilhelm.ogg
+    contents:
+    - id: ClothingCostumeArcDress
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCosplayGeisha
+  suffix: cosplay-geisha
+  components:
+  - type: Mail
+    contents:
+      - id: UniformGeisha
+      - id: DrinkTeapot
+      - id: DrinkTeacup
+        amount: 3
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailCosplaySchoolgirl
+  suffix: cosplay-schoolgirl
+  components:
+  - type: Mail
+    contents:
+    - id: UniformSchoolgirlBlack
+      orGroup: Color
+    - id: UniformSchoolgirlBlue
+      orGroup: Color
+    - id: UniformSchoolgirlCyan
+      orGroup: Color
+    - id: UniformSchoolgirlGreen
+      orGroup: Color
+    - id: UniformSchoolgirlOrange
+      orGroup: Color
+    - id: UniformSchoolgirlPink
+      orGroup: Color
+    - id: UniformSchoolgirlPurple
+      orGroup: Color
+    - id: UniformSchoolgirlRed
+      orGroup: Color
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailFlowers
+  suffix: flowers
+  components:
+  - type: Mail
+    contents:
+    # TODO actual flowers
+    - id: ClothingHeadHatFlowerWreath
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNoir
+  suffix: noir
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingUniformJumpsuitDetectiveGrey
+    - id: ClothingUniformJumpskirtDetectiveGrey
+    - id: ClothingHeadHatBowlerHat
+    - id: ClothingOuterCoatGentle
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailRestraints
+  suffix: restraints
+  components:
+  - type: Mail
+    contents:
+    - id: Handcuffs
+    - id: ClothingMaskMuzzle
+    - id: ClothingEyesBlindfold
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSpaceVillainDIY
+  suffix: spacevilliandiy
+  components:
+  - type: Mail
+    contents:
+    - id: SpaceVillainArcadeComputerCircuitboard
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSunglasses
+  suffix: Sunglasses
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingEyesGlassesSunglasses
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailWinterCoat
+  suffix: wintercoat
+  components:
+  - type: Mail
+    contents:
+    - id: ClothingOuterWinterCoat
+      orGroup: Coat
+    - id: ClothingOuterWinterCoatLong
+      orGroup: Coat
+    - id: ClothingOuterWinterCoatPlaid
+      orGroup: Coat
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSecurityNonlethalsKit
+  suffix: nonlethalskit
+  components:
+  - type: Mail
+    contents:
+    - id: Flash
+      maxAmount: 2
+    - id: GrenadeFlashBang
+      maxAmount: 2
+    - id: Handcuffs
+      maxAmount: 2
