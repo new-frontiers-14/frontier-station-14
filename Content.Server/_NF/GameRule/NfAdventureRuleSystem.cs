@@ -123,6 +123,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
+        
         var prison = "Maps/_NF/POI/prison.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
