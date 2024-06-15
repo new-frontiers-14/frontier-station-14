@@ -1,0 +1,29 @@
+- type: vessel
+  id: Dual
+  name: NSV Двойственный
+  description: Cреднегабаритный грузовой корабль,  предназначенный для перевозки "особых" товаров. Рекомендуемое количество экипажа 3-5 человека.
+  price: 79990
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Scrap/dual.yml
+
+- type: gameMap
+  id: Dual
+  mapName: 'NSV Двойственный'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Scrap/dual.yml
+  minPlayers: 0
+  stations:
+    Dual:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Двойственный {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

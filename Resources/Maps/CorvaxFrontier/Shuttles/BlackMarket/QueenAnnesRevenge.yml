@@ -1499,7 +1499,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16876.586
+      secondsUntilStateChange: -16946.115
       state: Opening
   - uid: 10
     components:
@@ -1511,7 +1511,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16876.352
+      secondsUntilStateChange: -16945.88
       state: Opening
   - uid: 11
     components:
@@ -1523,7 +1523,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16876.135
+      secondsUntilStateChange: -16945.664
       state: Opening
   - uid: 12
     components:
@@ -1535,7 +1535,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16877.484
+      secondsUntilStateChange: -16947.014
       state: Opening
   - uid: 13
     components:
@@ -1547,7 +1547,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16877.734
+      secondsUntilStateChange: -16947.264
       state: Opening
   - uid: 14
     components:
@@ -1559,7 +1559,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16878.02
+      secondsUntilStateChange: -16947.549
       state: Opening
 - proto: AirSensor
   entities:
@@ -3834,6 +3834,14 @@ entities:
     - type: Transform
       pos: 3.7870693,5.5213737
       parent: 1
+- proto: ComputerStationRecords
+  entities:
+  - uid: 463
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,0.5
+      parent: 1
 - proto: ComputerTabletopIFF
   entities:
   - uid: 990
@@ -4141,53 +4149,6 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-- proto: filingCabinetDrawer
-  entities:
-  - uid: 463
-    components:
-    - type: Transform
-      pos: 3.5,0.5
-      parent: 1
-    - type: Storage
-      storedItems:
-        464:
-          position: 0,0
-          _rotation: South
-        465:
-          position: 1,0
-          _rotation: South
-        466:
-          position: 2,0
-          _rotation: South
-        467:
-          position: 3,0
-          _rotation: South
-        468:
-          position: 4,0
-          _rotation: South
-        469:
-          position: 5,0
-          _rotation: South
-        470:
-          position: 6,0
-          _rotation: South
-        471:
-          position: 7,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 464
-          - 465
-          - 466
-          - 467
-          - 468
-          - 469
-          - 470
-          - 471
 - proto: FireExtinguisher
   entities:
   - uid: 472
@@ -5373,56 +5334,6 @@ entities:
     - type: Transform
       pos: -1.5,-7.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 464
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 465
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 466
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 467
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 468
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 469
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 470
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
-  - uid: 471
-    components:
-    - type: Transform
-      parent: 463
-    - type: Physics
-      canCollide: False
 - proto: PaperScrap
   entities:
   - uid: 592
@@ -7965,7 +7876,7 @@ entities:
       pos: 5.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17093.635
+      secondsUntilStateChange: -17163.164
       state: Opening
   - uid: 974
     components:
@@ -7973,7 +7884,7 @@ entities:
       pos: 3.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17093.035
+      secondsUntilStateChange: -17162.564
       state: Opening
   - uid: 975
     components:
@@ -7981,7 +7892,7 @@ entities:
       pos: 1.5,-6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17092.484
+      secondsUntilStateChange: -17162.014
       state: Opening
   - uid: 976
     components:
@@ -7989,7 +7900,7 @@ entities:
       pos: -0.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17119.752
+      secondsUntilStateChange: -17189.281
       state: Opening
   - uid: 977
     components:
@@ -7997,7 +7908,7 @@ entities:
       pos: -0.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17094.734
+      secondsUntilStateChange: -17164.264
       state: Opening
   - uid: 978
     components:
@@ -8005,6 +7916,6 @@ entities:
       pos: 5.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17094.184
+      secondsUntilStateChange: -17163.713
       state: Opening
 ...
