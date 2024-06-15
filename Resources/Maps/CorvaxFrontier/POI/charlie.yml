@@ -90,7 +90,7 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: InAir
+      bodyStatus: OnGround
       angularDamping: 999999
       linearDamping: 999999
       fixedRotation: False
@@ -2102,7 +2102,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -4298.4263
+      secondsUntilStateChange: -5007.457
       state: Opening
   - uid: 386
     components:
@@ -3511,6 +3511,16 @@ entities:
         - DoorStatus: Open
         2676:
         - DoorStatus: Open
+  - uid: 311
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 2
+  - uid: 312
+    components:
+    - type: Transform
+      pos: 2.5,1.5
+      parent: 2
   - uid: 318
     components:
     - type: Transform
@@ -3538,14 +3548,11 @@ entities:
       links:
       - 2671
       - 301
-      - 1417
     - type: DeviceLinkSource
       linkedPorts:
         2671:
         - DoorStatus: Open
         2666:
-        - DoorStatus: Open
-        1417:
         - DoorStatus: Open
         301:
         - DoorStatus: Open
@@ -3629,6 +3636,11 @@ entities:
     - type: DeviceLinkSink
       links:
       - 896
+  - uid: 442
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 2
   - uid: 633
     components:
     - type: Transform
@@ -3705,6 +3717,16 @@ entities:
       linkedPorts:
         2672:
         - DoorStatus: Open
+  - uid: 859
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 2
+  - uid: 860
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
+      parent: 2
   - uid: 1417
     components:
     - type: Transform
@@ -3713,33 +3735,43 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 3
       links:
-      - 2666
-      - 381
       - 301
-    - type: DeviceLinkSource
-      linkedPorts:
-        381:
-        - DoorStatus: Open
   - uid: 2661
     components:
     - type: Transform
       pos: 4.5,-14.5
       parent: 2
     - type: DeviceLinkSink
-      invokeCounter: 2
+      invokeCounter: 4
       links:
       - 401
       - 318
+      - 2684
+      - 2685
+    - type: DeviceLinkSource
+      linkedPorts:
+        2684:
+        - DoorStatus: Open
+        2685:
+        - DoorStatus: Open
   - uid: 2662
     components:
     - type: Transform
       pos: 1.5,-14.5
       parent: 2
     - type: DeviceLinkSink
-      invokeCounter: 2
+      invokeCounter: 4
       links:
       - 401
       - 318
+      - 2684
+      - 2685
+    - type: DeviceLinkSource
+      linkedPorts:
+        2684:
+        - DoorStatus: Open
+        2685:
+        - DoorStatus: Open
   - uid: 2666
     components:
     - type: Transform
@@ -3752,8 +3784,6 @@ entities:
       - 301
     - type: DeviceLinkSource
       linkedPorts:
-        1417:
-        - DoorStatus: Open
         301:
         - DoorStatus: Open
   - uid: 2667
@@ -3917,10 +3947,37 @@ entities:
     - type: Transform
       pos: 2.5,-5.5
       parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+      links:
+      - 2662
+      - 2661
+    - type: DeviceLinkSource
+      linkedPorts:
+        2662:
+        - DoorStatus: Open
+        2661:
+        - DoorStatus: Open
   - uid: 2685
     components:
     - type: Transform
       pos: 3.5,-5.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+      links:
+      - 2662
+      - 2661
+    - type: DeviceLinkSource
+      linkedPorts:
+        2661:
+        - DoorStatus: Open
+        2662:
+        - DoorStatus: Open
+  - uid: 3126
+    components:
+    - type: Transform
+      pos: 6.5,-2.5
       parent: 2
 - proto: BlastDoorOpen
   entities:
@@ -7631,6 +7688,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-26.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    missingComponents:
+    - Construction
+    - Anchorable
 - proto: ComputerMassMedia
   entities:
   - uid: 892
@@ -7701,6 +7763,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-26.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    missingComponents:
+    - Anchorable
+    - Construction
 - proto: ComputerTabletopCrewMonitoring
   entities:
   - uid: 758
@@ -7717,6 +7784,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-27.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    missingComponents:
+    - Anchorable
+    - Construction
 - proto: ComputerWallmountBlackMarketBankATM
   entities:
   - uid: 2641
@@ -12742,16 +12814,6 @@ entities:
       parent: 2
 - proto: HighSecDoor
   entities:
-  - uid: 311
-    components:
-    - type: Transform
-      pos: 2.5,-8.5
-      parent: 2
-  - uid: 312
-    components:
-    - type: Transform
-      pos: 3.5,-8.5
-      parent: 2
   - uid: 316
     components:
     - type: Transform
@@ -12791,16 +12853,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-2.5
-      parent: 2
-  - uid: 859
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 2
-  - uid: 860
-    components:
-    - type: Transform
-      pos: 3.5,-5.5
       parent: 2
 - proto: KitchenMicrowave
   entities:
@@ -13848,7 +13900,7 @@ entities:
       pos: 5.5,7.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 2483.0462384
+      nextDrop: 3646.8826195
 - proto: PosterContrabandEnlistGorlexDD
   entities:
   - uid: 2395
@@ -13858,7 +13910,7 @@ entities:
       pos: -11.5,-13.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 3810.0462384
+      nextDrop: 3646.8826195
 - proto: PosterContrabandKosmicheskayaStantsiyaDD
   entities:
   - uid: 2316
@@ -13868,7 +13920,7 @@ entities:
       pos: -16.5,5.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 5699.0462384
+      nextDrop: 2942.8826195
 - proto: PosterContrabandMoth
   entities:
   - uid: 2995
@@ -13898,7 +13950,7 @@ entities:
       pos: -11.5,16.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 5441.0462384
+      nextDrop: 2604.8826195
 - proto: PoweredlightBlue
   entities:
   - uid: 1424
@@ -15360,6 +15412,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-27.5
       parent: 2
+    - type: Godmode
+      oldDamage: {}
+    missingComponents:
+    - Anchorable
+    - Construction
+    - CommunicationsConsole
 - proto: SyndieFlag
   entities:
   - uid: 1223
@@ -20263,6 +20321,7 @@ entities:
     - type: Transform
       pos: 2.5,10.5
       parent: 2
+    - type: NukeDisk
   - uid: 2434
     components:
     - type: Transform
