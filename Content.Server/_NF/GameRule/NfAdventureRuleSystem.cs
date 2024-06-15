@@ -178,13 +178,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 Offset = _random.NextVector2(500f, 700f)
             }))
         {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("prison", out var stationProto))
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Prison", out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations["prison"], prisonUids);
+                _station.InitializeNewStation(stationProto.Stations["Prison"], prisonUids);
             }
 
             var meta = EnsureComp<MetaDataComponent>(prisonUids[0]);
-            _meta.SetEntityName(prisonUids[0], "prison", meta);
+            _meta.SetEntityName(prisonUids[0], "Prison", meta);
             _shuttle.SetIFFColor(prisonUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
