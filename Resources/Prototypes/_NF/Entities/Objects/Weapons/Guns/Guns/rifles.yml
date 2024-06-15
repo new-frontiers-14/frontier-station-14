@@ -83,24 +83,3 @@
         whitelist:
           tags:
             - CartridgeRifle
-
-
-#Crate for expedition rewards
-- type: entity
-  id: CrateArmoryRifleGestio
-  parent: CrateWeaponSecure
-  name: Gestio rifle crate
-  description: Contains two old prototype, burst-fire rifles with six low capacity mags. Requires Armory access to open.
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponRifleGestio
-        amount: 2
-      - id: MagazineRifleLowCapacity
-        amount: 6
-
-#For future once system of unregistered weapons is in place
-- type: entity
-  parent: [ WeaponRifleGestio, UnregisteredFirearmBase ]
-  noSpawn: true
-  id: WeaponRifleGestioExpedition
