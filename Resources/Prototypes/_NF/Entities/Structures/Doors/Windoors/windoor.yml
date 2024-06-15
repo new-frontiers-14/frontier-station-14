@@ -6,29 +6,33 @@
   id: WindoorSecureMercenaryLocked
   suffix: Mercenary, Locked
   components:
-  - type: AccessReader
-    access: [["Captain"], ["Mercenary"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureFrontierLocked
   suffix: Frontier, Locked
   components:
-  - type: AccessReader
-    access: [["Frontier"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontier ]
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureFrontierCommandLocked
   suffix: Frontier Command, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFrontierCommand ]
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureHeadOfSecurityLocked
   suffix: Sheriff, Locked
   components:
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfSecurity ]

@@ -46,3 +46,26 @@
       - id: Drill
       - id: Hemostat
       - id: Retractor
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdTrackingBundle
+  name: tracking bundle
+  description: "All the equipment needed to track almost anything, careful tracking people"
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherNfsdLake
+      - id: BoxTrackingDarts
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdEmpBundle
+  name: NFSD Lake EMP bundle
+  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherNfsdLake
+      - id: GrenadeEmp
+        amount: 12

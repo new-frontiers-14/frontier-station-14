@@ -58,18 +58,21 @@
   name: skeleton motorcycle
   description: Bad to the Bone.
   components:
-    - type: Storage
-      grid:
-      - 0,0,1,3
-      - 3,0,6,3
-      - 8,0,9,3
-      maxItemSize: Huge
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-    - type: UserInterface
-      interfaces:
-      - key: enum.StorageUiKey.Key
+  - type: Storage
+    grid:
+    - 0,0,1,3
+    - 3,0,6,3
+    - 8,0,9,3
+    maxItemSize: Huge
+    blacklist:
+      components:
+      - HumanoidAppearance
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
 
 # New Frontier vehicles

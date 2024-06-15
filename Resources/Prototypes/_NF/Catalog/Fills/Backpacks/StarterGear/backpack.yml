@@ -1,55 +1,12 @@
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackMercenary
+  parent: [ClothingBackpackMercenary, ClothingBackpackFilled]
   id: ClothingBackpackMercenaryFilled
-  components:
-    - type: StorageFill
-      contents:
-      - id: BoxSurvival
-      - id: Lighter
-      - id: CigPackBlack
-      - id: Flash
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpack
-  id: ClothingBackpackReporterFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: ComputerMassMediaCircuitboard
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackMedical
-  id: ClothingBackpackPsychologistFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: RubberStampPsychologist
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpack
-  id: ClothingBackpackStcFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvival
-      - id: RubberStampStc
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackPilot
+  parent: [ClothingBackpackPilot, ClothingBackpackFilled]
   id: ClothingBackpackPilotFilled
-  components:
-    - type: StorageFill
-      contents:
-      - id: BoxSurvival
-      - id: Lighter
-      - id: CigPackGreen
 
 - type: entity
   noSpawn: true
@@ -72,7 +29,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvival
       - id: Flash
       - id: RubberStampSr
       - id: DoorRemoteCommand
@@ -81,12 +37,16 @@
 
 - type: entity
   noSpawn: true
+  parent: [ ClothingBackpackIan, ClothingBackpackSrFilled ]
+  id: ClothingBackpackIanSrFilled
+
+- type: entity
+  noSpawn: true
   parent: ClothingBackpackNfsdBrown
   id: ClothingBackpackNfsdBrownFilled
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalNfsd
       - id: Flash
       - id: MagazinePistol
       - id: FrontierUplinkCoin10
@@ -103,7 +63,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalNfsd
       - id: Flash
       - id: ForensicPad
       - id: MagazinePistol
@@ -117,7 +76,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalNfsd
       - id: Flash
       - id: MagazinePistol
       - id: BaseSecurityUplinkRadioOfficer
@@ -129,7 +87,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalNfsd
       - id: Flash
       - id: MagazinePistol
       - id: RubberStampSheriff

@@ -114,7 +114,7 @@
     metabolizerTypes: [ Goblin ]
 
 - type: entity
-  parent: [OrganAnimalStomach, OrganHumanStomach]
+  parent: [ OrganHumanStomach, OrganAnimalStomach ]
   id: OrganGoblinStomach
   name: stomach
   suffix: Goblin
@@ -134,29 +134,9 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
-#    reverseFoodQuality: true
-#    trashDigestion: true
-#    specialDigestible:
-#      tags:
-#      - Raw
-#      - Meat
-#      - Fruit
-#      - Pill
-#      - Crayon
-#      - Egg
-#      - Trash
-#      - FoodSnack
-#      - Soup
-#      - Bread
-#      - DonkPocket
-#      - Donut
-#      - Nugget
-#      - Pancake
-#      - Pie
-#      - Pizza
   - type: Metabolizer
     maxReagents: 3
-    metabolizerTypes: [ Goblin ]
+    metabolizerTypes: [ Animal ] # [ Goblin ]
     removeEmpty: true
     groups:
     - id: Food

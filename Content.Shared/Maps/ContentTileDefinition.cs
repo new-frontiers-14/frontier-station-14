@@ -49,12 +49,10 @@ namespace Content.Shared.Maps
         [DataField("canShovel")] public bool CanShovel { get; private set; }
         //Delta V
 
-        /// <summary>
-        /// Whether this tile can be pried by an advanced prying tool if not pryable otherwise.
-        /// </summary>
-        [DataField("canAxe")] public bool CanAxe { get; private set; }
-
-        [DataField("canWirecutter")] public bool CanWirecutter { get; private set; }
+        /// <remarks>
+        /// Legacy AF but nice to have.
+        /// </remarks>
+        public bool CanCrowbar => DeconstructTools.Contains(PryingToolQuality);
 
         /// <summary>
         /// These play when the mob has shoes on.

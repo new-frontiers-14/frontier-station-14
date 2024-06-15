@@ -5,6 +5,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
@@ -63,31 +64,62 @@ public abstract partial class SharedGunSystem
             !Timing.IsFirstTimePredicted ||
             args.Target == null ||
             args.Used == args.Target ||
-            Deleted(args.Target) ||
-            !TryComp<BallisticAmmoProviderComponent>(args.Target, out var targetComponent) ||
-            targetComponent.Whitelist == null)
+            Deleted(args.Target))
         {
             return;
         }
 
-        args.Handled = true;
-
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.FillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid)
+        // Frontier: better revolver reloading
+        // Ensure the target of interaction has a valid component.
+        var validComponent = false;
+        TimeSpan fillDelay = component.FillDelay; // Default value should not be used.
+        if (TryComp<BallisticAmmoProviderComponent>(args.Target, out var ballisticComponent) && ballisticComponent.Whitelist is not null)
         {
-            BreakOnMove = true,
-            BreakOnDamage = false,
-            NeedHand = true
-        });
+            validComponent = true;
+            fillDelay = ballisticComponent.FillDelay;
+        }
+        else if (TryComp<RevolverAmmoProviderComponent>(args.Target, out var revolverComponent) && revolverComponent.Whitelist is not null)
+        {
+            validComponent = true;
+            fillDelay = revolverComponent.FillDelay;
+        }
+
+        if (validComponent) // End Frontier
+        {
+            args.Handled = true;
+
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, fillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid) // Frontier: component.FillDelay<fillDelay
+            {
+                BreakOnMove = true,
+                BreakOnDamage = false,
+                NeedHand = true
+            });
+        }
+
     }
 
     private void OnBallisticAmmoFillDoAfter(EntityUid uid, BallisticAmmoProviderComponent component, AmmoFillDoAfterEvent args)
     {
-        if (Deleted(args.Target) ||
-            !TryComp<BallisticAmmoProviderComponent>(args.Target, out var target) ||
-            target.Whitelist == null)
+        if (Deleted(args.Target))
             return;
 
-        if (target.Entities.Count + target.UnspawnedCount == target.Capacity)
+        // Frontier: Better revolver reloading
+        BallisticAmmoProviderComponent? ballisticTarget;
+        RevolverAmmoProviderComponent? revolverTarget = null;
+        if (!TryComp(args.Target, out ballisticTarget) && !TryComp(args.Target, out revolverTarget))
+        {
+            return;
+        }
+        if ((ballisticTarget is null || ballisticTarget.Whitelist is null) &&
+            (revolverTarget is null || revolverTarget.Whitelist is null))
+        {
+            // No supported component type with valid whitelist.
+            return;
+        }
+
+        //Check capacity
+        if (ballisticTarget is not null && GetBallisticShots(ballisticTarget) >= ballisticTarget.Capacity ||
+            revolverTarget is not null && GetRevolverCount(revolverTarget) >= revolverTarget.Capacity)
         {
             Popup(
                 Loc.GetString("gun-ballistic-transfer-target-full",
@@ -96,6 +128,7 @@ public abstract partial class SharedGunSystem
                 args.User);
             return;
         }
+        // End Frontier
 
         if (component.Entities.Count + component.UnspawnedCount == 0)
         {
@@ -117,12 +150,15 @@ public abstract partial class SharedGunSystem
         var evTakeAmmo = new TakeAmmoEvent(1, ammo, Transform(uid).Coordinates, args.User);
         RaiseLocalEvent(uid, evTakeAmmo);
 
+        bool validAmmoType = true; // Frontier: do not repeat reload attempts with invalid ammo.
+
         foreach (var (ent, _) in ammo)
         {
             if (ent == null)
                 continue;
 
-            if (!target.Whitelist.IsValid(ent.Value))
+            if (ballisticTarget is not null && ballisticTarget?.Whitelist?.IsValid(ent.Value) != true || // Frontier: better revolver reloading
+                revolverTarget is not null && revolverTarget?.Whitelist?.IsValid(ent.Value) != true) // Frontier: better revolver reloading
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",
@@ -132,6 +168,8 @@ public abstract partial class SharedGunSystem
                     args.User);
 
                 SimulateInsertAmmo(ent.Value, uid, Transform(uid).Coordinates);
+
+                validAmmoType = false; // Frontier: do not retry reloading if the ammo type is different.
             }
             else
             {
@@ -145,9 +183,15 @@ public abstract partial class SharedGunSystem
         }
 
         // repeat if there is more space in the target and more ammo to fill it
-        var moreSpace = target.Entities.Count + target.UnspawnedCount < target.Capacity;
+        // Frontier: better revolver reloading
+        var moreSpace = false;
+        if (ballisticTarget is not null)
+            moreSpace = GetBallisticShots(ballisticTarget) < ballisticTarget.Capacity;
+        else if (revolverTarget is not null)
+            moreSpace = GetRevolverCount(revolverTarget) < revolverTarget.Capacity;
+        // End Frontier
         var moreAmmo = component.Entities.Count + component.UnspawnedCount > 0;
-        args.Repeat = moreSpace && moreAmmo;
+        args.Repeat = moreSpace && moreAmmo && validAmmoType; // Frontier: do not repeat reload attempts with invalid ammo.
     }
 
     private void OnBallisticVerb(EntityUid uid, BallisticAmmoProviderComponent component, GetVerbsEvent<Verb> args)

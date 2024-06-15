@@ -1,0 +1,32 @@
+# Author Info
+# GitHub: Leander_0
+
+# Shuttle Notes:
+# Kestrel looking ship with hangar bay meant to be used along with hoverbikes.
+- type: vessel
+  id: Falcon
+  name: Falcon
+  description: Rebuilt mining vessel made into a pirate ship with hangar bay to store vehicles, fits between 3-4 crew.
+  price: 70000 #Selling price is 22520
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/falcon.yml
+
+- type: gameMap
+  id: Falcon
+  mapName: 'Falcon'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/falcon.yml
+  minPlayers: 0
+  stations:
+    Falcon:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Kestrel {1}' # Very fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Pirate: [ 0, 0 ]

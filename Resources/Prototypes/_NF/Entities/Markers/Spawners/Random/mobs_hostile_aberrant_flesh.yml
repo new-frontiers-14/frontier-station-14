@@ -1,0 +1,24 @@
+- type: entity
+  name: aberrant flesh spawner
+  id: SpawnMobAberrantFleshExpeditions
+  parent: MarkerBase
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobFleshJaredExpeditions
+    - MobFleshJaredOldExpeditions
+    - MobFleshGolemExpeditions
+    - MobFleshGolemAltExpeditions
+    - MobFleshGolemOldExpeditions
+    - MobFleshClampExpeditions
+    - MobFleshClampOldExpeditions
+    - MobFleshLoverExpeditions
+    chance: 1
+    offset: 0.0
