@@ -157,6 +157,9 @@
     slots:
       charger_slot:
         ejectOnInteract: true
+        blacklist: # Frontier
+          components: # Frontier
+          - WizardStaffRechargeable # Frontier
         whitelist:
           components:
           - HitscanBatteryAmmoProvider
@@ -188,6 +191,8 @@
         blacklist:
           tags:
           - PotatoBattery
+          components: # Frontier
+          - WizardStaffRechargeable # Frontier
 
 - type: entity
   parent: BaseItemRecharger
@@ -209,6 +214,9 @@
     slots:
       charger_slot:
         ejectOnInteract: true
+        blacklist: # Frontier
+          components: # Frontier
+          - WizardStaffRechargeable # Frontier
         whitelist:
           components:
           - HitscanBatteryAmmoProvider

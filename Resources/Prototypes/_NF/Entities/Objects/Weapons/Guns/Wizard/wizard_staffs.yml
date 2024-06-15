@@ -1,0 +1,143 @@
+# BASE
+- type: entity
+  parent: BaseItem
+  id: WeaponChargedStaffWizardBase
+  name: battle-wizard tactical staff
+  description: Big magic wand for big spells.
+  abstract: true
+  components:
+  - type: WizardStaffRechargeable
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: change
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    inhandVisuals:
+      left:
+      - state: change-inhand-left
+      right:
+      - state: change-inhand-right
+  - type: StaticPrice
+    price: 190
+
+# VARIATIONS
+## WIZARDS
+- type: entity
+  parent: WeaponChargedStaffWizardBase
+  id: WeaponChargedStaffWizardLightning
+  name: wizard lightning staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: change
+  - type: HitscanBatteryAmmoProvider
+    proto: WizardHitscanLightning
+    fireCost: 40
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    inhandVisuals:
+      left:
+      - state: change-inhand-left
+      right:
+      - state: change-inhand-right
+
+- type: entity
+  parent: WeaponChargedStaffWizardBase
+  id: WeaponChargedStaffWizardIce
+  name: wizard ice staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "cyan"
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletIceGlobe
+    fireCost: 40
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+        color: "cyan"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+        color: "cyan"
+  - type: StaticPrice
+    price: 190
+
+## CULTISTS
+- type: entity
+  parent: WeaponChargedStaffWizardBase
+  id: WeaponChargedStaffCultistBoltDark
+  name: cultist dark bolt staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: animation
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletBloodCultDarkBolt
+    fireCost: 40
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  parent: WeaponChargedStaffWizardBase
+  id: WeaponChargedStaffCultistLightning
+  name: cultist dark lightning staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/staves.rsi
+    layers:
+    - state: animation
+  - type: HitscanBatteryAmmoProvider
+    proto: BloodCultLaser
+    fireCost: 40
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
