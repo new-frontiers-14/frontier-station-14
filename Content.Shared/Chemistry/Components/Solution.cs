@@ -682,7 +682,7 @@ namespace Content.Shared.Chemistry.Components
         /// </summary>
         /// <param name="toTakePer">How much of each reagent to take.</param>
         /// <returns>A new solution containing the reagents taken from the original solution.</returns>
-        public Solution SplitSolutionReagentsEvenly(FixedPoint2 toTakePer)
+        public Solution SplitSolutionPerReagent(FixedPoint2 toTakePer)
         {
             if (toTakePer <= FixedPoint2.Zero)
                 return new Solution();
@@ -694,6 +694,7 @@ namespace Content.Shared.Chemistry.Components
             {
                 var (reagent, quantity) = Contents[i];
 
+                // If the reagent has more than enough volume to remove, no need to remove it from the list.
                 if (quantity > toTakePer)
                 {
                     Contents[i] = new ReagentQuantity(reagent, quantity - toTakePer);
@@ -736,10 +737,11 @@ namespace Content.Shared.Chemistry.Components
             {
                 var (reagent, quantity) = Contents[i];
 
-                // Must be in 
+                // Each reagent to split must be in the set given.
                 if (!reagents.Contains(reagent.Prototype))
                     continue;
 
+                // If the reagent has more than enough volume to remove, no need to remove it from the list.
                 if (quantity > toTakePer)
                 {
                     Contents[i] = new ReagentQuantity(reagent, quantity - toTakePer);

@@ -322,7 +322,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         var (uid, comp) = soln;
         var solution = comp.Solution;
 
-        var splitSol = solution.SplitSolutionReagentsEvenly(quantity);
+        var splitSol = solution.SplitSolutionPerReagent(quantity);
         UpdateChemicals(soln);
         return splitSol;
     }
