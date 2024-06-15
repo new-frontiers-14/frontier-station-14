@@ -1,0 +1,113 @@
+- type: mailDeliveryPool
+  id: RandomNFMailDeliveryPool
+  everyone:
+    # Food/Drink Consumables
+    MailNFBakedGoods: 1.2 # Lots of items in here, slightly higher chance
+    MailNFCake: 0.6
+    MailNFCheese: 0.4
+    MailNFCookies: 0.6
+    MailNFDonkPockets: 0.8
+    MailNFMuffins: 0.6
+    MailNFSnacks: 0.5
+    MailNFSodaPwrGame: 0.2 # Mmm, ads
+    MailNFSodaRedBool: 0.2
+    MailNFSodaSpaceCola: 0.2
+    MailNFSodaSpaceMountainWind: 0.2
+    MailNFSodaSpaceUp: 0.2
+    MailNFUnusualFood: 2
+    MailNFUnusualProduce: 0.8
+    # Booze/Smoke Consumables
+    MailNFAlcohol: 0.5
+    MailSake: 0.05 # MailNFAlcohol has ~10 bottles, should be about a tenth of MailNFAlcohol's weight.
+    MailNFCigarettes: 0.5
+    MailCigars: 0.45
+    MailNFGoldCigars: 0.05
+    MailNFJoints: 0.5
+    # Clothing
+    MailWinterCoat: 0.3
+    MailCosplayArc: 0.3
+    MailCosplayGeisha: 0.3
+    MailNFCosplayMaid: 0.25
+    MailNFTacticalMaid: 0.05 # Shares a pool with NFCosplayMaid as a rare variant
+    MailNFCosplayNurse: 0.3
+    MailCosplaySchoolgirl: 0.3
+    MailNFCosplayWizard: 0.6
+    MailFlowers: 0.3
+    MailNoir: 0.3
+    MailSunglasses: 1
+    MailNFUnusualClothing: 1.5 # Many items in here
+    # Fun
+    MailNFBible: 0.4
+    MailNFWeejurnum: 0.1 # Shares a pool with NFBible as a rare variant
+    MailNFBikeHorn: 0.5
+    MailBlockGameDIY: 0.6
+    MailNFDAW: 0.15
+    MailNFFigurineBulk: 0.6
+    MailNFInstrumentSmall: 1
+    MailNFInstrumentLarge: 1
+    MailNFInstrumentFlatpack: 1
+    MailNFPAI: 1
+    MailNFPlushie: 1
+    MailNFSkub: 0.6
+    MailNFSoaps: 0.75
+    MailNFSoapsOmega: 0.05 # Rare variant
+    MailSpaceVillainDIY: 0.6
+    MailNFThrongler: 0.1
+    MailNFUnicycle: 0.5
+    # Useful
+    MailNFATV: 1
+    MailNFCircuitboardIndustrial: 1.25
+    MailNFCircuitboardService: 1.25
+    MailNFCognizine: 0.5
+    MailNFMedkit: 0.5
+    MailNFIFFBoard: 0.25
+    MailNFMoney: 1
+    MailNFNecrosol: 0.5
+    MailNFOmnizine: 0.5
+    MailNFPen: 0.75
+    MailNFPowerCell: 0.5
+    MailNFPowerTool: 0.6
+    MailNFT2ComponentBox: 0.6
+    MailNFT3ComponentBox: 1.2
+    MailNFT4ComponentBox: 0.2
+    # Weapons
+    MailNFBoxer: 0.2
+    MailNFConscript: 0.2
+    MailNFGladiator: 0.2
+    MailNFKendoKit: 0.2
+    MailNFKnife: 0.7
+    MailNFSword: 0.3
+    # Pranks
+    MailNFBuildABuddy: 0.5
+    MailNFCritter: 1
+    MailNFEMP: 0.5
+    MailRestraints: 0.5 # TODO: figure out what to do with this.
+    MailNFSmoke: 0.5
+    MailNFVagueThreat: 0.4
+
+  # Department and job-specific mail can have slightly higher weights,
+  # since they'll be merged with the everyone pool.
+  departments:
+    Security:
+      MailSecurityDonuts: 3
+      MailSecurityNonlethalsKit: 2
+      MailSecurityNFHudNfsdMed: 1
+      MailSecuritySpaceLaw: 1
+      MailSecurityNFMusket: 1
+      MailNFMedkit: 1.5 # 2 weight total
+
+  jobs:
+    StationRepresentative:
+      MailCommandNFGoldCigars: 0.15 # 0.2 weight total
+      MailCommandNFPlatinumCigars: 0.1
+      MailCommandNFPremiumAlcohol: 0.25
+      MailCommandNFStationPet: 2
+      MailCommandNFPipebombIntern: 1 # TODO: make the "real" pipebomb
+      MailStationRepNFNukeDisk: 1
+    Sheriff:
+      MailSecurityNonlethalsKit: 2
+      MailNFGoldCigars: 0.15 # 0.2 weight total
+      MailCommandNFPlatinumCigars: 0.1
+      MailCommandNFPremiumAlcohol: 0.25
+      MailCommandNFStationPet: 2 # Don't see the harm in this with Smile and Cappy around
+      MailCommandNFPipebombIntern: 1 # TODO: make the "real" pipebomb

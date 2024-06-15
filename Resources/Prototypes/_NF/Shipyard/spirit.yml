@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: Actualcatmoment (https://github.com/Actualcatmoment)
+# Discord: @iNoahGuy
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Spirit
+  name: NM Spirit
+  description: A tiny medical search and rescue shuttle, as nimble as it is cramped. Running costs guarenteed* to be 5% lower than competing models!
+  price: 15500
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/spirit.yml
+
+- type: gameMap
+  id: Spirit
+  mapName: 'NM Spirit'
+  mapPath: /Maps/_NF/Shuttles/spirit.yml
+  minPlayers: 0
+  stations: 
+    Spirit:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spirit {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

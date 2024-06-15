@@ -12,3 +12,4 @@ guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-searchlight = Searchlight
+guide-entry-shipyard-spirit = Spirit
