@@ -133,3 +133,6 @@ ent-MailVagueThreat = { ent-BaseMail }
 ent-MailWinterCoat = { ent-BaseMail }
     .suffix = wintercoat
     .desc = { ent-BaseMail.desc }
+ent-MailBoomBox = { ent-BaseMail }
+    .suffix = boombox
+    .desc = { ent-BaseMail.desc }
