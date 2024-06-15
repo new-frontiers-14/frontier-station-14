@@ -159,8 +159,8 @@ namespace Content.Server.Body.Systems
                     continue;
                 }
 
-                // Frontier: process all reagents, but limit poisons.  If we've processed all the poisons we should, skip to the next reagent.
-                if (reagents >= ent.Comp1.MaxReagentsProcessable && proto.Metabolisms.ContainsKey("Poison"))
+                // Frontier: process all cryogenic reagents.
+                if (reagents >= ent.Comp1.MaxReagentsProcessable && !proto.Metabolisms.ContainsKey("Cryogenic"))
                     continue;
                 // End Frontier
 
@@ -221,7 +221,7 @@ namespace Content.Server.Body.Systems
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
                     // Frontier: We have processed a poison, so count it towards the cap
-                    if (proto.Metabolisms.ContainsKey("Poison"))
+                    if (!proto.Metabolisms.ContainsKey("Cryogenic"))
                         reagents++;
                     // End Frontier
                 }
