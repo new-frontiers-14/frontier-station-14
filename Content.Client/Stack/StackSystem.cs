@@ -8,7 +8,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client.Stack
 {
     [UsedImplicitly]
-    public sealed class StackSystem : SharedStackSystem
+    public sealed partial class StackSystem : SharedStackSystem // Frontier: add partial to class definition
     {
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly ItemCounterSystem _counterSystem = default!;
@@ -56,20 +56,25 @@ namespace Content.Client.Stack
             if (args.Sprite == null || comp.LayerStates.Count < 1)
                 return;
 
+            StackLayerData data = new StackLayerData(); // Frontier: use structure to store StackLayerData
+
             // Skip processing if no actual
-            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.Actual, out var actual, args.Component))
+            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.Actual, out data.Actual, args.Component))
                 return;
 
-            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.MaxCount, out var maxCount, args.Component))
-                maxCount = comp.LayerStates.Count;
+            if (!_appearanceSystem.TryGetData<int>(uid, StackVisuals.MaxCount, out data.MaxCount, args.Component))
+                data.MaxCount = comp.LayerStates.Count;
 
-            if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out var hidden, args.Component))
-                hidden = false;
+            if (!_appearanceSystem.TryGetData<bool>(uid, StackVisuals.Hide, out data.Hidden, args.Component))
+                data.Hidden = false;
+
+            if (comp.LayerFunction != StackLayerFunction.None) // Frontier: use stack layer function to modify appearance if provided.
+                ApplyLayerFunction(uid, comp, ref data); // Frontier: definition in _NF/Stack/StackSystem.Layers.cs
 
             if (comp.IsComposite)
-                _counterSystem.ProcessCompositeSprite(uid, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
+                _counterSystem.ProcessCompositeSprite(uid, data.Actual, data.MaxCount, comp.LayerStates, data.Hidden, sprite: args.Sprite);
             else
-                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, actual, maxCount, comp.LayerStates, hidden, sprite: args.Sprite);
+                _counterSystem.ProcessOpaqueSprite(uid, comp.BaseLayer, data.Actual, data.MaxCount, comp.LayerStates, data.Hidden, sprite: args.Sprite);
         }
     }
 }
