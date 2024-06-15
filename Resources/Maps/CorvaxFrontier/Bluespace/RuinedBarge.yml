@@ -22,11 +22,6 @@ entities:
     - type: Transform
       pos: 0.48260412,0.43276936
       parent: invalid
-    - type: AutoDelete
-      distanceToCheck: 40
-      delayToDelete: 2400
-      delayToCheck: 60
-      isHumanoidNear: True
     - type: MapGrid
       chunks:
         -1,-1:
@@ -597,8 +592,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -629,8 +624,6 @@ entities:
     - type: GravityShake
       shakeTimes: 10
     - type: GasTileOverlay
-    - type: BecomesStation
-      id: Barge
     - type: SpreaderGrid
 - proto: AirAlarm
   entities:
