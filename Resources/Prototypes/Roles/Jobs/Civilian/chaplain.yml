@@ -3,16 +3,15 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
-  supervisors: job-supervisors-hop
-  access:
-  - Chapel
-  - Maintenance
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
   special:
   - !type:AddComponentSpecial
     components:
@@ -21,12 +20,8 @@
 - type: startingGear
   id: ChaplainGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitChaplain
-    back: ClothingBackpackChaplainFilled
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtChaplain
-  satchel: ClothingBackpackSatchelChaplainFilled
-  duffelbag: ClothingBackpackDuffelChaplainFilled
-  messenger: ClothingBackpackMessengerChaplainFilled # Frontier
+    pocket1: Bible # Frontier
+    pocket2: RubberStampChaplain # Frontier

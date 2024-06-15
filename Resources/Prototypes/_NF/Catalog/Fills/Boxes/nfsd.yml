@@ -1,0 +1,110 @@
+##Grenade fills
+- type: entity
+  name: box of nfsd items
+  parent: BoxCardboard
+  id: BoxBundleNfsd
+  description: A box full of nfsd items.
+  components:
+  - type: Sprite
+    layers:
+      - state: box_security
+
+- type: entity
+  name: box of explosive grenades
+  parent: BoxBundleNfsd
+  id: BoxExplosiveGrenades
+  description: A box full of explosive grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ExGrenade
+        amount: 4
+
+- type: entity
+  name: box of incendiary grenades
+  parent: BoxBundleNfsd
+  id: BoxIncendiaryGrenades
+  description: A box full of incendiary grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeIncendiary
+        amount: 4
+
+- type: entity
+  name: box of shrapnel grenades
+  parent: BoxBundleNfsd
+  id: BoxShrapnelGrenades
+  description: A box full of shrapnel grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeShrapnel
+        amount: 4
+
+- type: entity
+  name: box of smoke grenades
+  parent: BoxBundleNfsd
+  id: BoxSmokeGrenades
+  description: A box full of smoke grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SmokeGrenade
+        amount: 4
+
+- type: entity
+  name: box of tear gas grenades
+  parent: BoxBundleNfsd
+  id: BoxTeargasGrenades
+  description: A box full of tear gas grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: TearGasGrenade
+        amount: 4
+
+- type: entity
+  name: box of EMP grenades
+  parent: BoxBundleNfsd
+  id: BoxEMPGrenades
+  description: A box full of EMP grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmpGrenade
+        amount: 4
+
+- type: entity
+  name: box of flashbang grenades
+  parent: BoxBundleNfsd
+  id: BoxFlashBangGrenades
+  description: A box full of flashbang grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeFlashBang
+        amount: 4
+
+- type: entity
+  name: box of stinger grenades
+  parent: BoxBundleNfsd
+  id: BoxStingerGrenades
+  description: A box full of stinger grenades.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeStinger
+        amount: 4
+
+## plastic explosives
+- type: entity
+  name: box of breaching charges grenades
+  parent: BoxBundleNfsd
+  id: BoxBreachingCharges
+  description: A box full of breaching charges.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BreachingCharge
+        amount: 4

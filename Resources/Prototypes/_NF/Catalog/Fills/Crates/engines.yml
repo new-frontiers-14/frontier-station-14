@@ -1,31 +1,17 @@
 - type: entity
-  id: CrateGyroscope
   parent: CrateEngineering
+  id: CrateEngineeringSmallThruster
+  name: small thruster crate
   components:
   - type: StorageFill
     contents:
-      - id: GyroscopeUnanchoredFlatpack
+      - id: SmallThrusterFlatpack
 
 - type: entity
-  id: CrateThruster
   parent: CrateEngineering
+  id: CrateEngineeringSmallGyroscope
+  name: small gyroscope crate
   components:
   - type: StorageFill
     contents:
-      - id: ThrusterUnanchoredFlatpack
-
-- type: entity
-  id: CrateSmallGyroscope
-  parent: CrateEngineering
-  components:
-  - type: StorageFill
-    contents:
-      - id: SmallGyroscopeUnanchoredFlatpack
-
-- type: entity
-  id: CrateSmallThruster
-  parent: CrateEngineering
-  components:
-  - type: StorageFill
-    contents:
-      - id: SmallThrusterUnanchoredFlatpack
+      - id: SmallGyroscopeFlatpack

@@ -11,6 +11,8 @@
   - Cat
   - Chicken
   - Monkey
+  - Goblin
+  - DinosaursNF
 
 - type: npcFaction
   id: Dwarf
@@ -31,6 +33,9 @@
   id: Monkey
 
 - type: npcFaction
+  id: Goblin
+
+- type: npcFaction
   id: WizFedFaction
   hostile:
   - NanoTrasen
@@ -42,6 +47,9 @@
   - Revolutionary
   - Xeno
   - BloodCultNF
+  - PirateNF
+  - Goblin
+  - DinosaursNF
 
 - type: npcFaction
   id: BloodCultNF
@@ -55,3 +63,46 @@
   - Revolutionary
   - Xeno
   - WizFedFaction
+  - PirateNF
+  - DinosaursNF
+
+- type: npcFaction
+  id: PirateNF
+  hostile:
+  - NanoTrasen
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - DinosaursNF
+
+- type: npcFaction
+  id: ArtifactConstruct
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Revolutionary
+#  - WizFedFaction # Magic
+  - BloodCultNF
+  - Goblin
+  - DinosaursNF
+  - PirateNF
+
+- type: npcFaction
+  id: DinosaursNF
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - Xeno
+  - WizFedFaction
+  - Goblin
+  - BloodCultNF
+  - PirateNF

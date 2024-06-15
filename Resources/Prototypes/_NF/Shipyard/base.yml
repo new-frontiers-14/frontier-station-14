@@ -9,6 +9,7 @@
     - BaseStationAlertLevels
     - BaseStationSiliconLawFrontierStation
     - BaseStationEmpImmune
+    - BaseStationSectorNews
   noSpawn: true
   components:
     - type: Transform
@@ -17,6 +18,7 @@
   id: StandardFrontierOutpost
   parent:
     - BaseStation
+    - BaseStationJobsSpawning
     - BaseStationCargo
     - BaseStationSiliconLawFrontierShips
   noSpawn: true
@@ -130,3 +132,10 @@
   abstract: true
   components:
     - type: StationEmpImmune
+
+# Sector-wide news access, should be on stations with comms (radio station, telecomms)
+- type: entity
+  id: BaseStationSectorNews
+  abstract: true
+  components:
+    - type: SectorNews

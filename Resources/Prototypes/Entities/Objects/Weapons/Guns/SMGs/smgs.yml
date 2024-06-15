@@ -20,7 +20,7 @@
     maxAngle: 16
     fireRate: 8
     angleIncrease: 3
-    angleDecay: 16
+    angleDecay: 16  
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -59,7 +59,7 @@
   name: Atreides
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunAtreides
-  description: Pla-ket-ket-ket-ket! Uses .35 auto ammo.
+  description: Pla-ket-ket-ket-ket! Uses .35 auto ammo. An illegal firearm often used by Syndicate agents.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
@@ -80,9 +80,9 @@
 
 - type: entity
   name: C-20r sub machine gun
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunC20r
-  description: A firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
+  description: An illegal firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
@@ -94,6 +94,13 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Gun
+    minAngle: 21
+    maxAngle: 32  
+    shotsPerBurst: 5
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: ChamberMagazineAmmoProvider
@@ -107,9 +114,9 @@
 
 - type: entity
   name: Drozd
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunDrozd
-  description: An excellent fully automatic Heavy SMG.
+  description: An excellent fully automatic Heavy SMG. An illegal firearm often used by Syndicate agents.
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
@@ -121,6 +128,8 @@
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
     - type: Gun
+      minAngle: 21
+      maxAngle: 32  
       fireRate: 6
       selectedMode: FullAuto
       soundGunshot:
@@ -156,7 +165,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunVector
   suffix: Deprecated use Drozd
-  description: An excellent fully automatic Heavy SMG. Uses .45 magnum ammo.
+  description: An excellent fully automatic Heavy SMG. Uses .45 magnum ammo. An illegal firearm often used by Syndicate agents.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/vector.rsi
@@ -202,7 +211,7 @@
   name: WT550
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunWt550
-  description: An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo.
+  description: An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo. On the receiver is a label that says 'for authorized use only.'
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
@@ -222,9 +231,16 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
-    fireRate: 5
+    fireRate: 5.5
+    minAngle: 1
+    maxAngle: 6
+    angleIncrease: 1.5
+    angleDecay: 6  
     selectedMode: FullAuto
+    shotsPerBurst: 5
     availableModes:
+    - SemiAuto
+    - Burst
     - FullAuto
   - type: ItemSlots
     slots:
@@ -249,55 +265,3 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-
-# Rubber
-- type: entity
-  name: Drozd
-  parent: WeaponSubMachineGunDrozd
-  id: WeaponSubMachineGunDrozdRubber
-  suffix: Non-Lethal
-  components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazinePistolSubMachineGun
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgePistolRubber
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgePistol
-
-- type: entity
-  name: Vector
-  parent: WeaponSubMachineGunVector
-  id: WeaponSubMachineGunVectorRubber
-  description: An excellent fully automatic Heavy SMG. Uses .45 magnum ammo.
-  suffix: Non-Lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineMagnumSubMachineGunRubber
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineMagnumSubMachineGun
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeMagnumRubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeMagnum

@@ -63,8 +63,7 @@ namespace Content.Server.ArachnidChaos
 
                     var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, 3f, new ArachnidChaosDoAfterEvent(), uid, target: args.Target, used: uid)
                     {
-                        BreakOnTargetMove = true,
-                        BreakOnUserMove = true,
+                        BreakOnMove = true,
                         BreakOnDamage = true,
                         BlockDuplicate = true
                     };

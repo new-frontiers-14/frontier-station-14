@@ -13,6 +13,8 @@ public enum ShipyardConsoleUiKey : byte
 {
     Shipyard,
     Security,
+    Nfsd,
+    Syndicate,
     BlackMarket,
     Expedition,
     Scrap,
@@ -29,6 +31,8 @@ public abstract class SharedShipyardSystem : EntitySystem
     {
         {ShipyardConsoleUiKey.Shipyard, "Civilian"},
         {ShipyardConsoleUiKey.Security, "Security"},
+        {ShipyardConsoleUiKey.Nfsd, "Nfsd"},
+        {ShipyardConsoleUiKey.Syndicate, "Syndicate"},
         {ShipyardConsoleUiKey.BlackMarket, "BlackMarket"},
         {ShipyardConsoleUiKey.Expedition, "Expedition"},
         {ShipyardConsoleUiKey.Scrap, "Scrap"},

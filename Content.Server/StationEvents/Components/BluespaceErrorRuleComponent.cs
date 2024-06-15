@@ -7,13 +7,13 @@ namespace Content.Server.StationEvents.Components;
 public sealed partial class BluespaceErrorRuleComponent : Component
 {
     /// <summary>
-    /// Path to the grid that gets bluspaced in
+    /// List of paths to the grids that can be bluespaced in.
     /// </summary>
-    [DataField("gridPath")]
-    public string GridPath = "";
+    [DataField("gridPaths")]
+    public List<string> GridPaths = new();
 
     /// <summary>
-    /// The color of your thing. the name should be set by the mapper when mapping.
+    /// The color of your thing. The name should be set by the mapper when mapping.
     /// </summary>
     [DataField("color")]
     public Color Color = new Color(225, 15, 155);
@@ -31,7 +31,7 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     public EntityUid? GridUid = null;
 
     /// <summary>
-    /// How much the grid is appraised at upon entering into existance, set after starting the event
+    /// How much the grid is appraised at upon entering into existence, set after starting the event
     /// </summary>
     [DataField("startingValue")]
     public double startingValue = 0;

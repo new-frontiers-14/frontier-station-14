@@ -1,11 +1,14 @@
 using Content.Server.Popups;
-using Content.Server.Sound.Components;
+using Content.Server.Sound;
+using Content.Shared.Sound.Components;
 using Content.Shared.Actions;
 using Content.Shared.Audio;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
@@ -28,6 +31,7 @@ namespace Content.Server.Bed.Sleep
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+        [Dependency] private readonly EmitSoundSystem _emitSound = default!;
 
         [ValidatePrototypeId<EntityPrototype>] public const string SleepActionId = "ActionSleep";
 
@@ -41,10 +45,10 @@ namespace Content.Server.Bed.Sleep
             SubscribeLocalEvent<MobStateComponent, WakeActionEvent>(OnWakeAction);
             SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<SleepingComponent, GetVerbsEvent<AlternativeVerb>>(AddWakeVerb);
-            // for cpr
-            //SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
+            SubscribeLocalEvent<SleepingComponent, InteractHandEvent>(OnInteractHand);
             SubscribeLocalEvent<SleepingComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SleepingComponent, SlipAttemptEvent>(OnSlip);
+            SubscribeLocalEvent<SleepingComponent, ConsciousAttemptEvent>(OnConsciousAttempt);
             SubscribeLocalEvent<ForcedSleepingComponent, ComponentInit>(OnInit);
         }
 
@@ -65,9 +69,12 @@ namespace Content.Server.Bed.Sleep
                 if (TryComp<SleepEmitSoundComponent>(uid, out var sleepSound))
                 {
                     var emitSound = EnsureComp<SpamEmitSoundComponent>(uid);
-                    emitSound.Sound = sleepSound.Snore;
-                    emitSound.PlayChance = sleepSound.Chance;
-                    emitSound.RollInterval = sleepSound.Interval;
+                    if (HasComp<SnoringComponent>(uid))
+                    {
+                        emitSound.Sound = sleepSound.Snore;
+                    }
+                    emitSound.MinInterval = sleepSound.Interval;
+                    emitSound.MaxInterval = sleepSound.MaxInterval;
                     emitSound.PopUp = sleepSound.PopUp;
                 }
 
@@ -123,7 +130,7 @@ namespace Content.Server.Bed.Sleep
                 return;
             }
             if (TryComp<SpamEmitSoundComponent>(uid, out var spam))
-                spam.Enabled = args.NewMobState == MobState.Alive;
+                _emitSound.SetEnabled((uid, spam), args.NewMobState == MobState.Alive);
         }
 
         private void AddWakeVerb(EntityUid uid, SleepingComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -150,12 +157,14 @@ namespace Content.Server.Bed.Sleep
         /// <summary>
         /// When you click on a sleeping person with an empty hand, try to wake them.
         /// </summary>
-        public void WakeWithHands(EntityUid uid, SleepingComponent component, EntityUid user)
+        private void OnInteractHand(EntityUid uid, SleepingComponent component, InteractHandEvent args)
         {
+            args.Handled = true;
+
             if (!TryWakeCooldown(uid))
                 return;
 
-            TryWaking(uid, user: user);
+            TryWaking(args.Target, user: args.User);
         }
 
         private void OnExamined(EntityUid uid, SleepingComponent component, ExaminedEvent args)
@@ -170,6 +179,12 @@ namespace Content.Server.Bed.Sleep
         {
             args.Cancel();
         }
+
+        private void OnConsciousAttempt(EntityUid uid, SleepingComponent component, ConsciousAttemptEvent args)
+        {
+            args.Cancel();
+        }
+
 
         private void OnInit(EntityUid uid, ForcedSleepingComponent component, ComponentInit args)
         {

@@ -1,3 +1,4 @@
+using Content.Server._NF.Auth;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -102,6 +103,8 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
+                IoCManager.Resolve<ServerApi>().Initialize();
+                IoCManager.Resolve<MiniAuthManager>();
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();
@@ -167,6 +170,7 @@ namespace Content.Server.Entry
         {
             _playTimeTracking?.Shutdown();
             _dbManager?.Shutdown();
+            IoCManager.Resolve<ServerApi>().Shutdown();
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

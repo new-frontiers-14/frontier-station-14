@@ -44,13 +44,13 @@
       - Maintenance
       - Medical
       - Mercenary # Frontier
-      - Pilot # Frontier
       - Quartermaster
       - Research
       - ResearchDirector
       - Salvage
       - Security
       - Service
+      - StationTrafficController # Frontier
       - Theatre
       privilegedIdSlot:
         name: id-card-console-privileged-id
@@ -66,12 +66,12 @@
       doAfter: 0.5
     - type: UserInterface
       interfaces:
-        - key: enum.AccessOverriderUiKey.Key
+        enum.AccessOverriderUiKey.Key:
           type: AccessOverriderBoundUserInterface
     - type: ActivatableUI
       key: enum.AccessOverriderUiKey.Key
       requireHands: true
-      closeOnHandDeselect: false
+      requireActiveHand: false
       singleUser: true
     - type: ItemSlots
     - type: ContainerContainer

@@ -15,7 +15,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Stacks;
 using Robust.Shared.Console;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -30,7 +29,6 @@ public sealed class PricingSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -229,9 +227,10 @@ public sealed class PricingSystem : EntitySystem
     /// This fires off an event to calculate the price.
     /// Calculating the price of an entity that somehow contains itself will likely hang.
     /// </remarks>
-    public double GetPrice(EntityUid uid)
+    public double GetPrice(EntityUid uid, bool includeContents = true)
     {
         var ev = new PriceCalculationEvent();
+        ev.Price = 0; // Structs doesnt initialize doubles when called by constructor.
         RaiseLocalEvent(uid, ref ev);
 
         if (ev.Handled)
@@ -252,7 +251,7 @@ public sealed class PricingSystem : EntitySystem
             price += GetStaticPrice(uid);
         }
 
-        if (TryComp<ContainerManagerComponent>(uid, out var containers))
+        if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
             foreach (var container in containers.Containers.Values)
             {
