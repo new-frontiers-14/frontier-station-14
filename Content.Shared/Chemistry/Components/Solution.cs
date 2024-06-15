@@ -717,6 +717,52 @@ namespace Content.Shared.Chemistry.Components
 
             return newSolution;
         }
+
+        /// <summary>
+        /// Splits a solution, taking the specified amount of each reagent specified in reagents from the solution.
+        /// If any reagent in the solution has less volume than specified, it will all be transferred into the new solution.
+        /// </summary>
+        /// <param name="toTakePer">How much of each reagent to take.</param>
+        /// <returns>A new solution containing the reagents taken from the original solution.</returns>
+        public Solution SplitSolutionPerReagentWithOnly(FixedPoint2 toTakePer, params string[] reagents)
+        {
+            if (toTakePer <= FixedPoint2.Zero)
+                return new Solution();
+
+            var origVol = Volume;
+            Solution newSolution = new Solution(Contents.Count) { Temperature = Temperature };
+
+            for (var i = Contents.Count - 1; i >= 0; i--) // iterate backwards because of remove swap.
+            {
+                var (reagent, quantity) = Contents[i];
+
+                // Must be in 
+                if (!reagents.Contains(reagent.Prototype))
+                    continue;
+
+                if (quantity > toTakePer)
+                {
+                    Contents[i] = new ReagentQuantity(reagent, quantity - toTakePer);
+                    newSolution.Contents.Add(new ReagentQuantity(reagent, toTakePer));
+                    Volume -= toTakePer;
+                }
+                else
+                {
+                    Contents.RemoveSwap(i);
+                    newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
+                    Volume -= quantity;
+                }
+            }
+
+            newSolution.Volume = origVol - Volume;
+            _heatCapacityDirty = true;
+            newSolution._heatCapacityDirty = true;
+
+            ValidateSolution();
+            newSolution.ValidateSolution();
+
+            return newSolution;
+        }
         // End Frontier
 
         /// <summary>

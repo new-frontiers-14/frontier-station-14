@@ -55,6 +55,9 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
 
+    // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution.
+    private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
+
     public override void Initialize()
     {
         base.Initialize();
@@ -117,13 +120,12 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
 
 
                 // Frontier
-
                 // Filter out a fixed amount of each reagent from the cryo pod's beaker
-                var solutionToInject = _solutionContainerSystem.SplitSolutionReagentsEvenly(containerSolution.Value, cryoPod.BeakerTransferAmount);
+                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagentWithOnly(containerSolution.Value, cryoPod.BeakerTransferAmount, CryogenicsReagents);
 
                 // For every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections.
                 solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
-                // End frontier
+                // End Frontier
 
                 _bloodstreamSystem.TryAddToChemicals(patient.Value, solutionToInject, bloodstream);
                 _reactiveSystem.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
