@@ -1,18 +1,18 @@
-- type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgAssault1
-  name:  uplink-reinforcement-radio-cyborg-assault-name
-  description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: ReinforcementRadioSyndicateCyborgAssault
-  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityBundles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+#- type: listing   -->[TODO NFSD BORG]
+ # id: UplinkReinforcementRadioSyndicateCyborgAssault1
+ # name:  uplink-reinforcement-radio-cyborg-assault-name
+ # description: uplink-reinforcement-radio-cyborg-assault-desc
+ # productEntity: ReinforcementRadioSyndicateCyborgAssault
+ # icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
+ # cost:
+ #   FrontierUplinkCoin: 1
+ # categories:
+ #   - UplinkSecurityBundles
+ # conditions:
+ #   - !type:StoreWhitelistCondition
+ #     whitelist:
+ #       tags:
+ #         - SecurityUplink
 
 - type: listing
   id: UplinkSecurityHardsuit
@@ -552,7 +552,7 @@
   cost:
     FrontierUplinkCoin: 4
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityBundles
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1195,7 +1195,7 @@
   cost:
     FrontierUplinkCoin: 15
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityBundles
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1206,6 +1206,38 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityTrackingBundle
+  name: uplink-security-trackingdart-bundle-name
+  description: uplink-security-trackingdart-bundle-desc
+  productEntity: ClothingBackpackDuffelNfsdTrackingBundle
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEmpBundle
+  name: uplink-security-emp-bundle-name
+  description: uplink-security-emp-bundle-desc
+  productEntity: ClothingBackpackDuffelNfsdEmpBundle
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 # - type: listing
   # id: UplinkSecurityNonLethalArmory
@@ -1227,3 +1259,35 @@
         # - Bailiff
         # - SeniorOfficer
         # - Sheriff
+
+- type: listing
+  id: UplinkSecurityEmpGrenadeAmmo
+  name:  uplink-security-emp-ammo-name
+  description: uplink-security-emp-ammo-desc
+  productEntity: BoxEmpGrenadesAmmo
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTrackingDartsAmmo
+  name:  uplink-security-trackingdart-ammo-name
+  description: uplink-security-trackingdart-ammo-desc
+  productEntity: BoxTrackingDartsAmmo
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
