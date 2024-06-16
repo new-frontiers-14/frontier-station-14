@@ -65,39 +65,6 @@ bounty-item-cardboard-box = Cardboard box
 bounty-item-wine = Wine bottle
 bounty-item-cotton-boll = Cotton boll
 bounty-item-microwave-machine-board = Microwave machine board
-bounty-item-mail = Mail
-bounty-item-pda = PDA
-bounty-item-extinguisher = Fire Extinguisher
-bounty-item-captainGloves = Captain Gloves
-bounty-item-gyro = Ship Gyroscope
-bounty-item-defib = Defibrillator
-bounty-item-researchDisk = Research Disk
-bounty-item-alcohol = Booze Dispenser
-bounty-item-thruster = Thruster
-bounty-item-gravGen = Gravity Generator
-bounty-item-chemVend = Chemical Vending Machine
-bounty-item-vendingmachine = Vending Machine
-bounty-item-mercSuit = Mercenary Hardsuit
-bounty-item-cappy = Cappy
-bounty-item-cultistNeck = Cultist Necklace
-bounty-item-nfsdCampaign = Nfsd Small Campaign Hat
-bounty-item-scafsuit = SCAF Suit
-bounty-item-rtg = RTG
-bounty-item-mercgas = Mercenary Gas Mask
-bounty-item-rdhardsuit = Experimental RD Hardsuit
-bounty-item-mk58 = MK58
-bounty-item-artifactanalyzer = Artifact Analyzer Machine
-bounty-item-hotplate = Hotplate
-bounty-item-deepfryer = Deep Fryer
-bounty-item-keycommon = Common Key
-bounty-item-medicalfabboard = Medical Tech Fab Board
-bounty-item-orebox = Ore Box
-bounty-item-autolathe = Autolathe
-bounty-item-gold = Gold
-bounty-item-plasmacanister = Plasma Canister
-bounty-item-contracrate = Contraband Crate
-bounty-item-hydrotray = Hydroponics Tray
-
 
 bounty-description-artifact = NanoTrasen is in some hot water for stealing artifacts from non-spacefaring planets. Return one and we'll compensate you for it.
 bounty-description-baseball-bat = Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream.
@@ -165,6 +132,3 @@ bounty-description-cardobard-box = "The Cardborgs Cometh" is a new play premieri
 bounty-description-wine = The new librarian and the Quartermaster are falling head over heels for each other after she caught him disassembling the bookshelves for wood. Send a couple bottles of wine (Or cans, if you must) to help make the date go well.
 bounty-description-cotton-boll = A massive swarm of mothroaches ate all the paper and cloth on the station. Send us some cotton to help keep our winged crewmembers fed.
 bounty-description-microwave-machine-board = Mr. Giggles thought it'd be funny to stick forks in all the kitchen microwaves. Help us replace them before the chefs start making clown burgers.
-bounty-description-pirate = Go now you goon! Plunder me this!
-
-
