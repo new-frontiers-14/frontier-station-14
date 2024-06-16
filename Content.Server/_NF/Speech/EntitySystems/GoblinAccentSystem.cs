@@ -1,8 +1,8 @@
-using Content.Server.Speech.Components;
-using Robust.Shared.Random;
-using System.Text.RegularExpressions;
+using Content.Server._NF.Speech.Components;
+using Content.Server.Speech;
+using Content.Server.Speech.EntitySystems;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class GoblinAccentSystem : EntitySystem
 {

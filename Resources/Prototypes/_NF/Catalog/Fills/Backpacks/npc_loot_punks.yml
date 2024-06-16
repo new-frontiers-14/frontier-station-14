@@ -1,0 +1,176 @@
+# BASE
+- type: entity
+  parent: SyndieMessengerGiftBox
+  id: PunkMessengerGiftBox
+  name: punk bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#EF8100"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#eeeeee"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#EF8100"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#eeeeee"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#EF8100"
+      - state: clasp-inhand-left
+        color: "#eeeeee"
+      right:
+      - state: base-inhand-right
+        color: "#EF8100"
+      - state: clasp-inhand-right
+        color: "#eeeeee"
+
+# Punks: generic rewards
+- type: entity
+  parent: PunkMessengerGiftBox
+  id: ClothingBackpackPunkLootA
+  name: punk gear bundle
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 1
+      amount: 1
+    - id: SpaceCash500
+      prob: 0.25
+      amount: 1
+    - id: SpawnDungeonLootCircuitBoard
+      prob: 0.35
+      amount: 2
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.75
+      amount: 1
+    - id: SpawnDungeonLootToolsAdvancedEngineering
+      amount: 1
+      prob: 0.1
+    - id: SpawnDungeonLootPartsEngi
+      amount: 3
+      prob: 0.75
+    - id: HoloGraffitiProjectorEmpty
+      amount: 1
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackPunkLootA
+  id: ClothingBackpackPunkLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+      amount: 1
+    - id: SpaceCash500
+      prob: 0.25
+      amount: 1
+    - id: GroundCannabis
+      prob: 0.25
+      amount: 3
+    - id: SpawnDungeonClutterMedipens
+      prob: 0.65
+      amount: 3
+    - id: SpawnDungeonClutterMedical
+      prob: 0.45
+      amount: 3
+    - id: SpawnDungeonLootPartsEngi
+      amount: 3
+      prob: 0.35
+    - id: WeaponCaseShortMk58Expedition
+      amount: 1
+      prob: 0.55
+    - id: HoloGraffitiProjectorEmpty
+      amount: 1
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackPunkLootA
+  id: ClothingBackpackPunkLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+      amount: 1
+    - id: SpaceCash1000
+      prob: 0.25
+      amount: 1
+    - id: GroundCannabis
+      prob: 0.25
+      amount: 3
+    - id: DrinkWhiskeyBottleFull
+      prob: 0.15
+      amount: 1
+    - id: WeaponCaseLongKammererExpedition
+      amount: 1
+      prob: 0.55
+    - id: SpawnDungeonLootPartsEngi
+      amount: 3
+      prob: 0.35
+    - id: HoloGraffitiProjectorEmpty
+      amount: 1
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackPunkLootA
+  id: ClothingBackpackPunkLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash2500
+      prob: 0.95
+      amount: 1
+    - id: SpaceCash1000
+      prob: 0.35
+      amount: 1
+    - id: GroundCannabis
+      prob: 0.35
+      amount: 3
+    - id: SpawnDungeonClutterSyringe
+      prob: 0.65
+      amount: 4
+    - id: SpawnDungeonLootCircuitBoard
+      prob: 0.35
+      amount: 2
+    - id: SpawnDungeonClutterHypospray
+      prob: 0.35
+      amount: 1
+    - id: DrinkWhiskeyBottleFull
+      prob: 0.35
+      amount: 1
+    - id: WeaponCaseLongDrozdExpedition
+      amount: 1
+      prob: 0.55
+    - id: HoloGraffitiProjector
+      amount: 1
+      prob: 0.45
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
