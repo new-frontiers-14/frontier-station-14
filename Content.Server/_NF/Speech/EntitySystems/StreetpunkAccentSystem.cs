@@ -1,8 +1,9 @@
-using Content.Server.Speech.Components;
-using Robust.Shared.Random;
+using Content.Server._NF.Speech.Components;
+using Content.Server.Speech;
+using Content.Server.Speech.EntitySystems;
 using System.Text.RegularExpressions;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._NF.Speech.EntitySystems;
 
 public sealed class StreetpunkAccentSystem : EntitySystem
 {
