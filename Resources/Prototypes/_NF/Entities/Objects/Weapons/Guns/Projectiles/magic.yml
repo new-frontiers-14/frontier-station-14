@@ -60,6 +60,25 @@
 
 - type: entity
   parent: BaseBulletTrigger
+  id: BulletBloodCultHand
+  name: blood hand
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Asphyxiation: 2
+        Blunt: 5
+  - type: Sprite
+    noRot: false
+    sprite: _NF/Effects/bloodcultprojectiles.rsi
+    layers:
+    - state: hand
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  parent: BaseBulletTrigger
   id: BulletIceGlobe
   name : ice globe
   noSpawn: true
