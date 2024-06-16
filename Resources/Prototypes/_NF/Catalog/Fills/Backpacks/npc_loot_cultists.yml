@@ -1,0 +1,174 @@
+# BASE
+- type: entity
+  parent: SyndieMessengerGiftBox
+  id: CultistMessengerGiftBox
+  name: blood cultist bundle
+  description: Loot boxes? Here?
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    layers:
+    - state: icon-base
+      color: "#562f2f"
+    - state: icon-sling
+      color: "#776756"
+    - state: icon-clasp
+      color: "#96907c"
+  - type: Clothing
+    sprite: _NF/Clothing/Back/Messenger/color.rsi
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#562f2f"
+      - state: sling-equipped-BACKPACK
+        color: "#776756"
+      - state: clasp-equipped-BACKPACK
+        color: "#96907c"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#562f2f"
+      - state: clasp-inhand-left
+        color: "#96907c"
+      right:
+      - state: base-inhand-right
+        color: "#562f2f"
+      - state: clasp-inhand-right
+        color: "#96907c"
+
+# BLOOD CULT NPC LOOT
+## Zealot (Ranged) Loot
+- type: entity
+  parent: CultistMessengerGiftBox
+  id: ClothingBackpackBloodCultZealotLootA
+  name: cultist gear bundle
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledBolt
+    - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: CrossbowImprovised
+    - id: ClothingBeltQuiverCrossbowFilledUranium
+    - id: SpaceCash1000
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingBeltQuiverCrossbowFilledPlasma
+    - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultZealotLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+## Generic rewards
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootA
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.08
+    - id: Tourniquet
+      amount: 1
+      prob: 0.05
+    - id: MaterialBones
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootB
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: SpaceCash500
+      prob: 0.5
+    - id: Bloodpack
+      prob: 0.06
+    - id: BruteAutoInjector
+      amount: 1
+      prob: 0.02
+    - id: MaterialBones
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootC
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash1000
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.04
+    - id: EmergencyMedipen
+      amount: 1
+      prob: 0.02
+    - id: MaterialBones1
+      prob: 0.1
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackBloodCultZealotLootA
+  id: ClothingBackpackBloodCultLootD
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash500
+      prob: 0.95
+    - id: Bloodpack
+      prob: 0.02
+    - id: Gauze1
+      amount: 1
+      prob: 0.01
+    - id: MaterialBones1
+      prob: 0.05
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg

@@ -23,9 +23,16 @@ public partial struct StampDisplayInfo
     [DataField("stampedColor")]
     public Color StampedColor;
 
-    [DataField("stampedBorderless")]
-    public bool StampedBorderless;
+    [DataField("stampType")]
+    public StampType Type = StampType.RubberStamp;
 };
+
+// FRONTIER - Stamp types, put it into an enum for modularity purposes.
+public enum StampType
+{
+    RubberStamp,
+    Signature
+}
 
 [RegisterComponent]
 public sealed partial class StampComponent : Component
