@@ -130,7 +130,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (bank.Balance <= vessel.Price)
+        if (bank.Balance < vessel.Price)
         {
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(uid, component);
