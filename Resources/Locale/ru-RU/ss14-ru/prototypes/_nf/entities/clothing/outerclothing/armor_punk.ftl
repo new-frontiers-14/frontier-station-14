@@ -1,0 +1,10 @@
+ent-ClothingOuterArmorPunkGreen = Панковская броня
+    .desc = { ent-ClothingOuterVestWebMercenary.desc }
+ent-ClothingOuterArmorPunkOrange = Панковская броня
+    .desc = { ent-ClothingOuterVestWebMercenary.desc }
+ent-ClothingOuterArmorPunkRandomized = Панковская броня
+    .suffix = Случайный цвет
+    .desc = { ent-ClothingOuterVestWebMercenary.desc }
+ent-ClothingOuterArmorElitePunkRandomized = Тяжёлая панковская броня
+    .suffix = Случайный цвет
+    .desc = { ent-ClothingOuterArmorBulletproof.desc }

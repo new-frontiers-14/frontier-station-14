@@ -1,0 +1,12 @@
+ent-SpawnMobRogueDronesT1 = Спавнер неисправных дронов
+    .suffix = ИИ, Вражеский, Т1
+    .desc = { ent-MobRogueSiliconDroneLethals.desc }
+ent-SpawnMobRogueScapT1 = Спавнер неисправных ИИ
+    .suffix = ИИ, Вражеский, Т1
+    .desc = { ent-MobRogueSiliconScrap.desc }
+ent-SpawnMobRogueSiliconsT2 = Спавнер неисправных ИИ
+    .suffix = ИИ, Вражеский, Т1
+    .desc = { ent-MobRogueSiliconScrap.desc }
+ent-SpawnMobRogueSiliconsT3 = Спавнер неисправных ИИ
+    .suffix = ИИ, Вражеский, Т1
+    .desc = { ent-MobRogueSiliconScrap.desc }

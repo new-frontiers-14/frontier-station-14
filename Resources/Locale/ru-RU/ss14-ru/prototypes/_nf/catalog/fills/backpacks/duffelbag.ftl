@@ -4,3 +4,7 @@ ent-ClothingBackpackDuffelSurgeryImpovFilled = самодельная хирур
     .desc = Эта сумка выглядит как набор самодельных хирургических инструментов, собранных кем-то.
 ent-ClothingBackpackDuffelSurgeryAdvancedFilled = продвинутая хирургическая сумка
     .desc = Большая спортивная сумка для хранения дополнительных медицинских принадлежностей - эта явно предназначена для продвинутых хирургических инструментов.
+ent-ClothingBackpackDuffelNfsdTrackingBundle = Набор трекеров
+    .desc = Набор оборудования, необходимый для отслеживания практически всего, включая тщательную слежку за людьми.
+ent-ClothingBackpackDuffelNfsdEmpBundle = ЭМИ набор Chine Lake
+    .desc = Старый перекрашенный гранатомет "China Lake" с 10 гранатами ЭМИ в комплекте.
