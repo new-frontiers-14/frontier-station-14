@@ -76,6 +76,10 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -173,6 +177,10 @@
       0: Alive
       60: Critical
       120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      36: 0.7
+      48: 0.5
   - type: Stamina
     critThreshold: 600
 
@@ -224,6 +232,10 @@
       0: Alive
       30: Critical
       90: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      18: 0.7
+      24: 0.5
   - type: Stamina
     critThreshold: 600
   - type: Gun
@@ -818,6 +830,10 @@
       0: Alive
       110: Critical
       160: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      66: 0.7
+      88: 0.5
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
@@ -886,7 +902,11 @@
     thresholds:
       0: Alive
       150: Critical
-      400: Dead
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.7
+      120: 0.5
   - type: Stamina
     critThreshold: 600
   - type: HitscanBatteryAmmoProvider
@@ -934,8 +954,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      600: Dead
+      300: Critical
+      400: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+      240: 0.5
   - type: Stamina
     critThreshold: 600
   - type: BasicEntityAmmoProvider

@@ -2,6 +2,7 @@
 - type: entity
   parent:
   - MobNonHumanHostileBase
+  - MobHumanoidHostileAISimpleMelee
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -10,24 +11,12 @@
   - type: NpcFactionMember
     factions:
     - AberrantFleshExpeditionNF
-  - type: HTN
-    rootTask:
-       task: SimpleHostileCompound
-    blackboard:
-      NavClimb: !type:Bool
-        true
-      NavInteract: !type:Bool
-        true
-      NavPry: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Aliens/flesh.rsi
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.5
   - type: MobState
     allowedStates:
     - Alive
@@ -36,6 +25,10 @@
     thresholds:
       0: Alive
       70: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      42: 0.7
+      56: 0.5
   - type: Stamina
     critThreshold: 50
   - type: Butcherable
@@ -108,6 +101,10 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
 
 - type: entity
   parent: MobFleshGolemExpeditions
@@ -170,9 +167,13 @@
     thresholds:
       0: Alive
       40: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      24: 0.7
+      32: 0.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.5
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 6
     rechargeSound:
@@ -239,9 +240,13 @@
     thresholds:
       0: Alive
       30: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      18: 0.7
+      24: 0.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.5
 
 # EXPEDITION BOSS
 - type: entity
@@ -269,8 +274,12 @@
     thresholds:
       0: Alive
       200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+      160: 0.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.8
+    baseWalkSpeed: 3.8
     baseSprintSpeed: 3.8
   - type: MeleeWeapon
     soundHit:
