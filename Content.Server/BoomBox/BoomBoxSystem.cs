@@ -143,7 +143,7 @@ public sealed class BoomBoxSystem : EntitySystem
             return;
 
         comp.SoundPath = BoomBoxTapeComp.SoundPath;
-        comp.SoundDuration = (float)_audioSystem.GetAudioLength(comp.SoundPath).TotalSeconds;
+        comp.SoundDuration = (float) _audioSystem.GetAudioLength(comp.SoundPath).TotalSeconds;
     }
 
     private void OnMinusVolButtonPressed(EntityUid uid, BoomBoxComponent component, BoomBoxMinusVolMessage args)
@@ -206,7 +206,7 @@ public sealed class BoomBoxSystem : EntitySystem
             canStop = false;
         }
 
-        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart, component.PlaybackPosition);
+        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart, component.PlaybackPosition, component.SoundDuration);
         _userInterface.SetUiState(uid, BoomBoxUiKey.Key, state);
     }
 
@@ -249,6 +249,7 @@ public sealed class BoomBoxSystem : EntitySystem
 
             // We play music with these parameters. Be sure to set "WithLoop(true)" this will allow the music to play indefinitely.
             component.Stream = _audioSystem.PlayPvs(component.SoundPath, uid, AudioParams.Default.WithVolume(component.Volume).WithLoop(true).WithMaxDistance(7f))?.Entity;
+            component.PlaybackPosition = 0f;
         }
 
         _signalSystem.InvokePort(uid, component.Port);
@@ -270,8 +271,8 @@ public sealed class BoomBoxSystem : EntitySystem
 
             // Turning off the looped audio stream
             component.Stream = _audioSystem.Stop(component.Stream);
+            component.PlaybackPosition = 0f;
         }
-
         _signalSystem.InvokePort(uid, component.Port);
 
         UpdateUserInterface(uid, component);

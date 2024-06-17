@@ -16,19 +16,22 @@ public sealed class BoomBoxUiState : BoundUserInterfaceState
     public bool CanStop { get; }
     public bool CanStart { get; }
     public float PlaybackPosition { get; }
+    public float SoundDuration { get; }
 
     public BoomBoxUiState(
         bool canPlusVol,
         bool canMinusVol,
         bool canStop,
         bool canStart,
-        float playbackPosition)
+        float playbackPosition,
+        float soundDuration)
     {
         CanPlusVol = canPlusVol;
         CanMinusVol = canMinusVol;
         CanStop = canStop;
         CanStart = canStart;
         PlaybackPosition = playbackPosition;
+        SoundDuration = soundDuration;
     }
 }
 

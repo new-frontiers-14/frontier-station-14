@@ -26,8 +26,6 @@ public sealed partial class BoomBoxWindow : DefaultWindow
         StartButton.OnPressed += _ => StartButtonPressed?.Invoke();
         StopButton.OnPressed += _ => StopButtonPressed?.Invoke();
         PlaybackSlider.OnValueChanged += args => PlaybackSliderChanged?.Invoke(args.Value);
-        PlaybackSlider.OnValueChanged += args => _isSliderDragging = true;
-        //PlaybackSlider.OnValueChangedFinish += args => _isSliderDragging = false;
     }
 
     public void UpdateState(BoomBoxUiState state)
@@ -37,7 +35,7 @@ public sealed partial class BoomBoxWindow : DefaultWindow
         StartButton.Disabled = !state.CanStart;
         StopButton.Disabled = !state.CanStop;
 
-        if (!_isSliderDragging)
-            PlaybackSlider.SetValueWithoutEvent(state.PlaybackPosition);
+        PlaybackSlider.MaxValue = state.SoundDuration;
+        PlaybackSlider.SetValueWithoutEvent(state.PlaybackPosition);
     }
 }
