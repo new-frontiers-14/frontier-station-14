@@ -1,5 +1,8 @@
 guide-entry-nf14 = New Frontier
 guide-entry-bank = NT Galactic Bank
+guide-entry-piloting = Piloting
+guide-entry-hiring = Hiring Crew
+
 guide-entry-shipyard = Shipyard
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-brigand = Brigand
@@ -13,5 +16,3 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
-guide-entry-piloting = Piloting
-guide-entry-hiring = Hiring Crew
