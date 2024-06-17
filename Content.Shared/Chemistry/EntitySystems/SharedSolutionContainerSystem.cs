@@ -333,7 +333,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     /// <param name="soln">The container to split the solution from.</param>
     /// <param name="quantity">The amount of each reagent to split.</param>
     /// <param name="reagents">The list of reagents to split a fixed amount of, if present.</param>
-    /// <returns></returns>
+    /// <returns>The solution that was removed.</returns>
     public Solution SplitSolutionPerReagentWithOnly(Entity<SolutionComponent> soln, FixedPoint2 quantity, params string[] reagents)
     {
         var (uid, comp) = soln;
