@@ -2,6 +2,7 @@ guide-entry-nf14 = New Frontier
 guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
 guide-entry-hiring = Hiring Crew
+guide-entry-expeditions = Expeditions
 
 guide-entry-shipyard = Shipyard
 guide-entry-shipyard-ambition = Ambition
