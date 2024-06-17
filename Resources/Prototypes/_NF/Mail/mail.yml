@@ -1902,6 +1902,25 @@
     - id: FoodBurgerClurger
     - id: PaperMailNFClurger
 
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFMime
+  suffix: mime
+  components:
+  - type: Mail
+    contents:
+      - id: PaperMailNFMime
+      - id: ClothingHeadHatBeret
+      - id: ClothingNeckScarfStripedZebra
+      - id: ClothingUniformJumpsuitMime
+      - id: ClothingMaskMime
+        orGroup: Mask
+      - id: ClothingMaskSadMime
+        orGroup: Mask
+      - id: ClothingMaskScaredMime
+        orGroup: Mask
+
 # Base Nyano mail
 
 - type: entity
