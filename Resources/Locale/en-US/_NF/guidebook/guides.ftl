@@ -13,3 +13,5 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
+guide-entry-piloting = Piloting
+guide-entry-hiring = Hiring Crew
