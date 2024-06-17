@@ -46,5 +46,5 @@ ent-ClothingUniformJumpsuitGalaxyBlue = синий галактический к
     .desc = Синий костюм для тех, кто ведет бизнес в галактическом масштабе.
 ent-ClothingUniformJumpsuitPirateLuffy = Подозрительная пиратская форма
     .desc = Довольно подозрительно выглядящий комплект пиратской одежды.
-ent-ClothingUniformJumpsuitPirateSlops = Потрёпання пиратская форма
+ent-ClothingUniformJumpsuitPirateSlops = Потрёпанная пиратская форма
     .desc = Потрёпанная, но удобная форма для грабежа сектора.
