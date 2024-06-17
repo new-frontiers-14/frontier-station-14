@@ -170,7 +170,7 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void HandleGibTrigger(EntityUid uid, GibOnTriggerComponent component, TriggerEvent args)
         {
-            if (!TryComp<TransformComponent>(uid, out var xform))
+            if (!TryComp(uid, out TransformComponent? xform))
                 return;
             if (component.DeleteItems)
             {
@@ -255,6 +255,9 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void OnActivate(EntityUid uid, TriggerOnActivateComponent component, ActivateInWorldEvent args)
         {
+            if (args.Handled || !args.Complex)
+                return;
+
             Trigger(uid, args.User);
             args.Handled = true;
         }

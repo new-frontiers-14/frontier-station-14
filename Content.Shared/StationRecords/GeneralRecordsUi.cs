@@ -38,19 +38,21 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     public readonly GeneralStationRecord? Record;
     public readonly Dictionary<uint, string>? RecordListing;
     public readonly StationRecordsFilter? Filter;
+    public readonly bool CanDeleteEntries;
 
     public GeneralStationRecordConsoleState(uint? key, GeneralStationRecord? record,
-        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<string, uint?>? jobList, StationRecordsFilter? newFilter)
+        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<string, uint?>? jobList, StationRecordsFilter? newFilter, bool canDeleteEntries)
     {
         SelectedKey = key;
         Record = record;
         RecordListing = recordListing;
         Filter = newFilter;
         JobList = jobList;
+        CanDeleteEntries = canDeleteEntries;
     }
     public IReadOnlyDictionary<string, uint?>? JobList { get;  }
 
-    public GeneralStationRecordConsoleState() : this(null, null, null, null, null)
+    public GeneralStationRecordConsoleState() : this(null, null, null, null, null, false)
     {
     }
 
@@ -71,4 +73,16 @@ public sealed class SelectStationRecord : BoundUserInterfaceMessage
     {
         SelectedKey = selectedKey;
     }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class DeleteStationRecord : BoundUserInterfaceMessage
+{
+    public DeleteStationRecord(uint id)
+    {
+        Id = id;
+    }
+
+    public readonly uint Id;
 }

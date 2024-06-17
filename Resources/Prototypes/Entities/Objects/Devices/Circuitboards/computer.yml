@@ -116,6 +116,17 @@
       prototype: ComputerTabletopCargoOrders # Frontier
 
 - type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoSaleComputerCircuitboard
+  name: cargo sale computer board
+  description: A computer printed circuit board for a cargo sale computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerPalletConsole
+
+- type: entity
   id: CargoBountyComputerCircuitboard
   parent: BaseComputerCircuitboard
   name: cargo bounty computer board
@@ -514,3 +525,14 @@
       prototype: ComputerSensorMonitoring
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopSensorMonitoring # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: RoboticsConsoleCircuitboard
+  name: robotics control console board
+  description: A computer printed circuit board for a robotics control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerRoboticsControl

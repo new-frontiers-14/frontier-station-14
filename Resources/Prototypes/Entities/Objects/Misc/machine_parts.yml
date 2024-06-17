@@ -12,6 +12,8 @@
     - type: GuideHelp
       guides:
       - MachineUpgrading
+    - type: Stack
+      count: 1
 
 # Rating 1
 
@@ -24,12 +26,11 @@
   components:
     - type: Sprite
       state: capacitor
-    - type: MachinePart
-      part: Capacitor
-      rating: 1
     - type: Tag
       tags:
         - CapacitorStockPart
+    - type: Stack
+      stackType: Capacitor
 
 - type: entity
   id: MicroManipulatorStockPart
@@ -40,9 +41,8 @@
   components:
     - type: Sprite
       state: micro_mani
-    - type: MachinePart
-      part: Manipulator
-      rating: 1
+    - type: Stack
+      stackType: Manipulator
 
 - type: entity
   id: MatterBinStockPart
@@ -56,6 +56,8 @@
     - type: MachinePart
       part: MatterBin
       rating: 1
+    - type: Stack
+      stackType: MatterBin
 
 # Rating 2
 
