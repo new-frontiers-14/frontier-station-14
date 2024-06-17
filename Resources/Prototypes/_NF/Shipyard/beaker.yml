@@ -1,0 +1,29 @@
+- type: vessel
+  id: Beaker
+  name: SBI Beaker
+  description: "A fully functional Chemistry Lab. Perfect for the prospecting chemist or high school chemistry teachers. Yeah, Science!"
+  price: 65000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/beaker.yml
+
+- type: gameMap
+  id: Beaker
+  mapName: 'SBI Beaker'
+  mapPath: /Maps/_NF/Shuttles/beaker.yml
+  minPlayers: 0
+  stations:
+    Beaker:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Beaker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
