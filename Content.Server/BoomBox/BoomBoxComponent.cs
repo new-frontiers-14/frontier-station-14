@@ -37,4 +37,5 @@ public sealed partial class BoomBoxComponent : Component
     public Dictionary<string, ItemSlot> Slots = new();
 
     public float PlaybackPosition = 0f;
+    public float SoundDuration = 0f;
 }
