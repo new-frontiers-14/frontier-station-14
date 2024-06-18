@@ -8,6 +8,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Mobs; // FRONTIER MERGE: ADDED FOR MobStateChangedEvent
 
 namespace Content.Server.Atmos.Rotting;
 

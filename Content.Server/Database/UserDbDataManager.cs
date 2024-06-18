@@ -20,7 +20,7 @@ public sealed class UserDbDataManager : IPostInjectInit
 {
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
+    //[Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!; // FRONTIER MERGE: COMMENTED OUT
 
     private readonly Dictionary<NetUserId, UserData> _users = new();
     private readonly List<OnLoadPlayer> _onLoadPlayer = [];

@@ -15,3 +15,14 @@ public sealed partial class MachineComponent : Component
     [ViewVariables]
     public Container PartContainer = default!;
 }
+
+// FRONTIER MERGE: BROUGHT THIS BACK
+/// <summary>
+/// The different types of scaling that are available for machine upgrades
+/// </summary>
+public enum MachineUpgradeScalingType : byte
+{
+    Linear,
+    Exponential
+}
+// END FRONTIER MERGE

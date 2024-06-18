@@ -1,9 +1,9 @@
 using Content.Server.Anomaly;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Components; // FRONTIER MERGE: Server<Shared
 using Content.Shared.Physics;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
