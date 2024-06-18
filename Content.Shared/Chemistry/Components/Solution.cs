@@ -675,7 +675,7 @@ namespace Content.Shared.Chemistry.Components
             return newSolution;
         }
 
-        // Frontier: cryogenics per-reagent filter function (#1443)
+        // Frontier: cryogenics per-reagent filter function (#1443, #1533)
         /// <summary>
         /// Splits a solution, taking the specified amount of each reagent from the solution.
         /// If any reagent in the solution has less volume than specified, it will all be transferred into the new solution.
@@ -704,13 +704,26 @@ namespace Content.Shared.Chemistry.Components
                 else
                 {
                     Contents.RemoveSwap(i);
-                    newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
-                    Volume -= quantity;
+                    //Only add positive quantities to our new solution.
+                    if (quantity > 0)
+                    {
+                        newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
+                        Volume -= quantity;
+                    }
                 }
             }
 
-            newSolution.Volume = origVol - Volume;
-            _heatCapacityDirty = true;
+            // If old solution is empty, invalidate old solution and transfer all volume to new.
+            if (Volume <= 0)
+            {
+                RemoveAllSolution();
+                newSolution.Volume = origVol;
+            }
+            else
+            {
+                newSolution.Volume = origVol - Volume;
+                _heatCapacityDirty = true;
+            }
             newSolution._heatCapacityDirty = true;
 
             ValidateSolution();
@@ -751,13 +764,26 @@ namespace Content.Shared.Chemistry.Components
                 else
                 {
                     Contents.RemoveSwap(i);
-                    newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
-                    Volume -= quantity;
+                    //Only add positive quantities to our new solution.
+                    if (quantity > 0)
+                    {
+                        newSolution.Contents.Add(new ReagentQuantity(reagent, quantity));
+                        Volume -= quantity;
+                    }
                 }
             }
 
-            newSolution.Volume = origVol - Volume;
-            _heatCapacityDirty = true;
+            // If old solution is empty, invalidate old solution and transfer all volume to new.
+            if (Volume <= 0)
+            {
+                RemoveAllSolution();
+                newSolution.Volume = origVol;
+            }
+            else
+            {
+                newSolution.Volume = origVol - Volume;
+                _heatCapacityDirty = true;
+            }
             newSolution._heatCapacityDirty = true;
 
             ValidateSolution();
