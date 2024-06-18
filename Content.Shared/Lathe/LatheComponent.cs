@@ -59,6 +59,8 @@ namespace Content.Shared.Lathe
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
         public float MaterialUseMultiplier = 1;
+
+        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; //FRONTIER MERGE: added this back in
         #endregion
 
         //Frontier Upgrade Code Restore

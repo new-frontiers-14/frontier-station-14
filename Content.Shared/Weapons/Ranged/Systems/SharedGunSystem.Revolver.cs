@@ -154,8 +154,8 @@ public partial class SharedGunSystem
             if (ent == null)
                 continue;
 
-            if (ballisticTarget is not null && ballisticTarget.Whitelist?.IsValid(ent.Value) != true ||
-                revolverTarget is not null && revolverTarget.Whitelist?.IsValid(ent.Value) != true)
+            if (ballisticTarget is not null && _whitelistSystem.IsWhitelistFailOrNull(ballisticTarget.Whitelist, ent.Value) != true ||
+                revolverTarget is not null && _whitelistSystem.IsWhitelistFailOrNull(revolverTarget.Whitelist, ent.Value) != true)
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",

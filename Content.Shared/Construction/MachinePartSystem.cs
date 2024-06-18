@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Construction.Components;
+using Content.Shared.Construction.Prototypes; // FRONTIER MERGE
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
