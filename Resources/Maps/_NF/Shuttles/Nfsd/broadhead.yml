@@ -1118,6 +1118,58 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-5.5
       parent: 1
+- proto: BlastDoorOpen
+  entities:
+  - uid: 495
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
+    - type: AccessReader
+      accessLog:
+      - accessor: Unknown
+        accessTime: 6795.0929407
+      - accessor: Unknown
+        accessTime: 6796.7098381
+      - accessor: Unknown
+        accessTime: 11652.4735111
+      - accessor: Unknown
+        accessTime: 11705.7242542
+    - type: DeviceLinkSink
+      links:
+      - 499
+  - uid: 496
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 1
+    - type: AccessReader
+      accessLog:
+      - accessor: Unknown
+        accessTime: 6801.7429141
+      - accessor: Unknown
+        accessTime: 11702.0569759
+    - type: DeviceLinkSink
+      links:
+      - 499
+  - uid: 497
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 1
+    - type: AccessReader
+      accessLog:
+      - accessor: Unknown
+        accessTime: 6805.9762305
+      - accessor: Unknown
+        accessTime: 11660.4734791
+      - accessor: Unknown
+        accessTime: 11696.8733335
+      - accessor: Unknown
+        accessTime: 11698.3404171
+    - type: DeviceLinkSink
+      links:
+      - 499
 - proto: BodyBagFolded
   entities:
   - uid: 76
@@ -1172,17 +1224,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-4.5
       parent: 1
-  - uid: 83
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-1.5
-      parent: 1
   - uid: 84
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-2.5
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 271
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-1.5
       parent: 1
 - proto: ButtonFrameGrey
   entities:
@@ -2075,19 +2129,19 @@ entities:
     - type: Transform
       pos: 4.6665497,-17.446497
       parent: 1
+- proto: ComputerTabletopAdvancedRadar
+  entities:
+  - uid: 249
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
 - proto: ComputerTabletopIFF
   entities:
   - uid: 248
     components:
     - type: Transform
       pos: 2.5,-0.5
-      parent: 1
-- proto: ComputerTabletopRadar
-  entities:
-  - uid: 249
-    components:
-    - type: Transform
-      pos: 3.5,-0.5
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -2223,13 +2277,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-2.5
-      parent: 1
-- proto: filingCabinetRandom
-  entities:
-  - uid: 271
-    components:
-    - type: Transform
-      pos: 7.5,-10.5
       parent: 1
 - proto: FirelockEdge
   entities:
@@ -3739,30 +3786,34 @@ entities:
   - uid: 476
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-1.5
-      parent: 1
-  - uid: 477
-    components:
-    - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-12.5
       parent: 1
+  - uid: 719
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-1.5
+      parent: 1
+    - type: PointLight
+      enabled: False
+    - type: ApcPowerReceiver
+      powerLoad: 0
 - proto: PoweredSmallLight
   entities:
-  - uid: 478
+  - uid: 477
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-7.5
       parent: 1
-  - uid: 479
+  - uid: 478
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 1
-  - uid: 480
+  - uid: 479
     components:
     - type: Transform
       pos: 4.5,-5.5
@@ -3774,7 +3825,7 @@ entities:
     - type: DeviceLinkSink
       links:
       - 501
-  - uid: 706
+  - uid: 480
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -3791,6 +3842,23 @@ entities:
     - type: Transform
       pos: -3.5,-11.5
       parent: 1
+- proto: ReinforcedPlasmaWindow
+  entities:
+  - uid: 484
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 1
+  - uid: 485
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 1
+  - uid: 486
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
 - proto: ReinforcedWindow
   entities:
   - uid: 482
@@ -3802,21 +3870,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-2.5
-      parent: 1
-  - uid: 484
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 1
-  - uid: 485
-    components:
-    - type: Transform
-      pos: 1.5,0.5
-      parent: 1
-  - uid: 486
-    components:
-    - type: Transform
-      pos: 3.5,0.5
       parent: 1
   - uid: 487
     components:
@@ -3872,30 +3925,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 502
-  - uid: 495
-    components:
-    - type: Transform
-      pos: 1.5,0.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 499
-  - uid: 496
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 499
-  - uid: 497
-    components:
-    - type: Transform
-      pos: 3.5,0.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 499
 - proto: SignalButton
   entities:
   - uid: 498
@@ -3915,18 +3944,18 @@ entities:
   - uid: 499
     components:
     - type: MetaData
-      name: Shutter Control
+      name: Blast Shielding
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-1.5
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-1.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        495:
+        497:
         - Pressed: Toggle
         496:
         - Pressed: Toggle
-        497:
+        495:
         - Pressed: Toggle
   - uid: 500
     components:
@@ -3952,7 +3981,7 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        480:
+        479:
         - Pressed: Toggle
   - uid: 502
     components:
@@ -4077,6 +4106,142 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
+- proto: SurveillanceCameraRouterSecurity
+  entities:
+  - uid: 707
+    components:
+    - type: Transform
+      pos: 7.5,-10.5
+      parent: 1
+- proto: SurveillanceCameraSecurity
+  entities:
+  - uid: 706
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,3.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Starboard Bow
+  - uid: 708
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Holding Cell
+  - uid: 709
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-5.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Interrogation Room
+  - uid: 710
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Port Bow
+  - uid: 711
+    components:
+    - type: Transform
+      pos: 7.5,-12.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Secure Storage
+  - uid: 712
+    components:
+    - type: Transform
+      pos: 9.5,-16.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Starboard Airlock
+  - uid: 713
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-14.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Port Airlock
+  - uid: 714
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-21.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Port Quarter
+  - uid: 715
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 8.5,-21.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Starboard Quarter
+  - uid: 716
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-6.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Starboard Amidships
+  - uid: 717
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-6.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Port Amidships
+  - uid: 718
+    components:
+    - type: Transform
+      pos: 2.5,-15.5
+      parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Main Hallway
 - proto: Table
   entities:
   - uid: 519
@@ -4331,12 +4496,25 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
+- proto: WallmountTelescreen
+  entities:
+  - uid: 641
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-1.5
+      parent: 1
 - proto: WallReinforced
   entities:
+  - uid: 83
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
   - uid: 555
     components:
     - type: Transform
-      pos: 0.5,3.5
+      pos: 4.5,3.5
       parent: 1
   - uid: 556
     components:
@@ -4356,7 +4534,7 @@ entities:
   - uid: 559
     components:
     - type: Transform
-      pos: 4.5,3.5
+      pos: 0.5,3.5
       parent: 1
   - uid: 560
     components:
@@ -4762,11 +4940,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-2.5
-      parent: 1
-  - uid: 641
-    components:
-    - type: Transform
-      pos: 0.5,-1.5
       parent: 1
   - uid: 642
     components:
