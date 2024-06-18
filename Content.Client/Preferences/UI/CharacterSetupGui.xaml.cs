@@ -1,3 +1,4 @@
+/* FRONTIER: COMMENTED THIS OUT
 using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
@@ -274,3 +275,4 @@ namespace Content.Client.Preferences.UI
         }
     }
 }
+*/
