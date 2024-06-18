@@ -169,9 +169,9 @@ namespace Content.Shared.Preferences
         /// <summary>Copy constructor but with overridable references (to prevent useless copies)</summary>
         private HumanoidCharacterProfile(
             HumanoidCharacterProfile other,
-            Dictionary<string, JobPriority> jobPriorities,
-            List<string> antagPreferences,
-            List<string> traitPreferences,
+            Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
+            HashSet<ProtoId<AntagPrototype>> antagPreferences,
+            HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
             : this(other.Name, other.FlavorText, other.Species, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
                 jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts)
