@@ -151,6 +151,21 @@
   id: MobFleshClampExpeditions
   noSpawn: true
   components:
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30 # Lowered the value, to allow them to fit through the airlocks
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
   - type: Sprite
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
