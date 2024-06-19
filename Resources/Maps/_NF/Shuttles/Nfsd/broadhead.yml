@@ -1120,30 +1120,30 @@ entities:
       parent: 2
 - proto: BlastDoorOpen
   entities:
-  - uid: 1
+  - uid: 84
     components:
     - type: Transform
       pos: 2.5,0.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 493
-  - uid: 495
+      - 494
+  - uid: 496
     components:
     - type: Transform
       pos: 1.5,0.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 493
-  - uid: 499
+      - 494
+  - uid: 500
     components:
     - type: Transform
       pos: 3.5,0.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 493
+      - 494
 - proto: BodyBagFolded
   entities:
   - uid: 77
@@ -1206,7 +1206,7 @@ entities:
       parent: 2
 - proto: ButtonFrameCautionSecurity
   entities:
-  - uid: 500
+  - uid: 503
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2051,7 +2051,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 2
-  - uid: 427
+  - uid: 477
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2105,17 +2105,17 @@ entities:
       parent: 2
 - proto: ComputerTabletopAdvancedRadar
   entities:
-  - uid: 490
+  - uid: 492
     components:
     - type: Transform
       pos: 3.5,-0.5
       parent: 2
 - proto: ComputerTabletopIFF
   entities:
-  - uid: 249
+  - uid: 1
     components:
     - type: Transform
-      pos: 2.5,-0.5
+      pos: -0.5,-0.5
       parent: 2
 - proto: ComputerTabletopShuttle
   entities:
@@ -2126,10 +2126,17 @@ entities:
       parent: 2
 - proto: ComputerTabletopStationRecords
   entities:
-  - uid: 252
+  - uid: 437
     components:
     - type: Transform
-      pos: -0.5,-0.5
+      pos: 6.5,-0.5
+      parent: 2
+- proto: ComputerTabletopSurveillanceCameraMonitor
+  entities:
+  - uid: 249
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
       parent: 2
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -3398,7 +3405,7 @@ entities:
       parent: 2
 - proto: Grille
   entities:
-  - uid: 244
+  - uid: 250
     components:
     - type: Transform
       pos: 2.5,0.5
@@ -3443,17 +3450,16 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 2
-  - uid: 485
+  - uid: 486
     components:
     - type: Transform
       pos: 3.5,0.5
       parent: 2
-- proto: GyroscopeSecurity
+- proto: GyroscopeNfsd
   entities:
-  - uid: 432
+  - uid: 544
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 2.5,-18.5
       parent: 2
     - type: Thruster
@@ -3491,13 +3497,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 501
-- proto: LampGold
-  entities:
-  - uid: 437
-    components:
-    - type: Transform
-      pos: 6.522354,-0.18920326
-      parent: 2
 - proto: LampInterrogator
   entities:
   - uid: 438
@@ -3763,7 +3762,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-12.5
       parent: 2
-  - uid: 708
+  - uid: 709
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -3814,37 +3813,37 @@ entities:
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
-  - uid: 272
+  - uid: 425
     components:
     - type: Transform
       pos: 1.5,0.5
       parent: 2
-  - uid: 425
+  - uid: 427
     components:
     - type: Transform
       pos: 3.5,0.5
       parent: 2
-  - uid: 477
+  - uid: 483
     components:
     - type: Transform
       pos: 8.5,-1.5
       parent: 2
-  - uid: 483
+  - uid: 484
     components:
     - type: Transform
       pos: 8.5,-2.5
       parent: 2
-  - uid: 484
+  - uid: 485
     components:
     - type: Transform
       pos: 2.5,0.5
       parent: 2
-  - uid: 487
+  - uid: 489
     components:
     - type: Transform
       pos: -3.5,-2.5
       parent: 2
-  - uid: 489
+  - uid: 490
     components:
     - type: Transform
       pos: -3.5,-1.5
@@ -3863,38 +3862,38 @@ entities:
       parent: 2
 - proto: ShuttersNormalOpen
   entities:
-  - uid: 486
+  - uid: 487
     components:
     - type: Transform
       pos: -3.5,-2.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 498
-  - uid: 492
+      - 499
+  - uid: 493
     components:
     - type: Transform
       pos: -3.5,-1.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 498
-  - uid: 496
+      - 499
+  - uid: 497
     components:
     - type: Transform
       pos: 8.5,-2.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 494
-  - uid: 497
+      - 495
+  - uid: 498
     components:
     - type: Transform
       pos: 8.5,-1.5
       parent: 2
     - type: DeviceLinkSink
       links:
-      - 494
+      - 495
 - proto: SignalButton
   entities:
   - uid: 501
@@ -3911,7 +3910,7 @@ entities:
         - Pressed: Toggle
 - proto: SignalButtonDirectional
   entities:
-  - uid: 493
+  - uid: 494
     components:
     - type: MetaData
       name: Blast Doors
@@ -3921,13 +3920,13 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        499:
+        500:
         - Pressed: Toggle
-        1:
+        84:
         - Pressed: Toggle
-        495:
+        496:
         - Pressed: Toggle
-  - uid: 494
+  - uid: 495
     components:
     - type: MetaData
       name: Shutters
@@ -3937,11 +3936,11 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
+        498:
+        - Pressed: Toggle
         497:
         - Pressed: Toggle
-        496:
-        - Pressed: Toggle
-  - uid: 498
+  - uid: 499
     components:
     - type: MetaData
       name: Shutters
@@ -3951,9 +3950,9 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        492:
+        493:
         - Pressed: Toggle
-        486:
+        487:
         - Pressed: Toggle
   - uid: 502
     components:
@@ -4078,14 +4077,14 @@ entities:
       canCollide: False
 - proto: SurveillanceCameraRouterSecurity
   entities:
-  - uid: 250
+  - uid: 272
     components:
     - type: Transform
       pos: 7.5,-10.5
       parent: 2
 - proto: SurveillanceCameraSecurity
   entities:
-  - uid: 84
+  - uid: 244
     components:
     - type: Transform
       pos: -0.5,3.5
@@ -4095,7 +4094,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Port Bow
-  - uid: 503
+  - uid: 708
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -4106,7 +4105,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Starboard Bow
-  - uid: 709
+  - uid: 710
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -4117,7 +4116,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Port Amidships
-  - uid: 710
+  - uid: 711
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -4128,7 +4127,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Starboard Amidships
-  - uid: 711
+  - uid: 712
     components:
     - type: Transform
       pos: 0.5,-7.5
@@ -4138,7 +4137,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Holding Cell
-  - uid: 712
+  - uid: 713
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -4149,7 +4148,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Interrogation Room
-  - uid: 713
+  - uid: 714
     components:
     - type: Transform
       pos: 2.5,-15.5
@@ -4159,7 +4158,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Main Hall
-  - uid: 714
+  - uid: 715
     components:
     - type: Transform
       pos: 7.5,-12.5
@@ -4169,7 +4168,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Secure Storage
-  - uid: 715
+  - uid: 716
     components:
     - type: Transform
       pos: 9.5,-16.5
@@ -4179,7 +4178,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Starboard Airlock
-  - uid: 716
+  - uid: 717
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -4190,7 +4189,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Port Airlock
-  - uid: 717
+  - uid: 718
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -4201,7 +4200,7 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Port Quarter
-  - uid: 718
+  - uid: 719
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -4294,85 +4293,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,-3.5
       parent: 2
-- proto: ThrusterSecurity
+- proto: ThrusterNfsd
   entities:
-  - uid: 534
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 535
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 536
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-21.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 537
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,-21.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 538
-    components:
-    - type: Transform
-      pos: 6.5,2.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 539
-    components:
-    - type: Transform
-      pos: 7.5,1.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 540
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-5.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 541
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-20.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 542
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-20.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 543
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-5.5
-      parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
-  - uid: 544
+  - uid: 432
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -4380,7 +4303,7 @@ entities:
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
-  - uid: 545
+  - uid: 534
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -4388,11 +4311,87 @@ entities:
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
-  - uid: 546
+  - uid: 535
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-20.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 536
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 537
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 538
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-20.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 539
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,-21.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 540
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,-21.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 541
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 542
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-6.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 543
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-21.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 545
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-5.5
+      parent: 2
+    - type: Thruster
+      originalPowerLoad: 1500
+  - uid: 546
+    components:
+    - type: Transform
+      pos: 7.5,1.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
@@ -4407,46 +4406,46 @@ entities:
   - uid: 548
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-21.5
+      pos: -2.5,1.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
   - uid: 549
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-6.5
+      rot: 3.141592653589793 rad
+      pos: -3.5,-21.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
   - uid: 550
     components:
     - type: Transform
-      pos: 5.5,3.5
+      rot: 3.141592653589793 rad
+      pos: 4.5,-20.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
   - uid: 551
     components:
     - type: Transform
-      pos: -0.5,3.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,-20.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
   - uid: 552
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-20.5
+      pos: 5.5,3.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
   - uid: 553
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-20.5
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-5.5
       parent: 2
     - type: Thruster
       originalPowerLoad: 1500
@@ -4466,14 +4465,6 @@ entities:
       parent: 2
     - type: Physics
       canCollide: False
-- proto: WallmountTelescreen
-  entities:
-  - uid: 719
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-1.5
-      parent: 2
 - proto: WallReinforced
   entities:
   - uid: 556
