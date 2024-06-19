@@ -2,7 +2,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Cargo.Prototypes;
+namespace Content.Shared._NF.Pirate.Prototypes;
 
 /// <summary>
 /// This is a prototype for a pirate bounty, a set of items

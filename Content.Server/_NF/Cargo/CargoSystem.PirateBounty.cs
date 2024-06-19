@@ -4,6 +4,9 @@ using Content.Server.Cargo.Components;
 using Content.Server.Labels;
 using Content.Server.NameIdentifier;
 using Content.Server.Paper;
+using Content.Shared._NF.Pirate;
+using Content.Shared._NF.Pirate.Components;
+using Content.Shared._NF.Pirate.Prototypes;
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
@@ -17,35 +20,29 @@ using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Cargo.Systems;
+namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 
 public sealed partial class CargoSystem
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
-
     [ValidatePrototypeId<NameIdentifierGroupPrototype>]
-    private const string BountyNameIdentifierGroup = "Bounty";
+    private const string PirateBountyNameIdentifierGroup = "PirateBounty";
 
-    private EntityQuery<StackComponent> _stackQuery;
-    private EntityQuery<ContainerManagerComponent> _containerQuery;
-    private EntityQuery<CargoBountyLabelComponent> _bountyLabelQuery;
+    private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
 
-    private void InitializeBounty()
+    // GROSS.
+    private void InitializePirateBounty()
     {
-        SubscribeLocalEvent<CargoBountyConsoleComponent, BoundUIOpenedEvent>(OnBountyConsoleOpened);
-        SubscribeLocalEvent<CargoBountyConsoleComponent, BountyPrintLabelMessage>(OnPrintLabelMessage);
-        SubscribeLocalEvent<CargoBountyConsoleComponent, BountySkipMessage>(OnSkipBountyMessage);
-        SubscribeLocalEvent<CargoBountyLabelComponent, PriceCalculationEvent>(OnGetBountyPrice);
-        SubscribeLocalEvent<EntitySoldEvent>(OnSold);
-        SubscribeLocalEvent<StationCargoBountyDatabaseComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, BountyPrintLabelMessage>(OnPiratePrintLabelMessage);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, BountySkipMessage>(OnSkipPirateBountyMessage);
+        SubscribeLocalEvent<PirateBountyLabelComponent, PriceCalculationEvent>(OnGetPirateBountyPrice); // TODO: figure out how these labels interact with the chest (does the chest RECEIVE the label component?)
+        //SubscribeLocalEvent<EntitySoldEvent>(OnPirateSold); // FIXME: figure this out
+        SubscribeLocalEvent<StationCargoBountyDatabaseComponent, MapInitEvent>(OnPirateMapInit);
 
-        _stackQuery = GetEntityQuery<StackComponent>();
-        _containerQuery = GetEntityQuery<ContainerManagerComponent>();
-        _bountyLabelQuery = GetEntityQuery<CargoBountyLabelComponent>();
+        _pirateBountyLabelQuery = GetEntityQuery<PirateBountyLabelComponent>();
     }
 
-    private void OnBountyConsoleOpened(EntityUid uid, CargoBountyConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
         if (_station.GetOwningStation(uid) is not { } station ||
             !TryComp<StationCargoBountyDatabaseComponent>(station, out var bountyDb))
@@ -55,7 +52,7 @@ public sealed partial class CargoSystem
         _uiSystem.SetUiState(uid, CargoConsoleUiKey.Bounty, new CargoBountyConsoleState(bountyDb.Bounties, untilNextSkip));
     }
 
-    private void OnPrintLabelMessage(EntityUid uid, CargoBountyConsoleComponent component, BountyPrintLabelMessage args)
+    private void OnPiratePrintLabelMessage(EntityUid uid, PirateBountyConsoleComponent component, BountyPrintLabelMessage args)
     {
         if (_timing.CurTime < component.NextPrintTime)
             return;
@@ -72,7 +69,7 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
-    private void OnSkipBountyMessage(EntityUid uid, CargoBountyConsoleComponent component, BountySkipMessage args)
+    private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, BountySkipMessage args)
     {
         if (_station.GetOwningStation(uid) is not { } station || !TryComp<StationCargoBountyDatabaseComponent>(station, out var db))
             return;
@@ -103,7 +100,7 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(component.SkipSound, uid);
     }
 
-    public void SetupBountyLabel(EntityUid uid, EntityUid stationId, CargoBountyData bounty, PaperComponent? paper = null, CargoBountyLabelComponent? label = null)
+    public void SetupPirateBountyLabel(EntityUid uid, EntityUid stationId, CargoBountyData bounty, PaperComponent? paper = null, CargoBountyLabelComponent? label = null)
     {
         if (!Resolve(uid, ref paper, ref label) || !_protoMan.TryIndex<CargoBountyPrototype>(bounty.Bounty, out var prototype))
             return;
@@ -129,7 +126,7 @@ public sealed partial class CargoSystem
     /// Bounties do not sell for any currency. The reward for a bounty is
     /// calculated after it is sold separately from the selling system.
     /// </summary>
-    private void OnGetBountyPrice(EntityUid uid, CargoBountyLabelComponent component, ref PriceCalculationEvent args)
+    private void OnGetPirateBountyPrice(EntityUid uid, PirateBountyLabelComponent component, ref PriceCalculationEvent args)
     {
         if (args.Handled || component.Calculating)
             return;
@@ -138,17 +135,17 @@ public sealed partial class CargoSystem
         if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
             return;
 
-        if (component.AssociatedStationId is not { } station || !TryComp<StationCargoBountyDatabaseComponent>(station, out var database))
+        if (component.AssociatedStationId is not { } station || !TryComp<StationPirateBountyDatabaseComponent>(station, out var database))
             return;
 
         if (database.CheckedBounties.Contains(component.Id))
             return;
 
-        if (!TryGetBountyFromId(station, component.Id, out var bounty, database))
+        if (!TryGetPirateBountyFromId(station, component.Id, out var bounty, database))
             return;
 
         if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
-            !IsBountyComplete(container.Owner, bountyPrototype))
+            !IsPirateBountyComplete(container.Owner, bountyPrototype))
             return;
 
         database.CheckedBounties.Add(component.Id);
@@ -159,34 +156,30 @@ public sealed partial class CargoSystem
         component.Calculating = false;
     }
 
-    private void OnSold(ref EntitySoldEvent args)
+    // Receives a bounty that's been sold.
+    // Returns true if the bounty has been handled, false otherwise.
+    private bool HandlePirateBounty(EntityUid uid)
     {
-        foreach (var sold in args.Sold)
+        if (!TryGetBountyLabel(uid, out _, out var component))
+            return false;
+
+        if (component.AssociatedStationId is not { } station || !TryGetPirateBountyFromId(station, component.Id, out var bounty))
         {
-            // Frontier: check if this bounty's one of ours first.
-            if (HandlePirateBounty(sold))
-                continue;
-            // End Frontier
-            if (!TryGetBountyLabel(sold, out _, out var component))
-                continue;
-
-            if (component.AssociatedStationId is not { } station || !TryGetBountyFromId(station, component.Id, out var bounty))
-            {
-                continue;
-            }
-
-            if (!IsBountyComplete(sold, bounty.Value))
-            {
-                continue;
-            }
-
-            TryRemoveBounty(station, bounty.Value);
-            FillBountyDatabase(station);
-            _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
+            return false;
         }
+
+        if (!IsPirateBountyComplete(uid, bounty.Value))
+        {
+            return false;
+        }
+
+        TryRemovePirateBounty(station, bounty.Value);
+        FillPirateBountyDatabase(station);
+        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
+        return false;
     }
 
-    private bool TryGetBountyLabel(EntityUid uid,
+    private bool TryGetPirateBountyLabel(EntityUid uid,
         [NotNullWhen(true)] out EntityUid? labelEnt,
         [NotNullWhen(true)] out CargoBountyLabelComponent? labelComp)
     {
@@ -208,15 +201,16 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private void OnMapInit(EntityUid uid, StationCargoBountyDatabaseComponent component, MapInitEvent args)
+    // TODO: Fix this stupid name
+    private void OnPirateMapInit(EntityUid uid, StationCargoBountyDatabaseComponent component, MapInitEvent args)
     {
-        FillBountyDatabase(uid, component);
+        FillPirateBountyDatabase(uid, component);
     }
 
     /// <summary>
     /// Fills up the bounty database with random bounties.
     /// </summary>
-    public void FillBountyDatabase(EntityUid uid, StationCargoBountyDatabaseComponent? component = null)
+    public void FillPirateBountyDatabase(EntityUid uid, StationCargoBountyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
@@ -230,18 +224,18 @@ public sealed partial class CargoSystem
         UpdateBountyConsoles();
     }
 
-    public void RerollBountyDatabase(Entity<StationCargoBountyDatabaseComponent?> entity)
+    public void RerollPirateBountyDatabase(Entity<StationCargoBountyDatabaseComponent?> entity)
     {
         if (!Resolve(entity, ref entity.Comp))
             return;
 
         entity.Comp.Bounties.Clear();
-        FillBountyDatabase(entity);
+        FillPirateBountyDatabase(entity);
     }
 
-    public bool IsBountyComplete(EntityUid container, out HashSet<EntityUid> bountyEntities)
+    public bool IsPirateBountyComplete(EntityUid container, out HashSet<EntityUid> bountyEntities)
     {
-        if (!TryGetBountyLabel(container, out _, out var component))
+        if (!TryGetPirateBountyLabel(container, out _, out var component))
         {
             bountyEntities = new();
             return false;
@@ -254,21 +248,21 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        if (!TryGetBountyFromId(station.Value, component.Id, out var bounty))
+        if (!TryGetPirateBountyFromId(station.Value, component.Id, out var bounty))
         {
             bountyEntities = new();
             return false;
         }
 
-        return IsBountyComplete(container, bounty.Value, out bountyEntities);
+        return IsPirateBountyComplete(container, bounty.Value, out bountyEntities);
     }
 
-    public bool IsBountyComplete(EntityUid container, CargoBountyData data)
+    public bool IsPirateBountyComplete(EntityUid container, PirateBountyData data)
     {
-        return IsBountyComplete(container, data, out _);
+        return IsPirateBountyComplete(container, data, out _);
     }
 
-    public bool IsBountyComplete(EntityUid container, CargoBountyData data, out HashSet<EntityUid> bountyEntities)
+    public bool IsPirateBountyComplete(EntityUid container, PirateBountyData data, out HashSet<EntityUid> bountyEntities)
     {
         if (!_protoMan.TryIndex(data.Bounty, out var proto))
         {
@@ -276,33 +270,33 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        return IsBountyComplete(container, proto.Entries, out bountyEntities);
+        return IsPirateBountyComplete(container, proto.Entries, out bountyEntities);
     }
 
-    public bool IsBountyComplete(EntityUid container, string id)
+    public bool IsPirateBountyComplete(EntityUid container, string id)
     {
-        if (!_protoMan.TryIndex<CargoBountyPrototype>(id, out var proto))
+        if (!_protoMan.TryIndex<PirateBountyPrototype>(id, out var proto))
             return false;
 
-        return IsBountyComplete(container, proto.Entries);
+        return IsPirateBountyComplete(container, proto.Entries);
     }
 
-    public bool IsBountyComplete(EntityUid container, CargoBountyPrototype prototype)
+    public bool IsPirateBountyComplete(EntityUid container, PirateBountyPrototype prototype)
     {
-        return IsBountyComplete(container, prototype.Entries);
+        return IsPirateBountyComplete(container, prototype.Entries);
     }
 
-    public bool IsBountyComplete(EntityUid container, IEnumerable<CargoBountyItemEntry> entries)
+    public bool IsPirateBountyComplete(EntityUid container, IEnumerable<PirateBountyItemEntry> entries)
     {
-        return IsBountyComplete(container, entries, out _);
+        return IsPirateBountyComplete(container, entries, out _);
     }
 
-    public bool IsBountyComplete(EntityUid container, IEnumerable<CargoBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
+    public bool IsPirateBountyComplete(EntityUid container, IEnumerable<PirateBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
     {
-        return IsBountyComplete(GetBountyEntities(container), entries, out bountyEntities);
+        return IsPirateBountyComplete(GetBountyEntities(container), entries, out bountyEntities);
     }
 
-    public bool IsBountyComplete(HashSet<EntityUid> entities, IEnumerable<CargoBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
+    public bool IsPirateBountyComplete(HashSet<EntityUid> entities, IEnumerable<PirateBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
     {
         bountyEntities = new();
 
@@ -338,7 +332,7 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private HashSet<EntityUid> GetBountyEntities(EntityUid uid)
+    private HashSet<EntityUid> GetPirateBountyEntities(EntityUid uid)
     {
         var entities = new HashSet<EntityUid>
         {
@@ -354,7 +348,7 @@ public sealed partial class CargoSystem
                 if (_bountyLabelQuery.HasComponent(ent))
                     continue;
 
-                var children = GetBountyEntities(ent);
+                var children = GetPirateBountyEntities(ent);
                 foreach (var child in children)
                 {
                     entities.Add(child);
@@ -366,7 +360,7 @@ public sealed partial class CargoSystem
     }
 
     [PublicAPI]
-    public bool TryAddBounty(EntityUid uid, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid uid, StationCargoBountyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -387,17 +381,17 @@ public sealed partial class CargoSystem
     }
 
     [PublicAPI]
-    public bool TryAddBounty(EntityUid uid, string bountyId, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid uid, string bountyId, StationPirateBountyDatabaseComponent? component = null)
     {
-        if (!_protoMan.TryIndex<CargoBountyPrototype>(bountyId, out var bounty))
+        if (!_protoMan.TryIndex<PirateBountyPrototype>(bountyId, out var bounty))
         {
             return false;
         }
 
-        return TryAddBounty(uid, bounty, component);
+        return TryAddPirateBounty(uid, bounty, component);
     }
 
-    public bool TryAddBounty(EntityUid uid, CargoBountyPrototype bounty, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid uid, PirateBountyPrototype bounty, StationPirateBountyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -405,23 +399,23 @@ public sealed partial class CargoSystem
         if (component.Bounties.Count >= component.MaxBounties)
             return false;
 
-        _nameIdentifier.GenerateUniqueName(uid, BountyNameIdentifierGroup, out var randomVal);
-        component.Bounties.Add(new CargoBountyData(bounty, randomVal));
+        _nameIdentifier.GenerateUniqueName(uid, BountyNameIdentifierGroup, out var randomVal); // Need a string ID for internal name, probably doesn't need to be outward facing.
+        component.Bounties.Add(new PirateBountyData(bounty, randomVal));
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to station {ToPrettyString(uid)}");
         component.TotalBounties++;
         return true;
     }
 
     [PublicAPI]
-    public bool TryRemoveBounty(EntityUid uid, string dataId, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(EntityUid uid, string dataId, StationPirateBountyDatabaseComponent? component = null)
     {
-        if (!TryGetBountyFromId(uid, dataId, out var data, component))
+        if (!TryGetPirateBountyFromId(uid, dataId, out var data, component))
             return false;
 
-        return TryRemoveBounty(uid, data.Value, component);
+        return TryRemovePirateBounty(uid, data.Value, component);
     }
 
-    public bool TryRemoveBounty(EntityUid uid, CargoBountyData data, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(EntityUid uid, PirateBountyData data, StationPirateBountyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -438,11 +432,11 @@ public sealed partial class CargoSystem
         return false;
     }
 
-    public bool TryGetBountyFromId(
+    public bool TryGetPirateBountyFromId(
         EntityUid uid,
         string id,
-        [NotNullWhen(true)] out CargoBountyData? bounty,
-        StationCargoBountyDatabaseComponent? component = null)
+        [NotNullWhen(true)] out PirateBountyData? bounty,
+        StationPirateBountyDatabaseComponent? component = null)
     {
         bounty = null;
         if (!Resolve(uid, ref component))
@@ -459,25 +453,25 @@ public sealed partial class CargoSystem
         return bounty != null;
     }
 
-    public void UpdateBountyConsoles()
+    public void UpdatePirateBountyConsoles()
     {
         var query = EntityQueryEnumerator<CargoBountyConsoleComponent, UserInterfaceComponent>();
         while (query.MoveNext(out var uid, out _, out var ui))
         {
             if (_station.GetOwningStation(uid) is not { } station ||
-                !TryComp<StationCargoBountyDatabaseComponent>(station, out var db))
+                !TryComp<StationPirateBountyDatabaseComponent>(station, out var db))
             {
                 continue;
             }
 
             var untilNextSkip = db.NextSkipTime - _timing.CurTime;
-            _uiSystem.SetUiState((uid, ui), CargoConsoleUiKey.Bounty, new CargoBountyConsoleState(db.Bounties, untilNextSkip));
+            _uiSystem.SetUiState((uid, ui), CargoConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         }
     }
 
-    private void UpdateBounty()
+    private void UpdatePirateBounty()
     {
-        var query = EntityQueryEnumerator<StationCargoBountyDatabaseComponent>();
+        var query = EntityQueryEnumerator<StationPirateBountyDatabaseComponent>();
         while (query.MoveNext(out var bountyDatabase))
         {
             bountyDatabase.CheckedBounties.Clear();
