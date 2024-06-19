@@ -18,7 +18,7 @@ public sealed partial class LyingDownComponent : Component
     ///     The action to lie down or stand up.
     /// </summary>
     [DataField("make-to-stand-up-action", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string? MakeToStandUpAction = "action-name-make-standup";
+    public EntProtoId? MakeToStandUpAction = "action-name-make-standup";
 }
 
 [Serializable, NetSerializable]
