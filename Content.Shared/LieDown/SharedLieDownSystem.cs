@@ -35,7 +35,7 @@ namespace Content.Shared.LieDown
                 .Register<SharedLieDownSystem>();
         }
 
-        private void OnComponentShutdown(EntityUid uid, LyingDownComponent component, ComponentShutdown args)
+        private void OnComponentShutdown(Entity<LyingDownComponent> lying, ref ComponentShutdown args)
         {
             SwitchActions(uid);
             _movement.RefreshMovementSpeedModifiers(uid);
