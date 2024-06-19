@@ -17,7 +17,7 @@ namespace Content.Shared.Standing
         public SoundSpecifier DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
 
         [DataField, AutoNetworkedField]
-        public bool Standing { get; set; } = true;
+        public bool Standing = true;
 
         /// <summary>
         ///     List of fixtures that had their collision mask changed when the entity was downed.

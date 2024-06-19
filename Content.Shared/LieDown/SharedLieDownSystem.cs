@@ -7,7 +7,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Verbs;
 using Robust.Shared.Input.Binding;
-using Robust.Shared.IoC;
 using Robust.Shared.Player;
 
 namespace Content.Shared.LieDown
@@ -81,7 +80,7 @@ namespace Content.Shared.LieDown
         {
             if (_standing.IsDown(uid))
             {
-                args.ModifySpeed(0.4f, 0.4f);
+                args.ModifySpeed(0.1f, 0.1f);
             }
             else
             {
@@ -158,8 +157,6 @@ namespace Content.Shared.LieDown
             if (!_standing.IsDown(uid) || !_standing.Stand(uid))
                 return;
 
-            Logger.Debug("{uid} tried to stand up", uid);
-
             RemCompDeferred<LyingDownComponent>(uid);
         }
 
@@ -167,8 +164,6 @@ namespace Content.Shared.LieDown
         {
             if (_standing.IsDown(uid) || !_standing.Down(uid, false, false))
                 return;
-
-            Logger.Debug("{uid} tried to lie down", uid);
 
             EnsureComp<LyingDownComponent>(uid);
         }

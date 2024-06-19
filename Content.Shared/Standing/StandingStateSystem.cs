@@ -21,7 +21,7 @@ namespace Content.Shared.Standing
         [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
         // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
-        private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
+        private const int StandingCollisionLayer = (int)CollisionGroup.MidImpassable;
 
         public override void Initialize()
         {
@@ -34,9 +34,6 @@ namespace Content.Shared.Standing
         {
             if (!Resolve(uid, ref standingState, false))
                 return false;
-
-            if (HasComp<LyingDownComponent>(uid))
-                RemComp<LyingDownComponent>(uid);
 
             return !standingState.Standing;
         }
