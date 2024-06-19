@@ -26,7 +26,7 @@ namespace Content.Shared.Standing
         [DataField, AutoNetworkedField]
         public List<string> ChangedFixtures = new();
 
-        [DataField("lie-down-action")]
+        [DataField]
         public EntProtoId LieDownAction = "ActionLieDown";
 
         [DataField, AutoNetworkedField]
