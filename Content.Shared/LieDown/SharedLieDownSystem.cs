@@ -104,7 +104,8 @@ namespace Content.Shared.LieDown
             {
                 _actions.AddAction(uid, ref standingComponent.LieDownActionEntity, standingComponent.LieDownAction);
                 _actions.RemoveAction(uid, standingComponent.StandUpActionEntity);
-            }        }
+            }
+        }
 
         /// <summary>
         ///     When interacting with a lying down person, add ability to make him stand up.

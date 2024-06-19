@@ -1,0 +1,19 @@
+- type: entity
+  id: ActionStandUp
+  name: Stand Up
+  description: Toggles all glove actions on left click. Includes your doorjack, draining power, stunning enemies, downloading research and calling in a threat.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    priority: -13
+    event: !type:StandUpActionEvent {}
+
+- type: entity
+  id: ActionLieDown
+  name: Lie Down
+  description: Toggles all glove actions on left click. Includes your doorjack, draining power, stunning enemies, downloading research and calling in a threat.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    priority: -13
+    event: !type:LieDownActionEvent {}
