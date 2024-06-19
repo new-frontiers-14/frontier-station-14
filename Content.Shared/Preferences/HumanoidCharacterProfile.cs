@@ -92,8 +92,8 @@ namespace Content.Shared.Preferences
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
  
-         [DataField] // Frontier: Bank balance
-         public int BankBalance { get; private set; } // Frontier: Bank balance
+        [DataField] // Frontier: Bank balance
+        public int BankBalance { get; private set; } // Frontier: Bank balance
 
         /// <summary>
         /// <see cref="Appearance"/>
@@ -194,7 +194,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
-        {  
+        {
         }
 
         /// <summary>

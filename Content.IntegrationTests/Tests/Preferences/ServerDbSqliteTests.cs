@@ -45,7 +45,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 FlavorText = "The biggest boy around.",
                 Species = "Human",
                 Age = 21,
-                BankBalance = 27000,
+                //BankBalance = 27000, // FRONTIER MERGE - COMMENTED THIS OUT
                 Appearance = new(
                     "Afro",
                     Color.Aqua,

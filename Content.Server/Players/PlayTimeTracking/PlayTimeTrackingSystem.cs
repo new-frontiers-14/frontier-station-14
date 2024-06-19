@@ -226,23 +226,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         }
 
         var isWhitelisted = player.ContentData()?.Whitelisted ?? false; // DeltaV - Whitelist requirement
-
+        // FRONTIER MERGE: use upstream, add isWhitelisted
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
-            if (job.Requirements != null)
-            {
-                foreach (var requirement in job.Requirements)
-                {
-                    if (JobRequirements.TryRequirementMet(requirement, playTimes, out _, EntityManager, _prototypes, isWhitelisted))
-                        continue;
-
-                    goto NoRole;
-                }
-            }
-
-            roles.Add(job.ID);
-            NoRole:;
+            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, isWhitelisted))
+                roles.Add(job.ID);
         }
+        // END FRONTIER MERGE
 
         return roles;
     }
@@ -264,11 +254,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         for (var i = 0; i < jobs.Count; i++)
         {
+            // FRONTIER MERGE: use upstream, add isWhitelisted
             if (_prototypes.TryIndex(jobs[i], out var job)
                 && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, isWhitelisted))
-            {
                 continue;
-            }
+            // END FRONTIER MERGE
 
             jobs.RemoveSwap(i);
             i--;
