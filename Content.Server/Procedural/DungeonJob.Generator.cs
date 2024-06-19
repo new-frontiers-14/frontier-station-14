@@ -232,7 +232,7 @@ public sealed partial class DungeonJob
                         var indices = new Vector2i(x + room.Offset.X, y + room.Offset.Y);
                         var tileRef = templateGrid.GetTileRef(indices);
 
-                        var tilePos = dungeonMatty.Transform(indices + tileOffset);
+                        var tilePos = Vector2.Transform(indices + tileOffset, dungeonMatty);
                         var rounded = tilePos.Floored();
                         tiles.Add((rounded, tileRef.Tile));
                         roomTiles.Add(rounded);
@@ -260,7 +260,7 @@ public sealed partial class DungeonJob
                 var bounds = new Box2(room.Offset, room.Offset + room.Size);
                 var center = Vector2.Zero;
 
-                foreach (var tile in roomTiles)
+                for (var x = 0; x < room.Size.X; x++)
                 {
                     for (var y = 0; y < room.Size.Y; y++)
                     {
@@ -288,8 +288,8 @@ public sealed partial class DungeonJob
                 foreach (var templateEnt in _lookup.GetEntitiesIntersecting(templateMapUid, bounds, LookupFlags.Uncontained))
                 {
                     var templateXform = xformQuery.GetComponent(templateEnt);
-                    var childPos = dungeonMatty.Transform(templateXform.LocalPosition - roomCenter);
-                    var childRot = templateXform.LocalRotation + finalRoomRotation;
+                    var childPos = Vector2.Transform(templateXform.LocalPosition - roomCenter, dungeonMatty); // FRONTIER MERGE: dungeonMatty.Transform < Vector2.Transform(..., dungeonMatty)
+                    var childRot = templateXform.LocalRotation + roomRotation; // FRONTIER MERGE: finalRoomRotation<roomRotation
                     var protoId = metaQuery.GetComponent(templateEnt).EntityPrototype?.ID;
 
                     // TODO: Copy the templated entity as is with serv
@@ -317,11 +317,11 @@ public sealed partial class DungeonJob
                         // Offset by 0.5 because decals are offset from bot-left corner
                         // So we convert it to center of tile then convert it back again after transform.
                         // Do these shenanigans because 32x32 decals assume as they are centered on bottom-left of tiles.
-                        var position = dungeonMatty.Transform(decal.Coordinates + Vector2Helpers.Half - roomCenter);
+                        var position = Vector2.Transform(decal.Coordinates + Vector2Helpers.Half - roomCenter, dungeonMatty);
                         position -= Vector2Helpers.Half;
 
                         // Umm uhh I love decals so uhhhh idk what to do about this
-                        var angle = (decal.Angle + finalRoomRotation).Reduced();
+                        var angle = (decal.Angle + roomRotation).Reduced(); // FRONTIER MERGE: finalRoomRotation<roomRotation
 
                         // Adjust because 32x32 so we can't rotate cleanly
                         // Yeah idk about the uhh vectors here but it looked visually okay but they may still be off by 1.

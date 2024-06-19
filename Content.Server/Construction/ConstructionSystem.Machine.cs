@@ -51,22 +51,29 @@ public sealed partial class ConstructionSystem
 
         foreach (var (stackType, amount) in machineBoard.StackRequirements)
         {
-            var partProto = _prototypeManager.Index<MachinePartPrototype>(part);
-            for (var i = 0; i < amount; i++)
-            {
-                var p = EntityManager.SpawnEntity(partProto.StockPartPrototype, xform.Coordinates);
-
-                if (!_container.Insert(p, partContainer))
-                    throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {partProto.StockPartPrototype ?? "N/A"}!");
-            }
-        }
-
-        foreach (var (stackType, amount) in machineBoard.MaterialRequirements)
-        {
-            var stack = _stackSystem.Spawn(amount, stackType, Transform(uid).Coordinates); // MERGE: xform.Coordinates?
+            var stack = _stackSystem.Spawn(amount, stackType, xform.Coordinates);
             if (!_container.Insert(stack, partContainer))
                 throw new Exception($"Couldn't insert machine material of type {stackType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
+            // FRONTIER MERGE: COMMENTED THIS OLD CHUNK OUT
+            // var partProto = _prototypeManager.Index<MachinePartPrototype>(part);
+            // for (var i = 0; i < amount; i++)
+            // {
+            //     var p = EntityManager.SpawnEntity(partProto.StockPartPrototype, xform.Coordinates);
+
+            //     if (!_container.Insert(p, partContainer))
+            //         throw new Exception($"Couldn't insert machine part of type {part} to machine with prototype {partProto.StockPartPrototype ?? "N/A"}!");
+            // }
+            // END FRONTIER MERGE
         }
+
+        // FRONTIER MERGE: COMMENTED THIS OLD CHUNK OUT
+        /*foreach (var (stackType, amount) in machineBoard.MaterialRequirements)
+        {
+            var stack = _stackSystem.Spawn(amount, stackType, xform.Coordinates);
+            if (!_container.Insert(stack, partContainer))
+                throw new Exception($"Couldn't insert machine material of type {stackType} to machine with prototype {Prototype(uid)?.ID ?? "N/A"}");
+        }*/
+        // END FRONTIER MERGE
 
         foreach (var (compName, info) in machineBoard.ComponentRequirements)
         {

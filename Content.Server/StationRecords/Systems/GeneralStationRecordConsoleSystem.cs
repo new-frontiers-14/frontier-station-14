@@ -95,8 +95,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         switch (listing.Count)
         {
             case 0:
-                GeneralStationRecordConsoleState emptyState = new(null, null, null, jobList, console.Filter);
-                _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, emptyState);
+                _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
                 return;
             default:
                 if (console.ActiveKey == null)

@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Server.Salvage.Expeditions;
+using Content.Server.Salvage.Expeditions.Structure;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Components;

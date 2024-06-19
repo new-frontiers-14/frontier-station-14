@@ -21,7 +21,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics; //Frontier modification
-using Content.Server.Salvage.Expeditions; // Frontier modification
+using Content.Server.Salvage.Expeditions;
+using Content.Server.Explosion.EntitySystems; // Frontier modification
 
 namespace Content.Server.Medical.SuitSensors;
 
@@ -384,9 +385,13 @@ public sealed class SuitSensorSystem : EntitySystem
                 if (transform.GridUid != null)
                 {
 
-					coordinates = new EntityCoordinates(transform.GridUid.Value,
-                        _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
-                        .Transform(_transform.GetWorldPosition(transform, xformQuery)));
+					// coordinates = new EntityCoordinates(transform.GridUid.Value, // FRONTIER MERGE
+                    //     _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery) // FRONTIER MERGE
+                    //     .Transform(_transform.GetWorldPosition(transform, xformQuery))); // FRONTIER MERGE
+
+                    coordinates = new EntityCoordinates(transform.GridUid.Value, // FRONTIER MERGE
+                        Vector2.Transform(_transform.GetWorldPosition(transform, xformQuery), // FRONTIER MERGE
+                            _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery))); // FRONTIER MERGE
 					/*
                     coordinates = new EntityCoordinates(uid,
                        new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
