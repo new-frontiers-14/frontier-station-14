@@ -30,3 +30,6 @@ reagent-desc-vomit = You can see a few chunks of someone's last meal in it.
 
 reagent-name-grey-matter = grey matter
 reagent-desc-grey-matter = Thought juice, the stuff that leaks out of your ears.
+
+reagent-name-coffeegrounds = coffee grounds
+reagent-desc-coffeegrounds = Fresh coffee grounds. Aromatic, and richly textured, exuding a robust, earthy scent that promises a flavorful brew.

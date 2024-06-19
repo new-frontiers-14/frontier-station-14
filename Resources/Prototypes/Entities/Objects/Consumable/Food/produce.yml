@@ -1909,3 +1909,28 @@
     - CottonBoll
   - type: Extractable
     grindableSolutionName: food
+
+- type: entity
+  name: coffee
+  parent: FoodProduceBase
+  id: FoodCoffee
+  description: Red berries encasing coffee beans.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bitter
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: CoffeeGrounds
+          Quantity: 5
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/coffee.rsi
+  - type: Produce
+    seedId: coffee
+  - type: Tag
+    tags:
+    - Fruit
