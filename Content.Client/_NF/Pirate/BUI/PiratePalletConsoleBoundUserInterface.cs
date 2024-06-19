@@ -39,14 +39,12 @@ public sealed class PiratePalletConsoleBoundUserInterface : BoundUserInterface
         SendMessage(new PiratePalletSellMessage());
     }
 
+    // TODO: remove this, nothing to update
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
 
         if (state is not PiratePalletConsoleInterfaceState palletState)
             return;
-
-        _menu?.SetEnabled(palletState.Enabled);
-        _menu?.SetCount(palletState.Count);
     }
 }

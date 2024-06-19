@@ -11,7 +11,7 @@ public sealed partial class PiratePalletMenu : FancyWindow
 {
     public Action? SellRequested;
 
-    public CargoPalletMenu()
+    public PiratePalletMenu()
     {
         RobustXamlLoader.Load(this);
         SellButton.OnPressed += OnSellPressed;

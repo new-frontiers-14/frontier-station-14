@@ -1,6 +1,6 @@
 using Content.Server.Station.Systems;
 
-namespace Content.Server.Cargo.Components;
+namespace Content.Server._NF.Pirate.Components;
 
 /// <summary>
 /// This is used for marking containers as

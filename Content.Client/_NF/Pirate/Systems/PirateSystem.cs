@@ -10,6 +10,5 @@ public sealed partial class PirateSystem : SharedPirateSystem
     public override void Initialize()
     {
         base.Initialize();
-        InitializePirateTelepad();
     }
 }

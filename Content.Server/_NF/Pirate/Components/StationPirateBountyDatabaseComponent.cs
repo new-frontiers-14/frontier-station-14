@@ -1,7 +1,7 @@
 using Content.Shared._NF.Pirate;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Cargo.Components;
+namespace Content.Server._NF.Pirate.Components;
 
 /// <summary>
 /// Stores all active cargo bounties for a particular station.

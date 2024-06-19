@@ -15,9 +15,9 @@ public enum PiratePalletConsoleUiKey : byte
     Sale
 }
 
-// TODO: remove these.
-// public abstract class SharedPirateSystem : EntitySystem {}
+public abstract class SharedPirateSystem : EntitySystem {}
 
+// TODO: remove these.
 // [Serializable, NetSerializable]
 // public enum PirateTelepadState : byte
 // {

@@ -1,5 +1,5 @@
 using Content.Client._NF.Pirate.UI;
-using Content.Shared.Cargo.Components;
+using Content.Shared._NF.Pirate.Components;
 using JetBrains.Annotations;
 
 namespace Content.Client._NF.Pirate.BUI;
