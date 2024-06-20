@@ -89,11 +89,23 @@
 
 ## Aberrant flesh
 - type: entity
+  parent: Dart
+  id: DartAberrantFleshHorrorSpikeGuidebook
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+
+- type: entity
   parent: MobHostileThrowableWeapon
   id: DartAberrantFleshHorrorSpike
   name: bone spike
   noSpawn: true
   components:
+  - type: ThrowingAngle
+    angle: 0
   - type: Sprite
     sprite: _NF/Mobs/Aliens/flesh.rsi
     state: spike
