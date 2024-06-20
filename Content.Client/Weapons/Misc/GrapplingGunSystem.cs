@@ -38,10 +38,10 @@ public sealed class GrapplingGunSystem : SharedGrapplingGunSystem
         {
             return;
         }
-
-        if (distance.MaxLength <= distance.MinLength)
-            return;
-
+// Corvax Frontier start
+//        if (distance.MaxLength <= distance.MinLength)
+//            return;
+// Corvax Frontier end
         var reelKey = _input.CmdStates.GetState(EngineKeyFunctions.UseSecondary) == BoundKeyState.Down;
 
         if (!TryComp<CombatModeComponent>(local, out var combatMode) ||
