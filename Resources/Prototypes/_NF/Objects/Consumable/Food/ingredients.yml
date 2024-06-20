@@ -27,13 +27,11 @@
     graph: Coffee
     node: start
     defaultTarget: light roasted coffee
-  # let air cook and freeze meat for cooking and preservation
-  - type: AtmosExposed
-  - type: Temperature
+  - type: AtmosExposed # Expose the beans to atmosphere - heats and cools them
+  - type: Temperature # Temperature components needed to cook the beans
     currentTemperature: 290
-  # required for cooking to work
   - type: InternalTemperature
-    thickness: 0.008 # 8mm
+    thickness: 0.008 # 8mm (roughly bean sized)
     area: .2 # essentially a giant sheet of beans
 
 - type: entity
@@ -65,7 +63,6 @@
     defaultTarget: medium roasted coffee
   - type: AtmosExposed # Expose the beans to atmosphere - heats and cools them
   - type: Temperature # Temperature components needed to cook the beans
-    heatCapacity: 5 # ridiculously small (5 J/kg vs. ~1 kJ/kg)
   - type: InternalTemperature
     thickness: 0.008 # 8mm (roughly bean sized)
     area: .2 # essentially a giant sheet of beans
