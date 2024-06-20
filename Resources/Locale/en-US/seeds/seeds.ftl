@@ -117,5 +117,3 @@ seeds-cotton-name = cotton
 seeds-cotton-display-name = cotton plant
 seeds-pyrotton-name = pyrotton
 seeds-pyrotton-display-name = pyrotton plant
-seeds-coffee-name = Coffee
-seeds-coffee-display-name = Coffee Bush
