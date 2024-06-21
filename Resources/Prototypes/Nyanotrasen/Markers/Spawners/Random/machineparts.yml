@@ -49,25 +49,27 @@
         - BluespaceMatterBinStockPart
       rareChance: 0.25
 
-- type: entity
-  name: Salvage Parts Spawner
-  id: SalvagePartsSpawnerSubSpace
-  suffix: Subspace
-  parent: MarkerBase
-  components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Objects/Misc/stock_parts.rsi
-          state: subspace_ansible
-    - type: RandomSpawner
-      prototypes:
-        - AnsibleSubspaceStockPart
-        - FilterSubspaceStockPart
-        - AmplifierSubspaceStockPart
-        - TreatmentSubspaceStockPart
-        - AnalyzerSubspaceStockPart
-        - CrystalSubspaceStockPart
-        - TransmitterSubspaceStockPart
-      chance: 0.05
-      offset: 0.0
+# FRONTIER MERGE: COMMENTED THIS OUT
+# - type: entity
+#   name: Salvage Parts Spawner
+#   id: SalvagePartsSpawnerSubSpace
+#   suffix: Subspace
+#   parent: MarkerBase
+#   components:
+#     - type: Sprite
+#       layers:
+#         - state: red
+#         - sprite: Objects/Misc/stock_parts.rsi
+#           state: subspace_ansible
+#     - type: RandomSpawner
+#       prototypes:
+#         - AnsibleSubspaceStockPart
+#         - FilterSubspaceStockPart
+#         - AmplifierSubspaceStockPart
+#         - TreatmentSubspaceStockPart
+#         - AnalyzerSubspaceStockPart
+#         - CrystalSubspaceStockPart
+#         - TransmitterSubspaceStockPart
+#       chance: 0.05
+#       offset: 0.0
+# END FRONTIER MERGE
