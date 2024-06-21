@@ -86,7 +86,7 @@ public sealed class PartExchangerSystem : EntitySystem
         machineParts.Sort((x, y) => y.partComp.Rating.CompareTo(x.partComp.Rating));
 
         var updatedParts = new List<(EntityUid part, MachinePartComponent partComp)>();
-        foreach (var (type, amount) in macBoardComp.Requirements)
+        foreach (var (type, amount) in macBoardComp.StackRequirements)
         {
             var target = machineParts.Where(p => p.partComp.PartType == type).Take(amount);
             updatedParts.AddRange(target);
@@ -122,14 +122,14 @@ public sealed class PartExchangerSystem : EntitySystem
             {
                 machineParts.Add((item, part));
                 _container.RemoveEntity(uid, item);
-                machine.Progress[part.PartType]--;
+                machine.MaterialProgress[part.PartType]--;
             }
         }
 
         machineParts.Sort((x, y) => y.partComp.Rating.CompareTo(x.partComp.Rating));
 
         var updatedParts = new List<(EntityUid part, MachinePartComponent partComp)>();
-        foreach (var (type, amount) in macBoardComp.Requirements)
+        foreach (var (type, amount) in macBoardComp.StackRequirements)
         {
             var target = machineParts.Where(p => p.partComp.PartType == type).Take(amount);
             updatedParts.AddRange(target);
@@ -139,11 +139,11 @@ public sealed class PartExchangerSystem : EntitySystem
             var part = pair.partComp;
             var partEnt = pair.part;
 
-            if (!machine.Requirements.ContainsKey(part.PartType))
+            if (!machine.MaterialRequirements.ContainsKey(part.PartType))
                 continue;
 
             _container.Insert(partEnt, machine.PartContainer);
-            machine.Progress[part.PartType]++;
+            machine.MaterialProgress[part.PartType]++;
             machineParts.Remove(pair);
         }
 
