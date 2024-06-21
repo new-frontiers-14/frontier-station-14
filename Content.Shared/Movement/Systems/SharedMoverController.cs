@@ -449,6 +449,16 @@ namespace Content.Shared.Movement.Systems
             }
             // Delta V NoShoesSilentFootsteps till here.
 
+            // Frontier: check outer clothes
+            // If you have a hardsuit or power armor on that goes around your boots, it's the hardsuit that hits the floor.
+            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
+                TryComp<FootstepModifierComponent>(outerClothing, out var outerModifier))
+            {
+                sound = outerModifier.FootstepSoundCollection;
+                return true;
+            }
+            // End Frontier
+
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
                 TryComp<FootstepModifierComponent>(shoes, out var modifier))
             {
