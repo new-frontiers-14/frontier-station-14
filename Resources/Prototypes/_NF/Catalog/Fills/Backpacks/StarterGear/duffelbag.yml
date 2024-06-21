@@ -75,3 +75,16 @@
       - id: NfsdTechFabFlatpack
       - id: BaseSecurityUplinkRadioSheriff
       - id: ClothingNeckNfsdBadgeSheriff
+
+# FRONTIER MERGE: MISSING ENTITIES
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+
+# END FRONTIER MERGE
