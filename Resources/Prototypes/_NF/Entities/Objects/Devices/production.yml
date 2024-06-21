@@ -10,7 +10,6 @@
       prototype: Shredder
       stackRequirements:
         MatterBin: 1
-      materialRequirements:
         Glass: 1
 
 - type: entity
@@ -24,7 +23,6 @@
       stackRequirements:
         MatterBin: 2
         Manipulator: 2
-      materialRequirements:
         Glass: 1
 
 - type: entity
@@ -42,9 +40,8 @@
         Manipulator: 2
       tagRequirements:
         GlassBeaker:
-          Amount: 2
-          DefaultPrototype: Beaker
-          ExamineName: Glass Beaker
+          amount: 2
+          defaultPrototype: Beaker
 
 # TechFab
 - type: entity
@@ -68,7 +65,6 @@
     prototype: ThrusterSecurity
     stackRequirements:
       Capacitor: 3
-    materialRequirements:
       Steel: 5
 
 - type: entity
@@ -80,7 +76,6 @@
     prototype: ThrusterNfsd
     stackRequirements:
       Capacitor: 3
-    materialRequirements:
       Steel: 5
 
 - type: entity
@@ -92,7 +87,6 @@
     prototype: SmallThruster
     stackRequirements:
       Capacitor: 4
-    materialRequirements:
       Steel: 5
   - type: StaticPrice
     price: 12.5
@@ -108,7 +102,6 @@
     stackRequirements:
       Manipulator: 2
       Capacitor: 1
-    materialRequirements:
       Glass: 2
 
 - type: entity
@@ -121,7 +114,6 @@
     stackRequirements:
       Manipulator: 2
       Capacitor: 1
-    materialRequirements:
       Glass: 2
   - type: StaticPrice
     price: 12.5
@@ -136,7 +128,6 @@
     stackRequirements:
       Manipulator: 2
       Capacitor: 1
-    materialRequirements:
       Glass: 2
 
 - type: entity
@@ -149,7 +140,6 @@
     stackRequirements:
       Manipulator: 2
       Capacitor: 1
-    materialRequirements:
       Glass: 2
   - type: StaticPrice
     price: 12.5
@@ -168,3 +158,17 @@
       Glass: 2
   - type: StaticPrice
     price: 12.5
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: M_EmpMachineCircuitboard
+  name: M_EMP Generator machine board
+  description: A machine printed circuit board for a mobile EMP generator.
+  components:
+  - type: MachineBoard
+    prototype: M_Emp
+    requirements:
+      Capacitor: 4
+      Steel: 5
+      CableHV: 5
+      Cable: 2
