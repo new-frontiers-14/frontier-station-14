@@ -50,7 +50,7 @@ public sealed partial class IdCardComponent : Component
 
     [DataField]
     public bool CanMicrowave = true;
-
+    
     // Frontier
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
