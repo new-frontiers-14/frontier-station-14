@@ -18,6 +18,16 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
+  - type: Stamp # Frontier
+    stampedColor: "#000001" # Frontier
+    stampState: "paper_stamp-generic" # Frontier
+    stampedPersonal: true # Frontier
+    stampedBorderless: true # Frontier
+    sound: # Frontier
+      path: /Audio/_NF/Items/Pen/pen_sign.ogg # Frontier
+      params: # Frontier
+        volume: -2 # Frontier
+        maxDistance: 5 # Frontier
 
 - type: entity
   parent: Pen
@@ -33,6 +43,8 @@
     damage:
       types:
         Piercing: 3
+  - type: StaticPrice # FRONTIER MERGE: ADDED
+    price: 1 # FRONTIER MERGE: ADDED
 
 #TODO: I want the luxury pen to write a cool font like Merriweather in the future.
 
@@ -75,6 +87,7 @@
       - Screwing
     useSound:
       collection: Screwdriver
+  - type: Contraband #frontier
 
 - type: entity
   name: captain's fountain pen
@@ -84,6 +97,8 @@
   components:
   - type: Sprite
     state: pen_cap
+  - type: StaticPrice # FRONTIER MERGE: ADDED
+    price: 10 # FRONTIER MERGE: ADDED
 
 - type: entity
   name: CentCom pen
@@ -104,3 +119,5 @@
   components:
   - type: Sprite
     state: pen_hop
+  - type: StaticPrice # FRONTIER MERGE: ADDED
+    price: 10 # FRONTIER MERGE: ADDED
