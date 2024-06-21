@@ -154,10 +154,6 @@ namespace Content.Server.Paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) &&
                 TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
-                if (stampComp.StampedPersonal) // Frontier
-                    stampComp.StampedName =
-                        Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
-
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
                     ("user", args.User), ("target", args.Target), ("stamp", args.Used));

@@ -71,8 +71,6 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 1
-  - type: StaticPrice
-    price: 0 # Stop fax copy abuse.
 
 - type: entity
   name: paper scrap
@@ -134,11 +132,9 @@
 
 - type: entity
   name: captain's thoughts
-  #name: station representative thoughts
   parent: Paper
   id: PaperCaptainsThoughts
   description: "A page of the captain's journal. In luxurious lavender."
-  #description: "A page of the station representative journal. In luxurious lavender."
   components:
   - type: Sprite
     layers:
