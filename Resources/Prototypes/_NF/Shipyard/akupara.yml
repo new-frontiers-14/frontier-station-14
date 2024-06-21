@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: tonotom1
+# Discord: rws
+
+# Maintainer Info
+# GitHub: tonotom1
+# Discord: rws
+
+# Shuttle Notes:
+# hi
+- type: vessel
+  id: Akupara
+  name: UW Akupara
+  description: A medium botanical research biodome equipped with non-standard atmospherics system capable of isolating and storing - but not processing gases produced by mutated plants.
+  price: 44500 #~40150 + ~4350
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/akupara.yml
+
+- type: gameMap
+  id: Akupara
+  mapName: 'Akupara'
+  mapPath: /Maps/_NF/Shuttles/akupara.yml
+  minPlayers: 0
+  stations:
+    Akupara:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'UW Akupara {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
