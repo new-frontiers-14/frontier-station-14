@@ -46,6 +46,9 @@
         Structural: 20
   - type: Body
     prototype: Animal
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3
   - type: TypingIndicator
     proto: alien
   - type: ReplacementAccent
@@ -80,7 +83,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      30: Dead
+      20: Dead
   - type: Fixtures
     fixtures:
       fix1:
@@ -93,12 +96,12 @@
         layer:
         - MobLayer
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
+    baseSprintSpeed : 4
     baseWalkSpeed : 3
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 3
+        Blunt: 2
         Structural: 20
 
 - type: entity
@@ -173,6 +176,9 @@
       types:
         Slash: 3
         Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 4
+    baseWalkSpeed : 3
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -355,9 +361,6 @@
         Blunt: 8
         Slash: 8
         Structural: 20
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
-    baseWalkSpeed: 3
 
 - type: entity
   parent: BaseMobArgocyteExpeditions

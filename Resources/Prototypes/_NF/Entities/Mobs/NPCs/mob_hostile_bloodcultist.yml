@@ -329,6 +329,17 @@
         Base: icon
       Dead:
         Base: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask:
+        - MobMask
+        layer:
+        - Opaque
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -341,7 +352,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Asphyxiation: 7
+        Asphyxiation: 4
         Structural: 20
     animation: WeaponArcClaw
   - type: PointLight
