@@ -42,7 +42,7 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 5
+        Blunt: 5
         Structural: 20
   - type: Body
     prototype: Animal
@@ -62,8 +62,15 @@
     - CannotSuicide
     - DoorBumpOpener
     - FootstepSound
+  - type: Butcherable
+    spawned:
+    - id: SpawnDungeonLootMaterialsBasicSingle
+      amount: 1
+    - id: FoodMeatXeno
+      amount: 3
 
 # VARIANTS
+## Stalkers morphotype
 - type: entity
   parent: BaseMobArgocyteExpeditions
   id: MobArgocyteSlurvaExpeditions
@@ -95,50 +102,14 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 3
+        Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 4
+    baseSprintSpeed : 3
     baseWalkSpeed : 3
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 2
-        Structural: 20
-
-- type: entity
-  parent: BaseMobArgocyteExpeditions
-  id: MobArgocyteBarrierExpeditions
-  name: barrier
-  components:
-  - type: Sprite
-    layers:
-    - state: barrier
-      map: ["enum.DamageStateVisualLayers.Base"]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: barrier
-      Dead:
-        Base: barrier_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      30: Dead
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 50
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 3
-        Structural: 20
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -174,11 +145,11 @@
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 3
+        Slash: 6
         Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 4
-    baseWalkSpeed : 3
+    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3.5
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -199,57 +170,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 5
-
-- type: entity
-  parent: BaseMobArgocyteExpeditions
-  id: MobArgocyteMolderExpeditions
-  name: molder
-  components:
-  - type: Sprite
-    layers:
-    - state: molder
-      map: ["enum.DamageStateVisualLayers.Base"]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: molder
-      Dead:
-        Base: molder_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      70: Dead
-  - type: MovementSpeedModifier
-    baseSprintSpeed : 4
-    baseWalkSpeed : 3.5
-
-- type: entity
-  parent: BaseMobArgocyteExpeditions
-  id: MobArgocytePouncerExpeditions
-  name: pouncer
-  components:
-  - type: Sprite
-    layers:
-    - state: pouncer
-      map: ["enum.DamageStateVisualLayers.Base"]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: pouncer
-      Dead:
-        Base: pouncer_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      70: Dead
+      40: Dead
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 2.5
-        Slash: 7.5
+        Slash: 8
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 4
+    baseWalkSpeed: 4
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -269,42 +198,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Dead
+      50: Dead
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 3.5
-        Slash: 3.5
+        Slash: 10
         Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 5
+    baseSprintSpeed : 4.5
     baseWalkSpeed: 4.5
-
-- type: entity
-  parent: BaseMobArgocyteExpeditions
-  id: MobArgocyteHarvesterExpeditions
-  name: harvester
-  components:
-  - type: Sprite
-    layers:
-    - state: harvester
-      map: ["enum.DamageStateVisualLayers.Base"]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: harvester
-      Dead:
-        Base: harvester_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      90: Dead
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 5
-        Slash: 8
-        Structural: 20
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -329,38 +231,11 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 6
-        Slash: 4
+        Slash: 12
         Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 6.5
+    baseSprintSpeed : 5
     baseWalkSpeed: 5
-
-- type: entity
-  parent: BaseMobArgocyteExpeditions
-  id: MobArgocyteEnforcerExpeditions
-  name: enforcer
-  components:
-  - type: Sprite
-    layers:
-      - state: enforcer
-        map: ["enum.DamageStateVisualLayers.Base"]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: enforcer
-      Dead:
-        Base: enforcer_dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      120: Dead
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 8
-        Slash: 8
-        Structural: 20
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -381,15 +256,157 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead
+      150: Dead
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 15
+        Slash: 16
         Structural: 25
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3
-    baseWalkSpeed: 3
+    baseSprintSpeed : 4.5
+    baseWalkSpeed: 4.5
+
+## Guardian morphotype
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteBarrierExpeditions
+  name: barrier
+  components:
+  - type: Sprite
+    layers:
+    - state: barrier
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: barrier
+      Dead:
+        Base: barrier_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteMolderExpeditions
+  name: molder
+  components:
+  - type: Sprite
+    layers:
+    - state: molder
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: molder
+      Dead:
+        Base: molder_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3.5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocytePouncerExpeditions
+  name: pouncer
+  components:
+  - type: Sprite
+    layers:
+    - state: pouncer
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pouncer
+      Dead:
+        Base: pouncer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3.5
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteHarvesterExpeditions
+  name: harvester
+  components:
+  - type: Sprite
+    layers:
+    - state: harvester
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: harvester
+      Dead:
+        Base: harvester_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Caustic: 8
+        Structural: 20
+
+- type: entity
+  parent: BaseMobArgocyteExpeditions
+  id: MobArgocyteEnforcerExpeditions
+  name: enforcer
+  components:
+  - type: Sprite
+    layers:
+      - state: enforcer
+        map: ["enum.DamageStateVisualLayers.Base"]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: enforcer
+      Dead:
+        Base: enforcer_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 16
+        Structural: 20
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -414,5 +431,5 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 20
+        Blunt: 25
         Structural: 50
