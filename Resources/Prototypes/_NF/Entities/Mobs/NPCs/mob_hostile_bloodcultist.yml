@@ -258,14 +258,20 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: ascended_cultist
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: ascended_cultist_unshaded
+      shader: unshaded
   - type: DamageStateVisuals
     states:
       Alive:
         Base: ascended_cultist
+        BaseUnshaded: ascended_cultist_unshaded
       Critical:
         Base: crit
+        BaseUnshaded: crit_unshaded
       Dead:
         Base: dead
+        BaseUnshaded: dead_unshaded
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -300,7 +306,7 @@
     radius: 1.4
     energy: 1.2
     color: "#ff0000"
-    castShadows: false
+    castShadows: true
   - type: SoundWhileAlive
   - type: AmbientSound
     volume: -9
@@ -399,6 +405,9 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: shade
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: unshaded
+      shader: unshaded
   - type: DamageStateVisuals
     states:
       Alive:
@@ -422,7 +431,7 @@
     energy: 1.2
     softness: 1
     color: "#ff0000"
-    castShadows: false
+    castShadows: true
   
 # Drained One (summonable by players), melee
 - type: entity
@@ -499,7 +508,7 @@
       radius: 1.4
       energy: 1.2
       color: "#ff0000"
-      castShadows: false
+      castShadows: true
     - type: AmbientSound
       volume: -2
       range: 5

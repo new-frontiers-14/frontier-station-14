@@ -3,7 +3,7 @@
   parent:
   - MobNonHumanHostileBase
   id: BaseMobCarpExpeditions
-  name: planetary space carp
+  name: carp
   description: It's a planetary space carp.
   abstract: true
   components:
@@ -28,6 +28,9 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
   - type: Butcherable
     spawned:
     - id: FoodMeatFish
@@ -102,7 +105,7 @@
   description: Looks like some kind of fish. Might be magical.
   components:
   - type: Sprite
-    sprite: Mobs/Aliens/Carps/magic.rsi
+    sprite: _NF/Mobs/Aliens/Carps/magic.rsi
   - type: TypingIndicator
     proto: guardian
 
@@ -113,7 +116,7 @@
   description: Carp made out of holographic energies. Sadly for you, it is very much real.
   components:
   - type: Sprite
-    sprite: Mobs/Aliens/Carps/holo.rsi
+    sprite: _NF/Mobs/Aliens/Carps/holo.rsi
   - type: Physics
   - type: Fixtures
     fixtures:

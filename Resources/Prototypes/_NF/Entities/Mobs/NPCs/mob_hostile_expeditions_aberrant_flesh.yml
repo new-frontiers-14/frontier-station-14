@@ -158,6 +158,14 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: base_unshaded
+      shader: unshaded
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
