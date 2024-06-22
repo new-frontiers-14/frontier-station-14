@@ -16,10 +16,10 @@
     layers:
     - state: cabinet
     - state: fireaxe
-      map: ["enum.ItemCabinetVisualLayers.ContainsItem"]
+      map: ["enum.ItemCabinetVisuals.Layer"]
       visible: true
     - state: glass
-      map: ["enum.ItemCabinetVisualLayers.Door"]
+      map: ["enum.OpenableVisuals.Layer"]
   - type: ItemCabinet
     cabinetSlot:
       ejectOnInteract: true
@@ -31,6 +31,7 @@
     openState: glass-up
     closedState: glass
   - type: Appearance
+  - type: Openable
   - type: Lock
   - type: AccessReader
     access: [["Atmospherics"], ["Command"]]
