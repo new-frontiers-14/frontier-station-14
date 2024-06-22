@@ -393,7 +393,7 @@ entities:
       pos: 4.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27054.873
+      secondsUntilStateChange: -27236.777
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -404,7 +404,7 @@ entities:
       pos: 3.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27053.865
+      secondsUntilStateChange: -27235.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -417,7 +417,7 @@ entities:
       pos: 3.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -22426.951
+      secondsUntilStateChange: -22608.855
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -428,7 +428,7 @@ entities:
       pos: 4.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -22428.45
+      secondsUntilStateChange: -22610.354
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -442,7 +442,7 @@ entities:
       pos: 3.5,4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15809.313
+      secondsUntilStateChange: -15991.219
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -453,7 +453,7 @@ entities:
       pos: 4.5,4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15808.563
+      secondsUntilStateChange: -15990.469
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -473,7 +473,7 @@ entities:
       pos: 1.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -29054.023
+      secondsUntilStateChange: -29235.928
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1570,12 +1570,10 @@ entities:
     - type: Label
       originalName: gas filter
       currentLabel: Oxygen
-- proto: GasMixer
+- proto: GasMixerOn
   entities:
   - uid: 181
     components:
-    - type: MetaData
-      name: gas mixer (Air)
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,3.5
@@ -1585,9 +1583,6 @@ entities:
       inletOneConcentration: 0.22
     - type: AtmosPipeColor
       color: '#66FFFFFF'
-    - type: Label
-      originalName: gas mixer
-      currentLabel: Air
 - proto: GasPassiveVent
   entities:
   - uid: 182
@@ -4230,7 +4225,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -26791.307
+      secondsUntilStateChange: -26973.21
       state: Opening
   - uid: 572
     components:
