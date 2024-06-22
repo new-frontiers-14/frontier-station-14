@@ -150,6 +150,7 @@
     bloodMaxVolume: 0.1
   - type: ZombieImmune
 
+
 - type: entity
   name: chicken
   parent: SimpleMobBase
@@ -189,6 +190,8 @@
     - Chicken
     - VimPilot
   - type: Reproductive
+#    minBreedAttemptInterval: 300 # Frontier
+#    maxBreedAttemptInterval: 600 # Frontier
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
     makeOffspringInfant: false
@@ -231,16 +234,7 @@
   - type: NpcFactionMember
     factions:
     - Passive
-    - Chicken
-  - type: Inventory # Frontier
-    speciesId: chicken
-    templateId: pet
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
+    - Chicken # Frontier
 
 - type: entity
   parent: MobChicken
@@ -733,8 +727,8 @@
     - DoorBumpOpener
     - Cow
   - type: Reproductive
-    minBreedAttemptInterval: 300
-    maxBreedAttemptInterval: 600
+#    minBreedAttemptInterval: 300 # Frontier
+#    maxBreedAttemptInterval: 600 # Frontier
     partnerWhitelist:
       tags:
       - Cow
@@ -895,8 +889,8 @@
     - DoorBumpOpener
     - Goat
   - type: Reproductive
-    minBreedAttemptInterval: 300
-    maxBreedAttemptInterval: 600
+#    minBreedAttemptInterval: 300 # Frontier
+#    maxBreedAttemptInterval: 600 # Frontier
     partnerWhitelist:
       tags:
       - Goat
@@ -1262,7 +1256,7 @@
   - type: NpcFactionMember
     factions:
       - Passive
-      - Monkey
+      - Monkey # Frontier
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -1271,6 +1265,7 @@
     tags:
     - VimPilot
     - DoorBumpOpener
+  - type: LabGrown # Frontier
 
 - type: entity
   name: monkey
@@ -1302,12 +1297,6 @@
         Burn: 3
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
-  - type: IdExaminable
-  - type: Tag
-    tags:
-    - VimPilot
-    - DoorBumpOpener
-    - LabGrown # Frontier - TODO: Make this into a comp, not a tag..
 
 - type: entity
   name: monkey
@@ -2136,7 +2125,6 @@
         damage: 50
       behaviors:
       - !type:ExplodeBehavior
-  - type: Contraband #frontier
 
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
@@ -2286,17 +2274,10 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
-  - type: Tool # Open door from xeno.yml.
+  - type: Prying # Open door from xeno.yml.
+    pryPowered: true
+    force: true
     speedModifier: 1.5
-    qualities:
-      - Prying
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: Prying
-    pryPowered: !type:Bool
-        true
-    force: !type:Bool
-      true
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute from base.yml.
@@ -2761,9 +2742,6 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
-  - type: NpcFactionMember
-    factions:
-      - Cat
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -2830,6 +2808,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: NpcFactionMember # Frontier
+    factions:
+    - Cat
 
 - type: entity
   name: calico cat
@@ -2892,20 +2873,14 @@
         Slash: 6
         Piercing: 6
         Structural: 15
-  - type: Contraband #frontier
 
 - type: entity
   name: space cat
   id: MobCatSpace
-  parent: SimpleSpaceSuitMobBase
+  parent: MobCat
   description: Feline pet, prepared for the worst.
   components:
-  - type: NpcFactionMember
-    factions:
-      - Cat
   - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: spacecat
@@ -2918,6 +2893,9 @@
   - type: Temperature
     heatDamageThreshold: 423
     coldDamageThreshold: 0
+  - type: Tag
+    tags:
+      - DoorBumpOpener
   - type: MovementAlwaysTouching
   - type: PressureImmunity
   - type: StepTriggerImmune
@@ -2931,42 +2909,6 @@
       path: /Audio/Animals/cat_meow.ogg
   - type: Respirator #It just works?
     minSaturation: 5.0
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 15
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Inventory
-    speciesId: cat
-    templateId: pet
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-  - type: Butcherable
-    spawned:
-    - id: FoodMeat
-      amount: 3
-  - type: ReplacementAccent
-    accent: cat
-  - type: Grammar
-    attributes:
-      gender: epicene
-  - type: MobPrice
-    price: 200
-  - type: Tag
-    tags:
-    - VimPilot
-    - DoorBumpOpener
 
 - type: entity
   name: caracal cat
