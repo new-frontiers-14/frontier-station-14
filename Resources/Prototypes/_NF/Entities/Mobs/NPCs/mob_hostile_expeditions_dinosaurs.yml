@@ -75,6 +75,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: compy
+      scale: 0.6, 0.6
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -97,8 +98,11 @@
         Slash: 8
         Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 2
-    baseWalkSpeed: 2
+    baseSprintSpeed : 4.5
+    baseWalkSpeed: 4.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepTile
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -238,12 +242,12 @@
         Base: kentro_dead
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      collection: MetalThud
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcPunch
     damage:
       types:
-        Piercing: 10
+        Blunt: 10
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2.5
@@ -280,7 +284,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 15
+        Piercing: 15
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 3
@@ -312,12 +316,12 @@
         Base: anki_dead
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      collection: MetalThud
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcPunch
     damage:
       types:
-        Slash: 8
+        Blunt: 12
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2
@@ -351,7 +355,7 @@
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcBite
     damage:
       types:
         Blunt: 12
@@ -427,11 +431,11 @@
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcBite
     damage:
       types:
-        Slash: 12
-        Piercing: 8
+        Slash: 15
+        Piercing: 10
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5
