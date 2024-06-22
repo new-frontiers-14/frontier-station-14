@@ -21,11 +21,6 @@
     - state: glass
       map: ["enum.OpenableVisuals.Layer"]
   - type: ItemCabinet
-    cabinetSlot:
-      ejectOnInteract: true
-      whitelist:
-        tags:
-        - FireAxe
     doorSound:
       path: /Audio/Machines/machine_switch.ogg
     openState: glass-up
@@ -36,6 +31,12 @@
   - type: AccessReader
     access: [["Atmospherics"], ["Command"]]
   - type: ItemSlots
+    slots:
+      ItemCabinet:
+        ejectOnInteract: true
+        whitelist:
+          tags:
+          - FireAxe
   - type: ContainerContainer
     containers:
       ItemCabinet: !type:ContainerSlot

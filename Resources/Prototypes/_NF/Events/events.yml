@@ -31,14 +31,13 @@
 # Frontier -right now you never find them since they spawn on random grids.
 # - type: entity
 #   id: AnomalySpawn
-#   parent: BaseStationEventShortDelay
+#   parent: BaseStationEventShortDelay # Old startDelay: 30
 #   components:
 #   - type: StationEvent
 #     startAnnouncementColor: "#18abf5"
 #     startAudio:
 #       path: /Audio/Announcements/announce.ogg
 #     weight: 8
-#     startDelay: 30 # Frontier
 #     duration: 35
 #   - type: AnomalySpawnRule
 
@@ -202,13 +201,12 @@
 
 - type: entity
   id: MouseMigration
-  parent: BaseStationEventShortDelay
+  parent: BaseStationEventShortDelay # Old startDelay: 10
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    startDelay: 10 # Frontier
     earliestStart: 15
     weight: 6
     duration: 50
@@ -252,13 +250,12 @@
 
 - type: entity
   id: CockroachMigration
-  parent: BaseStationEventShortDelay
+  parent: BaseStationEventShortDelay # Old startDelay: 10
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    startDelay: 10 # Frontier
     weight: 6
     duration: 50
   - type: VentCrittersRule
@@ -270,7 +267,7 @@
 
 - type: entity
   id: PowerGridCheck
-  parent: BaseStationEventShortDelay
+  parent: BaseStationEventShortDelay # Old startDelay: 24
   components:
   - type: StationEvent
     weight: 5
@@ -280,7 +277,6 @@
       path: /Audio/Announcements/power_off.ogg
       params:
        volume: -4
-    startDelay: 24 # Frontier
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -317,7 +313,7 @@
 
 - type: entity
   id: VentClog
-  parent: BaseStationEventLongDelay
+  parent: BaseStationEventLongDelay # Old startDelay: 50
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
@@ -326,7 +322,6 @@
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
-    startDelay: 50 # Frontier: old value
     duration: 60
   - type: VentClogRule
 
