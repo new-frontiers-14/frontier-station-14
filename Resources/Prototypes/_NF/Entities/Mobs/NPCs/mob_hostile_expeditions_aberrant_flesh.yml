@@ -148,6 +148,40 @@
         Base: dead
 
 - type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobFleshAssimilatedMiner
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Aliens/flesh_assimilated_miner.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      140: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: Stamina
+    critThreshold: 100
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+        BaseUnshaded: base_unshaded
+      Critical:
+        Base: crit
+        BaseUnshaded: crit_unshaded
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_unshaded
+
+- type: entity
   parent:
   - BaseMobFleshExpeditions
   - MobHumanoidHostileAISimpleRanged
