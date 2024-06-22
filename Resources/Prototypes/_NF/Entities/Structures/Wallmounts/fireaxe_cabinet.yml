@@ -1,4 +1,5 @@
 - type: entity
+  parent: BaseItemCabinetGlass
   id: FireAxeCabinetCommand
   name: fire axe cabinet
   suffix: With Lock
@@ -21,10 +22,6 @@
     - state: glass
       map: ["enum.OpenableVisuals.Layer"]
   - type: ItemCabinet
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
   - type: Appearance
   - type: Openable
   - type: Lock
@@ -37,9 +34,6 @@
         whitelist:
           tags:
           - FireAxe
-  - type: ContainerContainer
-    containers:
-      ItemCabinet: !type:ContainerSlot
   placement:
     mode: SnapgridCenter
 
@@ -48,38 +42,22 @@
   parent: FireAxeCabinetCommand
   suffix: Open, With Lock
   components:
-  - type: ItemCabinet
+  - type: Openable
     opened: true
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
+  - type: Lock
+    locked: false
 
 - type: entity
   id: FireAxeCabinetFilledCommand
   parent: FireAxeCabinetCommand
   suffix: Filled, With Lock
   components:
-  - type: ItemCabinet
-    cabinetSlot:
-      startingItem: FireAxe
-      ejectOnInteract: true
-      whitelist:
-        tags:
-        - FireAxe
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - FireAxe
 
 - type: entity
   id: FireAxeCabinetFilledOpenCommand
-  parent: FireAxeCabinetFilledCommand
+  parent: [FireAxeCabinetFilledCommand, FireAxeCabinetOpenCommand]
   suffix: Filled, Open, With Lock
-  components:
-  - type: ItemCabinet
-    opened: true
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
