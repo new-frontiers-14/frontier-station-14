@@ -16,6 +16,10 @@
       0: Alive
       100: Critical
       130: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: Stamina
     critThreshold: 100
   - type: DamageStateVisuals
@@ -377,6 +381,10 @@
     thresholds:
       0: Alive
       200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+      160: 0.5
   - type: Stamina
     critThreshold: 600
   - type: MovementSpeedModifier

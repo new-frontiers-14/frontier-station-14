@@ -40,6 +40,10 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 200
   - type: Bloodstream
@@ -110,6 +114,10 @@
     thresholds:
       0: Alive
       75: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
   - type: Stamina
     critThreshold: 300
 
@@ -129,6 +137,10 @@
     thresholds:
       0: Alive
       80: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: MeleeWeapon
     damage:
       groups:
@@ -153,6 +165,10 @@
     thresholds:
       0: Alive
       150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.7
+      120: 0.5
   - type: Stamina
     critThreshold: 550
   - type: MovementSpeedModifier
@@ -201,6 +217,10 @@
     thresholds:
       0: Alive
       75: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -239,6 +259,10 @@
     thresholds:
       0: Alive
       250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+      200: 0.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.8
     baseSprintSpeed: 3.8
