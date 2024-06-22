@@ -1,8 +1,6 @@
-// FRONTIER MERGE: restored this from frontier's master to get things to compile
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Construction.Prototypes;
+namespace Content.Shared.Construction.Prototypes; // NOTE: currently exists under base namespace.
 
 /// <summary>
 /// This is a prototype for categorizing
@@ -24,6 +22,6 @@ public sealed partial class MachinePartPrototype : IPrototype
     /// <summary>
     /// A stock part entity based on the machine part.
     /// </summary>
-    [DataField("stockPartPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
-    public string StockPartPrototype = string.Empty;
+    [DataField("stockPartPrototype", required: true)]
+    public EntProtoId StockPartPrototype = string.Empty;
 }
