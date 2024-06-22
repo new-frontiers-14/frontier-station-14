@@ -60,7 +60,7 @@
 # Variations
 ## Tier 1
 - type: entity
-  name: explorer
+  name: looter
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
@@ -84,9 +84,21 @@
     - sprite: Objects/Tools/lantern.rsi
       state: on-equipped-BELT
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    animation: WeaponArcPunch
+    angle: 0
+    damage:
+      types:
+        Blunt: 7.5
+        Piercing: 7.5
+        Structural: 30
+    soundHit:
+      collection: MetalThud
 
 - type: entity
-  name: explorer
+  name: scrapper
   parent:
   - MobExplorerBase
   id: MobExplorerRangedT1
@@ -136,7 +148,7 @@
 
 ## Tier 2
 - type: entity
-  name: explorer
+  name: scavenger
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
@@ -146,6 +158,8 @@
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearMeleeT2
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -168,9 +182,21 @@
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    animation: WeaponArcPunch
+    angle: 0
+    damage:
+      types:
+        Blunt: 7.5
+        Slash: 5.5
+        Structural: 30
+    soundHit:
+      collection: MetalThud
 
 - type: entity
-  name: explorer
+  name: salvager
   parent:
   - MobExplorerBase
   id: MobExplorerRangedT2
@@ -179,6 +205,8 @@
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT2
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -203,7 +231,7 @@
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 8
+    fireRate: 6
     selectedMode: FullAuto
     minAngle: 31
     maxAngle: 45
@@ -221,7 +249,7 @@
 
 # Tier 3
 - type: entity
-  name: explorer
+  name: miner
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
@@ -231,6 +259,8 @@
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearMeleeT3
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -248,10 +278,12 @@
     wideAnimationRotation: -90
     soundHit:
       path: "/Audio/Items/drill_hit.ogg"
-    attackRate: 3.5
+    attackRate: 4
     damage:
       groups:
-        Brute: 3
+        Brute: 2
+        Slash: 1
+        Piercing: 2
       types:
         Structural: 25
   - type: PointLight
@@ -273,6 +305,8 @@
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT3
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -374,7 +408,7 @@
 
 # Tier 4 - Boss
 - type: entity
-  name: explorer
+  name: explorer captain
   parent:
   - MobExplorerBase
   id: MobExplorerBoss
@@ -383,6 +417,8 @@
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearBoss
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -404,7 +440,7 @@
     count: 2
   - type: Gun
     showExamineText: false
-    fireRate: 8
+    fireRate: 6
     selectedMode: FullAuto
     minAngle: 41
     maxAngle: 55
