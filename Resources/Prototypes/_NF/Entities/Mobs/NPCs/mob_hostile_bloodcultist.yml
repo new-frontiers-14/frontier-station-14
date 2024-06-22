@@ -1,5 +1,5 @@
 - type: entity
-  name: Blood Cultist
+  name: blood cult ist
   abstract: true
   parent:
   - MobHumanoidHostileBase
@@ -24,7 +24,7 @@
 # Blood Cult Priest, ranged mab, bolts deal 10 slash damage
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
-  name: Blood Cult Priest
+  name: blood cult priest
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
@@ -56,7 +56,7 @@
 # Blood Cult Janitor, ranged mab, bolts deal 10 slash damage
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
-  name: Blood Cult Janitor
+  name: blood cult janitor
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
@@ -89,7 +89,7 @@
 
 # Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
-  name: Blood Cult Acolyte
+  name: blood cult acolyte
   parent: 
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
@@ -102,7 +102,7 @@
 
 # Blood Cult Zealot, melee mob armed with ritual dagger (12 slash)
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot
   parent: 
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
@@ -116,7 +116,7 @@
 # Blood Cult Zealot, ranged mob, crossbow bolt deals 20 slash and 5 bloodloss
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot
   parent: 
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
@@ -147,7 +147,7 @@
 # Blood Cult Zealot, ranged mob, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
-  name: Blood Cult Zealot
+  name: blood cult zealot
   parent: 
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
@@ -171,88 +171,9 @@
       path: /Audio/_NF/Effects/silence.ogg
 
 # Non-human mobs
-# Ascended Cultist, spawns 2 Drained Ones
-- type: entity
-  name: Ascended Cultist # Megafauna
-  noSpawn: true
-  parent:
-  - MobNonHumanHostileBase
-  - MobHumanoidHostileAISimpleRanged
-  id: MobBloodCultistAscended
-  components:
-  - type: NpcFactionMember
-    factions:
-    - BloodCultNF
-  - type: CanMoveInAir
-  - type: Advertise
-    pack: bloodcultisthumanoidchatter
-  - type: Reflect
-    enabled: true
-    reflectProb: .3
-    spread: 90
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: ascended_cultist
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: ascended_cultist
-      Critical:
-        Base: crit
-      Dead:
-        Base: dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      300: Critical
-      400: Dead
-  - type: Stamina
-    critThreshold: 400
-  - type: BasicEntityAmmoProvider
-    proto: MobBloodCultDrainedOne
-    capacity: 2
-    count: 2
-  - type: Gun
-    showExamineText: false
-    fireRate: 1
-    minAngle: 1
-    maxAngle: 10
-    soundGunshot:
-      path: /Audio/Effects/teleport_arrival.ogg
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 55
-    rechargeSound:
-      path: /Audio/_NF/Effects/silence.ogg
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    damage:
-      types:
-        Slash: 20
-        Structural: 20
-    animation: WeaponArcClaw
-  - type: PointLight
-    radius: 1.4
-    energy: 1.2
-    color: "#ff0000"
-    castShadows: false
-  - type: SoundWhileAlive
-  - type: AmbientSound
-    volume: -9
-    range: 5
-    sound:
-      path: /Audio/_NF/Effects/bloodcult/whispers.ogg
-  - type: Butcherable
-    spawned:
-    - id: ClothingNeckAmuletBloodCult
-      amount: 1
-
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
-  name: Blood Leech
+  name: blood leech
   noSpawn: true
   parent:
   - MobNonHumanHostileBase
@@ -298,9 +219,102 @@
         Structural: 20
     animation: WeaponArcBite
 
+# Ascended Cultist, spawns 2 Drained Ones
+- type: entity
+  name: ascended cultist
+  noSpawn: true
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidHostileAIComplex
+  id: MobBloodCultistAscended
+  components:
+  - type: NpcFactionMember
+    factions:
+    - BloodCultNF
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Advertise
+    pack: bloodcultisthumanoidchatter
+  - type: Reflect
+    enabled: true
+    reflectProb: .3
+    spread: 90
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ascended_cultist
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ascended_cultist
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      400: Dead
+  - type: Stamina
+    critThreshold: 400
+  - type: BasicEntityAmmoProvider
+    proto: SpawnMobBloodCultistAscendedSummons # MobBloodCultDrainedOne
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 1
+    maxAngle: 10
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 55
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 20
+        Structural: 20
+    animation: WeaponArcClaw
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+    castShadows: false
+  - type: SoundWhileAlive
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/_NF/Effects/bloodcult/whispers.ogg
+  - type: Butcherable
+    spawned:
+    - id: ClothingNeckAmuletBloodCult
+      amount: 1
+
 # Drained One, melee
 - type: entity
-  name: Drained One
+  name: drained one
   noSpawn: true
   parent: 
   - MobNonHumanHostileBase
@@ -312,7 +326,10 @@
   - type: NpcFactionMember
     factions:
     - BloodCultNF
-  - type: MovementIgnoreGravity
+  - type: CanMoveInAir
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: bloodcultisthumanoidchatter
   - type: Sprite
@@ -349,7 +366,7 @@
     critThreshold: 400
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Effects/bite.ogg
+      collection: MetalThud
     damage:
       types:
         Asphyxiation: 4
@@ -357,7 +374,8 @@
     animation: WeaponArcClaw
   - type: PointLight
     color: MediumPurple
-    radius: 2
+    radius: 1.4
+    energy: 1.2
     softness: 1
   - type: Bloodstream
     bloodReagent: Ammonia
@@ -365,22 +383,72 @@
   - type: Speech
     speechVerb: Ghost
   - type: TimedDespawn
-    lifetime: 40
+    lifetime: 110
   - type: Ammo
     muzzleFlash: null
 
+- type: entity
+  name: cultist shade
+  noSpawn: true
+  parent: MobBloodCultDrainedOne
+  id: MobBloodCultShade
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/BloodCult/shade.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: shade
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: shade
+        BaseUnshaded: unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    soundHit:
+      collection: MetalThud
+    damage:
+      types:
+        Slash: 2
+        Bloodloss: 2
+        Structural: 20
+    animation: WeaponArcClaw
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    softness: 1
+    color: "#ff0000"
+    castShadows: false
+  
 # Drained One (summonable by players), melee
 - type: entity
-  name: Drained One
   noSpawn: true
   parent: MobBloodCultDrainedOne
   id: MobBloodCultDrainedOneNanoTrasen
   components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: KillerTomatoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
   - type: NpcFactionMember
     factions:
     - NanoTrasen
   - type: TimedDespawn
-    lifetime: 80
+    lifetime: 180
 
 # Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss

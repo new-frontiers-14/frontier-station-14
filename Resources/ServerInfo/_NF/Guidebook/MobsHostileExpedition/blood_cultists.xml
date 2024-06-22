@@ -33,7 +33,7 @@
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 0-35 [color=red]Slash[/color] (1 [color=red]Slash[/color] per soaplet)
   - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=#ffa500]Heat[/color] 10%; [color=yellow]Piercing[/color] 60%; [color=yellow]Explosion[/color] 20% (cult janitor robes)
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Caster (cluster razor soap), Reflection (10%)
+  - [bold][color=#a4885c]Special abilities:[/color][/bold] Caster (cluster razor soap), Reflection (10%, all projectiles)
   
   # "Blood Cult Acolyte"
   
@@ -68,7 +68,7 @@
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 20 [color=red]Slash[/color], 5 [color=#9A54BF]Bloodloss[/color] (blooddrinker crossbow bolt)
   - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 30%; [color=#ffa500]Heat[/color] 20%; [color=#ffa500]Heat[/color] and [color=yellow]Explosion[/color] 10% (Cult robes)
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter
+  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (blooddrinker crossbow bolt)
   
   <Box>
   <GuideEntityEmbed Entity="MobBloodCultistCaster"/>
@@ -81,7 +81,9 @@
   
   # "Blood Leech"
   
-  Blessed, twisted vision of Nar'Sie.
+  The once-human cultist, now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
+  
+  [color=#a4885c]Regeneration[/color]: can slowly regenerate lost health while alive or in critical condition, but cannot regenerate upon death.
   
   <Box>
   <GuideEntityEmbed Entity="MobBloodCultLeech"/>
@@ -93,6 +95,9 @@
   - [bold][color=#a4885c]Special abilities:[/color][/bold] Regeneration
   
   # "Blood Pylon"
+  
+  Defensive turret: summoned through blood rites and sacrifice.
+  
   <Box>
   <GuideEntityEmbed Entity="BloodCultTurret"/>
   </Box>
@@ -104,7 +109,13 @@
   
   # "Ascended Cultist"
   
-  Elevated above his mortal form by Nar'Sie as a reward for his devotion.
+  Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
+  
+  [color=#a4885c]Flies[/color]: creature levitates above the ground and can bypass low obstacles such as tables, machine frames, or railings without being blocked or slowed down.
+  
+  [color=#a4885c]Summoner[/color]: every 55 seconds summons two [color=#a4885c]drained ones[/color] that will exist for 110 seconds.
+  
+  [color=#a4885c]Reflection (30%, energy)[/color]: has a 30% chance to reflect energy based attacks aimed against the creature.
   
   <Box>
   <GuideEntityEmbed Entity="MobBloodCultistAscended"/>
@@ -114,11 +125,18 @@
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 20 [color=red]Slash[/color]
   - [bold][color=#a4885c]Damage resistances:[/color][/bold] None
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Flier, Summoner (Drained One)
+  - [bold][color=#a4885c]Special abilities:[/color][/bold] Flier, Summoner (Drained One), Reflection (30%, energy)
   
   # "Drained One"
+  
+  Tortured soul stripped of free will, a mere shadow of a human, enslaved and bound to obey its captors.
+  
+  [color=#a4885c]Regeneration[/color]: can slowly regenerate lost health while alive or in critical condition, but cannot regenerate upon death.
+  
+  [color=#a4885c]Incorporeal[/color]: can only be damaged by melee attacks or energy weapons. 
+  
   <Box>
-  <GuideEntityEmbed Entity="MobBloodCultDrainedOne"/>
+  <GuideEntityEmbed Entity="MobBloodCultDrainedOneGuidebook"/>
   </Box>
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
@@ -126,7 +144,24 @@
   - [bold][color=#a4885c]Damage resistances:[/color][/bold] None
   - [bold][color=#a4885c]Special abilities:[/color][/bold] Regeneration, Incorporeal
   
-  # Missions targets
+  # "Shade"
+  
+  Cultist's shade brought back into reality so it could collect more blood.
+  
+  [color=#a4885c]Regeneration[/color]: can slowly regenerate lost health while alive or in critical condition, but cannot regenerate upon death.
+  
+  [color=#a4885c]Incorporeal[/color]: can only be damaged by melee attacks or energy weapons. 
+  
+  <Box>
+  <GuideEntityEmbed Entity="MobBloodCultShadeGuidebook"/>
+  </Box>
+  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
+  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
+  - [bold][color=#a4885c]Damage (type):[/color][/bold] 2 [color=red]Slash[/color], 2 [color=#9A54BF]Bloodloss[/color]
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] None
+  - [bold][color=#a4885c]Special abilities:[/color][/bold] Regeneration, Incorporeal
+  
+  # Missions objectives
   ## Elimination
   <Box>
   <GuideEntityEmbed Entity="MobBloodCultistAscended"/>

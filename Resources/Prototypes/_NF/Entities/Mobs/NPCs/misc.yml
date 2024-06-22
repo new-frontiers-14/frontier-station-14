@@ -1,3 +1,4 @@
+# GUIDEBOOK ENTITIES
 # The memes
 - type: entity
   parent:
@@ -42,3 +43,38 @@
   - type: Loadout
     prototypes:
     - GuidebookMemeNpcThatGuyLoadout
+
+# Mobs (original has despawn timers)
+- type: entity
+  parent: BaseItem
+  id: MobMawExpeditionsGuidebook
+  name: aberrant flesh maw
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: maw
+
+- type: entity
+  parent: BaseItem
+  id: MobBloodCultDrainedOneGuidebook
+  name: drained one
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/BloodCult/drainedone.rsi
+    state: drained
+
+- type: entity
+  parent: BaseItem
+  id: MobBloodCultShadeGuidebook
+  name: shade
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Mobs/BloodCult/shade.rsi
+      state: shade
+    - sprite: _NF/Mobs/BloodCult/shade.rsi
+      state: unshaded
+      shader: unshaded
