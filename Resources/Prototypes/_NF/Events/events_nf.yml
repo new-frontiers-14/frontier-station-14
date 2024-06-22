@@ -1,6 +1,16 @@
 - type: entity
-  id: BluespaceCargo
+  id: BaseStationEventNFModerateDelay
   parent: BaseGameRule
+  abstract: true
+  components:
+    - type: GameRule
+      delay:
+        min:  30
+        max:  40
+
+- type: entity
+  id: BluespaceCargo
+  parent: BaseStationEventNFModerateDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -11,7 +21,7 @@
 
 - type: entity
   id: BluespaceSyndicateCrate
-  parent: BaseGameRule
+  parent: BaseStationEventNFModerateDelay
   noSpawn: true
   components:
   - type: StationEvent
