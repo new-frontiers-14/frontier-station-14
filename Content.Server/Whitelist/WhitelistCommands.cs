@@ -50,7 +50,6 @@ public sealed class AddWhitelistCommand : LocalizedCommands
                 player.TryGetSessionByUsername(name, out var session))
             {
                 playerData.ContentData()!.Whitelisted = true;
-                playtime.QueueSendWhitelist(session);
             }
 
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
@@ -104,14 +103,6 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
             }
 
             await db.RemoveFromWhitelistAsync(guid);
-
-            // Nyanotrasen - Update whitelist status in player data.
-            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
-                player.TryGetSessionByUsername(name, out var session))
-            {
-                playerData.ContentData()!.Whitelisted = false;
-                playtime.QueueSendWhitelist(session);
-            }
 
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
             return;

@@ -76,8 +76,7 @@ namespace Content.Shared.Roles
             IReadOnlyDictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes,
-            bool isWhitelisted)
+            IPrototypeManager prototypes)
         {
             var sys = entManager.System<SharedRoleSystem>();
             var requirements = sys.GetJobRequirement(job);
@@ -87,7 +86,7 @@ namespace Content.Shared.Roles
 
             foreach (var requirement in requirements)
             {
-                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes, isWhitelisted))
+                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
                     return false;
             }
 
@@ -102,8 +101,7 @@ namespace Content.Shared.Roles
             IReadOnlyDictionary<string, TimeSpan> playTimes,
             [NotNullWhen(false)] out FormattedMessage? reason,
             IEntityManager entManager,
-            IPrototypeManager prototypes,
-            bool isWhitelisted)
+            IPrototypeManager prototypes)
         {
             reason = null;
 
@@ -222,15 +220,6 @@ namespace Content.Shared.Roles
 
                         return true;
                     }
-                case WhitelistRequirement _: // DeltaV - Whitelist requirement
-                    if (isWhitelisted == null)
-                        throw new ArgumentNullException(nameof(isWhitelisted), "isWhitelisted cannot be null.");
-
-                    if (isWhitelisted)
-                        return true;
-
-                    reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-                    return false;
                 default:
                     throw new NotImplementedException();
             }

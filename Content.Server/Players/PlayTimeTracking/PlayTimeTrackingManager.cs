@@ -89,7 +89,6 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         _sawmill = Logger.GetSawmill("play_time");
 
         _net.RegisterNetMessage<MsgPlayTime>();
-        _net.RegisterNetMessage<MsgWhitelist>();
 
         _cfg.OnValueChanged(CCVars.PlayTimeSaveInterval, f => _saveInterval = TimeSpan.FromSeconds(f), true);
     }
@@ -136,12 +135,6 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
             {
                 SendPlayTimes(player);
                 data.NeedSendTimers = false;
-            }
-
-            if (data.NeedRefreshWhitelist)
-            {
-                SendWhitelistCached(player);
-                data.NeedRefreshWhitelist = false;
             }
 
             data.IsDirty = false;
@@ -334,7 +327,6 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
 
         QueueRefreshTrackers(session);
         QueueSendTimers(session);
-        QueueSendWhitelist(session);
     }
 
     public void ClientDisconnected(ICommonSession session)
@@ -453,7 +445,6 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         public bool IsDirty;
         public bool NeedRefreshTackers;
         public bool NeedSendTimers;
-        public bool NeedRefreshWhitelist;
 
         // Active tracking info
         public readonly HashSet<string> ActiveTrackers = new();

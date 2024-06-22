@@ -125,7 +125,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes, _whitelisted))
+            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
                 continue;
 
             reasons.Add(jobReason.ToMarkup());

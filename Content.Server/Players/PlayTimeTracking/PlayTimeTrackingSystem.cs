@@ -177,7 +177,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         _tracking.QueueRefreshTrackers(ev.PlayerSession);
         // Send timers to client when they join lobby, so the UIs are up-to-date.
         _tracking.QueueSendTimers(ev.PlayerSession);
-        _tracking.QueueSendWhitelist(ev.PlayerSession); // Nyanotrasen - Send whitelist
     }
 
     private void OnStationJobsGetCandidates(ref StationJobsGetCandidatesEvent ev)
@@ -210,7 +209,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         var isWhitelisted = player.ContentData()?.Whitelisted ?? false; // DeltaV - Whitelist requirement
 
-        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, isWhitelisted);
+        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes);
     }
 
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
@@ -229,7 +228,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         // FRONTIER MERGE: use upstream, add isWhitelisted
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
-            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, isWhitelisted))
+            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes))
                 roles.Add(job.ID);
         }
         // END FRONTIER MERGE
@@ -254,11 +253,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         for (var i = 0; i < jobs.Count; i++)
         {
-            // FRONTIER MERGE: use upstream, add isWhitelisted
             if (_prototypes.TryIndex(jobs[i], out var job)
-                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, isWhitelisted))
+                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes))
                 continue;
-            // END FRONTIER MERGE
 
             jobs.RemoveSwap(i);
             i--;
