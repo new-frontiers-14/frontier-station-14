@@ -1,8 +1,9 @@
 - type: entity
   id: StorePresetLightUplink
+  abstract: true
   components:
   - type: Store
-    name: store-preset-name-uplink
+    storeName: store-preset-name-uplink
     categories:
     # - UplinkWeaponry
     # - UplinkAmmo
@@ -20,11 +21,12 @@
     balance:
       Telecrystal: 0
 
-- type: storePreset
+- type: entity
   id: StorePresetSecurityUplink
+  abstract: true
   components:
   - type: Store
-    name: store-preset-name-nfsd-uplink
+    storeName: store-preset-name-nfsd-uplink
     categories:
     - UplinkSecurityHardsuits
     - UplinkSecurityWeapons
@@ -37,11 +39,12 @@
     balance:
       FrontierUplinkCoin: 0
 
-- type: storePreset
+- type: entity
   id: StorePresetPirateUplink
+  abstract: true
   components:
   - type: Store
-    name: store-preset-name-pirate-uplink
+    storeName: store-preset-name-pirate-uplink
     categories:
     - UplinkPirateHardsuits
     - UplinkPirateWeapons
