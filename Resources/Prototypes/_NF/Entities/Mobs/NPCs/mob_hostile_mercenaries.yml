@@ -89,6 +89,18 @@
       state: equipped-NECK-on
       color: "#a9b6bd"
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 8
+        Piercing: 2
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
   name: mercenary soldier
@@ -166,7 +178,7 @@
     count: 10
   - type: Gun
     showExamineText: false
-    fireRate: 0.75
+    fireRate: 0.65
     minAngle: 1
     maxAngle: 10
     selectedMode: SemiAuto
@@ -208,6 +220,17 @@
       state: equipped-NECK-on
       color: "#a9b6bd"
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 15
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
   name: mercenary breacher
@@ -246,9 +269,9 @@
     count: 8
   - type: Gun
     showExamineText: false
-    fireRate: 2.5
+    fireRate: 2.0
     minAngle: 1
-    maxAngle: 10
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -303,7 +326,7 @@
 
 ## Tier 3
 - type: entity
-  name: mercenary specialist
+  name: mercenary paramedic
   parent: MobMercenaryBase
   id: MobMercenarySpecialistMedic
   noSpawn: true
@@ -349,6 +372,19 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: MeleeWeapon
+    attackRate: 2.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+        Structural: 20
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
 
 ## Tier 4 - Boss
 - type: entity
@@ -392,7 +428,7 @@
     showExamineText: false
     fireRate: 0.6
     minAngle: 1
-    maxAngle: 10
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
