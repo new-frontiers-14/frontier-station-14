@@ -26,6 +26,12 @@ public sealed class BoomBoxBoundUi : BoundUserInterface
         _window.PlusVolButtonPressed += OnPlusVolButtonPressed;
         _window.StartButtonPressed += OnStartButtonPressed;
         _window.StopButtonPressed += OnStopButtonPressed;
+        _window.PlaybackSliderChanged += OnPlaybackSliderChanged;
+    }
+
+    private void OnPlaybackSliderChanged(float newPosition)
+    {
+        SendMessage(new BoomBoxSetTimeMessage(newPosition)); // Отправка сообщения при изменении ползунка
     }
 
     private void OnMinusVolButtonPressed()

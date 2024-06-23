@@ -23,7 +23,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.25
-        density: 0.8
+        density: 10
         mask:
         - FlyingMobMask
         layer:
@@ -85,7 +85,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.1
-        density: 0.1
+        density: 30
         mask:
         - FlyingMobMask
         layer:
@@ -330,7 +330,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.0007
+        density: 100
         mask:
         - SmallMobMask
         layer:
@@ -433,7 +433,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.007
+        density: 120
         mask:
         - SmallMobMask
         layer:
@@ -688,7 +688,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.007
+        density: 7.5
         mask:
         - FlyingMobMask
         layer:
@@ -745,7 +745,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.40
-        density: 800
+        density: 400
         mask:
         - MobMask
         layer:
@@ -880,7 +880,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 200
+        density: 150
         mask:
         - MobMask
         layer:
@@ -1571,7 +1571,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.76
+        density: 100
         mask:
         - SmallMobMask
         layer:
@@ -1807,7 +1807,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.77
+        density: 50
         mask:
         - MobMask
         layer:
@@ -1861,7 +1861,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.0007
+        density: 5
         mask:
         - MobMask
         layer:
@@ -1913,7 +1913,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.005
+        density: 5
         mask:
         - SmallMobMask
         layer:
@@ -2014,7 +2014,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.25
-        density: 30
+        density: 100
         mask:
         - MobMask
         layer:
@@ -2083,7 +2083,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.25
-        density: 30
+        density: 25
         mask:
         - MobMask
         layer:
@@ -2198,7 +2198,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 150
+        density: 130
         mask:
         - MobMask
         layer:
@@ -2454,7 +2454,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 16.66
+        density: 50
         mask:
         - MobMask
         layer:
@@ -2518,7 +2518,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 25.5 #They actually are pretty light, I looked it up
+        density: 50 #They actually are pretty light, I looked it up
         mask:
         - MobMask
         layer:
@@ -2595,7 +2595,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 25.5
+        density: 50
         mask:
         - MobMask
         layer:
@@ -2747,7 +2747,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 9
+        density: 15
         mask:
         - MobMask
         layer:
@@ -2953,17 +2953,6 @@
         Base: caracal_flop
       Dead:
         Base: caracal_dead
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 30
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
 
 - type: entity
   name: kitten
@@ -2997,17 +2986,6 @@
     thresholds:
       0: Alive
       25: Dead
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 2
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
 
 - type: entity
   name: sloth
@@ -3088,7 +3066,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 4
+        density: 5
         mask:
         - MobMask
         layer:
@@ -3168,7 +3146,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.2
-        density: 0.8
+        density: 120
         mask:
         - SmallMobMask
         layer:
@@ -3289,7 +3267,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 750
+        density: 250
         mask:
         - MobMask
         layer:
@@ -3362,7 +3340,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 15 # High, because wood is heavy.
+        density: 100 # High, because wood is heavy.
         mask:
         - MobMask
         layer:

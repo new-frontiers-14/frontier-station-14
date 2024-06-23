@@ -10,6 +10,7 @@
     sprite: Objects/Specific/Medical/medical.rsi
     heldPrefix: ointment
   # Inherited
+  - type: Appearance
   - type: StaticPrice
     price: 0
 
@@ -24,7 +25,9 @@
     tags:
     - Ointment
   - type: Sprite
-    state: ointment
+    layers:
+    - state: ointment
+      map: ["base"]
   - type: Item
     heldPrefix: ointment
   - type: Healing
@@ -42,6 +45,14 @@
       path: "/Audio/Items/Medical/ointment_end.ogg"
   - type: Stack
     stackType: Ointment
+    baseLayer: base
+    layerStates:
+    - ointment
+    - ointment_1
+    - ointment_2
+    - ointment_3
+    - ointment_4
+    - ointment_5
     count: 10
   - type: StackPrice
     price: 5
@@ -75,7 +86,9 @@
     tags:
     - Ointment
   - type: Sprite
-    state: regenerative-mesh
+    layers:
+    - state: regenerative-mesh
+      map: ["base"]
   - type: Item
     heldPrefix: regenerative-mesh
   - type: Healing
@@ -88,11 +101,21 @@
         Shock: -10
         Caustic: -10
     healingBeginSound:
-      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:
-      path: "/Audio/Items/Medical/ointment_end.ogg"
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: RegenerativeMesh
+    baseLayer: base
+    layerStates:
+    - regenerative-mesh
+    - regenerative-mesh_1
+    - regenerative-mesh_2
+    - regenerative-mesh_3
+    - regenerative-mesh_4
+    - regenerative-mesh_5
+    - regenerative-mesh_6
+    - regenerative-mesh_7
     count: 10
   - type: StackPrice
     price: 20
@@ -117,7 +140,9 @@
     tags:
     - Brutepack
   - type: Sprite
-    state: brutepack
+    layers:
+    - state: brutepack
+      map: ["base"]
   - type: Healing
     damageContainers:
       - Biological
@@ -130,6 +155,14 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Brutepack
+    baseLayer: base
+    layerStates:
+    - brutepack
+    - brutepack_1
+    - brutepack_2
+    - brutepack_3
+    - brutepack_4
+    - brutepack_5
     count: 10
   - type: StackPrice
     price: 5
@@ -163,7 +196,9 @@
     tags:
     - Brutepack
   - type: Sprite
-    state: medicated-suture
+    layers:
+    - state: medicated-suture
+      map: ["base"]
   - type: Item
     heldPrefix: medicated-suture
     storedRotation: -90
@@ -180,6 +215,12 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: MedicatedSuture
+    baseLayer: base
+    layerStates:
+    - medicated-suture
+    - medicated-suture_1
+    - medicated-suture_2
+    - medicated-suture_3
     count: 10
   - type: StackPrice
     price: 20
@@ -279,7 +320,9 @@
     tags:
     - Gauze
   - type: Sprite
-    state: gauze
+    layers:
+    - state: gauze
+      map: ["base"]
   - type: Construction
     graph: Gauze
     node: gauze
@@ -297,6 +340,13 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Gauze
+    baseLayer: base
+    layerStates:
+    - gauze
+    - gauze_1
+    - gauze_2
+    - gauze_3
+    - gauze_4
     count: 10
   - type: StackPrice
     price: 5
@@ -321,14 +371,19 @@
 - type: entity
   name: aloe cream
   description: A topical cream for burns.
-  parent: Ointment ##Yes it's a direct reskin
+  parent: Ointment ##Yes it's a direct reskin (WTF! - zekins3366)
   id: AloeCream
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/aloe.rsi
-    state: cream
+    layers:
+    - state: cream
+      map: ["base"]
   - type: Stack
     stackType: AloeCream
+    baseLayer: base
+    layerStates:
+    - cream
     count: 10
 
 - type: entity
