@@ -1522,7 +1522,7 @@ namespace Content.Client.Lobby.UI
             {
                 var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
                 var oldProfile = Profile;
-                profile.BankBalance = oldProfile.BankBalance; // Frontier: no free money (enforce import, don't care about import)
+                profile = profile.WithBankBalance(oldProfile.BankBalance); // Frontier: no free money (enforce import, don't care about import)
                 SetProfile(profile, CharacterSlot);
 
                 IsDirty = !profile.MemberwiseEquals(oldProfile);

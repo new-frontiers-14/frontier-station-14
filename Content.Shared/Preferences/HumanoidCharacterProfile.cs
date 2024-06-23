@@ -296,6 +296,13 @@ namespace Content.Shared.Preferences
             return new(this) { Gender = gender };
         }
 
+        // Frontier: this is probably an issue and should be removed.
+        public HumanoidCharacterProfile WithBankBalance(int bankBalance)
+        {
+            return new(this) { BankBalance = bankBalance };
+        }
+        // End Frontier
+
         public HumanoidCharacterProfile WithSpecies(string species)
         {
             return new(this) { Species = species };
