@@ -993,6 +993,16 @@ entities:
     - type: Transform
       pos: 22.5,16.5
       parent: 2
+  - uid: 632
+    components:
+    - type: Transform
+      pos: 22.5,14.5
+      parent: 2
+  - uid: 633
+    components:
+    - type: Transform
+      pos: 21.5,14.5
+      parent: 2
 - proto: BlastDoorOpen
   entities:
   - uid: 417
@@ -1341,6 +1351,56 @@ entities:
     components:
     - type: Transform
       pos: 23.5,5.5
+      parent: 2
+  - uid: 614
+    components:
+    - type: Transform
+      pos: 5.5,15.5
+      parent: 2
+  - uid: 615
+    components:
+    - type: Transform
+      pos: 21.5,15.5
+      parent: 2
+  - uid: 616
+    components:
+    - type: Transform
+      pos: 22.5,15.5
+      parent: 2
+  - uid: 617
+    components:
+    - type: Transform
+      pos: 22.5,16.5
+      parent: 2
+  - uid: 618
+    components:
+    - type: Transform
+      pos: 4.5,15.5
+      parent: 2
+  - uid: 619
+    components:
+    - type: Transform
+      pos: 4.5,16.5
+      parent: 2
+  - uid: 620
+    components:
+    - type: Transform
+      pos: 4.5,17.5
+      parent: 2
+  - uid: 621
+    components:
+    - type: Transform
+      pos: 22.5,17.5
+      parent: 2
+  - uid: 623
+    components:
+    - type: Transform
+      pos: 12.5,18.5
+      parent: 2
+  - uid: 624
+    components:
+    - type: Transform
+      pos: 11.5,18.5
       parent: 2
 - proto: CableHV
   entities:
@@ -1814,6 +1874,13 @@ entities:
           ents: []
         bank-ATM-cashSlot: !type:ContainerSlot {}
     - type: ItemSlots
+- proto: FaxMachineShip
+  entities:
+  - uid: 626
+    components:
+    - type: Transform
+      pos: 16.5,18.5
+      parent: 2
 - proto: Firelock
   entities:
   - uid: 375
@@ -1970,6 +2037,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,6.5
       parent: 2
+- proto: FloorDrain
+  entities:
+  - uid: 634
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,15.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: GasPipeBend
   entities:
   - uid: 11
@@ -3012,6 +3089,20 @@ entities:
       originalPowerLoad: 700
     - type: ApcPowerReceiver
       powerLoad: 700
+- proto: KitchenKnife
+  entities:
+  - uid: 637
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.294603,16.576921
+      parent: 2
+  - uid: 638
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.232103,16.498741
+      parent: 2
 - proto: KitchenMicrowave
   entities:
   - uid: 455
@@ -3025,6 +3116,36 @@ entities:
     components:
     - type: Transform
       pos: 16.5,16.5
+      parent: 2
+- proto: KitchenSpike
+  entities:
+  - uid: 635
+    components:
+    - type: Transform
+      pos: 22.5,14.5
+      parent: 2
+- proto: LampGold
+  entities:
+  - uid: 631
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 10.40517,18.731499
+      parent: 2
+- proto: LuxuryPen
+  entities:
+  - uid: 630
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.806934,19.563276
+      parent: 2
+- proto: PaperBin10
+  entities:
+  - uid: 629
+    components:
+    - type: Transform
+      pos: 11.5,19.5
       parent: 2
 - proto: PlushieOrangeFox
   entities:
@@ -3539,6 +3660,32 @@ entities:
     - type: Transform
       pos: 14.5,20.5
       parent: 2
+- proto: TableReinforcedGlass
+  entities:
+  - uid: 622
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,19.5
+      parent: 2
+  - uid: 625
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,18.5
+      parent: 2
+  - uid: 627
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,18.5
+      parent: 2
+  - uid: 628
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 15.5,19.5
+      parent: 2
 - proto: TableWood
   entities:
   - uid: 438
@@ -3718,12 +3865,31 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 100
+- proto: VendingMachineChefvend
+  entities:
+  - uid: 636
+    components:
+    - type: Transform
+      pos: 21.5,14.5
+      parent: 2
 - proto: VendingMachineDinnerware
   entities:
   - uid: 451
     components:
     - type: Transform
       pos: 17.5,16.5
+      parent: 2
+- proto: VendingMachineRestockChefvend
+  entities:
+  - uid: 639
+    components:
+    - type: Transform
+      pos: 10.8296175,18.586056
+      parent: 2
+  - uid: 640
+    components:
+    - type: Transform
+      pos: 10.8139925,18.367155
       parent: 2
 - proto: VendingMachineTankDispenserEVA
   entities:
