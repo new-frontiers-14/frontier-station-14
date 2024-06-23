@@ -42,7 +42,7 @@
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 7.5 [color=red]Blunt[/color], 5.5 [color=red]Slash[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 5%; [color=orange]Caustic[/color] 10%
   - [bold][color=#a4885c]Special abilities:[/color][/bold] none
   
   # "Salvager"
@@ -55,7 +55,7 @@
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 20 [color=red]Blunt[/color] 
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 5%; [color=orange]Caustic[/color] 10%
   - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (sawn-off PKA)
   
   # "Miner"
@@ -68,7 +68,7 @@
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 2 [color=red]Blunt[/color], 1 [color=red]Slash[/color], 2 [color=yellow]Piercing[/color]
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 10%; [color=orange]Heat[/color] 5%; [color=orange]Caustic[/color] 10%
   - [bold][color=#a4885c]Special abilities:[/color][/bold] none
   
   # "Explorer"
@@ -81,21 +81,24 @@
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 20 [color=red]Blunt[/color] 
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 10%; [color=orange]Heat[/color] 5%; [color=orange]Caustic[/color] 10%
   - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (wielded PKA)
   
   # "Hauler"
   
   Heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
   
+  [color=#a4885c]Immunity[/color]: invulnerable to specific types of damage.
+  
   <Box>
   <GuideEntityEmbed Entity="MobExplorerHauler"/>
   </Box>
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4 m/s (2.75 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 15 [color=red]Blunt[/color] 
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] none
+  - [bold][color=#a4885c]Damage (type):[/color][/bold] 15 [color=red]Blunt[/color]
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color] 30%; [color=red]Slash[/color] 50%; [color=yellow]Piercing[/color] 30%; [color=orange]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage weaknesses:[/color][/bold] [color=orange]Structural[/color] 20%; [color=orange]Shock[/color] 50%; [color=lime]Radiation[/color] 20%
+  - [bold][color=#a4885c]Special abilities:[/color][/bold] Immunity ([color=orange]Cold[/color], [color=lime]Poison[/color], [color=#9A54BF]Asphyxiation[/color], [color=#9A54BF]Bloodloss[/color], [color=#da8b8b]Cellular[/color])
   
   # "Explorer captain"
   
@@ -107,7 +110,7 @@
   - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
   - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
   - [bold][color=#a4885c]Damage (type):[/color][/bold] 20 [color=red]Blunt[/color] 
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=#ffa500]Heat[/color] 20%; [color=yellow]Caustic[/color] 10%
+  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
   - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (dual sawn-off PKA)
   
   # Missions objectives
