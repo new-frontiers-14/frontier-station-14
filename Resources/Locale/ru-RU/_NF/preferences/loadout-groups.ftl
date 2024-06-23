@@ -14,6 +14,9 @@ loadout-group-contractor-face = маски
 loadout-group-contractor-utility = инструменты
 loadout-group-contractor-fun = игрушки
 loadout-group-contractor-trinkets = прочее
+loadout-group-contractor-survival-box = аварийные наборы
+loadout-group-contractor-encryption-key = ключи шифрования
+loadout-group-contractor-implanter = имплантеры
 
 # Security
 

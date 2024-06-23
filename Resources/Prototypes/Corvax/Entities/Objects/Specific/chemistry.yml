@@ -1,0 +1,93 @@
+- type: entity
+  name: reliable container
+  parent: BaseItem
+  description: "Advanced container for storing medical products."
+  id: ReliableContainer
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Specific/Chemistry/kit.rsi
+    layers:
+      - state: kit
+      - state: fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: Corvax/Objects/Specific/Chemistry/kit.rsi
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+  - type: MixableSolution
+    solution: beaker
+  - type: FitsInDispenser
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Drink
+    solution: beaker
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 100
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  name: brute reliable container 
+  parent: ReliableContainer
+  description: "Filled with medication that treat brute damage."
+  id: ReliableContainerBruteFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 75
+        - ReagentId: TranexamicAcid
+          Quantity: 25
+
+- type: entity
+  name: burn reliable container 
+  parent: ReliableContainer
+  description: "Filled with medication that treat burn damage."
+  id: ReliableContainerBurnFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 50
+        - ReagentId: Leporazine
+          Quantity: 50
