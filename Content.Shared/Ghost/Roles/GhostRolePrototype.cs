@@ -35,4 +35,12 @@ public sealed partial class GhostRolePrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public string Rules = default!;
+
+    // Frontier
+    /// <summary>
+    ///     Whether or not the ghost role requires a player to be whitelisted.
+    /// </summary>
+    [DataField]
+    public bool Whitelisted = false;
+    // End Frontier
 }

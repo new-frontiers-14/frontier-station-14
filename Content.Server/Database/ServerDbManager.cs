@@ -9,6 +9,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
+using Content.Shared.Ghost.Roles; // Frontier: ghost role whitelists
 using Content.Shared.Roles;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -302,6 +303,9 @@ namespace Content.Server.Database
         Task<bool> IsJobWhitelisted(Guid player, ProtoId<JobPrototype> job);
 
         Task<bool> RemoveJobWhitelist(Guid player, ProtoId<JobPrototype> job);
+        Task AddGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole); // Frontier
+        Task<bool> IsGhostRoleWhitelisted(Guid player, ProtoId<GhostRolePrototype> ghostRole); // Frontier
+        Task<bool> RemoveGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole); // Frontier
 
         #endregion
     }
@@ -906,6 +910,25 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveJobWhitelist(player, job));
         }
+        
+        // Frontier: ghost role DB ops
+        public Task AddGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddGhostRoleWhitelist(player, ghostRole));
+        }
+
+        public Task<bool> IsGhostRoleWhitelisted(Guid player, ProtoId<GhostRolePrototype> ghostRole)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.IsGhostRoleWhitelisted(player, ghostRole));
+        }
+        public Task<bool> RemoveGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveGhostRoleWhitelist(player, ghostRole));
+        }
+        // End Frontier
 
         // Wrapper functions to run DB commands from the thread pool.
         // This will avoid SynchronizationContext capturing and avoid running CPU work on the main thread.

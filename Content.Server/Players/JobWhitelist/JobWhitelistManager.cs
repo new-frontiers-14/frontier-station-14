@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
+using Content.Shared.Ghost.Roles; // Frontier: Ghost Role handling
 using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -104,6 +105,56 @@ public sealed class JobWhitelistManager : IPostInjectInit
 
         _net.ServerSendMessage(msg, player.Channel);
     }
+
+    // Frontier: Ghost Role handling
+    public async void AddWhitelist(NetUserId player, ProtoId<GhostRolePrototype> ghostRole)
+    {
+        if (_whitelists.TryGetValue(player, out var whitelists))
+            whitelists.Add(ghostRole);
+
+        await _db.AddGhostRoleWhitelist(player, ghostRole);
+
+        if (_player.TryGetSessionById(player, out var session))
+            SendJobWhitelist(session);
+    }
+
+    public bool IsAllowed(ICommonSession session, ProtoId<GhostRolePrototype> ghostRole)
+    {
+        if (!_config.GetCVar(CCVars.GameRoleWhitelist))
+            return true;
+
+        if (!_prototypes.TryIndex(ghostRole, out var ghostRolePrototype) ||
+            !ghostRolePrototype.Whitelisted)
+        {
+            return true;
+        }
+
+        return IsWhitelisted(session.UserId, ghostRole);
+    }
+
+    public bool IsWhitelisted(NetUserId player, ProtoId<GhostRolePrototype> ghostRole)
+    {
+        if (!_whitelists.TryGetValue(player, out var whitelists))
+        {
+            Log.Error("Unable to check if player {Player} is whitelisted for {Job}. Stack trace:\\n{StackTrace}",
+                player,
+                ghostRole,
+                Environment.StackTrace);
+            return false;
+        }
+
+        return whitelists.Contains(ghostRole);
+    }
+
+    public async void RemoveWhitelist(NetUserId player, ProtoId<GhostRolePrototype> ghostRole)
+    {
+        _whitelists.GetValueOrDefault(player)?.Remove(ghostRole);
+        await _db.RemoveGhostRoleWhitelist(player, ghostRole);
+
+        if (_player.TryGetSessionById(new NetUserId(player), out var session))
+            SendJobWhitelist(session);
+    }
+    // End Frontier
 
     void IPostInjectInit.PostInject()
     {
