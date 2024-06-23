@@ -20,16 +20,62 @@
   - type: Stack
     count: 25000
 
-# Fake fake money (ikr)
+# Fake fake money (ikr), placeholder for now until actual counterfeit currency is implemented
 - type: entity
-  parent: SpaceCash
-  name: speysos
+  parent: BaseItem
+  id: SpaceCashCounterfeit
+  name: spessos
   description: Try not to mix this with the real money.
-  id: SpaceCash1000Counterfeit
-  suffix: 1000
   components:
-  - type: Icon
-    sprite: _NF/Objects/Economy/cash.rsi
-    state: cash_1000
+  - type: Cash
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: Currency
+    price:
+      Speso: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 1
+  - type: StaticPrice
+    price: 0
   - type: Stack
-    count: 1000
+    stackType: Credit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_5000 # Frontier: larger denominations
+    - cash_10000 # Frontier: larger denominations
+    - cash_25000 # Frontier: larger denominations
+    - cash_50000 # Frontier: larger denominations
+    - cash_100000 # Frontier: larger denominations
+    - cash_250000 # Frontier: larger denominations (cash_1000000<cash_250000)
+    layerFunction: Threshold # Frontier: multicolour cash
+  - type: StackLayerThreshold # Frontier
+    thresholds: [10, 100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000] # Frontier
+  - type: Sprite
+    sprite: _NF/Objects/Economy/cash.rsi # Frontier: larger denominations
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+  - type: CargoSellBlacklist

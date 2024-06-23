@@ -113,11 +113,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Dead
+      100: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      45: 0.7
-      60: 0.5
+      60: 0.7
+      80: 0.5
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
   - type: Stamina
     critThreshold: 300
 
@@ -136,7 +140,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      70: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       48: 0.7
@@ -146,8 +150,8 @@
       groups:
         Brute: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.0
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.5
 
 - type: entity
   parent: BaseMobXenoExpeditions
@@ -177,7 +181,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 10
+       Brute: 14
 
 - type: entity
   parent: BaseMobXenoExpeditions
@@ -199,7 +203,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 3
+       Brute: 4
 
 - type: entity
   parent: BaseMobXenoExpeditions
