@@ -1,0 +1,30 @@
+#Corvax Frontier
+- type: vessel
+  id: Mantis
+  name: NRS Богомол
+  description: Среднегабаритный шаттл-ресторан. Рекомендованный размер команды 1-3 человек.
+  price: 40999
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/CorvaxFrontier/Shuttles/Mantis.yml
+
+- type: gameMap
+  id: Mantis
+  mapName: 'NRS Богомол'
+  mapPath: /Maps/CorvaxFrontier/Shuttles/Mantis.yml
+  minPlayers: 0
+  stations:
+    Mantis:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Богомол {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
