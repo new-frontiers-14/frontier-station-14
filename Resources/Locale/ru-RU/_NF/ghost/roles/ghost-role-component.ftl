@@ -15,3 +15,6 @@ ghost-role-information-ert-mailcarrier-name = Почтальон ОБР
 ghost-role-information-ert-mailcarrier-description = Помогите в оформлении документов для решения проблем со станциями.
 ghost-role-information-jerma-name = Джерма
 ghost-role-information-jerma-description = Пог момент
+ghost-role-information-baby-dragon-name = Детёныш космического дракона
+ghost-role-information-baby-dragon-description = Вылупитесь из яйца и отправляйтесь в невероятные приключения вместе со своей мамой и её командой!
+ghost-role-information-baby-dragon-rules = Ты вот-вот вылупишься из яйца. Убедись, что знаешь, где и кто твоя мама. Будь предан и защищай её!

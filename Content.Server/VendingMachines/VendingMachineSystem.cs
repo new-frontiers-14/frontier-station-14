@@ -175,6 +175,7 @@ namespace Content.Server.VendingMachines
         private void OnBreak(EntityUid uid, VendingMachineComponent vendComponent, BreakageEventArgs eventArgs)
         {
             vendComponent.Broken = true;
+            _userInterfaceSystem.CloseUi(uid, VendingMachineUiKey.Key);
             TryUpdateVisualState(uid, vendComponent);
             EnsureComp<WeldableComponent>(uid);
         }

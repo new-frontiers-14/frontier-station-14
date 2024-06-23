@@ -18,9 +18,9 @@ namespace Content.Shared.Movement.Components
         public const float DefaultWeightlessModifier = 0.7f;
         public const float DefaultWeightlessAcceleration = 1f;
 
-        public const float DefaultAcceleration = 20f;
-        public const float DefaultFriction = 20f;
-        public const float DefaultFrictionNoInput = 20f;
+        public const float DefaultAcceleration = 8f; //Frontier
+        public const float DefaultFriction = 8f; // Frontier
+        public const float DefaultFrictionNoInput = 14f; // Frontier
 
         public const float DefaultBaseWalkSpeed = 2.5f;
         public const float DefaultBaseSprintSpeed = 4.5f;
@@ -100,7 +100,7 @@ namespace Content.Shared.Movement.Components
         /// The negative velocity applied for friction.
         /// </summary>
         [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
-        public float? FrictionNoInput;
+        public float? FrictionNoInput = DefaultFrictionNoInput; // Frontier
 
         [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
         public float BaseWalkSpeed { get; set; } = DefaultBaseWalkSpeed;

@@ -55,13 +55,44 @@ public sealed class BoomBoxSystem : EntitySystem
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxMinusVolMessage>(OnMinusVolButtonPressed);
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxStartMessage>(OnStartButtonPressed);
         SubscribeLocalEvent<BoomBoxComponent, BoomBoxStopMessage>(OnStopButtonPressed);
+        SubscribeLocalEvent<BoomBoxComponent, BoomBoxSetTimeMessage>(OnSetTimeMessage);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<BoomBoxComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (component.Stream != null && _audioSystem.IsPlaying(component.Stream))
+            {
+                component.PlaybackPosition += frameTime;
+                UpdateUserInterface(uid, component);
+
+                if (component.PlaybackPosition >= component.SoundDuration)
+                {
+                    StopPlay(uid, component);
+                    component.PlaybackPosition = 0f;
+                }
+            }
+        }
+    }
+
+    private void OnSetTimeMessage(EntityUid uid, BoomBoxComponent component, BoomBoxSetTimeMessage args)
+    {
+        if (component.Stream != null)
+        {
+            _audioSystem.SetPlaybackPosition(component.Stream, args.PlaybackPosition);
+            component.PlaybackPosition = args.PlaybackPosition;
+        }
+
+        UpdateUserInterface(uid, component);
+    }
 
     // This method makes it possible to insert cassettes into the boombox
     private void OnComponentInit(EntityUid uid, BoomBoxComponent component, ComponentInit args)
     {
-
         foreach (var slot in component.Slots)
         {
             _itemSlotsSystem.AddItemSlot(uid, slot.Key, slot.Value);
@@ -91,6 +122,8 @@ public sealed class BoomBoxSystem : EntitySystem
         // We change the value of this field to prevent the boombox from being turned on without a cassette.
         comp.Inserted = false;
         comp.Enabled = false;
+        comp.PlaybackPosition = 0f;
+        UpdateUserInterface(uid, comp);
     }
 
     // This method is an intermediate step where we embed additional checks.
@@ -106,14 +139,11 @@ public sealed class BoomBoxSystem : EntitySystem
     // This method updates the path to the music being played. That is why the initial value of the field is not particularly important
     private void AddCurrentSoundPath(EntityUid uid, BoomBoxComponent comp, EntityUid added)
     {
-
-        var tagComp = EnsureComp<TagComponent>(uid);
-
         if (!TryComp<BoomBoxTapeComponent>(added, out var BoomBoxTapeComp) || BoomBoxTapeComp.SoundPath is null)
             return;
 
-
         comp.SoundPath = BoomBoxTapeComp.SoundPath;
+        comp.SoundDuration = (float) _audioSystem.GetAudioLength(comp.SoundPath).TotalSeconds;
     }
 
     private void OnMinusVolButtonPressed(EntityUid uid, BoomBoxComponent component, BoomBoxMinusVolMessage args)
@@ -140,8 +170,6 @@ public sealed class BoomBoxSystem : EntitySystem
     {
         UpdateUserInterface(uid, component);
     }
-
-    // ----------------------------------------------------------------------------------------------------------------
 
     private void UpdateUserInterface(EntityUid uid, BoomBoxComponent? component = null)
     {
@@ -178,8 +206,7 @@ public sealed class BoomBoxSystem : EntitySystem
             canStop = false;
         }
 
-
-        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart);
+        var state = new BoomBoxUiState(canPlusVol, canMinusVol, canStop, canStart, component.PlaybackPosition, component.SoundDuration);
         _userInterface.SetUiState(uid, BoomBoxUiKey.Key, state);
     }
 
@@ -222,6 +249,7 @@ public sealed class BoomBoxSystem : EntitySystem
 
             // We play music with these parameters. Be sure to set "WithLoop(true)" this will allow the music to play indefinitely.
             component.Stream = _audioSystem.PlayPvs(component.SoundPath, uid, AudioParams.Default.WithVolume(component.Volume).WithLoop(true).WithMaxDistance(7f))?.Entity;
+            component.PlaybackPosition = 0f;
         }
 
         _signalSystem.InvokePort(uid, component.Port);
@@ -243,8 +271,8 @@ public sealed class BoomBoxSystem : EntitySystem
 
             // Turning off the looped audio stream
             component.Stream = _audioSystem.Stop(component.Stream);
+            component.PlaybackPosition = 0f;
         }
-
         _signalSystem.InvokePort(uid, component.Port);
 
         UpdateUserInterface(uid, component);

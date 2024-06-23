@@ -1,0 +1,10 @@
+ent-PunkMessengerGiftBox = Панковская сумка
+    .desc = Лутбоксы? Тут?
+ent-ClothingBackpackPunkLootA = { ent-PunkMessengerGiftBox }
+    .desc = { ent-PunkMessengerGiftBox.desc }
+ent-ClothingBackpackPunkLootB = { ent-PunkMessengerGiftBox }
+    .desc = { ent-PunkMessengerGiftBox.desc }
+ent-ClothingBackpackPunkLootC = { ent-PunkMessengerGiftBox }
+    .desc = { ent-PunkMessengerGiftBox.desc }
+ent-ClothingBackpackPunkLootD = { ent-PunkMessengerGiftBox }
+    .desc = { ent-PunkMessengerGiftBox.desc }

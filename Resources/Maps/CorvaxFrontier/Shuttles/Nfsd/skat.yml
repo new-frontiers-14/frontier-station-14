@@ -20,10 +20,10 @@ entities:
       pos: -0.71875006,-4.932419
       parent: invalid
     - type: AutoDelete
-      delayToCheck: 60
-      delayToDelete: 2400
       distanceToCheck: 40
-      isHumanoidNear: true
+      delayToDelete: 2400
+      delayToCheck: 60
+      isHumanoidNear: True
     - type: MapGrid
       chunks:
         0,0:
@@ -1779,6 +1779,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 16.5,-4.5
+      parent: 1
+- proto: CargoPallet
+  entities:
+  - uid: 784
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-3.5
       parent: 1
 - proto: CarpetBlack
   entities:
@@ -3971,6 +3979,13 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 586
+    components:
+    - type: Transform
+      pos: -10.5,-5.5
+      parent: 1
 - proto: SpawnPointPrisoner
   entities:
   - uid: 777
@@ -5375,11 +5390,4 @@ entities:
     - type: Transform
       pos: 14.145705,-8.512036
       parent: 1
-- proto: SpawnPointLatejoin
-  entities:
-    - uid: 586
-      components:
-        - type: Transform
-          pos: -10.5,-5.5
-          parent: 1
 ...

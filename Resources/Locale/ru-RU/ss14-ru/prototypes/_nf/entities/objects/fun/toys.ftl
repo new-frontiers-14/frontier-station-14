@@ -74,3 +74,5 @@ ent-PlushieCatTuxedo = плюшевая кошка
     .desc = { ent-BasePlushieCat.desc }
 ent-PlushieCatWhite = плюшевая кошка
     .desc = { ent-BasePlushieCat.desc }
+ent-ThronglerToy = Нагибатор
+    .desc = Ну и что ты будешь с этим делать?

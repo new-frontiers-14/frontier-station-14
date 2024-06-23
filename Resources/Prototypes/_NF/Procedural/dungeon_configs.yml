@@ -7,6 +7,7 @@
       - LavaMercenary
       - SalvageExperiment
       - VirologyLab
+      - SalvageOutpost
     presets:
       - Bucket
       - Wow
@@ -418,6 +419,88 @@
 
     - !type:CorridorDecalSkirtingPostGen
       color: "#467b41"
+      cardinalDecals:
+        South: BrickTileWhiteLineS
+        East: BrickTileWhiteLineE
+        North: BrickTileWhiteLineN
+        West: BrickTileWhiteLineW
+      cornerDecals:
+        SouthEast: BrickTileWhiteCornerSe
+        SouthWest: BrickTileWhiteCornerSw
+        NorthEast: BrickTileWhiteCornerNe
+        NorthWest: BrickTileWhiteCornerNw
+      pocketDecals:
+        SouthWest: BrickTileWhiteInnerSw
+        SouthEast: BrickTileWhiteInnerSe
+        NorthWest: BrickTileWhiteInnerNw
+        NorthEast: BrickTileWhiteInnerNe
+
+- type: dungeonConfig
+  id: SalvageOutpost
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+      - SalvageOutpost
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      width: 3
+
+    - !type:DungeonEntrancePostGen
+      count: 2
+
+    - !type:RoomEntrancePostGen
+      entities:
+        - CableApcExtension
+        - AirlockMiningGlass
+
+    - !type:EntranceFlankPostGen
+      entities:
+        - Grille
+        - MiningWindow
+
+    - !type:ExternalWindowPostGen
+      entities:
+        - Grille
+        - MiningWindow
+
+    - !type:WallMountPostGen
+      spawns:
+        # Posters
+        - id: RandomPosterLegit
+          orGroup: content
+        - id: ExtinguisherCabinetFilled
+          prob: 0.2
+          orGroup: content
+        - id: RandomPainting
+          prob: 0.05
+          orGroup: content
+        - id: DefibrillatorCabinetFilled
+          prob: 0.1
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorSteel
+      wall: WallMining
+      cornerWall: WallMining
+
+    - !type:JunctionPostGen
+      width: 1
+
+    - !type:JunctionPostGen
+
+    - !type:AutoCablingPostGen
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: PottedPlantRandom
+          amount: 1
+
+    - !type:CorridorDecalSkirtingPostGen
+      color: "#9A54BF"
       cardinalDecals:
         South: BrickTileWhiteLineS
         East: BrickTileWhiteLineE

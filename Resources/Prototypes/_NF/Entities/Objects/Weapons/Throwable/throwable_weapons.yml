@@ -2,7 +2,7 @@
   parent:
   - Dart
   - ConjuredObject10 # Despawns in 10 seconds
-  id: DartSindicateImpedrezene
+  id: DartSyndicateImpedrezene
   name: syndicate impedrezene dart
   description: Try not to prick yourself.
   noSpawn: true
@@ -28,15 +28,17 @@
     solution: ammo
   - type: DrainableSolution
     solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 4
   - type: SolutionInjectOnEmbed
     transferAmount: 2
-    solution: melee
+    solution: ammo
   - type: InjectableSolution
     solution: ammo
 
 - type: entity # 4 hits to KO a spaceman
-  parent: DartSindicateImpedrezene
-  id: DartSindicateTranquilizer
+  parent: DartSyndicateImpedrezene
+  id: DartSyndicateTranquilizer
   name: syndicate tranquilizer dart
   noSpawn: true
   components:
@@ -47,6 +49,55 @@
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 3
+  - type: SolutionTransfer
+    maxTransferAmount: 4
   - type: SolutionInjectOnEmbed
     transferAmount: 3
-    solution: melee
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+
+- type: entity
+  parent: DartSyndicateImpedrezene
+  id: DartAberrantFleshHorrorSpike
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 10
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 3
+        reagents:
+        - ReagentId: Impedrezene
+          Quantity: 3
+  - type: SolutionInjectOnEmbed
+    transferAmount: 3
+    solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 4
+  - type: InjectableSolution
+    solution: ammo
+
+- type: entity
+  parent: ConjuredObject10
+  id: DartAberrantFleshHorrorSpikeCluster
+  name: bone spike  
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: CartridgeAmmo
+    muzzleFlash: null
+    proto: DartAberrantFleshHorrorSpike
+    count: 3
+    spread: 25

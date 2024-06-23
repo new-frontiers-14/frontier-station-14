@@ -373,7 +373,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         fromCoordinates = Transform(user).Coordinates;
 
         // Remove ammo
-        var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user);
+        var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user, true); // Frontier: add intent to fire
 
         // Listen it just makes the other code around it easier if shots == 0 to do this.
         if (shots > 0)

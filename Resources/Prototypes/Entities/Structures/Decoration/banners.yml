@@ -15,7 +15,16 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb {}
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - TableMask # Frontier - MachineMask<TableMask
+        # layer:
+        # - Opaque
+        # - MidImpassable
+        # - HighImpassable
+        # - BulletImpassable
   - type: InteractionOutline
 # Frontier
   - type: Destructible
