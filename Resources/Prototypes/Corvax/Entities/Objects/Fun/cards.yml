@@ -5,9 +5,6 @@
   description: A poker card with you can play.
   noSpawn: true
   components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: BasePokerCardFlipped
   - type: Item
     size: Tiny
   - type: Tag
@@ -20,7 +17,8 @@
     layers:
     - state: background
     - state: cover
-  - type: CargoSellBlacklist
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: playable card
@@ -29,9 +27,6 @@
   description: A poker card with you can play.
   noSpawn: true
   components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: BasePokerCard
   - type: Sprite
     sprite: Corvax/Objects/Fun/Cards/poker_cards.rsi
     scale: 0.5,0.5
@@ -39,7 +34,6 @@
     - state: background
     - state: cover
     - state: logo
-  - type: CargoSellBlacklist
 
 - type: entity
   name: playable card
@@ -1936,9 +1930,6 @@
   description: A poker card with you can play.
   noSpawn: true
   components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: BasePokerCardClassicFlipped
   - type: Item
     size: Tiny
   - type: Tag
@@ -1951,7 +1942,8 @@
     layers:
     - state: background
     - state: cover
-  - type: CargoSellBlacklist
+  - type: StaticPrice
+    price: 1
 
 - type: entity
   name: playable card
@@ -1960,9 +1952,6 @@
   description: A poker card with you can play.
   noSpawn: true
   components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: BasePokerCardClassic
   - type: Sprite
     sprite: Corvax/Objects/Fun/Cards/poker_cards_classic.rsi
     scale: 0.5,0.5
@@ -1970,7 +1959,6 @@
     - state: background
     - state: cover
     - state: logo
-  - type: CargoSellBlacklist
 
 - type: entity
   name: playable card
