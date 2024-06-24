@@ -8,6 +8,7 @@ using Content.Shared.Database;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Random;
 
 namespace Content.Server.Projectiles;
 
@@ -18,6 +19,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private EntityQuery<PenetratableComponent> _penetratableQuery;
 
@@ -92,7 +94,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         var afterProjectileHitEvent = new AfterProjectileHitEvent(component.Damage, target);
         RaiseLocalEvent(uid, ref afterProjectileHitEvent);
 
-        if (component.PenetrationScore > 0 && _penetratableQuery.TryGetComponent(target, out var penetratable))
+        if (component.PenetrationScore > 0 && _penetratableQuery.TryGetComponent(target, out var penetratable) && _random.Prob(component.PenetrationProb))
         {
             component.DamagedEntity = component.PenetrationScore < penetratable.StoppingPower;
 
