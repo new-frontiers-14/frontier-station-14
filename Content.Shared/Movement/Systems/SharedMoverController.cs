@@ -440,9 +440,20 @@ namespace Content.Shared.Movement.Systems
                 sound = moverModifier.FootstepSoundCollection;
                 return true;
             }
-            
+
+            // Frontier: check outer clothes
+            // If you have a hardsuit or power armor on that goes around your boots, it's the hardsuit that hits the floor.
+            // Check should happen before NoShoesSilentFootsteps check - loud power armor should count as wearing shoes.
+            if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
+                TryComp<FootstepModifierComponent>(outerClothing, out var outerModifier))
+            {
+                sound = outerModifier.FootstepSoundCollection;
+                return true;
+            }
+            // End Frontier
+
             // If got the component in yml and no shoes = no sound. Delta V
-            if (_entities.TryGetComponent(uid, out NoShoesSilentFootstepsComponent? _) &
+            if (_entities.TryGetComponent(uid, out NoShoesSilentFootstepsComponent? _) &&
                 !_inventory.TryGetSlotEntity(uid, "shoes", out var _))
             {
                 return false;
