@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Buckle;
 using Content.Client.Gravity;
 using Content.Shared.ActionBlocker;
