@@ -93,7 +93,7 @@ namespace Content.Shared.Preferences
         public Gender Gender { get; private set; } = Gender.Male;
  
         [DataField] // Frontier: Bank balance
-        public int BankBalance { get; private set; } // Frontier: Bank balance
+        public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
 
         /// <summary>
         /// <see cref="Appearance"/>
