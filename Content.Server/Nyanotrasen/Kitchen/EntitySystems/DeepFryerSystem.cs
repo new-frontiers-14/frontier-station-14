@@ -356,8 +356,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                 _ => 10
             } * component.SolutionSizeCoefficient);
 
-        if (component.Whitelist != null && _whitelistSystem.IsValid(component.Whitelist, item) || // FRONTIER MERGE
-        //if (component.Whitelist != null && component.Whitelist.IsValid(item, EntityManager) || // FRONTIER MERGE
+        if (component.Whitelist != null && _whitelistSystem.IsValid(component.Whitelist, item) || // Frontier: use new whitelist system
             beingEvent.TurnIntoFood)
             MakeEdible(uid, component, item, solutionQuantity);
         else

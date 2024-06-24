@@ -4,16 +4,23 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.Prototypes; // Frontier
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events; // Frontier
+using Content.Shared.Stacks;
 using Content.Shared.Verbs; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Utility;
 
 namespace Content.Server.Construction; //Uses base namespace to extend ConstructionSystem behaviour
 
+public struct MachinePartQuantity
+{
+    public MachinePartComponent Component;
+    public int Quantity;
+}
+
 public sealed partial class ConstructionSystem
 {
     [Dependency] ExamineSystemShared _examineSystem = default!;
-    
+
     private void InitializeMachineUpgrades()
     {
         SubscribeLocalEvent<MachineComponent, GetVerbsEvent<ExamineVerb>>(OnMachineExaminableVerb);
@@ -29,7 +36,10 @@ public sealed partial class ConstructionSystem
         if (markup.IsEmpty)
             return; // Not upgradable.
 
-        markup = FormattedMessage.FromMarkup(markup.ToMarkup().TrimEnd('\n')); // Cursed workaround to https://github.com/space-wizards/RobustToolbox/issues/3371
+        if(!FormattedMessage.TryFromMarkup(markup.ToMarkup().TrimEnd('\n'), out markup)) // Cursed workaround to https://github.com/space-wizards/RobustToolbox/issues/3371
+        {
+            markup = FormattedMessage.Empty; // Frontier: attempt sane error handling
+        }
 
         var verb = new ExamineVerb()
         {
@@ -46,38 +56,52 @@ public sealed partial class ConstructionSystem
         args.Verbs.Add(verb);
     }
 
-    public List<MachinePartComponent> GetAllParts(EntityUid uid, MachineComponent? component = null)
+    // Frontier: return type changed to include quantity
+    public List<MachinePartQuantity> GetAllParts(EntityUid uid, MachineComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return new List<MachinePartComponent>();
+            return new List<MachinePartQuantity>();
 
         return GetAllParts(component);
     }
 
-    public List<MachinePartComponent> GetAllParts(MachineComponent component)
+    // Frontier: return type changed to include quantity
+    public List<MachinePartQuantity> GetAllParts(MachineComponent component)
     {
-        var parts = new List<MachinePartComponent>();
+        var parts = new List<MachinePartQuantity>();
 
         foreach (var entity in component.PartContainer.ContainedEntities)
         {
             if (TryComp<MachinePartComponent>(entity, out var machinePart))
-                parts.Add(machinePart);
+            {
+                var partQuantity = new MachinePartQuantity
+                {
+                    Component = machinePart
+                };
+
+                if (TryComp<StackComponent>(entity, out var stack))
+                    partQuantity.Quantity = stack.Count;
+                else
+                    partQuantity.Quantity = 1;
+
+                parts.Add(partQuantity);
+            }
         }
 
         return parts;
     }
 
-    public Dictionary<string, float> GetPartsRatings(List<MachinePartComponent> parts)
+    public Dictionary<string, float> GetPartsRatings(List<MachinePartQuantity> parts)
     {
         var output = new Dictionary<string, float>();
         foreach (var type in _prototypeManager.EnumeratePrototypes<MachinePartPrototype>())
         {
             var amount = 0f;
             var sumRating = 0f;
-            foreach (var part in parts.Where(part => part.PartType == type.ID))
+            foreach (var part in parts.Where(part => part.Component.PartType == type.ID))
             {
-                amount++;
-                sumRating += part.Rating;
+                amount += part.Quantity;
+                sumRating += part.Component.Rating * part.Quantity;
             }
             var rating = amount != 0 ? sumRating / amount : 0;
             output.Add(type.ID, rating);
@@ -94,5 +118,53 @@ public sealed partial class ConstructionSystem
             Parts = parts,
             PartRatings = GetPartsRatings(parts),
         }, true);
+    }
+}
+public sealed class RefreshPartsEvent : EntityEventArgs
+{
+    public IReadOnlyList<MachinePartQuantity> Parts = new List<MachinePartQuantity>(); // Frontier: MachinePartComponent<MachinePartQuantity
+
+    public Dictionary<string, float> PartRatings = new Dictionary<string, float>();
+}
+
+public sealed class UpgradeExamineEvent : EntityEventArgs
+{
+    private FormattedMessage _message;
+
+    public UpgradeExamineEvent(ref FormattedMessage message)
+    {
+        _message = message;
+    }
+
+    /// <summary>
+    /// Add a line to the upgrade examine tooltip with a percentage-based increase or decrease.
+    /// </summary>
+    public void AddPercentageUpgrade(string upgradedLocId, float multiplier)
+    {
+        var percent = Math.Round(100 * MathF.Abs(multiplier - 1), 2);
+        var locId = multiplier switch
+        {
+            < 1 => "machine-upgrade-decreased-by-percentage",
+            1 or float.NaN => "machine-upgrade-not-upgraded",
+            > 1 => "machine-upgrade-increased-by-percentage",
+        };
+        var upgraded = Loc.GetString(upgradedLocId);
+        this._message.TryAddMarkup(Loc.GetString(locId, ("upgraded", upgraded), ("percent", percent)) + '\n', out _); // Frontier: AddMarkup<TryAddMarkup
+    }
+
+    /// <summary>
+    /// Add a line to the upgrade examine tooltip with a numeric increase or decrease.
+    /// </summary>
+    public void AddNumberUpgrade(string upgradedLocId, int number)
+    {
+        var difference = Math.Abs(number);
+        var locId = number switch
+        {
+            < 0 => "machine-upgrade-decreased-by-amount",
+            0 => "machine-upgrade-not-upgraded",
+            > 0 => "machine-upgrade-increased-by-amount",
+        };
+        var upgraded = Loc.GetString(upgradedLocId);
+        this._message.TryAddMarkup(Loc.GetString(locId, ("upgraded", upgraded), ("difference", difference)) + '\n', out _); // Frontier: AddMarkup<TryAddMarkup
     }
 }

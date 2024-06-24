@@ -382,12 +382,12 @@ namespace Content.Server.Kitchen.EntitySystems
         private void OnRefreshParts(Entity<MicrowaveComponent> ent, ref RefreshPartsEvent args)
         {
             var cookRating = args.PartRatings[ent.Comp.MachinePartCookTimeMultiplier];
-            ent.Comp.CookTimeMultiplier = MathF.Pow(ent.Comp.CookTimeScalingConstant, cookRating - 1);
+            ent.Comp.FinalCookTimeMultiplier = ent.Comp.CookTimeMultiplier * MathF.Pow(ent.Comp.CookTimeScalingConstant, cookRating - 1); // Frontier: apply base cooktimemultiplier as a coefficient (syndie microwave)
         }
 
         private void OnUpgradeExamine(Entity<MicrowaveComponent> ent, ref UpgradeExamineEvent args)
         {
-            args.AddPercentageUpgrade("microwave-component-upgrade-cook-time", ent.Comp.CookTimeMultiplier);
+            args.AddPercentageUpgrade("microwave-component-upgrade-cook-time", ent.Comp.FinalCookTimeMultiplier);
         }
 
         private void OnSignalReceived(Entity<MicrowaveComponent> ent, ref SignalReceivedEvent args)
@@ -563,11 +563,11 @@ namespace Content.Server.Kitchen.EntitySystems
 
             _audio.PlayPvs(component.StartCookingSound, uid);
             var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking
-            activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.CookTimeMultiplier;
+            activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.FinalCookTimeMultiplier; // Frontier: CookTimeMultiplier<FinalCookTimeMultiplier
             activeComp.TotalTime = component.CurrentCookTimerTime; //this doesn't scale so that we can have the "actual" time
             activeComp.PortionedRecipe = portionedRecipe;
             //Scale tiems with cook times
-            component.CurrentCookTimeEnd = _gameTiming.CurTime + TimeSpan.FromSeconds(component.CurrentCookTimerTime * component.CookTimeMultiplier);
+            component.CurrentCookTimeEnd = _gameTiming.CurTime + TimeSpan.FromSeconds(component.CurrentCookTimerTime * component.FinalCookTimeMultiplier); // Frontier: CookTimeMultiplier<FinalCookTimeMultiplier
             if (malfunctioning)
                 activeComp.MalfunctionTime = _gameTiming.CurTime + TimeSpan.FromSeconds(component.MalfunctionInterval);
             UpdateUserInterfaceState(uid, component);
