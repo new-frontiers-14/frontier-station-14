@@ -297,8 +297,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     /// <summary>
     ///     Removes part of the solution in the container.
     /// </summary>
-    /// <param name="targetUid"></param>
-    /// <param name="solutionHolder"></param>
+    /// <param name="soln">The container to remove solution from.</param>
     /// <param name="quantity">the volume of solution to remove.</param>
     /// <returns>The solution that was removed.</returns>
     public Solution SplitSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity)
@@ -310,6 +309,41 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         UpdateChemicals(soln);
         return splitSol;
     }
+
+    // Frontier: cryogenics filtering functions (#1443)
+    /// <summary>
+    /// Splits a solution removing a specified amount of each reagent, if available.
+    /// </summary>
+    /// <param name="soln">The container to split the solution from.</param>
+    /// <param name="quantity">The amount of each reagent to split.</param>
+    /// <returns>The solution that was removed.</returns>
+    public Solution SplitSolutionPerReagent(Entity<SolutionComponent> soln, FixedPoint2 quantity)
+    {
+        var (uid, comp) = soln;
+        var solution = comp.Solution;
+
+        var splitSol = solution.SplitSolutionPerReagent(quantity);
+        UpdateChemicals(soln);
+        return splitSol;
+    }
+
+    /// <summary>
+    /// Splits a solution removing a specified amount of each reagent, if available.
+    /// </summary>
+    /// <param name="soln">The container to split the solution from.</param>
+    /// <param name="quantity">The amount of each reagent to split.</param>
+    /// <param name="reagents">The list of reagents to split a fixed amount of, if present.</param>
+    /// <returns>The solution that was removed.</returns>
+    public Solution SplitSolutionPerReagentWithOnly(Entity<SolutionComponent> soln, FixedPoint2 quantity, params string[] reagents)
+    {
+        var (uid, comp) = soln;
+        var solution = comp.Solution;
+
+        var splitSol = solution.SplitSolutionPerReagentWithOnly(quantity, reagents);
+        UpdateChemicals(soln);
+        return splitSol;
+    }
+    // End Frontier
 
     public Solution SplitStackSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity, int stackCount)
     {
