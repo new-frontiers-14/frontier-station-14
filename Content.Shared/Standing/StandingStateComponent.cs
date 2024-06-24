@@ -2,9 +2,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Standing;
 
@@ -38,6 +35,12 @@ public sealed partial class StandingStateComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? StandUpActionEntity;
+
+    [DataField]
+    public TimeSpan Delay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan LastUsage = TimeSpan.FromSeconds(2);
 }
 
 public sealed partial class LieDownActionEvent : InstantActionEvent {}

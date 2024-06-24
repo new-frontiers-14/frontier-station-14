@@ -3,6 +3,7 @@ using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.LieDown;
+using Robust.Shared.Timing;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
@@ -15,6 +16,7 @@ namespace Content.Shared.Standing
 {
     public sealed class StandingStateSystem : EntitySystem
     {
+        [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -22,7 +24,6 @@ namespace Content.Shared.Standing
         [Dependency] private readonly SharedLieDownSystem _lieDown = default!;
         [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
         [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-
         // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
         private const int StandingCollisionLayer = (int)CollisionGroup.MidImpassable;
 
@@ -32,13 +33,6 @@ namespace Content.Shared.Standing
             SubscribeLocalEvent<StandingStateComponent, LieDownActionEvent>(OnLieDownAction);
             SubscribeLocalEvent<StandingStateComponent, StandUpActionEvent>(OnStandUpAction);
             SubscribeLocalEvent<StandingStateComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<StandingStateComponent, BuckleChangeEvent>(OnBuckleChange);
-        }
-
-        private void OnBuckleChange(EntityUid uid, StandingStateComponent component, ref BuckleChangeEvent args) {
-            if (args.Buckling) {
-                //Stand(uid, component, null, true);
-            }
         }
 
         public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null)
@@ -80,6 +74,18 @@ namespace Content.Shared.Standing
             _lieDown.TryStandUp(uid);
         }
 
+        private bool DelayCheck(EntityUid uid, StandingStateComponent? standingState = null)
+        {
+            if (!Resolve(uid, ref standingState, false))
+                return false;
+
+            if (standingState.LastUsage + standingState.Delay > _timing.CurTime)
+                return false;
+
+            standingState.LastUsage = _timing.CurTime;
+            return true;
+        }
+
         public bool Down(EntityUid uid, bool playSound = true, bool dropHeldItems = true,
             StandingStateComponent? standingState = null,
             AppearanceComponent? appearance = null,
@@ -89,6 +95,8 @@ namespace Content.Shared.Standing
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
+            if (!DelayCheck(uid, standingState))
+                return false;
             // Optional component.
             Resolve(uid, ref appearance, ref hands, false);
 
@@ -150,6 +158,9 @@ namespace Content.Shared.Standing
         {
             // TODO: This should actually log missing comps...
             if (!Resolve(uid, ref standingState, false))
+                return false;
+
+            if (!DelayCheck(uid, standingState))
                 return false;
 
             // Optional component.
