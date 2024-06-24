@@ -1,4 +1,6 @@
 using Content.Shared.Actions;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.LieDown;
 using Content.Shared.Movement.Systems;
@@ -19,6 +21,7 @@ namespace Content.Shared.Standing
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly SharedLieDownSystem _lieDown = default!;
         [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+        [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
         // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
         private const int StandingCollisionLayer = (int)CollisionGroup.MidImpassable;
@@ -29,13 +32,21 @@ namespace Content.Shared.Standing
             SubscribeLocalEvent<StandingStateComponent, LieDownActionEvent>(OnLieDownAction);
             SubscribeLocalEvent<StandingStateComponent, StandUpActionEvent>(OnStandUpAction);
             SubscribeLocalEvent<StandingStateComponent, MapInitEvent>(OnMapInit);
+            SubscribeLocalEvent<StandingStateComponent, BuckleChangeEvent>(OnBuckleChange);
         }
+
+        private void OnBuckleChange(EntityUid uid, StandingStateComponent component, ref BuckleChangeEvent args) {
+            if (args.Buckling) {
+                //Stand(uid, component, null, true);
+            }
+        }
+
         public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null)
         {
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
-            return !standingState.Standing;
+            return !standingState.Standing && !_buckle.IsBuckled(uid);
         }
 
         private void OnMapInit(EntityUid uid, StandingStateComponent component, MapInitEvent args)

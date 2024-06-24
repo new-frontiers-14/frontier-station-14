@@ -1,4 +1,6 @@
 using Content.Shared.Actions;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
@@ -8,6 +10,7 @@ using Content.Shared.Standing;
 using Content.Shared.Verbs;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
+using Content.Shared.Carrying;
 
 namespace Content.Shared.LieDown;
 
@@ -16,6 +19,7 @@ public class SharedLieDownSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
     public override void Initialize()
     {
@@ -26,12 +30,26 @@ public class SharedLieDownSystem : EntitySystem
 
         SubscribeLocalEvent<LyingDownComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<LyingDownComponent, ComponentShutdown>(OnComponentShutdown);
+        SubscribeLocalEvent<LyingDownComponent, BuckleChangeEvent>(OnBuckleChange);
+        SubscribeLocalEvent<LyingDownComponent, CarryDoAfterEvent>(OnDoAfter);
+
 
         // Bind keybinds to lie down action
         SubscribeNetworkEvent<ChangeStandingStateEvent>(OnChangeAction);
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.LieDownStandUp, InputCmdHandler.FromDelegate(ChangeLyingState))
             .Register<SharedLieDownSystem>();
+    }
+
+    private void OnDoAfter(EntityUid uid, LyingDownComponent component, CarryDoAfterEvent args) {
+        _standing.Stand(uid);
+        RemCompDeferred<LyingDownComponent>(uid);
+    }
+
+    private void OnBuckleChange(EntityUid uid, LyingDownComponent component, ref BuckleChangeEvent args) {
+        if (args.Buckling) {
+            RemCompDeferred<LyingDownComponent>(uid);
+        }
     }
 
     private void OnComponentShutdown(EntityUid uid, LyingDownComponent component, ComponentShutdown args)
