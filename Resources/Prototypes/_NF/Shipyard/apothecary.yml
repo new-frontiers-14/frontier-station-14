@@ -1,0 +1,39 @@
+# Author Info
+# GitHub:
+# Discord:
+
+# Maintainer Info
+# GitHub:
+# Discord:
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Apothecary
+  name: NM Apothecary
+  description: A small medical ship outfitted with a modest medical ward and chemistry lab to support distant frontier and colony efforts.
+  price: 25000 # 17772$ on mapinit + 1777$ from 10% markup and a litle extra to round the numbers. Price will likely be closer to 30000 for balance I imagine.
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/apothecary.yml
+
+- type: gameMap
+  id: Apothecary
+  mapName: 'NM Apothecary'
+  mapPath: /Maps/_NF/Shuttles/Apothecary.yml
+  minPlayers: 0
+  stations:
+    Apothecary:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Apothecary {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
