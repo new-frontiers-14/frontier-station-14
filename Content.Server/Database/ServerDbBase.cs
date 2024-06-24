@@ -1644,8 +1644,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             return true;
         }
 
-        // Frontier: Ghost Role handling
+        // Frontier: Ghost role handling
         # endregion
+
         # region Ghost Role Whitelists
 
         public async Task<bool> AddGhostRoleWhitelist(Guid player, ProtoId<GhostRolePrototype> ghostRole)
@@ -1693,7 +1694,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
             return true;
         }
-        // End Frontier: Ghost Role handling
+        // End Frontier: Ghost role handling
 
         #endregion
 

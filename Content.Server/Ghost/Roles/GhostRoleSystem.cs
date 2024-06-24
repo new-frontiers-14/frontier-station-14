@@ -31,6 +31,8 @@ using Robust.Shared.Utility;
 using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
+using Content.Server.Players.JobWhitelist;
+using Content.Server._NF.Players.GhostRole.Events;
 
 namespace Content.Server.Ghost.Roles
 {
@@ -377,6 +379,18 @@ namespace Content.Server.Ghost.Roles
         {
             if (!_ghostRoles.TryGetValue(identifier, out var roleEnt))
                 return;
+
+            // Frontier: check for ghost role whitelist if we don't have one.
+            if (TryComp<GhostRoleComponent>(roleEnt, out var ghostRoleComponent) &&
+                _prototype.TryIndex(ghostRoleComponent.Prototype, out var ghostRolePrototype) &&
+                ghostRolePrototype.Whitelisted)
+            {
+                var ev = new IsGhostRoleAllowedEvent(player, ghostRolePrototype);
+                RaiseLocalEvent(ref ev);
+                if (ev.Cancelled)
+                    return;
+            }
+            // End Frontier
 
             // get raffle or create a new one if it doesn't exist
             var raffle = _ghostRoleRaffles.TryGetValue(identifier, out var raffleEnt)
