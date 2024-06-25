@@ -35,12 +35,12 @@ namespace Content.Shared.Standing
             SubscribeLocalEvent<StandingStateComponent, MapInitEvent>(OnMapInit);
         }
 
-        public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null)
+        public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null, LyingDownComponent? liedownComp = null)
         {
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
-            return !standingState.Standing && !_buckle.IsBuckled(uid);
+            return Resolve(uid, ref liedownComp, false);
         }
 
         private void OnMapInit(EntityUid uid, StandingStateComponent component, MapInitEvent args)
@@ -69,7 +69,7 @@ namespace Content.Shared.Standing
         /// <summary>
         ///     Event that being risen on stand up attempt.
         /// </summary>
-        private void OnStandUpAction(EntityUid uid, StandingStateComponent component, StandUpActionEvent args)
+        private void OnStandUpAction(EntityUid uid, StandingStateComponent? component, StandUpActionEvent args)
         {
             _lieDown.TryStandUp(uid);
         }
@@ -100,7 +100,7 @@ namespace Content.Shared.Standing
             // Optional component.
             Resolve(uid, ref appearance, ref hands, false);
 
-            if (!standingState.Standing)
+            if (IsDown(uid))
                 return true;
 
             // This is just to avoid most callers doing this manually saving boilerplate
@@ -118,7 +118,6 @@ namespace Content.Shared.Standing
             if (msg.Cancelled)
                 return false;
 
-            standingState.Standing = false;
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new DownedEvent(), false);
 
@@ -166,7 +165,7 @@ namespace Content.Shared.Standing
             // Optional component.
             Resolve(uid, ref appearance, false);
 
-            if (standingState.Standing)
+            if (!IsDown(uid))
                 return true;
 
             if (!force)
@@ -178,7 +177,6 @@ namespace Content.Shared.Standing
                     return false;
             }
 
-            standingState.Standing = true;
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new StoodEvent(), false);
 
@@ -193,6 +191,11 @@ namespace Content.Shared.Standing
                 }
             }
             standingState.ChangedFixtures.Clear();
+
+            LyingDownComponent? liedownComp = null;
+            //if (Resolve(uid, ref liedownComp, false)) {
+            //    RemCompDeferred<LyingDownComponent>(uid);
+            //}
 
             return true;
         }

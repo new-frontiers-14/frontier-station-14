@@ -30,8 +30,6 @@ public class SharedLieDownSystem : EntitySystem
 
         SubscribeLocalEvent<LyingDownComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<LyingDownComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<LyingDownComponent, BuckleChangeEvent>(OnBuckleChange);
-        SubscribeLocalEvent<LyingDownComponent, CarryDoAfterEvent>(OnDoAfter);
 
 
         // Bind keybinds to lie down action
@@ -41,26 +39,16 @@ public class SharedLieDownSystem : EntitySystem
             .Register<SharedLieDownSystem>();
     }
 
-    private void OnDoAfter(EntityUid uid, LyingDownComponent component, CarryDoAfterEvent args) {
-        _standing.Stand(uid);
-        RemCompDeferred<LyingDownComponent>(uid);
-    }
-
-    private void OnBuckleChange(EntityUid uid, LyingDownComponent component, ref BuckleChangeEvent args) {
-        if (args.Buckling) {
-            RemCompDeferred<LyingDownComponent>(uid);
-        }
-    }
-
     private void OnComponentShutdown(EntityUid uid, LyingDownComponent component, ComponentShutdown args)
     {
-        SwitchActions(uid);
+        component.Disabling = true;
+        SwitchActions(uid, false);
         _movement.RefreshMovementSpeedModifiers(uid);
     }
 
     private void OnComponentStartup(EntityUid uid, LyingDownComponent component, ComponentStartup args)
     {
-        SwitchActions(uid);
+        SwitchActions(uid, true);
         _movement.RefreshMovementSpeedModifiers(uid);
     }
 
@@ -96,7 +84,7 @@ public class SharedLieDownSystem : EntitySystem
     /// </summary>
     private void OnRefresh(EntityUid uid, LyingDownComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (_standing.IsDown(uid))
+        if (!component.Disabling)
         {
             args.ModifySpeed(0f, 0f);
         }
@@ -109,10 +97,10 @@ public class SharedLieDownSystem : EntitySystem
     /// <summary>
     ///     Change available to player actions.
     /// </summary>
-    private void SwitchActions(EntityUid uid)
+    private void SwitchActions(EntityUid uid, bool choose)
     {
         var standingComponent = Comp<StandingStateComponent>(uid);
-        if (_standing.IsDown(uid))
+        if (choose)
         {
             _actions.AddAction(uid, ref standingComponent.StandUpActionEntity, standingComponent.StandUpAction);
             _actions.RemoveAction(uid, standingComponent.LieDownActionEntity);
@@ -180,7 +168,7 @@ public class SharedLieDownSystem : EntitySystem
 
     public void TryLieDown(EntityUid uid)
     {
-        if (_standing.IsDown(uid) || !_standing.Down(uid, false, false))
+        if (_standing.IsDown(uid) || !_standing.Down(uid))
             return;
 
         EnsureComp<LyingDownComponent>(uid);
