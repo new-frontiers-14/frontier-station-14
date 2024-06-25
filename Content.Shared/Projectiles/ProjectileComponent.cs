@@ -76,4 +76,7 @@ public sealed partial class ProjectileComponent : Component
 
     [DataField]
     public int PenetrationScore;
+
+    [DataField]
+    public float PenetrationProb = 0.7f;
 }
