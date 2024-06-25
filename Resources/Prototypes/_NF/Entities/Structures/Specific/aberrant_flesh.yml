@@ -4,6 +4,14 @@
   name: digestive sack
   description: Huh, a digestive sack.
   components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnMobAberrantFleshExpeditions
+    chance: 0.85
+    intervalSeconds: 240
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3
   - type: Sprite
     sprite: _NF/Structures/Specific/AberrantFlesh/digestivesack.rsi
     layers:
