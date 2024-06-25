@@ -12,8 +12,19 @@
     intervalSeconds: 240
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.16,0.3,0.16"
+        density: 1500
+        mask:
+        - TabletopMachineMask
   - type: Sprite
     sprite: _NF/Structures/Specific/AberrantFlesh/digestivesack.rsi
+    drawdepth: SmallObjects
+    snapCardinals: true
     layers:
     - state: base
     - state: unshaded
