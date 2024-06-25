@@ -146,11 +146,10 @@ public sealed class PartExchangerSystem : EntitySystem
                 stackQuery.TryGetComponent(item, out partState.Stack);
                 machineParts.Add((item, partState));
                 _container.RemoveEntity(uid, item);
-                /*if (part.StackType is not null) // Frontier: FIXME: HACKS
+                if (partState.Stack is not null)
                 {
-                    var stackType = part.StackType ?? new ProtoId<StackPrototype>();
-                    machine.MaterialProgress[stackType]--;
-                }*/
+                    machine.Progress[partState.Part.PartType] = int.Max(0, machine.Progress[partState.Part.PartType] - partState.Stack.Count);
+                }
             }
         }
 

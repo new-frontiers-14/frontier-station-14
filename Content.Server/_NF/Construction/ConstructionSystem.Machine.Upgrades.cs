@@ -61,7 +61,7 @@ public sealed partial class ConstructionSystem
         args.Verbs.Add(verb);
     }
 
-    // Frontier: return type changed to include quantity
+    // Frontier: return type changed to include stack info
     public List<MachinePartState> GetAllParts(EntityUid uid, MachineComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -70,7 +70,7 @@ public sealed partial class ConstructionSystem
         return GetAllParts(component);
     }
 
-    // Frontier: return type changed to include quantity
+    // Frontier: return type changed to include stack info
     public List<MachinePartState> GetAllParts(MachineComponent component)
     {
         var parts = new List<MachinePartState>();
@@ -123,7 +123,7 @@ public sealed partial class ConstructionSystem
 }
 public sealed class RefreshPartsEvent : EntityEventArgs
 {
-    public IReadOnlyList<MachinePartState> Parts = new List<MachinePartState>(); // Frontier: MachinePartComponent<MachinePartQuantity
+    public IReadOnlyList<MachinePartState> Parts = new List<MachinePartState>(); // Frontier: MachinePartComponent<MachinePartState
 
     public Dictionary<string, float> PartRatings = new Dictionary<string, float>();
 }

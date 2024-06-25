@@ -641,12 +641,9 @@
       prototype: SMESBasicEmpty
       requirements: # Frontier
         Capacitor: 1 # Frontier stackRequirements<requirements
+        PowerCell: 4 # Frontier componentRequirements<requirements
       stackRequirements:
         CableHV: 10
-      componentRequirements:
-        PowerCell:
-          amount: 4
-          defaultPrototype: PowerCellSmall
 
 - type: entity
   id: CellRechargerCircuitboard
@@ -748,8 +745,8 @@
     state: charger_APC
   - type: MachineBoard
     prototype: TurboItemRecharger
-      requirements: # Frontier
-        Capacitor: 2 # Frontier stackRequirements<requirements
+    requirements: # Frontier
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
       CableMV: 5
   - type: PhysicalComposition
@@ -1102,7 +1099,7 @@
   components:
   - type: MachineBoard
     prototype: MachineFlatpacker
-      requirements: # Frontier
+    requirements: # Frontier
       Manipulator: 2 # Frontier stackRequirements<requirements
       MatterBin: 1 # Frontier stackRequirements<requirements
     stackRequirements:

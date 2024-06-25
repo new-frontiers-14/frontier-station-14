@@ -25,13 +25,4 @@ public sealed partial class MachinePartPrototype : IPrototype
     /// </summary>
     [DataField("stockPartPrototype", required: true)]
     public EntProtoId StockPartPrototype = string.Empty;
-
-    // Frontier: stack types in machine part prototypes
-    /// <summary>
-    /// The ID of stack type a machine part will be stored in.
-    /// Null if the part cannot be stacked.
-    /// </summary>
-    [DataField("stack")]
-    public ProtoId<StackPrototype>? StackType;
-    // End Frontier
 }
