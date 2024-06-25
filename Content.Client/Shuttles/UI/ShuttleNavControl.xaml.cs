@@ -38,6 +38,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
 
+    public float RangeFilter { get; set; } = -1f;
+
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
@@ -222,6 +224,17 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             if (isPlayerShuttle)
             {
                 shouldDrawIFF &= ShowIFFShuttles;
+            }
+
+            if (RangeFilter != -1)
+            {
+                var gridCentre = matty.Transform(gridBody.LocalCenter);
+                var distance = gridCentre.Length();
+
+                if (distance > RangeFilter)
+                {
+                    shouldDrawIFF = false;
+                }
             }
 
             if (shouldDrawIFF)

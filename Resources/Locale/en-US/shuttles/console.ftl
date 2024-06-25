@@ -19,6 +19,7 @@ shuttle-console-iff-label = {$name} ({$distance}m)
 shuttle-console-exclusion = Exclusion area
 
 shuttle-console-iff-search = Search IFF
+shuttle-console-range-filter = Range Filter
 
 # Buttons
 shuttle-console-strafing = Strafing mode

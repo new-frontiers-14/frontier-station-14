@@ -34,6 +34,8 @@ public sealed partial class NavScreen : BoxContainer
 
         // Frontier - IFF search
         IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
+
+        RangeFilterValue.OnTextChanged += args => OnRangeFilterChanged(args.Text);
     }
 
     // Frontier - IFF search
@@ -48,6 +50,22 @@ public sealed partial class NavScreen : BoxContainer
                 _entManager.TryGetComponent<MetaDataComponent>(entity, out var metadata);
                 return metadata != null && metadata.EntityName.Contains(text, StringComparison.OrdinalIgnoreCase);
             };
+    }
+
+    // Frontier - Range Filter
+    private void OnRangeFilterChanged(string text)
+    {
+        text = text.Trim();
+        int filterRange = -1;
+
+        if ((text?.Length ?? 0) == 0) // If empty, do not filter
+        {
+            NavRadar.RangeFilter = -1f;
+        }
+        else if (Int32.TryParse(text, out filterRange))
+        {
+            NavRadar.RangeFilter = (float) filterRange;
+        }
     }
 
     public void SetShuttle(EntityUid? shuttle)
