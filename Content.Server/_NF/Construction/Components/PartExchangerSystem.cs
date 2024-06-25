@@ -110,7 +110,7 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        foreach (var (_, partList) in partsByType)
+        foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state)>();
@@ -129,7 +129,7 @@ public sealed class PartExchangerSystem : EntitySystem
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
-                        if (count < partsNeeded)
+                        if (count <= partsNeeded)
                         {
                             updatedParts.Add((part, state));
                             partsNeeded -= count;
@@ -213,7 +213,7 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        foreach (var (_, partList) in partsByType)
+        foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state)>();
@@ -232,7 +232,7 @@ public sealed class PartExchangerSystem : EntitySystem
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
-                        if (count < partsNeeded)
+                        if (count <= partsNeeded)
                         {
                             updatedParts.Add((part, state));
                             partsNeeded -= count;
