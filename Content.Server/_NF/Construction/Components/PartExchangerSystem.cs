@@ -168,6 +168,7 @@ public sealed class PartExchangerSystem : EntitySystem
         }
 
         //put the unused parts back into rped. (this also does the "swapping")
+        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
         foreach (var partSet in partsByType.Values)
         {
             foreach (var partState in partSet)
@@ -178,7 +179,7 @@ public sealed class PartExchangerSystem : EntitySystem
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)> partsByType)
+    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
     {
         if (!TryComp<MachineFrameComponent>(uid, out var machine))
             return;
@@ -205,7 +206,8 @@ public sealed class PartExchangerSystem : EntitySystem
                     partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
                 partsByType[part.PartType].Add((item, partState));
 
-                machine.Progress[part.PartType] += partState.Quantity();
+                machine.Progress[part.PartType] -= partState.Quantity();
+                machine.Progress[part.PartType] = int.Max(0, machine.Progress[part.PartType]); // Ensure progress isn't negative.
 
                 _container.RemoveEntity(uid, item);
             }
@@ -262,13 +264,15 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        foreach (var part in updatedParts)
+        foreach (var element in updatedParts)
         {
-            _container.Insert(part.id, machine.PartContainer);
-            partsByType[part.state.Part.PartType].Remove(part);
+            _container.Insert(element.id, machine.PartContainer);
+            partsByType[element.state.Part.PartType].Remove(element); // Frontier: 
+            machine.Progress[element.state.Part.PartType] += element.state.Quantity();
         }
 
         //put the unused parts back into rped. (this also does the "swapping")
+        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
         foreach (var partSet in partsByType.Values)
         {
             foreach (var partState in partSet)
