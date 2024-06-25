@@ -81,10 +81,13 @@
                         <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"></controls:LineEdit>
                     </controls:BoxContainer>
                     
-                    <!-- Frontier - Range Filter -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="RangeFilterBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-range-filter'}"></controls:Label>
-                        <controls:LineEdit Name="RangeFilterValue" Access="Public" HorizontalExpand="True"></controls:LineEdit>
+                    <!-- Frontier - Maximum IFF Distance -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"></controls:Label>
+                        <controls:SliderIntInput Name="MaximumIFFDistanceValue"
+                                         Access="Public"
+                                         MinValue="0"
+                                         MaxValue="3000"/>
                     </controls:BoxContainer>
                 </controls:BoxContainer>
             </controls:BoxContainer>
