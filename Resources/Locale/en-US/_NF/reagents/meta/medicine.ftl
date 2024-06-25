@@ -3,3 +3,6 @@ reagent-desc-traumoxadone = A cryogenics chemical. Used to treat severe trauma v
 
 reagent-name-stelloxadone = stelloxadone
 reagent-desc-stelloxadone = A cryogenics chemical. Used to aggressively dissolve toxins from the body. Works regardless of the patient being alive or dead.
+
+reagent-name-kelotane = kelotane
+reagent-desc-kelotane = Treats burn damage. Reduces the body's ability to retain water.

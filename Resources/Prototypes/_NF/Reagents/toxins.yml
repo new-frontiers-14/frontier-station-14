@@ -1,0 +1,46 @@
+- type: reagent
+  id: PhosphoricAcid
+  name: reagent-name-phosphoric-acid
+  desc: reagent-desc-phosphoric-acid
+  physicalDesc: reagent-physical-desc-thick
+  color: "#75b1f0"
+  boilingPoint: 212 # This is a real chemical
+  meltingPoint: 42.35
+  plantMetabolism: #Phosphorous is an essential plant nutrient, but phosphoric acid is toxic, in soil it converts to forms that can be used though.
+  - !type:PlantAdjustNutrition
+    amount: 2
+  - !type:PlantAdjustToxins
+    amount: 5
+  - !type:PlantAdjustWeeds
+    amount: -2
+  - !type:PlantAdjustHealth
+    amount: -2
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.1
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+  metabolisms:
+    Poison:
+      metabolismRate : 3.00 # Low damage, high metabolism rate. You need a LOT of units to crit.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.3

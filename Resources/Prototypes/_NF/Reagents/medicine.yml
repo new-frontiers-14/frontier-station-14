@@ -43,4 +43,66 @@
             Cellular: 1
           groups:
             Brute: 3
-          
+
+- type: reagent
+  id: Ipecac
+  name: reagent-name-ipecac
+  group: Medicine
+  desc: reagent-desc-ipecac
+  physicalDesc: reagent-physical-desc-inky
+  flavor: medicine
+  color: "#422912"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
+        probability: 0.3
+        
+- type: reagent
+  id: Kelotane
+  name: reagent-name-kelotane
+  group: Medicine
+  desc: reagent-desc-kelotane
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: medicine
+  color: "#bf3d19"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -0.33
+            Shock: -0.33
+            Cold: -0.33
+      - !type:SatiateThirst #Kelotane makes you MUCH thirstier when overdosing, but it always increases thirst rate.
+        factor: -30
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:SatiateThirst
+        factor: -10
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - generic-reagent-effect-nauseous
+        - generic-reagent-effect-parched
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - generic-reagent-effect-thirsty
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+        min: 5
+        
