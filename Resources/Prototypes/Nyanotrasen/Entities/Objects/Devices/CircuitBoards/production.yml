@@ -8,9 +8,9 @@
       state: engineering
     - type: MachineBoard
       prototype: EngineeringTechFab
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -26,9 +26,9 @@
       state: service
     - type: MachineBoard
       prototype: ServiceTechFab
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -44,9 +44,9 @@
       state: science
     - type: MachineBoard
       prototype: ScienceTechFab
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -61,9 +61,10 @@
       state: service
     - type: MachineBoard
       prototype: KitchenDeepFryer
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
+        MatterBin: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
-        MatterBin: 1
         Steel: 4
         Glass: 2
         Cable: 5

@@ -8,8 +8,9 @@
       state: engineering
     - type: MachineBoard
       prototype: Shredder
-      stackRequirements:
+      requirements:
         MatterBin: 1
+      stackRequirements:
         Glass: 1
 
 - type: entity
@@ -20,9 +21,10 @@
   components:
     - type: MachineBoard
       prototype: TilePrinterNF
-      stackRequirements:
+      requirements:
         MatterBin: 2
         Manipulator: 2
+      stackRequirements:
         Glass: 1
 
 - type: entity
@@ -35,7 +37,7 @@
       state: supply
     - type: MachineBoard
       prototype: SalvageTechfabNF
-      stackRequirements:
+      requirements:
         MatterBin: 2
         Manipulator: 2
       tagRequirements:
@@ -63,8 +65,9 @@
   components:
   - type: MachineBoard
     prototype: ThrusterSecurity
-    stackRequirements:
+    requirements:
       Capacitor: 3
+    stackRequirements:
       Steel: 5
 
 - type: entity
@@ -74,8 +77,9 @@
   components:
   - type: MachineBoard
     prototype: ThrusterNfsd
-    stackRequirements:
+    requirements:
       Capacitor: 3
+    stackRequirements:
       Steel: 5
 
 - type: entity
@@ -85,8 +89,9 @@
   components:
   - type: MachineBoard
     prototype: SmallThruster
-    stackRequirements:
+    requirements:
       Capacitor: 4
+    stackRequirements:
       Steel: 5
   - type: StaticPrice
     price: 12.5
@@ -99,9 +104,10 @@
   components:
   - type: MachineBoard
     prototype: GyroscopeSecurity
-    stackRequirements:
+    requirements:
       Manipulator: 2
-      Capacitor: 1
+      Capacitor: 3
+    stackRequirements:
       Glass: 2
 
 - type: entity
@@ -111,9 +117,10 @@
   components:
   - type: MachineBoard
     prototype: SmallGyroscopeSecurity
-    stackRequirements:
+    requirements:
       Manipulator: 2
       Capacitor: 1
+    stackRequirements:
       Glass: 2
   - type: StaticPrice
     price: 12.5
@@ -125,9 +132,10 @@
   components:
   - type: MachineBoard
     prototype: GyroscopeNfsd
-    stackRequirements:
+    requirements:
       Manipulator: 2
       Capacitor: 1
+    stackRequirements:
       Glass: 2
 
 - type: entity
@@ -137,9 +145,10 @@
   components:
   - type: MachineBoard
     prototype: SmallGyroscopeNfsd
-    stackRequirements:
+    requirements:
       Manipulator: 2
       Capacitor: 1
+    stackRequirements:
       Glass: 2
   - type: StaticPrice
     price: 12.5
@@ -151,9 +160,10 @@
   components:
   - type: MachineBoard
     prototype: SmallGyroscope
-    stackRequirements:
+    requirements:
       Manipulator: 2
       Capacitor: 1
+    stackRequirements:
       Glass: 2
   - type: StaticPrice
     price: 12.5
@@ -166,7 +176,8 @@
   components:
   - type: MachineBoard
     prototype: M_Emp
-    stackRequirements:
+    requirements:
       Capacitor: 4
+    stackRequirements:
       Steel: 5
       Cable: 2

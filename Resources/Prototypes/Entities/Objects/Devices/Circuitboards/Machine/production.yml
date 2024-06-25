@@ -6,9 +6,10 @@
   components:
     - type: MachineBoard
       prototype: Autolathe
+      requirements: # Frontier
+        MatterBin: 3 # Frontier stackRequirements<requirements
+        Manipulator: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        MatterBin: 3
-        Manipulator: 1
         Glass: 1
 
 - type: entity
@@ -19,8 +20,9 @@
   components:
   - type: MachineBoard
     prototype: AutolatheHyperConvection
+    requirements: # Frontier
+      MatterBin: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 3
       Glass: 1
     tagRequirements:
       Igniter:
@@ -35,9 +37,9 @@
   components:
     - type: MachineBoard
       prototype: Protolathe
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -51,8 +53,8 @@
   components:
   - type: MachineBoard
     prototype: ProtolatheHyperConvection
-    stackRequirements:
-      MatterBin: 2
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
     tagRequirements:
       GlassBeaker:
         amount: 2
@@ -69,8 +71,9 @@
   components:
     - type: MachineBoard
       prototype: Biofabricator
+      requirements: # Frontier
+        MatterBin: 4 # Frontier stackRequirements<requirements
       stackRequirements:
-        MatterBin: 4
         Glass: 1
 
 - type: entity
@@ -83,9 +86,9 @@
       state: security
     - type: MachineBoard
       prototype: SecurityTechFab
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -101,9 +104,9 @@
       state: security
     - type: MachineBoard
       prototype: AmmoTechFab
-      stackRequirements:
-        MatterBin: 1
-        Manipulator: 1
+      requirements: # Frontier
+        MatterBin: 1 # Frontier stackRequirements<requirements
+        Manipulator: 1 # Frontier stackRequirements<requirements
 
 - type: entity
   id: MedicalTechFabCircuitboard
@@ -115,9 +118,9 @@
       state: medical
     - type: MachineBoard
       prototype: MedicalTechFab
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 2
@@ -134,9 +137,9 @@
     state: science
   - type: MachineBoard
     prototype: CircuitImprinter
-    stackRequirements:
-      MatterBin: 1
-      Manipulator: 1
+    stackRequirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
     tagRequirements:
       GlassBeaker:
         amount: 2
@@ -152,8 +155,8 @@
     state: science
   - type: MachineBoard
     prototype: CircuitImprinterHyperConvection
-    stackRequirements:
-      MatterBin: 2
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
     tagRequirements:
       GlassBeaker:
         amount: 2
@@ -171,9 +174,10 @@
     state: science
   - type: MachineBoard
     prototype: ExosuitFabricator
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Manipulator: 3
       Glass: 5
   - type: GuideHelp
     guides:
@@ -200,9 +204,9 @@
   components:
   - type: MachineBoard
     prototype: UniformPrinter
-    stackRequirements:
-      MatterBin: 1
-      Manipulator: 2
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 2 # Frontier stackRequirements<requirements
 
 - type: entity
   id: VaccinatorMachineCircuitboard
@@ -213,9 +217,10 @@
     state: medical
   - type: MachineBoard
     prototype: Vaccinator
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Manipulator: 1
       Cable: 5
     tagRequirements:
         GlassBeaker:
@@ -252,9 +257,10 @@
       state: science
     - type: MachineBoard
       prototype: MachineArtifactAnalyzer
+      requirements: # Frontier
+        Manipulator: 3 # Frontier stackRequirements<requirements
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Manipulator: 3
-        Capacitor: 1
         Glass: 5
 
 - type: entity
@@ -267,8 +273,9 @@
     state: science
   - type: MachineBoard
     prototype: MachineArtifactCrusher
+    requirements: # Frontier
+      Manipulator: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      Manipulator: 2
       Glass: 1
       Steel: 5
 
@@ -282,8 +289,9 @@
       state: science
     - type: MachineBoard
       prototype: MachineAnomalyVessel
+      requirements: # Frontier
+        Capacitor: 3 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 3
         Cable: 1
         PlasmaGlass: 10
 
@@ -297,8 +305,9 @@
     state: science
   - type: MachineBoard
     prototype: MachineAnomalyVesselExperimental
+    requirements: # Frontier
+      Capacitor: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 3
       Cable: 5
       PlasmaGlass: 15
       MetalRod: 4
@@ -313,9 +322,10 @@
       state: science
     - type: MachineBoard
       prototype: MachineAnomalySynchronizer
+      requirements: # Frontier
+        Manipulator: 2 # Frontier stackRequirements<requirements
+        Capacitor: 5 # Frontier stackRequirements<requirements
       stackRequirements:
-        Manipulator: 2
-        Capacitor: 5
         PlasmaGlass: 5
         Cable: 5
 
@@ -329,8 +339,9 @@
       state: science
     - type: MachineBoard
       prototype: MachineAPE
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         Cable: 1
         Glass: 1
 
@@ -344,9 +355,10 @@
     state: engineering
   - type: MachineBoard
     prototype: GasThermoMachineFreezer
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 2
-      Capacitor: 2
       Cable: 5
   - type: Construction
     deconstructionTarget: null
@@ -363,9 +375,10 @@
     state: engineering
   - type: MachineBoard
     prototype: GasThermoMachineHeater
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 2
-      Capacitor: 2
       Cable: 5
   - type: Construction
     graph: ThermomachineBoard
@@ -382,9 +395,10 @@
     state: engineering
   - type: MachineBoard
     prototype: GasThermoMachineHellfireFreezer
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 2
-      Capacitor: 2
       Plasma: 1
   - type: Construction
     deconstructionTarget: null
@@ -401,9 +415,10 @@
     state: engineering
   - type: MachineBoard
     prototype: GasThermoMachineHellfireHeater
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 2
-      Capacitor: 2
       Plasma: 1
   - type: Construction
     graph: ThermomachineBoard
@@ -420,8 +435,9 @@
     state: engineering
   - type: MachineBoard
     prototype: BaseGasCondenser
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
       Glass: 1
 
 - type: entity
@@ -434,9 +450,10 @@
     state: engineering
   - type: MachineBoard
     prototype: PortableScrubber
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Manipulator: 2
       Cable: 5
       Glass: 2
 
@@ -450,9 +467,10 @@
     state: engineering
   - type: MachineBoard
     prototype: SpaceHeater
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Capacitor: 2
       Cable: 5
 
 - type: entity
@@ -465,9 +483,10 @@
       state: medical
     - type: MachineBoard
       prototype: CloningPod
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
         Glass: 1
         Cable: 1
 
@@ -481,8 +500,9 @@
       state: medical
     - type: MachineBoard
       prototype: MedicalScanner
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Glass: 5
         Cable: 1
 
@@ -522,8 +542,9 @@
       state: medical
     - type: MachineBoard
       prototype: ChemMaster
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Glass: 1
         Cable: 1
       tagRequirements:
@@ -541,8 +562,9 @@
       state: medical
     - type: MachineBoard
       prototype: ChemDispenserEmpty
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Glass: 1
         Steel: 3
       tagRequirements:
@@ -558,9 +580,10 @@
   components:
     - type: MachineBoard
       prototype: BiomassReclaimer
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        MatterBin: 2
-        Manipulator: 1
         Steel: 5
       tagRequirements:
         Knife:
@@ -597,9 +620,10 @@
       state: service
     - type: MachineBoard
       prototype: SeedExtractor
+      requirements: # Frontier
+        Manipulator: 2 # Frontier stackRequirements<requirements
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Manipulator: 2
-        Capacitor: 1
         # replacing the console screen
         Glass: 1
         Cable: 2
@@ -615,8 +639,9 @@
       state: power_mod
     - type: MachineBoard
       prototype: SMESBasicEmpty
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         CableHV: 10
       componentRequirements:
         PowerCell:
@@ -634,8 +659,9 @@
       state: charger_APC
     - type: MachineBoard
       prototype: PowerCellRecharger
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         Cable: 5
     - type: PhysicalComposition
       materialComposition:
@@ -655,8 +681,9 @@
       state: charger_APC
     - type: MachineBoard
       prototype: PowerCageRecharger
+      requirements: # Frontier
+        Capacitor: 4 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 4
         Steel: 5
         Cable: 10
     - type: PhysicalComposition
@@ -677,8 +704,9 @@
       state: charger_APC
     - type: MachineBoard
       prototype: BorgCharger
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         Cable: 5
     - type: PhysicalComposition
       materialComposition:
@@ -698,8 +726,9 @@
       state: charger_APC
     - type: MachineBoard
       prototype: WeaponCapacitorRecharger
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         CableMV: 5
     - type: PhysicalComposition
       materialComposition:
@@ -719,8 +748,9 @@
     state: charger_APC
   - type: MachineBoard
     prototype: TurboItemRecharger
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 2
       CableMV: 5
   - type: PhysicalComposition
     materialComposition:
@@ -735,14 +765,12 @@
   components:
     - type: MachineBoard
       prototype: SubstationBasicEmpty
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
+        PowerCell: 1 # Frontier componentRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         CableMV: 5
         CableHV: 5
-      componentRequirements:
-        PowerCell:
-          amount: 1
-          defaultPrototype: PowerCellSmall
     - type: PhysicalComposition
       materialComposition:
         Glass: 200
@@ -793,8 +821,9 @@
       state: engineering
     - type: MachineBoard
       prototype: PortableGeneratorPacman
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         CableHV: 5
     - type: PhysicalComposition
       materialComposition:
@@ -811,8 +840,9 @@
   components:
   - type: MachineBoard
     prototype: Thruster
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 4
       Steel: 5
 
 - type: entity
@@ -822,9 +852,10 @@
   components:
   - type: MachineBoard
     prototype: Gyroscope
+    requirements: # Frontier
+      Manipulator: 2 # Frontier stackRequirements<requirements
+      Capacitor: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      Manipulator: 2
-      Capacitor: 1
       Glass: 2
 
 - type: entity
@@ -836,8 +867,9 @@
       state: engineering
     - type: MachineBoard
       prototype: PortableGeneratorSuperPacman
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         CableHV: 10
     - type: PhysicalComposition
       materialComposition:
@@ -856,8 +888,9 @@
       state: engineering
     - type: MachineBoard
       prototype: PortableGeneratorJrPacman
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Cable: 10
     - type: PhysicalComposition
       materialComposition:
@@ -875,9 +908,9 @@
   components:
     - type: MachineBoard
       prototype: KitchenReagentGrinder
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
           amount: 1
@@ -891,8 +924,9 @@
   components:
     - type: MachineBoard
       prototype: ChemistryHotplate
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         Glass: 1
 
 - type: entity
@@ -903,8 +937,9 @@
   components:
   - type: MachineBoard
     prototype: KitchenElectricGrill
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 4
       Glass: 2
       Cable: 5
 
@@ -917,9 +952,10 @@
       state: medical
     - type: MachineBoard
       prototype: StasisBed
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
+        Manipulator: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
-        Manipulator: 1
         Cable: 3
         Steel: 2
 
@@ -933,8 +969,9 @@
     state: medical
   - type: MachineBoard
     prototype: MachineElectrolysisUnit
+    requirements: # Frontier
+      Capacitor: 2 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 2
       Cable: 1
 
 - type: entity
@@ -947,8 +984,9 @@
     state: medical
   - type: MachineBoard
     prototype: MachineCentrifuge
+    requirements: # Frontier
+      Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      Manipulator: 1
       Steel: 1
 
 - type: entity
@@ -960,8 +998,9 @@
       state: supply
     - type: MachineBoard
       prototype: MaterialReclaimer
+      requirements: # Frontier
+        Manipulator: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Manipulator: 2
         Steel: 5
         Plastic: 5
 
@@ -974,9 +1013,10 @@
       state: supply
     - type: MachineBoard
       prototype: OreProcessor
+      requirements: # Frontier
+        MatterBin: 1 # Frontier stackRequirements<requirements
+        Manipulator: 3 # Frontier stackRequirements<requirements
       stackRequirements:
-        MatterBin: 1
-        Manipulator: 3
         Glass: 1
 
 - type: entity
@@ -988,9 +1028,10 @@
     state: supply
   - type: MachineBoard
     prototype: OreProcessorIndustrial
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Manipulator: 3
       Glass: 1
 
 - type: entity
@@ -1000,9 +1041,9 @@
   components:
   - type: MachineBoard
     prototype: Sheetifier
-    stackRequirements:
-      MatterBin: 1
-      Manipulator: 1
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
 
 - type: entity
   id: MicrowaveMachineCircuitboard
@@ -1013,8 +1054,9 @@
       state: service
     - type: MachineBoard
       prototype: KitchenMicrowave
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Glass: 2
         Cable: 2
     - type: Tag
@@ -1030,8 +1072,9 @@
       state: service
     - type: MachineBoard
       prototype: SyndicateMicrowave
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 1
         Glass: 2
         Cable: 2
 
@@ -1044,8 +1087,8 @@
       state: service
     - type: MachineBoard
       prototype: FatExtractor
-      stackRequirements:
-        Manipulator: 1
+      requirements: # Frontier
+        Manipulator: 1 # Frontier stackRequirements<requirements
       componentRequirements:
         Utensil:
           amount: 1
@@ -1059,9 +1102,10 @@
   components:
   - type: MachineBoard
     prototype: MachineFlatpacker
+      requirements: # Frontier
+      Manipulator: 2 # Frontier stackRequirements<requirements
+      MatterBin: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      Manipulator: 2
-      MatterBin: 1
       Steel: 1
 
 - type: entity
@@ -1073,8 +1117,9 @@
       state: engineering
     - type: MachineBoard
       prototype: Emitter
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         CableHV: 5
         Glass: 2
 
@@ -1133,9 +1178,10 @@
   components:
   - type: MachineBoard
     prototype: GasRecycler
+    requirements: # Frontier
+      Capacitor: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 1
-      Manipulator: 1
       Steel: 10
       Plasma: 5
 
@@ -1166,8 +1212,9 @@
       state: supply
     - type: MachineBoard
       prototype: CargoTelepad
+      requirements: # Frontier
+        Capacitor: 2 # Frontier stackRequirements<requirements
       stackRequirements:
-        Capacitor: 2
         Steel: 5
 
 - type: entity
@@ -1207,8 +1254,9 @@
   components:
   - type: MachineBoard
     prototype: SalvageMagnet
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 4
       Steel: 5
       CableHV: 5
       Cable: 2
@@ -1221,9 +1269,10 @@
   components:
   - type: MachineBoard
     prototype: GravityGeneratorMini
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
+      MatterBin: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      Capacitor: 4
-      MatterBin: 3
       Steel: 5
       CableHV: 5
       Uranium: 2
@@ -1235,9 +1284,10 @@
   components:
   - type: MachineBoard
     prototype: ReagentGrinderIndustrial
+    requirements: # Frontier
+      MatterBin: 1 # Frontier stackRequirements<requirements
+      Manipulator: 3 # Frontier stackRequirements<requirements
     stackRequirements:
-      MatterBin: 1
-      Manipulator: 3
       Glass: 1
 
 - type: entity

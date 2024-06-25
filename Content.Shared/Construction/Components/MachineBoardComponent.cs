@@ -1,13 +1,23 @@
+using Content.Shared.Construction.Prototypes; // Frontier: upgradeable components
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary; // Frontier: upgradeable components
 
 namespace Content.Shared.Construction.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MachineBoardComponent : Component
 {
+    // Frontier: keep upgradeable components
+    /// <summary>
+    /// Entities needed to construct this machine, discriminated by component.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, MachinePartPrototype>))]
+    public Dictionary<string, int> Requirements = new();
+    // End Frontier
+
     /// <summary>
     /// The stacks needed to construct this machine
     /// </summary>

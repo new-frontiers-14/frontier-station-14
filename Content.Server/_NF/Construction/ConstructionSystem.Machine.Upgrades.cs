@@ -11,10 +11,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Construction; //Uses base namespace to extend ConstructionSystem behaviour
 
-public struct MachinePartQuantity
+public struct MachinePartState
 {
-    public MachinePartComponent Component;
-    public int Quantity;
+    public MachinePartComponent Part;
+    public StackComponent? Stack;
+    // If item is a stack, return the count in the stack, otherwise it's a singular, non-stackable part
+    public int Quantity()
+    {
+        return Stack?.Count ?? 1;
+    }
 }
 
 public sealed partial class ConstructionSystem
@@ -57,51 +62,47 @@ public sealed partial class ConstructionSystem
     }
 
     // Frontier: return type changed to include quantity
-    public List<MachinePartQuantity> GetAllParts(EntityUid uid, MachineComponent? component = null)
+    public List<MachinePartState> GetAllParts(EntityUid uid, MachineComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return new List<MachinePartQuantity>();
+            return new List<MachinePartState>();
 
         return GetAllParts(component);
     }
 
     // Frontier: return type changed to include quantity
-    public List<MachinePartQuantity> GetAllParts(MachineComponent component)
+    public List<MachinePartState> GetAllParts(MachineComponent component)
     {
-        var parts = new List<MachinePartQuantity>();
+        var parts = new List<MachinePartState>();
 
         foreach (var entity in component.PartContainer.ContainedEntities)
         {
             if (TryComp<MachinePartComponent>(entity, out var machinePart))
             {
-                var partQuantity = new MachinePartQuantity
+                var partState = new MachinePartState
                 {
-                    Component = machinePart
+                    Part = machinePart
                 };
+                TryComp(entity, out partState.Stack);
 
-                if (TryComp<StackComponent>(entity, out var stack))
-                    partQuantity.Quantity = stack.Count;
-                else
-                    partQuantity.Quantity = 1;
-
-                parts.Add(partQuantity);
+                parts.Add(partState);
             }
         }
 
         return parts;
     }
 
-    public Dictionary<string, float> GetPartsRatings(List<MachinePartQuantity> parts)
+    public Dictionary<string, float> GetPartsRatings(List<MachinePartState> partStates)
     {
         var output = new Dictionary<string, float>();
         foreach (var type in _prototypeManager.EnumeratePrototypes<MachinePartPrototype>())
         {
             var amount = 0f;
             var sumRating = 0f;
-            foreach (var part in parts.Where(part => part.Component.PartType == type.ID))
+            foreach (var state in partStates.Where(part => part.Part.PartType == type.ID))
             {
-                amount += part.Quantity;
-                sumRating += part.Component.Rating * part.Quantity;
+                amount += state.Quantity();
+                sumRating += state.Part.Rating * state.Quantity();
             }
             var rating = amount != 0 ? sumRating / amount : 0;
             output.Add(type.ID, rating);
@@ -122,7 +123,7 @@ public sealed partial class ConstructionSystem
 }
 public sealed class RefreshPartsEvent : EntityEventArgs
 {
-    public IReadOnlyList<MachinePartQuantity> Parts = new List<MachinePartQuantity>(); // Frontier: MachinePartComponent<MachinePartQuantity
+    public IReadOnlyList<MachinePartState> Parts = new List<MachinePartState>(); // Frontier: MachinePartComponent<MachinePartQuantity
 
     public Dictionary<string, float> PartRatings = new Dictionary<string, float>();
 }

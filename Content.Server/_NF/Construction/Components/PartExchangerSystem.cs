@@ -51,12 +51,20 @@ public sealed class PartExchangerSystem : EntitySystem
             return; //the parts are stored in here
 
         var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var machineParts = new List<(EntityUid, MachinePartComponent)>();
+        var stackQuery = GetEntityQuery<StackComponent>();
+        var machineParts = new List<(EntityUid, MachinePartState)>();
 
         foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
         {
             if (machinePartQuery.TryGetComponent(item, out var part))
-                machineParts.Add((item, part));
+            {
+                MachinePartState partState = new MachinePartState
+                {
+                    Part = part
+                };
+                stackQuery.TryGetComponent(item, out partState.Stack);
+                machineParts.Add((item, partState));
+            }
         }
 
         TryExchangeMachineParts(args.Args.Target.Value, uid, machineParts);
@@ -65,37 +73,45 @@ public sealed class PartExchangerSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, List<(EntityUid part, MachinePartComponent partComp)> machineParts)
+    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, List<(EntityUid part, MachinePartState state)> machineParts)
     {
         if (!TryComp<MachineComponent>(uid, out var machine))
             return;
 
         var machinePartQuery = GetEntityQuery<MachinePartComponent>();
+        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (board == null || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
             return;
 
+        // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
             if (machinePartQuery.TryGetComponent(item, out var part))
             {
-                machineParts.Add((item, part));
+                MachinePartState partState = new MachinePartState
+                {
+                    Part = part
+                };
+                stackQuery.TryGetComponent(item, out partState.Stack);
+                machineParts.Add((item, partState));
                 _container.RemoveEntity(uid, item);
             }
         }
 
-        machineParts.Sort((x, y) => y.partComp.Rating.CompareTo(x.partComp.Rating));
+        machineParts.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
-        var updatedParts = new List<(EntityUid part, MachinePartComponent partComp)>();
-        foreach (var (type, amount) in macBoardComp.StackRequirements)
+        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        foreach (var (type, amount) in macBoardComp.Requirements)
         {
-            var target = machineParts.Where(p => p.partComp.PartType == type).Take(amount);
+            var target = machineParts.Where(p => p.state.Part.PartType == type).Take(amount);
             updatedParts.AddRange(target);
         }
+
         foreach (var part in updatedParts)
         {
-            _container.Insert(part.part, machine.PartContainer);
+            _container.Insert(part.id, machine.PartContainer);
             machineParts.Remove(part);
         }
 
@@ -107,12 +123,13 @@ public sealed class PartExchangerSystem : EntitySystem
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, List<(EntityUid part, MachinePartComponent partComp)> machineParts)
+    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, List<(EntityUid part, MachinePartState state)> machineParts)
     {
         if (!TryComp<MachineFrameComponent>(uid, out var machine))
             return;
 
         var machinePartQuery = GetEntityQuery<MachinePartComponent>();
+        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (!machine.HasBoard || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
@@ -122,7 +139,12 @@ public sealed class PartExchangerSystem : EntitySystem
         {
             if (machinePartQuery.TryGetComponent(item, out var part))
             {
-                machineParts.Add((item, part));
+                MachinePartState partState = new MachinePartState
+                {
+                    Part = part
+                };
+                stackQuery.TryGetComponent(item, out partState.Stack);
+                machineParts.Add((item, partState));
                 _container.RemoveEntity(uid, item);
                 /*if (part.StackType is not null) // Frontier: FIXME: HACKS
                 {
@@ -132,17 +154,17 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        machineParts.Sort((x, y) => y.partComp.Rating.CompareTo(x.partComp.Rating));
+        machineParts.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
-        var updatedParts = new List<(EntityUid part, MachinePartComponent partComp)>();
-        foreach (var (type, amount) in macBoardComp.StackRequirements)
+        var updatedParts = new List<(EntityUid part, MachinePartState state)>();
+        foreach (var (type, amount) in macBoardComp.Requirements)
         {
-            var target = machineParts.Where(p => p.partComp.PartType == type).Take(amount);
+            var target = machineParts.Where(p => p.state.Part.PartType == type).Take(amount);
             updatedParts.AddRange(target);
         }
         foreach (var pair in updatedParts)
         {
-            var part = pair.partComp;
+            var part = pair.state;
             var partEnt = pair.part;
 
             //var stackType = part.StackType ?? new ProtoId<StackPrototype>(); //FRONTIER: FIXME
