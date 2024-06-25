@@ -63,7 +63,8 @@ namespace Content.Shared.Standing
         /// </summary>
         private void OnLieDownAction(EntityUid uid, StandingStateComponent component, LieDownActionEvent args)
         {
-            _lieDown.TryLieDown(uid);
+            if (!_buckle.IsBuckled(uid))
+                _lieDown.TryLieDown(uid);
         }
 
         /// <summary>
@@ -71,7 +72,8 @@ namespace Content.Shared.Standing
         /// </summary>
         private void OnStandUpAction(EntityUid uid, StandingStateComponent? component, StandUpActionEvent args)
         {
-            _lieDown.TryStandUp(uid);
+            if (!_buckle.IsBuckled(uid))
+                _lieDown.TryStandUp(uid);
         }
 
         private bool DelayCheck(EntityUid uid, StandingStateComponent? standingState = null)
