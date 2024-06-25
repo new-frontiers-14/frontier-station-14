@@ -15,6 +15,8 @@ using Content.Shared.Wires;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
+using Robust.Shared.Prototypes;
+using Content.Shared.Stacks;
 
 namespace Content.Server._NF.Construction;
 
@@ -122,7 +124,11 @@ public sealed class PartExchangerSystem : EntitySystem
             {
                 machineParts.Add((item, part));
                 _container.RemoveEntity(uid, item);
-                machine.MaterialProgress[part.PartType]--;
+                /*if (part.StackType is not null) // Frontier: FIXME: HACKS
+                {
+                    var stackType = part.StackType ?? new ProtoId<StackPrototype>();
+                    machine.MaterialProgress[stackType]--;
+                }*/
             }
         }
 
@@ -139,11 +145,14 @@ public sealed class PartExchangerSystem : EntitySystem
             var part = pair.partComp;
             var partEnt = pair.part;
 
-            if (!machine.MaterialRequirements.ContainsKey(part.PartType))
-                continue;
+            //var stackType = part.StackType ?? new ProtoId<StackPrototype>(); //FRONTIER: FIXME
+
+            /*if (!machine.MaterialRequirements.ContainsKey(stackType)) // FRONTIER: FIXME
+                continue;*/
 
             _container.Insert(partEnt, machine.PartContainer);
-            machine.MaterialProgress[part.PartType]++;
+            /*if (part.StackType is not null)
+                machine.MaterialProgress[stackType]++;*/ //FRONTIER: FIXME
             machineParts.Remove(pair);
         }
 
