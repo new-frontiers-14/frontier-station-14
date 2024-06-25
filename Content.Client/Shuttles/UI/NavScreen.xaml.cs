@@ -38,6 +38,7 @@ public sealed partial class NavScreen : BoxContainer
         // Frontier - Maximum IFF Distance
         MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8,0,0,0);
         MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
+        MaximumIFFDistanceValue.Value = 3000;
     }
 
     // Frontier - IFF search
