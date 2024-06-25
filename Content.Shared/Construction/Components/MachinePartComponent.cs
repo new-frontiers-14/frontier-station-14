@@ -10,7 +10,7 @@ namespace Content.Shared.Construction.Components
     [RegisterComponent, NetworkedComponent]
     public sealed partial class MachinePartComponent : Component
     {
-        [DataField("part", required: true))]
+        [DataField("part", required: true)]
         public ProtoId<MachinePartPrototype> PartType { get; private set; } = default!; // Frontier: used ProtoId explicitly
 
         [ViewVariables(VVAccess.ReadWrite)]
