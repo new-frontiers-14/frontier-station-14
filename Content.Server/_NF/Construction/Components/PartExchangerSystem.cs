@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._NF.Construction.Components;
 using Content.Server.Construction;
 using Content.Server.Construction.Components;
+using Content.Server.Stack;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Construction.Components;
@@ -17,6 +18,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Content.Shared.Stacks;
+using Content.Shared.Construction.Prototypes;
 
 namespace Content.Server._NF.Construction;
 
@@ -28,6 +30,8 @@ public sealed class PartExchangerSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StorageSystem _storage = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
+    [Dependency] private readonly EntityManager _entity = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -52,7 +56,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
         var machinePartQuery = GetEntityQuery<MachinePartComponent>();
         var stackQuery = GetEntityQuery<StackComponent>();
-        var machineParts = new List<(EntityUid, MachinePartState)>();
+        var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, MachinePartState)>>();
 
         foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
         {
@@ -63,17 +67,19 @@ public sealed class PartExchangerSystem : EntitySystem
                     Part = part
                 };
                 stackQuery.TryGetComponent(item, out partState.Stack);
-                machineParts.Add((item, partState));
+                if (!partsByType.ContainsKey(part.PartType))
+                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
+                partsByType[part.PartType].Add((item, partState));
             }
         }
 
-        TryExchangeMachineParts(args.Args.Target.Value, uid, machineParts);
-        TryConstructMachineParts(args.Args.Target.Value, uid, machineParts);
+        TryExchangeMachineParts(args.Args.Target.Value, uid, partsByType);
+        TryConstructMachineParts(args.Args.Target.Value, uid, partsByType);
 
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, List<(EntityUid part, MachinePartState state)> machineParts)
+    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
     {
         if (!TryComp<MachineComponent>(uid, out var machine))
             return;
@@ -95,35 +101,84 @@ public sealed class PartExchangerSystem : EntitySystem
                     Part = part
                 };
                 stackQuery.TryGetComponent(item, out partState.Stack);
-                machineParts.Add((item, partState));
+
+                if (!partsByType.ContainsKey(part.PartType))
+                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
+                partsByType[part.PartType].Add((item, partState));
+
                 _container.RemoveEntity(uid, item);
             }
         }
 
-        machineParts.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
+        foreach (var (_, partList) in partsByType)
+            partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
         {
-            var target = machineParts.Where(p => p.state.Part.PartType == type).Take(amount);
-            updatedParts.AddRange(target);
+            if (partsByType.ContainsKey(type))
+            {
+                var partsNeeded = amount;
+                foreach ((var part, var state) in partsByType[type])
+                {
+                    // No more space for components
+                    if (partsNeeded <= 0)
+                        break;
+
+                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
+                    if (state.Stack is not null)
+                    {
+                        var count = state.Stack.Count;
+                        if (count < partsNeeded)
+                        {
+                            updatedParts.Add((part, state));
+                            partsNeeded -= count;
+                        }
+                        else
+                        {
+                            EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
+
+                            // TODO: better error handling?  Why would this fail?
+                            if (splitStack == EntityUid.Invalid)
+                                continue;
+
+                            // Create a new MachinePartState out of our new entity
+                            MachinePartState splitState = new MachinePartState();
+                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
+                                splitState.Part = splitPart;
+                            TryComp(splitStack, out splitState.Stack);
+
+                            updatedParts.Add((splitStack, splitState));
+                            partsNeeded = 0;
+                        }
+                    }
+                    else
+                    {
+                        updatedParts.Add((part, state));
+                        partsNeeded--;
+                    }
+                }
+            }
         }
 
         foreach (var part in updatedParts)
         {
             _container.Insert(part.id, machine.PartContainer);
-            machineParts.Remove(part);
+            partsByType[part.state.Part.PartType].Remove(part);
         }
 
         //put the unused parts back into rped. (this also does the "swapping")
-        foreach (var (unused, _) in machineParts)
+        foreach (var partSet in partsByType.Values)
         {
-            _storage.Insert(storageUid, unused, out _, playSound: false);
+            foreach (var partState in partSet)
+            {
+                _storage.Insert(storageUid, partState.part, out _, playSound: false);
+            }
         }
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, List<(EntityUid part, MachinePartState state)> machineParts)
+    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)> partsByType)
     {
         if (!TryComp<MachineFrameComponent>(uid, out var machine))
             return;
@@ -135,6 +190,7 @@ public sealed class PartExchangerSystem : EntitySystem
         if (!machine.HasBoard || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
             return;
 
+        // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
             if (machinePartQuery.TryGetComponent(item, out var part))
@@ -144,43 +200,81 @@ public sealed class PartExchangerSystem : EntitySystem
                     Part = part
                 };
                 stackQuery.TryGetComponent(item, out partState.Stack);
-                machineParts.Add((item, partState));
+
+                if (!partsByType.ContainsKey(part.PartType))
+                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
+                partsByType[part.PartType].Add((item, partState));
+
+                machine.Progress[part.PartType] += partState.Quantity();
+
                 _container.RemoveEntity(uid, item);
-                if (partState.Stack is not null)
+            }
+        }
+
+        foreach (var (_, partList) in partsByType)
+            partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
+
+        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        foreach (var (type, amount) in macBoardComp.Requirements)
+        {
+            if (partsByType.ContainsKey(type))
+            {
+                var partsNeeded = amount;
+                foreach ((var part, var state) in partsByType[type])
                 {
-                    machine.Progress[partState.Part.PartType] = int.Max(0, machine.Progress[partState.Part.PartType] - partState.Stack.Count);
+                    // No more space for components
+                    if (partsNeeded <= 0)
+                        break;
+
+                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
+                    if (state.Stack is not null)
+                    {
+                        var count = state.Stack.Count;
+                        if (count < partsNeeded)
+                        {
+                            updatedParts.Add((part, state));
+                            partsNeeded -= count;
+                        }
+                        else
+                        {
+                            EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
+
+                            // TODO: better error handling?  Why would this fail?
+                            if (splitStack == EntityUid.Invalid)
+                                continue;
+
+                            // Create a new MachinePartState out of our new entity
+                            MachinePartState splitState = new MachinePartState();
+                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
+                                splitState.Part = splitPart;
+                            TryComp(splitStack, out splitState.Stack);
+
+                            updatedParts.Add((splitStack, splitState));
+                            partsNeeded = 0;
+                        }
+                    }
+                    else
+                    {
+                        updatedParts.Add((part, state));
+                        partsNeeded--;
+                    }
                 }
             }
         }
 
-        machineParts.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
-
-        var updatedParts = new List<(EntityUid part, MachinePartState state)>();
-        foreach (var (type, amount) in macBoardComp.Requirements)
+        foreach (var part in updatedParts)
         {
-            var target = machineParts.Where(p => p.state.Part.PartType == type).Take(amount);
-            updatedParts.AddRange(target);
-        }
-        foreach (var pair in updatedParts)
-        {
-            var part = pair.state;
-            var partEnt = pair.part;
-
-            //var stackType = part.StackType ?? new ProtoId<StackPrototype>(); //FRONTIER: FIXME
-
-            /*if (!machine.MaterialRequirements.ContainsKey(stackType)) // FRONTIER: FIXME
-                continue;*/
-
-            _container.Insert(partEnt, machine.PartContainer);
-            /*if (part.StackType is not null)
-                machine.MaterialProgress[stackType]++;*/ //FRONTIER: FIXME
-            machineParts.Remove(pair);
+            _container.Insert(part.id, machine.PartContainer);
+            partsByType[part.state.Part.PartType].Remove(part);
         }
 
         //put the unused parts back into rped. (this also does the "swapping")
-        foreach (var (unused, _) in machineParts)
+        foreach (var partSet in partsByType.Values)
         {
-            _storage.Insert(storageEnt, unused, out _, playSound: false);
+            foreach (var partState in partSet)
+            {
+                _storage.Insert(storageEnt, partState.part, out _, playSound: false);
+            }
         }
     }
 
