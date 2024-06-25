@@ -18,6 +18,9 @@ public sealed partial class LyingDownComponent : Component
     ///     The action to lie down or stand up.
     /// </summary>
     [DataField]
+    public bool Disabling = false;
+
+    [DataField]
     public EntProtoId? MakeToStandUpAction = "action-name-make-standup";
 }
 
