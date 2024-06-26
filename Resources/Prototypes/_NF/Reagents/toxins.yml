@@ -1,14 +1,13 @@
 - type: reagent
-  id: PhosphoricAcid
-  name: reagent-name-phosphoric-acid
-  desc: reagent-desc-phosphoric-acid
-  physicalDesc: reagent-physical-desc-thick
-  color: "#75b1f0"
-  boilingPoint: 212 # This is a real chemical
-  meltingPoint: 42.35
-  plantMetabolism: #Phosphorous is an essential plant nutrient, but phosphoric acid is toxic, in soil it converts to forms that can be used though.
-  - !type:PlantAdjustNutrition
-    amount: 2
+  id: MysteryAcid
+  name: reagent-name-mystery-sludge
+  desc: reagent-desc-mystery-sludge
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: flavor-mysterysludge
+  color: "#27333c"
+  boilingPoint: 212 
+  meltingPoint: 0
+  plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 5
   - !type:PlantAdjustWeeds
@@ -30,7 +29,7 @@
         probability: 0.3
   metabolisms:
     Poison:
-      metabolismRate : 3.00 # Low damage, high metabolism rate. You need a LOT of units to crit.
+      metabolismRate : 2.00 # Low damage, high metabolism rate. You need a LOT of units to crit.
       effects:
       - !type:HealthChange
         damage:
@@ -39,8 +38,77 @@
       - !type:PopupMessage
         type: Local
         visualType: Large
-        messages: [ "generic-reagent-effect-burning-insides" ]
+        messages: 
+        - generic-reagent-effect-burning-insides
+        - generic-reagent-effect-thirsty
         probability: 0.33
       - !type:Emote
         emote: Scream
         probability: 0.3
+      - !type:SatiateThirst
+        factor: -30
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:SatiateThirst
+        factor: -10
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - generic-reagent-effect-nauseous
+        - generic-reagent-effect-parched
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        
+- type: reagent
+  id: MysteryVomit
+  name: reagent-name-mystery-sludge
+  desc: reagent-desc-mystery-sludge
+  physicalDesc: reagent-physical-desc-putrid
+  flavor: flavor-mysterysludge
+  color: "#27333c"
+  boilingPoint: 212 
+  meltingPoint: 0
+  metabolisms:
+      effects:
+      - !type:ChemVomit
+        conditions:
+        - !type:ReagentThreshold
+          min: 0.1
+        probability: 0.3
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: 
+        - generic-reagent-effect-nauseous
+        - generic-reagent-effect-sick
+        probability: 0.33
+        
+ - type: reagent
+  id: MysteryDrunk
+  name: reagent-name-mystery-sludge
+  desc: reagent-desc-mystery-sludge
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: flavor-mysterysludge
+         Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: ScrambledAccent
+      - !type:Drunk
+        slurSpeech: false
+        boozePower: 30
+        - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: 
+        - generic-reagent-effect-nauseous
+        - generic-reagent-effect-dizzy
+        - generic-reagent-effect-spinning
+        probability: 0.33
+        
