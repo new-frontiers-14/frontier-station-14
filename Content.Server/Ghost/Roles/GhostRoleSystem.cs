@@ -577,6 +577,7 @@ namespace Content.Server.Ghost.Roles
                     Name = role.RoleName,
                     Description = role.RoleDescription,
                     Rules = role.RoleRules,
+                    Prototype = role.Prototype, // Frontier
                     Requirements = role.Requirements,
                     Kind = kind,
                     RafflePlayerCount = rafflePlayerCount,

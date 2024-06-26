@@ -37,7 +37,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
 
     public const string SawmillId = "admin.bans";
     public const string JobPrefix = "Job:";
-    public const string GhostRoleName = "GhostRoles"; // Frontier: name for a blanket ghost role ban
 
     private readonly Dictionary<NetUserId, HashSet<ServerRoleBanDef>> _cachedRoleBans = new();
 
@@ -192,8 +191,7 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             throw new ArgumentException($"Invalid role '{role}'", nameof(role));
         }
 
-        if (role != GhostRoleName) // Frontier: do not prefix ghost role ban - it is not a job.
-            role = string.Concat(JobPrefix, role);
+        role = string.Concat(JobPrefix, role);
         DateTimeOffset? expires = null;
         if (minutes > 0)
         {
