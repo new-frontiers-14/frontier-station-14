@@ -120,6 +120,7 @@ namespace Content.Shared.Standing
             if (msg.Cancelled)
                 return false;
 
+            EnsureComp<LyingDownComponent>(uid);
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new DownedEvent(), false);
 
@@ -179,6 +180,7 @@ namespace Content.Shared.Standing
                     return false;
             }
 
+            RemCompDeferred<LyingDownComponent>(uid);
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new StoodEvent(), false);
 
