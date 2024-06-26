@@ -16,7 +16,7 @@
 
 - type: entity
   parent: BaseWeaponTurret
-  id: WeaponAntiMaterialturretSyndicates
+  id: WeaponDisablerturretSyndicates
   suffix: Syndicate
   name: Crowd control turret
   description: A disabler based projectile auto-turret, brought to you by S.E.S.W.C.
@@ -102,7 +102,7 @@
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
-      proto: CartridgeBulletMagnum
+      proto: CBulletMagnum
       capacity: 500
     - type: Gun
       fireRate: 3
@@ -118,7 +118,7 @@
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
-      proto: CartridgeBulletMagnum
+      proto: BulletMagnum
       capacity: 250
     - type: Gun
       fireRate: 3
@@ -134,7 +134,7 @@
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
-      proto: CartridgeBulletMagnum
+      proto: BulletMagnum
       capacity: 250
     - type: Gun
       fireRate: 3
@@ -353,18 +353,18 @@
     #  factions:
      #  - Syndicate
 
-# type: entity
-  #parent: BaseWeaponTurret
-  #id: WeaponhonknatorTurret
- # name: HONKnator
- # suffix: Hostile
- # description: HONK HONK HONK HONK HONK HONK HONK, brought to you by S.E.S.W.C.
- # components:
-  #  - type: BallisticAmmoProvider
-   #   proto: FoodPieBananaCream
-   #   capacity: 500
-   # - type: Gun
-   #   fireRate: 5
-   # - type: NpcFactionMember
-    #  factions:
-      #  - Syndicate
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponhonknatorTurret
+  name: HONKnator
+  suffix: Hostile
+  description: HONK HONK HONK HONK HONK HONK HONK, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CreamPie
+      capacity: 500
+    - type: Gun
+      fireRate: 5
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
