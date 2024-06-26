@@ -1,5 +1,6 @@
 using Content.Shared.Eui;
 using Content.Shared.Roles;
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Ghost.Roles
@@ -11,6 +12,7 @@ namespace Content.Shared.Ghost.Roles
         public string Name { get; set; }
         public string Description { get; set; }
         public string Rules { get; set; }
+        public ProtoId<GhostRolePrototype>? Prototype { get; set; } // Frontier: store GhostRolePrototype for whitelist lookup
 
         // TODO ROLE TIMERS
         // Actually make use of / enforce this requirement?
