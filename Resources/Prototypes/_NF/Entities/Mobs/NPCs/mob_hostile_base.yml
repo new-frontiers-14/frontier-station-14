@@ -1,0 +1,291 @@
+- type: entity
+  save: false
+  id: MobAtmosNF
+  abstract: true
+  components:
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 25
+  - type: MovedByPressure
+  - type: Insulated
+
+- type: entity
+  save: false
+  id: MobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -1
+        Burn: -10
+        Airloss: -1
+        Toxin: -7
+        Genetic: -7
+
+- type: entity
+  save: false
+  id: MobPassiveRegenStrong
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+    damageCap: 400
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -1
+
+- type: entity
+  save: false
+  id: MobLaserReflect
+  abstract: true
+  components:
+  - type: Reflect
+    reflectProb: 0.7
+    reflects:
+      - Energy
+
+- type: entity
+  save: false
+  id: MobEnhancedMovement
+  abstract: true
+  components:
+  - type: MovementAlwaysTouching
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: StepTriggerImmune
+  - type: Climbing
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    speedModifier: 10.0
+  - type: Access
+    groups:
+    - AllAccess
+
+# Inventories
+- type: entity
+  save: false
+  id: MobHumanoidInvetory
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoid # Supports loadouts
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
+- type: entity
+  save: false
+  id: MobHumanoidInvetorySimplified
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: hostilehumanoidsimplified # Does not support loadouts
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
+# AI packages
+- type: entity
+  id: MobHumanoidHostileAISimpleMelee
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+        true
+
+- type: entity
+  id: MobHumanoidHostileAISimpleRanged
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleRangedHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+        true
+
+- type: entity
+  id: MobHumanoidHostileAIComplex
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+       task: SimpleHumanoidHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+#      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
+#        true
+
+# Human NPC, uses equipment, immune to vacuum/low pressure
+- type: entity
+  name: Human NPC
+  suffix: AI, Hostile
+  abstract: true
+  parent:
+  - MobAtmosNF
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - BaseMobSpecies
+  - MobHumanoidHostileAIComplex
+  id: MobHumanoidHostileBase
+  components:
+  - type: MobMover
+  - type: StandingState
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      160: Dead
+  - type: Stamina
+    critThreshold: 130
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: Flashable
+  - type: Blindable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500
+    deathPenalty: 0.5
+  - type: Contraband
+  - type: Advertise
+    pack: syndicatehumanoidchatter
+    minimumWait: 120 # 1 * 2
+    maximumWait: 240 # 2 * 60
+    nextAdvertisementTime: 0
+  - type: SalvageMobRestrictionsNF
+
+# NonHuman NPC base, no equipment, immune to vacuum/low pressure
+- type: entity
+  name: Mob NPC
+  suffix: AI, Hostile
+  abstract: true
+  parent:
+  - BaseMob
+  - MobDamageable
+  - MobCombat
+  - MobAtmosNF
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - MobHumanoidHostileAIComplex
+  id: MobNonHumanHostileBase
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: Internals
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+  - type: Buckle
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: ZombieImmune
+  - type: Hands
+  - type: Puller
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      120: Dead
+  - type: Stamina
+    critThreshold: 100
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: MobPrice
+    price: 1500
+    deathPenalty: 0.5
+  - type: SalvageMobRestrictionsNF
+  - type: Contraband
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener

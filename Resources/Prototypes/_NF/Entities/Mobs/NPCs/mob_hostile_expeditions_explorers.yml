@@ -1,0 +1,421 @@
+# Base
+- type: entity
+  name: explorer
+  abstract: true
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidInvetory
+  - MobHumanoidHostileAISimpleRanged
+  id: MobExplorerBase
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ExplorersExpeditionNF
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      130: Dead
+  - type: Stamina
+    critThreshold: 100
+  - type: DamageStateVisuals
+    rotate: true
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    animation: WeaponArcPunch
+    angle: 0
+    damage:
+      types:
+        Slash: 15
+        Structural: 30
+    soundHit:
+      collection: MetalThud
+  - type: Advertise
+    pack: mercenaryhumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: AutoWakeUp
+  - type: PointLight
+    enabled: true
+    autoRot: false
+    netsync: false
+    radius: 3
+    energy: 1
+    color: "#47f8ff"
+
+# Variations
+## Tier 1
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobExplorerMeleeT1
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearMeleeT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/gasexplorer.rsi
+      state: equipped-MASK
+    - sprite: _NF/Clothing/Head/Hats/pilot.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Tools/lantern.rsi
+      state: on-equipped-BELT
+      shader: unshaded
+
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  id: MobExplorerRangedT1
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearRangedT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/OuterClothing/WinterCoats/coatminer.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gasexplorer.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Hoods/Coat/hoodminer.rsi
+      state: equipped-HELMET
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 31
+    maxAngle: 45
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 3
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+## Tier 2
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobExplorerMeleeT2
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearMeleeT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-unshaded
+      shader: unshaded
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+      color: "#47f8ff"
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 3
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  id: MobExplorerRangedT2
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearRangedT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-unshaded
+      shader: unshaded
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+      color: "#47f8ff"
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 8
+    selectedMode: FullAuto
+    minAngle: 31
+    maxAngle: 45
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 3
+    energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+# Tier 3
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobExplorerMeleeT3
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearMeleeT3
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Head/Hardsuits/salvage.rsi
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+      color: "#47f8ff"
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    attackRate: 3.5
+    damage:
+      groups:
+        Brute: 3
+      types:
+        Structural: 25
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  id: MobExplorerRangedT3
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearRangedT3
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Head/Hardsuits/luxury.rsi
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+      color: "#47f8ff"
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    minAngle: 1
+    maxAngle: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+- type: entity
+  name: hauler
+  noSpawn: true
+  parent:
+  - MobExplorerBase
+  id: MobExplorerHauler
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearMechT3
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: hauler
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: hauler
+      Critical:
+        Base: hauler-broken
+      Dead:
+        Base: hauler-broken
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 100
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Stamina
+    critThreshold: 600
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.75
+    baseSprintSpeed: 4
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+    soundHit:
+      collection: MetalThud
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 5
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"
+
+# Tier 4 - Boss
+- type: entity
+  name: explorer
+  parent:
+  - MobExplorerBase
+  id: MobExplorerBoss
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidExplorerGearBoss
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
+      state: off-equipped-HELMET
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head-light
+      shader: unshaded
+      color: "#47f8ff"
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.375
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 8
+    selectedMode: FullAuto
+    minAngle: 41
+    maxAngle: 55
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 7
+    energy: 3
+    mask: /Textures/Effects/LightMasks/cone.png
+    color: "#47f8ff"

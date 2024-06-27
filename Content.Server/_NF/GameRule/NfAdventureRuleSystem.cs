@@ -123,14 +123,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
+        var trade = "/Maps/_NF/POI/trade.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(3000f, 5000f);
+        var depotOffset = _random.NextVector2(4500f, 6000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
         var caseysOffset = _random.NextVector2(2250f, 4600f);
+        var tradeOffset = _random.NextVector2(1500f, 2500f);
 
         if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
             {
@@ -294,6 +296,20 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(labUids[0], factionColor);
         }
 
+        if (_map.TryLoad(mapId, trade, out var tradeUids, new MapLoadOptions
+        {
+            Offset = -tradeOffset
+        }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Trade", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["Trade"], tradeUids);
+            }
+            var meta = EnsureComp<MetaDataComponent>(tradeUids[0]);
+            _meta.SetEntityName(tradeUids[0], "Trade Outpost", meta);
+            _shuttle.SetIFFColor(tradeUids[0], depotColor);
+        }
+
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
@@ -301,7 +317,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             var seed = _random.Next();
             var offset = _random.NextVector2(3000f, 8500f);
-            if (!_map.TryLoad(mapId, "/Maps/spaceplatform.yml", out var grids, new MapLoadOptions
+            if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids, new MapLoadOptions
                 {
                     Offset = offset
                 }))

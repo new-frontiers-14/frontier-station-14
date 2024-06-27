@@ -92,6 +92,8 @@
         Blunt: 5
   - type: StaticPrice
     price: 30
+  - type: TrashOnSolutionEmpty # Frontier
+    solution: beaker # Frontier
 
 - type: entity
   parent: BaseItem
@@ -153,6 +155,8 @@
     damageModifierSet: Glass
   - type: StaticPrice
     price: 30
+  - type: TrashOnSolutionEmpty # Frontier
+    solution: beaker # Frontier
 
 - type: entity
   name: beaker
@@ -164,9 +168,9 @@
     solution: beaker
   - type: StaticPrice
     price: 10
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 50
+  # - type: PhysicalComposition # Frontier
+    # materialComposition:
+      # Glass: 50
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: beaker
@@ -215,9 +219,9 @@
     fillBaseName: beakerlarge
     inHandsMaxFillLevels: 4
     inHandsFillBaseName: -fill-
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 100
+  # - type: PhysicalComposition # Frontier
+    # materialComposition: # Frontier
+      # Glass: 100 # Frontier
   - type: StaticPrice
     price: 20
 

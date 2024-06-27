@@ -1,0 +1,45 @@
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltPunkRandomized
+  name: punk belt
+  description: A webbing with functional pockets.
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Belt/punk.rsi
+    layers:
+    - state: base_belt_01
+      map: [ "belt_main" ]
+      scale: 1.8, 1.8
+      offset: 0,0.1
+    - state: decor_base_belt_01
+      map: [ "belt_decor" ]
+      scale: 1.8, 1.8
+      offset: 0,0.1
+    - state: mask_null
+      map: [ "belt_overlay" ]
+      scale: 1.8, 1.8
+      offset: 0,0.1
+  - type: Clothing
+    sprite: _NF/Clothing/Belt/punk.rsi
+    clothingVisuals:
+      belt:
+      - state: base_belt_01
+        map: [ "belt_main" ]
+      - state: decor_base_belt_01
+        map: [ "belt_decor" ]
+      - state: mask_null
+        map: [ "belt_overlay" ]
+  - type: RandomSprite
+    available:
+      - belt_main:
+          base_belt_01: CyberpunkDark
+        belt_decor:
+          decor_base_belt_01: CyberpunkDark
+        belt_overlay:
+          decor_base_belt_02: CyberpunkDark
+          decor_base_belt_03: CyberpunkDark
+          decor_base_belt_04: CyberpunkDark
+          decor_base_belt_05: CyberpunkDark
+          mask_null: ""

@@ -35,3 +35,70 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  parent:
+  - BaseWeaponBattery
+  id: WeaponLaserTurboNF
+  name: turbo laser mk3
+  description: "A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal."
+  components:
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    layers:
+    - state: icon-base
+    - state: charge-level-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+    sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
+    clothingVisuals:
+      back:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+      suitstorage:
+      - state: equipped-back
+      - state: equipped-unshaded
+        shader: unshaded
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 80
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    fireRate: 8
+    minAngle: 1
+    maxAngle: 10
+    soundGunshot:
+      path: /Audio/DeltaV/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: MagazineVisuals
+    magState: charge-level
+    steps: 6
+    zeroVisible: true
