@@ -745,9 +745,9 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Cargo"]]
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: removed guidebook entries (needs rework)
+  #   guides: # Frontier: removed guidebook entries (needs rework)
+  #   - Cargo # Frontier: removed guidebook entries (needs rework)
 
 - type: entity
   id: ComputerCargoOrders
@@ -810,9 +810,9 @@
     range: 200
     ports:
       - OrderSender
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   id: ComputerCargoBounty
@@ -1049,9 +1049,9 @@
     color: "#b89f25"
   - type: MarketModifier # In the case someone got a computer board from QM locker, they can use it to sell on a ship if they have the grids, just to make sure its useless.
     mod: 0
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   parent: BaseComputer
