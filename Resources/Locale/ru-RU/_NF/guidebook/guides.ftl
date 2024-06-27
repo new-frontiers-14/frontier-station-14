@@ -10,3 +10,6 @@ guide-entry-shipyard-legman = Интервьюер
 guide-entry-shipyard-liquidator = Подметатор
 guide-entry-shipyard-pioneer = Пионер
 guide-entry-shipyard-searchlight = Прожектор
+guide-entry-shipyard-ambition = Амбициозный
+guide-entry-shipyard-ceres = Церера
+guide-entry-shipyard-spirit = Дух
