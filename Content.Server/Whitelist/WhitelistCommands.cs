@@ -141,7 +141,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
             if (await db.GetAdminDataForAsync(session.UserId) is not null)
                 continue;
 
-            if (!await _jobWhitelist.IsGloballyWhitelisted(session.UserId)) // Frontier: use JobWhitelistManager as a wrapper.
+            if (!_jobWhitelist.IsGloballyWhitelisted(session.UserId)) // Frontier: use JobWhitelistManager as a wrapper.
             {
                 net.DisconnectChannel(session.Channel, Loc.GetString("whitelist-not-whitelisted"));
             }
