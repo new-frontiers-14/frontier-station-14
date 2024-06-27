@@ -5,6 +5,7 @@ guide-entry-piloting = Piloting
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
+guide-entry-frontier-rules = Frontier Rules
 
 # Expedition faction entries
 guide-entry-expedition-faction-carp = Carp
