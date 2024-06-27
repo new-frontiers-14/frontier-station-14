@@ -30,6 +30,7 @@ guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
 guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
+guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
