@@ -1,0 +1,30 @@
+# Author Info
+# GitHub: VideNoir (https://github.com/EaglePhntm)
+# Discord: @_videnoir_
+
+- type: vessel
+  id: Arrow
+  name: NSF Arrow
+  description: A small fighter donned with dual laser weapons and high acceleration, designed for pursuits and fast response.
+  price: 20290 #14145 refund
+  category: Small
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/arrow.yml
+
+- type: gameMap
+  id: Arrow
+  mapName: 'NSF Arrow'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/arrow.yml
+  minPlayers: 0
+  stations:
+    Empress:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Arrow {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
