@@ -24,7 +24,9 @@ humanoid-profile-editor-spawn-priority-label = Spawn priority:
 humanoid-profile-editor-eyes-label = Eye color:
 humanoid-profile-editor-jobs-tab = Jobs
 humanoid-profile-editor-preference-unavailable-stay-in-lobby-button = Stay in lobby if preference unavailable.
-humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button = Be {INDEFINITE($overflowJob)} {$overflowJob} if preference unavailable.
+# Frontier: we have multiple overflow job types, so we change this message.
+# humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button = Be {INDEFINITE($overflowJob)} {$overflowJob} if preference unavailable.
+humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button = Start in an available job if preference unavailable.
 humanoid-profile-editor-preference-jumpsuit = Jumpsuit
 humanoid-profile-editor-preference-jumpskirt = Jumpskirt
 humanoid-profile-editor-preference-backpack = Backpack
