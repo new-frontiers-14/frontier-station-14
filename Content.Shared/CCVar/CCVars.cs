@@ -364,6 +364,17 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> RoundEndSoundCollection =
             CVarDef.Create("game.round_end_sound_collection", "RoundEnd", CVar.SERVERONLY);
 
+
+        /// <summary>
+        /// If true, players can place objects onto tabletop games like chess boards.
+        /// </summary>
+        /// <remarks>
+        /// This feature is currently highly abusable and can easily be used to crash the server,
+        /// so it's off by default.
+        /// </remarks>
+        public static readonly CVarDef<bool> GameTabletopPlace =
+            CVarDef.Create("game.tabletop_place", false, CVar.SERVERONLY);
+
         /*
          * Discord
          */
