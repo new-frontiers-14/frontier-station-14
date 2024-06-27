@@ -235,7 +235,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     }
                 }
             }
-            EquipRoleLoadout(entity.Value, loadout, roleProto);
+
+            // Frontier: do not re-equip roleLoadout.
+            // Frontier: DO equip job startingGear.
+            if (prototype?.StartingGear is not null)
+                EquipStartingGear(entity.Value, prototype.StartingGear, raiseEvent: false);
 
             var bank = EnsureComp<BankAccountComponent>(entity.Value);
             bank.Balance = bankBalance;
