@@ -20,8 +20,10 @@ guide-entry-expedition-faction-xenos = Xenos
 
 # Shipyard entries
 guide-entry-shipyard-ambition = Ambition
+guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-ceres = Ceres
+guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-kilderkin = Kilderkin
@@ -29,5 +31,6 @@ guide-entry-shipyard-lantern = Lantern
 guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-pioneer = Pioneer
+guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
