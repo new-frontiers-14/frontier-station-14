@@ -1,0 +1,43 @@
+- type: entity
+  id: PaperWrittenPirateScribbles
+  name: missing soda
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-pirate-scribbles
+
+- type: entity
+  id: PaperWrittenFrontierFridge
+  name: fridge policy
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-centcom
+    stampedBy:
+    - stampedColor: '#004200FF'
+      stampedName: Central Admiralty of Frontier
+      stampType: RubberStamp
+    - stampedColor: '#333333FF'
+      stampedName: Stamps-the-Papers
+      stampType: Signature
+    content: |2
+
+      [head=1][color=#1a6295]Nanotrasen[/color][/head]
+
+      [bold]ATTN:[/bold]
+      Frontier Station Staff
+
+      [bold]FROM:[/bold]
+      [italic]Stamps-the-Papers[/italic]
+      [bold][color=darkred]Sergeant[/color][/bold], Fax and Broadcast Department
+      [bold][color=green]Central Command[/color][/bold]
+
+      [bold]/MESSAGE/[/bold]
+
+      We have been notified of wasteful behavior in the Frontier Staff break area. Please ensure you remove your food from the fridge before the end of shift, otherwise it will be removed and composted.
+
+      Please join us in this effort to reduce food waste.
+
+      [bold]/END FAX/[/bold]

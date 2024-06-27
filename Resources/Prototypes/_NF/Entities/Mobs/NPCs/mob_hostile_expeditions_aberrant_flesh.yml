@@ -1,0 +1,332 @@
+# BASE
+- type: entity
+  parent:
+  - MobNonHumanHostileBase
+  id: BaseMobFleshExpeditions
+  name: aberrant flesh
+  description: A shambling mass of flesh, animated through anomalous energy.
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - AberrantFleshExpeditionNF
+  - type: HTN
+    rootTask:
+       task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: Stamina
+    critThreshold: 50
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: Bloodstream
+    bloodMaxVolume: 100
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+        Structural: 20
+  - type: ReplacementAccent
+    accent: genericAggressive
+
+# MOBS
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobFleshJaredExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: jared
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: jared
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
+  parent: MobFleshJaredExpeditions
+  id: MobFleshJaredOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: jared
+
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobFleshGolemExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: golem
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+
+- type: entity
+  parent: MobFleshGolemExpeditions
+  id: MobFleshGolemAltExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: golem2
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
+  parent: MobFleshGolemExpeditions
+  id: MobFleshGolemOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: golem
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+- type: entity
+  parent:
+  - BaseMobFleshExpeditions
+  - MobHumanoidHostileAISimpleRanged
+  id: MobFleshClampExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clamp
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: clamp
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 6
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: DartAberrantFleshHorrorSpikeCluster
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+
+- type: entity
+  parent: MobFleshClampExpeditions
+  id: MobFleshClampOldExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clamp
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MobMawExpeditions
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobFleshLoverExpeditions
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: lover
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: lover
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+
+# EXPEDITION BOSS
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobHorrorExpeditions
+  name: aberrant flesh horror
+  description: Not so shambling mass of flesh with menacing bone spikes protruding from its unnaturally elongated fingers.
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horror
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: horror
+      Dead:
+        Base: dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.8
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 12
+
+# FUNNY LITTLE GUY
+# embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
+- type: entity
+  parent: BaseMobFleshExpeditions
+  id: MobMawExpeditions
+  name: aberrant flesh maw
+  description: Don't put your fingers in it. Unless?..
+  noSpawn: true
+  components:
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 4
+  - type: Ammo
+    muzzleFlash: null
+  - type: EmbeddableProjectile
+    removalTime: 1
+    sound: /Audio/Effects/bite.ogg
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: maw
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: maw
+      Dead:
+        Base: dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      12: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 4
+  - type: TimedDespawn
+    lifetime: 120

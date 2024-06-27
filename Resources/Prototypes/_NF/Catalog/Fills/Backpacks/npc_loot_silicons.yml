@@ -1,0 +1,151 @@
+# BASE
+- type: entity
+  parent: BaseItem
+  id: RogueSiliconGiftBox
+  name: rogue unit's bundle
+  abstract: true
+  noSpawn: true
+  suffix: NPC Loot
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/bundles.rsi
+    state: engi-base
+    scale: 0.7, 0.7
+  - type: Item
+    size: Normal
+  - type: Clothing
+    slots:
+    - back
+    quickEquip: false
+    sprite: _NF/Objects/Tools/bundles.rsi
+    clothingVisuals:
+      back:
+      - state: mask_null
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash10
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+# EXPLORER NPC LOOT
+## TIER 1
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT1
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Parts
+    - id: AdvancedCapacitorStockPart
+      prob: 0.4
+    - id: NanoManipulatorStockPart
+      prob: 0.4
+    - id: AdvancedMatterBinStockPart
+      prob: 0.4
+    - id: SpawnDungeonLootPowerCell
+      prob: 0.7
+    - id: SpawnDungeonLootPartsEngi
+      prob: 0.7
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.9
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 2
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT2
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Parts
+    - id: SuperCapacitorStockPart
+      prob: 0.4
+    - id: PicoManipulatorStockPart
+      prob: 0.4
+    - id: SuperMatterBinStockPart
+      prob: 0.4
+    - id: SpawnDungeonLootPowerCell
+      prob: 0.7
+    - id: SpawnDungeonLootPartsEngi
+      amount: 2
+      prob: 0.7
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      prob: 0.8
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 3
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT3
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Parts
+    - id: QuadraticCapacitorStockPart
+      prob: 0.5
+    - id: FemtoManipulatorStockPart
+      prob: 0.5
+    - id: BluespaceMatterBinStockPart
+      prob: 0.5
+    - id: SpawnDungeonLootPowerCell
+      prob: 0.5
+    - id: SpawnDungeonLootPartsEngi
+      amount: 3
+      prob: 0.7
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.7
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.7
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+## TIER 4 (Placeholder)
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT4
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponLaserTurboNF
+      prob: 0.1
+    # Parts
+    - id: QuadraticCapacitorStockPart
+      prob: 0.7
+    - id: FemtoManipulatorStockPart
+      prob: 0.7
+    - id: BluespaceMatterBinStockPart
+      prob: 0.7
+    - id: SpawnDungeonLootPowerCell
+      prob: 0.7
+    - id: SpawnDungeonLootPartsEngi
+      amount: 3
+      prob: 0.7
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardScience
+      amount: 1
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoardSalvage
+      prob: 0.8
+    - id: SpawnDungeonLootCircuitBoard
+      prob: 0.8
+    sound:
+      path: /Audio/Machines/windoor_open.ogg

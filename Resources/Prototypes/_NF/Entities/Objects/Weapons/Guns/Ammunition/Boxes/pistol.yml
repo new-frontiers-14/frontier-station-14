@@ -1,3 +1,4 @@
+# Upstream
 - type: entity
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolRubber
@@ -5,6 +6,9 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
+  - type: Icon
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: rubberdisplay
   - type: Sprite
     layers:
     - state: base
@@ -12,3 +16,22 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: rubber
+
+# Frontier
+- type: entity
+  parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolEmp
+  name: ammunition box (.35 auto emp)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolEmp
+  - type: Icon
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    state: empdisplay
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: emp

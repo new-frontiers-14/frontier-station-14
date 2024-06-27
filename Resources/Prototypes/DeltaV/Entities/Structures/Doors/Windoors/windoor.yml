@@ -3,21 +3,15 @@
   id: WindoorMailLocked
   suffix: Mail, Locked
   components:
-  - type: AccessReader
-    access: [["Mail"]] # Frontier - Service<Mail
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMailCarrier ] # Frontier - Service<Mail
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureMailLocked
   suffix: Mail, Locked
   components:
-  - type: AccessReader
-    access: [["Mail"]] # Frontier - Service<Mail
-
-- type: entity
-  parent: WindoorSecure
-  id: WindoorSecureParamedicLocked
-  suffix: Paramedic, Locked
-  components:
-  - type: AccessReader
-    access: [["Paramedic"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMailCarrier ] # Frontier - Service<Mail
