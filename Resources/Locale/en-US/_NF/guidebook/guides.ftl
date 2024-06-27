@@ -21,6 +21,7 @@ guide-entry-expedition-faction-xenos = Xenos
 # Shipyard entries
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-brigand = Brigand
+guide-entry-shipyard-camper = Camper
 guide-entry-shipyard-ceres = Ceres
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-harbormaster = Harbormaster
