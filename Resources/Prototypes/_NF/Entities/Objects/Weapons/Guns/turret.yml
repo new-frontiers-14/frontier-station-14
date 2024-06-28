@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponDisablerTurret
-  name: Crowd control turret
+  name: crowd control turret
   suffix: NanoTrasen
   description: A disabler based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
@@ -18,7 +18,7 @@
   parent: BaseWeaponTurret
   id: WeaponDisablerturretSyndicates
   suffix: Syndicate
-  name: Crowd control turret
+  name: crowd control turret
   description: A disabler based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
@@ -34,7 +34,7 @@
   parent: BaseWeaponTurret
   id: WeapondisablerHostile
   suffix: Hostile
-  name: Crowd control turret
+  name: crowd control turret
   description: An disabler based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
@@ -49,9 +49,9 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponAntiMaterialTurret
-  name: Anti-material turret
+  name: anti-material turret
   suffix: NanoTrasen
-  description: An Anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
       proto: CartridgeAntiMateriel
@@ -66,8 +66,8 @@
   parent: BaseWeaponTurret
   id: WeaponAntiMaterialTurretSyndicates
   suffix: Syndicate
-  name: Anti-material turret
-  description: An Anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  name: anti-material turret
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
       proto: CartridgeAntiMateriel
@@ -82,8 +82,8 @@
   parent: BaseWeaponTurret
   id: WeaponAntiMaterialTurretHostile
   suffix: Hostile
-  name: Anti-material turret
-  description: An Anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  name: anti-material turret
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
       proto: CartridgeAntiMateriel
@@ -97,12 +97,12 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponHeavyTurret
-  name:  Heavy ballistic turret
+  name:  heavy ballistic turret
   suffix: NanoTrasen
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
-      proto: CBulletMagnum
+      proto: BulletMagnum
       capacity: 500
     - type: Gun
       fireRate: 3
@@ -114,7 +114,7 @@
   parent: BaseWeaponTurret
   id: WeaponHeavyTurretSyndicates
   suffix: Syndicate
-  name: Heavy ballistic turret
+  name: heavy ballistic turret
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
@@ -130,7 +130,7 @@
   parent: BaseWeaponTurret
   id: WeaponHeavyTurretHostile
   suffix: Hostile
-  name: Heavy ballistic turret
+  name: heavy ballistic turret
   description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
@@ -145,7 +145,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponShotgunTurret
-  name: Shottynator
+  name: shottynator
   suffix: NanoTrasen
   description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
   components:
@@ -161,7 +161,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponShotgunTurretSyndicate
-  name: Shottynator
+  name: shottynator
   suffix: Syndicate
   description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
   components:
@@ -177,7 +177,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponShotgunTurretHostile
-  name: Shottynator
+  name: shottynator
   suffix: Hostile
   description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
   components:
@@ -191,115 +191,69 @@
        - SimpleHostile
 
 #laser Weapons
-#- type: entity
-#  parent: BaseWeaponTurret
-#  id: WeaponHitscanTurret
-# name: Light Hitscan turret
-#  suffix: NanoTrasen
- # description: A hitscan based projectile auto-turret, brought to you by S.E.S.W.C.
-  #components:
-   # - type: BallisticAmmoProvider
-    #  proto: RedMediumLaser
-     # capacity: 500
-    #- type: Gun
-    #  fireRate: 1
-    #- type: NpcFactionMember
-     # factions:
-      # - NanoTrasen
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurret
+  name: laser turret
+  suffix: NanoTrasen
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
 
-#- type: entity
-  #parent: BaseWeaponTurret
- # id: WeaponHitscanTurretSyndicate
- # name: Light Hitscan turret
- # suffix: Syndicate
- # description: A hitscan based projectile auto-turret, brought to you by S.E.S.W.C.
- # components:
- #   - type: BallisticAmmoProvider
- #     proto: RedMediumLaser
-  #    capacity: 500
-  #  - type: Gun
-  #    fireRate: 1
-  #  - type: NpcFactionMember
-  #    factions:
-  #     - Syndicate
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurret
+  name: laser turret
+  suffix: Syndicate
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
 
-#- type: entity
- # parent: BaseWeaponTurret
-  #id: WeaponHitscanTurretHostile
-#  name: Light Hitscan turret
-#  suffix: Hostile
-#  description: A hitscan based projectile auto-turret, brought to you by S.E.S.W.C.
-#  components:
-#    - type: HitscanBatteryAmmoProvider
-#      proto: RedMediumLaser
-#      capacity: 500
-#    - type: Gun
-#      fireRate: 1
-#    - type: NpcFactionMember
-#      factions:
-#       - SimpleHostile
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurret
+  name: laser turret
+  suffix: Hostile
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - SimpleHostile
 
-#- type: entity
-#  parent: BaseWeaponTurret
- # id: WeaponGaussTurret
- # name: Gauss turret
-  #suffix: NanoTrasen
-  #description: An expermintal gauss based auto-turret, brought to you by S.E.S.W.C.
-  #components:
-   # - type: BallisticAmmoProvider
-   #   proto: RedShuttleLaser
-   #   capacity: 500
-   # - type: Gun
-   #   fireRate: .5
-    #- type: NpcFactionMember
-    #  factions:
-     #  - NanoTrasen
 
-#- type: entity
- # parent: BaseWeaponTurret
-  #id: WeaponGaussTurretHostile
-  #name: Gauss turret
-  #suffix: Hostile
-  #description: An expermintal gauss based auto-turret, brought to you by S.E.S.W.C.
-  #components:
-  #  - type: BallisticAmmoProvider
-  #    proto: RedShuttleLaser
-  #    capacity: 500
-  #  - type: Gun
-  #    fireRate: .5
-  #  - type: NpcFactionMember
-  #    factions:
-  #     - SimpleHostile
-
-# type: entity
- # parent: BaseWeaponTurret
-  #id: WeaponGaussTurretSyndicate
-  #name: Gauss turret
-  #suffix: Syndicate
-  #description: An expermintal gauss based auto-turret, brought to you by S.E.S.W.C.
-  #components:
-   # - type: BallisticAmmoProvider
-    #  proto: RedShuttleLaser
-     # capacity: 500
-   # - type: Gun
-   #   fireRate: .5
-   # - type: NpcFactionMember
-    #  factions:
-     #  - Syndicate
 
 #Liquid based Turrets
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponIncineratorTurret
-  name: Incinerator turret
+  name: incinerator turret
   suffix: NanoTrasen
   description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
       proto: SplatterChemPhlogNapalm
-      capacity: 500
+      capacity: 
     - type: Gun
-      fireRate: 1
+      fireRate: 3
     - type: NpcFactionMember
       factions:
        - NanoTrasen
@@ -307,7 +261,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponIncineratorTurretSyndicate
-  name: Incinerator turret
+  name: incinerator turret
   suffix: Syndicate
   description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
   components:
@@ -315,7 +269,7 @@
       proto: SplatterChemPhlogNapalm
       capacity: 500
     - type: Gun
-      fireRate: 1
+      fireRate: 3
     - type: NpcFactionMember
       factions:
        - Syndicate
@@ -323,7 +277,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponIncineratorTurretHostile
-  name: Incinerator turret
+  name: incinerator turret
   suffix: Hostile
   description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
   components:
@@ -331,40 +285,40 @@
       proto: SplatterChemPhlogNapalm
       capacity: 500
     - type: Gun
-      fireRate: 1
+      fireRate: 3
     - type: NpcFactionMember
       factions:
        - SimpleHostile
 
 #admeme
-# type: entity
- # parent: BaseWeaponTurret
-  #id: WeaponEggynatorTurret
-  #name: eggynator
-  #suffix: S
-  #description: A Egg projectile auto-turret, brought to you by S.E.S.W.C.
-  #components:
-   # - type: BallisticAmmoProvider
-   #   proto: FoodEgg
-   #  capacity: 500
-   # - type: Gun
-    #  fireRate: 5
-    #- type: NpcFactionMember
-    #  factions:
-     #  - Syndicate
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponEggynatorTurret
+  name: eggynator
+  suffix: admeme
+  description: A Egg projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: FoodEgg
+      capacity: 500
+    - type: Gun
+      fireRate: 10
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
 
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponhonknatorTurret
-  name: HONKnator
-  suffix: Hostile
+  name: honk-nator
+  suffix: admeme
   description: HONK HONK HONK HONK HONK HONK HONK, brought to you by S.E.S.W.C.
   components:
     - type: BallisticAmmoProvider
       proto: CreamPie
       capacity: 500
     - type: Gun
-      fireRate: 5
+      fireRate: 10
     - type: NpcFactionMember
       factions:
         - Syndicate
