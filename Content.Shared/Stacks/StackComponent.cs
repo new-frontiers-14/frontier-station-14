@@ -78,6 +78,14 @@ namespace Content.Shared.Stacks
         [DataField("layerStates")]
         [ViewVariables(VVAccess.ReadWrite)]
         public List<string> LayerStates = new();
+
+        // Frontier: transforming Amount, MaxCount in speso stacks 
+        /// <summary>
+        /// An optional function to adjust the layers used for a stack's appearance.
+        /// </summary>
+        [DataField]
+        public StackLayerFunction LayerFunction = StackLayerFunction.None;
+        // End Frontier
     }
 
     [Serializable, NetSerializable]
