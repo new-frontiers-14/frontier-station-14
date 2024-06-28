@@ -25,24 +25,23 @@
   parent: BaseItem
   id: SpaceCashCounterfeit
   name: spessos
-  description: Try not to mix this with the real money.
+  description: You gotta heve mony.
   components:
-  - type: Cash
   - type: Item
     shape:
     - 0,0,1,0
     storedOffset: 0,-2
   - type: Currency
     price:
-      Speso: 1
+      Spesso: 1
   - type: Material
   - type: PhysicalComposition
     materialComposition:
-      Credit: 1
+      CreditCounterfeit: 1
   - type: StaticPrice
     price: 0
   - type: Stack
-    stackType: Credit
+    stackType: CreditCounterfeit
     count: 1
     baseLayer: base
     layerStates:
@@ -61,7 +60,7 @@
   - type: StackLayerThreshold # Frontier
     thresholds: [10, 100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000] # Frontier
   - type: Sprite
-    sprite: _NF/Objects/Economy/cash.rsi # Frontier: larger denominations
+    sprite: _NF/Objects/Economy/counterfeit_cash.rsi # Frontier: larger denominations
     state: cash
     layers:
     - state: cash
@@ -79,3 +78,17 @@
         - ItemMask
   - type: Appearance
   - type: CargoSellBlacklist
+
+- type: material
+  id: CreditCounterfeit
+  name: spesso
+  unit: materials-unit-bill
+  stackEntity: SpaceCash
+  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash } # Frontier: use Frontier sprite set
+  price: 0
+
+- type: stack
+  id: CreditCounterfeit
+  name: spesso
+  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash } # Frontier: use Frontier sprite set
+  spawn: SpaceCash
