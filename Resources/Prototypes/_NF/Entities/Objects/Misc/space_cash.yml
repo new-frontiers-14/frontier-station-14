@@ -20,7 +20,7 @@
   - type: Stack
     count: 25000
 
-# Fake fake money (ikr), placeholder for now until actual counterfeit currency is implemented
+# Fake fake money (ikr)
 - type: entity
   parent: BaseItem
   id: SpaceCashCounterfeit
@@ -92,3 +92,10 @@
   name: spesso
   icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash } # Frontier: use Frontier sprite set
   spawn: SpaceCash
+
+- type: currency
+  id: Spesso
+  displayName: bank-currency-display-spesos-fake
+  cash: 
+    1: SpaceCashCounterfeit
+  canWithdraw: true # I guess?
