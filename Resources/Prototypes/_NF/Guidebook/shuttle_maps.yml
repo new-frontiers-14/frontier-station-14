@@ -33,6 +33,28 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapComet
+  name: "NT Comet"
+  description: "Detailed map of a Comet shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: comet
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapConstruct
+  name: "NT Construct"
+  description: "Detailed map of a Construct shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: construct
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapGasbender
   name: "NT Gasbender"
   description: "Detailed map of a Gasbender shuttle."
@@ -51,6 +73,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: harbormaster
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapKestrel
+  name: "NT Kestrel"
+  description: "Detailed map of a Kestrel shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: kestrel
     scale: 1.2, 1.2
 
 - type: entity
