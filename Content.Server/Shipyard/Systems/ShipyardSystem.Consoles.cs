@@ -59,6 +59,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
 
     public void InitializeConsole()
     {
@@ -363,6 +364,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
+        if (!component.Initialized)
+            return;
+
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
@@ -448,8 +452,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
     }
 
-    private void OnItemSlotChanged(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
+    private void UpdateUserInterface(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
     {
+        if (!component.Initialized)
+            return;
+
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
@@ -479,16 +486,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (deed?.ShuttleUid != null)
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-            if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key ||
-                ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
+            if (ShipyardConsoleUiKey.BlackMarket == (ShipyardConsoleUiKey) uiComp.Key || ShipyardConsoleUiKey.Syndicate == (ShipyardConsoleUiKey) uiComp.Key) // Unhardcode this please
             {
                 var tax = (int) (sellValue * 0.30f);
                 sellValue -= tax;
             }
 
             var fullName = deed != null ? GetFullName(deed) : null;
-            RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue,
-                (ShipyardConsoleUiKey) uiComp.Key);
+            RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
         }
     }
 
