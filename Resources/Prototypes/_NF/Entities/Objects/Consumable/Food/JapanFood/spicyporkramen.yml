@@ -1,0 +1,30 @@
+- type: entity
+  name: Spicy Ramen
+  parent: FoodBowlBase
+  id: spicyporkramennoodles
+  description: So hot and so cute!
+  components:
+  - type: Item
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: spicyporkramen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Protein
+            Quantity: 3
+          - ReagentId: Flavorol
+            Quantity: 5        
+          - ReagentId: CapsaicinOil
+            Quantity: 2
+          - ReagentId: Soysauce
+            Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
