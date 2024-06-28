@@ -2095,7 +2095,7 @@ entities:
       pos: 21.5,-10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15496.064
+      secondsUntilStateChange: -15904.041
       state: Opening
   - uid: 1449
     components:
@@ -2378,7 +2378,7 @@ entities:
       pos: 14.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -14988.87
+      secondsUntilStateChange: -15396.847
       state: Opening
   - uid: 711
     components:
@@ -5397,16 +5397,6 @@ entities:
     - type: Transform
       pos: 0.5,16.5
       parent: 1
-  - uid: 497
-    components:
-    - type: Transform
-      pos: 0.5,17.5
-      parent: 1
-  - uid: 506
-    components:
-    - type: Transform
-      pos: -0.5,17.5
-      parent: 1
   - uid: 519
     components:
     - type: Transform
@@ -6211,53 +6201,6 @@ entities:
     - type: Transform
       pos: -6.5,2.5
       parent: 1
-- proto: Carpet
-  entities:
-  - uid: 98
-    components:
-    - type: Transform
-      pos: -16.5,13.5
-      parent: 1
-  - uid: 344
-    components:
-    - type: Transform
-      pos: -16.5,12.5
-      parent: 1
-  - uid: 351
-    components:
-    - type: Transform
-      pos: -16.5,11.5
-      parent: 1
-  - uid: 362
-    components:
-    - type: Transform
-      pos: -17.5,13.5
-      parent: 1
-  - uid: 452
-    components:
-    - type: Transform
-      pos: -17.5,12.5
-      parent: 1
-  - uid: 454
-    components:
-    - type: Transform
-      pos: -17.5,11.5
-      parent: 1
-  - uid: 904
-    components:
-    - type: Transform
-      pos: -18.5,13.5
-      parent: 1
-  - uid: 905
-    components:
-    - type: Transform
-      pos: -18.5,12.5
-      parent: 1
-  - uid: 906
-    components:
-    - type: Transform
-      pos: -18.5,11.5
-      parent: 1
 - proto: CarpetBlack
   entities:
   - uid: 2190
@@ -6307,6 +6250,53 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,7.5
+      parent: 1
+- proto: CarpetGreen
+  entities:
+  - uid: 344
+    components:
+    - type: Transform
+      pos: -16.5,13.5
+      parent: 1
+  - uid: 351
+    components:
+    - type: Transform
+      pos: -16.5,11.5
+      parent: 1
+  - uid: 438
+    components:
+    - type: Transform
+      pos: -17.5,13.5
+      parent: 1
+  - uid: 452
+    components:
+    - type: Transform
+      pos: -17.5,11.5
+      parent: 1
+  - uid: 497
+    components:
+    - type: Transform
+      pos: -18.5,13.5
+      parent: 1
+  - uid: 506
+    components:
+    - type: Transform
+      pos: -16.5,12.5
+      parent: 1
+  - uid: 695
+    components:
+    - type: Transform
+      pos: -17.5,12.5
+      parent: 1
+  - uid: 2219
+    components:
+    - type: Transform
+      pos: -18.5,11.5
+      parent: 1
+  - uid: 2220
+    components:
+    - type: Transform
+      pos: -18.5,12.5
       parent: 1
 - proto: Catwalk
   entities:
@@ -6864,6 +6854,23 @@ entities:
     components:
     - type: Transform
       pos: -13.419492,19.564522
+      parent: 1
+- proto: CurtainsGreenOpen
+  entities:
+  - uid: 98
+    components:
+    - type: Transform
+      pos: -13.5,24.5
+      parent: 1
+  - uid: 210
+    components:
+    - type: Transform
+      pos: -13.5,21.5
+      parent: 1
+  - uid: 895
+    components:
+    - type: Transform
+      pos: -15.5,21.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -13022,24 +13029,6 @@ entities:
     - type: Transform
       pos: 12.5,12.5
       parent: 1
-- proto: HospitalCurtainsOpen
-  entities:
-  - uid: 438
-    components:
-    - type: Transform
-      pos: -13.5,24.5
-      parent: 1
-  - uid: 743
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -13.5,21.5
-      parent: 1
-  - uid: 895
-    components:
-    - type: Transform
-      pos: -15.5,21.5
-      parent: 1
 - proto: IntercomCommon
   entities:
   - uid: 2758
@@ -13080,13 +13069,6 @@ entities:
     components:
     - type: Transform
       pos: 18.435602,13.615202
-      parent: 1
-- proto: LockerNfsdSilverDetectiveFilled
-  entities:
-  - uid: 2427
-    components:
-    - type: Transform
-      pos: -15.5,2.5
       parent: 1
 - proto: LockerJanitorFilled
   entities:
@@ -13174,6 +13156,13 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: LockerNfsdSilverDetectiveFilled
+  entities:
+  - uid: 2427
+    components:
+    - type: Transform
+      pos: -15.5,2.5
+      parent: 1
 - proto: MachineCryoSleepPod
   entities:
   - uid: 409
@@ -13316,162 +13305,6 @@ entities:
     - type: Transform
       pos: -9.5,16.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 210
-    components:
-    - type: MetaData
-      name: duty log
-    - type: Transform
-      pos: -17.504293,3.6144228
-      parent: 1
-    - type: Paper
-      content: >-
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-
-        [head=1]NFSD Duty Log[/head]
-
-
-        Sheriff: [italic]n/a[/italic]
-
-
-        Officers:
-
-        - Urist McBeatsUpPrisoners (Signed on .... shift time)
-
-        ...
-  - uid: 2219
-    components:
-    - type: MetaData
-      name: Blank arrest warrant
-    - type: Transform
-      pos: -1.6418178,8.685857
-      parent: 1
-    - type: Paper
-      content: >
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-
-        [head=1]Personnel arrest warrant[/head]
-
-
-        Subject:
-
-        Charges:
-
-
-        Requesting officer:
-
-        Authorising command:
-
-        Authorised at:
-
-
-        This warrant is only valid when requested by a member of the NFSD ranked Bailiff or above, or a Station Representative. Additionally, it is only valid when authorised by a member of the NFSD ranked Sheriff, or a Station Representative. Both must provide both their stamp and signature, and they may not be the same person unless this is impossible at the time of authorisation of this warrant.
-  - uid: 2220
-    components:
-    - type: MetaData
-      name: Blank search warrant
-    - type: Transform
-      pos: -1.4355559,8.5697775
-      parent: 1
-    - type: Paper
-      content: >
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-
-        [head=1]Search warrant[/head]
-
-
-        Subject (Person/Ship):
-
-        Reason:
-
-
-        Requesting officer:
-
-        Authorising command:
-
-        Authorised at:
-
-
-        This warrant is only valid when requested by a member of the NFSD ranked Bailiff or above, or a Station Representative. Additionally, it is only valid when authorised by a member of the NFSD ranked Sheriff, or a Station Representative. Both must provide both their stamp and signature, and they may not be the same person unless this is impossible at the time of authorisation of this warrant.
-  - uid: 2760
-    components:
-    - type: MetaData
-      name: NFSD Outpost Atmos Setup
-    - type: Transform
-      pos: -3.3376977,11.792179
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-ce
-      stampedBy:
-      - stampType: RubberStamp
-        stampedColor: '#CC6600FF'
-        stampedName: NanoTrasen Engineering
-      content: >
-        [color=#cc6600]◥[bold]N[/bold]◣ [bold]Nanotrasen Engineering[/bold][/color]
-
-        [color=#cc6600]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-
-        [head=1]NFSD Outpost Atmos[/head]
-
-
-        Distro line setup:
-
-        [bullet]Enable the Distro mixer. (22% primary/78% secondary)
-
-        [bullet]Enable the Distro pump.
-
-
-        Waste line setup:
-
-        [bullet]Enable the Waste pump.
-
-        [bullet]Set N2 Filter to filter Nitrogen and enable it.
-
-        [bullet]Set O2 Filter to filter Oxygen and enable it.
-
-
-        These are sensible default instructions, a proper atmospherics technician should be hired in the event you are uncertain about any of these.
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.25
-            - 0.25,-0.25
-            - 0.25,0.25
-            - -0.25,0.25
-          mask:
-          - Impassable
-          - HighImpassable
-          layer: []
-          density: 20
-          hard: True
-          restitution: 0.3
-          friction: 0.2
-        flammable:
-          shape: !type:PhysShapeCircle
-            radius: 0.35
-            position: 0,0
-          mask:
-          - TableLayer
-          - HighImpassable
-          - LowImpassable
-          - BulletImpassable
-          - InteractImpassable
-          - Opaque
-          layer: []
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
 - proto: PaperBin10
   entities:
   - uid: 1267
@@ -13489,6 +13322,27 @@ entities:
     components:
     - type: Transform
       pos: -1.5,8.5
+      parent: 1
+- proto: PaperWrittenNfsdArrestWarrant
+  entities:
+  - uid: 905
+    components:
+    - type: Transform
+      pos: -1.3496978,8.549386
+      parent: 1
+- proto: PaperWrittenNfsdDutyLog
+  entities:
+  - uid: 904
+    components:
+    - type: Transform
+      pos: -17.44856,3.5854774
+      parent: 1
+- proto: PaperWrittenNfsdSearchWarrant
+  entities:
+  - uid: 906
+    components:
+    - type: Transform
+      pos: -1.6205313,8.747303
       parent: 1
 - proto: Pen
   entities:
@@ -15013,6 +14867,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: -13.5,20.5
       parent: 1
+- proto: SignElectricalMed
+  entities:
+  - uid: 696
+    components:
+    - type: Transform
+      pos: 9.5,-0.5
+      parent: 1
+  - uid: 743
+    components:
+    - type: Transform
+      pos: 13.5,-0.5
+      parent: 1
 - proto: SignInterrogation
   entities:
   - uid: 290
@@ -15369,16 +15235,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,9.5
       parent: 1
-  - uid: 695
+  - uid: 362
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -17.5,12.5
       parent: 1
-  - uid: 696
+  - uid: 454
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -17.5,11.5
       parent: 1
   - uid: 952
