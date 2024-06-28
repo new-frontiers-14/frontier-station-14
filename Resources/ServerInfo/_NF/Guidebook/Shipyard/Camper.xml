@@ -1,37 +1,46 @@
 <Document>
   # CAMPER-CLASS PERSONAL SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="Thruster"/>
-  <GuideEntityEmbed Entity="Knife"/>
-  <GuideEntityEmbed Entity="Coffee"/>
-  <GuideEntityEmbed Entity="Soap"/>
-  <GuideEntityEmbed Entity="Toilet"/>
-  <GuideEntityEmbed Entity="Sink"/>
-  <GuideEntityEmbed Entity="Thruster"/>
-  
+  <GuideEntityEmbed Entity="SignDirectionalBridge" Caption="Cockpit"/>
+  <GuideEntityEmbed Entity="ChairPilotSeat" Caption="Pilot Seat"/>
+  <GuideEntityEmbed Entity="DrinkBeerBottleFull" Caption="Beer"/>
+  <GuideEntityEmbed Entity="SignDirectionalDorms" Caption="Bedroom"/>
+  <GuideEntityEmbed Entity="ComputerTelevision" Caption="Television"/>
+  <GuideEntityEmbed Entity="Bed" Caption="Bed"/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Small
+  <Box>
+  <GuideEntityEmbed Entity="SignDirectionalFood" Caption="Kitchen"/>
+  <GuideEntityEmbed Entity="KitchenKnife" Caption="Knife"/>
+  <GuideEntityEmbed Entity="RollingPin" Caption="Rolling Pin"/>
+  <GuideEntityEmbed Entity="SignDirectionalWash" Caption="Bathroom"/>
+  <GuideEntityEmbed Entity="ToiletEmpty" Caption="Toilet"/>
+  <GuideEntityEmbed Entity="Sink" Caption="Sink"/>
+  </Box>
+
+  [color=#a4885c]Ship Size:[/color] Small
 	
-	[color=#a4885c]Recommended Crew:[/color] 1
+  [color=#a4885c]Recommended Crew:[/color] 1-2
 	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
+  [color=#a4885c]Power Gen Type:[/color] Plasma
 	
-	[color=#a4885c]Expeditions:[/color] No
+  [color=#a4885c]Expeditions:[/color] No
 	
-	[color=#a4885c]IFF Console:[/color] None
+  [color=#a4885c]IFF Console:[/color] None
 	
-  "A Camper Shuttle, the design is based of Earth's 'Camper Van', this shuttle is designed to fulfill every basic needs an average spacer could have."
-    
+  "A Camper Shuttle, designed to accommodate 1 to 2 occupant, this shuttle is designed to fulfill every basic needs an average spacer could have."
+
+  [italic]Brought to you by Settler's Shuttle, Settler's LLC Subcompany.[/italic]
+
   # PREFLIGHT CHECKLIST
   
   ## 1. Power supply
   
   ## 1.1. Battery units
   <Box>
-
-  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
+
   - Check that the substation unit is anchored to the wall.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load (W).
@@ -45,7 +54,7 @@
   - Check that P.A.C.M.A.N. generator units are anchored to the floor.
   - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
   - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 12 [bold]kW[/bold].
+  - Set Target Power to 6 [bold]kW[/bold].
   - Start P.A.C.M.A.N. generator units.
   
   ## 2. Atmospherics
@@ -65,7 +74,7 @@
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
     
-  - Enable waste loop pump (located at the bedroom).
+  - Enable waste loop pump (located at the kitchen).
   
   ## 3. Other checks
   <Box>
