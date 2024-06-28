@@ -16,9 +16,6 @@
             Caustic: 1
       - !type:SatiateThirst
         factor: -10
-        conditions:
-      - !type:ReagentThreshold
-          min: 1
       - !type:PopupMessage
         type: Local
         visualType: Medium
@@ -27,10 +24,7 @@
         - generic-reagent-effect-burning-insides 
         - generic-reagent-effect-thirsty
         probability: 0.3
-        conditions:
-      - !type:ReagentThreshold
-          min: 1
-          
+
 - type: reagent
   id: MysteryVomit
   name: reagent-name-putrid-mystery-sludge
@@ -39,19 +33,17 @@
   flavor: flavor-mysterysludge
   color: "#27333c"
   metabolisms:
-      effects:
-      - !type:ChemVomit
-        conditions:
-        - !type:ReagentThreshold
-          min: 0.1
-        probability: 0.3
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: 
-        - generic-reagent-effect-nauseous
-        - generic-reagent-effect-sick
-        probability: 0.3
+    Poison:
+        effects:
+        - !type:ChemVomit
+          probability: 0.3
+        - !type:PopupMessage
+            type: Local
+            visualType: Medium
+            messages: 
+            - generic-reagent-effect-nauseous
+            - generic-reagent-effect-sick
+            probability: 0.3
 
 - type: reagent
   id: MysteryDrunk
@@ -62,18 +54,15 @@
   flavor: flavor-mysterysludge
   metabolisms:
       Medicine:
-      effects:
-      - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
-      - !type:Drunk
-        slurSpeech: false
-        boozePower: 30
-      - !type:PopupMessage
-        type: Local
-        visualType: Large
-        messages: 
-        - generic-reagent-effect-nauseous
-        - generic-reagent-effect-dizzy
-        - generic-reagent-effect-spinning
-        probability: 0.3
+        effects:
+        - !type:Drunk
+            slurSpeech: true
+            boozePower: 30
+        - !type:PopupMessage
+            type: Local
+            visualType: Medium
+            messages: 
+            - generic-reagent-effect-nauseous
+            - generic-reagent-effect-dizzy
+            - generic-reagent-effect-spinning
+            probability: 0.3
