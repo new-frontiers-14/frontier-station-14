@@ -457,11 +457,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!component.Initialized)
             return;
 
-        // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
-        if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
+        if (args.Container.ID != component.TargetIdSlot.ID)
             return;
 
-        if (args.Container.ID != component.TargetIdSlot.ID)
+        // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
+        if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
 
         var uiUsers = _ui.GetActorUis(uid);
