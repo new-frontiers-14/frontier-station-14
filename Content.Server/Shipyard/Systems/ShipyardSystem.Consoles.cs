@@ -452,13 +452,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
     }
 
-    private void UpdateUserInterface(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
+    private void OnItemSlotChanged(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
     {
         if (!component.Initialized)
             return;
 
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
+            return;
+
+        if (args.Container.ID != component.TargetIdSlot.ID)
             return;
 
         var uiUsers = _ui.GetActorUis(uid);
