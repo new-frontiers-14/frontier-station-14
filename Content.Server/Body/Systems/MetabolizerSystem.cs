@@ -142,7 +142,7 @@ namespace Content.Server.Body.Systems
             var list = solution.Contents.ToArray();
             _random.Shuffle(list);
 
-            int reagents = 0;
+            int poisons = 0; // frontier modified
             foreach (var (reagent, quantity) in list)
             {
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
@@ -158,11 +158,10 @@ namespace Content.Server.Body.Systems
 
                     continue;
                 }
-
-                // Frontier: all cryogenic reagents in the solution should be processed, others should be limited (buff cryo meds)
-                if (reagents >= ent.Comp1.MaxReagentsProcessable && !proto.Metabolisms.ContainsKey("Cryogenic"))
+                // frontier modified
+                // Already processed all poisons, skip to the next reagent.
+                if (poisons >= ent.Comp1.MaxPoisonsProcessable && proto.Metabolisms.ContainsKey("Poison"))
                     continue;
-                // End Frontier
 
 
                 // loop over all our groups and see which ones apply
@@ -220,10 +219,10 @@ namespace Content.Server.Body.Systems
                 if (mostToRemove > FixedPoint2.Zero)
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
-                    // Frontier: do not count cryogenics chems against the reagent limit (to buff cryo meds)
-                    if (!proto.Metabolisms.ContainsKey("Cryogenic"))
-                        reagents++;
-                    // End Frontier
+                    // frontier modified
+                    // We have processed a poison, so count it towards the cap
+                    if (proto.Metabolisms.ContainsKey("Poison"))
+                        poisons++;
                 }
             }
 

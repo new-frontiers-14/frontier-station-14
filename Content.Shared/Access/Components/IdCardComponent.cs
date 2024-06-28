@@ -42,11 +42,6 @@ public sealed partial class IdCardComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool BypassLogging;
 
-    [DataField]
-    public LocId FullNameLocId = "access-id-card-component-owner-full-name-job-title-text";
-
-    [DataField]
-    public bool CanMicrowave = true;
 
     // Frontier
     [DataField("soundError")]
@@ -62,4 +57,5 @@ public sealed partial class IdCardComponent : Component
     [DataField("soundInsert")]
     public SoundSpecifier InsertSound =
         new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
+
 }
