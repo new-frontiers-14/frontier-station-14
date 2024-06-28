@@ -400,32 +400,32 @@ namespace Content.Server.VendingMachines
                 totalPrice = (int) priceVend;
             // This block exists to allow the VendPrice flag to set a vending machine item price.
 
-            if (totalPrice > bank.Balance)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
-                Deny(uid, component);
-                return;
-            }
-
             if (IsAuthorized(uid, sender, component))
             {
-                if (_bankSystem.TryBankWithdraw(sender, totalPrice))
+                // Frontier
+                if (totalPrice > bank.Balance)
                 {
-                    if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
-                    {
-                        var stationQuery = EntityQuery<StationBankAccountComponent>();
-
-                        foreach (var stationBankComp in stationQuery)
-                        {
-                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
-                        }
-
-                        UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
-
-                        _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
-                            $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
-                    }
+                    _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
+                    Deny(uid, component);
+                    return;
                 }
+
+                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
+                {
+                    var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                    foreach (var stationBankComp in stationQuery)
+                    {
+                        _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
+                    }
+
+                    _bankSystem.TryBankWithdraw(sender, totalPrice);
+                    UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
+
+                    _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
+                        $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
+                }
+                // Frontier
             }
         }
 
