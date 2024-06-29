@@ -19,7 +19,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Frontier MERGE
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -51,8 +51,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
             {
                 if (comp.Whitelist != null) // Frontier
                 {
-                    if (_whitelist.IsWhitelistPass(comp.Whitelist, hit)) // Frontier MERGE
-                    //if (comp.Whitelist.IsValid(hit, EntityManager) == true) // Frontier MERGE: commented out
+                    if (_whitelist.IsWhitelistPass(comp.Whitelist, hit))
                         _transform.Unanchor(hit, Transform(hit));
                 }
                 else // Frontier
