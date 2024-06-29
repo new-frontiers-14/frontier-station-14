@@ -18,7 +18,7 @@ namespace Content.Server.Construction.Components
         public bool HasBoard => BoardContainer?.ContainedEntities.Count != 0;
 
         [DataField("progress", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, MachinePartPrototype>))] // Frontier: upgradeable machine parts
-        public Dictionary<string, int> Progress = new(); // Frontier: upgradeable machine parts
+        public Dictionary<ProtoId<MachinePartPrototype>, int> Progress = new(); // Frontier: upgradeable machine parts
 
         [ViewVariables]
         public readonly Dictionary<ProtoId<StackPrototype>, int> MaterialProgress = new();
