@@ -1,10 +1,8 @@
-// FRONTIER MERGE: restored this from frontier's master to get things to compile
+// Frontier: restored upgradeable machine parts.
 
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.Stacks;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Construction.Components
 {

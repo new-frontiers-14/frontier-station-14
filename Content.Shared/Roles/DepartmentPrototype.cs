@@ -41,12 +41,6 @@ public sealed partial class DepartmentPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool EditorHidden;
-
-    /// <summary>
-    /// Frontier - whether or not to show this department. Defaults to no.
-    /// </summary>
-    [DataField]
-    public bool Enabled = false; // Frontier: MERGE - duplicated in EditorHidden?
 }
 
 /// <summary>

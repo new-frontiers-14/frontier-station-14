@@ -173,7 +173,7 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     }
 
     // Frontier?
-    private void PopulateJobsContainer(IReadOnlyDictionary<ProtoId<JobPrototype>, int?> jobList) // FRONTIER MERGE: JOBPROTOTYPE, INT?
+    private void PopulateJobsContainer(IReadOnlyDictionary<ProtoId<JobPrototype>, int?> jobList)
     {
         JobListing.RemoveAllChildren();
         foreach (var (job, amount) in jobList)

@@ -8,6 +8,7 @@ using Content.Shared.Tag;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Construction.Prototypes;
 
 namespace Content.Server.Construction;
 
@@ -301,7 +302,7 @@ public sealed class MachineFrameSystem : EntitySystem
 
     public void ResetProgressAndRequirements(MachineFrameComponent component, MachineBoardComponent machineBoard)
     {
-        component.Progress = new Dictionary<string, int>(machineBoard.Requirements); // Frontier: upgradeable machine parts
+        component.Progress = new Dictionary<ProtoId<MachinePartPrototype>, int>(machineBoard.Requirements); // Frontier: upgradeable machine parts
         component.MaterialRequirements = new Dictionary<ProtoId<StackPrototype>, int>(machineBoard.StackRequirements);
         component.ComponentRequirements = new Dictionary<string, GenericPartInfo>(machineBoard.ComponentRequirements);
         component.TagRequirements = new Dictionary<ProtoId<TagPrototype>, GenericPartInfo>(machineBoard.TagRequirements);
@@ -362,6 +363,7 @@ public sealed class MachineFrameSystem : EntitySystem
 
         foreach (var part in component.PartContainer.ContainedEntities)
         {
+            // Frontier: upgradeable machine parts
             if (TryComp<MachinePartComponent>(part, out var machinePart))
             {
                 var type = machinePart.PartType;
@@ -379,6 +381,7 @@ public sealed class MachineFrameSystem : EntitySystem
 
                 continue;
             }
+            // End Frontier
 
             if (TryComp<StackComponent>(part, out var stack))
             {

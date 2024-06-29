@@ -1,6 +1,5 @@
-using System.Collections.ObjectModel;
 using Robust.Shared.Prototypes;
-using Content.Shared.Roles; // FRONTIER MERGE
+using Content.Shared.Roles;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.StationRecords;
@@ -39,18 +38,18 @@ public sealed class GeneralStationRecordConsoleState : BoundUserInterfaceState
     public readonly uint? SelectedKey;
     public readonly GeneralStationRecord? Record;
     public readonly Dictionary<uint, string>? RecordListing;
-    public IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? JobList { get; } // FRONTIER MERGE: ADD JOBLIST
+    public IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? JobList { get; } // Frontier
     public readonly StationRecordsFilter? Filter;
     public readonly bool CanDeleteEntries;
 
     public GeneralStationRecordConsoleState(uint? key, GeneralStationRecord? record,
-        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList, StationRecordsFilter? newFilter, bool canDeleteEntries)
+        Dictionary<uint, string>? recordListing, IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList, StationRecordsFilter? newFilter, bool canDeleteEntries) // Frontier: add jobList
     {
         SelectedKey = key;
         Record = record;
         RecordListing = recordListing;
         Filter = newFilter;
-        JobList = jobList;
+        JobList = jobList; // Frontier
         CanDeleteEntries = canDeleteEntries;
     }
 

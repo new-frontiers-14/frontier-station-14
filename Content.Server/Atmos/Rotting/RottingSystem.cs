@@ -7,9 +7,6 @@ using Content.Shared.Damage;
 using Robust.Server.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Content.Shared.Cuffs.Components;
-using Content.Shared.Mobs; // FRONTIER MERGE: ADDED FOR MobStateChangedEvent
-using Content.Shared.Mobs.Components; // FRONTIER MERGE: ADDED FOR MobStateComponent
 
 namespace Content.Server.Atmos.Rotting;
 
@@ -27,76 +24,6 @@ public sealed class RottingSystem : SharedRottingSystem
         SubscribeLocalEvent<RottingComponent, BeingGibbedEvent>(OnGibbed);
 
         SubscribeLocalEvent<TemperatureComponent, IsRottingEvent>(OnTempIsRotting);
-    }
-
-    private void OnPerishableMapInit(EntityUid uid, PerishableComponent component, MapInitEvent args)
-    {
-        component.RotNextUpdate = _timing.CurTime + component.PerishUpdateRate;
-    }
-
-    private void OnMobStateChanged(EntityUid uid, PerishableComponent component, MobStateChangedEvent args)
-    {
-        if (args.NewMobState != MobState.Dead && args.OldMobState != MobState.Dead)
-            return;
-
-        if (HasComp<RottingComponent>(uid))
-            return;
-
-        component.RotAccumulator = TimeSpan.Zero;
-        component.RotNextUpdate = _timing.CurTime + component.PerishUpdateRate;
-    }
-
-    private void OnShutdown(EntityUid uid, RottingComponent component, ComponentShutdown args)
-    {
-        if (TryComp<PerishableComponent>(uid, out var perishable))
-        {
-            perishable.RotNextUpdate = TimeSpan.Zero;
-        }
-    }
-
-    private void OnRottingMobStateChanged(EntityUid uid, RottingComponent component, MobStateChangedEvent args)
-    {
-        if (args.NewMobState == MobState.Dead)
-            return;
-        RemCompDeferred(uid, component);
-    }
-
-    public bool IsRotProgressing(EntityUid uid, PerishableComponent? perishable)
-    {
-        // things don't perish by default.
-        if (!Resolve(uid, ref perishable, false))
-            return false;
-
-        // only dead things or inanimate objects can rot
-        if (TryComp<MobStateComponent>(uid, out var mobState) && !_mobState.IsDead(uid, mobState))
-            return false;
-
-        if (_container.TryGetOuterContainer(uid, Transform(uid), out var container) &&
-            HasComp<AntiRottingContainerComponent>(container.Owner))
-        {
-            return false;
-        }
-
-        if (TryComp<CuffableComponent>(uid, out var cuffed) && cuffed.CuffedHandCount > 0)
-        {
-            if (TryComp<HandcuffComponent>(cuffed.LastAddedCuffs, out var cuffcomp))
-                {
-                    if (cuffcomp.NoRot)
-                    {
-                        return false;
-                    }
-                }
-        }
-
-        var ev = new IsRottingEvent();
-        RaiseLocalEvent(uid, ref ev);
-
-        return !ev.Handled;
-    }
-
-    public bool IsRotten(EntityUid uid, RottingComponent? rotting = null)
-    {
-        return Resolve(uid, ref rotting, false);
     }
 
     private void OnGibbed(EntityUid uid, RottingComponent component, BeingGibbedEvent args)

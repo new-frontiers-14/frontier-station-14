@@ -12,7 +12,7 @@ using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Console;
-using Content.Shared.GameTicking.Components; // FRONTIER MERGE: ADDED FOR GameRuleComponent
+using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -20,7 +20,6 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
-//using Content.Server.GameTicking.Components; // FRONTIER MERGE: COMMENTED OUT
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;

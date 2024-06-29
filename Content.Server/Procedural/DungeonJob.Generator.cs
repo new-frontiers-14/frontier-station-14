@@ -288,8 +288,8 @@ public sealed partial class DungeonJob
                 foreach (var templateEnt in _lookup.GetEntitiesIntersecting(templateMapUid, bounds, LookupFlags.Uncontained))
                 {
                     var templateXform = xformQuery.GetComponent(templateEnt);
-                    var childPos = Vector2.Transform(templateXform.LocalPosition - roomCenter, dungeonMatty); // FRONTIER MERGE: dungeonMatty.Transform < Vector2.Transform(..., dungeonMatty)
-                    var childRot = templateXform.LocalRotation + roomRotation; // FRONTIER MERGE: finalRoomRotation<roomRotation
+                    var childPos = Vector2.Transform(templateXform.LocalPosition - roomCenter, dungeonMatty);
+                    var childRot = templateXform.LocalRotation + roomRotation;
                     var protoId = metaQuery.GetComponent(templateEnt).EntityPrototype?.ID;
 
                     // TODO: Copy the templated entity as is with serv
@@ -321,7 +321,7 @@ public sealed partial class DungeonJob
                         position -= Vector2Helpers.Half;
 
                         // Umm uhh I love decals so uhhhh idk what to do about this
-                        var angle = (decal.Angle + roomRotation).Reduced(); // FRONTIER MERGE: finalRoomRotation<roomRotation
+                        var angle = (decal.Angle + roomRotation).Reduced();
 
                         // Adjust because 32x32 so we can't rotate cleanly
                         // Yeah idk about the uhh vectors here but it looked visually okay but they may still be off by 1.

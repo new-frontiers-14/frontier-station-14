@@ -207,8 +207,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
-        var isWhitelisted = player.ContentData()?.Whitelisted ?? false; // DeltaV - Whitelist requirement
-
         return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes);
     }
 
@@ -224,14 +222,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
-        var isWhitelisted = player.ContentData()?.Whitelisted ?? false; // DeltaV - Whitelist requirement
-        // FRONTIER MERGE: use upstream, add isWhitelisted
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
             if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes))
                 roles.Add(job.ID);
         }
-        // END FRONTIER MERGE
 
         return roles;
     }

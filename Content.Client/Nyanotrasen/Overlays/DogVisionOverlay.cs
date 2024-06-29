@@ -1,4 +1,4 @@
-using System.Numerics; // FRONTIER MERGE: needed for Matrix3x2
+using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -44,7 +44,7 @@ public sealed partial class DogVisionOverlay : Overlay
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
-        worldHandle.SetTransform(Matrix3x2.Identity); // FRONTIER MERGE: Matrix3<Matrix3x2
+        worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(_dogVisionShader);
         worldHandle.DrawRect(viewport, Color.White);
         worldHandle.UseShader(null); // important - as of writing, construction overlay breaks without this

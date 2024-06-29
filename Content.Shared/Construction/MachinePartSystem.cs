@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Shared.Construction.Components;
-using Content.Shared.Construction.Prototypes; // FRONTIER MERGE
+using Content.Shared.Construction.Prototypes; // Frontier: restore MachinePartComponent
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
@@ -21,7 +21,7 @@ namespace Content.Shared.Construction
         {
             base.Initialize();
             SubscribeLocalEvent<MachineBoardComponent, ExaminedEvent>(OnMachineBoardExamined);
-            SubscribeLocalEvent<MachinePartComponent, ExaminedEvent>(OnMachinePartExamined);
+            SubscribeLocalEvent<MachinePartComponent, ExaminedEvent>(OnMachinePartExamined); // Frontier: restore upgradeable machine parts
         }
 
         private void OnMachineBoardExamined(EntityUid uid, MachineBoardComponent component, ExaminedEvent args)
@@ -57,9 +57,21 @@ namespace Content.Shared.Construction
                         ("amount", info.Amount),
                         ("requiredElement", examineName)));
                 }
+
+                // Frontier: restore upgradeable parts
+                foreach (var (part, amount) in component.Requirements)
+                {
+                    var partProto = _prototype.Index(part);
+                    var name = _prototype.Index(partProto.StockPartPrototype).Name;
+                    args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
+                        ("amount", amount),
+                        ("requiredElement", Loc.GetString(name))));
+                }
+                // End Frontier
             }
         }
 
+        // Frontier: restore upgradeable machine parts
         private void OnMachinePartExamined(EntityUid uid, MachinePartComponent component, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
@@ -73,6 +85,7 @@ namespace Content.Shared.Construction
                     Loc.GetString(_prototype.Index<MachinePartPrototype>(component.PartType).Name))));
             }
         }
+        // End Frontier
 
         public Dictionary<string, int> GetMachineBoardMaterialCost(Entity<MachineBoardComponent> entity, int coefficient = 1)
         {
