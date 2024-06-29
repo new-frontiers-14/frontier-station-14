@@ -1,8 +1,8 @@
 - type: entity
   parent: CarpStatue
   id: AberrantFleshDigestiveSack
-  name: digestive sack
-  description: Huh, a digestive sack.
+  name: assimilation sack
+  description: Huh, an assimilation sack? How do I even know this?
   components:
   - type: Timer
   - type: TimedSpawner
@@ -16,14 +16,16 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.3,-0.16,0.3,0.16"
-        density: 1500
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 500
         mask:
-        - TabletopMachineMask
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     sprite: _NF/Structures/Specific/AberrantFlesh/digestivesack.rsi
-    drawdepth: SmallObjects
+    drawdepth: Mobs
     snapCardinals: true
     layers:
     - state: base
