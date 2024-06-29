@@ -212,7 +212,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation) && (desiredType != InGameICChatType.Emote);
+        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
         // Capitalizing the word I only happens in English, so we check language here
         bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
@@ -649,6 +649,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             case ChatTransmitRange.NoGhosts:
                 initialResult = (data.Observer && !_adminManager.IsAdmin(session)) ? MessageRangeCheckResult.Disallowed : MessageRangeCheckResult.Full;
                 break;
+            // Frontier - prevent TVs from spamming the poor, poor admins
+            case ChatTransmitRange.GhostRangeLimitNoAdminCheck:
+                initialResult = (data.Observer && data.Range < 0) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full;
+                break;
+            // End Frontier
         }
         var insistHideChat = data.HideChatOverride ?? false;
         var insistNoHideChat = !(data.HideChatOverride ?? true);
@@ -964,5 +969,7 @@ public enum ChatTransmitRange : byte
     /// Hidden from the chat window.
     HideChat,
     /// Ghosts can't hear or see it at all. Regular players can if in-range.
-    NoGhosts
+    NoGhosts,
+    /// Frontier: Normal, ghosts are still range-limited, and won't spam admins
+    GhostRangeLimitNoAdminCheck,
 }

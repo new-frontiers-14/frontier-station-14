@@ -30,6 +30,11 @@
                                    HorizontalExpand="True"
                                    Margin="3"
                                    Name="ReadonlyDisplay">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-designation'}"/>
+                        <controls:Label Name="ShuttleDesignation"
+                               Text="{controls:Loc 'shuttle-console-designation-unknown'}"
+                               HorizontalExpand="True"
+                               Align="Right"/>
                         <controls:Label Text="{controls:Loc 'shuttle-console-position'}"/>
                         <controls:Label Name="GridPosition"
                                Text="0.0, 0.0"

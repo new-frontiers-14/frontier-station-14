@@ -594,3 +594,51 @@
     entity: NfsdTechFab
   - type: StaticPrice
     price: 250
+
+# Hoverbikes
+- type: entity
+  parent: BaseNFFlatpack
+  id: HoverbikeFlatpack
+  name: hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeNFKeys
+  - type: StaticPrice
+    price: 2000
+  - type: Sprite
+    layers:
+    - state: command_airlock
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeMailcarrierFlatpack
+  name: mail carrier hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeMailcarrierKey
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeNfsdFlatpack
+  name: nfsd hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeNfsdKey
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  parent: HoverbikeFlatpack
+  id: HoverbikeSyndicateFlatpack
+  name: syndicate hoverbike flatpack
+  description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverbikeSyndicateKey
+  - type: StaticPrice
+    price: 750

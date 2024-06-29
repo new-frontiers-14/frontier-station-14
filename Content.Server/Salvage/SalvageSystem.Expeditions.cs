@@ -6,7 +6,9 @@ using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
+using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.Shuttles.Systems;
@@ -30,7 +32,7 @@ public sealed partial class SalvageSystem
      * Handles setup / teardown of salvage expeditions.
      */
 
-    private const int MissionLimit = 4;
+    private const int MissionLimit = 5;
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private readonly JobQueue _salvageQueue = new();
@@ -46,6 +48,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, EntParentChangedMessage>(OnSalvageConsoleParent);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ClaimSalvageMessage>(OnSalvageClaimMessage);
 
+        SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
 //        SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused);
 
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentShutdown>(OnExpeditionShutdown);
@@ -101,6 +104,12 @@ public sealed partial class SalvageSystem
         }
 
         _failedCooldown = obj;
+    }
+
+    private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)
+    {
+        var selectedFile = _audio.GetSound(component.Sound);
+        component.SelectedSong = new SoundPathSpecifier(selectedFile, component.Sound.Params);
     }
 
     private void OnExpeditionShutdown(EntityUid uid, SalvageExpeditionComponent component, ComponentShutdown args)
@@ -297,6 +306,7 @@ public sealed partial class SalvageSystem
             _metaData,
             this,
             _transform,
+            _mapSystem,
             station,
             coordinatesDisk,
             missionParams,

@@ -89,32 +89,27 @@ entities:
       version: 2
       data:
         tiles:
-          -1,-1:
-            0: 65535
-          0,-1:
-            0: 4375
-            1: 26208
           -2,-1:
-            0: 61166
+            0: 28224
+          -2,0:
+            0: 14
+            1: 35840
           -2,-2:
             1: 51200
+          -1,-1:
+            0: 65520
           -1,-2:
             1: 1
-            0: 65534
-          0,-2:
-            0: 30579
-            1: 4
-          0,0:
-            0: 30583
-          0,1:
-            0: 7
-          -2,0:
-            0: 238
-            1: 35840
+            0: 61120
           -1,0:
-            0: 65535
-          -1,1:
-            0: 15
+            0: 61059
+          0,-2:
+            0: 13072
+            1: 4
+          0,-1:
+            1: 26208
+          0,0:
+            0: 13104
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -132,7 +127,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -693,7 +688,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 201
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 220
     components:
@@ -707,13 +702,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
-      parent: 201
-- proto: CratePirate
-  entities:
-  - uid: 226
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
       parent: 201
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1481,20 +1469,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-6.5
-      parent: 201
-- proto: SuitStorageEVAPirate
-  entities:
-  - uid: 67
-    components:
-    - type: Transform
-      pos: -3.5,-2.5
-      parent: 201
-- proto: SuitStoragePirateCap
-  entities:
-  - uid: 62
-    components:
-    - type: Transform
-      pos: -0.5,3.5
       parent: 201
 - proto: Table
   entities:

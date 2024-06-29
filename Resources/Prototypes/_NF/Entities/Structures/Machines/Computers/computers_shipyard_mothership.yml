@@ -10,8 +10,8 @@
     key: enum.ShipyardConsoleUiKey.Custom
   - type: UserInterface
     interfaces:
-    - key: enum.ShipyardConsoleUiKey.Custom
-      type: ShipyardConsoleBoundUserInterface
+      enum.ShipyardConsoleUiKey.Custom:
+        type: ShipyardConsoleBoundUserInterface
   - type: ShipyardListing
 
 # The empress console
@@ -108,6 +108,7 @@
   components:
   - type: ShipyardListing
     shuttles:
+    - MailPod
     - MailTruck
 #  - type: AccessReader # Cannot lock it for mail since the inserted card will be missing from you
 #    access: [["Mail"]] # Cannot lock it for mail since the inserted card will be missing from you

@@ -1,0 +1,67 @@
+- type: entity
+  id: CratePirateChestCaptain
+  name: captain's pirate chest
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingNeckCloakPirateCap
+      - id: Cutlass # Frontier EnergyCutlass<Cutlass
+      - id: DeathAcidifierImplanter # Frontier MicroBombImplanter<DeathAcidifierImplanter
+      - id: ClothingHeadsetAltFreelancer # Frontier
+
+- type: entity
+  id: CratePirateChest
+  name: crew's pirate chest
+  suffix: Filled
+  parent: CratePirate
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherPirateCannon
+        amount: 2
+      - id: ClothingOuterCoatGentle
+      - id: Cutlass
+        amount: 2
+      - id: CannonBall
+        amount: 2
+      - id: WeaponPistolFlintlock
+        amount: 4
+      - id: WeaponShotgunBlunderbuss
+        amount: 2
+      - id: ClothingHeadsetFreelance  # Frontier
+        amount: 3  # Frontier
+
+- type: entity
+  id: CratePirateChestCannonBall
+  name: cannonball chest
+  suffix: Filled
+  parent: CratePirateGrey
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBall
+        amount: 6
+
+- type: entity
+  id: CratePirateChestGrapeShot
+  name: grapeshot chest
+  suffix: Filled
+  parent: CratePirateGrey
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallGrapeshot
+        amount: 6
+
+- type: entity
+  id: CratePirateChestGlassShot
+  name: glassshot chest
+  suffix: Filled
+  parent: CratePirateGrey
+  components:
+  - type: StorageFill
+    contents:
+      - id: CannonBallGlassshot
+        amount: 6

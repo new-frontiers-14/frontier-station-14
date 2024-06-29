@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._NF.LoggingExtensions;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
@@ -76,8 +77,11 @@ namespace Content.Shared.Interaction
 
         public override void Initialize()
         {
+            SubscribeLocalEvent<BoundUserInterfaceCheckRangeEvent>(HandleUserInterfaceRangeCheck);
             SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundInterfaceInteractAttempt);
+
             SubscribeAllEvent<InteractInventorySlotEvent>(HandleInteractInventorySlotEvent);
+
             SubscribeLocalEvent<UnremoveableComponent, ContainerGettingRemovedAttemptEvent>(OnRemoveAttempt);
             SubscribeLocalEvent<UnremoveableComponent, GotUnequippedEvent>(OnUnequip);
             SubscribeLocalEvent<UnremoveableComponent, GotUnequippedHandEvent>(OnUnequipHand);
@@ -108,7 +112,9 @@ namespace Content.Shared.Interaction
         /// </summary>
         private void OnBoundInterfaceInteractAttempt(BoundUserInterfaceMessageAttempt ev)
         {
-            if (ev.Sender.AttachedEntity is not { } user || !_actionBlockerSystem.CanInteract(user, ev.Target))
+            var user = ev.Actor;
+
+            if (!_actionBlockerSystem.CanInteract(user, ev.Target))
             {
                 ev.Cancel();
                 return;
@@ -419,7 +425,11 @@ namespace Content.Shared.Interaction
             // all interactions should only happen when in range / unobstructed, so no range check is needed
             var message = new InteractHandEvent(user, target);
             RaiseLocalEvent(target, message, true);
-            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{ToPrettyString(user):user} interacted with {ToPrettyString(target):target}");
+
+            // Frontier modification: adds extra things to the log
+            var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, target);
+
+            _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{ToPrettyString(user):user} interacted with {ToPrettyString(target):target}{extraLogs}");
             DoContactInteraction(user, target, message);
             if (message.Handled)
                 return;
@@ -973,8 +983,8 @@ namespace Content.Shared.Interaction
                 return false;
 
             DoContactInteraction(user, used, activateMsg);
-            if (delayComponent != null)
-                _useDelay.TryResetDelay((used, delayComponent));
+            // Still need to call this even without checkUseDelay in case this gets relayed from Activate.
+            _useDelay.TryResetDelay(used, component: delayComponent);
             if (!activateMsg.WasLogged)
                 _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(user):user} activated {ToPrettyString(used):used}");
             return true;
@@ -1047,7 +1057,12 @@ namespace Content.Shared.Interaction
             var dropMsg = new DroppedEvent(user);
             RaiseLocalEvent(item, dropMsg, true);
             if (dropMsg.Handled)
-                _adminLogger.Add(LogType.Drop, LogImpact.Low, $"{ToPrettyString(user):user} dropped {ToPrettyString(item):entity}");
+            {
+                // Frontier modification: adds extra things to the log
+                var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, item);
+
+                _adminLogger.Add(LogType.Drop, LogImpact.Low, $"{ToPrettyString(user):user} dropped {ToPrettyString(item):entity}{extraLogs}");
+            }
 
             // If the dropper is rotated then use their targetrelativerotation as the drop rotation
             var rotation = Angle.Zero;
@@ -1144,6 +1159,21 @@ namespace Content.Shared.Interaction
 
             RaiseLocalEvent(uidA, new ContactInteractionEvent(uidB.Value));
             RaiseLocalEvent(uidB.Value, new ContactInteractionEvent(uidA));
+        }
+
+        private void HandleUserInterfaceRangeCheck(ref BoundUserInterfaceCheckRangeEvent ev)
+        {
+            if (ev.Result == BoundUserInterfaceRangeResult.Fail)
+                return;
+
+            if (InRangeUnobstructed(ev.Actor, ev.Target, ev.Data.InteractionRange))
+            {
+                ev.Result = BoundUserInterfaceRangeResult.Pass;
+            }
+            else
+            {
+                ev.Result = BoundUserInterfaceRangeResult.Fail;
+            }
         }
     }
 

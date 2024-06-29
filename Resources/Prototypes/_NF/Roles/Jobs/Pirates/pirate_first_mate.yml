@@ -7,31 +7,29 @@
     - !type:WhitelistRequirement
     - !type:OverallPlaytimeRequirement
       time: 129600 # Frontier - 36 hours
-  startingGear: NFPirateFirstMateGear
-  canBeAntag: true
+  startingGear: PirateFirstMateNFGear
   alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
   icon: "JobIconMercenary" 
   supervisors: job-supervisors-hire
   setPreference: true
   accessGroups:
   - GeneralAccess
   special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MailDisabled
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
 
 - type: startingGear
-  id: NFPirateFirstMateGear
+  id: PirateFirstMateNFGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPirate
-    back: ClothingBackpackPirateFilled
     head: ClothingHeadHatPirateTricord
     ears: ClothingHeadsetAltFreelancer
     shoes: ClothingShoesBootsLaceup
-    id: PiratePDA
     belt: ClothingBeltUtility
     pocket1: AppraisalTool
+    pocket2: BasePirateUplinkPirateCrew
     outerClothing: ClothingOuterCoatGentle
-  innerClothingSkirt: ClothingUniformJumpsuitPirate
-  satchel: ClothingBackpackPirateFilled
-  duffelbag: ClothingBackpackPirateFilled
-  messenger: ClothingBackpackMessengerMercenaryFilled

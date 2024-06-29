@@ -8,12 +8,11 @@
 
 # Shuttle Notes:
 # 
-
 - type: vessel
   id: harbormaster
   name: NC Harbormaster
   description: A small tugboat.
-  price: 29500
+  price: 28300 # ~24600$ on mapinit + ~3690$ from 15% markup
   category: Small
   group: Civilian
   shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
@@ -35,4 +34,6 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
+            Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

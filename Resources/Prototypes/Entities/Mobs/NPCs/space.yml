@@ -116,7 +116,7 @@
   parent: MobBearSpace
   suffix: "Salvage Ruleset"
   components:
-  - type: SalvageMobRestrictions
+  - type: SalvageMobRestrictionsNF
 
 - type: entity
   name: space kangaroo
@@ -171,15 +171,15 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
 
 - type: entity
   id: MobKangarooSpaceSalvage
   parent: MobKangarooSpace
   suffix: "Salvage Ruleset"
   components:
-  - type: SalvageMobRestrictions
+  - type: SalvageMobRestrictionsNF
 
 - type: entity
   name: space spider
@@ -263,6 +263,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -276,7 +277,7 @@
   parent: MobSpiderSpace
   suffix: "Salvage Ruleset"
   components:
-  - type: SalvageMobRestrictions
+  - type: SalvageMobRestrictionsNF
 
 - type: entity
   name: space cobra
@@ -373,4 +374,4 @@
   parent: MobCobraSpace
   suffix: "Salvage Ruleset"
   components:
-    - type: SalvageMobRestrictions
+    - type: SalvageMobRestrictionsNF

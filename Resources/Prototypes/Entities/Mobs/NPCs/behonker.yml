@@ -76,8 +76,8 @@
         - id: BikeHorn
     - type: UserInterface
       interfaces:
-      - key: enum.StrippingUiKey.Key
-        type: StrippableBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
     - type: MobThresholds
       thresholds:
         0: Alive
@@ -88,6 +88,7 @@
       metabolizerTypes: [ Dragon ]
       groups:
         - id: Medicine
+        - id: Cryogenic # Frontier
         - id: Poison
     - type: Butcherable
       spawned:

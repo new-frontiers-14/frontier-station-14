@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._NF.LoggingExtensions;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -237,7 +238,12 @@ namespace Content.Shared.Containers.ItemSlots
 
             // Logging
             if (inserted != null && inserted.Value && user != null)
-                _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user.Value)} inserted {ToPrettyString(item)} into {slot.ContainerSlot?.ID + " slot of "}{ToPrettyString(uid)}");
+            {
+                // Frontier modification: adds extra things to the log
+                var extraLogs = LoggingExtensions.GetExtraLogs(EntityManager, item);
+
+                _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user.Value)} inserted {ToPrettyString(item)}{extraLogs} into {slot.ContainerSlot?.ID + " slot of "}{ToPrettyString(uid)}");
+            }
 
             _audioSystem.PlayPredicted(slot.InsertSound, uid, excludeUserAudio ? user : null);
         }
@@ -626,9 +632,9 @@ namespace Content.Shared.Containers.ItemSlots
                 return;
 
             if (args.TryEject && slot.HasItem)
-                TryEjectToHands(uid, slot, args.Session.AttachedEntity, false);
-            else if (args.TryInsert && !slot.HasItem && args.Session.AttachedEntity is EntityUid user)
-                TryInsertFromHand(uid, slot, user);
+                TryEjectToHands(uid, slot, args.Actor, true);
+            else if (args.TryInsert && !slot.HasItem)
+                TryInsertFromHand(uid, slot, args.Actor);
         }
         #endregion
 

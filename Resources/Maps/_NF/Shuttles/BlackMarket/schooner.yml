@@ -428,58 +428,67 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
-          0,-1:
-            0: 65535
+            0: 65294
           -1,0:
-            0: 63487
-            1: 2048
-          -1,-1:
-            0: 65407
-            1: 128
+            0: 60942
           0,1:
-            0: 65535
-          0,2:
-            0: 65535
-          0,3:
-            0: 13175
-          1,0:
-            0: 30515
-          1,1:
-            0: 4919
-          1,2:
-            0: 273
-          0,-3:
-            0: 65280
-          0,-2:
-            0: 65535
-          1,-3:
-            0: 4352
-          1,-2:
-            0: 29489
-          1,-1:
-            0: 13175
-          -2,0:
-            0: 52360
-          -2,1:
-            0: 2188
+            0: 59455
           -1,1:
-            0: 65535
+            0: 57998
+          0,2:
+            0: 14190
           -1,2:
-            0: 61439
+            0: 35854
+            1: 256
+          0,3:
+            0: 3
+            1: 13056
           -1,3:
-            0: 35020
-          -2,-2:
-            0: 51328
-          -2,-1:
-            0: 35020
-          -1,-3:
-            0: 48896
-            1: 16384
-          -1,-2:
-            0: 65535
+            0: 8
+            1: 34816
           0,4:
-            0: 273
+            1: 273
+          0,-1:
+            0: 57599
+          1,2:
+            1: 256
+          1,0:
+            1: 17410
+            2: 8704
+          1,1:
+            2: 2
+            1: 516
+          1,-1:
+            1: 8260
+            2: 34
+          0,-3:
+            0: 29184
+          -1,-3:
+            0: 51200
+            1: 256
+          0,-2:
+            0: 49663
+          -1,-2:
+            0: 24814
+          -1,-1:
+            0: 57582
+          1,-3:
+            1: 256
+          1,-2:
+            1: 16416
+            2: 8192
+          -2,0:
+            1: 17416
+            2: 34816
+          -2,1:
+            1: 2052
+            2: 8
+          -2,-1:
+            1: 32836
+            2: 136
+          -2,-2:
+            1: 16512
+            2: 32768
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -497,10 +506,25 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.14996
+          immutable: True
           moles:
-          - 20.078888
-          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1815,47 +1839,24 @@ entities:
     - type: Transform
       pos: 3.5,0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 204
-          - 203
-          - 202
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: ClosetWallEmergencyFilledRandom
-  entities:
-  - uid: 205
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-4.5
-      parent: 1
-  - uid: 206
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-8.5
-      parent: 1
-- proto: ClosetWallFireFilledRandom
-  entities:
-  - uid: 207
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,1.5
-      parent: 1
-  - uid: 208
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-8.5
-      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClosetWallMaintenanceFilledRandom
   entities:
   - uid: 209
@@ -1863,13 +1864,26 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ClothingEyesEyepatch
   entities:
-  - uid: 210
-    components:
-    - type: Transform
-      pos: -0.3120169,12.330579
-      parent: 1
   - uid: 211
     components:
     - type: Transform
@@ -1880,14 +1894,14 @@ entities:
   - uid: 212
     components:
     - type: Transform
-      pos: 1.2214307,2.6089354
+      pos: -0.4273789,2.6294885
       parent: 1
 - proto: ClothingHeadHatPirate
   entities:
   - uid: 213
     components:
     - type: Transform
-      pos: 1.5811653,12.328757
+      pos: 1.4499189,12.408553
       parent: 1
 - proto: ClothingHeadHatPirateTricord
   entities:
@@ -1896,40 +1910,13 @@ entities:
     - type: Transform
       pos: -0.27106684,-0.46582198
       parent: 1
-- proto: ClothingNeckCloakPirateCap
-  entities:
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingOuterCoatJensen
   entities:
   - uid: 215
     components:
     - type: Transform
-      pos: -0.3756531,12.328757
+      pos: -0.3953849,12.460637
       parent: 1
-- proto: ClothingOuterCoatPirate
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitPirate
-  entities:
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 201
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ComputerIFF
   entities:
   - uid: 216
@@ -1946,7 +1933,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,8.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleAntag
   entities:
   - uid: 218
     components:
@@ -1963,6 +1950,11 @@ entities:
       parent: 1
 - proto: CrateEmptySpawner
   entities:
+  - uid: 203
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
   - uid: 220
     components:
     - type: Transform
@@ -1983,33 +1975,13 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-- proto: CrateFunPirate
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-- proto: CratePirateChest
-  entities:
-  - uid: 224
-    components:
-    - type: Transform
-      pos: -0.5,5.5
-      parent: 1
-- proto: CratePirateChestCaptain
-  entities:
-  - uid: 274
-    components:
-    - type: Transform
-      pos: -0.5,2.5
-      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 228
+  - uid: 202
     components:
     - type: Transform
-      pos: 2.5,5.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,-4.5
       parent: 1
 - proto: DresserFilled
   entities:
@@ -2107,13 +2079,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,9.5
-      parent: 1
-- proto: FoodMealNachosCuban
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      pos: 2.418281,9.579869
       parent: 1
 - proto: GravityGeneratorMini
   entities:
@@ -2309,13 +2274,6 @@ entities:
     - type: Transform
       pos: 2.3989987,-8.34466
       parent: 1
-- proto: PinpointerUniversal
-  entities:
-  - uid: 280
-    components:
-    - type: Transform
-      pos: 0.67992365,2.5024152
-      parent: 1
 - proto: PirateFlag
   entities:
   - uid: 281
@@ -2470,6 +2428,11 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 204
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
   - uid: 304
     components:
     - type: Transform
@@ -2662,21 +2625,6 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 1
-  - uid: 337
-    components:
-    - type: Transform
-      pos: -1.5,4.5
-      parent: 1
-  - uid: 338
-    components:
-    - type: Transform
-      pos: 2.5,7.5
-      parent: 1
-  - uid: 339
-    components:
-    - type: Transform
-      pos: 1.5,9.5
-      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 505
@@ -2722,6 +2670,8 @@ entities:
     - type: Transform
       pos: -0.51266235,8.61944
       parent: 1
+    - type: Stack
+      count: 15
 - proto: ShuttersNormal
   entities:
   - uid: 341
@@ -3004,13 +2954,6 @@ entities:
       parent: 1
     - type: SpamEmitSound
       enabled: False
-- proto: SpawnMobParrot
-  entities:
-  - uid: 372
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 1
 - proto: SpawnPointPirate
   entities:
   - uid: 373
@@ -3047,40 +2990,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,7.5
       parent: 1
-- proto: SuitStorageEVAPirate
-  entities:
-  - uid: 378
-    components:
-    - type: Transform
-      pos: 3.5,7.5
-      parent: 1
-- proto: SuitStoragePirateCap
-  entities:
-  - uid: 379
-    components:
-    - type: Transform
-      pos: -1.5,-8.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: TableCarpet
   entities:
+  - uid: 205
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
   - uid: 380
     components:
     - type: Transform
@@ -3583,34 +3499,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,3.5
-      parent: 1
-- proto: WeaponGrapplingGun
-  entities:
-  - uid: 471
-    components:
-    - type: Transform
-      pos: 0.44128692,2.693194
-      parent: 1
-- proto: WeaponLauncherPirateCannon
-  entities:
-  - uid: 472
-    components:
-    - type: Transform
-      pos: 0.4072001,5.6771774
-      parent: 1
-- proto: WeaponRevolverPirate
-  entities:
-  - uid: 473
-    components:
-    - type: Transform
-      pos: 0.6162869,5.484689
-      parent: 1
-- proto: WeaponShotgunBlunderbuss
-  entities:
-  - uid: 474
-    components:
-    - type: Transform
-      pos: 0.5503819,5.2956195
       parent: 1
 - proto: Window
   entities:

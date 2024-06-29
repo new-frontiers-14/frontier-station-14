@@ -9,3 +9,63 @@
       - id: WeaponLauncherChinaLakeEmp
       - id: GrenadeEmp
         amount: 8
+
+- type: entity
+  parent: ClothingBackpackDuffelMime
+  id: ClothingBackpackDuffelSurgeryImpovFilled
+  name: improvised surgical duffel bag
+  description: "This looks like set of improvised surgical tools put together by someone."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ScalpelShiv
+      - id: WelderMini
+      - id: SawImprov
+      - id: ClothingHandsGlovesFingerless
+      - id: PillSpaceDrugs
+        amount: 3
+      - id: Plunger
+      - id: Spoon
+      - id: FoodCondimentPacketKetchup
+      - id: PowerCellMedium
+      - id: CableApcStack1
+        amount: 2
+
+- type: entity
+  parent: ClothingBackpackDuffelMedical
+  id: ClothingBackpackDuffelSurgeryAdvancedFilled
+  name: advanced surgical duffel bag
+  description: "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding advanced surgical tools."
+  components:
+  - type: StorageFill
+    contents:
+      - id: ScalpelAdvanced
+      - id: ScalpelLaser
+      - id: Cautery
+      - id: SawElectric
+      - id: Drill
+      - id: Hemostat
+      - id: Retractor
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdTrackingBundle
+  name: tracking bundle
+  description: "All the equipment needed to track almost anything, careful tracking people"
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherNfsdLake
+      - id: BoxTrackingDarts
+
+- type: entity
+  parent: ClothingBackpackDuffelNfsdBrown
+  id: ClothingBackpackDuffelNfsdEmpBundle
+  name: NFSD Lake EMP bundle
+  description: "An old repainted China-Lake grenade launcher bundled with 10 rounds of EMP."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherNfsdLake
+      - id: GrenadeEmp
+        amount: 12

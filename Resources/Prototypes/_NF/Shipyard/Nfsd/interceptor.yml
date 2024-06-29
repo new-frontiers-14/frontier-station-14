@@ -1,0 +1,26 @@
+- type: vessel
+  id: Interceptor
+  name: NSF Interceptor
+  description: A small security vessel specializing in crime scene forensics.
+  price: 21350
+  category: Small
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/interceptor.yml
+
+- type: gameMap
+  id: Interceptor
+  mapName: 'NSF Interceptor'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/interceptor.yml
+  minPlayers: 0
+  stations:
+    Interceptor:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Interceptor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}

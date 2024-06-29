@@ -96,29 +96,43 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30583
+            0: 13107
             1: 34952
           0,-1:
-            0: 30579
-            1: 4
-          -1,-1:
-            1: 36
-            0: 61128
+            0: 13104
+            2: 4
           -1,0:
-            0: 52974
+            0: 36076
             1: 8192
           0,1:
-            0: 3
             1: 12
+          -1,-1:
+            0: 51328
+            1: 32
+            2: 4
           -1,1:
             1: 6
-            0: 8
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -150,20 +164,6 @@ entities:
     - type: BecomesStation
       id: mailhunter
     - type: SpreaderGrid
-- proto: ActionToggleInternals
-  entities:
-  - uid: 53
-    components:
-    - type: Transform
-      parent: 5
-    - type: InstantAction
-      container: 5
-  - uid: 131
-    components:
-    - type: Transform
-      parent: 18
-    - type: InstantAction
-      container: 18
 - proto: AirAlarm
   entities:
   - uid: 125
@@ -224,12 +224,12 @@ entities:
   - uid: 133
     components:
     - type: Transform
-      pos: 1.8442372,1.3896302
+      pos: 0.67193127,0.721212
       parent: 103
   - uid: 134
     components:
     - type: Transform
-      pos: 1.5838206,1.3792136
+      pos: 0.3177646,0.721212
       parent: 103
 - proto: AmeShielding
   entities:
@@ -554,7 +554,7 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 103
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 95
     components:
@@ -568,13 +568,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,2.5
-      parent: 103
-- proto: CratePirateChest
-  entities:
-  - uid: 135
-    components:
-    - type: Transform
-      pos: 1.5,2.5
       parent: 103
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -725,13 +718,6 @@ entities:
     - type: Transform
       pos: 1.5,4.5
       parent: 103
-- proto: GunSafeShuttleT3Spawner
-  entities:
-  - uid: 34
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 103
 - proto: Gyroscope
   entities:
   - uid: 119
@@ -741,35 +727,6 @@ entities:
       parent: 103
     - type: Thruster
       originalPowerLoad: 1500
-- proto: NitrousOxideTankFilled
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      pos: -0.48881638,3.010011
-      parent: 103
-    - type: GasTank
-      toggleActionEntity: 53
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 53
-  - uid: 18
-    components:
-    - type: Transform
-      parent: 10
-    - type: GasTank
-      toggleActionEntity: 131
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 131
 - proto: PoweredlightColoredBlack
   entities:
   - uid: 127
@@ -777,6 +734,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,0.5
+      parent: 103
+- proto: Rack
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: 0.5,0.5
       parent: 103
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -928,13 +892,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,0.5
-      parent: 103
-- proto: SuitStorageEVAPirate
-  entities:
-  - uid: 123
-    components:
-    - type: Transform
-      pos: 0.5,0.5
       parent: 103
 - proto: TableCarpet
   entities:
@@ -1136,21 +1093,4 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 103
-- proto: WeaponImprovisedPneumaticCannon
-  entities:
-  - uid: 10
-    components:
-    - type: Transform
-      pos: -0.3918358,2.7159653
-      parent: 103
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        gas_tank: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 18
 ...

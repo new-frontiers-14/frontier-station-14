@@ -1,0 +1,122 @@
+- type: entity
+  parent: FoodEggBase
+  id: DragonEgg
+  name: dragon egg
+  description: How many did you kill just to get one of these eggs.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
+    size: Large
+  - type: MultiHandedItem
+  - type: Food
+    trash: DragonEggshells
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+       !type:DamageTrigger
+       damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DragonEggshells:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: GhostRole
+    name: ghost-role-information-baby-dragon-name
+    description: ghost-role-information-baby-dragon-description
+    rules: ghost-role-information-baby-dragon-rules
+    requirements:
+    - !type:WhitelistRequirement
+  - type: GhostRoleMobSpawner
+    prototype: MobSpawnBabyDragon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 36
+        reagents:
+        - data: null
+          ReagentId: Egg
+          Quantity: 12
+        - data: null
+          ReagentId: Ichor
+          Quantity: 12
+        - data: null
+          ReagentId: Vitamin
+          Quantity: 12
+  - type: StaticPrice
+    price: 20000
+
+- type: entity
+  name: dragon eggshells
+  parent: BaseItem
+  id: DragonEggshells
+  description: You're walkin' on 'em bud.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
+    state: broken
+  - type: Food
+  - type: Item
+    sprite: Objects/Consumable/Food/egg.rsi
+    size: Large
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        reagents:
+        - ReagentId: Egg
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Egg
+    - Trash
+  - type: SpaceGarbage
+
+- type: entity #This is only for the hatching animation since this is an in between from picking the ghost role and becoming the dragon
+  id: MobSpawnBabyDragon
+  name: mobspawner dragon
+  noSpawn: true
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _NF/Effects/dragonspawn.rsi
+    state: dragon
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Nyanotrasen/shogi_piece_clack.ogg
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: TimedDespawn
+    lifetime: 3.5
+  - type: TransferMindOnDespawn
+    entityPrototype: MobDragonPet
