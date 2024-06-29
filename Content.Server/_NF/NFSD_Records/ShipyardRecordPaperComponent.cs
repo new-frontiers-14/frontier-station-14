@@ -1,3 +1,5 @@
+using Content.Shared.Fax.Components;
+
 namespace Content.Server.Fax
 {
     /// <summary>

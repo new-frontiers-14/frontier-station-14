@@ -9,6 +9,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
 using Robust.Shared.Enums;
+using Content.Shared.Fax.Components;
 
 namespace Content.Server.Fax;
 
@@ -54,6 +55,7 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
         var printout = new FaxPrintout(
         Loc.GetString("shipyard-record-paper-content", ("vessel_name", args.VesselName), ("vessel_owner_name", args.VesselOwnerName), ("vessel_owner_species", args.VesselOwnerSpecies), ("vessel_owner_gender", args.VesselOwnerGender), ("vessel_owner_age", args.VesselOwnerAge), ("vessel_owner_fingerprints", args.VesselOwnerFingerprints), ("vessel_owner_dna", args.VesselOwnerDNA), ("time", currentTime)),
         Loc.GetString("shipyard-record-paper-name", ("vessel_name", args.VesselName), ("time", currentTime)),
+        null,
         "PaperShipyardRecordBase",
         null);
         _faxSystem.Receive(faxEnt, printout, null, fax);

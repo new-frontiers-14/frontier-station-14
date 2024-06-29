@@ -238,7 +238,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         //Sends vessel details to all dedicated faxes
         //Sends vessel details to all dedicated faxes
-        if(_prefManager.GetPreferences(args.Session.UserId).SelectedCharacter is HumanoidCharacterProfile _profile)
+        if(_mind.TryGetMind(args.Actor, out var _mindUid, out var _mindComp)
+            && _prefManager.GetPreferences(_mind.GetSession(_mindComp)!.UserId).SelectedCharacter is HumanoidCharacterProfile _profile)
         {
             var metaData = MetaData((EntityUid) shuttleStation);
             name = metaData.EntityName;
