@@ -1,5 +1,16 @@
 - type: entity
   parent: PosterBase
+  id: ShuttleMapAmbition
+  name: "UAC Ambition"
+  description: "Detailed map of a Ambition shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: ambition
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapBocadillo
   name: "NC Bocadillo"
   description: "Detailed map of a Bocadillo shuttle."
@@ -18,6 +29,17 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: brigand
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapCeres
+  name: "SBB Ceres"
+  description: "Detailed map of a Ceres shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: ceres
     scale: 1.2, 1.2
 
 - type: entity
