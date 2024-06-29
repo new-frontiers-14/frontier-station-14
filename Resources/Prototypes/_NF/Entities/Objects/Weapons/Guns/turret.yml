@@ -32,7 +32,7 @@
 
 - type: entity
   parent: BaseWeaponTurret
-  id: WeapondisablerHostile
+  id: WeaponDisablerHostile
   suffix: Hostile
   name: crowd control turret
   description: An disabler based projectile auto-turret, brought to you by S.E.S.W.C.
@@ -191,6 +191,7 @@
        - SimpleHostile
 
 #laser Weapons
+
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponHitscanTurret
@@ -209,7 +210,7 @@
 
 - type: entity
   parent: BaseWeaponTurret
-  id: WeaponHitscanTurret
+  id: WeaponHitscanTurretSyndicate
   name: laser turret
   suffix: Syndicate
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
@@ -225,7 +226,7 @@
 
 - type: entity
   parent: BaseWeaponTurret
-  id: WeaponHitscanTurret
+  id: WeaponHitscanTurretHostile
   name: laser turret
   suffix: Hostile
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
@@ -242,6 +243,7 @@
 
 
 #Liquid based Turrets
+
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponIncineratorTurret
@@ -251,7 +253,7 @@
   components:
     - type: BallisticAmmoProvider
       proto: SplatterChemPhlogNapalm
-      capacity: 
+      capacity: 500
     - type: Gun
       fireRate: 3
     - type: NpcFactionMember
