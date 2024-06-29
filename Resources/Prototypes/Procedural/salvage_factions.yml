@@ -1,20 +1,20 @@
 - type: salvageFaction
-  id: Xenos
-  cost: 4
+  id: Xenos # Frontier
+  cost: 3
   groups:
   - entries:
-    - id: MobXeno
+    - id: MobXenoBurrowerExpeditions # Frontier
       amount: 2
       maxAmount: 3
-    - id: MobXenoDrone
+    - id: MobXenoDroneExpeditions # Frontier
       amount: 1
   - entries:
-    - id: MobXenoPraetorian
+    - id: MobXenoPraetorianExpeditions # Frontier
       amount: 1
       maxAmount: 2
     prob: 0.5
   - entries:
-    - id: MobXenoDrone
+    - id: MobXenoDroneExpeditions # Frontier
       amount: 0
       maxAmount: 2
     prob: 0.25
@@ -23,54 +23,63 @@
       amount: 3
     prob: 0.25
   - entries:
-      - id: MobXenoSpitter
+      - id: MobXenoSpitterExpeditions # Frontier
         amount: 2
     prob: 0.25
   - entries:
-    - id: MobXenoRavager
+    - id: MobXenoRavagerExpeditions # Frontier
       amount: 1
     prob: 0.1
+  - entries: # Frontier
+    - id: MobXenoRunnerExpeditions # Frontier
+      amount: 3 # Frontier
+    prob: 0.05 # Frontier
 #  - entries:
 #    - id: MobXenoRouny
 #      amount: 1
 #    prob: 0.001
   configs:
     DefenseStructure: XenoWardingTower
-    Mining: Xenos
+    Mining: Xenos # Frontier
     Megafauna: MobXenoQueenDungeon # Frontier
 
 - type: salvageFaction
-  id: Carps
+  id: Carp
   cost: 1
   groups:
   - entries:
-    - id: MobCarpDungeon
+    - id: MobCarpExpeditions # Frontier
       amount: 1
       maxAmount: 4
   - entries:
-    - id: MobCarpMagic
+    - id: MobCarpMagicExpeditions # Frontier
       amount: 1
       maxAmount: 3
     prob: 0.1
-#  - entries:
-#    - id: MobCarpHolo
-#      amount: 1
-#      maxAmount: 2
-#    prob: 0.25'
   - entries:
-    - id: MobCarpRainbow # carp version of rouny...
+    - id: MobSharkExpeditions # Frontier
+      amount: 1
+      maxAmount: 2
+    prob: 0.1
+  - entries: # Frontier
+    - id: MobCarpHoloExpeditions # Frontier
+      amount: 1 # Frontier
+      maxAmount: 1 # Frontier
+    prob: 0.05 # Frontier
+  - entries:
+    - id: MobCarpRainbowExpeditions # Frontier
       amount: 1
       maxAmount: 1
     prob: 0.05
   configs:
     DefenseStructure: CarpStatue
-    Mining: Carps
+    Mining: Carp
     Megafauna: MobDragonDungeon
 
-# Frontier
+# Frontier (everything below)
 - type: salvageFaction
   id: Syndicate
-  cost: 9
+  cost: 8
   groups:
   - entries:
     - id: SpawnMobSyndicateNavalDeckhand
@@ -107,8 +116,8 @@
     prob: 0.001
   configs:
     DefenseStructure: CybersunDataMiner
-    Mining: Xenos # No idea what this thing does or where to look for it
-    Megafauna: MobSyndicateNavalCommanderA # Can't use spawner here
+    Mining: Syndicate
+    Megafauna: MobSyndicateNavalCommanderA
 
 - type: salvageFaction
   id: Cultists
@@ -152,5 +161,316 @@
     prob: 0.05
   configs:
     DefenseStructure: BloodCollector
-    Mining: Xenos # No idea what this thing does or where to look for it
+    Mining: Cultists
     Megafauna: MobBloodCultistAscended
+
+- type: salvageFaction
+  id: Flesh
+  cost: 1
+  groups:
+  - entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.5
+  - entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 1
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 2
+      maxAmount: 4
+    - id: SpawnMobAberrantFleshExpeditions
+      amount: 2
+      maxAmount: 4
+    prob: 0.1
+  configs:
+    DefenseStructure: FleshBlocker
+    Mining: Flesh
+    Megafauna: MobHorrorExpeditions
+
+- type: salvageFaction
+  id: Argocytes
+  cost: 4
+  groups:
+  - entries:
+    - id: SpawnMobArgocyteTiny
+      amount: 3
+      maxAmount: 5
+  - entries:
+    - id: SpawnMobArgocyteSmall
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: SpawnMobArgocyteSmall
+      amount: 1
+      maxAmount: 2
+    - id: SpawnMobArgocyteSmall
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: MobArgocyteGliderExpeditions
+      amount: 3
+    prob: 0.25
+  - entries:
+      - id: SpawnMobArgocyteMedium
+        amount: 2
+    prob: 0.25
+  - entries:
+    - id: SpawnMobArgocyteBig
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobArgocyteCrawlerExpeditions
+      amount: 3
+      maxAmount: 4
+    prob: 0.001
+  configs:
+    DefenseStructure: ArgocyteEgg
+    Mining: Argocytes
+    Megafauna: MobArgocyteLeviathingExpeditions
+
+- type: salvageFaction
+  id: Dinosaurs
+  cost: 3
+  groups:
+  - entries:
+    - id: SpawnMobDinosaurSmall
+      amount: 1
+      maxAmount: 2
+    - id: SpawnMobDinosaurSmall
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: MobDinosaurDiloExpeditions
+      amount: 3
+    prob: 0.25
+  - entries:
+      - id: SpawnMobDinosaurMedium
+        amount: 2
+    prob: 0.25
+  - entries:
+    - id: SpawnMobDinosaurBig
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobDinosaurDiloExpeditions
+      amount: 5
+      maxAmount: 6
+    prob: 0.001
+  - entries:
+    - id: MobDinosaurRaptorExpeditions
+      amount: 3
+      maxAmount: 4
+    prob: 0.001
+  configs:
+    DefenseStructure: DinosaurEgg
+    Mining: Dinosaurs
+    Megafauna: MobDinosaurTrexExpeditions
+
+- type: salvageFaction
+  id: Mercenaries
+  cost: 6
+  groups:
+  - entries:
+    - id: SpawnMobMercenaryT1
+      amount: 1
+      maxAmount: 2
+  - entries:
+    - id: SpawnMobMercenaryT1
+      amount: 2
+      maxAmount: 4
+    prob: 0.75
+  - entries:
+    - id: SpawnMobMercenaryT2
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: SpawnMobMercenaryT2
+      amount: 2
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: SpawnMobMercenaryT1
+      amount: 1
+    prob: 0.3
+  - entries:
+    - id: SpawnMobMercenaryT2
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobMercenaryT3
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobMercenarySoldierMosin
+      amount: 2
+      maxAmount: 4
+    prob: 0.05
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Mining: Mercenaries
+    Megafauna: MobMercenaryCaptain
+
+- type: salvageFaction
+  id: Explorers
+  cost: 3
+  groups:
+  - entries:
+    - id: SpawnMobExplorerT1
+      amount: 1
+      maxAmount: 2
+  - entries:
+    - id: SpawnMobExplorerT1
+      amount: 2
+      maxAmount: 4
+    prob: 0.75
+  - entries:
+    - id: SpawnMobExplorerT2
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: SpawnMobExplorerT2
+      amount: 2
+      maxAmount: 3
+    prob: 0.25
+  - entries:
+    - id: SpawnMobExplorerT1
+      amount: 1
+    prob: 0.3
+  - entries:
+    - id: SpawnMobExplorerT2
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobExplorerT3
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobExplorerHauler
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: MobExplorerMeleeT1
+      amount: 2
+      maxAmount: 4
+    prob: 0.05
+  configs:
+    DefenseStructure: ExplorersLootRadar
+    Mining: Explorers
+    Megafauna: MobExplorerBoss
+
+- type: salvageFaction
+  id: Silicons
+  cost: 6
+  groups:
+  - entries:
+    - id: SpawnMobRogueScapT1
+      amount: 2
+      maxAmount: 3
+    - id: SpawnMobRogueDronesT1
+      amount: 1
+    prob: 1.00
+  - entries:
+    - id: SpawnMobRogueScapT1
+      amount: 2
+      maxAmount: 4
+    - id: SpawnMobRogueDronesT1
+      amount: 1
+      maxAmount: 2
+    prob: 0.75
+  - entries:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 1
+      maxAmount: 2
+    - id: SpawnMobRogueDronesT1
+      amount: 1
+    prob: 0.5
+  - entries:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 2
+      maxAmount: 3
+    prob: 0.5
+  - entries:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 3
+      maxAmount: 4
+    - id: SpawnMobRogueSiliconsT3
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: MobRogueSiliconScrapFlayer
+      amount: 1
+    prob: 0.3
+  - entries:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobRogueSiliconsT3
+      amount: 1
+    prob: 0.1
+  - entries:
+    - id: SpawnMobRogueSiliconsT3
+      amount: 2
+    prob: 0.01
+  - entries:
+    - id: MobRogueSiliconScrapFlayer
+      amount: 3
+      maxAmount: 5
+    prob: 0.05
+  configs:
+    DefenseStructure: RogueAiNode
+    Mining: Silicons
+    Megafauna: MobRogueSiliconBoss
+
+- type: salvageFaction
+  id: Gangers
+  cost: 5
+  groups:
+  - entries:
+    - id: SpawnMobPunkMelee
+      amount: 1
+      maxAmount: 3
+    - id: SpawnMobPunkMelee
+      amount: 1
+  - entries:
+    - id: SpawnMobPunkRanged
+      amount: 1
+      maxAmount: 1
+    prob: 0.5
+  - entries:
+    - id: SpawnMobPunkRanged
+      amount: 1
+      maxAmount: 2
+    prob: 0.25
+  - entries:
+    - id: SpawnMobPunkMelee
+      amount: 3
+      maxAmount: 6
+    prob: 0.1
+  configs:
+    DefenseStructure: CybersunDataMiner
+    Mining: Gangers
+    Megafauna: MobPunkGangerArmoredElite
