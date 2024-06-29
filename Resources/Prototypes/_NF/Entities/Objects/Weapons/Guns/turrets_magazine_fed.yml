@@ -1,9 +1,7 @@
 # BASE
-- type: entity
+- type: entity # Base for building your turret: no ammo provider, no gun
   parent: BaseStructure
-  id: WeaponTurretMagazineBase
-  name: ballistic turret (magazine fed)
-  description: A magazine fed ballistic machine gun auto-turret.
+  id: WeaponTurretBaseNF
   abstract: true
   components:
   - type: HTN
@@ -33,17 +31,12 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 300
         mask:
         - MachineMask
         layer:
         - MachineLayer
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
-    drawdepth: Mobs
-    layers:
-    - state: syndie_lethal
   - type: InteractionPopup
     interactDelay: 0.2
     successChance: 0.8
@@ -54,32 +47,95 @@
   - type: CombatMode
     toggleMouseRotator: false
   - type: Damageable
-    damageContainer: Silicon
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 600
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 300
-        # TODO: Construction graph
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:PlaySoundBehavior
-            sound:
-              collection: MetalGlassBreak
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              SheetSteel1:
-                min: 3
-                max: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 3
+              max: 5
+
+- type: entity # A search beam
+  parent: BaseStructure
+  id: WeaponTurretSearchBeam
+  abstract: true
+  components:
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 16
+    energy: 7
+    mask: /Textures/_NF/Effects/LightMasks/beam.png
+    color: "#990000"
+
+- type: entity # Base game turret with internal non changeable magazine
+  parent:
+  - WeaponTurretSearchBeam
+  - WeaponTurretBaseNF
+  id: WeaponTurretBallisticNF
+  name: ballistic turret
+  description: A ballistic machine gun auto-turret.
+  abstract: true
+  components:
   - type: Gun
     fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 500
+
+- type: entity # Laser turret with internal non changeable battery
+  parent:
+  - WeaponTurretSearchBeam
+  - WeaponTurretBaseNF
+  id: WeaponTurretLaserNF
+  name: laser turret
+  description: A laser gun auto-turret.
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 2.5
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+
+- type: entity # Magazine fed turret
+  parent:
+  - WeaponTurretSearchBeam
+  - WeaponTurretBaseNF
+  id: WeaponTurretMagazineBase
+  name: ballistic turret (magazine fed)
+  description: A ballistic machine gun auto-turret with replaceable magazine.
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -103,13 +159,32 @@
       gun_magazine: !type:ContainerSlot
 
 # TURRETS
+## Improved base game turret
+- type: entity # deployed turret
+  parent:
+  - WeaponTurretBallisticNF
+  id: WeaponTurretAsmgt30NtDeployed
+  name: ASMGT 30-AB
+  description: A ballistic machine gun auto-turret chambered in .30 rifle cartriges with internal ammo box. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret.
+  suffix: NT, .30 rifle
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    drawdepth: Mobs
+    layers:
+    - state: syndie_lethal
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
 ## Magazine fed, deployable NanoTrasen turret
 - type: entity # deployed turret
-  parent: WeaponTurretMagazineBase
+  parent:
+  - WeaponTurretMagazineBase
   id: WeaponTurretAsmgt35NtDeployed
   name: ASMGT 35-C
   description: A magazine fed ballistic machine gun auto-turret chambered in .35 pistol cartriges. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret. Use screwdriver to disassemble.
-  suffix: NT, .35 round
+  suffix: NT, .35 pistol
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
