@@ -1,4 +1,4 @@
-
+# BASE
 - type: entity
   parent: BaseStructure
   id: WeaponTurretMagazineBase
@@ -22,7 +22,7 @@
   - type: NoRotateOnMove
   - type: Input
     context: "human"
-  - type: MobState
+  - type: MobState # Present so mobs could target the turret
   - type: Anchorable
     delay: 2
   - type: Clickable
@@ -78,18 +78,15 @@
               SheetSteel1:
                 min: 3
                 max: 5
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: Gun
-    fireRate: 4
+    fireRate: 6
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-  - type: ChamberMagazineAmmoProvider
+  - type: MagazineAmmoProvider
     boltClosed: null
-    autoEject: true
+    autoEject: false
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -97,51 +94,91 @@
         startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazinePistolSubMachineGun
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgePistol
         priority: 1
         whitelist:
           tags:
-          - CartridgePistol
+          - MagazinePistolSubMachineGun
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
 
-- type: entity
+# TURRETS
+## Magazine fed, deployable NanoTrasen turret
+- type: entity # deployed turret
   parent: WeaponTurretMagazineBase
-  id: WeaponTurretMagazineNT
-  suffix: NanoTrasen, .35 pistol
+  id: WeaponTurretAsmgt35NtDeployed
+  name: ASMGT 35-C
+  description: A magazine fed ballistic machine gun auto-turret chambered in .35 pistol cartriges. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret. Use screwdriver to disassemble.
+  suffix: NT, .35 round
   components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: Gun
-    fireRate: 4
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGun
+        startingItem: null
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistolSubMachineGun
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgePistol
-        priority: 1
-        whitelist:
-          tags:
-          - CartridgePistol
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretAsmgt35NtPackingGraph
+    node: WeaponTurretAsmgt35NtPacked
+
+- type: entity # folded turret
+  parent: BaseItem
+  id: WeaponTurretAsmgt35NtPacked
+  name: ASMGT 35-C
+  description: A disassembled and packed ASMGT 35-C.
+  suffix: Packed
+  components:
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretAsmgt35NtDeployed
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretAsmgt35NtPackingGraph
+  start: WeaponTurretAsmgt35NtPacked
+  graph:
+  - node: WeaponTurretAsmgt35NtPacked
+    entity: WeaponTurretAsmgt35NtDeployed
+    edges:
+    - to: WeaponTurretAsmgt35NtPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretAsmgt35NtPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 10
