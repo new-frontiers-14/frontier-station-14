@@ -1,5 +1,4 @@
 using Content.Server.Actions;
-//using Content.Server.Bed.Sleep; //FRONTIER MERGE: COMMENTED OUT
 using Content.Server.Carrying;
 using Content.Server.DoAfter;
 using Content.Server.Popups;

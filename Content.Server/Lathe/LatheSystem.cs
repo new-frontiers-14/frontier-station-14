@@ -362,7 +362,7 @@ namespace Content.Server.Lathe
         }
         #endregion
 
-        //Frontier Upgrade Code Restore
+        // Frontier: Restore machine part upgrades
         private void OnPartsRefresh(EntityUid uid, LatheComponent component, RefreshPartsEvent args)
         {
             var printTimeRating = args.PartRatings[component.MachinePartPrintSpeed];
@@ -378,5 +378,6 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.TimeMultiplier);
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.MaterialUseMultiplier);
         }
+        // End Frontier: restore machine part upgrades
     }
 }

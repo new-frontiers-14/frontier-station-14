@@ -14,8 +14,8 @@ public sealed partial class MachineBoardComponent : Component
     /// <summary>
     /// Entities needed to construct this machine, discriminated by component.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, MachinePartPrototype>))]
-    public Dictionary<string, int> Requirements = new();
+    [DataField]
+    public Dictionary<ProtoId<MachinePartPrototype>, int> Requirements = new();
     // End Frontier
 
     /// <summary>

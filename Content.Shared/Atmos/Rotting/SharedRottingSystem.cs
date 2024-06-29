@@ -13,7 +13,7 @@ public abstract class SharedRottingSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] protected readonly MobStateSystem _mobState = default!; // FRONTIER MERGE: private<protected
+    [Dependency] protected readonly MobStateSystem _mobState = default!;
 
     public const int MaxStages = 3;
 

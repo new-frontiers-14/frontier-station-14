@@ -46,10 +46,8 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
 
         var prototype = _prototypeManager.Index<JobPrototype>(_jobId);
 
-        //if (prototype.Icon != null) // FRONTIER MERGE: COMMENTED OUT
-        if (_prototypeManager.TryIndex<StatusIconPrototype>(prototype.Icon, out var jobIcon)) // FRONTIER MERGE
+        if (_prototypeManager.TryIndex<StatusIconPrototype>(prototype.Icon, out var jobIcon))
         {
-            //var jobIcon = _prototypeManager.Index<StatusIconPrototype>(prototype.Icon); // FRONTIER MERGE: COMMENTED OUT
             JobIcon.Texture = jobIcon.Icon.Frame0();
         }
 

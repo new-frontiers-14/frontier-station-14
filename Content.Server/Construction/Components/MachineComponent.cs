@@ -16,7 +16,7 @@ public sealed partial class MachineComponent : Component
     public Container PartContainer = default!;
 }
 
-// FRONTIER MERGE: BROUGHT THIS BACK
+// Frontier: maintain upgradeable machine parts
 /// <summary>
 /// The different types of scaling that are available for machine upgrades
 /// </summary>
@@ -25,4 +25,4 @@ public enum MachineUpgradeScalingType : byte
     Linear,
     Exponential
 }
-// END FRONTIER MERGE
+// End Frontier
