@@ -167,12 +167,11 @@
 # disabled until event is rewritten to be more interesting
 - type: entity
   id: FalseAlarm
-  parent: BaseGameRule
+  parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
     weight: 15
     duration: 1
-    startDelay: 30 # Frontier
     reoccurrenceDelay: 180 # Frontier
     maxOccurrences: 2 # Frontier - People dont like too many false alarms
   - type: FalseAlarmRule
