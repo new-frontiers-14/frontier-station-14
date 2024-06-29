@@ -12,6 +12,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
 using Content.Server.Access.Systems;
+using Content.Server.Crayon;
 using Content.Shared.Hands;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
@@ -45,9 +46,8 @@ namespace Content.Server.Paper
 
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
-            SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);
-
-            SubscribeLocalEvent<PenComponent, GetVerbsEvent<Verb>>(OnVerb);
+            // FRONTIER - Sign verb hook
+            SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb);
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -71,7 +71,6 @@ namespace Content.Server.Paper
                 if (paperComp.StampState != null)
                     _appearance.SetData(uid, PaperVisuals.Stamp, paperComp.StampState, appearance);
             }
-
         }
 
         private void BeforeUIOpen(EntityUid uid, PaperComponent paperComp, BeforeActivatableUIOpenEvent args)
@@ -96,12 +95,37 @@ namespace Content.Server.Paper
 
                 if (paperComp.StampedBy.Count > 0)
                 {
-                    var commaSeparated =
-                        string.Join(", ", paperComp.StampedBy.Select(s => Loc.GetString(s.StampedName)));
-                    args.PushMarkup(
-                        Loc.GetString(
-                            "paper-component-examine-detail-stamped-by", ("paper", uid), ("stamps", commaSeparated))
-                    );
+                    // BEGIN FRONTIER MODIFICATION - Make stamps and signatures render separately.
+                    // Separate into stamps and signatures.
+                    var stamps = paperComp.StampedBy.FindAll(s => s.Type == StampType.RubberStamp);
+                    var signatures = paperComp.StampedBy.FindAll(s => s.Type == StampType.Signature);
+
+                    // If we have stamps, render them.
+                    if (stamps.Count > 0)
+                    {
+                        var joined = string.Join(", ", stamps.Select(s => Loc.GetString(s.StampedName)));
+                        args.PushMarkup(
+                            Loc.GetString(
+                                "paper-component-examine-detail-stamped-by",
+                                ("paper", uid),
+                                ("stamps", joined)
+                            )
+                        );
+                    }
+
+                    // Ditto for signatures.
+                    if (signatures.Count > 0)
+                    {
+                        var joined = string.Join(", ", signatures.Select(s => s.StampedName));
+                        args.PushMarkup(
+                            Loc.GetString(
+                                "paper-component-examine-detail-signed-by",
+                                ("paper", uid),
+                                ("stamps", joined)
+                            )
+                        );
+                    }
+                    // END FRONTIER MODIFICATION
                 }
             }
         }
@@ -112,35 +136,32 @@ namespace Content.Server.Paper
             var editable = paperComp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
             if (_tagSystem.HasTag(args.Used, "Write") && editable)
             {
-                if (TryComp<PenComponent>(args.Used, out var penComp) && penComp.Pen == PenMode.PenSign);
-                else // Frontier - Else the rest
-                {
-                    var writeEvent = new PaperWriteEvent(uid, args.User);
-                    RaiseLocalEvent(args.Used, ref writeEvent);
-                    if (!TryComp<ActorComponent>(args.User, out var actor))
-                        return;
+                var writeEvent = new PaperWriteEvent(uid, args.User);
+                RaiseLocalEvent(args.Used, ref writeEvent);
 
-                    paperComp.Mode = PaperAction.Write;
-                    _uiSystem.OpenUi(uid, PaperUiKey.Key, args.User);
-                    UpdateUserInterface(uid, paperComp);
-                    args.Handled = true;
+                // Frontier - Restrict writing to entities with ActorComponent, players only
+                if (!TryComp<ActorComponent>(args.User, out var actor))
                     return;
-                }
+
+                paperComp.Mode = PaperAction.Write;
+                _uiSystem.OpenUi(uid, PaperUiKey.Key, args.User);
+                UpdateUserInterface(uid, paperComp);
+                args.Handled = true;
+                return;
             }
 
             // If a stamp, attempt to stamp paper
-            if (TryComp<StampComponent>(args.Used, out var stampComp) && TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
+            if (TryComp<StampComponent>(args.Used, out var stampComp) &&
+                TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
             {
-                if (stampComp.StampedPersonal) // Frontier
-                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
-
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                    ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
-                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User,
+                    Filter.PvsExcept(args.User, entityManager: EntityManager), true);
                 var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                        ("target", args.Target), ("stamp", args.Used));
+                    ("target", args.Target), ("stamp", args.Used));
                 _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
                 _audio.PlayPvs(stampComp.Sound, uid);
@@ -154,8 +175,7 @@ namespace Content.Server.Paper
             return new StampDisplayInfo
             {
                 StampedName = stamp.StampedName,
-                StampedColor = stamp.StampedColor,
-                StampedBorderless = stamp.StampedBorderless
+                StampedColor = stamp.StampedColor
             };
         }
 
@@ -205,7 +225,91 @@ namespace Content.Server.Paper
                     _appearance.SetData(uid, PaperVisuals.Stamp, paperComp.StampState, appearance);
                 }
             }
+
             return true;
+        }
+
+        // FRONTIER - Pen signing: Adds the sign verb for pen signing
+        private void AddSignVerb(EntityUid uid, PaperComponent component, GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!args.CanAccess || !args.CanInteract)
+                return;
+
+            // Sanity check
+            if (uid != args.Target)
+                return;
+
+            // Pens have a `Write` tag.
+            if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, "Write"))
+                return;
+
+            AlternativeVerb verb = new()
+            {
+                Act = () =>
+                {
+                    TrySign(args.Target, args.User, args.Using.Value, component);
+                },
+                Text = Loc.GetString("paper-component-verb-sign")
+                // Icon = Don't have an icon yet. Todo for later.
+            };
+            args.Verbs.Add(verb);
+        }
+
+        // FRONTIER - TrySign method, attempts to place a signature
+        public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
+        {
+
+            // Generate display information.
+            StampDisplayInfo info = new StampDisplayInfo
+            {
+                StampedName = Name(signer),
+                StampedColor = Color.FromHex("#333333"),
+                Type = StampType.Signature
+            };
+
+            // Get Crayon component, and if present set custom color from crayon
+            if (TryComp<CrayonComponent>(pen, out var crayon))
+            {
+                info.StampedColor = crayon.Color;
+                crayon.Charges -= 1;
+            }
+
+            // Try stamp with the info, return false if failed.
+            if (TryStamp(paper, info, "paper_stamp-generic", paperComp))
+            {
+                // Signing successful, popup time.
+
+                _popupSystem.PopupEntity(
+                    Loc.GetString(
+                        "paper-component-action-signed-other",
+                        ("user", signer),
+                        ("target", paper)
+                    ),
+                    signer,
+                    Filter.PvsExcept(signer, entityManager: EntityManager),
+                    true
+                );
+
+                _popupSystem.PopupEntity(
+                    Loc.GetString(
+                        "paper-component-action-signed-self",
+                        ("target", paper)
+                    ),
+                    signer,
+                    signer
+                );
+
+                _audio.PlayPvs(paperComp.Sound, paper);
+
+                _adminLogger.Add(LogType.Verb, LogImpact.Low,
+                    $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
+
+                UpdateUserInterface(paper, paperComp);
+
+                return true;
+            }
+
+            return false;
         }
 
         public void SetContent(EntityUid uid, string content, PaperComponent? paperComp = null)
@@ -231,84 +335,8 @@ namespace Content.Server.Paper
             if (!Resolve(uid, ref paperComp))
                 return;
 
-            _uiSystem.SetUiState(uid, PaperUiKey.Key, new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode));
-        }
-
-        private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
-        {
-            if (stampComp.StampedPersonal)
-            {
-                if (stampComp.StampedPersonal) // Frontier
-                    stampComp.StampedName = Loc.GetString("stamp-component-signee-name", ("user", args.User)); // Frontier
-            }
-        }
-
-        private void OnVerb(EntityUid uid, PenComponent component, GetVerbsEvent<Verb> args)
-        {
-            // standard interaction checks
-            if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-                return;
-
-            args.Verbs.UnionWith(new[]
-            {
-                CreateVerb(uid, component, args.User, PenMode.PenWrite),
-                CreateVerb(uid, component, args.User, PenMode.PenSign)
-            });
-        }
-
-        private Verb CreateVerb(EntityUid uid, PenComponent component, EntityUid userUid, PenMode mode)
-        {
-            return new Verb()
-            {
-                Text = GetModeName(mode),
-                Disabled = component.Pen == mode,
-                Priority = -(int) mode, // sort them in descending order
-                Category = VerbCategory.Pen,
-                Act = () => SetPen(uid, mode, userUid, component)
-            };
-        }
-
-        private string GetModeName(PenMode mode)
-        {
-            string name;
-            switch (mode)
-            {
-                case PenMode.PenWrite:
-                    name = "pen-mode-write";
-                    break;
-                case PenMode.PenSign:
-                    name = "pen-mode-sign";
-                    break;
-                default:
-                    return "";
-            }
-
-            return Loc.GetString(name);
-        }
-
-        public void SetPen(EntityUid uid, PenMode mode, EntityUid? userUid = null,
-          PenComponent? component = null)
-        {
-            if (!Resolve(uid, ref component))
-                return;
-
-            component.Pen = mode;
-
-            if (userUid != null)
-            {
-                var msg = Loc.GetString("pen-mode-state", ("mode", GetModeName(mode)));
-                _popupSystem.PopupEntity(msg, uid, userUid.Value);
-            }
-        }
-
-        public PenStatus? GetPenState(EntityUid uid, PenComponent? pen = null, TransformComponent? transform = null)
-        {
-            if (!Resolve(uid, ref pen, ref transform))
-                return null;
-
-            // finally, form pen status
-            var status = new PenStatus(GetNetEntity(uid));
-            return status;
+            _uiSystem.SetUiState(uid, PaperUiKey.Key,
+                new PaperBoundUserInterfaceState(paperComp.Content, paperComp.StampedBy, paperComp.Mode));
         }
     }
 
