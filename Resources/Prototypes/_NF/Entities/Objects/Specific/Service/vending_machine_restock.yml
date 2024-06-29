@@ -177,3 +177,21 @@
     - state: green_bit
       shader: unshaded
     - state: refill_pottedplant
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockFuelVend
+  name: FuelVend restock box
+  description: A box containing fuel for the FuelVend vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - FuelVendInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_parts # Update this later with a new sprite
+
