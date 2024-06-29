@@ -79,7 +79,8 @@ public sealed partial class MarketSystem
 
     private void OnPurchaseCrateMessage(EntityUid crateMachineUid, SharedCrateMachineComponent component, CrateMachinePurchaseMessage args)
     {
-        if (args.Session.AttachedEntity is not { Valid: true } player)
+
+        if (args.Actor is not { Valid: true } player)
             return;
 
         if (!TryComp<BankAccountComponent>(player, out var bankAccount))

@@ -81,7 +81,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
     private void OnConsoleUiOpened(EntityUid uid, MarketConsoleComponent component, BoundUIOpenedEvent args)
     {
-        if (args.Session.AttachedEntity is not { Valid: true } player)
+        if (args.Actor is not { Valid: true } player)
             return;
         if (!TryComp<BankAccountComponent>(player, out var bank))
             return;
@@ -108,7 +108,6 @@ public sealed partial class MarketSystem : SharedMarketSystem
             data,
             true // TODO add enable/disable functionality
         );
-
-        _ui.TrySetUiState(uid, uiKey, newState);
+        _ui.SetUiState(uid, uiKey, newState);
     }
 }
