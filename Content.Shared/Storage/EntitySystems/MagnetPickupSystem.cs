@@ -93,7 +93,7 @@ public sealed class MagnetPickupSystem : EntitySystem
             if (comp.NextScan > currentTime)
                 continue;
 
-            comp.NextScan += ScanDelay;
+            comp.NextScan = currentTime + ScanDelay; // Frontier: ensure the next scan is in the future
 
             // No space
             if (!_storage.HasSpace((uid, storage)))
