@@ -11,10 +11,10 @@ advertisement-fuelvend-10 = Locally sourced? Ha. Get some fuel.
 advertisement-fuelvend-11 = Is your generator running? Better go and fuel it!
 advertisement-fuelvend-12 = What's the anti-matter? No fuel?
 
-advertisement-fuelvend-1 = Another dissatisfied customer.
-advertisement-fuelvend-2 = You'll be back.
-advertisement-fuelvend-3 = Hit the road, you're taking up my time.
-advertisement-fuelvend-4 = Don't let the airlock hit you on the way out.
-advertisement-fuelvend-5 = Best of luck out there, chump.
-advertisement-fuelvend-6 = Yeah, yeah, get lost.
-advertisement-fuelvend-7 = You're still here? Huh.
+goodbye-fuelvend-1 = Another dissatisfied customer.
+goodbye-fuelvend-2 = You'll be back.
+goodbye-fuelvend-3 = Hit the road, you're taking up my time.
+goodbye-fuelvend-4 = Don't let the airlock hit you on the way out.
+goodbye-fuelvend-5 = Best of luck out there, chump.
+goodbye-fuelvend-6 = Yeah, yeah, get lost.
+goodbye-fuelvend-7 = You're still here? Huh.
