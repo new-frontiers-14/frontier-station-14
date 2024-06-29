@@ -5123,16 +5123,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 45.5,7.5
       parent: 2173
-- proto: AltarConvertMaint
+- proto: AltarSpawner
   entities:
-  - uid: 5452
+  - uid: 739
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 29.5,14.5
       parent: 2173
-    missingComponents:
-    - Anchorable
 - proto: AntiAnomalyZone200
   entities:
   - uid: 4477
@@ -5752,6 +5749,13 @@ entities:
       parent: 2173
     - type: Physics
       bodyType: Static
+  - uid: 2024
+    components:
+    - type: Transform
+      pos: 3.5,18.5
+      parent: 2173
+    - type: Physics
+      bodyType: Static
   - uid: 2454
     components:
     - type: Transform
@@ -6025,6 +6029,13 @@ entities:
       parent: 2173
     - type: Physics
       bodyType: Static
+  - uid: 2016
+    components:
+    - type: Transform
+      pos: 4.5,18.5
+      parent: 2173
+    - type: Physics
+      bodyType: Static
   - uid: 2414
     components:
     - type: Transform
@@ -6237,14 +6248,11 @@ entities:
       bodyType: Static
 - proto: BlockGameArcade
   entities:
-  - uid: 774
+  - uid: 2022
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,13.5
+      pos: 45.5,10.5
       parent: 2173
-    - type: SpamEmitSound
-      enabled: False
 - proto: Bookshelf
   entities:
   - uid: 3125
@@ -14162,6 +14170,11 @@ entities:
     - type: Transform
       pos: -18.5,10.5
       parent: 2173
+  - uid: 1979
+    components:
+    - type: Transform
+      pos: 31.5,8.5
+      parent: 2173
   - uid: 2789
     components:
     - type: Transform
@@ -14176,11 +14189,6 @@ entities:
     components:
     - type: Transform
       pos: 52.5,12.5
-      parent: 2173
-  - uid: 4478
-    components:
-    - type: Transform
-      pos: 31.5,7.5
       parent: 2173
 - proto: ClosetFireFilled
   entities:
@@ -14210,11 +14218,6 @@ entities:
       parent: 2173
 - proto: ClosetMaintenanceFilledRandom
   entities:
-  - uid: 739
-    components:
-    - type: Transform
-      pos: 31.5,8.5
-      parent: 2173
   - uid: 1811
     components:
     - type: Transform
@@ -14650,6 +14653,13 @@ entities:
     components:
     - type: Transform
       pos: -5.5,27.5
+      parent: 2173
+- proto: CrateTrashCart
+  entities:
+  - uid: 1990
+    components:
+    - type: Transform
+      pos: 48.5,15.5
       parent: 2173
 - proto: CrateVendingMachineRestockEngineeringFilled
   entities:
@@ -17437,45 +17447,41 @@ entities:
     - type: Transform
       pos: -49.449234,15.683861
       parent: 2173
-- proto: FaxMachineBase
+- proto: FaxMachineNFOutpostSTC
   entities:
   - uid: 771
     components:
     - type: Transform
       pos: 13.5,13.5
       parent: 2173
-    - type: FaxMachine
-      name: Frontier Outpost STC
+- proto: FaxMachineNFOutpostGuard
+  entities:
   - uid: 2859
     components:
     - type: Transform
       pos: 41.5,18.5
       parent: 2173
-    - type: FaxMachine
-      name: Frontier Outpost Station Guard
+- proto: FaxMachineNFOutpostReception
+  entities:
   - uid: 4453
     components:
     - type: Transform
       pos: 0.5,5.5
       parent: 2173
-    - type: FaxMachine
-      name: Frontier Outpost Reception
+- proto: FaxMachineNFOutpostSR
+  entities:
   - uid: 5660
     components:
     - type: Transform
       pos: 3.5,21.5
       parent: 2173
-    - type: FaxMachine
-      name: Frontier Outpost SR
-- proto: FaxMachineCaptain
+- proto: FaxMachineNFOutpostAdministration
   entities:
   - uid: 6049
     components:
     - type: Transform
       pos: 22.5,9.5
       parent: 2173
-    - type: FaxMachine
-      name: Frontier Outpost Administration
 - proto: filingCabinetRandom
   entities:
   - uid: 3765
@@ -18316,13 +18322,6 @@ entities:
     - type: Transform
       pos: 20.5,12.5
       parent: 2173
-- proto: FloodlightBroken
-  entities:
-  - uid: 2809
-    components:
-    - type: Transform
-      pos: 49.64797,15.570145
-      parent: 2173
 - proto: FloorDrain
   entities:
   - uid: 3124
@@ -18346,13 +18345,6 @@ entities:
       parent: 2173
     - type: Fixtures
       fixtures: {}
-- proto: FoodBowlBigTrash
-  entities:
-  - uid: 2808
-    components:
-    - type: Transform
-      pos: 48.568703,16.429901
-      parent: 2173
 - proto: FoodBreadMoldy
   entities:
   - uid: 4406
@@ -18378,20 +18370,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: FoodTinPeachesMaintOpen
-  entities:
-  - uid: 2208
-    components:
-    - type: Transform
-      pos: 48.526165,17.807875
-      parent: 2173
-- proto: GasCanisterBrokenBase
-  entities:
-  - uid: 2807
-    components:
-    - type: Transform
-      pos: 48.5,15.5
-      parent: 2173
 - proto: GasFilterNitrogenOn
   entities:
   - uid: 1137
@@ -27576,10 +27554,10 @@ entities:
       parent: 2173
 - proto: LessLethalVendingMachine
   entities:
-  - uid: 4293
+  - uid: 2025
     components:
     - type: Transform
-      pos: 6.5,6.5
+      pos: 10.5,6.5
       parent: 2173
 - proto: Lighter
   entities:
@@ -27811,6 +27789,11 @@ entities:
     - type: Transform
       pos: 44.5,13.5
       parent: 2173
+  - uid: 2019
+    components:
+    - type: Transform
+      pos: 48.5,17.5
+      parent: 2173
 - proto: MaterialCloth
   entities:
   - uid: 1196
@@ -27991,6 +27974,13 @@ entities:
     components:
     - type: Transform
       pos: -36.5,15.5
+      parent: 2173
+- proto: NonLethalVendingMachine
+  entities:
+  - uid: 2015
+    components:
+    - type: Transform
+      pos: 6.5,6.5
       parent: 2173
 - proto: NoticeBoardNF
   entities:
@@ -28323,16 +28313,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,10.5
-      parent: 2173
-  - uid: 4939
-    components:
-    - type: Transform
-      pos: 4.5,18.5
-      parent: 2173
-  - uid: 4940
-    components:
-    - type: Transform
-      pos: 2.5,18.5
       parent: 2173
   - uid: 4962
     components:
@@ -28947,6 +28927,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,29.5
       parent: 2173
+  - uid: 2017
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 28.5,7.5
+      parent: 2173
   - uid: 2153
     components:
     - type: Transform
@@ -29536,7 +29522,7 @@ entities:
       parent: 2173
 - proto: RandomVendingDrinks
   entities:
-  - uid: 2528
+  - uid: 2018
     components:
     - type: Transform
       pos: 7.5,28.5
@@ -31429,17 +31415,17 @@ entities:
       parent: 2173
 - proto: SignDirectionalJanitor
   entities:
+  - uid: 2020
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,25.5
+      parent: 2173
   - uid: 5598
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,19.5
-      parent: 2173
-  - uid: 5599
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,27.5
       parent: 2173
 - proto: SignDirectionalMed
   entities:
@@ -32360,6 +32346,17 @@ entities:
       id: Server Room
 - proto: SurveillanceCameraEngineering
   entities:
+  - uid: 2026
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -40.5,16.5
+      parent: 2173
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraEngineering
+      nameSet: True
+      id: Engineering Power
   - uid: 5712
     components:
     - type: Transform
@@ -32382,23 +32379,10 @@ entities:
       pos: -29.5,11.5
       parent: 2173
     - type: SurveillanceCamera
-      id: Engineering Back
-  - uid: 5716
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -39.5,12.5
-      parent: 2173
-    - type: SurveillanceCamera
-      id: West Enterance
-  - uid: 5724
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -31.5,8.5
-      parent: 2173
-    - type: SurveillanceCamera
-      id: Engineering Front
+      setupAvailableNetworks:
+      - SurveillanceCameraEngineering
+      nameSet: True
+      id: Engineering
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 505
@@ -33162,18 +33146,6 @@ entities:
       rot: -3.141592653589793 rad
       pos: 8.5,18.5
       parent: 2173
-- proto: VehicleJanicartDestroyed
-  entities:
-  - uid: 2810
-    components:
-    - type: Transform
-      pos: 50.5,18.5
-      parent: 2173
-  - uid: 2820
-    components:
-    - type: Transform
-      pos: 48.5,16.5
-      parent: 2173
 - proto: VehicleKeySecway
   entities:
   - uid: 4428
@@ -33183,10 +33155,10 @@ entities:
       parent: 2173
 - proto: VendingMachineAstroVend
   entities:
-  - uid: 2756
+  - uid: 774
     components:
     - type: Transform
-      pos: -7.5,6.5
+      pos: -5.5,13.5
       parent: 2173
 - proto: VendingMachineCart
   entities:
@@ -33197,10 +33169,10 @@ entities:
       parent: 2173
 - proto: VendingMachineCigs
   entities:
-  - uid: 2420
+  - uid: 2023
     components:
     - type: Transform
-      pos: 49.5,4.5
+      pos: 35.5,6.5
       parent: 2173
 - proto: VendingMachineClothing
   entities:
@@ -33232,10 +33204,10 @@ entities:
       parent: 2173
 - proto: VendingMachineGames
   entities:
-  - uid: 5733
+  - uid: 1974
     components:
     - type: Transform
-      pos: 35.5,6.5
+      pos: 31.5,7.5
       parent: 2173
 - proto: VendingMachineJaniDrobe
   entities:
@@ -33258,19 +33230,12 @@ entities:
     - type: Transform
       pos: -54.5,8.5
       parent: 2173
-- proto: VendingMachinePottedPlantVend
-  entities:
-  - uid: 4938
-    components:
-    - type: Transform
-      pos: 3.5,18.5
-      parent: 2173
 - proto: VendingMachineSalvage
   entities:
-  - uid: 4139
+  - uid: 2021
     components:
     - type: Transform
-      pos: 10.5,6.5
+      pos: -7.5,6.5
       parent: 2173
 - proto: VendingMachineSec
   entities:
@@ -36808,7 +36773,7 @@ entities:
     - type: Transform
       pos: 46.5,16.5
       parent: 2173
-- proto: WarpPoint
+- proto: WarpPointNFFrontier
   entities:
   - uid: 5714
     components:
@@ -36816,8 +36781,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,11.5
       parent: 2173
-    - type: WarpPoint
-      location: Frontier Outpost
 - proto: WaterCooler
   entities:
   - uid: 1056
