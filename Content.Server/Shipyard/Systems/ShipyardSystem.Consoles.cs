@@ -464,11 +464,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
 
-        var uiUsers = _ui.GetActorUis(uid);
+        var uiUsers = _ui.GetActors(uid, uiComp.Key);
 
         foreach (var user in uiUsers)
         {
-            if (user.Entity is not { Valid: true } player)
+            if (user is not { Valid: true } player)
                 continue;
 
             if (!TryComp<BankAccountComponent>(player, out var bank))
