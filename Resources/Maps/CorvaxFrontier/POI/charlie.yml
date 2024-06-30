@@ -2119,7 +2119,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -5923.985
+      secondsUntilStateChange: -6042.0405
       state: Opening
   - uid: 386
     components:
@@ -14024,6 +14024,8 @@ entities:
       deleteOnEmptyLinks: True
       linkedEntities:
       - 2713
+    - type: Visibility
+      layer: 5
     missingComponents:
     - PointLight
     - Portal
@@ -14036,6 +14038,8 @@ entities:
       deleteOnEmptyLinks: True
       linkedEntities:
       - 2714
+    - type: Visibility
+      layer: 5
     missingComponents:
     - PointLight
     - Portal
@@ -14050,6 +14054,10 @@ entities:
       deleteOnEmptyLinks: True
       linkedEntities:
       - 2712
+    - type: Visibility
+      layer: 5
+    missingComponents:
+    - PointLight
   - uid: 2714
     components:
     - type: Transform
@@ -14059,6 +14067,8 @@ entities:
       deleteOnEmptyLinks: True
       linkedEntities:
       - 2715
+    - type: Visibility
+      layer: 5
     missingComponents:
     - PointLight
 - proto: PosterContrabandBeachStarYamamoto
@@ -14077,7 +14087,7 @@ entities:
       pos: 5.5,7.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 1953.1236275
+      nextDrop: 4266.589595
 - proto: PosterContrabandEnlistGorlexDD
   entities:
   - uid: 2395
@@ -14087,7 +14097,7 @@ entities:
       pos: -11.5,-13.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 5096.1236275
+      nextDrop: 3449.589595
 - proto: PosterContrabandKosmicheskayaStantsiyaDD
   entities:
   - uid: 2316
@@ -14097,7 +14107,7 @@ entities:
       pos: -16.5,5.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 5272.1236275
+      nextDrop: 4649.589595
 - proto: PosterContrabandMoth
   entities:
   - uid: 2995
@@ -14127,7 +14137,7 @@ entities:
       pos: -11.5,16.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 2382.1236275
+      nextDrop: 2606.589595
 - proto: PoweredlightBlue
   entities:
   - uid: 1424
@@ -21239,25 +21249,5 @@ entities:
     components:
     - type: Transform
       pos: 26.5,-8.5
-      parent: 2
-  - uid: 2721
-    components:
-    - type: Transform
-      pos: 8.5,-10.5
-      parent: 2
-  - uid: 2722
-    components:
-    - type: Transform
-      pos: -2.5,-10.5
-      parent: 2
-  - uid: 2723
-    components:
-    - type: Transform
-      pos: -1.5,7.5
-      parent: 2
-  - uid: 2724
-    components:
-    - type: Transform
-      pos: 7.5,7.5
       parent: 2
 ...
