@@ -4,21 +4,6 @@
   abstract: true
   description: This one looks more like a special bluespace portal.
   components:
-  - type: Portal
-    canTeleportToOtherMaps: true
-
-- type: entity
-  id: PortalAdminStart
-  parent: [BasePortalAdmin, PortalArtifactNoDespawn]
-
-- type: entity
-  id: PortalAdminEnd
-  parent: [BasePortalAdmin, PortalArtifactNoDespawn]
-
-- type: entity
-  id: PortalArtifactNoDespawn
-  parent: BasePortal
-  components:
   - type: Sprite
     layers:
     - state: portal-artifact
@@ -29,3 +14,11 @@
     netsync: false
   - type: Portal
     canTeleportToOtherMaps: true
+
+- type: entity
+  id: PortalAdminStart
+  parent: BasePortalAdmin
+
+- type: entity
+  id: PortalAdminEnd
+  parent: BasePortalAdmin
