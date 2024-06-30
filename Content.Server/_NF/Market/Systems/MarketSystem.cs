@@ -7,8 +7,10 @@ using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Market.Systems;
 
@@ -18,6 +20,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private readonly List<MarketData> _marketDataList = [];
 
@@ -89,10 +92,8 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 {
                     consoleComponent.CartData.Remove(marketData);
                 }
-                return;
             }
-
-            if (args.Amount < 0)
+            else if (args.Amount < 0)
             {
                 consoleComponent.CartData.Add(new MarketData(args.ItemPrototype!, args.Amount, stationNetEntity));
             }
@@ -146,6 +147,29 @@ public sealed partial class MarketSystem : SharedMarketSystem
         RefreshState(uid, bank.Balance, marketMultiplier, _marketDataList, component.CartData, MarketConsoleUiKey.Default);
     }
 
+    private int GetMarketSelectionValue(List<MarketData> dataList, float marketModifier)
+    {
+        var cartBalance = 0;
+
+        foreach (var marketData in dataList)
+        {
+            // Try to get the EntityPrototype that matches marketData.Prototype
+            if (!_prototypeManager.TryIndex<EntityPrototype>(marketData.Prototype, out var prototype))
+            {
+                continue; // Skip this iteration if the prototype was not found
+            }
+            var price = 0f;
+            if (prototype.TryGetComponent<StaticPriceComponent>(out var staticPrice))
+            {
+                price = (float) (staticPrice.Price * marketModifier);
+            }
+
+            var subTotal = (int) Math.Round(price * marketData.Quantity);
+            cartBalance += subTotal;
+        }
+        return cartBalance;
+    }
+
     private void RefreshState(
         EntityUid uid,
         int balance,
@@ -155,11 +179,14 @@ public sealed partial class MarketSystem : SharedMarketSystem
         MarketConsoleUiKey uiKey
     )
     {
+        var cartBalance = GetMarketSelectionValue(cartData, marketMultiplier);
+
         var newState = new MarketConsoleInterfaceState(
             balance,
             marketMultiplier,
             data,
             cartData,
+            cartBalance,
             true // TODO add enable/disable functionality
         );
         _ui.SetUiState(uid, uiKey, newState);

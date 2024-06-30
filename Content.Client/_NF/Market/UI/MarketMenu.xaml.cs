@@ -104,5 +104,6 @@ public sealed partial class MarketMenu : FancyWindow
     {
         Populate(uiState.MarketDataList, uiState.CartDataList, uiState.MarketModifier);
         BalanceLabel.Text = $" ${uiState.Balance}";
+        CartBalanceLabel.Text = $" ${uiState.CartBalance}";
     }
 }

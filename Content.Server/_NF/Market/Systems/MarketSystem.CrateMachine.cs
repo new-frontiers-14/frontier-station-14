@@ -8,6 +8,7 @@ using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
 using Content.Shared.Placeable;
+using Content.Shared.Storage.EntitySystems;
 using Microsoft.CodeAnalysis;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -25,6 +26,7 @@ public sealed partial class MarketSystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedStorageSystem _storage = default!;
 
 
     private const int MaxCrateMachineDistance = 16;
@@ -53,6 +55,12 @@ public sealed partial class MarketSystem
     {
         var crateMachineQuery = AllEntityQuery<CrateMachineComponent, TransformComponent>();
 
+        var marketMod = 1f;
+        if (TryComp<MarketModifierComponent>(consoleUid, out var marketModComponent))
+        {
+            marketMod = marketModComponent.Mod;
+        }
+
         while (crateMachineQuery.MoveNext(out var crateMachineUid, out var comp, out var compXform))
         {
             var distance = CalculateDistance(compXform.Coordinates, Transform(consoleUid).Coordinates);
@@ -71,14 +79,14 @@ public sealed partial class MarketSystem
             }
 
             // We found the first nearby compatible crate machine.
-            OnPurchaseCrateMessage(crateMachineUid, comp, args);
+            OnPurchaseCrateMessage(crateMachineUid, comp, component, marketMod, args);
 
             break;
         }
 
     }
 
-    private void OnPurchaseCrateMessage(EntityUid crateMachineUid, SharedCrateMachineComponent component, CrateMachinePurchaseMessage args)
+    private void OnPurchaseCrateMessage(EntityUid crateMachineUid, SharedCrateMachineComponent component, MarketConsoleComponent consoleComponent, float marketMod, CrateMachinePurchaseMessage args)
     {
 
         if (args.Actor is not { Valid: true } player)
@@ -87,11 +95,11 @@ public sealed partial class MarketSystem
         if (!TryComp<BankAccountComponent>(player, out var bankAccount))
             return;
 
-        TrySpawnCrate(crateMachineUid, player, component);
+        TrySpawnCrate(crateMachineUid, player, component, consoleComponent, marketMod, bankAccount);
     }
 
     private bool isAnimationRunning = false;
-    public void TrySpawnCrate(EntityUid crateMachineUid, EntityUid player, SharedCrateMachineComponent component)
+    public void TrySpawnCrate(EntityUid crateMachineUid, EntityUid player, SharedCrateMachineComponent component, MarketConsoleComponent consoleComponent, float marketMod, BankAccountComponent playerBank)
     {
         if (isAnimationRunning)
             return;
@@ -114,8 +122,31 @@ public sealed partial class MarketSystem
             }
         }
 
+        var cartBalance = GetMarketSelectionValue(consoleComponent.CartData, marketMod);
+        if (!(playerBank.Balance >= cartBalance))
+            return;
+
+        var spawnList = new List<MarketData>();
+        for (int i = 0; i < 30 && consoleComponent.CartData.Count > 0; i++)
+        {
+            var marketData = consoleComponent.CartData.First();
+
+            spawnList.Add(marketData);
+
+            if (marketData.Quantity > 1)
+            {
+                consoleComponent.CartData.First().Quantity -= 1;
+            }
+            else
+            {
+                consoleComponent.CartData.Remove(marketData);
+            }
+        }
         // Withdraw spesos from player
         //_bankSystem.TryBankWithdraw(player, );
+        var spawnCost = GetMarketSelectionValue(spawnList, marketMod);
+        if (!_bankSystem.TryBankWithdraw(player, spawnCost))
+            return;
 
         var xform = Transform(crateMachineUid);
 
@@ -129,13 +160,21 @@ public sealed partial class MarketSystem
             UpdateVisualState(crateMachineUid, component, true);
             Dirty(crateMachineUid, component);
             await Task.Delay(3000);
-            Spawn(component.CratePrototype, xform.Coordinates);
+            var targetCrate = Spawn(component.CratePrototype, xform.Coordinates);
             UpdateVisualState(crateMachineUid, component, false);
             Dirty(crateMachineUid, component);
             isAnimationRunning = false;
+            SpawnCrateItems(spawnList, targetCrate);
         });
+    }
 
-
+    private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)
+    {
+        foreach (var data in spawnList)
+        {
+            var spawn = Spawn(data.Prototype, Transform(targetCrate).Coordinates);
+            _storage.Insert(targetCrate, spawn, out _, playSound: false, stackAutomatically: true);
+        }
     }
 
     public void UpdateVisualState(EntityUid uid, SharedCrateMachineComponent component, bool isOpening = true)
