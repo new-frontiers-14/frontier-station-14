@@ -222,12 +222,26 @@ namespace Content.Shared.VendingMachines
         public string ID;
         [ViewVariables(VVAccess.ReadWrite)]
         public uint Amount;
-        public VendingMachineInventoryEntry(InventoryType type, string id, uint amount)
+        [ViewVariables(VVAccess.ReadWrite)] // Frontier
+        public float? Cost; // Frontier
+        [ViewVariables(VVAccess.ReadWrite)] // Frontier
+        public CostType CostType; // Frontier
+        public VendingMachineInventoryEntry(InventoryType type, string id, uint amount, float? cost = null, CostType costType = CostType.Default) // Frontier: added cost, costType
         {
             Type = type;
             ID = id;
             Amount = amount;
+            Cost = cost; // Frontier
+            CostType = costType; // Frontier
         }
+    }
+
+    [Serializable, NetSerializable]
+    public enum CostType : byte
+    {
+        Default,
+        Multiplier, // cost represents the amount to multiply the base value by.
+        FixedValue // cost represents the value of the item.
     }
 
     [Serializable, NetSerializable]
