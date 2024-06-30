@@ -90,7 +90,7 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
-      bodyStatus: OnGround
+      bodyStatus: InAir
       angularDamping: 999999
       linearDamping: 999999
       fixedRotation: False
@@ -1648,7 +1648,8 @@ entities:
           -1,1:
             1: 65527
           0,2:
-            1: 238
+            1: 206
+            2: 32
             0: 57344
           -1,2:
             1: 142
@@ -1748,8 +1749,8 @@ entities:
           4,-4:
             0: 40175
           4,-1:
-            2: 119
-            3: 30464
+            3: 119
+            4: 30464
             0: 34952
           -4,-4:
             0: 32767
@@ -1777,7 +1778,8 @@ entities:
             0: 1
           -3,-1:
             0: 4369
-            1: 52428
+            2: 4
+            1: 52424
           -3,-5:
             0: 32767
           -3,-2:
@@ -1804,7 +1806,7 @@ entities:
             0: 61166
           -4,1:
             0: 14657
-            4: 1024
+            5: 1024
           -5,1:
             0: 65294
           -4,2:
@@ -1848,7 +1850,7 @@ entities:
             0: 65395
           5,-3:
             0: 49391
-            4: 8192
+            5: 8192
           5,-2:
             0: 65262
           5,-1:
@@ -2031,6 +2033,21 @@ entities:
           - 0
           - 0
         - volume: 2500
+          temperature: 5000
+          moles:
+          - 6133.6235
+          - 0
+          - 0
+          - 6133.6235
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
           temperature: 293.15
           moles:
           - 0
@@ -2102,7 +2119,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -5007.457
+      secondsUntilStateChange: -5427.3447
       state: Opening
   - uid: 386
     components:
@@ -3370,7 +3387,6 @@ entities:
   - uid: 1317
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 10.5,-20.5
       parent: 2
 - proto: BenchRedComfy
@@ -3421,7 +3437,7 @@ entities:
   - uid: 2987
     components:
     - type: Transform
-      parent: 2807
+      parent: 1700
     - type: ContainerContainer
       containers:
         PDA-id: !type:ContainerSlot
@@ -3452,11 +3468,30 @@ entities:
           _rotation: South
     - type: Physics
       canCollide: False
-    - type: InsideEntityStorage
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.0625,-0.0625
+            - 0.0625,-0.0625
+            - 0.0625,0.0625
+            - -0.0625,0.0625
+          mask:
+          - Impassable
+          - HighImpassable
+          layer: []
+          density: 20
+          hard: True
+          restitution: 0.3
+          friction: 0.2
+    - type: ScaleVisuals
   - uid: 2989
     components:
     - type: Transform
-      parent: 2804
+      pos: 0.40131295,-0.3930875
+      parent: 2
     - type: ContainerContainer
       containers:
         PDA-id: !type:ContainerSlot
@@ -3485,9 +3520,25 @@ entities:
         2990:
           position: 0,0
           _rotation: South
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.0625,-0.0625
+            - 0.0625,-0.0625
+            - 0.0625,0.0625
+            - -0.0625,0.0625
+          mask:
+          - Impassable
+          - HighImpassable
+          layer: []
+          density: 20
+          hard: True
+          restitution: 0.3
+          friction: 0.2
+    - type: ScaleVisuals
 - proto: BlastDoor
   entities:
   - uid: 301
@@ -4064,6 +4115,11 @@ entities:
       parent: 2
 - proto: CableApcExtension
   entities:
+  - uid: 335
+    components:
+    - type: Transform
+      pos: -1.5,17.5
+      parent: 2
   - uid: 736
     components:
     - type: Transform
@@ -5608,11 +5664,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,16.5
-      parent: 2
-  - uid: 1239
-    components:
-    - type: Transform
-      pos: -1.5,17.5
       parent: 2
   - uid: 1240
     components:
@@ -7381,6 +7432,25 @@ entities:
       parent: 2807
     - type: Physics
       canCollide: False
+    - type: GroupExamine
+      group:
+      - hoverMessage: ""
+        contextText: verb-examine-group-other
+        icon: /Textures/Interface/examine-star.png
+        components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: >-
+            Обеспечивает следующую защиту:
+
+            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]90%[/color].
+          priority: 0
+          component: Armor
+        - message: Понижает вашу скорость бега на [color=yellow]10%[/color].
+          priority: 0
+          component: ClothingSpeedModifier
+        title: null
     - type: InsideEntityStorage
 - proto: ClothingBackpackDuffelSyndicateFilledLMG
   entities:
@@ -7892,15 +7962,32 @@ entities:
     - type: Transform
       pos: 1.5,9.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 5000
+        moles:
+        - 533.3585
+        - 0
+        - 0
+        - 533.3585
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 3046
           - 3086
-          - 2989
+          - 3046
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -7944,15 +8031,32 @@ entities:
     - type: Transform
       pos: -9.5,-3.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 5000
+        moles:
+        - 533.3585
+        - 0
+        - 0
+        - 533.3585
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 3116
           - 3117
-          - 2987
+          - 3116
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -8019,36 +8123,50 @@ entities:
     - type: Transform
       pos: -2.5,-22.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2808
     components:
     - type: Transform
       pos: -9.5,-2.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2819
     components:
     - type: Transform
       pos: 2.5,9.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2826
     components:
     - type: Transform
       pos: 10.5,7.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2827
     components:
     - type: Transform
       pos: -6.5,1.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2831
     components:
     - type: Transform
       pos: -3.5,-7.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2832
     components:
     - type: Transform
       pos: 7.5,-12.5
       parent: 2
+    missingComponents:
+    - TradeCrate
 - proto: CrateTradeContrabandSecureDonkFilled
   entities:
   - uid: 322
@@ -8056,41 +8174,57 @@ entities:
     - type: Transform
       pos: -5.5,4.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 889
     components:
     - type: Transform
       pos: -7.5,-2.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2809
     components:
     - type: Transform
       pos: 3.5,9.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2818
     components:
     - type: Transform
       pos: -9.5,-1.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2825
     components:
     - type: Transform
       pos: 10.5,4.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2830
     components:
     - type: Transform
       pos: -3.5,-10.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2833
     components:
     - type: Transform
       pos: 11.5,-9.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2834
     components:
     - type: Transform
       pos: 9.5,-7.5
       parent: 2
+    missingComponents:
+    - TradeCrate
 - proto: CrateTradeContrabandSecureNormalFilled
   entities:
   - uid: 1333
@@ -8098,56 +8232,78 @@ entities:
     - type: Transform
       pos: -4.5,-21.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 1596
     components:
     - type: Transform
       pos: 1.5,7.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2791
     components:
     - type: Transform
       pos: -7.5,-3.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2792
     components:
     - type: Transform
       pos: -7.5,-0.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2820
     components:
     - type: Transform
       pos: -4.5,7.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2821
     components:
     - type: Transform
       pos: -2.5,4.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2823
     components:
     - type: Transform
       pos: 7.5,8.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2824
     components:
     - type: Transform
       pos: 8.5,5.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2828
     components:
     - type: Transform
       pos: -6.5,-6.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2829
     components:
     - type: Transform
       pos: -0.5,-13.5
       parent: 2
+    missingComponents:
+    - TradeCrate
   - uid: 2835
     components:
     - type: Transform
       pos: 13.5,-6.5
       parent: 2
+    missingComponents:
+    - TradeCrate
 - proto: CyberPen
   entities:
   - uid: 753
@@ -13900,7 +14056,7 @@ entities:
       pos: 5.5,7.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 3646.8826195
+      nextDrop: 6118.6609443
 - proto: PosterContrabandEnlistGorlexDD
   entities:
   - uid: 2395
@@ -13910,7 +14066,7 @@ entities:
       pos: -11.5,-13.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 3646.8826195
+      nextDrop: 6392.6609443
 - proto: PosterContrabandKosmicheskayaStantsiyaDD
   entities:
   - uid: 2316
@@ -13920,7 +14076,7 @@ entities:
       pos: -16.5,5.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 2942.8826195
+      nextDrop: 4558.6609443
 - proto: PosterContrabandMoth
   entities:
   - uid: 2995
@@ -13950,7 +14106,7 @@ entities:
       pos: -11.5,16.5
       parent: 2
     - type: DeadDrop
-      nextDrop: 2604.8826195
+      nextDrop: 3775.6609443
 - proto: PoweredlightBlue
   entities:
   - uid: 1424
@@ -14390,54 +14546,6 @@ entities:
       parent: 2
 - proto: Railing
   entities:
-  - uid: 331
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-20.5
-      parent: 2
-  - uid: 334
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-20.5
-      parent: 2
-  - uid: 335
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-20.5
-      parent: 2
-  - uid: 336
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-20.5
-      parent: 2
-  - uid: 337
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-20.5
-      parent: 2
-  - uid: 342
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,17.5
-      parent: 2
-  - uid: 343
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,16.5
-      parent: 2
-  - uid: 344
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,16.5
-      parent: 2
   - uid: 362
     components:
     - type: Transform
@@ -14447,12 +14555,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-21.5
-      parent: 2
-  - uid: 882
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-20.5
       parent: 2
   - uid: 883
     components:
@@ -14489,62 +14591,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-13.5
       parent: 2
-  - uid: 2710
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,17.5
-      parent: 2
-  - uid: 2711
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,17.5
-      parent: 2
-  - uid: 2712
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,17.5
-      parent: 2
-  - uid: 2713
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,17.5
-      parent: 2
-  - uid: 2714
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,17.5
-      parent: 2
-  - uid: 2715
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,17.5
-      parent: 2
-  - uid: 2716
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,17.5
-      parent: 2
 - proto: RailingCorner
   entities:
-  - uid: 347
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,17.5
-      parent: 2
-  - uid: 348
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,17.5
-      parent: 2
   - uid: 907
     components:
     - type: Transform
@@ -15014,6 +15062,63 @@ entities:
     components:
     - type: Transform
       pos: -20.5,4.5
+      parent: 2
+- proto: SpawnMobRogueSiliconsT3
+  entities:
+  - uid: 331
+    components:
+    - type: Transform
+      pos: 8.5,7.5
+      parent: 2
+  - uid: 334
+    components:
+    - type: Transform
+      pos: 12.5,-6.5
+      parent: 2
+  - uid: 336
+    components:
+    - type: Transform
+      pos: 7.5,-11.5
+      parent: 2
+  - uid: 337
+    components:
+    - type: Transform
+      pos: 9.5,-9.5
+      parent: 2
+  - uid: 342
+    components:
+    - type: Transform
+      pos: -2.5,-9.5
+      parent: 2
+  - uid: 343
+    components:
+    - type: Transform
+      pos: -6.5,-7.5
+      parent: 2
+  - uid: 344
+    components:
+    - type: Transform
+      pos: -2.5,-12.5
+      parent: 2
+  - uid: 347
+    components:
+    - type: Transform
+      pos: -6.5,2.5
+      parent: 2
+  - uid: 348
+    components:
+    - type: Transform
+      pos: 11.5,2.5
+      parent: 2
+  - uid: 882
+    components:
+    - type: Transform
+      pos: 8.5,6.5
+      parent: 2
+  - uid: 1239
+    components:
+    - type: Transform
+      pos: -4.5,6.5
       parent: 2
 - proto: SpawnMobSyndicateNavalCaptain
   entities:
@@ -15657,6 +15762,23 @@ entities:
     - type: Transform
       pos: 3.0350866,-2.5418591
       parent: 2
+    - type: Storage
+      storedItems:
+        2987:
+          position: 0,0
+          _rotation: South
+    - type: UserInterface
+      actors:
+        enum.StorageUiKey.Key:
+        - invalid
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 2987
+    - type: ActiveUserInterface
 - proto: ToyFigurineNukie
   entities:
   - uid: 3052

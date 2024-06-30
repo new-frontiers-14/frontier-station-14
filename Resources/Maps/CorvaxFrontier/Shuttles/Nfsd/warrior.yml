@@ -748,7 +748,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 128
     - type: AtmosPipeColor
@@ -761,7 +760,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 128
@@ -896,6 +894,9 @@ entities:
     - type: DeviceLinkSink
       links:
       - 59
+    missingComponents:
+    - Anchorable
+    - Construction
 - proto: SignalButton
   entities:
   - uid: 59
