@@ -1,4 +1,10 @@
+using Content.Shared.Actions;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
+using Content.Shared.LieDown;
+using Robust.Shared.Timing;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
 using Robust.Shared.Audio;
@@ -10,19 +16,76 @@ namespace Content.Shared.Standing
 {
     public sealed class StandingStateSystem : EntitySystem
     {
+        [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-
+        [Dependency] private readonly SharedActionsSystem _actions = default!;
+        [Dependency] private readonly SharedLieDownSystem _lieDown = default!;
+        [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+        [Dependency] private readonly SharedBuckleSystem _buckle = default!;
         // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
-        private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
+        private const int StandingCollisionLayer = (int)CollisionGroup.MidImpassable;
 
-        public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null)
+        public override void Initialize()
+        {
+            SubscribeLocalEvent<StandingStateComponent, ComponentStartup>(OnComponentInit);
+            SubscribeLocalEvent<StandingStateComponent, LieDownActionEvent>(OnLieDownAction);
+            SubscribeLocalEvent<StandingStateComponent, StandUpActionEvent>(OnStandUpAction);
+            SubscribeLocalEvent<StandingStateComponent, MapInitEvent>(OnMapInit);
+        }
+
+        public bool IsDown(EntityUid uid, StandingStateComponent? standingState = null, LyingDownComponent? liedownComp = null)
         {
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
-            return !standingState.Standing;
+            return Resolve(uid, ref liedownComp, false);
+        }
+
+        private void OnMapInit(EntityUid uid, StandingStateComponent component, MapInitEvent args)
+        {
+            _actionContainer.EnsureAction(uid, ref component.LieDownActionEntity, component.LieDownAction);
+            _actionContainer.EnsureAction(uid, ref component.StandUpActionEntity, component.StandUpAction);
+            Dirty(uid, component);
+        }
+
+        /// <summary>
+        ///     When component is added to player, add an action.
+        /// </summary>
+        private void OnComponentInit(EntityUid uid, StandingStateComponent component, ComponentStartup args)
+        {
+            _actions.AddAction(uid, ref component.LieDownActionEntity, component.LieDownAction);
+        }
+
+        /// <summary>
+        ///     Event that being risen on lie down attempt.
+        /// </summary>
+        private void OnLieDownAction(EntityUid uid, StandingStateComponent component, LieDownActionEvent args)
+        {
+            if (!_buckle.IsBuckled(uid))
+                _lieDown.TryLieDown(uid);
+        }
+
+        /// <summary>
+        ///     Event that being risen on stand up attempt.
+        /// </summary>
+        private void OnStandUpAction(EntityUid uid, StandingStateComponent? component, StandUpActionEvent args)
+        {
+            if (!_buckle.IsBuckled(uid))
+                _lieDown.TryStandUp(uid);
+        }
+
+        private bool DelayCheck(EntityUid uid, StandingStateComponent? standingState = null)
+        {
+            if (!Resolve(uid, ref standingState, false))
+                return false;
+
+            if (standingState.LastUsage + standingState.Delay > _timing.CurTime)
+                return false;
+
+            standingState.LastUsage = _timing.CurTime;
+            return true;
         }
 
         public bool Down(EntityUid uid, bool playSound = true, bool dropHeldItems = true,
@@ -34,10 +97,12 @@ namespace Content.Shared.Standing
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
+            if (!DelayCheck(uid, standingState))
+                return false;
             // Optional component.
             Resolve(uid, ref appearance, ref hands, false);
 
-            if (!standingState.Standing)
+            if (IsDown(uid))
                 return true;
 
             // This is just to avoid most callers doing this manually saving boilerplate
@@ -55,7 +120,7 @@ namespace Content.Shared.Standing
             if (msg.Cancelled)
                 return false;
 
-            standingState.Standing = false;
+            EnsureComp<LyingDownComponent>(uid);
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new DownedEvent(), false);
 
@@ -97,10 +162,13 @@ namespace Content.Shared.Standing
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
+            if (!DelayCheck(uid, standingState))
+                return false;
+
             // Optional component.
             Resolve(uid, ref appearance, false);
 
-            if (standingState.Standing)
+            if (!IsDown(uid))
                 return true;
 
             if (!force)
@@ -112,7 +180,7 @@ namespace Content.Shared.Standing
                     return false;
             }
 
-            standingState.Standing = true;
+            RemCompDeferred<LyingDownComponent>(uid);
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new StoodEvent(), false);
 
@@ -127,6 +195,11 @@ namespace Content.Shared.Standing
                 }
             }
             standingState.ChangedFixtures.Clear();
+
+            LyingDownComponent? liedownComp = null;
+            //if (Resolve(uid, ref liedownComp, false)) {
+            //    RemCompDeferred<LyingDownComponent>(uid);
+            //}
 
             return true;
         }

@@ -1,0 +1,19 @@
+- type: entity
+  name: онигири
+  parent: FoodBakedBase
+  id: onigiri
+  description: Лучший рис в галактике!
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: onigiri
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 20

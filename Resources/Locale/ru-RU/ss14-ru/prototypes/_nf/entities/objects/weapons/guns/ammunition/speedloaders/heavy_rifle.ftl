@@ -1,12 +1,6 @@
 ent-SpeedLoaderRifleHeavy = спидлоадер (.20 винтовочные)
-    .desc = { ent-SpeedLoaderRifleHeavy.desc }
 ent-SpeedLoaderRifleHeavyRubber = спидлоадер (.20 винтовочные резиновые)
-    .desc = { ent-SpeedLoaderRifleHeavyRubber.desc }
 ent-SpeedLoaderRifleHeavyUranium = спидлоадер (.20 винтовочные урановые)
-    .desc = { ent-SpeedLoaderRifleHeavyUranium.desc }
 ent-SpeedLoaderRifleHeavyPractice = спидлоадер (.20 винтовочные учебные)
-    .desc = { ent-SpeedLoaderRifleHeavyPractice.desc }
 ent-SpeedLoaderRifleHeavyIncendiary = спидлоадер (.20 винтовочные зажигательные)
-    .desc = { ent-SpeedLoaderRifleHeavyIncendiary.desc }
 ent-SpeedLoaderRifleHeavyEmpty = спидлоадер (.20 винтовочные пустой)
-    .desc = { ent-SpeedLoaderRifleHeavyEmpty.desc }

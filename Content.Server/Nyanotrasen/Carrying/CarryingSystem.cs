@@ -29,6 +29,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Storage;
+using Content.Shared.LieDown;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Carrying
@@ -46,6 +47,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
         [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private readonly SharedLieDownSystem _lieDown = default!;
 
         public override void Initialize()
         {
@@ -279,7 +281,8 @@ namespace Content.Server.Carrying
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             Transform(carried).AttachToGridOrMap();
-            _standingState.Stand(carried);
+            if (!_standingState.IsDown(carried))
+                _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
         }

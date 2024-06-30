@@ -1,0 +1,19 @@
+- type: entity
+  id: ActionStandUp
+  name: Встать
+  description: Встать с пола. Надеюсь вам было удобно лежать на холодном, грязном полу.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Interface/Actions/stand-up-state.png
+    event: !type:StandUpActionEvent {}
+
+- type: entity
+  id: ActionLieDown
+  name: Лечь
+  description: Лечь на грязный пол.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Interface/Actions/lie-down-state.png
+    event: !type:LieDownActionEvent {}

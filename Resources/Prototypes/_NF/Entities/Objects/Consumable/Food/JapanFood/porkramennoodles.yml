@@ -1,0 +1,28 @@
+- type: entity
+  name: свиной рамэн
+  parent: FoodBowlBase
+  id: porkramennoodles
+  description: Оу, да я вижу вы человек высокой культуры...
+  components:
+  - type: Item
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: porkramen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Protein
+            Quantity: 3
+          - ReagentId: Flavorol
+            Quantity: 5
+          - ReagentId: Soysauce
+            Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
