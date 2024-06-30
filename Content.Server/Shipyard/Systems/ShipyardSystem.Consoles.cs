@@ -231,10 +231,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (CalculateSalesTax(component, sellValue, out var tax))
-        {
-            sellValue -= tax;
-        }
+        sellValue -= CalculateSalesTax(component, sellValue);
 
         SendPurchaseMessage(uid, player, name, component.ShipyardChannel, secret: false);
         if (component.SecretShipyardChannel is { } secretChannel)
@@ -319,7 +316,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         RemComp<ShuttleDeedComponent>(targetId);
 
-        if (CalculateSalesTax(component, bill, out var tax))
+        var tax = CalculateSalesTax(component, bill);
+        if (tax != 0)
         {
             var query = EntityQueryEnumerator<StationBankAccountComponent>();
 
@@ -373,10 +371,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        if (CalculateSalesTax(component, sellValue, out var tax))
-        {
-            sellValue -= tax;
-        }
+        sellValue -= CalculateSalesTax(component, sellValue);
 
         var fullName = deed != null ? GetFullName(deed) : null;
         RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
@@ -460,10 +455,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (deed?.ShuttleUid != null)
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-            if (CalculateSalesTax(component, sellValue, out var tax))
-            {
-                sellValue -= tax;
-            }
+            sellValue -= CalculateSalesTax(component, sellValue);
 
             var fullName = deed != null ? GetFullName(deed) : null;
             RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue,
@@ -556,15 +548,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         deed.ShuttleOwner = shuttleOwner;
     }
 
-    private bool CalculateSalesTax(ShipyardConsoleComponent component, int sellValue, out int tax)
+    private int CalculateSalesTax(ShipyardConsoleComponent component, int sellValue)
     {
         if (float.IsFinite(component.SalesTax) && component.SalesTax != 0f)
         {
-            tax = (int) (sellValue * component.SalesTax);
-            return true;
+            return (int) (sellValue * component.SalesTax);
         }
-        tax = 0;
-        return false;
+        return 0;
     }
 
     private void OnInitDeedSpawner(EntityUid uid, StationDeedSpawnerComponent component, MapInitEvent args)
