@@ -61,19 +61,4 @@ public sealed partial class StampComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound = null;
 
-    /// <summary>
-    /// Frontier - The stamp using the person name on it
-    /// </summary>
-    [DataField("stampedPersonal")]
-    public bool StampedPersonal = false;
-
-    [DataField("stampedBorderless")]
-    public bool StampedBorderless = false;
-
-    [ViewVariables]
-    public EntityUid? StampedIdUser = null;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("nameSetUser")]
-    public bool NameSetUser { get; set; }
 }
