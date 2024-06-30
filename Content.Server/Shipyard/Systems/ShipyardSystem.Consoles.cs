@@ -39,7 +39,6 @@ using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Content.Server.Shipyard.Systems;
 
