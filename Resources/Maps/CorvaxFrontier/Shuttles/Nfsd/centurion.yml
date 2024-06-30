@@ -17,16 +17,16 @@ entities:
     components:
     - type: MetaData
       name: Центурион
-    - type: BecomesStation
-      id: Centurion
     - type: Transform
       pos: -0.5,-0.5
       parent: invalid
+    - type: BecomesStation
+      id: Centurion
     - type: AutoDelete
-      delayToCheck: 60
-      delayToDelete: 2400
       distanceToCheck: 40
-      isHumanoidNear: true
+      delayToDelete: 2400
+      delayToCheck: 60
+      isHumanoidNear: True
     - type: MapGrid
       chunks:
         0,0:
@@ -4442,6 +4442,24 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: CenturionMothershipComputer
+  entities:
+  - uid: 912
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-13.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ChairOfficeLight
   entities:
   - uid: 599
@@ -6927,24 +6945,6 @@ entities:
     - type: Transform
       pos: 9.418163,-2.6138601
       parent: 1
-- proto: CenturionMothershipComputer
-  entities:
-  - uid: 912
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-13.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: HighSecArmoryLocked
   entities:
   - uid: 876
@@ -7865,6 +7865,9 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1554
+    missingComponents:
+    - Anchorable
+    - Construction
   - uid: 988
     components:
     - type: Transform
@@ -7874,6 +7877,9 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1554
+    missingComponents:
+    - Anchorable
+    - Construction
   - uid: 989
     components:
     - type: Transform
@@ -7883,6 +7889,9 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1555
+    missingComponents:
+    - Anchorable
+    - Construction
   - uid: 990
     components:
     - type: Transform
@@ -7892,6 +7901,9 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1555
+    missingComponents:
+    - Anchorable
+    - Construction
 - proto: SignalButton
   entities:
   - uid: 991
