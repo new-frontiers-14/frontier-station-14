@@ -97,7 +97,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 consoleComponent.CartData.Add(new MarketData(args.ItemPrototype!, args.Amount, stationNetEntity));
             }
         }
-        RefreshState(consoleUid, bank.Balance, marketMultiplier, _marketDataList, MarketConsoleUiKey.Default);
+        RefreshState(consoleUid, bank.Balance, marketMultiplier, _marketDataList, consoleComponent.CartData, MarketConsoleUiKey.Default);
     }
 
 
@@ -143,7 +143,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
-        RefreshState(uid, bank.Balance, marketMultiplier, _marketDataList, MarketConsoleUiKey.Default);
+        RefreshState(uid, bank.Balance, marketMultiplier, _marketDataList, component.CartData, MarketConsoleUiKey.Default);
     }
 
     private void RefreshState(
@@ -151,6 +151,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
         int balance,
         float marketMultiplier,
         List<MarketData> data,
+        List<MarketData> cartData,
         MarketConsoleUiKey uiKey
     )
     {
@@ -158,6 +159,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             balance,
             marketMultiplier,
             data,
+            cartData,
             true // TODO add enable/disable functionality
         );
         _ui.SetUiState(uid, uiKey, newState);
