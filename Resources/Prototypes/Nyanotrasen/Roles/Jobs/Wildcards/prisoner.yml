@@ -12,6 +12,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ TrackingImplant ] # Frontier
+  - !type:GiveItemOnHolidaySpecial # Frontier: even prisoners get a piece of cake (with no file inside).
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: PrisonerGear
