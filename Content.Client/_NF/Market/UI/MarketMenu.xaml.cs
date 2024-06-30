@@ -16,6 +16,7 @@ public sealed partial class MarketMenu : FancyWindow
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     public event Action<BaseButton.ButtonEventArgs>? OnPurchase;
+    public event Action<BaseButton.ButtonEventArgs>? OnReturn;
     public event Action<BaseButton.ButtonEventArgs>? OnPurchaseCrate;
 
     public MarketMenu()
@@ -31,9 +32,10 @@ public sealed partial class MarketMenu : FancyWindow
         // TODO disable buttons where possible
     }
 
-    public void Populate(List<MarketData> data, float marketModifier)
+    public void Populate(List<MarketData> data, List<MarketData> cartData, float marketModifier)
     {
         Products.RemoveAllChildren();
+        Cart.RemoveAllChildren();
 
         foreach (var marketData in data)
         {
@@ -54,7 +56,7 @@ public sealed partial class MarketMenu : FancyWindow
             }
             var roundedPrice = (int)Math.Round(price);
 
-            var productRow = new MarketProductRow
+            var productRow = new MarketProductRow(marketData.Prototype)
             {
                 Title = { Text = prototype.Name },
                 Quantity = { Text = marketData.Quantity.ToString() },
@@ -65,11 +67,42 @@ public sealed partial class MarketMenu : FancyWindow
 
             Products.AddChild(productRow);
         }
+
+        foreach (var marketData in cartData)
+        {
+            // Try to get the EntityPrototype that matches marketData.Prototype
+            if (!_protoManager.TryIndex<EntityPrototype>(marketData.Prototype, out var prototype))
+            {
+                continue; // Skip this iteration if the prototype was not found
+            }
+            if (!prototype.TryGetComponent<SpriteComponent>(out var sprite))
+            {
+                continue; // Skip this iteration if the prototype was not found
+            }
+
+            var price = 0f;
+            if (prototype.TryGetComponent<StaticPriceComponent>(out var staticPrice))
+            {
+                price = (float) (staticPrice.Price * marketModifier);
+            }
+            var roundedPrice = (int)Math.Round(price);
+
+            var productRow = new MarketCartProductRow(marketData.Prototype)
+            {
+                Title = { Text = prototype.Name },
+                Quantity = { Text = marketData.Quantity.ToString() },
+                Price = { Text = $"${roundedPrice}" },
+                Icon = { Texture = sprite.Icon?.Default }
+            };
+            productRow.Return.OnPressed += args => { OnReturn?.Invoke(args); };
+
+            Cart.AddChild(productRow);
+        }
     }
 
     public void UpdateState(MarketConsoleInterfaceState uiState)
     {
-        Populate(uiState.MarketDataList, uiState.MarketModifier);
+        Populate(uiState.MarketDataList, uiState.CartDataList, uiState.MarketModifier);
         BalanceLabel.Text = $" ${uiState.Balance}";
     }
 }

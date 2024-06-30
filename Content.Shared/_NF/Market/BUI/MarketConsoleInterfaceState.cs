@@ -22,15 +22,21 @@ public sealed class MarketConsoleInterfaceState : BoundUserInterfaceState
     public List<MarketData> MarketDataList;
 
     /// <summary>
+    /// The currently stored cart data
+    /// </summary>
+    public List<MarketData> CartDataList;
+
+    /// <summary>
     /// are the buttons enabled
     /// </summary>
     public bool Enabled;
 
-    public MarketConsoleInterfaceState(int balance, float marketModifier, List<MarketData> marketDataList, bool enabled)
+    public MarketConsoleInterfaceState(int balance, float marketModifier, List<MarketData> marketDataList, List<MarketData> cartDataList, bool enabled)
     {
         Balance = balance;
         MarketModifier = marketModifier;
         MarketDataList = marketDataList;
+        CartDataList = cartDataList;
         Enabled = enabled;
     }
 }

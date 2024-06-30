@@ -20,8 +20,9 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = new MarketMenu();
-        _menu.OnClose += Close;
+        //_menu.OnClose += Close;
         _menu.OnPurchase += Purchase;
+        _menu.OnReturn += Return;
         _menu.OnPurchaseCrate += PurchaseCrate;
 
         _menu.OpenCentered();
@@ -43,6 +44,21 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void Purchase(ButtonEventArgs args)
     {
         // Do stuff
+        if (!(args.Button.Parent is MarketProductRow product))
+            return;
+        var purchaseMessage = new CrateMachineCartMessage(-1, product.PrototypeId);
+
+        SendMessage(purchaseMessage);
+    }
+
+    private void Return(ButtonEventArgs args)
+    {
+        // Do stuff
+        if (!(args.Button.Parent is MarketCartProductRow product))
+            return;
+        var purchaseMessage = new CrateMachineCartMessage(1, product.PrototypeId);
+
+        SendMessage(purchaseMessage);
     }
 
     private void PurchaseCrate(ButtonEventArgs args)

@@ -6,10 +6,10 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._NF.Market.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class MarketProductRow : PanelContainer
+public sealed partial class MarketCartProductRow : PanelContainer
 {
     public string PrototypeId;
-    public MarketProductRow(string prototypeId)
+    public MarketCartProductRow(string prototypeId)
     {
         RobustXamlLoader.Load(this);
         PrototypeId = prototypeId;

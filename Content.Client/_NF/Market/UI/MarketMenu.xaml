@@ -11,6 +11,10 @@
                    StyleClasses="LabelKeyText" />
             <Label Name="BalanceLabel"
                    Text="{Loc 'market-no-bank-found'}" />
+            <Label Text="{Loc 'market-cart-balance'}"
+                   StyleClasses="LabelKeyText" />
+            <Label Name="BalanceLabel"
+                   Text="{Loc 'market-no-cart-found'}" />
         </BoxContainer>
         <PanelContainer VerticalExpand="True" Margin="10">
             <PanelContainer.PanelOverride>
@@ -38,6 +42,34 @@
                                  SizeFlagsStretchRatio="6"
                                  StyleClasses="PanelBackgroundLight">
                     <BoxContainer Name="Products"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True">
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical"
+                          VerticalExpand="True">
+                <BoxContainer Orientation="Horizontal"
+                              HorizontalExpand="True"
+                              StyleClasses="PanelBackgroundLight"
+                              Margin="32 0 5 0">
+                    <Label Text="{Loc 'market-item-title'}"
+                           Access="Public"
+                           HorizontalExpand="True" />
+                    <Label Text="{Loc 'market-quantity-title'}"
+                           Access="Public"
+                           HorizontalExpand="True" />
+                    <Label Text="{Loc 'market-price'}"
+                           Access="Public"
+                           HorizontalExpand="True" />
+                </BoxContainer>
+                <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10" />
+                <ScrollContainer HorizontalExpand="True"
+                                 VerticalExpand="True"
+                                 SizeFlagsStretchRatio="6"
+                                 StyleClasses="PanelBackgroundLight">
+                    <BoxContainer Name="Cart"
                                   Orientation="Vertical"
                                   HorizontalExpand="True"
                                   VerticalExpand="True">

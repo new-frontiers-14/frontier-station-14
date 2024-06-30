@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Content.Server._NF.Market.Components;
 using Content.Server.Bank;
+using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;

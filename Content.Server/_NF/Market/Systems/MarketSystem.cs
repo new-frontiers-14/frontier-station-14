@@ -2,8 +2,10 @@
 using Content.Server._NF.Market.Components;
 using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
+using Content.Server.Station.Systems;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.BUI;
+using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
@@ -14,6 +16,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
 {
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private readonly List<MarketData> _marketDataList = [];
@@ -24,7 +27,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
         SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);
         SubscribeLocalEvent<MarketConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
-
+        SubscribeLocalEvent<MarketConsoleComponent, CrateMachineCartMessage>(OnCartMessage);
         InitializeCrateMachine();
     }
 
@@ -51,32 +54,81 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
                 // Increase the count in the MarketData for this entity
                 // Assuming the quantity to increase is 1 for each sold entity
-                UpdateMarketData(entityPrototypeId, count, ev.Station);
+                TryUpdateMarketData(entityPrototypeId, count, ev.Station);
             }
         }
     }
+
+    private void OnCartMessage(EntityUid consoleUid, MarketConsoleComponent consoleComponent,
+        ref CrateMachineCartMessage args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+        if (!TryComp<BankAccountComponent>(player, out var bank))
+            return;
+        var marketMultiplier = 1.0f;
+        if (TryComp<MarketModifierComponent>(consoleUid, out var priceMod))
+        {
+            marketMultiplier = priceMod.Mod;
+        }
+
+        if (!(_station.GetOwningStation(consoleUid) is {Valid: true} station))
+            return;
+
+        if (TryUpdateMarketData(args.ItemPrototype!, args.Amount, station))
+        {
+            var stationNetEntity = GetNetEntity(station);
+            var itemProto = args.ItemPrototype;
+            // Find the MarketData for the given EntityPrototype
+            var marketData = consoleComponent.CartData.FirstOrDefault(md => md.Prototype == itemProto && md.StationUid == stationNetEntity);
+            if (marketData != null && (marketData.Quantity - args.Amount) >= 0)
+            {
+                // If it exists, change the count
+                marketData.Quantity -= args.Amount;
+                if (marketData.Quantity <= 0)
+                {
+                    consoleComponent.CartData.Remove(marketData);
+                }
+                return;
+            }
+
+            if (args.Amount < 0)
+            {
+                consoleComponent.CartData.Add(new MarketData(args.ItemPrototype!, args.Amount, stationNetEntity));
+            }
+        }
+        RefreshState(consoleUid, bank.Balance, marketMultiplier, _marketDataList, MarketConsoleUiKey.Default);
+    }
+
 
     /// <summary>
     /// Updates the market data list or adds it new if it doesnt exist in there yet.
     /// </summary>
     /// <param name="entityPrototypeId"></param>
     /// <param name="increaseAmount"></param>
-    public void UpdateMarketData(string entityPrototypeId, int increaseAmount, EntityUid station)
+    public bool TryUpdateMarketData(string entityPrototypeId, int increaseAmount, EntityUid station)
     {
         var stationNetEntity = GetNetEntity(station);
         // Find the MarketData for the given EntityPrototype
         var marketData = _marketDataList.FirstOrDefault(md => md.Prototype == entityPrototypeId && md.StationUid == stationNetEntity);
 
-        if (marketData != null)
+        if (marketData != null && (marketData.Quantity + increaseAmount) >= 0)
         {
-            // If it exists, increase the count
+            // If it exists, change the count
             marketData.Quantity += increaseAmount;
+            if (marketData.Quantity <= 0)
+            {
+                _marketDataList.Remove(marketData);
+            }
+            return true;
         }
-        else
+        // If it doesn't exist, create a new MarketData and add it to the list
+        if (increaseAmount > 0)
         {
-            // If it doesn't exist, create a new MarketData and add it to the list
             _marketDataList.Add(new MarketData(entityPrototypeId, increaseAmount, stationNetEntity));
+            return true;
         }
+        return false;
     }
 
     private void OnConsoleUiOpened(EntityUid uid, MarketConsoleComponent component, BoundUIOpenedEvent args)
