@@ -46,7 +46,6 @@
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
-  - MobPassiveRegenStrong
   id: MobRogueSiliconBase
   components:
   - type: Damageable
@@ -59,7 +58,7 @@
     group: Silicon
   - type: Bloodstream
     bloodReagent: WeldingFuel
-    bloodMaxVolume: 100
+    bloodMaxVolume: 60
   - type: MobState
     allowedStates:
     - Alive
@@ -227,6 +226,9 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 6
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -259,6 +261,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
   #noSpawn: true
@@ -321,6 +324,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThreads
   #noSpawn: true
@@ -370,6 +374,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThrusters
   #noSpawn: true
@@ -465,6 +470,7 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
   #noSpawn: true
@@ -595,10 +601,62 @@
     proto: AnomalousParticleSigmaStrong
     fireCost: 100
 
+- type: entity
+  parent:
+  - MobRogueSiliconDroneBase
+  id: MobRogueSiliconViscerator
+  name: viscerator unit
+  #noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/viscerator.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: base_lights
+      shader: unshaded
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      12: Critical
+      20: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+        BaseUnshaded: base_lights
+      Critical:
+        Base: crit
+        BaseUnshaded: crit_lights
+      Dead:
+        Base: destroyed
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      7: 0.7
+      10: 0.5
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 5
+    baseWalkSpeed: 5
+  - type: MeleeWeapon
+    attackRate: 1.0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 4
+        Structural: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.250
+
 ## Tier 2
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
@@ -635,6 +693,7 @@
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
@@ -692,6 +751,7 @@
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconHunter
   name: hunter unit
@@ -745,6 +805,7 @@
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   id: MobRogueSiliconCatcher
   name: catcher unit
   #noSpawn: true
@@ -792,11 +853,21 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: SpawnMobViscerator
+    fireCost: 100
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
 
 ## Tier 3
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconTesla
   name: tesla unit
@@ -864,6 +935,7 @@
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconGuardian
   name: guardian unit
@@ -930,7 +1002,9 @@
     color: "#47f8ff"
 
 - type: entity
-  parent: MobRogueSiliconBase
+  parent:
+  - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   id: MobRogueSiliconBoss
   name: one star unit
   #noSpawn: true
