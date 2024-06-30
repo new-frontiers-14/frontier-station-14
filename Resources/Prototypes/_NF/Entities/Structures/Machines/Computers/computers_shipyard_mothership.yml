@@ -15,10 +15,9 @@
   - type: ShipyardListing
 
 # The empress console
-# Does NOT extend BaseMothershipComputer because the NFSD requires special stuff.
 - type: entity
   id: EmpressMothershipComputer
-  parent: ComputerShipyardNfsd
+  parent: BaseMothershipComputer
   name: empress shipyard console
   components:
   - type: Sprite
@@ -32,12 +31,10 @@
       state: shipyard_nfsd
     - map: ["computerLayerKeys"]
       state: telesci_key
-  - type: ActivatableUI
-    key: enum.ShipyardConsoleUiKey.Custom
-  - type: UserInterface
-    interfaces:
-      enum.ShipyardConsoleUiKey.Custom:
-        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    newJobTitle: null
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
   - type: ShipyardListing
     shuttles:
     - Fighter

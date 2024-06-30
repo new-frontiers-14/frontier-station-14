@@ -46,7 +46,7 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// <summary>
     /// Access levels to be added to the owner's ID card.
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public List<ProtoId<AccessLevelPrototype>> NewAccessLevels = new();
 
     /// <summary>
