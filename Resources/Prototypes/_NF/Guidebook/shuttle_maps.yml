@@ -33,6 +33,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapBulker
+  name: "KL Bulker"
+  description: "Detailed map of a Bulker shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: bulker
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapCeres
   name: "SBB Ceres"
   description: "Detailed map of a Ceres shuttle."
@@ -165,6 +176,17 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapLoader
+  name: "NC Loader"
+  description: "Detailed map of a Loader shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: loader
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapPathfinder
   name: "KC Pathfinder"
   description: "Detailed map of a Pathfinder shuttle."
@@ -205,4 +227,15 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: searchlight
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapVagabond
+  name: "NT Vagabond"
+  description: "Detailed map of a Vagabond shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: vagabond
     scale: 1.2, 1.2
