@@ -150,6 +150,9 @@ public sealed partial class MarketSystem : SharedMarketSystem
     private int GetMarketSelectionValue(List<MarketData> dataList, float marketModifier)
     {
         var cartBalance = 0;
+        
+        if (!(dataList.Count >= 1))
+            return cartBalance;
 
         foreach (var marketData in dataList)
         {

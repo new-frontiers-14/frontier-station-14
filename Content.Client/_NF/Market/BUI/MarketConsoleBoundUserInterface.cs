@@ -44,7 +44,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void Purchase(ButtonEventArgs args)
     {
         // Do stuff
-        if (!(args.Button.Parent is MarketProductRow product))
+        if (args.Button.Parent?.Parent is not MarketProductRow product)
             return;
         var purchaseMessage = new CrateMachineCartMessage(-1, product.PrototypeId);
 
@@ -54,7 +54,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void Return(ButtonEventArgs args)
     {
         // Do stuff
-        if (!(args.Button.Parent is MarketCartProductRow product))
+        if (args.Button.Parent?.Parent is not MarketCartProductRow product)
             return;
         var purchaseMessage = new CrateMachineCartMessage(1, product.PrototypeId);
 

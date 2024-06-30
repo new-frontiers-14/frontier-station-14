@@ -2,8 +2,8 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-                      SetSize="500 300"
-                      MinSize="500 300"
+                      SetSize="800 300"
+                      MinSize="800 300"
                       Title="{Loc 'market-console-menu-title'}">
     <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
         <BoxContainer Orientation="Horizontal">
@@ -20,61 +20,65 @@
             <PanelContainer.PanelOverride>
                 <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#777777" />
             </PanelContainer.PanelOverride>
-            <BoxContainer Orientation="Vertical"
-                          VerticalExpand="True">
-                <BoxContainer Orientation="Horizontal"
-                              HorizontalExpand="True"
-                              StyleClasses="PanelBackgroundLight"
-                              Margin="32 0 5 0">
-                    <Label Text="{Loc 'market-item-title'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
-                    <Label Text="{Loc 'market-quantity-title'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
-                    <Label Text="{Loc 'market-price'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
-                </BoxContainer>
-                <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10" />
-                <ScrollContainer HorizontalExpand="True"
-                                 VerticalExpand="True"
-                                 SizeFlagsStretchRatio="6"
-                                 StyleClasses="PanelBackgroundLight">
-                    <BoxContainer Name="Products"
-                                  Orientation="Vertical"
+            <BoxContainer Orientation = "Horizontal" Margin="5 0 5 0" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal"
                                   HorizontalExpand="True"
-                                  VerticalExpand="True">
+                                  StyleClasses="PanelBackgroundLight"
+                                  Margin="32 0 5 0">
+                        <Label Text="{Loc 'market-item-title'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
+                        <Label Text="{Loc 'market-quantity-title'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
+                        <Label Text="{Loc 'market-price'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
                     </BoxContainer>
-                </ScrollContainer>
-            </BoxContainer>
-            <BoxContainer Orientation="Vertical"
-                          VerticalExpand="True">
-                <BoxContainer Orientation="Horizontal"
-                              HorizontalExpand="True"
-                              StyleClasses="PanelBackgroundLight"
-                              Margin="32 0 5 0">
-                    <Label Text="{Loc 'market-item-title'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
-                    <Label Text="{Loc 'market-quantity-title'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
-                    <Label Text="{Loc 'market-price'}"
-                           Access="Public"
-                           HorizontalExpand="True" />
+                    <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10" />
+                    <ScrollContainer HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     SizeFlagsStretchRatio="6"
+                                     StyleClasses="PanelBackgroundLight">
+                        <BoxContainer Name="Products"
+                                      Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      VerticalExpand="True">
+                        </BoxContainer>
+                    </ScrollContainer>
                 </BoxContainer>
-                <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10" />
-                <ScrollContainer HorizontalExpand="True"
-                                 VerticalExpand="True"
-                                 SizeFlagsStretchRatio="6"
-                                 StyleClasses="PanelBackgroundLight">
-                    <BoxContainer Name="Cart"
-                                  Orientation="Vertical"
+                <BoxContainer Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal"
                                   HorizontalExpand="True"
-                                  VerticalExpand="True">
+                                  StyleClasses="PanelBackgroundLight"
+                                  Margin="32 0 5 0">
+                        <Label Text="{Loc 'market-item-title'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
+                        <Label Text="{Loc 'market-quantity-title'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
+                        <Label Text="{Loc 'market-price'}"
+                               Access="Public"
+                               HorizontalExpand="True" />
                     </BoxContainer>
-                </ScrollContainer>
+                    <customControls:HSeparator StyleClasses="LowDivider" Margin="0 0 0 10" />
+                    <ScrollContainer HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     SizeFlagsStretchRatio="6"
+                                     StyleClasses="PanelBackgroundLight">
+                        <BoxContainer Name="Cart"
+                                      Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      VerticalExpand="True">
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
             </BoxContainer>
         </PanelContainer>
         <Button Name="PurchaseCrate"
