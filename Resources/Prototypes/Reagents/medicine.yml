@@ -168,7 +168,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
   color: "#0091ff"
-  worksOnTheDead: true # Frontier 
+  worksOnTheDead: true # Frontier
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -5
@@ -176,7 +176,7 @@
     amount: 5
   - !type:PlantCryoxadone {}
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -203,7 +203,7 @@
   color: "#32cd32"
   worksOnTheDead: true # Frontier
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -1165,7 +1165,7 @@
   color: "#b5e36d"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:ReduceRotting
           seconds: 20
@@ -1192,7 +1192,7 @@
     amount: 5
   - !type:PlantCryoxadone {}
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -1215,7 +1215,7 @@
   color: "#89f77f"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
       - !type:HealthChange
         conditions:
@@ -1225,7 +1225,7 @@
           types:
             Heat: -3.0
             Shock: -3.0
-            Cold: -3.0 # Frontier 
+            Cold: -3.0 # Frontier
             Caustic: -1.0
 
 - type: reagent
