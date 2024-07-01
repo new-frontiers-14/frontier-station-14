@@ -14,7 +14,8 @@ namespace Content.Shared.Administration
         NetUserId SessionId,
         bool Connected,
         bool ActiveThisRound,
-        TimeSpan? OverallPlaytime)
+        TimeSpan? OverallPlaytime,
+        int Balance) // Frontier
     {
         private string? _playtimeString;
 
