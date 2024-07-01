@@ -20,6 +20,9 @@ We are happy to accept contributions from anybody. Get in Discord if you want to
 
 We are not currently accepting translations of the game on our main repository. If you would like to translate the game into another language consider creating a fork or contributing to a fork.
 
+If you make any contributions, please make sure to read the markers section in [MARKERS.md](https://github.com/new-frontiers-14/frontier-station-14/blob/master/MARKERS.md)
+Any changes made to files belonging to our upstream should be properly marked in accordance to what is specified there.
+
 ## Building
 
 1. Clone this repo.
@@ -30,7 +33,10 @@ We are not currently accepting translations of the game on our main repository. 
 
 ## License
 
-All code for the content repository is licensed under [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT).
+Content contributed to this repository after commit ######## is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated. See `LICENSE-AGPLv3.txt`.
+Content contributed to this repository before commit ######## is licensed under the MIT license, unless otherwise stated. See `LICENSE-MIT.txt`.
+
+[########](########) was pushed on XXXXXXXX
 
 Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
