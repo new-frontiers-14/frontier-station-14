@@ -23,7 +23,7 @@ yourCodeHere();
 
 ## Yaml
 
-All Yaml files contributed after 17 February, 2024 23:00:00 UTC should contain the following header:
+All Yaml files contributed after 1 July, 2024 23:00:00 UTC should contain the following header:
 
 ```yaml
 # New Frontiers - This file is licensed under AGPLv3

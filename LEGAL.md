@@ -6,11 +6,11 @@ The Authors retain all copyright to their respective work here submitted.
 
 ## Code license
 
-Content contributed to this repository after commit ################ is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated. See `LICENSE-AGPLv3.txt`.
+Content contributed to this repository after commit 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0 is licensed under the GNU Affero General Public License version 3.0, unless otherwise stated. See `LICENSE-AGPLv3.txt`.
 
-Content contributed to this repository before commit ################ is licensed under the MIT license, unless otherwise stated. See `LICENSE-MIT.txt`.
+Content contributed to this repository before commit 2fca06eaba205ae6fe3aceb8ae2a0594f0effee0 is licensed under the MIT license, unless otherwise stated. See `LICENSE-MIT.txt`.
 
-[###########](##########) was pushed on #############
+[2fca06eaba205ae6fe3aceb8ae2a0594f0effee0](https://github.com/new-frontiers-14/frontier-station-14/commit/2fca06eaba205ae6fe3aceb8ae2a0594f0effee0) was pushed on July 1, 2024 at 16:04 UTC
 
 ## Warranty
 
