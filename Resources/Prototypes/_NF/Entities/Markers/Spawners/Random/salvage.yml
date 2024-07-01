@@ -249,3 +249,131 @@
         - AsteroidRockSaltCrabNF
         - AsteroidRockSilverCrabNF
         - AsteroidRockUraniumCrabNF
+
+- type: entity
+  name: Salvage Tank Spawner
+  id: SalvageTankSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/tanks.rsi
+          state: fueltank
+    - type: RandomSpawner
+      rarePrototypes:
+        - WeldingFuelTankHighCapacity
+        - WaterTankHighCapacity
+      rareChance: 0.03
+      prototypes:
+        - WaterTankFull
+        - WeldingFuelTankFull
+        - WaterCooler
+      chance: 0.9
+      offset: 0.0
+
+- type: entity
+  name: Salvage Locker Spawner
+  id: SalvageLockerSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/closet.rsi
+          state: alien
+    - type: RandomSpawner
+      rarePrototypes:
+        - LockerAtmosphericsFilledHardsuit
+        - LockerAtmosphericsFilled
+        - LockerSalvageSpecialistFilledHardsuit
+        - LockerEngineerFilledHardsuit
+        - LockerSecurityFilled
+        - ClosetBombFilled
+        - LockerBoozeFilled
+        - ClosetChefFilled
+      rareChance: 0.15
+      prototypes:
+        - ClosetL3Filled
+        - LockerSalvageSpecialistFilled
+        - ClosetToolFilled
+        - LockerElectricalSuppliesFilled
+        - LockerWeldingSuppliesFilled
+        - LockerEngineerFilled
+        - ClosetRadiationSuitFilled
+        - LockerMedicineFilled
+        - LockerMedicalFilled
+        - LockerChemistryFilled
+        - LockerParamedicFilled
+        - ClosetEmergencyFilledRandom
+        - ClosetFireFilled
+        - ClosetMaintenanceFilledRandom
+        - LockerScienceFilled
+        - ClosetJanitorFilled
+        - LockerBotanistFilled
+        - WardrobeMixedFilled
+      chance: 0.8
+      offset: 0.0
+
+- type: entity
+  name: Salvage Suit Storage Spawner
+  id: SalvageSuitStorageSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Storage/suit_storage.rsi
+          state: base
+    - type: RandomSpawner
+      prototypes:
+        - SuitStorageEVA
+        - SuitStorageEVAAlternate
+        - SuitStorageEVAEmergency
+        - SuitStorageEVAPrisoner
+        - SuitStorageEVAPirate
+        - SuitStorageBasic
+        - SuitStorageEngi
+        - SuitStorageAtmos
+        - SuitStorageSalv
+      offset: 0.0
+
+- type: entity
+  name: Salvage Generator Spawner
+  id: SalvageGeneratorSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Power/Generation/portable_generator.rsi
+          state: portgen0
+    - type: RandomSpawner
+      rarePrototypes:
+        - PortableGeneratorSuperPacman
+        - PortableGeneratorJrPacman
+      rareChance: 0.3
+      prototypes:
+        - PortableGeneratorJrPacman
+      chance: 0.6
+      offset: 0.0
+
+- type: entity
+  name: Salvage Handheld Flag Spawner
+  id: SalvageHandheldFlagSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+          state: icon
+    - type: RandomSpawner
+      prototypes:
+        - NTHandyFlag
+        - BlankHandyFlag
+        - SyndieHandyFlag
+        - LGBTQHandyFlag
+        - PirateHandyFlag
+      chance: 0.9
+      offset: 0.0
