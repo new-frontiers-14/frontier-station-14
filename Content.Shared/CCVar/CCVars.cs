@@ -2140,7 +2140,7 @@ namespace Content.Shared.CCVar
         ///     The worldgen config to use.
         /// </summary>
         public static readonly CVarDef<string> WorldgenConfig =
-            CVarDef.Create("worldgen.worldgen_config", "Default", CVar.SERVERONLY);
+            CVarDef.Create("worldgen.worldgen_config", "DefaultNF", CVar.SERVERONLY);
 
         /// <summary>
         ///     The maximum amount of time the entity GC can process, in ms.
