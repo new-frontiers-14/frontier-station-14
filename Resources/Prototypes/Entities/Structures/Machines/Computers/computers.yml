@@ -745,9 +745,9 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Cargo"]]
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: removed guidebook entries (needs rework)
+  #   guides: # Frontier: removed guidebook entries (needs rework)
+  #   - Cargo # Frontier: removed guidebook entries (needs rework)
 
 - type: entity
   id: ComputerCargoOrders
@@ -810,9 +810,9 @@
     range: 200
     ports:
       - OrderSender
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   id: ComputerCargoBounty
@@ -845,9 +845,9 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Quartermaster"]]
-  - type: GuideHelp
-    guides:
-    - CargoBounties
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - CargoBounties # Frontier
 
 - type: entity
   parent: BaseComputer
@@ -1042,16 +1042,16 @@
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
   - type: Computer
-    board: CargoRequestComputerCircuitboard
+    board: CargoSaleComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
   - type: MarketModifier # In the case someone got a computer board from QM locker, they can use it to sell on a ship if they have the grids, just to make sure its useless.
     mod: 0
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   parent: BaseComputer
@@ -1127,3 +1127,42 @@
     - type: WiredNetworkConnection
     - type: DeviceList
     - type: AtmosDevice
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerRoboticsControl
+  name: robotics control console
+  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: robot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+  - type: RoboticsConsole
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: ActivatableUI
+    key: enum.RoboticsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RoboticsConsoleUiKey.Key:
+        type: RoboticsConsoleBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: RoboticsConsole
+    transmitFrequencyId: CyborgControl
+  - type: Computer
+    board: RoboticsConsoleCircuitboard
+  - type: AccessReader # only used for dangerous things
+    access: [["ResearchDirector"]]
+  - type: Lock
+    unlockOnClick: false
