@@ -28,6 +28,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ] # Frontier
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: BailiffGear
@@ -35,3 +38,9 @@
     ears: ClothingHeadsetAltNfsdGreen # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: HoloprojectorNfsd # Frontier
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - BaseSecurityUplinkRadioOfficer
