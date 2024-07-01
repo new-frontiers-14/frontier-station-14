@@ -1,0 +1,23 @@
+﻿- type: entity
+  parent: BaseItem
+  id: ContrabandAppraisalTool
+  name: contraband appraisal tool
+  description: An officer's best friend, with a quantum connection to the NT database and the ability to appraise even the toughest items.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
+  - type: Clothing
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm
