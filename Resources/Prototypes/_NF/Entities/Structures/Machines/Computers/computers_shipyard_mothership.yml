@@ -14,6 +14,12 @@
         type: ShipyardConsoleBoundUserInterface
   - type: ShipyardListing
 
+# The empty console
+- type: entity
+  id: SellOnlyMothershipComputer
+  parent: BaseMothershipComputer
+  name: sell only shipyard console
+
 # The empress console
 - type: entity
   id: EmpressMothershipComputer
@@ -31,6 +37,10 @@
       state: shipyard_nfsd
     - map: ["computerLayerKeys"]
       state: telesci_key
+  - type: ShipyardConsole
+    newJobTitle: null
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
   - type: ShipyardListing
     shuttles:
     - Fighter
@@ -46,7 +56,7 @@
   - type: ShipyardListing
     shuttles:
     - McDelivery
- 
+
 # The caduceus console
 - type: entity
   id: CaduceusMothershipComputer
