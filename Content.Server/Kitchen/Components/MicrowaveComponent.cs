@@ -13,8 +13,10 @@ namespace Content.Server.Kitchen.Components
     {
         [DataField("cookTimeMultiplier"), ViewVariables(VVAccess.ReadWrite)]
         public float CookTimeMultiplier = 1;
-        [DataField("machinePartCookTimeMultiplier", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartCookTimeMultiplier = "Capacitor";
+        [DataField("machinePartCookTimeMultiplier")] // Frontier: machine parts
+        public ProtoId<MachinePartPrototype> MachinePartCookTimeMultiplier = "Capacitor"; // Frontier: machine parts
+        [ViewVariables(VVAccess.ReadOnly)]
+        public float FinalCookTimeMultiplier = 1.0f; // Frontier: machine parts
         [DataField("cookTimeScalingConstant")]
         public float CookTimeScalingConstant = 0.5f;
         [DataField("baseHeatMultiplier"), ViewVariables(VVAccess.ReadWrite)]
