@@ -1,10 +1,11 @@
 # Base entries
-guide-entry-nf14 = New Frontier
+guide-entry-nf14 = Frontier Guide
 guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
+guide-entry-frontier-rules = Server Rules
 
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
@@ -43,3 +44,18 @@ guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-vagabond = Vagabond
+
+# Rules entries
+guide-entry-frontier-rule-0 = 0. Admin
+guide-entry-frontier-rule-1 = 1. ERP
+guide-entry-frontier-rule-2 = 2. Community
+guide-entry-frontier-rule-3 = 3. IC Info
+guide-entry-frontier-rule-4 = 4. Respawning
+guide-entry-frontier-rule-5 = 5. Chat
+guide-entry-frontier-rule-6 = 6. Roleplay
+guide-entry-frontier-rule-7 = 7. Antag
+guide-entry-frontier-rule-8 = 8. Safe Zone
+guide-entry-frontier-rule-9 = 9. Security
+guide-entry-frontier-rule-10 = 10. Command
+guide-entry-frontier-rule-11 = 11. Escalation
+guide-entry-frontier-rule-12 = 12. PVP

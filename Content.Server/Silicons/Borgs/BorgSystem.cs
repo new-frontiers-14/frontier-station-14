@@ -1,6 +1,8 @@
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Server.DeviceNetwork.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.PowerCell;
 using Content.Shared.UserInterface;
@@ -23,12 +25,14 @@ using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Throwing;
+using Content.Shared.Whitelist;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using System.Linq;
 
 namespace Content.Server.Silicons.Borgs;
@@ -38,11 +42,14 @@ public sealed partial class BorgSystem : SharedBorgSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -52,6 +59,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
@@ -70,7 +79,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
         SubscribeLocalEvent<BorgChassisComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<BorgChassisComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<BorgChassisComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
-        SubscribeLocalEvent<BorgChassisComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
         SubscribeLocalEvent<BorgChassisComponent, GetCharactedDeadIcEvent>(OnGetDeadIC);
 
         SubscribeLocalEvent<BorgBrainComponent, MindAddedMessage>(OnBrainMindAdded);
@@ -79,11 +87,12 @@ public sealed partial class BorgSystem : SharedBorgSystem
         InitializeModules();
         InitializeMMI();
         InitializeUI();
+        InitializeTransponder();
     }
 
     private void OnMapInit(EntityUid uid, BorgChassisComponent component, MapInitEvent args)
     {
-        UpdateBatteryAlert(uid);
+        UpdateBatteryAlert((uid, component));
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
 
@@ -105,9 +114,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
             return;
         }
 
-        if (component.BrainEntity == null &&
-            brain != null &&
-            component.BrainWhitelist?.IsValid(used) != false)
+        if (component.BrainEntity == null && brain != null &&
+            _whitelistSystem.IsWhitelistPassOrNull(component.BrainWhitelist, used))
         {
             if (_mind.TryGetMind(used, out _, out var mind) && mind.Session != null)
             {
@@ -182,7 +190,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
     private void OnPowerCellChanged(EntityUid uid, BorgChassisComponent component, PowerCellChangedEvent args)
     {
-        UpdateBatteryAlert(uid);
+        UpdateBatteryAlert((uid, component));
 
         if (!TryComp<PowerCellDrawComponent>(uid, out var draw))
             return;
@@ -211,13 +219,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         DisableBorgAbilities(uid, component);
         UpdateUI(uid, component);
-    }
-
-    private void OnUIOpenAttempt(EntityUid uid, BorgChassisComponent component, ActivatableUIOpenAttemptEvent args)
-    {
-        // borgs can't view their own ui
-        if (args.User == uid)
-            args.Cancel();
     }
 
     private void OnGetDeadIC(EntityUid uid, BorgChassisComponent component, ref GetCharactedDeadIcEvent args)
@@ -255,12 +256,12 @@ public sealed partial class BorgSystem : SharedBorgSystem
         args.Cancel();
     }
 
-    private void UpdateBatteryAlert(EntityUid uid, PowerCellSlotComponent? slotComponent = null)
+    private void UpdateBatteryAlert(Entity<BorgChassisComponent> ent, PowerCellSlotComponent? slotComponent = null)
     {
-        if (!_powerCell.TryGetBatteryFromSlot(uid, out var battery, slotComponent))
+        if (!_powerCell.TryGetBatteryFromSlot(ent, out var battery, slotComponent))
         {
-            _alerts.ClearAlert(uid, AlertType.BorgBattery);
-            _alerts.ShowAlert(uid, AlertType.BorgBatteryNone);
+            _alerts.ClearAlert(ent, ent.Comp.BatteryAlert);
+            _alerts.ShowAlert(ent, ent.Comp.NoBatteryAlert);
             return;
         }
 
@@ -268,13 +269,13 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         // we make sure 0 only shows if they have absolutely no battery.
         // also account for floating point imprecision
-        if (chargePercent == 0 && _powerCell.HasDrawCharge(uid, cell: slotComponent))
+        if (chargePercent == 0 && _powerCell.HasDrawCharge(ent, cell: slotComponent))
         {
             chargePercent = 1;
         }
 
-        _alerts.ClearAlert(uid, AlertType.BorgBatteryNone);
-        _alerts.ShowAlert(uid, AlertType.BorgBattery, chargePercent);
+        _alerts.ClearAlert(ent, ent.Comp.NoBatteryAlert);
+        _alerts.ShowAlert(ent, ent.Comp.BatteryAlert, chargePercent);
     }
 
     /// <summary>
