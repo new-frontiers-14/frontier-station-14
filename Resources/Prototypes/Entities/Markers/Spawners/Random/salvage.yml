@@ -228,3 +228,23 @@
       - MobFleshLoverSalvage
       chance: 1
       offset: 0.2
+ 
+- type: entity
+  name: Salvage Handheld Flag Spawner
+  id: SalvageHandheldFlagSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+           state: icon
+    - type: RandomSpawner
+      prototypes:
+        - NTHandyFlag
+        - BlankHandyFlag
+        - SyndieHandyFlag
+        - LGBTQHandyFlag
+        - PirateHandyFlag
+      chance: 0.9
+      offset: 0.0
