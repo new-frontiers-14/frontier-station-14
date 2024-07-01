@@ -307,7 +307,7 @@
 
 - type: entity
   name: banana peel
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: TrashBananaPeel
   components:
   - type: Sprite
@@ -952,7 +952,7 @@
 
 - type: entity
   name: corn cob
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: FoodCornTrash
   description: Not a dang kernel left.
   components:
@@ -970,7 +970,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Cornmeal
-          Quantity: 10
+          Quantity: 3 # Frontier, from 10 to 3
 
 - type: entity
   name: onion
@@ -1435,6 +1435,8 @@
   - type: Extractable
     grindableSolutionName: food
   - type: BadFood
+  - type: Food # Frontier
+    quality: [ "Toxin" ] # Frontier, New Food Quality System
 
 - type: entity
   name: gatfruit
@@ -1860,7 +1862,8 @@
     flavors:
       - cotton
   - type: Food
-    requiresSpecialDigestion: true
+#    requiresSpecialDigestion: true # Frontier
+    quality: [ "Normal", "Fiber" ] # Frontier, New Food Quality System
   - type: SolutionContainerManager
     solutions:
       food:

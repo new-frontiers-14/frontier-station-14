@@ -4,10 +4,13 @@ using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Content.Server.Mail; // Frontier
+
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem))]
+[RegisterComponent, Access(typeof(FoodSystem), typeof(MailSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]
@@ -74,4 +77,16 @@ public sealed partial class FoodComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
+
+    /// <summary>
+    ///     Frontier - Nasty food, used for goblins to know if they can eat it or not
+    /// </summary>
+    [DataField, ViewVariables] // Frontier
+    public string[] Quality = { "Normal" };
+
+    /// <summary>
+    ///     Frontier - Edited by the system to find the final quility results
+    /// </summary>
+    [DataField, ViewVariables] // Frontier
+    public string FinalQuality = "Normal";
 }

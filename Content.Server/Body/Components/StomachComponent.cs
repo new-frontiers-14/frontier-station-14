@@ -69,5 +69,29 @@ namespace Content.Server.Body.Components
 
             public void Increment(TimeSpan delta) => Lifetime += delta;
         }
+
+        /// <summary>
+        ///     Frontier - Used by goblin for fliping the food quility effects
+        /// </summary>
+        [DataField]
+        public bool ReverseFoodQuality = false;
+
+        /// <summary>
+        ///     Frontier - Allow eating mail TODO: Move this to a switch before fully added.
+        /// </summary>
+        [DataField]
+        public bool MailDigestion = false;
+
+        /// <summary>
+        ///     Frontier - Allow eating fiber like food (Moth food)
+        /// </summary>
+        [DataField]
+        public bool FiberDigestion = false;
+
+        /// <summary>
+        ///     Frontier - Allow eating trash
+        /// </summary>
+        [DataField]
+        public bool TrashDigestion = false;
     }
 }
