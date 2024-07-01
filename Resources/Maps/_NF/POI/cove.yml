@@ -5897,7 +5897,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,11.5
       parent: 1
-- proto: FaxMachineShipAntag
+- proto: FaxMachineNFCove
   entities:
   - uid: 63
     components:
@@ -5939,7 +5939,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3553.7524
+      secondsUntilStateChange: -3815.918
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -7057,7 +7057,7 @@ entities:
     - type: Transform
       pos: 2.4884746,-4.2928896
       parent: 1
-- proto: GasMixerFlipped
+- proto: GasMixerOnFlipped
   entities:
   - uid: 901
     components:
@@ -7066,8 +7066,8 @@ entities:
       pos: 7.5,11.5
       parent: 1
     - type: GasMixer
-      inletTwoConcentration: 0.78
-      inletOneConcentration: 0.22
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -7341,14 +7341,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 945
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,12.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 1009
     components:
     - type: Transform
@@ -7470,6 +7462,16 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: GasPressurePumpOnMax
+  entities:
+  - uid: 945
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,12.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasVentPump
   entities:
   - uid: 356
@@ -7872,13 +7874,6 @@ entities:
     components:
     - type: Transform
       pos: 1.4792413,5.5648255
-      parent: 1
-- proto: SyndicateMicrowave
-  entities:
-  - uid: 149
-    components:
-    - type: Transform
-      pos: 2.5,7.5
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -9751,6 +9746,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.4595704,36.201065
+      parent: 1
+- proto: SyndicateMicrowave
+  entities:
+  - uid: 149
+    components:
+    - type: Transform
+      pos: 2.5,7.5
       parent: 1
 - proto: SyringeStimulants
   entities:
@@ -12810,12 +12812,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,37.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPointNFCove
   entities:
   - uid: 327
     components:
-    - type: MetaData
-      name: Pirate's Cove
     - type: Transform
       pos: 1.5,6.5
       parent: 1

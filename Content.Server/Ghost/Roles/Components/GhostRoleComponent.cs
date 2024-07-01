@@ -1,5 +1,8 @@
-﻿using Content.Server.Mind.Commands;
+﻿using Content.Server.Ghost.Roles.Raffles;
+using Content.Server.Mind.Commands;
+using Content.Shared.Ghost.Roles;
 using Content.Shared.Roles;
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.Ghost.Roles.Components
 {
@@ -13,6 +16,10 @@ namespace Content.Server.Ghost.Roles.Components
 
         [DataField("rules")] private string _roleRules = "ghost-role-component-default-rules";
 
+        // TODO ROLE TIMERS
+        // Actually make use of / enforce this requirement?
+        // Why is this even here.
+        // Move to ghost role prototype & respect CCvars.GameRoleTimerOverride
         [DataField("requirements")]
         public HashSet<JobRequirement>? Requirements;
 
@@ -39,7 +46,7 @@ namespace Content.Server.Ghost.Roles.Components
             set
             {
                 _roleName = value;
-                EntitySystem.Get<GhostRoleSystem>().UpdateAllEui();
+                IoCManager.Resolve<IEntityManager>().System<GhostRoleSystem>().UpdateAllEui();
             }
         }
 
@@ -51,7 +58,7 @@ namespace Content.Server.Ghost.Roles.Components
             set
             {
                 _roleDescription = value;
-                EntitySystem.Get<GhostRoleSystem>().UpdateAllEui();
+                IoCManager.Resolve<IEntityManager>().System<GhostRoleSystem>().UpdateAllEui();
             }
         }
 
@@ -63,7 +70,7 @@ namespace Content.Server.Ghost.Roles.Components
             set
             {
                 _roleRules = value;
-                EntitySystem.Get<GhostRoleSystem>().UpdateAllEui();
+                IoCManager.Resolve<IEntityManager>().System<GhostRoleSystem>().UpdateAllEui();
             }
         }
 
@@ -87,5 +94,21 @@ namespace Content.Server.Ghost.Roles.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("reregister")]
         public bool ReregisterOnGhost { get; set; } = true;
+
+        /// <summary>
+        /// If set, ghost role is raffled, otherwise it is first-come-first-serve.
+        /// </summary>
+        [DataField("raffle")]
+        [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+        public GhostRoleRaffleConfig? RaffleConfig { get; set; }
+
+        // Frontier: per-role ghost role whitelisting
+        /// <summary>
+        /// If set, this ghost role associates with a particular prototype.
+        /// Whitelisted status, name and description are stored in the prototype.
+        /// </summary>
+        [DataField]
+        public ProtoId<GhostRolePrototype>? Prototype { get; set; }
+        // End Frontier
     }
 }
