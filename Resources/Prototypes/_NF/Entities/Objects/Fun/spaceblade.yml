@@ -31,8 +31,6 @@
     sprite: _NF/Objects/Fun/spaceblade.rsi
     state: redorange
     scale: 0.5, 0.5
-  - type: Item
-    sprite: _NF/Objects/Fun/spaceblade.rsi
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Items/desk_bell_ring.ogg
@@ -54,16 +52,12 @@
   components:
   - type: Sprite
     state: blue
-  - type: Item
-    state: blue
 
 - type: entity
   id: SpaceBladeFrontier
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: frontier
-  - type: Item
     state: frontier
 
 - type: entity
@@ -72,16 +66,12 @@
   components:
   - type: Sprite
     state: goldblue
-  - type: Item
-    state: goldblue
 
 - type: entity
   id: SpaceBladeMail
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: mail
-  - type: Item
     state: mail
 
 - type: entity
@@ -90,8 +80,6 @@
   components:
   - type: Sprite
     state: eyeball
-  - type: Item
-    state: eyeball
 
 - type: entity
   id: SpaceBladeBlade
@@ -99,16 +87,12 @@
   components:
   - type: Sprite
     state: blade
-  - type: Item
-    state: blade
 
 - type: entity
   id: SpaceBladeCheck
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: check
-  - type: Item
     state: check
 
 - type: entity
@@ -118,16 +102,12 @@
   components:
   - type: Sprite
     state: rune
-  - type: Item
-    state: rune
 
 - type: entity
   id: SpaceBladeSec
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: secblade
-  - type: Item
     state: secblade
   - type: StaminaDamageOnCollide
     damage: 8
@@ -140,8 +120,6 @@
   description: Let it reap
   components:
   - type: Sprite
-    state: contraband
-  - type: Item
     state: contraband
   - type: DamageOtherOnHit
     damage:
@@ -160,8 +138,6 @@
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: moff
-  - type: Item
     state: moff
   - type: EmitSoundOnUse
     sound:
@@ -182,8 +158,6 @@
   components:
   - type: Sprite
     state: weh
-  - type: Item
-    state: weh
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Items/Toys/weh.ogg
@@ -201,8 +175,6 @@
   parent: SpaceBlade
   components:
   - type: Sprite
-    state: tesla
-  - type: Item
     state: tesla
   - type: PointLight
     enabled: true
@@ -227,8 +199,6 @@
   components:
   - type: Sprite
     state: pizza
-  - type: Item
-    state: pizza
 
 - type: entity
   id: SpaceBladeSingularity
@@ -237,8 +207,6 @@
   description: Let it consume
   components:
   - type: Sprite
-    state: singularity
-  - type: Item
     state: singularity
   - type: SingularityDistortion
     intensity: 500
@@ -255,8 +223,6 @@
   description: Let it honk
   components:
   - type: Sprite
-    state: clown
-  - type: Item
     state: clown
   - type: Slippery
     paralyzeTime: 0.5
