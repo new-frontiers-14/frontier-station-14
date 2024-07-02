@@ -103,7 +103,7 @@ namespace Content.Server.Construction.Conditions
                 var stackEnt = protoManager.Index(stockPart.StockPartPrototype);
 
                 args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
-                                           ("amount", required),
+                                           ("amount", amount),
                                            ("elementName", stackEnt.Name)));
             }
             // End Frontier
