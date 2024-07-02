@@ -453,8 +453,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // kind of cursed. We need to update the UI when an Id is entered, but the UI needs to know the player characters bank account.
         if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key == null)
             return;
-        if (uiComp.CurrentSingleUser is not { Valid: true } player)
-            return;
 
         var uiUsers = _ui.GetActors(uid, uiComp.Key);
 
@@ -466,7 +464,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (!TryComp<BankAccountComponent>(player, out var bank))
                 continue;
 
-        var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+            var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
 
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
             {
@@ -477,16 +475,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 }
             }
 
-        int sellValue = 0;
-        if (deed?.ShuttleUid != null)
-            sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
+            int sellValue = 0;
+            if (deed?.ShuttleUid != null)
+                sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
             sellValue -= CalculateSalesTax(component, sellValue);
 
-        var fullName = deed != null ? GetFullName(deed) : null;
-        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId,
-            (ShipyardConsoleUiKey) uiComp.Key);
+            var fullName = deed != null ? GetFullName(deed) : null;
+            RefreshState(uid,
+                bank.Balance,
+                true,
+                fullName,
+                sellValue,
+                targetId,
+                (ShipyardConsoleUiKey) uiComp.Key);
 
+        }
     }
 
     /// <summary>
