@@ -63,6 +63,7 @@
     tags:
     - Pizza
     - ReptilianFood
+    - Slice
 
 # Pizza
 
@@ -139,6 +140,7 @@
     tags:
     - Meat
     - Pizza
+    - Slice
 # Tastes like crust, tomato, cheese, meat.
 
 - type: entity
@@ -303,6 +305,7 @@
     tags:
     - Meat
     - Pizza
+    - Slice
 # Tastes like crust, tomato, cheese, meat, laziness.
 
 - type: entity
@@ -407,6 +410,7 @@
     tags:
     - Meat
     - Pizza
+    - Slice
 # Tastes like crust, tomato, cheese, sausage, sass.
 
 - type: entity
@@ -427,9 +431,13 @@
     - state: pineapple
   - type: SliceableFood
     slice: FoodPizzaPineappleSlice
+  - type: Tag
+    tags:
+    - Meat
+    - Pizza
 
 - type: entity
-  name: slice of pineapple pizza
+  name: slice of Hawaiian pizza
   parent: FoodPizzaSliceBase
   id: FoodPizzaPineappleSlice
   description: A slice of joy/sin.
@@ -448,6 +456,7 @@
     tags:
     - Meat
     - Pizza
+    - Slice
 # Tastes like crust, tomato, cheese, pineapple, ham.
 
 #TODO: This is a meme pizza from /tg/. It has specially coded mechanics.
@@ -524,6 +533,7 @@
     tags:
     - Meat
     - Pizza
+    - Slice
 # Tastes like crust, tomato, cheese, pepperoni, 9 millimeter bullets.
 
 #TODO: Make this do poison damage and make cut pizza slices eventually rot into this.

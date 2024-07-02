@@ -135,6 +135,9 @@ public sealed class ThrusterSystem : EntitySystem
 
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
+        if (args.Handled || !args.Complex)
+            return;
+
         component.Enabled ^= true;
 
         if (!component.Enabled)
@@ -143,6 +146,7 @@ public sealed class ThrusterSystem : EntitySystem
                 apcPower.Load = 1; // Frontier
 
             DisableThruster(uid, component);
+            args.Handled = true;
         }
         else if (CanEnable(uid, component))
         {
@@ -150,6 +154,7 @@ public sealed class ThrusterSystem : EntitySystem
                 apcPower.Load = component.OriginalLoad; // Frontier
 
             EnableThruster(uid, component);
+            args.Handled = true;
         }
     }
 
@@ -281,10 +286,12 @@ public sealed class ThrusterSystem : EntitySystem
             return;
         }
 
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
+        // Frontier: Why?  This does nothing.
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) 
         {
             //apcPower.NeedsPower = true;
         }
+        // End Frontier
 
         component.IsOn = true;
 
@@ -389,10 +396,12 @@ public sealed class ThrusterSystem : EntitySystem
         if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
             return;
 
+        // Frontier: Why?  This does nothing.
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
             //apcPower.NeedsPower = false;
         }
+        // End Frontier
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
 

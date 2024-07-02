@@ -421,6 +421,7 @@
       whitelist:
         - Sheriff
 
+
 - type: listing
   id: UplinkSecurityHolo
   name:  uplink-security-holo-name
@@ -535,7 +536,7 @@
   cost:
     FrontierUplinkCoin: 4
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityBundles
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1155,7 +1156,7 @@
   productEntity: HoverbikeNfsdFlatpack
   icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
   cost:
-    FrontierUplinkCoin: 10
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -1178,7 +1179,7 @@
   cost:
     FrontierUplinkCoin: 15
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityBundles
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1189,6 +1190,38 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityTrackingBundle
+  name: uplink-security-trackingdart-bundle-name
+  description: uplink-security-trackingdart-bundle-desc
+  productEntity: ClothingBackpackDuffelNfsdTrackingBundle
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityEmpBundle
+  name: uplink-security-emp-bundle-name
+  description: uplink-security-emp-bundle-desc
+  productEntity: ClothingBackpackDuffelNfsdEmpBundle
+  icon: { sprite: _NF/Clothing/Back/Duffels/nfsd_brown.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityBundles
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityNonLethalArmory
@@ -1210,3 +1243,35 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+
+- type: listing
+  id: UplinkSecurityEmpGrenadeAmmo
+  name:  uplink-security-emp-ammo-name
+  description: uplink-security-emp-ammo-desc
+  productEntity: BoxEmpGrenadesAmmo
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityTrackingDartsAmmo
+  name:  uplink-security-trackingdart-ammo-name
+  description: uplink-security-trackingdart-ammo-desc
+  productEntity: BoxTrackingDartsAmmo
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
