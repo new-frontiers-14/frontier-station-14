@@ -31,3 +31,34 @@
   - !type:PlantAdjustHealth
     amount: 0.5
   pricePerUnit: 10
+
+- type: reagent
+  id: Noxiose # The bad stuff in junk food that makes you feel slow and bloated and discourages you from eating too much unhealthy stuff.
+  name: reagent-name-noxiose
+  group: Foods
+  desc: reagent-desc-noxiose
+  physicalDesc: reagent-physical-desc-clumpy
+  flavor: unhealthy # new
+  color: "#CCCCCC" # TODO
+  metabolisms:
+    Food:
+      metabolismRate: 0.2 # Stays in your system for a while
+      effects:
+      # Slow down a bit if you eat some
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.95
+        sprintSpeedModifier: 0.9
+        conditions:
+        - !type:ReagentThreshold
+          max: 10
+      # Slow down lots if you eat lots
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.85
+        sprintSpeedModifier: 0.8
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+      # Makes you *very slightly* hungrier, to offset the nutrition in the food. Not enough to nullify the food.
+      - !type:SatiateHunger
+        factor: -0.2
+  pricePerUnit: 0 # literally worthless
