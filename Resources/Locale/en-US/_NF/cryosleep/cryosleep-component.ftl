@@ -17,6 +17,6 @@ cryo-wakeup-result-disabled = Returning from cryosleep is disabled on this serve
 
 # Cryopod
 cryopod-refuse-dead = The {$cryopod} refuses to accept dead patients.
-cryopod-refuse-organic = The {$cryopod} refuses to accept more than 1 sentient entity at once.
+cryopod-refuse-organic = The {$cryopod} detected multiple sentients! Remove {$name}.
 
 cryopod-wake-up = {$entity} returns from cryosleep!

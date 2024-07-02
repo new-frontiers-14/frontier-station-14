@@ -183,12 +183,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             PreviewPanel.SetSprite(EntityUid.Invalid);
             PreviewPanel.SetSummaryText(string.Empty);
+            PreviewPanel.SetBankBalanceText(string.Empty); // Frontier
             return;
         }
 
         var dummy = LoadProfileEntity(humanoid, null, true);
         PreviewPanel.SetSprite(dummy);
         PreviewPanel.SetSummaryText(humanoid.Summary);
+        PreviewPanel.SetBankBalanceText(humanoid.BankBalanceText); // Frontier
     }
 
     private void RefreshProfileEditor()

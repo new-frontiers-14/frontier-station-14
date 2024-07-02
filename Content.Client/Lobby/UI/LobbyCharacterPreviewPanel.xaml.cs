@@ -33,6 +33,13 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         Summary.Text = value;
     }
 
+    // Frontier: show bank balance on character selection.
+    public void SetBankBalanceText(string value)
+    {
+        BankBalance.Text = value;
+    }
+    // End Frontier
+
     public void SetSprite(EntityUid uid)
     {
         if (_previewDummy != null)

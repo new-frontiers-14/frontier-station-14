@@ -307,9 +307,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
-        if (!TrySellShuttle(stationUid, shuttleUid, out var bill))
+        var saleResult = TrySellShuttle(stationUid, shuttleUid, out var bill);
+        if (saleResult.Error != ShipyardSaleError.Success)
         {
-            ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-reqs"));
+            switch (saleResult.Error)
+            {
+                case ShipyardSaleError.Undocked:
+                    ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-not-docked"));
+                    break;
+                case ShipyardSaleError.OrganicsAboard:
+                    ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-organic-aboard", ("name", saleResult.OrganicName ?? "Somebody")));
+                    break;
+                case ShipyardSaleError.InvalidShip:
+                    ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-invalid-ship"));
+                    break;
+                default:
+                    ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-unknown-reason", ("reason", saleResult.Error.ToString())));
+                    break;
+            }
             PlayDenySound(uid, component);
             return;
         }
@@ -471,7 +486,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
-    public bool FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)
+    /// <summary>
+    /// Looks for a living, sapient being aboard a particular entity.
+    /// </summary>
+    /// <param name="uid">The entity to search (e.g. a shuttle, a station)</param>
+    /// <param name="mobQuery">A query to get the MobState from an entity</param>
+    /// <param name="xformQuery">A query to get the transform component of an entity</param>
+    /// <returns>The name of the sapient being if one was found, null otherwise.</returns>
+    public string? FoundOrganics(EntityUid uid, EntityQuery<MobStateComponent> mobQuery, EntityQuery<TransformComponent> xformQuery)
     {
         var xform = xformQuery.GetComponent(uid);
         var childEnumerator = xform.ChildEnumerator;
@@ -481,12 +503,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (mobQuery.TryGetComponent(child, out var mobState)
                 && !_mobState.IsDead(child, mobState)
                 && _mind.TryGetMind(child, out var mind, out var mindComp)
-                && !_mind.IsCharacterDeadIc(mindComp)
-                || FoundOrganics(child, mobQuery, xformQuery))
-                return true;
+                && !_mind.IsCharacterDeadIc(mindComp))
+                return mindComp.CharacterName;
+            else
+            {
+                var charName = FoundOrganics(child, mobQuery, xformQuery);
+                if (charName != null)
+                    return charName;
+            }
         }
 
-        return false;
+        return null;
     }
 
     /// <summary>
