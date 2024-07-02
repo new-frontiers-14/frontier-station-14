@@ -85,3 +85,14 @@
     contents:
       - id: VendingMachineRestockPottedPlantVend
         amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockCiviMedVendFilled
+  parent: CratePlasticBiodegradable
+  name: CiviMed restock crate
+  description: Contains two restock boxes for the CiviMed vending machine.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCiviMedVend
+        amount: 2
