@@ -413,19 +413,20 @@
 #       - type: InitialInfectedRole
 #         prototype: InitialInfected
 
-# Frontier: Have to keep this ones existing as abstract for no errors?
+# Frontier: may be used in admemes, should not spawn normally (note: addgamerule adds bogus ghost roles)
 - type: entity
   parent: BaseNukeopsRule
+  abstract: true
   id: LoneOpsSpawn
   components:
-  - type: StationEvent
-    earliestStart: 35
-    weight: 5.5
-    minimumPlayers: 20
-    duration: 1
-  - type: RuleGrids
-  - type: LoadMapRule
-    preloadedGrid: ShuttleStriker
+  # - type: StationEvent
+  #   earliestStart: 35
+  #   weight: 5.5
+  #   minimumPlayers: 20
+  #   duration: 1
+  # - type: RuleGrids
+  # - type: LoadMapRule # Frontier: do not load the map, it was removed
+  #   preloadedGrid: ShuttleStriker # Frontier: do not load the map, it was removed
   - type: NukeopsRule
     roundEndBehavior: Nothing
   - type: AntagSelection
