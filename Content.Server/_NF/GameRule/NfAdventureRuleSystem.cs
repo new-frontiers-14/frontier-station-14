@@ -124,6 +124,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
         var trade = "/Maps/_NF/POI/trade.yml";
+        var prison = "Maps/_NF/POI/prison.yml";
+
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -169,6 +171,21 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
             _meta.SetEntityName(nfsdUids[0], "NFSD Outpost", meta);
             _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
+        }
+
+        if (_map.TryLoad(mapId, prison, out var prisonUids, new MapLoadOptions
+            {
+                Offset = _random.NextVector2(500f, 700f)
+            }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>("Prison", out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations["Prison"], prisonUids);
+            }
+
+            var meta = EnsureComp<MetaDataComponent>(prisonUids[0]);
+            _meta.SetEntityName(prisonUids[0], "Prison", meta);
+            _shuttle.SetIFFColor(prisonUids[0], new Color(1f, 0.2f, 0.2f));
         }
 
         if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
