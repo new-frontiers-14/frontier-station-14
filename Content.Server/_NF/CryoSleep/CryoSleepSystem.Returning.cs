@@ -70,7 +70,7 @@ public sealed partial class CryoSleepSystem
         _mind.ControlMob(id.Value, body);
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);
-        sleep.CoolDownEnd = TimeSpan.FromSeconds(5);
+        sleep.CooldownEnd = TimeSpan.FromSeconds(5);
 
         _popup.PopupEntity(Loc.GetString("cryopod-wake-up", ("entity", body)), body);
 
