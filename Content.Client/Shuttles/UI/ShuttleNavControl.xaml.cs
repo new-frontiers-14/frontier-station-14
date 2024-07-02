@@ -38,6 +38,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
 
+    public float MaximumIFFDistance { get; set; } = -1f; // Frontier
+
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
@@ -222,6 +224,18 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             if (isPlayerShuttle)
             {
                 shouldDrawIFF &= ShowIFFShuttles;
+            }
+
+            // Frontier - Maximum IFF Distance
+            if (MaximumIFFDistance != -1)
+            {
+                var gridCentre = matty.Transform(gridBody.LocalCenter);
+                var distance = gridCentre.Length();
+
+                if (distance > MaximumIFFDistance)
+                {
+                    shouldDrawIFF = false;
+                }
             }
 
             if (shouldDrawIFF)
