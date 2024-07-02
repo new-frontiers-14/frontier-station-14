@@ -40,6 +40,10 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 200
   - type: Bloodstream
@@ -109,7 +113,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Dead
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
   - type: Stamina
     critThreshold: 300
 
@@ -128,14 +140,18 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      70: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: MeleeWeapon
     damage:
       groups:
         Brute: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.0
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.5
 
 - type: entity
   parent: BaseMobXenoExpeditions
@@ -153,6 +169,10 @@
     thresholds:
       0: Alive
       150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.7
+      120: 0.5
   - type: Stamina
     critThreshold: 550
   - type: MovementSpeedModifier
@@ -161,7 +181,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 10
+       Brute: 14
 
 - type: entity
   parent: BaseMobXenoExpeditions
@@ -183,7 +203,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 3
+       Brute: 4
 
 - type: entity
   parent: BaseMobXenoExpeditions
@@ -201,6 +221,10 @@
     thresholds:
       0: Alive
       75: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -239,6 +263,10 @@
     thresholds:
       0: Alive
       250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+      200: 0.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.8
     baseSprintSpeed: 3.8

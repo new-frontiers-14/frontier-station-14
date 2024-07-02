@@ -55,6 +55,14 @@
       types:
         Bloodloss:
           -1
+  - type: MobThresholds # Base value to fall back to
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepThud
@@ -77,10 +85,15 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: compy
+      scale: 0.6, 0.6
   - type: MobThresholds
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -99,8 +112,11 @@
         Slash: 8
         Structural: 20
   - type: MovementSpeedModifier
-    baseSprintSpeed : 2
-    baseWalkSpeed: 2
+    baseSprintSpeed : 4.5
+    baseWalkSpeed: 4.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepAsteroid
 
 - type: entity
   parent: BaseMobDinosaurExpeditions
@@ -118,6 +134,10 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -156,6 +176,10 @@
     thresholds:
       0: Alive
       80: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -193,6 +217,10 @@
     thresholds:
       0: Alive
       100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -230,6 +258,10 @@
     thresholds:
       0: Alive
       150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.7
+      120: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -240,12 +272,12 @@
         Base: kentro_dead
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      collection: MetalThud
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcPunch
     damage:
       types:
-        Piercing: 10
+        Blunt: 10
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2.5
@@ -267,6 +299,10 @@
     thresholds:
       0: Alive
       200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+      160: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -282,7 +318,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 15
+        Piercing: 15
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 3
@@ -304,6 +340,10 @@
     thresholds:
       0: Alive
       250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+      200: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -314,12 +354,12 @@
         Base: anki_dead
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      collection: MetalThud
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcPunch
     damage:
       types:
-        Slash: 8
+        Blunt: 12
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 2
@@ -341,6 +381,10 @@
     thresholds:
       0: Alive
       350: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      210: 0.7
+      280: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -353,7 +397,7 @@
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcBite
     damage:
       types:
         Blunt: 12
@@ -378,6 +422,10 @@
     thresholds:
       0: Alive
       350: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      210: 0.7
+      280: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -417,6 +465,10 @@
     thresholds:
       0: Alive
       450: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      270: 0.7
+      360: 0.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -429,11 +481,11 @@
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
-    animation: WeaponArcClaw
+    animation: WeaponArcBite
     damage:
       types:
-        Slash: 12
-        Piercing: 8
+        Slash: 15
+        Piercing: 10
         Structural: 20
   - type: MovementSpeedModifier
     baseSprintSpeed : 4.5

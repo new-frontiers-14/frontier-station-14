@@ -42,7 +42,7 @@
     - Alive
     - Critical
     - Dead
-    damageCap: 400
+    damageCap: 9999
     damage:
       groups:
         Brute: -0.5
@@ -81,9 +81,9 @@
     useSound:
       path: /Audio/Items/crowbar.ogg
     speedModifier: 10.0
-  - type: Access
-    groups:
-    - AllAccess
+  #- type: Access # Turning AA off for the time being
+    #groups:
+    #- AllAccess
 
 # Inventories
 - type: entity
@@ -187,10 +187,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      160: Dead
+      100: Critical
+      140: Dead
   - type: Stamina
-    critThreshold: 130
+    critThreshold: 100
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
