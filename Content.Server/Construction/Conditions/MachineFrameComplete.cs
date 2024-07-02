@@ -100,11 +100,10 @@ namespace Content.Server.Construction.Conditions
                 if(amount == 0)
                     continue;
                 var stockPart = protoManager.Index(part);
-                var stackEnt = protoManager.Index(stockPart.StockPartPrototype);
 
                 args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
                                            ("amount", amount),
-                                           ("elementName", stackEnt.Name)));
+                                           ("elementName", Loc.GetString(stockPart.Name))));
             }
             // End Frontier
 
