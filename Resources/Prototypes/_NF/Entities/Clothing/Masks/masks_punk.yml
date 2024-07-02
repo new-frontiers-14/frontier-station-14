@@ -1,0 +1,36 @@
+
+- type: entity
+  parent: ClothingMaskPullableBase
+  id: ClothingMaskPunkHalf
+  name: punk halfmask
+  description: A close-fitting breathing mask with gamer lights!
+  suffix: Random visuals
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/punkhalfmask.rsi
+    layers:
+    - state: base_halfmask_01
+      map: [ "mask_main" ]
+      scale: 2, 2
+      offset: 0,-0.6
+    - state: decor_base_halfmask_01
+      map: [ "mask_decor" ]
+      shader: unshaded
+      scale: 2, 2
+      offset: 0,-0.6
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/punkhalfmask.rsi
+    clothingVisuals:
+      mask:
+      - state: base_halfmask_01
+        map: [ "mask_main" ]
+      - state: decor_base_halfmask_01
+        map: [ "mask_decor" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    - mask_main:
+        base_halfmask_01: CyberpunkDark
+      mask_decor:
+        decor_base_halfmask_01: CyberpunkNeon
