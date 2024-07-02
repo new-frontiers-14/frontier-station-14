@@ -288,90 +288,95 @@ entities:
         tiles:
           0,0:
             0: 65535
+          -1,0:
+            0: 65535
           0,1:
-            0: 57359
             1: 8176
+          -1,1:
+            1: 4080
+            0: 4097
+          0,2:
+            1: 17
+            2: 52992
+            0: 12
+          -1,2:
+            1: 4104
+            2: 36608
+            0: 19
+          0,3:
+            2: 65295
+            1: 240
+          -1,3:
+            2: 36622
+            1: 241
           1,0:
             0: 65535
           1,1:
-            0: 65535
+            0: 61422
           1,2:
-            0: 255
-            1: 65280
-          2,0:
-            0: 30579
-            1: 4
-          2,1:
-            0: 14199
-            1: 16384
-          2,2:
-            0: 51
-            1: 62208
-          -2,0:
-            0: 65535
-          -2,1:
-            0: 61727
-            1: 3808
-          -2,2:
-            0: 255
-            1: 36352
-          -1,0:
-            0: 65535
-          -1,1:
-            0: 61455
-            1: 4080
-          -1,2:
-            0: 247
-            1: 40712
-          0,-1:
-            0: 61440
-          1,-2:
-            0: 65520
-          1,-1:
-            0: 65535
-          2,-2:
-            0: 4368
-          2,-1:
-            0: 12561
-          -2,-1:
-            0: 65535
-          -2,-2:
-            0: 65520
-          -1,-2:
-            0: 30576
-          -1,-1:
-            0: 63351
-          0,2:
-            1: 53009
-            0: 238
-          0,3:
-            1: 65535
+            2: 16128
+            0: 14
+            1: 49152
           1,3:
-            1: 65535
+            2: 65283
+            1: 252
+          1,-1:
+            0: 61166
+          2,0:
+            0: 13104
+            2: 4
+          2,1:
+            0: 4915
+            2: 16384
+          2,2:
+            0: 1
+            2: 62208
           2,3:
-            1: 63479
+            2: 63239
+            1: 240
           3,2:
             1: 61440
           3,3:
             1: 65535
+          -3,0:
+            2: 8710
+            0: 52416
           -3,1:
-            0: 52974
-            1: 8192
+            2: 8738
+            0: 36040
+          -3,2:
+            2: 192
+            0: 8
+          -3,-1:
+            2: 34944
+            0: 8
+          -2,0:
+            0: 65535
+          -2,2:
+            2: 3600
+            0: 142
+            1: 32768
           -3,3:
             1: 128
           -2,3:
-            1: 36863
-          -1,3:
-            1: 36863
-          -3,0:
-            1: 2
-            0: 61164
-          -3,2:
-            0: 204
+            1: 248
+            2: 36615
+          -2,-1:
+            0: 30583
+          -2,1:
+            1: 3808
+            0: 32768
+          1,-2:
+            0: 61152
+          2,-2:
+            0: 4352
+          2,-1:
+            0: 1
           -3,-2:
-            0: 34944
-          -3,-1:
-            0: 34952
+            2: 128
+            0: 34816
+          -2,-2:
+            0: 30576
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -390,6 +395,21 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
           moles:
           - 0
           - 0
@@ -431,8 +451,11 @@ entities:
   - uid: 566
     components:
     - type: Transform
+      anchored: True
       pos: 13.5,14.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: Airlock
   entities:
   - uid: 200
@@ -615,6 +638,28 @@ entities:
     components:
     - type: Transform
       pos: -2.5,4.5
+      parent: 1
+- proto: ArgocyteEgg
+  entities:
+  - uid: 107
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+  - uid: 138
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 1
+  - uid: 217
+    components:
+    - type: Transform
+      pos: -9.5,2.5
+      parent: 1
+  - uid: 218
+    components:
+    - type: Transform
+      pos: -2.5,5.5
       parent: 1
 - proto: AtmosDeviceFanTiny
   entities:
@@ -1471,257 +1516,23 @@ entities:
       parent: 1
     - type: SpamEmitSound
       enabled: False
-- proto: BookAurora
+- proto: BookshelfFilled
   entities:
-  - uid: 680
+  - uid: 672
     components:
     - type: Transform
-      pos: 0.484375,0.47654724
+      pos: 9.5,4.5
       parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookBase
-  entities:
   - uid: 674
     components:
     - type: Transform
-      pos: 0.484375,0.47654724
+      pos: 9.5,6.5
       parent: 1
-    - type: Physics
-      canCollide: False
-  - uid: 675
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-  - uid: 676
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-  - uid: 677
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-  - uid: 678
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookCafe
-  entities:
-  - uid: 694
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookChemicalCompendium
-  entities:
-  - uid: 682
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookEarth
-  entities:
-  - uid: 673
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookFeather
-  entities:
-  - uid: 226
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookHowToKeepStationClean
-  entities:
-  - uid: 683
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookHowToSurvive
-  entities:
-  - uid: 681
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanAntarctica
-  entities:
-  - uid: 571
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanArctic
-  entities:
-  - uid: 686
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanCity
-  entities:
-  - uid: 693
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanDesert
-  entities:
-  - uid: 688
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanLostWolfPup
-  entities:
-  - uid: 690
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanMountain
-  entities:
-  - uid: 689
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanOcean
-  entities:
   - uid: 687
     components:
     - type: Transform
-      pos: 0.484375,0.47654724
+      pos: 9.5,5.5
       parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookIanRanch
-  entities:
-  - uid: 685
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookMedicalOfficer
-  entities:
-  - uid: 679
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookRandomStory
-  entities:
-  - uid: 671
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookRufus
-  entities:
-  - uid: 684
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookshelfFilled
-  entities:
-  - uid: 530
-    components:
-    - type: Transform
-      pos: 8.5,8.5
-      parent: 1
-- proto: BookSlothClownMMD
-  entities:
-  - uid: 697
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookSlothClownPranks
-  entities:
-  - uid: 695
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookSlothClownSSS
-  entities:
-  - uid: 696
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookTemple
-  entities:
-  - uid: 692
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
-- proto: BookTruth
-  entities:
-  - uid: 691
-    components:
-    - type: Transform
-      pos: 0.484375,0.47654724
-      parent: 1
-    - type: Physics
-      canCollide: False
 - proto: BoxLightMixed
   entities:
   - uid: 667
@@ -2674,12 +2485,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,13.5
       parent: 1
-  - uid: 112
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,13.5
-      parent: 1
   - uid: 113
     components:
     - type: Transform
@@ -2836,6 +2641,12 @@ entities:
     - type: Transform
       pos: 15.5,13.5
       parent: 1
+  - uid: 293
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,13.5
+      parent: 1
 - proto: ChairFolding
   entities:
   - uid: 96
@@ -2894,6 +2705,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,5.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: ComputerBroken
   entities:
   - uid: 631
@@ -2931,13 +2760,29 @@ entities:
     - type: Transform
       pos: -6.5,4.5
       parent: 1
+    - type: Openable
+      opened: False
 - proto: DisposalBend
   entities:
+  - uid: 294
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,13.5
+      parent: 1
   - uid: 397
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,0.5
+      parent: 1
+- proto: DisposalJunctionFlipped
+  entities:
+  - uid: 287
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,8.5
       parent: 1
 - proto: DisposalPipe
   entities:
@@ -2952,12 +2797,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,2.5
-      parent: 1
-  - uid: 287
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,8.5
       parent: 1
   - uid: 288
     components:
@@ -2979,21 +2818,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,12.5
-      parent: 1
-  - uid: 292
-    components:
-    - type: Transform
-      pos: -4.5,13.5
-      parent: 1
-  - uid: 293
-    components:
-    - type: Transform
-      pos: -4.5,14.5
-      parent: 1
-  - uid: 294
-    components:
-    - type: Transform
-      pos: -4.5,15.5
       parent: 1
   - uid: 392
     components:
@@ -3036,6 +2860,32 @@ entities:
     - type: Transform
       pos: -4.5,4.5
       parent: 1
+  - uid: 707
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,8.5
+      parent: 1
+  - uid: 709
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,8.5
+      parent: 1
+  - uid: 710
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.5,8.5
+      parent: 1
+- proto: DisposalPipeBroken
+  entities:
+  - uid: 292
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,13.5
+      parent: 1
 - proto: DisposalTrunk
   entities:
   - uid: 401
@@ -3043,6 +2893,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,0.5
+      parent: 1
+  - uid: 712
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,8.5
       parent: 1
 - proto: DisposalUnit
   entities:
@@ -3106,13 +2962,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkColaCan
-  entities:
-  - uid: 720
-    components:
-    - type: Transform
-      pos: 6.584388,1.5785167
-      parent: 1
 - proto: DrinkCreamCarton
   entities:
   - uid: 515
@@ -3133,7 +2982,6 @@ entities:
       solutions:
         drink:
           temperature: 293.15
-          canMix: False
           canReact: True
           maxVol: 30
           name: null
@@ -3143,13 +2991,6 @@ entities:
             Quantity: 25
     - type: Openable
       opened: True
-- proto: DrinkFourteenLokoCan
-  entities:
-  - uid: 719
-    components:
-    - type: Transform
-      pos: 6.443763,1.7661483
-      parent: 1
 - proto: DrinkGildlagerBottleFull
   entities:
   - uid: 594
@@ -3182,13 +3023,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkGrapeCan
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: 6.053138,1.5785167
-      parent: 1
 - proto: DrinkMilkCarton
   entities:
   - uid: 516
@@ -3224,13 +3058,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkRootBeerCan
-  entities:
-  - uid: 717
-    components:
-    - type: Transform
-      pos: 6.146888,1.7974193
-      parent: 1
 - proto: DrinkRumBottleFull
   entities:
   - uid: 597
@@ -3254,13 +3081,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkSodaWaterCan
-  entities:
-  - uid: 723
-    components:
-    - type: Transform
-      pos: 6.318763,1.5472457
-      parent: 1
 - proto: DrinkSoyMilkCarton
   entities:
   - uid: 514
@@ -3315,6 +3135,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,4.5
       parent: 1
+    - type: Openable
+      opened: False
 - proto: FenceMetalBroken
   entities:
   - uid: 271
@@ -3470,78 +3292,12 @@ entities:
     - type: Transform
       pos: 7.5,-0.5
       parent: 1
-- proto: FoodBoxDonkpocket
+- proto: FoodBoxPizza
   entities:
-  - uid: 556
+  - uid: 536
     components:
     - type: Transform
-      pos: 5.71742,3.4649358
-      parent: 1
-- proto: FoodBoxDonkpocketBerry
-  entities:
-  - uid: 554
-    components:
-    - type: Transform
-      pos: 5.701795,3.7620168
-      parent: 1
-- proto: FoodBoxDonkpocketDink
-  entities:
-  - uid: 555
-    components:
-    - type: Transform
-      pos: 5.264295,3.5900216
-      parent: 1
-- proto: FoodBoxDonkpocketHonk
-  entities:
-  - uid: 553
-    components:
-    - type: Transform
-      pos: 5.31117,3.8089242
-      parent: 1
-- proto: FoodBoxDonkpocketPizza
-  entities:
-  - uid: 557
-    components:
-    - type: Transform
-      pos: -5.766955,2.745686
-      parent: 1
-  - uid: 558
-    components:
-    - type: Transform
-      pos: -5.28258,2.7613206
-      parent: 1
-- proto: FoodBoxDonkpocketSpicy
-  entities:
-  - uid: 559
-    components:
-    - type: Transform
-      pos: -5.72008,2.479876
-      parent: 1
-- proto: FoodBoxDonkpocketTeriyaki
-  entities:
-  - uid: 560
-    components:
-    - type: Transform
-      pos: -5.266955,2.4329686
-      parent: 1
-- proto: FoodBoxDonut
-  entities:
-  - uid: 818
-    components:
-    - type: Transform
-      pos: -7.3893456,3.6276252
-      parent: 1
-  - uid: 820
-    components:
-    - type: Transform
-      pos: -7.556012,3.7422085
-      parent: 1
-- proto: FoodBoxPizzaFilled
-  entities:
-  - uid: 550
-    components:
-    - type: Transform
-      pos: -4.391955,2.6831422
+      pos: -4.309399,2.7337916
       parent: 1
 - proto: FoodContainerEgg
   entities:
@@ -3568,42 +3324,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: FoodSnackChips
-  entities:
-  - uid: 712
-    components:
-    - type: Transform
-      pos: 7.662513,3.9082592
-      parent: 1
-  - uid: 714
-    components:
-    - type: Transform
-      pos: 7.412513,3.9551685
-      parent: 1
-- proto: FoodSnackEnergy
-  entities:
-  - uid: 713
-    components:
-    - type: Transform
-      pos: 7.365638,3.470456
-      parent: 1
-  - uid: 724
-    components:
-    - type: Transform
-      pos: 7.678138,3.439185
-      parent: 1
-- proto: FoodSnackRaisins
-  entities:
-  - uid: 709
-    components:
-    - type: Transform
-      pos: 7.678138,3.736266
-      parent: 1
-  - uid: 710
-    components:
-    - type: Transform
-      pos: 7.381263,3.7831733
-      parent: 1
 - proto: GasCanisterBrokenBase
   entities:
   - uid: 232
@@ -3661,6 +3381,8 @@ entities:
     - type: Transform
       pos: -5.5,10.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeBend
   entities:
   - uid: 244
@@ -4343,6 +4065,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,9.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 376
     components:
     - type: Transform
@@ -4516,6 +4240,16 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: GasPressurePumpOnMax
+  entities:
+  - uid: 557
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,8.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasVentPump
   entities:
   - uid: 315
@@ -4594,16 +4328,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 704
-    - type: AtmosPipeColor
-      color: '#990000FF'
-- proto: GasVolumePump
-  entities:
-  - uid: 336
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,8.5
-      parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -4780,8 +4504,8 @@ entities:
         immutable: False
         temperature: 293.1497
         moles:
-        - 1.8968438
-        - 7.1357465
+        - 0.1517475
+        - 0.57085973
         - 0
         - 0
         - 0
@@ -4798,9 +4522,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 388
-          - 528
           - 296
+          - 528
+          - 388
           - 219
         paper_label: !type:ContainerSlot
           showEnts: False
@@ -4814,7 +4538,7 @@ entities:
       pos: -8.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1013.1801
+      secondsUntilStateChange: -2021.1052
       state: Opening
 - proto: Lamp
   entities:
@@ -4859,8 +4583,8 @@ entities:
         immutable: False
         temperature: 293.14972
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -4877,14 +4601,14 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 593
-          - 592
           - 591
-          - 590
-          - 589
-          - 588
-          - 587
+          - 592
+          - 593
           - 594
+          - 587
+          - 588
+          - 589
+          - 590
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4900,8 +4624,8 @@ entities:
         immutable: False
         temperature: 293.14972
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -4918,13 +4642,13 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 601
-          - 600
-          - 599
-          - 598
-          - 597
-          - 596
           - 602
+          - 596
+          - 597
+          - 598
+          - 599
+          - 600
+          - 601
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -5026,55 +4750,20 @@ entities:
     - type: Transform
       pos: 4.5,7.5
       parent: 1
-- proto: Paper
+- proto: PaperWrittenGriftyScript
   entities:
-  - uid: 738
+  - uid: 626
     components:
     - type: Transform
-      pos: -2.203373,2.5209823
+      pos: -2.2177258,2.5248773
       parent: 1
-    - type: Paper
-      content: >-
-        [color=#1b67a5]█▄ █ ▀█▀    [head=3]Grifty's Script[/head]
-
-        █ ▀█     █       Grifty's Gas and Grub
-
-
-        [bold]ATTENTION STORE ASSOCIATE! FOLLOW THIS SCRIPT[/bold]
-
-
-        Greeting our guests:
-
-        "Hi there! Welcome to Grifty's! Can I interest you in our Gas n' Grub deal? Get a free box of donkpockets with every full tank of plasma!"
-
-
-        For every transaction, ensure you follow the Grifty Guide! Add a 5% implied Grift Fee. Do not mention the Grift Fee.
-
-
-        If the customer complains about the Grift Fee, say:
-
-        "We here at Grifty's are committed to your grift experience. Have a nice day!"
-
-
-        Do not respond to additional complaints. If the guest becomes belligerent, say:
-
-        "I'm sorry your experience has been suboptimal. Let me get our customer service resolver to help you with your needs."
-
-
-        Retrieve the Customer Service Resolver. Resolve your problem.
-- proto: PaperOffice
+- proto: PaperWrittenGriftyWindow
   entities:
-  - uid: 740
+  - uid: 112
     components:
     - type: Transform
-      pos: -0.63143015,5.3730693
+      pos: -0.62397563,5.3686275
       parent: 1
-    - type: Paper
-      content: >-
-        Hey boss,
-
-
-        The crack in the plasma chamber's gettin' bigger, and I'm worried about the containment unit. What happens if the glass breaks?
 - proto: PosterContrabandAmbrosiaVulgaris
   entities:
   - uid: 44
@@ -5365,6 +5054,46 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 1
+  - uid: 616
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+  - uid: 671
+    components:
+    - type: Transform
+      pos: 4.5,3.5
+      parent: 1
+  - uid: 673
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+  - uid: 677
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 1
+  - uid: 678
+    components:
+    - type: Transform
+      pos: 5.5,4.5
+      parent: 1
+  - uid: 679
+    components:
+    - type: Transform
+      pos: 5.5,7.5
+      parent: 1
+  - uid: 680
+    components:
+    - type: Transform
+      pos: 2.5,0.5
+      parent: 1
+  - uid: 681
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
 - proto: RandomCargoCorpseSpawner
   entities:
   - uid: 741
@@ -5385,119 +5114,6 @@ entities:
     components:
     - type: Transform
       pos: -8.5,5.5
-      parent: 1
-- proto: RandomSpawner
-  entities:
-  - uid: 107
-    components:
-    - type: Transform
-      pos: 8.5,3.5
-      parent: 1
-  - uid: 138
-    components:
-    - type: Transform
-      pos: 6.5,7.5
-      parent: 1
-  - uid: 269
-    components:
-    - type: Transform
-      pos: 4.5,0.5
-      parent: 1
-  - uid: 311
-    components:
-    - type: Transform
-      pos: -8.5,2.5
-      parent: 1
-  - uid: 616
-    components:
-    - type: Transform
-      pos: 3.5,2.5
-      parent: 1
-  - uid: 753
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 1
-  - uid: 754
-    components:
-    - type: Transform
-      pos: -6.5,1.5
-      parent: 1
-  - uid: 817
-    components:
-    - type: Transform
-      pos: -9.5,3.5
-      parent: 1
-- proto: RandomVending
-  entities:
-  - uid: 218
-    components:
-    - type: Transform
-      pos: 5.5,4.5
-      parent: 1
-  - uid: 522
-    components:
-    - type: Transform
-      pos: 9.5,4.5
-      parent: 1
-  - uid: 525
-    components:
-    - type: Transform
-      pos: 5.5,7.5
-      parent: 1
-  - uid: 531
-    components:
-    - type: Transform
-      pos: 9.5,2.5
-      parent: 1
-  - uid: 532
-    components:
-    - type: Transform
-      pos: 5.5,5.5
-      parent: 1
-  - uid: 534
-    components:
-    - type: Transform
-      pos: 9.5,1.5
-      parent: 1
-  - uid: 537
-    components:
-    - type: Transform
-      pos: 9.5,6.5
-      parent: 1
-  - uid: 665
-    components:
-    - type: Transform
-      pos: 9.5,5.5
-      parent: 1
-- proto: RandomVendingDrinks
-  entities:
-  - uid: 217
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
-  - uid: 511
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 1
-  - uid: 529
-    components:
-    - type: Transform
-      pos: 3.5,3.5
-      parent: 1
-- proto: RandomVendingSnacks
-  entities:
-  - uid: 520
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 1
-  - uid: 527
-    components:
-    - type: Transform
-      pos: 1.5,0.5
       parent: 1
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -5895,34 +5511,223 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SpawnMobCarp
+- proto: SpawnDungeonLootClutterKitchen
   entities:
-  - uid: 707
+  - uid: 226
+    components:
+    - type: Transform
+      pos: 1.5488443,3.5578158
+      parent: 1
+  - uid: 269
+    components:
+    - type: Transform
+      pos: 1.6009274,3.703649
+      parent: 1
+  - uid: 311
+    components:
+    - type: Transform
+      pos: 5.309261,4.6619825
+      parent: 1
+  - uid: 336
+    components:
+    - type: Transform
+      pos: 6.1098905,1.7242006
+      parent: 1
+  - uid: 511
+    components:
+    - type: Transform
+      pos: 5.684261,4.682816
+      parent: 1
+  - uid: 520
+    components:
+    - type: Transform
+      pos: 5.350928,7.714066
+      parent: 1
+  - uid: 522
+    components:
+    - type: Transform
+      pos: 5.3530316,3.6721172
+      parent: 1
+  - uid: 525
+    components:
+    - type: Transform
+      pos: 5.507178,5.495316
+      parent: 1
+  - uid: 527
+    components:
+    - type: Transform
+      pos: 5.757178,5.682816
+      parent: 1
+  - uid: 529
+    components:
+    - type: Transform
+      pos: 3.3092608,3.672399
+      parent: 1
+  - uid: 530
+    components:
+    - type: Transform
+      pos: 4.621761,3.547399
+      parent: 1
+  - uid: 531
+    components:
+    - type: Transform
+      pos: 3.6634276,3.703649
+      parent: 1
+  - uid: 532
+    components:
+    - type: Transform
+      pos: 3.5488443,3.5265658
+      parent: 1
+  - uid: 534
+    components:
+    - type: Transform
+      pos: 4.7050943,3.7140658
+      parent: 1
+  - uid: 537
+    components:
+    - type: Transform
+      pos: 7.640428,3.6929507
+      parent: 1
+  - uid: 550
+    components:
+    - type: Transform
+      pos: 7.390428,3.8283672
+      parent: 1
+  - uid: 553
+    components:
+    - type: Transform
+      pos: 6.339057,1.4533672
+      parent: 1
+  - uid: 554
+    components:
+    - type: Transform
+      pos: 1.2884274,3.6932325
+      parent: 1
+  - uid: 555
+    components:
+    - type: Transform
+      pos: 7.4320946,3.495034
+      parent: 1
+  - uid: 556
+    components:
+    - type: Transform
+      pos: 6.568224,1.682534
+      parent: 1
+  - uid: 558
+    components:
+    - type: Transform
+      pos: 5.5175943,4.516149
+      parent: 1
+  - uid: 559
+    components:
+    - type: Transform
+      pos: 5.748865,3.6929507
+      parent: 1
+  - uid: 560
+    components:
+    - type: Transform
+      pos: 5.5405316,3.5158672
+      parent: 1
+  - uid: 571
+    components:
+    - type: Transform
+      pos: 5.382178,5.682816
+      parent: 1
+  - uid: 688
+    components:
+    - type: Transform
+      pos: 4.340511,3.672399
+      parent: 1
+  - uid: 689
+    components:
+    - type: Transform
+      pos: 5.725928,7.7661495
+      parent: 1
+  - uid: 690
+    components:
+    - type: Transform
+      pos: 5.507178,7.589066
+      parent: 1
+  - uid: 692
+    components:
+    - type: Transform
+      pos: 1.390625,0.7473806
+      parent: 1
+  - uid: 693
+    components:
+    - type: Transform
+      pos: 1.7135417,0.69529724
+      parent: 1
+  - uid: 694
+    components:
+    - type: Transform
+      pos: 1.453125,0.50779724
+      parent: 1
+  - uid: 695
+    components:
+    - type: Transform
+      pos: 2.3177085,0.6536306
+      parent: 1
+  - uid: 696
+    components:
+    - type: Transform
+      pos: 2.7447917,0.6848806
+      parent: 1
+  - uid: 697
+    components:
+    - type: Transform
+      pos: 2.546875,0.5494639
+      parent: 1
+- proto: SpawnDungeonLootFood
+  entities:
+  - uid: 535
+    components:
+    - type: Transform
+      pos: -7.5197897,3.5972664
+      parent: 1
+- proto: SpawnDungeonVendomatsRecreational
+  entities:
+  - uid: 665
+    components:
+    - type: Transform
+      pos: 9.5,1.5
+      parent: 1
+  - uid: 675
+    components:
+    - type: Transform
+      pos: 9.5,3.5
+      parent: 1
+  - uid: 676
+    components:
+    - type: Transform
+      pos: 9.5,2.5
+      parent: 1
+- proto: SpawnMobArgocyteSmall
+  entities:
+  - uid: 682
+    components:
+    - type: Transform
+      pos: 6.5,4.5
+      parent: 1
+  - uid: 683
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 684
     components:
     - type: Transform
       pos: 0.5,7.5
       parent: 1
-  - uid: 726
+  - uid: 685
     components:
     - type: Transform
-      pos: 8.5,5.5
+      pos: -6.5,1.5
       parent: 1
-  - uid: 733
+  - uid: 686
     components:
     - type: Transform
-      pos: -0.5,1.5
-      parent: 1
-  - uid: 813
-    components:
-    - type: Transform
-      pos: -9.5,2.5
-      parent: 1
-- proto: SpawnMobCarpHolo
-  entities:
-  - uid: 729
-    components:
-    - type: Transform
-      pos: -4.5,6.5
+      pos: 3.5,1.5
       parent: 1
 - proto: StationMapBroken
   entities:
@@ -6037,10 +5842,10 @@ entities:
       parent: 1
 - proto: VendingMachineCigs
   entities:
-  - uid: 535
+  - uid: 225
     components:
     - type: Transform
-      pos: 9.5,3.5
+      pos: 8.5,8.5
       parent: 1
 - proto: VendingMachineCoffee
   entities:
@@ -6075,12 +5880,10 @@ entities:
     - type: Transform
       pos: 2.4822173,5.513855
       parent: 1
-- proto: VendingMachineRestockFlatpackVend
-  entities:
-  - uid: 626
+  - uid: 691
     components:
     - type: Transform
-      pos: 2.7009673,5.7640285
+      pos: 2.6366758,5.7436275
       parent: 1
 - proto: VendingMachineRestockGetmoreChocolateCorp
   entities:
@@ -6095,13 +5898,6 @@ entities:
     components:
     - type: Transform
       pos: 1.3572173,5.5607624
-      parent: 1
-- proto: VendingMachineSustenance
-  entities:
-  - uid: 536
-    components:
-    - type: Transform
-      pos: -2.5,6.5
       parent: 1
 - proto: WallReinforced
   entities:
@@ -6576,21 +6372,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-- proto: WarpPoint
+- proto: WarpPointNFGrifty
   entities:
   - uid: 742
     components:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-    - type: WarpPoint
-      location: Grifty's Gas and Grub
-- proto: WeaponRevolverDeckard
+- proto: WeaponRevolverDeckardExpeditionGrifty
   entities:
   - uid: 219
     components:
-    - type: MetaData
-      name: Customer Service Resolver
     - type: Transform
       parent: 563
     - type: Physics
