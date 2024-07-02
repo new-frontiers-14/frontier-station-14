@@ -1,16 +1,15 @@
 <Document>
-  # LEGMAN-CLASS SERVICE SHUTTLE
+  # PROSPECTOR-CLASS SALVAGE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="ComputerTabletopMassMedia"/>
-  <GuideEntityEmbed Entity="SurveillanceWirelessCameraMovableEntertainment"/>
-  <GuideEntityEmbed Entity="ClothingHeadHatFedoraBrown"/>
+  <GuideEntityEmbed Entity="MiningDrill"/>
+  <GuideEntityEmbed Entity="OreBag"/>
   </Box>  
   <Box>
-  <GuideEntityEmbed Entity="ShuttleMapLegman" Caption=""/>
+  <GuideEntityEmbed Entity="ShuttleMapProspector" Caption=""/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Small (Micro)
+    [color=#a4885c]Ship Size:[/color] Small
 	
-	[color=#a4885c]Recommended Crew:[/color] 1
+	[color=#a4885c]Recommended Crew:[/color] 1-2
 	
 	[color=#a4885c]Power Gen Type:[/color] Plasma
 	
@@ -18,19 +17,21 @@
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-  "A small maneuverable shuttle with low operational costs for reporters who want to be first on a scene."
-  
+  "A small mining vessel designed to assist in salvage operations."
+    
   # PREFLIGHT CHECKLIST
   
   ## 1. Power supply
   
   ## 1.1. Battery units
   <Box>
-  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
   
-  - Check the substation unit.
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
   
@@ -43,7 +44,7 @@
   - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
   - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check that the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power to 5-6** [bold]kW[/bold].
+  - Set Target Power to 10-11** [bold]kW[/bold].
   - Start the P.A.C.M.A.N. generator unit.
   
   ## 2. Atmospherics
@@ -52,12 +53,9 @@
   <Box>
   <GuideEntityEmbed Entity="AirCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
   
   - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
   
   ## 2.2. Waste Loop
   <Box>
@@ -71,19 +69,19 @@
   
   ## 3. Other checks
   <Box>
-  <GuideEntityEmbed Entity="SmallGyroscope"/>
+  <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
-  <GuideEntityEmbed Entity="ShuttersWindow"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
   </Box>
   
   - Check that the gyroscope is anchored, powered, and enabled.
   - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the bow window shutters are closed.
+  - Check that the bow blast doors are closed.
   
   ## Sidenotes
   
-  * - Legman-class service ships are equipped with one APC units that can be used to appraise the ship's total power consumption. Unmodifued Legman-class ship requires 4.7 kW of power to remain operational.
+  * - Prospector-class salvage ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (9.9 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
   
-  ** - Legman-class service ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 5 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 6 kW.
+  ** - Prospector-class salvage ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 11 kW.
 
 </Document>
