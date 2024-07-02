@@ -92,6 +92,22 @@ namespace Content.Server.Construction.Conditions
                                 + "\n");
             }
 
+            // Frontier: restore upgradeable parts
+            foreach (var (part, required) in machineFrame.Requirements)
+            {
+                var amount = required - machineFrame.Progress[part];
+
+                if(amount == 0)
+                    continue;
+                var stockPart = protoManager.Index(part);
+                var stackEnt = protoManager.Index(stockPart.StockPartPrototype);
+
+                args.PushMarkup(Loc.GetString("construction-condition-machine-frame-required-element-entry",
+                                           ("amount", required),
+                                           ("elementName", stackEnt.Name)));
+            }
+            // End Frontier
+
             return true;
         }
 
