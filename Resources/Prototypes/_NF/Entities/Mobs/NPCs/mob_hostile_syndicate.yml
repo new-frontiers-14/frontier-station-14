@@ -690,3 +690,63 @@
     proto: SplatterChemWeh
     capacity: 1
     count: 1
+
+# Void Troopers
+# Syndicate Captain, "armed" with Python
+- type: entity
+  name: syndicate captain
+  parent: MobSyndicateNavalCaptainA
+  id: MobSyndicateNavalCaptainVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainVoidGear
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnum
+      capacity: 1
+      count: 1
+
+# Second Officer, "armed" with Advanced Laser Pistol
+- type: entity
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerVoidGear
+
+# Syndicate Security Operative, "armed" with Atreides SMG
+- type: entity
+  parent: MobSyndicateNavalOperatorA
+  id: MobSyndicateNavalOperatorVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorVoidGear
+
+# Syndicate Engineer, "armed" with shotgun
+- type: entity
+  parent: MobSyndicateNavalEngineerA
+  id: MobSyndicateNavalEngineerVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerVoidGear
+    - type: BasicEntityAmmoProvider
+      proto: ShellShotgun
+      capacity: 1
+      count: 1
+
+# Syndicate Deckhand, "armed" with Viper
+- type: entity
+  parent: MobSyndicateNavalDeckhandA
+  id: MobSyndicateNavalDeckhandVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandVoidGear
