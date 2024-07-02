@@ -1,0 +1,68 @@
+# Added by _NF Juggistry Nerf.
+- type: reagent
+  id: MysteryAcid
+  name: reagent-name-acidic-mystery-sludge
+  desc: reagent-desc-acidic-mystery-sludge
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: flavor-mysterysludge
+  color: "#27333c"
+  metabolisms:
+    Poison:
+      metabolismRate : 2.00 # Low damage, high metabolism rate. You need a LOT of units to crit.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+      - !type:SatiateThirst
+        factor: -10
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: 
+        - generic-reagent-effect-parched 
+        - generic-reagent-effect-burning-insides 
+        - generic-reagent-effect-thirsty
+        probability: 0.3
+
+- type: reagent
+  id: MysteryVomit
+  name: reagent-name-putrid-mystery-sludge
+  desc: reagent-desc-putrid-mystery-sludge
+  physicalDesc: reagent-physical-desc-putrid
+  flavor: flavor-mysterysludge
+  color: "#27333c"
+  metabolisms:
+    Poison:
+        effects:
+        - !type:ChemVomit
+          probability: 0.3
+        - !type:PopupMessage
+            type: Local
+            visualType: Medium
+            messages: 
+            - generic-reagent-effect-nauseous
+            - generic-reagent-effect-sick
+            probability: 0.3
+
+- type: reagent
+  id: MysteryDrunk
+  name: reagent-name-viscous-mystery-sludge
+  desc: reagent-desc-viscous-mystery-sludge
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#27333c"
+  flavor: flavor-mysterysludge
+  metabolisms:
+      Medicine:
+        effects:
+        - !type:Drunk
+            slurSpeech: true
+            boozePower: 30
+        - !type:PopupMessage
+            type: Local
+            visualType: Medium
+            messages: 
+            - generic-reagent-effect-nauseous
+            - generic-reagent-effect-dizzy
+            - generic-reagent-effect-spinning
+            probability: 0.3
