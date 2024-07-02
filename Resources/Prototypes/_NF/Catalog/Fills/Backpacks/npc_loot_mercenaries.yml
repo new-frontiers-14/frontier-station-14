@@ -282,6 +282,58 @@
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
+- type: entity
+  parent: MercenaryDuffelGiftBox
+  id: ClothingBackpackDuffelMecranaryTier3Assault
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/duffel.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    # Cash
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.4
+    - id: SpaceCash1000
+      prob: 0.2
+    # Weapons
+    - id: WeaponRifleGestio
+      prob: 0.9
+    # Armor
+    # Items
+    - id: SpawnDungeonLootKitsFirstAid
+      prob: 0.2
+    - id: ClothingNeckIFFNeutral
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: MercenaryWebbingBox
+  id: ClothingBeltMecranaryTier3Assault
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+    state: icon
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagazineRifleLowCapacity
+      prob: 0.6
+    - id: MagazineRifleLowCapacity
+      prob: 0.6
+    - id: MagazineBoxRifle
+      prob: 0.7
+    - id: EmergencyMedipen
+      prob: 0.4
+    - id: MagazineBoxRifleBig
+      prob: 0.2
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
 ## TIER 4
 - type: entity
   parent: MercenaryDuffelGiftBox
