@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Arcadia Industries Shredder Spawner
   id: SpawnMobArcIndShredder
   parent: MarkerBase
@@ -39,3 +39,66 @@
   - type: ConditionalSpawner
     prototypes:
       - MobArcIndBlaster
+
+- type: entity
+  name: random turrets
+  suffix: NanoTrasen
+  id: SpawnMobTurretsNanoTrasen
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: syndie_lethal
+        sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+  - type: ConditionalSpawner
+    prototypes:
+      - WeaponDisablerTurret
+      - WeaponAntiMaterialTurret
+      - WeaponHeavyTurret
+      - WeaponShotgunTurret
+      - WeaponHitscanTurret
+      - WeaponIncineratorTurret
+      - WeaponTurretNanoTrasen
+
+- type: entity
+  name: random turrets
+  suffix: Syndicate
+  id: SpawnMobTurretsSyndicate
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: syndie_lethal
+        sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+  - type: ConditionalSpawner
+    prototypes:
+      - WeaponDisablerturretSyndicate
+      - WeaponAntiMaterialTurretSyndicate
+      - WeaponHeavyTurretSyndicate
+      - WeaponShotgunTurretSyndicate
+      - WeaponHitscanTurretSyndicate
+      - WeaponIncineratorTurretSyndicate
+      - WeaponTurretSyndicate
+
+- type: entity
+  name: random turrets
+  suffix: Hostile
+  id: SpawnMobTurretsHostile
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: syndie_lethal
+        sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+  - type: ConditionalSpawner
+    prototypes:
+      - WeaponDisablerHostile
+      - WeaponAntiMaterialTurretHostile
+      - WeaponHeavyTurretHostile
+      - WeaponShotgunTurretHostile
+      - WeaponHitscanTurretHostile
+      - WeaponIncineratorTurretHostile
+      - WeaponTurretHostile

@@ -1,0 +1,293 @@
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponDisablerTurret
+  name: crowd control turret
+  suffix: NanoTrasen
+  description: A disabler based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletDisabler
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponDisablerturretSyndicate
+  suffix: Syndicate
+  name: crowd control turret
+  description: A disabler based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletDisabler
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponDisablerHostile
+  suffix: Hostile
+  name: crowd control turret
+  description: An disabler based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletDisabler
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponAntiMaterialTurret
+  name: anti-material turret
+  suffix: NanoTrasen
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgeAntiMateriel
+      capacity: 250
+    - type: Gun
+      fireRate: 1.5
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponAntiMaterialTurretSyndicate
+  suffix: Syndicate
+  name: anti-material turret
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgeAntiMateriel
+      capacity: 250
+    - type: Gun
+      fireRate: 1.5
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponAntiMaterialTurretHostile
+  suffix: Hostile
+  name: anti-material turret
+  description: An anti-material Ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgeAntiMateriel
+      capacity: 250
+    - type: Gun
+      fireRate: 1.5
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHeavyTurret
+  name:  heavy ballistic turret
+  suffix: NanoTrasen
+  description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletMagnum
+      capacity: 500
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHeavyTurretSyndicate
+  suffix: Syndicate
+  name: heavy ballistic turret
+  description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletMagnum
+      capacity: 250
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHeavyTurretHostile
+  suffix: Hostile
+  name: heavy ballistic turret
+  description: A heavy ballistic projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletMagnum
+      capacity: 250
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponShotgunTurret
+  name: shottynator
+  suffix: NanoTrasen
+  description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponShotgunTurretSyndicate
+  name: shottynator
+  suffix: Syndicate
+  description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponShotgunTurretHostile
+  name: shottynator
+  suffix: Hostile
+  description: A .50 Pellet projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun
+      capacity: 500
+    - type: Gun
+      fireRate: 1
+    - type: NpcFactionMember
+      factions:
+       - SimpleHostile
+
+#laser Weapons
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurret
+  name: laser turret
+  suffix: NanoTrasen
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurretSyndicate
+  name: laser turret
+  suffix: Syndicate
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponHitscanTurretHostile
+  name: laser turret
+  suffix: Hostile
+  description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: BulletEnergyGunLaser
+      capacity: 500
+    - type: Gun
+      fireRate: 4
+    - type: NpcFactionMember
+      factions:
+       - SimpleHostile
+
+
+
+#Liquid based Turrets
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponIncineratorTurret
+  name: incinerator turret
+  suffix: NanoTrasen
+  description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: SplatterChemPhlogNapalm
+      capacity: 500
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponIncineratorTurretSyndicate
+  name: incinerator turret
+  suffix: Syndicate
+  description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: SplatterChemPhlogNapalm
+      capacity: 500
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponIncineratorTurretHostile
+  name: incinerator turret
+  suffix: Hostile
+  description: A liquid based projectile flamer, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: SplatterChemPhlogNapalm
+      capacity: 500
+    - type: Gun
+      fireRate: 3
+    - type: NpcFactionMember
+      factions:
+       - SimpleHostile
