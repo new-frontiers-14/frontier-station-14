@@ -413,41 +413,40 @@
 #       - type: InitialInfectedRole
 #         prototype: InitialInfected
 
-# Frontier: may be used in admemes, should not spawn normally (note: addgamerule adds bogus ghost roles)
-- type: entity
-  parent: BaseNukeopsRule
-  abstract: true
-  id: LoneOpsSpawn
-  components:
-  # - type: StationEvent
-  #   earliestStart: 35
-  #   weight: 5.5
-  #   minimumPlayers: 20
-  #   duration: 1
-  # - type: RuleGrids
-  # - type: LoadMapRule # Frontier: do not load the map, it was removed
-  #   preloadedGrid: ShuttleStriker # Frontier: do not load the map, it was removed
-  - type: NukeopsRule
-    roundEndBehavior: Nothing
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointLoneNukeOperative
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: SyndicateLoneOperativeGearFull
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - SyndicateNamesPrefix
-        - SyndicateNamesNormal
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindComponents:
-      - type: NukeopsRole
-        prototype: Nukeops
+# - type: entity
+#   parent: BaseNukeopsRule
+#   abstract: true
+#   id: LoneOpsSpawn
+#   components:
+#   - type: StationEvent
+#     earliestStart: 35
+#     weight: 5.5
+#     minimumPlayers: 20
+#     duration: 1
+#   - type: RuleGrids
+#   # - type: LoadMapRule # Frontier: do not load the map, it was removed
+#   #   preloadedGrid: ShuttleStriker # Frontier: do not load the map, it was removed
+#   - type: NukeopsRule
+#     roundEndBehavior: Nothing
+#   - type: AntagSelection
+#     definitions:
+#     - spawnerPrototype: SpawnPointLoneNukeOperative
+#       min: 1
+#       max: 1
+#       pickPlayer: false
+#       startingGear: SyndicateLoneOperativeGearFull
+#       components:
+#       - type: NukeOperative
+#       - type: RandomMetadata
+#         nameSegments:
+#         - SyndicateNamesPrefix
+#         - SyndicateNamesNormal
+#       - type: NpcFactionMember
+#         factions:
+#         - Syndicate
+#       mindComponents:
+#       - type: NukeopsRole
+#         prototype: Nukeops
 
 # - type: entity
 #   parent: BaseTraitorRule
