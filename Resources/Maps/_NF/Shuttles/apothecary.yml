@@ -1077,13 +1077,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,8.5
       parent: 1
-- proto: chem_master
-  entities:
-  - uid: 122
-    components:
-    - type: Transform
-      pos: -3.5,5.5
-      parent: 1
 - proto: ChemDispenser
   entities:
   - uid: 341
@@ -1103,6 +1096,13 @@ entities:
       - 221
     - type: PlaceableSurface
       isPlaceable: False
+- proto: ChemMaster
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      pos: -3.5,5.5
+      parent: 1
 - proto: ClosetWall
   entities:
   - uid: 127
@@ -1580,11 +1580,15 @@ entities:
   - uid: 181
     components:
     - type: Transform
+      anchored: False
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 185
     components:
     - type: Transform
@@ -2482,13 +2486,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,4.5
-      parent: 1
-- proto: SpawnPointPassenger
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: -2.5,5.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
