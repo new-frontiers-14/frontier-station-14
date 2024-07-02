@@ -1,0 +1,28 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                HorizontalExpand="True"
+                Margin="5 5 5 0">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True">
+        <TextureRect Name="Icon"
+                     Access="Public"
+                     MinSize="32 32"
+                     RectClipContent="True" />
+        <Label Name="Title"
+               Access="Public"
+               HorizontalExpand="True" />
+        <Label Name="Quantity"
+               Access="Public"
+               Align="Center"
+               HorizontalExpand="True" />
+        <Label Name="Price"
+               Access="Public"
+               Align="Center"
+               HorizontalExpand="True" />
+        <Button Name="Purchase"
+                Access="Public"
+                ToolTip=""
+                Text="{Loc 'market-purchase-button'}"
+                StyleClasses="LabelSubText" />
+
+    </BoxContainer>
+</PanelContainer>
