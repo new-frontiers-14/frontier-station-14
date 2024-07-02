@@ -3,17 +3,18 @@
   name: job-name-prisoner
   description: job-description-prisoner
   playTimeTracker: JobPrisoner
-  requirements:
-    - !type:WhitelistRequirement
+  whitelisted: true
   startingGear: PrisonerGear
   alwaysUseSpawner: true
   canBeAntag: false
-  whitelistRequired: true
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-prisoner
   special:
   - !type:AddImplantSpecial
     implants: [ TrackingImplant ] # Frontier
+  - !type:GiveItemOnHolidaySpecial # Frontier: even prisoners get a piece of cake (with no file inside).
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: PrisonerGear

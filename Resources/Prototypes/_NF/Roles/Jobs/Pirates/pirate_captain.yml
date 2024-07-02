@@ -4,9 +4,9 @@
   description: job-description-pirate-captain
   playTimeTracker: JobPirateCaptain
   requirements:
-    - !type:WhitelistRequirement
     - !type:OverallPlaytimeRequirement
       time: 172800 # Frontier - 48 hours
+  whitelisted: true
   startingGear: PirateCaptainNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
@@ -22,6 +22,9 @@
     - type: MailDisabled
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: PirateCaptainNFGear
@@ -30,6 +33,9 @@
     ears: ClothingHeadsetAltFreelancer
     shoes: ClothingShoesBootsLaceup
     belt: ClothingBeltUtility
-    pocket1: AppraisalTool
+    pocket1: BasePirateUplinkRadioPirateCaptain
     pocket2: EnergyCutlass
     outerClothing: ClothingOuterCoatPirate
+  storage:
+    back:
+    - AppraisalTool

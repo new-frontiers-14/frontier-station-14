@@ -6,6 +6,7 @@ using Content.Shared.Bank.Components;
 using Content.Shared.Bank.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Stacks;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -46,7 +47,7 @@ public sealed partial class BankSystem
         // to keep the window stateful
         GetInsertedCashAmount(component, out var deposit);
 
-            // check for a bank account
+        // check for a bank account
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
             _log.Info($"{player} has no bank account");
@@ -179,29 +180,27 @@ public sealed partial class BankSystem
 
     private void OnCashSlotChanged(EntityUid uid, BankATMComponent component, ContainerModifiedMessage args)
     {
-        var uiUsers = _uiSystem.GetActorUis(uid);
+        if (!TryComp<ActivatableUIComponent>(uid, out var uiComp) || uiComp.Key is null)
+            return;
+
+        var uiUsers = _uiSystem.GetActors(uid, uiComp.Key);
         GetInsertedCashAmount(component, out var deposit);
 
         foreach (var user in uiUsers)
         {
-            if (user.Entity is not { Valid: true } player)
-            {
-                return;
-            }
+            if (user is not { Valid: true } player)
+                continue;
 
             if (!TryComp<BankAccountComponent>(player, out var bank))
-            {
-                return;
-            }
+                continue;
 
+            BankATMMenuInterfaceState newState;
             if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid : true } cash)
-            {
-                _uiSystem.SetUiState(uid, user.Key,
-                    new BankATMMenuInterfaceState(bank.Balance, true, 0));
-            }
+                newState = new BankATMMenuInterfaceState(bank.Balance, true, 0);
+            else
+                newState = new BankATMMenuInterfaceState(bank.Balance, true, deposit);
 
-            _uiSystem.SetUiState(uid, user.Key,
-                new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+            _uiSystem.SetUiState(uid, uiComp.Key, newState);
         }
     }
 
