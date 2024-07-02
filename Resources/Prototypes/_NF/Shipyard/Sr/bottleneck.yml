@@ -1,0 +1,23 @@
+- type: vessel
+  id: Bottleneck
+  name: NT Bottleneck
+  description: A personal transport and mobile office for the station representative.
+  price: 14000
+  category: Small
+  group: Sr
+  shuttlePath: /Maps/_NF/Shuttles/Sr/bottleneck.yml
+
+- type: gameMap
+  id: Bottleneck
+  mapName: 'NT Bottleneck'
+  mapPath: /Maps/_NF/Shuttles/Sr/bottleneck.yml
+  minPlayers: 0
+  stations:
+    Bottleneck:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bottleneck {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
