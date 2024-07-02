@@ -4,6 +4,8 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
+using Content.Shared.DeltaV.Harpy;
+
 namespace Content.Server.Chat.Systems;
 
 // emotes using emote prototype
@@ -178,11 +180,12 @@ public partial class ChatSystem
     /// <returns></returns>
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
-        if ((_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
+        // Frontier: get SpeechComponent early, check if speaker can mimic emotes (bypassing whitelist)
+        if (!TryComp<SpeechComponent>(source, out var speech) ||
+            !speech.MimicEmotes && (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
             return false;
 
         if (!emote.Available &&
-            TryComp<SpeechComponent>(source, out var speech) &&
             !speech.AllowedEmotes.Contains(emote.ID))
             return false;
 
