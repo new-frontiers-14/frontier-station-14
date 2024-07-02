@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
+using Content.Server.Station.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
@@ -49,6 +50,28 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             return;
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
+
+        /*var query = EntityQueryEnumerator<AdditionalStationRecordsComponent>();
+
+        while (query.MoveNext(out var stationGridUid, out var comp))
+        {
+            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
+            {
+                var stationEntityUid = stationMemberComponent.Station;
+
+                CreateGeneralRecord(stationEntityUid, args.Mob, args.Profile, args.JobId, stationRecords);
+
+                /*
+                if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
+                && stationEntityUid != null
+                && keyStorage.Key != null)
+                {
+                    if (!TryGetRecord<GeneralStationRecord>(Key.Value, out var record))
+                        continue;
+            }
+            }
+
+        }*/
     }
 
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
@@ -66,6 +89,37 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<DnaComponent>(player, out var dnaComponent);
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+
+        var query = EntityQueryEnumerator<AdditionalStationRecordsComponent>();
+
+        while (query.MoveNext(out var stationGridUid, out var comp))
+        {
+            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
+            {
+                var stationEntityUid = stationMemberComponent.Station;
+
+                var stationList = EntityQueryEnumerator<StationRecordsComponent>();
+
+                while (stationList.MoveNext(out var stationUid, out var stationRecComp))
+                {
+                    if (TryComp<StationRecordKeyStorageComponent>(idUid.Value, out var keyStorage)
+                    && stationEntityUid != null
+                    && keyStorage.Key != null)
+                    {
+                        if (!TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
+                            continue;
+
+                        AddRecordEntry((EntityUid) stationEntityUid, record);
+                        break;
+                    }
+                }
+
+                TryComp<StationRecordsComponent>(stationEntityUid, out var stationRec);
+
+                CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
+            }
+
+        }
     }
 
 
