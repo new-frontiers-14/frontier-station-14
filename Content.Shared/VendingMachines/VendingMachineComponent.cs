@@ -231,14 +231,6 @@ namespace Content.Shared.VendingMachines
     }
 
     [Serializable, NetSerializable]
-    public enum CostType : byte
-    {
-        Default,
-        Multiplier, // cost represents the amount to multiply the base value by.
-        FixedValue // cost represents the value of the item.
-    }
-
-    [Serializable, NetSerializable]
     public enum InventoryType : byte
     {
         Regular,
