@@ -21,7 +21,7 @@ public sealed partial class WithdrawBankATMMenu : FancyWindow
 
     public void SetBalance(int amount)
     {
-        BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
+        BalanceLabel.Text = Loc.GetString("bank-atm-menu-cash-amount", ("amount", amount.ToString()));
     }
 
     public void SetEnabled(bool enabled)

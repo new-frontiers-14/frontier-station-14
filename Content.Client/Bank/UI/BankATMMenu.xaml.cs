@@ -22,13 +22,16 @@ public sealed partial class BankATMMenu : FancyWindow
 
     public void SetBalance(int amount)
     {
-        BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
+        BalanceLabel.Text = Loc.GetString("bank-atm-menu-cash-amount", ("amount", amount.ToString()));
     }
 
     public void SetDeposit(int amount)
     {
         DepositButton.Disabled = amount <= 0;
-        DepositLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", amount.ToString()));
+        if (amount >= 0) // Valid
+            DepositLabel.Text = Loc.GetString("bank-atm-menu-cash-amount", ("amount", amount.ToString()));
+        else
+            DepositLabel.Text = Loc.GetString("bank-atm-menu-cash-error");
     }
 
     public void SetEnabled(bool enabled)

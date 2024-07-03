@@ -16,7 +16,7 @@ public sealed class StationBankATMMenuInterfaceState : BoundUserInterfaceState
     public bool Enabled;
 
     /// <summary>
-    /// how much cash is inserted
+    /// how much cash is inserted (negative values indicate that this is not valid money)
     /// </summary>
     public int Deposit;
 
