@@ -1,16 +1,18 @@
+# New Frontiers - Unlimited vending - support items with unlimited vending stock.
+# This code is licensed under AGPLv3. See AGPLv3.txt
 - type: vendingMachineInventory
   id: TankDispenserEVAInventory
   startingInventory:
 #    EmergencyOxygenTankFilled: 5
 #    ExtendedEmergencyOxygenTankFilled: 5
-    AirTankFilled: 10
-    DoubleEmergencyAirTankFilled: 10
-    OxygenTankFilled: 10
-    DoubleEmergencyOxygenTankFilled: 10
+    AirTankFilled: 4294967295 # Frontier: 10<4294967295
+    DoubleEmergencyAirTankFilled: 4294967295 # Frontier: 10<4294967295
+    OxygenTankFilled: 4294967295 # Frontier: 10<4294967295
+    DoubleEmergencyOxygenTankFilled: 4294967295 # Frontier: 10<4294967295
 #    EmergencyNitrogenTankFilled: 5
 #    ExtendedEmergencyNitrogenTankFilled: 5
-    NitrogenTankFilled: 10
-    DoubleEmergencyNitrogenTankFilled: 10
+    NitrogenTankFilled: 4294967295 # Frontier: 10<4294967295
+    DoubleEmergencyNitrogenTankFilled: 4294967295 # Frontier: 10<4294967295
 
 - type: vendingMachineInventory
   id: TankDispenserEngineeringInventory
@@ -21,3 +23,4 @@
     DoubleEmergencyAirTankFilled: 1
     DoubleEmergencyOxygenTankFilled: 1
     DoubleEmergencyNitrogenTankFilled: 1
+# End of modified code
