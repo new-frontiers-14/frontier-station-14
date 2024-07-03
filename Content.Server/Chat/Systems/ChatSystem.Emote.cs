@@ -186,13 +186,13 @@ public partial class ChatSystem
         if (!TryComp<SpeechComponent>(source, out var speech) ||
             !speech.MimicEmotes && (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
             return false;
-        // End of modified code
 
         if (!emote.Available &&
             !speech.AllowedEmotes.Contains(emote.ID))
             return false;
 
         return true;
+        // End of modified code
     }
 
     private void InvokeEmoteEvent(EntityUid uid, EmotePrototype proto)
