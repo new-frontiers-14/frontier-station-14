@@ -57,13 +57,14 @@ namespace Content.Shared.Speech
 
         public TimeSpan LastTimeSoundPlayed = TimeSpan.Zero;
 
-        // Frontier: vocal mimickry for harpies
+        // New Frontiers - Harpy Mimickry - 
+        // This code is licensed under AGPLv3. See AGPLv3.txt
         /// <summary>
         ///     When true, the owner of this component can mimic sounds made by other objects/animals.
         /// </summary>
         [ViewVariables]
         [DataField]
         public bool MimicEmotes = false;
-        // End Frontier
+        // End of modified code
     }
 }
