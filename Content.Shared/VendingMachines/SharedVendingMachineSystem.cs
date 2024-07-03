@@ -119,6 +119,17 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                 }
 
                 if (inventory.TryGetValue(id, out var entry))
+
+                    // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+                    // This code is licensed under AGPLv3. See AGPLv3.txt
+
+                    // Max value is reserved for unlimited items, this should not be restocked.
+                    if (entry.Amount == uint.MaxValue)
+                    {
+                        continue;
+                    }
+                    // End of modified code
+
                     // Prevent a machine's stock from going over three times
                     // the prototype's normal amount. This is an arbitrary
                     // number and meant to be a convenience for someone

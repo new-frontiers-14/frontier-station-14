@@ -336,12 +336,15 @@ namespace Content.Server.VendingMachines
                 return false;
             }
 
-            if (entry.Amount <= 0)
+            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            if (entry.Amount == 0)
             {
                 Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
                 Deny(uid, vendComponent);
                 return false;
             }
+            // End of modified code
 
             if (string.IsNullOrEmpty(entry.ID))
                 return false;
@@ -357,7 +360,13 @@ namespace Content.Server.VendingMachines
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
                 _speakOnUIClosed.TrySetFlag((uid, speakComponent));
 
-            entry.Amount--;
+            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+
+            // Only decrement entry if positive.
+            if (entry.Amount != uint.MaxValue)
+                entry.Amount--;
+            // End of modified code
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);

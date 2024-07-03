@@ -157,7 +157,13 @@ namespace Content.Client.VendingMachines.UI
                 }
                 // This block exists to allow the VendPrice flag to set a vending machine item price.
 
-                vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
+                // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
+                if (entry.Amount != uint.MaxValue)
+                    vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
+                else
+                    vendingItem.Text = $"[${cost}] {itemName}";
+                // End of modified code
                 vendingItem.Icon = icon;
                 filteredInventory.Add(i);
             }
