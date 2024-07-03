@@ -336,15 +336,12 @@ namespace Content.Server.VendingMachines
                 return false;
             }
 
-            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
-            // This code is licensed under AGPLv3. See AGPLv3.txt
-            if (entry.Amount == 0)
+            if (entry.Amount <= 0)
             {
                 Popup.PopupEntity(Loc.GetString("vending-machine-component-try-eject-out-of-stock"), uid);
                 Deny(uid, vendComponent);
                 return false;
             }
-            // End of modified code
 
             if (string.IsNullOrEmpty(entry.ID))
                 return false;

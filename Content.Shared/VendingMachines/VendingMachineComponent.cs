@@ -222,17 +222,11 @@ namespace Content.Shared.VendingMachines
         public string ID;
         [ViewVariables(VVAccess.ReadWrite)]
         public uint Amount;
-        [ViewVariables(VVAccess.ReadWrite)] // Frontier
-        public float? Cost; // Frontier
-        [ViewVariables(VVAccess.ReadWrite)] // Frontier
-        public CostType CostType; // Frontier
-        public VendingMachineInventoryEntry(InventoryType type, string id, uint amount, float? cost = null, CostType costType = CostType.Default) // Frontier: added cost, costType
+        public VendingMachineInventoryEntry(InventoryType type, string id, uint amount)
         {
             Type = type;
             ID = id;
             Amount = amount;
-            Cost = cost; // Frontier
-            CostType = costType; // Frontier
         }
     }
 
