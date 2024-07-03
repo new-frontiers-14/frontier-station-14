@@ -180,10 +180,13 @@ public partial class ChatSystem
     /// <returns></returns>
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
-        // Frontier: get SpeechComponent early, check if speaker can mimic emotes (bypassing whitelist)
+        // New Frontiers - Harpy Mimickry - Allows harpies to mimic other species,
+        //      bypasses whitelist checks
+        // This code is licensed under AGPLv3. See AGPLv3.txt
         if (!TryComp<SpeechComponent>(source, out var speech) ||
             !speech.MimicEmotes && (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
             return false;
+        // End of modified code
 
         if (!emote.Available &&
             !speech.AllowedEmotes.Contains(emote.ID))
