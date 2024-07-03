@@ -1,8 +1,22 @@
 - type: entity
+  abstract: true
+  id: MobVandalizer
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnerHoloGraffitiRandom
+    chance: 1.0
+    intervalSeconds: 300 # every 5 minutes
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
   name: punk
   abstract: true
   parent:
   - MobHumanoidHostileBase
+  - MobVandalizer
   id: MobPunkBase
   components:
   - type: NpcFactionMember
