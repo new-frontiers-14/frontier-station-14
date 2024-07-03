@@ -178,7 +178,7 @@ public sealed class MachineFrameSystem : EntitySystem
             return false;
 
         // Check for stack
-        if (TryComp<StackComponent>(uid, out var stack))
+        if (TryComp<StackComponent>(used, out var stack))
         {
             int needed = component.Requirements[machinePart.PartType] - component.Progress[machinePart.PartType];
             var count = stack.Count;
@@ -302,7 +302,7 @@ public sealed class MachineFrameSystem : EntitySystem
 
     public void ResetProgressAndRequirements(MachineFrameComponent component, MachineBoardComponent machineBoard)
     {
-        component.Progress = new Dictionary<ProtoId<MachinePartPrototype>, int>(machineBoard.Requirements); // Frontier: upgradeable machine parts
+        component.Requirements = new Dictionary<ProtoId<MachinePartPrototype>, int>(machineBoard.Requirements); // Frontier: upgradeable machine parts
         component.MaterialRequirements = new Dictionary<ProtoId<StackPrototype>, int>(machineBoard.StackRequirements);
         component.ComponentRequirements = new Dictionary<string, GenericPartInfo>(machineBoard.ComponentRequirements);
         component.TagRequirements = new Dictionary<ProtoId<TagPrototype>, GenericPartInfo>(machineBoard.TagRequirements);
