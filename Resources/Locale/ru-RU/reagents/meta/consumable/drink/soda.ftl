@@ -34,3 +34,4 @@ reagent-name-fourteen-loko = фоуртин локо
 reagent-desc-fourteen-loko = Сильно переработанная жидкая субстанция, едва ли соответствующая межгалактическим стандартам безопасности для безалкогольного напитка.
 reagent-name-shamblers-juice = сок Shambler
 reagent-desc-shamblers-juice = ~Встряхните мне немного этого сока Shambler!~
+reagent-name-red-bool = рэд булл
