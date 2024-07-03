@@ -1,3 +1,8 @@
+/*
+ * New Frontiers - This file is licensed under AGPLv3
+ * Copyright (c) 2024 New Frontiers Contributors
+ * See AGPLv3.txt for details.
+ */
 using Content.Shared.Bank;
 using Content.Shared.Bank.Components;
 using Content.Shared.Bank.Events;
