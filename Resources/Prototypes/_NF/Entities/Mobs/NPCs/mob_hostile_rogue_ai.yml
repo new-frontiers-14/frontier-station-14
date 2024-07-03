@@ -40,12 +40,20 @@
 
 ## Mob base
 - type: entity
+  abstract: true
+  id: MobRogueSiliconTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 1200 # 20 mins (because these mobs can't be encountered outside expeditions now)
+
+- type: entity
   name: hivemind unit
   abstract: true
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
+  - MobRogueSiliconTimedDespawn
   id: MobRogueSiliconBase
   components:
   - type: Damageable
@@ -264,7 +272,7 @@
   - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -327,7 +335,7 @@
   - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThreads
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -377,7 +385,7 @@
   - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThrusters
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -449,7 +457,7 @@
   parent:
   - MobRogueSiliconScrapThrusters
   id: MobRogueSiliconScrapThrustersRanged
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
@@ -473,7 +481,7 @@
   - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: MeleeWeapon
     attackRate: 1.0
@@ -532,7 +540,7 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneLethals
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -555,7 +563,7 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneNonLethals
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -581,7 +589,7 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneScience
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -606,7 +614,7 @@
   - MobRogueSiliconDroneBase
   id: MobRogueSiliconViscerator
   name: viscerator unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -660,7 +668,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -697,7 +705,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -755,7 +763,7 @@
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconHunter
   name: hunter unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -808,7 +816,7 @@
   - MobPassiveRegenStrong
   id: MobRogueSiliconCatcher
   name: catcher unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -871,7 +879,7 @@
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconTesla
   name: tesla unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -939,7 +947,7 @@
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconGuardian
   name: guardian unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -1007,7 +1015,7 @@
   - MobPassiveRegenStrong
   id: MobRogueSiliconBoss
   name: one star unit
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:

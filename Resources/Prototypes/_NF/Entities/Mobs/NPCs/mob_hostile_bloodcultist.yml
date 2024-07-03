@@ -1,9 +1,17 @@
 - type: entity
+  abstract: true
+  id: MobBloodCultistTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
+
+- type: entity
   name: blood cultist
   abstract: true
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
+  - MobBloodCultistTimedDespawn
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -179,6 +187,7 @@
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
+  - MobBloodCultistTimedDespawn
   id: MobBloodCultLeech
   components:
   - type: NpcFactionMember
@@ -226,6 +235,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
+  - MobBloodCultistTimedDespawn
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -463,7 +473,9 @@
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
-  parent: BaseWeaponTurret
+  parent:
+  - BaseWeaponTurret
+  - MobBloodCultistTimedDespawn
   id: BloodCultTurret
   name: blood pylon
   components:

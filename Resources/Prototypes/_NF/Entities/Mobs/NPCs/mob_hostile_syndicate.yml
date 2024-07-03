@@ -1,4 +1,11 @@
 - type: entity
+  abstract: true
+  id: MobSyndicateNavalTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
+
+- type: entity
   name: syndicate naval agent
   abstract: true
   noSpawn: true
@@ -6,6 +13,7 @@
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  - MobSyndicateNavalTimedDespawn
   id: MobSyndicateNavalBase
   components:
   - type: Body
