@@ -13,6 +13,8 @@
       makeSentient: true
       name: ghost-role-information-guardian-name
       description: ghost-role-information-guardian-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
@@ -66,7 +68,7 @@
           mask:
             - FlyingMobMask
           layer:
-            - FlyingMobLayer
+            - Opaque
     - type: Damageable
       damageContainer: Biological
     - type: MobState
@@ -86,6 +88,8 @@
       animation: WeaponArcFist
       attackRate: 1.8
       autoAttack: true
+      soundHit:
+        collection: Punch
       damage:
         types:
           Blunt: 20
@@ -93,8 +97,8 @@
     - type: MeleeSpeech
     - type: UserInterface
       interfaces:
-      - key: enum.MeleeSpeechUiKey.Key
-        type: MeleeSpeechBoundUserInterface
+        enum.MeleeSpeechUiKey.Key:
+          type: MeleeSpeechBoundUserInterface
     - type: Actions
     - type: Guardian
     - type: InteractionPopup
@@ -119,6 +123,8 @@
       makeSentient: true
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -150,6 +156,8 @@
       makeSentient: true
       name: ghost-role-information-ifrit-name
       description: ghost-role-information-ifrit-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: RandomSprite
       available:
@@ -177,6 +185,8 @@
       makeSentient: true
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -218,6 +228,7 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
+    - type: ComplexInteraction
     - type: Clumsy
       clumsyDamage:
         types:
@@ -230,6 +241,8 @@
       angle: 30
       animation: WeaponArcFist
       attackRate: 1.8
+      soundHit:
+        collection: BikeHorn
       damage:
         types:
           Blunt: 5
@@ -249,10 +262,10 @@
   id: ActionToggleGuardian
   name: Toggle Guardian
   description: Either manifests the guardian or recalls it back into your body
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Interface/Actions/manifest.png
     event: !type:GuardianToggleActionEvent
     useDelay: 2
     checkCanInteract: false
+    checkConsciousness: false

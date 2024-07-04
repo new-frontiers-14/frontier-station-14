@@ -8,6 +8,9 @@ ghost-role-information-clippy-description = The Station Representative loyal wor
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 
+ghost-role-information-cappy-name = Cappy
+ghost-role-information-cappy-description = Stop resisting! Certified in lethal-force and defensive tactics.
+
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
 
@@ -19,3 +22,7 @@ ghost-role-information-ert-mailcarrier-description = Assist with paperworks effo
 
 ghost-role-information-jerma-name = Jerma
 ghost-role-information-jerma-description = Pog moment
+
+ghost-role-information-baby-dragon-name = Baby space dragon
+ghost-role-information-baby-dragon-description = Hatch from your egg and go on incredible adventures with your mom and their crew!
+ghost-role-information-baby-dragon-rules = You are about to hatch from your egg, make sure to know who is your mom, be loyal and protect their crew!

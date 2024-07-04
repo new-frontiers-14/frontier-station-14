@@ -23,22 +23,19 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SecurityGuardGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSecGuard
-    back: ClothingBackpackSecurityFilled
-    shoes: ClothingShoesLeather #ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeretSecurity #ClothingHeadHelmetBasic
-    outerClothing: ClothingOuterArmorBasic
-    id: SecurityGuardPDA
     ears: ClothingHeadsetSecurity
-    belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
-    gloves: ClothingHandsGlovesCombat
-  innerClothingSkirt: ClothingUniformJumpskirtSecGuard
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
-  messenger: ClothingBackpackSecurityFilled
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket2: MagazinePistol
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber

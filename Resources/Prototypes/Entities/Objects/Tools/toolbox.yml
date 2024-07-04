@@ -156,7 +156,6 @@
     sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
     state: icon
   - type: ThiefUndeterminedBackpack
-    transformAfterSelect: AlwaysPoweredWallLight
     possibleSets:
     # - TO DO Thief pinpointer needed
     - ChemistrySet
@@ -170,5 +169,5 @@
     key: enum.ThiefBackpackUIKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.ThiefBackpackUIKey.Key
+      enum.ThiefBackpackUIKey.Key:
         type: ThiefBackpackBoundUserInterface

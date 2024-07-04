@@ -5,6 +5,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
+using Robust.Shared.Audio; // Frontier
 
 namespace Content.Server.Administration.UI
 {
@@ -51,6 +52,9 @@ namespace Content.Server.Administration.UI
                         // TODO: Per-station announcement support
                         case AdminAnnounceType.Station:
                             _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, colorOverride: Color.Gold);
+                            break;
+                        case AdminAnnounceType.Antag: // Frontier
+                            _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, true, new SoundPathSpecifier("/Audio/Announcements/war.ogg"), colorOverride: Color.Red);
                             break;
                     }
 

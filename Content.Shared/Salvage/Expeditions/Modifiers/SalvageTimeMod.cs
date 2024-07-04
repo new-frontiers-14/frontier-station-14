@@ -11,13 +11,14 @@ public sealed class SalvageTimeMod : IPrototype, ISalvageMod
 
     /// <summary>
     /// Cost for difficulty modifiers.
+    /// Frontier: expedition timer min set to 900 and max to 930
     /// </summary>
     [DataField("cost")]
     public float Cost { get; private set; }
 
     [DataField("minDuration")]
-    public int MinDuration = 630;
+    public int MinDuration = 900;
 
     [DataField("maxDuration")]
-    public int MaxDuration = 570;
+    public int MaxDuration = 930;
 }

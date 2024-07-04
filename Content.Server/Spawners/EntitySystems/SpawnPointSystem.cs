@@ -36,7 +36,7 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.DesiredSpawnPointType != SpawnPointType.Unset)
             {
                 var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype);
+                    (args.Job == null || spawnPoint.Job == args.Job.Prototype);
 
                 switch (args.DesiredSpawnPointType)
                 {
@@ -57,7 +57,7 @@ public sealed class SpawnPointSystem : EntitySystem
 
             if (_gameTicker.RunLevel != GameRunLevel.InRound &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
+                (args.Job == null || spawnPoint.Job == args.Job.Prototype))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
@@ -69,7 +69,7 @@ public sealed class SpawnPointSystem : EntitySystem
             // TODO: Refactor gameticker spawning code so we don't have to do this!
             var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
 
-            if (points2.MoveNext(out var uid, out var spawnPoint, out var xform))
+            if (points2.MoveNext(out var spawnPoint, out var xform))
             {
                 possiblePositions.Add(xform.Coordinates);
             }

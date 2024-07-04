@@ -199,9 +199,10 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         var mobQuery = GetEntityQuery<MobStateComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         // Refuse to accept "passengers" (e.g. pet felinids in bags)
-        if (_shipyard.FoundOrganics(toInsert.Value, mobQuery, xformQuery))
+        string? name = _shipyard.FoundOrganics(toInsert.Value, mobQuery, xformQuery);
+        if (name is not null)
         {
-            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic", ("cryopod", cryopod)), cryopod, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic", ("cryopod", cryopod), ("name", name)), cryopod, PopupType.SmallCaution);
             return false;
         }
 
@@ -223,7 +224,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             }
         }
 
-        var success = component.BodyContainer.Insert(toInsert.Value, EntityManager);
+        var success = _container.Insert(toInsert.Value, component.BodyContainer);
 
         if (success && mindComp?.Session != null)
         {
@@ -245,7 +246,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
                 cryopod
             )
             {
-                BreakOnUserMove = true,
+                BreakOnMove = true,
                 BreakOnWeightlessMove = true
             };
 
@@ -273,7 +274,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         var storage = GetStorageMap();
         var xform = Transform(bodyId);
-        cryo.BodyContainer.Remove(bodyId, _entityManager, xform, reparent: false, force: true);
+        _container.Remove(bodyId, cryo.BodyContainer, reparent: false, force: true);
         xform.Coordinates = new EntityCoordinates(storage, Vector2.Zero);
 
         RaiseLocalEvent(bodyId, new CryosleepEnterEvent(cryopod, mind?.UserId), true);
@@ -305,7 +306,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         if (toEject == null)
             return false;
 
-        component.BodyContainer.Remove(toEject.Value, force: true);
+        _container.Remove(toEject.Value, component.BodyContainer, force: true);
         //_climb.ForciblySetClimbing(toEject.Value, pod);
 
         if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)

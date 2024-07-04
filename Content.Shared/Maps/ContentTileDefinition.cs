@@ -49,12 +49,10 @@ namespace Content.Shared.Maps
         [DataField("canShovel")] public bool CanShovel { get; private set; }
         //Delta V
 
-        /// <summary>
-        /// Whether this tile can be pried by an advanced prying tool if not pryable otherwise.
-        /// </summary>
-        [DataField("canAxe")] public bool CanAxe { get; private set; }
-
-        [DataField("canWirecutter")] public bool CanWirecutter { get; private set; }
+        /// <remarks>
+        /// Legacy AF but nice to have.
+        /// </remarks>
+        public bool CanCrowbar => DeconstructTools.Contains(PryingToolQuality);
 
         /// <summary>
         /// These play when the mob has shoes on.
@@ -83,7 +81,11 @@ namespace Content.Shared.Maps
         [DataField("itemDrop", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string ItemDropPrototypeName { get; private set; } = "FloorTileItemSteel";
 
-        [DataField("isSpace")] public bool IsSpace { get; private set; }
+        // TODO rename data-field in yaml
+        /// <summary>
+        /// Whether or not the tile is exposed to the map's atmosphere.
+        /// </summary>
+        [DataField("isSpace")] public bool MapAtmosphere { get; private set; }
 
         /// <summary>
         ///     Friction override for mob mover in <see cref="SharedMoverController"/>

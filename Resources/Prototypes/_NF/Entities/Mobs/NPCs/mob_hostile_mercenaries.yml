@@ -1,0 +1,395 @@
+# Base
+- type: entity
+  name: mercenary
+  abstract: true
+  parent:
+  - MobNonHumanHostileBase
+  - MobHumanoidInvetorySimplified
+  - MobHumanoidHostileAISimpleRanged
+  id: MobMercenaryBase
+  components:
+  - type: Damageable
+    damageModifierSet: MobMercenaryDamageModifierSet
+  - type: NpcFactionMember
+    factions:
+    - MercenariesExpeditionNF
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      130: Dead
+  - type: Stamina
+    critThreshold: 100
+  - type: DamageStateVisuals
+    rotate: true
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 15
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Advertise
+    pack: mercenaryhumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: AutoWakeUp
+
+# Variations
+## Tier 1
+- type: entity
+  name: mercenary soldier
+  parent:
+  - MobMercenaryBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobMercenarySoldierKnife
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearMeleeT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#d3bf86" #"#404029"
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  name: mercenary soldier
+  parent: MobMercenaryBase
+  id: MobMercenarySoldierPistol
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#d3bf86"
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 4
+    count: 4
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: mercenary soldier
+  parent: MobMercenaryBase
+  id: MobMercenarySoldierMosin
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedAltT1
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#d3bf86"
+    - sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/merc.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/merc_helmet.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeLightRifle
+    capacity: 10
+    count: 10
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.75
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+
+## Tier 2
+- type: entity
+  name: mercenary breacher
+  parent:
+  - MobMercenaryBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobMercenaryBreacherMachete
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearMeleeT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gas.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Belt/militarywebbing.rsi
+      state: equipped-BELT
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+
+- type: entity
+  name: mercenary breacher
+  parent: MobMercenaryBase
+  id: MobMercenarySoldierRevolver
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/neckgaiter.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+      state: equipped-EYES
+    - sprite: Clothing/Head/Hats/hoshat.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeRifle
+    capacity: 8
+    count: 8
+  - type: Gun
+    showExamineText: false
+    fireRate: 2.5
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  name: mercenary breacher
+  parent: MobMercenaryBase
+  id: MobMercenaryBreacherShotgun
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedAltT2
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#3d5c87"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gas.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+
+## Tier 3
+- type: entity
+  name: mercenary specialist
+  parent: MobMercenaryBase
+  id: MobMercenarySpecialistMedic
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedT3
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#2e687a"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/medicalsecurity.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/light_riot.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+
+## Tier 4 - Boss
+- type: entity
+  name: mercenary captain
+  parent: MobMercenaryBase
+  id: MobMercenaryCaptain
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearTier4Captain
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#d3bf86"
+    - sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gassecurity.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: Clothing/Belt/militarywebbing.rsi
+      state: equipped-BELT
+    - sprite: Clothing/Neck/mantles/qmmantle.rsi
+      state: equipped-NECK
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeMagnum
+    capacity: 10
+    count: 10
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.6
+    minAngle: 1
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg

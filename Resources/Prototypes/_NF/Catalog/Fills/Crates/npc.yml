@@ -1,7 +1,8 @@
 - type: entity
-  name: Emotional support pet crate
   id: CrateNPCEmotionalSupport
   parent: CrateLivestock
+  name: emotional support pet crate
+  description: A crate containing a single emotional support pet.
   components:
   - type: StorageFill
     contents:
@@ -34,10 +35,9 @@
         orGroup: MobCatGhost
 
 - type: entity
-  name: Emotional support pet crate
-  id: CrateNPCEmotionalSupportSafe # No pitbull
-  parent: CrateLivestock
+  id: FillNPCEmotionalSupportSafe # No pitbull
   suffix: Safe
+  abstract: true
   components:
   - type: StorageFill
     contents:
@@ -65,3 +65,11 @@
       - id: MobChickenGhost
         prob: 1
         orGroup: MobCatGhost
+
+- type: entity
+  id: CrateNPCEmotionalSupportSafe
+  parent: [FillNPCEmotionalSupportSafe, CrateNPCEmotionalSupport]
+
+- type: entity
+  id: PetCarrierNPCEmotionalSupportSafe
+  parent: [PetCarrier, FillNPCEmotionalSupportSafe]

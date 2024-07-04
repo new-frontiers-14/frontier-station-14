@@ -4,8 +4,7 @@
   name: job-name-ertjanitor
   description: job-description-ertjanitor
   playTimeTracker: JobERTMailCarrier
-  requirements:
-    - !type:WhitelistRequirement
+  whitelisted: true
   setPreference: false
   startingGear: ERTMailCarrierGearEVA
   icon: "JobIconNanotrasen"
@@ -20,7 +19,7 @@
   id: ERTMailCarrierGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMailCarrier
-    back: ClothingBackpackERTMailCarrierFilled
+    back: ClothingBackpackERTMailCarrier
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetERTMailCarrier
     gloves: ClothingHandsGlovesCombat
@@ -31,12 +30,20 @@
     belt: MailBag
     pocket1: Flare
     pocket2: DoubleEmergencyAirTankFilled
+  storage:
+    back:
+    - BoxSurvivalEngineering
+    - WeaponMailLake
+    - BoxMailCapsulePrimed
+    - RubberStampCentcom
+    - PenCentcom
+    - BoxFolderCentCom
 
 - type: startingGear
   id: ERTMailCarrierGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMailCarrier
-    back: ClothingBackpackERTMailCarrierFilled
+    back: ClothingBackpackERTMailCarrier
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
     gloves: ClothingHandsGlovesCombat
@@ -47,3 +54,11 @@
     belt: MailBag
     pocket1: Flare
     pocket2: DoubleEmergencyAirTankFilled
+  storage:
+    back:
+    - BoxSurvivalEngineering
+    - WeaponMailLake
+    - BoxMailCapsulePrimed
+    - RubberStampCentcom
+    - PenCentcom
+    - BoxFolderCentCom

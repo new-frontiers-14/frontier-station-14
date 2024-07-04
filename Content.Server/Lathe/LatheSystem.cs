@@ -9,11 +9,13 @@ using Content.Server.Materials;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
+using Content.Shared.Atmos;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
 using Content.Shared.Emag.Components;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
+using Content.Shared.ReagentSpeed;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -35,6 +37,7 @@ namespace Content.Server.Lathe
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
         [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
         [Dependency] private readonly StackSystem _stack = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
@@ -93,7 +96,11 @@ namespace Content.Server.Lathe
 
                 if (xform.GridUid != null)
                 {
-                    _environments.AddRange(_atmosphere.GetAdjacentTileMixtures(xform.GridUid.Value, position, false, true));
+                    var enumerator = _atmosphere.GetAdjacentTileMixtures(xform.GridUid.Value, position, false, true);
+                    while (enumerator.MoveNext(out var mix))
+                    {
+                        _environments.Add(mix);
+                    }
                 }
 
                 if (_environments.Count > 0)
@@ -186,9 +193,11 @@ namespace Content.Server.Lathe
             var recipe = component.Queue.First();
             component.Queue.RemoveAt(0);
 
+            var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime);
+
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
-            lathe.ProductionLength = recipe.CompleteTime * component.TimeMultiplier;
+            lathe.ProductionLength = time * component.TimeMultiplier;
             component.CurrentRecipe = recipe;
 
             var ev = new LatheStartPrintingEvent(recipe);
@@ -227,11 +236,10 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var ui = _uiSys.GetUi(uid, LatheUiKey.Key);
             var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault();
 
             var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
-            _uiSys.SetUiState(ui, state);
+            _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
         private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
@@ -338,10 +346,10 @@ namespace Content.Server.Lathe
                     else
                         break;
                 }
-                if (count > 0 && args.Session.AttachedEntity != null)
+                if (count > 0)
                 {
                     _adminLogger.Add(LogType.Action, LogImpact.Low,
-                        $"{ToPrettyString(args.Session.AttachedEntity.Value):player} queued {count} {recipe.Name} at {ToPrettyString(uid):lathe}");
+                        $"{ToPrettyString(args.Actor):player} queued {count} {recipe.Name} at {ToPrettyString(uid):lathe}");
                 }
             }
             TryStartProducing(uid, component);
@@ -354,7 +362,7 @@ namespace Content.Server.Lathe
         }
         #endregion
 
-        //Frontier Upgrade Code Restore
+        // Frontier: Restore machine part upgrades
         private void OnPartsRefresh(EntityUid uid, LatheComponent component, RefreshPartsEvent args)
         {
             var printTimeRating = args.PartRatings[component.MachinePartPrintSpeed];
@@ -370,5 +378,6 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.TimeMultiplier);
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.MaterialUseMultiplier);
         }
+        // End Frontier: restore machine part upgrades
     }
 }

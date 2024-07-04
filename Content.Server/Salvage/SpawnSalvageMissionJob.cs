@@ -26,6 +26,7 @@ using Content.Shared.Procedural.Loot;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
@@ -33,6 +34,8 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 
@@ -49,8 +52,11 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     private readonly ShuttleSystem _shuttle;
     private readonly StationSystem _stationSystem;
     private readonly SalvageSystem _salvage;
+    private readonly SharedTransformSystem _xforms;
+    private readonly SharedMapSystem _map;
 
     public readonly EntityUid Station;
+    public readonly EntityUid? CoordinatesDisk;
     private readonly SalvageMissionParams _missionParams;
 
     public SpawnSalvageMissionJob(
@@ -66,7 +72,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         StationSystem stationSystem,
         MetaDataSystem metaData,
         SalvageSystem salvage,
+        SharedTransformSystem xform,
+        SharedMapSystem map,
         EntityUid station,
+        EntityUid? coordinatesDisk,
         SalvageMissionParams missionParams,
         CancellationToken cancellation = default) : base(maxTime, cancellation)
     {
@@ -81,7 +90,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         _stationSystem = stationSystem;
         _metaData = metaData;
         _salvage = salvage;
+        _xforms = xform;
+        _map = map;
         Station = station;
+        CoordinatesDisk = coordinatesDisk;
         _missionParams = missionParams;
     }
 
@@ -89,12 +101,24 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     {
         Logger.DebugS("salvage", $"Spawning salvage mission with seed {_missionParams.Seed}");
         var config = _missionParams.MissionType;
-        var mapId = _mapManager.CreateMap();
-        var mapUid = _mapManager.GetMapEntityId(mapId);
-        _mapManager.AddUninitializedMap(mapId);
+        var mapUid = _map.CreateMap(out var mapId, runMapInit: false);
         MetaDataComponent? metadata = null;
         var grid = _entManager.EnsureComponent<MapGridComponent>(mapUid);
         var random = new Random(_missionParams.Seed);
+        var destComp = _entManager.AddComponent<FTLDestinationComponent>(mapUid);
+        destComp.BeaconsOnly = true;
+        destComp.RequireCoordinateDisk = true;
+        destComp.Enabled = true;
+        _metaData.SetEntityName(mapUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed));
+        _entManager.AddComponent<FTLBeaconComponent>(mapUid);
+
+        // Saving the mission mapUid to a CD is made optional, in case one is somehow made in a process without a CD entity
+        if (CoordinatesDisk.HasValue)
+        {
+            var cd = _entManager.EnsureComponent<ShuttleDestinationCoordinatesComponent>(CoordinatesDisk.Value);
+            cd.Destination = mapUid;
+            _entManager.Dirty(CoordinatesDisk.Value, cd);
+        }
 
         // Setup mission configs
         // As we go through the config the rating will deplete so we'll go for most important to least important.
@@ -125,11 +149,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             air.Gases.CopyTo(moles, 0);
             var atmos = _entManager.EnsureComponent<MapAtmosphereComponent>(mapUid);
             _entManager.System<AtmosphereSystem>().SetMapSpace(mapUid, air.Space, atmos);
-            _entManager.System<AtmosphereSystem>().SetMapGasMixture(mapUid, new GasMixture(2500)
-            {
-                Temperature = mission.Temperature,
-                Moles = moles,
-            }, atmos);
+            _entManager.System<AtmosphereSystem>().SetMapGasMixture(mapUid, new GasMixture(moles, mission.Temperature), atmos);
 
             if (mission.Color != null)
             {
@@ -162,7 +182,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         if (shuttleUid is { Valid : true } vesselUid)
         {
             var shuttle = _entManager.GetComponent<ShuttleComponent>(vesselUid);
-            _shuttle.FTLTravel(vesselUid, shuttle, new EntityCoordinates(mapUid, Vector2.Zero), 5.5f, 50f);
+            _shuttle.FTLToCoordinates(vesselUid, shuttle, new EntityCoordinates(mapUid, Vector2.Zero), 0f, 5.5f, 50f);
         }
 
         var landingPadRadius = 38; //we go a liiitle bigger for the shipses

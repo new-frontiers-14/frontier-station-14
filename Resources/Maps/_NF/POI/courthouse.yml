@@ -3705,15 +3705,13 @@ entities:
     - type: Transform
       pos: -6.5,-17.5
       parent: 1
-- proto: FaxMachineBase
+- proto: FaxMachineNFCourthouse
   entities:
   - uid: 571
     components:
     - type: Transform
       pos: 4.5,-14.5
       parent: 1
-    - type: FaxMachine
-      name: Courthouse
 - proto: filingCabinetTall
   entities:
   - uid: 572
@@ -5869,13 +5867,6 @@ entities:
     - type: Transform
       pos: -1.5,-9.5
       parent: 1
-- proto: RandomVendingSnacks
-  entities:
-  - uid: 906
-    components:
-    - type: Transform
-      pos: -1.5,-8.5
-      parent: 1
 - proto: ReinforcedPlasmaWindow
   entities:
   - uid: 907
@@ -7247,13 +7238,6 @@ entities:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
-- proto: VendingMachineSnackBlue
-  entities:
-  - uid: 1150
-    components:
-    - type: Transform
-      pos: 7.5,0.5
-      parent: 1
 - proto: VendingMachineWallMedical
   entities:
   - uid: 1151
@@ -9189,7 +9173,7 @@ entities:
     - type: Transform
       pos: -4.5,-5.5
       parent: 1
-- proto: WarpPoint
+- proto: WarpPointNFCourthouse
   entities:
   - uid: 1414
     components:
@@ -9197,8 +9181,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-    - type: WarpPoint
-      location: Courthouse
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 1415
