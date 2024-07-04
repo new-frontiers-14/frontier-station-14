@@ -171,7 +171,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
                             updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
                             partsNeeded = 0;
-                            _sawmill.Info($"TEMP: add split stack {splitStack}");
+                            _sawmill.Info($"TEMP: add split stack {splitStack}. -1");
                         }
                     }
                     else
@@ -192,7 +192,7 @@ public sealed class PartExchangerSystem : EntitySystem
             bool inserted = _container.Insert(part.id, machine.PartContainer);
             if (part.index >= 0)
                 partsByType[part.state.Part.PartType].RemoveAt(part.index);
-            _sawmill.Info($"TEMP: remove {part.state.Part.PartType} {part.id} new count: {partsByType[part.state.Part.PartType].Count}, inserted {inserted}");
+            _sawmill.Info($"TEMP: remove {part.state.Part.PartType} {part.id} {part.index} new count: {partsByType[part.state.Part.PartType].Count}, inserted {inserted}");
         }
 
         _sawmill.Info("TEMP: returning parts to RPED");
