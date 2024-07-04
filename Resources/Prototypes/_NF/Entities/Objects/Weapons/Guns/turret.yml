@@ -151,9 +151,9 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun
-      capacity: 500
+      capacity: 100
     - type: Gun
-      fireRate: 1
+      fireRate: 2
     - type: NpcFactionMember
       factions:
        - NanoTrasen
@@ -167,9 +167,9 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun
-      capacity: 500
+      capacity: 100
     - type: Gun
-      fireRate: 1
+      fireRate: 2
     - type: NpcFactionMember
       factions:
        - Syndicate
@@ -183,9 +183,60 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun
-      capacity: 500
+      capacity: 100
     - type: Gun
-      fireRate: 1
+      fireRate: 2
+    - type: NpcFactionMember
+      factions:
+       - SimpleHostile
+
+
+#Explosives Turrets
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: Weapon40mmTurret
+  name: 40mm turret
+  suffix: NanoTrasen
+  description: A 40mm projectile based auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeFrag
+      capacity: 30
+    - type: Gun
+      fireRate: 0.5
+    - type: NpcFactionMember
+      factions:
+       - NanoTrasen
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: Weapon40mmTurretSyndicate
+  name: 40mm turret
+  suffix: Syndicate
+  description: A 40mm projectile based auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeFrag
+      capacity: 30
+    - type: Gun
+      fireRate: 0.5
+    - type: NpcFactionMember
+      factions:
+       - Syndicate
+
+- type: entity
+  parent: BaseWeaponTurret
+  id: Weapon40mmTurretHostile
+  name: 40mm turret
+  suffix: Hostile
+  description: A 40mm projectile based auto-turret, brought to you by S.E.S.W.C.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeFrag
+      capacity: 30
+    - type: Gun
+      fireRate: 0.5
     - type: NpcFactionMember
       factions:
        - SimpleHostile
@@ -199,14 +250,15 @@
   suffix: NanoTrasen
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
-    - type: BallisticAmmoProvider
-      proto: BulletEnergyGunLaser
-      capacity: 500
-    - type: Gun
-      fireRate: 4
-    - type: NpcFactionMember
-      factions:
-       - NanoTrasen
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 50
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
 
 - type: entity
   parent: BaseWeaponTurret
@@ -215,14 +267,15 @@
   suffix: Syndicate
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
-    - type: BallisticAmmoProvider
-      proto: BulletEnergyGunLaser
-      capacity: 500
-    - type: Gun
-      fireRate: 4
-    - type: NpcFactionMember
-      factions:
-       - Syndicate
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 50
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
 
 - type: entity
   parent: BaseWeaponTurret
@@ -231,13 +284,14 @@
   suffix: Hostile
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
-    - type: BallisticAmmoProvider
-      proto: BulletEnergyGunLaser
-      capacity: 500
-    - type: Gun
-      fireRate: 4
-    - type: NpcFactionMember
-      factions:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 50
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: NpcFactionMember
+    factions:
        - SimpleHostile
 
 
