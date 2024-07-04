@@ -3,19 +3,18 @@
   abstract: true
   components:
   - type: GhostRole
-    requirements:
-    - !type:WhitelistRequirement
   - type: IntrinsicRadioReceiver
 
 - type: entity
   name: Clippy
-  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
+    prototype: CatClippy
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
@@ -39,6 +38,7 @@
     factions:
       - Cat
       - PetsNT
+  - type: ShowJobIcons
 
 - type: entity
   name: Clarpy
@@ -63,6 +63,7 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
+    prototype: CatClarpy
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -102,6 +103,7 @@
   - type: GhostRole
     name: ghost-role-information-cappy-name
     description: ghost-role-information-cappy-description
+    prototype: CatCappy
   - type: Loadout
     prototypes: [ MobCappyGear ]
   - type: ReplacementAccent
@@ -165,6 +167,7 @@
   - type: GhostRole
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
+    prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat
   - type: RandomMetadata

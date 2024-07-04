@@ -70,7 +70,7 @@
   - type: StepTriggerImmune
   - type: Climbing
   - type: Tool
-    speed: 1.5
+    speedModifier: 1.5
     qualities:
       - Prying
   - type: Prying
@@ -195,7 +195,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: Flashable
   - type: Blindable
   - type: Butcherable
     butcheringType: Spike
@@ -238,7 +237,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: Internals
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 4

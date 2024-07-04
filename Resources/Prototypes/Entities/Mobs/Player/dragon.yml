@@ -14,6 +14,8 @@
     makeSentient: true
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: HTN
     rootTask:
@@ -148,9 +150,9 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
+  # - type: GuideHelp # Frontier: removed from guidebook
+  #   guides: # Frontier: removed from guidebook
+  #   - MinorAntagonists # Frontier: removed from guidebook
 
 - type: entity
   noSpawn: true
@@ -179,6 +181,8 @@
   components:
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
+    raffle:
+      settings: default
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 0.7
@@ -208,7 +212,6 @@
   id: ActionSpawnRift
   name: Summon Carp Rift
   description: Summons a carp rift that will periodically spawns carps.
-  noSpawn: true
   components:
   - type: InstantAction
     icon:
@@ -222,7 +225,6 @@
   id: ActionDevour
   name: "[color=red]Devour[/color]"
   description: Attempt to break a structure with your jaws or swallow a creature.
-  noSpawn: true
   components:
   - type: EntityTargetAction
     icon: { sprite : Interface/Actions/devour.rsi, state: icon }
@@ -231,7 +233,7 @@
     priority: 1
 
 - type: entity
-  noSpawn: true
+  noSpawn: true # Frontier
   id: ActionDragonsBreath
   name: "[color=orange]Dragon's Breath[/color]"
   description: Spew out flames at anyone foolish enough to attack you!

@@ -1,6 +1,6 @@
 - type: entity
   id: BluespaceCacheError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -11,7 +11,6 @@
     earliestStart: 100
     minimumPlayers: 30
     weight: 5
-    startDelay: 10
     duration: 1350
     maxDuration: 1560
     maxOccurrences: 1 # Only once per shift possible
@@ -22,7 +21,7 @@
 
 - type: entity
   id: BluespaceVaultError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -33,7 +32,6 @@
     earliestStart: 100
     minimumPlayers: 30
     weight: 5
-    startDelay: 10
     duration: 1020
     maxDuration: 1350
     maxOccurrences: 1 # Only once per shift possible
@@ -44,7 +42,7 @@
 
 - type: entity
   id: BluespaceVaultSmallError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -56,7 +54,6 @@
     minimumPlayers: 30
     maximumPlayers: 45
     weight: 5
-    startDelay: 10
     duration: 590
     maxDuration: 780
     maxOccurrences: 1 # Only once per shift possible
@@ -67,7 +64,7 @@
 
 # - type: entity # Need rework
   # id: BluespaceAsteroid
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
@@ -78,7 +75,6 @@
     # earliestStart: 100
     # minimumPlayers: 25
     # weight: 2
-    # startDelay: 10
     # duration: 1500
     # maxDuration: 1800
     # maxOccurrences: 1 # Only once per shift possible
@@ -88,7 +84,7 @@
 
 # - type: entity # Need rework
   # id: BluespaceAsteroidBunker
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
@@ -99,7 +95,6 @@
     # earliestStart: 100
     # minimumPlayers: 25
     # weight: 2
-    # startDelay: 10
     # duration: 2100
     # maxDuration: 2400
     # maxOccurrences: 1 # Only once per shift possible
@@ -109,7 +104,7 @@
 
 # - type: entity # Need rework
   # id: BluespaceCargoniaShip
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
@@ -120,7 +115,6 @@
     # earliestStart: 100
     # minimumPlayers: 15
     # weight: 2
-    # startDelay: 10
     # duration: 900
     # maxDuration: 1200
     # maxOccurrences: 1 # Only once per shift possible
@@ -130,7 +124,7 @@
 
 - type: entity
   id: BluespaceDataCarrier
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -141,9 +135,8 @@
     earliestStart: 100
     minimumPlayers: 35
     weight: 2
-    startDelay: 10
-    duration: 900
-    maxDuration: 1200
+    duration: 2100
+    maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPaths:
@@ -152,7 +145,7 @@
 
 - type: entity
   id: BluespaceSyndicateFTLInterception
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -163,7 +156,6 @@
     earliestStart: 80
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 1800
     maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
@@ -174,7 +166,7 @@
 
 - type: entity
   id: BluespaceWizardFederationScout
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -185,7 +177,6 @@
     earliestStart: 100
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 900
     maxDuration: 1200
     maxOccurrences: 1 # Only once per shift possible
@@ -196,7 +187,7 @@
 
 - type: entity
   id: BluespaceBloodMoon
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -207,7 +198,6 @@
     earliestStart: 80
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 1800
     maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
