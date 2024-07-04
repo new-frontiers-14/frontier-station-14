@@ -185,8 +185,10 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        foreach (var part in updatedParts)
+        // Iterate through list backwards, remove further entries first.
+        for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
+            var part = updatedParts[i];
             bool inserted = _container.Insert(part.id, machine.PartContainer);
             if (part.index >= 0)
                 partsByType[part.state.Part.PartType].RemoveAt(part.index);
@@ -296,12 +298,14 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        foreach (var element in updatedParts)
+        // Iterate through list backwards, remove further entries first.
+        for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
-            _container.Insert(element.id, machine.PartContainer, force: true);
-            if (element.index >= 0)
-                partsByType[element.state.Part.PartType].RemoveAt(element.index);
-            machine.Progress[element.state.Part.PartType] += element.state.Quantity();
+            var part = updatedParts[i];
+            _container.Insert(part.id, machine.PartContainer, force: true);
+            if (part.index >= 0)
+                partsByType[part.state.Part.PartType].RemoveAt(part.index);
+            machine.Progress[part.state.Part.PartType] += part.state.Quantity();
         }
 
         //put the unused parts back into rped. (this also does the "swapping")
