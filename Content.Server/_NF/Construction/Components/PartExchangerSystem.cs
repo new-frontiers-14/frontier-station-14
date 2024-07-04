@@ -72,6 +72,7 @@ public sealed class PartExchangerSystem : EntitySystem
                 if (!partsByType.ContainsKey(part.PartType))
                     partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
                 partsByType[part.PartType].Add((item, partState));
+                _sawmill.Info($"DoAfter: add {item} {partState.Part.PartType} {partState.Part.Rating}");
             }
         }
 
@@ -112,7 +113,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
                 _container.RemoveEntity(uid, item);
 
-                _sawmill.Info($"TEMP: add {uid} {item.Part.PartType} {item.Part.Rating}");
+                _sawmill.Info($"TEMP: add {item} {partState.Part.PartType} {partState.Part.Rating}");
             }
         }
 
