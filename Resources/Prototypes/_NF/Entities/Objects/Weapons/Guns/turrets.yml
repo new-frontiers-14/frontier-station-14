@@ -199,12 +199,21 @@
   suffix: NanoTrasen
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
+  - type: Gun
+    minAngle: 4
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 7
   - type: HitscanBatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
   - type: NpcFactionMember
     factions:
       - NanoTrasen
@@ -216,9 +225,18 @@
   suffix: Syndicate
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
+  - type: Gun
+    minAngle: 4
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 7
   - type: HitscanBatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
@@ -236,6 +254,18 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
+  - type: Gun
+    minAngle: 4
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
@@ -250,6 +280,8 @@
   suffix: NanoTrasen
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
+  - type: Gun
+    fireRate: 2 
   - type: HitscanBatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 50
@@ -267,6 +299,8 @@
   suffix: Syndicate
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
+  - type: Gun
+    fireRate: 2 
   - type: HitscanBatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 50
@@ -284,6 +318,8 @@
   suffix: Hostile
   description: A laser based projectile auto-turret, brought to you by S.E.S.W.C.
   components:
+  - type: Gun
+    fireRate: 2 
   - type: HitscanBatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 50
