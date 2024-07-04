@@ -57,7 +57,7 @@ namespace Content.Shared.Speech
 
         public TimeSpan LastTimeSoundPlayed = TimeSpan.Zero;
 
-        // New Frontiers - Harpy Mimickry - 
+        // New Frontiers - Harpy Mimicry - 
         // This code is licensed under AGPLv3. See AGPLv3.txt
         /// <summary>
         ///     When true, the owner of this component can mimic sounds made by other objects/animals.

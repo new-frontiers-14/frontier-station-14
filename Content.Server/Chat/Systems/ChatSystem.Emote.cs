@@ -180,7 +180,7 @@ public partial class ChatSystem
     /// <returns></returns>
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
-        // New Frontiers - Harpy Mimickry - Allows harpies to mimic other species,
+        // New Frontiers - Harpy Mimicry - Allows harpies to mimic other species,
         //      bypasses whitelist checks
         // This code is licensed under AGPLv3. See AGPLv3.txt
         if (!TryComp<SpeechComponent>(source, out var speech) ||
