@@ -100,7 +100,8 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                     hasAccess = false;
                 }
                 // Frontier: check ghost role whitelist
-                if (!prototypeManager.TryIndex(group.Key.Prototype, out var ghostRolePrototype) ||
+                // To be blocked, we need both a prototype (for an ID to whitelist against) and a missing whitelist entry
+                if (prototypeManager.TryIndex(group.Key.Prototype, out var ghostRolePrototype) &&
                     !requirementsManager.IsAllowed(ghostRolePrototype, out reason))
                 {
                     hasAccess = false;
