@@ -1,0 +1,220 @@
+﻿- type: entity
+  id: BaseScrapDebrisNF
+  parent: BaseDebrisNF
+  name: Scrap Debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - Plating
+        - Plating
+        - Plating
+        - FloorSteel
+        - Lattice
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        Plating:
+          - prob: 3.5 # Intentional blank.
+          - id: SalvageMaterialCrateSpawner
+            prob: 0.7
+          - id: RandomArtifactSpawner20
+            prob: 0.3
+          - id: SalvageCanisterSpawner
+            prob: 0.3
+          - id: SalvageTankSpawner
+            prob: 0.15
+          - id: SalvageLockerSpawner
+            prob: 0.15
+          - id: SalvageSuitStorageSpawner
+            prob: 0.05
+          - id: PottedPlantRandomPlastic
+            prob: 0.1
+          - id: SalvageGeneratorSpawner
+            prob: 0.1
+          - id: SalvageMobSpawner
+            prob: 0.3
+          - id: SpawnMobBearSalvage
+            prob: 0.02
+          - id: SpawnMobSpiderSalvage
+            prob: 0.02
+          - id: SpawnMobKangarooSalvage
+            prob: 0.02
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.03
+          - id: SpawnMobPurpleSnake
+            prob: 0.02
+          - id: TableFrame
+            prob: 0.2
+          - id: MedicalBed
+            prob: 0.025
+          - id: Bed
+            prob: 0.05
+          - id: Bookshelf
+            prob: 0.025
+          - id: Dresser
+            prob: 0.025
+          - id: RollerBedSpawnFolded
+            prob: 0.02
+          - id: RollerBed
+            prob: 0.02
+          - id: CheapRollerBed
+            prob: 0.02
+          - id: EmergencyRollerBed
+            prob: 0.02
+          - id: RandomBox
+            prob: 0.2
+          - id: SalvageHandheldFlagSpawner
+            prob: 0.02
+          - id: Girder
+            prob: 1.7
+          - id: WallSolid
+            prob: 1.5
+          - id: Grille
+            prob: 0.4
+          - id: WindowDirectional
+            prob: 0.05
+          - id: WindowReinforcedDirectional
+            prob: 0.1
+          - id: PlasmaWindowDirectional
+            prob: 0.005
+          - id: PlasmaWindow
+            prob: 0.005
+          - id: ReinforcedWindow
+            prob: 0.1
+          - id: Window
+            prob: 0.05
+        Lattice:
+          - prob: 2
+          - id: Grille
+            prob: 0.3
+          - id: SalvageMaterialCrateSpawner
+            prob: 0.3
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+        FloorSteel:
+          - prob: 3 # Intentional blank.
+          - id: CrateFilledSpawner
+            prob: 0.2
+          - id: SalvagePartsSpawnerLow
+            prob: 0.4
+          - id: RandomAmmoBox
+            prob: 0.2
+          - id: ChairFolding
+            prob: 0.05
+          - id: ChairWood
+            prob: 0.05
+          - id: ComfyChair
+            prob: 0.05
+          - id: ChairOfficeDark
+            prob: 0.05
+          - id: ChairOfficeLight
+            prob: 0.05
+          - id: ChairPilotSeat
+            prob: 0.05
+          - id: Stool
+            prob: 0.05
+          - id: RandomBook
+            prob: 0.2
+          - id: RandomBox
+            prob: 0.2
+          - id: RandomItem
+            prob: 0.6
+          - id: SchoolgirlUniformSpawner
+            prob: 0.1
+          - id: SalvageSeedSpawnerLow
+            prob: 0.2
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+          - id: SalvageMobSpawner
+            prob: 0.3
+          - id: SpawnMobBearSalvage
+            prob: 0.02
+          - id: SpawnMobSpiderSalvage
+            prob: 0.02
+          - id: SpawnMobKangarooSalvage
+            prob: 0.02
+          - id: SpawnMobSmallPurpleSnake
+            prob: 0.03
+          - id: SpawnMobPurpleSnake
+            prob: 0.02
+          - id: Gyroscope
+            prob: 0.0025
+          - id: Thruster
+            prob: 0.005
+    - type: GCAbleObject
+      queue: SpaceDebris
+    - type: IFF
+      flags: HideLabel
+      color: "#88b0d1"
+
+- type: entity
+  id: ScrapDebrisNFSmall
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 16
+
+- type: entity
+  id: ScrapDebrisNFMedium
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: ScrapDebrisNFLarge
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 36
+      blobDrawProb: 0.625
+
+- type: entity
+  id: ScrapDebrisNFExtraLarge
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Extra Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 18
+      floorPlacements: 54
+      blobDrawProb: 0.675
+
+- type: entity
+  id: ScrapDebrisNFExtraLargeScattered
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Extra Large Scattered
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 18
+      floorPlacements: 54
+      blobDrawProb: 0.3
+
+- type: entity
+  id: ScrapDebrisNFHuge
+  parent: BaseScrapDebrisNF
+  name: Scrap Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 24
+      floorPlacements: 80
+      blobDrawProb: 0.75

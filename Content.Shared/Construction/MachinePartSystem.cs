@@ -1,10 +1,9 @@
 using System.Linq;
 using Content.Shared.Construction.Components;
-using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Prototypes; // Frontier: restore MachinePartComponent
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
-using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction
@@ -16,12 +15,13 @@ namespace Content.Shared.Construction
     {
         [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly SharedLatheSystem _lathe = default!;
+        [Dependency] private readonly SharedConstructionSystem _construction = default!;
 
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<MachineBoardComponent, ExaminedEvent>(OnMachineBoardExamined);
-            SubscribeLocalEvent<MachinePartComponent, ExaminedEvent>(OnMachinePartExamined);
+            SubscribeLocalEvent<MachinePartComponent, ExaminedEvent>(OnMachinePartExamined); // Frontier: restore upgradeable machine parts
         }
 
         private void OnMachineBoardExamined(EntityUid uid, MachineBoardComponent component, ExaminedEvent args)
@@ -32,36 +32,46 @@ namespace Content.Shared.Construction
             using (args.PushGroup(nameof(MachineBoardComponent)))
             {
                 args.PushMarkup(Loc.GetString("machine-board-component-on-examine-label"));
-                foreach (var (part, amount) in component.Requirements)
+                foreach (var (material, amount) in component.StackRequirements)
                 {
-                    args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
-                        ("amount", amount),
-                        ("requiredElement", Loc.GetString(_prototype.Index<MachinePartPrototype>(part).Name))));
-                }
+                    var stack = _prototype.Index(material);
+                    var name = _prototype.Index(stack.Spawn).Name;
 
-                foreach (var (material, amount) in component.MaterialRequirements)
-                {
                     args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
                         ("amount", amount),
-                        ("requiredElement", Loc.GetString(material.Name))));
+                        ("requiredElement", Loc.GetString(name))));
                 }
 
                 foreach (var (_, info) in component.ComponentRequirements)
                 {
+                    var examineName = _construction.GetExamineName(info);
                     args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
                         ("amount", info.Amount),
-                        ("requiredElement", Loc.GetString(info.ExamineName))));
+                        ("requiredElement", examineName)));
                 }
 
                 foreach (var (_, info) in component.TagRequirements)
                 {
+                    var examineName = _construction.GetExamineName(info);
                     args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
                         ("amount", info.Amount),
-                        ("requiredElement", Loc.GetString(info.ExamineName))));
+                        ("requiredElement", examineName)));
                 }
+
+                // Frontier: restore upgradeable parts
+                foreach (var (part, amount) in component.Requirements)
+                {
+                    var partProto = _prototype.Index(part);
+                    var name = _prototype.Index(partProto.StockPartPrototype).Name;
+                    args.PushMarkup(Loc.GetString("machine-board-component-required-element-entry-text",
+                        ("amount", amount),
+                        ("requiredElement", Loc.GetString(name))));
+                }
+                // End Frontier
             }
         }
 
+        // Frontier: restore upgradeable machine parts
         private void OnMachinePartExamined(EntityUid uid, MachinePartComponent component, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
@@ -75,36 +85,20 @@ namespace Content.Shared.Construction
                     Loc.GetString(_prototype.Index<MachinePartPrototype>(component.PartType).Name))));
             }
         }
+        // End Frontier
 
         public Dictionary<string, int> GetMachineBoardMaterialCost(Entity<MachineBoardComponent> entity, int coefficient = 1)
         {
             var (_, comp) = entity;
 
             var materials = new Dictionary<string, int>();
-            foreach (var (partId, amount) in comp.Requirements)
+
+            foreach (var (stackId, amount) in comp.StackRequirements)
             {
-                var partProto = _prototype.Index<MachinePartPrototype>(partId);
+                var stackProto = _prototype.Index(stackId);
+                var defaultProto = _prototype.Index(stackProto.Spawn);
 
-                if (!_lathe.TryGetRecipesFromEntity(partProto.StockPartPrototype, out var recipes))
-                    continue;
-
-                var partRecipe = recipes[0];
-                if (recipes.Count > 1)
-                    partRecipe = recipes.MinBy(p => p.RequiredMaterials.Values.Sum());
-
-                foreach (var (mat, matAmount) in partRecipe!.RequiredMaterials)
-                {
-                    materials.TryAdd(mat, 0);
-                    materials[mat] += matAmount * amount * coefficient;
-                }
-            }
-
-            foreach (var (stackId, amount) in comp.MaterialIdRequirements)
-            {
-                var stackProto = _prototype.Index<StackPrototype>(stackId);
-
-                if (_prototype.TryIndex(stackProto.Spawn, out var defaultProto) &&
-                    defaultProto.TryGetComponent<PhysicalCompositionComponent>(out var physComp))
+                if (defaultProto.TryGetComponent<PhysicalCompositionComponent>(out var physComp, EntityManager.ComponentFactory))
                 {
                     foreach (var (mat, matAmount) in physComp.MaterialComposition)
                     {
@@ -145,7 +139,7 @@ namespace Content.Shared.Construction
                     }
                 }
                 else if (_prototype.TryIndex(defaultProtoId, out var defaultProto) &&
-                         defaultProto.TryGetComponent<PhysicalCompositionComponent>(out var physComp))
+                         defaultProto.TryGetComponent<PhysicalCompositionComponent>(out var physComp, EntityManager.ComponentFactory))
                 {
                     foreach (var (mat, matAmount) in physComp.MaterialComposition)
                     {

@@ -1,0 +1,32 @@
+- type: entity
+  parent: Dropper
+  description: Used to transfer small amounts of a specified reagent between containers.
+  name: service selective dropper
+  id: ServiceSelectiveDropper
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
+    layers:
+      - state: dropper
+      - state: dropper1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
+  - type: Injector
+    transferAmount: 5
+    toggleState: Draw
+  - type: Tag
+    tags:
+    - Syringe
+  - type: UserInterface
+    interfaces:
+      enum.ReagentWhitelistChangeUIKey.Key:
+        type: ChangeReagentWhitelistBoundUserInterface
+  - type: ReagentWhitelistChange
+    allowedReagentGroup:
+      - Foods
+      - Botanical
+      - Drinks
+  - type: StaticPrice
+    price: 30

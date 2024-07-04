@@ -1,0 +1,48 @@
+# A little way to say happy birthday on Frontier's anniversary.
+- type: entity
+  id: FrontierBirthdayGift
+  name: birthday present
+  description: A birthday present for Frontier Station. How sweet!
+  parent: BaseItem
+  suffix: Cake, Party Hat
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/birthdaypresent.rsi
+    layers:
+      - state: icon
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodCakeBirthdaySlice
+      - id: PaperFrontierBirthday
+      - id: ClothingHeadHatPartyRed
+        orGroup: Hat
+      - id: ClothingHeadHatPartyBlue
+        orGroup: Hat
+      - id: ClothingHeadHatPartyYellow
+        orGroup: Hat
+      - id: ClothingHeadHatPartyGreen
+        orGroup: Hat
+
+- type: entity
+  id: PaperFrontierBirthday
+  name: Anniversary Notice
+  noSpawn: true
+  suffix: "birthday"
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-centcom
+    stampedBy:
+    - stampedColor: '#006600FF'
+      stampedName: Central Admiralty of Frontier
+    content: |2
+  
+                          [head=1]Anniversary Notice[/head]
+
+      [head=3]It has come to our attention that Nanotrasen's operations in the Frontier Sector have reached an anniversary recently.
+
+      As a celebration, we have enclosed a complimentary slice of cake and party hat.
+
+      Take some time to enjoy the occasion, and thank you for helping make the Frontier what it is.[/head]
+
+                              [head=2]Now get back to work.[/head]
