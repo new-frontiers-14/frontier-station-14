@@ -24,12 +24,12 @@
     idleState: icon
     runningState: icon
     dynamicRecipes:
-      - HandTeleporter
       - BluespaceBeaker
       - CryostasisBeaker
-      - BackpackOfHolding
-      - SatchelOfHolding
-      - DuffelbagOfHolding
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding # Frontier
       - ChemicalPayload #Below = shared
       - FlashlightLantern
       - Bucket
@@ -48,10 +48,8 @@
       - CableMVStack
       - CableHVStack
       - NodeScanner
-      # Frontier Start
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitRd
-      # Frontier End
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitRd # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -88,7 +86,7 @@
     board: ServiceTechFabCircuitboard
   - type: Lathe
     idleState: icon
-    runningState: icon    
+    runningState: icon
     staticRecipes: #Frontier
       - MailCapsule #Frontier
       - SprayBottle #Frontier, moved some recipes from dynamicRecipes, so the service fab wouldn't need a server for the basic stuff
@@ -110,28 +108,24 @@
       - WetFloorSign
       - KitchenKnife
       - ButchCleaver
-      # Frontier Start
-      - ServiceRollingPin
-      - ServiceSpoon
-      - ServiceFork
-      - ServicePairedChopsticks
-      - ServiceFoodBowlBig
-      - ServiceFoodPlate
-      - ServiceFoodPlateSmall
-      - ServiceFoodPlateTin
-      - ServiceFoodKebabSkewer
-      - Beaker
-      - LargeBeaker
-      - ClothingOuterSuitEmergency
-      - ClothingHeadHelmetEVA
-      - ClothingOuterHardsuitEVA
-      - ClothingOuterEVASuitHydro
-      - ClothingOuterEVASuitMailman
-      # Frontier end
+      - ServiceRollingPin # Frontier
+      - ServiceSpoon # Frontier
+      - ServiceFork # Frontier
+      - ServicePairedChopsticks # Frontier
+      - ServiceFoodBowlBig # Frontier
+      - ServiceFoodPlate # Frontier
+      - ServiceFoodPlateSmall # Frontier
+      - ServiceFoodPlateTin # Frontier
+      - ServiceFoodKebabSkewer # Frontier
+      - Beaker # Frontier
+      - LargeBeaker # Frontier
+      - ServiceSelectiveDropper # Frontier
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingHeadHelmetEVA # Frontier
+      - ClothingOuterHardsuitEVA # Frontier
+      - ClothingOuterEVASuitHydro # Frontier
     dynamicRecipes:
       - Holoprojector
-      - TrashBagOfHolding
-      - MopAdvanced
       - HydroponicsToolScythe
       - HydroponicsToolHatchet
       - SynthesizerInstrument
@@ -147,12 +141,10 @@
       - SheetGlass1
       - SheetRGlass
       - SheetPlastic
-      # Frontier Start
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitPilot
-      - ClothingOuterHardsuitClown
-      - ClothingOuterHardsuitMime
-      # Frontier end
+      - ClothingOuterHardsuitBasic # Frontier
+      - ClothingOuterHardsuitPilot # Frontier
+      - ClothingOuterHardsuitClown # Frontier
+      - ClothingOuterHardsuitMime # Frontier
   - type: MaterialStorage
     whitelist:
       tags:

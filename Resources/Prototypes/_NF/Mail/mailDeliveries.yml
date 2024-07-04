@@ -2,7 +2,7 @@
   id: RandomNFMailDeliveryPool
   everyone:
     # Food/Drink Consumables
-    MailNFBakedGoods: 1.2 # Lots of items in here, slightly higher chance
+    MailNFBakedGoods: 0.4 # Lots of items in here, slightly higher chance
     MailNFCake: 0.6
     MailNFCheese: 0.4
     MailNFCookies: 0.6
@@ -14,7 +14,7 @@
     MailNFSodaSpaceCola: 0.2
     MailNFSodaSpaceMountainWind: 0.2
     MailNFSodaSpaceUp: 0.2
-    MailNFUnusualFood: 2
+    MailNFUnusualFood: 0.25
     MailNFUnusualProduce: 0.8
     # Booze/Smoke Consumables
     MailNFAlcohol: 0.5
@@ -33,6 +33,7 @@
     MailCosplaySchoolgirl: 0.3
     MailNFCosplayWizard: 0.6
     MailFlowers: 0.3
+    MailNFMime: 0.3
     MailNoir: 0.3
     MailSunglasses: 1
     MailNFUnusualClothing: 1.5 # Many items in here
@@ -55,7 +56,8 @@
     MailNFThrongler: 0.1
     MailNFUnicycle: 0.5
     # Useful
-    MailNFATV: 1
+    MailNFATV: 0.9
+    MailNFSkeletonMotorcycle: 0.1 # Shares a pool with MailNFATV as a rare variant
     MailNFCircuitboardIndustrial: 1.25
     MailNFCircuitboardService: 1.25
     MailNFCognizine: 0.5
@@ -92,9 +94,9 @@
       MailSecurityDonuts: 3
       MailSecurityNonlethalsKit: 2
       MailSecurityNFHudNfsdMed: 1
-      MailSecuritySpaceLaw: 1
+      MailSecurityNFSpaceLaw: 1
       MailSecurityNFMusket: 1
-      MailNFMedkit: 1.5 # 2 weight total
+      MailNFMedkit: 0.5 # 1 weight total
 
   jobs:
     StationRepresentative:
@@ -103,6 +105,7 @@
       MailCommandNFPremiumAlcohol: 0.25
       MailCommandNFStationPet: 2
       MailCommandNFPipebombIntern: 1 # TODO: make the "real" pipebomb
+      MailStationRepNFClurger: 0.5
       MailStationRepNFNukeDisk: 1
     Sheriff:
       MailSecurityNonlethalsKit: 2

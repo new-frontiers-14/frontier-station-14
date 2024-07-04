@@ -162,7 +162,14 @@
       Male: Chicken
       Female: Chicken
       Unsexed: Chicken
-  - type: Inventory
-    speciesId: chicken
   - type: RandomMetadata
     nameSegments: [names_chicken]
+  - type: Inventory # Frontier
+    speciesId: chicken
+    templateId: pet
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
