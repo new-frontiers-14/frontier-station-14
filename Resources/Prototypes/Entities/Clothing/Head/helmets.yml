@@ -71,6 +71,8 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Light Riot Helmet
 - type: entity
@@ -149,6 +151,8 @@
         Piercing: 0.9
         Heat: 0.9
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Space Ninja Helmet
 - type: entity
@@ -211,6 +215,8 @@
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Fire Helmet
 - type: entity
@@ -227,6 +233,8 @@
   - type: IngestionBlocker
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.15 # not fully sealed so less protection
   - type: IdentityBlocker
   - type: Tag
     tags:
@@ -251,6 +259,8 @@
   - type: IngestionBlocker
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
   - type: PressureProtection
     highPressureMultiplier: 0.25
     lowPressureMultiplier: 1000
@@ -262,6 +272,7 @@
     slots:
     - Hair
     - Snout
+  - type: BreathMask
 
 #Chitinous Helmet
 - type: entity
