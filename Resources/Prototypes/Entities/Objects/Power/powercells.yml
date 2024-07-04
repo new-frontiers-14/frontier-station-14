@@ -55,6 +55,9 @@
   - type: Construction
     graph: PowerCellPotato
     node: potatobattery
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 1 # Frontier: ideally 0
 
 - type: entity
   name: small-capacity power cell
@@ -76,6 +79,9 @@
   - type: Tag
     tags:
       - PowerCellSmall
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 1 # Frontier
 
 - type: entity
   id: PowerCellSmallPrinted
@@ -269,6 +275,9 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 40
+    - type: MachinePart # Frontier
+      part: PowerCell # Frontier
+      rating: 4 # Frontier: tier of this is arguable
 
 # Power cage (big heavy power cell for big devices)
 

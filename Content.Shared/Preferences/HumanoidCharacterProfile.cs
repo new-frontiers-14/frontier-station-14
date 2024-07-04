@@ -460,6 +460,14 @@ namespace Content.Shared.Preferences
                 ("age", Age)
             );
 
+        // Frontier: bank balance text
+        public string BankBalanceText =>
+            Loc.GetString(
+                "humanoid-character-profile-bankbalance",
+                ("bankBalance", BankBalance)
+            );
+        // End Frontier
+
         public bool MemberwiseEquals(ICharacterProfile maybeOther)
         {
             if (maybeOther is not HumanoidCharacterProfile other) return false;
@@ -468,7 +476,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
-            if (BankBalance != other.BankBalance) return false;
+            if (BankBalance != other.BankBalance) return false; // Frontier
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -563,12 +571,14 @@ namespace Content.Shared.Preferences
                 flavortext = FormattedMessage.RemoveMarkup(FlavorText);
             }
 
+            // Frontier
             //make sure theres no funny bank stuff going on
             var bankBalance = BankBalance;
             if (BankBalance <= 0)
             {
                 bankBalance = 0;
             }
+            // End Frontier
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
 
