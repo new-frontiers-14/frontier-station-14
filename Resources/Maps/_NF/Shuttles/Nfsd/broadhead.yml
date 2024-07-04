@@ -2103,6 +2103,22 @@ entities:
     - type: Transform
       pos: 4.6665497,-17.446497
       parent: 2
+- proto: ComputerIFF
+  entities:
+  - uid: 271
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-2.5
+      parent: 2
+- proto: ComputerStationRecords
+  entities:
+  - uid: 408
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,-2.5
+      parent: 2
 - proto: ComputerTabletopAdvancedRadar
   entities:
   - uid: 492
@@ -2110,7 +2126,7 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 2
-- proto: ComputerTabletopIFF
+- proto: ComputerTabletopCriminalRecords
   entities:
   - uid: 1
     components:
@@ -2123,13 +2139,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-0.5
-      parent: 2
-- proto: ComputerTabletopStationRecords
-  entities:
-  - uid: 437
-    components:
-    - type: Transform
-      pos: 6.5,-0.5
       parent: 2
 - proto: ComputerTabletopSurveillanceCameraMonitor
   entities:
@@ -2252,12 +2261,12 @@ entities:
     - type: Transform
       pos: -2.5,-0.5
       parent: 2
-- proto: filingCabinetDrawerRandom
+- proto: filingCabinetRandom
   entities:
-  - uid: 271
+  - uid: 396
     components:
     - type: Transform
-      pos: -2.5,-2.5
+      pos: 5.5,-9.5
       parent: 2
 - proto: FirelockEdge
   entities:
@@ -2427,14 +2436,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 297
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-18.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
 - proto: GasPipeFourway
   entities:
   - uid: 298
@@ -2482,14 +2483,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 304
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-18.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 305
     components:
     - type: Transform
@@ -2610,14 +2603,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-14.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 321
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-17.5
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -3197,12 +3182,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-18.5
       parent: 2
-- proto: GasPressurePump
+- proto: GasPressurePumpOn
   entities:
-  - uid: 396
+  - uid: 304
     components:
-    - type: MetaData
-      name: Distro Pump
+    - type: Transform
+      pos: 6.5,-18.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 321
+    components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-18.5
@@ -3211,6 +3201,14 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPump
   entities:
+  - uid: 297
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-17.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 397
     components:
     - type: Transform
@@ -3293,14 +3291,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-15.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 408
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,-18.5
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -3518,11 +3508,6 @@ entities:
     - type: Transform
       pos: 6.5,-9.5
       parent: 2
-  - uid: 441
-    components:
-    - type: Transform
-      pos: 5.5,-9.5
-      parent: 2
   - uid: 442
     components:
     - type: Transform
@@ -3530,20 +3515,18 @@ entities:
       parent: 2
 - proto: LockerNfsdSilver
   entities:
-  - uid: 443
+  - uid: 252
     components:
     - type: Transform
-      pos: 5.5,-2.5
+      pos: 6.5,-0.5
       parent: 2
 - proto: LuxuryPen
   entities:
-  - uid: 444
+  - uid: 437
     components:
     - type: Transform
-      pos: -1.765686,-0.6534405
+      pos: -1.6843872,-0.51166344
       parent: 2
-    - type: Stamp
-      stampedName: Deeja
 - proto: Morgue
   entities:
   - uid: 445
@@ -4218,24 +4201,6 @@ entities:
     - type: Transform
       pos: 5.5,-6.5
       parent: 2
-  - uid: 521
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-0.5
-      parent: 2
-  - uid: 522
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-0.5
-      parent: 2
-  - uid: 523
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-0.5
-      parent: 2
   - uid: 524
     components:
     - type: Transform
@@ -4248,6 +4213,21 @@ entities:
       parent: 2
 - proto: TableReinforced
   entities:
+  - uid: 441
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 2
+  - uid: 443
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 2
+  - uid: 444
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 2
   - uid: 526
     components:
     - type: Transform
@@ -4281,11 +4261,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-0.5
-      parent: 2
-  - uid: 532
-    components:
-    - type: Transform
-      pos: 6.5,-0.5
       parent: 2
   - uid: 533
     components:
