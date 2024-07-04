@@ -124,12 +124,13 @@ public sealed class PartExchangerSystem : EntitySystem
             _sawmill.Info($"TEMP: sort {partKey} {partList.Count}");
         }
 
-        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
         {
             if (partsByType.ContainsKey(type))
             {
                 var partsNeeded = amount;
+                int index = 0;
                 foreach ((var part, var state) in partsByType[type])
                 {
                     // No more space for components
@@ -145,7 +146,7 @@ public sealed class PartExchangerSystem : EntitySystem
                         var count = state.Stack.Count;
                         if (count <= partsNeeded)
                         {
-                            updatedParts.Add((part, state));
+                            updatedParts.Add((part, state, index));
                             partsNeeded -= count;
                             _sawmill.Info($"TEMP: add stack {part} {count}");
                         }
@@ -168,26 +169,28 @@ public sealed class PartExchangerSystem : EntitySystem
                                 _sawmill.Info($"TEMP: splitstack {splitStack} has no MachinePartComponent");
                             TryComp(splitStack, out splitState.Stack);
 
-                            updatedParts.Add((splitStack, splitState));
+                            updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
                             partsNeeded = 0;
                             _sawmill.Info($"TEMP: add split stack {splitStack}");
                         }
                     }
                     else
                     {
-                        updatedParts.Add((part, state));
+                        updatedParts.Add((part, state, index));
                         partsNeeded--;
                         _sawmill.Info($"TEMP: add single {part}");
                     }
+                    index++;
                 }
             }
         }
 
         foreach (var part in updatedParts)
         {
-            _container.Insert(part.id, machine.PartContainer);
-            partsByType[part.state.Part.PartType].Remove(part);
-            _sawmill.Info($"TEMP: remove {part.state.Part.PartType} {part.id} new count: {partsByType[part.state.Part.PartType].Count}");
+            bool inserted = _container.Insert(part.id, machine.PartContainer);
+            if (part.index >= 0)
+                partsByType[part.state.Part.PartType].RemoveAt(part.index);
+            _sawmill.Info($"TEMP: remove {part.state.Part.PartType} {part.id} new count: {partsByType[part.state.Part.PartType].Count}, inserted {inserted}");
         }
 
         _sawmill.Info("TEMP: returning parts to RPED");
@@ -243,12 +246,13 @@ public sealed class PartExchangerSystem : EntitySystem
         foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
-        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
         {
             if (partsByType.ContainsKey(type))
             {
                 var partsNeeded = amount;
+                var index = 0;
                 foreach ((var part, var state) in partsByType[type])
                 {
                     // No more space for components
@@ -261,7 +265,7 @@ public sealed class PartExchangerSystem : EntitySystem
                         var count = state.Stack.Count;
                         if (count <= partsNeeded)
                         {
-                            updatedParts.Add((part, state));
+                            updatedParts.Add((part, state, index));
                             partsNeeded -= count;
                         }
                         else
@@ -278,15 +282,16 @@ public sealed class PartExchangerSystem : EntitySystem
                                 splitState.Part = splitPart;
                             TryComp(splitStack, out splitState.Stack);
 
-                            updatedParts.Add((splitStack, splitState));
+                            updatedParts.Add((splitStack, splitState, -1)); // New entity, nothing to remove, set index to -1 to flag this.
                             partsNeeded = 0;
                         }
                     }
                     else
                     {
-                        updatedParts.Add((part, state));
+                        updatedParts.Add((part, state, index));
                         partsNeeded--;
                     }
+                    index++;
                 }
             }
         }
@@ -294,7 +299,8 @@ public sealed class PartExchangerSystem : EntitySystem
         foreach (var element in updatedParts)
         {
             _container.Insert(element.id, machine.PartContainer, force: true);
-            partsByType[element.state.Part.PartType].Remove(element); // Frontier: 
+            if (element.index >= 0)
+                partsByType[element.state.Part.PartType].RemoveAt(element.index);
             machine.Progress[element.state.Part.PartType] += element.state.Quantity();
         }
 
