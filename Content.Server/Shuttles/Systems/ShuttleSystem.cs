@@ -70,6 +70,9 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
         SubscribeLocalEvent<GridInitializeEvent>(OnGridInit);
         SubscribeLocalEvent<FixturesComponent, GridFixtureChangeEvent>(OnGridFixtureChange);
+
+        NfInitialize(); // Frontier Initialization for the ShuttleSystem
+
     }
 
     public override void Update(float frameTime)

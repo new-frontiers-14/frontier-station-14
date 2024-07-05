@@ -74,7 +74,31 @@
                             Text="{controls:Loc 'shuttle-console-dock-toggle'}"
                             TextAlign="Center"
                             ToggleMode="True"/>
-
+                    <!-- Frontier - Inertia dampener controls-->
+                    <controls:BoxContainer Name="ModeButtons"
+                                  Orientation="Horizontal"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="5">
+                        <controls:Button Name="DampenerOff"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                        <controls:Button Name="DampenerOn"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                        <controls:Button Name="AnchorOn"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-anchored'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                    </controls:BoxContainer>
+                    <!--end Inertia dampener controls-->
                     <!-- Frontier - IFF search -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
                         <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"></controls:Label>

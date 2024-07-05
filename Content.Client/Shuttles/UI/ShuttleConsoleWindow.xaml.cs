@@ -22,7 +22,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
-
+    
     public ShuttleConsoleWindow()
     {
         RobustXamlLoader.Load(this);
@@ -62,6 +62,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         {
             UndockRequest?.Invoke(entity);
         };
+
+        NfInitialize(); // Frontier Initialization for the ShuttleConsoleWindow
     }
 
     private void ClearModes(ShuttleConsoleMode mode)
