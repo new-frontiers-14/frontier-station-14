@@ -32,6 +32,7 @@ guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
+guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
