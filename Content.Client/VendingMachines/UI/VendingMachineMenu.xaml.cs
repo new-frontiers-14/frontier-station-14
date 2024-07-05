@@ -149,9 +149,9 @@ namespace Content.Client.VendingMachines.UI
                 }
 
                 // This block exists to allow the VendPrice flag to set a vending machine item price.
-                if (priceComponent.VendPrice != 0 && cost <= (float) priceComponent.VendPrice)
+                if (prototype != null && prototype.TryGetComponent<StaticPriceComponent>(out var vendPriceComponent) && vendPriceComponent.VendPrice != 0 && cost <= (float) vendPriceComponent.VendPrice)
                 {
-                    var price = (float) priceComponent.VendPrice;
+                    var price = (float) vendPriceComponent.VendPrice;
                     cost = (int) price;
                 }
                 // This block exists to allow the VendPrice flag to set a vending machine item price.
