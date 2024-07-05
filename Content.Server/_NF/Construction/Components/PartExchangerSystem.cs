@@ -62,13 +62,11 @@ public sealed class PartExchangerSystem : EntitySystem
 
         foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            MachinePartState partState = _construction.BuildMachinePartState(item);
+
+            var part = partState.Part;
+            if (part is not null)
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
                 if (!partsByType.ContainsKey(part.PartType))
                     partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
                 partsByType[part.PartType].Add((item, partState));
@@ -76,19 +74,16 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        TryExchangeMachineParts(args.Args.Target.Value, uid, partsByType);
-        TryConstructMachineParts(args.Args.Target.Value, uid, partsByType);
+        if (TryComp<MachineComponent>(uid, out var machine))
+            TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType);
+        else if (TryComp<MachineFrameComponent>(uid, out var machineFrame))
+            TryConstructMachineParts(machineFrame, args.Args.Target.Value, uid, partsByType);
 
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
+    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
     {
-        if (!TryComp<MachineComponent>(uid, out var machine))
-            return;
-
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (board == null || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
@@ -97,14 +92,10 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            MachinePartState partState = _construction.BuildMachinePartState(item);
+            var part = partState.Part;
+            if (part is not null)
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
-
                 if (!partsByType.ContainsKey(part.PartType))
                 {
                     partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
@@ -162,16 +153,13 @@ public sealed class PartExchangerSystem : EntitySystem
                             }
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = new MachinePartState();
-                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
-                                splitState.Part = splitPart;
-                            else
+                            MachinePartState splitState = _construction.BuildMachinePartState(splitStack);
+                            if (splitState.Part is null)
                                 _sawmill.Info($"TEMP: splitstack {splitStack} has no MachinePartComponent");
-                            TryComp(splitStack, out splitState.Stack);
 
                             updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
                             partsNeeded = 0;
-                            _sawmill.Info($"TEMP: add split stack {splitStack}. -1");
+                            _sawmill.Info($"TEMP: add split stack {splitStack}, -1");
                         }
                     }
                     else
@@ -211,13 +199,8 @@ public sealed class PartExchangerSystem : EntitySystem
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
+    private void TryConstructMachineParts(MachineFrameComponent machine, EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
     {
-        if (!TryComp<MachineFrameComponent>(uid, out var machine))
-            return;
-
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (!machine.HasBoard || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
@@ -226,14 +209,10 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            MachinePartState partState = _construction.BuildMachinePartState(item);
+            var part = partState.Part;
+            if (part is not null)
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
-
                 if (!partsByType.ContainsKey(part.PartType))
                     partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
                 partsByType[part.PartType].Add((item, partState));
@@ -279,10 +258,7 @@ public sealed class PartExchangerSystem : EntitySystem
                                 continue;
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = new MachinePartState();
-                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
-                                splitState.Part = splitPart;
-                            TryComp(splitStack, out splitState.Stack);
+                            MachinePartState splitState = _construction.BuildMachinePartState(splitStack);
 
                             updatedParts.Add((splitStack, splitState, -1)); // New entity, nothing to remove, set index to -1 to flag this.
                             partsNeeded = 0;
