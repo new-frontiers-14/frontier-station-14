@@ -23,3 +23,30 @@
   metamorphicMaxFillLevels: 2
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+
+- type: reagent
+  id: GinAndSonic
+  name: reagent-name-gin-and-sonic
+  parent: BaseDrink
+  desc: reagent-desc-gin-and-sonic
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: fast
+  color: "#3061e3"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: GinTonic
+        amount: 0.2
+      - !type:AdjustReagent
+        reagent: Desoxyephedrine
+        amount: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/ginandsonic.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
