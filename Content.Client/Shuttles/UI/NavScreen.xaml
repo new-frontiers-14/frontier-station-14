@@ -83,11 +83,12 @@
                     
                     <!-- Frontier - Maximum IFF Distance -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"></controls:Label>
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"/>
                         <controls:SliderIntInput Name="MaximumIFFDistanceValue"
                                          Access="Public"
                                          MinValue="0"
                                          MaxValue="3000"
+                                         Value="3000"
                                          HorizontalExpand="True"/>
                     </controls:BoxContainer>
                 </controls:BoxContainer>
