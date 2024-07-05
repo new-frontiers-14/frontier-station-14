@@ -231,6 +231,83 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          0,0:
+            0: 30583
+          -1,0:
+            0: 52428
+          0,1:
+            0: 817
+            1: 16392
+          -1,1:
+            0: 2176
+            1: 16386
+          0,-1:
+            0: 9011
+            1: 32768
+            2: 8
+          -1,-1:
+            1: 8193
+            0: 34952
+            2: 2
+          0,-2:
+            0: 8736
+            2: 2048
+          -1,-2:
+            0: 34944
+            1: 256
+            2: 4608
+          1,-2:
+            1: 256
+            2: 4096
+          1,-1:
+            1: 1
+        uniqueMixes:
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -584,7 +661,7 @@ entities:
       parent: 2
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 1
+  - uid: 159
     components:
     - type: Transform
       pos: 0.5,-0.5
@@ -598,7 +675,7 @@ entities:
       parent: 2
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 159
+  - uid: 185
     components:
     - type: Transform
       pos: -1.5,4.5
@@ -1015,13 +1092,11 @@ entities:
       parent: 2
 - proto: LuxuryPen
   entities:
-  - uid: 216
+  - uid: 1
     components:
     - type: Transform
-      pos: -1.3059621,2.4541836
+      pos: -1.2964802,2.453908
       parent: 2
-    - type: Stamp
-      stampedName: localhost@JoeGenero
 - proto: PaperBin20
   entities:
   - uid: 118
@@ -1420,11 +1495,6 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 2
-  - uid: 185
-    components:
-    - type: Transform
-      pos: 3.5,3.5
-      parent: 2
   - uid: 186
     components:
     - type: Transform
@@ -1474,6 +1544,11 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-0.5
+      parent: 2
+  - uid: 215
+    components:
+    - type: Transform
+      pos: 3.5,3.5
       parent: 2
 - proto: WallShuttleDiagonal
   entities:
