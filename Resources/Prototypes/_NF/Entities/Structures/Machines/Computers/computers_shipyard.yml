@@ -1,10 +1,11 @@
 - type: entity
   name: shipyard console
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
-  id: ComputerShipyard
+  id: ComputerShipyardBase
   description: Used to purchase and sell shuttles
   placement:
     mode: SnapgridCenter
+  abstract: true
   components:
   - type: MeleeSound
     soundGroups:
@@ -61,6 +62,7 @@
       whitelist:
         components:
         - IdCard
+    newAccessLevels: [Captain]
   - type: ActivatableUI
     singleUser: true
     key: enum.ShipyardConsoleUiKey.Shipyard
@@ -75,8 +77,16 @@
 
 # Hardcoded consoles
 - type: entity
+  name: shipyard console
+  parent: ComputerShipyardBase
+  id: ComputerShipyard
+  components:
+  - type: ShipyardConsole
+    newJobTitle: Captain
+
+- type: entity
   id: ComputerShipyardSecurity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: security shipyard console
   description: Used to enlist into Nanotrasen Security Forces
   components:
@@ -97,10 +107,13 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Security:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
 
 - type: entity
   id: ComputerShipyardNfsd
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: nfsd shipyard console
   description: Used to buy nfsd patrol vessels
   components:
@@ -121,6 +134,9 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Security:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
 
 - type: entity
   id: ComputerShipyardSyndicate
@@ -147,6 +163,8 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Syndicate
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
 
 - type: entity
   id: ComputerShipyardBlackMarket
@@ -173,6 +191,8 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Freelance
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
 
 - type: entity
   id: ComputerShipyardExpedition
