@@ -77,21 +77,24 @@ public sealed partial class ConstructionSystem
 
         foreach (var entity in component.PartContainer.ContainedEntities)
         {
-            var partState = BuildMachinePartState(entity);
-            if (partState.Part is not null)
+            if (GetMachinePartState(entity, out var partState))
                 parts.Add(partState);
         }
 
         return parts;
     }
 
-    public MachinePartState BuildMachinePartState(EntityUid uid)
+    public bool GetMachinePartState(EntityUid uid, out MachinePartState state)
     {
-        MachinePartState retState = new MachinePartState();
-        if (TryComp(uid, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
-            retState.Part = splitPart;
-        TryComp(uid, out retState.Stack);
-        return retState;
+        state = new MachinePartState();
+        MachinePartComponent? part;
+        if (TryComp(uid, out part) && part is not null)
+            state.Part = part;
+        else
+            return false;
+
+        TryComp(uid, out state.Stack);
+        return true;
     }
 
     public Dictionary<string, float> GetPartsRatings(List<MachinePartState> partStates)

@@ -42,6 +42,12 @@ public sealed class PartExchangerSystem : EntitySystem
         _sawmill = Logger.GetSawmill("rped");
     }
 
+    private struct UpgradePartState
+    {
+        MachinePartState part;
+        bool inContainer;
+    }
+
     private void OnDoAfter(EntityUid uid, PartExchangerComponent component, DoAfterEvent args)
     {
         if (args.Cancelled)
@@ -56,33 +62,36 @@ public sealed class PartExchangerSystem : EntitySystem
         if (!TryComp<StorageComponent>(uid, out var storage) || storage.Container == null)
             return; //the parts are stored in here
 
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
-        var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, MachinePartState)>>();
+        var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, UpdatePartState)>>();
 
+        // Insert the contained parts into a dictionary for indexing.
+        // Note: these parts remain in the starting container.
         foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
         {
-            MachinePartState partState = _construction.BuildMachinePartState(item);
-
-            var part = partState.Part;
-            if (part is not null)
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                if (!partsByType.ContainsKey(part.PartType))
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
-                partsByType[part.PartType].Add((item, partState));
+                UpgradePartState upgrade;
+                upgrade.part = partState;
+                upgrade.inContainer = true;
+
+                var partType = upgrade.part.PartType;
+                if (!partsByType.ContainsKey(partType))
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
+                partsByType[partType].Add((item, upgrade));
                 _sawmill.Info($"DoAfter: add {item} {partState.Part.PartType} {partState.Part.Rating}");
             }
         }
 
-        if (TryComp<MachineComponent>(uid, out var machine))
+        // Exchange the 
+        if (TryComp<MachineComponent>(args.Args.Target.Value, out var machine))
             TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType);
-        else if (TryComp<MachineFrameComponent>(uid, out var machineFrame))
+        else if (TryComp<MachineFrameComponent>(args.Args.Target.Value, out var machineFrame))
             TryConstructMachineParts(machineFrame, args.Args.Target.Value, uid, partsByType);
 
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
+    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType)
     {
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
@@ -92,15 +101,18 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            MachinePartState partState = _construction.BuildMachinePartState(item);
-            var part = partState.Part;
-            if (part is not null)
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                if (!partsByType.ContainsKey(part.PartType))
+                UpgradePartState upgrade;
+                upgrade.part = partState;
+                upgrade.inContainer = false;
+
+                var partType = upgrade.part.PartType;
+                if (!partsByType.ContainsKey(partType))
                 {
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
                 }
-                partsByType[part.PartType].Add((item, partState));
+                partsByType[partType].Add((item, partState));
 
                 _container.RemoveEntity(uid, item);
 
@@ -153,13 +165,14 @@ public sealed class PartExchangerSystem : EntitySystem
                             }
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = _construction.BuildMachinePartState(splitStack);
-                            if (splitState.Part is null)
+                            if (!_construction.GetMachinePartState(splitStack, out var splitState))
                                 _sawmill.Info($"TEMP: splitstack {splitStack} has no MachinePartComponent");
-
-                            updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
-                            partsNeeded = 0;
-                            _sawmill.Info($"TEMP: add split stack {splitStack}, -1");
+                            else
+                            {
+                                updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
+                                partsNeeded = 0;
+                                _sawmill.Info($"TEMP: add split stack {splitStack}, -1");
+                            }
                         }
                     }
                     else
@@ -185,15 +198,15 @@ public sealed class PartExchangerSystem : EntitySystem
 
         _sawmill.Info("TEMP: returning parts to RPED");
 
-        //put the unused parts back into rped. (this also does the "swapping")
+        //Put the unused parts back into the container
         //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
         foreach (var (partType, partSet) in partsByType)
         {
             _sawmill.Info($"TEMP: returning {partType}");
             foreach (var partState in partSet)
             {
-                bool success = _storage.Insert(storageUid, partState.part, out _, playSound: false);
-                _sawmill.Info($"TEMP: return {partType} {partState.part} success: {success}");
+                if (!partState.inContainer)
+                    _storage.Insert(storageUid, partState.part.Part, out _, playSound: false);
             }
         }
         _construction.RefreshParts(uid, machine);
@@ -209,21 +222,25 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            MachinePartState partState = _construction.BuildMachinePartState(item);
-            var part = partState.Part;
-            if (part is not null)
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                if (!partsByType.ContainsKey(part.PartType))
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
-                partsByType[part.PartType].Add((item, partState));
+                UpgradePartState upgrade;
+                upgrade.part = partState;
+                upgrade.inContainer = false;
 
-                machine.Progress[part.PartType] -= partState.Quantity();
-                machine.Progress[part.PartType] = int.Max(0, machine.Progress[part.PartType]); // Ensure progress isn't negative.
+                var partType = upgrade.part.PartType;
+                if (!partsByType.ContainsKey(partType))
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
+                partsByType[partType].Add((item, partState));
+
+                machine.Progress[partType] -= partState.Quantity();
+                machine.Progress[partType] = int.Max(0, machine.Progress[partType]); // Ensure progress isn't negative.
 
                 _container.RemoveEntity(uid, item);
             }
         }
 
+        // Sort parts in descending order of rating (highest rated parts first)
         foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
@@ -241,12 +258,12 @@ public sealed class PartExchangerSystem : EntitySystem
                         break;
 
                     // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
-                    if (state.Stack is not null)
+                    if (state.part.Stack is not null)
                     {
-                        var count = state.Stack.Count;
+                        var count = state.part.Stack.Count;
                         if (count <= partsNeeded)
                         {
-                            updatedParts.Add((part, state, index));
+                            updatedParts.Add((part, state.part, index));
                             partsNeeded -= count;
                         }
                         else
@@ -258,10 +275,11 @@ public sealed class PartExchangerSystem : EntitySystem
                                 continue;
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = _construction.BuildMachinePartState(splitStack);
-
-                            updatedParts.Add((splitStack, splitState, -1)); // New entity, nothing to remove, set index to -1 to flag this.
-                            partsNeeded = 0;
+                            if (_construction.GetMachinePartState(splitStack, out var splitState))
+                            {
+                                updatedParts.Add((splitStack, splitState, -1)); // New entity, nothing to remove, set index to -1 to flag this.
+                                partsNeeded = 0;
+                            }
                         }
                     }
                     else
@@ -284,13 +302,14 @@ public sealed class PartExchangerSystem : EntitySystem
             machine.Progress[part.state.Part.PartType] += part.state.Quantity();
         }
 
-        //put the unused parts back into rped. (this also does the "swapping")
+        //Put the unused parts back into the container
         //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
-        foreach (var partSet in partsByType.Values)
+        foreach (var (partType, partSet) in partsByType)
         {
             foreach (var partState in partSet)
             {
-                _storage.Insert(storageEnt, partState.part, out _, playSound: false);
+                if (!partState.inContainer)
+                    _storage.Insert(storageUid, partState.part.Part, out _, playSound: false);
             }
         }
     }
