@@ -109,12 +109,7 @@ namespace Content.Client.VendingMachines.UI
                 var cost = 20;
                 if (prototype != null && prototype.TryGetComponent<StaticPriceComponent>(out var priceComponent))
                 {
-                    if (priceComponent.VendPrice != 0 && cost <= (float) priceComponent.VendPrice)
-                    {
-                        var price = (float) priceComponent.VendPrice;
-                        cost = (int) price;
-                    }
-                    else if (priceComponent.Price != 0)
+                    if (priceComponent.Price != 0)
                     {
                         var price = (float)priceComponent.Price;
                         cost = (int) (price * priceModifier);
@@ -152,6 +147,14 @@ namespace Content.Client.VendingMachines.UI
                         }
                     }
                 }
+
+                // This block exists to allow the VendPrice flag to set a vending machine item price.
+                if (priceComponent.VendPrice != 0 && cost <= (float) priceComponent.VendPrice)
+                {
+                    var price = (float) priceComponent.VendPrice;
+                    cost = (int) price;
+                }
+                // This block exists to allow the VendPrice flag to set a vending machine item price.
 
                 vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
                 vendingItem.Icon = icon;
