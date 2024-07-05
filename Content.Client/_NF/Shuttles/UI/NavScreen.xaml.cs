@@ -1,0 +1,68 @@
+using Content.Shared._NF.Shuttles.Events;
+using Robust.Client.UserInterface.Controls;
+
+namespace Content.Client.Shuttles.UI
+{
+    public sealed partial class NavScreen
+    {
+        public event Action<NetEntity?, InertiaDampeningMode>? OnChangeInertiaDampeningTypeRequest;
+
+        private void NfInitialize()
+        {
+            // Frontier - IFF search
+            IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
+
+            // Frontier - Maximum IFF Distance
+            MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
+            MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
+
+            DampenerOff.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Off);
+            DampenerOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Dampen);
+            AnchorOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Anchored);
+
+            var group = new ButtonGroup();
+            DampenerOff.Group = group;
+            DampenerOn.Group = group;
+            AnchorOn.Group = group;
+        }
+
+        private void SwitchDampenerMode(InertiaDampeningMode mode)
+        {
+            NavRadar.DampenerState = mode;
+            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+            OnChangeInertiaDampeningTypeRequest?.Invoke(shuttle, mode);
+        }
+
+        private void NfUpdateState()
+        {
+            DampenerOff.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Off;
+            DampenerOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Dampen;
+            AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchored;
+        }
+
+        // Frontier - Maximum IFF Distance
+        private void OnRangeFilterChanged(int value)
+        {
+            NavRadar.MaximumIFFDistance = (float) value;
+        }
+
+        private void NfAddShuttleDesignation(EntityUid? shuttle)
+        {
+            // Frontier - PR #1284 Add Shuttle Designation
+            if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))
+            {
+                var shipNameParts = metadata.EntityName.Split(' ');
+                var designation = shipNameParts[^1];
+                if (designation[2] == '-')
+                {
+                    NavDisplayLabel.Text = string.Join(' ', shipNameParts[..^1]);
+                    ShuttleDesignation.Text = designation;
+                }
+                else
+                    NavDisplayLabel.Text = metadata.EntityName;
+            }
+            // End Frontier - PR #1284
+        }
+
+    }
+}
