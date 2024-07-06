@@ -30,7 +30,7 @@ public sealed partial class DisintegrateArtifact : EntityEffect
         if (args is not EntityEffectReagentArgs reagentArgs)
             return;
         var artifact = args.EntityManager.EntitySysManager.GetEntitySystem<ArtifactSystem>();
-        artifact.DisintegrateArtifact(reagentArgs.SolutionEntity, ProbabilityMin, ProbabilityMax, Range);
+        artifact.DisintegrateArtifact(reagentArgs.TargetEntity, ProbabilityMin, ProbabilityMax, Range);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
