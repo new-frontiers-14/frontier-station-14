@@ -37,6 +37,7 @@ using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Access;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -542,12 +543,34 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        TryComp<AccessComponent>(targetId, out var accessReaderComponent);
+        TryComp<AccessComponent>(targetId, out var accessComponent);
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
             // If the user lacks access to this shuttle, skip it.
-            if (!string.IsNullOrEmpty(vessel.Access) && (accessReaderComponent?.Tags.Contains(vessel.Access) ?? false))
-                continue;
+            if (!string.IsNullOrEmpty(vessel.Access))
+            {
+                bool hasAccess = false;
+                // Check tags
+                if (accessComponent?.Tags.Contains(vessel.Access) ?? false)
+                    hasAccess = true;
+
+                if (!hasAccess)
+                {
+                    var groupIds = accessComponent?.Groups ?? new HashSet<ProtoId<AccessGroupPrototype>>();
+                    foreach (var groupId in groupIds)
+                    {
+                        var groupProto = _prototypeManager.Index(groupId);
+                        if (groupProto?.Tags.Contains(vessel.Access) ?? false)
+                        {
+                            hasAccess = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!hasAccess)
+                    continue;
+            }
 
             // Check that the listing contains the shuttle or that the shuttle is in the group that the console is looking for
             if ((listing?.Shuttles.Contains(vessel.ID) ?? false) ||
