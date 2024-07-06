@@ -12,7 +12,6 @@ using Content.Shared.Access.Components;
 using Content.Shared.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
@@ -21,7 +20,6 @@ using Content.Server.Cargo.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
-using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.Forensics;
@@ -106,7 +104,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!GetAvailableShuttles(uid,null, null, targetId).Contains(vessel.ID))
+        if (!GetAvailableShuttles(uid, targetId: targetId).Contains(vessel.ID))
         {
             PlayDenySound(uid, component);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
@@ -545,22 +543,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         TryComp<AccessComponent>(targetId, out var accessReaderComponent);
-        var shuttles = _prototypeManager.EnumeratePrototypes<VesselPrototype>().Where(x =>
+        foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
-            return
+            // If the user lacks access to this shuttle, skip it.
+            if (!string.IsNullOrEmpty(vessel.Access) && (accessReaderComponent?.Tags.Contains(vessel.Access) ?? false))
+                continue;
+
+            // Check that the listing contains the shuttle or that the shuttle is in the group that the console is looking for
+            if ((listing?.Shuttles.Contains(vessel.ID) ?? false) ||
                 // if the listing contains the shuttle, add it to the list or
-                ((listing?.Shuttles.Contains(x.ID) ?? false) ||
 
                 // if the shuttle is in the group that the console is looking for
                 (key != null && key != ShipyardConsoleUiKey.Custom &&
-                 ShipyardGroupMapping.TryGetValue(key.Value, out var group) && x.Group == group)) &&
+                 ShipyardGroupMapping.TryGetValue(key.Value, out var group) && vessel.Group == group))
+            {
+                availableShuttles.Add(vessel.ID);
+            }
 
-                // and the user has the required access, add it to the list
-                (string.IsNullOrEmpty(x.Access) || (accessReaderComponent?.Tags.Contains(x.Access) ?? false));
+        }
 
-        }).Select(x=>x.ID).ToList();
-
-        return shuttles;
+        return availableShuttles;
     }
 
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey)

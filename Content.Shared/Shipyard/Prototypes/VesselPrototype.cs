@@ -41,7 +41,7 @@ public sealed class VesselPrototype : IPrototype
     public string Group = string.Empty;
 
     /// <summary>
-    ///     The access of the product. (e.g. Command, Mail, Bailiff, etc.)
+    ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
     /// </summary>
     [DataField("access")]
     public string Access = string.Empty;
