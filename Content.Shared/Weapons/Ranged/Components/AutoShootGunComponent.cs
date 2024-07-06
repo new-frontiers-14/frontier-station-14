@@ -13,19 +13,19 @@ public sealed partial class AutoShootGunComponent : Component
     public bool Enabled;
 
     /// <summary>
-    /// Whether the thruster has been force to be enabled / disabled (e.g. VV, interaction, etc.)
+    /// Frontier - Whether the gun has been force to be enabled / disabled (e.g. VV, interaction, etc.)
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool On { get; set; } = true;
 
     /// <summary>
-    /// This determines whether the thruster is actually enabled for the purposes of thrust
+    /// Frontier This determines whether the gun is actually enabled for the purposes of shotting
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public bool IsOn;
 
     /// <summary>
-    ///     Frontier - Amount of charge this needs from an APC per second to function.
+    ///     Frontier - Amount of charge this gun needs from an APC per second to function.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public float OriginalLoad { get; set; } = 0;
