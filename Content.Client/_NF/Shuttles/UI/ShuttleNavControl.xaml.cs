@@ -1,5 +1,6 @@
 
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared._NF.Station.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
@@ -16,14 +17,17 @@ namespace Content.Client.Shuttles.UI
         {
 
             if (!EntManager.GetCoordinates(state.Coordinates).HasValue ||
-                !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId,
-                    out TransformComponent? transform) ||
+                !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId,out TransformComponent? transform) ||
                 !EntManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent))
             {
                 return;
             }
 
-            DampenerState = physicsComponent.LinearDamping == 0 ? InertiaDampeningMode.Off :
+            var isStation = EntManager.HasComponent<StationComponent>(transform.GridUid);
+
+            DampenerState =
+                isStation ? InertiaDampeningMode.Station :
+                physicsComponent.LinearDamping == 0 ? InertiaDampeningMode.Off :
                 physicsComponent.AngularDamping < .1 ? InertiaDampeningMode.Dampen :
                 InertiaDampeningMode.Anchored;
 
