@@ -82,9 +82,6 @@ public sealed partial class GunSystem
         if (!component.On)
             return false;
 
-        if (component.LifeStage > ComponentLifeStage.Running)
-            return false;
-
         var xform = Transform(uid);
 
         if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
