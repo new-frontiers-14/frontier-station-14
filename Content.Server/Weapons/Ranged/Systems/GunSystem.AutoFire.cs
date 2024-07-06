@@ -34,7 +34,7 @@ public sealed partial class GunSystem
     private void OnGunExamine(EntityUid uid, AutoShootGunComponent component, ExaminedEvent args)
     {
         // Powered is already handled by other power components
-        var enabled = Loc.GetString(component.On ? "thruster-comp-enabled" : "thruster-comp-disabled");
+        var enabled = Loc.GetString(component.On ? "gun-comp-enabled" : "gun-comp-disabled");
 
         args.PushMarkup(enabled);
     }
@@ -97,8 +97,7 @@ public sealed partial class GunSystem
 
     public void EnableGun(EntityUid uid, AutoShootGunComponent component, TransformComponent? xform = null)
     {
-        if (component.IsOn ||
-            !Resolve(uid, ref xform))
+        if (component.IsOn)
         {
             return;
         }
