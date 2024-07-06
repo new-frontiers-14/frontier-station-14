@@ -19,5 +19,6 @@ namespace Content.Shared._NF.Shuttles.Events
         Off = 0,
         Dampen = 1,
         Anchored = 2,
+        Station = 3,
     }
 }

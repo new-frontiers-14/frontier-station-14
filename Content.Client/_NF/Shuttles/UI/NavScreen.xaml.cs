@@ -35,9 +35,17 @@ namespace Content.Client.Shuttles.UI
 
         private void NfUpdateState()
         {
-            DampenerOff.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Off;
-            DampenerOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Dampen;
-            AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchored;
+            if (NavRadar.DampenerState == InertiaDampeningMode.Station)
+            {
+                DampenerModeButtons.Visible = false;
+            }
+            else
+            {
+                DampenerModeButtons.Visible = true;
+                DampenerOff.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Off;
+                DampenerOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Dampen;
+                AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchored;
+            }
         }
 
         // Frontier - Maximum IFF Distance

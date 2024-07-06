@@ -1,5 +1,6 @@
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared._NF.Station.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Physics.Components;
 using SixLabors.ImageSharp.ColorSpaces;
@@ -18,7 +19,8 @@ public sealed partial class ShuttleSystem
         if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||
             !transform.GridUid.HasValue ||
             !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
-            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent))
+            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent) ||
+            EntityManager.HasComponent<StationComponent>(transform.GridUid))
         {
             return;
         }
@@ -27,16 +29,16 @@ public sealed partial class ShuttleSystem
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.LinearDamping,
-            InertiaDampeningMode.Anchored => 1f,
-            _ => throw new NotImplementedException(),
+            InertiaDampeningMode.Anchored => 1,
+            _ => 999999,// if it's not the above it's a station, they shouldn't be able to change the dampening, should we alert the admin?
         };
 
         var angularDampeningStrength = args.Mode switch
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.AngularDamping,
-            InertiaDampeningMode.Anchored => 1f,
-            _ => throw new NotImplementedException(),
+            InertiaDampeningMode.Anchored => 1,
+            _ => 999999,// if it's not the above it's a station, they shouldn't be able to change the dampening, should we alert the admin?
         };
 
         _physics.SetLinearDamping(transform.GridUid.Value, physicsComponent, linearDampeningStrength);
