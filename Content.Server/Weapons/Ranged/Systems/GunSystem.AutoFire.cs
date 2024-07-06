@@ -19,7 +19,7 @@ public sealed partial class GunSystem
         // Automatic firing without stopping if the AutoShootGunComponent component is exist and enabled
         var query = EntityQueryEnumerator<AutoShootGunComponent, GunComponent>();
 
-        while (query.MoveNext(out var uid, out var autoShoot, out var gun))
+        while (query.MoveNext(out var uid, out var autoShoot, out var gun) && autoShoot.IsOn)
         {
             if (!autoShoot.Enabled)
                 continue;
