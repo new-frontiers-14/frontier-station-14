@@ -1,60 +1,7 @@
 - type: entity
-  name: BaseWeaponNovaliteC1
-  parent: BaseItem
-  id: BaseWeaponNovaliteC1
-  description: A rooty tooty point and shooty.
-  abstract: true
-  components:
-  - type: Sprite
-  - type: Item
-    size: Huge
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 4
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineLightRifle
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifle
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: StaticPrice
-    price: 500
-    
-
-- type: entity
-  name: Novalite C1
-  parent: BaseWeaponNovaliteC1
+  parent: BaseWeaponRifle
   id: WeaponRifleNovaliteC1
+  name: Novalite C1
   description: A modification to the Lecter from SW LLC, a civilian grade semi-automatic rifle with an internal magazine. Nanotrasen Representatives can not stress how compliant this rifle is. Uses .20 rifle ammo.
   components:
   - type: Sprite
@@ -67,8 +14,14 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Gun
+    fireRate: 2 # 4->2
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+      params:
+        variation: 0.125
   - type: ItemSlots
     slots:
       gun_magazine:
