@@ -64,19 +64,12 @@ public sealed partial class GunSystem
         }
     }
 
-    public void DisableGun(EntityUid uid, AutoShootGunComponent component, TransformComponent? xform = null, Angle? angle = null)
-    {
-        if (!Resolve(uid, ref xform)) return;
-        DisableGun(uid, component, xform.GridUid, xform);
-    }
-
     /// <summary>
     /// Tries to disable the AutoShootGun.
     /// </summary>
-    public void DisableGun(EntityUid uid, AutoShootGunComponent component, EntityUid? gridId, TransformComponent? xform = null, Angle? angle = null)
+    public void DisableGun(EntityUid uid, AutoShootGunComponent component)
     {
-        if (!component.IsOn ||
-            !Resolve(uid, ref xform))
+        if (!component.IsOn)
         {
             return;
         }
@@ -113,6 +106,18 @@ public sealed partial class GunSystem
         component.IsOn = true;
     }
 
+    private void OnAnchorChange(EntityUid uid, AutoShootGunComponent component, ref AnchorStateChangedEvent args)
+    {
+        if (args.Anchored && CanEnable(uid, component))
+        {
+            EnableGun(uid, component);
+        }
+        else
+        {
+            DisableGun(uid, component);
+        }
+    }
+
     private void OnGunInit(EntityUid uid, AutoShootGunComponent component, ComponentInit args)
     {
         if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
@@ -125,6 +130,23 @@ public sealed partial class GunSystem
         if (CanEnable(uid, component))
         {
             EnableGun(uid, component);
+        }
+    }
+
+    private void OnGunShutdown(EntityUid uid, AutoShootGunComponent component, ComponentShutdown args)
+    {
+        DisableGun(uid, component);
+    }
+
+    private void OnPowerChange(EntityUid uid, AutoShootGunComponent component, ref PowerChangedEvent args)
+    {
+        if (args.Powered && CanEnable(uid, component))
+        {
+            EnableGun(uid, component);
+        }
+        else
+        {
+            DisableGun(uid, component);
         }
     }
 }
