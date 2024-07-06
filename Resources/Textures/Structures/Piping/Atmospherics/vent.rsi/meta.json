@@ -8,7 +8,12 @@
    "copyright":"Taken from https://github.com/ParadiseSS13/Paradise/",
    "states":[
       {
-         "name":"vent_off"
+         "name":"vent_passive",
+         "directions" : 4
+      },
+      {
+         "name":"vent_off",
+         "directions" : 4
       },
       {
          "name":"vent_welded"
@@ -19,7 +24,12 @@
       },
       {
          "name":"vent_in",
-         "delays":[ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
+         "directions" : 4,
+         "delays":[ [ 0.08, 0.08, 0.08, 0.08 ], [ 0.08, 0.08, 0.08, 0.08 ], [ 0.08, 0.08, 0.08, 0.08 ], [ 0.08, 0.08, 0.08, 0.08 ] ]
+      },
+      {
+         "name":"vent_lockout",
+         "directions" : 4
       }
    ]
 }
