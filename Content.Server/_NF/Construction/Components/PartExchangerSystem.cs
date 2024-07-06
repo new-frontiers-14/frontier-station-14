@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._NF.Construction.Components;
 using Content.Server.Construction;
 using Content.Server.Construction.Components;
@@ -13,7 +12,6 @@ using Content.Shared.Storage;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using Content.Shared.Wires;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
@@ -59,13 +57,13 @@ public sealed class PartExchangerSystem : EntitySystem
             return;
 
         if (!TryComp<StorageComponent>(uid, out var storage) || storage.Container == null)
-            return; //the parts are stored in here
+            return;
 
         var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, UpgradePartState)>>();
 
         // Insert the contained parts into a dictionary for indexing.
         // Note: these parts remain in the starting container.
-        foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
+        foreach (var item in storage.Container.ContainedEntities)
         {
             if (_construction.GetMachinePartState(item, out var partState))
             {
@@ -81,7 +79,7 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        // Exchange the 
+        // Exchange machine parts with the machine or frame.
         if (TryComp<MachineComponent>(args.Args.Target.Value, out var machine))
             TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType);
         else if (TryComp<MachineFrameComponent>(args.Args.Target.Value, out var machineFrame))
@@ -133,10 +131,10 @@ public sealed class PartExchangerSystem : EntitySystem
                     if (partsNeeded <= 0)
                         break;
 
-                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
+                        // Entire stack is needed, add it to the things to bring over.
                         if (count <= partsNeeded)
                         {
                             MachinePartState partState;
@@ -148,9 +146,9 @@ public sealed class PartExchangerSystem : EntitySystem
                         }
                         else
                         {
+                            // Partial stack is needed, split off what we need, ensure the new entry is moved.
                             EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
 
-                            // TODO: better error handling?  Why would this fail?
                             if (splitStack == EntityUid.Invalid)
                                 continue;
 
@@ -164,6 +162,7 @@ public sealed class PartExchangerSystem : EntitySystem
                     }
                     else
                     {
+                        // Not a stack, move the single part.
                         MachinePartState partState;
                         partState.Part = state.Part;
                         partState.Stack = state.Stack;
@@ -171,12 +170,14 @@ public sealed class PartExchangerSystem : EntitySystem
                         updatedParts.Add((part, partState, index));
                         partsNeeded--;
                     }
+                    // Adjust the index for parts being removed from the container.
                     index++;
                 }
             }
         }
 
-        // Iterate through list backwards, remove further entries first.
+        // Move selected parts to the machine, removing them from the dictionary of contained parts.
+        // Iterate through list backwards, remove later entries first (maintain validity of earlier indices).
         for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
             var part = updatedParts[i];
@@ -185,8 +186,7 @@ public sealed class PartExchangerSystem : EntitySystem
                 partsByType[part.state.Part.PartType].RemoveAt(part.index);
         }
 
-        //Put the unused parts back into the container
-        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
+        //Put the unused parts back into the container (if they aren't already there)
         foreach (var (partType, partSet) in partsByType)
         {
             foreach (var partState in partSet)
@@ -210,16 +210,19 @@ public sealed class PartExchangerSystem : EntitySystem
         {
             if (_construction.GetMachinePartState(item, out var partState))
             {
+                // Construct our entry
                 UpgradePartState upgrade;
                 upgrade.Part = partState.Part;
                 upgrade.Stack = partState.Stack;
                 upgrade.InContainer = false;
 
+                // Add it to the table
                 var partType = upgrade.Part.PartType;
                 if (!partsByType.ContainsKey(partType))
                     partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
                 partsByType[partType].Add((item, upgrade));
 
+                // Make sure the construction status is consistent with the removed parts.
                 machine.Progress[partType] -= partState.Quantity();
                 machine.Progress[partType] = int.Max(0, machine.Progress[partType]); // Ensure progress isn't negative.
 
@@ -244,10 +247,10 @@ public sealed class PartExchangerSystem : EntitySystem
                     if (partsNeeded <= 0)
                         break;
 
-                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
+                        // Entire stack is needed, add it to the things to bring over.
                         if (count <= partsNeeded)
                         {
                             MachinePartState partState;
@@ -259,9 +262,9 @@ public sealed class PartExchangerSystem : EntitySystem
                         }
                         else
                         {
+                            // Partial stack is needed, split off what we need, ensure the new entry is moved.
                             EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
 
-                            // TODO: better error handling?  Why would this fail?
                             if (splitStack == EntityUid.Invalid)
                                 continue;
 
@@ -275,6 +278,7 @@ public sealed class PartExchangerSystem : EntitySystem
                     }
                     else
                     {
+                        // Not a stack, move the single part.
                         MachinePartState partState;
                         partState.Part = state.Part;
                         partState.Stack = state.Stack;
@@ -282,12 +286,14 @@ public sealed class PartExchangerSystem : EntitySystem
                         updatedParts.Add((part, partState, index));
                         partsNeeded--;
                     }
+                    // Adjust the index for parts being removed from the container.
                     index++;
                 }
             }
         }
 
-        // Iterate through list backwards, remove further entries first.
+        // Move selected parts to the machine, removing them from the dictionary of contained parts.
+        // Iterate through list backwards, remove later entries first (maintain validity of earlier indices).
         for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
             var part = updatedParts[i];
@@ -297,8 +303,7 @@ public sealed class PartExchangerSystem : EntitySystem
             machine.Progress[part.state.Part.PartType] += part.state.Quantity();
         }
 
-        //Put the unused parts back into the container
-        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
+        //Put the unused parts back into the container (if they aren't already there)
         foreach (var (partType, partSet) in partsByType)
         {
             foreach (var partState in partSet)
