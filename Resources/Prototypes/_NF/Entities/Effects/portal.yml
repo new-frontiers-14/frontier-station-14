@@ -4,13 +4,21 @@
   abstract: true
   description: This one looks more like a special bluespace portal.
   components:
+  - type: Sprite
+    layers:
+    - state: portal-artifact
+  - type: PointLight
+    color: "#ed85c2"
+    radius: 3
+    energy: 1
+    netsync: false
   - type: Portal
     canTeleportToOtherMaps: true
 
 - type: entity
   id: PortalAdminStart
-  parent: [BasePortalAdmin, PortalArtifact]
+  parent: BasePortalAdmin
 
 - type: entity
   id: PortalAdminEnd
-  parent: [BasePortalAdmin, PortalArtifact]
+  parent: BasePortalAdmin
