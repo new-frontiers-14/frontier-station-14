@@ -29,7 +29,6 @@ JobSTC = Station Traffic Controller
 job-name-senior-engineer = старший инженер
 job-name-senior-researcher = научный руководитель
 job-name-senior-physician = ведущий врач
-job-name-senior-officer = сержант
 JobSeniorEngineer = старший инженер
 JobSeniorOfficer = сержант
 JobSeniorPhysician = ведущий врач
