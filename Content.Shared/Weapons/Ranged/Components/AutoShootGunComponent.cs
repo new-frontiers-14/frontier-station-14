@@ -19,7 +19,7 @@ public sealed partial class AutoShootGunComponent : Component
     public bool On { get; set; } = true;
 
     /// <summary>
-    /// Frontier This determines whether the gun is actually enabled for the purposes of shotting
+    /// Frontier - This determines whether the gun is actually enabled for the purposes of shotting
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public bool IsOn;
