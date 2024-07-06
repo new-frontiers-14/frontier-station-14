@@ -60,101 +60,101 @@ entities:
             color: '#1D1D21FF'
             id: BrickTileWhiteCornerNe
           decals:
-            50: 6,1
+            20: 6,1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteCornerNw
           decals:
-            45: -1,1
+            17: -1,1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteCornerSe
           decals:
-            65: 0,-3
-            66: 6,-3
+            35: 0,-3
+            36: 6,-3
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteCornerSw
           decals:
-            63: 5,-3
-            64: -1,-3
+            33: 5,-3
+            34: -1,-3
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteInnerSe
           decals:
-            57: 0,-1
+            27: 0,-1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteInnerSw
           decals:
-            58: 5,-1
+            28: 5,-1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteLineE
           decals:
-            67: 6,-1
-            68: 6,0
+            37: 6,-1
+            38: 6,0
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteLineN
           decals:
-            51: 5,1
-            52: 4,1
-            53: 3,1
-            54: 2,1
-            55: 1,1
-            56: 0,1
+            21: 5,1
+            22: 4,1
+            23: 3,1
+            24: 2,1
+            25: 1,1
+            26: 0,1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteLineS
           decals:
-            59: 1,-1
-            60: 2,-1
-            61: 3,-1
-            62: 4,-1
+            29: 1,-1
+            30: 2,-1
+            31: 3,-1
+            32: 4,-1
         - node:
             color: '#1D1D21FF'
             id: BrickTileWhiteLineW
           decals:
-            47: -1,0
-            48: -1,-1
+            18: -1,0
+            19: -1,-1
         - node:
             color: '#DE3A3A96'
             id: StandClear
           decals:
-            44: 5,1
+            16: 5,1
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
           decals:
-            25: 4,3
+            10: 4,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
           decals:
             1: 6,-4
-            11: 5,2
-            20: 5,-2
-            21: 6,-2
-            24: 5,2
-            42: -1,-2
-            43: 0,-2
+            3: 5,2
+            6: 5,-2
+            7: 6,-2
+            9: 5,2
+            14: -1,-2
+            15: 0,-2
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
           decals:
-            26: 4,3
+            11: 4,3
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
             0: 6,-4
-            10: 5,2
-            18: 5,-2
-            19: 6,-2
-            23: 5,2
-            40: -1,-2
-            41: 0,-2
+            2: 5,2
+            4: 5,-2
+            5: 6,-2
+            8: 5,2
+            12: -1,-2
+            13: 0,-2
     - type: GridAtmosphere
       version: 2
       data:
@@ -427,6 +427,20 @@ entities:
     components:
     - type: Transform
       pos: -2.5,1.5
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 40
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.3038858,-1.5
+      parent: 1
+  - uid: 239
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.7622192,-1.5
       parent: 1
 - proto: ButtonFrameExit
   entities:
@@ -748,13 +762,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-1.5
       parent: 1
-- proto: ChairOfficeLight
+- proto: ChairWood
   entities:
-  - uid: 40
+  - uid: 21
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5537621,0.6666666
+      pos: 0.5,0.5
       parent: 1
 - proto: ClosetWall
   entities:
@@ -843,7 +857,7 @@ entities:
       parent: 1
 - proto: FaxMachineShipAntag
   entities:
-  - uid: 105
+  - uid: 159
     components:
     - type: Transform
       pos: -0.5,1.5
@@ -1075,6 +1089,13 @@ entities:
       parent: 1
     - type: Thruster
       originalPowerLoad: 1500
+- proto: NetworkConfigurator
+  entities:
+  - uid: 182
+    components:
+    - type: Transform
+      pos: 1.1555657,3.5919085
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 100
@@ -1315,12 +1336,12 @@ entities:
   - uid: 73
     components:
     - type: Transform
-      pos: 0.33548507,4.1679792
+      pos: 0.17899022,4.1960754
       parent: 1
   - uid: 90
     components:
     - type: Transform
-      pos: 3.2834017,4.209646
+      pos: 3.160936,4.206492
       parent: 1
 - proto: SheetPlasma
   entities:
@@ -1363,12 +1384,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,4.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 240
   - uid: 222
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,4.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 241
 - proto: SignalButtonDirectional
   entities:
   - uid: 26
@@ -1400,6 +1427,32 @@ entities:
       linkedPorts:
         3:
         - Pressed: Toggle
+  - uid: 240
+    components:
+    - type: MetaData
+      name: Cannon One
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.3038858,-1.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        61:
+        - Pressed: Toggle
+        - Pressed: Trigger
+  - uid: 241
+    components:
+    - type: MetaData
+      name: Cannon Two
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.7622192,-1.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        222:
+        - Pressed: Toggle
+        - Pressed: Trigger
 - proto: SignSpace
   entities:
   - uid: 77
@@ -1699,14 +1752,14 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 21
-    components:
-    - type: Transform
-      pos: 3.5,1.5
-      parent: 1
-  - uid: 159
+  - uid: 105
     components:
     - type: Transform
       pos: 2.5,1.5
+      parent: 1
+  - uid: 238
+    components:
+    - type: Transform
+      pos: 3.5,1.5
       parent: 1
 ...
