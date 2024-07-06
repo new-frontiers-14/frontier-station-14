@@ -1,10 +1,10 @@
 ﻿using Content.Server.Xenoarchaeology.XenoArtifacts;
-using Content.Shared.Chemistry.Reagent;
+using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Chemistry.ReagentEffects;
+namespace Content.Server.Chemistry.EntityEffects;
 
-public sealed partial class DisintegrateArtifact : ReagentEffect
+public sealed partial class DisintegrateArtifact : EntityEffect
 {
 
     /// <summary>
@@ -25,10 +25,12 @@ public sealed partial class DisintegrateArtifact : ReagentEffect
     [DataField("range")]
     public float Range = 0.5f;
 
-    public override void Effect(ReagentEffectArgs args)
+    public override void Effect(EntityEffectBaseArgs args)
     {
+        if (args is not EntityEffectReagentArgs reagentArgs)
+            return;
         var artifact = args.EntityManager.EntitySysManager.GetEntitySystem<ArtifactSystem>();
-        artifact.DisintegrateArtifact(args.SolutionEntity, ProbabilityMin, ProbabilityMax, Range);
+        artifact.DisintegrateArtifact(reagentArgs.SolutionEntity, ProbabilityMin, ProbabilityMax, Range);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
