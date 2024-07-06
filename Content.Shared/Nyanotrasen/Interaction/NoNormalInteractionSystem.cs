@@ -12,7 +12,7 @@ namespace Content.Shared.Interaction
 
         private void OnInteractionAttempt(EntityUid uid, NoNormalInteractionComponent component, InteractionAttemptEvent args)
         {
-            args.Cancel();
+            args.Cancelled = true;
         }
     }
 }
