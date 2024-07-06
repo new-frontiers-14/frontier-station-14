@@ -1,0 +1,13 @@
+- type: entity
+  id: LockerWallChemistry
+  parent: BaseWallCloset
+  name: chemist wall locker
+  description: "All of your chemistry doodads, now conveniently wall mounted."
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: chem
+    stateDoorOpen: chem_open
+    stateDoorClosed: chem_door
+  - type: Sprite
+    sprite: _NF\Structures\Storage\chem_wall_locker.rsi
