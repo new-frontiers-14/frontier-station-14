@@ -49,6 +49,7 @@ public sealed partial class GunSystem : SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
         SubscribeLocalEvent<AutoShootGunComponent, ActivateInWorldEvent>(OnActivateGun); // Frontier
         SubscribeLocalEvent<AutoShootGunComponent, ComponentInit>(OnGunInit); // Frontier
+        SubscribeLocalEvent<AutoShootGunComponent, ExaminedEvent>(OnGunExamine);
     }
 
     private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)

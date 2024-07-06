@@ -35,27 +35,7 @@ public sealed partial class GunSystem
         // Powered is already handled by other power components
         var enabled = Loc.GetString(component.On ? "thruster-comp-enabled" : "thruster-comp-disabled");
 
-        using (args.PushGroup(nameof(ThrusterComponent)))
-        {
-            args.PushMarkup(enabled);
-
-            if (component.Type == ThrusterType.Linear &&
-                EntityManager.TryGetComponent(uid, out TransformComponent? xform) &&
-                xform.Anchored)
-            {
-                var nozzleDir = Loc.GetString("thruster-comp-nozzle-direction",
-                    ("direction", xform.LocalRotation.Opposite().ToWorldVec().GetDir().ToString().ToLowerInvariant()));
-
-                args.PushMarkup(nozzleDir);
-
-                var exposed = NozzleExposed(xform);
-
-                var nozzleText =
-                    Loc.GetString(exposed ? "thruster-comp-nozzle-exposed" : "thruster-comp-nozzle-not-exposed");
-
-                args.PushMarkup(nozzleText);
-            }
-        }
+        args.PushMarkup(enabled);
     }
 
     private void OnActivateGun(EntityUid uid, AutoShootGunComponent component, ActivateInWorldEvent args)
