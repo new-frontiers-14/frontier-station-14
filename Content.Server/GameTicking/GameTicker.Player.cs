@@ -1,5 +1,5 @@
-using Content.Corvax.Interfaces.Server;
 using Content.Server.Database;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
@@ -14,6 +14,8 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Corvax.Interfaces.Server;
+
 
 namespace Content.Server.GameTicking
 {
@@ -89,7 +91,7 @@ namespace Content.Server.GameTicking
                         _roundStartCountdownHasNotStartedYetDueToNoPlayers = false;
                         _roundStartTime = _gameTiming.CurTime + LobbyDuration;
                     }
-                    
+
                     _userDb.ClientConnected(session);
 
                     break;
@@ -205,6 +207,15 @@ namespace Content.Server.GameTicking
 
             _playerGameStatuses[session.UserId] = PlayerGameStatus.JoinedGame;
             _db.AddRoundPlayers(RoundId, session.UserId);
+
+            /*if (_adminManager.HasAdminFlag(session, AdminFlags.Admin))
+            {
+                if (_allPreviousGameRules.Count > 0)
+                {
+                    var rulesMessage = GetGameRulesListMessage(true);
+                    _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
+                }
+            }*/ //Sh1ntra : я хз чо тут, и нахуя оно надо, need check
 
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
         }

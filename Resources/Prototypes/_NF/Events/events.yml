@@ -8,7 +8,48 @@
     # startDelay: 30
     # duration: 35
   # - type: AnomalySpawnRule
+- type: entity
+  id: BaseStationEvent
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
 
+- type: entity
+  id: BaseStationEventShortDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
+
+- type: entity
+  id: BaseStationEventLongDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  40
+      max:  60
+
+# Frontier -right now you never find them since they spawn on random grids.
+# - type: entity
+#   id: AnomalySpawn
+#   parent: BaseStationEventShortDelay # Old startDelay: 30
+#   components:
+#   - type: StationEvent
+#     startAnnouncementColor: "#18abf5"
+#     startAudio:
+#       path: /Audio/Announcements/announce.ogg
+#     weight: 8
+#     duration: 35
+#   - type: AnomalySpawnRule
 - type: entity
   id: BreakerFlip
   parent: BaseGameRule
@@ -22,18 +63,19 @@
 
 - type: entity
   id: FalseAlarm
-  parent: BaseGameRule
+  parent: BaseStationEventLongDelay
   noSpawn: true
   components:
   - type: StationEvent
     weight: 15
     duration: 1
+    reoccurrenceDelay: 180 # Frontier
+    maxOccurrences: 2 # Frontier - People dont like too many false alarms
   - type: FalseAlarmRule
 
 - type: entity
   id: GasLeak
-  parent: BaseGameRule
-  noSpawn: true
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
@@ -42,19 +84,12 @@
       params:
         volume: -4
     endAnnouncement: station-event-gas-leak-end-announcement
-    minimumPlayers: 5
-    weight: 5
-    endAudio:
-      path: /Audio/Announcements/gasleak_end.ogg # Corvax-Announcements
-      params:
-        volume: -4
-    startDelay: 20
+    weight: 8
   - type: GasLeakRule
 
 - type: entity
   id: MouseMigration
-  parent: BaseGameRule
-  noSpawn: true
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
@@ -77,8 +112,7 @@
 
 - type: entity
   id: CockroachMigration
-  parent: BaseGameRule
-  noSpawn: true
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
@@ -96,8 +130,7 @@
 
 - type: entity
   id: PowerGridCheck
-  parent: BaseGameRule
-  noSpawn: true
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     weight: 5
@@ -162,7 +195,7 @@
 
 - type: entity
   id: VentClog
-  parent: BaseGameRule
+  parent: BaseStationEventLongDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -172,7 +205,6 @@
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
-    startDelay: 50
     duration: 60
   - type: VentClogRule
 
@@ -228,7 +260,7 @@
     weight: 5.5
     minimumPlayers: 20
   - type: BluespaceSyndicateCrateRule
-    
+
 # Corvax-start
 # - type: entity
 #  id: ShipyardRandomVesselError

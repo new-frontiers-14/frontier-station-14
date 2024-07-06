@@ -60,6 +60,9 @@
   - type: Construction
     graph: PowerCellPotato
     node: potatobattery
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 1 # Frontier: ideally 0
 
 - type: entity
   name: small-capacity power cell
@@ -78,12 +81,12 @@
   - type: Battery
     maxCharge: 360
     startingCharge: 360
-  - type: MachinePart
-    part: PowerCell
-    rating: 1
   - type: Tag
     tags:
       - PowerCellSmall
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 1 # Frontier
 
 - type: entity
   id: PowerCellSmallPrinted
@@ -119,9 +122,9 @@
   - type: Battery
     maxCharge: 720
     startingCharge: 720
-  - type: MachinePart
-    part: PowerCell
-    rating: 2
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 2 # Frontier
   - type: StaticPrice
     price: 75
 
@@ -159,9 +162,9 @@
   - type: Battery
     maxCharge: 1080
     startingCharge: 1080
-  - type: MachinePart
-    part: PowerCell
-    rating: 3
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 3 # Frontier
 
 - type: entity
   id: PowerCellHighPrinted
@@ -197,9 +200,9 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
-  - type: MachinePart
-    part: PowerCell
-    rating: 4
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 4 # Frontier
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -238,6 +241,9 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
+  - type: MachinePart # Frontier
+    part: PowerCell # Frontier
+    rating: 3 # Frontier: tier of this is arguable
 
 - type: entity
   parent: PowerCellMicroreactor
@@ -274,6 +280,9 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 40
+    - type: MachinePart # Frontier
+      part: PowerCell # Frontier
+      rating: 4 # Frontier: tier of this is arguable
 
 # Power cage (big heavy power cell for big devices)
 

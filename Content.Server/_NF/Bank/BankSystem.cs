@@ -6,10 +6,13 @@ using Content.Shared.Bank.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
-using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.Events;
 using Robust.Server.Player;
+using Content.Server.Cargo.Components;
 using Content.Shared.Preferences.Loadouts;
+using Robust.Shared.Prototypes;
+using Content.Shared.Roles;
+using Content.Shared.Traits;
 using Content.Shared.Database;
 
 namespace Content.Server.Bank;
@@ -19,7 +22,6 @@ public sealed partial class BankSystem : EntitySystem
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-
     private ISawmill _log = default!;
 
     public override void Initialize()
@@ -63,10 +65,10 @@ public sealed partial class BankSystem : EntitySystem
             bank.Balance,
             profile.Appearance,
             profile.SpawnPriority,
-            profile.JobPriorities,
+            new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities), // Frontier Merge
             profile.PreferenceUnavailable,
-            profile.AntagPreferences,
-            profile.TraitPreferences,
+            new HashSet<ProtoId<AntagPrototype>>(profile.AntagPreferences), // Frontier Merge
+            new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences), // Frontier Merge
             new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState
@@ -103,9 +105,7 @@ public sealed partial class BankSystem : EntitySystem
             _log.Info($"{mobUid} has insufficient funds");
             return false;
         }
-
         _adminLogger.Add(LogType.Balance, LogImpact.Medium, $"Balance change from {ToPrettyString(mobUid)}, old balance: {bank.Balance}, withdrew: {amount}");
-
         bank.Balance -= amount;
         _log.Info($"{mobUid} withdrew {amount}");
         if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
@@ -136,14 +136,8 @@ public sealed partial class BankSystem : EntitySystem
             return false;
         }
 
-        _adminLogger.Add(LogType.Balance, LogImpact.Medium, $"Balance change from {ToPrettyString(mobUid)}, old balance: {bank.Balance}, deposited: {amount}");
-
         bank.Balance += amount;
         _log.Info($"{mobUid} deposited {amount}");
-        if (_playerManager.TryGetSessionByEntity(mobUid, out var player))
-        {
-            RaiseLocalEvent(new BalanceChangedEvent(bank.Balance, player));
-        }
         Dirty(bank);
         return true;
     }
