@@ -24,6 +24,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Interaction; // Frontier
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -46,6 +47,8 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         base.Initialize();
         SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
+        SubscribeLocalEvent<AutoShootGunComponent, ActivateInWorldEvent>(OnActivateGun); // Frontier
+        SubscribeLocalEvent<AutoShootGunComponent, ComponentInit>(OnGunInit); // Frontier
     }
 
     private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
