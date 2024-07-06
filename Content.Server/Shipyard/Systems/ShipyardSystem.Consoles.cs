@@ -546,7 +546,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         TryComp<AccessComponent>(targetId, out var accessComponent);
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
-            // If the user lacks access to this shuttle, skip it.
+            // If the vessel needs access to be bought, check the user's access.
             if (!string.IsNullOrEmpty(vessel.Access))
             {
                 bool hasAccess = false;
@@ -554,6 +554,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 if (accessComponent?.Tags.Contains(vessel.Access) ?? false)
                     hasAccess = true;
 
+                // Check each group if we haven't found access already.
                 if (!hasAccess)
                 {
                     var groupIds = accessComponent?.Groups ?? new HashSet<ProtoId<AccessGroupPrototype>>();
@@ -568,6 +569,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     }
                 }
 
+                // No access to this vessel, skip to the next one.
                 if (!hasAccess)
                     continue;
             }
