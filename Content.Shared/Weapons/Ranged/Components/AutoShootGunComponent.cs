@@ -21,10 +21,12 @@ public sealed partial class AutoShootGunComponent : Component
     /// <summary>
     /// This determines whether the thruster is actually enabled for the purposes of thrust
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool IsOn;
 
     /// <summary>
     ///     Frontier - Amount of charge this needs from an APC per second to function.
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public float OriginalLoad { get; set; } = 0;
 }

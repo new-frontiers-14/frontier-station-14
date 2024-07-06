@@ -19,7 +19,7 @@ public sealed partial class GunSystem
         // Automatic firing without stopping if the AutoShootGunComponent component is exist and enabled
         var query = EntityQueryEnumerator<AutoShootGunComponent, GunComponent>();
 
-        while (query.MoveNext(out var uid, out var autoShoot, out var gun) && autoShoot.IsOn)
+        while (query.MoveNext(out var uid, out var autoShoot, out var gun))
         {
             if (!autoShoot.Enabled)
                 continue;
@@ -31,8 +31,12 @@ public sealed partial class GunSystem
         }
     }
 
+    // Frontier - Make shuttle guns require power if they have ApcPowerReceiverComponent
     private void OnGunExamine(EntityUid uid, AutoShootGunComponent component, ExaminedEvent args)
     {
+        if (!HasComp<ApcPowerReceiverComponent>(uid))
+            return;
+
         // Powered is already handled by other power components
         var enabled = Loc.GetString(component.On ? "gun-comp-enabled" : "gun-comp-disabled");
 
@@ -48,16 +52,16 @@ public sealed partial class GunSystem
 
         if (!component.On)
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0) // Frontier
-                apcPower.Load = 1; // Frontier
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0)
+                apcPower.Load = 1;
 
             DisableGun(uid, component);
             args.Handled = true;
         }
         else if (CanEnable(uid, component))
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load) // Frontier
-                apcPower.Load = component.OriginalLoad; // Frontier
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load)
+                apcPower.Load = component.OriginalLoad;
 
             EnableGun(uid, component);
             args.Handled = true;
@@ -69,6 +73,12 @@ public sealed partial class GunSystem
     /// </summary>
     public void DisableGun(EntityUid uid, AutoShootGunComponent component)
     {
+        if (!HasComp<ApcPowerReceiverComponent>(uid))
+        {
+            component.IsOn = true;
+            return;
+        }
+
         if (!component.IsOn)
         {
             return;
@@ -79,6 +89,9 @@ public sealed partial class GunSystem
 
     public bool CanEnable(EntityUid uid, AutoShootGunComponent component)
     {
+        if (!HasComp<ApcPowerReceiverComponent>(uid))
+            return true;
+
         if (!component.On)
             return false;
 
@@ -116,7 +129,7 @@ public sealed partial class GunSystem
 
     private void OnGunInit(EntityUid uid, AutoShootGunComponent component, ComponentInit args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; }
 
         if (!component.On)
         {
@@ -145,4 +158,5 @@ public sealed partial class GunSystem
             DisableGun(uid, component);
         }
     }
+    // Frontier - End of code
 }
