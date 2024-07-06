@@ -1,12 +1,11 @@
 # BASE
 - type: entity
   parent: BaseItem
-  id: WeaponChargedStaffWizardBase
-  name: battle-wizard tactical staff
+  id: WeaponChargedStaffBase
+  name: tactical battle-staff
   description: Big magic wand for big spells.
   abstract: true
   components:
-  - type: WizardStaffRechargeable
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
     layers:
@@ -34,10 +33,24 @@
   - type: StaticPrice
     price: 190
 
+- type: entity
+  id: WeaponStaffRechargeableWizard
+  abstract: true
+  components:
+  - type: WizardStaffRechargeable
+
+- type: entity
+  id: WeaponStaffRechargeableBloodCult
+  abstract: true
+  components:
+  - type: BloodCultStaffRechargeable
+
 # VARIATIONS
 ## WIZARDS
 - type: entity
-  parent: WeaponChargedStaffWizardBase
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardLightning
   name: wizard lightning staff
   description: An acolyte-grade battle staff.
@@ -60,7 +73,9 @@
       - state: change-inhand-right
 
 - type: entity
-  parent: WeaponChargedStaffWizardBase
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
   id: WeaponChargedStaffWizardIce
   name: wizard ice staff
   description: An acolyte-grade battle staff.
@@ -95,7 +110,9 @@
 
 ## CULTISTS
 - type: entity
-  parent: WeaponChargedStaffWizardBase
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
   id: WeaponChargedStaffCultistBoltDark
   name: cultist's staff of blood bolt
   description: An acolyte-grade battle staff.
@@ -120,7 +137,9 @@
     price: 190
 
 - type: entity
-  parent: WeaponChargedStaffWizardBase
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
   id: WeaponChargedStaffCultistHand
   name: cultist's staff of blood hand
   description: An acolyte-grade battle staff.
@@ -145,7 +164,9 @@
     price: 190
 
 - type: entity
-  parent: WeaponChargedStaffWizardBase
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableBloodCult
   id: WeaponChargedStaffCultistLightning
   name: cultist's staff of blood lightning
   description: An acolyte-grade battle staff.

@@ -1,7 +1,6 @@
-
 - type: entity
   parent: BaseMachinePowered
-  id: WizardStaffRecharger
+  id: StaffRechargerWizard
   name: staff altar
   placement:
     mode: SnapgridCenter
@@ -66,3 +65,20 @@
         whitelist:
           components:
           - WizardStaffRechargeable
+
+- type: entity
+  parent: StaffRechargerWizard
+  id: StaffRechargerCult
+  name: cult staff altar
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/BloodCult/recharger_altar_cult.rsi
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - BloodCultStaffRechargeable
