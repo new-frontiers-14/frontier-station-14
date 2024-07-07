@@ -38,5 +38,22 @@
       - id: RubberStampPsychologist
 
 - type: entity
-  id: LockerWallChemistryFilled
-  parent: [ LockerWallChemistry, LockerChemistryFilled ]
+  id: LockerChemistryNFFill
+  abstract: true # Should not be instantiated - use this as a fill.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSyringe
+      - id: BoxBeaker
+        amount: 2
+      - id: BoxPillCanister
+      - id: BoxBottle
+      - id: BoxVial
+      - id: ChemBag
+      - id: ClothingHandsGlovesLatex
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingMaskSterile
+#      - id: HandLabeler
+      - id: ClothingEyesGlassesChemical # Frontier
+      - id: SheetPlasma1 # Frontier
+        amount: 3

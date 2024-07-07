@@ -110,24 +110,24 @@
 - type: entity
   id: LockerChemistryFilled
   suffix: Filled
-  parent: LockerChemistry
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSyringe
-      - id: BoxBeaker
-        amount: 2
-      - id: BoxPillCanister
-      - id: BoxBottle
-      - id: BoxVial
-      - id: ChemBag
-      - id: ClothingHandsGlovesLatex
-#      - id: ClothingHeadsetMedical # Frontier
-      - id: ClothingMaskSterile
-#      - id: HandLabeler
-      - id: ClothingEyesGlassesChemical # Frontier
-      - id: SheetPlasma1 # Frontier
-        amount: 3
+  parent: [LockerChemistry, LockerChemistryNFFill] # Frontier: push fill to LockerChemistryNFFill
+#   components: # Frontier
+#   - type: StorageFill # Frontier
+#     contents: # Frontier
+#       - id: BoxSyringe # Frontier
+#       - id: BoxBeaker # Frontier
+#         amount: 2 # Frontier
+#       - id: BoxPillCanister # Frontier
+#       - id: BoxBottle # Frontier
+#       - id: BoxVial # Frontier
+#       - id: ChemBag # Frontier
+#       - id: ClothingHandsGlovesLatex # Frontier
+# #      - id: ClothingHeadsetMedical # Frontier
+#       - id: ClothingMaskSterile # Frontier
+# #      - id: HandLabeler # Frontier
+#       - id: ClothingEyesGlassesChemical # Frontier
+#       - id: SheetPlasma1 # Frontier
+#         amount: 3 # Frontier
 
 - type: entity
   id: LockerParamedicFilled
