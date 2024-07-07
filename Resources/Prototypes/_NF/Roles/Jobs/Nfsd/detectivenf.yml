@@ -14,14 +14,9 @@
   supervisors: job-supervisors-bailiff
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Detective
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
