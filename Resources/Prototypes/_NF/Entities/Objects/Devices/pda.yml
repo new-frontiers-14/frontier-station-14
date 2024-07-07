@@ -99,7 +99,7 @@
   description: Red to hide the stains of passenger blood.
   components:
   - type: Pda
-    id: SecurityGuardNFIDCard
+    id: SecurityGuardIDCard
     state: pda-security
   - type: PdaBorderColor
     borderColor: "#A32D26"
@@ -383,7 +383,6 @@
   parent: PiratePDA
   id: PirateNFPDA
   name: pirate PDA
-  description: Yargh!
   components:
   - type: Pda
     id: PirateNFIDCard
@@ -392,6 +391,7 @@
 - type: entity
   parent: PiratePDA
   id: PirateCaptainNFPDA
+  name: pirate captain PDA
   components:
   - type: Pda
     id: PirateCaptainNFIDCard
@@ -400,8 +400,7 @@
 - type: entity
   parent: PiratePDA
   id: PirateFirstMateNFPDA
-  name: pirate PDA
-  description: Yargh!
+  name: pirate first mate PDA
   components:
   - type: Pda
     id: PirateFirstMateNFIDCard
