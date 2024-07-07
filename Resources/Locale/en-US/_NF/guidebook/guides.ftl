@@ -24,6 +24,7 @@ guide-entry-expedition-xenos = Xenos
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
 guide-entry-shipyard-ceres = Ceres
