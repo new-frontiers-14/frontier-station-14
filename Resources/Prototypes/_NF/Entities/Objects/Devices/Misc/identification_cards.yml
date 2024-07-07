@@ -58,14 +58,12 @@
     - state: nfsd
     - state: idnfsdcadet
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: nfsd
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: DeputyIDCard
   name: nfsd deputy ID card
   components:
@@ -76,15 +74,9 @@
     layers:
     - state: nfsd
     - state: idnfsddeputy
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
-  - type: Item
-    heldPrefix: nfsd
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: BrigmedicNFIDCard
   name: nfsd brigmedic ID card
   components:
@@ -95,15 +87,9 @@
     layers:
     - state: nfsd
     - state: idnfsdbrigmed
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
-  - type: Item
-    heldPrefix: nfsd
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: SergeantIDCard
   name: nfsd sergeant ID card
   components:
@@ -114,15 +100,9 @@
     layers:
     - state: nfsd
     - state: idnfsdsergeant
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
-  - type: Item
-    heldPrefix: nfsd
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: BailiffIDCard
   name: nfsd bailiff ID card
   components:
@@ -133,15 +113,9 @@
     layers:
     - state: nfsd
     - state: idnfsdbailiff
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
-  - type: Item
-    heldPrefix: nfsd
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: ShriffIDCard
   name: nfsd sheriff ID card
   components:
@@ -152,15 +126,11 @@
     layers:
     - state: silver
     - state: idnfsdsheriff
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
   - type: Item
     heldPrefix: silver
 
 - type: entity
-  parent: IDCardStandard
+  parent: CadetIDCard
   id: DetectiveNFIDCard
   name: detective ID card
   components:
@@ -171,12 +141,6 @@
     layers:
     - state: nfsd
     - state: idnfsddetective
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _NF/Objects/Misc/id_cards.rsi
-  - type: Item
-    heldPrefix: nfsd
 
 - type: entity
   parent: SecurityIDCard
@@ -189,10 +153,8 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: securityguard
+    - state: idsecurityguard
   - type: Clothing
-    slots:
-    - idcard
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
@@ -221,7 +183,7 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
-    - state: idheadofpersonnel
+    - state: idstationrepresentative
   - type: Item
     heldPrefix: silver
 
@@ -237,7 +199,7 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: janitor
+    - state: idjanitor
 
 - type: entity
   parent: MailCarrierIDCard
@@ -297,7 +259,7 @@
     heldPrefix: pirate
 
 - type: entity
-  parent: PirateCaptainIDCard
+  parent: PirateNFIDCard
   id: PirateCaptainNFIDCard
   name: pirate captain ID card
   description: Ahoy, see how it glistens!
@@ -309,11 +271,9 @@
     layers:
     - state: pirate
     - state: idpiratecaptain
-  - type: Item
-    heldPrefix: pirate
 
 - type: entity
-  parent: PirateIDCard
+  parent: PirateNFIDCard
   id: PirateFirstMateNFIDCard
   name: pirate first mate ID card
   components:
@@ -324,6 +284,3 @@
     layers:
     - state: pirate
     - state: idpiratefirstmate
-  - type: Item
-    heldPrefix: pirate
-
