@@ -380,15 +380,6 @@
     state: pda-sr
 
 - type: entity
-  parent: JanitorPDA
-  id: JanitorNFPDA
-  suffix: Frontier
-  components:
-  - type: Pda
-    id: JanitorNFIDCard
-    state: pda-janitor
-
-- type: entity
   parent: PiratePDA
   id: PirateNFPDA
   name: pirate PDA
@@ -415,3 +406,20 @@
   - type: Pda
     id: PirateFirstMateNFIDCard
     state: pda-pirate
+
+- type: entity
+  parent: PassengerPDA
+  id: ContractorPDA
+  name: contractor PDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda
+
+- type: entity
+  parent: ClearPDA
+  id: ClearNFPDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda-clear
