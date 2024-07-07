@@ -1,4 +1,4 @@
-# Wall locker base: must be inherited AFTER base locker type.
+# Wall locker base: must be in the list BEFORE base locker type (inherited after).
 - type: entity
   id: NFLockerWallBase
   abstract: true
@@ -17,6 +17,7 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/wall_locker.rsi
+  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: med
     stateDoorOpen: med_open
@@ -24,4 +25,4 @@
 
 - type: entity
   id: LockerWallChemistryFilled
-  parent: [LockerChemistryFilled, NFLockerWallBase, LockerWallChemistry]
+  parent: [LockerWallChemistry, NFLockerWallBase, LockerChemistryFilled]
