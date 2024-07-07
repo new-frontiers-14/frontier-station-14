@@ -172,24 +172,9 @@
     job: StationRepresentative
 
 - type: entity
-  parent: JanitorIDCard
-  id: JanitorNFIDCard
-  name: janitor ID card
-  suffix: Frontier
-  components:
-  - type: PresetIdCard
-    job: Janitor
-  - type: Sprite
-    sprite: _NF/Objects/Misc/id_cards.rsi
-    layers:
-    - state: default
-    - state: idjanitor
-
-- type: entity
   parent: MailCarrierIDCard
   id: MailCarrierNFIDCard
   name: mail carrier ID card
-  suffix: Frontier
   components:
   - type: PresetIdCard
     job: MailCarrier
@@ -203,7 +188,6 @@
   parent: ValetIDCard
   id: ValetNFIDCard
   name: valet ID card
-  suffix: Frontier
   components:
   - type: PresetIdCard
     job: Valet
