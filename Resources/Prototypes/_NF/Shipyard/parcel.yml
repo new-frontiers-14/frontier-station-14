@@ -9,25 +9,25 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: MailTruck
-  name: NC Mail Truck
-  description: A cramped yet reliable shuttle for delivering packages.
+  id: Parcel
+  name: NC Parcel
+  description: A reliable shuttle for delivering mail and packages.
   price: 16000
   category: Small
   group: None
-  shuttlePath: /Maps/_NF/Shuttles/mailtruck.yml
+  shuttlePath: /Maps/_NF/Shuttles/parcel.yml
 
 - type: gameMap
-  id: MailTruck
-  mapName: 'NC Mail Truck'
-  mapPath: /Maps/_NF/Shuttles/mailtruck.yml
+  id: Parcel
+  mapName: 'NC Parcel'
+  mapPath: /Maps/_NF/Shuttles/parcel.yml
   minPlayers: 0
   stations:
-    MailTruck:
+    Parcel:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Mail Truck {1}'
+          mapNameTemplate: 'Parcel {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
