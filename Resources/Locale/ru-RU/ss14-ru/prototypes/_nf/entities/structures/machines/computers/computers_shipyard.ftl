@@ -1,7 +1,7 @@
 ent-ComputerShipyard = консоль верфи
     .desc = Используется для продажи и покупки шаттлов.
-ent-ComputerShipyardSecurity = консоль охраной верфи
-    .desc = Используется для вступления в силы NanoTrasen.
+ent-ComputerShipyardSecurity = консоль патрульной службы
+    .desc = Используется для вступления в силы Департамента Службы Безопасности Фронтира.
 ent-ComputerShipyardNfsd = консоль верфи ДСБФ
     .desc = Используется для покупки шаттлов ДСБФ.
 ent-ComputerShipyardSyndicate = консоль верфи синдиката
