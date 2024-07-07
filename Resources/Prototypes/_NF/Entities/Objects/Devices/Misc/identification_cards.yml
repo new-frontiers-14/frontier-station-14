@@ -132,7 +132,7 @@
 - type: entity
   parent: CadetIDCard
   id: DetectiveNFIDCard
-  name: detective ID card
+  name: nfsd detective ID card
   components:
   - type: PresetIdCard
     job: DetectiveNF
@@ -215,6 +215,7 @@
   id: PirateNFIDCard
   name: pirate ID card
   description: Garr, be this wood?
+  noSpawn: false # true in parent
   components:
   - type: PresetIdCard
     job: Pirate
