@@ -164,12 +164,19 @@
   id: DetectiveNFIDCard
   name: detective ID card
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: iddetective
   - type: PresetIdCard
     job: DetectiveNF
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsddetective
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: nfsd
 
 - type: entity
   parent: SecurityIDCard
@@ -178,19 +185,28 @@
   components:
   - type: PresetIdCard
     job: SecurityGuard
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: securityguard
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTMailCarrierIDCard
   name: ERT mail carrier ID card
   components:
+  - type: IdCard
+    jobTitle: ERT Mail Carrier
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
     - state: gold
     - state: ert_mailcarrier
-  - type: IdCard
-    jobTitle: ERT Mail Carrier
   - type: Clothing
     sprite: _NF/Objects/Misc/id_cards.rsi
 
@@ -199,11 +215,115 @@
   id: SrIDCard
   name: station representative ID card
   components:
+  - type: PresetIdCard
+    job: StationRepresentative
   - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
     - state: idheadofpersonnel
   - type: Item
     heldPrefix: silver
+
+- type: entity
+  parent: JanitorIDCard
+  id: JanitorNFIDCard
+  name: janitor ID card
+  suffix: Frontier
+  components:
   - type: PresetIdCard
-    job: StationRepresentative
+    job: Janitor
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: janitor
+
+- type: entity
+  parent: MailCarrierIDCard
+  id: MailCarrierNFIDCard
+  name: mail carrier ID card
+  suffix: Frontier
+  components:
+  - type: PresetIdCard
+    job: MailCarrier
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idmailcarrier
+
+- type: entity
+  parent: ValetIDCard
+  id: ValetNFIDCard
+  name: valet ID card
+  suffix: Frontier
+  components:
+  - type: PresetIdCard
+    job: Valet
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idvalet
+
+- type: entity
+  parent: PassengerIDCard
+  id: ContractorIDCard
+  name: contractor ID card
+  components:
+  - type: PresetIdCard
+    job: Contractor
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idcontractor
+
+- type: entity
+  parent: PirateIDCard
+  id: PirateNFIDCard
+  name: pirate ID card
+  description: Garr, be this wood?
+  components:
+  - type: PresetIdCard
+    job: Pirate
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: pirate
+    - state: idpirate
+  - type: Item
+    heldPrefix: pirate
+
+- type: entity
+  parent: PirateCaptainIDCard
+  id: PirateCaptainNFIDCard
+  name: pirate captain ID card
+  description: Ahoy, see how it glistens!
+  components:
+  - type: PresetIdCard
+    job: PirateCaptain
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: pirate
+    - state: idpiratecaptain
+  - type: Item
+    heldPrefix: pirate
+
+- type: entity
+  parent: PirateIDCard
+  id: PirateFirstMateNFIDCard
+  name: pirate first mate ID card
+  components:
+  - type: PresetIdCard
+    job: PirateFirstMate
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: pirate
+    - state: idpiratefirstmate
+  - type: Item
+    heldPrefix: pirate
+
