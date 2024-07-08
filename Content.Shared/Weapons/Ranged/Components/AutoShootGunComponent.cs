@@ -21,12 +21,10 @@ public sealed partial class AutoShootGunComponent : Component
     /// <summary>
     /// Frontier - Whether or not the gun can actually fire (i.e. switched on and receiving power if needed)
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     public bool CanFire;
 
     /// <summary>
     /// Frontier - Amount of power this gun needs from an APC in Watts to function.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
     public float OriginalLoad { get; set; } = 0;
 }
