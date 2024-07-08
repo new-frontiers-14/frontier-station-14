@@ -2,6 +2,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Bank;
+using Content.Server.Shipyard.Components;
 using Content.Shared.Bank.Components;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Shipyard.BUI;
@@ -38,6 +39,7 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
+using Content.Server.Construction.Completions;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -59,6 +61,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
 
     public void InitializeConsole()
     {
@@ -130,19 +133,37 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (bank.Balance <= vessel.Price)
+        // Keep track of whether or not a voucher was used.
+        // TODO: voucher purchase should be done in a separate function.
+        bool voucherUsed = false;
+        if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-            PlayDenySound(uid, component);
-            return;
+            if (voucher!.RedemptionsLeft <= 0)
+            {
+                ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-voucher-redemptions"));
+                PlayDenySound(uid, component);
+                return;
+            }
+            voucher.RedemptionsLeft--;
+            voucherUsed = true;
+        }
+        else
+        {
+            if (bank.Balance <= vessel.Price)
+            {
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
+                PlayDenySound(uid, component);
+                return;
+            }
+
+            if (!_bank.TryBankWithdraw(player, vessel.Price))
+            {
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
+                PlayDenySound(uid, component);
+                return;
+            }
         }
 
-        if (!_bank.TryBankWithdraw(player, vessel.Price))
-        {
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-            PlayDenySound(uid, component);
-            return;
-        }
 
         if (!TryPurchaseShuttle((EntityUid) station, vessel.ShuttlePath.ToString(), out var shuttle))
         {
@@ -183,8 +204,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
         AssignShuttleDeedProperties(deedShuttle, shuttle.Owner, name, player);
 
-        if (!string.IsNullOrEmpty(component.NewJobTitle))
-            _idSystem.TryChangeJobTitle(targetId, component.NewJobTitle, idCard, player);
+        if (!voucherUsed)
+        {
+            if (!string.IsNullOrEmpty(component.NewJobTitle))
+                _idSystem.TryChangeJobTitle(targetId, component.NewJobTitle, idCard, player);
+        }
 
         // The following block of code is entirely to do with trying to sanely handle moving records from station to station.
         // it is ass.
@@ -227,17 +251,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
 
         int sellValue = 0;
-        if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
-            sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
+        if (!voucherUsed)
+        {
+            if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
+                sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        sellValue -= CalculateSalesTax(component, sellValue);
+            sellValue -= CalculateSalesTax(component, sellValue);
+        }
 
         SendPurchaseMessage(uid, player, name, component.ShipyardChannel, secret: false);
         if (component.SecretShipyardChannel is { } secretChannel)
             SendPurchaseMessage(uid, player, name, secretChannel, secret: true);
 
         PlayConfirmSound(uid, component);
-        _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
+        if (voucherUsed)
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} with a voucher via {ToPrettyString(component.Owner)}");
+        else
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
+
         RefreshState(uid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
@@ -330,29 +361,57 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         RemComp<ShuttleDeedComponent>(targetId);
 
-        var tax = CalculateSalesTax(component, bill);
-        if (tax != 0)
+        // If this is a ship voucher component
+        bool voucherUsed = false;
+        if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-
-            while (query.MoveNext(out _, out var comp))
+            voucherUsed = true;
+        }
+        else
+        {
+            var tax = CalculateSalesTax(component, bill);
+            if (tax != 0)
             {
-                _cargo.DeductFunds(comp, -tax);
+                var query = EntityQueryEnumerator<StationBankAccountComponent>();
+
+                while (query.MoveNext(out _, out var comp))
+                {
+                    _cargo.DeductFunds(comp, -tax);
+                }
+
+                bill -= tax;
             }
 
-            bill -= tax;
+            _bank.TryBankDeposit(player, bill);
+            PlayConfirmSound(uid, component);
         }
-
-        _bank.TryBankDeposit(player, bill);
-        PlayConfirmSound(uid, component);
 
         var name = GetFullName(deed);
         SendSellMessage(uid, deed.ShuttleOwner!, name, component.ShipyardChannel, player, secret: false);
         if (component.SecretShipyardChannel is { } secretChannel)
             SendSellMessage(uid, deed.ShuttleOwner!, name, secretChannel, player, secret: true);
 
-        _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
+        // good lord rewrite this
+        if (voucherUsed)
+        {
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
+
+            // No uses on the voucher left, destroy it.
+            if (voucher!.RedemptionsLeft <= 0 && voucher!.DestroyOnEmpty)
+            {
+                _entityManager.DeleteEntity(targetId);
+                RefreshState(uid, bank.Balance, true, null, 0, null, (ShipyardConsoleUiKey) args.UiKey);
+            }
+            else
+            {
+                RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
+            }
+        }
+        else
+        {
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
+            RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
+        }
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
