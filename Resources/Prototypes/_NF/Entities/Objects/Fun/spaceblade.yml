@@ -2,7 +2,7 @@
   id: SpaceBlade
   parent: AirTank
   name: space blade
-  description: Let it rip
+  description: Let it drip
   abstract: true
   components:
   - type: GasTank
@@ -24,9 +24,12 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 0.1
         mask:
-        - SmallMobMask #this is so they can go under plastic flaps
+        - InteractImpassable
         layer:
-        - MachineLayer
+        - InteractImpassable
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Fun/spaceblade.rsi
   - type: Sprite
     sprite: _NF/Objects/Fun/spaceblade.rsi
     state: redorange
@@ -47,7 +50,7 @@
   parent: SpaceBlade
 
 - type: entity
-  id: SpaceBladeRedBlue
+  id: SpaceBladeBlue
   parent: SpaceBlade
   components:
   - type: Sprite
@@ -102,6 +105,28 @@
   components:
   - type: Sprite
     state: rune
+
+- type: entity
+  id: SpaceBladeMc
+  parent: SpaceBlade
+  description: Let it McDrip
+  components:
+  - type: Sprite
+    state: mcblade
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/sizzle.ogg
+      params:
+        playOffsetSeconds: 3
+  - type: UseDelay
+    delay: 2.0
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Effects/sizzle.ogg
+      params:
+        variation: 0.65
+        volume: -5
+        playOffsetSeconds: 3
 
 - type: entity
   id: SpaceBladeSec
