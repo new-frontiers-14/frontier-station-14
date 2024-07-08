@@ -144,6 +144,9 @@
   - type: Produce
     seedId: towercap
   - type: Log
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Wood: 200
 
 - type: entity
   name: steel-cap log
@@ -163,6 +166,9 @@
   - type: Log
     spawnedPrototype: SheetSteel1
     spawnCount: 1
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Steel: 100
 
 - type: entity
   name: nettle
@@ -1066,6 +1072,9 @@
     state: slice
   - type: Extractable
     grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Slice
 
 - type: entity
   name: pineapple slice
@@ -1086,6 +1095,7 @@
   - type: Tag
     tags:
     - Fruit
+    - Slice
 
 - type: entity
   name: onion slice
@@ -1109,6 +1119,10 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
 
 - type: entity
   name: red onion slice
@@ -1132,6 +1146,10 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
 
 - type: entity
   name: chili pepper
@@ -1648,6 +1666,10 @@
       reagents:
       - ReagentId: JuiceWatermelon
         Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Slice
 
 - type: entity
   name: grapes

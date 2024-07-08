@@ -8,6 +8,69 @@
     sprite: _NF/Clothing/Head/Hoods/Coat/arcadia.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/Coat/arcadia.rsi
+  - type: FactionClothing
+    faction: ContrabandClothing
+
+# Acid raincoat hoods
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHoodAcidRaincoat
+  noSpawn: true
+  name: acid raincoat hood
+  description: Mostly transparent raincoat hood made out of acid resistant polymers.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: Tag
+    tags:
+    - HidesHair
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatHoodAcidRaincoat
+  id: ClothingHeadHatHoodAcidRaincoatBlue
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_blue.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_blue.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodAcidRaincoat
+  id: ClothingHeadHatHoodAcidRaincoatGreen
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_green.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodAcidRaincoat
+  id: ClothingHeadHatHoodAcidRaincoatMagenta
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_magenta.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_magenta.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodAcidRaincoat
+  id: ClothingHeadHatHoodAcidRaincoatYellow
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_yellow.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/acid_raincoat_yellow.rsi
 
 # Syndicate armored bio suit hood
 - type: entity
@@ -23,6 +86,8 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
   - type: Contraband
+  - type: FactionClothing
+    faction: ContrabandClothing
 
 - type: entity # for looks only
   parent: ClothingHeadHatHoodWinterBase
@@ -35,6 +100,8 @@
     sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
+  - type: FactionClothing
+    faction: ContrabandClothing
 
 - type: entity
   parent: ClothingHeadBase
@@ -51,6 +118,8 @@
     - HidesHair
     - WhitelistChameleon
   - type: Contraband
+  - type: FactionClothing
+    faction: ContrabandClothing
 
 - type: entity # for looks only
   parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic ] # hehe
@@ -59,3 +128,5 @@
   name: cult hood
   components:
   - type: Unremoveable
+  - type: FactionClothing
+    faction: ContrabandClothing

@@ -58,7 +58,7 @@
 
 # Gloves with fake guns visuals for NPCs
 - type: entity
-  parent: ClothingHandsGlovesSyntheticBase
+  parent: ClothingHandsGlovesCombat
   id: ClothingHandsGlovesColorBlackSMG
   name: combat gloves
   suffix: smg
@@ -66,15 +66,19 @@
   noSpawn: true
   components:
   - type: Unremoveable
-  - type: GloveHeatResistance
-    heatResistance: 1400
-  - type: Insulated
-  - type: Fiber
-    fiberColor: fibers-black
   - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_smg.rsi
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#535353"
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_smg.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -83,10 +87,14 @@
   suffix: ak
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_ak.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_ak.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -95,10 +103,14 @@
   suffix: china lake
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_china_lake.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_china_lake.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -107,10 +119,142 @@
   suffix: pistol
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_pistol.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_pistol.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+        state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercPistol
+  name: combat gloves
+  suffix: pistol
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercbattle.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+        state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercRevolvers
+  name: combat gloves
+  suffix: double revolvers
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
+        state: inhand-right
+      - sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
+        state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercShotgun
+  name: combat gloves
+  suffix: shotgun
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercMosin
+  name: combat gloves
+  suffix: mosin
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercbattle.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercRepeater
+  name: combat gloves
+  suffix: repeater
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _NF/Objects/Weapons/Guns/Snipers/repeater.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercHatchet
+  name: combat gloves
+  suffix: hatchet
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/mercbattle.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Melee/shields.rsi
+        state: metal-inhand-left
+      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+        state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercMachete
+  name: combat gloves
+  suffix: hatchet
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Melee/shields.rsi
+        state: metal-inhand-left
+      - sprite: Objects/Weapons/Melee/machete.rsi
+        state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorMercLaserNSaw
+  name: combat gloves
+  suffix: laser and saw
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+        state: inhand-left-3
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: electric-inhand-right
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -119,10 +263,14 @@
   suffix: python
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_python.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_python.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -131,10 +279,14 @@
   suffix: shotgun
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_shotgun.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_shotgun.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -143,10 +295,14 @@
   suffix: spray nozzle
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_spray_nozzle.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_spray_nozzle.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -155,10 +311,14 @@
   suffix: crossbow
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_crossbow.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_crossbow.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi
+        state: inhand-left
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
@@ -167,7 +327,111 @@
   suffix: laser pistol
   noSpawn: true
   components:
-  - type: Sprite
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
   - type: Clothing
-    sprite: _NF/Clothing/Hands/Gloves/npc_guns_visuals/npc_laser_pistol.rsi
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        color: "#535353"
+      - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+        state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedGlaive
+  name: wielded weapon
+  suffix: crusher glaive
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponDrill
+  name: wielded weapon
+  suffix: mining drill
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Tools/handdrill.rsi
+        state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedPickaxe
+  name: wielded weapon
+  suffix: Pickaxe
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Melee/pickaxe.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponPkaFlashlight
+  name: wielded weapon
+  suffix: PKA, flashlifght
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+        state: inhand-right
+      - sprite: Objects/Tools/flashlight.rsi
+        state: inhand-left
+      - sprite: Objects/Tools/flashlight.rsi
+        state: inhand-left-light
+        shader: unshaded
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponWieldedPka
+  name: wielded weapon
+  suffix: PKA
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+        state: wielded-inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponSawnOffPkaDagger
+  name: wielded weapon
+  suffix: sawn-off PKA, crusher dagger
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-right
+      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+        state: inhand-left
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponSawnOffPkas
+  name: wielded weapon
+  suffix: double sawn-off PKAs
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-left
+      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+        state: inhand-right

@@ -43,6 +43,8 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasMixerComponent, GasMixerToggleStatusMessage>(OnToggleStatusMessage);
 
             SubscribeLocalEvent<GasMixerComponent, AtmosDeviceDisabledEvent>(OnMixerLeaveAtmosphere);
+
+            SubscribeLocalEvent<GasMixerComponent, MapInitEvent>(OnMapInit); // Frontier
         }
 
         private void OnInit(EntityUid uid, GasMixerComponent mixer, ComponentInit args)
@@ -139,6 +141,9 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         private void OnMixerActivate(EntityUid uid, GasMixerComponent mixer, ActivateInWorldEvent args)
         {
+            if (args.Handled || !args.Complex)
+                return;
+
             if (!EntityManager.TryGetComponent(args.User, out ActorComponent? actor))
                 return;
 
@@ -231,6 +236,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             }
 
             args.DeviceFlipped = inletOne != null && inletTwo != null && inletOne.CurrentPipeDirection.ToDirection() == inletTwo.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
+        }
+
+        private void OnMapInit(EntityUid uid, GasMixerComponent mixer, MapInitEvent args) // Frontier - Init on map
+        {
+            if (mixer.StartOnMapInit)
+            {
+                mixer.Enabled = true;
+                DirtyUI(uid, mixer);
+
+                UpdateAppearance(uid, mixer);
+                _userInterfaceSystem.CloseUi(uid, GasFilterUiKey.Key);
+            }
         }
     }
 }
