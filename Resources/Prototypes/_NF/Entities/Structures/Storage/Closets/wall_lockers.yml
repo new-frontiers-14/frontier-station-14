@@ -1,18 +1,15 @@
-# Wall locker base: must be in the list BEFORE base locker type (inherited after).
 - type: entity
-  id: NFLockerWallBase
+  parent: BaseStructureUnanchorable
+  id: LockerWallBase
   abstract: true
   components:
-  - type: Physics
-    bodyType: Static
-  - type: Transform
-    anchored: true
-  - type: Anchorable
-    flags: None # Do not let this be anchored or unanchored.  It's a fixture on a wall.
+  - type: Physics # Mimicing existing wall lockers
+    bodyType: Static # Unmoveable
+    canCollide: false # Passthrough
 
 - type: entity
   id: LockerWallChemistry
-  parent: [LockerWallMedical, NFLockerWallBase]
+  parent: [LockerWallMedical, LockerWallBase]
   name: chemistry wall locker
   components:
   - type: Sprite
