@@ -31,7 +31,9 @@ public sealed partial class GunSystem
         }
     }
 
-    // Frontier - Make shuttle guns require power if they have ApcPowerReceiverComponent
+    // New Frontiers - Shuttle Gun Power Draw - makes shuttle guns require power if they
+    // have an ApcPowerReceiverComponent
+    // This code is licensed under AGPLv3. See AGPLv3.txt
     private void OnGunExamine(EntityUid uid, AutoShootGunComponent component, ExaminedEvent args)
     {
         if (!HasComp<ApcPowerReceiverComponent>(uid))
@@ -73,73 +75,53 @@ public sealed partial class GunSystem
     /// </summary>
     public void DisableGun(EntityUid uid, AutoShootGunComponent component)
     {
-        if (!HasComp<ApcPowerReceiverComponent>(uid))
-        {
-            component.IsOn = true;
-            return;
-        }
-
-        if (!component.IsOn)
-        {
-            return;
-        }
-
-        component.IsOn = false;
+        if (component.CanFire)
+            component.CanFire = false;
     }
 
     public bool CanEnable(EntityUid uid, AutoShootGunComponent component)
     {
+        var xform = Transform(uid);
+
+        // Must be anchored to fire.
+        if (!xform.Anchored)
+            return false;
+
+        // No power needed? Always works.
         if (!HasComp<ApcPowerReceiverComponent>(uid))
             return true;
 
+        // Not switched on? Won't work.
         if (!component.On)
             return false;
 
-        var xform = Transform(uid);
-
-        if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
-        {
-            return false;
-        }
-
-        return true;
+        return this.IsPowered(uid, EntityManager);
     }
 
     public void EnableGun(EntityUid uid, AutoShootGunComponent component, TransformComponent? xform = null)
     {
-        if (component.IsOn)
-        {
-            return;
-        }
-
-        component.IsOn = true;
+        if (!component.CanFire)
+            component.CanFire = true;
     }
 
     private void OnAnchorChange(EntityUid uid, AutoShootGunComponent component, ref AnchorStateChangedEvent args)
     {
         if (args.Anchored && CanEnable(uid, component))
-        {
             EnableGun(uid, component);
-        }
         else
-        {
             DisableGun(uid, component);
-        }
     }
 
     private void OnGunInit(EntityUid uid, AutoShootGunComponent component, ComponentInit args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; }
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0)
+            component.OriginalLoad = apcPower.Load;
 
         if (!component.On)
-        {
             return;
-        }
 
         if (CanEnable(uid, component))
-        {
             EnableGun(uid, component);
-        }
     }
 
     private void OnGunShutdown(EntityUid uid, AutoShootGunComponent component, ComponentShutdown args)
@@ -150,13 +132,9 @@ public sealed partial class GunSystem
     private void OnPowerChange(EntityUid uid, AutoShootGunComponent component, ref PowerChangedEvent args)
     {
         if (args.Powered && CanEnable(uid, component))
-        {
             EnableGun(uid, component);
-        }
         else
-        {
             DisableGun(uid, component);
-        }
     }
-    // Frontier - End of code
+    // End of modified code
 }

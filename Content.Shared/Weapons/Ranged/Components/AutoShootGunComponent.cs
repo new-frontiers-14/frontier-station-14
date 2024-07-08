@@ -13,19 +13,19 @@ public sealed partial class AutoShootGunComponent : Component
     public bool Enabled;
 
     /// <summary>
-    /// Frontier - Whether the gun has been force to be enabled / disabled (e.g. VV, interaction, etc.)
+    /// Frontier - Whether the gun is switched on (e.g. through user interaction)
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool On { get; set; } = true;
 
     /// <summary>
-    /// Frontier - This determines whether the gun is actually enabled for the purposes of shotting
+    /// Frontier - Whether or not the gun can actually fire (i.e. switched on and receiving power if needed)
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool IsOn;
+    public bool CanFire;
 
     /// <summary>
-    ///     Frontier - Amount of charge this gun needs from an APC per second to function.
+    /// Frontier - Amount of power this gun needs from an APC in Watts to function.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public float OriginalLoad { get; set; } = 0;
