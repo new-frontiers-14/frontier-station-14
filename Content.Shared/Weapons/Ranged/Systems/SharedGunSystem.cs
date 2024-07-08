@@ -228,6 +228,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun)
     {
+        if (TryComp<AutoShootGunComponent>(gunUid, out var auto) && !auto.CanFire) // Frontier
+            return; // Frontier
+
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
             return;

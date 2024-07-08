@@ -35,6 +35,10 @@ public sealed partial class NavScreen : BoxContainer
 
         // Frontier - IFF search
         IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
+
+        // Frontier - Maximum IFF Distance
+        MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8,0,0,0);
+        MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
     }
 
     // Frontier - IFF search
@@ -49,6 +53,12 @@ public sealed partial class NavScreen : BoxContainer
                 _entManager.TryGetComponent<MetaDataComponent>(entity, out var metadata);
                 return metadata != null && metadata.EntityName.Contains(text, StringComparison.OrdinalIgnoreCase);
             };
+    }
+
+    // Frontier - Maximum IFF Distance
+    private void OnRangeFilterChanged(int value)
+    {
+        NavRadar.MaximumIFFDistance = (float) value;
     }
 
     public void SetShuttle(EntityUid? shuttle)
