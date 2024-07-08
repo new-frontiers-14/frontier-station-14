@@ -5,6 +5,8 @@
   - CombatGloves
   - ColorBlackGloves
   - FingerlessGloves
+  fallbacks:
+  - CombatGloves
 
 - type: loadoutGroup
   id: SecurityGuardHead
@@ -20,6 +22,8 @@
   loadouts:
   - SecurityGuardJumpsuit
   - SecurityGuardJumpskirt
+  fallbacks:
+  - SecurityGuardJumpsuit
 
 - type: loadoutGroup
   id: SecurityGuardBackpack
@@ -29,6 +33,8 @@
   - SecurityGuardSatchel
   - SecurityGuardDuffel
   - SecurityGuardMessenger
+  fallbacks:
+  - SecurityGuardBackpack
 
 - type: loadoutGroup
   id: SecurityGuardOuterClothing
@@ -36,6 +42,8 @@
   loadouts:
   - ArmorVest
   - ArmorVestSlim
+  fallbacks:
+  - ArmorVest
 
 - type: loadoutGroup
   id: SecurityGuardShoes
@@ -44,6 +52,8 @@
   - LeatherShoes
   - CombatBoots
   - SecurityWinterBoots
+  fallbacks:
+  - LeatherShoes
 
 - type: loadoutGroup
   id: SecurityGuardBelt
@@ -51,11 +61,15 @@
   loadouts:
   - SecurityBelt
   - SecurityWebbing
+  fallbacks:
+  - SecurityBelt
 
 - type: loadoutGroup
   id: SecurityGuardPDA
   name: loadout-group-contractor-id
   loadouts:
+  - SecurityGuardSecurityGuardPDA
+  fallbacks:
   - SecurityGuardSecurityGuardPDA
 
 - type: loadoutGroup
