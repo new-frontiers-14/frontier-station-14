@@ -54,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
+    [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
 
     private bool _randomizeCharacters;
 
@@ -237,7 +238,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     }
                 }
 
-                //Frontier - if we're short on minimum count, equip fallback items in order until we meet it.
+                // New Frontiers - Loadout Fallbacks - if a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
                 if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
                     equippedItems.Count < groupPrototype.MinLimit)
                 {
@@ -255,6 +257,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                             continue;
                         }
 
+                        // Validate effects against the current character.
+                        if (!loadout.IsValid(profile!, _actors.GetSession(entity!), fallback, _dependencyCollection, out var _))
+                        {
+                            continue;
+                        }
+
                         if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
                         {
                             Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for fallback loadout {loadoutProto}");
@@ -265,12 +273,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
                         if (equippedItems.Count >= groupPrototype.MinLimit)
-                        {
                             break;
-                        }
                     }
                 }
-                // End Frontier
+                // End of modified code.
             }
 
             // Frontier: do not re-equip roleLoadout.
