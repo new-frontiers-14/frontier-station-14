@@ -1,7 +1,8 @@
 - type: entity
-  id: BasePortalAdmin
+  id: PortalAdmin
   parent: BasePortal
-  description: "This mystical portal, bathed in a soft pink glow, serves as a gateway to realms unknown. Its inviting light promises adventure and discovery, beckoning travelers to step through and explore the wonders that lie beyond. Crafted by the ancients, it holds the power to connect distant lands and times, a testament to the ingenuity and magic of its creators."
+  name: mystical portal
+  description: "A mystical portal to realms unknown. Adventure awaits!"
   components:
   - type: Sprite
     layers:
@@ -13,4 +14,4 @@
     netsync: false
   - type: Portal
     canTeleportToOtherMaps: true
-    AllowPortalsOnDifferentGrids: true
+    randomTeleport: false
