@@ -360,7 +360,7 @@ namespace Content.Server.VendingMachines
             // New Frontiers - Unlimited vending - support items with unlimited vending stock.
             // This code is licensed under AGPLv3. See AGPLv3.txt
 
-            // Only decrement entry if positive.
+            // Infinite supplies must stay infinite.
             if (entry.Amount != uint.MaxValue)
                 entry.Amount--;
             // End of modified code
