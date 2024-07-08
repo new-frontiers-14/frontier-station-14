@@ -16,11 +16,16 @@
   icon: "JobIconSeniorOfficer" # Frontier
   supervisors: job-supervisors-bailiff
   canBeAntag: false
+  access:
+  - Sergeant # Frontier
   accessGroups: # Frontier
   - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SeniorOfficerGear

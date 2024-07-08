@@ -6,11 +6,15 @@
   loadouts:
   - PirateJumpsuit
   - PirateJumpskirt
+  fallbacks:
+  - PirateJumpsuit
 
 - type: loadoutGroup
   id: PiratePDA
   name: loadout-group-contractor-id
   loadouts:
+  - PiratePirateNFPDA
+  fallbacks:
   - PiratePirateNFPDA
 
 - type: loadoutGroup
@@ -29,6 +33,8 @@
   name: loadout-group-contractor-id
   loadouts:
   - PirateCaptainPirateCaptainNFPDA
+  fallbacks:
+  - PirateCaptainPirateCaptainNFPDA
 
 # Pirate First Mate loadouts
 
@@ -36,4 +42,6 @@
   id: PirateFirstMatePDA
   name: loadout-group-contractor-id
   loadouts:
+  - PirateFirstMatePirateFirstMateNFPDA
+  fallbacks:
   - PirateFirstMatePirateFirstMateNFPDA

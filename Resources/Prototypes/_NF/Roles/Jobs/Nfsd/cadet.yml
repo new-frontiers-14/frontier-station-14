@@ -15,10 +15,13 @@
   supervisors: job-supervisors-cadet
   canBeAntag: false
   accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  - CadetNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: CadetGear

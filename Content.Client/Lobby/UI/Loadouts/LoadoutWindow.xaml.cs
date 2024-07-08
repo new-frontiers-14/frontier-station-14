@@ -49,6 +49,9 @@ public sealed partial class LoadoutWindow : FancyWindow
         //Frontier - we inject our label here but it needs recalculating every time a new item is selected,
         //so we add a new method and call it there too.
         CalculateLoadoutCost(loadout, collection);
+        // Frontier - update bank balance label text - value should not change.
+        Balance.Margin = new Thickness(5, 2, 5, 5);
+        Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", Profile.BankBalance));
     }
 
     public void RefreshLoadouts(RoleLoadout loadout, ICommonSession session, IDependencyCollection collection)
