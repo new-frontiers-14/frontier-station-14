@@ -21,6 +21,7 @@ public sealed partial class AutoShootGunComponent : Component
     /// <summary>
     /// Frontier - Whether or not the gun can actually fire (i.e. switched on and receiving power if needed)
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool CanFire;
 
     /// <summary>
