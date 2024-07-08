@@ -80,7 +80,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!TryComp<IdCardComponent>(targetId, out var idCard))
+        TryComp<IdCardComponent>(targetId, out var idCard);
+        TryComp<ShipyardVoucherComponent>(targetId, out var voucher);
+        if (idCard is null && voucher is null)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
             PlayDenySound(uid, component);
@@ -136,7 +138,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // Keep track of whether or not a voucher was used.
         // TODO: voucher purchase should be done in a separate function.
         bool voucherUsed = false;
-        if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
+        if (voucher is not null)
         {
             if (voucher!.RedemptionsLeft <= 0)
             {
@@ -581,6 +583,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return null;
     }
 
+    private struct IDShipAccesses
+    {
+        public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> Tags;
+        public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> Groups;
+    }
+
     /// <summary>
     ///   Returns all shuttle prototype IDs the given shipyard console can offer.
     /// </summary>
@@ -602,7 +610,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        TryComp<AccessComponent>(targetId, out var accessComponent);
+        // Construct access set from input type (voucher or ID card)
+        IDShipAccesses accesses;
+        if (TryComp<ShipyardVoucherComponent>(uid, out var voucher))
+        {
+            accesses.Tags = voucher.Access;
+            accesses.Groups = voucher.AccessGroups;
+        }
+        else
+        {
+            TryComp<AccessComponent>(targetId, out var accessComponent);
+            accesses.Tags = accessComponent!.Tags;
+            accesses.Groups = accessComponent!.Groups;
+        }
+
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
             // If the vessel needs access to be bought, check the user's access.
@@ -610,14 +631,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 bool hasAccess = false;
                 // Check tags
-                if (accessComponent?.Tags.Contains(vessel.Access) ?? false)
+                if (accesses.Tags.Contains(vessel.Access))
                     hasAccess = true;
 
                 // Check each group if we haven't found access already.
                 if (!hasAccess)
                 {
-                    var groupIds = accessComponent?.Groups ?? new HashSet<ProtoId<AccessGroupPrototype>>();
-                    foreach (var groupId in groupIds)
+                    foreach (var groupId in accesses.Groups)
                     {
                         var groupProto = _prototypeManager.Index(groupId);
                         if (groupProto?.Tags.Contains(vessel.Access) ?? false)
@@ -643,7 +663,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 availableShuttles.Add(vessel.ID);
             }
-
         }
 
         return availableShuttles;

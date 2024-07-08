@@ -1,3 +1,5 @@
+using Content.Shared.Access;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Shipyard.Components;
 
@@ -15,5 +17,14 @@ public sealed partial class ShipyardVoucherComponent : Component
     /// </summary>
     [DataField]
     public bool DestroyOnEmpty = false;
+
+    /// <summary>
+    ///  Access tags and groups for shipyard access.
+    /// </summary>
+    [DataField("access")]
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> Access { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
+
+    [DataField("accessGroups")]
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> AccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
 
 }

@@ -211,8 +211,8 @@
 # Placeholder entity for ship voucher card
 - type: entity
   parent: IDCardStandard # This probably needs reparenting
-  id: NfsdShipVoucher
-  name: nfsd ship voucher
+  id: NfsdSergeantShipVoucher
+  name: nfsd sergeant ship voucher
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
@@ -224,3 +224,21 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
   - type: ShipyardVoucher
     destroyOnEmpty: true
+    access:
+    - Sergeant # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
+
+- type: entity
+  parent: NfsdSergeantShipVoucher
+  id: NfsdBailiffShipVoucher
+  name: nfsd bailiff ship voucher
+  components:
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Armory
+    - Sergeant # Frontier
+    - Bailiff # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
