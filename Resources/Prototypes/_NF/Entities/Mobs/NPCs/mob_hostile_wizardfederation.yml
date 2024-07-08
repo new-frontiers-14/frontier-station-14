@@ -1,3 +1,11 @@
+## Mob base
+- type: entity
+  abstract: true
+  id: MobWizFedTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 1800 # 30 mins (max blue space event duration involving these mobs - 20 mins)
+
 - type: entity
   name: Wizard
   abstract: true
@@ -6,6 +14,7 @@
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  #- MobWizFedTimedDespawn
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -32,6 +41,10 @@
       0: Alive
       120: Critical
       160: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      72: 0.7
+      96: 0.5
   - type: Advertise
     pack: wizardhumanoidchatter
     minimumWait: 30
