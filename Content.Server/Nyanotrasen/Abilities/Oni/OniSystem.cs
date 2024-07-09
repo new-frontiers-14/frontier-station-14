@@ -32,8 +32,8 @@ namespace Content.Server.Abilities.Oni
 
             if (TryComp<GunComponent>(args.Entity, out var gun))
             {
-                // Frontier: adjust penalty for wielded malus
-                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus))
+                // Frontier: adjust penalty for wielded malus (ensuring it's actually wieldable)
+                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus) && TryComp<WieldableComponent>(args.Entity, out var _))
                 {
                     //GunWieldBonus values are stored as negative.
                     heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * GunInaccuracyFactor;
