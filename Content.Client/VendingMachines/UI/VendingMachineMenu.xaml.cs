@@ -153,11 +153,11 @@ namespace Content.Client.VendingMachines.UI
                 {
                     var price = 0.0;
 
-                    if (prototype.TryGetComponent<StaticPriceComponent>(out var staticComp))
+                    if (prototype.TryGetComponent<StaticPriceComponent>(out var staticComp) && staticComp.VendPrice > 0.0)
                     {
                         price += staticComp.VendPrice;
                     }
-                    if (prototype.TryGetComponent<StackPriceComponent>(out var stackComp))
+                    else if (prototype.TryGetComponent<StackPriceComponent>(out var stackComp) && stackComp.VendPrice > 0.0)
                     {
                         price += stackComp.VendPrice;
                     }
