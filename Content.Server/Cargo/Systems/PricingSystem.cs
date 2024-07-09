@@ -384,10 +384,15 @@ public sealed class PricingSystem : EntitySystem
     {
         var price = 0.0;
 
-        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var vendProto))
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
         {
-            var vendPrice = (StaticPriceComponent) vendProto.Component;
-            price += vendPrice.VendPrice;
+            var staticComp = (StaticPriceComponent) staticProto.Component;
+            price += staticComp.VendPrice;
+        }
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StackPriceComponent)), out var stackProto))
+        {
+            var stackComp = (StackPriceComponent) stackProto.Component;
+            price += stackComp.VendPrice;
         }
 
         return price;

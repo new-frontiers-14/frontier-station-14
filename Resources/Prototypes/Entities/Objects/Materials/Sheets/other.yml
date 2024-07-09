@@ -114,8 +114,7 @@
     - Sheet
   - type: StackPrice
     price: 10
-  - type: VendPrice # Frontier: FuelVend price
-    price: 1300 # Frontier: FuelVend price
+    vendPrice: 1300 # Frontier: FuelVend price
 # End of modified code
 
 - type: entity
@@ -233,8 +232,8 @@
         - ReagentId: Radium
           Quantity: 2
         canReact: false
-  - type: VendPrice # Frontier: FuelVend price
-    price: 3000 # Frontier: FuelVend price (TODO: rebalance crate values w/ actual fuel values of materials)
+  - type: StaticPrice # Frontier: FuelVend price (use inheritance from FoodBase)
+    vendPrice: 3000 # Frontier: FuelVend price (TODO: rebalance crate values w/ actual fuel values of materials)
 # End of modified code
 
 - type: entity
