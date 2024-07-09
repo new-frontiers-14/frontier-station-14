@@ -23,3 +23,10 @@ station-bank-other = Other
 station-bank-required = {"("}Required{")"}
 station-bank-requires-reason = NT Requires transaction details
 station-bank-unauthorized = Unauthorized!
+
+bank-atm-menu-cash-amount = ${$amount}
+bank-atm-menu-cash-error = ERR: INVALID
+
+## ATM entity
+bank-ATM-cashSlot = Cash Slot
+station-bank-ATM-cashSlot = Cash Slot

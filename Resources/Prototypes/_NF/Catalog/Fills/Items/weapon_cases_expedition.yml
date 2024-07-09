@@ -226,6 +226,19 @@
 # Rifles
 - type: entity
   parent: WeaponCaseLong
+  id: WeaponCaseLongGestioExpedition
+  suffix: Dungeon, Gestio
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleGestio
+      amount: 1
+    - id: MagazineRifleLowCapacity
+      amount: 3
+
+- type: entity
+  parent: WeaponCaseLong
   id: WeaponCaseLongLecterExpedition
   suffix: Dungeon, Lecter
   noSpawn: true
@@ -262,6 +275,21 @@
       amount: 1
     - id: MagazineRifle
       amount: 2
+
+- type: entity #made By VividPups added in with PR 1417
+  parent: WeaponCaseLong
+  id: WeaponCaseLongSVTExpedition
+  suffix: Dungeon, SVT
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSVT
+      amount: 1
+    - id: 10roundmagazine
+      amount: 2 
+   
+
 
 # Energy
 - type: entity

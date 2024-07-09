@@ -21,8 +21,8 @@ public sealed partial class AdminVerbSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultTraitorRule = "Traitor";
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DefaultNukeOpRule = "LoneOpsSpawn";
+    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no nuke op verb
+    // private const string DefaultNukeOpRule = "LoneOpsSpawn"; // Frontier: no nuke op verb
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultRevsRule = "Revolutionary";
@@ -77,20 +77,21 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(zombie);
 
-
-        Verb nukeOp = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-nuclear-operative"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/signs.rsi"), "radiation"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultNukeOpRule);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-nuclear-operative"),
-        };
-        args.Verbs.Add(nukeOp);
+        // Frontier: comment this out, no nuke op verb
+        // Verb nukeOp = new()
+        // {
+        //     Text = Loc.GetString("admin-verb-text-make-nuclear-operative"),
+        //     Category = VerbCategory.Antag,
+        //     Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/signs.rsi"), "radiation"),
+        //     Act = () =>
+        //     {
+        //         _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultNukeOpRule);
+        //     },
+        //     Impact = LogImpact.High,
+        //     Message = Loc.GetString("admin-verb-make-nuclear-operative"),
+        // };
+        // args.Verbs.Add(nukeOp);
+        // End Frontier
 
         Verb pirate = new()
         {

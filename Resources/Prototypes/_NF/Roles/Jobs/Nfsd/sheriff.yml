@@ -4,7 +4,6 @@
   description: job-description-sheriff
   playTimeTracker: JobHeadOfSecurity
   requirements:
-    - !type:WhitelistRequirement
     - !type:OverallPlaytimeRequirement
       time: 129600 # Frontier - 36 hours
     - !type:RoleTimeRequirement
@@ -16,6 +15,7 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 43200 # 12 hrs
+  whitelisted: true
   weight: 10
   startingGear: SheriffGear
   alwaysUseSpawner: true
@@ -32,6 +32,9 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SheriffGear
@@ -40,3 +43,10 @@
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: HoloprojectorNfsd # Frontier
     suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
+  storage:
+    back:
+    - RubberStampSheriff
+    - DoorRemoteNfsd
+    - NfsdTechFabFlatpack
+    - BaseSecurityUplinkRadioSheriff
+    - ClothingNeckNfsdBadgeSheriff

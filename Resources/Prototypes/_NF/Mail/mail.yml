@@ -199,7 +199,7 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
-  id: MailNFPowerTool 
+  id: MailNFPowerTool
   suffix: power tool
   components:
   - type: Mail
@@ -537,6 +537,18 @@
     - id: PlushieJester
       prob: 0.05
       orGroup: Plushie
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailNFSkub
+  suffix: skub, extended
+  components:
+  - type: Mail
+    contents:
+    - id: Skub
+    - id: ClothingHeadHatSkub
+    - id: ClothingOuterSkub
 
 # Random snacks, replaces MailChocolate (lousy animal organs)
 - type: entity
@@ -1597,8 +1609,6 @@
         orGroup: Clothes
       - id: ClothingHeadHatFancyCrown
         orGroup: Clothes
-      - id: ClothingHeadHatCone
-        orGroup: Clothes
       - id: ClothingHeadHatRichard
         orGroup: Clothes
       - id: ClothingHeadHatAnimalHeadslime
@@ -1608,6 +1618,8 @@
       - id: ClothingHeadHatCatEars
         orGroup: Clothes
       - id: ClothingEyesGlassesOutlawGlasses
+        orGroup: Clothes
+      - id: ClothingOuterSuitCarp
         orGroup: Clothes
 
 - type: entity
@@ -1803,7 +1815,7 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFTacticalMaid
   suffix: tactical maid
   components:
@@ -1813,6 +1825,7 @@
       - id: ClothingHeadHatTacticalMaidHeadband
       - id: MegaSprayBottle
       - id: ClothingHandsTacticalMaidGloves
+      - id: ClothingOuterHardsuitTacticalMaid
 
 # These could use separate sprites.  That would be a nice touch.
 - type: entity
@@ -1859,6 +1872,19 @@
   - type: Mail
     contents:
       - id: VehicleATVNF
+      - id: VehicleKeyATV
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFSkeletonMotorcycle
+  suffix: ATV
+  components:
+  - type: Mail
+    contents:
+      - id: VehicleSkeletonMotorcycleNF
+      - id: VehicleKeySkeleton
+
 
 - type: entity
   noSpawn: true
@@ -1876,6 +1902,38 @@
       amount: 2
     - id: Shinai
       amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailStationRepNFClurger
+  suffix: clurger
+  components:
+  - type: Mail
+    isPriority: true
+    isFragile: true
+    contents:
+    - id: FoodBurgerClurger
+    - id: PaperMailNFClurger
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFMime
+  suffix: mime
+  components:
+  - type: Mail
+    contents:
+      - id: PaperMailNFMime
+      - id: ClothingHeadHatBeret
+      - id: ClothingNeckScarfStripedZebra
+      - id: ClothingUniformJumpsuitMime
+      - id: ClothingMaskMime
+        orGroup: Mask
+      - id: ClothingMaskSadMime
+        orGroup: Mask
+      - id: ClothingMaskScaredMime
+        orGroup: Mask
 
 # Base Nyano mail
 
@@ -2046,3 +2104,14 @@
       maxAmount: 2
     - id: Handcuffs
       maxAmount: 2
+
+# TODO: make this more interesting
+- type: entity
+  noSpawn: true
+  parent: BaseMail
+  id: MailSecurityDonuts
+  suffix: donuts
+  components:
+  - type: Mail
+    contents:
+    - id: FoodBoxDonut
