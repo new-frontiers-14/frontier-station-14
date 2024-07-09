@@ -40,13 +40,20 @@
 
 ## Mob base
 - type: entity
+  abstract: true
+  id: MobRogueSiliconTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 1200 # 20 mins (because these mobs can't be encountered outside expeditions now)
+
+- type: entity
   name: hivemind unit
   abstract: true
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
-  - MobPassiveRegenStrong
+  #- MobRogueSiliconTimedDespawn
   id: MobRogueSiliconBase
   components:
   - type: Damageable
@@ -59,7 +66,7 @@
     group: Silicon
   - type: Bloodstream
     bloodReagent: WeldingFuel
-    bloodMaxVolume: 100
+    bloodMaxVolume: 60
   - type: MobState
     allowedStates:
     - Alive
@@ -76,6 +83,10 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -106,8 +117,8 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Heat: 2
-        Blunt: 8
+        Heat: 4
+        Blunt: 6
         Structural: 20
     soundHit:
       collection: MetalThud
@@ -131,6 +142,7 @@
   - MobRogueSiliconBase
   id: MobRogueSiliconScrapBase
   name: scrap unit
+  description: These bots come in various shapes and forms, reflecting a wide range of designs and purposes. Many seem to be put together using locally available materials, leading to their disparate appearances. Notably, some units are equipped with thrusters and embedded laser weapons.
   abstract: true
   components:
   - type: Loadout
@@ -173,6 +185,10 @@
       0: Alive
       60: Critical
       120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      36: 0.7
+      48: 0.5
   - type: Stamina
     critThreshold: 600
 
@@ -197,6 +213,7 @@
   - MobRogueSiliconBase
   id: MobRogueSiliconDroneBase
   name: drone
+  description: Hacked and reprogrammed by a rogue AI departmental drones.
   abstract: true
   components:
   - type: Loadout
@@ -219,11 +236,18 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
+  - type: Bloodstream
+    bloodReagent: WeldingFuel
+    bloodMaxVolume: 6
   - type: MobThresholds
     thresholds:
       0: Alive
       30: Critical
       90: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      18: 0.7
+      24: 0.5
   - type: Stamina
     critThreshold: 600
   - type: Gun
@@ -247,9 +271,10 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrap
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -309,9 +334,10 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThreads
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -358,9 +384,10 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapThrusters
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: RandomSprite
     available:
@@ -432,7 +459,7 @@
   parent:
   - MobRogueSiliconScrapThrusters
   id: MobRogueSiliconScrapThrustersRanged
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
@@ -453,9 +480,10 @@
 - type: entity
   parent:
   - MobRogueSiliconScrapBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconScrapFlayer
-  #noSpawn: true
+  noSpawn: true
   components:
   - type: MeleeWeapon
     attackRate: 1.0
@@ -514,7 +542,8 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneLethals
-  #noSpawn: true
+  description: Hacked by a rogue AI, these security drones are programmed to kill.
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -537,7 +566,8 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneNonLethals
-  #noSpawn: true
+  description: These engineering drones are capable of shooting disabler bolts. Dangerous in combination with other enemies.
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -563,7 +593,8 @@
   - MobRogueSiliconDroneBase
   - MobRogueSiliconProjectileBatteryAmmo
   id: MobRogueSiliconDroneScience
-  #noSpawn: true
+  description: A science drone, this rogue drone comes equipped with an experimental C.H.I.M.P. cannon.
+  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -583,14 +614,68 @@
     proto: AnomalousParticleSigmaStrong
     fireCost: 100
 
+- type: entity
+  parent:
+  - MobRogueSiliconDroneBase
+  id: MobRogueSiliconViscerator
+  name: viscerator unit
+  description: Small, quick, and nimble, these drones are designed to chase its targets through narrow areas and incapacitate those it catches. Often accompanies catcher units.
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/viscerator.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: base_lights
+      shader: unshaded
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      12: Critical
+      20: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+        BaseUnshaded: base_lights
+      Critical:
+        Base: crit
+        BaseUnshaded: crit_lights
+      Dead:
+        Base: destroyed
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      7: 0.7
+      10: 0.5
+  - type: MovementSpeedModifier
+    baseSprintSpeed : 5
+    baseWalkSpeed: 5
+  - type: MeleeWeapon
+    attackRate: 1.0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 4
+        Structural: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.250
+
 ## Tier 2
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconServo
   name: servo unit
-  #noSpawn: true
+  description: With its programming rewritten, this crash test dummy will stop at nothing in exacting its revenge.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -623,10 +708,12 @@
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconHerder
   name: herder unit
-  #noSpawn: true
+  description: This rogue silicon unit's primary directive is to corral and herd captives. Its stun prod can be used to good effect, take caution.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -680,10 +767,12 @@
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconHunter
   name: hunter unit
-  #noSpawn: true
+  description: These mobile drones are tasked with reconnaissance, threat identification, and target elimination.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -733,9 +822,11 @@
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   id: MobRogueSiliconCatcher
   name: catcher unit
-  #noSpawn: true
+  description: Equipped with bolas, this unit is designed to slow, capture, and detain targets.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -780,15 +871,26 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: SpawnMobViscerator
+    fireCost: 100
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
 
 ## Tier 3
 - type: entity
   parent:
   - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconAISimpleMelee
   id: MobRogueSiliconTesla
   name: tesla unit
-  #noSpawn: true
+  description: Originally designed to service tesla power generators, this silicon's equipment has been repurposed as a makeshift stun gun.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -818,6 +920,10 @@
       0: Alive
       110: Critical
       160: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      66: 0.7
+      88: 0.5
   - type: Stamina
     critThreshold: 600
   - type: ProjectileBatteryAmmoProvider
@@ -848,10 +954,12 @@
 - type: entity
   parent:
   - MobRogueSiliconDroneBase
+  - MobPassiveRegenStrong
   - MobRogueSiliconHitscanBatteryAmmo
   id: MobRogueSiliconGuardian
   name: guardian unit
-  #noSpawn: true
+  description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -885,8 +993,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Critical
+      200: Critical
       400: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+      160: 0.5
   - type: Stamina
     critThreshold: 600
   - type: HitscanBatteryAmmoProvider
@@ -910,10 +1022,13 @@
     color: "#47f8ff"
 
 - type: entity
-  parent: MobRogueSiliconBase
+  parent:
+  - MobRogueSiliconBase
+  - MobPassiveRegenStrong
   id: MobRogueSiliconBoss
   name: one star unit
-  #noSpawn: true
+  description: An autonomous combat-grade mech, typically used for offensive operations. Now a rogue AI's elite guard. Equipped with missile launchers, exercise extreme caution.
+  noSpawn: true
   components:
   - type: Loadout
     prototypes:
@@ -934,8 +1049,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical
-      600: Dead
+      300: Critical
+      400: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+      260: 0.5
   - type: Stamina
     critThreshold: 600
   - type: BasicEntityAmmoProvider
