@@ -50,9 +50,6 @@ public sealed class RespawnSystem : EntitySystem
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent e)
     {
-        foreach (var session in _respawnResetTimes.Keys)
-            SendRespawnResetTime(session, null);
-
         _respawnResetTimes.Clear();
     }
 
