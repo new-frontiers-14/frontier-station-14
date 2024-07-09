@@ -570,3 +570,34 @@
     radius: 1.1
     energy: 1.2
     color: "#4b93ad"
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineCiviMedVend
+  name: CiviMedVend
+  description: CiviMed! Distributing lifesaving meds harder than the rocks you break! CiviMed! Miners DO NOT DIE!
+  components:
+  - type: VendingMachine
+    pack: CiviMedVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: CiviMedAds
+  - type: Sprite
+    sprite: _NF\Structures\Machines\VendingMachines\CiviMed.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: MarketModifier
+    mod: 15
