@@ -1,5 +1,5 @@
 ent-CrateNPCEmotionalSupport = ящик с ручными зверушками
-    .desc = { ent-CrateLivestock.desc }
+    .desc = Ящик, содержащий питомца для эмоциональной поддержки.
 ent-FillNPCEmotionalSupportSafe = { "" }
     .suffix = Safe
     .desc = { "" }
